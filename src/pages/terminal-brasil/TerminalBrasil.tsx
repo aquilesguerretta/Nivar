@@ -10,27 +10,23 @@ import {
   Crosshair,
   Database,
   Moon,
+  Copy,
+  Save,
+  Maximize2,
+  Minimize2,
+  Trash2,
   Search,
   Sun,
   X,
 } from "lucide-react";
-import {
-  Area,
-  CartesianGrid,
-  ComposedChart,
-  ReferenceDot,
-  ReferenceLine,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+
 import {
   BRASIL_OUTLINE_D,
   BRASIL_VIEWBOX,
   SUBMERCADOS,
 } from "../../lib/geo/brasil-outline";
 import { Wordmark } from "../../components/g2/Brand";
+import { useNivarFavicon } from "../../components/g2/use-nivar-favicon";
 import {
   describeSeries,
   formatValue,
@@ -38,17 +34,24 @@ import {
   METRICS,
   REGIONS,
   SAMPLE_VERSION,
-  sampleCsv,
   SOURCE_RECORDS,
 } from "./sample";
 import type { MetricId, Observation, PeriodId, RegionId } from "./sample";
+import { AnalysisInstrument } from "./AnalysisInstrument";
+import { SERIES_COLORS, plotValue } from "./analysis-format";
+import { makeAnalysis, analysisCsv, noteAnchors, observationInWindow, selectionForWindow, selectionForDailySeries } from "./analysis";
+import { parseWorkspace, serializeWorkspace, parseSavedWorkspaces, SAVED_WORKSPACE_KEY } from "./workspace-state";
+import type { WorkspaceState, SavedWorkspace, Representation, AnalysisScale } from "./workspace-state";
+import { TerminalReading } from "./TerminalReading";
 import { useTerminalMotion } from "./terminal-motion";
 import "../../components/g2/g2.css";
 import "../../components/g2/g21-fonts.css";
 import "./terminal-brasil.css";
+import "./terminal-workspace.css";
 
 interface TerminalBrasilProps {
   compact?: boolean;
+  initialWorkspace?: WorkspaceState;
   initialRegion?: RegionId;
   initialProbeIndex?: number;
   initialPeriod?: PeriodId;
@@ -122,35 +125,14 @@ const questions: Record<MetricId, { hypothesis: string; check: string }[]> = {
   ],
 };
 
-function SeriesTooltip({
-  active,
-  payload,
-  metric,
-}: {
-  active?: boolean;
-  payload?: readonly { payload?: Observation }[];
-  metric: MetricId;
-}) {
-  const point = payload?.[0]?.payload;
-  if (!active || !point) return null;
-  return (
-    <div className="g2t-tooltip">
-      <span>{point.label} · AMOSTRA</span>
-      <strong>
-        {formatValue(point.value, metric)} <small>{METRICS[metric].unit}</small>
-      </strong>
-    </div>
-  );
-}
-
 function RegionalTrace({ series, selectedIndex }: { series: Observation[]; selectedIndex: number }) {
   const low = Math.min(...series.map((point) => point.value));
   const high = Math.max(...series.map((point) => point.value));
   const coordinate = (point: Observation) => [
-    2 + (point.index / (series.length - 1)) * 72,
+    2 + ((point.index - series[0].index) / (series.length - 1)) * 72,
     24 - ((point.value - low) / (high - low || 1)) * 20,
   ];
-  const selected = coordinate(series[Math.min(selectedIndex, series.length - 1)]);
+  const selected = coordinate(series.find(point => point.index === selectedIndex) ?? series[series.length - 1]);
   return (
     <svg className="g2t-region-trace" viewBox="0 0 76 28" aria-hidden="true">
       <polyline points={series.map((point) => coordinate(point).join(",")).join(" ")} />
@@ -161,6 +143,7 @@ function RegionalTrace({ series, selectedIndex }: { series: Observation[]; selec
 
 function TerminalBrasil({
   compact = false,
+  initialWorkspace,
   initialRegion = "sudesteCentroOeste",
   initialProbeIndex,
   initialPeriod = "24h",
@@ -170,6 +153,11 @@ function TerminalBrasil({
   initialEventIndex = 1,
   onEntryUrlChange,
 }: TerminalBrasilProps) {
+  const initialSeries = getSeries(initialRegion, initialPeriod, initialMetric);
+  const initialNote = noteAnchors(initialSeries)[initialEventIndex];
+  const initialProbe = initialProbeIndex !== undefined && Number.isInteger(initialProbeIndex) && initialProbeIndex >= 0 ? initialProbeIndex : undefined;
+  const initialSelection = selectionForWindow(initialSeries, initialProbe ?? initialNote.index,
+    initialWorkspace?.start ?? 0, initialWorkspace?.end ?? initialSeries.length - 1);
   useEffect(() => {
     if (compact) return;
     const previousTitle = document.title;
@@ -186,14 +174,24 @@ function TerminalBrasil({
   );
   const [tone, setTone] = useState<"graphite" | "paper">(initialTone);
   const [eventIndex, setEventIndex] = useState(initialEventIndex);
+  const [comparisons, setComparisons] = useState<RegionId[]>(initialWorkspace?.compare ?? []);
+  const [representation, setRepresentation] = useState<Representation>(initialWorkspace?.view ?? "chart");
+  const [analysisScale, setAnalysisScale] = useState<AnalysisScale>(initialWorkspace?.scale ?? "native");
+  const [rangeStart, setRangeStart] = useState(initialWorkspace?.start ?? 0);
+  const [rangeEnd, setRangeEnd] = useState(initialWorkspace?.end ?? getSeries(initialRegion, initialPeriod, initialMetric).length - 1);
+  const [focused, setFocused] = useState(false);
+  const [viewName, setViewName] = useState("");
+  const [shareFallback, setShareFallback] = useState("");
+  const [savedViews, setSavedViews] = useState<SavedWorkspace[]>(() => {
+    try { return parseSavedWorkspaces(localStorage.getItem(SAVED_WORKSPACE_KEY)); } catch { return []; }
+  });
   const [probeIndex, setProbeIndex] = useState<number | null>(() =>
-    initialProbeIndex !== undefined && Number.isInteger(initialProbeIndex) && initialProbeIndex >= 0
-      ? initialProbeIndex
-      : null);
+    initialProbe !== undefined || initialSelection.moved ? initialSelection.point.index : null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [mapOpen, setMapOpen] = useState(false);
   const [sourceSearch, setSourceSearch] = useState("");
-  const [announcement, setAnnouncement] = useState("");
+  const [announcement, setAnnouncement] = useState(() => initialSelection.moved
+    ? `A nota de ${initialNote.label} está fora do recorte. Observação selecionada: ${initialSelection.point.label}.` : "");
   const WorkspaceElement = compact ? "div" : "main";
   const dialogRef = useRef<HTMLDialogElement>(null);
   const terminalRef = useTerminalMotion(reducedMotion);
@@ -203,29 +201,41 @@ function TerminalBrasil({
   const isSample = sourceMode === "sample";
   const regionInfo = REGIONS.find((r) => r.id === region)!;
   const metricInfo = METRICS[metric];
-  const series = useMemo(
+  const fullSeries = useMemo(
     () => getSeries(region, period, metric),
     [region, period, metric],
   );
+  const safeStart = Math.min(rangeStart, fullSeries.length - 2);
+  const safeEnd = Math.max(safeStart + 1, Math.min(rangeEnd, fullSeries.length - 1));
+  const series = useMemo(() => fullSeries.slice(safeStart, safeEnd + 1), [fullSeries, safeStart, safeEnd]);
+  const selectedRegions = useMemo(() => [region, ...comparisons.filter(item => item !== region)], [region, comparisons]);
+  const analysisModels = useMemo(() => makeAnalysis(selectedRegions, period, metric, safeStart, safeEnd, analysisScale), [selectedRegions, period, metric, safeStart, safeEnd, analysisScale]);
+  const allModels = useMemo(() => makeAnalysis(REGIONS.map(item => item.id), period, metric, safeStart, safeEnd, analysisScale), [period, metric, safeStart, safeEnd, analysisScale]);
   const summary = useMemo(
     () => describeSeries(series, metric),
     [series, metric],
   );
-  const eventPoints = [0.3, 0.6, 0.82].map(
-    (fraction) => series[Math.round((series.length - 1) * fraction)],
-  );
+  const eventPoints = noteAnchors(fullSeries);
   const selectedPoint = eventPoints[eventIndex];
-  const inspectedPoint = series[Math.min(probeIndex ?? selectedPoint.index, series.length - 1)];
+  const currentSelection = selectionForWindow(fullSeries, probeIndex ?? selectedPoint.index, safeStart, safeEnd);
+  const inspectedPoint = currentSelection.point;
+  const inspectingNote = probeIndex === null && !currentSelection.moved;
+  const selectedNoteInWindow = observationInWindow(selectedPoint.index, safeStart, safeEnd);
   // The public handoff is derived from the current instrument, including its
   // absence state. A note stays a note; a manually inspected point stays a point.
-  const entryParams = new URLSearchParams({
-    region, period, metric, source: sourceMode, tone, note: String(eventIndex),
-  });
-  if (probeIndex !== null) entryParams.set("observation", String(inspectedPoint.index));
-  const entryUrl = `/br/terminal?${entryParams.toString()}`;
+  const workspaceState: WorkspaceState = {
+    region, period, metric, source: sourceMode, tone, note: eventIndex,
+    observation: inspectingNote ? undefined : inspectedPoint.index,
+    compare: comparisons.filter(item => item !== region), view: representation, scale: analysisScale,
+    start: safeStart, end: safeEnd,
+  };
+  const entryUrl = serializeWorkspace(workspaceState);
   useEffect(() => {
     onEntryUrlChange?.(entryUrl);
-  }, [entryUrl, onEntryUrlChange]);
+    // Keep React mounted while replacing transient scrub/analysis state in the URL.
+    // React Router still handles actual navigation and browser back/forward.
+    if (!compact && window.location.pathname === "/br/terminal") window.history.replaceState(window.history.state, "", entryUrl);
+  }, [entryUrl, onEntryUrlChange, compact]);
   const selectedMarket = SUBMERCADOS.find((market) => market.id === region)!;
   const question = questions[metric][eventIndex];
   const normalizedSearch = sourceSearch
@@ -261,8 +271,10 @@ function TerminalBrasil({
   }, []);
 
   function selectEvent(index: number) {
+    if (!isSample || !observationInWindow(eventPoints[index].index, safeStart, safeEnd)) return;
     setEventIndex(index);
     setProbeIndex(null);
+    setAnnouncement("");
     propagate("observation");
   }
 
@@ -273,6 +285,7 @@ function TerminalBrasil({
 
   function selectRegion(next: RegionId) {
     if (next === region) return;
+    if (comparisons.length) setComparisons(items => [...new Set([...items, region])].filter(item => item !== next));
     setRegion(next);
     propagate("region");
   }
@@ -281,13 +294,20 @@ function TerminalBrasil({
     if (next === period) return;
     // A daily observation retains its timestamp when its window changes.
     // Hourly and daily fixtures are distinct frequencies, not aggregates.
-    if (probeIndex !== null && period !== "24h" && next !== "24h") {
+    if (period !== "24h" && next !== "24h") {
       const nextSeries = getSeries(region, next, metric);
-      const match = nextSeries.findIndex((point) => point.timestamp === inspectedPoint.timestamp);
-      setProbeIndex(match >= 0 ? match : null);
+      const selection = selectionForDailySeries(inspectedPoint, nextSeries);
+      setProbeIndex(selection.point.index);
+      setAnnouncement(selection.moved
+        ? `${inspectedPoint.label} está fora da janela de ${next}. Observação selecionada: ${selection.point.label}.`
+        : `Janela de ${next}. Observação de ${selection.point.label} preservada.`);
     } else {
       setProbeIndex(null);
+      const nextNote = noteAnchors(getSeries(region, next, metric))[eventIndex];
+      setAnnouncement(`Frequência alterada. As amostras horárias e diárias são independentes. Nota selecionada: ${nextNote.label}.`);
     }
+    setRangeStart(0);
+    setRangeEnd(getSeries(region, next, metric).length - 1);
     setPeriod(next);
     propagate("period");
   }
@@ -299,8 +319,20 @@ function TerminalBrasil({
   }
 
   function inspectPoint(index: number) {
-    setProbeIndex(index);
+    setProbeIndex(Math.max(safeStart, Math.min(index, safeEnd)));
+    setAnnouncement("");
     propagate("observation");
+  }
+
+  function changeWindow(start: number, end: number) {
+    const selection = selectionForWindow(fullSeries, inspectedPoint.index, start, end);
+    setRangeStart(start);
+    setRangeEnd(end);
+    if (selection.moved) setProbeIndex(selection.point.index);
+    setAnnouncement(selection.moved
+      ? `A observação de ${inspectedPoint.label} ficou fora do recorte. Observação selecionada: ${selection.point.label}. As notas mantêm suas referências originais.`
+      : `Recorte de ${fullSeries[start].label} a ${fullSeries[end].label}. Observação de ${selection.point.label} preservada.`);
+    propagate("window");
   }
 
   function openSources() {
@@ -310,21 +342,62 @@ function TerminalBrasil({
 
   function exportCsv() {
     if (!isSample) return;
-    const blob = new Blob([sampleCsv(region, period, metric)], {
+    const blob = new Blob([analysisCsv(analysisModels, metric, period, analysisScale)], {
       type: "text/csv;charset=utf-8;",
     });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = `NIVAR-AMOSTRA-${region}-${metric}-${period}.csv`;
+    anchor.download = `NIVAR-AMOSTRA-${selectedRegions.length}regioes-${metric}-${period}-${analysisScale}.csv`;
     anchor.hidden = true;
     document.body.appendChild(anchor);
     anchor.click();
     anchor.remove();
     window.setTimeout(() => URL.revokeObjectURL(url), 5000);
     setAnnouncement(
-      `CSV demonstrativo de ${regionInfo.name}, ${metricInfo.label}, ${period} exportado.`,
+      `CSV demonstrativo de ${selectedRegions.length} regiões, ${series.length} observações por região, ${metricInfo.label} exportado.`,
     );
+  }
+
+  function toggleComparison(next: RegionId) {
+    if (next === region) return;
+    setComparisons(items => items.includes(next) ? items.filter(item => item !== next) : [...items, next]);
+    propagate("comparison");
+  }
+
+  function restoreWorkspace(state: WorkspaceState) {
+    const restoredSeries = getSeries(state.region, state.period, state.metric);
+    const requested = state.observation ?? noteAnchors(restoredSeries)[state.note].index;
+    const selection = selectionForWindow(restoredSeries, requested, state.start, state.end);
+    setRegion(state.region); setPeriod(state.period); setMetric(state.metric); setSourceMode(state.source);
+    setTone(state.tone); setEventIndex(state.note); setProbeIndex(state.observation !== undefined || selection.moved ? selection.point.index : null);
+    setComparisons(state.compare); setRepresentation(state.view); setAnalysisScale(state.scale);
+    setRangeStart(state.start); setRangeEnd(state.end); setFocused(false); setShareFallback("");
+    propagate("workspace");
+    return selection.moved ? ` A referência de ${restoredSeries[requested].label} está fora do recorte. Observação selecionada: ${selection.point.label}.` : "";
+  }
+
+  function writeSavedViews(next: SavedWorkspace[]) {
+    try { localStorage.setItem(SAVED_WORKSPACE_KEY, JSON.stringify(next)); setSavedViews(next); return true; }
+    catch { setAnnouncement("O navegador não permitiu salvar. Copie o link para preservar a análise."); return false; }
+  }
+
+  function saveWorkspace() {
+    const name = viewName.trim() || `${metricInfo.label} · ${selectedRegions.map(item => REGIONS.find(r => r.id === item)!.code).join(" + ")} · ${period}`;
+    const next = { id: crypto.randomUUID(), name: name.slice(0, 80), url: entryUrl, savedAt: new Date().toISOString(), dataset: SAMPLE_VERSION };
+    if (writeSavedViews([next, ...savedViews].slice(0, 12))) { setAnnouncement(`Análise “${next.name}” salva neste navegador.`); setViewName(""); }
+  }
+
+  async function shareWorkspace() {
+    const url = `${window.location.origin}${entryUrl}`;
+    try { await navigator.clipboard.writeText(url); setShareFallback(""); setAnnouncement("Link da análise copiado. A seleção e a base demonstrativa acompanham o link."); }
+    catch { setShareFallback(url); setAnnouncement("Copie o link no campo exibido para preservar esta análise."); }
+  }
+
+  function changeTone() {
+    const next = tone === "graphite" ? "paper" : "graphite";
+    setTone(next);
+    try { localStorage.setItem("nivar-g2-mode", next === "graphite" ? "dark" : "light"); } catch { /* The visible theme remains usable without storage. */ }
   }
 
   return (
@@ -335,10 +408,14 @@ function TerminalBrasil({
       data-source={sourceMode}
       data-map-open={mapOpen}
       data-period={period}
+      data-scale={analysisScale}
+      data-window={`${safeStart}/${safeEnd}`}
+      data-focus={focused}
       data-metric={metric}
       data-selection={selectionKind}
       data-selection-revision={selectionRevision}
       aria-label="Terminal Brasil — ambiente demonstrativo"
+      onKeyDown={event => { if (event.key === "Escape" && focused && !dialogRef.current?.open) setFocused(false); }}
     >
       <header className="g2t-header">
         <Link
@@ -350,11 +427,8 @@ function TerminalBrasil({
           <span>INTELLIGENCE</span>
         </Link>
         <div className="g2t-product">
-          <span className="g2t-product-mark" aria-hidden="true">
-            <Crosshair size={19} strokeWidth={1.2} />
-          </span>
           <span>
-            Terminal Brasil<small>UMA LEITURA DO SISTEMA</small>
+            Terminal Brasil<small>UM INSTRUMENTO DE ANÁLISE</small>
           </span>
         </div>
         <nav aria-label="Navegação do Terminal" className="g2t-nav">
@@ -367,7 +441,7 @@ function TerminalBrasil({
           <button
             type="button"
             className="g2t-icon-button"
-            onClick={() => setTone(tone === "graphite" ? "paper" : "graphite")}
+            onClick={changeTone}
             aria-label={
               tone === "graphite" ? "Usar tema claro" : "Usar tema escuro"
             }
@@ -402,12 +476,12 @@ function TerminalBrasil({
                 </span>{" "}
                 BRASIL / CADERNO 001
               </div>
-              <h1>O sistema, em perspectiva.</h1>
+              <h1>Uma pergunta. Mais de uma perspectiva.</h1>
             </div>
             <p>
               Observar o sinal.
               <br />
-              <span>Interrogar a explicação.</span>
+              <span>Comparar. Examinar. Preservar.</span>
             </p>
           </div>
         )}
@@ -462,10 +536,16 @@ function TerminalBrasil({
             disabled={!isSample}
           >
             <ArrowDownToLine size={14} />
-            <span>Exportar amostra</span>
+            <span>Exportar seleção</span>
           </button>
         </div>
 
+        {!compact && <div className="g23-workspace-tools">
+          <div className="g23-workspace-label"><span>ANÁLISE / 001</span><strong>{selectedRegions.length > 1 ? `${selectedRegions.length} regiões em comparação` : "Uma região em exame"}</strong><small>{isSample ? `${series.length} observações · ${period === "24h" ? "UTC−03:00" : "frequência diária"}` : "sem observações disponíveis"}</small></div>
+          <div className="g23-workspace-actions"><button type="button" onClick={() => { void shareWorkspace(); }}><Copy size={14} />Copiar link</button><details className="g23-saved-views"><summary><Save size={14} />Análises salvas<small>{savedViews.length.toString().padStart(2, "0")}</small><ChevronDown size={12} /></summary><div className="g23-saved-panel"><h3>Voltar a uma boa pergunta.</h3><p>Até 12 análises neste navegador. Os links preservam a configuração da base demonstrativa.</p><label htmlFor={`${id}-view-name`}>Nome da análise</label><div className="g23-save-input"><input id={`${id}-view-name`} value={viewName} maxLength={80} placeholder={`${metricInfo.label} · ${regionInfo.code} · ${period}`} onChange={event => setViewName(event.target.value)} /><button type="button" onClick={saveWorkspace}>Salvar</button></div>{savedViews.length ? <ul>{savedViews.map(saved => <li key={saved.id}><button type="button" onClick={() => { const adjustment = restoreWorkspace(parseWorkspace(new URLSearchParams(saved.url.split("?")[1]))); setAnnouncement(`Análise “${saved.name}” restaurada.${adjustment}`); }}><strong>{saved.name}</strong><small>{new Date(saved.savedAt).toLocaleDateString("pt-BR")} · AMOSTRA</small></button><button type="button" aria-label={`Excluir análise ${saved.name}`} onClick={() => writeSavedViews(savedViews.filter(item => item.id !== saved.id))}><Trash2 size={14} /></button></li>)}</ul> : <div className="g23-saved-empty">Sua próxima análise pode começar daqui.</div>}</div></details><button type="button" onClick={() => setFocused(value => !value)} aria-pressed={focused}>{focused ? <Minimize2 size={14} /> : <Maximize2 size={14} />}{focused ? "Sair do foco" : "Modo foco"}</button><button type="button" className="g23-reset" onClick={() => { restoreWorkspace({ ...parseWorkspace(new URLSearchParams()), tone }); setAnnouncement("Análise inicial restaurada."); }}>Recomeçar</button></div>
+          {shareFallback && <label className="g23-share-fallback">Link desta análise<input readOnly value={shareFallback} onFocus={event => event.target.select()} /></label>}
+          {announcement && <p className="g23-workspace-feedback">{announcement}</p>}
+        </div>}
         <WorkspaceElement className="g2t-workspace">
           <button className="g2t-mobile-map-toggle" type="button" aria-expanded={mapOpen} aria-controls={`${id}-geography`} onClick={() => setMapOpen(!mapOpen)}>
             <Crosshair size={14} /><span>{mapOpen ? "Recolher geografia" : "Explorar geografia"}</span><span>{regionInfo.code}</span><ChevronDown size={14} />
@@ -568,7 +648,7 @@ function TerminalBrasil({
               aria-label="Submercado selecionado"
             >
               {REGIONS.map((item) => {
-                const regionalSeries = getSeries(item.id, period, metric);
+                const regionalSeries = getSeries(item.id, period, metric).slice(safeStart, safeEnd + 1);
                 const regional = describeSeries(
                   regionalSeries,
                   metric,
@@ -657,6 +737,7 @@ function TerminalBrasil({
                 ))}
               </div>
             </div>
+            <div className="g23-series-manager"><span>COMPARAR REGIÕES</span><div role="group" aria-label="Regiões na comparação">{REGIONS.map(item => <button type="button" key={item.id} aria-pressed={selectedRegions.includes(item.id)} onClick={() => toggleComparison(item.id)} disabled={item.id === region} title={item.id === region ? "Região principal da análise" : `Adicionar ou remover ${item.name}`} style={{ "--series-color": SERIES_COLORS[item.id] } as import("react").CSSProperties}><i />{item.code}{item.id === region && <small>principal</small>}</button>)}</div></div>
             <div className="g2t-series-reading">
               <div>
                 <span className="g2t-value-label">{metricInfo.longLabel} · última observação</span>
@@ -672,172 +753,26 @@ function TerminalBrasil({
                 </small>
               </div>
             </div>
+            <div className="g23-analysis-controls"><div className="g23-representations" role="group" aria-label="Representação da análise">{([["chart", "Gráfico"], ["table", "Tabela"], ["spatial", "Espacial"]] as const).map(([value, label]) => <button key={value} type="button" onClick={() => { setRepresentation(value); propagate("representation"); }} aria-pressed={representation === value}>{label}</button>)}</div><label className="g23-scale-control"><span className="g2t-visually-hidden">Escala da comparação</span><select value={analysisScale} onChange={event => { setAnalysisScale(event.target.value as AnalysisScale); propagate("scale"); }}><option value="native">Valores originais</option><option value="index">Índice · base 100</option></select><ChevronDown size={12} /></label></div>
             <div className="g2t-chart-legend">
               <span>
                 <i />
                 {isSample ? "SÉRIE SINTÉTICA" : "SÉRIE INDISPONÍVEL"}
               </span>
-              <span>{periodNames[period]}</span>
+              <span>{safeStart === 0 && safeEnd === fullSeries.length - 1 ? periodNames[period] : `${series[0].label} — ${series[series.length - 1].label} · ${period === "24h" ? "HORÁRIO" : "DIÁRIO"}`}</span>
             </div>
             {isSample ? (
               <figure className="g2t-chart-figure">
                 <div
                   className="g2t-chart"
+                  data-representation={representation}
                   aria-label={`${metricInfo.longLabel} em ${regionInfo.name}. Início ${formatValue(summary.first, metric)}, fim ${formatValue(summary.last, metric)} ${metricInfo.unit}. Variação ${summary.delta}. Base demonstrativa.`}
                 >
-                  {/* Initial geometry only; ResizeObserver immediately supplies the actual CSS-sized canvas. */}
-                  <ResponsiveContainer
-                    width="100%"
-                    height="100%"
-                    minWidth={0}
-                    initialDimension={{ width: 350, height: 239 }}
-                  >
-                    <ComposedChart
-                      data={series}
-                      margin={{ top: 26, right: 26, bottom: 8, left: 4 }}
-                      accessibilityLayer
-                      onClick={(state) => {
-                        if (state.activeTooltipIndex == null) return;
-                        const index = Number(state.activeTooltipIndex);
-                        if (Number.isInteger(index) && index >= 0 && index < series.length) inspectPoint(index);
-                      }}
-                    >
-                      <defs>
-                        <linearGradient
-                          id={`${id}-fill`}
-                          x1="0"
-                          y1="0"
-                          x2="0"
-                          y2="1"
-                        >
-                          <stop
-                            offset="0%"
-                            stopColor="var(--g2t-accent)"
-                            stopOpacity={0.23}
-                          />
-                          <stop
-                            offset="100%"
-                            stopColor="var(--g2t-accent)"
-                            stopOpacity={0}
-                          />
-                        </linearGradient>
-                      </defs>
-                      <CartesianGrid
-                        stroke="var(--g2t-rule)"
-                        vertical={false}
-                        strokeOpacity={0.55}
-                      />
-                      <XAxis
-                        dataKey="index"
-                        type="number"
-                        domain={[0, series.length - 1]}
-                        ticks={[
-                          0,
-                          Math.round((series.length - 1) / 3),
-                          Math.round((2 * (series.length - 1)) / 3),
-                          series.length - 1,
-                        ]}
-                        tickFormatter={(index: number) =>
-                          series[index]?.label ?? ""
-                        }
-                        tick={{
-                          fill: "var(--g2t-muted)",
-                          fontSize: 12,
-                          fontFamily: "var(--g2-mono, monospace)",
-                        }}
-                        axisLine={false}
-                        tickLine={false}
-                        tickMargin={14}
-                      />
-                      <YAxis
-                        domain={[
-                          (value: number) => Math.floor(value * 0.9),
-                          (value: number) => Math.ceil(value * 1.07),
-                        ]}
-                        tickCount={4}
-                        tick={{
-                          fill: "var(--g2t-muted)",
-                          fontSize: 12,
-                          fontFamily: "var(--g2-mono, monospace)",
-                        }}
-                        tickFormatter={(value: number) =>
-                          value.toLocaleString("pt-BR", {
-                            maximumFractionDigits: 1,
-                          })
-                        }
-                        axisLine={false}
-                        tickLine={false}
-                        width={43}
-                      />
-                      <ReferenceLine
-                        y={summary.first}
-                        stroke="var(--g2t-muted)"
-                        strokeDasharray="5 5"
-                        strokeOpacity={0.5}
-                      />
-                      <ReferenceLine
-                        x={inspectedPoint.index}
-                        stroke="var(--g2t-accent)"
-                        strokeOpacity={0.8}
-                        label={{
-                          value: probeIndex == null ? `NOTA ${String(eventIndex + 1).padStart(2, "0")}` : inspectedPoint.label,
-                          fill: "var(--g2t-accent)",
-                          fontSize: 12,
-                          fontFamily: "var(--g2-mono, monospace)",
-                          position: "insideTopRight",
-                        }}
-                      />
-                      <Area
-                        type="linear"
-                        dataKey="value"
-                        stroke="var(--g2t-accent)"
-                        strokeWidth={2}
-                        fill={`url(#${id}-fill)`}
-                        dot={false}
-                        connectNulls={false}
-                        activeDot={{
-                          r: 4,
-                          fill: "var(--g2t-accent)",
-                          stroke: "var(--g2t-bg)",
-                          strokeWidth: 2,
-                        }}
-                        isAnimationActive={false}
-                      />
-                      <ReferenceDot
-                        x={inspectedPoint.index}
-                        y={inspectedPoint.value}
-                        r={5}
-                        fill="var(--g2t-accent)"
-                        stroke="var(--g2t-bg)"
-                        strokeWidth={2}
-                      />
-                      <Tooltip
-                        content={<SeriesTooltip metric={metric} />}
-                        cursor={{
-                          stroke: "var(--g2t-muted)",
-                          strokeDasharray: "3 3",
-                        }}
-                      />
-                    </ComposedChart>
-                  </ResponsiveContainer>
-                  <div
-                    className="g2t-evidence-dock"
-                    data-placement={inspectedPoint.value > (summary.min + summary.max) / 2 ? "below" : "above"}
-                    style={{ left: `clamp(111px, ${18 + (inspectedPoint.index / (series.length - 1)) * 74}%, calc(100% - 111px))` }}
-                  >
-                    <div className="g2t-context-plane">
-                      <div className="g2t-context-heading">
-                        <span><Crosshair size={12} /> OBSERVAÇÃO</span>
-                        <button type="button" onClick={openSources} aria-label="Rastrear esta observação nas fontes">Fonte <ArrowUpRight size={12} /></button>
-                      </div>
-                      <div className="g2t-context-value"><strong>{formatValue(inspectedPoint.value, metric)}</strong><span>{metricInfo.unit}</span></div>
-                      <p>{regionInfo.code} <i /> {inspectedPoint.label} <i /> AMOSTRA</p>
-                    </div>
-                  </div>
+                  <AnalysisInstrument models={analysisModels} allModels={allModels} metric={metric} scale={analysisScale} view={representation} selected={inspectedPoint} id={id} inspect={inspectPoint} selectRegion={selectRegion} onSource={openSources} />
                 </div>
                 <div className="g2t-time-inspector">
                   <div className="g2t-probe-heading">
-                    <span><Crosshair size={12} /> {probeIndex == null ? `NOTA 0${eventIndex + 1}` : "OBSERVAÇÃO"} / {regionInfo.code}</span>
+                    <span><Crosshair size={12} /> {inspectingNote ? `NOTA 0${eventIndex + 1}` : "OBSERVAÇÃO"} / {regionInfo.code}</span>
                     <output htmlFor={`${id}-time-scrub`}><b>{inspectedPoint.label}</b><span>{formatValue(inspectedPoint.value, metric)} <small>{metricInfo.unit}</small></span></output>
                   </div>
                   <label className="g2t-visually-hidden" htmlFor={`${id}-time-scrub`}>Inspecionar observação da série</label>
@@ -845,8 +780,8 @@ function TerminalBrasil({
                     id={`${id}-time-scrub`}
                     className="g2t-time-scrub"
                     type="range"
-                    min={0}
-                    max={series.length - 1}
+                    min={safeStart}
+                    max={safeEnd}
                     step={1}
                     value={inspectedPoint.index}
                     aria-valuetext={`${inspectedPoint.label}: ${formatValue(inspectedPoint.value, metric)} ${metricInfo.unit}. Amostra sintética.`}
@@ -854,15 +789,17 @@ function TerminalBrasil({
                   />
                   <div className="g2t-timeline-events" role="group" aria-label="Notas na linha do tempo">
                     {eventPoints.map((point, index) => (
-                      <button key={index} type="button" onClick={() => selectEvent(index)} aria-pressed={eventIndex === index && probeIndex == null}>
-                        <i aria-hidden="true" /><span>0{index + 1}</span><strong>{point.label}</strong><ArrowUpRight size={11} />
+                      <button key={index} type="button" onClick={() => selectEvent(index)} aria-pressed={eventIndex === index && inspectingNote} disabled={!observationInWindow(point.index, safeStart, safeEnd)}>
+                        <i aria-hidden="true" /><span>0{index + 1}</span><strong>{point.label}</strong>{observationInWindow(point.index, safeStart, safeEnd) ? <ArrowUpRight size={11} /> : <small>fora do recorte</small>}
                       </button>
                     ))}
                   </div>
                 </div>
+                <div className="g23-comparison-readout" aria-label="Valores das regiões na observação selecionada">{analysisModels.map(model => { const point = model.observations.find(item => item.index === inspectedPoint.index)!; const value = model.values[model.observations.findIndex(item => item.index === inspectedPoint.index)]; const difference = point.value - inspectedPoint.value; return <button type="button" key={model.region} onClick={() => selectRegion(model.region)} aria-pressed={model.region === region} style={{ "--series-color": SERIES_COLORS[model.region] } as import("react").CSSProperties}><span><i />{REGIONS.find(item => item.id === model.region)!.code}<small>{model.region === region ? "PRINCIPAL" : "COMPARAÇÃO"}</small></span><strong>{plotValue(value, metric, analysisScale)}<small>{analysisScale === "index" ? "índice" : metricInfo.unit}</small></strong><small>{model.region === region ? `${point.label} · base sintética` : `${difference > 0 ? "+" : ""}${formatValue(difference, metric)} ${metric === "storage" ? "p.p." : metricInfo.unit} vs. ${regionInfo.code}`}</small></button>; })}</div>
+                <details className="g23-range-control"><summary>Recortar a janela<small>{series[0].label} — {series[series.length - 1].label}</small><ChevronDown size={12} /></summary><div><label>Início<select value={safeStart} onChange={event => changeWindow(Number(event.target.value), safeEnd)}>{fullSeries.slice(0, safeEnd).map(point => <option key={point.index} value={point.index}>{point.label}</option>)}</select></label><span>até</span><label>Fim<select value={safeEnd} onChange={event => changeWindow(safeStart, Number(event.target.value))}>{fullSeries.slice(safeStart + 1).map(point => <option key={point.index} value={point.index}>{point.label}</option>)}</select></label><button type="button" onClick={() => changeWindow(0, fullSeries.length - 1)}>Janela completa</button></div><p>O recorte altera o gráfico, a comparação, o cálculo e o CSV. As notas mantêm suas referências; uma observação excluída passa ao limite mais próximo, com aviso. Horário e diário são amostras independentes.</p></details>
                 <figcaption>
                   <span className="g2t-baseline-key" />
-                  Tracejado: primeira observação
+                  {analysisScale === "index" ? `Base 100: ${series[0].label} · valor / início × 100` : "Tracejado: primeira observação"}
                   <span className="g2t-simulation-note">
                     Demonstração · sem dado de mercado
                   </span>
@@ -954,17 +891,13 @@ function TerminalBrasil({
                     : "API brasileira não conectada. Nenhum dado substituto é tratado como observação."}
                 </p>
               </div>
-              {isSample && <button type="button" className="g2t-observation-trace" onClick={openSources} aria-label="Examinar a proveniência da observação selecionada">
-                <span><Crosshair size={13} /> OBSERVAÇÃO SELECIONADA <ArrowUpRight size={12} /></span>
-                <strong>{regionInfo.code} <i /> {inspectedPoint.label}</strong>
-                <span className="g2t-trace-value">{formatValue(inspectedPoint.value, metric)} <small>{metricInfo.unit}</small></span>
-                <small>Base sintética · fonte e método</small>
-              </button>}
+              {isSample && <TerminalReading className="g2t-observation-trace" region={region} metric={metric} observation={inspectedPoint} onInspectSource={openSources} compact />}
+              {isSample && selectedRegions.length > 1 && <div className="g23-comparison-method"><span>COMPARAÇÃO / {selectedRegions.length} REGIÕES</span><p>{analysisScale === "index" ? `Cada série começa em 100 em ${series[0].label}. O índice compara trajetórias; os valores originais continuam disponíveis na tabela e no CSV.` : "Mesma métrica, mesma frequência e mesma janela. A distância entre curvas descreve a amostra; não demonstra restrição de transmissão."}</p></div>}
               <div className="g2t-reading-annotation g2t-reading-annotation--question">
                 <span>02 / CONTRADITÓRIO</span>
                 <p>
                   {isSample
-                    ? `Nota 0${eventIndex + 1}: uma hipótese.`
+                    ? `Nota 0${eventIndex + 1} · ${selectedPoint.label}${selectedNoteInWindow ? ": uma hipótese." : " · fora do recorte."}`
                     : "O que falta para retomar?"}
                 </p>
                 <small>
@@ -1015,8 +948,8 @@ function TerminalBrasil({
                     key={index}
                     type="button"
                     onClick={() => selectEvent(index)}
-                    aria-pressed={eventIndex === index}
-                    disabled={!isSample}
+                    aria-pressed={eventIndex === index && inspectingNote}
+                    disabled={!isSample || !observationInWindow(point.index, safeStart, safeEnd)}
                   >
                     <span>
                       NOTA 0{index + 1}
@@ -1025,7 +958,7 @@ function TerminalBrasil({
                     <strong>{isSample ? point.label : "—"}</strong>
                     <small>
                       {isSample
-                        ? `${formatValue(point.value, metric)} ${metricInfo.unit}`
+                        ? observationInWindow(point.index, safeStart, safeEnd) ? `${formatValue(point.value, metric)} ${metricInfo.unit}` : "fora do recorte"
                         : "sem observação"}
                     </small>
                   </button>
@@ -1034,7 +967,7 @@ function TerminalBrasil({
               <div className="g2t-event-dossier" key={`${metric}-${eventIndex}`} aria-live="polite">
                 <div>
                   <span className="g2t-eyebrow">
-                    HIPÓTESE A EXAMINAR / 0{eventIndex + 1}
+                    HIPÓTESE A EXAMINAR / 0{eventIndex + 1}{isSample ? ` · ${selectedPoint.label}${selectedNoteInWindow ? "" : " · fora do recorte"}` : ""}
                   </span>
                   <h3>
                     {isSample
@@ -1155,6 +1088,7 @@ function TerminalBrasil({
             <strong>{regionInfo.name} <i /> {metricInfo.label}</strong>
             <div><b>{isSample ? formatValue(inspectedPoint.value, metric) : "—"} <small>{metricInfo.unit}</small></b><span>{isSample ? inspectedPoint.timestamp : "sem observação"}</span></div>
             <small>{isSample ? SAMPLE_VERSION : "Nenhum valor de mercado conectado"}</small>
+            {isSample && <p className="g23-source-selection">{selectedRegions.length} regiões · {series[0].timestamp} a {series[series.length - 1].timestamp}. {analysisScale === "index" ? "Índice = valor original / primeira observação visível × 100. Baseline nulo ou zero resulta em ausência. O CSV preserva original e transformado." : "Valores originais, sem transformação."}</p>}
           </div>
           <label className="g2t-source-search">
             <Search size={16} />
@@ -1211,20 +1145,12 @@ export function TerminalPreview({ initialRegion, initialProbeIndex, onEntryUrlCh
 /** Public entry accepts only known presentation context. The observation bound
  * comes from the selected fixture window. No query can supply a datum or API. */
 export default function TerminalPage() {
+  useNivarFavicon();
   const [params] = useSearchParams();
-  const initialRegion = REGIONS.find(item => item.id === params.get("region"))?.id ?? "sudesteCentroOeste";
-  const initialPeriod = (["24h", "7d", "30d"] as const).find(item => item === params.get("period")) ?? "24h";
-  const initialMetric = (["price", "load", "storage"] as const).find(item => item === params.get("metric")) ?? "price";
-  const initialSourceMode = params.get("source") === "unavailable" ? "unavailable" : "sample";
-  const initialTone = params.get("tone") === "paper" ? "paper" : "graphite";
-  const boundedIndex = (name: string, length: number) => {
-    const value = params.get(name);
-    if (value === null || !/^\d+$/.test(value)) return undefined;
-    const index = Number(value);
-    return Number.isInteger(index) && index < length ? index : undefined;
-  };
-  const initialProbeIndex = boundedIndex("observation", getSeries(initialRegion, initialPeriod, initialMetric).length);
-  const initialEventIndex = boundedIndex("note", 3) ?? 1;
-  const contextKey = [initialRegion, initialPeriod, initialMetric, initialSourceMode, initialTone, initialEventIndex, initialProbeIndex ?? "note"].join("/");
-  return <TerminalBrasil key={contextKey} initialRegion={initialRegion} initialPeriod={initialPeriod} initialMetric={initialMetric} initialSourceMode={initialSourceMode} initialTone={initialTone} initialEventIndex={initialEventIndex} initialProbeIndex={initialProbeIndex} />;
+  const initial = parseWorkspace(params);
+  if (!params.has("tone")) {
+    try { const stored = localStorage.getItem("nivar-g2-mode"); if (stored === "light") initial.tone = "paper"; else if (stored === "dark") initial.tone = "graphite"; } catch { /* Explicit URL/default remains valid. */ }
+  }
+  const contextKey = params.toString();
+  return <TerminalBrasil key={contextKey} initialWorkspace={initial} initialRegion={initial.region} initialPeriod={initial.period} initialMetric={initial.metric} initialSourceMode={initial.source} initialTone={initial.tone} initialEventIndex={initial.note} initialProbeIndex={initial.observation} />;
 }

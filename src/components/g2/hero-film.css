@@ -71,7 +71,7 @@
 @media(min-width:701px){.g22-hero-film:is([data-chapter=observar],[data-chapter=questionar],[data-chapter=transmitir],[data-chapter=procurar]) .g22-film-patron{opacity:calc(.45 * (1 - var(--publication)) * var(--remain,1))}}
 @media(max-width:700px){.g22-film-physical{mask-image:linear-gradient(0deg,transparent,#17171b 45%)}.g22-film-paper{transform:translateY(calc(var(--paper-travel,650) * 1px))}.g22-film-source{bottom:120px}}
 
-.g22-film-source{opacity:calc(var(--stamp) * (1 - var(--question)) * (1 - var(--publication)) * var(--remain,1))}.g22-film-open>span{display:flex;align-items:center;gap:22px}.g22-film-open .g2-wordmark{flex:none}
+.g22-film-source{opacity:var(--source-visible,0)}.g22-film-open>span{display:flex;align-items:center;gap:22px}.g22-film-open .g2-wordmark{flex:none}
 
 /* The published argument exits as one registered sheet before reality returns. */
 .g22-film-study-label{opacity:var(--data);transform:translateY(calc(var(--return-travel,0) * 1px))}
@@ -92,3 +92,16 @@
 .g22-film-gap-lenses{opacity:var(--examine,0)}
 .g22-hero-film[data-chapter=procurar] .g22-film-gap-lenses line{stroke:#9e7560}
 @media(max-width:700px){.g22-film-focus{left:25px;right:25px;top:435px;font-size:9px}}
+/* G2.3: an accessible edit point and the actual Terminal evidence component. */
+.g2 .g23-film-scrub{display:flex;align-items:center;gap:18px;width:min(1328px,calc(100% - 112px));margin:0 auto 20px;font:9px/1.5 var(--g2-mono);color:var(--g2-secondary)}
+.g2 .g23-film-scrub input{flex:1;min-width:0;min-height:44px;accent-color:var(--g2-oxide);cursor:ew-resize}
+.g2 .g23-film-terminal{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.65fr);align-items:center;gap:65px;width:min(1328px,calc(100% - 112px));margin:32px auto 30px;padding:32px 0;border-top:1px solid var(--g2-rule);border-bottom:1px solid var(--g2-rule)}
+.g2 .g23-film-terminal>div>span{font:10px/1.5 var(--g2-mono);letter-spacing:.07em;color:var(--g2-secondary)}
+.g2 .g23-film-terminal h3{font:35px/1.08 var(--g2-serif);letter-spacing:-.04em;margin:15px 0}
+.g2 .g23-film-terminal p{font:13px/1.7 var(--g2-sans);color:var(--g2-secondary);max-width:57ch}
+.g2 .g23-film-terminal>div>a{display:inline-flex;align-items:center;gap:30px;min-height:44px;margin-top:14px;font:12px/1.5 var(--g2-sans);border-bottom:1px solid var(--g2-rule)}
+.g2 .g23-film-terminal .g23-terminal-reading{--g2t-ink:var(--g2-ink);--g2t-secondary:var(--g2-secondary);--g2t-muted:var(--g2-secondary);--g2t-rule:var(--g2-rule);--g2t-accent:var(--g2-oxide);--g2t-accent-soft:var(--g2-soft);padding:24px;gap:15px}
+.g2 .g23-film-terminal .g23-reading-value{font-size:43px}
+/* Printed intaglio remains positive: no photographic negative for the patrons. */
+.g22-film-patron img{filter:grayscale(.25);mix-blend-mode:normal;opacity:.7;mask-image:radial-gradient(ellipse at 52% 42%,#202228 22%,transparent 68%)}
+@media(max-width:700px){.g2 .g23-film-scrub{width:calc(100% - 40px);gap:12px;margin-bottom:14px}.g2 .g23-film-scrub>span:first-child{max-width:12ch}.g2 .g23-film-terminal{width:calc(100% - 40px);grid-template-columns:1fr;gap:25px;margin-top:20px;padding:28px 0}.g2 .g23-film-terminal h3{font-size:31px}.g2 .g23-film-terminal .g23-terminal-reading{padding:20px}.g2 .g23-film-terminal .g23-reading-value{font-size:36px}}

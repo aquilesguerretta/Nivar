@@ -5,6 +5,8 @@ import { FamilyEmblem } from "./Brand";
 import { familyPath } from "./family-path";
 import { SectionLabel } from "./NivarShell";
 import { AriadneJourney } from "./AriadneJourney";
+import { AdvisoryExamination } from "./AdvisoryExamination";
+import { CopperStudy } from "./CopperStudy";
 import "./house-chapters.css";
 
 type FamilyChapter = { id: string; name: string; verb: string; n: string; title: string; desc: string; product: string; productPath: string };
@@ -58,7 +60,7 @@ export function HouseChapters({ families }: { families: FamilyChapter[] }) {
         <h2>Uma casa.<br /><em>Cinco formas<br />de investigar.</em></h2>
         <p>Capacidades que se completam.<br />A independência em comum.</p>
         <div className="g21-house-nav" role="group" aria-label="Ir para uma família">
-          {families.map((f, i) => <button key={f.id} onClick={() => select(f.id)} aria-pressed={active === i}><span>{f.n}</span><FamilyEmblem family={f.id} size={23} decorative /><span>{f.name}</span><ArrowUpRight size={14} /></button>)}
+          {families.map((f, i) => <button key={f.id} onClick={() => select(f.id)} aria-pressed={active === i}><span>{f.n}</span><span>{f.name}</span><ArrowUpRight size={14} /></button>)}
         </div>
         <div className="g21-house-note"><span>NULLIUS IN VERBA.</span><p>Não tome nossa palavra.<br />Examine a evidência.</p></div>
       </aside>
@@ -68,8 +70,8 @@ export function HouseChapters({ families }: { families: FamilyChapter[] }) {
           return <article className="g21-house-chapter" id={`g21-house-${f.id}`} key={f.id} data-active={active === i} data-family={f.id}>
             <div className="g21-house-chapter-top"><span>{f.n} / {art.patron.toLocaleUpperCase("pt-BR")}</span><span>{f.verb.toLocaleUpperCase("pt-BR")}</span></div>
             <Link className="g21-house-title" to={familyPath(f.id)}><h3>{f.name}</h3><ArrowUpRight size={29} /></Link>
-            {f.id === "software" ? <AriadneJourney compact /> : <div className="g21-house-collage">
-              <picture><source media="(max-width:700px)" srcSet={`/g2/g21/${art.asset}-mobile.webp`} /><img src={`/g2/g21/${art.asset}.webp`} alt="" loading="lazy" /></picture>
+            {f.id === "software" ? <AriadneJourney compact /> : f.id === "advisory" ? <AdvisoryExamination compact /> : <div className="g21-house-collage">
+              {f.id === "hardware" ? <CopperStudy /> : <picture><source media="(max-width:700px)" srcSet={`/g2/g21/${art.asset}-mobile.webp`} /><img src={`/g2/g21/${art.asset}.webp`} alt="" loading="lazy" /></picture>}
               <div className="g21-house-portrait"><FamilyEmblem family={f.id} variant="hero" size={310} decorative /></div>
               <span className="g21-house-photo-credit">CENA ILUSTRATIVA GERADA</span>
               <span className="g21-house-verb">{f.verb}.</span>

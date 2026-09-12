@@ -44,7 +44,7 @@ const HOUSE_FAMILIES = [
     title: "Conhecimento que se torna capacidade.",
     desc: "Do primeiro conceito à fluência para examinar o setor por conta própria.",
     product: "Alexandria",
-    productPath: "/alexandria?trilha=brasil",
+    productPath: "/alexandria",
   },
   {
     id: "software",
@@ -260,8 +260,8 @@ export function G2Portal() {
           <Provenance>
             Exemplo da amostra Solar · promessa ilustrativa, não validada
           </Provenance>
-          <TextLink to="/operador/solar-proposal-validator/sol-3c71">
-            Examinar o caso demonstrativo
+          <TextLink to="/solar-proposal-validator">
+            Conhecer o exame da proposta
           </TextLink>
         </div>
       </section>

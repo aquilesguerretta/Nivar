@@ -19,10 +19,11 @@ export function useTerminalMotion(reduced: boolean) {
     const markers = new Map<string, { x: number; y: number; context: string; element: SVGElement }>();
     const running = new Map<Element, Animation>();
     let visible = true;
-    const context = () => `${host.dataset.period}/${host.dataset.metric}`;
+    const context = () => `${host.dataset.period}/${host.dataset.metric}/${host.dataset.scale}/${host.dataset.window}`;
     const reconcileCurves = () => {
-      for (const path of host.querySelectorAll<SVGPathElement>(".recharts-area-curve, .recharts-area-area")) {
-        const key = path.classList.contains("recharts-area-curve") ? "curve" : "fill";
+      for (const path of host.querySelectorAll<SVGPathElement>(".recharts-area-curve, .recharts-area-area, .recharts-line-curve")) {
+        const region = path.closest("[class*='g23-curve-']")?.getAttribute("class")?.match(/g23-curve-([\w]+)/)?.[1] ?? "primary";
+        const key = `${region}/${path.classList.contains("recharts-area-area") ? "fill" : "curve"}`;
         const d = path.getAttribute("d") ?? "";
         const previous = snapshots.get(key);
         if (previous?.element === path && previous.d === d) continue;
@@ -49,7 +50,7 @@ export function useTerminalMotion(reduced: boolean) {
       host.querySelectorAll<SVGElement>(".recharts-reference-line, .recharts-label").forEach((element) => {
         const line = element.querySelector("line");
         // Recharts may reorder reference layers after a region change.
-        const key = line ? (line.hasAttribute("x") ? "probe" : "baseline") : "probe-label";
+        const key = line ? (line.getAttribute("x1") === line.getAttribute("x2") ? "probe" : "baseline") : "probe-label";
         const x = Number(line ? line.getAttribute("x1") : element.getAttribute("x"));
         const y = Number(line ? line.getAttribute("y1") : element.getAttribute("y"));
         const previous = markers.get(key);

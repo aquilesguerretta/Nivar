@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, Menu, Moon, Plus, Search, Sun, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Menu, Moon, Search, Sun, X } from "lucide-react";
 import { useAuth } from "../../lib/auth/AuthContext";
 import { Wordmark } from "./Brand";
+import { useNivarFavicon } from "./use-nivar-favicon";
 import { familyPath } from "./family-path";
+import { NivarThemeContext } from "./nivar-theme";
 import "./g2.css";
+import "./g23-house.css";
 
 const FAMILIES = [
   "intelligence",
@@ -44,8 +47,10 @@ const SEARCH_ENTRIES = [
   {
     name: "Alexandria",
     detail: "Biblioteca de energia",
-    path: "/alexandria?trilha=brasil",
+    path: "/alexandria",
   },
+  { name: "Solar Proposal Validator", detail: "Exame independente de proposta · em preparação", path: "/solar-proposal-validator" },
+  { name: "Diagnóstico Energético", detail: "Exame do custo energético · em preparação", path: "/diagnostico-energetico" },
   {
     name: "Fonte, método e incerteza",
     detail: "Como a NIVAR examina uma afirmação",
@@ -65,6 +70,7 @@ export function NivarShell({
   family?: string;
   compactFooter?: boolean;
 }) {
+  useNivarFavicon();
   const [dark, setDark] = useState(() => {
     try {
       return localStorage.getItem("nivar-g2-mode") === "dark";
@@ -73,6 +79,7 @@ export function NivarShell({
     }
   });
   const [menu, setMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [query, setQuery] = useState("");
   const dialog = useRef<HTMLDialogElement>(null);
   const scroll = useRef<HTMLDivElement>(null);
@@ -97,10 +104,23 @@ export function NivarShell({
     };
   }, [title]);
   useEffect(() => {
-    scroll.current?.scrollTo(0, 0);
-  }, [location.pathname]);
+    let anchor = "";
+    try { anchor = decodeURIComponent(location.hash.slice(1)); } catch { /* Invalid fragments return to the page opening. */ }
+    const target = anchor ? document.getElementById(anchor) : null;
+    if (target && scroll.current?.contains(target)) target.scrollIntoView({ block: "start", behavior: "instant" });
+    else scroll.current?.scrollTo({ top: 0, behavior: "instant" });
+  }, [location.pathname, location.hash]);
+  useEffect(() => {
+    const root = scroll.current;
+    if (!root) return;
+    const update = () => setScrolled(root.scrollTop > 64);
+    root.addEventListener("scroll", update, { passive: true });
+    update();
+    return () => root.removeEventListener("scroll", update);
+  }, []);
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenu(false);
       if ((e.ctrlKey || e.metaKey) && e.key === "k") {
         e.preventDefault();
         dialog.current?.showModal();
@@ -118,17 +138,20 @@ export function NivarShell({
     }
   };
   return (
+    <NivarThemeContext.Provider value={dark}>
     <div
       ref={scroll}
       className="g2 g2-shell"
       data-g2-theme={dark ? "dark" : "light"}
+      data-scrolled={scrolled}
     >
       <a className="g2-skip" href="#g2-main">
         Pular para o conteúdo
       </a>
+      <div className="g23-masthead">
       <header className="g2-header">
         <Link to="/br" className="g2-brand" aria-label="NIVAR · Portal Brasil">
-          <Wordmark />
+          <Wordmark height={34} />
           <span>
             INTELIGÊNCIA
             <br />
@@ -169,14 +192,20 @@ export function NivarShell({
             className="g2-icon-button g2-mobile-menu"
             aria-label={menu ? "Fechar navegação" : "Abrir navegação"}
             aria-expanded={menu}
+            aria-controls="g23-mobile-navigation"
             onClick={() => setMenu(!menu)}
           >
             {menu ? <X /> : <Menu />}
           </button>
         </div>
       </header>
+      <nav className="g23-context-rail" aria-label="Contexto e instrumentos da casa">
+        <span><b>BR</b><i />{family && family in FAMILY_NAMES ? FAMILY_NAMES[family as keyof typeof FAMILY_NAMES] : "Casa independente"}</span>
+        <span className="g23-rail-principle">Método antes do resultado.</span>
+        <div><Link to="/br/metodo">Fonte e método</Link><Link to="/br/terminal">Terminal Brasil <ArrowUpRight size={12} /></Link></div>
+      </nav>
       {menu && (
-        <nav className="g2-mobile-nav" aria-label="Navegação móvel">
+        <nav className="g2-mobile-nav" id="g23-mobile-navigation" aria-label="Navegação móvel">
           {FAMILIES.map((f, i) => (
             <Link key={f} to={familyPath(f)} onClick={() => setMenu(false)}>
               <span className="g2-mono">0{i + 1}</span>
@@ -192,56 +221,29 @@ export function NivarShell({
             Nosso método
             <ArrowRight size={18} />
           </Link>
+          <Link to={user ? "/conta" : "/entrar"} onClick={() => setMenu(false)}>
+            {user ? "Minha conta" : "Entrar na NIVAR"}<ArrowRight size={18} />
+          </Link>
           <button onClick={toggleMode}>
             {dark ? "Usar modo claro" : "Usar modo escuro"}
             {dark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
         </nav>
       )}
+      </div>
       <main id="g2-main" tabIndex={-1}>
         {children}
       </main>
-      <footer className={`g2-footer g2-container${compactFooter ? " g22-footer-compact" : ""}`}>
-        {compactFooter ? <details className="g22-footer-index">
-          <summary>Índice da casa <Plus size={15} /></summary>
-          <nav aria-label="Índice da casa">
-            <div className="g2-footer-links">{FAMILIES.map(f => <Link to={familyPath(f)} key={f}>{FAMILY_NAMES[f]}</Link>)}</div>
-            <div className="g2-footer-links"><Link to="/br/metodo">Fonte e método</Link><Link to="/br/brief">Energy Brief</Link><Link to="/br/terminal">Terminal Brasil</Link><Link to="/conta">Minha conta</Link></div>
+      <footer className="g23-footer" data-after-finale={compactFooter}>
+        <div className="g2-container">
+          <div className="g23-footer-heading"><Wordmark height={46} /><p>A receita da casa não depende<br />da conclusão que ela entrega.</p></div>
+          <nav className="g23-footer-index" aria-label="Índice completo da NIVAR">
+            <div><span>01 / A CASA</span>{FAMILIES.map(f => <Link to={familyPath(f)} key={f}>{FAMILY_NAMES[f]}<ArrowUpRight size={13} /></Link>)}</div>
+            <div><span>02 / PARA EXPLORAR</span><Link to="/br/terminal">Terminal Brasil<ArrowUpRight size={13} /></Link><Link to="/br/brief">Energy Brief<ArrowUpRight size={13} /></Link><Link to="/alexandria">Alexandria<ArrowUpRight size={13} /></Link><Link to="/br/metodo">Fonte, método e incerteza<ArrowUpRight size={13} /></Link></div>
+            <div><span>03 / PARA EXAMINAR</span><Link to="/conta-de-luz-express">Conta de Luz Express<ArrowUpRight size={13} /></Link><Link to="/solar-proposal-validator">Solar Proposal Validator<ArrowUpRight size={13} /></Link><Link to="/diagnostico-energetico">Diagnóstico Energético<ArrowUpRight size={13} /></Link><small>Solar e Diagnóstico: abertura pública em preparação.</small></div>
+            <div><span>04 / SEU ACESSO</span><Link to="/conta">Minha conta<ArrowUpRight size={13} /></Link><Link to="/entrar">Entrar<ArrowUpRight size={13} /></Link><Link to="/criar-conta">Criar conta<ArrowUpRight size={13} /></Link><p>Não vende energia.<br />Não intermedia contratos.<br />Não recebe comissão.</p></div>
           </nav>
-        </details> : <>
-        <div className="g2-footer-top">
-          {!compactFooter && <div>
-            <Wordmark height={32} />
-            <p>
-              Uma casa independente.
-              <br />
-              Um compromisso com a realidade.
-            </p>
-          </div>}
-          <div className="g2-footer-links">
-            {FAMILIES.map((f) => (
-              <Link to={familyPath(f)} key={f}>
-                {FAMILY_NAMES[f]}
-              </Link>
-            ))}
-          </div>
-          <div className="g2-footer-links">
-            <Link to="/br/metodo">Fonte e método</Link>
-            <Link to="/br/brief">Energy Brief</Link>
-            <Link to="/br/terminal">Terminal Brasil</Link>
-            <Link to="/conta">Minha conta</Link>
-          </div>
-          {!compactFooter && <span className="g2-footer-motto">
-            Nullius
-            <br />
-            <em>in verba.</em>
-          </span>}
-        </div>
-        </>}
-        <div className="g2-footer-bottom">
-          <span>BRASIL · {new Date().getFullYear()}</span>
-          <span>O método antes do resultado.</span>
-          <Link to="/br/sistema">Caderno do sistema · G2 experimental</Link>
+          <div className="g23-footer-bottom"><span>© {new Date().getFullYear()} NIVAR</span><span>Brasil · Inteligência independente</span><em>Nullius in verba.</em></div>
         </div>
       </footer>
       <dialog
@@ -298,6 +300,7 @@ export function NivarShell({
         </p>
       </dialog>
     </div>
+    </NivarThemeContext.Provider>
   );
 }
 

@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Check, FileText, Pause, Play } from "lucide-react";
+import { ArrowUpRight, FileText } from "lucide-react";
 import { FamilyEmblem } from "../../components/g2/Brand";
 import {
   NivarShell,
@@ -8,88 +8,14 @@ import {
   SectionLabel,
   TextLink,
 } from "../../components/g2/NivarShell";
-import { ALEXANDRIA_TRILHAS } from "../../lib/data/alexandria-trilhas";
-import { ALEXANDRIA_BLOCKS } from "../../lib/data/alexandria-blocks";
 import { DESTINOS_BR } from "../../lib/data/br-destinos";
 import { AriadneJourney } from "../../components/g2/AriadneJourney";
 import { NotFound } from "../NotFound";
 import "./g2-pages.css";
 import "./g21-families.css";
-
-function FamilyFilm() {
-  const video = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
-  const playbackIntent = useRef<"auto" | "paused" | "playing">("auto");
-
-  useEffect(() => {
-    const element = video.current;
-    if (!element) return;
-    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const viewport = window.matchMedia("(max-width: 650px)");
-    let visible = false;
-    const update = () => {
-      if (visible && (!motion.matches || playbackIntent.current === "playing") && playbackIntent.current !== "paused" && !document.hidden) {
-        void element.play().catch(() => setPlaying(false));
-      } else {
-        element.pause();
-      }
-    };
-    const source = () => {
-      const format = viewport.matches ? "mobile" : "desktop";
-      element.poster = `/g2/g21/document-evidence-${format}-poster.webp`;
-      element.src = `/g2/g21/document-evidence-${format}.mp4`;
-      update();
-    };
-    source();
-    const observer = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-      update();
-    }, { threshold: 0.15 });
-    observer.observe(element);
-    motion.addEventListener("change", update);
-    viewport.addEventListener("change", source);
-    document.addEventListener("visibilitychange", update);
-    return () => {
-      observer.disconnect();
-      element.pause();
-      motion.removeEventListener("change", update);
-      viewport.removeEventListener("change", source);
-      document.removeEventListener("visibilitychange", update);
-    };
-  }, []);
-
-  return (
-    <div className="g21-family-film">
-      <video
-        ref={video}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster="/g2/g21/document-evidence-desktop-poster.webp"
-        aria-label="Estudo visual gerado: mãos examinam camadas de papel translúcido"
-        onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
-      />
-      <button
-        className="g21-film-control"
-        aria-label={playing ? "Pausar filme de exame documental" : "Reproduzir filme de exame documental"}
-        onClick={() => {
-          if (playing) {
-            playbackIntent.current = "paused";
-            video.current?.pause();
-          } else {
-            playbackIntent.current = "playing";
-            void video.current?.play().catch(() => setPlaying(false));
-          }
-        }}
-      >
-        {playing ? <Pause size={13} /> : <Play size={13} />}
-        <span>{playing ? "Pausar" : "Reproduzir"}</span>
-      </button>
-    </div>
-  );
-}
+import "./g23-families.css";
+import { AdvisoryExamination } from "../../components/g2/AdvisoryExamination";
+import { CopperStudy } from "../../components/g2/CopperStudy";
 
 function FamilyHeader({
   id,
@@ -165,16 +91,16 @@ function Intelligence() {
       />
       <section className="g2-intelligence-masthead g2-container">
         <div className="g21-editorial-title">
-        <span className="g2-eyebrow">NIVAR INTELLIGENCE</span>
-        <h1>
-          O que muda.
-          <br />
-          <em>O que isso significa.</em>
-        </h1>
-        <p className="g2-lead">
-          Atenção contínua ao mercado. Leitura com contexto.
-          <br />E espaço para o que ainda não sabemos.
-        </p>
+          <span className="g2-eyebrow">NIVAR INTELLIGENCE</span>
+          <h1>
+            O que muda.
+            <br />
+            <em>O que isso significa.</em>
+          </h1>
+          <p className="g2-lead">
+            Atenção contínua ao mercado. Leitura com contexto.
+            <br />E espaço para o que ainda não sabemos.
+          </p>
         </div>
         <div className="g21-editorial-seal">
           <FamilyEmblem family="intelligence" size={300} variant="hero" />
@@ -198,7 +124,13 @@ function Intelligence() {
             <span>ENERGY BRIEF</span>
             <span>Nº 00 / MÉTODO</span>
           </div>
-          <img className="g21-publication-art" src="/g2/g21/publication-photogram.webp" alt="Arte editorial gerada: condutores e sombras sobre papel mineral" width={1344} height={1800} />
+          <img
+            className="g21-publication-art"
+            src="/g2/g21/publication-photogram.webp"
+            alt="Arte editorial gerada: condutores e sombras sobre papel mineral"
+            width={1344}
+            height={1800}
+          />
           <h2>
             O preço mudou.
             <br />
@@ -301,27 +233,6 @@ function Intelligence() {
 }
 
 function Advisory() {
-  const [stage, setStage] = useState(0);
-  const stages = [
-    {
-      label: "Evidência",
-      title: "O que foi apresentado?",
-      text: "Uma proposta comercial afirma retorno em 3,2 anos. A afirmação entra como promessa a verificar, acompanhada de sua origem.",
-      foot: "AMOSTRA SOLAR · AFIRMAÇÃO NÃO VALIDADA",
-    },
-    {
-      label: "Contraditório",
-      title: "E se a premissa mudar?",
-      text: "Que geração foi considerada? Qual reajuste tarifário? Custos de manutenção e desempenho aparecem no cálculo?",
-      foot: "QUESTÕES DE ANÁLISE · NÃO SÃO UMA CONCLUSÃO",
-    },
-    {
-      label: "Parecer",
-      title: "O que podemos concluir?",
-      text: "Sem o documento e a verificação das premissas, a conclusão permanece em aberto. A incerteza pertence ao parecer.",
-      foot: "EVIDÊNCIA INSUFICIENTE · CONCLUSÃO SUSPENSA",
-    },
-  ];
   return (
     <NivarShell family="advisory" title="Advisory · Parecer e contraditório">
       <FamilyHeader
@@ -347,68 +258,12 @@ function Advisory() {
             Começar pela sua fatura
             <ArrowUpRight size={18} />
           </Link>
-          <div className="g21-advisory-seal">
-            <FamilyEmblem family="advisory" size={228} variant="hero" />
+          <div className="g23-advisory-principle">
+            <span className="g2-mono">INDEPENDÊNCIA POR CONSTRUÇÃO</span>
+            <p>O nosso interesse não muda quando a resposta muda.</p>
           </div>
         </div>
-        <div className="g21-examination">
-          <figure className="g21-document-scene">
-            <FamilyFilm />
-            <figcaption className="g2-caption">EXAME DOCUMENTAL · ESTUDO VISUAL GERADO</figcaption>
-          </figure>
-        <aside className="g2-argument">
-          <div className="g2-argument-top">
-            <FamilyEmblem family="advisory" size={38} variant="standard" />
-            <span className="g2-mono">UM CASO. TRÊS EXAMES.</span>
-          </div>
-          <div
-            className="g2-argument-tabs"
-            role="tablist"
-            aria-label="Etapas de exame"
-          >
-            {stages.map((s, i) => (
-              <button
-                role="tab"
-                id={`argument-tab-${i}`}
-                aria-selected={i === stage}
-                aria-controls="argument-panel"
-                tabIndex={i === stage ? 0 : -1}
-                key={s.label}
-                onClick={() => setStage(i)}
-                onKeyDown={(event) => {
-                  const next =
-                    event.key === "ArrowRight"
-                      ? (i + 1) % stages.length
-                      : event.key === "ArrowLeft"
-                        ? (i + stages.length - 1) % stages.length
-                        : event.key === "Home"
-                          ? 0
-                          : event.key === "End"
-                            ? stages.length - 1
-                            : null;
-                  if (next === null) return;
-                  event.preventDefault();
-                  setStage(next);
-                  document.getElementById(`argument-tab-${next}`)?.focus();
-                }}
-              >
-                0{i + 1}
-                <span>{s.label}</span>
-              </button>
-            ))}
-          </div>
-          <div
-            className="g2-argument-body"
-            role="tabpanel"
-            id="argument-panel"
-            aria-labelledby={`argument-tab-${stage}`}
-          >
-            <h3>{stages[stage].title}</h3>
-            <p>{stages[stage].text}</p>
-            <span className="g2-mono">{stages[stage].foot}</span>
-          </div>
-        </aside>
-        </div>
+        <AdvisoryExamination />
       </section>
       <section className="g2-section g2-container">
         <SectionLabel number="01">
@@ -451,18 +306,16 @@ function Advisory() {
                       : "Enquadramento, consumo, contratos e exposição."}
                 </dd>
                 <dt>O QUE SAI</dt>
-                <dd>Parecer humano, com limites e contraditório explícitos.</dd>
+                <dd>
+                  {i === 2
+                    ? "Escopo registrado e conversa vinculada ao atendimento."
+                    : "Parecer humano, com limites e contraditório explícitos."}
+                </dd>
               </dl>
-              <TextLink
-                to={
-                  d.status === "disponivel"
-                    ? (d.rota ?? `/${d.id}`)
-                    : `/operador/${d.id}`
-                }
-              >
+              <TextLink to={d.rota ?? `/${d.id}`}>
                 {d.status === "disponivel"
-                  ? "Enviar uma fatura"
-                  : "Examinar a amostra do analista"}
+                  ? "Conhecer e enviar"
+                  : "Conhecer o produto"}
               </TextLink>
             </article>
           ))}
@@ -485,9 +338,7 @@ function Advisory() {
             pode mudar. O compromisso com o método permanece.
           </p>
         </div>
-        <TextLink to="/operador">
-          Explorar o ambiente demonstrativo do analista
-        </TextLink>
+        <TextLink to="/br/metodo">Examinar o método da casa</TextLink>
       </section>
       <FamilyClose />
     </NivarShell>
@@ -495,32 +346,6 @@ function Advisory() {
 }
 
 function Academy() {
-  const [path, setPath] = useState(0);
-  const counts = {
-    trilhas: ALEXANDRIA_TRILHAS.length,
-    modulos: ALEXANDRIA_BLOCKS.length,
-    aulas: ALEXANDRIA_TRILHAS.reduce((sum, t) => sum + (t.totalAulas ?? 0), 0),
-  };
-  const tracks = [
-    {
-      name: "Começar do fundamento",
-      desc: "Física, redes e tecnologias. Entenda os conceitos que sustentam a leitura do setor.",
-      tag: "FUNDAMENTOS UNIVERSAIS",
-      id: "universal",
-    },
-    {
-      name: "Ler o Brasil em contexto",
-      desc: "Instituições, tarifas, geração e mercado. Conecte as peças do setor elétrico brasileiro.",
-      tag: "SETOR ELÉTRICO BRASILEIRO",
-      id: "brasil",
-    },
-    {
-      name: "Aprofundar o julgamento",
-      desc: "Economia, estratégia e análise. Amplie seu repertório para decisões mais exigentes.",
-      tag: "ESPECIALIZAÇÃO ESTRATÉGICA",
-      id: "brasil",
-    },
-  ];
   return (
     <NivarShell
       family="academy"
@@ -542,93 +367,119 @@ function Academy() {
             Do vocabulário à fluência. Formação para quem quer participar da
             conversa, examinar um argumento e construir a própria leitura.
           </p>
-          <TextLink to="/alexandria?trilha=brasil">
-            Entrar na Alexandria
-          </TextLink>
+          <p className="g23-academy-entry-description">Na Alexandria, aulas e leituras sobre energia dão um ponto de partida a quem chega e contexto a quem quer aprofundar.</p>
+          <a className="g2-text-link" href="#alexandria">
+            Conheça a biblioteca Alexandria <ArrowUpRight size={17} />
+          </a>
         </div>
         <figure className="g21-reading-scene">
           <div className="g21-academy-seal">
             <FamilyEmblem family="academy" size={290} variant="hero" />
           </div>
           <picture>
-            <source media="(max-width: 650px)" srcSet="/g2/g21/academy-reading-mobile.webp" />
-          <img
-            src="/g2/g21/academy-reading.webp"
-            alt="Cena ilustrativa gerada: uma pessoa lê e anota documentos junto à luz de uma janela"
-            width={1800}
-            height={1344}
-          />
+            <source
+              media="(max-width: 650px)"
+              srcSet="/g2/g21/academy-reading-mobile.webp"
+            />
+            <img
+              src="/g2/g21/academy-reading.webp"
+              alt="Cena ilustrativa gerada: uma pessoa lê e anota documentos junto à luz de uma janela"
+              width={1800}
+              height={1344}
+            />
           </picture>
           <figcaption className="g2-caption">
             O CONHECIMENTO SE CONSTRÓI EM RELAÇÃO · ILUSTRAÇÃO GERADA
           </figcaption>
         </figure>
       </section>
-      <section className="g2-section g2-container">
-        <SectionLabel number="01">
-          Um ponto de partida para cada pergunta
-        </SectionLabel>
-        <div className="g2-learning-path">
-          <div className="g2-path-options">
-            {tracks.map((t, i) => (
-              <button
-                key={t.name}
-                aria-pressed={path === i}
-                onClick={() => setPath(i)}
-              >
-                <span className="g2-mono">0{i + 1}</span>
-                <span>{t.name}</span>
-                <ArrowRight size={20} />
-              </button>
-            ))}
-          </div>
-          <article className="g21-learning-sheet">
-            <img className="g21-learning-art" src="/g2/g21/academy-transparency.webp" alt="Estudo visual gerado de curvas, grade e sobreposição de transparências, sem dados quantitativos" loading="lazy" width={1800} height={1344} />
-            <span className="g2-eyebrow">{tracks[path].tag}</span>
-            <h2>{tracks[path].name}</h2>
-            <p>{tracks[path].desc}</p>
-            <div className="g2-learning-method">
-              <span>
-                <Check size={15} /> Leitura com contexto
+      <section className="g23-academy-philosophy g2-container g2-section">
+        <SectionLabel number="01">O que a Academy transmite</SectionLabel>
+        <div className="g23-academy-thesis">
+          <h2>
+            Conhecer o assunto.
+            <br />
+            <em>Conservar a pergunta.</em>
+          </h2>
+          <p className="g2-lead">
+            A formação da casa aproxima o conceito da realidade. Não termina na
+            resposta certa: continua na capacidade de compreender por que ela
+            faz sentido — e quando deixa de fazer.
+          </p>
+        </div>
+        <div className="g23-academy-principles">
+          {[
+            [
+              "01",
+              "Contexto",
+              "Um conceito nunca está sozinho.",
+              "Física, instituições e decisões se encontram no mesmo mundo. O conhecimento ganha força quando as relações ficam claras.",
+            ],
+            [
+              "02",
+              "Exame",
+              "Entender inclui poder discordar.",
+              "Uma explicação precisa admitir perguntas, expor premissas e conviver com o que ainda não sabemos.",
+            ],
+            [
+              "03",
+              "Autonomia",
+              "O raciocínio precisa continuar com você.",
+              "O objetivo é formar repertório para interpretar uma situação nova, sem depender de uma resposta pronta.",
+            ],
+          ].map(([number, label, title, body]) => (
+            <article key={label}>
+              <span className="g2-mono">
+                {number} / {label.toUpperCase()}
               </span>
-              <span>
-                <Check size={15} /> Conceitos conectados
-              </span>
-              <span>
-                <Check size={15} /> Aplicação do raciocínio
-              </span>
-            </div>
-            <TextLink to={`/alexandria/trilha/${ALEXANDRIA_TRILHAS[path].id}`}>
-              Explorar esta trilha
-            </TextLink>
-          </article>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
         </div>
       </section>
-      <section className="g2-alexandria-feature g2-container">
-        <div>
-          <span className="g2-eyebrow">O PRODUTO DE FORMAÇÃO DA CASA</span>
-          <h2>Alexandria.</h2>
-          <p className="g2-lead">
-            Uma biblioteca de energia para atravessar o setor com repertório. Um
-            universo de conhecimento com sua própria identidade.
-          </p>
-          <TextLink to="/alexandria?trilha=brasil">Abrir a biblioteca</TextLink>
+      <section
+        id="alexandria"
+        className="g23-alexandria-door g2-container"
+        aria-label="Alexandria, um produto da Academy"
+      >
+        <div className="g23-alexandria-door__visual" aria-hidden="true">
+          <img
+            src="/g2/g21/academy-transparency.webp"
+            alt=""
+            width={1800}
+            height={1344}
+            loading="lazy"
+          />
+          <span className="g2-mono">BIBLIOTECA DE ENERGIA</span>
+          <strong>Aa.</strong>
+          <span className="g23-alexandria-door__imprint">
+            Uma propriedade da
+            <br />
+            NIVAR Academy
+          </span>
         </div>
-        <div className="g2-academy-counts">
-          {[
-            [counts.trilhas, "trilhas de formação"],
-            [counts.modulos, "módulos catalogados"],
-            [counts.aulas, "aulas confirmadas"],
-          ].map(([n, label]) => (
-            <div key={label}>
-              <strong>{n}</strong>
-              <span>{label}</span>
-            </div>
-          ))}
-          <Provenance>
-            Contagens derivadas do catálogo de Alexandria. Nenhuma alteração no
-            conteúdo ou no produto.
-          </Provenance>
+        <div className="g23-alexandria-door__copy">
+          <span className="g2-eyebrow">
+            DENTRO DA ACADEMY, UM UNIVERSO PRÓPRIO
+          </span>
+          <h2>Alexandria.</h2>
+          <p className="g2-lead">A biblioteca de energia da casa.</p>
+          <p>
+            Um ambiente de formação para atravessar o setor com repertório.
+            Conceitos, aulas e instrumentos se conectam em um percurso de
+            aprendizado com sua própria identidade.
+          </p>
+          <p>
+            A Academy estabelece a filosofia. A Alexandria é onde você entra
+            para estudar.
+          </p>
+          <Link className="g2-primary" to="/alexandria">
+            Entrar na Alexandria <ArrowUpRight size={18} />
+          </Link>
+          <span className="g2-caption">
+            VOCÊ ENTRA EM UM PRODUTO DISTINTO DA CASA.
+          </span>
         </div>
       </section>
       <FamilyClose text="A autonomia se aprende. E se pratica." />
@@ -646,8 +497,13 @@ function Software() {
       <section className="g22-software-opening g2-container">
         <div className="g22-software-heading">
           <div>
-            <span className="g2-eyebrow">INSTRUMENTOS DE LEITURA E OPERAÇÃO</span>
-            <h1>Complexidade não precisa{" "}<br />significar <em>perder o fio.</em></h1>
+            <span className="g2-eyebrow">
+              INSTRUMENTOS DE LEITURA E OPERAÇÃO
+            </span>
+            <h1>
+              Complexidade não precisa <br />
+              significar <em>perder o fio.</em>
+            </h1>
           </div>
           <p className="g2-lead">
             Uma região leva a uma série. Uma mudança leva a uma pergunta. Uma
@@ -765,20 +621,18 @@ function Hardware() {
             com aquilo que existe antes de se tornar dado.
           </p>
           <span className="g2-status">FRENTE EM DESENVOLVIMENTO</span>
-          <div className="g21-hardware-seal">
-            <FamilyEmblem family="hardware" size={246} variant="hero" />
-          </div>
+          <p className="g23-hardware-principle">
+            Hefesto mede.
+            <br />
+            <em>A realidade responde.</em>
+          </p>
         </div>
         <figure className="g21-copper-scene">
-          <picture>
-            <source media="(max-width: 650px)" srcSet="/g2/g21/copper-connection-mobile.webp" />
-          <img
-            src="/g2/g21/copper-connection.webp"
-            alt="Detalhe de conexão aparafusada em barramento de cobre, ilustração gerada"
-            width={1800}
-            height={1344}
-          />
-          </picture>
+          <div className="g23-hardware-patron">
+            <FamilyEmblem family="hardware" size={360} variant="hero" />
+            <span className="g2-mono">HEFESTO / O GESTO DE MEDIR</span>
+          </div>
+          <CopperStudy />
           <figcaption className="g2-caption">
             ESTUDO CONCEITUAL GERADO · NÃO É UM PRODUTO DISPONÍVEL PARA VENDA
           </figcaption>

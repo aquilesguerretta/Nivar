@@ -217,7 +217,7 @@ export const SOURCE_RECORDS = [
     title: "Contorno do Brasil e submercados",
     text: "Geometria existente do projeto: malha IBGE v3, qualidade mínima, capturada em 26/07/2026. Agregação de UFs por submercado, projeção Web Mercator e coordenadas quantizadas em 0,1 unidade.",
     detail:
-      "O Sudeste / Centro-Oeste inclui Acre e Rondônia. Roraima aparece apenas no contorno nacional, sem atribuição a submercado na definição documentada. As cores indicam seleção, nunca dados medidos.",
+      "Esta agregação local de UFs inclui Acre e Rondônia em SE/CO e deixa Roraima sem atribuição. Não certifica os limites elétricos ou comerciais atuais: o ONS registra a interligação de Roraima ao SIN em setembro de 2025. A seleção espacial usa valores sintéticos, com legenda própria, quando ativada.",
     href: "https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=application/vnd.geo+json&qualidade=minima",
   },
   {

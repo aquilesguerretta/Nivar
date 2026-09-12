@@ -8,6 +8,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { FamilyEmblem, Wordmark } from "../../components/g2/Brand";
+import { MethodWorkbench } from "../../components/g2/MethodWorkbench";
 import { MaterialLab } from "../../components/g2/MaterialLab";
 import {
   NivarShell,
@@ -284,7 +285,6 @@ export function MethodPage() {
   return (
     <NivarShell title="Fonte, método e incerteza">
       <section className="g2-method-hero g2-container">
-        <FamilyEmblem family="house" size={80} />
         <span className="g2-eyebrow">NULLIUS IN VERBA.</span>
         <h1>
           Não tome nossa palavra.
@@ -295,6 +295,9 @@ export function MethodPage() {
           A verdade vem antes da recomendação. Por isso, fonte, método,
           incerteza e contraditório são parte do produto.
         </p>
+      </section>
+      <section className="g2-section g2-container">
+        <MethodWorkbench />
       </section>
       <section className="g2-section g2-container">
         <SectionLabel number="01">Um registro legível</SectionLabel>
@@ -389,8 +392,8 @@ export function MethodPage() {
             a: "Nesta versão G2, Terminal Brasil abre uma demonstração com séries sintéticas e período fixo, declarados na tela. A visualização de fonte indisponível mantém os valores ausentes. A conexão brasileira de dados ainda está em desenvolvimento.",
           },
           {
-            q: "O console do operador contém casos reais?",
-            a: "O ambiente demonstrativo usa os registros de amostra identificados no produto. Notas, documentos anexados localmente e rascunhos permanecem no navegador, sem envio ao servidor. O fluxo real de conta e de envio de produtos conserva seus serviços existentes.",
+            q: "Como acompanho um pedido de análise?",
+            a: "Acesse Minha conta para abrir seus pedidos. Conta de Luz Express conserva o envio de documento e o parecer disponível após a análise. Solar e Diagnóstico têm abertura pública em preparação; os acessos já concedidos seguem os respectivos fluxos. Um exemplo didático não é um pedido enviado.",
           },
         ].map((item) => (
           <details key={item.q}>
@@ -419,9 +422,9 @@ export function MethodPage() {
 
 export function SystemPage() {
   return (
-    <NivarShell title="Caderno do sistema · G2.1">
+    <NivarShell title="Caderno do sistema · G2.3">
       <section className="g2-system-hero g21-system-hero g2-container">
-        <span className="g2-eyebrow">G2.1 · CADERNO DO SISTEMA</span>
+        <span className="g2-eyebrow">G2.3 · CADERNO DO SISTEMA</span>
         <h1>O sistema, em matéria.</h1>
         <p className="g2-lead">Um laboratório local de componentes: superfícies, estados de leitura, tipografia e os sinais da casa.</p>
       </section>
@@ -431,7 +434,7 @@ export function SystemPage() {
         <div className="g21-system-wordmarks">
           {[64, 24, 16].map(height => <figure key={height}><Wordmark height={height} /><figcaption>Interval / {height} px</figcaption></figure>)}
         </div>
-        <Provenance>Contornos originais. O desenho se ajusta na escala menor; os emblemas passam do sinal à gravura.</Provenance>
+        <Provenance>Interval optical: contornos originais, com abertura ampliada abaixo de 19 px. Os índices localizam as famílias; as gravuras preservam seus patronos.</Provenance>
         <div className="g21-system-emblems">
           {[
             ["house", "Diógenes", "NIVAR", "Examinar"],
@@ -444,9 +447,7 @@ export function SystemPage() {
             <article className="g21-system-emblem" key={family}>
               <header><h3>{name}</h3><span>{label}</span></header>
               <div className="g21-system-optics">
-                <div><FamilyEmblem family={family} size={16} variant="micro" /><span>16 px</span></div>
-                <div><FamilyEmblem family={family} size={48} variant="standard" /><span>48 px</span></div>
-                <div><FamilyEmblem family={family} size={96} variant="standard" /><span>96 px</span></div>
+                <div><FamilyEmblem family={family} size={16} variant="micro" /><span>Índice de navegação</span></div>
               </div>
               <FamilyEmblem family={family} size={400} variant="hero" className="g21-system-portrait" />
               <p>{verb} / Intaglio editorial</p>
