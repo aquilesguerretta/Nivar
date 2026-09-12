@@ -1,0 +1,220 @@
+{
+  "passed": true,
+  "routeElements": 27,
+  "routeContract": [
+    {
+      "path": "/",
+      "element": {
+        "component": "PortalBR",
+        "props": []
+      }
+    },
+    {
+      "path": null,
+      "element": {
+        "component": "AuthLayout",
+        "props": []
+      }
+    },
+    {
+      "path": "/login",
+      "element": {
+        "component": "LoginPage",
+        "props": []
+      }
+    },
+    {
+      "path": "/signup",
+      "element": {
+        "component": "SignupGate",
+        "props": []
+      }
+    },
+    {
+      "path": "/signup/profile",
+      "element": {
+        "component": "SignupProfilePage",
+        "props": []
+      }
+    },
+    {
+      "path": "/signup/details",
+      "element": {
+        "component": "SignupDetailsPage",
+        "props": []
+      }
+    },
+    {
+      "path": "/signup/success",
+      "element": {
+        "component": "SignupSuccessPage",
+        "props": []
+      }
+    },
+    {
+      "path": "/entrar",
+      "element": {
+        "component": "EntrarView",
+        "props": []
+      }
+    },
+    {
+      "path": "/criar-conta",
+      "element": {
+        "component": "CriarContaView",
+        "props": []
+      }
+    },
+    {
+      "path": "/conta",
+      "element": {
+        "component": "PerfilPlataforma",
+        "props": []
+      }
+    },
+    {
+      "path": "/nest",
+      "element": {
+        "component": "GlobalShell",
+        "props": [
+          "initialView=\"nest\""
+        ]
+      }
+    },
+    {
+      "path": "/atlas",
+      "element": {
+        "component": "GlobalShell",
+        "props": [
+          "initialView=\"atlas\""
+        ]
+      }
+    },
+    {
+      "path": "/peregrine",
+      "element": {
+        "component": "GlobalShell",
+        "props": [
+          "initialView=\"peregrine\""
+        ]
+      }
+    },
+    {
+      "path": "/analytics",
+      "element": {
+        "component": "GlobalShell",
+        "props": [
+          "initialView=\"analytics\""
+        ]
+      }
+    },
+    {
+      "path": "/vault",
+      "element": {
+        "component": "GlobalShell",
+        "props": [
+          "initialView=\"vault\""
+        ]
+      }
+    },
+    {
+      "path": "/vault/alexandria",
+      "element": {
+        "component": "GlobalShell",
+        "props": [
+          "initialView=\"vault\""
+        ]
+      }
+    },
+    {
+      "path": "/vault/alexandria/lesson/:lessonId",
+      "element": {
+        "component": "GlobalShell",
+        "props": [
+          "initialView=\"vault\""
+        ]
+      }
+    },
+    {
+      "path": "/vault/alexandria/entry/:entrySlug",
+      "element": {
+        "component": "GlobalShell",
+        "props": [
+          "initialView=\"vault\""
+        ]
+      }
+    },
+    {
+      "path": "/vault/:id",
+      "element": {
+        "component": "GlobalShell",
+        "props": [
+          "initialView=\"vault\""
+        ]
+      }
+    },
+    {
+      "path": "/alexandria/*",
+      "element": {
+        "component": "AlexandriaHome",
+        "props": []
+      }
+    },
+    {
+      "path": "/conta-de-luz-express",
+      "element": {
+        "component": "ContaDeLuzExpressPage",
+        "props": []
+      }
+    },
+    {
+      "path": "/solar-proposal-validator",
+      "element": {
+        "component": "SolarProposalValidatorPage",
+        "props": []
+      }
+    },
+    {
+      "path": "/diagnostico-energetico",
+      "element": {
+        "component": "DiagnosticoEnergeticoPage",
+        "props": []
+      }
+    },
+    {
+      "path": "/br/*",
+      "element": {
+        "component": "PortalBRRouter",
+        "props": []
+      }
+    },
+    {
+      "path": "/us",
+      "element": {
+        "component": "LandingPage",
+        "props": []
+      }
+    },
+    {
+      "path": "/operador/*",
+      "element": {
+        "component": "OperadorRouter",
+        "props": []
+      }
+    },
+    {
+      "path": "*",
+      "element": {
+        "component": "NotFound",
+        "props": []
+      }
+    }
+  ],
+  "eagerAlexandriaImportPreserved": true,
+  "previousEagerCssOrderPreserved": true,
+  "newStylesFromConcurrentPortalWork": [
+    "src/components/g2/copper-study.css"
+  ],
+  "wholeRouteTreeSuspense": false,
+  "limitation": "AST/build verification is not browser navigation evidence. Direct route loading and client transitions still belong to the coordinated browser check."
+}
