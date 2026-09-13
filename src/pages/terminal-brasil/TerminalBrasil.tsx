@@ -25,7 +25,7 @@ import {
   BRASIL_VIEWBOX,
   SUBMERCADOS,
 } from "../../lib/geo/brasil-outline";
-import { Wordmark } from "../../components/g2/Brand";
+import { FamilyEmblem, Wordmark } from "../../components/g2/Brand";
 import { useNivarFavicon } from "../../components/g2/use-nivar-favicon";
 import {
   describeSeries,
@@ -424,7 +424,7 @@ function TerminalBrasil({
           aria-label="NIVAR — voltar ao Portal Brasil"
         >
           <Wordmark height={22} />
-          <span>INTELLIGENCE</span>
+          <span><FamilyEmblem family="intelligence" size={16} decorative />INTELLIGENCE</span>
         </Link>
         <div className="g2t-product">
           <span>

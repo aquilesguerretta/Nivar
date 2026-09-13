@@ -1,3 +1,6 @@
+import { FamilyInsignia, type FamilyInsigniaName } from "./FamilyInsignia";
+import "./insignia-context.css";
+
 /** G2.3 Interval optical: authored outlines; no font or bitmap dependency. */
 export function Wordmark({
   height = 26,
@@ -29,7 +32,7 @@ export function Wordmark({
   );
 }
 
-/** Patrons carry family identity; small identifiers only locate a family in the house. */
+/** Large patrons and compact insignias are complementary identity layers. */
 const EMBLEMS: Record<string, { file: string; name: string; verb: string; index: string }> = {
   intelligence: { file: "argos", name: "Argos", verb: "Observar", index: "01" },
   advisory: { file: "socrates", name: "Sócrates", verb: "Questionar", index: "02" },
@@ -55,6 +58,9 @@ export function FamilyEmblem({
 }) {
   const emblem = EMBLEMS[family] ?? EMBLEMS.house;
   const label = `${emblem.name} · ${emblem.verb}`;
+  if (variant !== "hero" && family in EMBLEMS && family !== "house") {
+    return <FamilyInsignia family={family as FamilyInsigniaName} size={size} className={className} decorative={decorative} />;
+  }
   if (variant !== "hero") {
     return <span className={`g23-family-index ${className}`} data-family={family}
       aria-label={decorative ? undefined : `${emblem.index} / ${label}`} aria-hidden={decorative || undefined}>

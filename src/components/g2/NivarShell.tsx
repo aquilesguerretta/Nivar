@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Menu, Moon, Search, Sun, X } from "lucide-react";
 import { useAuth } from "../../lib/auth/AuthContext";
-import { Wordmark } from "./Brand";
+import { FamilyEmblem, Wordmark } from "./Brand";
 import { useNivarFavicon } from "./use-nivar-favicon";
 import { familyPath } from "./family-path";
 import { NivarThemeContext } from "./nivar-theme";
@@ -165,7 +165,7 @@ export function NivarShell({
               to={familyPath(f)}
               aria-current={family === f ? "page" : undefined}
             >
-              {FAMILY_NAMES[f]}
+              <FamilyEmblem family={f} size={16} decorative />{FAMILY_NAMES[f]}
             </Link>
           ))}
         </nav>
@@ -209,7 +209,7 @@ export function NivarShell({
           {FAMILIES.map((f, i) => (
             <Link key={f} to={familyPath(f)} onClick={() => setMenu(false)}>
               <span className="g2-mono">0{i + 1}</span>
-              {FAMILY_NAMES[f]}
+              <FamilyEmblem family={f} size={24} decorative />{FAMILY_NAMES[f]}
               <ArrowRight size={18} />
             </Link>
           ))}

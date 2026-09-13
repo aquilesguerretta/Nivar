@@ -60,7 +60,7 @@ export function HouseChapters({ families }: { families: FamilyChapter[] }) {
         <h2>Uma casa.<br /><em>Cinco formas<br />de investigar.</em></h2>
         <p>Capacidades que se completam.<br />A independência em comum.</p>
         <div className="g21-house-nav" role="group" aria-label="Ir para uma família">
-          {families.map((f, i) => <button key={f.id} onClick={() => select(f.id)} aria-pressed={active === i}><span>{f.n}</span><span>{f.name}</span><ArrowUpRight size={14} /></button>)}
+          {families.map((f, i) => <button key={f.id} onClick={() => select(f.id)} aria-pressed={active === i}><span>{f.n}</span><FamilyEmblem family={f.id} size={24} decorative /><span>{f.name}</span><ArrowUpRight size={14} /></button>)}
         </div>
         <div className="g21-house-note"><span>NULLIUS IN VERBA.</span><p>Não tome nossa palavra.<br />Examine a evidência.</p></div>
       </aside>
