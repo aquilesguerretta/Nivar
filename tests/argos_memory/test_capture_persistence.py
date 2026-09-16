@@ -345,6 +345,121 @@ def test_direct_sql_update_of_raw_artifact_is_rejected(db_session):
     db_session.rollback()
 
 
+# --- TEST 9 — chain head resolves by lineage, not retrieved_at (NIV-37) ----
+
+
+def test_current_snapshot_resolves_by_lineage_not_out_of_order_retrieved_at(db_session):
+    """Reproduces the NIV-37 defect and proves the lineage-head fix.
+
+    Worker B fetches source bytes at a later wall-clock time but commits
+    first, becoming the root. Worker A fetches earlier but was delayed, and
+    only commits afterward — it is appended as B's successor while
+    preserving its own (earlier) ``retrieved_at``. Lineage is B -> A, but
+    ``max(retrieved_at)`` is still B. A query keyed on ``retrieved_at``
+    would resolve B as current even though B already has a child, and a
+    third capture would then try to chain onto B and collide with A on
+    ``argos_snapshot_prior_snapshot_id_key``.
+    """
+    source_id = _source_id()
+    t0 = datetime.now(timezone.utc)
+    later_retrieved_at = t0 + timedelta(minutes=5)  # B's observation time
+    earlier_retrieved_at = t0  # A's observation time — earlier, but commits second
+
+    snap_b = capture_snapshot(
+        db_session,
+        source_id=source_id,
+        data=b"snapshot B payload",
+        content_type="text/csv",
+        adapter_version="test@1",
+        retrieved_at=later_retrieved_at,
+    )
+    db_session.commit()
+    assert snap_b.prior_snapshot_id is None
+    assert snap_b.revision_relation == "first"
+
+    snap_a = capture_snapshot(
+        db_session,
+        source_id=source_id,
+        data=b"snapshot A payload",
+        content_type="text/csv",
+        adapter_version="test@1",
+        retrieved_at=earlier_retrieved_at,
+    )
+    db_session.commit()
+    assert snap_a.prior_snapshot_id == snap_b.id
+    assert snap_a.retrieved_at < snap_b.retrieved_at
+
+    # --- immediately after A: the head is A, not B (max retrieved_at) ------
+
+    current = get_current_snapshot(db_session, source_id)
+    assert current is not None
+    assert current.id == snap_a.id, (
+        "get_current_snapshot() returned the max(retrieved_at) row instead of "
+        "the lineage head — retrieved_at is observation time, not chain order"
+    )
+
+    view_row = db_session.execute(
+        text("SELECT id FROM argos_current_snapshot WHERE source_id = :sid"),
+        {"sid": source_id},
+    ).one()
+    assert str(view_row.id) == str(snap_a.id), (
+        "argos_current_snapshot view disagrees with get_current_snapshot() "
+        "or resolves by retrieved_at instead of lineage"
+    )
+
+    # --- a third capture must append to the true head (A), not fork off B --
+
+    snap_c = capture_snapshot(
+        db_session,
+        source_id=source_id,
+        data=b"snapshot C payload",
+        content_type="text/csv",
+        adapter_version="test@1",
+        retrieved_at=t0 + timedelta(minutes=10),
+    )
+    db_session.commit()  # would raise IntegrityError (UniqueViolation) on the old code path
+
+    assert snap_c.prior_snapshot_id == snap_a.id
+
+    rows = db_session.execute(
+        text(
+            "SELECT id, prior_snapshot_id, retrieved_at FROM argos_snapshot "
+            "WHERE source_id = :sid"
+        ),
+        {"sid": source_id},
+    ).all()
+    assert len(rows) == 3
+
+    by_id = {str(r.id): r for r in rows}
+    roots = [r for r in rows if r.prior_snapshot_id is None]
+    assert len(roots) == 1, f"expected exactly one root, got {len(roots)}"
+    assert str(roots[0].id) == str(snap_b.id)
+
+    children_of: dict[str, list] = {}
+    for row in rows:
+        if row.prior_snapshot_id is not None:
+            children_of.setdefault(str(row.prior_snapshot_id), []).append(row)
+    for parent_id, children in children_of.items():
+        assert len(children) == 1, f"fork detected under {parent_id}: {children}"
+
+    # Chain is linear: B -> A -> C, with no orphaned head.
+    assert str(by_id[str(snap_a.id)].prior_snapshot_id) == str(snap_b.id)
+    assert str(by_id[str(snap_c.id)].prior_snapshot_id) == str(snap_a.id)
+
+    heads = [r for r in rows if str(r.id) not in children_of]
+    assert len(heads) == 1, f"expected exactly one head, got {len(heads)}"
+    assert str(heads[0].id) == str(snap_c.id)
+
+    # retrieved_at values were preserved exactly, never rewritten to make
+    # lineage ordering convenient.
+    assert by_id[str(snap_b.id)].retrieved_at == later_retrieved_at
+    assert by_id[str(snap_a.id)].retrieved_at == earlier_retrieved_at
+
+    final_current = get_current_snapshot(db_session, source_id)
+    assert final_current is not None
+    assert final_current.id == snap_c.id
+
+
 def test_direct_sql_delete_of_snapshot_is_rejected(db_session):
     snapshot = capture_snapshot(
         db_session,

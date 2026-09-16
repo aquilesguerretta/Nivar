@@ -41,7 +41,7 @@ from datetime import datetime
 from typing import Any
 
 from sqlalchemy import select, text
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, aliased
 
 from app.db.models.argos_memory import ArgosRawArtifact, ArgosSnapshot
 
@@ -97,17 +97,24 @@ def _lock_source_for_capture(session: Session, source_id: str) -> None:
 
 
 def get_current_snapshot(session: Session, source_id: str) -> ArgosSnapshot | None:
-    """Current state for a source, resolved live from history.
+    """Current state for a source, resolved as the lineage head.
 
-    Equivalent to a lookup against the ``argos_current_snapshot`` view
-    (latest by ``retrieved_at`` per ``source_id``) expressed directly against
-    the base table so it composes with an already-open ORM session.
+    The head is the snapshot for this ``source_id`` that no other snapshot
+    names as its ``prior_snapshot_id`` — *not* the one with the latest
+    ``retrieved_at``. ``retrieved_at`` is observation time, and a delayed
+    capture can commit after a later one while still being that later one's
+    lineage predecessor (see module docstring). ``prior_snapshot_id``'s
+    uniqueness constraint plus the one-root-per-source index guarantee this
+    resolves to at most one row. Equivalent to a lookup against the
+    ``argos_current_snapshot`` view, expressed directly against the base
+    table so it composes with an already-open ORM session.
     """
+    successor = aliased(ArgosSnapshot)
+    has_successor = (
+        select(successor.id).where(successor.prior_snapshot_id == ArgosSnapshot.id).exists()
+    )
     return session.execute(
-        select(ArgosSnapshot)
-        .where(ArgosSnapshot.source_id == source_id)
-        .order_by(ArgosSnapshot.retrieved_at.desc(), ArgosSnapshot.id.desc())
-        .limit(1)
+        select(ArgosSnapshot).where(ArgosSnapshot.source_id == source_id, ~has_successor)
     ).scalar_one_or_none()
 
 
