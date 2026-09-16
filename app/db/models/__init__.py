@@ -1,3 +1,10 @@
+from app.db.models.argos_memory import (
+    PROCESSING_STATUSES,
+    REVISION_RELATIONS,
+    RIGHTS_SUMMARY_STATES,
+    ArgosRawArtifact,
+    ArgosSnapshot,
+)
 from app.db.models.country_energy import (
     FIELD_DEFINITIONS,
     FIELD_NAMES,
@@ -38,9 +45,14 @@ __all__ = [
     "ORIGIN_DIAGNOSTICO_SUBMISSION",
     "FIELD_DEFINITIONS",
     "FIELD_NAMES",
+    "PROCESSING_STATUSES",
     "PRODUCT_CATALOG",
     "PRODUCT_IDS",
+    "REVISION_RELATIONS",
+    "RIGHTS_SUMMARY_STATES",
     "SOLAR_PROPOSAL_STATUSES",
+    "ArgosRawArtifact",
+    "ArgosSnapshot",
     "AulaStatus",
     "BadgeAward",
     "BatteryAsset",
