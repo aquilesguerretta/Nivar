@@ -21,6 +21,19 @@ a silent no-op, an explicit exception — so prior evidence cannot be mutated
 even by a raw SQL statement that bypasses the ORM. ``argos_current_snapshot``
 is a view, not a table: current state is resolved live from history, so
 there is no second, independently-mutable "current truth" store to drift.
+
+``argos_snapshot_one_root_per_source_idx`` is a partial unique index on
+``source_id`` where ``prior_snapshot_id IS NULL``. The plain ``UNIQUE
+(prior_snapshot_id)`` constraint above does not by itself stop two
+concurrent *first* captures of a brand-new source: standard SQL treats every
+``NULL`` as distinct from every other ``NULL``, so two rows with
+``prior_snapshot_id = NULL`` do not collide against a non-partial unique
+constraint. This index closes that gap at the database level — it is the
+actual correctness guarantee (a direct SQL insert that bypasses the service
+layer is rejected too), independent of any application-level locking. This
+was discovered and fixed before PR #9 (which carries this migration) was
+merged, so it is folded directly into this migration rather than added as a
+separate 0010 that would only exist to repair an unmerged one.
 """
 
 from typing import Sequence, Union
@@ -97,6 +110,13 @@ def upgrade() -> None:
     )
     op.execute(
         "CREATE INDEX argos_snapshot_artifact_idx ON argos_snapshot(artifact_id);"
+    )
+    # At most one root snapshot (prior_snapshot_id IS NULL) per source_id —
+    # see module docstring. Partial index: plain UNIQUE does not constrain
+    # NULLs against each other.
+    op.execute(
+        "CREATE UNIQUE INDEX argos_snapshot_one_root_per_source_idx "
+        "ON argos_snapshot(source_id) WHERE prior_snapshot_id IS NULL;"
     )
 
     # Current state is a live projection over history, not a maintained table.

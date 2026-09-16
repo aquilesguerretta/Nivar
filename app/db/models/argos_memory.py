@@ -30,6 +30,16 @@ a source is never stored as a second, independently-mutated row: it is
 resolved live from this history by the ``argos_current_snapshot`` view (see
 the migration), so there is exactly one place drift could happen and it
 cannot.
+
+``argos_snapshot_one_root_per_source_idx`` (partial unique on ``source_id``
+where ``prior_snapshot_id IS NULL``) guarantees at most one root per source
+even under concurrent inserts or a direct SQL bypass — a plain
+``UNIQUE(prior_snapshot_id)`` alone does not, since NULL is never equal to
+NULL. ``app.services.argos_memory.capture_snapshot`` additionally takes a
+transaction-scoped Postgres advisory lock keyed by ``source_id`` before
+reading the current snapshot, so two concurrent captures of the same source
+serialize into a single linear chain instead of racing into this
+constraint.
 """
 
 from __future__ import annotations
@@ -48,6 +58,7 @@ from sqlalchemy import (
     UniqueConstraint,
     desc,
     func,
+    text,
 )
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
@@ -113,6 +124,12 @@ class ArgosSnapshot(Base):
         UniqueConstraint(
             "prior_snapshot_id",
             name="argos_snapshot_prior_snapshot_id_key",
+        ),
+        Index(
+            "argos_snapshot_one_root_per_source_idx",
+            "source_id",
+            unique=True,
+            postgresql_where=text("prior_snapshot_id IS NULL"),
         ),
         CheckConstraint(
             "reference_time_start IS NULL OR reference_time_end IS NULL "

@@ -15,6 +15,21 @@ Two layers, kept apart on purpose:
 
 M1 scope only: byte-level memory. ``classify_relation`` cannot return
 anything richer than "changed" — semantic diffing is M2, not built here.
+
+``capture_snapshot`` takes a transaction-scoped Postgres advisory lock
+(``pg_advisory_xact_lock``) keyed by ``source_id`` before reading the
+current snapshot. Two concurrent captures of the *same* source therefore
+serialize: the second waits for the first to commit or roll back, then
+correctly sees it as the prior snapshot, instead of both racing to read "no
+prior" and both inserting a root. The lock is scoped to one source (a hash
+collision only causes unrelated sources to serialize against each other
+too — extra serialization, never wrong history) and releases automatically
+on commit/rollback — no explicit unlock, no external lock manager. This is
+belt-and-suspenders: ``argos_snapshot_one_root_per_source_idx`` (see the
+model/migration) is the actual correctness guarantee that holds even if
+this lock is bypassed entirely (e.g. a direct SQL insert); the lock exists
+so the normal service path degrades to "wait, then link correctly" instead
+of "race, then fail."
 """
 
 from __future__ import annotations
@@ -25,7 +40,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Any
 
-from sqlalchemy import select
+from sqlalchemy import select, text
 from sqlalchemy.orm import Session
 
 from app.db.models.argos_memory import ArgosRawArtifact, ArgosSnapshot
@@ -66,6 +81,19 @@ def classify_relation(prior_sha256: str | None, new_sha256: str) -> str:
     if prior_sha256 is None:
         return "first"
     return "unchanged" if new_sha256 == prior_sha256 else "changed"
+
+
+def _lock_source_for_capture(session: Session, source_id: str) -> None:
+    """Serialize captures for one ``source_id`` within the current transaction.
+
+    Blocks until any other transaction currently capturing this same
+    ``source_id`` commits or rolls back. Unrelated ``source_id`` values hash
+    to (almost certainly) different lock keys and remain fully independent.
+    """
+    session.execute(
+        text("SELECT pg_advisory_xact_lock(hashtext(:source_id)::bigint)"),
+        {"source_id": source_id},
+    )
 
 
 def get_current_snapshot(session: Session, source_id: str) -> ArgosSnapshot | None:
@@ -119,13 +147,15 @@ def capture_snapshot(
 ) -> ArgosSnapshot:
     """Record one retrieval event for ``source_id``.
 
-    Looks up the immediately prior snapshot for this source, hashes the new
-    payload, dedupes the raw artifact by content hash, classifies the
+    Acquires a per-``source_id`` advisory lock first (see module docstring),
+    then looks up the immediately prior snapshot for this source, hashes the
+    new payload, dedupes the raw artifact by content hash, classifies the
     revision relation deterministically, and inserts (does not mutate) the
     new snapshot row. Flushes but does not commit — the caller owns the
     transaction, matching the existing router convention.
     """
     captured = read_captured_artifact(data, content_type)
+    _lock_source_for_capture(session, source_id)
     prior = get_current_snapshot(session, source_id)
     prior_sha256 = _sha256_of(session, prior) if prior is not None else None
     relation = classify_relation(prior_sha256, captured.sha256)
