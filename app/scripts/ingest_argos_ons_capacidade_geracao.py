@@ -44,6 +44,15 @@ USER_AGENT = "GridAlpha/1.0 (+https://github.com/aquilesguerretta/gridalpha-v2)"
 SOURCE_ID = "ons.capacidade_geracao"
 ADAPTER_VERSION = "ons.capacidade_geracao@1"
 
+# Canonical NIV-7/NIV-13 rights record for the ONS P0 datasets (External data /
+# content licensing register). Its "Internal archival / immutable snapshots"
+# use mode is CLEARED for ons.capacidade_geracao — that is the use this
+# adapter performs. The source-level Source Registry summary stays
+# ``restricted`` (bulk/API redistribution remains gated pending Legal); that
+# is a separate, coarser field this snapshot-level state does not override.
+RIGHTS_RECORD_REF = "NIV7-EXT-ONS-OPEN-DATA-2026-09-16"
+RIGHTS_SUMMARY_STATE = "cleared"
+
 DEFAULT_RESOURCE_URL = (
     "https://ons-aws-prod-opendata.s3.amazonaws.com/dataset/"
     "capacidade-geracao/CAPACIDADE_GERACAO.csv"
@@ -102,11 +111,8 @@ def run() -> None:
             reference_time_end=None,
             source_timezone="America/Sao_Paulo",
             acquisition_metadata=metadata,
-            # NIV-13 has not produced a rights record for this source yet.
-            # The portal states CC BY, but archival/display/API scope is
-            # governed by NIV-13 — left unknown rather than assumed cleared.
-            rights_record_ref=None,
-            rights_summary_state="unknown",
+            rights_record_ref=RIGHTS_RECORD_REF,
+            rights_summary_state=RIGHTS_SUMMARY_STATE,
         )
         session.commit()
         session.refresh(snapshot)
