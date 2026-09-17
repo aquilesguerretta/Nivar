@@ -14,10 +14,28 @@ Run from repo root::
         --from <snapshot-id> --to <snapshot-id>
 
 Prints a deterministic JSON report to stdout and exits 0. On any failure
-(snapshot not found, source_id mismatch, schema drift, duplicate identity)
-prints a JSON error object to stderr and exits nonzero — it never silently
-substitutes a different snapshot (e.g. the current head) for the one the
-caller asked for.
+(snapshot not found, source_id not accepted, source_id mismatch, schema
+drift, duplicate identity) prints a JSON error object to stderr and exits
+nonzero — it never silently substitutes a different snapshot (e.g. the
+current head) for the one the caller asked for.
+
+Accepted source IDs
+--------------------
+This is a source-specific reviewer for ``ons.capacidade_geracao`` — it does
+not validate a source_id by inferring "this looks like the right CSV shape"
+from the parsed payload. Only two source_id forms are accepted, both
+checked as an exact/prefix string match before any parsing happens:
+
+* the canonical publisher source, ``SOURCE_ID`` (``ons.capacidade_geracao``);
+* the explicit NIV-39 controlled-test namespace,
+  ``CONTROLLED_TEST_SOURCE_NAMESPACE``
+  (``test.argos_memory.ons_capacidade_geracao.controlled_revision``) and its
+  per-test suffixed variants (``<namespace>.<suffix>``).
+
+Any other source_id is rejected outright, even if both snapshots agree with
+each other and even if their bytes happen to parse cleanly under the
+18-column schema — agreement between two arbitrary unrelated sources is not
+evidence that either one is actually ``ons.capacidade_geracao`` data.
 """
 
 from __future__ import annotations
@@ -34,8 +52,10 @@ from app.db.session import SessionLocal
 from app.db.models.argos_memory import ArgosSnapshot
 from app.services.argos_memory import reconstruct_snapshot
 from app.services.argos_ons_capacidade_geracao_diff import (
+    CONTROLLED_TEST_SOURCE_NAMESPACE,
     DIFF_VERSION,
     PARSER_VERSION,
+    SOURCE_ID,
     diff_capacidade_geracao,
     parse_capacidade_geracao,
 )
@@ -57,6 +77,21 @@ class DiffCliError(ValueError):
     """A caller-facing failure: bad snapshot id, mismatched source, bad schema."""
 
 
+def _is_accepted_source_id(source_id: str) -> bool:
+    """True only for the canonical publisher source or the NIV-39 test namespace.
+
+    Deliberately a string allowlist, not an inference from parsed content —
+    two snapshots under some unrelated source_id must never pass through
+    this reviewer merely because their bytes happen to fit the
+    ons.capacidade_geracao CSV shape.
+    """
+    if source_id == SOURCE_ID:
+        return True
+    return source_id == CONTROLLED_TEST_SOURCE_NAMESPACE or source_id.startswith(
+        CONTROLLED_TEST_SOURCE_NAMESPACE + "."
+    )
+
+
 def _load_snapshot(
     session: Session, snapshot_id: uuid.UUID, *, label: str
 ) -> tuple[ArgosSnapshot, bytes]:
@@ -73,13 +108,12 @@ def build_diff_report(session: Session, from_id: uuid.UUID, to_id: uuid.UUID) ->
     Binds to the caller-supplied ``from_id``/``to_id`` exactly — never the
     current lineage head, never the latest ``retrieved_at``, never the
     newest ``created_at``. Both snapshots must share the same ``source_id``
-    as each other — this parser/diff is schema-specific to the
-    ons.capacidade_geracao CSV shape, but the *label* on that shape may
-    legitimately be the real ``ons.capacidade_geracao`` id or an
-    unmistakably test-only id (NIV-39's controlled proof uses
-    ``test.argos_memory.ons_capacidade_geracao.controlled_revision.*`` in
-    disposable Postgres) — what must never happen is diffing two snapshots
-    captured under two *different* source IDs against each other.
+    as each other, AND that shared source_id must be one this reviewer
+    actually accepts (see module docstring / ``_is_accepted_source_id``) —
+    the real ``ons.capacidade_geracao`` id or the NIV-39 controlled-test
+    namespace. "Same source_id as each other" alone is not sufficient: two
+    snapshots under some unrelated-but-matching source_id must not pass
+    through just because their bytes happen to fit the 18-column schema.
     """
     from_snapshot, from_bytes = _load_snapshot(session, from_id, label="--from")
     to_snapshot, to_bytes = _load_snapshot(session, to_id, label="--to")
@@ -89,6 +123,13 @@ def build_diff_report(session: Session, from_id: uuid.UUID, to_id: uuid.UUID) ->
             f"--from snapshot {from_id} has source_id={from_snapshot.source_id!r}, "
             f"--to snapshot {to_id} has source_id={to_snapshot.source_id!r} — "
             "refusing to diff mismatched sources"
+        )
+
+    if not _is_accepted_source_id(from_snapshot.source_id):
+        raise DiffCliError(
+            f"source_id={from_snapshot.source_id!r} is not accepted by this reviewer — "
+            f"only {SOURCE_ID!r} or the {CONTROLLED_TEST_SOURCE_NAMESPACE!r} "
+            "controlled-test namespace are diffed, regardless of payload shape"
         )
 
     from_sha256 = hashlib.sha256(from_bytes).hexdigest()

@@ -33,8 +33,10 @@ from sqlalchemy.orm import Session
 from app.scripts.diff_argos_ons_capacidade_geracao import DiffCliError, build_diff_report
 from app.services.argos_memory import capture_snapshot, reconstruct_snapshot
 from app.services.argos_ons_capacidade_geracao_diff import (
+    CONTROLLED_TEST_SOURCE_NAMESPACE,
     DIFF_VERSION,
     PARSER_VERSION,
+    SOURCE_ID,
     DuplicateRowIdentityError,
     SchemaError,
     diff_capacidade_geracao,
@@ -43,13 +45,13 @@ from app.services.argos_ons_capacidade_geracao_diff import (
 
 FIXTURE_DIR = pathlib.Path(__file__).parent / "fixtures" / "ons_capacidade_geracao"
 
-CONTROLLED_SOURCE_ID_PREFIX = "test.argos_memory.ons_capacidade_geracao.controlled_revision"
-
 
 def _controlled_source_id() -> str:
     # Unmistakably test-only, unique per test so parallel/repeated runs
     # never collide with each other or with the real production chain.
-    return f"{CONTROLLED_SOURCE_ID_PREFIX}.{uuid.uuid4().hex[:8]}"
+    # Reuses the same constant the reviewer CLI checks against, so this
+    # test can never silently drift from what the CLI actually accepts.
+    return f"{CONTROLLED_TEST_SOURCE_NAMESPACE}.{uuid.uuid4().hex[:8]}"
 
 
 def _fixture(name: str) -> bytes:
@@ -341,6 +343,53 @@ def test_reviewer_path_rejects_mismatched_source_snapshots(db_session):
 
     with pytest.raises(DiffCliError):
         build_diff_report(db_session, snap_ons.id, snap_other.id)
+
+
+def test_reviewer_path_rejects_same_but_unrelated_source_id(db_session):
+    """"Same source_id as each other" is necessary but not sufficient.
+
+    Two snapshots under one arbitrary unrelated source_id, both carrying
+    valid ONS-shaped fixture bytes, must still be rejected — the reviewer
+    only accepts the canonical ons.capacidade_geracao source or the NIV-39
+    controlled-test namespace, never an inference from CSV shape alone.
+    """
+    unrelated_source_id = f"test.argos_memory.some_other_source.{uuid.uuid4().hex[:8]}"
+
+    snap_a = _capture_fixture(db_session, unrelated_source_id, "fixture_a.csv")
+    db_session.commit()
+    snap_b = _capture_fixture(
+        db_session, unrelated_source_id, "fixture_b_known_field_change.csv"
+    )
+    db_session.commit()
+
+    assert snap_a.source_id == snap_b.source_id  # confirms this isn't the mismatch case
+
+    with pytest.raises(DiffCliError):
+        build_diff_report(db_session, snap_a.id, snap_b.id)
+
+
+def test_reviewer_path_accepts_controlled_test_namespace(db_session):
+    source_id = _controlled_source_id()
+    assert source_id.startswith(CONTROLLED_TEST_SOURCE_NAMESPACE + ".")
+
+    snap_a = _capture_fixture(db_session, source_id, "fixture_a.csv")
+    db_session.commit()
+    snap_b = _capture_fixture(db_session, source_id, "fixture_b_known_field_change.csv")
+    db_session.commit()
+
+    report = build_diff_report(db_session, snap_a.id, snap_b.id)  # must not raise
+    assert report["source_id"] == source_id
+
+
+def test_reviewer_path_accepts_canonical_ons_source_id(db_session):
+    """The real production source_id must still be diffable — never in production DB."""
+    snap_a = _capture_fixture(db_session, SOURCE_ID, "fixture_a.csv")
+    db_session.commit()
+    snap_b = _capture_fixture(db_session, SOURCE_ID, "fixture_b_known_field_change.csv")
+    db_session.commit()
+
+    report = build_diff_report(db_session, snap_a.id, snap_b.id)  # must not raise
+    assert report["source_id"] == SOURCE_ID
 
 
 def test_reviewer_path_binds_to_exact_snapshot_ids_not_current_head(db_session):

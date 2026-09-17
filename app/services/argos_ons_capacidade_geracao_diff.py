@@ -67,6 +67,12 @@ from dataclasses import dataclass, field
 # Must match app.scripts.ingest_argos_ons_capacidade_geracao.SOURCE_ID.
 SOURCE_ID = "ons.capacidade_geracao"
 
+# NIV-39's unmistakable controlled-test namespace (see test_ons_capacidade_geracao_diff.py).
+# Reviewer-path source acceptance is a prefix match on this namespace, not on
+# CSV shape: a payload merely happening to fit the 18-column schema does not
+# make its source_id acceptable to diff.
+CONTROLLED_TEST_SOURCE_NAMESPACE = "test.argos_memory.ons_capacidade_geracao.controlled_revision"
+
 PARSER_VERSION = "ons.capacidade_geracao.parser@1"
 DIFF_VERSION = "ons.capacidade_geracao.diff@1"
 
