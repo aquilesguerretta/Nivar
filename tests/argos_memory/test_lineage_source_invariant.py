@@ -11,6 +11,7 @@ import pytest
 import sqlalchemy
 from alembic import command
 from alembic.config import Config
+from alembic.script import ScriptDirectory
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import Session
@@ -329,7 +330,7 @@ def test_0011_downgrade_and_reupgrade_restore_the_expected_fk(migrated_database)
         command.upgrade(config, "head")
         with engine.connect() as connection:
             assert connection.execute(text("SELECT version_num FROM alembic_version")).scalar_one() == (
-                "0011_argos_same_source_lineage"
+                ScriptDirectory.from_config(config).get_current_head()
             )
     finally:
         engine.dispose()

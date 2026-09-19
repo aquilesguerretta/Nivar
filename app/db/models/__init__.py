@@ -1,3 +1,17 @@
+from app.db.models.ariadne_core import (
+    ASSUMPTION_ORIGINS,
+    AriadneAssumptionSet,
+    AriadneAssumptionSetVersion,
+    AriadneEvidenceRef,
+    AriadneModelDefinition,
+    AriadneModelRun,
+    AriadneModelVersion,
+    AriadnePrivateObject,
+    AriadnePrivateStateVersion,
+    AriadneResult,
+    AriadneScenario,
+    AriadneStateEvidence,
+)
 from app.db.models.argos_memory import (
     PROCESSING_STATUSES,
     REVISION_RELATIONS,
@@ -37,6 +51,7 @@ from app.db.models.solar_proposal import (
 from app.db.models.user import User
 
 __all__ = [
+    "ASSUMPTION_ORIGINS",
     "AULA_STATUSES",
     "CONTA_LUZ_STATUSES",
     "CONVERSATION_STATUSES",
@@ -53,6 +68,17 @@ __all__ = [
     "SOLAR_PROPOSAL_STATUSES",
     "ArgosRawArtifact",
     "ArgosSnapshot",
+    "AriadneAssumptionSet",
+    "AriadneAssumptionSetVersion",
+    "AriadneEvidenceRef",
+    "AriadneModelDefinition",
+    "AriadneModelRun",
+    "AriadneModelVersion",
+    "AriadnePrivateObject",
+    "AriadnePrivateStateVersion",
+    "AriadneResult",
+    "AriadneScenario",
+    "AriadneStateEvidence",
     "AulaStatus",
     "BadgeAward",
     "BatteryAsset",
