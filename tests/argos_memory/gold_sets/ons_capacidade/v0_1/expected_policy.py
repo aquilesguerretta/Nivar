@@ -1,7 +1,7 @@
-"""Frozen Founder-approved policy contract for Signal Gold Set v0.1-alpha.
+"""Frozen Founder-approved policy contract for the released Signal Gold Set v0.1.
 
 This module is deliberately independent of ``manifest.json``. It defines the
-closed v0.1-alpha manifest shape, exact evidence references, policy semantics,
+closed released-v0.1 manifest shape, exact evidence references, policy semantics,
 and controlled-context payloads. Fixture bytes and recomputed parser/diff
 outputs remain covered by the focused regression tests.
 """
@@ -11,11 +11,10 @@ from __future__ import annotations
 from typing import Any
 
 
-GOLD_SET_VERSION = "argos.signal-gold.ons-capacidade@0.1-alpha"
+GOLD_SET_VERSION = "argos.signal-gold.ons-capacidade@0.1"
 EXPECTED_MANIFEST_METADATA = {
     "gold_set_version": GOLD_SET_VERSION,
-    "released_identifier_reserved": "argos.signal-gold.ons-capacidade@0.1",
-    "release_status": "ALPHA_MATERIALIZED_NOT_RELEASED",
+    "release_status": "RELEASED",
     "canonical_policy_ref": "https://app.notion.com/p/3e09ca62107081f48f1fc4d376d4382c",
     "source_id": "ons.capacidade_geracao",
 }
