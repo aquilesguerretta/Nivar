@@ -52,6 +52,7 @@ from sqlalchemy import (
     CheckConstraint,
     DateTime,
     ForeignKey,
+    ForeignKeyConstraint,
     Index,
     LargeBinary,
     Text,
@@ -124,6 +125,20 @@ class ArgosSnapshot(Base):
         UniqueConstraint(
             "prior_snapshot_id",
             name="argos_snapshot_prior_snapshot_id_key",
+        ),
+        # PostgreSQL requires the referenced columns of a composite FK to be
+        # unique. This keeps ``id`` as the primary key while allowing lineage
+        # to prove that a child and its parent belong to the same source.
+        UniqueConstraint(
+            "id",
+            "source_id",
+            name="argos_snapshot_id_source_id_key",
+        ),
+        ForeignKeyConstraint(
+            ["prior_snapshot_id", "source_id"],
+            ["argos_snapshot.id", "argos_snapshot.source_id"],
+            name="argos_snapshot_prior_snapshot_source_fkey",
+            ondelete="RESTRICT",
         ),
         Index(
             "argos_snapshot_one_root_per_source_idx",
@@ -200,7 +215,6 @@ class ArgosSnapshot(Base):
     # --- Version chain ---------------------------------------------------
     prior_snapshot_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True),
-        ForeignKey("argos_snapshot.id", ondelete="RESTRICT"),
         nullable=True,
     )
     revision_relation: Mapped[str] = mapped_column(Text, nullable=False)

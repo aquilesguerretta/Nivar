@@ -111,7 +111,12 @@ def get_current_snapshot(session: Session, source_id: str) -> ArgosSnapshot | No
     """
     successor = aliased(ArgosSnapshot)
     has_successor = (
-        select(successor.id).where(successor.prior_snapshot_id == ArgosSnapshot.id).exists()
+        select(successor.id)
+        .where(
+            successor.prior_snapshot_id == ArgosSnapshot.id,
+            successor.source_id == ArgosSnapshot.source_id,
+        )
+        .exists()
     )
     return session.execute(
         select(ArgosSnapshot).where(ArgosSnapshot.source_id == source_id, ~has_successor)
