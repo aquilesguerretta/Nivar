@@ -9,8 +9,10 @@ spine for versioned private state, evidence references, assumption versions,
 model versions, scenarios, immutable run manifests, and results.  Composite
 foreign keys prevent a known UUID from being used to cross a tenant boundary.
 
-Historical rows are append-only.  Current private state is a view over the
-linear version chain, not a separately maintained mutable record.
+Historical rows cannot be rewritten in place.  Current private state is a view
+over the linear version chain, not a separately maintained mutable record.
+Deletes remain available to a future authorized lifecycle process, with
+foreign keys preventing accidental parent deletion while dependents exist.
 """
 
 from typing import Sequence, Union
@@ -24,7 +26,7 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 
-_IMMUTABLE_TABLES = (
+_UPDATE_PROTECTED_TABLES = (
     "ariadne_private_object",
     "ariadne_evidence_ref",
     "ariadne_private_state_version",
@@ -291,27 +293,27 @@ def upgrade() -> None:
     )
     op.execute(
         """
-        CREATE FUNCTION ariadne_reject_mutation() RETURNS trigger AS $$
+        CREATE FUNCTION ariadne_reject_update() RETURNS trigger AS $$
         BEGIN
           RAISE EXCEPTION
-            'ariadne: % on %.% is not permitted - lineage records are append-only',
-            TG_OP, TG_TABLE_SCHEMA, TG_TABLE_NAME;
+            'ariadne: UPDATE on %.% is not permitted - lineage records are append-only',
+            TG_TABLE_SCHEMA, TG_TABLE_NAME;
         END;
         $$ LANGUAGE plpgsql;
         """
     )
-    for table in _IMMUTABLE_TABLES:
+    for table in _UPDATE_PROTECTED_TABLES:
         op.execute(
             f"""
-            CREATE TRIGGER {table}_immutable
-            BEFORE UPDATE OR DELETE ON {table}
-            FOR EACH ROW EXECUTE FUNCTION ariadne_reject_mutation();
+            CREATE TRIGGER {table}_reject_update
+            BEFORE UPDATE ON {table}
+            FOR EACH ROW EXECUTE FUNCTION ariadne_reject_update();
             """
         )
 
 
 def downgrade() -> None:
     op.execute("DROP VIEW IF EXISTS ariadne_current_state_version;")
-    for table in reversed(_IMMUTABLE_TABLES):
+    for table in reversed(_UPDATE_PROTECTED_TABLES):
         op.execute(f"DROP TABLE IF EXISTS {table} CASCADE;")
-    op.execute("DROP FUNCTION IF EXISTS ariadne_reject_mutation();")
+    op.execute("DROP FUNCTION IF EXISTS ariadne_reject_update();")

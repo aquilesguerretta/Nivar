@@ -35,7 +35,13 @@ from app.db.models.ariadne_core import (
 
 
 DETERMINISTIC_SCALAR_MODEL = "deterministic_scalar_model"
+DETERMINISTIC_SCALAR_SEMANTIC_VERSION = "1.0.0"
 DETERMINISTIC_SCALAR_IMPLEMENTATION = "ariadne.deterministic_scalar.multiply.v1"
+DETERMINISTIC_SCALAR_INPUT_CONTRACT = {
+    "observed_state": {"value": "integer"},
+    "assumptions": {"multiplier": "integer"},
+}
+DETERMINISTIC_SCALAR_OUTPUT_CONTRACT = {"scalar_result": {"value": "integer"}}
 DETERMINISTIC_SCALAR_CONFIGURATION = {"arithmetic": "integer"}
 
 
@@ -76,6 +82,10 @@ def _require_text(value: str, field: str) -> str:
     if not normalized:
         raise ValueError(f"{field} must not be empty")
     return normalized
+
+
+def _utc_now() -> datetime:
+    return datetime.now(timezone.utc)
 
 
 def _tenant_row(
@@ -390,11 +400,15 @@ def _execute_model_version(
 ) -> dict[str, Any]:
     if (
         model_definition.name != DETERMINISTIC_SCALAR_MODEL
+        or model_version.semantic_version != DETERMINISTIC_SCALAR_SEMANTIC_VERSION
         or model_version.implementation_identity != DETERMINISTIC_SCALAR_IMPLEMENTATION
+        or model_version.input_contract != DETERMINISTIC_SCALAR_INPUT_CONTRACT
+        or model_version.output_contract != DETERMINISTIC_SCALAR_OUTPUT_CONTRACT
     ):
         raise ValueError(
-            "no registered deterministic executor for model definition/version "
-            f"{model_definition.name!r}/{model_version.implementation_identity!r}"
+            "no registered deterministic executor for the exact model metadata "
+            f"{model_definition.name!r}/{model_version.semantic_version!r}/"
+            f"{model_version.implementation_identity!r}"
         )
     return execute_deterministic_scalar(
         state_payload=state_version.payload,
@@ -442,6 +456,7 @@ def execute_scenario(
         if execution_configuration is None
         else dict(execution_configuration)
     )
+    started_at = _utc_now()
     payload = _execute_model_version(
         model_definition,
         model_version,
@@ -449,8 +464,7 @@ def execute_scenario(
         assumption_version,
         configuration,
     )
-    started_at = datetime.now(timezone.utc)
-    produced_at = datetime.now(timezone.utc)
+    produced_at = _utc_now()
     model_run = AriadneModelRun(
         tenant_id=tenant_id,
         model_version_id=model_version.id,
@@ -589,7 +603,10 @@ __all__ = [
     "AriadneLineage",
     "DETERMINISTIC_SCALAR_CONFIGURATION",
     "DETERMINISTIC_SCALAR_IMPLEMENTATION",
+    "DETERMINISTIC_SCALAR_INPUT_CONTRACT",
     "DETERMINISTIC_SCALAR_MODEL",
+    "DETERMINISTIC_SCALAR_OUTPUT_CONTRACT",
+    "DETERMINISTIC_SCALAR_SEMANTIC_VERSION",
     "ExecutedRun",
     "ReplayResult",
     "TenantScopeError",

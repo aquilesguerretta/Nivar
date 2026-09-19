@@ -7,6 +7,7 @@ available; it must never be pointed at a shared or production database.
 
 from __future__ import annotations
 
+import json
 import os
 import uuid
 from datetime import datetime, timezone
@@ -16,9 +17,10 @@ import sqlalchemy
 from alembic import command
 from alembic.config import Config
 from sqlalchemy import create_engine, select, text
-from sqlalchemy.exc import OperationalError
+from sqlalchemy.exc import IntegrityError, OperationalError
 from sqlalchemy.orm import Session
 
+import app.services.ariadne_core as ariadne_service
 from app.db.models.ariadne_core import (
     AriadneModelRun,
     AriadneModelVersion,
@@ -28,7 +30,10 @@ from app.db.models.ariadne_core import (
 )
 from app.services.ariadne_core import (
     DETERMINISTIC_SCALAR_IMPLEMENTATION,
+    DETERMINISTIC_SCALAR_INPUT_CONTRACT,
     DETERMINISTIC_SCALAR_MODEL,
+    DETERMINISTIC_SCALAR_OUTPUT_CONTRACT,
+    DETERMINISTIC_SCALAR_SEMANTIC_VERSION,
     TenantScopeError,
     create_assumption_set,
     create_assumption_set_version,
@@ -123,13 +128,10 @@ def _build_versioned_fixture(session: Session, tenant_id: str):
         session,
         tenant_id=tenant_id,
         model_definition_id=model_definition.id,
-        semantic_version="1.0.0",
+        semantic_version=DETERMINISTIC_SCALAR_SEMANTIC_VERSION,
         implementation_identity=DETERMINISTIC_SCALAR_IMPLEMENTATION,
-        input_contract={
-            "observed_state": {"value": "integer"},
-            "assumptions": {"multiplier": "integer"},
-        },
-        output_contract={"scalar_result": {"value": "integer"}},
+        input_contract=DETERMINISTIC_SCALAR_INPUT_CONTRACT,
+        output_contract=DETERMINISTIC_SCALAR_OUTPUT_CONTRACT,
     )
     scenario_v1 = create_scenario(
         session,
@@ -254,17 +256,86 @@ def test_known_result_id_does_not_cross_tenant_boundary(migrated_engine):
     owner_tenant = _tenant("owner")
     other_tenant = _tenant("other")
     with Session(migrated_engine) as session:
-        fixture = _build_versioned_fixture(session, owner_tenant)
-        result_id = fixture["run_v1"].result.id
-        object_id = fixture["private_object"].id
+        owner = _build_versioned_fixture(session, owner_tenant)
+        other = _build_versioned_fixture(session, other_tenant)
+        result_id = owner["run_v1"].result.id
+        object_id = owner["private_object"].id
 
         with pytest.raises(TenantScopeError):
             reconstruct_result_lineage(session, tenant_id=other_tenant, result_id=result_id)
         with pytest.raises(TenantScopeError):
             get_current_state_version(session, tenant_id=other_tenant, object_id=object_id)
 
+        with pytest.raises(TenantScopeError):
+            create_scenario(
+                session,
+                tenant_id=other_tenant,
+                name="foreign state",
+                state_version_id=owner["state_v1"].id,
+                assumption_set_version_id=other["assumption_v1"].id,
+            )
+        with pytest.raises(TenantScopeError):
+            create_scenario(
+                session,
+                tenant_id=other_tenant,
+                name="foreign assumption",
+                state_version_id=other["state_v1"].id,
+                assumption_set_version_id=owner["assumption_v1"].id,
+            )
+        with pytest.raises(TenantScopeError):
+            execute_scenario(
+                session,
+                tenant_id=other_tenant,
+                scenario_id=other["scenario_v1"].id,
+                model_version_id=owner["model_version"].id,
+            )
+        with pytest.raises(TenantScopeError):
+            create_state_version(
+                session,
+                tenant_id=other_tenant,
+                object_id=other["private_object"].id,
+                payload={"value": 13},
+                evidence_ref_ids=[owner["evidence_v1"].id],
+            )
 
-def test_historical_records_reject_update_and_delete(migrated_engine):
+
+def test_execution_timestamps_bracket_the_executor(migrated_engine, monkeypatch):
+    tenant_id = _tenant("execution-time")
+    with Session(migrated_engine) as session:
+        fixture = _build_versioned_fixture(session, tenant_id)
+        started = datetime(2026, 9, 19, 12, 0, tzinfo=timezone.utc)
+        produced = datetime(2026, 9, 19, 12, 0, 1, tzinfo=timezone.utc)
+        clock = iter((started, produced))
+        events = []
+        original_executor = ariadne_service._execute_model_version
+
+        def observed_clock():
+            events.append("clock")
+            return next(clock)
+
+        def observed_executor(*args, **kwargs):
+            events.append("execute")
+            return original_executor(*args, **kwargs)
+
+        monkeypatch.setattr(ariadne_service, "_utc_now", observed_clock)
+        monkeypatch.setattr(
+            ariadne_service, "_execute_model_version", observed_executor
+        )
+
+        executed = execute_scenario(
+            session,
+            tenant_id=tenant_id,
+            scenario_id=fixture["scenario_v1"].id,
+            model_version_id=fixture["model_version"].id,
+        )
+
+        assert events == ["clock", "execute", "clock"]
+        assert executed.model_run.started_at == started
+        assert executed.model_run.produced_at == produced
+        assert executed.result.produced_at == produced
+
+
+def test_historical_records_reject_in_place_updates(migrated_engine):
     tenant_id = _tenant("immutable")
     with Session(migrated_engine) as session:
         fixture = _build_versioned_fixture(session, tenant_id)
@@ -284,7 +355,9 @@ def test_historical_records_reject_update_and_delete(migrated_engine):
                 fixture["scenario_v1"].id,
             ),
             (
-                "DELETE FROM ariadne_model_run WHERE id = :id",
+                "UPDATE ariadne_model_run "
+                "SET execution_configuration = '{\"arithmetic\": \"floating\"}' "
+                "WHERE id = :id",
                 fixture["run_v1"].model_run.id,
             ),
             (
@@ -307,3 +380,181 @@ def test_historical_records_reject_update_and_delete(migrated_engine):
         assert session.get(AriadneScenario, fixture["scenario_v1"].id) is not None
         assert session.get(AriadneModelRun, fixture["run_v1"].model_run.id) is not None
         assert session.get(AriadneResult, fixture["run_v1"].result.id) is not None
+
+
+def test_parent_delete_is_blocked_while_lineage_depends_on_it(migrated_engine):
+    tenant_id = _tenant("delete-restrict")
+    with Session(migrated_engine) as session:
+        fixture = _build_versioned_fixture(session, tenant_id)
+
+        with pytest.raises(IntegrityError):
+            session.execute(
+                text("DELETE FROM ariadne_private_object WHERE id = :id"),
+                {"id": fixture["private_object"].id},
+            )
+            session.commit()
+        session.rollback()
+
+        assert session.execute(
+            text("SELECT count(*) FROM ariadne_private_object WHERE id = :id"),
+            {"id": fixture["private_object"].id},
+        ).scalar_one() == 1
+
+
+def test_unreferenced_private_row_can_be_removed_by_future_lifecycle_workflow(
+    migrated_engine,
+):
+    tenant_id = _tenant("lifecycle-delete")
+    with Session(migrated_engine) as session:
+        unreferenced = create_private_object(
+            session, tenant_id=tenant_id, object_type="unreferenced"
+        )
+        row_id = unreferenced.id
+        session.commit()
+
+        session.execute(
+            text("DELETE FROM ariadne_private_object WHERE id = :id"), {"id": row_id}
+        )
+        session.commit()
+
+        assert session.execute(
+            text("SELECT count(*) FROM ariadne_private_object WHERE id = :id"),
+            {"id": row_id},
+        ).scalar_one() == 0
+
+
+def _assert_integrity_rejected(session: Session, statement: str, parameters: dict):
+    with pytest.raises(IntegrityError):
+        session.execute(text(statement), parameters)
+        session.commit()
+    session.rollback()
+
+
+def test_database_rejects_contradictory_manifests_and_broken_version_chains(
+    migrated_engine,
+):
+    tenant_id = _tenant("manifest")
+    other_tenant = _tenant("manifest-other")
+    with Session(migrated_engine) as session:
+        fixture = _build_versioned_fixture(session, tenant_id)
+        other = _build_versioned_fixture(session, other_tenant)
+
+        assumption_v2 = create_assumption_set_version(
+            session,
+            tenant_id=tenant_id,
+            assumption_set_id=fixture["assumption_v1"].assumption_set_id,
+            values={"multiplier": 3},
+            origin="human_defined",
+        )
+        unrelated_object = create_private_object(
+            session, tenant_id=tenant_id, object_type="unrelated"
+        )
+        session.commit()
+
+        run_insert = """
+            INSERT INTO ariadne_model_run (
+              id, tenant_id, model_version_id, scenario_id, state_version_id,
+              assumption_set_version_id, execution_configuration, started_at, produced_at
+            ) VALUES (
+              :id, :tenant_id, :model_version_id, :scenario_id, :state_version_id,
+              :assumption_version_id, CAST(:configuration AS jsonb), :started_at, :produced_at
+            )
+        """
+        run_parameters = {
+            "tenant_id": tenant_id,
+            "model_version_id": fixture["model_version"].id,
+            "scenario_id": fixture["scenario_v1"].id,
+            "state_version_id": fixture["state_v1"].id,
+            "assumption_version_id": fixture["assumption_v1"].id,
+            "configuration": json.dumps({"arithmetic": "integer"}),
+            "started_at": datetime.now(timezone.utc),
+            "produced_at": datetime.now(timezone.utc),
+        }
+
+        _assert_integrity_rejected(
+            session,
+            run_insert,
+            {
+                **run_parameters,
+                "id": uuid.uuid4(),
+                "state_version_id": fixture["state_v2"].id,
+            },
+        )
+        _assert_integrity_rejected(
+            session,
+            run_insert,
+            {
+                **run_parameters,
+                "id": uuid.uuid4(),
+                "assumption_version_id": assumption_v2.id,
+            },
+        )
+        _assert_integrity_rejected(
+            session,
+            run_insert,
+            {
+                **run_parameters,
+                "id": uuid.uuid4(),
+                "model_version_id": other["model_version"].id,
+            },
+        )
+
+        _assert_integrity_rejected(
+            session,
+            """
+                INSERT INTO ariadne_state_evidence (
+                  state_version_id, evidence_ref_id, tenant_id
+                ) VALUES (:state_version_id, :evidence_ref_id, :tenant_id)
+            """,
+            {
+                "state_version_id": fixture["state_v1"].id,
+                "evidence_ref_id": other["evidence_v1"].id,
+                "tenant_id": tenant_id,
+            },
+        )
+
+        state_insert = """
+            INSERT INTO ariadne_private_state_version (
+              id, tenant_id, object_id, version, payload, previous_version_id
+            ) VALUES (
+              :id, :tenant_id, :object_id, :version,
+              CAST(:payload AS jsonb), :previous_version_id
+            )
+        """
+        common_state_parameters = {
+            "tenant_id": tenant_id,
+            "payload": json.dumps({"value": 99}),
+        }
+        _assert_integrity_rejected(
+            session,
+            state_insert,
+            {
+                **common_state_parameters,
+                "id": uuid.uuid4(),
+                "object_id": unrelated_object.id,
+                "version": 2,
+                "previous_version_id": fixture["state_v1"].id,
+            },
+        )
+        _assert_integrity_rejected(
+            session,
+            state_insert,
+            {
+                **common_state_parameters,
+                "id": uuid.uuid4(),
+                "object_id": fixture["private_object"].id,
+                "version": 99,
+                "previous_version_id": None,
+            },
+        )
+        _assert_integrity_rejected(
+            session,
+            state_insert,
+            {
+                **common_state_parameters,
+                "id": uuid.uuid4(),
+                "object_id": fixture["private_object"].id,
+                "version": 99,
+                "previous_version_id": fixture["state_v1"].id,
+            },
+        )

@@ -43,9 +43,18 @@ knowing an ID does not authorize cross-tenant resolution. Evidence is referenced
 by source identity, source/content version, locator, typed time, and optional
 transform reference; this does not grant permission to dereference source data.
 
-PostgreSQL triggers reject updates and deletes to Ariadne lineage tables. The
-v0 service appends records and flushes them but leaves transaction ownership to
-its caller, consistent with existing backend services.
+PostgreSQL triggers reject in-place updates to Ariadne lineage tables. Foreign
+keys with restrictive delete behavior prevent a parent from being removed while
+dependent lineage remains, and v0 exposes no destructive service API. Deletes
+are deliberately not rejected by a universal trigger: a future authorized data
+lifecycle process can remove governed private information in dependency order.
+This keeps historical immutability from silently becoming an indefinite data-
+retention right. The v0 service appends records and flushes them but leaves
+transaction ownership to its caller, consistent with existing backend services.
+
+The sole v0 executor is registered by an exact tuple of model name, semantic
+version, implementation identity, and input/output contracts. Unknown or
+mismatched metadata fails closed; replay never substitutes a newer executor.
 
 ## Deliberate v0 limits
 
