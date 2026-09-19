@@ -11,7 +11,6 @@ silently hidden just to make a new constraint install.
 from typing import Sequence, Union
 
 from alembic import op
-from sqlalchemy import text
 
 
 revision: str = "0011_argos_same_source_lineage"
@@ -20,30 +19,42 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 
-_CROSS_SOURCE_PREFLIGHT = text(
-    """
-    SELECT child.id, child.source_id, child.prior_snapshot_id,
-    parent.source_id AS parent_source_id
-    FROM argos_snapshot child
-    JOIN argos_snapshot parent ON parent.id = child.prior_snapshot_id
-    WHERE child.prior_snapshot_id IS NOT NULL
-    AND child.source_id <> parent.source_id;
-    """
-)
-
-
 def upgrade() -> None:
-    # This must precede every DDL statement that installs or validates the
-    # new FK. Do not repair, delete, reparent, or otherwise alter the row.
-    violation = op.get_bind().execute(_CROSS_SOURCE_PREFLIGHT).mappings().first()
-    if violation is not None:
-        raise RuntimeError(
-            "NIV-41 preflight found cross-source argos_snapshot lineage; "
-            "migration stopped without rewriting history "
-            f"(child_id={violation['id']}, child_source_id={violation['source_id']!r}, "
-            f"prior_snapshot_id={violation['prior_snapshot_id']}, "
-            f"parent_source_id={violation['parent_source_id']!r})."
-        )
+    # This runtime guard precedes every DDL statement that installs or
+    # validates the new FK. It works in both online execution and Alembic's
+    # offline SQL rendering; do not repair, delete, reparent, or otherwise
+    # alter the row that makes it fail.
+    op.execute(
+        """
+        DO $$
+        DECLARE
+          violation RECORD;
+        BEGIN
+          SELECT child.id, child.source_id, child.prior_snapshot_id,
+                 parent.source_id AS parent_source_id
+          INTO violation
+          FROM argos_snapshot child
+          JOIN argos_snapshot parent ON parent.id = child.prior_snapshot_id
+          WHERE child.prior_snapshot_id IS NOT NULL
+            AND child.source_id <> parent.source_id
+          LIMIT 1;
+
+          IF FOUND THEN
+            RAISE EXCEPTION USING
+              MESSAGE = format(
+                'NIV-41 preflight found cross-source argos_snapshot lineage; '
+                'migration stopped without rewriting history '
+                '(child_id=%s, child_source_id=%L, prior_snapshot_id=%s, parent_source_id=%L)',
+                violation.id,
+                violation.source_id,
+                violation.prior_snapshot_id,
+                violation.parent_source_id
+              );
+          END IF;
+        END;
+        $$;
+        """
+    )
 
     # ``id`` remains the primary key. PostgreSQL additionally requires the
     # exact referenced pair to be unique before it accepts a composite FK.

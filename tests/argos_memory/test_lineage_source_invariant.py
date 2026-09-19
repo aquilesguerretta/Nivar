@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from io import StringIO
 import uuid
 from datetime import datetime, timedelta, timezone
 
@@ -122,7 +123,7 @@ def test_0010_accepts_corrupt_cross_source_history_but_0011_stops_without_repair
             )
             session.commit()  # 0010 accepts this invalid cross-source child.
 
-        with pytest.raises(RuntimeError, match="NIV-41 preflight found cross-source"):
+        with pytest.raises(sqlalchemy.exc.DBAPIError, match="NIV-41 preflight found cross-source"):
             command.upgrade(config, "0011_argos_same_source_lineage")
 
         with engine.connect() as connection:
@@ -147,6 +148,20 @@ def test_0010_accepts_corrupt_cross_source_history_but_0011_stops_without_repair
         assert persisted.parent_source_id == parent_source
     finally:
         engine.dispose()
+
+
+def test_0011_offline_render_keeps_the_runtime_preflight_guard(migrated_database):
+    """Offline SQL must fail at execution time before adding the composite FK."""
+    del migrated_database  # Offline rendering does not need a live connection.
+    config = Config("alembic.ini", output_buffer=StringIO())
+    config.set_main_option("sqlalchemy.url", "postgresql://offline-render")
+    command.upgrade(config, "head", sql=True)
+    rendered_sql = config.output_buffer.getvalue()
+    guard_index = rendered_sql.index("NIV-41 preflight found cross-source")
+    constraint_index = rendered_sql.index("argos_snapshot_prior_snapshot_source_fkey")
+    assert "DO $$" in rendered_sql
+    assert "JOIN argos_snapshot parent ON parent.id = child.prior_snapshot_id" in rendered_sql
+    assert guard_index < constraint_index
 
 
 def test_clean_0011_rejects_a_direct_sql_cross_source_child(migrated_database):
