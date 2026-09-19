@@ -238,6 +238,20 @@ def test_frozen_policy_contract_rejects_material_semantic_mutations():
     def broaden_rights(case):
         case["rights_state_for_surface"] = validator.HUMAN_SIGNAL_RIGHTS
 
+    def change_sg001_from_snapshot(case):
+        case["evidence_refs"][0]["value"] = "00000000-0000-0000-0000-000000000000"
+
+    def change_sg001_to_snapshot(case):
+        case["evidence_refs"][1]["value"] = "11111111-1111-1111-1111-111111111111"
+
+    def change_sg001_receipt_sha(case):
+        case["evidence_refs"][2]["value"] = "sha256:deadbeef;bytes:1280293"
+
+    def change_sg001_receipt_bytes(case):
+        case["evidence_refs"][2]["value"] = (
+            "sha256:25fa69f8faa81cf19afa768d2dda5799481a845d276611a08ca706b9c6368916;bytes:1"
+        )
+
     corruptions = (
         ("SG-007", hold_to_reject, "expected_decision"),
         ("SG-014", hold_to_reject, "expected_decision"),
@@ -252,6 +266,10 @@ def test_frozen_policy_contract_rejects_material_semantic_mutations():
         ("SG-002", drift_reason_code, "decision_reason_code"),
         ("SG-007", rewrite_required_caveat, "required_caveats"),
         ("SG-007", broaden_rights, "rights_state_for_surface"),
+        ("SG-001", change_sg001_from_snapshot, "evidence_refs"),
+        ("SG-001", change_sg001_to_snapshot, "evidence_refs"),
+        ("SG-001", change_sg001_receipt_sha, "evidence_refs"),
+        ("SG-001", change_sg001_receipt_bytes, "evidence_refs"),
     )
 
     for case_id, mutate, expected_field in corruptions:
@@ -402,6 +420,68 @@ def test_sg017_through_sg019_are_honest_controlled_contexts():
     assert sg019_context["invariant"] == "Factual truth does not expand distribution rights."
 
 
+def test_controlled_context_contract_rejects_semantic_mutations():
+    manifest = _manifest()
+    valid_contexts = validator.load_controlled_contexts(REPO_ROOT)
+
+    def sg017_health_broadened(contexts):
+        contexts["SG-017"]["source_health_state"] = "HEALTHY_COMPLETE"
+
+    def sg017_prohibition_reversed(contexts):
+        contexts["SG-017"]["prohibition"] = (
+            "Treat source unavailability as asset absence and zero capacity."
+        )
+
+    def sg018_evidence_available(contexts):
+        contexts["SG-018"]["required_evidence_available"] = True
+
+    def sg018_claims_reconstructibility(contexts):
+        contexts["SG-018"]["observation"] = (
+            "The candidate is fully reconstructible from its evidence reference."
+        )
+
+    def sg020_safe_candidate_wording(contexts):
+        contexts["SG-020"]["candidate_wording"] = _case("SG-004")[
+            "expected_factual_claim"
+        ]
+
+    def sg020_narrowed_prohibitions(contexts):
+        contexts["SG-020"]["prohibited_reason_codes"] = [
+            "UNSUPPORTED_CAUSALITY"
+        ]
+
+    def sg020_passes(contexts):
+        contexts["SG-020"]["result"] = "PASS"
+
+    def sg020_reason_changed(contexts):
+        contexts["SG-020"]["reason_code"] = "UNSUPPORTED_PUBLISHER_REVISION"
+
+    def sg020_fallback_changed(contexts):
+        contexts["SG-020"]["fallback_claim"] = "ONS corrected the capacity."
+
+    corruptions = (
+        (sg017_health_broadened, "SG-017: controlled context mismatch for source_health_state"),
+        (sg017_prohibition_reversed, "SG-017: controlled context mismatch for prohibition"),
+        (sg018_evidence_available, "SG-018: controlled context mismatch for required_evidence_available"),
+        (sg018_claims_reconstructibility, "SG-018: controlled context mismatch for observation"),
+        (sg020_safe_candidate_wording, "SG-020: controlled context mismatch for candidate_wording"),
+        (sg020_narrowed_prohibitions, "SG-020: controlled context mismatch for prohibited_reason_codes"),
+        (sg020_passes, "SG-020: controlled context mismatch for result"),
+        (sg020_reason_changed, "SG-020: controlled context mismatch for reason_code"),
+        (sg020_fallback_changed, "SG-020: controlled context mismatch for fallback_claim"),
+    )
+
+    for mutate, expected_message in corruptions:
+        contexts = copy.deepcopy(valid_contexts)
+        mutate(contexts)
+        with pytest.raises(validator.ManifestValidationError, match=expected_message):
+            validator.validate_controlled_contexts(
+                manifest,
+                REPO_ROOT,
+                context_payloads=contexts,
+            )
+
+
 def test_sg020_promotes_the_event_but_rejects_unsupported_causal_wording():
     sg004 = _case("SG-004")
     case = _case("SG-020")
@@ -415,6 +495,9 @@ def test_sg020_promotes_the_event_but_rejects_unsupported_causal_wording():
     )
     assert claim_guard["result"] == context["result"] == "FAIL"
     assert claim_guard["reason_code"] == context["reason_code"] == "UNSUPPORTED_CAUSALITY"
+    assert claim_guard["candidate_wording"] == context["candidate_wording"]
+    assert claim_guard["prohibited_reason_codes"] == context["prohibited_reason_codes"]
+    assert claim_guard["fallback_claim"] == context["fallback_claim"]
     assert claim_guard["fallback_claim"] == sg004["expected_factual_claim"]
     assert "UNSUPPORTED_PUBLISHER_REVISION" in claim_guard["prohibited_reason_codes"]
 

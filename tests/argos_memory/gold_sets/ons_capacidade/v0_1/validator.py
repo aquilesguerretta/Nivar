@@ -35,6 +35,9 @@ def _load_expected_policy_contract():
 
 
 _expected_policy = _load_expected_policy_contract()
+EXPECTED_CONTROLLED_CONTEXTS_BY_CASE = (
+    _expected_policy.EXPECTED_CONTROLLED_CONTEXTS_BY_CASE
+)
 EXPECTED_POLICY_BY_CASE = _expected_policy.EXPECTED_POLICY_BY_CASE
 EXPECTED_HUMAN_PROVENANCE = _expected_policy.HUMAN_PROVENANCE
 
@@ -161,6 +164,154 @@ def _validate_frozen_policy(case: dict[str, Any]) -> None:
             )
 
 
+def _validate_sg001_reference_integrity(case: dict[str, Any]) -> None:
+    refs_by_role = {ref.get("role"): ref for ref in case["evidence_refs"]}
+    if set(refs_by_role) != {"from_snapshot", "to_snapshot", "m3_receipt"}:
+        raise ManifestValidationError("SG-001: unexpected evidence reference roles")
+
+    from_snapshot = refs_by_role["from_snapshot"]["value"]
+    to_snapshot = refs_by_role["to_snapshot"]["value"]
+    receipt = refs_by_role["m3_receipt"]["value"]
+    facts = case["candidate_event_facts"]
+    expected_receipt = f"sha256:{facts['sha256']};bytes:{facts['bytes']}"
+
+    if receipt != expected_receipt:
+        raise ManifestValidationError(
+            "SG-001: m3_receipt does not agree with candidate_event_facts"
+        )
+    for snapshot_id in (from_snapshot, to_snapshot):
+        if snapshot_id not in case["required_evidence_refs"]:
+            raise ManifestValidationError(
+                "SG-001: snapshot evidence_refs do not agree with required_evidence_refs"
+            )
+
+    rights_record_ref = case["rights_state_for_surface"].get("rights_record_ref")
+    if rights_record_ref != ONS_RIGHTS_RECORD_REF:
+        raise ManifestValidationError("SG-001: wrong rights_record_ref")
+    if rights_record_ref not in case["required_evidence_refs"]:
+        raise ManifestValidationError(
+            "SG-001: rights_record_ref is missing from required_evidence_refs"
+        )
+
+
+def load_controlled_contexts(repo_root: Path) -> dict[str, dict[str, Any]]:
+    contexts: dict[str, dict[str, Any]] = {}
+    for case_id, expected in EXPECTED_CONTROLLED_CONTEXTS_BY_CASE.items():
+        path = repo_root / expected["path"]
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise ManifestValidationError(
+                f"{case_id}: cannot load controlled context {path}: {exc}"
+            ) from exc
+        if not isinstance(payload, dict):
+            raise ManifestValidationError(f"{case_id}: controlled context must be an object")
+        contexts[case_id] = payload
+    return contexts
+
+
+def validate_controlled_contexts(
+    manifest: dict[str, Any],
+    repo_root: Path,
+    *,
+    context_payloads: dict[str, dict[str, Any]] | None = None,
+) -> None:
+    cases = {case["case_id"]: case for case in manifest["cases"]}
+    contexts = (
+        load_controlled_contexts(repo_root)
+        if context_payloads is None
+        else context_payloads
+    )
+    if set(contexts) != set(EXPECTED_CONTROLLED_CONTEXTS_BY_CASE):
+        raise ManifestValidationError(
+            "controlled context payloads must contain exactly SG-017, SG-018 and SG-020"
+        )
+
+    for case_id, expected in EXPECTED_CONTROLLED_CONTEXTS_BY_CASE.items():
+        case = cases[case_id]
+        actual = contexts[case_id]
+        expected_payload = expected["payload"]
+        for field, expected_value in expected_payload.items():
+            if field not in actual:
+                raise ManifestValidationError(
+                    f"{case_id}: controlled context is missing {field}"
+                )
+            if actual[field] != expected_value:
+                raise ManifestValidationError(
+                    f"{case_id}: controlled context mismatch for {field}: "
+                    f"expected {expected_value!r}, got {actual[field]!r}"
+                )
+        unexpected_fields = set(actual) - set(expected_payload)
+        if unexpected_fields:
+            raise ManifestValidationError(
+                f"{case_id}: controlled context has unexpected fields: "
+                f"{sorted(unexpected_fields)!r}"
+            )
+
+        context_refs = [
+            ref
+            for ref in case["evidence_refs"]
+            if ref.get("role") == expected["evidence_role"]
+        ]
+        expected_ref = {
+            "role": expected["evidence_role"],
+            "type": "local_path",
+            "path": expected["path"],
+        }
+        if context_refs != [expected_ref]:
+            raise ManifestValidationError(
+                f"{case_id}: manifest context evidence reference does not match frozen context"
+            )
+
+    sg017 = cases["SG-017"]
+    sg017_context = contexts["SG-017"]
+    if sg017_context["source_health_state"] != sg017["source_health_state"]:
+        raise ManifestValidationError(
+            "SG-017: context source_health_state does not match manifest"
+        )
+    manifest_observation = sg017["candidate_event_facts"]["observation"].rstrip(".")
+    if manifest_observation not in sg017_context["observation"]:
+        raise ManifestValidationError(
+            "SG-017: context observation does not preserve manifest event facts"
+        )
+
+    sg018 = cases["SG-018"]
+    sg018_context = contexts["SG-018"]
+    if sg018_context["required_evidence_available"] is not False:
+        raise ManifestValidationError("SG-018: controlled evidence must remain unavailable")
+    if sg018["candidate_event_facts"]["required_evidence_reconstructible"] is not False:
+        raise ManifestValidationError("SG-018: manifest evidence must remain unreconstructible")
+    if sg018_context["required_evidence_ref"] not in sg018["required_evidence_refs"]:
+        raise ManifestValidationError(
+            "SG-018: context evidence ref does not match required_evidence_refs"
+        )
+    if (sg018["expected_decision"], sg018["decision_reason_code"]) != (
+        "HOLD",
+        "EVIDENCE_NOT_RECONSTRUCTIBLE",
+    ):
+        raise ManifestValidationError("SG-018: context is inconsistent with manifest gate")
+
+    sg020 = cases["SG-020"]
+    sg020_context = contexts["SG-020"]
+    claim_guard = sg020["claim_guard"]
+    for field in (
+        "candidate_wording",
+        "result",
+        "reason_code",
+        "prohibited_reason_codes",
+        "fallback_claim",
+    ):
+        if sg020_context[field] != claim_guard[field]:
+            raise ManifestValidationError(
+                f"SG-020: context {field} does not match manifest claim_guard"
+            )
+    sg004_claim = cases["SG-004"]["expected_factual_claim"]
+    if claim_guard["fallback_claim"] != sg004_claim:
+        raise ManifestValidationError(
+            "SG-020: fallback_claim must equal the approved SG-004 factual claim"
+        )
+
+
 def _validate_case(case: dict[str, Any], repo_root: Path) -> None:
     case_id = case.get("case_id", "<unknown>")
     for field in COMMON_CASE_FIELDS:
@@ -248,6 +399,8 @@ def _validate_case(case: dict[str, Any], repo_root: Path) -> None:
             raise ManifestValidationError("SG-019: wrong rights-gate decision")
 
     _validate_frozen_policy(case)
+    if case_id == "SG-001":
+        _validate_sg001_reference_integrity(case)
 
 
 def validate_manifest(manifest: dict[str, Any], repo_root: Path) -> None:
@@ -275,10 +428,13 @@ def validate_manifest(manifest: dict[str, Any], repo_root: Path) -> None:
             raise ManifestValidationError("manifest case must be an object")
         _validate_case(case, repo_root)
 
+    validate_controlled_contexts(manifest, repo_root)
+
 
 __all__ = [
     "CANONICAL_POLICY_REF",
     "EXPECTED_CASE_IDS",
+    "EXPECTED_CONTROLLED_CONTEXTS_BY_CASE",
     "EXPECTED_HUMAN_PROVENANCE",
     "EXPECTED_POLICY_BY_CASE",
     "GOLD_SET_VERSION",
@@ -288,5 +444,7 @@ __all__ = [
     "ONS_RIGHTS_RECORD_REF",
     "RESERVED_RELEASED_IDENTIFIER",
     "load_manifest",
+    "load_controlled_contexts",
+    "validate_controlled_contexts",
     "validate_manifest",
 ]

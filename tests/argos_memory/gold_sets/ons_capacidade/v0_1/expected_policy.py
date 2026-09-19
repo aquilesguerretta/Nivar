@@ -38,6 +38,7 @@ MACHINE_API_RIGHTS = {
 
 def _policy(
     *,
+    evidence_refs: list[dict[str, Any]] | None = None,
     evidence_kind: str,
     parser_version: str | None,
     diff_version: str | None,
@@ -76,11 +77,33 @@ def _policy(
     }
     if claim_guard is not None:
         contract["claim_guard"] = claim_guard
+    if evidence_refs is not None:
+        contract["evidence_refs"] = evidence_refs
     return contract
 
 
 EXPECTED_POLICY_BY_CASE: dict[str, dict[str, Any]] = {
     "SG-001": _policy(
+        evidence_refs=[
+            {
+                "role": "from_snapshot",
+                "type": "production_snapshot_id",
+                "value": "878e4f37-234b-4ab0-a46e-e206ec894bb5",
+                "local_resolution_expected": False,
+            },
+            {
+                "role": "to_snapshot",
+                "type": "production_snapshot_id",
+                "value": "a2e31407-5957-4e8c-84c0-f9629e4a03cd",
+                "local_resolution_expected": False,
+            },
+            {
+                "role": "m3_receipt",
+                "type": "verified_receipt",
+                "value": "sha256:25fa69f8faa81cf19afa768d2dda5799481a845d276611a08ca706b9c6368916;bytes:1280293",
+                "local_resolution_expected": False,
+            },
+        ],
         evidence_kind="REAL_REFERENCE",
         parser_version=None,
         diff_version=None,
@@ -554,7 +577,52 @@ EXPECTED_POLICY_BY_CASE: dict[str, dict[str, Any]] = {
 }
 
 
+EXPECTED_CONTROLLED_CONTEXTS_BY_CASE: dict[str, dict[str, Any]] = {
+    "SG-017": {
+        "path": "tests/argos_memory/gold_sets/ons_capacidade/v0_1/contexts/sg017_source_health.json",
+        "evidence_role": "source_health_context",
+        "payload": {
+            "context_kind": "SOURCE_HEALTH",
+            "controlled": True,
+            "not_publisher_history": True,
+            "source_health_state": "UNAVAILABLE",
+            "observation": "No trustworthy new content observation exists while the source is unavailable.",
+            "prohibition": "Do not turn source unavailability into asset absence, zero generation, or zero capacity.",
+        },
+    },
+    "SG-018": {
+        "path": "tests/argos_memory/gold_sets/ons_capacidade/v0_1/contexts/sg018_evidence_gap.json",
+        "evidence_role": "evidence_gap_context",
+        "payload": {
+            "context_kind": "EVIDENCE_GAP",
+            "controlled": True,
+            "not_publisher_history": True,
+            "required_evidence_ref": "controlled:missing-reconstruction-receipt",
+            "required_evidence_available": False,
+            "observation": "The candidate cannot be reconstructed from its required evidence reference.",
+        },
+    },
+    "SG-020": {
+        "path": "tests/argos_memory/gold_sets/ons_capacidade/v0_1/contexts/sg020_claim_guard.json",
+        "evidence_role": "claim_guard_context",
+        "payload": {
+            "context_kind": "CLAIM_GUARD",
+            "controlled": True,
+            "candidate_wording": "The plant expanded after new investment.",
+            "result": "FAIL",
+            "reason_code": "UNSUPPORTED_CAUSALITY",
+            "prohibited_reason_codes": [
+                "UNSUPPORTED_CAUSALITY",
+                "UNSUPPORTED_PUBLISHER_REVISION",
+            ],
+            "fallback_claim": "The effective power recorded for unit TEST-EQ-002 changed from 20.0 MW to 22.5 MW between two stored observations of the ONS dataset.",
+        },
+    },
+}
+
+
 __all__ = [
+    "EXPECTED_CONTROLLED_CONTEXTS_BY_CASE",
     "EXPECTED_POLICY_BY_CASE",
     "GOLD_SET_VERSION",
     "HUMAN_PROVENANCE",
