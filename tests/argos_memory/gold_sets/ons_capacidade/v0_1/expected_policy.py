@@ -211,6 +211,12 @@ def _policy(
     }
     if claim_guard is not None:
         contract["claim_guard"] = claim_guard
+    # These states have no parsed delta. Real ContentDelta values remain
+    # behavioral expectations, recomputed from fixture bytes, never frozen here.
+    if deterministic_result_kind in {
+        "REFERENCE_RECEIPT", "PARSER_FAILURE", "CONTROLLED_CONTEXT"
+    }:
+        contract["content_delta"] = None
     return contract
 
 

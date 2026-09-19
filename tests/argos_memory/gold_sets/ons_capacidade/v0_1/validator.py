@@ -78,6 +78,21 @@ class ManifestValidationError(ValueError):
     """The checked-in Gold Set does not preserve the approved contract."""
 
 
+def same_json_value(actual: Any, expected: Any) -> bool:
+    """Exact JSON value equality; Python's True == 1 is not a frozen boolean."""
+    if type(actual) is not type(expected):
+        return False
+    if isinstance(expected, dict):
+        return actual.keys() == expected.keys() and all(
+            same_json_value(actual[key], value) for key, value in expected.items()
+        )
+    if isinstance(expected, list):
+        return len(actual) == len(expected) and all(
+            same_json_value(left, right) for left, right in zip(actual, expected)
+        )
+    return actual == expected
+
+
 def load_manifest(path: Path) -> dict[str, Any]:
     """Load a manifest without introducing a YAML or schema-framework dependency."""
     try:
@@ -127,7 +142,7 @@ def _validate_frozen_policy(case: dict[str, Any]) -> None:
 
     for field, expected_value in expected.items():
         actual_value = _require(case, field)
-        if actual_value != expected_value:
+        if not same_json_value(actual_value, expected_value):
             raise ManifestValidationError(
                 f"{case_id}: frozen policy mismatch for {field}: "
                 f"expected {expected_value!r}, got {actual_value!r}"
@@ -140,14 +155,14 @@ def _validate_frozen_policy(case: dict[str, Any]) -> None:
 
     for field, expected_value in EXPECTED_HUMAN_PROVENANCE.items():
         actual_value = _require(case, field)
-        if actual_value != expected_value:
+        if not same_json_value(actual_value, expected_value):
             raise ManifestValidationError(
                 f"{case_id}: frozen policy mismatch for {field}: "
                 f"expected {expected_value!r}, got {actual_value!r}"
             )
 
     expected_evidence_refs = EXPECTED_EVIDENCE_REFS_BY_CASE[case_id]
-    if case["evidence_refs"] != expected_evidence_refs:
+    if not same_json_value(case["evidence_refs"], expected_evidence_refs):
         raise ManifestValidationError(
             f"{case_id}: frozen policy mismatch for evidence_refs: "
             f"expected {expected_evidence_refs!r}, got {case['evidence_refs']!r}"
@@ -221,12 +236,14 @@ def validate_controlled_contexts(
         case = cases[case_id]
         actual = contexts[case_id]
         expected_payload = expected["payload"]
+        if not isinstance(actual, dict):
+            raise ManifestValidationError(f"{case_id}: controlled context must be an object")
         for field, expected_value in expected_payload.items():
             if field not in actual:
                 raise ManifestValidationError(
                     f"{case_id}: controlled context is missing {field}"
                 )
-            if actual[field] != expected_value:
+            if not same_json_value(actual[field], expected_value):
                 raise ManifestValidationError(
                     f"{case_id}: controlled context mismatch for {field}: "
                     f"expected {expected_value!r}, got {actual[field]!r}"
@@ -337,6 +354,15 @@ def _validate_case(case: dict[str, Any], repo_root: Path) -> None:
     for field in COMMON_CASE_FIELDS:
         _require(case, field)
 
+    # Freeze values and nested shapes before interpreting their relationships.
+    _validate_frozen_policy(case)
+    result_kind = case["deterministic_result_kind"]
+    if result_kind == "CONTENT_DELTA":
+        if not isinstance(case["content_delta"], dict):
+            raise ManifestValidationError(f"{case_id}: CONTENT_DELTA requires a content_delta object")
+    elif case["content_delta"] is not None:
+        raise ManifestValidationError(f"{case_id}: {result_kind} requires content_delta null")
+
     if case["gold_set_version"] != GOLD_SET_VERSION:
         raise ManifestValidationError(f"{case_id}: wrong gold_set_version")
     if case["source_id"] != "ons.capacidade_geracao":
@@ -418,13 +444,14 @@ def _validate_case(case: dict[str, Any], repo_root: Path) -> None:
         if (decision, case["decision_reason_code"]) != ("HOLD", "RIGHTS_NOT_CLEARED"):
             raise ManifestValidationError("SG-019: wrong rights-gate decision")
 
-    _validate_frozen_policy(case)
     if case_id == "SG-001":
         _validate_sg001_reference_integrity(case)
 
 
 def validate_manifest(manifest: dict[str, Any], repo_root: Path) -> None:
     """Validate only the approved v0.1-alpha materialization contract."""
+    if not isinstance(manifest, dict):
+        raise ManifestValidationError("manifest root must be an object")
     expected_fields = set(EXPECTED_MANIFEST_FIELDS)
     actual_fields = set(manifest)
     missing_fields = expected_fields - actual_fields
@@ -439,7 +466,7 @@ def validate_manifest(manifest: dict[str, Any], repo_root: Path) -> None:
         )
 
     for field, expected_value in EXPECTED_MANIFEST_METADATA.items():
-        if manifest[field] != expected_value:
+        if not same_json_value(manifest[field], expected_value):
             raise ManifestValidationError(
                 f"manifest frozen mismatch for {field}: "
                 f"expected {expected_value!r}, got {manifest[field]!r}"
@@ -448,7 +475,11 @@ def validate_manifest(manifest: dict[str, Any], repo_root: Path) -> None:
     cases = manifest.get("cases")
     if not isinstance(cases, list):
         raise ManifestValidationError("manifest cases must be a list")
-    case_ids = [case.get("case_id") for case in cases if isinstance(case, dict)]
+    if any(not isinstance(case, dict) for case in cases):
+        raise ManifestValidationError("manifest case must be an object")
+    case_ids = [case.get("case_id") for case in cases]
+    if any(not isinstance(case_id, str) for case_id in case_ids):
+        raise ManifestValidationError("case_id must be a string")
     if len(case_ids) != len(set(case_ids)):
         raise ManifestValidationError("manifest contains duplicate case_id")
     if tuple(case_ids) != EXPECTED_CASE_IDS:
@@ -476,6 +507,7 @@ __all__ = [
     "RESERVED_RELEASED_IDENTIFIER",
     "load_manifest",
     "load_controlled_contexts",
+    "same_json_value",
     "validate_controlled_contexts",
     "validate_manifest",
 ]

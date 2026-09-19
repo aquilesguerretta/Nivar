@@ -5,6 +5,7 @@ from __future__ import annotations
 import copy
 import importlib.util
 import json
+import shutil
 from pathlib import Path
 
 import pytest
@@ -39,9 +40,9 @@ def _case(case_id: str) -> dict:
     return next(case for case in _manifest()["cases"] if case["case_id"] == case_id)
 
 
-def _evidence_bytes(case: dict, role: str) -> bytes:
+def _evidence_bytes(case: dict, role: str, repo_root: Path = REPO_ROOT) -> bytes:
     ref = next(ref for ref in case["evidence_refs"] if ref["role"] == role)
-    return (REPO_ROOT / ref["path"]).read_bytes()
+    return (repo_root / ref["path"]).read_bytes()
 
 
 def _serialise_delta(delta) -> dict:
@@ -62,16 +63,350 @@ def _serialise_delta(delta) -> dict:
     }
 
 
-def _delta_for(case: dict):
+def _delta_for(case: dict, repo_root: Path = REPO_ROOT):
     return diff_capacidade_geracao(
-        parse_capacidade_geracao(_evidence_bytes(case, "from")),
-        parse_capacidade_geracao(_evidence_bytes(case, "to")),
+        parse_capacidade_geracao(_evidence_bytes(case, "from", repo_root)),
+        parse_capacidade_geracao(_evidence_bytes(case, "to", repo_root)),
     )
 
 
 def _context(case: dict) -> dict:
     ref = next(ref for ref in case["evidence_refs"] if ref["role"].endswith("context"))
     return json.loads((REPO_ROOT / ref["path"]).read_text(encoding="utf-8"))
+
+
+# Test-only inventory. Explicit keys are intentional: deriving this from the
+# schema would silently bless a newly allowed field, recreating NIV-45's gap.
+A = "EXACT_FROZEN"
+B = "DETERMINISTIC_RECOMPUTE"
+C = "CROSS_FIELD_INVARIANT"
+D = "CONTEXT_CROSSCHECK"
+E = "MUST_BE_NULL_OR_FORBIDDEN"
+NON_DELTA_CASES = ("SG-001", "SG-015", "SG-016", "SG-017", "SG-018")
+CASE_FIELD_AUTHORITIES = {
+    "case_id": (A, C),
+    "gold_set_version": (A, C),
+    "source_id": (A, C),
+    "evidence_kind": (A,),
+    "evidence_refs": (A, C, D),
+    "parser_version": (A, B, E),
+    "diff_version": (A, B, E),
+    "byte_relation": (A, B),
+    "deterministic_result_kind": (A, C),
+    "content_delta": (B, C),  # A+C+E instead for NON_DELTA_CASES, checked below.
+    "candidate_event_kind": (A, C),
+    "candidate_event_facts": (A, B, C, D),
+    "source_health_state": (A, D),
+    "rights_state_for_surface": (A, C, D),
+    "expected_decision": (A, C),
+    "decision_reason_code": (A, C),
+    "materiality_rationale": (A,),
+    "expected_factual_claim": (A, C, E),
+    "forbidden_claims": (A,),
+    "required_evidence_refs": (A, C, D),
+    "required_caveats": (A, C),
+    "human_gold_reviewer": (A,),
+    "human_gold_reviewed_at": (A,),
+    "human_gold_rationale_version": (A,),
+    "claim_guard": (A, C, D, E),
+}
+ROOT_FIELD_AUTHORITIES = {
+    "gold_set_version": (A,),
+    "released_identifier_reserved": (A,),
+    "release_status": (A,),
+    "canonical_policy_ref": (A,),
+    "source_id": (A,),
+    "cases": (A, C),
+}
+# Each list element and nested dictionary child is explicitly inventoried.
+NESTED_FIELD_AUTHORITIES = {
+    **dict.fromkeys((
+        "evidence_refs[]", "evidence_refs[].role", "evidence_refs[].type",
+        "evidence_refs[].path", "evidence_refs[].value",
+        "evidence_refs[].local_resolution_expected",
+        "candidate_event_facts.revision", "candidate_event_facts.sha256",
+        "candidate_event_facts.bytes", "candidate_event_facts.raw_bytes_differ",
+        "candidate_event_facts.normalization", "candidate_event_facts.identity",
+        "candidate_event_facts.field", "candidate_event_facts.before",
+        "candidate_event_facts.after", "candidate_event_facts.membership",
+        "candidate_event_facts.error_class", "candidate_event_facts.failure_mode",
+        "candidate_event_facts.identity_column", "candidate_event_facts.observation",
+        "candidate_event_facts.required_evidence_reconstructible",
+        "rights_state_for_surface.surface", "rights_state_for_surface.state",
+        "rights_state_for_surface.rights_record_ref",
+        "rights_state_for_surface.attribution_required",
+        "forbidden_claims[]", "required_evidence_refs[]", "required_caveats[]",
+        "claim_guard.candidate_wording", "claim_guard.result",
+        "claim_guard.reason_code", "claim_guard.prohibited_reason_codes",
+        "claim_guard.prohibited_reason_codes[]", "claim_guard.fallback_claim",
+    ), (A,)),
+    **dict.fromkeys((
+        "content_delta.content_equal", "content_delta.added", "content_delta.added[]",
+        "content_delta.removed", "content_delta.removed[]", "content_delta.changed",
+        "content_delta.changed[]", "content_delta.changed[].identity",
+        "content_delta.changed[].changes", "content_delta.changed[].changes[]",
+        "content_delta.changed[].changes[].field",
+        "content_delta.changed[].changes[].before",
+        "content_delta.changed[].changes[].after",
+    ), (B, C)),
+}
+CONTEXT_FIELD_AUTHORITIES = {
+    "SG-017": dict.fromkeys((
+        "context_kind", "controlled", "not_publisher_history",
+        "source_health_state", "observation", "prohibition",
+    ), (A, D)),
+    "SG-018": dict.fromkeys((
+        "context_kind", "controlled", "not_publisher_history",
+        "required_evidence_ref", "required_evidence_available", "observation",
+    ), (A, D)),
+    "SG-019": dict.fromkeys((
+        "context_kind", "controlled", "not_publisher_history",
+        "intended_surface", "rights_state", "rights_record_ref", "invariant",
+    ), (A, D)),
+    "SG-020": dict.fromkeys((
+        "context_kind", "controlled", "candidate_wording", "result",
+        "reason_code", "prohibited_reason_codes", "prohibited_reason_codes[]",
+        "fallback_claim",
+    ), (A, D)),
+}
+
+
+def _field_paths(value, prefix=""):
+    if isinstance(value, dict):
+        for key, child in value.items():
+            path = f"{prefix}.{key}" if prefix else key
+            yield path
+            yield from _field_paths(child, path)
+    elif isinstance(value, list):
+        yield f"{prefix}[]"
+        for child in value:
+            yield from _field_paths(child, f"{prefix}[]")
+
+
+def _assert_coverage_complete():
+    policy = validator._expected_policy
+    assert set(ROOT_FIELD_AUTHORITIES) == set(policy.EXPECTED_MANIFEST_FIELDS)
+    assert set(ROOT_FIELD_AUTHORITIES) - {"cases"} == set(policy.EXPECTED_MANIFEST_METADATA)
+    assert set(CASE_FIELD_AUTHORITIES) - {"claim_guard"} == set(policy.BASE_CASE_FIELDS)
+    assert set(policy.EXPECTED_CASE_FIELDS_BY_CASE) == set(validator.EXPECTED_CASE_IDS)
+    observed_paths = set()
+    frozen_paths = set()
+    for case in _manifest()["cases"]:
+        case_id = case["case_id"]
+        fields = set(CASE_FIELD_AUTHORITIES) - ({"claim_guard"} if case_id != "SG-020" else set())
+        assert fields == set(policy.EXPECTED_CASE_FIELDS_BY_CASE[case_id]) == set(case)
+        frozen = {
+            "case_id": case_id,
+            "source_id": policy.EXPECTED_MANIFEST_METADATA["source_id"],
+            "gold_set_version": policy.GOLD_SET_VERSION,
+            "evidence_refs": policy.EXPECTED_EVIDENCE_REFS_BY_CASE[case_id],
+            **policy.HUMAN_PROVENANCE,
+            **policy.EXPECTED_POLICY_BY_CASE[case_id],
+        }
+        if case_id in NON_DELTA_CASES:
+            assert set(frozen) == fields
+            assert frozen["content_delta"] is None
+            assert frozen["deterministic_result_kind"] in {
+                "REFERENCE_RECEIPT", "PARSER_FAILURE", "CONTROLLED_CONTEXT"
+            }
+        else:
+            assert set(frozen) == fields - {"content_delta"}
+            assert frozen["deterministic_result_kind"] == "CONTENT_DELTA"
+        for field in fields - {"content_delta"}:
+            assert A in CASE_FIELD_AUTHORITIES[field] and field in frozen
+        frozen_paths.update(_field_paths(frozen))
+        observed_paths.update(_field_paths(case))
+    all_authorities = {**CASE_FIELD_AUTHORITIES, **NESTED_FIELD_AUTHORITIES}
+    assert observed_paths == set(all_authorities)
+    assert frozen_paths <= set(all_authorities)
+    for authority_map in (ROOT_FIELD_AUTHORITIES, all_authorities, *CONTEXT_FIELD_AUTHORITIES.values()):
+        assert all(authorities and set(authorities) <= {A, B, C, D, E} for authorities in authority_map.values())
+    for path, authorities in all_authorities.items():
+        assert authorities and set(authorities) <= {A, B, C, D, E}
+        if A in authorities:
+            assert path in frozen_paths, f"EXACT_FROZEN has no independent value: {path}"
+    assert set(CONTEXT_FIELD_AUTHORITIES) == set(policy.EXPECTED_CONTROLLED_CONTEXTS_BY_CASE)
+    contexts = validator.load_controlled_contexts(REPO_ROOT)
+    for case_id, authorities in CONTEXT_FIELD_AUTHORITIES.items():
+        expected = policy.EXPECTED_CONTROLLED_CONTEXTS_BY_CASE[case_id]
+        assert set(expected) == {"path", "evidence_role", "payload"}
+        assert set(authorities) == set(_field_paths(expected["payload"]))
+        assert set(authorities) == set(_field_paths(contexts[case_id]))
+
+
+def test_every_allowed_field_has_an_explicit_validation_authority():
+    _assert_coverage_complete()
+
+
+def test_coverage_guard_rejects_new_allowed_fields_and_missing_authorities(monkeypatch):
+    policy = validator._expected_policy
+    with monkeypatch.context() as patch:
+        patch.setattr(policy, "BASE_CASE_FIELDS", (*policy.BASE_CASE_FIELDS, "future_semantics"))
+        with pytest.raises(AssertionError):
+            _assert_coverage_complete()
+    with monkeypatch.context() as patch:
+        patch.setitem(policy.EXPECTED_POLICY_BY_CASE["SG-008"]["candidate_event_facts"], "future_semantics", True)
+        with pytest.raises(AssertionError):
+            _assert_coverage_complete()
+    with monkeypatch.context() as patch:
+        patch.delitem(policy.EXPECTED_POLICY_BY_CASE["SG-008"], "materiality_rationale")
+        with pytest.raises(AssertionError):
+            _assert_coverage_complete()
+    with monkeypatch.context() as patch:
+        patch.setitem(policy.EXPECTED_CASE_FIELDS_BY_CASE, "SG-020", (*policy.BASE_CASE_FIELDS, "claim_guard", "future_semantics"))
+        with pytest.raises(AssertionError):
+            _assert_coverage_complete()
+
+
+def _assert_content_delta(case, repo_root=REPO_ROOT):
+    """B + C: observed bytes -> real diff -> declared delta -> frozen event facts."""
+    assert case["parser_version"] == PARSER_VERSION
+    assert case["diff_version"] == DIFF_VERSION
+    byte_relation = "UNCHANGED" if _evidence_bytes(case, "from", repo_root) == _evidence_bytes(case, "to", repo_root) else "CHANGED"
+    assert case["byte_relation"] == byte_relation
+    actual = _serialise_delta(_delta_for(case, repo_root))
+    assert validator.same_json_value(actual, case["content_delta"]), case["case_id"]
+    policy = validator.EXPECTED_POLICY_BY_CASE[case["case_id"]]
+    facts = policy["candidate_event_facts"]
+    if policy["candidate_event_kind"] == "NO_CONTENT_CHANGE":
+        assert actual["content_equal"] is True
+    elif "field" in facts:
+        assert actual["added"] == actual["removed"] == []
+        assert actual["changed"] == [{
+            "identity": facts["identity"],
+            "changes": [{key: facts[key] for key in ("field", "before", "after")}],
+        }]
+    else:
+        # SG-006/007 intentionally select different events in the same pair.
+        assert case["case_id"] in {"SG-006", "SG-007"}
+        assert actual["changed"] == []
+        assert actual["added"] == [validator.EXPECTED_POLICY_BY_CASE["SG-006"]["candidate_event_facts"]["identity"]]
+        assert actual["removed"] == [validator.EXPECTED_POLICY_BY_CASE["SG-007"]["candidate_event_facts"]["identity"]]
+
+
+@pytest.mark.parametrize("case_id", NON_DELTA_CASES)
+def test_non_delta_cases_reject_every_non_null_payload(case_id):
+    for payload in (
+        {"content_equal": False, "added": ["PUBLISHER-ASSET-FAKE"], "removed": [], "changed": []},
+        {"content_equal": True, "added": [], "removed": [], "changed": []},
+        {}, [], False, 0, "null",
+    ):
+        manifest = _manifest()
+        case = next(case for case in manifest["cases"] if case["case_id"] == case_id)
+        case["content_delta"] = payload
+        with pytest.raises(validator.ManifestValidationError, match=rf"{case_id}: .*content_delta"):
+            validator.validate_manifest(manifest, REPO_ROOT)
+
+
+def _locations(value, path=()):
+    """Visit every actual JSON field, list item and collection for mutation."""
+    yield path, value
+    children = value.items() if isinstance(value, dict) else enumerate(value) if isinstance(value, list) else ()
+    for key, child in children:
+        yield from _locations(child, (*path, key))
+
+
+def _replace_at(value, path, replacement):
+    result = copy.deepcopy(value)
+    if not path:
+        return replacement
+    parent = result
+    for key in path[:-1]:
+        parent = parent[key]
+    parent[path[-1]] = replacement
+    return result
+
+
+def _mutations(value):
+    for path, current in _locations(value):
+        if isinstance(current, dict):
+            yield path, _replace_at(value, path, {**current, "universal_materiality_threshold_mw": 0.01})
+            for key in current:
+                missing = dict(current)
+                del missing[key]
+                yield (*path, key), _replace_at(value, path, missing)
+        if isinstance(current, list):
+            yield path, _replace_at(value, path, [*current, "unapproved"])
+            if len(current) > 1:
+                yield path, _replace_at(value, path, list(reversed(current)))
+        # These are JSON values, including aliases that Python == overlooks.
+        replacement = int(current) if type(current) is bool else float(current) if type(current) is int else "unapproved" if current is None else None
+        yield path, _replace_at(value, path, replacement)
+
+
+def _assert_pack(manifest, repo_root=REPO_ROOT):
+    validator.validate_manifest(manifest, repo_root)
+    for case in manifest["cases"]:
+        if case["deterministic_result_kind"] == "CONTENT_DELTA":
+            _assert_content_delta(case, repo_root)
+
+
+def test_every_manifest_field_rejects_value_type_shape_and_nested_injections():
+    for path, mutated in _mutations(_manifest()):
+        with pytest.raises((validator.ManifestValidationError, AssertionError)) as rejected:
+            _assert_pack(mutated)
+        assert rejected.value is not None, path
+
+
+def test_every_controlled_context_field_rejects_value_type_and_shape_drift():
+    manifest = _manifest()
+    contexts = validator.load_controlled_contexts(REPO_ROOT)
+    for case_id, payload in contexts.items():
+        for path, mutated in _mutations(payload):
+            changed = {**contexts, case_id: mutated}
+            with pytest.raises(validator.ManifestValidationError) as rejected:
+                validator.validate_controlled_contexts(manifest, REPO_ROOT, context_payloads=changed)
+            assert rejected.value is not None, (case_id, path)
+
+
+def _copy_local_pack(repo_root, manifest):
+    for case in manifest["cases"]:
+        for ref in case["evidence_refs"]:
+            if ref["type"] == "local_path":
+                destination = repo_root / ref["path"]
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(REPO_ROOT / ref["path"], destination)
+
+
+def test_actual_context_artifacts_are_loaded_and_type_checked(tmp_path):
+    manifest = _manifest()
+    _copy_local_pack(tmp_path, manifest)
+    validator.validate_manifest(manifest, tmp_path)
+    for expected in validator.EXPECTED_CONTROLLED_CONTEXTS_BY_CASE.values():
+        path = tmp_path / expected["path"]
+        original = path.read_bytes()
+        payload = json.loads(original)
+        payload["controlled"] = 1
+        path.write_text(json.dumps(payload), encoding="utf-8")
+        with pytest.raises(validator.ManifestValidationError, match="controlled context mismatch for controlled"):
+            validator.validate_manifest(manifest, tmp_path)
+        path.write_bytes(original)
+
+
+@pytest.mark.parametrize("case_id", (
+    "SG-002", "SG-003", "SG-004", "SG-005", "SG-006", "SG-007", "SG-008",
+    "SG-009", "SG-010", "SG-011", "SG-012", "SG-013", "SG-014", "SG-019", "SG-020",
+))
+def test_coordinated_fixture_and_delta_drift_cannot_detach_frozen_event_facts(case_id, tmp_path):
+    manifest = _manifest()
+    _copy_local_pack(tmp_path, manifest)
+    case = next(case for case in manifest["cases"] if case["case_id"] == case_id)
+    facts = case["candidate_event_facts"]
+    for ref in case["evidence_refs"]:
+        if ref["role"] not in {"from", "to"}:
+            continue
+        path = tmp_path / ref["path"]
+        data = path.read_bytes()
+        if "identity" in facts:
+            data = data.replace(facts["identity"].encode(), b"PUBLISHER-ASSET-FAKE")
+        elif ref["role"] == "to":
+            data = data.replace(b"10.0", b"99.0")
+        path.write_bytes(data)
+    # A correct recomputation can still describe the wrong Gold event.
+    case["content_delta"] = _serialise_delta(_delta_for(case, tmp_path))
+    validator.validate_manifest(manifest, tmp_path)
+    with pytest.raises(AssertionError):
+        _assert_content_delta(case, tmp_path)
 
 
 def test_manifest_has_exactly_the_twenty_approved_case_ids_and_validates():
@@ -341,10 +676,7 @@ def test_all_fixture_backed_content_deltas_recompute_with_existing_parser_and_di
     for case in _manifest()["cases"]:
         if case["deterministic_result_kind"] != "CONTENT_DELTA":
             continue
-        assert case["parser_version"] == PARSER_VERSION
-        assert case["diff_version"] == DIFF_VERSION
-        assert _evidence_bytes(case, "from") != _evidence_bytes(case, "to")
-        assert _serialise_delta(_delta_for(case)) == case["content_delta"]
+        _assert_content_delta(case)
 
 
 def test_sg003_bytes_differ_but_parsed_content_does_not():
