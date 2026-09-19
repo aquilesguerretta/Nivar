@@ -9,6 +9,7 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool
 
 from app.db.base import Base
+from app.db.models import ariadne_core as _ariadne_core  # noqa: F401 — register models
 from app.db.models import argos_memory as _argos_memory  # noqa: F401 — register models
 from app.db.models import conta_luz as _conta_luz  # noqa: F401 — register models
 from app.db.models import conversation as _conversation  # noqa: F401
