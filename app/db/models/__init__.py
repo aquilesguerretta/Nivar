@@ -12,6 +12,7 @@ from app.db.models.ariadne_core import (
     AriadneScenario,
     AriadneStateEvidence,
 )
+from app.db.models.ariadne_operator import AriadneOperatorWorkspace
 from app.db.models.argos_memory import (
     PROCESSING_STATUSES,
     REVISION_RELATIONS,
@@ -74,6 +75,7 @@ __all__ = [
     "AriadneModelDefinition",
     "AriadneModelRun",
     "AriadneModelVersion",
+    "AriadneOperatorWorkspace",
     "AriadnePrivateObject",
     "AriadnePrivateStateVersion",
     "AriadneResult",
