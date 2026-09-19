@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import importlib.util
 import json
 from pathlib import Path
 from typing import Any
@@ -19,6 +20,28 @@ HUMAN_SIGNAL_RIGHTS = {
     "attribution_required": True,
 }
 EXPECTED_CASE_IDS = tuple(f"SG-{number:03d}" for number in range(1, 21))
+
+
+def _load_expected_policy_contract():
+    contract_path = Path(__file__).with_name("expected_policy.py")
+    spec = importlib.util.spec_from_file_location(
+        "signal_gold_set_v01_expected_policy", contract_path
+    )
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"cannot load frozen expected-policy contract: {contract_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+_expected_policy = _load_expected_policy_contract()
+EXPECTED_POLICY_BY_CASE = _expected_policy.EXPECTED_POLICY_BY_CASE
+EXPECTED_HUMAN_PROVENANCE = _expected_policy.HUMAN_PROVENANCE
+
+if _expected_policy.GOLD_SET_VERSION != GOLD_SET_VERSION:
+    raise RuntimeError("frozen expected-policy contract has the wrong Gold Set version")
+if tuple(EXPECTED_POLICY_BY_CASE) != EXPECTED_CASE_IDS:
+    raise RuntimeError("frozen expected-policy contract must contain exactly SG-001 through SG-020")
 
 REASON_CODES_BY_DECISION = {
     "PROMOTE": {"MATERIAL_RECONSTRUCTIBLE_CHANGE"},
@@ -112,6 +135,32 @@ def _validate_local_evidence_paths(case: dict[str, Any], repo_root: Path) -> Non
             )
 
 
+def _validate_frozen_policy(case: dict[str, Any]) -> None:
+    case_id = case["case_id"]
+    expected = EXPECTED_POLICY_BY_CASE[case_id]
+
+    for field, expected_value in expected.items():
+        actual_value = _require(case, field)
+        if actual_value != expected_value:
+            raise ManifestValidationError(
+                f"{case_id}: frozen policy mismatch for {field}: "
+                f"expected {expected_value!r}, got {actual_value!r}"
+            )
+
+    if "claim_guard" in case and "claim_guard" not in expected:
+        raise ManifestValidationError(
+            f"{case_id}: frozen policy does not define a claim_guard"
+        )
+
+    for field, expected_value in EXPECTED_HUMAN_PROVENANCE.items():
+        actual_value = _require(case, field)
+        if actual_value != expected_value:
+            raise ManifestValidationError(
+                f"{case_id}: frozen policy mismatch for {field}: "
+                f"expected {expected_value!r}, got {actual_value!r}"
+            )
+
+
 def _validate_case(case: dict[str, Any], repo_root: Path) -> None:
     case_id = case.get("case_id", "<unknown>")
     for field in COMMON_CASE_FIELDS:
@@ -198,6 +247,8 @@ def _validate_case(case: dict[str, Any], repo_root: Path) -> None:
         if (decision, case["decision_reason_code"]) != ("HOLD", "RIGHTS_NOT_CLEARED"):
             raise ManifestValidationError("SG-019: wrong rights-gate decision")
 
+    _validate_frozen_policy(case)
+
 
 def validate_manifest(manifest: dict[str, Any], repo_root: Path) -> None:
     """Validate only the approved v0.1-alpha materialization contract."""
@@ -228,6 +279,8 @@ def validate_manifest(manifest: dict[str, Any], repo_root: Path) -> None:
 __all__ = [
     "CANONICAL_POLICY_REF",
     "EXPECTED_CASE_IDS",
+    "EXPECTED_HUMAN_PROVENANCE",
+    "EXPECTED_POLICY_BY_CASE",
     "GOLD_SET_VERSION",
     "HUMAN_GOLD_REVIEWER",
     "HUMAN_SIGNAL_RIGHTS",

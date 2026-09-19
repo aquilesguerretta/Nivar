@@ -199,6 +199,72 @@ def test_validator_rejects_required_contract_failures():
             validator.validate_manifest(manifest, REPO_ROOT)
 
 
+def test_frozen_policy_contract_rejects_material_semantic_mutations():
+    valid = _manifest()
+
+    def hold_to_reject(case):
+        case["expected_decision"] = "REJECT"
+        case["decision_reason_code"] = "NO_PARSED_CONTENT_CHANGE"
+
+    def corrupt_sg004_claim(case):
+        case["expected_factual_claim"] = (
+            "ONS corrected the plant capacity after new investment."
+        )
+
+    def corrupt_sg020_claim_and_fallback(case):
+        corrupted = "ONS corrected the plant capacity after new investment."
+        case["expected_factual_claim"] = corrupted
+        case["claim_guard"]["fallback_claim"] = corrupted
+
+    def corrupt_sg020_fallback_only(case):
+        case["claim_guard"]["fallback_claim"] = (
+            "ONS corrected the plant capacity after new investment."
+        )
+
+    def broaden_sg003_normalization(case):
+        case["candidate_event_facts"]["normalization"] = (
+            "trim_casefold_round_and_blank_to_zero"
+        )
+
+    def drift_event_kind(case):
+        case["candidate_event_kind"] = "UNIT_REMOVED_FROM_DATASET"
+
+    def drift_reason_code(case):
+        case["decision_reason_code"] = "NON_MATERIAL_CHANGE"
+
+    def rewrite_required_caveat(case):
+        case["required_caveats"] = ["Removal means the unit no longer exists."]
+
+    def broaden_rights(case):
+        case["rights_state_for_surface"] = validator.HUMAN_SIGNAL_RIGHTS
+
+    corruptions = (
+        ("SG-007", hold_to_reject, "expected_decision"),
+        ("SG-014", hold_to_reject, "expected_decision"),
+        ("SG-015", hold_to_reject, "expected_decision"),
+        ("SG-017", hold_to_reject, "expected_decision"),
+        ("SG-018", hold_to_reject, "expected_decision"),
+        ("SG-004", corrupt_sg004_claim, "expected_factual_claim"),
+        ("SG-020", corrupt_sg020_claim_and_fallback, "expected_factual_claim"),
+        ("SG-020", corrupt_sg020_fallback_only, "claim_guard"),
+        ("SG-003", broaden_sg003_normalization, "candidate_event_facts"),
+        ("SG-006", drift_event_kind, "candidate_event_kind"),
+        ("SG-002", drift_reason_code, "decision_reason_code"),
+        ("SG-007", rewrite_required_caveat, "required_caveats"),
+        ("SG-007", broaden_rights, "rights_state_for_surface"),
+    )
+
+    for case_id, mutate, expected_field in corruptions:
+        manifest = copy.deepcopy(valid)
+        case = next(case for case in manifest["cases"] if case["case_id"] == case_id)
+        mutate(case)
+        with pytest.raises(
+            validator.ManifestValidationError,
+            match=rf"{case_id}: frozen policy mismatch for {expected_field}",
+        ):
+            validator.validate_manifest(manifest, REPO_ROOT)
+
+
 def test_all_fixture_backed_content_deltas_recompute_with_existing_parser_and_diff():
     for case in _manifest()["cases"]:
         if case["deterministic_result_kind"] != "CONTENT_DELTA":
