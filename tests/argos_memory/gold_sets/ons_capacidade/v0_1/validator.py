@@ -9,6 +9,15 @@ from typing import Any
 
 GOLD_SET_VERSION = "argos.signal-gold.ons-capacidade@0.1-alpha"
 RESERVED_RELEASED_IDENTIFIER = "argos.signal-gold.ons-capacidade@0.1"
+CANONICAL_POLICY_REF = "https://app.notion.com/p/3e09ca62107081f48f1fc4d376d4382c"
+HUMAN_GOLD_REVIEWER = "Aquiles Guerretta"
+ONS_RIGHTS_RECORD_REF = "NIV7-EXT-ONS-OPEN-DATA-2026-09-16"
+HUMAN_SIGNAL_RIGHTS = {
+    "surface": "human_signal_display",
+    "state": "CLEARED_WITH_ATTRIBUTION",
+    "rights_record_ref": ONS_RIGHTS_RECORD_REF,
+    "attribution_required": True,
+}
 EXPECTED_CASE_IDS = tuple(f"SG-{number:03d}" for number in range(1, 21))
 
 REASON_CODES_BY_DECISION = {
@@ -129,8 +138,24 @@ def _validate_case(case: dict[str, Any], repo_root: Path) -> None:
         raise ManifestValidationError(f"{case_id}: forbidden_claims must be a non-empty list")
     if not isinstance(case["required_evidence_refs"], list) or not case["required_evidence_refs"]:
         raise ManifestValidationError(f"{case_id}: required_evidence_refs must be a non-empty list")
-    if not case["human_gold_reviewer"] or not case["human_gold_reviewed_at"]:
-        raise ManifestValidationError(f"{case_id}: missing human Gold review provenance")
+    if case["human_gold_reviewer"] != HUMAN_GOLD_REVIEWER:
+        raise ManifestValidationError(f"{case_id}: wrong human Gold reviewer")
+    if case["human_gold_reviewed_at"] != "2026-09-19":
+        raise ManifestValidationError(f"{case_id}: wrong human Gold review date")
+    if case["human_gold_rationale_version"] != "founder-approved-alpha-2026-09-19":
+        raise ManifestValidationError(f"{case_id}: wrong human Gold rationale version")
+
+    rights = case["rights_state_for_surface"]
+    if not isinstance(rights, dict):
+        raise ManifestValidationError(f"{case_id}: rights_state_for_surface must be an object")
+    if rights.get("surface") == "approved_signal_surface":
+        raise ManifestValidationError(f"{case_id}: approved_signal_surface is not canonical")
+    if rights.get("state") == "CLEARED":
+        raise ManifestValidationError(f"{case_id}: generic CLEARED rights state is not canonical")
+    if decision == "PROMOTE" and rights != HUMAN_SIGNAL_RIGHTS:
+        raise ManifestValidationError(
+            f"{case_id}: PROMOTE on the human Signal surface requires attributed ONS clearance"
+        )
 
     evidence_kind = case["evidence_kind"]
     if evidence_kind == "CONTROLLED_DIFF" and (
@@ -160,6 +185,19 @@ def _validate_case(case: dict[str, Any], repo_root: Path) -> None:
         if claim_guard["result"] != "FAIL" or claim_guard["reason_code"] != "UNSUPPORTED_CAUSALITY":
             raise ManifestValidationError("SG-020: claim_guard must fail for UNSUPPORTED_CAUSALITY")
 
+    if case_id == "SG-019":
+        expected_rights = {
+            "surface": "machine_api_redistribution",
+            "state": "UNCLEAR",
+            "rights_record_ref": ONS_RIGHTS_RECORD_REF,
+        }
+        if case["candidate_event_kind"] != "EFFECTIVE_POWER_CHANGED":
+            raise ManifestValidationError("SG-019: rights gate must not replace the observed Event kind")
+        if rights != expected_rights:
+            raise ManifestValidationError("SG-019: wrong machine/API rights-gate representation")
+        if (decision, case["decision_reason_code"]) != ("HOLD", "RIGHTS_NOT_CLEARED"):
+            raise ManifestValidationError("SG-019: wrong rights-gate decision")
+
 
 def validate_manifest(manifest: dict[str, Any], repo_root: Path) -> None:
     """Validate only the approved v0.1-alpha materialization contract."""
@@ -169,6 +207,8 @@ def validate_manifest(manifest: dict[str, Any], repo_root: Path) -> None:
         raise ManifestValidationError("released identifier is not preserved as reserved")
     if manifest.get("release_status") != "ALPHA_MATERIALIZED_NOT_RELEASED":
         raise ManifestValidationError("manifest must remain alpha and not released")
+    if manifest.get("canonical_policy_ref") != CANONICAL_POLICY_REF:
+        raise ManifestValidationError("manifest is missing the canonical policy reference")
 
     cases = manifest.get("cases")
     if not isinstance(cases, list):
@@ -186,9 +226,13 @@ def validate_manifest(manifest: dict[str, Any], repo_root: Path) -> None:
 
 
 __all__ = [
+    "CANONICAL_POLICY_REF",
     "EXPECTED_CASE_IDS",
     "GOLD_SET_VERSION",
+    "HUMAN_GOLD_REVIEWER",
+    "HUMAN_SIGNAL_RIGHTS",
     "ManifestValidationError",
+    "ONS_RIGHTS_RECORD_REF",
     "RESERVED_RELEASED_IDENTIFIER",
     "load_manifest",
     "validate_manifest",

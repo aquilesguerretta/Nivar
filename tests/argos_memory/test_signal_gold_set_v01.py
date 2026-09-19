@@ -84,6 +84,51 @@ def test_manifest_has_exactly_the_twenty_approved_case_ids_and_validates():
     assert manifest["gold_set_version"] == "argos.signal-gold.ons-capacidade@0.1-alpha"
     assert manifest["released_identifier_reserved"] == "argos.signal-gold.ons-capacidade@0.1"
     assert manifest["release_status"] == "ALPHA_MATERIALIZED_NOT_RELEASED"
+    assert manifest["canonical_policy_ref"] == validator.CANONICAL_POLICY_REF
+
+
+def test_founder_amendment_rights_and_human_provenance_contract():
+    manifest = _manifest()
+    manifest_text = json.dumps(manifest)
+    promote_case_ids = {
+        "SG-004",
+        "SG-006",
+        "SG-008",
+        "SG-009",
+        "SG-010",
+        "SG-011",
+        "SG-012",
+        "SG-020",
+    }
+
+    assert "approved_signal_surface" not in manifest_text
+    assert all(
+        case["rights_state_for_surface"]["state"] != "CLEARED"
+        for case in manifest["cases"]
+    )
+    assert {
+        case["case_id"] for case in manifest["cases"] if case["expected_decision"] == "PROMOTE"
+    } == promote_case_ids
+
+    for case in manifest["cases"]:
+        assert case["human_gold_reviewer"] == "Aquiles Guerretta"
+        assert case["human_gold_reviewed_at"] == "2026-09-19"
+        assert case["human_gold_rationale_version"] == "founder-approved-alpha-2026-09-19"
+        if case["case_id"] in promote_case_ids:
+            assert case["rights_state_for_surface"] == validator.HUMAN_SIGNAL_RIGHTS
+
+    sg019 = next(case for case in manifest["cases"] if case["case_id"] == "SG-019")
+    assert sg019["candidate_event_kind"] == "EFFECTIVE_POWER_CHANGED"
+    assert sg019["rights_state_for_surface"] == {
+        "surface": "machine_api_redistribution",
+        "state": "UNCLEAR",
+        "rights_record_ref": "NIV7-EXT-ONS-OPEN-DATA-2026-09-16",
+    }
+    assert (sg019["expected_decision"], sg019["decision_reason_code"]) == (
+        "HOLD",
+        "RIGHTS_NOT_CLEARED",
+    )
+    assert sg019["required_caveats"] == ["Factual truth does not expand distribution rights."]
 
 
 def test_validator_rejects_required_contract_failures():
@@ -119,6 +164,18 @@ def test_validator_rejects_required_contract_failures():
     def sg020_without_claim_guard(manifest):
         manifest["cases"][-1].pop("claim_guard")
 
+    def missing_canonical_policy_ref(manifest):
+        manifest.pop("canonical_policy_ref")
+
+    def wrong_human_reviewer(manifest):
+        manifest["cases"][0]["human_gold_reviewer"] = "Founder-approved policy"
+
+    def generic_human_rights_clearance(manifest):
+        manifest["cases"][3]["rights_state_for_surface"]["state"] = "CLEARED"
+
+    def sg019_rights_replaces_event(manifest):
+        manifest["cases"][18]["candidate_event_kind"] = "RIGHTS_GATE_FAILURE"
+
     mutations = (
         without_case,
         duplicate_case,
@@ -130,6 +187,10 @@ def test_validator_rejects_required_contract_failures():
         missing_evidence_path,
         controlled_diff_without_versions,
         sg020_without_claim_guard,
+        missing_canonical_policy_ref,
+        wrong_human_reviewer,
+        generic_human_rights_clearance,
+        sg019_rights_replaces_event,
     )
     for mutation in mutations:
         manifest = copy.deepcopy(valid)
@@ -266,8 +327,13 @@ def test_sg017_through_sg019_are_honest_controlled_contexts():
 
     assert _case("SG-017")["source_health_state"] == "UNAVAILABLE"
     assert _case("SG-018")["candidate_event_facts"]["required_evidence_reconstructible"] is False
-    assert _case("SG-019")["rights_state_for_surface"]["state"] == "NOT_CLEARED"
-    assert _context(_case("SG-019"))["invariant"] == "Factual truth does not expand distribution rights."
+    sg019 = _case("SG-019")
+    sg019_context = _context(sg019)
+    assert sg019["candidate_event_kind"] == "EFFECTIVE_POWER_CHANGED"
+    assert sg019_context["intended_surface"] == "machine_api_redistribution"
+    assert sg019_context["rights_state"] == "UNCLEAR"
+    assert sg019_context["rights_record_ref"] == "NIV7-EXT-ONS-OPEN-DATA-2026-09-16"
+    assert sg019_context["invariant"] == "Factual truth does not expand distribution rights."
 
 
 def test_sg020_promotes_the_event_but_rejects_unsupported_causal_wording():
@@ -290,6 +356,7 @@ def test_sg020_promotes_the_event_but_rejects_unsupported_causal_wording():
 def test_all_cases_carry_the_approved_claim_contract_and_consistent_versions():
     for case in _manifest()["cases"]:
         assert case["gold_set_version"] == "argos.signal-gold.ons-capacidade@0.1-alpha"
+        assert case["human_gold_reviewer"] == "Aquiles Guerretta"
         assert case["forbidden_claims"]
         assert case["required_evidence_refs"]
         if case["expected_decision"] == "PROMOTE":
