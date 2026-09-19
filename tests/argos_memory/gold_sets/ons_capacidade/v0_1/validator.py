@@ -38,6 +38,10 @@ _expected_policy = _load_expected_policy_contract()
 EXPECTED_CONTROLLED_CONTEXTS_BY_CASE = (
     _expected_policy.EXPECTED_CONTROLLED_CONTEXTS_BY_CASE
 )
+EXPECTED_CASE_FIELDS_BY_CASE = _expected_policy.EXPECTED_CASE_FIELDS_BY_CASE
+EXPECTED_EVIDENCE_REFS_BY_CASE = _expected_policy.EXPECTED_EVIDENCE_REFS_BY_CASE
+EXPECTED_MANIFEST_FIELDS = _expected_policy.EXPECTED_MANIFEST_FIELDS
+EXPECTED_MANIFEST_METADATA = _expected_policy.EXPECTED_MANIFEST_METADATA
 EXPECTED_POLICY_BY_CASE = _expected_policy.EXPECTED_POLICY_BY_CASE
 EXPECTED_HUMAN_PROVENANCE = _expected_policy.HUMAN_PROVENANCE
 
@@ -45,6 +49,10 @@ if _expected_policy.GOLD_SET_VERSION != GOLD_SET_VERSION:
     raise RuntimeError("frozen expected-policy contract has the wrong Gold Set version")
 if tuple(EXPECTED_POLICY_BY_CASE) != EXPECTED_CASE_IDS:
     raise RuntimeError("frozen expected-policy contract must contain exactly SG-001 through SG-020")
+if tuple(EXPECTED_EVIDENCE_REFS_BY_CASE) != EXPECTED_CASE_IDS:
+    raise RuntimeError("frozen evidence-ref contract must contain exactly SG-001 through SG-020")
+if tuple(EXPECTED_CASE_FIELDS_BY_CASE) != EXPECTED_CASE_IDS:
+    raise RuntimeError("frozen case-field contract must contain exactly SG-001 through SG-020")
 
 REASON_CODES_BY_DECISION = {
     "PROMOTE": {"MATERIAL_RECONSTRUCTIBLE_CHANGE"},
@@ -63,32 +71,7 @@ REASON_CODES_BY_DECISION = {
     },
 }
 
-COMMON_CASE_FIELDS = (
-    "case_id",
-    "gold_set_version",
-    "source_id",
-    "evidence_kind",
-    "evidence_refs",
-    "parser_version",
-    "diff_version",
-    "byte_relation",
-    "deterministic_result_kind",
-    "content_delta",
-    "candidate_event_kind",
-    "candidate_event_facts",
-    "source_health_state",
-    "rights_state_for_surface",
-    "expected_decision",
-    "decision_reason_code",
-    "materiality_rationale",
-    "expected_factual_claim",
-    "forbidden_claims",
-    "required_evidence_refs",
-    "required_caveats",
-    "human_gold_reviewer",
-    "human_gold_reviewed_at",
-    "human_gold_rationale_version",
-)
+COMMON_CASE_FIELDS = _expected_policy.BASE_CASE_FIELDS
 
 
 class ManifestValidationError(ValueError):
@@ -163,6 +146,13 @@ def _validate_frozen_policy(case: dict[str, Any]) -> None:
                 f"expected {expected_value!r}, got {actual_value!r}"
             )
 
+    expected_evidence_refs = EXPECTED_EVIDENCE_REFS_BY_CASE[case_id]
+    if case["evidence_refs"] != expected_evidence_refs:
+        raise ManifestValidationError(
+            f"{case_id}: frozen policy mismatch for evidence_refs: "
+            f"expected {expected_evidence_refs!r}, got {case['evidence_refs']!r}"
+        )
+
 
 def _validate_sg001_reference_integrity(case: dict[str, Any]) -> None:
     refs_by_role = {ref.get("role"): ref for ref in case["evidence_refs"]}
@@ -224,7 +214,7 @@ def validate_controlled_contexts(
     )
     if set(contexts) != set(EXPECTED_CONTROLLED_CONTEXTS_BY_CASE):
         raise ManifestValidationError(
-            "controlled context payloads must contain exactly SG-017, SG-018 and SG-020"
+            "controlled context payloads must contain exactly SG-017 through SG-020"
         )
 
     for case_id, expected in EXPECTED_CONTROLLED_CONTEXTS_BY_CASE.items():
@@ -291,6 +281,23 @@ def validate_controlled_contexts(
     ):
         raise ManifestValidationError("SG-018: context is inconsistent with manifest gate")
 
+    sg019 = cases["SG-019"]
+    sg019_context = contexts["SG-019"]
+    sg019_rights = sg019["rights_state_for_surface"]
+    for context_field, manifest_field in (
+        ("intended_surface", "surface"),
+        ("rights_state", "state"),
+        ("rights_record_ref", "rights_record_ref"),
+    ):
+        if sg019_context[context_field] != sg019_rights[manifest_field]:
+            raise ManifestValidationError(
+                f"SG-019: context {context_field} does not match manifest rights"
+            )
+    if sg019["candidate_event_kind"] != "EFFECTIVE_POWER_CHANGED":
+        raise ManifestValidationError(
+            "SG-019: rights context must not replace the observed Event kind"
+        )
+
     sg020 = cases["SG-020"]
     sg020_context = contexts["SG-020"]
     claim_guard = sg020["claim_guard"]
@@ -314,6 +321,19 @@ def validate_controlled_contexts(
 
 def _validate_case(case: dict[str, Any], repo_root: Path) -> None:
     case_id = case.get("case_id", "<unknown>")
+    expected_fields = set(EXPECTED_CASE_FIELDS_BY_CASE.get(case_id, ()))
+    actual_fields = set(case)
+    missing_fields = expected_fields - actual_fields
+    unexpected_fields = actual_fields - expected_fields
+    if missing_fields:
+        raise ManifestValidationError(
+            f"{case_id}: missing frozen case fields: {sorted(missing_fields)!r}"
+        )
+    if unexpected_fields:
+        raise ManifestValidationError(
+            f"{case_id}: unexpected frozen case fields: {sorted(unexpected_fields)!r}"
+        )
+
     for field in COMMON_CASE_FIELDS:
         _require(case, field)
 
@@ -405,14 +425,25 @@ def _validate_case(case: dict[str, Any], repo_root: Path) -> None:
 
 def validate_manifest(manifest: dict[str, Any], repo_root: Path) -> None:
     """Validate only the approved v0.1-alpha materialization contract."""
-    if manifest.get("gold_set_version") != GOLD_SET_VERSION:
-        raise ManifestValidationError("manifest has wrong gold_set_version")
-    if manifest.get("released_identifier_reserved") != RESERVED_RELEASED_IDENTIFIER:
-        raise ManifestValidationError("released identifier is not preserved as reserved")
-    if manifest.get("release_status") != "ALPHA_MATERIALIZED_NOT_RELEASED":
-        raise ManifestValidationError("manifest must remain alpha and not released")
-    if manifest.get("canonical_policy_ref") != CANONICAL_POLICY_REF:
-        raise ManifestValidationError("manifest is missing the canonical policy reference")
+    expected_fields = set(EXPECTED_MANIFEST_FIELDS)
+    actual_fields = set(manifest)
+    missing_fields = expected_fields - actual_fields
+    unexpected_fields = actual_fields - expected_fields
+    if missing_fields:
+        raise ManifestValidationError(
+            f"manifest is missing frozen top-level fields: {sorted(missing_fields)!r}"
+        )
+    if unexpected_fields:
+        raise ManifestValidationError(
+            f"manifest has unexpected top-level fields: {sorted(unexpected_fields)!r}"
+        )
+
+    for field, expected_value in EXPECTED_MANIFEST_METADATA.items():
+        if manifest[field] != expected_value:
+            raise ManifestValidationError(
+                f"manifest frozen mismatch for {field}: "
+                f"expected {expected_value!r}, got {manifest[field]!r}"
+            )
 
     cases = manifest.get("cases")
     if not isinstance(cases, list):

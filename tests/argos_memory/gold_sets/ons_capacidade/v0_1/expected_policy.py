@@ -1,9 +1,9 @@
 """Frozen Founder-approved policy contract for Signal Gold Set v0.1-alpha.
 
-This module is deliberately independent of ``manifest.json``.  It records only
-the policy-critical semantic fields that the materialized manifest must match;
-fixture bytes and recomputed parser/diff outputs remain covered by the focused
-regression tests.
+This module is deliberately independent of ``manifest.json``. It defines the
+closed v0.1-alpha manifest shape, exact evidence references, policy semantics,
+and controlled-context payloads. Fixture bytes and recomputed parser/diff
+outputs remain covered by the focused regression tests.
 """
 
 from __future__ import annotations
@@ -12,6 +12,47 @@ from typing import Any
 
 
 GOLD_SET_VERSION = "argos.signal-gold.ons-capacidade@0.1-alpha"
+EXPECTED_MANIFEST_METADATA = {
+    "gold_set_version": GOLD_SET_VERSION,
+    "released_identifier_reserved": "argos.signal-gold.ons-capacidade@0.1",
+    "release_status": "ALPHA_MATERIALIZED_NOT_RELEASED",
+    "canonical_policy_ref": "https://app.notion.com/p/3e09ca62107081f48f1fc4d376d4382c",
+    "source_id": "ons.capacidade_geracao",
+}
+EXPECTED_MANIFEST_FIELDS = (*EXPECTED_MANIFEST_METADATA, "cases")
+
+BASE_CASE_FIELDS = (
+    "case_id",
+    "gold_set_version",
+    "source_id",
+    "evidence_kind",
+    "evidence_refs",
+    "parser_version",
+    "diff_version",
+    "byte_relation",
+    "deterministic_result_kind",
+    "content_delta",
+    "candidate_event_kind",
+    "candidate_event_facts",
+    "source_health_state",
+    "rights_state_for_surface",
+    "expected_decision",
+    "decision_reason_code",
+    "materiality_rationale",
+    "expected_factual_claim",
+    "forbidden_claims",
+    "required_evidence_refs",
+    "required_caveats",
+    "human_gold_reviewer",
+    "human_gold_reviewed_at",
+    "human_gold_rationale_version",
+)
+EXPECTED_CASE_FIELDS_BY_CASE = {
+    f"SG-{number:03d}": (
+        (*BASE_CASE_FIELDS, "claim_guard") if number == 20 else BASE_CASE_FIELDS
+    )
+    for number in range(1, 21)
+}
 HUMAN_PROVENANCE = {
     "human_gold_reviewer": "Aquiles Guerretta",
     "human_gold_reviewed_at": "2026-09-19",
@@ -36,9 +77,102 @@ MACHINE_API_RIGHTS = {
 }
 
 
+def _local_ref(role: str, path: str) -> dict[str, Any]:
+    return {"role": role, "type": "local_path", "path": path}
+
+
+_SHARED_FIXTURE_DIR = "tests/argos_memory/fixtures/ons_capacidade_geracao"
+_GOLD_FIXTURE_DIR = "tests/argos_memory/gold_sets/ons_capacidade/v0_1/fixtures"
+_CONTEXT_DIR = "tests/argos_memory/gold_sets/ons_capacidade/v0_1/contexts"
+
+EXPECTED_EVIDENCE_REFS_BY_CASE: dict[str, list[dict[str, Any]]] = {
+    "SG-001": [
+        {
+            "role": "from_snapshot",
+            "type": "production_snapshot_id",
+            "value": "878e4f37-234b-4ab0-a46e-e206ec894bb5",
+            "local_resolution_expected": False,
+        },
+        {
+            "role": "to_snapshot",
+            "type": "production_snapshot_id",
+            "value": "a2e31407-5957-4e8c-84c0-f9629e4a03cd",
+            "local_resolution_expected": False,
+        },
+        {
+            "role": "m3_receipt",
+            "type": "verified_receipt",
+            "value": "sha256:25fa69f8faa81cf19afa768d2dda5799481a845d276611a08ca706b9c6368916;bytes:1280293",
+            "local_resolution_expected": False,
+        },
+    ],
+    "SG-002": [
+        _local_ref("from", f"{_SHARED_FIXTURE_DIR}/fixture_a.csv"),
+        _local_ref("to", f"{_SHARED_FIXTURE_DIR}/fixture_b_order_only.csv"),
+    ],
+    "SG-003": [
+        _local_ref("from", f"{_GOLD_FIXTURE_DIR}/sg003_padding_a.csv"),
+        _local_ref("to", f"{_GOLD_FIXTURE_DIR}/sg003_padding_b.csv"),
+    ],
+    "SG-004": [
+        _local_ref("from", f"{_SHARED_FIXTURE_DIR}/fixture_a.csv"),
+        _local_ref("to", f"{_SHARED_FIXTURE_DIR}/fixture_b_known_field_change.csv"),
+    ],
+    "SG-005": [
+        _local_ref("from", f"{_GOLD_FIXTURE_DIR}/sg005_de_minimis_a.csv"),
+        _local_ref("to", f"{_GOLD_FIXTURE_DIR}/sg005_de_minimis_b.csv"),
+    ],
+    "SG-006": [
+        _local_ref("from", f"{_SHARED_FIXTURE_DIR}/fixture_a.csv"),
+        _local_ref("to", f"{_SHARED_FIXTURE_DIR}/fixture_b_added_removed.csv"),
+    ],
+    "SG-007": [
+        _local_ref("from", f"{_SHARED_FIXTURE_DIR}/fixture_a.csv"),
+        _local_ref("to", f"{_SHARED_FIXTURE_DIR}/fixture_b_added_removed.csv"),
+    ],
+    **{
+        case_id: [
+            _local_ref("from", f"{_GOLD_FIXTURE_DIR}/gold_baseline.csv"),
+            _local_ref("to", f"{_GOLD_FIXTURE_DIR}/{fixture}"),
+        ]
+        for case_id, fixture in {
+            "SG-008": "sg008_operation_entry_b.csv",
+            "SG-009": "sg009_deactivation_b.csv",
+            "SG-010": "sg010_owner_b.csv",
+            "SG-011": "sg011_operator_b.csv",
+            "SG-012": "sg012_fuel_b.csv",
+            "SG-013": "sg013_presentation_label_b.csv",
+            "SG-014": "sg014_modality_b.csv",
+        }.items()
+    },
+    "SG-015": [_local_ref("payload", f"{_GOLD_FIXTURE_DIR}/sg015_bad_schema.csv")],
+    "SG-016": [
+        _local_ref(
+            "payload",
+            f"{_SHARED_FIXTURE_DIR}/fixture_invalid_duplicate_identity.csv",
+        )
+    ],
+    "SG-017": [
+        _local_ref("source_health_context", f"{_CONTEXT_DIR}/sg017_source_health.json")
+    ],
+    "SG-018": [
+        _local_ref("evidence_gap_context", f"{_CONTEXT_DIR}/sg018_evidence_gap.json")
+    ],
+    "SG-019": [
+        _local_ref("from", f"{_SHARED_FIXTURE_DIR}/fixture_a.csv"),
+        _local_ref("to", f"{_SHARED_FIXTURE_DIR}/fixture_b_known_field_change.csv"),
+        _local_ref("rights_context", f"{_CONTEXT_DIR}/sg019_rights_gate.json"),
+    ],
+    "SG-020": [
+        _local_ref("from", f"{_SHARED_FIXTURE_DIR}/fixture_a.csv"),
+        _local_ref("to", f"{_SHARED_FIXTURE_DIR}/fixture_b_known_field_change.csv"),
+        _local_ref("claim_guard_context", f"{_CONTEXT_DIR}/sg020_claim_guard.json"),
+    ],
+}
+
+
 def _policy(
     *,
-    evidence_refs: list[dict[str, Any]] | None = None,
     evidence_kind: str,
     parser_version: str | None,
     diff_version: str | None,
@@ -77,33 +211,11 @@ def _policy(
     }
     if claim_guard is not None:
         contract["claim_guard"] = claim_guard
-    if evidence_refs is not None:
-        contract["evidence_refs"] = evidence_refs
     return contract
 
 
 EXPECTED_POLICY_BY_CASE: dict[str, dict[str, Any]] = {
     "SG-001": _policy(
-        evidence_refs=[
-            {
-                "role": "from_snapshot",
-                "type": "production_snapshot_id",
-                "value": "878e4f37-234b-4ab0-a46e-e206ec894bb5",
-                "local_resolution_expected": False,
-            },
-            {
-                "role": "to_snapshot",
-                "type": "production_snapshot_id",
-                "value": "a2e31407-5957-4e8c-84c0-f9629e4a03cd",
-                "local_resolution_expected": False,
-            },
-            {
-                "role": "m3_receipt",
-                "type": "verified_receipt",
-                "value": "sha256:25fa69f8faa81cf19afa768d2dda5799481a845d276611a08ca706b9c6368916;bytes:1280293",
-                "local_resolution_expected": False,
-            },
-        ],
         evidence_kind="REAL_REFERENCE",
         parser_version=None,
         diff_version=None,
@@ -602,6 +714,19 @@ EXPECTED_CONTROLLED_CONTEXTS_BY_CASE: dict[str, dict[str, Any]] = {
             "observation": "The candidate cannot be reconstructed from its required evidence reference.",
         },
     },
+    "SG-019": {
+        "path": "tests/argos_memory/gold_sets/ons_capacidade/v0_1/contexts/sg019_rights_gate.json",
+        "evidence_role": "rights_context",
+        "payload": {
+            "context_kind": "RIGHTS_GATE",
+            "controlled": True,
+            "not_publisher_history": True,
+            "intended_surface": "machine_api_redistribution",
+            "rights_state": "UNCLEAR",
+            "rights_record_ref": ONS_RIGHTS_RECORD_REF,
+            "invariant": "Factual truth does not expand distribution rights.",
+        },
+    },
     "SG-020": {
         "path": "tests/argos_memory/gold_sets/ons_capacidade/v0_1/contexts/sg020_claim_guard.json",
         "evidence_role": "claim_guard_context",
@@ -622,7 +747,12 @@ EXPECTED_CONTROLLED_CONTEXTS_BY_CASE: dict[str, dict[str, Any]] = {
 
 
 __all__ = [
+    "BASE_CASE_FIELDS",
+    "EXPECTED_CASE_FIELDS_BY_CASE",
     "EXPECTED_CONTROLLED_CONTEXTS_BY_CASE",
+    "EXPECTED_EVIDENCE_REFS_BY_CASE",
+    "EXPECTED_MANIFEST_FIELDS",
+    "EXPECTED_MANIFEST_METADATA",
     "EXPECTED_POLICY_BY_CASE",
     "GOLD_SET_VERSION",
     "HUMAN_PROVENANCE",

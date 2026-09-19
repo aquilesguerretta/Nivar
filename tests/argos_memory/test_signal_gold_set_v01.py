@@ -199,6 +199,60 @@ def test_validator_rejects_required_contract_failures():
             validator.validate_manifest(manifest, REPO_ROOT)
 
 
+def test_closed_contract_rejects_evidence_swaps_and_unknown_manifest_fields():
+    valid = _manifest()
+
+    def case(manifest, case_id):
+        return next(item for item in manifest["cases"] if item["case_id"] == case_id)
+
+    def swap_sg002_evidence_refs(manifest):
+        case(manifest, "SG-002")["evidence_refs"] = copy.deepcopy(
+            case(manifest, "SG-003")["evidence_refs"]
+        )
+
+    def change_top_level_source(manifest):
+        manifest["source_id"] = "unapproved.publisher_history"
+
+    def add_top_level_materiality_threshold(manifest):
+        manifest["materiality_threshold"] = 0.01
+
+    def add_top_level_confidence_score(manifest):
+        manifest["confidence_score"] = 0.99
+
+    def add_top_level_confidence_model(manifest):
+        manifest["confidence_model"] = "unapproved"
+
+    def add_top_level_rights_override(manifest):
+        manifest["rights_override"] = "machine_api_redistribution"
+
+    def add_case_materiality_threshold(manifest):
+        case(manifest, "SG-005")["materiality_threshold"] = 0.01
+
+    def add_case_rights_override(manifest):
+        case(manifest, "SG-004")["rights_override"] = "machine_api_redistribution"
+
+    def add_case_confidence(manifest):
+        case(manifest, "SG-007")["confidence"] = 1.0
+
+    corruptions = (
+        (swap_sg002_evidence_refs, r"SG-002: frozen policy mismatch for evidence_refs"),
+        (change_top_level_source, r"manifest frozen mismatch for source_id"),
+        (add_top_level_materiality_threshold, r"manifest has unexpected top-level fields"),
+        (add_top_level_confidence_score, r"manifest has unexpected top-level fields"),
+        (add_top_level_confidence_model, r"manifest has unexpected top-level fields"),
+        (add_top_level_rights_override, r"manifest has unexpected top-level fields"),
+        (add_case_materiality_threshold, r"SG-005: unexpected frozen case fields"),
+        (add_case_rights_override, r"SG-004: unexpected frozen case fields"),
+        (add_case_confidence, r"SG-007: unexpected frozen case fields"),
+    )
+
+    for mutate, expected_message in corruptions:
+        manifest = copy.deepcopy(valid)
+        mutate(manifest)
+        with pytest.raises(validator.ManifestValidationError, match=expected_message):
+            validator.validate_manifest(manifest, REPO_ROOT)
+
+
 def test_frozen_policy_contract_rejects_material_semantic_mutations():
     valid = _manifest()
 
@@ -440,6 +494,18 @@ def test_controlled_context_contract_rejects_semantic_mutations():
             "The candidate is fully reconstructible from its evidence reference."
         )
 
+    def sg019_rights_cleared(contexts):
+        contexts["SG-019"]["rights_state"] = "CLEARED"
+
+    def sg019_surface_changed(contexts):
+        contexts["SG-019"]["intended_surface"] = "human_signal_display"
+
+    def sg019_broader_rights_added(contexts):
+        contexts["SG-019"]["redistribution_allowed"] = True
+
+    def sg019_invariant_removed(contexts):
+        contexts["SG-019"].pop("invariant")
+
     def sg020_safe_candidate_wording(contexts):
         contexts["SG-020"]["candidate_wording"] = _case("SG-004")[
             "expected_factual_claim"
@@ -464,6 +530,10 @@ def test_controlled_context_contract_rejects_semantic_mutations():
         (sg017_prohibition_reversed, "SG-017: controlled context mismatch for prohibition"),
         (sg018_evidence_available, "SG-018: controlled context mismatch for required_evidence_available"),
         (sg018_claims_reconstructibility, "SG-018: controlled context mismatch for observation"),
+        (sg019_rights_cleared, "SG-019: controlled context mismatch for rights_state"),
+        (sg019_surface_changed, "SG-019: controlled context mismatch for intended_surface"),
+        (sg019_broader_rights_added, "SG-019: controlled context has unexpected fields"),
+        (sg019_invariant_removed, "SG-019: controlled context is missing invariant"),
         (sg020_safe_candidate_wording, "SG-020: controlled context mismatch for candidate_wording"),
         (sg020_narrowed_prohibitions, "SG-020: controlled context mismatch for prohibited_reason_codes"),
         (sg020_passes, "SG-020: controlled context mismatch for result"),
@@ -475,6 +545,19 @@ def test_controlled_context_contract_rejects_semantic_mutations():
         contexts = copy.deepcopy(valid_contexts)
         mutate(contexts)
         with pytest.raises(validator.ManifestValidationError, match=expected_message):
+            validator.validate_controlled_contexts(
+                manifest,
+                REPO_ROOT,
+                context_payloads=contexts,
+            )
+
+    for case_id in ("SG-017", "SG-018", "SG-019", "SG-020"):
+        contexts = copy.deepcopy(valid_contexts)
+        contexts[case_id]["unknown_policy_field"] = "must fail closed"
+        with pytest.raises(
+            validator.ManifestValidationError,
+            match=rf"{case_id}: controlled context has unexpected fields",
+        ):
             validator.validate_controlled_contexts(
                 manifest,
                 REPO_ROOT,
