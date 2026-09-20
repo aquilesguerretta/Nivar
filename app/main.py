@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routers import (
     ai,
     ancillary,
+    ariadne_operator,
     atlas,
     atlas_world,
     auth,
@@ -103,6 +104,9 @@ app.include_router(diagnostico.router)  # /api/diagnostico-energetico/*
 # Diagnóstico Energético Wave 2 — human messaging (any entitled product).
 app.include_router(conversations.router)  # /api/conversations/*
 app.include_router(conversations.operator_router)  # /api/operator/conversations/*
+
+# NIV-48 Ariadne operator instrument — authenticated, workspace-scoped Core access.
+app.include_router(ariadne_operator.router)  # /api/operator/ariadne/*
 
 
 @app.get("/health")

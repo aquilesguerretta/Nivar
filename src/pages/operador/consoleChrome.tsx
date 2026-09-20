@@ -3,6 +3,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import {
   ArrowUpRight,
   FileSearch,
+  GitBranch,
   Inbox,
   Menu,
   Moon,
@@ -24,6 +25,7 @@ export function ConsoleLayout() {
   const [dark, setDark] = useState(false);
   const [menu, setMenu] = useState(false);
   const selected = pathname.replace(/^\/operador\/?/, "").split("/")[0];
+  const isAriadne = selected === "ariadne";
   return (
     <div
       className="g2 g2-ops"
@@ -39,10 +41,12 @@ export function ConsoleLayout() {
           <Wordmark height={23} />
         </Link>
         <span className="g2-ops__product">
-          Advisory <span>/</span> Bancada de análise
+          {isAriadne ? "Ariadne" : "Advisory"} <span>/</span> Bancada de análise
         </span>
         <div className="g2-ops__header-right">
-          <span className="g2-ops__sample-label">AMOSTRA ILUSTRATIVA</span>
+          <span className="g2-ops__sample-label">
+            {isAriadne ? "SYNTHETIC WORKSPACE" : "AMOSTRA ILUSTRATIVA"}
+          </span>
           <Link to="/conta">
             Conta <ArrowUpRight size={13} />
           </Link>
@@ -61,7 +65,7 @@ export function ConsoleLayout() {
         <aside className="g2-ops__sidebar" data-open={menu}>
           <div className="g2-ops__sidebar-top">
             <span>ESPAÇO DE TRABALHO</span>
-            <strong>Sócrates questiona.</strong>
+            <strong>{isAriadne ? "Ariadne organiza." : "Sócrates questiona."}</strong>
           </div>
           <nav aria-label="Fila de análise">
             <Link
@@ -73,6 +77,17 @@ export function ConsoleLayout() {
               <Inbox size={16} />
               <span>Todos os pedidos</span>
               <b>{FILA_MOCK.length}</b>
+            </Link>
+            <div className="g2-ops__nav-label">INSTRUMENTOS</div>
+            <Link
+              to="/operador/ariadne"
+              className="g2-ops__nav-item"
+              aria-current={isAriadne ? "page" : undefined}
+              onClick={() => setMenu(false)}
+            >
+              <GitBranch size={16} />
+              <span>Ariadne</span>
+              <b>CORE</b>
             </Link>
             <div className="g2-ops__nav-label">POR PRODUTO</div>
             {PRODUTOS_COM_FILA.map((p) => (
@@ -89,16 +104,16 @@ export function ConsoleLayout() {
             ))}
           </nav>
           <div className="g2-ops__sidebar-method">
-            <FileSearch size={20} />
-            <p>A conclusão vem depois.</p>
-            <span>
-              Evidência, premissas e contrapontos permanecem visíveis durante
-              toda a análise.
+            {isAriadne ? <GitBranch size={20} /> : <FileSearch size={20} />}
+            <p>{isAriadne ? "A memória vem antes." : "A conclusão vem depois."}</p>
+            <span>{isAriadne
+              ? "Estado, evidência, premissas e execução preservam sua linhagem exata."
+              : "Evidência, premissas e contrapontos permanecem visíveis durante toda a análise."}
             </span>
           </div>
           <div className="g2-ops__sidebar-bottom">
-            <Link to="/br/advisory">
-              Conhecer Advisory <ArrowUpRight size={13} />
+            <Link to={isAriadne ? "/br/software" : "/br/advisory"}>
+              {isAriadne ? "Conhecer Software" : "Conhecer Advisory"} <ArrowUpRight size={13} />
             </Link>
             <button type="button" onClick={() => setDark(!dark)}>
               {dark ? <Sun size={15} /> : <Moon size={15} />}{" "}
@@ -108,10 +123,10 @@ export function ConsoleLayout() {
         </aside>
         <main className="g2-ops__main">
           <div className="g2-ops__truth">
-            <span>G2 EXPERIMENTAL</span>
-            <p>
-              Pedidos e nomes ilustrativos · sem acesso à fila real · rascunhos
-              locais, sem envio.
+            <span>{isAriadne ? "CASE-INDEPENDENT CORE TEST" : "G2 EXPERIMENTAL"}</span>
+            <p>{isAriadne
+              ? "Workspace sintético · dados ilustrativos · estado persistido no Ariadne Core real."
+              : "Pedidos e nomes ilustrativos · sem acesso à fila real · rascunhos locais, sem envio."}
             </p>
           </div>
           <Outlet />
