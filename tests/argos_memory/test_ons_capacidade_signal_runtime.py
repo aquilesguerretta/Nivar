@@ -29,6 +29,7 @@ from app.services.argos_ons_capacidade_geracao_signal import (
     PromotionEvaluation,
     ReferenceReceiptObservation,
     RightsContext,
+    SignalClaimPack,
     SignalRuntimeError,
     SnapshotPairObservation,
     SourceHealthObservation,
@@ -246,20 +247,13 @@ def test_released_gold_case_executes_through_runtime(case):
     assert list(evaluation.required_caveats) == case["required_caveats"]
     assert list(evaluation.forbidden_claims) == case["forbidden_claims"]
 
-    claim_pack = make_signal_claim_pack(evaluation)
     if case["expected_decision"] != "PROMOTE":
-        assert claim_pack is None
         assert evaluation.claim_guard is None
         return
 
-    assert claim_pack is not None
-    assert claim_pack.gold_set_version == GOLD_SET_VERSION == case["gold_set_version"]
-    assert claim_pack.factual_claim == case["expected_factual_claim"]
-    assert list(claim_pack.evidence_refs) == case["required_evidence_refs"]
-    assert list(claim_pack.required_caveats) == case["required_caveats"]
-    assert list(claim_pack.forbidden_claims) == case["forbidden_claims"]
-    assert _rights_dict(claim_pack.rights) == case["rights_state_for_surface"]
-    assert _claim_guard_dict(claim_pack.claim_guard) == case.get("claim_guard")
+    assert _claim_guard_dict(evaluation.claim_guard) == case.get("claim_guard")
+    with pytest.raises(SignalRuntimeError, match="not attested"):
+        make_signal_claim_pack(evaluation)
 
 
 def test_added_and_removed_delta_emits_two_independent_atomic_events():
@@ -285,13 +279,13 @@ def test_claim_guard_fails_closed_for_unsupported_publisher_revision_wording():
     )
 
     evaluation = evaluate_promotion(event, guarded)
-    claim_pack = make_signal_claim_pack(evaluation)
 
     assert evaluation.decision == "PROMOTE"
-    assert claim_pack is not None
-    assert claim_pack.claim_guard is not None
-    assert claim_pack.claim_guard.reason_code == "UNSUPPORTED_PUBLISHER_REVISION"
-    assert claim_pack.factual_claim == case["expected_factual_claim"]
+    assert evaluation.claim_guard is not None
+    assert evaluation.claim_guard.reason_code == "UNSUPPORTED_PUBLISHER_REVISION"
+    assert evaluation.claim_guard.fallback_claim == case["expected_factual_claim"]
+    with pytest.raises(SignalRuntimeError, match="not attested"):
+        make_signal_claim_pack(evaluation)
 
 
 def _valid_promoted_evaluation():
@@ -300,8 +294,131 @@ def _valid_promoted_evaluation():
     return evaluate_promotion(event, _context(case, event))
 
 
-def _forge_promote_with_context(context: PromotionContext) -> PromotionEvaluation:
+def _pure_promotable_event_with_refs(
+    from_evidence_ref: str,
+    to_evidence_ref: str,
+):
+    case = next(case for case in CASES if case["case_id"] == "SG-004")
+    observation = _observation(case)
+    assert isinstance(observation, SnapshotPairObservation)
+    return build_candidate_events(
+        replace(
+            observation,
+            from_evidence_ref=from_evidence_ref,
+            to_evidence_ref=to_evidence_ref,
+        )
+    )[0]
+
+
+def _claim_pack_constructor_kwargs(
+    *,
+    factual_claim: str,
+    rights: RightsContext,
+) -> dict:
+    fabricated_event = CandidateEvent(
+        source_id=SOURCE_ID,
+        event_kind="EFFECTIVE_POWER_CHANGED",
+        facts={
+            "identity": "FAKE-UNIT",
+            "field": "val_potenciaefetiva",
+            "before": "1.0",
+            "after": "999.0",
+        },
+        evidence_refs=("fake://from", "fake://to"),
+        deterministic_result_kind="CONTENT_DELTA",
+        byte_relation="CHANGED",
+        parser_version="ons.capacidade_geracao.parser@1",
+        diff_version="ons.capacidade_geracao.diff@1",
+        from_snapshot_ref="fake://from",
+        to_snapshot_ref="fake://to",
+        content_delta=None,
+    )
+    return {
+        "gold_set_version": GOLD_SET_VERSION,
+        "source_id": SOURCE_ID,
+        "candidate_event": fabricated_event,
+        "decision": "PROMOTE",
+        "reason_code": "MATERIAL_RECONSTRUCTIBLE_CHANGE",
+        "factual_claim": factual_claim,
+        "evidence_refs": ("fake://from", "fake://to"),
+        "required_caveats": (),
+        "forbidden_claims": (),
+        "rights": rights,
+        "claim_guard": None,
+    }
+
+
+def test_signal_claim_pack_cannot_be_constructed_directly():
     valid = _valid_promoted_evaluation()
+    with pytest.raises(SignalRuntimeError, match="only be constructed"):
+        SignalClaimPack(
+            **_claim_pack_constructor_kwargs(
+                factual_claim="fabricated",
+                rights=valid.context.rights,
+            )
+        )
+
+
+def test_direct_claim_pack_with_causal_wording_is_refused():
+    valid = _valid_promoted_evaluation()
+    with pytest.raises(SignalRuntimeError, match="only be constructed"):
+        SignalClaimPack(
+            **_claim_pack_constructor_kwargs(
+                factual_claim="The plant expanded because its owner invested.",
+                rights=valid.context.rights,
+            )
+        )
+
+
+def test_direct_claim_pack_with_unclear_machine_api_rights_is_refused():
+    with pytest.raises(SignalRuntimeError, match="only be constructed"):
+        SignalClaimPack(
+            **_claim_pack_constructor_kwargs(
+                factual_claim="fabricated",
+                rights=RightsContext(
+                    surface="machine_api_redistribution",
+                    state="UNCLEAR",
+                    rights_record_ref="NIV7-EXT-ONS-OPEN-DATA-2026-09-16",
+                ),
+            )
+        )
+
+
+def test_pure_builder_with_ephemeral_refs_cannot_surface():
+    valid = _valid_promoted_evaluation()
+    event = _pure_promotable_event_with_refs(
+        "ephemeral://fabricated-from",
+        "ephemeral://fabricated-to",
+    )
+    evaluation = evaluate_promotion(event, valid.context)
+
+    assert evaluation.decision == "PROMOTE"
+    with pytest.raises(SignalRuntimeError, match="not attested"):
+        make_signal_claim_pack(evaluation)
+
+
+def test_pure_builder_with_unbacked_uuid_refs_cannot_surface():
+    valid = _valid_promoted_evaluation()
+    event = _pure_promotable_event_with_refs(str(uuid.uuid4()), str(uuid.uuid4()))
+    evaluation = evaluate_promotion(event, valid.context)
+
+    assert evaluation.decision == "PROMOTE"
+    with pytest.raises(SignalRuntimeError, match="not attested"):
+        make_signal_claim_pack(evaluation)
+
+
+def test_unattested_event_cannot_surface_when_context_claims_reconstructible():
+    valid = _valid_promoted_evaluation()
+
+    assert valid.context.evidence_reconstructible is True
+    with pytest.raises(SignalRuntimeError, match="not attested"):
+        make_signal_claim_pack(valid)
+
+
+def _forge_promote_with_context(
+    valid: PromotionEvaluation,
+    context: PromotionContext,
+) -> PromotionEvaluation:
     return PromotionEvaluation(
         candidate_event=valid.candidate_event,
         context=context,
@@ -339,8 +456,10 @@ def test_evaluation_rejects_manually_fabricated_promotable_candidate_event():
         evaluate_promotion(fabricated, valid.context)
 
 
-def test_claim_pack_rejects_forged_promote_with_unclear_machine_api_rights():
-    valid = _valid_promoted_evaluation()
+def test_claim_pack_rejects_forged_promote_with_unclear_machine_api_rights(
+    attested_promoted_evaluation,
+):
+    valid = attested_promoted_evaluation
     forged_context = replace(
         valid.context,
         rights=RightsContext(
@@ -349,15 +468,18 @@ def test_claim_pack_rejects_forged_promote_with_unclear_machine_api_rights():
             rights_record_ref="NIV7-EXT-ONS-OPEN-DATA-2026-09-16",
         ),
     )
-    forged = _forge_promote_with_context(forged_context)
+    forged = _forge_promote_with_context(valid, forged_context)
 
     with pytest.raises(SignalRuntimeError, match="canonical promotion gate"):
         make_signal_claim_pack(forged)
 
 
-def test_claim_pack_rejects_forged_promote_without_reconstructible_evidence():
-    valid = _valid_promoted_evaluation()
+def test_claim_pack_rejects_forged_promote_without_reconstructible_evidence(
+    attested_promoted_evaluation,
+):
+    valid = attested_promoted_evaluation
     forged = _forge_promote_with_context(
+        valid,
         replace(valid.context, evidence_reconstructible=False)
     )
 
@@ -365,9 +487,12 @@ def test_claim_pack_rejects_forged_promote_without_reconstructible_evidence():
         make_signal_claim_pack(forged)
 
 
-def test_claim_pack_rejects_forged_promote_with_unhealthy_source():
-    valid = _valid_promoted_evaluation()
+def test_claim_pack_rejects_forged_promote_with_unhealthy_source(
+    attested_promoted_evaluation,
+):
+    valid = attested_promoted_evaluation
     forged = _forge_promote_with_context(
+        valid,
         replace(valid.context, source_health_state="UNAVAILABLE")
     )
 
@@ -375,9 +500,12 @@ def test_claim_pack_rejects_forged_promote_with_unhealthy_source():
         make_signal_claim_pack(forged)
 
 
-def test_claim_pack_rejects_forged_promote_with_unresolved_semantics():
-    valid = _valid_promoted_evaluation()
+def test_claim_pack_rejects_forged_promote_with_unresolved_semantics(
+    attested_promoted_evaluation,
+):
+    valid = attested_promoted_evaluation
     forged = _forge_promote_with_context(
+        valid,
         replace(valid.context, semantics_understood=False)
     )
 
@@ -385,8 +513,8 @@ def test_claim_pack_rejects_forged_promote_with_unresolved_semantics():
         make_signal_claim_pack(forged)
 
 
-def test_claim_pack_rejects_forged_decision_and_reason():
-    valid = _valid_promoted_evaluation()
+def test_claim_pack_rejects_forged_decision_and_reason(attested_promoted_evaluation):
+    valid = attested_promoted_evaluation
     for forged in (
         replace(valid, decision="HOLD"),
         replace(valid, reason_code="RIGHTS_NOT_CLEARED"),
@@ -395,8 +523,8 @@ def test_claim_pack_rejects_forged_decision_and_reason():
             make_signal_claim_pack(forged)
 
 
-def test_claim_pack_rejects_forged_claim_metadata():
-    valid = _valid_promoted_evaluation()
+def test_claim_pack_rejects_forged_claim_metadata(attested_promoted_evaluation):
+    valid = attested_promoted_evaluation
     for forged in (
         replace(valid, evidence_refs=("forged-evidence",)),
         replace(valid, required_caveats=("forged caveat",)),
@@ -417,6 +545,27 @@ def test_claim_pack_rejects_forged_claim_metadata():
     ):
         with pytest.raises(SignalRuntimeError, match="canonical promotion gate"):
             make_signal_claim_pack(forged)
+
+
+@pytest.mark.parametrize(
+    "additional_ref",
+    ["", "fabricated://additional"],
+    ids=["blank", "fabricated"],
+)
+def test_claim_pack_rejects_unverified_additional_evidence_refs(
+    attested_promoted_evaluation,
+    additional_ref,
+):
+    valid = attested_promoted_evaluation
+    context = replace(
+        valid.context,
+        additional_evidence_refs=(additional_ref,),
+    )
+    evaluation = evaluate_promotion(valid.candidate_event, context)
+
+    assert evaluation.decision == "PROMOTE"
+    with pytest.raises(SignalRuntimeError, match="additional evidence refs"):
+        make_signal_claim_pack(evaluation)
 
 
 def test_runtime_is_source_bounded_and_contains_no_gold_case_lookup():
@@ -474,55 +623,91 @@ def runtime_db_session():
         command.downgrade(config, "base")
 
 
-def test_stored_snapshot_pair_reconstructs_end_to_end_signal(runtime_db_session):
-    fixture_dir = REPO_ROOT / "tests" / "argos_memory" / "fixtures" / "ons_capacidade_geracao"
+def _capture_pair(runtime_db_session, observation, *, minute_offset: int = 0):
+    assert isinstance(observation, SnapshotPairObservation)
+    retrieved_at = datetime.now(timezone.utc) + timedelta(minutes=minute_offset)
     first = capture_snapshot(
         runtime_db_session,
         source_id=SOURCE_ID,
-        data=(fixture_dir / "fixture_a.csv").read_bytes(),
+        data=observation.from_bytes,
         content_type="text/csv",
         adapter_version="test.runtime@1",
-        retrieved_at=datetime.now(timezone.utc),
+        retrieved_at=retrieved_at,
     )
     runtime_db_session.commit()
     second = capture_snapshot(
         runtime_db_session,
         source_id=SOURCE_ID,
-        data=(fixture_dir / "fixture_b_known_field_change.csv").read_bytes(),
+        data=observation.to_bytes,
         content_type="text/csv",
         adapter_version="test.runtime@1",
-        retrieved_at=datetime.now(timezone.utc) + timedelta(minutes=1),
+        retrieved_at=retrieved_at + timedelta(minutes=1),
     )
     runtime_db_session.commit()
+    return first, second
 
-    [event] = build_candidate_events_from_snapshots(
+
+@pytest.fixture()
+def attested_promoted_evaluation(runtime_db_session):
+    case = next(case for case in CASES if case["case_id"] == "SG-004")
+    observation = _observation(case)
+    first, second = _capture_pair(runtime_db_session, observation)
+    events = build_candidate_events_from_snapshots(
         runtime_db_session,
         uuid.UUID(str(first.id)),
         uuid.UUID(str(second.id)),
     )
-    evaluation = evaluate_promotion(
-        event,
-        PromotionContext(
-            source_health_state="HEALTHY_COMPLETE",
-            evidence_reconstructible=True,
-            semantics_understood=True,
-            materiality_state="MATERIAL",
-            rights=RightsContext(
-                surface="human_signal_display",
-                state="CLEARED_WITH_ATTRIBUTION",
-                rights_record_ref="NIV7-EXT-ONS-OPEN-DATA-2026-09-16",
-                attribution_required=True,
-            ),
-        ),
+    event = next(
+        event
+        for event in events
+        if event.event_kind == case["candidate_event_kind"]
+        and dict(event.facts) == case["candidate_event_facts"]
     )
-    claim_pack = make_signal_claim_pack(evaluation)
+    return evaluate_promotion(event, _context(case, event))
 
-    assert event.from_snapshot_ref == str(first.id)
-    assert event.to_snapshot_ref == str(second.id)
-    assert evaluation.decision == "PROMOTE"
-    assert claim_pack is not None
-    assert claim_pack.evidence_refs == (str(first.id), str(second.id))
-    assert claim_pack.factual_claim == (
-        "The effective power recorded for unit TEST-EQ-002 changed from 20.0 MW "
-        "to 22.5 MW between two stored observations of the ONS dataset."
-    )
+
+def test_snapshot_backed_gold_promotions_surface_with_exact_snapshot_ids(
+    runtime_db_session,
+):
+    promotable_cases = [case for case in CASES if case["expected_decision"] == "PROMOTE"]
+
+    for index, case in enumerate(promotable_cases):
+        observation = _observation(case)
+        first, second = _capture_pair(
+            runtime_db_session,
+            observation,
+            minute_offset=index * 2,
+        )
+        events = build_candidate_events_from_snapshots(
+            runtime_db_session,
+            uuid.UUID(str(first.id)),
+            uuid.UUID(str(second.id)),
+        )
+        event = next(
+            event
+            for event in events
+            if event.event_kind == case["candidate_event_kind"]
+            and dict(event.facts) == case["candidate_event_facts"]
+        )
+        context = replace(
+            _context(case, event),
+            additional_evidence_refs=(),
+        )
+        evaluation = evaluate_promotion(event, context)
+        claim_pack = make_signal_claim_pack(evaluation)
+
+        assert event.from_snapshot_ref == str(first.id), case["case_id"]
+        assert event.to_snapshot_ref == str(second.id), case["case_id"]
+        assert evaluation.decision == "PROMOTE", case["case_id"]
+        assert evaluation.reason_code == case["decision_reason_code"], case["case_id"]
+        assert evaluation.evidence_refs == (str(first.id), str(second.id)), case["case_id"]
+        assert claim_pack is not None, case["case_id"]
+        assert claim_pack.gold_set_version == case["gold_set_version"], case["case_id"]
+        assert claim_pack.factual_claim == case["expected_factual_claim"], case["case_id"]
+        assert claim_pack.evidence_refs == (str(first.id), str(second.id)), case["case_id"]
+        assert list(claim_pack.required_caveats) == case["required_caveats"], case["case_id"]
+        assert list(claim_pack.forbidden_claims) == case["forbidden_claims"], case["case_id"]
+        assert _rights_dict(claim_pack.rights) == case["rights_state_for_surface"], case["case_id"]
+        assert _claim_guard_dict(claim_pack.claim_guard) == case.get("claim_guard"), case[
+            "case_id"
+        ]

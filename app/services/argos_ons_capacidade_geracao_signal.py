@@ -9,7 +9,8 @@ The module deliberately keeps three layers separate:
 It is source-specific by design.  It neither reads the Gold Set nor accepts a
 Gold case identifier, and it never contacts ONS.  Stored-snapshot execution
 reconstructs the exact Argos Memory artifacts selected by the caller; the pure
-builder is also usable with already-preserved bytes.
+    builder is also usable with already-preserved bytes, but only the Argos
+    Memory adapter can attest evidence for Signal surfacing.
 """
 
 from __future__ import annotations
@@ -66,7 +67,7 @@ class RightsContext:
 
 @dataclass(frozen=True)
 class SnapshotPairObservation:
-    """Two preserved payloads and their stable evidence references."""
+    """Caller-supplied payloads/refs for deterministic, unattested computation."""
 
     source_id: str
     from_bytes: bytes
@@ -150,6 +151,12 @@ class CandidateEvent:
         repr=False,
         compare=False,
     )
+    _evidence_attestation: object | None = field(
+        default=None,
+        init=False,
+        repr=False,
+        compare=False,
+    )
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "facts", MappingProxyType(dict(self.facts)))
@@ -189,9 +196,9 @@ class PromotionEvaluation:
     claim_guard: ClaimGuardEvaluation | None = None
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, init=False)
 class SignalClaimPack:
-    """Surfaceable factual claim; constructible only from a PROMOTE result."""
+    """Surfaceable factual claim minted only by :func:`make_signal_claim_pack`."""
 
     gold_set_version: str
     source_id: str
@@ -204,6 +211,12 @@ class SignalClaimPack:
     forbidden_claims: tuple[str, ...]
     rights: RightsContext
     claim_guard: ClaimGuardEvaluation | None
+    _surface_marker: object = field(init=False, repr=False, compare=False)
+
+    def __init__(self, *args: object, **kwargs: object) -> None:
+        raise SignalRuntimeError(
+            "SignalClaimPack can only be constructed by make_signal_claim_pack"
+        )
 
 
 _FIELD_EVENT_KIND = {
@@ -242,6 +255,8 @@ _PUBLISHER_REVISION_PATTERN = re.compile(
 
 _RUNTIME_EVENT_MARKER = object()
 _RUNTIME_EVENT_INTEGRITY_KEY = secrets.token_bytes(32)
+_ARGOS_MEMORY_EVIDENCE_ATTESTATION = object()
+_RUNTIME_CLAIM_PACK_MARKER = object()
 
 
 def _validate_source_id(source_id: str) -> None:
@@ -722,7 +737,7 @@ def _build_from_snapshot_pair(
 
 
 def build_candidate_events(observation: SignalObservation) -> tuple[CandidateEvent, ...]:
-    """Build deterministic atomic Events without applying promotion policy."""
+    """Build deterministic, evidence-unattested Events without promotion policy."""
     _validate_source_id(observation.source_id)
 
     if isinstance(observation, SnapshotPairObservation):
@@ -803,13 +818,13 @@ def build_candidate_events_from_snapshots(
     from_snapshot_id: uuid.UUID,
     to_snapshot_id: uuid.UUID,
 ) -> tuple[CandidateEvent, ...]:
-    """Reconstruct exact stored snapshots and run the pure Event builder."""
+    """Reconstruct exact stored snapshots and mint evidence-attested Events."""
     from_snapshot, from_bytes = reconstruct_snapshot(session, from_snapshot_id)
     to_snapshot, to_bytes = reconstruct_snapshot(session, to_snapshot_id)
     if from_snapshot.source_id != to_snapshot.source_id:
         raise SignalRuntimeError("snapshot pair must belong to the same source")
     _validate_source_id(from_snapshot.source_id)
-    return build_candidate_events(
+    events = build_candidate_events(
         SnapshotPairObservation(
             source_id=from_snapshot.source_id,
             from_bytes=from_bytes,
@@ -818,6 +833,14 @@ def build_candidate_events_from_snapshots(
             to_evidence_ref=str(to_snapshot.id),
         )
     )
+    for event in events:
+        _validate_candidate_event(event)
+        object.__setattr__(
+            event,
+            "_evidence_attestation",
+            _ARGOS_MEMORY_EVIDENCE_ATTESTATION,
+        )
+    return events
 
 
 def _safe_claim(event: CandidateEvent) -> str:
@@ -1102,10 +1125,42 @@ def evaluate_promotion(
     )
 
 
+def _mint_signal_claim_pack(
+    canonical: PromotionEvaluation,
+    factual_claim: str,
+) -> SignalClaimPack:
+    pack = object.__new__(SignalClaimPack)
+    values = {
+        "gold_set_version": GOLD_SET_VERSION,
+        "source_id": canonical.candidate_event.source_id,
+        "candidate_event": canonical.candidate_event,
+        "decision": "PROMOTE",
+        "reason_code": canonical.reason_code,
+        "factual_claim": factual_claim,
+        "evidence_refs": canonical.candidate_event.evidence_refs,
+        "required_caveats": canonical.required_caveats,
+        "forbidden_claims": canonical.forbidden_claims,
+        "rights": canonical.context.rights,
+        "claim_guard": canonical.claim_guard,
+        "_surface_marker": _RUNTIME_CLAIM_PACK_MARKER,
+    }
+    for name, value in values.items():
+        object.__setattr__(pack, name, value)
+    return pack
+
+
 def make_signal_claim_pack(
     evaluation: PromotionEvaluation,
 ) -> SignalClaimPack | None:
-    """Create a surfaceable pack for PROMOTE; HOLD/REJECT return no claim."""
+    """Mint a pack only for canonical, evidence-attested PROMOTE results."""
+    _validate_candidate_event(evaluation.candidate_event)
+    if (
+        evaluation.candidate_event._evidence_attestation
+        is not _ARGOS_MEMORY_EVIDENCE_ATTESTATION
+    ):
+        raise SignalRuntimeError(
+            "CandidateEvent is not attested by reconstructed Argos Memory evidence"
+        )
     canonical = evaluate_promotion(
         evaluation.candidate_event,
         evaluation.context,
@@ -1116,22 +1171,14 @@ def make_signal_claim_pack(
         )
     if canonical.decision != "PROMOTE":
         return None
+    if canonical.context.additional_evidence_refs:
+        raise SignalRuntimeError(
+            "additional evidence refs are not accepted for surfaceable claim packs"
+        )
     claim = _safe_claim(canonical.candidate_event)
     if canonical.claim_guard is not None:
         claim = canonical.claim_guard.fallback_claim
-    return SignalClaimPack(
-        gold_set_version=GOLD_SET_VERSION,
-        source_id=canonical.candidate_event.source_id,
-        candidate_event=canonical.candidate_event,
-        decision="PROMOTE",
-        reason_code=canonical.reason_code,
-        factual_claim=claim,
-        evidence_refs=canonical.evidence_refs,
-        required_caveats=canonical.required_caveats,
-        forbidden_claims=canonical.forbidden_claims,
-        rights=canonical.context.rights,
-        claim_guard=canonical.claim_guard,
-    )
+    return _mint_signal_claim_pack(canonical, claim)
 
 
 __all__ = [
