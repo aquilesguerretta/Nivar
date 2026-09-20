@@ -269,11 +269,15 @@ export const ariadneOperatorApi = {
       hypotheticalState: Record<string, unknown>;
     },
   ) => post<{ id: string }>(`/workspaces/${workspaceId}/scenarios`, body),
+  enableInternalTestModel: (workspaceId: string) =>
+    post<{ id: string; semanticVersion: string }>(
+      `/workspaces/${workspaceId}/models/internal-test`,
+      {},
+    ),
   createRun: (workspaceId: string, scenarioId: string, modelVersionId: string) =>
     post<{ runId: string; resultId: string; payload: Record<string, unknown> }>(`/workspaces/${workspaceId}/runs`, {
       scenarioId,
       modelVersionId,
-      executionConfiguration: { arithmetic: "integer" },
     }),
   getLineage: (workspaceId: string, resultId: string) =>
     request<Lineage>(`/workspaces/${workspaceId}/results/${resultId}/lineage`),
