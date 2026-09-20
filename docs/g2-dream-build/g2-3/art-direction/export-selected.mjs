@@ -1,0 +1,24 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import sharp from 'sharp';
+import crypto from 'node:crypto';
+const here=path.dirname(fileURLToPath(import.meta.url));
+const runtime=path.resolve(here,'../../../../public/g2/g23/brand');
+const data=JSON.parse(await fs.readFile(path.join(here,'wordmarks/candidates.json'),'utf8'));
+const selected=data.candidates[0];
+const micro=[...selected.paths];
+micro[3]='M180 76l29-72h13l29 72h-14l-7-18h-25l5-12h16l-11-27-22 57z';
+const make=(paths)=>`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 333 80" role="img" aria-label="NIVAR"><g fill="currentColor" fill-rule="evenodd">${paths.map(d=>`<path d="${d}"/>`).join('')}</g></svg>`;
+await fs.mkdir(runtime,{recursive:true});
+await fs.writeFile(path.join(runtime,'nivar-interval.svg'),make(selected.paths));
+await fs.writeFile(path.join(runtime,'nivar-interval-micro.svg'),make(micro));
+await fs.writeFile(path.join(runtime,'nivar-monogram.svg'),`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -4 86 88" role="img" aria-label="NIVAR"><path fill="currentColor" d="${selected.paths[0]}"/></svg>`);
+const favicon=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -4 86 88"><style>path{fill:#28252d}@media(prefers-color-scheme:dark){path{fill:#f1eced}}</style><path d="${selected.paths[0]}"/></svg>`;
+await fs.writeFile(path.join(runtime,'favicon.svg'),favicon);
+const icon=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -4 86 88"><path fill="#28252d" d="${selected.paths[0]}"/></svg>`;
+for(const size of [16,32,48,180]) await sharp(Buffer.from(icon)).resize(size,size).png().toFile(path.join(runtime,`favicon-${size}.png`));
+const manifest={created:'2026-09-12',selected:'01-interval-optical',selection:'Coordinating review of actual vector contact sheet; not owner approval',source:'docs/g2-dream-build/g2-3/art-direction/wordmarks/candidates.json',viewBox:'0 0 333 80',intrinsicRatio:333/80,normalPaths:selected.paths,microPaths:micro,microRule:'When rendered height <= 18 CSS px, use the dedicated A contour with a 5-unit opening; retain all other glyphs. Prefer standard contours at >= 19 CSS px.',monogramViewBox:'-10 -4 86 88',rights:'Original lettering derived from existing NIVAR Interval paths, no font binaries, stock logo or third-party contours incorporated.',files:[]};
+for(const file of await fs.readdir(runtime)) {const buf=await fs.readFile(path.join(runtime,file));manifest.files.push({file,bytes:buf.length,sha256:crypto.createHash('sha256').update(buf).digest('hex')});}
+await fs.writeFile(path.join(here,'selected-brand-manifest.json'),JSON.stringify(manifest,null,2));
+console.log(JSON.stringify(manifest.files,null,2));

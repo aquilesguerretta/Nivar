@@ -1,0 +1,291 @@
+{
+  "fixtureOnly": true,
+  "backendAccess": false,
+  "realWrites": false,
+  "viewportCapture": "Native CDP PNG, deviceScaleFactor 1",
+  "contracts": [
+    "app/routers/auth.py",
+    "app/routers/products.py",
+    "app/routers/conta_luz.py",
+    "app/routers/solar_proposal.py",
+    "app/routers/diagnostico.py"
+  ],
+  "checks": [
+    {
+      "label": "fixture identity renders exact name/email",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "viewport account-profile-fixture-desktop",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "viewport account-profile-fixture-desktop-dark",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "viewport account-profile-fixture-mobile",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "mobile page has no horizontal overflow",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "viewport account-profile-fixture-mobile-dark",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "ready, pending, empty solar and null diagnostic contracts",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "mobile requests have no horizontal overflow",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "account download uses exact fixture bytes and relative endpoint",
+      "pass": true,
+      "filename": "QA-FIXTURE-parecer.pdf",
+      "sha256": "40833c563f86588b2f2c7370477fd1c1da724cfcceb78b62b66d632002d81c4b"
+    },
+    {
+      "label": "catalog uses all four fixture product ids",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "product failure state retries actual client requests",
+      "pass": true
+    },
+    {
+      "label": "security shows password method",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "failed logout stays visible without claiming session ended",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "logout retry succeeds and profile redirects after cleared fixture session",
+      "pass": true
+    },
+    {
+      "label": "malformed stored annotation types are normalized without crash",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "malformed history ignored; valid entry preserved",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "changing open source and editing preserves explicit source A hash",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "save is clearly browser-session only",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "case export distinguishes original fixture, locally opened source B and annotation source A",
+      "pass": true
+    },
+    {
+      "label": "local sources and export object URLs revoked",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "session draft restores without pretending source bytes persisted",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "session clear removes saved case draft",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "label": "only mocked logout POST; no other mutation requests",
+      "pass": true
+    },
+    {
+      "label": "no runtime exceptions",
+      "pass": true,
+      "actual": []
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/products/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/conta-luz-express/submissions",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/solar-proposal-validator/submissions",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/diagnostico-energetico/submissions",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/conta-luz-express/submissions/00000000-0000-4000-8000-000000000002/deliverable",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/products/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/conta-luz-express/submissions",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/solar-proposal-validator/submissions",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/diagnostico-energetico/submissions",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/products/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/conta-luz-express/submissions",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/solar-proposal-validator/submissions",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/diagnostico-energetico/submissions",
+      "fixture": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/logout",
+      "fixture": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/logout",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/auth/me",
+      "fixture": true
+    }
+  ],
+  "exceptions": [],
+  "fixtureDownloads": [
+    {
+      "filename": "QA-FIXTURE-parecer.pdf",
+      "url": "http://127.0.0.1:4173/api/conta-luz-express/submissions/00000000-0000-4000-8000-000000000002/deliverable"
+    },
+    {
+      "filename": "nivar-g2-cle-8f2a-rascunho.json",
+      "url": "blob:http://127.0.0.1:4173/09be5ebb-4aac-43b6-bd11-1aa438dc70ca"
+    }
+  ],
+  "allPassed": true
+}

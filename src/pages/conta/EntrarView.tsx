@@ -12,30 +12,30 @@
 // backend (contrato §"Google OAuth — not shipped"). Botão que não
 // funciona é pior que botão ausente.
 
-import { useState, type FormEvent } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useState, type FormEvent } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
-import { useAuth } from '../../lib/auth/AuthContext';
-import { AuthError } from '../../lib/auth/authApi';
-import { AvisoErro, Campo, ContaShell, NT } from './ContaShell';
+import { useAuth } from "../../lib/auth/AuthContext";
+import { AuthError } from "../../lib/auth/authApi";
+import { AvisoErro, Campo, ContaShell, NT } from "./ContaShell";
 
 /** Mensagem única para TODA falha de credencial. Tradução fiel do
  *  `invalid email or password` do backend — traduzir preserva a
  *  ambiguidade; o que não se pode é ramificar por causa. */
-const ERRO_CREDENCIAL = 'Email ou senha inválidos.';
+const ERRO_CREDENCIAL = "Email ou senha inválidos.";
 
 export function EntrarView() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   const [erro, setErro] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
 
   // Quem chegou aqui por rota protegida volta para onde queria ir.
-  const destino = (location.state as { de?: string } | null)?.de ?? '/conta';
+  const destino = (location.state as { de?: string } | null)?.de ?? "/conta";
 
   async function aoEnviar(e: FormEvent) {
     e.preventDefault();
@@ -55,11 +55,11 @@ export function EntrarView() {
           err.status === 401
             ? ERRO_CREDENCIAL
             : err.status === 0
-              ? 'Não foi possível falar com o servidor. Verifique a conexão.'
-              : 'Algo falhou do nosso lado. Tente de novo em instantes.',
+              ? "Não foi possível falar com o servidor. Verifique a conexão."
+              : "Algo falhou do nosso lado. Tente de novo em instantes.",
         );
       } else {
-        setErro('Algo falhou do nosso lado. Tente de novo em instantes.');
+        setErro("Algo falhou do nosso lado. Tente de novo em instantes.");
       }
       setEnviando(false);
     }
@@ -71,10 +71,10 @@ export function EntrarView() {
     <ContaShell
       eyebrow="Conta NIVAR"
       titulo="Entrar"
-      subtitulo="Uma conta para tudo — Alexandria, Portal Brasil e o que vier depois."
+      subtitulo="Retome suas análises, seus produtos e seu percurso de aprendizado."
       rodape={
         <>
-          Ainda não tem conta?{' '}
+          Ainda não tem conta?{" "}
           <Link className="conta-link" to="/criar-conta" state={location.state}>
             Criar conta
           </Link>
@@ -89,7 +89,7 @@ export function EntrarView() {
       <form
         onSubmit={aoEnviar}
         noValidate
-        style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}
+        style={{ display: "flex", flexDirection: "column", gap: "18px" }}
       >
         <Campo
           id="entrar-email"
@@ -112,7 +112,7 @@ export function EntrarView() {
         {erro && <AvisoErro>{erro}</AvisoErro>}
 
         <button type="submit" className="conta-botao" disabled={!podeEnviar}>
-          {enviando ? 'Entrando…' : 'Entrar'}
+          {enviando ? "Entrando…" : "Entrar"}
         </button>
       </form>
 
@@ -122,13 +122,13 @@ export function EntrarView() {
       <p
         style={{
           ...NT.nota,
-          marginTop: '18px',
+          marginTop: "18px",
           marginBottom: 0,
-          color: 'var(--text-muted)',
+          color: "var(--text-muted)",
         }}
       >
-        Recuperação de senha ainda não existe. Se perder o acesso, fale com a gente até
-        essa parte ficar de pé.
+        Recuperação de senha ainda indisponível. Guarde suas credenciais em um
+        gerenciador de senhas.
       </p>
     </ContaShell>
   );

@@ -1,0 +1,13 @@
+# Brief critic — round 2
+
+Fresh review of all twelve supplied native screenshots: `hero-r3-desktop-1.png` through `hero-r3-desktop-6.png`, and `hero-r3-mobile-1.png` through `hero-r3-mobile-6.png`. No source code, build history, or prior reports inspected. Judged against the supplied film goal, not visual taste.
+
+| Piece | Verdict | Evidence or single largest gap |
+| --- | --- | --- |
+| Opening / measurement | **PASS** | Both opening frames show recognizable hydroelectric infrastructure and an intelligible generator → CT/PT → power-meter schematic. The measured quantity becomes EV-001, 68 MW at 00:00 h. “Paisagem gerada,” “Exemplo,” and “Série sintética NIVAR” disclose the illustrative nature of the image and data. This establishes a credible schematic measurement path without pretending that the displayed record is real field evidence. |
+| Structure / observation / contradiction | **PASS** | EV-001 persists through a source/period/unit/coverage record and a tentative “Uma tendência de alta?” graph. The dashed connection is explicitly hypothetical. The next frame removes that inferred connection, exposes the two missing intervals, and revises the claim to “Tendência não demonstrada.” Missingness is counterevidence to the supported continuity of the proposed trend; the film appropriately weakens the conclusion rather than claiming the measured values prove a decline. The record identity and units remain legible in both layouts. |
+| Transmission / return | **FAIL** | **The purported method publication contains no inspectable method.** Frame 5 labels its document “Nota de método” but supplies only the conclusion and the fact that two of six intervals are missing. It never states the rule or procedure that turns that coverage limitation into the revised interpretation. A reader cannot repeat or challenge the analysis from the published note. Frame 6 does successfully return to the same record, the precise missing times, a new measurement question, and “Nullius in verba,” but that does not supply the missing method publication. |
+
+The largest required correction is to make the transmitted document state the actual reasoning procedure, such as the coverage check, treatment of missing intervals, and boundary on the inference. A document title and an openness statement do not demonstrate publication of a method.
+
+These stills establish the visible content only. They do not certify an 18-second running duration, transitions, evidence continuity in motion, reading time, looping, or runtime interaction. Runtime QA remains separate. Human selection remains deferred.

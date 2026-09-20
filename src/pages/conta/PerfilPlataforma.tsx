@@ -1,135 +1,82 @@
-// src/pages/conta/PerfilPlataforma.tsx
-// ARCHITECT — Identidade de Plataforma, Wave 1.
-// ARCHITECT — Portal BR Wave [N] · Migração de conta para tokens NIVAR.
-//
-// Perfil da PLATAFORMA, não de produto. O perfil da Alexandria (com
-// progresso, trilhas, conquistas) é superfície própria dela e é wave
-// do LYCEUM — esta tela não sabe nada sobre currículo.
-//
-// Três seções, todas de estado real:
-//   · Dados pessoais — só o que `users` tem de fato.
-//   · Assinatura     — não existe sistema de pagamento. Declarado como
-//                      ausência, no mesmo idioma de "em produção" que
-//                      o resto do sistema já usa. Zero plano, zero preço.
-//   · Produtos       — catálogo do BACKEND (não cópia local), com
-//                      ativado / não-ativado por item.
-//
-// Rota protegida: sem sessão, volta para /entrar carregando o destino
-// pretendido, para a pessoa cair aqui de novo depois de entrar.
-//
-// REGISTRO VISUAL: NIVAR. Migração é só APRESENTAÇÃO — a lógica de
-// sessão, produtos e navegação abaixo é byte-idêntica à da Wave 1.
-// Cabeçalho de seção adota o idioma `SectionHeader` do sistema
-// (número · título · fio · nota numa linha de baseline), o mesmo que
-// a Portal BR Wave 6 já usa para as seções do Portal — não é
-// invenção desta wave, é aplicação do componente que o sistema já
-// documenta para exatamente este papel.
-
-import { useEffect, useState } from 'react';
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
-
-import { DESTINOS_BR } from '../../lib/data/br-destinos';
-import { useAuth } from '../../lib/auth/AuthContext';
-// Cliente PRÓPRIO — o Diagnóstico não tem arquivo, `status` nem
-// `deliverable`, então não cabe no registro de `FLUXOS_SUBMISSAO`.
-// Ver o cabeçalho de `src/lib/diagnostico/api.ts`.
-import { listarEscopos, type SubmissaoDiagnostico } from '../../lib/diagnostico/api';
-import type { ProductsResponse } from '../../lib/auth/authApi';
-import { ContaShell, NT } from './ContaShell';
-// Cliente e tipos do contrato de submissão — agora em `src/lib/`
-// (Solar Proposal Validator Wave 2, Fase 2), pagando a pendência que a
-// Conta de Luz Express Wave 3 registrou por escrito: o cliente morava
-// num arquivo de componente por falta de posse. O perfil deixa de
-// importar de página e passa a mapear o REGISTRO de fluxos — uma seção
-// de status por produto com fluxo de envio, número derivado da
-// posição, fetch só para fluxo com backend no ar.
+import { useEffect, useState, type ReactNode } from "react";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { ArrowUpRight, Download, LogOut } from "lucide-react";
+import { DESTINOS_BR } from "../../lib/data/br-destinos";
+import { useAuth } from "../../lib/auth/AuthContext";
+import {
+  listarEscopos,
+  type SubmissaoDiagnostico,
+} from "../../lib/diagnostico/api";
+import type { ProductsResponse } from "../../lib/auth/authApi";
 import {
   criarClienteSubmissoes,
   FLUXOS_SUBMISSAO,
-  type FluxoSubmissao,
   type Submissao,
-} from '../../lib/submissoes/api';
+} from "../../lib/submissoes/api";
+import { ContaShell } from "./ContaShell";
 
-/** Id do catálogo → rótulo. Deriva do id quando ninguém nomeou ainda,
- *  em vez de esconder o produto ou inventar nome.
- *
- *  O CATÁLOGO (quais produtos existem) vem do backend — o contrato diz
- *  que ele é servido justamente para o front não manter uma segunda
- *  cópia que deriva. O que mora aqui é só a APRESENTAÇÃO, e só para os
- *  ids que o portal brasileiro já nomeia, via `DESTINOS_BR`.
- *
- *  Havia aqui um mapa `TITULO_EXTRA` cuja única entrada nomeava o
- *  terminal americano — o último lugar do `/conta` que ainda o
- *  mencionava. Saiu na Topologia de Shell Wave 3, junto com o id, que
- *  o backend já tinha tirado do `PRODUCT_CATALOG`. Confirmado nesta
- *  wave que continua fora — nenhum remanescente estático do lado
- *  americano restou no arquivo. É a mesma doutrina provisória da
- *  Wave 2: o lado americano continua inteiro no disco e alcançável em
- *  `/us`, mas não é anunciado por superfície nenhuma. Quando o portal
- *  americano voltar à mesa, o rótulo volta — de preferência por
- *  `DESTINOS_BR`, não por um mapa paralelo. */
-const PRODUTO_DIAGNOSTICO = 'diagnostico-energetico';
-
-function rotularProduto(productId: string): string {
-  const destino = DESTINOS_BR.find((d) => d.id === productId);
-  if (destino) return destino.titulo;
-  return productId
-    .split('-')
+const titleFor = (id: string) =>
+  DESTINOS_BR.find((d) => d.id === id)?.titulo ??
+  id
+    .split("-")
     .map((p) => p.charAt(0).toUpperCase() + p.slice(1))
-    .join(' ');
-}
-
-function formatarData(iso: string): string {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return '—';
-  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
-}
-
-// ─── Conta de Luz Express — status REAL (Wave 3) ─────────────────
-// `GET /api/conta-luz-express/submissions` devolve as submissões da
-// conta, mais recente primeiro (contrato lido em app/routers/
-// conta_luz.py e medido). O backend tem DOIS estados por submissão —
-// `submitted` e `ready`; "nada enviado" não é status, é lista vazia.
-// O seletor mock da Wave 2 saiu por completo: não virou flag.
-const ROTULO_STATUS: Record<Submissao['status'], string> = {
-  submitted: 'Em leitura',
-  ready: 'Parecer pronto',
+    .join(" ");
+const dateFor = (value: string) => {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime())
+    ? "Data não informada"
+    : date.toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      });
 };
+const VIEWS = [
+  ["overview", "Sua identidade"],
+  ["requests", "Análises e pedidos"],
+  ["products", "Seus produtos"],
+  ["security", "Acesso e segurança"],
+] as const;
 
+/** Production identity and data contracts are unchanged. No account fixtures or local credentials. */
 export function PerfilPlataforma() {
   const { user, loading, logout, myProducts } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-
+  const [view, setView] = useState<(typeof VIEWS)[number][0]>("overview");
   const [produtos, setProdutos] = useState<ProductsResponse | null>(null);
   const [erroProdutos, setErroProdutos] = useState(false);
   const [saindo, setSaindo] = useState(false);
-  // Submissões REAIS, por produto do registro. `null` = ainda não
-  // respondeu; `[]` = nada enviado. Mesmo idioma do `produtos` acima.
-  const [submissoesPor, setSubmissoesPor] = useState<Record<string, Submissao[] | null>>({});
-  const [erroSubmissoesPor, setErroSubmissoesPor] = useState<Record<string, boolean>>({});
-  // Escopos do Diagnóstico. `null` = ainda não respondeu; `[]` = nada
-  // aberto — mesmo idioma dos dois acima.
+  const [erroSaida, setErroSaida] = useState(false);
+  const [submissoesPor, setSubmissoesPor] = useState<
+    Record<string, Submissao[] | null>
+  >({});
+  const [erroSubmissoesPor, setErroSubmissoesPor] = useState<
+    Record<string, boolean>
+  >({});
   const [escopos, setEscopos] = useState<SubmissaoDiagnostico[] | null>(null);
   const [erroEscopos, setErroEscopos] = useState(false);
+  const [retry, setRetry] = useState(0);
 
   useEffect(() => {
     if (!user) return;
     const ctrl = new AbortController();
     myProducts(ctrl.signal)
-      .then(setProdutos)
+      .then((r) => {
+        if (!ctrl.signal.aborted) {
+          setProdutos(r);
+          setErroProdutos(false);
+        }
+      })
       .catch((err: unknown) => {
-        if (err instanceof Error && err.name === 'AbortError') return;
-        setErroProdutos(true);
+        if (
+          !ctrl.signal.aborted &&
+          !(err instanceof Error && err.name === "AbortError")
+        )
+          setErroProdutos(true);
       });
     return () => ctrl.abort();
-  }, [user, myProducts]);
-
-  // Uma chamada por fluxo AO VIVO por montagem, abortada no desmonte —
-  // igual à de produtos. Não depende de entitlement: o GET lista por
-  // `user_id` e devolve `[]` para quem nunca enviou (medido), então não
-  // há 403 a tratar aqui. Fluxo com `aoVivo: false` NUNCA é consultado —
-  // a seção dele declara o estado futuro em vez de colher um 404.
+  }, [user, myProducts, retry]);
   useEffect(() => {
     if (!user) return;
     const ctrl = new AbortController();
@@ -137,701 +84,433 @@ export function PerfilPlataforma() {
       if (!fluxo.aoVivo) continue;
       criarClienteSubmissoes(fluxo.prefixo)
         .listar(ctrl.signal)
-        .then((r) => setSubmissoesPor((s) => ({ ...s, [fluxo.productId]: r.data })))
+        .then((r) => {
+          if (!ctrl.signal.aborted) {
+            setSubmissoesPor((s) => ({ ...s, [fluxo.productId]: r.data }));
+            setErroSubmissoesPor((s) => ({ ...s, [fluxo.productId]: false }));
+          }
+        })
         .catch((err: unknown) => {
-          if (err instanceof Error && err.name === 'AbortError') return;
-          setErroSubmissoesPor((s) => ({ ...s, [fluxo.productId]: true }));
+          if (
+            !ctrl.signal.aborted &&
+            !(err instanceof Error && err.name === "AbortError")
+          )
+            setErroSubmissoesPor((s) => ({ ...s, [fluxo.productId]: true }));
         });
     }
     return () => ctrl.abort();
-  }, [user]);
-
-  // Uma chamada por montagem, abortada no desmonte. Como nos fluxos, o
-  // GET lista por `user_id` e devolve `[]` para quem nunca abriu escopo
-  // — não depende de entitlement, então não há 403 a tratar.
+  }, [user, retry]);
   useEffect(() => {
     if (!user) return;
     const ctrl = new AbortController();
     listarEscopos(ctrl.signal)
-      .then((r) => setEscopos(r.data))
+      .then((r) => {
+        if (!ctrl.signal.aborted) {
+          setEscopos(r.data);
+          setErroEscopos(false);
+        }
+      })
       .catch((err: unknown) => {
-        if (err instanceof Error && err.name === 'AbortError') return;
-        setErroEscopos(true);
+        if (
+          !ctrl.signal.aborted &&
+          !(err instanceof Error && err.name === "AbortError")
+        )
+          setErroEscopos(true);
       });
     return () => ctrl.abort();
-  }, [user]);
-
-  // Enquanto `/api/auth/me` não respondeu, ninguém pode concluir "não
-  // logado" — só "ainda não sabemos". Redirecionar aqui expulsaria
-  // quem TEM sessão válida, a cada carga de página.
-  if (loading) {
-    return (
-      <ContaShell eyebrow="Conta NIVAR" titulo="Perfil">
-        <p style={{ ...NT.corpo, margin: 0, color: 'var(--text-muted)' }}>Carregando…</p>
-      </ContaShell>
-    );
-  }
-
-  if (!user) {
-    return <Navigate to="/entrar" replace state={{ de: location.pathname }} />;
-  }
-
-  const ativados = new Set((produtos?.products ?? []).map((p) => p.productId));
-  const ativadoEm = new Map((produtos?.products ?? []).map((p) => [p.productId, p.activatedAt]));
+  }, [user, retry]);
 
   async function aoSair() {
     setSaindo(true);
-    await logout();
-    navigate('/br', { replace: true });
+    setErroSaida(false);
+    try {
+      await logout();
+      navigate("/br", { replace: true });
+    } catch {
+      setErroSaida(true);
+    } finally {
+      setSaindo(false);
+    }
   }
+
+  if (loading)
+    return (
+      <ContaShell
+        eyebrow="Conta NIVAR"
+        titulo="Encontrando seu lugar."
+        largura="prancha"
+      >
+        <p role="status">Verificando sua sessão…</p>
+      </ContaShell>
+    );
+  // AuthProvider clears its local user even if logout fails. Keep the failure
+  // visible here: only the server can confirm deletion of the httpOnly cookie.
+  if (!user && (saindo || erroSaida))
+    return (
+      <ContaShell
+        eyebrow="Conta NIVAR"
+        titulo="Encerrar sua sessão."
+        largura="prancha"
+      >
+        {erroSaida ? (
+          <div className="g2-account__empty" role="alert">
+            <p>
+              O servidor não confirmou o encerramento da sessão. Seu acesso pode
+              continuar ativo neste navegador.
+            </p>
+            <button
+              type="button"
+              className="conta-botao"
+              style={{ width: "auto" }}
+              onClick={aoSair}
+            >
+              Tentar sair novamente
+            </button>
+          </div>
+        ) : (
+          <p role="status">Encerrando a sessão…</p>
+        )}
+      </ContaShell>
+    );
+  if (!user)
+    return <Navigate to="/entrar" replace state={{ de: location.pathname }} />;
+  const activated = new Map(
+    (produtos?.products ?? []).map((p) => [p.productId, p.activatedAt]),
+  );
+  const retryAction = () => setRetry((n) => n + 1);
 
   return (
     <ContaShell
-      eyebrow="Conta NIVAR"
-      titulo="Perfil de plataforma"
-      subtitulo="Uma conta para todos os produtos. Cada um ativa quando você entra nele."
+      eyebrow="Seu lugar na NIVAR"
+      titulo={`Olá, ${user.name.split(" ")[0]}.`}
+      subtitulo="O que você acompanha, aprende e examina começa aqui."
       largura="prancha"
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-        {/* ─── Dados pessoais ─────────────────────────────────── */}
-        <Secao numero="01" titulo="Dados pessoais">
-          {/* Lista de pares rótulo/valor, de peso deliberadamente
-              igual: nome, email e data de cadastro são três fatos do
-              mesmo nível sobre a mesma conta, e eleger um como
-              dominante inventaria hierarquia que o dado não tem. */}
-          <dl
-            style={{
-              margin: 0,
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-              columnGap: '40px',
-              rowGap: '20px',
-            }}
-          >
-            {[
-              { rotulo: 'Nome', valor: user.name },
-              { rotulo: 'Email', valor: user.email },
-              { rotulo: 'Membro desde', valor: formatarData(user.createdAt) },
-            ].map((d) => (
-              <div key={d.rotulo} style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-                <dt style={{ ...NT.etiqueta, color: 'var(--text-muted)' }}>{d.rotulo}</dt>
-                {/* overflowWrap: e-mail é uma palavra só, sem espaço —
-                    achado na verificação desta wave: sem quebra, um
-                    endereço longo vaza da coluna da grade e cola no
-                    valor vizinho (Membro desde). Pré-existente na
-                    versão Jaguar, exposto aqui pela largura própria do
-                    Work Sans; correção de robustez, sem mudança de
-                    layout. */}
-                <dd
-                  style={{
-                    margin: 0,
-                    ...NT.corpo,
-                    fontSize: '16px',
-                    color: 'var(--text-strong)',
-                    overflowWrap: 'anywhere',
-                  }}
-                >
-                  {d.valor}
-                </dd>
-              </div>
-            ))}
-          </dl>
-
-          <div
-            style={{
-              marginTop: '22px',
-              paddingTop: '16px',
-              borderTop: 'var(--fio) solid var(--rule)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '16px',
-              flexWrap: 'wrap',
-            }}
-          >
+      <div className="g2-account__profile-grid">
+        <nav className="g2-account__profile-nav" aria-label="Seções da conta">
+          {VIEWS.map(([id, title]) => (
             <button
+              key={id}
               type="button"
-              onClick={aoSair}
-              disabled={saindo}
-              className="conta-botao"
-              style={{ width: 'auto' }}
+              aria-current={view === id ? "true" : undefined}
+              onClick={() => setView(id)}
             >
-              {saindo ? 'Saindo…' : 'Sair da conta'}
+              {title}
             </button>
-            <span style={{ ...NT.nota, color: 'var(--text-muted)' }}>
-              Alterar nome, email ou senha ainda não existe — os endpoints de edição não
-              foram construídos.
-            </span>
-          </div>
-        </Secao>
-
-        {/* ─── Assinatura ─────────────────────────────────────── */}
-        {/* NÃO INVENTAR plano nem preço. O banco tem email, senha,
-            google_id, nome e created_at — nada sobre cobrança. Estado
-            honesto de ausência — idioma `EmptyState` do sistema
-            (components/states/states.css), sem cor de acento: o
-            sistema reserva acento para sinal real, e "isto ainda não
-            existe" não é sinal, é ausência declarada. */}
-        <Secao numero="02" titulo="Assinatura">
-          <div
-            style={{
-              border: '1px dashed var(--rule-strong)',
-              borderRadius: 0,
-              padding: '20px 22px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '8px',
-            }}
-          >
-            <span style={{ ...NT.etiqueta, color: 'var(--text-faint)' }}>Ainda não existe</span>
-            <p style={{ ...NT.corpo, margin: 0, fontSize: '15px', color: 'var(--text-muted)' }}>
-              Não há sistema de pagamento nem plano de assinatura — nem aqui, nem por trás.
-              Nada é cobrado hoje, e o acesso ao que está aberto não depende disso. Esta
-              seção passa a mostrar algo quando a base do produto estiver completa.
-            </p>
-          </div>
-        </Secao>
-
-        {/* ─── Produtos ───────────────────────────────────────── */}
-        <Secao
-          numero="03"
-          titulo="Produtos"
-          nota={
-            produtos
-              ? `${ativados.size} de ${produtos.catalog.length} ativados`
-              : undefined
-          }
-        >
-          {erroProdutos ? (
-            <p style={{ ...NT.corpo, margin: 0, fontSize: '15px', color: 'var(--text-muted)' }}>
-              Não foi possível carregar seus produtos agora. Recarregue a página.
-            </p>
-          ) : !produtos ? (
-            <p style={{ ...NT.corpo, margin: 0, fontSize: '15px', color: 'var(--text-muted)' }}>
-              Carregando produtos…
-            </p>
-          ) : (
-            <ul
-              style={{
-                listStyle: 'none',
-                margin: 0,
-                padding: 0,
-                borderTop: 'var(--fio) solid var(--rule)',
-              }}
-            >
-              {produtos.catalog.map((id) => {
-                const ativo = ativados.has(id);
-                const destino = DESTINOS_BR.find((d) => d.id === id);
-                const rota = destino?.status === 'disponivel' ? destino.rota : null;
-                return (
-                  <li
-                    key={id}
-                    style={{
-                      borderBottom: 'var(--fio) solid var(--rule)',
-                      padding: '16px 0',
-                      display: 'flex',
-                      alignItems: 'baseline',
-                      justifyContent: 'space-between',
-                      gap: '20px',
-                      flexWrap: 'wrap',
-                    }}
-                  >
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                      <span style={{ ...NT.titulo2, color: 'var(--text-strong)' }}>
-                        {rotularProduto(id)}
-                      </span>
-                      <span style={{ ...NT.nota, color: 'var(--text-muted)' }}>
-                        {ativo
-                          ? `Ativado em ${formatarData(ativadoEm.get(id) ?? '')}`
-                          : 'Ativa quando você entrar pela primeira vez.'}
-                      </span>
+          ))}
+          <p>
+            Uma conta de plataforma.
+            <br />O mesmo acesso em cada produto.
+          </p>
+        </nav>
+        <div>
+          {view === "overview" && (
+            <>
+              <section className="g2-account__profile-section">
+                <h2>Sua identidade</h2>
+                <Facts
+                  items={[
+                    ["Nome", user.name],
+                    ["Email", user.email],
+                    ["Membro desde", dateFor(user.createdAt)],
+                    ["Última atualização", dateFor(user.updatedAt)],
+                  ]}
+                />
+                <p>
+                  Estes são os dados da sua conta. A edição de nome e email
+                  ainda não está disponível.
+                </p>
+              </section>
+              <section className="g2-account__profile-section">
+                <h2>Continue a investigação.</h2>
+                <ul className="g2-account__product-list">
+                  <li>
+                    <div>
+                      <strong>Acompanhar uma análise</strong>
+                      <p>Seus arquivos enviados, escopos e pareceres.</p>
                     </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                      {/* Sem caixa: idioma `RecentMarker` do sistema —
-                          texto em versalete na cor de acento, nunca
-                          bolinha nem badge preenchido. */}
-                      {ativo ? (
-                        <span style={{ ...NT.etiqueta, color: 'var(--accent-house)' }}>Ativado</span>
-                      ) : (
-                        <span style={{ ...NT.etiqueta, color: 'var(--text-faint)' }}>
-                          Não ativado
-                        </span>
-                      )}
-                      {rota && (
-                        <Link className="conta-link" to={rota}>
-                          Abrir
-                        </Link>
-                      )}
-                    </div>
+                    <button
+                      type="button"
+                      className="conta-botao"
+                      style={{ width: "auto" }}
+                      onClick={() => setView("requests")}
+                    >
+                      Ver pedidos
+                    </button>
                   </li>
+                  <li>
+                    <div>
+                      <strong>Explorar seus produtos</strong>
+                      <p>
+                        {produtos
+                          ? `${activated.size} de ${produtos.catalog.length} produtos ativados.`
+                          : "O catálogo aparece assim que a consulta terminar."}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      className="conta-botao"
+                      style={{ width: "auto" }}
+                      onClick={() => setView("products")}
+                    >
+                      Ver produtos
+                    </button>
+                  </li>
+                </ul>
+              </section>
+            </>
+          )}
+          {view === "products" && (
+            <section className="g2-account__profile-section">
+              <h2>Seus produtos</h2>
+              <p>
+                Cada produto é ativado quando você o acessa. A lista abaixo
+                acompanha o catálogo da sua conta.
+              </p>
+              {erroProdutos ? (
+                <ReadError onRetry={retryAction} />
+              ) : !produtos ? (
+                <p role="status">Consultando seus produtos…</p>
+              ) : (
+                <ul className="g2-account__product-list">
+                  {produtos.catalog.map((id) => {
+                    const destino = DESTINOS_BR.find((d) => d.id === id);
+                    const at = activated.get(id);
+                    return (
+                      <li key={id}>
+                        <div>
+                          <strong>{titleFor(id)}</strong>
+                          <span className="g2-account__state">
+                            {at ? "ATIVADO" : "AINDA NÃO ATIVADO"}
+                          </span>
+                          <p>
+                            {at
+                              ? `Desde ${dateFor(at)}`
+                              : "Ativa no primeiro acesso."}
+                          </p>
+                        </div>
+                        {destino?.status === "disponivel" && destino.rota ? (
+                          <Link className="conta-link" to={destino.rota}>
+                            Abrir <ArrowUpRight size={15} />
+                          </Link>
+                        ) : (
+                          <span className="g2-account__state">
+                            Acesso em preparação
+                          </span>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </section>
+          )}
+          {view === "requests" && (
+            <>
+              <section className="g2-account__profile-section">
+                <h2>Análises e pedidos</h2>
+                <p>
+                  Cada envio conserva seu protocolo. Quando houver um parecer
+                  disponível, o documento aparece junto da solicitação.
+                </p>
+              </section>
+              {FLUXOS_SUBMISSAO.map((flow) => {
+                const items = submissoesPor[flow.productId] ?? null;
+                return (
+                  <section
+                    className="g2-account__profile-section"
+                    key={flow.productId}
+                  >
+                    <h2>{titleFor(flow.productId)}</h2>
+                    {!flow.aoVivo ? (
+                      <div className="g2-account__empty">
+                        O envio deste produto ainda não está aberto.
+                      </div>
+                    ) : erroSubmissoesPor[flow.productId] ? (
+                      <ReadError onRetry={retryAction} />
+                    ) : items === null ? (
+                      <p role="status">Consultando envios…</p>
+                    ) : items.length === 0 ? (
+                      <div className="g2-account__empty">
+                        {flow.copy.vazioCorpo}
+                        <br />
+                        <Link className="conta-link" to={flow.rotaEnvio}>
+                          {flow.copy.vazioCta} <ArrowUpRight size={13} />
+                        </Link>
+                      </div>
+                    ) : (
+                      items.map((item) => (
+                        <Submission
+                          key={item.id}
+                          item={item}
+                          reading={flow.copy.emLeitura}
+                        />
+                      ))
+                    )}
+                  </section>
                 );
               })}
-            </ul>
+              <section className="g2-account__profile-section">
+                <h2>Diagnóstico Energético</h2>
+                {erroEscopos ? (
+                  <ReadError onRetry={retryAction} />
+                ) : escopos === null ? (
+                  <p role="status">Consultando escopos…</p>
+                ) : escopos.length === 0 ? (
+                  <div className="g2-account__empty">
+                    Nenhum escopo aberto por esta conta. Conte o que acontece na
+                    sua operação para começar.
+                    <br />
+                    <Link className="conta-link" to="/diagnostico-energetico">
+                      Abrir um diagnóstico <ArrowUpRight size={13} />
+                    </Link>
+                  </div>
+                ) : (
+                  escopos.map((scope) => (
+                    <article className="g2-account__request" key={scope.id}>
+                      <div className="g2-account__request-head">
+                        <h3>{scope.sector}</h3>
+                        <span>{dateFor(scope.createdAt)}</span>
+                      </div>
+                      <Facts
+                        items={[
+                          ["Protocolo", scope.id],
+                          ["Consumo mensal", scope.monthlyConsumptionBand],
+                          [
+                            "Modalidade",
+                            scope.tariffModality ?? "Não informada",
+                          ],
+                        ]}
+                      />
+                      <p>{scope.concern}</p>
+                      <Link className="conta-link" to="/diagnostico-energetico">
+                        Abrir acompanhamento <ArrowUpRight size={15} />
+                      </Link>
+                    </article>
+                  ))
+                )}
+              </section>
+            </>
           )}
-
-          <p
-            style={{
-              ...NT.nota,
-              marginTop: '16px',
-              marginBottom: 0,
-              color: 'var(--text-muted)',
-            }}
-          >
-            O catálogo acima vem do próprio backend — a lista aqui nunca diverge da lista
-            que o servidor reconhece.
-          </p>
-        </Secao>
-
-        {/* ─── Fluxos de submissão, um por produto ─────────────── */}
-        {/* Status dos produtos com fluxo de envio — o parecer chega
-            AQUI, no perfil, com aviso por email. Uma seção por fluxo do
-            REGISTRO (src/lib/submissoes), com o número DERIVADO da
-            posição depois das três seções fixas — era `04` digitado, o
-            mesmo defeito de numeração que a FamiliaPage tinha. Fluxo
-            sem backend no ar declara o estado futuro, sem fetch. Sem
-            semáforo: texto, fio e id em mono. */}
-        {FLUXOS_SUBMISSAO.map((fluxo, i) => {
-          const numero = String(4 + i).padStart(2, '0');
-          const submissoes = submissoesPor[fluxo.productId] ?? null;
-          const erroSubmissoes = erroSubmissoesPor[fluxo.productId] ?? false;
-          return (
-            <Secao
-              key={fluxo.productId}
-              numero={numero}
-              titulo={rotularProduto(fluxo.productId)}
-              nota={
-                !fluxo.aoVivo
-                  ? 'Em construção'
-                  : erroSubmissoes
-                    ? undefined
-                    : submissoes === null
-                      ? undefined
-                      : submissoes.length === 0
-                        ? 'Nada enviado'
-                        : `${ROTULO_STATUS[submissoes[0].status]} · ${submissoes.length} ${submissoes.length === 1 ? 'envio' : 'envios'}`
-              }
-            >
-              {!fluxo.aoVivo ? (
-                /* Fluxo declarado, ainda não aberto — contorno tracejado,
-                   o registro de "ainda não existe" do sistema. Nada é
-                   consultado e nada finge estar no ar. */
-                <div
-                  style={{
-                    border: '1px dashed var(--rule-strong)',
-                    borderRadius: 0,
-                    padding: '20px 22px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '10px',
-                  }}
-                >
-                  <span style={{ ...NT.etiqueta, color: 'var(--text-faint)' }}>
-                    Fluxo ainda não aberto
-                  </span>
-                  <p
-                    style={{ ...NT.corpo, margin: 0, fontSize: '15px', color: 'var(--text-muted)' }}
+          {view === "security" && (
+            <>
+              <section className="g2-account__profile-section">
+                <h2>Acesso e segurança</h2>
+                <Facts
+                  items={[
+                    [
+                      "Método de acesso",
+                      user.authMethods
+                        .map((m) => (m === "password" ? "Email e senha" : m))
+                        .join(", "),
+                    ],
+                    ["Email da conta", user.email],
+                  ]}
+                />
+                <p>
+                  Sua sessão permanece ativa neste navegador até você sair ou
+                  ela expirar. Alteração e recuperação de senha ainda não estão
+                  disponíveis.
+                </p>
+                <div className="g2-account__logout">
+                  <button
+                    type="button"
+                    onClick={aoSair}
+                    disabled={saindo}
+                    className="conta-botao"
                   >
-                    O envio deste produto ainda não abriu. Quando abrir, os envios e o parecer
-                    aparecem nesta seção, com aviso por email.
-                  </p>
+                    <LogOut size={14} style={{ marginRight: 9 }} />
+                    {saindo ? "Saindo…" : "Sair da conta"}
+                  </button>
+                  <p>Encerra a sessão deste navegador.</p>
                 </div>
-              ) : erroSubmissoes ? (
-                <p style={{ ...NT.corpo, margin: 0, fontSize: '15px', color: 'var(--text-muted)' }}>
-                  Não foi possível carregar os envios agora. Recarregue a página.
-                </p>
-              ) : submissoes === null ? (
-                <p style={{ ...NT.corpo, margin: 0, fontSize: '15px', color: 'var(--text-muted)' }}>
-                  Carregando envios…
-                </p>
-              ) : (
-                <StatusSubmissao submissao={submissoes[0] ?? null} fluxo={fluxo} />
-              )}
-            </Secao>
-          );
-        })}
-
-        {/* ─── Diagnóstico Energético ──────────────────────────── */}
-        {/* Produto de ESCOPO, não de arquivo: não há `status` nem
-            entrega para ler, então a seção conta o que existe — os
-            escopos abertos — e aponta para onde a conversa acontece.
-            O número segue os fluxos em vez de ser digitado. */}
-        <Secao
-          numero={String(4 + FLUXOS_SUBMISSAO.length).padStart(2, '0')}
-          titulo={rotularProduto(PRODUTO_DIAGNOSTICO)}
-          nota={
-            erroEscopos || escopos === null
-              ? undefined
-              : escopos.length === 0
-                ? 'Nada aberto'
-                : `${escopos.length} ${escopos.length === 1 ? 'escopo' : 'escopos'}`
-          }
-        >
-          {erroEscopos ? (
-            <p style={{ ...NT.corpo, margin: 0, fontSize: '15px', color: 'var(--text-muted)' }}>
-              Não foi possível carregar os escopos agora. Recarregue a página.
-            </p>
-          ) : escopos === null ? (
-            <p style={{ ...NT.corpo, margin: 0, fontSize: '15px', color: 'var(--text-muted)' }}>
-              Carregando escopos…
-            </p>
-          ) : (
-            <StatusDiagnostico escopo={escopos[0] ?? null} />
+              </section>
+              <section className="g2-account__profile-section">
+                <h2>Assinatura</h2>
+                <div className="g2-account__empty">
+                  Não há plano de assinatura ou cobrança na plataforma neste
+                  momento. Seu acesso aos produtos abertos não depende de
+                  pagamento.
+                </div>
+              </section>
+            </>
           )}
-        </Secao>
+        </div>
       </div>
     </ContaShell>
   );
 }
-
-// ─── Peças da prancha ─────────────────────────────────────────────
-
-/** Nome com a extensão em peso 500 — idioma do DownloadLink do sistema
- *  ("nome e extensão em mono"). Tudo num span só: o gap do flex fica
- *  entre o glifo e o nome, nunca dentro do nome. */
-function nomeComExtensao(nome: string): React.ReactNode {
-  const i = nome.lastIndexOf('.');
-  if (i <= 0) return nome;
+function Facts({ items }: { items: [string, ReactNode][] }) {
   return (
-    <>
-      {nome.slice(0, i)}
-      <b style={{ fontWeight: 500 }}>{nome.slice(i)}</b>
-    </>
+    <dl className="g2-account__facts">
+      {items.map(([label, value]) => (
+        <div key={label}>
+          <dt>{label}</dt>
+          <dd>{value}</dd>
+        </div>
+      ))}
+    </dl>
   );
 }
-
-/** Tamanho legível, vírgula decimal como o sistema manda. */
-function formatarTamanho(bytes: number): string {
-  if (bytes < 1024) return `${bytes} B`;
-  const kb = bytes / 1024;
-  if (kb < 1024) return `${kb.toLocaleString('pt-BR', { maximumFractionDigits: 0 })} KB`;
-  const mb = kb / 1024;
-  return `${mb.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} MB`;
-}
-
-function formatarDataHora(iso: string): string {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return '—';
-  return d.toLocaleString('pt-BR', {
-    day: '2-digit',
-    month: 'long',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-}
-
-/** Os três estados de um fluxo de submissão no perfil. Sem verde de
- *  sucesso nem amarelo de espera: o estado é TEXTO em etiqueta, e o
- *  único sinal visual é o fio — `--rule-strong` em repouso,
- *  `--accent-house` quando há parecer para abrir. Idioma do
- *  `DataFreshness` do sistema ("frescor de dado não é semáforo").
- *  A copy vem do REGISTRO do fluxo — explícita por produto. */
-function StatusDiagnostico({ escopo }: { escopo: SubmissaoDiagnostico | null }) {
-  if (escopo === null) {
-    return (
-      <div
-        style={{
-          border: '1px dashed var(--rule-strong)',
-          borderRadius: 0,
-          padding: '20px 22px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-        }}
-      >
-        <span style={{ ...NT.etiqueta, color: 'var(--text-faint)' }}>Nenhum escopo aberto</span>
-        <p style={{ ...NT.corpo, margin: 0, fontSize: '15px', color: 'var(--text-muted)' }}>
-          O diagnóstico começa por quatro perguntas sobre a operação. A conversa com quem apura
-          acontece na própria página do produto. Nada foi aberto por esta conta ainda.
-        </p>
-        <Link
-          className="conta-link"
-          to="/diagnostico-energetico"
-          style={{ alignSelf: 'flex-start' }}
-        >
-          Abrir um diagnóstico
-        </Link>
-      </div>
-    );
-  }
-
-  const linhas: Array<{ k: string; v: React.ReactNode }> = [
-    {
-      k: 'Protocolo',
-      v: (
-        <span
-          style={{
-            fontFamily: 'var(--font-data)',
-            fontWeight: 500,
-            fontSize: 'var(--ts-dado-4)',
-            fontVariantNumeric: 'tabular-nums lining-nums',
-            color: 'var(--text-strong)',
-            overflowWrap: 'anywhere',
-          }}
-        >
-          {escopo.id}
-        </span>
-      ),
-    },
-    { k: 'Setor', v: escopo.sector },
-    { k: 'Consumo', v: escopo.monthlyConsumptionBand },
-    // `null` é o "não sei dizer" que o backend gravou.
-    { k: 'Modalidade', v: escopo.tariffModality ?? 'não informada' },
-    { k: 'Aberto em', v: formatarDataHora(escopo.createdAt) },
-  ];
-
+function ReadError({ onRetry }: { onRetry: () => void }) {
   return (
-    /* Fio SEMPRE em `--rule-strong`: o backend deste produto não tem
-       estado de "pronto" para o acento da casa marcar. Inventar um
-       seria semáforo com outro nome. */
-    <div
-      style={{
-        borderLeft: '2px solid var(--rule-strong)',
-        paddingLeft: '16px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '14px',
-      }}
-    >
-      {/* // gridalpha-detect-disable-next-line equal-weight-grid — par rótulo/valor no registro do DataTable; não há célula focal numa ficha */}
-      <dl
-        style={{
-          margin: 0,
-          display: 'grid',
-          gridTemplateColumns: 'auto minmax(0, 1fr)',
-          gap: '8px 20px',
-          alignItems: 'baseline',
-        }}
+    <div className="g2-account__empty" role="alert">
+      Não foi possível consultar estes dados. A ausência de resposta não
+      significa que não há registros.
+      <br />
+      <button
+        className="conta-botao"
+        type="button"
+        style={{ width: "auto", marginTop: 16 }}
+        onClick={onRetry}
       >
-        {linhas.map((l) => (
-          <div key={l.k} style={{ display: 'contents' }}>
-            <dt style={{ ...NT.etiqueta, color: 'var(--text-faint)' }}>{l.k}</dt>
-            <dd style={{ margin: 0, ...NT.corpo, fontSize: '15px', color: 'var(--text-body)' }}>
-              {l.v}
-            </dd>
-          </div>
-        ))}
-      </dl>
-      <Link className="conta-link" to="/diagnostico-energetico" style={{ alignSelf: 'flex-start' }}>
-        Abrir o acompanhamento
-      </Link>
+        Tentar novamente
+      </button>
     </div>
   );
 }
-
-function StatusSubmissao({
-  submissao,
-  fluxo,
-}: {
-  submissao: Submissao | null;
-  fluxo: FluxoSubmissao;
-}) {
-  if (submissao === null) {
-    return (
-      // Estado vazio DECLARADO — mesmo contorno tracejado das seções
-      // "ainda não existe", com a porta de entrada real.
-      <div
-        style={{
-          border: '1px dashed var(--rule-strong)',
-          borderRadius: 0,
-          padding: '20px 22px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-        }}
-      >
-        <span style={{ ...NT.etiqueta, color: 'var(--text-faint)' }}>
-          {fluxo.copy.vazioEtiqueta}
-        </span>
-        <p style={{ ...NT.corpo, margin: 0, fontSize: '15px', color: 'var(--text-muted)' }}>
-          {fluxo.copy.vazioCorpo}
-        </p>
-        <Link className="conta-link" to={fluxo.rotaEnvio} style={{ alignSelf: 'flex-start' }}>
-          {fluxo.copy.vazioCta}
-        </Link>
-      </div>
-    );
-  }
-
-  const pronto = submissao.status === 'ready' && submissao.deliverable !== null;
-  const linhas: Array<{ k: string; v: React.ReactNode }> = [
-    {
-      k: 'Protocolo',
-      v: (
-        <span
-          style={{
-            fontFamily: 'var(--font-data)',
-            fontWeight: 500,
-            fontSize: 'var(--ts-dado-4)',
-            fontVariantNumeric: 'tabular-nums lining-nums',
-            color: 'var(--text-strong)',
-          }}
-        >
-          {submissao.id}
-        </span>
-      ),
-    },
-    { k: 'Arquivo', v: submissao.source.filename },
-    { k: 'Enviado em', v: formatarDataHora(submissao.createdAt) },
-    {
-      k: pronto ? 'Parecer em' : 'Situação',
-      v: pronto
-        ? submissao.deliveredAt
-          ? formatarDataHora(submissao.deliveredAt)
-          : '—'
-        : fluxo.copy.emLeitura,
-    },
-  ];
-
+function Submission({ item, reading }: { item: Submissao; reading: string }) {
+  const ready = item.status === "ready" && item.deliverable !== null;
   return (
-    <div
-      style={{
-        borderLeft: `2px solid ${pronto ? 'var(--accent-house)' : 'var(--rule-strong)'}`,
-        paddingLeft: '16px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '14px',
-      }}
-    >
-      {/* // gridalpha-detect-disable-next-line equal-weight-grid — par rótulo/valor no registro do DataTable; não há célula focal numa ficha */}
-      <dl
-        style={{
-          margin: 0,
-          display: 'grid',
-          gridTemplateColumns: 'auto minmax(0, 1fr)',
-          gap: '8px 20px',
-          alignItems: 'baseline',
-        }}
-      >
-        {linhas.map((l) => (
-          <div key={l.k} style={{ display: 'contents' }}>
-            <dt style={{ ...NT.etiqueta, color: 'var(--text-faint)' }}>{l.k}</dt>
-            <dd style={{ margin: 0, ...NT.corpo, color: 'var(--text-body)', overflowWrap: 'anywhere' }}>
-              {l.v}
-            </dd>
-          </div>
-        ))}
-      </dl>
-
-      {pronto && submissao.deliverable ? (
-        // O parecer é um documento que já existe — DownloadLink do
-        // sistema, não botão: "download é link, não botão". O href é o
-        // `downloadUrl` RELATIVO do backend; o cookie de sessão viaja
-        // na navegação (mesma origem) e o servidor responde
-        // `Content-Disposition: attachment` — o browser baixa, sem
-        // fetch manual e sem blob.
-        <a
-          className="conta-link"
-          href={submissao.deliverable.downloadUrl}
-          download={submissao.deliverable.filename}
-          style={{
-            alignSelf: 'flex-start',
-            display: 'inline-flex',
-            alignItems: 'baseline',
-            gap: '10px',
-            fontFamily: 'var(--font-data)',
-            fontSize: '12.5px',
-            letterSpacing: '.01em',
-          }}
-        >
-          <span aria-hidden="true" style={{ color: 'var(--text-faint)' }}>
-            ↓
-          </span>
-          {/* Nome + extensão num span só: o gap do flex é entre o glifo
-              e o nome, nunca dentro do nome do arquivo. */}
-          <span>{nomeComExtensao(submissao.deliverable.filename)}</span>
-          {/* .nv-baixar__meta do sistema — mono versalete, tabular. */}
-          <span
-            style={{
-              fontFamily: 'var(--font-data)',
-              fontWeight: 400,
-              fontSize: '10px',
-              letterSpacing: '.08em',
-              textTransform: 'uppercase',
-              color: 'var(--text-faint)',
-              fontVariantNumeric: 'tabular-nums',
-              whiteSpace: 'nowrap',
-            }}
+    <article className="g2-account__request">
+      <div className="g2-account__request-head">
+        <h3>{item.source.filename}</h3>
+        <span>{ready ? "PARECER PRONTO" : "EM LEITURA"}</span>
+      </div>
+      <Facts
+        items={[
+          ["Protocolo", item.id],
+          ["Enviado em", dateFor(item.createdAt)],
+          [
+            "SHA-256 da fonte",
+            <span style={{ fontFamily: "var(--g2-mono)", fontSize: 10 }}>
+              {item.source.sha256 || "Não informado"}
+            </span>,
+          ],
+        ]}
+      />
+      {ready && item.deliverable ? (
+        <>
+          <p>
+            {item.deliveredAt
+              ? `Parecer disponibilizado em ${dateFor(item.deliveredAt)}.`
+              : "Parecer disponível; data de entrega não informada."}
+          </p>
+          <a
+            className="conta-link"
+            href={item.deliverable.downloadUrl}
+            download={item.deliverable.filename}
           >
-            {formatarTamanho(submissao.deliverable.sizeBytes)}
-          </span>
-        </a>
+            <Download size={15} /> {item.deliverable.filename}{" "}
+            <span>
+              ({Math.max(1, Math.round(item.deliverable.sizeBytes / 1024))} KB)
+            </span>
+          </a>
+        </>
       ) : (
-        <span style={{ ...NT.nota, color: 'var(--text-muted)' }}>
-          Nenhuma ação necessária nesta etapa.
-        </span>
+        <p>{reading}</p>
       )}
-    </div>
+    </article>
   );
 }
-
-/** Cabeçalho de seção — número em mono no acento da casa, título em
- *  Zilla Slab, fio e nota alinhados na mesma linha de base. Mesmo
- *  idioma do `SectionHeader` do sistema (components/structure/
- *  structure.css, `.nv-sech`), reproduzido inline pela mesma razão
- *  que o restante desta tela: o CSS de componente do NIVAR ainda não
- *  chegou a `src/design/nivar/`, só os tokens de variável. */
-function Secao({
-  numero,
-  titulo,
-  nota,
-  children,
-}: {
-  numero: string;
-  titulo: string;
-  nota?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      {/* // gridalpha-detect-disable-next-line equal-weight-grid — número · título · fio · nota são pesos deliberadamente iguais, idioma SectionHeader do sistema */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'auto auto 1fr auto',
-          alignItems: 'baseline',
-          gap: '14px',
-          paddingBottom: '10px',
-          borderBottom: 'var(--fio) solid var(--rule-strong)',
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-data)',
-            fontWeight: 500,
-            fontSize: '13px',
-            lineHeight: 1.2,
-            fontVariantNumeric: 'tabular-nums',
-            color: 'var(--accent-house)',
-          }}
-        >
-          {numero}
-        </span>
-        <h2 style={{ ...NT.titulo2, margin: 0, color: 'var(--text-strong)' }}>{titulo}</h2>
-        <span
-          aria-hidden="true"
-          style={{ height: '1px', background: 'var(--rule)', transform: 'translateY(-4px)' }}
-        />
-        {nota && (
-          <span
-            style={{
-              fontFamily: 'var(--font-data)',
-              fontWeight: 500,
-              fontSize: '10.5px',
-              lineHeight: 1.5,
-              letterSpacing: '.09em',
-              textTransform: 'uppercase',
-              color: 'var(--text-faint)',
-              textAlign: 'right',
-            }}
-          >
-            {nota}
-          </span>
-        )}
-      </div>
-      {children}
-    </section>
-  );
-}
-
 export default PerfilPlataforma;

@@ -15,7 +15,7 @@
 
 import type { CSSProperties } from 'react';
 
-import { CT } from './consoleChrome';
+import { CT } from './operatorViewUtils';
 import { Tabela, type ColunaTabela } from '../../components/nivar/tabela';
 import { CabecalhoDoPedido, CampoInerte, LinhaDeTokens, Pautado, Secao } from './pecasDoPedido';
 import { LIVRO_RAZAO_MOCK, NATUREZAS_SOLAR, type LinhaProposta, type PedidoNaFila } from '../../lib/operador/mock';

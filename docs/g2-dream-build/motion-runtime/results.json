@@ -1,0 +1,298 @@
+{
+  "date": "2026-09-11T08:34:34.478Z",
+  "scope": "Native browser-only QA, isolated anonymous context; no backend requests",
+  "checks": [
+    {
+      "label": "All six chapters render during continuous native playback",
+      "pass": true,
+      "detail": [
+        [
+          164,
+          "medir"
+        ],
+        [
+          1631,
+          "medir"
+        ],
+        [
+          3104,
+          "organizar"
+        ],
+        [
+          4572,
+          "organizar"
+        ],
+        [
+          6070,
+          "observar"
+        ],
+        [
+          7554,
+          "observar"
+        ],
+        [
+          9055,
+          "questionar"
+        ],
+        [
+          10563,
+          "questionar"
+        ],
+        [
+          12061,
+          "transmitir"
+        ],
+        [
+          13562,
+          "transmitir"
+        ],
+        [
+          15051,
+          "procurar"
+        ],
+        [
+          16555,
+          "procurar"
+        ],
+        [
+          18065,
+          "medir"
+        ],
+        [
+          19616,
+          "medir"
+        ]
+      ]
+    },
+    {
+      "label": "Film returns to measurement after the 18-second cycle",
+      "pass": true,
+      "detail": {
+        "file": "frame-13.png",
+        "elapsedMs": 19616,
+        "chapter": "medir",
+        "playing": "true",
+        "time": "01 / 18 s",
+        "hidden": false
+      }
+    },
+    {
+      "label": "Playback remained visible and running through recorded cycle",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "label": "Pause holds the actual timeline",
+      "pass": true,
+      "detail": {
+        "pauseBefore": {
+          "chapter": "medir",
+          "playing": "false",
+          "time": "01 / 18 s",
+          "hidden": false
+        },
+        "pauseAfter": {
+          "chapter": "medir",
+          "playing": "false",
+          "time": "01 / 18 s",
+          "hidden": false
+        }
+      }
+    },
+    {
+      "label": "Manual chapter selection pauses persistently",
+      "pass": true,
+      "detail": {
+        "chapter": "questionar",
+        "playing": "false",
+        "time": "09 / 18 s",
+        "hidden": false
+      }
+    },
+    {
+      "label": "Offscreen film stops advancing",
+      "pass": true,
+      "detail": {
+        "offBefore": {
+          "chapter": "questionar",
+          "playing": "false",
+          "time": "09 / 18 s",
+          "hidden": false
+        },
+        "offAfter": {
+          "chapter": "questionar",
+          "playing": "false",
+          "time": "09 / 18 s",
+          "hidden": false
+        }
+      }
+    },
+    {
+      "label": "Hidden document stops advancing",
+      "pass": true,
+      "detail": {
+        "hiddenBefore": {
+          "chapter": "questionar",
+          "playing": "false",
+          "time": "09 / 18 s",
+          "hidden": true
+        },
+        "hiddenAfter": {
+          "chapter": "questionar",
+          "playing": "false",
+          "time": "09 / 18 s",
+          "hidden": true
+        }
+      }
+    },
+    {
+      "label": "Reduced motion opens on a still first frame",
+      "pass": true,
+      "detail": {
+        "reducedBefore": {
+          "chapter": "medir",
+          "playing": "false",
+          "time": "00 / 18 s",
+          "hidden": false
+        },
+        "reducedAfter": {
+          "chapter": "medir",
+          "playing": "false",
+          "time": "00 / 18 s",
+          "hidden": false
+        }
+      }
+    },
+    {
+      "label": "Reduced-motion mobile chapters and restart remain available",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 388,
+        "chapter": "procurar",
+        "playing": "false",
+        "restartVisible": true
+      }
+    },
+    {
+      "label": "No JavaScript runtime exceptions",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "frames": [
+    {
+      "file": "frame-00.png",
+      "elapsedMs": 164,
+      "chapter": "medir",
+      "playing": "true",
+      "time": "00 / 18 s",
+      "hidden": false
+    },
+    {
+      "file": "frame-01.png",
+      "elapsedMs": 1631,
+      "chapter": "medir",
+      "playing": "true",
+      "time": "01 / 18 s",
+      "hidden": false
+    },
+    {
+      "file": "frame-02.png",
+      "elapsedMs": 3104,
+      "chapter": "organizar",
+      "playing": "true",
+      "time": "03 / 18 s",
+      "hidden": false
+    },
+    {
+      "file": "frame-03.png",
+      "elapsedMs": 4572,
+      "chapter": "organizar",
+      "playing": "true",
+      "time": "04 / 18 s",
+      "hidden": false
+    },
+    {
+      "file": "frame-04.png",
+      "elapsedMs": 6070,
+      "chapter": "observar",
+      "playing": "true",
+      "time": "06 / 18 s",
+      "hidden": false
+    },
+    {
+      "file": "frame-05.png",
+      "elapsedMs": 7554,
+      "chapter": "observar",
+      "playing": "true",
+      "time": "07 / 18 s",
+      "hidden": false
+    },
+    {
+      "file": "frame-06.png",
+      "elapsedMs": 9055,
+      "chapter": "questionar",
+      "playing": "true",
+      "time": "09 / 18 s",
+      "hidden": false
+    },
+    {
+      "file": "frame-07.png",
+      "elapsedMs": 10563,
+      "chapter": "questionar",
+      "playing": "true",
+      "time": "10 / 18 s",
+      "hidden": false
+    },
+    {
+      "file": "frame-08.png",
+      "elapsedMs": 12061,
+      "chapter": "transmitir",
+      "playing": "true",
+      "time": "12 / 18 s",
+      "hidden": false
+    },
+    {
+      "file": "frame-09.png",
+      "elapsedMs": 13562,
+      "chapter": "transmitir",
+      "playing": "true",
+      "time": "13 / 18 s",
+      "hidden": false
+    },
+    {
+      "file": "frame-10.png",
+      "elapsedMs": 15051,
+      "chapter": "procurar",
+      "playing": "true",
+      "time": "15 / 18 s",
+      "hidden": false
+    },
+    {
+      "file": "frame-11.png",
+      "elapsedMs": 16555,
+      "chapter": "procurar",
+      "playing": "true",
+      "time": "16 / 18 s",
+      "hidden": false
+    },
+    {
+      "file": "frame-12.png",
+      "elapsedMs": 18065,
+      "chapter": "medir",
+      "playing": "true",
+      "time": "00 / 18 s",
+      "hidden": false
+    },
+    {
+      "file": "frame-13.png",
+      "elapsedMs": 19616,
+      "chapter": "medir",
+      "playing": "true",
+      "time": "01 / 18 s",
+      "hidden": false
+    }
+  ],
+  "exceptions": []
+}

@@ -23,7 +23,7 @@
 
 import type { CSSProperties, ReactNode } from 'react';
 
-import { CT } from './consoleChrome';
+import { CT } from './operatorViewUtils';
 import { Figura, PATRONO_DA_FAMILIA } from '../../components/nivar/patrono';
 import { Frescor } from '../../components/nivar/tabela';
 import { familiaPorId } from '../../lib/data/br-familias';

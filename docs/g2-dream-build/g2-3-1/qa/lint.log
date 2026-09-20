@@ -1,0 +1,1189 @@
+Final repository-wide ESLint diagnostics, rendered from full-lint.json.
+This is the final run after fixing the Hero effect; scoped lint passes separately.
+
+docs\g2-dream-build\g2-2\motion-research\threeui-src__shaders__portal-field__PortalFieldCollection.tsx
+  66:22 error @typescript-eslint/no-unused-vars: '_variant' is assigned a value but never used.
+  71:22 error @typescript-eslint/no-unused-vars: '_variant' is assigned a value but never used.
+  76:22 error @typescript-eslint/no-unused-vars: '_variant' is assigned a value but never used.
+  81:22 error @typescript-eslint/no-unused-vars: '_variant' is assigned a value but never used.
+  85:20 error @typescript-eslint/no-unused-vars: '_variant' is assigned a value but never used.
+
+src\components\FalconLogo.tsx
+  7:49 error @typescript-eslint/no-unused-vars: '_collapsed' is defined but never used.
+  8:28 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+
+src\components\GlobalShell.tsx
+  241:1 error @typescript-eslint/ban-ts-comment: Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free.
+  242:10 error @typescript-eslint/no-unused-vars: 'PulsingDotGrid' is defined but never used.
+  258:1 error @typescript-eslint/ban-ts-comment: Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free.
+  259:10 error @typescript-eslint/no-unused-vars: 'PJMTerritory' is defined but never used.
+  337:1 error @typescript-eslint/ban-ts-comment: Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free.
+  338:10 error @typescript-eslint/no-unused-vars: 'LMPScorecard' is defined but never used.
+  455:47 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  457:34 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  458:34 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  481:30 error react-hooks/static-components: Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\GlobalShell.tsx:481:30
+  479 |           <XAxis dataKey="label" tick={{ fontFamily: F.mono, fontSize: 11, fill: 'rgba(229,231,235,0.55)' }} axisLine={{ stroke: 'rgba(229,231,235,0.12)' }} tickLine={false} interval={5} />
+  480 |           <YAxis tick={{ fontFamily: F.mono, fontSize: 11, fill: 'rgba(229,231,235,0.55)' }} axisLine={false} tickLine={false} width={40} domain={['auto', 'auto']} />
+> 481 |           <Tooltip content={<CustomTooltip />} cursor={{ stroke: C.electricBlue, strokeWidth: 1, strokeDasharray: '3 3' }} />
+      |                              ^^^^^^^^^^^^^ This component is created during render
+  482 |           <Area type="monotone" dataKey="cap" fill="url(#gapGrad)" stroke="none" isAnimationActive={false} legendType="none" />
+  483 |           <Line type="monotone" dataKey="cap"  stroke={C.electricBlue}   strokeWidth={2.5} dot={false} activeDot={{ r: 5, fill: C.electricBlue,   stroke: C.bgElevated, strokeWidth: 2 }} isAnimationActive={false} name="CAPACITY" />
+  484 |           <Line type="monotone" dataKey="load" stroke={C.textSecondary} strokeWidth={2.5} dot={false} activeDot={{ r: 5, fill: C.textSecondary, stroke: C.bgElevated, strokeWidth: 2 }} isAnimationActive={false} name="LOAD" />
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\GlobalShell.tsx:455:25
+  453 |     label: i === 0 ? '12A' : i === 6 ? '6A' : i === 12 ? '12P' : i === 18 ? '6P' : i === 23 ? '11P' : String(i),
+  454 |   }));
+> 455 |   const CustomTooltip = ({ active, payload }: any) => {
+      |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 456 |     if (!active || !payload?.length) return null;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 457 |     const cap = payload.find((p: any) => p.dataKey === 'cap')?.value;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 466 |     );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 467 |   };
+      | ^^^^ The component is created during render here
+  468 |   return (
+  469 |     <div style={{ width: '100%', height: '100%', background: '#111318', borderRadius: R.md, padding: 4, boxSizing: 'border-box' }}>
+  470 |       <ResponsiveContainer width="100%" height="100%">
+  619:47 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  643:30 error react-hooks/static-components: Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\GlobalShell.tsx:643:30
+  641 |           <XAxis dataKey="label" tick={{ fontFamily: F.mono, fontSize: 11, fill: 'rgba(229,231,235,0.55)' }} axisLine={{ stroke: 'rgba(229,231,235,0.12)' }} tickLine={false} interval={5} />
+  642 |           <YAxis tick={{ fontFamily: F.mono, fontSize: 11, fill: 'rgba(229,231,235,0.55)' }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v}`} width={40} />
+> 643 |           <Tooltip content={<CustomTooltip />} cursor={{ stroke: C.electricBlue, strokeWidth: 1, strokeDasharray: '3 3' }} />
+      |                              ^^^^^^^^^^^^^ This component is created during render
+  644 |           <Bar dataKey="chargeBar" fill={C.electricBlue} opacity={0.35} isAnimationActive={false} name="CHARGE" />
+  645 |           <Bar dataKey="dischargeBar" fill={C.falconGold} opacity={0.35} isAnimationActive={false} name="DISCHARGE" />
+  646 |           <Line type="monotone" dataKey="price" stroke={C.textSecondary} strokeWidth={2} dot={false}
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\GlobalShell.tsx:619:25
+  617 |   }));
+  618 |
+> 619 |   const CustomTooltip = ({ active, payload }: any) => {
+      |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 620 |     if (!active || !payload?.length) return null;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 621 |     const d = payload[0]?.payload;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 629 |     );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 630 |   };
+      | ^^^^ The component is created during render here
+  631 |
+  632 |   return (
+  633 |     <div style={{ width: '100%', height: '100%', background: '#111318', borderRadius: R.md, padding: 4, boxSizing: 'border-box' as const }}>
+  875:47 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  893:30 error react-hooks/static-components: Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\GlobalShell.tsx:893:30
+  891 |           <XAxis dataKey="name" tick={{ fontFamily: F.mono, fontSize: 11, fill: 'rgba(229,231,235,0.55)' }} axisLine={{ stroke: 'rgba(229,231,235,0.12)' }} tickLine={false} />
+  892 |           <YAxis tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fontFamily: F.mono, fontSize: 11, fill: 'rgba(229,231,235,0.55)' }} axisLine={false} tickLine={false} width={44} />
+> 893 |           <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.04)' }} />
+      |                              ^^^^^^^^^^^^^ This component is created during render
+  894 |           <ReferenceLine y={loadForecast} stroke={C.falconGold} strokeDasharray="4 4" strokeOpacity={0.6}
+  895 |             label={{ value: 'LOAD FORECAST', position: 'insideTopRight', style: { fontFamily: F.mono, fontSize: 9, fill: C.falconGold } }} />
+  896 |           <Bar dataKey="displayValue" isAnimationActive={false} radius={[3, 3, 0, 0]}>
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\GlobalShell.tsx:875:25
+  873 |     label: `${d.value > 0 ? '+' : ''}${(d.value / 1000).toFixed(1)} GW`,
+  874 |   }));
+> 875 |   const CustomTooltip = ({ active, payload }: any) => {
+      |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 876 |     if (!active || !payload?.length) return null;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 877 |     const d = payload[0]?.payload;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 878 |     return (
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 879 |       <div style={{ background: C.bgOverlay, border: `1px solid ${C.borderStrong}`, borderRadius: R.md, padding: '8px 12px' }}>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 880 |         <div style={{ fontFamily: F.sans, fontSize: 11, color: C.textMuted, marginBottom: 4 }}>{d.name.replace('\n', ' ')}</div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 881 |         <div style={{ fontFamily: F.mono, fontSize: 14, fontWeight: 600, color: d.fill, fontVariantNumeric: 'tabular-nums' }}>{d.label}</div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 882 |       </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 883 |     );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 884 |   };
+      | ^^^^ The component is created during render here
+  885 |
+  886 |   return (
+  887 |     <div style={{ width: '100%', height: '100%', background: '#111318', borderRadius: R.md, padding: 4, boxSizing: 'border-box' as const }}>
+  1748:6 warning react-hooks/exhaustive-deps: React Hook useEffect has a missing dependency: 'kpiPages'. Either include it or remove the dependency array.
+
+src\components\LMPCard.tsx
+  346:59 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  348:48 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  349:48 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  365:35 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  405:33 error react-hooks/static-components: Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\LMPCard.tsx:405:33
+  403 |                     <ReferenceLine y={data.avg24h} stroke="rgba(255,255,255,0.15)" strokeDasharray="4 4" strokeWidth={1} />
+  404 |                     <Tooltip
+> 405 |                       content={<LMPTooltip />}
+      |                                 ^^^^^^^^^^ This component is created during render
+  406 |                       cursor={{ stroke: 'rgba(255,255,255,0.20)', strokeWidth: 1, strokeDasharray: '3 3' }}
+  407 |                     />
+  408 |                     <Area dataKey="zone" fill="url(#zoneAreaGrad)" stroke={C.electricBlue} strokeWidth={2.5} dot={<PeakDot />} type="monotone" isAnimationActive={false} />
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\LMPCard.tsx:346:30
+  344 |           const lowIdx  = prices.indexOf(Math.min(...prices))
+  345 |
+> 346 |           const LMPTooltip = ({ active, payload, label }: any) => {
+      |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 347 |             if (!active || !payload?.length) return null
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 348 |             const zonePrice = payload.find((p: any) => p.dataKey === 'zone')?.value
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 362 |             )
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 363 |           }
+      | ^^^^^^^^^^^^ The component is created during render here
+  364 |
+  365 |           const PeakDot = (props: any) => {
+  366 |             const { cx, cy, index } = props
+  408:116 error react-hooks/static-components: Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\LMPCard.tsx:408:116
+  406 |                       cursor={{ stroke: 'rgba(255,255,255,0.20)', strokeWidth: 1, strokeDasharray: '3 3' }}
+  407 |                     />
+> 408 |                     <Area dataKey="zone" fill="url(#zoneAreaGrad)" stroke={C.electricBlue} strokeWidth={2.5} dot={<PeakDot />} type="monotone" isAnimationActive={false} />
+      |                                                                                                                    ^^^^^^^ This component is created during render
+  409 |                     <Line dataKey="hub" stroke="rgba(255,255,255,0.28)" strokeDasharray="4 4" strokeWidth={1.5} dot={false} type="monotone" isAnimationActive={false} />
+  410 |                   </ComposedChart>
+  411 |                 </ResponsiveContainer>
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\LMPCard.tsx:365:27
+  363 |           }
+  364 |
+> 365 |           const PeakDot = (props: any) => {
+      |                           ^^^^^^^^^^^^^^^^^
+> 366 |             const { cx, cy, index } = props
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 367 |             if (index === peakIdx) return <circle cx={cx} cy={cy} r={5} fill="#FF4444" stroke="#0A0A0B" strokeWidth={2} />
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 368 |             if (index === lowIdx)  return <circle cx={cx} cy={cy} r={5} fill={C.electricBlue} stroke="#0A0A0B" strokeWidth={2} />
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 369 |             return null
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 370 |           }
+      | ^^^^^^^^^^^^ The component is created during render here
+  371 |
+  372 |           return (
+  373 |             <div style={{ flex: 1, minHeight: 0 }}>
+
+src\components\alexandria\atlas\AtlasGlobo.tsx
+  245:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  470:56 error react-hooks/immutability: Error: Cannot access variable before it is declared
+
+`passoFade` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\alexandria\atlas\AtlasGlobo.tsx:470:56
+  468 |     }
+  469 |     tick();
+> 470 |     rafRef.current = vivoAlgum ? requestAnimationFrame(passoFade) : null;
+      |                                                        ^^^^^^^^^ `passoFade` accessed before it is declared
+  471 |   }, []);
+  472 |
+  473 |   const iniciarFade = useCallback((chave: string, para: number) => {
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\alexandria\atlas\AtlasGlobo.tsx:454:3
+  452 |
+  453 |   // ── fade de hover: rAF + bezier próprio ───────────────────────────
+> 454 |   const passoFade = useCallback(() => {
+      |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 455 |     const agora = performance.now();
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 456 |     let vivoAlgum = false;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 470 |     rafRef.current = vivoAlgum ? requestAnimationFrame(passoFade) : null;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 471 |   }, []);
+      | ^^^^^^^^^^ `passoFade` is declared here
+  472 |
+  473 |   const iniciarFade = useCallback((chave: string, para: number) => {
+  474 |     const atual = opacidadesRef.current.get(chave) ?? 0;
+  825:6 warning react-hooks/exhaustive-deps: React Hook useEffect has a missing dependency: 'duracaoModo'. Either include it or remove the dependency array.
+  918:5 warning react-hooks/exhaustive-deps: React Hook useCallback has an unnecessary dependency: 'submercadoRealcado'. Either exclude it or remove the dependency array.
+
+src\components\atlas\GridAtlasMap.tsx
+  152:84 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  184:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  224:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  242:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  255:101 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  281:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  404:40 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  405:38 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  426:41 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  427:38 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  479:14 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  600:42 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  729:22 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  730:65 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  732:65 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  741:61 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  744:45 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  749:62 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+
+src\components\atlas\GridAtlasView.tsx
+  61:14 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\components\atlas\TimeTravelScrubber.tsx
+  52:9 warning react-hooks/exhaustive-deps: The 'highlights' logical expression could make the dependencies of useMemo Hook (at line 71) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'highlights' in its own useMemo() Hook.
+  71:7 error react-hooks/preserve-manual-memoization: Compilation Skipped: Existing memoization could not be preserved
+
+React Compiler has skipped optimizing this component because the existing manual memoization could not be preserved. This dependency may be mutated later, which could cause the value to change unexpectedly.
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\atlas\TimeTravelScrubber.tsx:71:7
+  69 |       };
+  70 |     });
+> 71 |   }, [highlights, rangeStart, rangeEnd]);
+     |       ^^^^^^^^^^ This dependency may be modified later
+  72 |
+  73 |   return (
+  74 |     <div style={{
+
+src\components\atlas\layers\batteryLayers.ts
+  38:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  49:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+
+src\components\atlas\layers\colorRamps.ts
+  38:38 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  58:35 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  79:33 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  92:38 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  111:44 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  129:44 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  141:41 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  165:44 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  177:47 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+
+src\components\atlas\layers\generationLayers.ts
+  36:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  86:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+
+src\components\atlas\layers\infrastructureLayers.ts
+  22:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  38:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  57:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  74:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  87:63 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  94:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  120:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  130:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  142:58 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+
+src\components\atlas\layers\intelligenceLayers.ts
+  19:10 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  31:70 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+
+src\components\atlas\layers\transmissionLayers.ts
+  23:28 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+
+src\components\br\PortalHero.tsx
+  198:7 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\br\PortalHero.tsx:198:7
+  196 |   useEffect(() => {
+  197 |     if (reduzido) {
+> 198 |       setProgresso(1);
+      |       ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  199 |       return;
+  200 |     }
+  201 |     const host = scrollHost.current;
+
+src\components\br\blocosFamilia.tsx
+  161:10 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Move your component(s) to a separate file.
+  166:21 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\br\blocosFamilia.tsx:166:21
+  164 |   useEffect(() => {
+  165 |     if (!visto || reduzido) {
+> 166 |       if (reduzido) setMostrado(valor);
+      |                     ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  167 |       return;
+  168 |     }
+  169 |     const DUR = 1400;
+  213:10 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Move your component(s) to a separate file.
+  239:10 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Move your component(s) to a separate file.
+
+src\components\landing\Profiles.tsx
+  149:5 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\landing\Profiles.tsx:149:5
+  147 |   const [visible, setVisible] = useState(false);
+  148 |   useEffect(() => {
+> 149 |     setVisible(false);
+      |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  150 |     const t = setTimeout(() => setVisible(true), 60 + index * 60);
+  151 |     return () => clearTimeout(t);
+  152 |   }, [mode, index]);
+
+src\components\landing\Reveal.tsx
+  4:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  25:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  29:5 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\landing\Reveal.tsx:29:5
+  27 |   useEffect(() => {
+  28 |     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+> 29 |     setReduced(mq.matches);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  30 |     const h = () => setReduced(mq.matches);
+  31 |     mq.addEventListener?.('change', h);
+  32 |     return () => mq.removeEventListener?.('change', h);
+  84:20 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\landing\Reveal.tsx:84:20
+  82 |   useEffect(() => {
+  83 |     if (!inView) return;
+> 84 |     if (reduced) { setV(value); return; }
+     |                    ^^^^ Avoid calling setState() directly within an effect
+  85 |     const start = performance.now();
+  86 |     let raf = 0;
+  87 |     const tick = (now: number) => {
+
+src\components\landing\Stack.tsx
+  257:5 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\landing\Stack.tsx:257:5
+  255 |   useEffect(() => {
+  256 |     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+> 257 |     setReduced(mq.matches);
+      |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  258 |   }, []);
+  259 |
+  260 |   useEffect(() => {
+
+src\components\landing\Wedge.tsx
+  31:5 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\landing\Wedge.tsx:31:5
+  29 |   useEffect(() => {
+  30 |     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+> 31 |     setReducedMotion(mq.matches);
+     |     ^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  32 |     const h = () => setReducedMotion(mq.matches);
+  33 |     mq.addEventListener?.('change', h);
+  34 |     return () => mq.removeEventListener?.('change', h);
+
+src\components\nest\analyst\ReportDrafting\ReportDraftingView.tsx
+  28:7 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\analyst\ReportDrafting\ReportDraftingView.tsx:28:7
+  26 |   useEffect(() => {
+  27 |     if (!activeId && reports.length > 0) {
+> 28 |       setActiveId(reports[0].id);
+     |       ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  29 |     }
+  30 |   }, [activeId, reports]);
+  31 |
+
+src\components\nest\everyone\EveryoneNest.tsx
+  118:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  123:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  138:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  153:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  170:47 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  201:30 error react-hooks/static-components: Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\everyone\EveryoneNest.tsx:201:30
+  199 |           <YAxis tick={{ fontFamily: F.mono, fontSize: 11, fill: 'rgba(229,231,235,0.55)' }} axisLine={false} tickLine={false} tickFormatter={(v) => v > 0 ? `+${v}` : String(v)} width={36} />
+  200 |           <ReferenceLine y={0} stroke={C.textMuted} strokeDasharray="4 4" strokeOpacity={0.6} label={{ value: 'BREAKEVEN', position: 'insideTopLeft', style: { fontFamily: F.mono, fontSize: 9, fill: C.textMuted } }} />
+> 201 |           <Tooltip content={<CustomTooltip />} cursor={{ stroke: C.electricBlue, strokeWidth: 1, strokeDasharray: '3 3' }} />
+      |                              ^^^^^^^^^^^^^ This component is created during render
+  202 |           <Area type="monotone" dataKey="positive" stroke={C.falconGold} strokeWidth={2.5} fill="url(#posGrad)" dot={false} activeDot={{ r: 5, fill: C.falconGold, stroke: C.bgElevated, strokeWidth: 2 }} isAnimationActive={false} />
+  203 |           <Area type="monotone" dataKey="negative" stroke={C.alertCritical} strokeWidth={2.5} fill="url(#negGrad)" dot={false} activeDot={{ r: 5, fill: C.alertCritical, stroke: C.bgElevated, strokeWidth: 2 }} isAnimationActive={false} />
+  204 |         </AreaChart>
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\everyone\EveryoneNest.tsx:170:25
+  168 |     value,
+  169 |   }));
+> 170 |   const CustomTooltip = ({ active, payload }: any) => {
+      |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 171 |     if (!active || !payload?.length) return null;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 172 |     const v = payload[0]?.payload?.value ?? 0;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 181 |     );
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 182 |   };
+      | ^^^^ The component is created during render here
+  183 |   return (
+  184 |     <div style={{ width: '100%', height: '100%', background: '#111318', borderRadius: R.md, padding: 4, boxSizing: 'border-box' }}>
+  185 |       <ResponsiveContainer width="100%" height="100%">
+  291:10 error react-hooks/static-components: Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\everyone\EveryoneNest.tsx:291:10
+  289 |           SPARK SPREAD · {SPARK_DATA.zone}
+  290 |         </span>
+> 291 |         <RegimeBadge />
+      |          ^^^^^^^^^^^ This component is created during render
+  292 |       </div>
+  293 |
+  294 |       {/* Dominant number */}
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\everyone\EveryoneNest.tsx:264:23
+  262 |       : 'rgba(255,255,255,0.20)';
+  263 |
+> 264 |   const RegimeBadge = () => (
+      |                       ^^^^^^^
+> 265 |     <div style={{
+      | ^^^^^^^^^^^^^^^^^
+> 266 |       display: 'inline-flex', alignItems: 'center', gap: 5,
+      …
+      | ^^^^^^^^^^^^^^^^^
+> 274 |     </div>
+      | ^^^^^^^^^^^^^^^^^
+> 275 |   );
+      | ^^^^ The component is created during render here
+  276 |
+  277 |   return (
+  278 |     <div
+  461:5 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\everyone\EveryoneNest.tsx:461:5
+  459 |
+  460 |   useEffect(() => {
+> 461 |     setAnimSoc(0);
+      |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  462 |     let start: number | null = null;
+  463 |     const duration = 1200;
+  464 |     const step = (ts: number) => {
+  492:10 error react-hooks/static-components: Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\everyone\EveryoneNest.tsx:492:10
+  490 |       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
+  491 |         <span style={{ fontFamily: F.mono, fontSize: '10px', fontWeight: '600', color: C.textMuted, letterSpacing: '0.16em', textTransform: 'uppercase' as const }}>{selectedZone ?? 'WEST HUB'} ARB</span>
+> 492 |         <StateBadge />
+      |          ^^^^^^^^^^ This component is created during render
+  493 |       </div>
+  494 |       {/* Gauge */}
+  495 |       <div style={{ display: 'flex', justifyContent: 'center', flexShrink: 0 }}>
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\everyone\EveryoneNest.tsx:478:22
+  476 |   const stateBadgeColor = isCharging ? C.alertNormal : C.falconGold;
+  477 |
+> 478 |   const StateBadge = () => (
+      |                      ^^^^^^^
+> 479 |     <div style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '2px 8px', borderRadius: R.sm, backgroundColor: `${stateBadgeColor}18`, border: `1px solid ${stateBadgeColor}50` }}>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 480 |       <span style={{ fontFamily: F.mono, fontSize: T.labelSize, color: stateBadgeColor, letterSpacing: T.labelSpacing }}>{isCharging ? 'CHARGING' : 'DISCHARGING'}</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 481 |     </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 482 |   );
+      | ^^^^ The component is created during render here
+  483 |
+  484 |   return (
+  485 |     <div
+  569:10 error react-hooks/static-components: Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\everyone\EveryoneNest.tsx:569:10
+  567 |           {selectedZone ?? 'WEST HUB'} RESOURCE GAP
+  568 |         </span>
+> 569 |         <StatusBadge />
+      |          ^^^^^^^^^^^ This component is created during render
+  570 |       </div>
+  571 |       {/* Hero number */}
+  572 |       <div style={{ flexShrink: 0 }}>
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\everyone\EveryoneNest.tsx:547:23
+  545 |   const badgeBorder= reserveMargin < 15 ? `${C.alertCritical}50` : reserveMargin < 18 ? `${C.falconGold}50` : `${C.electricBlue}50`;
+  546 |
+> 547 |   const StatusBadge = () => (
+      |                       ^^^^^^^
+> 548 |     <div style={{ display: 'inline-flex', alignItems: 'center', padding: '2px 8px', borderRadius: R.sm, backgroundColor: badgeBg, border: `1px solid ${badgeBorder}` }}>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 549 |       <span style={{ fontFamily: F.mono, fontSize: T.labelSize, color: gapColor, letterSpacing: T.labelSpacing }}>{badgeLabel}</span>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 550 |     </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 551 |   );
+      | ^^^^ The component is created during render here
+  552 |
+  553 |   const metrics = [
+  554 |     { label: 'SYSTEM LOAD', value: `${systemLoadGw.toFixed(1)} GW`, color: C.textSecondary },
+
+src\components\nest\student\ProjectSandbox\ProjectSandboxView.tsx
+  23:22 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\student\ProjectSandbox\ProjectSandboxView.tsx:23:22
+  21 |   useEffect(() => {
+  22 |     if (selectedId) return;
+> 23 |     if (projects[0]) setSelectedId(projects[0].id);
+     |                      ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  24 |   }, [projects, selectedId]);
+  25 |
+  26 |   useEffect(() => {
+
+src\components\nest\student\SandboxTrading\MarkToMarketEngine.tsx
+  72:7 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\student\SandboxTrading\MarkToMarketEngine.tsx:72:7
+  70 |   useEffect(() => {
+  71 |     if (position.status === 'closed') {
+> 72 |       setState({
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  73 |         pnlUSD: computeClosedPositionPnL(position),
+  74 |         markPrice: position.exitLMP ?? position.entryLMP,
+  75 |         status: 'closed',
+
+src\components\nest\student\SandboxTrading\PaperTradeJournalEntry.tsx
+  25:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\components\nest\student\SandboxTrading\PositionEntryForm.tsx
+  77:5 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\student\SandboxTrading\PositionEntryForm.tsx:77:5
+  75 |   // Reset the override when the zone changes so a stale price doesn't carry.
+  76 |   useEffect(() => {
+> 77 |     setOverrideLMP(null);
+     |     ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  78 |   }, [zone]);
+  79 |
+  80 |   const errors = useMemo<string[]>(() => {
+
+src\components\nest\student\SandboxTrading\SandboxTradingView.tsx
+  56:16 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\student\SandboxTrading\SandboxTradingView.tsx:56:16
+  54 |     if (selectedId) return;
+  55 |     const first = positions.find((p) => p.status === 'open') ?? positions[0];
+> 56 |     if (first) setSelectedId(first.id);
+     |                ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  57 |   }, [positions, selectedId]);
+  58 |
+  59 |   // Bridge state into ORACLE.
+
+src\components\nest\trader\HeroLMPBlock.tsx
+  205:40 error react-hooks/purity: Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\trader\HeroLMPBlock.tsx:205:40
+  203 |         <span style={{ color: C.textMuted, fontWeight: 400 }}>
+  204 |           {lmpQuery.data
+> 205 |             ? new Date(lmpQuery.data ? Date.now() : 0).toUTCString().slice(17, 22) +
+      |                                        ^^^^^^^^^^ Cannot call impure function
+  206 |               ' ET'
+  207 |             : '— · —'}
+  208 |         </span>
+
+src\components\nest\trader\ZoneWatchlist.tsx
+  116:30 error react-hooks/refs: Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\trader\ZoneWatchlist.tsx:116:30
+  114 |   const rows: WatchRow[] = useMemo(() => {
+  115 |     const data = allZones.data;
+> 116 |     return WATCHED_ZONES.map((zone): WatchRow => {
+      |                              ^^^^^^^^^^^^^^^^^^^^^
+> 117 |       const entry = data?.[zone];
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 118 |       const liveLMP = liveOverrides[zone] ?? entry?.lmp_total ?? 0;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 128 |       };
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 129 |     });
+      | ^^^^^^ Passing a ref to a function may read its value during render
+  130 |   }, [allZones.data, liveOverrides]);
+  131 |
+  132 |   const burningCount = rows.filter((r) => r.regime === 'burning').length;
+
+src\components\nest\trader\journal\JournalPnLChart.tsx
+  41:7 error react-hooks/immutability: Error: Cannot reassign variable after render completes
+
+Reassigning `running` after render has completed can cause inconsistent behavior on subsequent renders. Consider using state instead.
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\trader\journal\JournalPnLChart.tsx:41:7
+  39 |     let running = 0;
+  40 |     const data: ChartPoint[] = scored.map((e) => {
+> 41 |       running += e.pnl!;
+     |       ^^^^^^^ Cannot reassign `running` after render completes
+  42 |       return {
+  43 |         tradingDate: e.tradingDate,
+  44 |         cumulative: Number(running.toFixed(2)),
+
+src\components\nest\trader\tiles\SparkSpreadTile.tsx
+  47:5 error react-hooks/refs: Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\trader\tiles\SparkSpreadTile.tsx:47:5
+  45 |
+  46 |   const data = (
+> 47 |     bufferRef.current.length > 1
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^ Cannot access ref value during render
+  48 |       ? bufferRef.current
+  49 |       : [spark.data?.spark_spread ?? 0]
+  50 |   ).map((value, i) => ({ i, value }));
+  48:9 error react-hooks/refs: Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\trader\tiles\SparkSpreadTile.tsx:48:9
+  46 |   const data = (
+  47 |     bufferRef.current.length > 1
+> 48 |       ? bufferRef.current
+     |         ^^^^^^^^^^^^^^^^^ Passing a ref to a function may read its value during render
+  49 |       : [spark.data?.spark_spread ?? 0]
+  50 |   ).map((value, i) => ({ i, value }));
+  51 |   void tick; // force re-render on each ingestion
+  48:9 error react-hooks/refs: Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\nest\trader\tiles\SparkSpreadTile.tsx:48:9
+  46 |   const data = (
+  47 |     bufferRef.current.length > 1
+> 48 |       ? bufferRef.current
+     |         ^^^^^^^^^^^^^^^^^ Passing a ref to a function may read its value during render
+  49 |       : [spark.data?.spark_spread ?? 0]
+  50 |   ).map((value, i) => ({ i, value }));
+  51 |   void tick; // force re-render on each ingestion
+
+src\components\nivar\patrono.tsx
+  39:14 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  41:14 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\components\peregrine\ArticleReader.tsx
+  131:7 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\peregrine\ArticleReader.tsx:131:7
+  129 |   useEffect(() => {
+  130 |     if (!isAllowed(item.url)) {
+> 131 |       setUseAI(true);
+      |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  132 |       setLoading(false);
+  133 |       return;
+  134 |     }
+
+src\components\shared\AIAssistant.tsx
+  73:7 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\shared\AIAssistant.tsx:73:7
+  71 |       void send(pending.prompt);
+  72 |     } else {
+> 73 |       setDraft(pending.prompt);
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  74 |     }
+  75 |   }, [open, authLoading, canUseAI, consumePendingTrigger, send]);
+  76 |
+
+src\components\shared\AnnotationLayer.tsx
+  50:7 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\shared\AnnotationLayer.tsx:50:7
+  48 |   useEffect(() => {
+  49 |     if (!enabled) {
+> 50 |       setDraft(null);
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  51 |       setDraftText('');
+  52 |     }
+  53 |   }, [enabled]);
+
+src\components\shared\CmdPDrawer.tsx
+  31:23 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\shared\CmdPDrawer.tsx:31:23
+  29 |   // Sync local refine input to the active query whenever it changes.
+  30 |   useEffect(() => {
+> 31 |     if (currentQuery) setRefineText(currentQuery.rawText);
+     |                       ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  32 |     else setRefineText('');
+  33 |   }, [currentQuery]);
+  34 |
+
+src\components\shared\CmdPSelectionIndicator.tsx
+  32:7 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\shared\CmdPSelectionIndicator.tsx:32:7
+  30 |   useEffect(() => {
+  31 |     if (!selection) {
+> 32 |       setVisible(false);
+     |       ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  33 |       return;
+  34 |     }
+  35 |     const id = window.setTimeout(() => setVisible(true), 16);
+
+src\components\shared\CommandPalette.tsx
+  75:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\components\shared\SaveViewModal.tsx
+  29:5 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\shared\SaveViewModal.tsx:29:5
+  27 |   useEffect(() => {
+  28 |     if (!open) return;
+> 29 |     setName('');
+     |     ^^^^^^^ Avoid calling setState() directly within an effect
+  30 |     const handler = (e: KeyboardEvent) => {
+  31 |       if (e.key === 'Escape') {
+  32 |         e.stopPropagation();
+
+src\components\terminal\DataTable.tsx
+  17:20 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  17:30 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  22:9 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+
+src\components\terminal\Skeleton.tsx
+  227:14 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\components\ui\badge.tsx
+  45:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\components\ui\button.tsx
+  60:18 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\components\ui\tabs.tsx
+  88:52 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\components\vault\RecallSession.tsx
+  240:5 error react-hooks/set-state-in-effect: Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\dev\gridalpha-v2-nivar-g2\src\components\vault\RecallSession.tsx:240:5
+  238 |   // Auto-clear the input when we transition to a new prompt mid-session.
+  239 |   useEffect(() => {
+> 240 |     setDraft('');
+      |     ^^^^^^^^ Avoid calling setState() directly within an effect
+  241 |   }, [prompt.promptId]);
+  242 |
+  243 |   return (
+
+src\components\vault\VaultIndex.tsx
+  90:7 error @typescript-eslint/no-unused-expressions: Expected an assignment or function call and instead saw an expression.
+  98:7 error @typescript-eslint/no-unused-expressions: Expected an assignment or function call and instead saw an expression.
+
+src\design\figma-reference\v1\components\ui\badge.tsx
+  46:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\design\figma-reference\v1\components\ui\button.tsx
+  58:18 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\design\figma-reference\v1\components\ui\form.tsx
+  160:3 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\design\figma-reference\v1\components\ui\navigation-menu.tsx
+  167:3 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\design\figma-reference\v1\components\ui\sidebar.tsx
+  611:26 error react-hooks/purity: Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\dev\gridalpha-v2-nivar-g2\src\design\figma-reference\v1\components\ui\sidebar.tsx:611:26
+  609 |   // Random width between 50 to 90%.
+  610 |   const width = React.useMemo(() => {
+> 611 |     return `${Math.floor(Math.random() * 40) + 50}%`;
+      |                          ^^^^^^^^^^^^^ Cannot call impure function
+  612 |   }, []);
+  613 |
+  614 |   return (
+  725:3 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\design\figma-reference\v1\components\ui\toggle.tsx
+  47:18 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\design\figma-reference\v2\components\ga-charts.tsx
+  281:9 error @typescript-eslint/no-unused-vars: 'padY' is assigned a value but never used.
+
+src\design\figma-reference\v2\components\ga-primitives.tsx
+  3:14 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  21:14 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  22:14 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  23:14 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\design\figma-reference\v2\components\ga-sections-1-2.tsx
+  2:27 error @typescript-eslint/no-unused-vars: 'sans' is defined but never used.
+
+src\design\figma-reference\v2\components\ui\badge.tsx
+  46:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\design\figma-reference\v2\components\ui\button.tsx
+  58:18 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\design\figma-reference\v2\components\ui\form.tsx
+  160:3 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\design\figma-reference\v2\components\ui\navigation-menu.tsx
+  167:3 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\design\figma-reference\v2\components\ui\sidebar.tsx
+  611:26 error react-hooks/purity: Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\dev\gridalpha-v2-nivar-g2\src\design\figma-reference\v2\components\ui\sidebar.tsx:611:26
+  609 |   // Random width between 50 to 90%.
+  610 |   const width = React.useMemo(() => {
+> 611 |     return `${Math.floor(Math.random() * 40) + 50}%`;
+      |                          ^^^^^^^^^^^^^ Cannot call impure function
+  612 |   }, []);
+  613 |
+  614 |   return (
+  725:3 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\design\figma-reference\v2\components\ui\toggle.tsx
+  47:18 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\hooks\data\useEnvelopeQuery.ts
+  126:5 warning None: Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps').
+
+src\hooks\useAIContextSnapshot.ts
+  90:6 warning react-hooks/exhaustive-deps: React Hook useMemo has unnecessary dependencies: 'ttActiveEventId' and 'ttMode'. Either exclude them or remove the dependency array.
+
+src\hooks\useCmdP.ts
+  50:3 error react-hooks/refs: Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+C:\dev\gridalpha-v2-nivar-g2\src\hooks\useCmdP.ts:50:3
+  48 |   const snapshot = useAIContextSnapshot();
+  49 |   const snapshotRef = useRef<AIContextSnapshot>(snapshot);
+> 50 |   snapshotRef.current = snapshot;
+     |   ^^^^^^^^^^^^^^^^^^^ Cannot update ref during render
+  51 |
+  52 |   // Subscribe to news items so the Peregrine resolver has data when
+  53 |   // resolution kicks off. Errors are swallowed — Peregrine resolver
+  57:3 error react-hooks/refs: Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+C:\dev\gridalpha-v2-nivar-g2\src\hooks\useCmdP.ts:57:3
+  55 |   const { items: newsItems } = useNewsData();
+  56 |   const newsItemsRef = useRef<typeof newsItems>(newsItems);
+> 57 |   newsItemsRef.current = newsItems;
+     |   ^^^^^^^^^^^^^^^^^^^^ Cannot update ref during render
+  58 |
+  59 |   // Track the in-flight abort controller so we can cancel a resolution
+  60 |   // when the query changes (refine, close, re-open).
+
+src\lib\auth\AuthContext.tsx
+  109:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  122:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\lib\curriculum\index.ts
+  101:3 error @typescript-eslint/no-unused-vars: '_layer' is defined but never used.
+
+src\lib\data\alexandria-instrument-calculators.ts
+  3287:33 error @typescript-eslint/no-unused-vars: '_g' is defined but never used.
+  3287:45 error @typescript-eslint/no-unused-vars: '_f' is defined but never used.
+  3401:22 error @typescript-eslint/no-unused-vars: 'reg' is assigned a value but never used.
+  3502:9 error prefer-const: 'pot' is never reassigned. Use 'const' instead.
+  3503:9 error prefer-const: 'f' is never reassigned. Use 'const' instead.
+  3504:9 error prefer-const: 'a' is never reassigned. Use 'const' instead.
+  3505:9 error prefer-const: 'm' is never reassigned. Use 'const' instead.
+  3520:24 error prefer-const: 't' is never reassigned. Use 'const' instead.
+  3565:9 error prefer-const: 'd' is never reassigned. Use 'const' instead.
+  3566:9 error prefer-const: 'p' is never reassigned. Use 'const' instead.
+  3567:9 error prefer-const: 'm' is never reassigned. Use 'const' instead.
+  3568:9 error prefer-const: 'ano' is never reassigned. Use 'const' instead.
+  3569:41 error prefer-const: 't' is never reassigned. Use 'const' instead.
+  3571:9 error prefer-const: 'agravado' is never reassigned. Use 'const' instead.
+  3600:11 error prefer-const: 'limiteArt17' is never reassigned. Use 'const' instead.
+  3658:9 error prefer-const: 'pot' is never reassigned. Use 'const' instead.
+  3659:9 error prefer-const: 'ger' is never reassigned. Use 'const' instead.
+  3660:9 error prefer-const: 'irr' is never reassigned. Use 'const' instead.
+  3661:9 error prefer-const: 'pr' is never reassigned. Use 'const' instead.
+  3662:9 error prefer-const: 'refkWh' is never reassigned. Use 'const' instead.
+  3663:9 error prefer-const: 'refMWh' is never reassigned. Use 'const' instead.
+  3664:9 error prefer-const: 'dev' is never reassigned. Use 'const' instead.
+  3665:9 error prefer-const: 'prImp' is never reassigned. Use 'const' instead.
+  3671:13 error prefer-const: 't' is never reassigned. Use 'const' instead.
+  3730:11 error prefer-const: 'p' is never reassigned. Use 'const' instead.
+  3736:9 error prefer-const: 'prop' is never reassigned. Use 'const' instead.
+  3737:9 error prefer-const: 'ds' is never reassigned. Use 'const' instead.
+  3738:9 error prefer-const: 'y1' is never reassigned. Use 'const' instead.
+  3739:9 error prefer-const: 'hz' is never reassigned. Use 'const' instead.
+  3740:9 error prefer-const: 'A' is never reassigned. Use 'const' instead.
+  3740:30 error prefer-const: 'B' is never reassigned. Use 'const' instead.
+  3741:9 error prefer-const: 'gap' is never reassigned. Use 'const' instead.
+  3742:9 error prefer-const: 'delta' is never reassigned. Use 'const' instead.
+  3748:13 error prefer-const: 't' is never reassigned. Use 'const' instead.
+  3805:9 error prefer-const: 'p' is never reassigned. Use 'const' instead.
+  3806:9 error prefer-const: 'h' is never reassigned. Use 'const' instead.
+  3807:9 error prefer-const: 'hz' is never reassigned. Use 'const' instead.
+  3808:9 error prefer-const: 'anc' is never reassigned. Use 'const' instead.
+  3809:9 error prefer-const: 'ip' is never reassigned. Use 'const' instead.
+  3809:34 error prefer-const: 'ih' is never reassigned. Use 'const' instead.
+  3810:9 error prefer-const: 'gap' is never reassigned. Use 'const' instead.
+  3811:9 error prefer-const: 'exc' is never reassigned. Use 'const' instead.
+  3817:13 error prefer-const: 't' is never reassigned. Use 'const' instead.
+  3986:9 error prefer-const: 'VER' is never reassigned. Use 'const' instead.
+  3988:14 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4063:32 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4065:25 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4086:9 error prefer-const: 'VER' is never reassigned. Use 'const' instead.
+  4088:17 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4171:17 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4182:9 error prefer-const: 'e' is never reassigned. Use 'const' instead.
+  4207:14 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4236:17 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4238:9 error prefer-const: 'r' is never reassigned. Use 'const' instead.
+  4239:9 error prefer-const: 'd' is never reassigned. Use 'const' instead.
+  4240:9 error prefer-const: 'o' is never reassigned. Use 'const' instead.
+  4240:17 error prefer-const: 'c' is never reassigned. Use 'const' instead.
+  4256:9 error prefer-const: 'p1' is never reassigned. Use 'const' instead.
+  4257:9 error prefer-const: 'k2' is never reassigned. Use 'const' instead.
+  4259:9 error prefer-const: 'pd' is never reassigned. Use 'const' instead.
+  4260:9 error prefer-const: 'ad' is never reassigned. Use 'const' instead.
+  4262:9 error prefer-const: 'v1' is never reassigned. Use 'const' instead.
+  4262:16 error prefer-const: 'v2' is never reassigned. Use 'const' instead.
+  4262:26 error prefer-const: 'v3' is never reassigned. Use 'const' instead.
+  4263:9 error prefer-const: 'cr' is never reassigned. Use 'const' instead.
+  4264:9 error prefer-const: 'dt' is never reassigned. Use 'const' instead.
+  4265:9 error prefer-const: 'vc' is never reassigned. Use 'const' instead.
+  4266:9 error prefer-const: 'amp' is never reassigned. Use 'const' instead.
+  4267:9 error prefer-const: 'rp' is never reassigned. Use 'const' instead.
+  4268:9 error prefer-const: 'irr' is never reassigned. Use 'const' instead.
+  4310:16 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4319:9 error prefer-const: 'vol' is never reassigned. Use 'const' instead.
+  4320:9 error prefer-const: 'pr' is never reassigned. Use 'const' instead.
+  4321:9 error prefer-const: 'cx' is never reassigned. Use 'const' instead.
+  4322:9 error prefer-const: 'al' is never reassigned. Use 'const' instead.
+  4323:9 error prefer-const: 'de' is never reassigned. Use 'const' instead.
+  4324:9 error prefer-const: 'pa' is never reassigned. Use 'const' instead.
+  4325:9 error prefer-const: 'rep' is never reassigned. Use 'const' instead.
+  4326:9 error prefer-const: 'R' is never reassigned. Use 'const' instead.
+  4327:9 error prefer-const: 'rb' is never reassigned. Use 'const' instead.
+  4328:9 error prefer-const: 'ry' is never reassigned. Use 'const' instead.
+  4331:9 error prefer-const: 'ps' is never reassigned. Use 'const' instead.
+  4332:9 error prefer-const: 'tot' is never reassigned. Use 'const' instead.
+  4333:9 error prefer-const: 'tk' is never reassigned. Use 'const' instead.
+  4334:9 error prefer-const: 'es' is never reassigned. Use 'const' instead.
+  4334:25 error prefer-const: 'mu' is never reassigned. Use 'const' instead.
+  4371:9 error prefer-const: 'p4' is never reassigned. Use 'const' instead.
+  4372:9 error prefer-const: 'bi' is never reassigned. Use 'const' instead.
+  4373:9 error prefer-const: 'tf' is never reassigned. Use 'const' instead.
+  4374:9 error prefer-const: 'te' is never reassigned. Use 'const' instead.
+  4375:9 error prefer-const: 'dr' is never reassigned. Use 'const' instead.
+  4376:9 error prefer-const: 'sb' is never reassigned. Use 'const' instead.
+  4377:9 error prefer-const: 'sub' is never reassigned. Use 'const' instead.
+  4380:9 error prefer-const: 'ct' is never reassigned. Use 'const' instead.
+  4417:9 error prefer-const: 'cap' is never reassigned. Use 'const' instead.
+  4418:9 error prefer-const: 'uti' is never reassigned. Use 'const' instead.
+  4419:9 error prefer-const: 'ren' is never reassigned. Use 'const' instead.
+  4420:9 error prefer-const: 'dem' is never reassigned. Use 'const' instead.
+  4421:9 error prefer-const: 'cg' is never reassigned. Use 'const' instead.
+  4422:9 error prefer-const: 'di' is never reassigned. Use 'const' instead.
+  4423:9 error prefer-const: 'def' is never reassigned. Use 'const' instead.
+  4424:9 error prefer-const: 'oc' is never reassigned. Use 'const' instead.
+  4425:9 error prefer-const: 'c1' is never reassigned. Use 'const' instead.
+  4426:9 error prefer-const: 'rn' is never reassigned. Use 'const' instead.
+  4463:16 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4469:9 error prefer-const: 'mol' is never reassigned. Use 'const' instead.
+  4470:9 error prefer-const: 'tra' is never reassigned. Use 'const' instead.
+  4471:9 error prefer-const: 'dis' is never reassigned. Use 'const' instead.
+  4472:9 error prefer-const: 'top' is never reassigned. Use 'const' instead.
+  4473:9 error prefer-const: 'ret' is never reassigned. Use 'const' instead.
+  4474:9 error prefer-const: 'spo' is never reassigned. Use 'const' instead.
+  4475:9 error prefer-const: 'cam' is never reassigned. Use 'const' instead.
+  4476:9 error prefer-const: 'nom' is never reassigned. Use 'const' instead.
+  4477:9 error prefer-const: 'fat' is never reassigned. Use 'const' instead.
+  4478:9 error prefer-const: 'ef' is never reassigned. Use 'const' instead.
+  4479:9 error prefer-const: 'sc' is never reassigned. Use 'const' instead.
+  4480:9 error prefer-const: 'dt' is never reassigned. Use 'const' instead.
+  4515:21 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4515:32 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4515:38 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4516:22 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4516:32 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4516:42 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4516:48 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4517:15 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4518:15 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4519:14 error @typescript-eslint/no-explicit-any: Unexpected any. Specify a different type.
+  4559:9 error prefer-const: 'e' is never reassigned. Use 'const' instead.
+  4560:9 error prefer-const: 'c' is never reassigned. Use 'const' instead.
+  4587:9 error prefer-const: 'gas' is never reassigned. Use 'const' instead.
+  4588:9 error prefer-const: 'cx' is never reassigned. Use 'const' instead.
+  4589:9 error prefer-const: 'hr' is never reassigned. Use 'const' instead.
+  4590:9 error prefer-const: 'om' is never reassigned. Use 'const' instead.
+  4591:9 error prefer-const: 'cmo' is never reassigned. Use 'const' instead.
+  4592:9 error prefer-const: 'inf' is never reassigned. Use 'const' instead.
+  4593:9 error prefer-const: 'cc' is never reassigned. Use 'const' instead.
+  4594:9 error prefer-const: 'cvu' is never reassigned. Use 'const' instead.
+  4595:9 error prefer-const: 'ef' is never reassigned. Use 'const' instead.
+  4596:9 error prefer-const: 'gb' is never reassigned. Use 'const' instead.
+
+src\lib\storage\degradation.ts
+  31:3 error @typescript-eslint/no-unused-vars: '_cyclesUsed' is defined but never used.
+
+src\lib\underwriting\forwardCurve.ts
+  57:25 error @typescript-eslint/no-unused-vars: '_zone' is defined but never used.
+
+src\pages\alexandria\AlexandriaRouter.tsx
+  66:14 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  124:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  151:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+  171:17 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+src\services\cmdp\queryResolver.ts
+  105:7 warning None: Unused eslint-disable directive (no problems were reported from 'no-console').
+
+src\services\pdfExport.ts
+  190:7 warning None: Unused eslint-disable directive (no problems were reported from 'no-console').
+  256:7 warning None: Unused eslint-disable directive (no problems were reported from 'no-console').
+  316:7 warning None: Unused eslint-disable directive (no problems were reported from 'no-console').
+  369:7 warning None: Unused eslint-disable directive (no problems were reported from 'no-console').
+
+src\services\pdfTemplates\StorageBidPackTemplate.tsx
+  361:14 error react-refresh/only-export-components: Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+
+tools\gridalpha-detect\src\rules\_stub.ts
+  19:15 error @typescript-eslint/no-unused-vars: '_file' is defined but never used.
+  22:11 error @typescript-eslint/no-unused-vars: '_file' is defined but never used.

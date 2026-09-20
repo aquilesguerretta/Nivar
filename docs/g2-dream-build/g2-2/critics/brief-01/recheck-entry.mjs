@@ -1,0 +1,16 @@
+import fs from 'node:fs/promises';
+import {createRequire} from 'node:module';
+globalThis.WebSocket=createRequire('C:/dev/nivar-g21-tools/package.json')('ws');
+const {connect}=await import('../../../g2-1/terminal/native-session.mjs');
+const b=await connect();
+const base='C:/dev/gridalpha-v2-nivar-g2/docs/g2-dream-build/g2-2/critics/brief-01';
+await b.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:960,deviceScaleFactor:1,mobile:false});
+await b.cdp('Page.navigate',{url:'http://127.0.0.1:4173/br/familia/software'});await b.until('document.querySelector(".g22-aj-regions button")');
+const click=async s=>{await b.evaluate(`document.querySelector(${JSON.stringify(s)}).scrollIntoView({block:'center',behavior:'instant'})`);await b.delay(150);await b.click(s);};
+await click('.g22-aj-regions button:nth-child(4)');await b.delay(2400);
+await b.evaluate(`document.querySelector('.g22-aj-scrubber input').focus()`);await b.cdp('Input.dispatchKeyEvent',{type:'keyDown',key:'ArrowRight',code:'ArrowRight',windowsVirtualKeyCode:39});await b.cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'ArrowRight',code:'ArrowRight',windowsVirtualKeyCode:39});
+await click('.g22-aj-action button');await b.delay(900);await click('.g22-aj-action button:last-child');await b.delay(1100);
+const href=await b.evaluate(`document.querySelector('.g22-aj-terminal-title a').getAttribute('href')`);
+await click('.g22-aj-terminal-title a');await b.delay(1300);await b.screenshot(base+'/16-entry-recheck.png');
+await fs.writeFile(base+'/16-entry-recheck.json',JSON.stringify({href,...await b.evaluate(`({url:location.href,text:document.body.innerText})`)},null,2));
+await b.close();

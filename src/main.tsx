@@ -1,10 +1,11 @@
-import { StrictMode } from 'react';
+import { lazy, StrictMode, Suspense, type ComponentProps } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import './index.css';
-import GlobalShell from './components/GlobalShell';
-import { LandingPage } from './components/LandingPage';
+// These styles were eager through GlobalShell. Keep their cascade position
+// when deferring the US JavaScript, including on the untouched Alexandria route.
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { LoginPage } from './pages/auth/LoginPage';
 import { SignupGate } from './pages/auth/SignupGate';
 import { SignupProfilePage } from './pages/auth/SignupProfilePage';
@@ -22,7 +23,43 @@ import { PerfilPlataforma } from './pages/conta/PerfilPlataforma';
 import { ContaDeLuzExpressPage } from './pages/conta-de-luz-express/ContaDeLuzExpressPage';
 import { SolarProposalValidatorPage } from './pages/solar-proposal-validator/SolarProposalValidatorPage';
 import { DiagnosticoEnergeticoPage } from './pages/diagnostico-energetico/DiagnosticoEnergeticoPage';
-import { OperadorRouter } from './pages/operador/OperadorRouter';
+import { F } from './design/tokens';
+// Preserve the existing global stylesheet order independently of route loading.
+import './pages/operador/g2-operations.css';
+
+const GlobalShell = lazy(() => import('./components/GlobalShell'));
+const LandingPage = lazy(() => import('./components/LandingPage').then((module) => ({ default: module.LandingPage })));
+const OperadorRouter = lazy(() => import('./pages/operador/OperadorRouter'));
+
+// This bootstrap renders once; these local wrappers are not refresh boundaries.
+// eslint-disable-next-line react-refresh/only-export-components
+function RouteLoading({ label }: { label: string }) {
+  return (
+    <main
+      aria-busy="true"
+      style={{
+        minHeight: '100dvh',
+        display: 'grid',
+        placeItems: 'center',
+        padding: 24,
+        background: 'Canvas',
+        color: 'CanvasText',
+        fontFamily: F.mono,
+      }}
+    >
+      <p role="status" aria-live="polite">{label}</p>
+    </main>
+  );
+}
+
+// eslint-disable-next-line react-refresh/only-export-components
+function TerminalRoute(props: ComponentProps<typeof GlobalShell>) {
+  return (
+    <Suspense fallback={<RouteLoading label="Loading terminal…" />}>
+      <GlobalShell {...props} />
+    </Suspense>
+  );
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -101,18 +138,18 @@ createRoot(document.getElementById('root')!).render(
               quando não há sessão, depois de `loading` resolver. */}
           <Route path="/conta" element={<PerfilPlataforma />} />
 
-          <Route path="/nest" element={<GlobalShell initialView="nest" />} />
-          <Route path="/atlas" element={<GlobalShell initialView="atlas" />} />
-          <Route path="/peregrine" element={<GlobalShell initialView="peregrine" />} />
-          <Route path="/analytics" element={<GlobalShell initialView="analytics" />} />
-          <Route path="/vault" element={<GlobalShell initialView="vault" />} />
+          <Route path="/nest" element={<TerminalRoute initialView="nest" />} />
+          <Route path="/atlas" element={<TerminalRoute initialView="atlas" />} />
+          <Route path="/peregrine" element={<TerminalRoute initialView="peregrine" />} />
+          <Route path="/analytics" element={<TerminalRoute initialView="analytics" />} />
+          <Route path="/vault" element={<TerminalRoute initialView="vault" />} />
           {/* Vault sub-routes — same shell; the Vault component reads
               useParams() to switch between VaultIndex / Alexandria /
               CaseStudyView. ATLAS owns that internal routing. */}
-          <Route path="/vault/alexandria" element={<GlobalShell initialView="vault" />} />
-          <Route path="/vault/alexandria/lesson/:lessonId" element={<GlobalShell initialView="vault" />} />
-          <Route path="/vault/alexandria/entry/:entrySlug" element={<GlobalShell initialView="vault" />} />
-          <Route path="/vault/:id" element={<GlobalShell initialView="vault" />} />
+          <Route path="/vault/alexandria" element={<TerminalRoute initialView="vault" />} />
+          <Route path="/vault/alexandria/lesson/:lessonId" element={<TerminalRoute initialView="vault" />} />
+          <Route path="/vault/alexandria/entry/:entrySlug" element={<TerminalRoute initialView="vault" />} />
+          <Route path="/vault/:id" element={<TerminalRoute initialView="vault" />} />
 
           <Route path="/alexandria/*" element={<AlexandriaHome />} />
 
@@ -159,7 +196,11 @@ createRoot(document.getElementById('root')!).render(
               `familia/:familiaId` abre a página da família. Link
               antigo para `/br` segue válido, sem redirecionamento. */}
           <Route path="/br/*" element={<PortalBRRouter />} />
-          <Route path="/us" element={<LandingPage />} />
+          <Route path="/us" element={
+            <Suspense fallback={<RouteLoading label="Loading US portal…" />}>
+              <LandingPage />
+            </Suspense>
+          } />
 
           {/* Console do operador (Portal do Operador Wave 2) — a
               superfície interna onde os pedidos que chegam dos produtos
@@ -180,7 +221,11 @@ createRoot(document.getElementById('root')!).render(
               topo. O gate entra na wave de ligação, junto com o
               endpoint de fila. Medido em
               `docs/operador-recon-frontend.md` §1.3 e no adendo. */}
-          <Route path="/operador/*" element={<OperadorRouter />} />
+          <Route path="/operador/*" element={
+            <Suspense fallback={<RouteLoading label="Carregando console…" />}>
+              <OperadorRouter />
+            </Suspense>
+          } />
 
           {/* Endereço desconhecido devolve um 404 REAL (Portal Debt
               Wave 1). Até aqui caía na home brasileira em silêncio —

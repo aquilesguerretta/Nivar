@@ -7,7 +7,7 @@
 
 import type { CSSProperties } from 'react';
 
-import { CT } from './consoleChrome';
+import { CT } from './operatorViewUtils';
 import { CabecalhoDoPedido, Linha, LinhaDoTrilho, Pautado, Secao, TrilhoDoCaso } from './pecasDoPedido';
 import { formatarIdade, idadePorExtenso } from '../../lib/operador/idade';
 import { AGORA_DA_AMOSTRA, FICHAS_MOCK, FIO_MOCK, type PedidoNaFila } from '../../lib/operador/mock';

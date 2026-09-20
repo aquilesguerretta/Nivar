@@ -1,0 +1,37 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {connect} from './native-session.mjs';
+const dir=path.resolve('docs/g2-dream-build/g2-1/terminal/material-pass');
+await fs.mkdir(dir,{recursive:true});
+const b=await connect(),results=[];
+const geometry=()=>b.evaluate(`(()=>{const t=document.querySelector('.g2-terminal'), card=document.querySelector('.g2t-context-plane'), dot=document.querySelector('.recharts-reference-dot circle'),c=card.getBoundingClientRect(),d=dot.getBoundingClientRect();return {scrollWidth:t.scrollWidth,width:t.clientWidth,card:{x:c.x,y:c.y,w:c.width,h:c.height},selectedPointVisible:!(d.right>c.left&&d.left<c.right&&d.bottom>c.top&&d.top<c.bottom),base:getComputedStyle(t).backgroundColor,field:getComputedStyle(document.querySelector('.g2t-workspace')).backgroundColor,well:getComputedStyle(document.querySelector('.g2t-chart-figure')).backgroundColor,glass:getComputedStyle(card).backgroundImage,blur:getComputedStyle(card).backdropFilter,readout:card.innerText}})()`);
+try {
+ await b.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+ await b.cdp('Page.navigate',{url:'http://127.0.0.1:4173/br/terminal'});
+ await b.until("document.querySelector('.g2t-evidence-dock')");await b.evaluate('document.fonts.ready');await b.delay(900);
+ await b.screenshot(path.join(dir,'1440-dark.png'));results.push({name:'desktop',value:await geometry()});
+ await b.click('.g2t-timeline-events button:last-child');await b.delay(800);
+ await b.screenshot(path.join(dir,'1440-note-03.png'));results.push({name:'peak lens keeps point visible',value:await geometry()});
+ await b.evaluate("document.querySelector('.g2t-time-scrub').focus()");
+ for(const type of ['keyDown','keyUp'])await b.cdp('Input.dispatchKeyEvent',{type,key:'ArrowRight',code:'ArrowRight',windowsVirtualKeyCode:39});
+ await b.delay(450);results.push({name:'native range key',value:await b.evaluate(`(()=>{const r=document.querySelector('.g2t-time-scrub'),c=document.querySelector('.g2t-context-plane');return {range:r.value,aria:r.getAttribute('aria-valuetext'),readout:c.innerText}})()`)});
+ const point=await b.evaluate(`(()=>{const label=document.querySelectorAll('.g2t-map-label')[1],p=new DOMPoint(0,0).matrixTransform(label.getScreenCTM());return {x:p.x,y:p.y};})()`);
+ for(const type of ['mousePressed','mouseReleased'])await b.cdp('Input.dispatchMouseEvent',{type,button:'left',clickCount:1,...point});await b.delay(800);
+ results.push({name:'native map centroid',value:await b.evaluate(`({selected:document.querySelector('.g2t-map-region[aria-label="Selecionar Nordeste"]').getAttribute('aria-pressed'),readout:document.querySelector('.g2t-context-plane').innerText})`)});
+ await b.screenshot(path.join(dir,'1440-map-probe.png'));
+ await b.click('.g2t-context-heading button');await b.delay(400);await b.screenshot(path.join(dir,'1440-sources.png'));
+ results.push({name:'lens source click',value:await b.evaluate("document.querySelector('.g2t-source-dialog').open")});
+ for(const type of ['keyDown','keyUp'])await b.cdp('Input.dispatchKeyEvent',{type,key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+ await b.click('.g2t-icon-button');await b.delay(350);await b.screenshot(path.join(dir,'1440-paper.png'));
+ await b.cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+ await b.cdp('Page.navigate',{url:'http://127.0.0.1:4173/br/terminal'});await b.until("document.querySelector('.g2t-evidence-dock')");await b.delay(1000);
+ await b.screenshot(path.join(dir,'390-dark.png'));results.push({name:'mobile',value:await geometry()});
+ await b.evaluate("document.querySelector('.g2-terminal').scrollTop=420");await b.screenshot(path.join(dir,'390-probe.png'));
+ await b.evaluate("document.querySelector('.g2-terminal').scrollTop=0");await b.click('.g2t-mobile-map-toggle');await b.delay(450);await b.screenshot(path.join(dir,'390-map.png'));
+ await b.click('.g2t-mobile-map-toggle');await b.click('.g2t-icon-button');await b.delay(350);await b.screenshot(path.join(dir,'390-paper.png'));
+ await b.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+ await b.cdp('Page.navigate',{url:'http://127.0.0.1:4173/br'});await b.until("document.querySelector('.g2-terminal--compact .g2t-evidence-dock')");
+ await b.evaluate(`(()=>{const s=document.querySelector('.g2-shell'),t=document.querySelector('.g2-terminal--compact');s.scrollTop+=t.getBoundingClientRect().top-50;})()`);await b.delay(900);await b.screenshot(path.join(dir,'1440-portal.png'));
+ results.push({name:'compact',value:await geometry()});
+} finally {await fs.writeFile(path.join(dir,'results.json'),JSON.stringify({results,exceptions:b.exceptions},null,2));await b.close();}
+console.log(JSON.stringify(results));

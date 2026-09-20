@@ -17,12 +17,12 @@
 // activates nothing"). A ativação acontece ao entrar no produto —
 // Fase 5 desta wave.
 
-import { useState, type FormEvent } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useState, type FormEvent } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
-import { useAuth } from '../../lib/auth/AuthContext';
-import { AuthError } from '../../lib/auth/authApi';
-import { AvisoErro, Campo, ContaShell, NT } from './ContaShell';
+import { useAuth } from "../../lib/auth/AuthContext";
+import { AuthError } from "../../lib/auth/authApi";
+import { AvisoErro, Campo, ContaShell, NT } from "./ContaShell";
 
 const SENHA_MINIMA = 8;
 
@@ -43,23 +43,24 @@ export function CriarContaView() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [confirmacao, setConfirmacao] = useState('');
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmacao, setConfirmacao] = useState("");
   const [erros, setErros] = useState<ErrosCampo>({});
   const [erroServidor, setErroServidor] = useState<string | null>(null);
   const [emailEmUso, setEmailEmUso] = useState(false);
   const [enviando, setEnviando] = useState(false);
 
-  const destino = (location.state as { de?: string } | null)?.de ?? '/conta';
+  const destino = (location.state as { de?: string } | null)?.de ?? "/conta";
 
   function validar(): ErrosCampo {
     const e: ErrosCampo = {};
-    if (!nome.trim()) e.nome = 'Diga como quer ser chamado.';
-    if (!RX_EMAIL.test(email.trim())) e.email = 'Endereço de email inválido.';
-    if (senha.length < SENHA_MINIMA) e.senha = `Mínimo de ${SENHA_MINIMA} caracteres.`;
-    if (confirmacao !== senha) e.confirmacao = 'As senhas não coincidem.';
+    if (!nome.trim()) e.nome = "Diga como quer ser chamado.";
+    if (!RX_EMAIL.test(email.trim())) e.email = "Endereço de email inválido.";
+    if (senha.length < SENHA_MINIMA)
+      e.senha = `Mínimo de ${SENHA_MINIMA} caracteres.`;
+    if (confirmacao !== senha) e.confirmacao = "As senhas não coincidem.";
     return e;
   }
 
@@ -87,12 +88,18 @@ export function CriarContaView() {
           // texto dele é mais preciso que qualquer chute daqui.
           setErroServidor(err.message);
         } else if (err.status === 0) {
-          setErroServidor('Não foi possível falar com o servidor. Verifique a conexão.');
+          setErroServidor(
+            "Não foi possível falar com o servidor. Verifique a conexão.",
+          );
         } else {
-          setErroServidor('Algo falhou do nosso lado. Tente de novo em instantes.');
+          setErroServidor(
+            "Algo falhou do nosso lado. Tente de novo em instantes.",
+          );
         }
       } else {
-        setErroServidor('Algo falhou do nosso lado. Tente de novo em instantes.');
+        setErroServidor(
+          "Algo falhou do nosso lado. Tente de novo em instantes.",
+        );
       }
       setEnviando(false);
     }
@@ -109,10 +116,10 @@ export function CriarContaView() {
     <ContaShell
       eyebrow="Conta NIVAR"
       titulo="Criar conta"
-      subtitulo="Uma conta no nível da plataforma. Criar não ativa nada — cada produto ativa quando você entra nele."
+      subtitulo="Comece pela sua identidade. Explore os produtos no seu tempo; cada acesso é ativado quando você o utiliza."
       rodape={
         <>
-          Já tem conta?{' '}
+          Já tem conta?{" "}
           <Link className="conta-link" to="/entrar" state={location.state}>
             Entrar
           </Link>
@@ -128,7 +135,7 @@ export function CriarContaView() {
       <form
         onSubmit={aoEnviar}
         noValidate
-        style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}
+        style={{ display: "flex", flexDirection: "column", gap: "18px" }}
       >
         <Campo
           id="criar-nome"
@@ -174,29 +181,29 @@ export function CriarContaView() {
 
         {emailEmUso && (
           <AvisoErro>
-            Este email já tem conta.{' '}
+            Este email já tem conta.{" "}
             <Link className="conta-link" to="/entrar" state={location.state}>
               Entrar
-            </Link>{' '}
+            </Link>{" "}
             em vez de criar.
           </AvisoErro>
         )}
         {erroServidor && <AvisoErro>{erroServidor}</AvisoErro>}
 
         <button type="submit" className="conta-botao" disabled={!podeEnviar}>
-          {enviando ? 'Criando…' : 'Criar conta'}
+          {enviando ? "Criando…" : "Criar conta"}
         </button>
       </form>
 
       <p
         style={{
           ...NT.nota,
-          marginTop: '18px',
+          marginTop: "18px",
           marginBottom: 0,
-          color: 'var(--text-muted)',
+          color: "var(--text-muted)",
         }}
       >
-        Não há cobrança nesta etapa — sistema de pagamento ainda não existe.
+        Criar sua conta é gratuito. Nenhum produto é ativado nesta etapa.
       </p>
     </ContaShell>
   );
