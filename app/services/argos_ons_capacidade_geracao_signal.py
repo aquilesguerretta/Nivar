@@ -16,8 +16,11 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import hmac
 import io
+import json
 import re
+import secrets
 import uuid
 from dataclasses import dataclass, field
 from types import MappingProxyType
@@ -29,6 +32,7 @@ from app.services.argos_memory import reconstruct_snapshot
 from app.services.argos_ons_capacidade_geracao_diff import (
     DELIMITER,
     DIFF_VERSION,
+    EXPECTED_HEADER,
     PARSER_VERSION,
     SOURCE_ID,
     ContentDelta,
@@ -134,6 +138,18 @@ class CandidateEvent:
     from_snapshot_ref: str | None = None
     to_snapshot_ref: str | None = None
     content_delta: ContentDelta | None = None
+    _runtime_marker: object | None = field(
+        default=None,
+        init=False,
+        repr=False,
+        compare=False,
+    )
+    _integrity_digest: str | None = field(
+        default=None,
+        init=False,
+        repr=False,
+        compare=False,
+    )
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "facts", MappingProxyType(dict(self.facts)))
@@ -223,6 +239,11 @@ _PUBLISHER_REVISION_PATTERN = re.compile(
     r"corrected\s+the\s+(capacity|dataset))\b",
     re.IGNORECASE,
 )
+
+_RUNTIME_EVENT_MARKER = object()
+_RUNTIME_EVENT_INTEGRITY_KEY = secrets.token_bytes(32)
+
+
 def _validate_source_id(source_id: str) -> None:
     if source_id != SOURCE_ID:
         raise SignalRuntimeError(
@@ -243,7 +264,7 @@ def _event(
     to_snapshot_ref: str | None = None,
     content_delta: ContentDelta | None = None,
 ) -> CandidateEvent:
-    return CandidateEvent(
+    event = CandidateEvent(
         source_id=SOURCE_ID,
         event_kind=event_kind,
         facts=facts,
@@ -255,6 +276,306 @@ def _event(
         from_snapshot_ref=from_snapshot_ref,
         to_snapshot_ref=to_snapshot_ref,
         content_delta=content_delta,
+    )
+    object.__setattr__(event, "_runtime_marker", _RUNTIME_EVENT_MARKER)
+    object.__setattr__(event, "_integrity_digest", _candidate_event_digest(event))
+    return event
+
+
+def _delta_payload(delta: ContentDelta | None) -> dict | None:
+    if delta is None:
+        return None
+    return {
+        "added": delta.added,
+        "removed": delta.removed,
+        "changed": [
+            {
+                "identity": row.identity,
+                "changes": [
+                    {
+                        "field": change.field,
+                        "before": change.before,
+                        "after": change.after,
+                    }
+                    for change in row.changes
+                ],
+            }
+            for row in delta.changed
+        ],
+    }
+
+
+def _candidate_event_digest(event: CandidateEvent) -> str:
+    payload = {
+        "source_id": event.source_id,
+        "event_kind": event.event_kind,
+        "facts": dict(event.facts),
+        "evidence_refs": event.evidence_refs,
+        "deterministic_result_kind": event.deterministic_result_kind,
+        "byte_relation": event.byte_relation,
+        "parser_version": event.parser_version,
+        "diff_version": event.diff_version,
+        "from_snapshot_ref": event.from_snapshot_ref,
+        "to_snapshot_ref": event.to_snapshot_ref,
+        "content_delta": _delta_payload(event.content_delta),
+    }
+    encoded = json.dumps(
+        payload,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return hmac.new(
+        _RUNTIME_EVENT_INTEGRITY_KEY,
+        encoded,
+        hashlib.sha256,
+    ).hexdigest()
+
+
+def _require_event(condition: bool, message: str) -> None:
+    if not condition:
+        raise SignalRuntimeError(f"invalid CandidateEvent: {message}")
+
+
+def _validate_delta_shape(delta: ContentDelta) -> None:
+    _require_event(
+        delta.added == sorted(set(delta.added)),
+        "added identities must be unique and sorted",
+    )
+    _require_event(
+        delta.removed == sorted(set(delta.removed)),
+        "removed identities must be unique and sorted",
+    )
+    _require_event(
+        not (set(delta.added) & set(delta.removed)),
+        "one identity cannot be both added and removed",
+    )
+    changed_identities = [row.identity for row in delta.changed]
+    _require_event(
+        changed_identities == sorted(set(changed_identities)),
+        "changed identities must be unique and sorted",
+    )
+    _require_event(
+        not (set(changed_identities) & (set(delta.added) | set(delta.removed))),
+        "membership and field changes cannot share an identity",
+    )
+    header_order = {field_name: index for index, field_name in enumerate(EXPECTED_HEADER)}
+    for row in delta.changed:
+        _require_event(bool(row.identity), "changed identity must not be blank")
+        _require_event(bool(row.changes), "changed row must contain a field change")
+        fields = [change.field for change in row.changes]
+        _require_event(len(fields) == len(set(fields)), "changed fields must be unique")
+        _require_event(
+            all(field_name in header_order for field_name in fields),
+            "changed field must belong to the released parser schema",
+        )
+        _require_event(
+            fields == sorted(fields, key=header_order.__getitem__),
+            "changed fields must follow released parser order",
+        )
+        _require_event(
+            all(change.before != change.after for change in row.changes),
+            "field change must have different before and after values",
+        )
+
+
+def _expected_atomic_events(
+    delta: ContentDelta,
+) -> tuple[tuple[str, Mapping[str, str]], ...]:
+    expected: list[tuple[str, Mapping[str, str]]] = []
+    expected.extend(
+        (
+            "UNIT_ADDED_TO_DATASET",
+            {"identity": identity, "membership": "added_to_later_observation"},
+        )
+        for identity in delta.added
+    )
+    expected.extend(
+        (
+            "UNIT_REMOVED_FROM_DATASET",
+            {"identity": identity, "membership": "absent_from_later_observation"},
+        )
+        for identity in delta.removed
+    )
+    for row in delta.changed:
+        for change in row.changes:
+            event_kind = _FIELD_EVENT_KIND.get(change.field)
+            _require_event(
+                event_kind is not None,
+                f"field {change.field!r} has no released Event semantics",
+            )
+            assert event_kind is not None
+            expected.append(
+                (
+                    event_kind,
+                    {
+                        "identity": row.identity,
+                        "field": change.field,
+                        "before": change.before,
+                        "after": change.after,
+                    },
+                )
+            )
+    return tuple(expected)
+
+
+def _validate_candidate_event(event: CandidateEvent) -> None:
+    _require_event(
+        event._runtime_marker is _RUNTIME_EVENT_MARKER,
+        "event was not produced by the bounded deterministic runtime",
+    )
+    expected_digest = _candidate_event_digest(event)
+    _require_event(
+        event._integrity_digest is not None
+        and hmac.compare_digest(event._integrity_digest, expected_digest),
+        "event changed after deterministic construction",
+    )
+    _validate_source_id(event.source_id)
+    _require_event(
+        bool(event.evidence_refs)
+        and all(isinstance(ref, str) and bool(ref.strip()) for ref in event.evidence_refs),
+        "evidence references must be present and non-blank",
+    )
+
+    result_kind = event.deterministic_result_kind
+    if result_kind == "CONTENT_DELTA":
+        _require_event(event.parser_version == PARSER_VERSION, "parser version mismatch")
+        _require_event(event.diff_version == DIFF_VERSION, "diff version mismatch")
+        _require_event(
+            isinstance(event.content_delta, ContentDelta),
+            "CONTENT_DELTA event must carry its deterministic delta",
+        )
+        _require_event(
+            event.from_snapshot_ref is not None and event.from_snapshot_ref.strip() != "",
+            "CONTENT_DELTA event requires a from evidence reference",
+        )
+        _require_event(
+            event.to_snapshot_ref is not None and event.to_snapshot_ref.strip() != "",
+            "CONTENT_DELTA event requires a to evidence reference",
+        )
+        _require_event(
+            event.evidence_refs
+            == (event.from_snapshot_ref, event.to_snapshot_ref),
+            "CONTENT_DELTA evidence refs must match from/to refs",
+        )
+        _require_event(
+            event.byte_relation in {"CHANGED", "UNCHANGED"},
+            "CONTENT_DELTA byte relation must be CHANGED or UNCHANGED",
+        )
+        delta = event.content_delta
+        assert delta is not None
+        _validate_delta_shape(delta)
+        if delta.content_equal:
+            _require_event(event.event_kind == "NO_CONTENT_CHANGE", "equal delta event kind")
+            if event.byte_relation == "UNCHANGED":
+                facts = dict(event.facts)
+                _require_event(
+                    set(facts) == {"revision", "sha256", "bytes"}
+                    and facts["revision"] == "unchanged"
+                    and isinstance(facts["sha256"], str)
+                    and re.fullmatch(r"[0-9a-f]{64}", facts["sha256"]) is not None
+                    and type(facts["bytes"]) is int
+                    and facts["bytes"] > 0,
+                    "unchanged facts do not match the verified receipt shape",
+                )
+            else:
+                _require_event(
+                    dict(event.facts)
+                    in (
+                        {"raw_bytes_differ": True},
+                        {"normalization": "leading_trailing_whitespace_trim_only"},
+                    ),
+                    "changed bytes with equal content require bounded no-change facts",
+                )
+            return
+
+        _require_event(event.byte_relation == "CHANGED", "content change requires changed bytes")
+        _require_event(
+            any(
+                event.event_kind == expected_kind
+                and dict(event.facts) == dict(expected_facts)
+                for expected_kind, expected_facts in _expected_atomic_events(delta)
+            ),
+            "event kind/facts do not describe an atomic change in content_delta",
+        )
+        return
+
+    _require_event(event.content_delta is None, f"{result_kind} must not carry content_delta")
+    if result_kind == "PARSER_FAILURE":
+        _require_event(
+            event.from_snapshot_ref is None and event.to_snapshot_ref is None,
+            "parser failure must not carry from/to snapshot refs",
+        )
+        _require_event(event.byte_relation == "NOT_APPLICABLE", "parser failure byte relation")
+        _require_event(event.parser_version == PARSER_VERSION, "parser version mismatch")
+        _require_event(event.diff_version is None, "parser failure must not carry diff version")
+        expected = {
+            "SCHEMA_DRIFT": {"error_class": "SchemaError", "failure_mode": "fail_closed"},
+            "IDENTITY_CONFLICT": {
+                "error_class": "DuplicateRowIdentityError",
+                "identity_column": "cod_equipamento",
+            },
+        }
+        _require_event(
+            event.event_kind in expected
+            and dict(event.facts) == expected[event.event_kind],
+            "parser failure kind/facts mismatch",
+        )
+        _require_event(len(event.evidence_refs) == 1, "parser failure requires one payload ref")
+        return
+
+    if result_kind == "REFERENCE_RECEIPT":
+        _require_event(event.event_kind == "NO_CONTENT_CHANGE", "reference receipt event kind")
+        _require_event(event.byte_relation == "UNCHANGED", "reference receipt byte relation")
+        _require_event(
+            event.parser_version is None and event.diff_version is None,
+            "reference receipt must not claim parser/diff execution",
+        )
+        _require_event(
+            event.from_snapshot_ref is not None
+            and event.to_snapshot_ref is not None
+            and event.evidence_refs
+            == (event.from_snapshot_ref, event.to_snapshot_ref),
+            "reference receipt evidence refs must match from/to snapshot refs",
+        )
+        facts = dict(event.facts)
+        _require_event(
+            set(facts) == {"revision", "sha256", "bytes"}
+            and facts["revision"] == "unchanged"
+            and isinstance(facts["sha256"], str)
+            and re.fullmatch(r"[0-9a-f]{64}", facts["sha256"]) is not None
+            and type(facts["bytes"]) is int
+            and facts["bytes"] > 0,
+            "reference receipt facts mismatch",
+        )
+        return
+
+    if result_kind == "CONTROLLED_CONTEXT":
+        _require_event(
+            event.from_snapshot_ref is None and event.to_snapshot_ref is None,
+            "controlled context must not carry from/to snapshot refs",
+        )
+        _require_event(event.byte_relation == "NOT_APPLICABLE", "controlled byte relation")
+        _require_event(
+            event.parser_version is None and event.diff_version is None,
+            "controlled context must not claim parser/diff execution",
+        )
+        expected = {
+            "SOURCE_HEALTH_FAILURE": {
+                "observation": "No trustworthy new content observation exists."
+            },
+            "EVIDENCE_GAP": {"required_evidence_reconstructible": False},
+        }
+        _require_event(
+            event.event_kind in expected
+            and dict(event.facts) == expected[event.event_kind],
+            "controlled context kind/facts mismatch",
+        )
+        _require_event(len(event.evidence_refs) == 1, "controlled context requires one ref")
+        return
+
+    raise SignalRuntimeError(
+        f"invalid CandidateEvent: unsupported deterministic result {result_kind!r}"
     )
 
 
@@ -727,7 +1048,7 @@ def evaluate_promotion(
     context: PromotionContext,
 ) -> PromotionEvaluation:
     """Apply the released source-specific gate without changing Event facts."""
-    _validate_source_id(event.source_id)
+    _validate_candidate_event(event)
     kind = event.event_kind
 
     if kind == "NO_CONTENT_CHANGE":
@@ -785,23 +1106,31 @@ def make_signal_claim_pack(
     evaluation: PromotionEvaluation,
 ) -> SignalClaimPack | None:
     """Create a surfaceable pack for PROMOTE; HOLD/REJECT return no claim."""
-    if evaluation.decision != "PROMOTE":
+    canonical = evaluate_promotion(
+        evaluation.candidate_event,
+        evaluation.context,
+    )
+    if evaluation != canonical:
+        raise SignalRuntimeError(
+            "PromotionEvaluation does not match the canonical promotion gate"
+        )
+    if canonical.decision != "PROMOTE":
         return None
-    claim = _safe_claim(evaluation.candidate_event)
-    if evaluation.claim_guard is not None:
-        claim = evaluation.claim_guard.fallback_claim
+    claim = _safe_claim(canonical.candidate_event)
+    if canonical.claim_guard is not None:
+        claim = canonical.claim_guard.fallback_claim
     return SignalClaimPack(
         gold_set_version=GOLD_SET_VERSION,
-        source_id=evaluation.candidate_event.source_id,
-        candidate_event=evaluation.candidate_event,
+        source_id=canonical.candidate_event.source_id,
+        candidate_event=canonical.candidate_event,
         decision="PROMOTE",
-        reason_code=evaluation.reason_code,
+        reason_code=canonical.reason_code,
         factual_claim=claim,
-        evidence_refs=evaluation.evidence_refs,
-        required_caveats=evaluation.required_caveats,
-        forbidden_claims=evaluation.forbidden_claims,
-        rights=evaluation.context.rights,
-        claim_guard=evaluation.claim_guard,
+        evidence_refs=canonical.evidence_refs,
+        required_caveats=canonical.required_caveats,
+        forbidden_claims=canonical.forbidden_claims,
+        rights=canonical.context.rights,
+        claim_guard=canonical.claim_guard,
     )
 
 

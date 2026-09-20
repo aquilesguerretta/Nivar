@@ -6,6 +6,7 @@ import json
 import os
 import re
 import uuid
+from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -19,10 +20,13 @@ from sqlalchemy.orm import Session
 from app.services.argos_memory import capture_snapshot
 from app.services.argos_ons_capacidade_geracao_diff import SOURCE_ID
 from app.services.argos_ons_capacidade_geracao_signal import (
+    CandidateEvent,
+    ClaimGuardEvaluation,
     EvidenceGapObservation,
     GOLD_SET_VERSION,
     PayloadObservation,
     PromotionContext,
+    PromotionEvaluation,
     ReferenceReceiptObservation,
     RightsContext,
     SignalRuntimeError,
@@ -288,6 +292,131 @@ def test_claim_guard_fails_closed_for_unsupported_publisher_revision_wording():
     assert claim_pack.claim_guard is not None
     assert claim_pack.claim_guard.reason_code == "UNSUPPORTED_PUBLISHER_REVISION"
     assert claim_pack.factual_claim == case["expected_factual_claim"]
+
+
+def _valid_promoted_evaluation():
+    case = next(case for case in CASES if case["case_id"] == "SG-004")
+    event = build_candidate_events(_observation(case))[0]
+    return evaluate_promotion(event, _context(case, event))
+
+
+def _forge_promote_with_context(context: PromotionContext) -> PromotionEvaluation:
+    valid = _valid_promoted_evaluation()
+    return PromotionEvaluation(
+        candidate_event=valid.candidate_event,
+        context=context,
+        decision="PROMOTE",
+        reason_code=valid.reason_code,
+        evidence_refs=valid.evidence_refs,
+        required_caveats=valid.required_caveats,
+        forbidden_claims=valid.forbidden_claims,
+        claim_guard=valid.claim_guard,
+    )
+
+
+def test_evaluation_rejects_manually_fabricated_promotable_candidate_event():
+    valid = _valid_promoted_evaluation()
+    fabricated = CandidateEvent(
+        source_id=SOURCE_ID,
+        event_kind="EFFECTIVE_POWER_CHANGED",
+        facts={
+            "identity": "FAKE-UNIT",
+            "field": "val_potenciaefetiva",
+            "before": "1.0",
+            "after": "999.0",
+        },
+        evidence_refs=("fake-from", "fake-to"),
+        deterministic_result_kind="CONTENT_DELTA",
+        byte_relation="CHANGED",
+        parser_version="ons.capacidade_geracao.parser@1",
+        diff_version="ons.capacidade_geracao.diff@1",
+        from_snapshot_ref="fake-from",
+        to_snapshot_ref="fake-to",
+        content_delta=None,
+    )
+
+    with pytest.raises(SignalRuntimeError, match="not produced"):
+        evaluate_promotion(fabricated, valid.context)
+
+
+def test_claim_pack_rejects_forged_promote_with_unclear_machine_api_rights():
+    valid = _valid_promoted_evaluation()
+    forged_context = replace(
+        valid.context,
+        rights=RightsContext(
+            surface="machine_api_redistribution",
+            state="UNCLEAR",
+            rights_record_ref="NIV7-EXT-ONS-OPEN-DATA-2026-09-16",
+        ),
+    )
+    forged = _forge_promote_with_context(forged_context)
+
+    with pytest.raises(SignalRuntimeError, match="canonical promotion gate"):
+        make_signal_claim_pack(forged)
+
+
+def test_claim_pack_rejects_forged_promote_without_reconstructible_evidence():
+    valid = _valid_promoted_evaluation()
+    forged = _forge_promote_with_context(
+        replace(valid.context, evidence_reconstructible=False)
+    )
+
+    with pytest.raises(SignalRuntimeError, match="canonical promotion gate"):
+        make_signal_claim_pack(forged)
+
+
+def test_claim_pack_rejects_forged_promote_with_unhealthy_source():
+    valid = _valid_promoted_evaluation()
+    forged = _forge_promote_with_context(
+        replace(valid.context, source_health_state="UNAVAILABLE")
+    )
+
+    with pytest.raises(SignalRuntimeError, match="canonical promotion gate"):
+        make_signal_claim_pack(forged)
+
+
+def test_claim_pack_rejects_forged_promote_with_unresolved_semantics():
+    valid = _valid_promoted_evaluation()
+    forged = _forge_promote_with_context(
+        replace(valid.context, semantics_understood=False)
+    )
+
+    with pytest.raises(SignalRuntimeError, match="canonical promotion gate"):
+        make_signal_claim_pack(forged)
+
+
+def test_claim_pack_rejects_forged_decision_and_reason():
+    valid = _valid_promoted_evaluation()
+    for forged in (
+        replace(valid, decision="HOLD"),
+        replace(valid, reason_code="RIGHTS_NOT_CLEARED"),
+    ):
+        with pytest.raises(SignalRuntimeError, match="canonical promotion gate"):
+            make_signal_claim_pack(forged)
+
+
+def test_claim_pack_rejects_forged_claim_metadata():
+    valid = _valid_promoted_evaluation()
+    for forged in (
+        replace(valid, evidence_refs=("forged-evidence",)),
+        replace(valid, required_caveats=("forged caveat",)),
+        replace(valid, forbidden_claims=("forged forbidden claim",)),
+        replace(
+            valid,
+            claim_guard=ClaimGuardEvaluation(
+                candidate_wording="forged wording",
+                result="FAIL",
+                reason_code="UNSUPPORTED_CAUSALITY",
+                prohibited_reason_codes=(
+                    "UNSUPPORTED_CAUSALITY",
+                    "UNSUPPORTED_PUBLISHER_REVISION",
+                ),
+                fallback_claim="forged fallback",
+            ),
+        ),
+    ):
+        with pytest.raises(SignalRuntimeError, match="canonical promotion gate"):
+            make_signal_claim_pack(forged)
 
 
 def test_runtime_is_source_bounded_and_contains_no_gold_case_lookup():
