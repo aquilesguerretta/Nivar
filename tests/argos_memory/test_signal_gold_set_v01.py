@@ -112,7 +112,6 @@ CASE_FIELD_AUTHORITIES = {
 }
 ROOT_FIELD_AUTHORITIES = {
     "gold_set_version": (A,),
-    "released_identifier_reserved": (A,),
     "release_status": (A,),
     "canonical_policy_ref": (A,),
     "source_id": (A,),
@@ -416,9 +415,10 @@ def test_manifest_has_exactly_the_twenty_approved_case_ids_and_validates():
 
     assert [case["case_id"] for case in manifest["cases"]] == list(validator.EXPECTED_CASE_IDS)
     assert len({case["case_id"] for case in manifest["cases"]}) == 20
-    assert manifest["gold_set_version"] == "argos.signal-gold.ons-capacidade@0.1-alpha"
-    assert manifest["released_identifier_reserved"] == "argos.signal-gold.ons-capacidade@0.1"
-    assert manifest["release_status"] == "ALPHA_MATERIALIZED_NOT_RELEASED"
+    assert manifest["gold_set_version"] == "argos.signal-gold.ons-capacidade@0.1"
+    assert "released_identifier_reserved" not in manifest
+    assert manifest["release_status"] == "RELEASED"
+    assert manifest["release_status"] != "ALPHA_MATERIALIZED_NOT_RELEASED"
     assert manifest["canonical_policy_ref"] == validator.CANONICAL_POLICY_REF
 
 
@@ -919,7 +919,7 @@ def test_sg020_promotes_the_event_but_rejects_unsupported_causal_wording():
 
 def test_all_cases_carry_the_approved_claim_contract_and_consistent_versions():
     for case in _manifest()["cases"]:
-        assert case["gold_set_version"] == "argos.signal-gold.ons-capacidade@0.1-alpha"
+        assert case["gold_set_version"] == "argos.signal-gold.ons-capacidade@0.1"
         assert case["human_gold_reviewer"] == "Aquiles Guerretta"
         assert case["forbidden_claims"]
         assert case["required_evidence_refs"]

@@ -8,8 +8,7 @@ from pathlib import Path
 from typing import Any
 
 
-GOLD_SET_VERSION = "argos.signal-gold.ons-capacidade@0.1-alpha"
-RESERVED_RELEASED_IDENTIFIER = "argos.signal-gold.ons-capacidade@0.1"
+GOLD_SET_VERSION = "argos.signal-gold.ons-capacidade@0.1"
 CANONICAL_POLICY_REF = "https://app.notion.com/p/3e09ca62107081f48f1fc4d376d4382c"
 HUMAN_GOLD_REVIEWER = "Aquiles Guerretta"
 ONS_RIGHTS_RECORD_REF = "NIV7-EXT-ONS-OPEN-DATA-2026-09-16"
@@ -449,7 +448,7 @@ def _validate_case(case: dict[str, Any], repo_root: Path) -> None:
 
 
 def validate_manifest(manifest: dict[str, Any], repo_root: Path) -> None:
-    """Validate only the approved v0.1-alpha materialization contract."""
+    """Validate only the approved released-v0.1 baseline contract."""
     if not isinstance(manifest, dict):
         raise ManifestValidationError("manifest root must be an object")
     expected_fields = set(EXPECTED_MANIFEST_FIELDS)
@@ -504,7 +503,6 @@ __all__ = [
     "HUMAN_SIGNAL_RIGHTS",
     "ManifestValidationError",
     "ONS_RIGHTS_RECORD_REF",
-    "RESERVED_RELEASED_IDENTIFIER",
     "load_manifest",
     "load_controlled_contexts",
     "same_json_value",
