@@ -14,6 +14,10 @@ import {
   settleMutationAgainstWorkspace,
   type WorkspaceDetail,
 } from "../../src/lib/ariadne/operatorApi.ts";
+import {
+  assumptionVersionChoices,
+  preflightScenario,
+} from "../../src/lib/ariadne/scenarioStudio.ts";
 
 const read = (path: string) => readFileSync(new URL(`../../${path}`, import.meta.url), "utf8");
 
@@ -21,6 +25,7 @@ const router = read("src/pages/operador/OperadorRouter.tsx");
 const chrome = read("src/pages/operador/consoleChrome.tsx");
 const workbench = read("src/pages/operador/AriadneWorkbench.tsx");
 const authoring = read("src/pages/operador/AriadneAuthoring.tsx");
+const studio = read("src/pages/operador/AriadneScenarioStudio.tsx");
 const api = read("src/lib/ariadne/operatorApi.ts");
 
 test("Ariadne has an explicit route while Advisory routes remain catalog-derived", () => {
@@ -111,6 +116,95 @@ test("assumptions stay distinct, typed and append-only", () => {
   assert.match(authoring, /valueSchemaFromAuthoringFields/);
   assert.match(authoring, /origin: assumptionOrigin/);
   assert.match(authoring, /APPEND-ONLY/);
+});
+
+test("Scenario Studio is primary in Analysis Workspace with exact version selectors", () => {
+  assert.match(authoring, /href="#ariadne-scenarios">Scenarios/);
+  assert.match(authoring, /href="#ariadne-runs">Runs/);
+  assert.match(studio, /SCENARIO BRANCH/);
+  assert.match(studio, /MODELS & RUNS/);
+  assert.match(studio, /Estado observado — versão exata/);
+  assert.match(studio, /Premissas — versão exata/);
+  assert.match(studio, /stateVersionId,/);
+  assert.match(studio, /assumptionSetVersionId: assumptionVersionId/);
+  assert.match(studio, /CURRENT/);
+  assert.match(studio, /HISTÓRICO/);
+  assert.match(studio, /detail\.stateVersions\.map/);
+});
+
+test("hypothetical state is optional, typed and separate from observed state", () => {
+  assert.match(studio, /Alterações hipotéticas pertencem apenas a este cenário/);
+  assert.match(studio, /não modificam o estado observado/);
+  assert.match(studio, /hypotheticalFields\.length/);
+  assert.match(studio, /hypotheticalState,/);
+  assert.match(studio, /allowEmpty/);
+  assert.equal(studio.includes("JSON.parse"), false);
+});
+
+test("scenario duplication prefills exact bindings but posts a new scenario", () => {
+  assert.match(studio, /Duplicar cenário/);
+  assert.match(studio, /openScenario\(scenario\)/);
+  assert.match(studio, /source\?\.stateVersionId/);
+  assert.match(studio, /source\?\.assumptionSetVersionId/);
+  assert.match(studio, /ariadneOperatorApi\.createScenario/);
+  assert.equal(api.includes("PUT"), false);
+  assert.equal(api.includes("PATCH"), false);
+});
+
+test("normal workspaces require explicit, server-controlled test-model enablement", () => {
+  assert.match(studio, /Nenhum modelo aprovado habilitado neste workspace/);
+  assert.match(studio, /Habilitar modelo interno de teste/);
+  assert.match(studio, /INTERNAL TEST MODEL/);
+  assert.match(studio, /DOMAIN-NEUTRAL/);
+  assert.match(studio, /NOT AN ENERGY MODEL/);
+  assert.match(api, /enableInternalTestModel/);
+  assert.match(api, /models\/internal-test/);
+  assert.equal(/enableInternalTestModel[\s\S]*implementationIdentity/.test(api), false);
+});
+
+test("scalar preflight explains incompatible exact scenario inputs", () => {
+  const detail = completeDetail();
+  const compatible = preflightScenario(detail, detail.scenarios[1], detail.models[0]);
+  assert.deepEqual(compatible, { compatible: true, messages: [] });
+
+  const incompatible = structuredClone(detail);
+  incompatible.stateVersions[1].payload.value = "12";
+  incompatible.assumptionSets[0].versions[0].values.multiplier = false;
+  const blocked = preflightScenario(
+    incompatible,
+    incompatible.scenarios[1],
+    incompatible.models[0],
+  );
+  assert.equal(blocked.compatible, false);
+  assert.ok(blocked.messages.some((message) => message.includes("value")));
+  assert.ok(blocked.messages.some((message) => message.includes("multiplier")));
+  assert.match(studio, /disabled={locked \|\| !preflight\.compatible}/);
+});
+
+test("run request sends exact scenario and model IDs while config stays server-controlled", () => {
+  assert.match(studio, /createRun\(workspaceId, selectedScenario\.id, selectedModel\.id\)/);
+  assert.match(api, /scenarioId,/);
+  assert.match(api, /modelVersionId,/);
+  assert.equal(/createRun[\s\S]*executionConfiguration:/.test(api), false);
+  assert.match(studio, /runMutation\("model-run"/);
+  assert.match(studio, /reconciliationRequired/);
+});
+
+test("results render from persisted workspace runs and results", () => {
+  assert.match(studio, /detail\.runs/);
+  assert.match(studio, /detail\.results\.find/);
+  assert.match(studio, /ModelRun ID/);
+  assert.match(studio, /Result ID/);
+  assert.match(studio, /Produzido em/);
+  assert.match(studio, /stateLabel\(detail, run\.stateVersionId\)/);
+  assert.match(studio, /assumptionLabel\(detail, run\.assumptionSetVersionId\)/);
+});
+
+test("Scenario Studio carries no recommendation or winner semantics", () => {
+  const lower = studio.toLocaleLowerCase("pt-BR");
+  for (const forbidden of ["melhor cenário", "vencedor", "recomendação", "ranking", "score"]) {
+    assert.equal(lower.includes(forbidden), false, `unexpected judgment language: ${forbidden}`);
+  }
 });
 
 test("reconstruction and replay are separate operations", () => {
@@ -269,8 +363,11 @@ function completeDetail(): WorkspaceDetail {
     name: GUIDED_FIXTURE.modelName,
     semanticVersion: GUIDED_FIXTURE.modelSemanticVersion,
     implementationIdentity: GUIDED_FIXTURE.modelImplementation,
-    inputContract: {},
-    outputContract: {},
+    inputContract: {
+      observed_state: { value: "integer" },
+      assumptions: { multiplier: "integer" },
+    },
+    outputContract: { scalar_result: { value: "integer" } },
     createdAt: "2026-09-19T00:00:00Z",
   }];
   detail.runs = [
@@ -301,6 +398,21 @@ function completeDetail(): WorkspaceDetail {
   ];
   return detail;
 }
+
+test("assumption choices retain every historical version and identify only the newest", () => {
+  const detail = completeDetail();
+  detail.assumptionSets[0].versions.push({
+    ...detail.assumptionSets[0].versions[0],
+    id: "a1v2",
+    version: 2,
+    previousVersionId: "a1v1",
+  });
+  const choices = assumptionVersionChoices(detail);
+  assert.deepEqual(
+    choices.map((choice) => [choice.version.id, choice.current]),
+    [["a1v1", false], ["a1v2", true]],
+  );
+});
 
 test("duplicate display labels fail closed instead of selecting the first record", () => {
   const detail = emptyDetail();

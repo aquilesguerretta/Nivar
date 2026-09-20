@@ -377,8 +377,8 @@ export function AriadneWorkbench() {
       </header>
 
       <ol className="ariadne__process" aria-label="Processo Ariadne">
-        {["Evidence", "State", "Assumptions", "Scenario · NIV-55", "Run · NIV-55", "Result · NIV-55"].map((item, index) => (
-          <li key={item} data-deferred={index > 2}><span>{String(index + 1).padStart(2, "0")}</span>{item}{index < 5 && <ArrowRight size={13} />}</li>
+        {["Evidence", "State", "Assumptions", "Scenario", "Run", "Result"].map((item, index) => (
+          <li key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}{index < 5 && <ArrowRight size={13} />}</li>
         ))}
       </ol>
 
