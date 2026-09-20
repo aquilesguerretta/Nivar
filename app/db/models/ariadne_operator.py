@@ -45,4 +45,41 @@ class AriadneOperatorWorkspace(Base):
     )
 
 
-__all__ = ["AriadneOperatorWorkspace"]
+class AriadneOperatorObjectPresentation(Base):
+    """Human-facing operator metadata kept outside canonical Ariadne Core.
+
+    ``object_type`` remains the case-independent Core classification.  This
+    label lets an analyst distinguish multiple objects of the same type
+    without turning that classification into a display identity.
+    """
+
+    __tablename__ = "ariadne_operator_object_presentation"
+    __table_args__ = (
+        CheckConstraint(
+            "length(display_label) > 0",
+            name="ariadne_operator_object_presentation_label_check",
+        ),
+        Index(
+            "ariadne_operator_object_presentation_workspace_idx",
+            "workspace_id",
+            "created_at",
+        ),
+    )
+
+    object_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("ariadne_private_object.id", ondelete="RESTRICT"),
+        primary_key=True,
+    )
+    workspace_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("ariadne_operator_workspace.id", ondelete="RESTRICT"),
+        nullable=False,
+    )
+    display_label: Mapped[str] = mapped_column(Text, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, server_default=func.now()
+    )
+
+
+__all__ = ["AriadneOperatorObjectPresentation", "AriadneOperatorWorkspace"]

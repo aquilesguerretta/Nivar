@@ -25,6 +25,7 @@ from app.db.models.ariadne_core import (
     AriadneScenario,
     AriadneStateEvidence,
 )
+from app.db.models.ariadne_operator import AriadneOperatorObjectPresentation
 from app.db.models.user import User
 from app.db.session import get_db
 from app.services.ariadne_core import (
@@ -43,6 +44,7 @@ from app.services.ariadne_core import (
 )
 from app.services.ariadne_operator import (
     WorkspaceNotFound,
+    create_object_presentation,
     create_workspace,
     list_workspaces,
     require_operator,
@@ -61,6 +63,7 @@ class StrictRequest(BaseModel):
 
 class CreateWorkspaceRequest(StrictRequest):
     label: str = Field(min_length=1, max_length=160)
+    synthetic: bool = False
 
 
 class CreateEvidenceRequest(StrictRequest):
@@ -73,6 +76,9 @@ class CreateEvidenceRequest(StrictRequest):
 
 class CreateObjectRequest(StrictRequest):
     object_type: str = Field(alias="objectType", min_length=1, max_length=160)
+    display_label: str | None = Field(
+        default=None, alias="displayLabel", min_length=1, max_length=160
+    )
 
 
 class CreateStateRequest(StrictRequest):
@@ -160,6 +166,14 @@ def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any
             .order_by(AriadnePrivateObject.created_at, AriadnePrivateObject.id)
         ).scalars()
     )
+    object_presentations = {
+        row.object_id: row
+        for row in db.execute(
+            select(AriadneOperatorObjectPresentation).where(
+                AriadneOperatorObjectPresentation.workspace_id == workspace.id
+            )
+        ).scalars()
+    }
     states = list(
         db.execute(
             select(AriadnePrivateStateVersion)
@@ -275,6 +289,11 @@ def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any
             {
                 "id": str(row.id),
                 "objectType": row.object_type,
+                "displayLabel": (
+                    object_presentations[row.id].display_label
+                    if row.id in object_presentations
+                    else None
+                ),
                 "createdAt": _iso(row.created_at),
                 "currentStateVersionId": (
                     str(current_by_object[row.id].id) if current_by_object[row.id] else None
@@ -376,7 +395,12 @@ def post_workspace(
 ):
     require_operator(user)
     try:
-        workspace = create_workspace(db, owner_user_id=user.id, label=body.label)
+        workspace = create_workspace(
+            db,
+            owner_user_id=user.id,
+            label=body.label,
+            synthetic=body.synthetic,
+        )
         db.commit()
         db.refresh(workspace)
     except (ValueError, RuntimeError) as exc:
@@ -428,9 +452,16 @@ def post_object(
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    _, tenant_id = _authorized_context(workspace_id, user, db)
+    workspace, tenant_id = _authorized_context(workspace_id, user, db)
     try:
         row = create_private_object(db, tenant_id=tenant_id, object_type=body.object_type)
+        if body.display_label is not None:
+            create_object_presentation(
+                db,
+                workspace_id=workspace.id,
+                object_id=row.id,
+                display_label=body.display_label,
+            )
         db.commit()
         db.refresh(row)
     except (ValueError, TypeError) as exc:

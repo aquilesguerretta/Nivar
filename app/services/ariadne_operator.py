@@ -15,7 +15,10 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.db.models.ariadne_core import AriadneModelDefinition, AriadneModelVersion
-from app.db.models.ariadne_operator import AriadneOperatorWorkspace
+from app.db.models.ariadne_operator import (
+    AriadneOperatorObjectPresentation,
+    AriadneOperatorWorkspace,
+)
 from app.db.models.user import User
 from app.services.advisory_operator import require_advisory_operator
 from app.services.ariadne_core import (
@@ -113,7 +116,11 @@ def provision_registered_model(
 
 
 def create_workspace(
-    session: Session, *, owner_user_id: uuid.UUID, label: str
+    session: Session,
+    *,
+    owner_user_id: uuid.UUID,
+    label: str,
+    synthetic: bool = False,
 ) -> AriadneOperatorWorkspace:
     normalized = label.strip()
     if not normalized:
@@ -121,16 +128,39 @@ def create_workspace(
     workspace = AriadneOperatorWorkspace(
         owner_user_id=owner_user_id,
         label=normalized,
-        synthetic=True,
+        synthetic=synthetic,
     )
     session.add(workspace)
     session.flush()
-    provision_registered_model(session, tenant_id=tenant_id_for(workspace.id))
+    if synthetic:
+        provision_registered_model(session, tenant_id=tenant_id_for(workspace.id))
     return workspace
+
+
+def create_object_presentation(
+    session: Session,
+    *,
+    workspace_id: uuid.UUID,
+    object_id: uuid.UUID,
+    display_label: str,
+) -> AriadneOperatorObjectPresentation:
+    """Attach an operator label without changing ``PrivateObject`` semantics."""
+    normalized = display_label.strip()
+    if not normalized:
+        raise ValueError("display_label must not be empty")
+    presentation = AriadneOperatorObjectPresentation(
+        workspace_id=workspace_id,
+        object_id=object_id,
+        display_label=normalized,
+    )
+    session.add(presentation)
+    session.flush()
+    return presentation
 
 
 __all__ = [
     "WorkspaceNotFound",
+    "create_object_presentation",
     "create_workspace",
     "list_workspaces",
     "provision_registered_model",

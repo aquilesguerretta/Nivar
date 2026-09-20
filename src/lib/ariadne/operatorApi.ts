@@ -56,6 +56,7 @@ export interface EvidenceRef {
 export interface PrivateObject {
   id: string;
   objectType: string;
+  displayLabel: string | null;
   createdAt: string;
   currentStateVersionId: string | null;
 }
@@ -177,6 +178,23 @@ export interface MutationSettlement {
   reconciled: boolean;
 }
 
+export type AssumptionOrigin = "human_defined" | "rule" | "other";
+
+export interface EvidenceDraft {
+  sourceArtifactId: string;
+  sourceVersion: string;
+  locator: string;
+  observedAt?: string | null;
+  transformRef?: string | null;
+}
+
+export interface StateDraft {
+  payload: Record<string, unknown>;
+  evidenceRefIds: string[];
+  validFrom?: string | null;
+  validTo?: string | null;
+}
+
 /**
  * A mutation response can be lost after the server commits. Always read the
  * persisted workspace before the UI permits another attempt.
@@ -220,25 +238,27 @@ const post = <T>(path: string, body?: unknown) =>
 
 export const ariadneOperatorApi = {
   listWorkspaces: () => request<{ data: WorkspaceSummary[] }>("/workspaces"),
-  createWorkspace: (label: string) => post<WorkspaceSummary>("/workspaces", { label }),
+  createWorkspace: (label: string, synthetic = false) =>
+    post<WorkspaceSummary>("/workspaces", { label, synthetic }),
   getWorkspace: (workspaceId: string) => request<WorkspaceDetail>(`/workspaces/${workspaceId}`),
-  createEvidence: (
-    workspaceId: string,
-    body: { sourceArtifactId: string; sourceVersion: string; locator: string },
-  ) => post<{ id: string }>(`/workspaces/${workspaceId}/evidence`, body),
-  createObject: (workspaceId: string, objectType: string) =>
-    post<{ id: string }>(`/workspaces/${workspaceId}/objects`, { objectType }),
+  createEvidence: (workspaceId: string, body: EvidenceDraft) =>
+    post<{ id: string }>(`/workspaces/${workspaceId}/evidence`, body),
+  createObject: (workspaceId: string, objectType: string, displayLabel?: string) =>
+    post<{ id: string }>(`/workspaces/${workspaceId}/objects`, {
+      objectType,
+      ...(displayLabel ? { displayLabel } : {}),
+    }),
   createState: (
     workspaceId: string,
     objectId: string,
-    body: { payload: Record<string, unknown>; evidenceRefIds: string[] },
+    body: StateDraft,
   ) => post<{ id: string; version: number }>(`/workspaces/${workspaceId}/objects/${objectId}/states`, body),
   createAssumptionSet: (workspaceId: string, name: string) =>
     post<{ id: string }>(`/workspaces/${workspaceId}/assumption-sets`, { name }),
   createAssumptionVersion: (
     workspaceId: string,
     setId: string,
-    body: { values: Record<string, unknown>; origin: "human_defined"; valueSchema: Record<string, unknown> },
+    body: { values: Record<string, unknown>; origin: AssumptionOrigin; valueSchema: Record<string, unknown> },
   ) => post<{ id: string; version: number }>(`/workspaces/${workspaceId}/assumption-sets/${setId}/versions`, body),
   createScenario: (
     workspaceId: string,
