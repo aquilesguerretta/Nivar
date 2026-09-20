@@ -19,7 +19,7 @@ from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import sessionmaker
 
 import app.routers.ariadne_operator as ariadne_router
-from app.db.models.ariadne_core import AriadneModelDefinition
+from app.db.models.ariadne_core import AriadneModelDefinition, AriadneModelVersion
 from app.db.models.user import User
 from app.db.session import get_db
 from app.services.ariadne_operator import tenant_id_for
@@ -106,6 +106,105 @@ def _create_workspace(client: TestClient, label: str = "Synthetic API test") -> 
     return response.json()
 
 
+def _post_ok(client: TestClient, path: str, payload: dict) -> dict:
+    response = client.post(path, json=payload)
+    assert response.status_code == 201, response.text
+    return response.json()
+
+
+def _all_keys(value):
+    if isinstance(value, dict):
+        for key, child in value.items():
+            yield key
+            yield from _all_keys(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from _all_keys(child)
+
+
+def _build_protocol(client: TestClient, root: str, prefix: str) -> dict:
+    model_id = client.get(root).json()["models"][0]["id"]
+    evidence = _post_ok(
+        client,
+        f"{root}/evidence",
+        {
+            "sourceArtifactId": f"{prefix}-E1",
+            "sourceVersion": "1",
+            "locator": f"illustrative://{prefix.lower()}/value-10",
+        },
+    )
+    private_object = _post_ok(
+        client, f"{root}/objects", {"objectType": f"{prefix.lower()}_scalar"}
+    )
+    state = _post_ok(
+        client,
+        f"{root}/objects/{private_object['id']}/states",
+        {"payload": {"value": 10}, "evidenceRefIds": [evidence["id"]]},
+    )
+    assumption_set = _post_ok(
+        client, f"{root}/assumption-sets", {"name": f"{prefix} assumptions"}
+    )
+    assumption_version = _post_ok(
+        client,
+        f"{root}/assumption-sets/{assumption_set['id']}/versions",
+        {
+            "values": {"multiplier": 2},
+            "origin": "human_defined",
+            "valueSchema": {"multiplier": "integer"},
+        },
+    )
+    scenario = _post_ok(
+        client,
+        f"{root}/scenarios",
+        {
+            "name": f"{prefix} scenario",
+            "stateVersionId": state["id"],
+            "assumptionSetVersionId": assumption_version["id"],
+            "hypotheticalState": {},
+        },
+    )
+    run = _post_ok(
+        client,
+        f"{root}/runs",
+        {
+            "scenarioId": scenario["id"],
+            "modelVersionId": model_id,
+            "executionConfiguration": {"arithmetic": "integer"},
+        },
+    )
+    return {
+        "model_id": model_id,
+        "evidence": evidence,
+        "object": private_object,
+        "state": state,
+        "assumption_set": assumption_set,
+        "assumption_version": assumption_version,
+        "scenario": scenario,
+        "run": run,
+    }
+
+
+def test_every_operator_route_declares_real_auth_dependency():
+    for route in ariadne_router.router.routes:
+        dependency_calls = {dependency.call for dependency in route.dependant.dependencies}
+        assert get_current_user in dependency_calls, f"missing auth dependency: {route.path}"
+
+
+def test_unauthenticated_request_is_rejected(api_context):
+    api = FastAPI()
+    api.include_router(ariadne_router.router)
+
+    def db_override():
+        with api_context["factory"]() as session:
+            yield session
+
+    api.dependency_overrides[get_db] = db_override
+    with TestClient(api) as client:
+        response = client.get("/api/operator/ariadne/workspaces")
+    assert response.status_code == 401
+    assert response.json()["detail"] == "not authenticated"
+
+
 def test_non_operator_cannot_access(api_context, monkeypatch):
     monkeypatch.setenv("ADVISORY_OPERATOR_EMAIL", "somebody-else@example.test")
     response = api_context["client"].get("/api/operator/ariadne/workspaces")
@@ -131,6 +230,67 @@ def test_operator_creates_workspace_and_server_derives_context(api_context, monk
     assert injected.status_code == 422
 
 
+@pytest.mark.parametrize(
+    "authority_field",
+    ["tenant_id", "tenantId", "privateContext", "private_context_id"],
+)
+def test_browser_cannot_submit_authority_fields(api_context, monkeypatch, authority_field):
+    operator = api_context["operator"]
+    api_context["current"]["user"] = operator
+    _authorize(monkeypatch, operator)
+    client = api_context["client"]
+    workspace = _create_workspace(client, f"Strict authority {authority_field}")
+    root = f"/api/operator/ariadne/workspaces/{workspace['id']}"
+    injected = {authority_field: "chosen-by-browser"}
+    attempts = [
+        ("/api/operator/ariadne/workspaces", {"label": "Injected workspace"}),
+        (
+            f"{root}/evidence",
+            {
+                "sourceArtifactId": "INJECTED",
+                "sourceVersion": "1",
+                "locator": "illustrative://injected",
+            },
+        ),
+        (f"{root}/objects", {"objectType": "injected"}),
+        (
+            f"{root}/objects/{uuid.uuid4()}/states",
+            {"payload": {"value": 1}, "evidenceRefIds": [str(uuid.uuid4())]},
+        ),
+        (f"{root}/assumption-sets", {"name": "Injected"}),
+        (
+            f"{root}/assumption-sets/{uuid.uuid4()}/versions",
+            {"values": {}, "origin": "human_defined", "valueSchema": {}},
+        ),
+        (
+            f"{root}/scenarios",
+            {
+                "name": "Injected",
+                "stateVersionId": str(uuid.uuid4()),
+                "assumptionSetVersionId": str(uuid.uuid4()),
+                "hypotheticalState": {},
+            },
+        ),
+        (
+            f"{root}/runs",
+            {
+                "scenarioId": str(uuid.uuid4()),
+                "modelVersionId": str(uuid.uuid4()),
+                "executionConfiguration": {"arithmetic": "integer"},
+            },
+        ),
+    ]
+    for path, payload in attempts:
+        response = client.post(path, json={**payload, **injected})
+        assert response.status_code == 422, (path, response.text)
+
+    detail = client.get(root).json()
+    response_keys = set(_all_keys(detail))
+    assert response_keys.isdisjoint(
+        {"tenant_id", "tenantId", "privateContext", "private_context_id"}
+    )
+
+
 def test_workspace_owner_is_enforced_when_operator_gate_allows_multiple_users(
     api_context, monkeypatch
 ):
@@ -145,6 +305,73 @@ def test_workspace_owner_is_enforced_when_operator_gate_allows_multiple_users(
     )
     assert response.status_code == 404
     api_context["current"]["user"] = operator
+
+
+def test_missing_workspace_is_explicit_404(api_context, monkeypatch):
+    operator = api_context["operator"]
+    api_context["current"]["user"] = operator
+    _authorize(monkeypatch, operator)
+    response = api_context["client"].get(
+        f"/api/operator/ariadne/workspaces/{uuid.uuid4()}"
+    )
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Ariadne workspace not found"
+
+
+def test_models_get_is_read_only_and_does_not_repair_missing_rows(api_context, monkeypatch):
+    operator = api_context["operator"]
+    api_context["current"]["user"] = operator
+    _authorize(monkeypatch, operator)
+    client = api_context["client"]
+    workspace = _create_workspace(client, "Read-only model listing")
+    root = f"/api/operator/ariadne/workspaces/{workspace['id']}"
+    tenant_id = tenant_id_for(uuid.UUID(workspace["id"]))
+
+    with api_context["factory"]() as session:
+        versions = list(
+            session.execute(
+                select(AriadneModelVersion).where(AriadneModelVersion.tenant_id == tenant_id)
+            ).scalars()
+        )
+        definitions = list(
+            session.execute(
+                select(AriadneModelDefinition).where(
+                    AriadneModelDefinition.tenant_id == tenant_id
+                )
+            ).scalars()
+        )
+        for row in versions:
+            session.delete(row)
+        session.flush()
+        for row in definitions:
+            session.delete(row)
+        session.commit()
+
+    response = client.get(f"{root}/models")
+    assert response.status_code == 200
+    assert response.json() == {"data": []}
+    with api_context["factory"]() as session:
+        assert session.execute(
+            select(AriadneModelVersion).where(AriadneModelVersion.tenant_id == tenant_id)
+        ).scalars().all() == []
+        assert session.execute(
+            select(AriadneModelDefinition).where(AriadneModelDefinition.tenant_id == tenant_id)
+        ).scalars().all() == []
+
+
+def test_duplicate_assumption_set_returns_conflict_not_500(api_context, monkeypatch):
+    operator = api_context["operator"]
+    api_context["current"]["user"] = operator
+    _authorize(monkeypatch, operator)
+    client = api_context["client"]
+    workspace = _create_workspace(client, "Duplicate set handling")
+    root = f"/api/operator/ariadne/workspaces/{workspace['id']}"
+
+    first = client.post(f"{root}/assumption-sets", json={"name": "Same label"})
+    second = client.post(f"{root}/assumption-sets", json={"name": "Same label"})
+    assert first.status_code == 201
+    assert second.status_code == 409
+    assert "refresh" in second.json()["detail"]
 
 
 def test_full_v1_v2_lineage_and_replay_flow(api_context, monkeypatch):
@@ -261,7 +488,7 @@ def test_full_v1_v2_lineage_and_replay_flow(api_context, monkeypatch):
     }
 
 
-def test_cross_workspace_reference_is_rejected(api_context, monkeypatch):
+def test_every_cross_workspace_reference_is_rejected(api_context, monkeypatch):
     operator = api_context["operator"]
     api_context["current"]["user"] = operator
     _authorize(monkeypatch, operator)
@@ -270,22 +497,69 @@ def test_cross_workspace_reference_is_rejected(api_context, monkeypatch):
     second = _create_workspace(client, "Cross-scope B")
     root_a = f"/api/operator/ariadne/workspaces/{first['id']}"
     root_b = f"/api/operator/ariadne/workspaces/{second['id']}"
-    obj = client.post(f"{root_a}/objects", json={"objectType": "synthetic"}).json()
-    foreign_evidence = client.post(
-        f"{root_b}/evidence",
-        json={
-            "sourceArtifactId": "FOREIGN",
-            "sourceVersion": "1",
-            "locator": "illustrative://foreign",
-        },
-    ).json()
+    graph_a = _build_protocol(client, root_a, "A")
+    graph_b = _build_protocol(client, root_b, "B")
 
-    response = client.post(
-        f"{root_a}/objects/{obj['id']}/states",
-        json={
-            "payload": {"value": 10},
-            "evidenceRefIds": [foreign_evidence["id"]],
-        },
-    )
-    assert response.status_code == 422
-    assert "not available in tenant" in response.json()["detail"]
+    attempts = [
+        client.post(
+            f"{root_a}/objects/{graph_a['object']['id']}/states",
+            json={
+                "payload": {"value": 11},
+                "evidenceRefIds": [graph_b["evidence"]["id"]],
+            },
+        ),
+        client.post(
+            f"{root_a}/objects/{graph_b['object']['id']}/states",
+            json={
+                "payload": {"value": 11},
+                "evidenceRefIds": [graph_a["evidence"]["id"]],
+            },
+        ),
+        client.post(
+            f"{root_a}/assumption-sets/{graph_b['assumption_set']['id']}/versions",
+            json={
+                "values": {"multiplier": 3},
+                "origin": "human_defined",
+                "valueSchema": {},
+            },
+        ),
+        client.post(
+            f"{root_a}/scenarios",
+            json={
+                "name": "Foreign state",
+                "stateVersionId": graph_b["state"]["id"],
+                "assumptionSetVersionId": graph_a["assumption_version"]["id"],
+                "hypotheticalState": {},
+            },
+        ),
+        client.post(
+            f"{root_a}/scenarios",
+            json={
+                "name": "Foreign assumptions",
+                "stateVersionId": graph_a["state"]["id"],
+                "assumptionSetVersionId": graph_b["assumption_version"]["id"],
+                "hypotheticalState": {},
+            },
+        ),
+        client.post(
+            f"{root_a}/runs",
+            json={
+                "scenarioId": graph_b["scenario"]["id"],
+                "modelVersionId": graph_a["model_id"],
+                "executionConfiguration": {"arithmetic": "integer"},
+            },
+        ),
+        client.post(
+            f"{root_a}/runs",
+            json={
+                "scenarioId": graph_a["scenario"]["id"],
+                "modelVersionId": graph_b["model_id"],
+                "executionConfiguration": {"arithmetic": "integer"},
+            },
+        ),
+        client.get(f"{root_a}/results/{graph_b['run']['resultId']}/lineage"),
+        client.post(f"{root_a}/results/{graph_b['run']['resultId']}/replay"),
+    ]
+    for response in attempts:
+        assert response.status_code == 422, response.text
+        assert "not available in tenant" in response.json()["detail"]

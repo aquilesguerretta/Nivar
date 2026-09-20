@@ -26,7 +26,11 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   }
   if (!response.ok) {
     const payload = (await response.json().catch(() => null)) as { detail?: unknown } | null;
-    const detail = typeof payload?.detail === "string" ? payload.detail : `Falha HTTP ${response.status}`;
+    const detail = response.status >= 500
+      ? "Backend indisponível ou falha interna. Nenhum dado foi inventado."
+      : typeof payload?.detail === "string"
+        ? payload.detail
+        : `Falha HTTP ${response.status}`;
     throw new AriadneOperatorApiError(response.status, detail);
   }
   return (await response.json()) as T;
@@ -165,6 +169,47 @@ export interface Replay {
   storedPayload: Record<string, unknown>;
   replayedPayload: Record<string, unknown>;
   matches: boolean;
+}
+
+export interface MutationSettlement {
+  actionError: unknown | null;
+  refreshError: unknown | null;
+  reconciled: boolean;
+}
+
+/**
+ * A mutation response can be lost after the server commits. Always read the
+ * persisted workspace before the UI permits another attempt.
+ */
+export async function settleMutationAgainstWorkspace(
+  action: () => Promise<unknown>,
+  refresh: () => Promise<unknown>,
+): Promise<MutationSettlement> {
+  let actionError: unknown | null = null;
+  try {
+    await action();
+  } catch (caught) {
+    actionError = caught;
+  }
+
+  try {
+    await refresh();
+    return { actionError, refreshError: null, reconciled: true };
+  } catch (caught) {
+    return { actionError, refreshError: caught, reconciled: false };
+  }
+}
+
+export function replayPresentation(replay: Replay) {
+  return replay.matches
+    ? {
+        status: "MATCH CONFIRMADO",
+        detail: "O output é idêntico ao X armazenado.",
+      }
+    : {
+        status: "MISMATCH DETECTADO",
+        detail: "O replay divergiu; o resultado histórico permanece inalterado.",
+      };
 }
 
 const post = <T>(path: string, body?: unknown) =>

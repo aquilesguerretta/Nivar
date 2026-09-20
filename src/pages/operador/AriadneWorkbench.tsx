@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Activity,
   Archive,
@@ -15,12 +15,15 @@ import {
 import {
   AriadneOperatorApiError,
   ariadneOperatorApi,
+  replayPresentation,
+  settleMutationAgainstWorkspace,
   type AriadneResult,
   type Lineage,
   type Replay,
   type WorkspaceDetail,
   type WorkspaceSummary,
 } from "../../lib/ariadne/operatorApi";
+import { GUIDED_FIXTURE, resolveGuidedFixture } from "../../lib/ariadne/guidedFixture";
 
 const short = (id?: string | null) => (id ? id.slice(0, 8).toUpperCase() : "—");
 const scalar = (payload?: Record<string, unknown>) =>
@@ -32,6 +35,10 @@ function explainError(error: unknown): string {
   if (error.status === 403) return "Esta conta não está autorizada como operador.";
   if (error.status === 404) return "Workspace não encontrado ou não pertence a este operador.";
   return error.message;
+}
+
+function isAmbiguousMutationError(error: unknown): boolean {
+  return !(error instanceof AriadneOperatorApiError) || error.status === 0 || error.status >= 500;
 }
 
 function DataId({ value }: { value?: string | null }) {
@@ -48,6 +55,8 @@ export function AriadneWorkbench() {
   const [selectedResultId, setSelectedResultId] = useState<string | null>(null);
   const [lineage, setLineage] = useState<Lineage | null>(null);
   const [replay, setReplay] = useState<Replay | null>(null);
+  const [reconciliationRequired, setReconciliationRequired] = useState(false);
+  const mutationInFlight = useRef(false);
 
   const loadWorkspace = useCallback(async (id: string) => {
     const next = await ariadneOperatorApi.getWorkspace(id);
@@ -71,6 +80,7 @@ export function AriadneWorkbench() {
       setWorkspaceId(nextId);
       if (nextId) await loadWorkspace(nextId);
       else setDetail(null);
+      setReconciliationRequired(false);
     } catch (caught) {
       setDetail(null);
       setError(explainError(caught));
@@ -91,6 +101,7 @@ export function AriadneWorkbench() {
     setError(null);
     setLineage(null);
     setReplay(null);
+    setReconciliationRequired(false);
     try {
       await loadWorkspace(id);
     } catch (caught) {
@@ -102,52 +113,50 @@ export function AriadneWorkbench() {
   };
 
   const perform = async (label: string, action: () => Promise<unknown>) => {
-    if (!workspaceId) return;
+    if (!workspaceId || mutationInFlight.current) return;
+    mutationInFlight.current = true;
     setBusy(label);
     setError(null);
+    const settlement = await settleMutationAgainstWorkspace(
+      action,
+      () => loadWorkspace(workspaceId),
+    );
+    if (!settlement.reconciled) {
+      setReconciliationRequired(true);
+      setError(
+        "Resultado da gravação é ambíguo e o workspace não pôde ser relido. "
+        + "As ações foram bloqueadas até a reconciliação com o banco.",
+      );
+    } else {
+      setReconciliationRequired(false);
+      if (settlement.actionError) {
+        setError(
+          isAmbiguousMutationError(settlement.actionError)
+            ? "A resposta da gravação falhou. O estado persistido foi relido; confirme o registro abaixo antes de continuar."
+            : explainError(settlement.actionError),
+        );
+      }
+    }
+    mutationInFlight.current = false;
+    setBusy(null);
+  };
+
+  const fixture = useMemo(() => resolveGuidedFixture(detail), [detail]);
+
+  const reconcileWorkspace = async () => {
+    if (!workspaceId) return;
+    setBusy("reconcile");
     try {
-      await action();
       await loadWorkspace(workspaceId);
+      setReconciliationRequired(false);
+      setError(null);
     } catch (caught) {
-      setError(explainError(caught));
+      setReconciliationRequired(true);
+      setError(`Reconciliação ainda indisponível. ${explainError(caught)}`);
     } finally {
       setBusy(null);
     }
   };
-
-  const fixture = useMemo(() => {
-    const evidence1 = detail?.evidenceRefs.find((item) => item.sourceArtifactId === "SYNTHETIC-E1");
-    const evidence2 = detail?.evidenceRefs.find((item) => item.sourceArtifactId === "SYNTHETIC-E2");
-    const object = detail?.objects.find((item) => item.objectType === "synthetic_scalar_observation");
-    const states = detail?.stateVersions.filter((item) => item.objectId === object?.id) ?? [];
-    const state1 = states.find((item) => item.version === 1);
-    const state2 = states.find((item) => item.version === 2);
-    const assumptionSet = detail?.assumptionSets.find((item) => item.name === "A1 — Multiplicador sintético");
-    const assumption1 = assumptionSet?.versions.find((item) => item.version === 1);
-    const scenario1 = detail?.scenarios.find((item) => item.name === "S1 — Estado observado V1");
-    const scenario2 = detail?.scenarios.find((item) => item.name === "S2 — Estado observado V2");
-    const model = detail?.models.find((item) => item.name === "deterministic_scalar_model");
-    const run1 = detail?.runs.find((item) => item.scenarioId === scenario1?.id);
-    const run2 = detail?.runs.find((item) => item.scenarioId === scenario2?.id);
-    const result1 = detail?.results.find((item) => item.modelRunId === run1?.id);
-    const result2 = detail?.results.find((item) => item.modelRunId === run2?.id);
-    return {
-      evidence1,
-      evidence2,
-      object,
-      state1,
-      state2,
-      assumptionSet,
-      assumption1,
-      scenario1,
-      scenario2,
-      model,
-      run1,
-      run2,
-      result1,
-      result2,
-    };
-  }, [detail]);
 
   const createWorkspace = async () => {
     setBusy("workspace");
@@ -205,9 +214,7 @@ export function AriadneWorkbench() {
           done: Boolean(fixture.evidence1),
           enabled: true,
           run: () => ariadneOperatorApi.createEvidence(workspaceId, {
-            sourceArtifactId: "SYNTHETIC-E1",
-            sourceVersion: "1",
-            locator: "illustrative://scalar/input/value-10",
+            ...GUIDED_FIXTURE.evidence1,
           }),
         },
         {
@@ -216,7 +223,7 @@ export function AriadneWorkbench() {
           detail: "Objeto privado neutro",
           done: Boolean(fixture.object),
           enabled: Boolean(fixture.evidence1),
-          run: () => ariadneOperatorApi.createObject(workspaceId, "synthetic_scalar_observation"),
+          run: () => ariadneOperatorApi.createObject(workspaceId, GUIDED_FIXTURE.objectType),
         },
         {
           key: "v1",
@@ -236,7 +243,7 @@ export function AriadneWorkbench() {
           done: Boolean(fixture.assumption1),
           enabled: Boolean(fixture.state1),
           run: async () => {
-            const set = fixture.assumptionSet ?? await ariadneOperatorApi.createAssumptionSet(workspaceId, "A1 — Multiplicador sintético");
+            const set = fixture.assumptionSet ?? await ariadneOperatorApi.createAssumptionSet(workspaceId, GUIDED_FIXTURE.assumptionName);
             return ariadneOperatorApi.createAssumptionVersion(workspaceId, set.id, {
               values: { multiplier: 2 },
               origin: "human_defined",
@@ -251,7 +258,7 @@ export function AriadneWorkbench() {
           done: Boolean(fixture.scenario1),
           enabled: Boolean(fixture.state1 && fixture.assumption1),
           run: () => ariadneOperatorApi.createScenario(workspaceId, {
-            name: "S1 — Estado observado V1",
+            name: GUIDED_FIXTURE.scenario1Name,
             stateVersionId: fixture.state1!.id,
             assumptionSetVersionId: fixture.assumption1!.id,
             hypotheticalState: {},
@@ -272,9 +279,7 @@ export function AriadneWorkbench() {
           done: Boolean(fixture.evidence2),
           enabled: Boolean(fixture.result1),
           run: () => ariadneOperatorApi.createEvidence(workspaceId, {
-            sourceArtifactId: "SYNTHETIC-E2",
-            sourceVersion: "2",
-            locator: "illustrative://scalar/input/value-12",
+            ...GUIDED_FIXTURE.evidence2,
           }),
         },
         {
@@ -295,7 +300,7 @@ export function AriadneWorkbench() {
           done: Boolean(fixture.scenario2),
           enabled: Boolean(fixture.state2 && fixture.assumption1),
           run: () => ariadneOperatorApi.createScenario(workspaceId, {
-            name: "S2 — Estado observado V2",
+            name: GUIDED_FIXTURE.scenario2Name,
             stateVersionId: fixture.state2!.id,
             assumptionSetVersionId: fixture.assumption1!.id,
             hypotheticalState: {},
@@ -332,7 +337,27 @@ export function AriadneWorkbench() {
         ))}
       </ol>
 
-      {error && <div className="ariadne__error" role="alert"><strong>Ausência declarada</strong><span>{error}</span></div>}
+      {error && (
+        <div className="ariadne__error" role="alert">
+          <strong>{reconciliationRequired ? "Reconciliação obrigatória" : "Ausência declarada"}</strong>
+          <span>{error}</span>
+          {reconciliationRequired && (
+            <button type="button" disabled={busy !== null} onClick={() => void reconcileWorkspace()}>
+              {busy === "reconcile" ? <LoaderCircle className="ariadne__spin" size={14} /> : <RefreshCw size={14} />}
+              Reler estado persistido
+            </button>
+          )}
+        </div>
+      )}
+
+      {fixture.conflicts.length > 0 && (
+        <div className="ariadne__error ariadne__error--identity" role="alert">
+          <strong>Conflito de identidade</strong>
+          <span>
+            O protocolo foi bloqueado: rótulos não são identidade. {fixture.conflicts.join(" ")}
+          </span>
+        </div>
+      )}
 
       {loading ? (
         <div className="ariadne__loading" role="status"><LoaderCircle size={18} /> Lendo o estado persistido…</div>
@@ -372,7 +397,7 @@ export function AriadneWorkbench() {
                   key={action.key}
                   type="button"
                   data-done={action.done}
-                  disabled={busy !== null || action.done || !action.enabled}
+                  disabled={busy !== null || reconciliationRequired || fixture.conflicts.length > 0 || action.done || !action.enabled}
                   onClick={() => void perform(action.key, action.run)}
                 >
                   <span>{String(index + 1).padStart(2, "0")}</span>
@@ -416,9 +441,9 @@ export function AriadneWorkbench() {
             <section className="ariadne__panel">
               <div className="ariadne__section-title"><div><span>EVIDENCE</span><h2>Referências de origem</h2></div><Archive size={18} /></div>
               <div className="ariadne__ledger">
-                {detail.evidenceRefs.length === 0 ? <p className="ariadne__absence">Nenhuma evidência registrada.</p> : detail.evidenceRefs.map((evidence, index) => (
+                {detail.evidenceRefs.length === 0 ? <p className="ariadne__absence">Nenhuma evidência registrada.</p> : detail.evidenceRefs.map((evidence) => (
                   <article key={evidence.id}>
-                    <span>E{index + 1}</span><strong>{evidence.sourceArtifactId}</strong>
+                    <span>{evidence.id === fixture.evidence1?.id ? "E1" : evidence.id === fixture.evidence2?.id ? "E2" : "E?"}</span><strong>{evidence.sourceArtifactId}</strong>
                     <dl><div><dt>versão</dt><dd>{evidence.sourceVersion}</dd></div><div><dt>locator</dt><dd>{evidence.locator}</dd></div><div><dt>ref</dt><dd><DataId value={evidence.id} /></dd></div></dl>
                   </article>
                 ))}
@@ -440,9 +465,10 @@ export function AriadneWorkbench() {
             <section className="ariadne__panel">
               <div className="ariadne__section-title"><div><span>SCENARIO</span><h2>Manifestos de análise</h2></div><History size={18} /></div>
               <div className="ariadne__ledger">
-                {detail.scenarios.length === 0 ? <p className="ariadne__absence">Nenhum cenário criado.</p> : detail.scenarios.map((scenario, index) => {
+                {detail.scenarios.length === 0 ? <p className="ariadne__absence">Nenhum cenário criado.</p> : detail.scenarios.map((scenario) => {
                   const state = detail.stateVersions.find((item) => item.id === scenario.stateVersionId);
-                  return <article key={scenario.id}><span>S{index + 1}</span><strong>{scenario.name}</strong><dl><div><dt>estado fixado</dt><dd>V{state?.version ?? "—"}</dd></div><div><dt>hipótese</dt><dd>{Object.keys(scenario.hypotheticalState).length ? JSON.stringify(scenario.hypotheticalState) : "nenhuma"}</dd></div><div><dt>ref</dt><dd><DataId value={scenario.id} /></dd></div></dl></article>;
+                  const label = scenario.id === fixture.scenario1?.id ? "S1" : scenario.id === fixture.scenario2?.id ? "S2" : "S?";
+                  return <article key={scenario.id}><span>{label}</span><strong>{scenario.name}</strong><dl><div><dt>estado fixado</dt><dd>V{state?.version ?? "—"}</dd></div><div><dt>hipótese</dt><dd>{Object.keys(scenario.hypotheticalState).length ? JSON.stringify(scenario.hypotheticalState) : "nenhuma"}</dd></div><div><dt>ref</dt><dd><DataId value={scenario.id} /></dd></div></dl></article>;
                 })}
               </div>
             </section>
@@ -455,20 +481,22 @@ export function AriadneWorkbench() {
             </div>
             {detail.results.length === 0 ? <p className="ariadne__absence">Nenhum resultado persistido.</p> : (
               <div className="ariadne__result-grid">
-                {detail.results.map((result, index) => {
+                {detail.results.map((result) => {
                   const run = detail.runs.find((item) => item.id === result.modelRunId);
                   const state = detail.stateVersions.find((item) => item.id === run?.stateVersionId);
                   const scenario = detail.scenarios.find((item) => item.id === run?.scenarioId);
+                  const resultLabel = result.id === fixture.result1?.id ? "X1" : result.id === fixture.result2?.id ? "X2" : "X?";
+                  const runLabel = run?.id === fixture.run1?.id ? "R1" : run?.id === fixture.run2?.id ? "R2" : "R?";
                   return (
                     <article key={result.id} data-selected={selectedResultId === result.id}>
-                      <header><span>X{index + 1}</span><strong>{String(scalar(result.payload))}</strong><small>stored result</small></header>
+                      <header><span>{resultLabel}</span><strong>{String(scalar(result.payload))}</strong><small>stored result</small></header>
                       <dl>
-                        <div><dt>Run</dt><dd>R{index + 1} · <DataId value={run?.id} /></dd></div>
+                        <div><dt>Run</dt><dd>{runLabel} · <DataId value={run?.id} /></dd></div>
                         <div><dt>Cenário</dt><dd>{scenario?.name ?? "—"}</dd></div>
                         <div><dt>Estado usado</dt><dd>V{state?.version ?? "—"} · <DataId value={state?.id} /></dd></div>
                         <div><dt>Configuração</dt><dd>{JSON.stringify(run?.executionConfiguration ?? {})}</dd></div>
                       </dl>
-                      <button type="button" className="g2-ops__button" disabled={busy !== null} onClick={() => void reconstruct(result)}><GitBranch size={14} /> Reconstruir X{index + 1}</button>
+                      <button type="button" className="g2-ops__button" disabled={busy !== null} onClick={() => void reconstruct(result)}><GitBranch size={14} /> Reconstruir {resultLabel === "X?" ? "resultado" : resultLabel}</button>
                     </article>
                   );
                 })}
@@ -499,13 +527,16 @@ export function AriadneWorkbench() {
               <button type="button" className="g2-ops__button g2-ops__button--dark" disabled={!selectedResultId || busy !== null} onClick={() => void replayResult()}>
                 {busy === "replay" ? <LoaderCircle className="ariadne__spin" size={14} /> : <RefreshCw size={14} />} Reexecutar manifesto exato
               </button>
-              {replay && (
+              {replay && (() => {
+                const presentation = replayPresentation(replay);
+                return (
                 <div className="ariadne__replay-result" data-match={replay.matches} role="status">
-                  <span>{replay.matches ? "MATCH CONFIRMADO" : "MISMATCH DETECTADO"}</span>
+                  <span>{presentation.status}</span>
                   <dl><div><dt>Armazenado</dt><dd>{String(scalar(replay.storedPayload))}</dd></div><div><dt>Reexecutado</dt><dd>{String(scalar(replay.replayedPayload))}</dd></div></dl>
-                  <small>{replay.matches ? "O output é idêntico ao X armazenado." : "O replay divergiu; o resultado histórico permanece inalterado."}</small>
+                  <small>{presentation.detail}</small>
                 </div>
-              )}
+                );
+              })()}
             </section>
           </div>
         </>

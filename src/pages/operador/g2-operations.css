@@ -1729,9 +1729,23 @@
   background: var(--ops-paper);
 }
 .ariadne__error { border-left: 3px solid var(--ops-accent); }
+.ariadne__error--identity { border-left-color: #b9552f; }
 .ariadne__error strong { font: 10px var(--g2-mono); letter-spacing: .05em; }
 .ariadne__error span,
 .ariadne__loading { color: var(--ops-muted); font-size: 12px; }
+.ariadne__error span { flex: 1; }
+.ariadne__error button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--ops-strong-rule);
+  padding: 8px 10px;
+  background: transparent;
+  color: var(--ops-ink);
+  font: 600 9px var(--g2-mono);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
 .ariadne__loading svg,
 .ariadne__spin { animation: ariadne-spin 1s linear infinite; }
 @keyframes ariadne-spin { to { transform: rotate(360deg); } }

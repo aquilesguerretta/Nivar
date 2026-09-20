@@ -9,6 +9,7 @@ from typing import Any, Literal
 from fastapi import APIRouter, Depends, HTTPException, Path, status
 from pydantic import BaseModel, ConfigDict, Field
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.db.models.ariadne_core import (
@@ -44,7 +45,6 @@ from app.services.ariadne_operator import (
     WorkspaceNotFound,
     create_workspace,
     list_workspaces,
-    provision_registered_model,
     require_operator,
     require_workspace,
     tenant_id_for,
@@ -139,6 +139,10 @@ def _unprocessable(exc: Exception) -> HTTPException:
         status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
         detail=str(exc),
     )
+
+
+def _conflict(detail: str) -> HTTPException:
+    return HTTPException(status_code=status.HTTP_409_CONFLICT, detail=detail)
 
 
 def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any]:
@@ -474,6 +478,11 @@ def post_assumption_set(
         row = create_assumption_set(db, tenant_id=tenant_id, name=body.name)
         db.commit()
         db.refresh(row)
+    except IntegrityError as exc:
+        db.rollback()
+        raise _conflict(
+            "assumption set already exists; refresh the workspace before retrying"
+        ) from exc
     except (ValueError, TypeError) as exc:
         db.rollback()
         raise _unprocessable(exc) from exc
@@ -540,12 +549,6 @@ def get_models(
     db: Session = Depends(get_db),
 ):
     _, tenant_id = _authorized_context(workspace_id, user, db)
-    try:
-        provision_registered_model(db, tenant_id=tenant_id)
-        db.commit()
-    except RuntimeError as exc:
-        db.rollback()
-        raise _unprocessable(exc) from exc
     rows = list(
         db.execute(
             select(AriadneModelVersion).where(AriadneModelVersion.tenant_id == tenant_id)

@@ -112,8 +112,8 @@ export function ConsoleLayout() {
             </span>
           </div>
           <div className="g2-ops__sidebar-bottom">
-            <Link to="/br/advisory">
-              Conhecer Advisory <ArrowUpRight size={13} />
+            <Link to={isAriadne ? "/br/software" : "/br/advisory"}>
+              {isAriadne ? "Conhecer Software" : "Conhecer Advisory"} <ArrowUpRight size={13} />
             </Link>
             <button type="button" onClick={() => setDark(!dark)}>
               {dark ? <Sun size={15} /> : <Moon size={15} />}{" "}
