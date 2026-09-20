@@ -100,8 +100,13 @@ def _authorize(monkeypatch, user: User) -> None:
     monkeypatch.setenv("ADVISORY_OPERATOR_EMAIL", user.email)
 
 
-def _create_workspace(client: TestClient, label: str = "Synthetic API test") -> dict:
-    response = client.post("/api/operator/ariadne/workspaces", json={"label": label})
+def _create_workspace(
+    client: TestClient, label: str = "Synthetic API test", *, synthetic: bool = True
+) -> dict:
+    response = client.post(
+        "/api/operator/ariadne/workspaces",
+        json={"label": label, "synthetic": synthetic},
+    )
     assert response.status_code == 201, response.text
     return response.json()
 
@@ -228,6 +233,43 @@ def test_operator_creates_workspace_and_server_derives_context(api_context, monk
         json={"label": "Attempt", "tenant_id": "chosen-by-browser"},
     )
     assert injected.status_code == 422
+
+
+def test_normal_workspace_is_empty_and_object_label_is_operator_metadata(
+    api_context, monkeypatch
+):
+    operator = api_context["operator"]
+    api_context["current"]["user"] = operator
+    _authorize(monkeypatch, operator)
+    client = api_context["client"]
+    workspace = _create_workspace(
+        client, "Manual authoring workspace", synthetic=False
+    )
+    root = f"/api/operator/ariadne/workspaces/{workspace['id']}"
+
+    initial = client.get(root).json()
+    assert initial["workspace"]["synthetic"] is False
+    assert initial["models"] == []
+    assert initial["evidenceRefs"] == []
+    assert initial["objects"] == []
+    assert initial["stateVersions"] == []
+    assert initial["assumptionSets"] == []
+
+    created = _post_ok(
+        client,
+        f"{root}/objects",
+        {"objectType": "installation", "displayLabel": "Unidade principal"},
+    )
+    persisted = client.get(root).json()["objects"]
+    assert persisted == [
+        {
+            "id": created["id"],
+            "objectType": "installation",
+            "displayLabel": "Unidade principal",
+            "createdAt": persisted[0]["createdAt"],
+            "currentStateVersionId": None,
+        }
+    ]
 
 
 @pytest.mark.parametrize(

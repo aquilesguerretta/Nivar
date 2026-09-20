@@ -9,6 +9,7 @@ import {
   History,
   LoaderCircle,
   Play,
+  Plus,
   RefreshCw,
 } from "lucide-react";
 
@@ -24,6 +25,7 @@ import {
   type WorkspaceSummary,
 } from "../../lib/ariadne/operatorApi";
 import { GUIDED_FIXTURE, resolveGuidedFixture } from "../../lib/ariadne/guidedFixture";
+import { AriadneAuthoring } from "./AriadneAuthoring";
 
 const short = (id?: string | null) => (id ? id.slice(0, 8).toUpperCase() : "—");
 const scalar = (payload?: Record<string, unknown>) =>
@@ -45,6 +47,33 @@ function DataId({ value }: { value?: string | null }) {
   return <code title={value ?? undefined}>{short(value)}</code>;
 }
 
+function WorkspaceCreator({
+  busy,
+  label,
+  onCreate,
+  onLabelChange,
+}: {
+  busy: string | null;
+  label: string;
+  onCreate: (synthetic: boolean) => void;
+  onLabelChange: (label: string) => void;
+}) {
+  return (
+    <section className="ariadne__workspace-creator" aria-label="Criar workspace Ariadne">
+      <div>
+        <span>ANALYSIS WORKSPACE</span>
+        <h2>Comece com um contexto privado vazio.</h2>
+        <p>Nenhum registro sintético será criado. Evidências, estados e premissas entram somente pelas suas ações.</p>
+      </div>
+      <form onSubmit={(event) => { event.preventDefault(); onCreate(false); }}>
+        <label><span>Nome do workspace</span><input value={label} onChange={(event) => onLabelChange(event.target.value)} placeholder="ex.: Análise interna — setembro" /></label>
+        <button className="g2-ops__button g2-ops__button--dark" type="submit" disabled={busy !== null || !label.trim()}><Archive size={15} /> Criar workspace vazio</button>
+      </form>
+      <button className="ariadne__demo-create" type="button" disabled={busy !== null} onClick={() => onCreate(true)}><FlaskConical size={14} /> Criar Core Test / Demo sintética</button>
+    </section>
+  );
+}
+
 export function AriadneWorkbench() {
   const [workspaces, setWorkspaces] = useState<WorkspaceSummary[]>([]);
   const [workspaceId, setWorkspaceId] = useState<string | null>(null);
@@ -56,6 +85,9 @@ export function AriadneWorkbench() {
   const [lineage, setLineage] = useState<Lineage | null>(null);
   const [replay, setReplay] = useState<Replay | null>(null);
   const [reconciliationRequired, setReconciliationRequired] = useState(false);
+  const [workspaceLabel, setWorkspaceLabel] = useState("");
+  const [showWorkspaceCreator, setShowWorkspaceCreator] = useState(false);
+  const [surface, setSurface] = useState<"analysis" | "demo">("analysis");
   const mutationInFlight = useRef(false);
 
   const loadWorkspace = useCallback(async (id: string) => {
@@ -102,6 +134,8 @@ export function AriadneWorkbench() {
     setLineage(null);
     setReplay(null);
     setReconciliationRequired(false);
+    setSurface("analysis");
+    setShowWorkspaceCreator(false);
     try {
       await loadWorkspace(id);
     } catch (caught) {
@@ -112,8 +146,8 @@ export function AriadneWorkbench() {
     }
   };
 
-  const perform = async (label: string, action: () => Promise<unknown>) => {
-    if (!workspaceId || mutationInFlight.current) return;
+  const perform = async (label: string, action: () => Promise<unknown>): Promise<boolean> => {
+    if (!workspaceId || mutationInFlight.current) return false;
     mutationInFlight.current = true;
     setBusy(label);
     setError(null);
@@ -139,6 +173,7 @@ export function AriadneWorkbench() {
     }
     mutationInFlight.current = false;
     setBusy(null);
+    return settlement.reconciled && settlement.actionError === null;
   };
 
   const fixture = useMemo(() => resolveGuidedFixture(detail), [detail]);
@@ -158,15 +193,22 @@ export function AriadneWorkbench() {
     }
   };
 
-  const createWorkspace = async () => {
+  const createWorkspace = async (synthetic: boolean) => {
+    const label = synthetic
+      ? `Core Test sintético — ${new Date().toLocaleDateString("pt-BR")}`
+      : workspaceLabel.trim();
+    if (!label) return;
     setBusy("workspace");
     setError(null);
     try {
-      const workspace = await ariadneOperatorApi.createWorkspace("Ensaio escalar — NIV-48");
+      const workspace = await ariadneOperatorApi.createWorkspace(label, synthetic);
       const response = await ariadneOperatorApi.listWorkspaces();
       setWorkspaces(response.data);
       setWorkspaceId(workspace.id);
       await loadWorkspace(workspace.id);
+      setWorkspaceLabel("");
+      setShowWorkspaceCreator(false);
+      setSurface(synthetic ? "demo" : "analysis");
     } catch (caught) {
       setError(explainError(caught));
     } finally {
@@ -321,19 +363,22 @@ export function AriadneWorkbench() {
     <div className="ariadne">
       <header className="ariadne__heading">
         <div>
-          <p className="g2-ops__eyebrow">ARIADNE / ESTADO PRIVADO RECONSTRUÍVEL</p>
-          <h1>A memória antes do dashboard.</h1>
-          <p>O que sabemos, o que mudou e exatamente o que produziu cada resultado.</p>
+          <p className="g2-ops__eyebrow">ARIADNE ANALYST WORKBENCH / INTERNAL ALPHA</p>
+          <h1>Organize o que a organização sabe.</h1>
+          <p>Evidência, estado observado e premissas preservados como uma linha contínua de versões.</p>
         </div>
         <div className="ariadne__classification" aria-label="Classificação do workspace">
-          <FlaskConical size={17} />
-          <span><strong>SYNTHETIC / ILLUSTRATIVE</strong>CASE-INDEPENDENT CORE TEST</span>
+          {detail?.workspace.synthetic ? <FlaskConical size={17} /> : <GitBranch size={17} />}
+          <span>
+            <strong>{detail?.workspace.synthetic ? "CORE TEST / DEMO" : "PRIVATE / INTERNAL"}</strong>
+            {detail?.workspace.synthetic ? "SYNTHETIC / ILLUSTRATIVE" : "ANALYSIS WORKSPACE"}
+          </span>
         </div>
       </header>
 
       <ol className="ariadne__process" aria-label="Processo Ariadne">
-        {["Evidence", "State", "Assumptions", "Scenario", "Run", "Result"].map((item, index) => (
-          <li key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}{index < 5 && <ArrowRight size={13} />}</li>
+        {["Evidence", "State", "Assumptions", "Scenario · NIV-55", "Run · NIV-55", "Result · NIV-55"].map((item, index) => (
+          <li key={item} data-deferred={index > 2}><span>{String(index + 1).padStart(2, "0")}</span>{item}{index < 5 && <ArrowRight size={13} />}</li>
         ))}
       </ol>
 
@@ -350,7 +395,7 @@ export function AriadneWorkbench() {
         </div>
       )}
 
-      {fixture.conflicts.length > 0 && (
+      {surface === "demo" && fixture.conflicts.length > 0 && (
         <div className="ariadne__error ariadne__error--identity" role="alert">
           <strong>Conflito de identidade</strong>
           <span>
@@ -362,14 +407,7 @@ export function AriadneWorkbench() {
       {loading ? (
         <div className="ariadne__loading" role="status"><LoaderCircle size={18} /> Lendo o estado persistido…</div>
       ) : !detail ? (
-        <section className="ariadne__empty">
-          <span>SEM WORKSPACE</span>
-          <h2>Nenhum contexto privado foi criado.</h2>
-          <p>Abra um ensaio sintético isolado. O servidor deriva o contexto privado; o navegador não escolhe tenant.</p>
-          <button className="g2-ops__button g2-ops__button--dark" type="button" disabled={busy !== null} onClick={() => void createWorkspace()}>
-            <Archive size={15} /> Criar workspace sintético
-          </button>
-        </section>
+        <WorkspaceCreator busy={busy} label={workspaceLabel} onCreate={(synthetic) => void createWorkspace(synthetic)} onLabelChange={setWorkspaceLabel} />
       ) : (
         <>
           <section className="ariadne__workspace-bar">
@@ -382,13 +420,36 @@ export function AriadneWorkbench() {
             <dl>
               <div><dt>Identidade</dt><dd><DataId value={detail.workspace.id} /></dd></div>
               <div><dt>Escopo</dt><dd>derivado no servidor</dd></div>
-              <div><dt>Natureza</dt><dd>sintético</dd></div>
+              <div><dt>Natureza</dt><dd>{detail.workspace.synthetic ? "demo sintética" : "análise privada"}</dd></div>
             </dl>
           </section>
 
+          <div className="ariadne__surface-switch" role="group" aria-label="Modo da bancada">
+            <button type="button" data-selected={surface === "analysis"} onClick={() => setSurface("analysis")}><GitBranch size={14} /> Analysis Workspace</button>
+            {detail.workspace.synthetic ? (
+              <button type="button" data-selected={surface === "demo"} onClick={() => setSurface("demo")}><FlaskConical size={14} /> Core Test / Demo sintética</button>
+            ) : (
+              <button type="button" onClick={() => void createWorkspace(true)} disabled={busy !== null}><FlaskConical size={14} /> Criar Core Test separado</button>
+            )}
+            <button type="button" onClick={() => setShowWorkspaceCreator((current) => !current)}><Plus size={14} /> Novo workspace</button>
+          </div>
+
+          {showWorkspaceCreator && <WorkspaceCreator busy={busy} label={workspaceLabel} onCreate={(synthetic) => void createWorkspace(synthetic)} onLabelChange={setWorkspaceLabel} />}
+
+          {surface === "analysis" ? (
+            <AriadneAuthoring
+              busy={busy}
+              detail={detail}
+              reconciliationRequired={reconciliationRequired}
+              runMutation={perform}
+              workspaceId={workspaceId!}
+            />
+          ) : (
+          <>
+
           <section className="ariadne__protocol" aria-labelledby="ariadne-protocol-title">
             <div className="ariadne__section-title">
-              <div><span>PROTOCOLO GUIADO</span><h2 id="ariadne-protocol-title">V1 → R1 → V2 → R2</h2></div>
+              <div><span>CORE TEST / DEMO SINTÉTICA</span><h2 id="ariadne-protocol-title">V1 → R1 → V2 → R2</h2></div>
               <p>Cada ato grava no banco real. Concluído não é simulado no navegador.</p>
             </div>
             <div className="ariadne__actions">
@@ -539,6 +600,8 @@ export function AriadneWorkbench() {
               })()}
             </section>
           </div>
+          </>
+          )}
         </>
       )}
     </div>

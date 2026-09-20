@@ -4,6 +4,11 @@ import test from "node:test";
 
 import { GUIDED_FIXTURE, resolveGuidedFixture } from "../../src/lib/ariadne/guidedFixture.ts";
 import {
+  authoringFieldsToPayload,
+  payloadToAuthoringFields,
+  valueSchemaFromAuthoringFields,
+} from "../../src/lib/ariadne/authoring.ts";
+import {
   AriadneOperatorApiError,
   replayPresentation,
   settleMutationAgainstWorkspace,
@@ -15,6 +20,7 @@ const read = (path: string) => readFileSync(new URL(`../../${path}`, import.meta
 const router = read("src/pages/operador/OperadorRouter.tsx");
 const chrome = read("src/pages/operador/consoleChrome.tsx");
 const workbench = read("src/pages/operador/AriadneWorkbench.tsx");
+const authoring = read("src/pages/operador/AriadneAuthoring.tsx");
 const api = read("src/lib/ariadne/operatorApi.ts");
 
 test("Ariadne has an explicit route while Advisory routes remain catalog-derived", () => {
@@ -23,10 +29,13 @@ test("Ariadne has an explicit route while Advisory routes remain catalog-derived
   assert.match(router, /path={`\$\{p\.produtoId\}\/\:pedidoId`}/);
 });
 
-test("the synthetic classification is unavoidable in shell and workbench", () => {
-  assert.match(chrome, /SYNTHETIC WORKSPACE/);
+test("analysis is primary while the synthetic Core Test remains explicit and secondary", () => {
+  assert.match(chrome, /INTERNAL OPERATOR/);
+  assert.match(chrome, /ARIADNE ANALYST WORKBENCH · INTERNAL ALPHA/);
+  assert.match(workbench, /Analysis Workspace/);
+  assert.match(workbench, /Core Test \/ Demo sintética/);
   assert.match(workbench, /SYNTHETIC \/ ILLUSTRATIVE/);
-  assert.match(workbench, /CASE-INDEPENDENT CORE TEST/);
+  assert.match(workbench, /surface === "analysis"/);
 });
 
 test("Ariadne stays in the Software family while Advisory keeps its own destination", () => {
@@ -39,8 +48,69 @@ test("state, assumptions, scenario, run and result stay distinct", () => {
   for (const label of ["OBSERVED STATE", "ASSUMPTIONS", "SCENARIO", "RUN / RESULT"]) {
     assert.ok(workbench.includes(label), `missing ${label}`);
   }
-  assert.match(workbench, /CURRENT STATE/);
-  assert.match(workbench, /HISTÓRICO \/ SUPERSEDIDO/);
+  assert.match(authoring, /CURRENT/);
+  assert.match(authoring, /HISTÓRICO \/ SUPERSEDED/);
+});
+
+test("empty workspace exposes the three manual authoring calls to action", () => {
+  for (const copy of [
+    "Nenhuma evidência registrada.",
+    "Nenhum objeto privado.",
+    "Nenhuma premissa.",
+    "Adicionar evidência",
+    "Criar objeto",
+    "Criar conjunto de premissas",
+  ]) {
+    assert.ok(authoring.includes(copy), `missing empty-workspace CTA: ${copy}`);
+  }
+  assert.match(workbench, /Criar workspace vazio/);
+  assert.match(api, /createWorkspace: \(label: string, synthetic = false\)/);
+});
+
+test("evidence and object forms persist operator-entered values", () => {
+  assert.match(authoring, /Identificador da fonte/);
+  assert.match(authoring, /Localizador \/ referência/);
+  assert.match(authoring, /Transformação \/ provenance reference/);
+  assert.match(authoring, /sourceArtifactId: evidenceDraft\.sourceArtifactId\.trim\(\)/);
+  assert.match(authoring, /objectDraft\.displayLabel\.trim\(\)/);
+  assert.match(authoring, /objectDraft\.objectType\.trim\(\)/);
+  assert.match(api, /displayLabel/);
+});
+
+test("typed field authoring creates primitive payloads and deterministic schemas", () => {
+  const fields = payloadToAuthoringFields({ capacidade: 420, ativo: true, nota: "observado" });
+  assert.deepEqual(authoringFieldsToPayload(fields), {
+    capacidade: 420,
+    ativo: true,
+    nota: "observado",
+  });
+  assert.deepEqual(valueSchemaFromAuthoringFields(fields), {
+    capacidade: { type: "number" },
+    ativo: { type: "boolean" },
+    nota: { type: "text" },
+  });
+  assert.equal(authoring.includes("textarea"), false);
+  assert.equal(authoring.includes("JSON.parse"), false);
+});
+
+test("state evidence selection is explicit and corrections append a version", () => {
+  assert.match(authoring, /Este estado é sustentado por:/);
+  assert.match(authoring, /type="checkbox"/);
+  assert.match(authoring, /evidenceRefIds: stateEvidenceIds/);
+  assert.match(authoring, /Corrigir estado/);
+  assert.match(authoring, /Criar nova versão/);
+  assert.match(authoring, /ariadneOperatorApi\.createState/);
+  assert.equal(api.includes("PUT"), false);
+  assert.equal(api.includes("PATCH"), false);
+});
+
+test("assumptions stay distinct, typed and append-only", () => {
+  assert.match(authoring, /Premissa definida pelo analista não altera o estado observado/);
+  assert.match(authoring, /OBSERVED STATE/);
+  assert.match(authoring, /Nova versão de premissas/);
+  assert.match(authoring, /valueSchemaFromAuthoringFields/);
+  assert.match(authoring, /origin: assumptionOrigin/);
+  assert.match(authoring, /APPEND-ONLY/);
 });
 
 test("reconstruction and replay are separate operations", () => {
@@ -131,6 +201,7 @@ function completeDetail(): WorkspaceDetail {
   detail.objects = [{
     id: "o1",
     objectType: GUIDED_FIXTURE.objectType,
+    displayLabel: null,
     createdAt: "2026-09-19T00:00:00Z",
     currentStateVersionId: "v2",
   }];
@@ -307,7 +378,7 @@ test("a replay mismatch is reported as replay divergence, not reconstruction fai
 
 test("empty and error states stay explicit and never synthesize records", () => {
   for (const copy of [
-    "Nenhum contexto privado foi criado.",
+    "Comece com um contexto privado vazio.",
     "Nenhum objeto gravado.",
     "Nenhuma evidência registrada.",
     "Nenhuma premissa fixada.",
