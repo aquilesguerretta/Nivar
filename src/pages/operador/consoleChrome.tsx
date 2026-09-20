@@ -45,7 +45,7 @@ export function ConsoleLayout() {
         </span>
         <div className="g2-ops__header-right">
           <span className="g2-ops__sample-label">
-            {isAriadne ? "SYNTHETIC WORKSPACE" : "AMOSTRA ILUSTRATIVA"}
+            {isAriadne ? "INTERNAL OPERATOR" : "AMOSTRA ILUSTRATIVA"}
           </span>
           <Link to="/conta">
             Conta <ArrowUpRight size={13} />
@@ -123,9 +123,9 @@ export function ConsoleLayout() {
         </aside>
         <main className="g2-ops__main">
           <div className="g2-ops__truth">
-            <span>{isAriadne ? "CASE-INDEPENDENT CORE TEST" : "G2 EXPERIMENTAL"}</span>
+            <span>{isAriadne ? "ARIADNE ANALYST WORKBENCH · INTERNAL ALPHA" : "G2 EXPERIMENTAL"}</span>
             <p>{isAriadne
-              ? "Workspace sintético · dados ilustrativos · estado persistido no Ariadne Core real."
+              ? "Contexto privado derivado no servidor · autoria persistida no Ariadne Core real."
               : "Pedidos e nomes ilustrativos · sem acesso à fila real · rascunhos locais, sem envio."}
             </p>
           </div>
