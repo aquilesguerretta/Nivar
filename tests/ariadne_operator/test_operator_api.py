@@ -174,7 +174,6 @@ def _build_protocol(client: TestClient, root: str, prefix: str) -> dict:
         {
             "scenarioId": scenario["id"],
             "modelVersionId": model_id,
-            "executionConfiguration": {"arithmetic": "integer"},
         },
     )
     return {
@@ -272,6 +271,92 @@ def test_normal_workspace_is_empty_and_object_label_is_operator_metadata(
     ]
 
 
+def test_internal_model_enablement_is_explicit_idempotent_and_server_controlled(
+    api_context, monkeypatch
+):
+    operator = api_context["operator"]
+    api_context["current"]["user"] = operator
+    _authorize(monkeypatch, operator)
+    client = api_context["client"]
+    workspace = _create_workspace(
+        client, "Explicit model enablement", synthetic=False
+    )
+    root = f"/api/operator/ariadne/workspaces/{workspace['id']}"
+
+    assert client.get(root).json()["models"] == []
+    first = client.post(f"{root}/models/internal-test", json={})
+    second = client.post(f"{root}/models/internal-test", json={})
+    assert first.status_code == 201, first.text
+    assert second.status_code == 201, second.text
+    assert first.json() == second.json()
+
+    models = client.get(root).json()["models"]
+    assert len(models) == 1
+    assert models[0]["name"] == "deterministic_scalar_model"
+    assert models[0]["semanticVersion"] == "1.0.0"
+    assert models[0]["implementationIdentity"] == (
+        "ariadne.deterministic_scalar.multiply.v1"
+    )
+
+    tenant_id = tenant_id_for(uuid.UUID(workspace["id"]))
+    with api_context["factory"]() as session:
+        definitions = session.execute(
+            select(AriadneModelDefinition).where(
+                AriadneModelDefinition.tenant_id == tenant_id
+            )
+        ).scalars().all()
+        versions = session.execute(
+            select(AriadneModelVersion).where(
+                AriadneModelVersion.tenant_id == tenant_id
+            )
+        ).scalars().all()
+        assert len(definitions) == 1
+        assert len(versions) == 1
+
+    arbitrary = client.post(
+        f"{root}/models/internal-test",
+        json={
+            "implementationIdentity": "browser.supplied.code",
+            "name": "fake_energy_model",
+        },
+    )
+    assert arbitrary.status_code == 422
+    assert len(client.get(root).json()["models"]) == 1
+
+    arbitrary_config = client.post(
+        f"{root}/runs",
+        json={
+            "scenarioId": str(uuid.uuid4()),
+            "modelVersionId": first.json()["id"],
+            "executionConfiguration": {"browser": "chosen"},
+        },
+    )
+    assert arbitrary_config.status_code == 422
+
+
+def test_internal_model_enablement_requires_operator_and_owned_workspace(
+    api_context, monkeypatch
+):
+    operator = api_context["operator"]
+    api_context["current"]["user"] = operator
+    _authorize(monkeypatch, operator)
+    client = api_context["client"]
+    workspace = _create_workspace(client, "Protected model enablement", synthetic=False)
+    endpoint = (
+        f"/api/operator/ariadne/workspaces/{workspace['id']}/models/internal-test"
+    )
+
+    monkeypatch.setenv("ADVISORY_OPERATOR_EMAIL", "somebody-else@example.test")
+    unauthorized = client.post(endpoint, json={})
+    assert unauthorized.status_code == 403
+
+    api_context["current"]["user"] = api_context["other"]
+    monkeypatch.setattr(ariadne_router, "require_operator", lambda _user: None)
+    foreign = client.post(endpoint, json={})
+    assert foreign.status_code == 404
+    api_context["current"]["user"] = operator
+
+
 @pytest.mark.parametrize(
     "authority_field",
     ["tenant_id", "tenantId", "privateContext", "private_context_id"],
@@ -318,7 +403,6 @@ def test_browser_cannot_submit_authority_fields(api_context, monkeypatch, author
             {
                 "scenarioId": str(uuid.uuid4()),
                 "modelVersionId": str(uuid.uuid4()),
-                "executionConfiguration": {"arithmetic": "integer"},
             },
         ),
     ]
@@ -469,7 +553,6 @@ def test_full_v1_v2_lineage_and_replay_flow(api_context, monkeypatch):
         json={
             "scenarioId": s1["id"],
             "modelVersionId": model_id,
-            "executionConfiguration": {"arithmetic": "integer"},
         },
     )
     assert r1_response.status_code == 201, r1_response.text
@@ -503,7 +586,6 @@ def test_full_v1_v2_lineage_and_replay_flow(api_context, monkeypatch):
         json={
             "scenarioId": s2["id"],
             "modelVersionId": model_id,
-            "executionConfiguration": {"arithmetic": "integer"},
         },
     ).json()
     assert r2["payload"] == {"value": 24}
@@ -588,7 +670,6 @@ def test_every_cross_workspace_reference_is_rejected(api_context, monkeypatch):
             json={
                 "scenarioId": graph_b["scenario"]["id"],
                 "modelVersionId": graph_a["model_id"],
-                "executionConfiguration": {"arithmetic": "integer"},
             },
         ),
         client.post(
@@ -596,7 +677,6 @@ def test_every_cross_workspace_reference_is_rejected(api_context, monkeypatch):
             json={
                 "scenarioId": graph_a["scenario"]["id"],
                 "modelVersionId": graph_b["model_id"],
-                "executionConfiguration": {"arithmetic": "integer"},
             },
         ),
         client.get(f"{root_a}/results/{graph_b['run']['resultId']}/lineage"),
