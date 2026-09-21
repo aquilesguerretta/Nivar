@@ -20,6 +20,7 @@ from sqlalchemy.exc import OperationalError
 
 REVISION_0013 = "0013_ariadne_operator_workspace"
 REVISION_0014 = "0014_ariadne_workspace_repair"
+REVISION_0015 = "0015_ariadne_operator_label"
 
 
 def _database_url() -> str | None:
@@ -152,13 +153,13 @@ def _assert_workspace_schema(connection) -> None:
 def test_clean_chain_reaches_one_head_with_exact_workspace_schema(clean_database):
     config, url = clean_database
     heads = ScriptDirectory.from_config(config).get_heads()
-    assert heads == [REVISION_0014]
+    assert heads == [REVISION_0015]
 
     command.upgrade(config, "head")
     engine = create_engine(url)
     try:
         with engine.connect() as connection:
-            assert _version(connection) == REVISION_0014
+            assert _version(connection) == REVISION_0015
             assert _relation_oid(connection, "public.ariadne_model_run") is not None
             _assert_workspace_schema(connection)
     finally:
@@ -200,7 +201,7 @@ def test_0014_repairs_0013_history_with_only_workspace_table_missing(clean_datab
         command.upgrade(config, "head")
 
         with engine.connect() as connection:
-            assert _version(connection) == REVISION_0014
+            assert _version(connection) == REVISION_0015
             _assert_workspace_schema(connection)
             assert {
                 relation: _relation_oid(connection, relation)
@@ -230,7 +231,7 @@ def test_normal_0013_to_0014_is_noop_and_downgrade_keeps_0013_table(clean_databa
             assert workspace_oid is not None
             before = _workspace_catalog(connection)
 
-        command.upgrade(config, "head")
+        command.upgrade(config, REVISION_0014)
         with engine.connect() as connection:
             assert _version(connection) == REVISION_0014
             assert _relation_oid(connection, "public.ariadne_operator_workspace") == workspace_oid

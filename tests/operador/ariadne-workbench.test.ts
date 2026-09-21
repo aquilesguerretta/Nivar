@@ -4,17 +4,37 @@ import test from "node:test";
 
 import { GUIDED_FIXTURE, resolveGuidedFixture } from "../../src/lib/ariadne/guidedFixture.ts";
 import {
+  authoringFieldsToPayload,
+  payloadToAuthoringFields,
+  valueSchemaFromAuthoringFields,
+} from "../../src/lib/ariadne/authoring.ts";
+import {
   AriadneOperatorApiError,
   replayPresentation,
   settleMutationAgainstWorkspace,
   type WorkspaceDetail,
 } from "../../src/lib/ariadne/operatorApi.ts";
+import {
+  assumptionVersionChoices,
+  preflightScenario,
+} from "../../src/lib/ariadne/scenarioStudio.ts";
+import {
+  assessLineage,
+  diffRecords,
+  latestAssumptionVersion,
+  resolveRunContext,
+  runPresentationLabel,
+  scalarInputDependencies,
+} from "../../src/lib/ariadne/historyComparison.ts";
 
 const read = (path: string) => readFileSync(new URL(`../../${path}`, import.meta.url), "utf8");
 
 const router = read("src/pages/operador/OperadorRouter.tsx");
 const chrome = read("src/pages/operador/consoleChrome.tsx");
 const workbench = read("src/pages/operador/AriadneWorkbench.tsx");
+const authoring = read("src/pages/operador/AriadneAuthoring.tsx");
+const studio = read("src/pages/operador/AriadneScenarioStudio.tsx");
+const history = read("src/pages/operador/AriadneHistoryCompare.tsx");
 const api = read("src/lib/ariadne/operatorApi.ts");
 
 test("Ariadne has an explicit route while Advisory routes remain catalog-derived", () => {
@@ -23,10 +43,13 @@ test("Ariadne has an explicit route while Advisory routes remain catalog-derived
   assert.match(router, /path={`\$\{p\.produtoId\}\/\:pedidoId`}/);
 });
 
-test("the synthetic classification is unavoidable in shell and workbench", () => {
-  assert.match(chrome, /SYNTHETIC WORKSPACE/);
+test("analysis is primary while the synthetic Core Test remains explicit and secondary", () => {
+  assert.match(chrome, /INTERNAL OPERATOR/);
+  assert.match(chrome, /ARIADNE ANALYST WORKBENCH · INTERNAL ALPHA/);
+  assert.match(workbench, /Analysis Workspace/);
+  assert.match(workbench, /Core Test \/ Demo sintética/);
   assert.match(workbench, /SYNTHETIC \/ ILLUSTRATIVE/);
-  assert.match(workbench, /CASE-INDEPENDENT CORE TEST/);
+  assert.match(workbench, /surface === "analysis"/);
 });
 
 test("Ariadne stays in the Software family while Advisory keeps its own destination", () => {
@@ -39,8 +62,289 @@ test("state, assumptions, scenario, run and result stay distinct", () => {
   for (const label of ["OBSERVED STATE", "ASSUMPTIONS", "SCENARIO", "RUN / RESULT"]) {
     assert.ok(workbench.includes(label), `missing ${label}`);
   }
-  assert.match(workbench, /CURRENT STATE/);
-  assert.match(workbench, /HISTÓRICO \/ SUPERSEDIDO/);
+  assert.match(authoring, /CURRENT/);
+  assert.match(authoring, /HISTÓRICO \/ SUPERSEDED/);
+});
+
+test("empty workspace exposes the three manual authoring calls to action", () => {
+  for (const copy of [
+    "Nenhuma evidência registrada.",
+    "Nenhum objeto privado.",
+    "Nenhuma premissa.",
+    "Adicionar evidência",
+    "Criar objeto",
+    "Criar conjunto de premissas",
+  ]) {
+    assert.ok(authoring.includes(copy), `missing empty-workspace CTA: ${copy}`);
+  }
+  assert.match(workbench, /Criar workspace vazio/);
+  assert.match(api, /createWorkspace: \(label: string, synthetic = false\)/);
+});
+
+test("evidence and object forms persist operator-entered values", () => {
+  assert.match(authoring, /Identificador da fonte/);
+  assert.match(authoring, /Localizador \/ referência/);
+  assert.match(authoring, /Transformação \/ provenance reference/);
+  assert.match(authoring, /sourceArtifactId: evidenceDraft\.sourceArtifactId\.trim\(\)/);
+  assert.match(authoring, /objectDraft\.displayLabel\.trim\(\)/);
+  assert.match(authoring, /objectDraft\.objectType\.trim\(\)/);
+  assert.match(api, /displayLabel/);
+});
+
+test("typed field authoring creates primitive payloads and deterministic schemas", () => {
+  const fields = payloadToAuthoringFields({ capacidade: 420, ativo: true, nota: "observado" });
+  assert.deepEqual(authoringFieldsToPayload(fields), {
+    capacidade: 420,
+    ativo: true,
+    nota: "observado",
+  });
+  assert.deepEqual(valueSchemaFromAuthoringFields(fields), {
+    capacidade: { type: "number" },
+    ativo: { type: "boolean" },
+    nota: { type: "text" },
+  });
+  assert.equal(authoring.includes("textarea"), false);
+  assert.equal(authoring.includes("JSON.parse"), false);
+});
+
+test("state evidence selection is explicit and corrections append a version", () => {
+  assert.match(authoring, /Este estado é sustentado por:/);
+  assert.match(authoring, /type="checkbox"/);
+  assert.match(authoring, /evidenceRefIds: stateEvidenceIds/);
+  assert.match(authoring, /Corrigir estado/);
+  assert.match(authoring, /Criar nova versão/);
+  assert.match(authoring, /ariadneOperatorApi\.createState/);
+  assert.equal(api.includes("PUT"), false);
+  assert.equal(api.includes("PATCH"), false);
+});
+
+test("assumptions stay distinct, typed and append-only", () => {
+  assert.match(authoring, /Premissa definida pelo analista não altera o estado observado/);
+  assert.match(authoring, /OBSERVED STATE/);
+  assert.match(authoring, /Nova versão de premissas/);
+  assert.match(authoring, /valueSchemaFromAuthoringFields/);
+  assert.match(authoring, /origin: assumptionOrigin/);
+  assert.match(authoring, /APPEND-ONLY/);
+});
+
+test("Scenario Studio is primary in Analysis Workspace with exact version selectors", () => {
+  assert.match(authoring, /href="#ariadne-scenarios">Scenarios/);
+  assert.match(authoring, /href="#ariadne-runs">Runs/);
+  assert.match(studio, /SCENARIO BRANCH/);
+  assert.match(studio, /MODELS & RUNS/);
+  assert.match(studio, /Estado observado — versão exata/);
+  assert.match(studio, /Premissas — versão exata/);
+  assert.match(studio, /stateVersionId,/);
+  assert.match(studio, /assumptionSetVersionId: assumptionVersionId/);
+  assert.match(studio, /CURRENT/);
+  assert.match(studio, /HISTÓRICO/);
+  assert.match(studio, /detail\.stateVersions\.map/);
+});
+
+test("hypothetical state is optional, typed and separate from observed state", () => {
+  assert.match(studio, /Alterações hipotéticas pertencem apenas a este cenário/);
+  assert.match(studio, /não modificam o estado observado/);
+  assert.match(studio, /hypotheticalFields\.length/);
+  assert.match(studio, /hypotheticalState,/);
+  assert.match(studio, /allowEmpty/);
+  assert.equal(studio.includes("JSON.parse"), false);
+});
+
+test("scenario duplication prefills exact bindings but posts a new scenario", () => {
+  assert.match(studio, /Duplicar cenário/);
+  assert.match(studio, /openScenario\(scenario\)/);
+  assert.match(studio, /source\?\.stateVersionId/);
+  assert.match(studio, /source\?\.assumptionSetVersionId/);
+  assert.match(studio, /ariadneOperatorApi\.createScenario/);
+  assert.equal(api.includes("PUT"), false);
+  assert.equal(api.includes("PATCH"), false);
+});
+
+test("normal workspaces require explicit, server-controlled test-model enablement", () => {
+  assert.match(studio, /Nenhum modelo aprovado habilitado neste workspace/);
+  assert.match(studio, /Habilitar modelo interno de teste/);
+  assert.match(studio, /INTERNAL TEST MODEL/);
+  assert.match(studio, /DOMAIN-NEUTRAL/);
+  assert.match(studio, /NOT AN ENERGY MODEL/);
+  assert.match(api, /enableInternalTestModel/);
+  assert.match(api, /models\/internal-test/);
+  assert.equal(/enableInternalTestModel[\s\S]*implementationIdentity/.test(api), false);
+});
+
+test("scalar preflight explains incompatible exact scenario inputs", () => {
+  const detail = completeDetail();
+  const compatible = preflightScenario(detail, detail.scenarios[1], detail.models[0]);
+  assert.deepEqual(compatible, { compatible: true, messages: [] });
+
+  const incompatible = structuredClone(detail);
+  incompatible.stateVersions[1].payload.value = "12";
+  incompatible.assumptionSets[0].versions[0].values.multiplier = false;
+  const blocked = preflightScenario(
+    incompatible,
+    incompatible.scenarios[1],
+    incompatible.models[0],
+  );
+  assert.equal(blocked.compatible, false);
+  assert.ok(blocked.messages.some((message) => message.includes("value")));
+  assert.ok(blocked.messages.some((message) => message.includes("multiplier")));
+  assert.match(studio, /disabled={locked \|\| !preflight\.compatible}/);
+});
+
+test("run request sends exact scenario and model IDs while config stays server-controlled", () => {
+  assert.match(studio, /createRun\(workspaceId, selectedScenario\.id, selectedModel\.id\)/);
+  assert.match(api, /scenarioId,/);
+  assert.match(api, /modelVersionId,/);
+  assert.equal(/createRun[\s\S]*executionConfiguration:/.test(api), false);
+  assert.match(studio, /runMutation\("model-run"/);
+  assert.match(studio, /reconciliationRequired/);
+});
+
+test("results render from persisted workspace runs and results", () => {
+  assert.match(studio, /detail\.runs/);
+  assert.match(studio, /detail\.results\.find/);
+  assert.match(studio, /ModelRun ID/);
+  assert.match(studio, /Result ID/);
+  assert.match(studio, /Produzido em/);
+  assert.match(studio, /stateLabel\(detail, run\.stateVersionId\)/);
+  assert.match(studio, /assumptionLabel\(detail, run\.assumptionSetVersionId\)/);
+  assert.match(studio, /Investigar resultado/);
+});
+
+test("normal Analysis Workspace exposes History / Compare with two exact persisted-run selectors", () => {
+  assert.match(authoring, /href="#ariadne-history">History \/ Compare/);
+  assert.match(authoring, /<AriadneHistoryCompare/);
+  assert.match(history, /aria-label="Selecionar Run A"/);
+  assert.match(history, /aria-label="Selecionar Run B"/);
+  assert.match(history, /Selecione dois runs persistidos distintos/);
+});
+
+test("run comparison resolves exact historical state, assumption, model and evidence IDs", () => {
+  const detail = comparisonDetail();
+  const runA = resolveRunContext(detail, "r1");
+  const runB = resolveRunContext(detail, "r3");
+  assert.ok(runA && runB);
+  assert.equal(runA.state.id, "v1");
+  assert.equal(runA.assumption.id, "a1v1");
+  assert.equal(runA.model.id, "m1");
+  assert.deepEqual(runA.evidence.map((evidence) => evidence.id), ["e1"]);
+  assert.equal(runB.state.id, "v2");
+  assert.equal(runB.assumption.id, "a1v2");
+  assert.equal(runB.model.id, "m1");
+  assert.match(runPresentationLabel(runA), /S1.*value 20.*modelo 1\.0\.0/s);
+});
+
+test("numeric result delta and descriptive change dimensions are derived without causal claims", () => {
+  const detail = comparisonDetail();
+  const runA = resolveRunContext(detail, "r1")!;
+  const runB = resolveRunContext(detail, "r2")!;
+  assert.deepEqual(diffRecords(runA.result.payload, runB.result.payload), [{
+    key: "value",
+    a: 20,
+    b: 24,
+    changed: true,
+    numericDelta: 4,
+  }]);
+  for (const label of ["Observed state", "Assumptions", "Scenario hypotheticals", "Model", "Execution config", "Result"]) {
+    assert.ok(history.includes(label), `missing comparison dimension ${label}`);
+  }
+  assert.equal(history.includes("caused"), false);
+});
+
+test("current-now remains separate from used-then after state and assumption supersession", () => {
+  const context = resolveRunContext(comparisonDetail(), "r1")!;
+  assert.equal(context.state.version, 1);
+  assert.equal(context.state.current, false);
+  assert.equal(latestAssumptionVersion(context).version, 2);
+  assert.match(history, /USED THEN/);
+  assert.match(history, /CURRENT NOW/);
+  assert.match(history, /Current changes do not rewrite this historical run/);
+  assert.match(history, /State V\{context\.state\.version\}.*HISTORICAL/s);
+});
+
+test("state, assumption and evidence histories expose append-only inspection metadata", () => {
+  for (const copy of [
+    "VERSION HISTORY",
+    "Append-only chains",
+    "Recorded",
+    "Previous",
+    "Assumption history",
+    "EVIDENCE INSPECTOR",
+    "Source version",
+    "Locator",
+    "Observed at",
+    "Recorded at",
+    "Transform ref",
+  ]) assert.ok(history.includes(copy), `missing history inspection: ${copy}`);
+  assert.match(history, /state\.evidenceRefIds/);
+  assert.match(history, /version\.previousVersionId/);
+});
+
+test("scalar adapter distinguishes consumed inputs from preserved hypothetical context", () => {
+  const context = resolveRunContext(comparisonDetail(), "r3")!;
+  const dependencies = scalarInputDependencies(context);
+  assert.equal(dependencies.adapterSupported, true);
+  assert.deepEqual(dependencies.consumed.map((item) => item.path), [
+    "observed_state.value",
+    "assumptions.multiplier",
+    "execution_configuration",
+  ]);
+  assert.deepEqual(dependencies.preserved, [{
+    path: "scenario.hypothetical_state",
+    value: { note: "preserved only" },
+  }]);
+  assert.match(history, /CONSUMED BY MODEL/);
+  assert.match(history, /PRESERVED IN SCENARIO · NOT CONSUMED/);
+  assert.match(history, /scalar executor v1 does not consume hypothetical_state/);
+});
+
+test("lineage reconstruction checks the historical exact chain and fails visibly when incomplete", () => {
+  const context = resolveRunContext(comparisonDetail(), "r1")!;
+  const exact = {
+    result: { id: "x1", payload: { value: 20 } },
+    run: { id: "r1", executionConfiguration: { arithmetic: "integer" } },
+    model: { definitionId: "model-definition-1", versionId: "m1", name: GUIDED_FIXTURE.modelName, semanticVersion: "1.0.0" },
+    scenario: { id: "s1", name: GUIDED_FIXTURE.scenario1Name },
+    assumptions: { setId: "a1", versionId: "a1v1", name: GUIDED_FIXTURE.assumptionName, version: 1, values: { multiplier: 2 } },
+    state: { id: "v1", version: 1, payload: { value: 10 } },
+    object: { id: "o1", objectType: GUIDED_FIXTURE.objectType },
+    evidenceRefs: [{ id: "e1", sourceArtifactId: "SYNTHETIC-E1", sourceVersion: "1", locator: "illustrative://scalar/input/value-10" }],
+  };
+  assert.deepEqual(assessLineage(context, exact), { reconstructible: true, missing: [] });
+  assert.deepEqual(assessLineage(context, { ...exact, evidenceRefs: [] }), {
+    reconstructible: false,
+    missing: ["evidence ref e1"],
+  });
+  assert.match(history, /RECONSTRUCTIBLE/);
+  assert.match(history, /CHAIN INCOMPLETE/);
+  assert.match(history, /getLineage/);
+  assert.match(history, /setLineageRunId\(contexts\[0\]\?\.run\.id/);
+});
+
+test("reconstructibility and replay remain separate, with non-judgmental MATCH and DIVERGENCE", () => {
+  assert.match(history, /Reconstruct chain/);
+  assert.match(history, /Replay exact run/);
+  assert.match(history, /Reconstructibility resolves stored links\. Replay separately/);
+  const match = replayPresentation({ resultId: "x1", storedPayload: { value: 20 }, replayedPayload: { value: 20 }, matches: true });
+  const divergence = replayPresentation({ resultId: "x1", storedPayload: { value: 20 }, replayedPayload: { value: 21 }, matches: false });
+  assert.deepEqual(match, { status: "MATCH", detail: "Replay reproduziu o output armazenado." });
+  assert.deepEqual(divergence, { status: "DIVERGENCE", detail: "O replay divergiu; o resultado histórico permanece inalterado." });
+  for (const presentation of [match, divergence]) {
+    assert.equal(/true|correct|correto|verdade/i.test(`${presentation.status} ${presentation.detail}`), false);
+  }
+});
+
+test("History / Compare carries no recommendation, winner or ranking semantics", () => {
+  const lower = history.toLocaleLowerCase("pt-BR");
+  for (const forbidden of ["best", "winner", "recommended", "better", "worse", "ranking", "score", "recomendação", "vencedor"]) {
+    assert.equal(lower.includes(forbidden), false, `unexpected judgment language: ${forbidden}`);
+  }
+});
+
+test("Scenario Studio carries no recommendation or winner semantics", () => {
+  const lower = studio.toLocaleLowerCase("pt-BR");
+  for (const forbidden of ["melhor cenário", "vencedor", "recomendação", "ranking", "score"]) {
+    assert.equal(lower.includes(forbidden), false, `unexpected judgment language: ${forbidden}`);
+  }
 });
 
 test("reconstruction and replay are separate operations", () => {
@@ -131,6 +435,7 @@ function completeDetail(): WorkspaceDetail {
   detail.objects = [{
     id: "o1",
     objectType: GUIDED_FIXTURE.objectType,
+    displayLabel: null,
     createdAt: "2026-09-19T00:00:00Z",
     currentStateVersionId: "v2",
   }];
@@ -198,8 +503,11 @@ function completeDetail(): WorkspaceDetail {
     name: GUIDED_FIXTURE.modelName,
     semanticVersion: GUIDED_FIXTURE.modelSemanticVersion,
     implementationIdentity: GUIDED_FIXTURE.modelImplementation,
-    inputContract: {},
-    outputContract: {},
+    inputContract: {
+      observed_state: { value: "integer" },
+      assumptions: { multiplier: "integer" },
+    },
+    outputContract: { scalar_result: { value: "integer" } },
     createdAt: "2026-09-19T00:00:00Z",
   }];
   detail.runs = [
@@ -230,6 +538,61 @@ function completeDetail(): WorkspaceDetail {
   ];
   return detail;
 }
+
+function comparisonDetail(): WorkspaceDetail {
+  const detail = completeDetail();
+  detail.assumptionSets[0].versions.push({
+    id: "a1v2",
+    version: 2,
+    values: { multiplier: 3 },
+    valueSchema: { multiplier: "integer" },
+    origin: "human_defined",
+    previousVersionId: "a1v1",
+    createdAt: "2026-09-19T00:02:00Z",
+  });
+  detail.scenarios.push({
+    id: "s3",
+    name: "S3 — Premissas V2",
+    stateVersionId: "v2",
+    assumptionSetVersionId: "a1v2",
+    hypotheticalState: { note: "preserved only" },
+    createdAt: "2026-09-19T00:02:00Z",
+  });
+  detail.runs.push({
+    id: "r3",
+    modelVersionId: "m1",
+    scenarioId: "s3",
+    stateVersionId: "v2",
+    assumptionSetVersionId: "a1v2",
+    executionConfiguration: { arithmetic: "integer" },
+    startedAt: "2026-09-19T00:02:00Z",
+    producedAt: "2026-09-19T00:02:01Z",
+  });
+  detail.results.push({
+    id: "x3",
+    modelRunId: "r3",
+    resultKey: "scalar_result",
+    payload: { value: 36 },
+    unit: null,
+    producedAt: "2026-09-19T00:02:01Z",
+  });
+  return detail;
+}
+
+test("assumption choices retain every historical version and identify only the newest", () => {
+  const detail = completeDetail();
+  detail.assumptionSets[0].versions.push({
+    ...detail.assumptionSets[0].versions[0],
+    id: "a1v2",
+    version: 2,
+    previousVersionId: "a1v1",
+  });
+  const choices = assumptionVersionChoices(detail);
+  assert.deepEqual(
+    choices.map((choice) => [choice.version.id, choice.current]),
+    [["a1v1", false], ["a1v2", true]],
+  );
+});
 
 test("duplicate display labels fail closed instead of selecting the first record", () => {
   const detail = emptyDetail();
@@ -300,14 +663,14 @@ test("a replay mismatch is reported as replay divergence, not reconstruction fai
     replayedPayload: { value: 21 },
     matches: false,
   });
-  assert.equal(presentation.status, "MISMATCH DETECTADO");
+  assert.equal(presentation.status, "DIVERGENCE");
   assert.match(presentation.detail, /resultado histórico permanece inalterado/);
   assert.equal(presentation.detail.includes("reconstru"), false);
 });
 
 test("empty and error states stay explicit and never synthesize records", () => {
   for (const copy of [
-    "Nenhum contexto privado foi criado.",
+    "Comece com um contexto privado vazio.",
     "Nenhum objeto gravado.",
     "Nenhuma evidência registrada.",
     "Nenhuma premissa fixada.",

@@ -25,10 +25,10 @@ from app.db.models.ariadne_core import (
     AriadneScenario,
     AriadneStateEvidence,
 )
+from app.db.models.ariadne_operator import AriadneOperatorObjectPresentation
 from app.db.models.user import User
 from app.db.session import get_db
 from app.services.ariadne_core import (
-    DETERMINISTIC_SCALAR_CONFIGURATION,
     TenantScopeError,
     create_assumption_set,
     create_assumption_set_version,
@@ -43,8 +43,10 @@ from app.services.ariadne_core import (
 )
 from app.services.ariadne_operator import (
     WorkspaceNotFound,
+    create_object_presentation,
     create_workspace,
     list_workspaces,
+    provision_registered_model,
     require_operator,
     require_workspace,
     tenant_id_for,
@@ -61,6 +63,7 @@ class StrictRequest(BaseModel):
 
 class CreateWorkspaceRequest(StrictRequest):
     label: str = Field(min_length=1, max_length=160)
+    synthetic: bool = False
 
 
 class CreateEvidenceRequest(StrictRequest):
@@ -73,6 +76,9 @@ class CreateEvidenceRequest(StrictRequest):
 
 class CreateObjectRequest(StrictRequest):
     object_type: str = Field(alias="objectType", min_length=1, max_length=160)
+    display_label: str | None = Field(
+        default=None, alias="displayLabel", min_length=1, max_length=160
+    )
 
 
 class CreateStateRequest(StrictRequest):
@@ -99,13 +105,13 @@ class CreateScenarioRequest(StrictRequest):
     hypothetical_state: dict[str, Any] = Field(default_factory=dict, alias="hypotheticalState")
 
 
+class EnableInternalTestModelRequest(StrictRequest):
+    pass
+
+
 class CreateRunRequest(StrictRequest):
     scenario_id: uuid.UUID = Field(alias="scenarioId")
     model_version_id: uuid.UUID = Field(alias="modelVersionId")
-    execution_configuration: dict[str, Any] = Field(
-        default_factory=lambda: dict(DETERMINISTIC_SCALAR_CONFIGURATION),
-        alias="executionConfiguration",
-    )
 
 
 def _iso(value: datetime | None) -> str | None:
@@ -160,6 +166,14 @@ def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any
             .order_by(AriadnePrivateObject.created_at, AriadnePrivateObject.id)
         ).scalars()
     )
+    object_presentations = {
+        row.object_id: row
+        for row in db.execute(
+            select(AriadneOperatorObjectPresentation).where(
+                AriadneOperatorObjectPresentation.workspace_id == workspace.id
+            )
+        ).scalars()
+    }
     states = list(
         db.execute(
             select(AriadnePrivateStateVersion)
@@ -275,6 +289,11 @@ def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any
             {
                 "id": str(row.id),
                 "objectType": row.object_type,
+                "displayLabel": (
+                    object_presentations[row.id].display_label
+                    if row.id in object_presentations
+                    else None
+                ),
                 "createdAt": _iso(row.created_at),
                 "currentStateVersionId": (
                     str(current_by_object[row.id].id) if current_by_object[row.id] else None
@@ -376,7 +395,12 @@ def post_workspace(
 ):
     require_operator(user)
     try:
-        workspace = create_workspace(db, owner_user_id=user.id, label=body.label)
+        workspace = create_workspace(
+            db,
+            owner_user_id=user.id,
+            label=body.label,
+            synthetic=body.synthetic,
+        )
         db.commit()
         db.refresh(workspace)
     except (ValueError, RuntimeError) as exc:
@@ -428,9 +452,16 @@ def post_object(
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    _, tenant_id = _authorized_context(workspace_id, user, db)
+    workspace, tenant_id = _authorized_context(workspace_id, user, db)
     try:
         row = create_private_object(db, tenant_id=tenant_id, object_type=body.object_type)
+        if body.display_label is not None:
+            create_object_presentation(
+                db,
+                workspace_id=workspace.id,
+                object_id=row.id,
+                display_label=body.display_label,
+            )
         db.commit()
         db.refresh(row)
     except (ValueError, TypeError) as exc:
@@ -557,6 +588,29 @@ def get_models(
     return {"data": [{"id": str(row.id), "semanticVersion": row.semantic_version} for row in rows]}
 
 
+@router.post("/workspaces/{workspace_id}/models/internal-test", status_code=201)
+def post_internal_test_model(
+    body: EnableInternalTestModelRequest,
+    workspace_id: uuid.UUID = Path(...),
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Enable the one server-approved, domain-neutral model idempotently."""
+    del body
+    _, tenant_id = _authorized_context(workspace_id, user, db)
+    try:
+        row = provision_registered_model(db, tenant_id=tenant_id)
+        db.commit()
+        db.refresh(row)
+    except (RuntimeError, ValueError, TypeError) as exc:
+        db.rollback()
+        raise _unprocessable(exc) from exc
+    return {
+        "id": str(row.id),
+        "semanticVersion": row.semantic_version,
+    }
+
+
 @router.post("/workspaces/{workspace_id}/runs", status_code=201)
 def post_run(
     body: CreateRunRequest,
@@ -571,7 +625,6 @@ def post_run(
             tenant_id=tenant_id,
             scenario_id=body.scenario_id,
             model_version_id=body.model_version_id,
-            execution_configuration=body.execution_configuration,
         )
         db.commit()
         db.refresh(executed.model_run)
