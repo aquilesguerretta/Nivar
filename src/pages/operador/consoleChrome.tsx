@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import {
   ArrowUpRight,
+  Eye,
   FileSearch,
   GitBranch,
   Inbox,
@@ -26,10 +27,12 @@ export function ConsoleLayout() {
   const [menu, setMenu] = useState(false);
   const selected = pathname.replace(/^\/operador\/?/, "").split("/")[0];
   const isAriadne = selected === "ariadne";
+  const isArgos = selected === "argos";
   return (
     <div
       className="g2 g2-ops"
       data-ops-theme={dark ? "dark" : "light"}
+      data-g2-theme={dark ? "dark" : "light"}
       lang="pt-BR"
     >
       <header className="g2-ops__header">
@@ -41,11 +44,11 @@ export function ConsoleLayout() {
           <Wordmark height={23} />
         </Link>
         <span className="g2-ops__product">
-          {isAriadne ? "Ariadne" : "Advisory"} <span>/</span> Bancada de análise
+          {isArgos ? "Argos" : isAriadne ? "Ariadne" : "Advisory"} <span>/</span> Bancada de análise
         </span>
         <div className="g2-ops__header-right">
           <span className="g2-ops__sample-label">
-            {isAriadne ? "INTERNAL OPERATOR" : "AMOSTRA ILUSTRATIVA"}
+            {isArgos ? "SYNTHETIC SNAPSHOTS" : isAriadne ? "INTERNAL OPERATOR" : "AMOSTRA ILUSTRATIVA"}
           </span>
           <Link to="/conta">
             Conta <ArrowUpRight size={13} />
@@ -65,7 +68,7 @@ export function ConsoleLayout() {
         <aside className="g2-ops__sidebar" data-open={menu}>
           <div className="g2-ops__sidebar-top">
             <span>ESPAÇO DE TRABALHO</span>
-            <strong>{isAriadne ? "Ariadne organiza." : "Sócrates questiona."}</strong>
+            <strong>{isArgos ? "Argos observa." : isAriadne ? "Ariadne organiza." : "Sócrates questiona."}</strong>
           </div>
           <nav aria-label="Fila de análise">
             <Link
@@ -79,6 +82,16 @@ export function ConsoleLayout() {
               <b>{FILA_MOCK.length}</b>
             </Link>
             <div className="g2-ops__nav-label">INSTRUMENTOS</div>
+            <Link
+              to="/operador/argos"
+              className="g2-ops__nav-item"
+              aria-current={isArgos ? "page" : undefined}
+              onClick={() => setMenu(false)}
+            >
+              <Eye size={16} />
+              <span>Argos</span>
+              <b>SIGNAL</b>
+            </Link>
             <Link
               to="/operador/ariadne"
               className="g2-ops__nav-item"
@@ -104,16 +117,18 @@ export function ConsoleLayout() {
             ))}
           </nav>
           <div className="g2-ops__sidebar-method">
-            {isAriadne ? <GitBranch size={20} /> : <FileSearch size={20} />}
-            <p>{isAriadne ? "A memória vem antes." : "A conclusão vem depois."}</p>
-            <span>{isAriadne
+            {isArgos ? <Eye size={20} /> : isAriadne ? <GitBranch size={20} /> : <FileSearch size={20} />}
+            <p>{isArgos ? "A evidência vem antes." : isAriadne ? "A memória vem antes." : "A conclusão vem depois."}</p>
+            <span>{isArgos
+              ? "Detecção, observação, evidência e resultado preservam a autoridade da fonte."
+              : isAriadne
               ? "Estado, evidência, premissas e execução preservam sua linhagem exata."
               : "Evidência, premissas e contrapontos permanecem visíveis durante toda a análise."}
             </span>
           </div>
           <div className="g2-ops__sidebar-bottom">
-            <Link to={isAriadne ? "/br/software" : "/br/advisory"}>
-              {isAriadne ? "Conhecer Software" : "Conhecer Advisory"} <ArrowUpRight size={13} />
+            <Link to={isArgos ? "/br/intelligence" : isAriadne ? "/br/software" : "/br/advisory"}>
+              {isArgos ? "Conhecer Intelligence" : isAriadne ? "Conhecer Software" : "Conhecer Advisory"} <ArrowUpRight size={13} />
             </Link>
             <button type="button" onClick={() => setDark(!dark)}>
               {dark ? <Sun size={15} /> : <Moon size={15} />}{" "}
@@ -123,8 +138,10 @@ export function ConsoleLayout() {
         </aside>
         <main className="g2-ops__main">
           <div className="g2-ops__truth">
-            <span>{isAriadne ? "ARIADNE ANALYST WORKBENCH · INTERNAL ALPHA" : "G2 EXPERIMENTAL"}</span>
-            <p>{isAriadne
+            <span>{isArgos ? "READ-ONLY · SERVER-OWNED CONTEXT" : isAriadne ? "ARIADNE ANALYST WORKBENCH · INTERNAL ALPHA" : "G2 EXPERIMENTAL"}</span>
+            <p>{isArgos
+              ? "Fixtures sintéticas capturadas como snapshots reais · nenhuma captura, mutação ou decisão no navegador."
+              : isAriadne
               ? "Contexto privado derivado no servidor · autoria persistida no Ariadne Core real."
               : "Pedidos e nomes ilustrativos · sem acesso à fila real · rascunhos locais, sem envio."}
             </p>

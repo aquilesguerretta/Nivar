@@ -43,6 +43,7 @@ import { ConsoleLayout } from './consoleChrome';
 import { FilaView } from './FilaView';
 import { PedidoView } from './PedidoView';
 import { AriadneWorkbench } from './AriadneWorkbench';
+import { ArgosSignalInspection } from './ArgosSignalInspection';
 import { NotFound } from '../NotFound';
 import { PRODUTOS_COM_FILA } from '../../lib/operador/catalogo';
 
@@ -51,6 +52,7 @@ export function OperadorRouter() {
     <Routes>
       <Route element={<ConsoleLayout />}>
         <Route index element={<FilaView />} />
+        <Route path="argos" element={<ArgosSignalInspection />} />
         <Route path="ariadne" element={<AriadneWorkbench />} />
         {PRODUTOS_COM_FILA.map((p) => (
           <Fragment key={p.produtoId}>
