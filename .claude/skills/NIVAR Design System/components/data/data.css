@@ -1,0 +1,135 @@
+.nv-tab{width:100%;border-collapse:collapse;border:var(--fio) solid var(--rule)}
+.nv-tab caption{caption-side:top;text-align:left;padding:0 0 8px;font-family:var(--font-data);font-size:10px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}
+.nv-tab th{text-align:left;font-family:var(--font-data);font-weight:500;font-size:10px;line-height:1.2;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);padding:7px 12px;border-bottom:var(--fio) solid var(--rule-strong);white-space:nowrap}
+.nv-tab td{padding:7px 12px;border-bottom:var(--fio) solid var(--rule);font-family:var(--font-body);font-weight:400;font-size:13.5px;line-height:1.35;color:var(--text-body)}
+.nv-tab th+th,.nv-tab td+td{border-left:var(--fio) solid var(--rule)}
+.nv-tab th.nv-num,.nv-tab td.nv-num{text-align:right}
+.nv-tab td.nv-num{font-family:var(--font-data);font-variant-numeric:tabular-nums lining-nums;font-size:13.5px;letter-spacing:-.005em;color:var(--text-strong);white-space:nowrap}
+.nv-tab tbody tr{border-left:2px solid transparent;transition:color var(--dur-hover) var(--ease),border-color var(--dur-hover) var(--ease)}
+.nv-tab--zebra tbody tr:nth-child(even){background:var(--zebra)}
+.nv-tab--hover tbody tr:hover,.nv-tab tbody tr.nv-tab__linha--hover{border-left-color:var(--accent-focus)}
+.nv-tab--hover tbody tr:hover td,.nv-tab tbody tr.nv-tab__linha--hover td{color:var(--fg-hover);border-bottom-color:var(--rule-strong)}
+.nv-tab tfoot td{border-bottom:0;border-top:var(--fio) solid var(--rule-heavy);font-weight:500;color:var(--text-strong)}
+.nv-tab .nv-alta{color:var(--data-alta)}.nv-tab .nv-baixa{color:var(--data-baixa)}
+.nv-tab .nv-atencao{color:var(--data-atencao)}.nv-tab .nv-neutro{color:var(--data-neutro)}
+
+.nv-tab-rolo{max-width:100%}
+
+/* LINHA DE TABELA EXPANSIVEL — o painel abre ABAIXO da linha e empurra as seguintes para baixo.
+   Nunca sobrepoe, nunca modal, nunca gaveta lateral. Mesmo fio da tabela. */
+.nv-exp__b{display:inline-flex;align-items:baseline;gap:8px;white-space:nowrap;text-align:left;background:none;border:0;border-radius:0;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;transition:color var(--dur-hover) var(--ease)}
+.nv-exp__marca{flex:none;width:10px;font-family:var(--font-data);font-weight:500;font-size:12px;line-height:1.2;color:var(--text-faint);transition:color var(--dur-hover) var(--ease)}
+.nv-exp__b:hover,.nv-exp__b:hover .nv-exp__marca{color:var(--fg-hover)}
+.nv-exp__b:focus-visible{outline:var(--fio-forte) solid var(--accent-focus);outline-offset:2px}
+.nv-tab__linha-exp--aberta .nv-exp__marca{color:var(--text-strong)}
+.nv-tab__linha-exp--aberta>td{border-bottom-color:transparent}
+.nv-tab__painel>.nv-exp__cel{padding:0 12px 14px;border-bottom:var(--fio) solid var(--rule)}
+.nv-tab__painel>.nv-exp__cel--indentado{padding-left:32px}
+.nv-exp__fio-desenho{display:block;width:100%;height:1px;overflow:visible;margin-bottom:12px}
+.nv-exp__fio-desenho line{stroke:var(--rule);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:1000;stroke-dashoffset:1000;animation:nv-fio-desenha var(--dur-desenho) var(--ease) forwards}
+.nv-exp__interno{display:grid;gap:11px;opacity:0;animation:nv-surge var(--dur-hover) var(--ease) 140ms forwards}
+.nv-tab--zebra tbody tr.nv-tab__linha-exp--aberta+tr.nv-tab__painel>td{background:inherit}
+
+/* ORDENACAO DE COLUNA — glifo unicode em mono, nunca icone de biblioteca externa.
+   Neutro fica presente em --rule-strong: a coluna se anuncia ordenavel sem exigir hover. */
+.nv-ord{padding:0}
+.nv-ord__b{display:flex;align-items:baseline;gap:7px;width:100%;background:none;border:0;border-radius:0;padding:7px 12px;text-align:left;font-family:var(--font-data);font-weight:500;font-size:10px;line-height:1.2;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);cursor:pointer;transition:color var(--dur-hover) var(--ease)}
+.nv-ord.nv-num .nv-ord__b{flex-direction:row-reverse;text-align:right}
+.nv-ord__rot{flex:1 1 auto}
+.nv-ord__marca{flex:none;font-family:var(--font-data);font-weight:400;font-size:11px;line-height:1;color:var(--rule-strong);transition:color var(--dur-hover) var(--ease)}
+.nv-ord__b:hover,.nv-ord__b--is-hover{color:var(--fg-hover)}
+.nv-ord__b:hover .nv-ord__marca,.nv-ord__b--is-hover .nv-ord__marca{color:var(--fio-hover)}
+.nv-ord__b:focus-visible{outline:var(--fio-forte) solid var(--accent-focus);outline-offset:-2px}
+.nv-ord--ativa .nv-ord__b{color:var(--text-strong)}
+.nv-ord--ativa .nv-ord__marca{color:var(--text-strong);font-weight:500}
+
+/* DENSIDADE DE LINHA — muda so o padding da celula. Fonte, cor e fio nao mudam. */
+[data-densidade="compacto"] .nv-tab th,[data-densidade="compacto"] .nv-tab td{padding:7px 12px}
+[data-densidade="compacto"] .nv-ord__b{padding:7px 12px}
+[data-densidade="confortavel"] .nv-tab th,[data-densidade="confortavel"] .nv-tab td{padding:12px}
+[data-densidade="confortavel"] .nv-ord__b{padding:12px}
+[data-densidade="confortavel"] .nv-tab th.nv-ord{padding:0}
+[data-densidade="compacto"] .nv-tab th.nv-ord{padding:0}
+.nv-cardgrid{display:grid;grid-template-columns:repeat(var(--cols-grade,var(--cols-desktop,4)),minmax(0,1fr));border:var(--fio) solid var(--rule);border-right-width:0;border-bottom-width:0}
+.nv-cardgrid>.nv-card{border-right:var(--fio) solid var(--rule);border-bottom:var(--fio) solid var(--rule)}
+.nv-card{display:grid;align-content:start;gap:8px;padding:14px 16px;border-radius:0;background:none}
+.nv-card--solto{border:var(--fio) solid var(--rule)}
+.nv-card__familia{height:2px;margin:-14px -16px 4px}
+.nv-card__etiqueta{font-family:var(--font-body);font-weight:500;font-size:11px;line-height:1.1;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.nv-card__valor{display:block;font-family:var(--font-data);font-weight:500;font-size:26px;line-height:1.05;letter-spacing:-.014em;font-variant-numeric:tabular-nums lining-nums;color:var(--text-strong)}
+.nv-card__meta{display:flex;align-items:baseline;gap:7px;margin-top:-2px}
+.nv-card__unid{font-family:var(--font-data);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint)}
+.nv-card__delta{font-family:var(--font-data);font-weight:500;font-size:13px;font-variant-numeric:tabular-nums lining-nums}
+.nv-card__nota{font-family:var(--font-body);font-weight:300;font-size:12px;line-height:1.4;color:var(--text-muted)}
+
+.nv-proc{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 8px;font-family:var(--font-data);font-weight:400;font-size:10.5px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);font-variant-numeric:tabular-nums lining-nums}
+.nv-proc--fio{padding-top:8px;border-top:var(--fio) solid var(--rule)}
+.nv-proc__rotulo{color:var(--text-muted);font-weight:500}
+.nv-proc__sep{opacity:.55}
+.nv-proc__ilustrativa{color:var(--ilustrativa-fg);font-weight:500;border-bottom:var(--fio) solid var(--ilustrativa-fio);padding-bottom:1px}
+
+/* DIVULGACAO DE METODOLOGIA — disclosure inline ancorado na procedencia, nunca modal.
+   A abertura nao anima altura: o fio se desenha (stroke-dashoffset, 700ms) e o corpo entra em
+   opacidade. Layout nao se move animado em lugar nenhum do sistema. */
+.nv-metodo{display:grid;gap:0}
+.nv-metodo--fio{padding-top:8px;border-top:var(--fio) solid var(--rule)}
+.nv-metodo__ancora{display:grid;justify-items:start;gap:7px}
+.nv-metodo__ancora>.nv-proc{margin:0;width:100%}
+.nv-metodo__gatilho{justify-self:start;white-space:nowrap;font-family:var(--font-data);font-weight:500;font-size:10.5px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);background:none;border:0;border-bottom:var(--fio) solid var(--rule-strong);border-radius:0;padding:0 0 1px;cursor:pointer;transition:color var(--dur-hover) var(--ease),border-color var(--dur-hover) var(--ease)}
+.nv-metodo__gatilho:hover{color:var(--fg-hover);border-bottom-color:var(--fio-hover)}
+.nv-metodo__gatilho[aria-expanded=true]{color:var(--text-strong);border-bottom-color:var(--rule-heavy)}
+.nv-metodo__gatilho:focus-visible{outline:2px solid var(--accent-focus);outline-offset:3px}
+.nv-metodo__painel{display:grid;gap:9px;padding-top:11px}
+.nv-metodo__fio-desenho{display:block;width:100%;height:1px;overflow:visible}
+.nv-metodo__fio-desenho line{stroke:var(--rule-heavy);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:1000;stroke-dashoffset:1000;animation:nv-fio-desenha var(--dur-desenho) var(--ease) forwards}
+@keyframes nv-fio-desenha{to{stroke-dashoffset:0}}
+.nv-metodo__corpo{display:grid;opacity:0;animation:nv-surge var(--dur-hover) var(--ease) 140ms forwards}
+@keyframes nv-surge{to{opacity:1}}
+.nv-metodo__linha{display:grid;grid-template-columns:158px minmax(0,1fr);gap:3px 14px;padding:7px 0;border-bottom:var(--fio) solid var(--rule)}
+.nv-metodo__linha:last-child{border-bottom:0;padding-bottom:0}
+.nv-metodo__rot{font-family:var(--font-data);font-weight:500;font-size:9.5px;line-height:1.7;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint)}
+.nv-metodo__v{font-family:var(--font-body);font-weight:300;font-size:13px;line-height:1.5;color:var(--text-body);margin:0;text-wrap:pretty}
+.nv-metodo__v--dado{font-family:var(--font-data);font-weight:400;font-size:11.5px;line-height:1.55;letter-spacing:.03em;color:var(--text-strong);font-variant-numeric:tabular-nums lining-nums}
+.nv-metodo__premissas{display:grid;gap:4px;margin:0;padding:0;list-style:none}
+.nv-metodo__premissas li{font-family:var(--font-body);font-weight:300;font-size:13px;line-height:1.5;color:var(--text-body);padding-left:18px;position:relative}
+.nv-metodo__premissas li::before{content:"—";position:absolute;left:0;color:var(--text-faint)}
+.nv-metodo__nota{font-family:var(--font-body);font-weight:400;font-size:12px;line-height:1.45;color:var(--text-muted);margin:0;padding-top:9px;border-top:var(--fio) solid var(--rule)}
+.nv-metodo__link{white-space:nowrap;font-family:var(--font-data);font-weight:500;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--link);text-decoration:none;border-bottom:var(--fio) solid var(--rule-strong);justify-self:start;padding-bottom:2px;transition:color var(--dur-hover) var(--ease),border-color var(--dur-hover) var(--ease)}
+.nv-metodo__link:hover{color:var(--link-hover);border-bottom-color:var(--fio-hover)}
+
+/* FRESCOR DO DADO — tres estados por texto. Nunca semaforo: cor no dado e direcao de mercado,
+   e frescor e a mesma categoria de informacao. O unico marcador e um ponto neutro quente. */
+.nv-frescor{display:flex;flex-wrap:wrap;align-items:center;gap:5px 7px;font-family:var(--font-data);font-weight:400;font-size:10.5px;line-height:1.5;letter-spacing:.05em;color:var(--text-muted);font-variant-numeric:tabular-nums lining-nums;margin:0}
+.nv-frescor__ponto{width:6px;height:6px;border-radius:50%;flex:none;background:var(--text-faint)}
+.nv-frescor__estado{font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-strong);white-space:nowrap}
+.nv-frescor__sep{opacity:.55}
+.nv-frescor__detalhe{color:var(--text-faint);white-space:nowrap}
+.nv-frescor--ilustrativa .nv-frescor__estado{color:var(--ilustrativa-fg);border-bottom:var(--fio) solid var(--ilustrativa-fio);padding-bottom:1px}
+
+/* TENDENCIA INLINE — versao de uma linha do que o DataCard mostra em corpo grande. */
+.nv-tend{display:inline-flex;align-items:baseline;gap:4px;font-family:var(--font-data);font-weight:500;font-size:12.5px;line-height:1.25;letter-spacing:-.005em;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+.nv-tend__dir{font-weight:400;font-size:11px}
+.nv-tend__un,.nv-tend__base{font-weight:400;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint)}
+.nv-tend--compacto{font-size:11px;gap:3px}
+.nv-tend--compacto .nv-tend__dir{font-size:10px}
+.nv-tend.nv-alta{color:var(--data-alta)}
+.nv-tend.nv-baixa{color:var(--data-baixa)}
+.nv-tend.nv-atencao{color:var(--data-atencao)}
+.nv-tend.nv-neutro{color:var(--data-neutro)}
+
+/* COMPARACAO LADO A LADO — colunas espelhadas, divisor central de fio de 1px.
+   O rotulo hospeda a borda externa e o valor encosta no divisor: as duas series de numeros
+   formam um eixo unico no centro, que e o que torna a comparacao lida de relance. */
+.nv-comp{display:grid;grid-template-columns:1fr 1fr;border-top:var(--fio) solid var(--rule-heavy)}
+.nv-comp__cel{display:flex;align-items:baseline;gap:10px;min-width:0;padding:9px 14px;border-bottom:var(--fio) solid var(--rule)}
+.nv-comp__cel--b{border-left:var(--fio) solid var(--rule-heavy);flex-direction:row-reverse}
+.nv-comp__cel--cab{align-items:flex-end;padding-top:8px;border-bottom:var(--fio) solid var(--rule-strong)}
+.nv-comp__cel--cab.nv-comp__cel--b{flex-direction:row-reverse}
+.nv-comp__rot{flex:1 1 auto;min-width:0;font-family:var(--font-body);font-weight:500;font-size:11px;line-height:1.25;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.nv-comp__cel--b .nv-comp__rot{text-align:right}
+.nv-comp__v{font-family:var(--font-data);font-weight:500;font-size:15px;line-height:1.25;letter-spacing:-.006em;color:var(--text-strong);font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+.nv-comp__un{font-family:var(--font-data);font-weight:400;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);white-space:nowrap}
+.nv-comp__nome{flex:1 1 auto;font-family:var(--font-display);font-weight:500;font-size:17px;line-height:1.16;letter-spacing:-.006em;color:var(--text-strong);text-wrap:pretty}
+.nv-comp__cel--b .nv-comp__nome{text-align:right}
+.nv-comp__sub{font-family:var(--font-data);font-weight:400;font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint);white-space:nowrap}
+.nv-comp__nota{grid-column:1/-1;font-family:var(--font-body);font-weight:300;font-size:12px;line-height:1.45;color:var(--text-faint);margin:0;padding-top:8px}

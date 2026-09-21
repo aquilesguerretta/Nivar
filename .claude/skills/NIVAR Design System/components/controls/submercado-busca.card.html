@@ -1,0 +1,52 @@
+<!-- @dsCard group="Components" viewport="1060x1580" name="Submercado e busca" subtitle="Quatro opções fixas com fio de 2px na ativa · campo sem container, fio que engrossa em foco" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Submercado e busca</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:1060px;overflow:hidden}.g{display:grid;grid-template-columns:1fr 1fr}.bl{padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:14px;background:var(--surface-page)}.bl+.bl{border-left:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.mob{display:grid;grid-template-columns:343px 343px;border-top:1px solid var(--rule-strong)}.mob .bl{width:343px}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">const { SubmarketSelector, SearchField } = window.NIVARDesignSystem_0a22a8;
+const RESULTADOS = [
+  { id: '1', titulo: 'PLD horário — Sudeste/Centro-Oeste', meta: 'SÉRIE · CCEE' },
+  { id: '2', titulo: 'Migração ao mercado livre: o custo do aviso prévio', meta: 'CARTA · 2026-07-22' },
+  { id: '3', titulo: 'PLD médio por submercado, 2021–2026', meta: 'SÉRIE · CCEE · ONS' },
+  { id: '4', titulo: 'PLD', meta: 'VERBETE · GLOSSÁRIO' },
+];
+function Bloco({ modo, largura, rotulo, nota, sufixo }) {
+  const [um, setUm] = React.useState('SE');
+  const [varios, setVarios] = React.useState(['SE', 'S']);
+  const attrs = {};
+  if (modo) attrs['data-mode'] = modo;
+  if (largura) attrs['data-largura'] = largura;
+  return (
+    <div className="bl" {...attrs}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <span className="eti">seletor de submercado · escolha única, em uso pelo gráfico</span>
+      <SubmarketSelector valor={um} onChange={setUm} familia="intelligence" />
+      <span className="eti">escolha múltipla, em uso pelo filtro de tabela</span>
+      <SubmarketSelector multiplo valor={varios} onChange={setVarios} rotulo="Submercados na tabela" familia="software" />
+      <span className="eti">sigla · para cabeçalho de coluna medido</span>
+      <SubmarketSelector sigla valor="NE" rotulo="" familia="hardware" onChange={() => {}} />
+      <span className="eti">busca · em repouso, sem container e sem lupa</span>
+      <SearchField id={'b1' + sufixo} rotulo="Busca" valor="" aberto={false} />
+      <span className="eti">busca · com termo, resultado em lista de fio compartilhado</span>
+      <SearchField id={'b2' + sufixo} rotulo="Busca" valor="PLD" total={8} resultados={RESULTADOS} ancorado={false} aberto />
+      <span className="eti">busca · sem resultado</span>
+      <SearchField id={'b3' + sufixo} valor="submercado sudoeste" resultados={[]} total={0} ancorado={false} aberto />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<>
+  <div className="g">
+    <Bloco sufixo="c" rotulo="Modo claro" nota="ativa é fio de 2px da família · nunca pílula" />
+    <Bloco sufixo="n" modo="noturno" rotulo="Modo noturno" nota="trecho casado em peso 500 · nunca fundo de realce" />
+  </div>
+  <div className="mob">
+    <Bloco sufixo="mc" largura="mobile" rotulo="Móvel claro" nota="343px · quatro opções em duas linhas, 44px" />
+    <Bloco sufixo="mn" largura="mobile" modo="noturno" rotulo="Móvel noturno" nota="343px · campo a 16px, sem zoom no toque" />
+  </div>
+</>);
+</script></body></html>

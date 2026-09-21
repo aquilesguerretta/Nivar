@@ -1,0 +1,66 @@
+<!-- @dsCard group="Components" viewport="1060x1420" name="Período e legenda de gráfico" subtitle="Seletor denso em mono com fio de 2px no ativo · amostra em traço para série e bloco para barra" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Período e legenda</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:1060px;overflow:hidden}.g{display:grid;grid-template-columns:1fr 1fr}.bl{padding:16px 18px 20px;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:13px;background:var(--surface-page)}.bl+.bl{border-left:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.mob{display:grid;grid-template-columns:343px 343px;border-top:1px solid var(--rule-strong)}.mob .bl{width:343px}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">const { PeriodSegment, ChartLegend, TimeSeriesChart, BarChart, Provenance, DataFreshness } = window.NIVARDesignSystem_0a22a8;
+const SERIE = [
+  {x:'00h',y:186.4},{x:'02h',y:181.2},{x:'04h',y:178.9},{x:'06h',y:190.7},
+  {x:'08h',y:206.3},{x:'10h',y:219.8},{x:'12h',y:231.5},{x:'14h',y:242.1},
+  {x:'16h',y:238.6},{x:'18h',y:252.9},{x:'20h',y:227.4},{x:'22h',y:214.8}];
+const BARRAS = [
+  { label:'N', value:198.4, cor:'baixa' },
+  { label:'NE', value:203.1, cor:'baixa' },
+  { label:'SE/CO', value:214.8, cor:'alta' },
+  { label:'S', value:268.4, cor:'alta' }];
+function Bloco({ modo, largura, rotulo, nota, larg }) {
+  const [per, setPer] = React.useState('1m');
+  const attrs = {};
+  if (modo) attrs['data-mode'] = modo;
+  if (largura) attrs['data-largura'] = largura;
+  return (
+    <div className="bl" {...attrs}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <span className="eti">controle de período · no cabeçalho do gráfico, ativo em fio de 2px</span>
+      <div className="nv-graf-cab">
+        <span className="nv-graf-cab__t">PLD horário · SE/CO</span>
+        <PeriodSegment value={per} onChange={setPer} desabilitados={['1d']} />
+      </div>
+      <TimeSeriesChart serie={SERIE} width={larg} height={158} ticksX={3} ticksY={3} />
+      <ChartLegend tipo="linha" itens={[
+        { rotulo: 'PLD apurado', cor: 'intelligence', valor: '214,80' },
+        { rotulo: 'Curva projetada', cor: 'software' },
+      ]} />
+      <span className="eti">legenda de barra · bloco de 9px, raio zero</span>
+      <BarChart data={BARRAS} width={larg} height={140} casas={0} titulo="PLD médio por submercado" unidade="R$/MWh" />
+      <ChartLegend tipo="barra" itens={[
+        { rotulo: 'Acima da média SIN', cor: 'alta' },
+        { rotulo: 'Abaixo da média SIN', cor: 'baixa' },
+        { rotulo: 'Sem apuração', cor: 'neutro' },
+      ]} />
+      <span className="eti">as duas formas de amostra juntas · traço e bloco</span>
+      <ChartLegend fio={false} itens={[
+        { rotulo: 'Série apurada', cor: 'intelligence', tipo: 'linha' },
+        { rotulo: 'Faixa de referência', cor: 'advisory', tipo: 'barra' },
+      ]} />
+      <DataFreshness estado="vivo" detalhe="atualizado há 4min" />
+      <Provenance fontes={['CCEE']} recorte="apuração horária" ilustrativa fio />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<>
+  <div className="g">
+    <Bloco larg={456} rotulo="Modo claro" nota="1D desabilitado: recorte sem dado não desaparece" />
+    <Bloco larg={456} modo="noturno" rotulo="Modo noturno" nota="amostra imita o desenho da marca" />
+  </div>
+  <div className="mob">
+    <Bloco larg={307} largura="mobile" rotulo="Móvel claro" nota="343px · período desce para 44px de toque" />
+    <Bloco larg={307} largura="mobile" modo="noturno" rotulo="Móvel noturno" nota="343px · eixo permanece, marcas reduzem" />
+  </div>
+</>);
+</script></body></html>

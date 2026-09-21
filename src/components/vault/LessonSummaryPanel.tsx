@@ -192,7 +192,7 @@ function AIBadge() {
         height:        16,
         borderRadius:  '50%',
         background:    C.electricBlue,
-        color:         '#fff',
+        color:         C.textPrimary,
         fontFamily:    F.mono,
         fontSize:      8,
         fontWeight:    700,

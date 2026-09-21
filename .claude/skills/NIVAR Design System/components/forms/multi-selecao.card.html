@@ -1,0 +1,84 @@
+<!-- @dsCard group="Components" viewport="1060x1180" name="Multi-seleção" subtitle="Chips de fio dentro do campo, raio zero, removíveis por × · espaço restante continua digitável" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Multi-seleção</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:1060px;overflow:hidden}.g{display:grid;grid-template-columns:1fr 1fr}.bl{padding:16px 18px 20px;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:14px;background:var(--surface-page)}.bl+.bl{border-left:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.espaco{height:150px}.mob{display:grid;grid-template-columns:343px 343px;border-top:1px solid var(--rule-strong)}.mob .bl{width:343px}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">const { MultiSelect, SubmarketSelector, Provenance } = window.NIVARDesignSystem_0a22a8;
+const TODAS = [
+  { id: 'ons', rotulo: 'ONS', meta: 'OPERAÇÃO' },
+  { id: 'ccee', rotulo: 'CCEE', meta: 'LIQUIDAÇÃO' },
+  { id: 'aneel', rotulo: 'ANEEL', meta: 'REGULATÓRIO' },
+  { id: 'epe', rotulo: 'EPE', meta: 'PLANEJAMENTO' },
+];
+function Bloco({ modo, largura, rotulo, nota, s }) {
+  const [sel, setSel] = React.useState([TODAS[0], TODAS[1]]);
+  const [q, setQ] = React.useState('');
+  const restantes = TODAS.filter((t) => !sel.some((x) => x.id === t.id) && t.rotulo.toLowerCase().indexOf(q.toLowerCase()) !== -1);
+  const attrs = {};
+  if (modo) attrs['data-mode'] = modo;
+  if (largura) attrs['data-largura'] = largura;
+  return (
+    <div className="bl" {...attrs}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <span className="eti">em uso · dois itens escolhidos, espaço restante digitável</span>
+      <MultiSelect
+        id={s + 'm1'}
+        label="Fontes na consulta"
+        selecionados={sel}
+        onRemover={(id) => setSel(sel.filter((x) => x.id !== id))}
+        valor={q}
+        onChange={setQ}
+        sugestoes={restantes}
+        onEscolher={(o) => { setSel(sel.concat(o)); setQ(''); }}
+        hint="Quatro fontes públicas disponíveis."
+      />
+      <span className="eti">lista aberta · fio compartilhado, como em busca</span>
+      <MultiSelect
+        id={s + 'm2'}
+        label="Séries no gráfico"
+        selecionados={[{ id: 'pld', rotulo: 'PLD horário' }]}
+        valor="carga"
+        aberto
+        sugestoes={[
+          { id: 'c1', rotulo: 'Carga verificada', meta: 'SÉRIE · ONS' },
+          { id: 'c2', rotulo: 'Carga programada', meta: 'SÉRIE · ONS' },
+        ]}
+        onRemover={() => {}}
+        onChange={() => {}}
+        onEscolher={() => {}}
+      />
+      <div className="espaco"></div>
+      <span className="eti">vazio, obrigatório e desabilitado</span>
+      <MultiSelect id={s + 'm3'} label="Unidades consumidoras" obrigatorio selecionados={[]} valor="" placeholder="Buscar por CNPJ ou apelido" onChange={() => {}} />
+      <MultiSelect
+        id={s + 'm4'}
+        label="Submercados na exportação"
+        selecionados={[{ id: 'se', rotulo: 'Sudeste/CO' }, { id: 's', rotulo: 'Sul' }, { id: 'ne', rotulo: 'Nordeste' }, { id: 'n', rotulo: 'Norte' }]}
+        valor=""
+        disabled
+        hint="Fixado pelo recorte da assinatura."
+        onRemover={() => {}}
+        onChange={() => {}}
+      />
+      <span className="eti">o que não é multi-seleção · as quatro opções fixas</span>
+      <SubmarketSelector valor="SE" onChange={() => {}} familia="intelligence" />
+      <Provenance fontes={['ONS', 'CCEE', 'ANEEL', 'EPE']} recorte="apuração mensal" ilustrativa fio />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<>
+  <div className="g">
+    <Bloco s="c" rotulo="Modo claro" nota="chip é retângulo de fio, nunca pílula" />
+    <Bloco s="n" modo="noturno" rotulo="Modo noturno" nota="× em mono, não ícone" />
+  </div>
+  <div className="mob">
+    <Bloco s="mc" largura="mobile" rotulo="Móvel claro" nota="343px · campo desce para a linha própria" />
+    <Bloco s="mn" largura="mobile" modo="noturno" rotulo="Móvel noturno" nota="343px · alvo de 44px no × sem engordar o chip" />
+  </div>
+</>);
+</script></body></html>

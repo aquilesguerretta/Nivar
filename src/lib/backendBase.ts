@@ -1,22 +1,25 @@
-/** Default V2 API host when env is unset (production builds). */
-export const DEFAULT_BACKEND_HOST = 'https://gridalpha-v2-production.up.railway.app';
-
 /**
- * In dev, return `` so requests use same-origin `/api/...` and Vite proxies to V2.
- * In production, full URL from env (no trailing slash).
+ * Browser API traffic is always same-origin.
+ *
+ * Vercel rewrites `/api/*` to Railway in production and Vite proxies the
+ * same paths in development. Keeping the browser on the frontend origin is
+ * also required for the host-only session cookie used by authenticated APIs.
  */
-export function getBackendBase(): string {
-  if (import.meta.env.DEV) return '';
-  const u = (import.meta.env.VITE_BACKEND_URL as string | undefined)?.replace(/\/$/, '');
-  return u || DEFAULT_BACKEND_HOST;
+export const BROWSER_API_BASE = '';
+
+export function browserApiUrl(path: string): string {
+  if (!path.startsWith('/api/')) {
+    throw new Error(`Browser API paths must start with /api/: ${path}`);
+  }
+  return `${BROWSER_API_BASE}${path}`;
 }
 
-/** News/article routes: VITE_NEWS_API_URL → VITE_BACKEND_URL → VITE_API_URL (legacy). */
+/** Compatibility for existing consumers while all runtime traffic is same-origin. */
+export function getBackendBase(): string {
+  return BROWSER_API_BASE;
+}
+
+/** News is served by the same V2 backend and the same `/api` rewrite. */
 export function getNewsApiBase(): string {
-  if (import.meta.env.DEV) return '';
-  const raw =
-    (import.meta.env.VITE_NEWS_API_URL as string | undefined) ||
-    (import.meta.env.VITE_BACKEND_URL as string | undefined) ||
-    (import.meta.env.VITE_API_URL as string | undefined);
-  return raw?.replace(/\/$/, '') || DEFAULT_BACKEND_HOST;
+  return BROWSER_API_BASE;
 }

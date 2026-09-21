@@ -1,0 +1,53 @@
+<!-- @dsCard group="Components" viewport="1060x1000" name="Divisor com rótulo e link em texto" subtitle="Fio interrompido por versalete, sem truque de fundo · link com fio de 1px em repouso e fio na cor do texto em hover" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Divisor e link</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:1060px;overflow:hidden}.g{display:grid;grid-template-columns:1fr 1fr}.bl{padding:16px 18px 20px;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:14px;background:var(--surface-page)}.bl+.bl{border-left:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.prosa{font-family:var(--font-body);font-weight:300;font-size:15px;line-height:1.6;color:var(--text-body);margin:0;max-width:54ch}.zebra{background:var(--zebra);padding:12px 14px}.hover{color:var(--link-hover);border-bottom-color:currentColor}.mob{display:grid;grid-template-columns:343px 343px;border-top:1px solid var(--rule-strong)}.mob .bl{width:343px}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">const { LabeledDivider, Button, ContextHint } = window.NIVARDesignSystem_0a22a8;
+function Bloco({ modo, largura, rotulo, nota }) {
+  const attrs = {};
+  if (modo) attrs['data-mode'] = modo;
+  if (largura) attrs['data-largura'] = largura;
+  return (
+    <div className="bl" {...attrs}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <span className="eti">divisor · centro, início, forte</span>
+      <LabeledDivider>ou</LabeledDivider>
+      <LabeledDivider rotulo="e também" alinhamento="inicio" />
+      <LabeledDivider rotulo="Premissas" forte />
+      <span className="eti">sobre zebra de tabela · dois fios, não fundo cortando o fio</span>
+      <div className="zebra"><LabeledDivider>ou</LabeledDivider></div>
+      <span className="eti">em uso · entre ação primária e alternativa</span>
+      <Button variant="primario">Entrar</Button>
+      <LabeledDivider>ou</LabeledDivider>
+      <Button variant="secundario">Criar acesso</Button>
+      <span className="eti">link em texto corrido · repouso e hover</span>
+      <p className="prosa">
+        A apuração de julho fechou acima da <a href="#curva">curva projetada em junho</a>, e o desvio
+        está na afluência. O método completo, com a <a href="#serie">série horária reprocessada</a> e as
+        premissas assumidas, está na <a href="#metodologia">página de metodologia</a>. O <ContextHint termo="PLD" /> horário
+        fecha por submercado.
+      </p>
+      <p className="prosa">
+        O mesmo parágrafo com os três links em hover: <a className="hover" href="#a">curva projetada em junho</a>,
+        <a className="hover" href="#b"> série horária reprocessada</a>, <a className="hover" href="#c">página de metodologia</a>.
+      </p>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<>
+  <div className="g">
+    <Bloco rotulo="Modo claro" nota="link em brasa · fio em fio-papel-forte, hover em hardware" />
+    <Bloco modo="noturno" rotulo="Modo noturno" nota="link em intelligence · hover em advisory" />
+  </div>
+  <div className="mob">
+    <Bloco largura="mobile" rotulo="Móvel claro" nota="343px · sublinhado nunca desaparece" />
+    <Bloco largura="mobile" modo="noturno" rotulo="Móvel noturno" nota="343px · o fio sobrevive à quebra de linha" />
+  </div>
+</>);
+</script></body></html>

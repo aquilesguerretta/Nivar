@@ -1,0 +1,63 @@
+<!-- @dsCard group="Components" viewport="1060x1140" name="Selo de amostra e rascunho" subtitle="Aba de versalete no canto ou trama de fios a 45° · nunca carimbo vermelho, nunca opacidade no conteúdo" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Selo de amostra</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:1060px;overflow:hidden}.g{display:grid;grid-template-columns:1fr 1fr}.bl{padding:16px 18px 20px;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:14px;background:var(--surface-page)}.bl+.bl{border-left:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.mob{display:grid;grid-template-columns:343px 343px;border-top:1px solid var(--rule-strong)}.mob .bl{width:343px}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">const { SampleSeal, DataCard, DataCardGrid, DataTable, Provenance, DataFreshness } = window.NIVARDesignSystem_0a22a8;
+const COLS = [
+  { key: 'sub', label: 'Submercado' },
+  { key: 'pld', label: 'R$/MWh', num: true },
+  { key: 'carga', label: 'MWmed', num: true },
+];
+const ROWS = [
+  { sub: 'Norte', pld: 198.4, carga: 11402 },
+  { sub: 'Nordeste', pld: 203.1, carga: 13866 },
+  { sub: 'Sudeste/CO', pld: 214.8, carga: 42318 },
+  { sub: 'Sul', pld: 268.4, carga: 12064 },
+];
+function Bloco({ modo, largura, rotulo, nota }) {
+  const attrs = {};
+  if (modo) attrs['data-mode'] = modo;
+  if (largura) attrs['data-largura'] = largura;
+  return (
+    <div className="bl" {...attrs}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <span className="eti">canto · para região densa, onde a trama competiria com o fio da grade</span>
+      <SampleSeal>
+        <DataCardGrid columns={2}>
+          <DataCard etiqueta="PLD SE/CO" valor={214.8} unidade="R$/MWh" delta={11.4} familia="intelligence" />
+          <DataCard etiqueta="Carga SIN" valor={101328} casas={0} unidade="MW" delta={-4.8} />
+        </DataCardGrid>
+      </SampleSeal>
+      <span className="eti">canto · tabela, com a procedência que o selo reforça</span>
+      <SampleSeal rotulo="rascunho">
+        <DataTable columns={COLS} rows={ROWS} zebra />
+      </SampleSeal>
+      <span className="eti">diagonal · trama de fio de 1px a 45°, passo de 12px</span>
+      <SampleSeal variant="diagonal">
+        <DataCardGrid columns={2}>
+          <DataCard etiqueta="Projeção 2027" valor={286.2} unidade="R$/MWh" delta={33.1} familia="advisory" nota="cenário de afluência mediana" />
+          <DataCard etiqueta="Migração projetada" valor={4820} casas={0} unidade="unidades" delta={18.9} />
+        </DataCardGrid>
+      </SampleSeal>
+      <DataFreshness estado="ilustrativa" />
+      <Provenance fontes={['ONS', 'CCEE']} recorte="apuração mensal" ilustrativa fio />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<>
+  <div className="g">
+    <Bloco rotulo="Modo claro" nota="o dado continua legível — o selo declara origem, não invalidez" />
+    <Bloco modo="noturno" rotulo="Modo noturno" nota="aba com fio nos dois lados internos" />
+  </div>
+  <div className="mob">
+    <Bloco largura="mobile" rotulo="Móvel claro" nota="343px · aba encolhe, trama mantém o passo" />
+    <Bloco largura="mobile" modo="noturno" rotulo="Móvel noturno" nota="343px · nunca opacidade no bloco inteiro" />
+  </div>
+</>);
+</script></body></html>

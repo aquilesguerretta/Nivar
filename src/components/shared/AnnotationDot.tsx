@@ -51,7 +51,7 @@ export function AnnotationDot({
         background: active ? C.electricBlue : 'rgba(59,130,246,0.20)',
         border: `1px solid ${C.electricBlue}`,
         borderRadius: '50%',
-        color: active ? '#fff' : C.electricBlueLight,
+        color: active ? C.textPrimary : C.electricBlueLight,
         cursor: 'pointer',
         fontFamily: F.mono,
         fontSize: 10,

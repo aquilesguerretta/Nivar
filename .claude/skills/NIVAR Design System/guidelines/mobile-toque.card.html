@@ -1,0 +1,45 @@
+<!-- @dsCard group="Mobile" viewport="700x1432" name="Alvo de toque — botão, campo, filtro" subtitle="44px de área de toque abaixo de 640px. Muda o preenchimento, não o desenho: raio zero e fio de 1px continuam" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Alvo de toque — botão, campo, filtro</title>
+<link rel="stylesheet" href="../styles.css">
+<style>body{width:700px;overflow:hidden}.bl{padding:14px 16px;display:grid;gap:14px;align-content:start}.bl+.bl{border-top:1px solid var(--rule)}.par{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule)}.par>.bl{border-top:0}.par>.bl+.bl{border-left:1px solid var(--rule)}.cab{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.cab b{font-family:var(--font-display);font-size:14px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.fila{display:flex;flex-wrap:wrap;gap:10px}.campos{display:grid;gap:12px}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<script type="text/babel">const { Button, Input, NumberInput, Select, FilterBar } = window.NIVARDesignSystem_0a22a8;
+function Conteudo({ movel }) {
+  const n = movel ? 'm' : 'd';
+  return (<React.Fragment>
+    <span className="eti">botão · 44px de altura</span>
+    <div className="fila">
+      <Button variant="primario">Aplicar</Button>
+      <Button variant="secundario">Exportar</Button>
+      <Button variant="terciario">Ver metodologia</Button>
+      <Button variant="secundario" size="compacto">Compacto</Button>
+    </div>
+    <span className="eti">campo · caixa de 44px</span>
+    <div className="campos">
+      <NumberInput id={n+'1'} label="PLD mínimo" defaultValue="900,00" unidade="R$/MWh" />
+      <Select id={n+'2'} label="Submercado" options={['Sudeste/Centro-Oeste','Sul','Nordeste','Norte']} />
+    </div>
+    <span className="eti">barra de filtro · campos e ações em largura cheia</span>
+    <FilterBar resumo={['PLD acima de R$ 900,00','Submercado Sul']}
+      acoes={<React.Fragment><Button variant="primario" size="compacto">Aplicar</Button><Button variant="terciario" size="compacto">Limpar</Button></React.Fragment>}>
+      <Input id={n+'3'} label="Unidade consumidora" placeholder="UC-0000" />
+    </FilterBar>
+  </React.Fragment>);
+}
+function Painel() {
+  return (<React.Fragment>
+    <div className="bl"><div className="cab"><b>Desktop · modo claro</b><span className="eti">≥ 640px</span></div><Conteudo /></div>
+    <div className="bl" data-mode="noturno"><div className="cab"><b>Desktop · modo noturno</b><span className="eti">≥ 640px</span></div><Conteudo /></div>
+    <div className="par">
+      <div className="bl" data-largura="mobile"><div className="cab"><b>Móvel · claro</b><span className="eti">343px</span></div><Conteudo movel /></div>
+      <div className="bl" data-mode="noturno" data-largura="mobile"><div className="cab"><b>Móvel · noturno</b><span className="eti">343px</span></div><Conteudo movel /></div>
+    </div>
+  </React.Fragment>);
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Painel />);
+</script></body></html>

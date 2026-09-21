@@ -44,14 +44,6 @@ interface StreamOptions {
   signal?: AbortSignal;
 }
 
-/**
- * Always returns `true` in Wave 2 — the API key lives on the backend, the
- * frontend has no way to verify it without making a live call. Kept as an
- * exported function so the AIAssistant header still has a single binding
- * to read for the status pill.
- */
-export const isApiKeyConfigured = (): boolean => true;
-
 interface AnthropicTextBlock {
   type: 'text';
   text: string;

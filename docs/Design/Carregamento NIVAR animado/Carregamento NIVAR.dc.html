@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/nivar-design-system-0a22a863-60e5-4d4b-a7ce-889d4f54d0a8/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/nivar-design-system-0a22a863-60e5-4d4b-a7ce-889d4f54d0a8/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/nivar-design-system-0a22a863-60e5-4d4b-a7ce-889d4f54d0a8/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/nivar-design-system-0a22a863-60e5-4d4b-a7ce-889d4f54d0a8/tokens/space.css">
+  <link rel="stylesheet" href="_ds/nivar-design-system-0a22a863-60e5-4d4b-a7ce-889d4f54d0a8/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/nivar-design-system-0a22a863-60e5-4d4b-a7ce-889d4f54d0a8/tokens/base.css">
+  <link rel="stylesheet" href="_ds/nivar-design-system-0a22a863-60e5-4d4b-a7ce-889d4f54d0a8/components/structure/structure.css">
+  <link rel="stylesheet" href="_ds/nivar-design-system-0a22a863-60e5-4d4b-a7ce-889d4f54d0a8/components/loading/loading.css">
+  <link rel="stylesheet" href="_ds/nivar-design-system-0a22a863-60e5-4d4b-a7ce-889d4f54d0a8/components/navigation/navigation.css">
+  <link rel="stylesheet" href="_ds/nivar-design-system-0a22a863-60e5-4d4b-a7ce-889d4f54d0a8/components/data/data.css">
+  <link rel="stylesheet" href="_ds/nivar-design-system-0a22a863-60e5-4d4b-a7ce-889d4f54d0a8/components/labels/labels.css">
+  <link rel="stylesheet" href="_ds/nivar-design-system-0a22a863-60e5-4d4b-a7ce-889d4f54d0a8/styles.css">
+  <script src="_ds/nivar-design-system-0a22a863-60e5-4d4b-a7ce-889d4f54d0a8/_ds_bundle.js"></script>
+</helmet>
+<div data-el="page" data-mode="noturno" style="min-height:100vh;background:var(--surface-page);color:var(--text-body);font-family:'Work Sans',sans-serif">
+<div style="height:4px;background:var(--gradiente-incandescente)"></div>
+<div style="max-width:1360px;margin:0 auto;padding:18px 28px 44px">
+
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:6px 0 16px;border-bottom:1px solid var(--rule-heavy)">
+    <div style="display:grid;gap:8px">
+      <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)">Sistema de design · calibragem · movimento</div>
+      <div style="display:flex;align-items:flex-end;gap:20px">
+        <img src="assets/nivar-wordmark.svg" alt="NIVAR" style="height:36px;display:block">
+        <h1 style="margin:0;font-family:'Zilla Slab',serif;font-weight:600;font-size:29px;line-height:1.05;letter-spacing:-0.014em;color:var(--text-strong)">Carregamento e surgimento da marca</h1>
+      </div>
+      <p style="margin:0;max-width:660px;font-weight:300;font-size:13.5px;line-height:1.55;color:var(--text-muted);text-wrap:pretty">Todo estado de espera do sistema, animado por desenho — fio, traço e opacidade. Sem spinner, sem shimmer, sem semáforo. Cada peça é função do tempo: arraste a linha, pause, reinicie.</p>
+    </div>
+    <div style="display:grid;gap:10px;justify-items:end">
+      <div style="display:flex;align-items:baseline;gap:22px">
+        <x-import component-from-global-scope="NIVARDesignSystem_0a22a8.ModeToggle" value="{{ mode }}" on-change="{{ onMode }}" hint-size="120px,20px"></x-import>
+        <div style="display:flex;align-items:baseline;gap:9px">
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)">Movimento</span>
+          <button data-rm="off" data-el="rm:off" onClick="{{ onRm }}" style="background:none;border:0;padding:0 0 1px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;letter-spacing:.06em;color:var(--text-strong);border-bottom:1px solid var(--rule-heavy)" style-hover="color:var(--fg-hover)">pleno</button>
+          <span style="color:var(--text-faint);font-size:10px">·</span>
+          <button data-rm="on" data-el="rm:on" onClick="{{ onRm }}" style="background:none;border:0;padding:0 0 1px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;letter-spacing:.06em;color:var(--text-faint);border-bottom:1px solid transparent" style-hover="color:var(--fg-hover)">reduzido</button>
+        </div>
+        <button onClick="{{ onReplayAll }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--link);border-bottom:1px solid var(--link-fio)" style-hover="color:var(--link-hover)">Reiniciar tudo</button>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.6;color:var(--text-faint);text-align:right;max-width:360px">reduzido salta ao estado final — a informação<br>chega imediata, sem desenho</div>
+    </div>
+  </div>
+
+  <div style="padding:9px 0;border-bottom:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.8;color:var(--text-muted)"><span style="color:var(--text-strong)">ease único cubic-bezier(0.65, 0, 0.35, 1)</span> · estado 150 ms · hover 200 ms · desenho 700 ms · desenho longo 1 200 ms&ensp;—&ensp;anima: opacidade · cor de texto · cor de fio · stroke-dashoffset · altura de barra&ensp;—&ensp;nunca: cor de fundo · posição de layout · escala em hover</div>
+
+  <section data-screen-label="01 A marca surgindo" style="margin-top:26px">
+    <x-import component-from-global-scope="NIVARDesignSystem_0a22a8.SectionHeader" numero="01" titulo="A marca surgindo" nota="5 variantes · transform só na marca" hint-size="100%,40px"></x-import>
+    <div style="margin-top:12px;display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--rule);border-left:1px solid var(--rule)">
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">01</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15.5px;color:var(--text-strong)">Colapso — o loader da casa</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">3,40 s · loop</span></div>
+        <div data-el="colapso:stage" style="display:grid;place-items:center;align-content:center;gap:14px;padding:20px 16px;min-height:196px">
+          <svg viewBox="0 0 100 100" style="width:112px;display:block;overflow:visible" fill="none">
+            <defs><linearGradient id="gN" gradientUnits="userSpaceOnUse" x1="24" y1="0" x2="76" y2="0"><stop offset="0" stop-color="#7A1F0D"></stop><stop offset="0.5" stop-color="#C17D1F"></stop><stop offset="1" stop-color="#F5C63C"></stop></linearGradient></defs>
+            <path data-el="colapso:n" d="M24 84 C24 62 24 38 24 16 C50 32 50 68 76 84 C76 62 76 38 76 16" stroke="url(#gN)" stroke-width="11" stroke-linecap="butt" stroke-linejoin="miter" vector-effect="non-scaling-stroke" style="transform-box:fill-box;transform-origin:center;transform:scale(0.12)"></path>
+          </svg>
+          <span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);font-variant-numeric:tabular-nums">lendo CCEE · ciclo 2026-08</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="colapso" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="colapso" data-el="colapso:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="colapso:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="colapso" onInput="{{ onScrub }}" aria-label="linha do tempo — colapso" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="colapso:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 3,40 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 3,40 s · loop · ease 0.4, 0, 0.6, 1 — própria da marca<br>anima transform: scale 0,12→1 · rotate 720° — nunca anima d · traço 11 px constante (non-scaling-stroke)</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">02</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15.5px;color:var(--text-strong)">Energização — o traço escreve</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">3,20 s</span></div>
+        <div data-el="energiza:stage" style="display:grid;place-items:center;padding:20px 24px;min-height:196px">
+          <svg viewBox="0 0 425 140" style="width:100%;max-width:360px;display:block" fill="none">
+            <defs><linearGradient id="gE" gradientUnits="userSpaceOnUse" x1="22" y1="0" x2="400" y2="0"><stop offset="0" stop-color="#7A1F0D"></stop><stop offset="0.5" stop-color="#C17D1F"></stop><stop offset="1" stop-color="#F5C63C"></stop></linearGradient></defs>
+            <path data-el="energiza:p0" d="M22 112 C22 80 22 50 22 18 C54 40 60 92 108 112 C108 80 108 50 108 18" stroke="url(#gE)" stroke-width="16" stroke-linecap="butt" stroke-linejoin="miter" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+            <path data-el="energiza:p1" d="M140 32 L140 112" stroke="url(#gE)" stroke-width="13" stroke-linecap="butt" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+            <path data-el="energiza:p2" d="M170 32 L200 112 L230 32" stroke="url(#gE)" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+            <path data-el="energiza:p3" d="M254 112 L284 32 L314 112" stroke="url(#gE)" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+            <path data-el="energiza:p4" d="M342 112 L342 32" stroke="url(#gE)" stroke-width="13" stroke-linecap="butt" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+            <path data-el="energiza:p5" d="M342 32 C378 32 394 44 386 56 C378 68 362 64 342 64" stroke="url(#gE)" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+            <path data-el="energiza:p6" d="M370 62 C382 80 390 96 398 112" stroke="url(#gE)" stroke-width="13" stroke-linecap="butt" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+          </svg>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="energiza" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="energiza" data-el="energiza:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="energiza:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="energiza" onInput="{{ onScrub }}" aria-label="linha do tempo — energização" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="energiza:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 3,20 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 3,20 s · ease 0.65, 0, 0.35, 1 · N 900 ms · letras 450–600 ms escalonadas<br>anima stroke-dashoffset — o traço escreve em incandescência; a casa despacha primeiro</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">03</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15.5px;color:var(--text-strong)">Corrente — o pulso atravessa o fio frio</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">3,40 s</span></div>
+        <div data-el="corrente:stage" style="display:grid;place-items:center;padding:20px 24px;min-height:196px">
+          <svg viewBox="0 0 425 140" style="width:100%;max-width:360px;display:block" fill="none">
+            <defs><linearGradient id="gC" gradientUnits="userSpaceOnUse" x1="22" y1="0" x2="400" y2="0"><stop offset="0" stop-color="#7A1F0D"></stop><stop offset="0.5" stop-color="#C17D1F"></stop><stop offset="1" stop-color="#F5C63C"></stop></linearGradient></defs>
+            <g stroke="var(--rule-strong)" stroke-width="2" stroke-linecap="butt" stroke-linejoin="miter">
+              <path d="M22 112 C22 80 22 50 22 18 C54 40 60 92 108 112 C108 80 108 50 108 18"></path><path d="M140 32 L140 112"></path><path d="M170 32 L200 112 L230 32"></path><path d="M254 112 L284 32 L314 112"></path><path d="M342 112 L342 32"></path><path d="M342 32 C378 32 394 44 386 56 C378 68 362 64 342 64"></path><path d="M370 62 C382 80 390 96 398 112"></path>
+            </g>
+            <g stroke="url(#gC)" stroke-linecap="butt" stroke-linejoin="miter" style="opacity:1">
+              <path data-el="corrente:u0" stroke-width="16" d="M22 112 C22 80 22 50 22 18 C54 40 60 92 108 112 C108 80 108 50 108 18" style="stroke-dasharray:70 2000;stroke-dashoffset:70"></path>
+              <path data-el="corrente:u1" stroke-width="13" d="M140 32 L140 112" style="stroke-dasharray:70 2000;stroke-dashoffset:70"></path>
+              <path data-el="corrente:u2" stroke-width="13" d="M170 32 L200 112 L230 32" style="stroke-dasharray:70 2000;stroke-dashoffset:70"></path>
+              <path data-el="corrente:u3" stroke-width="13" d="M254 112 L284 32 L314 112" style="stroke-dasharray:70 2000;stroke-dashoffset:70"></path>
+              <path data-el="corrente:u4" stroke-width="13" d="M342 112 L342 32" style="stroke-dasharray:70 2000;stroke-dashoffset:70"></path>
+              <path data-el="corrente:u5" stroke-width="13" d="M342 32 C378 32 394 44 386 56 C378 68 362 64 342 64" style="stroke-dasharray:70 2000;stroke-dashoffset:70"></path>
+              <path data-el="corrente:u6" stroke-width="13" d="M370 62 C382 80 390 96 398 112" style="stroke-dasharray:70 2000;stroke-dashoffset:70"></path>
+            </g>
+            <g stroke="url(#gC)" stroke-linecap="butt" stroke-linejoin="miter">
+              <path data-el="corrente:l0" stroke-width="16" d="M22 112 C22 80 22 50 22 18 C54 40 60 92 108 112 C108 80 108 50 108 18" style="opacity:0"></path>
+              <path data-el="corrente:l1" stroke-width="13" d="M140 32 L140 112" style="opacity:0"></path>
+              <path data-el="corrente:l2" stroke-width="13" d="M170 32 L200 112 L230 32" style="opacity:0"></path>
+              <path data-el="corrente:l3" stroke-width="13" d="M254 112 L284 32 L314 112" style="opacity:0"></path>
+              <path data-el="corrente:l4" stroke-width="13" d="M342 112 L342 32" style="opacity:0"></path>
+              <path data-el="corrente:l5" stroke-width="13" d="M342 32 C378 32 394 44 386 56 C378 68 362 64 342 64" style="opacity:0"></path>
+              <path data-el="corrente:l6" stroke-width="13" d="M370 62 C382 80 390 96 398 112" style="opacity:0"></path>
+            </g>
+          </svg>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="corrente" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="corrente" data-el="corrente:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="corrente:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="corrente" onInput="{{ onScrub }}" aria-label="linha do tempo — corrente" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="corrente:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 3,40 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 3,40 s · pulso de 70 px percorre <span data-el="corrente:len">—</span> de traço em 2,0 s · velocidade constante<br>anima stroke-dashoffset (janela) · opacidade — o fio frio permanece sob a corrente</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">04</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15.5px;color:var(--text-strong)">Religamento — a subestação energiza</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">2,40 s</span></div>
+        <div data-el="religa:stage" style="display:grid;place-items:center;align-content:center;gap:12px;padding:20px 24px;min-height:196px">
+          <svg viewBox="0 0 425 140" style="width:100%;max-width:360px;display:block" fill="none">
+            <defs><linearGradient id="gR" gradientUnits="userSpaceOnUse" x1="22" y1="0" x2="400" y2="0"><stop offset="0" stop-color="#7A1F0D"></stop><stop offset="0.5" stop-color="#C17D1F"></stop><stop offset="1" stop-color="#F5C63C"></stop></linearGradient></defs>
+            <g data-el="religa:g0" style="opacity:0"><path d="M22 112 C22 80 22 50 22 18 C54 40 60 92 108 112 C108 80 108 50 108 18" stroke="url(#gR)" stroke-width="16" stroke-linecap="butt" stroke-linejoin="miter"></path></g>
+            <g data-el="religa:g1" style="opacity:0"><path d="M140 32 L140 112" stroke="url(#gR)" stroke-width="13" stroke-linecap="butt"></path></g>
+            <g data-el="religa:g2" style="opacity:0"><path d="M170 32 L200 112 L230 32" stroke="url(#gR)" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter"></path></g>
+            <g data-el="religa:g3" style="opacity:0"><path d="M254 112 L284 32 L314 112" stroke="url(#gR)" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter"></path></g>
+            <g data-el="religa:g4" style="opacity:0"><path d="M342 112 L342 32" stroke="url(#gR)" stroke-width="13" stroke-linecap="butt"></path><path d="M342 32 C378 32 394 44 386 56 C378 68 362 64 342 64" stroke="url(#gR)" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter"></path><path d="M370 62 C382 80 390 96 398 112" stroke="url(#gR)" stroke-width="13" stroke-linecap="butt"></path></g>
+          </svg>
+          <span data-el="religa:hz" style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:var(--text-muted);font-variant-numeric:tabular-nums">58,6 Hz</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="religa" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="religa" data-el="religa:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="religa:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="religa" onInput="{{ onScrub }}" aria-label="linha do tempo — religamento" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="religa:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 2,40 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 2,40 s · flicker em steps(1) · opacidade apenas · N liga primeiro<br>a frequência estabiliza em 60,0 Hz — leitura por texto, nunca por cor de status</div>
+      </div>
+
+      <div style="grid-column:1 / -1;display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">05</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15.5px;color:var(--text-strong)">Sincronização — as letras travam na rede</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">3,20 s</span></div>
+        <div data-el="sinc:stage" style="display:grid;place-items:center;align-content:center;gap:12px;padding:22px 24px;min-height:200px">
+          <svg viewBox="0 0 425 140" style="width:100%;max-width:400px;display:block;overflow:visible" fill="none">
+            <defs><linearGradient id="gS" gradientUnits="userSpaceOnUse" x1="22" y1="0" x2="400" y2="0"><stop offset="0" stop-color="#7A1F0D"></stop><stop offset="0.5" stop-color="#C17D1F"></stop><stop offset="1" stop-color="#F5C63C"></stop></linearGradient></defs>
+            <g data-el="sinc:g0"><path d="M22 112 C22 80 22 50 22 18 C54 40 60 92 108 112 C108 80 108 50 108 18" stroke="url(#gS)" stroke-width="16" stroke-linecap="butt" stroke-linejoin="miter"></path></g>
+            <g data-el="sinc:g1"><path d="M140 32 L140 112" stroke="url(#gS)" stroke-width="13" stroke-linecap="butt"></path></g>
+            <g data-el="sinc:g2"><path d="M170 32 L200 112 L230 32" stroke="url(#gS)" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter"></path></g>
+            <g data-el="sinc:g3"><path d="M254 112 L284 32 L314 112" stroke="url(#gS)" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter"></path></g>
+            <g data-el="sinc:g4"><path d="M342 112 L342 32" stroke="url(#gS)" stroke-width="13" stroke-linecap="butt"></path><path d="M342 32 C378 32 394 44 386 56 C378 68 362 64 342 64" stroke="url(#gS)" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter"></path><path d="M370 62 C382 80 390 96 398 112" stroke="url(#gS)" stroke-width="13" stroke-linecap="butt"></path></g>
+          </svg>
+          <span data-el="sinc:hz" style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:var(--text-muted);font-variant-numeric:tabular-nums">57,8 Hz</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="sinc" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="sinc" data-el="sinc:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="sinc:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="sinc" onInput="{{ onScrub }}" aria-label="linha do tempo — sincronização" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="sinc:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 3,20 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 3,20 s · translateY amortecido e^-3,4x · fases defasadas 1,1 rad · a rede converge para 60,0 Hz<br>transform só na marca — o precedente é o próprio loader; nunca em elemento de UI</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="02 Estados de carregamento" style="margin-top:30px">
+    <x-import component-from-global-scope="NIVARDesignSystem_0a22a8.SectionHeader" numero="02" titulo="Estados de carregamento" nota="9 estados · desenho, nunca spinner" hint-size="100%,40px"></x-import>
+    <div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule);border-left:1px solid var(--rule)">
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">01</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Tabela — skeleton de linhas</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">3,00 s</span></div>
+        <div data-el="tabela:stage" style="display:grid;align-content:center;justify-content:stretch;padding:16px;min-height:190px">
+          <div style="width:100%">
+            <div style="display:flex;justify-content:space-between;padding:0 0 6px;border-bottom:1px solid var(--rule-heavy);font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)"><span>Submercado</span><span>PLD · R$/MWh</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;height:32px;border-bottom:1px solid var(--rule)"><span style="font-weight:400;font-size:12.5px">SE/CO</span><span style="position:relative;width:112px;height:100%;display:flex;align-items:center;justify-content:flex-end"><span data-el="tabela:v0" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--text-strong)">287,45</span><span data-el="tabela:sk0" style="position:absolute;right:0;top:50%;height:1px;width:0%;background:var(--rule-strong)"></span></span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;height:32px;border-bottom:1px solid var(--rule)"><span style="font-weight:400;font-size:12.5px">S</span><span style="position:relative;width:112px;height:100%;display:flex;align-items:center;justify-content:flex-end"><span data-el="tabela:v1" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--text-strong)">291,12</span><span data-el="tabela:sk1" style="position:absolute;right:0;top:50%;height:1px;width:0%;background:var(--rule-strong)"></span></span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;height:32px;border-bottom:1px solid var(--rule)"><span style="font-weight:400;font-size:12.5px">NE</span><span style="position:relative;width:112px;height:100%;display:flex;align-items:center;justify-content:flex-end"><span data-el="tabela:v2" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--text-strong)">265,08</span><span data-el="tabela:sk2" style="position:absolute;right:0;top:50%;height:1px;width:0%;background:var(--rule-strong)"></span></span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;height:32px;border-bottom:1px solid var(--rule)"><span style="font-weight:400;font-size:12.5px">N</span><span style="position:relative;width:112px;height:100%;display:flex;align-items:center;justify-content:flex-end"><span data-el="tabela:v3" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--text-strong)">258,31</span><span data-el="tabela:sk3" style="position:absolute;right:0;top:50%;height:1px;width:0%;background:var(--rule-strong)"></span></span></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="tabela" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="tabela" data-el="tabela:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="tabela:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="tabela" onInput="{{ onScrub }}" aria-label="linha do tempo — tabela" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="tabela:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 3,00 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 3,00 s · fio 700 ms · escalonamento 140 ms · dado em 400 ms<br>anima largura de fio · opacidade — a linha nunca salta de posição</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">02</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Gráfico — série e barras</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">2,60 s</span></div>
+        <div data-el="grafico:stage" style="display:grid;place-items:center;padding:14px 16px;min-height:190px">
+          <svg viewBox="0 0 340 172" style="width:100%;display:block" fill="none">
+            <text x="8" y="14" style="font:500 8.5px 'JetBrains Mono',monospace;letter-spacing:.08em" fill="var(--text-faint)">CARGA · GW</text>
+            <line data-el="grafico:ax1" x1="8" y1="24" x2="8" y2="146" stroke="var(--rule-strong)" stroke-width="1"></line>
+            <line data-el="grafico:ax0" x1="8" y1="146" x2="230" y2="146" stroke="var(--rule-strong)" stroke-width="1"></line>
+            <text x="8" y="160" style="font:400 8.5px 'JetBrains Mono',monospace" fill="var(--text-faint)">00h</text>
+            <text x="112" y="160" text-anchor="middle" style="font:400 8.5px 'JetBrains Mono',monospace" fill="var(--text-faint)">12h</text>
+            <text x="230" y="160" text-anchor="end" style="font:400 8.5px 'JetBrains Mono',monospace" fill="var(--text-faint)">23h</text>
+            <path data-el="grafico:line" d="M8 120 C34 126 52 128 72 120 C96 110 112 96 134 86 C156 76 172 80 192 66 C208 54 222 44 230 38" stroke="var(--serie-linha)" stroke-width="1.5" style="stroke-dasharray:600;stroke-dashoffset:600"></path>
+            <circle data-el="grafico:dot" cx="230" cy="38" r="3" fill="var(--serie-ponto)" style="opacity:0"></circle>
+            <text data-el="grafico:var" x="230" y="24" text-anchor="end" style="font:500 9.5px 'JetBrains Mono',monospace;opacity:0" fill="var(--data-alta)">↑ +2,4% · 24 h</text>
+            <g transform="translate(0,146) scale(1,-1)">
+              <rect data-el="grafico:bar0" x="252" width="18" y="0" height="0" fill="var(--acento-contexto)"></rect>
+              <rect data-el="grafico:bar1" x="274" width="18" y="0" height="0" fill="var(--acento-contexto)"></rect>
+              <rect data-el="grafico:bar2" x="296" width="18" y="0" height="0" fill="var(--acento-contexto)"></rect>
+              <rect data-el="grafico:bar3" x="318" width="18" y="0" height="0" fill="var(--acento-contexto)"></rect>
+            </g>
+            <text x="261" y="160" text-anchor="middle" style="font:400 8px 'JetBrains Mono',monospace" fill="var(--text-faint)">SE</text>
+            <text x="283" y="160" text-anchor="middle" style="font:400 8px 'JetBrains Mono',monospace" fill="var(--text-faint)">S</text>
+            <text x="305" y="160" text-anchor="middle" style="font:400 8px 'JetBrains Mono',monospace" fill="var(--text-faint)">NE</text>
+            <text x="327" y="160" text-anchor="middle" style="font:400 8px 'JetBrains Mono',monospace" fill="var(--text-faint)">N</text>
+          </svg>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="grafico" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="grafico" data-el="grafico:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="grafico:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="grafico" onInput="{{ onScrub }}" aria-label="linha do tempo — gráfico" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="grafico:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 2,60 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 2,60 s · eixos 700 ms · série 1 200 ms (dashoffset) · barras 1 000 ms escalonadas<br>linha de uma cor só — a direção fica no marcador e no rótulo, nunca na linha</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">03</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Ao vivo — atualização sem vazio</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">3,00 s · loop</span></div>
+        <div data-el="aovivo:stage" style="display:grid;align-content:center;gap:10px;padding:16px 18px;min-height:190px">
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:var(--cinza-quente)"></span><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)">Ao vivo</span><span style="flex:1"></span><span data-el="aovivo:ts" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint);font-variant-numeric:tabular-nums">14:30:00 BRT</span></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint)">PLD horário · SE/CO</div>
+          <div style="position:relative;height:36px">
+            <span data-el="aovivo:a" style="position:absolute;left:0;top:0;font-family:'JetBrains Mono',monospace;font-size:27px;font-variant-numeric:tabular-nums;color:var(--text-strong)">287,45</span>
+            <span data-el="aovivo:b" style="position:absolute;left:0;top:0;font-family:'JetBrains Mono',monospace;font-size:27px;font-variant-numeric:tabular-nums;color:var(--text-strong);opacity:0">288,10&ensp;<span style="font-size:11.5px;color:var(--data-alta)">↑ +0,23%</span></span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">R$/MWh · Fonte: CCEE · amostra ilustrativa</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="aovivo" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="aovivo" data-el="aovivo:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="aovivo:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="aovivo" onInput="{{ onScrub }}" aria-label="linha do tempo — ao vivo" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="aovivo:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 3,00 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">ciclo 3,00 s · loop · crossfade 300 ms — o valor anterior nunca sai de tela<br>ponto de 6 px em neutro quente — nunca colorido, nunca semáforo</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">04</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Validação assíncrona</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">5,00 s</span></div>
+        <div data-el="valida:stage" style="display:grid;align-content:center;gap:7px;padding:16px 18px;min-height:190px">
+          <label style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)">CNPJ da unidade <span style="color:var(--accent-house)">*</span></label>
+          <div style="position:relative;padding:7px 0 8px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:13px;font-variant-numeric:tabular-nums;color:var(--text-strong)">60.840.055/0001-31</span>
+            <div style="position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--rule)"></div>
+            <div data-el="valida:loopfio" style="position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--acento-contexto);transform:scaleX(0);transform-origin:left"></div>
+            <div data-el="valida:okfio" style="position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--rule-heavy);opacity:0"></div>
+          </div>
+          <div data-el="valida:msg" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted)">verificado · unidade consumidora ativa no mercado livre</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="valida" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="valida" data-el="valida:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="valida:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="valida" onInput="{{ onScrub }}" aria-label="linha do tempo — validação" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="valida:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 5,00 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 5,00 s · fio de 2 px em loop de 1 400 ms × 3 · só transform (scaleX)<br>sem spinner — spinner circular é vocabulário de outro sistema</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">05</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Exportação — PDF</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">3,80 s</span></div>
+        <div data-el="pdf:stage" style="display:grid;align-content:center;padding:16px 18px;min-height:190px">
+          <div data-el="pdf:gen" style="display:grid;gap:9px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text-strong)">Parecer_PLD_2026-08.pdf</span><span data-el="pdf:pct" style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-muted);font-variant-numeric:tabular-nums">0 %</span></div>
+            <div style="position:relative;height:1px;background:var(--rule)"><div data-el="pdf:bar" style="position:absolute;left:0;top:0;height:1px;width:0%;background:var(--acento-contexto)"></div></div>
+            <div data-el="pdf:fase" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">compondo folha…</div>
+          </div>
+          <div data-el="pdf:done" style="opacity:0;display:flex;align-items:baseline;gap:8px;margin-top:14px;padding-top:10px;border-top:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--link)">↓</span><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--link);border-bottom:1px solid var(--link-fio)">Parecer_PLD_2026-08.pdf</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint)">412 KB</span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="pdf" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="pdf" data-el="pdf:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="pdf:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="pdf" onInput="{{ onScrub }}" aria-label="linha do tempo — exportação" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="pdf:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 3,80 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 3,80 s · progresso linear 3 200 ms · % em mono tabular · fases nomeadas<br>botão gera, link baixa — o ↓ só aparece com o arquivo pronto</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">06</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Busca — resultados chegando</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">3,40 s</span></div>
+        <div data-el="busca:stage" style="display:grid;align-content:center;gap:2px;padding:16px 18px;min-height:190px">
+          <div style="display:flex;align-items:baseline;gap:2px;padding:0 0 6px;border-bottom:1px solid var(--campo-fio)"><span data-el="busca:q" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-strong);min-height:15px"></span><span data-el="busca:caret" style="display:inline-block;width:7px;height:13px;background:var(--acento-contexto);align-self:center"></span></div>
+          <div style="display:grid">
+            <div style="position:relative;padding:8px 0 7px"><div data-el="busca:f0" style="position:absolute;top:0;left:0;height:1px;width:0%;background:var(--rule)"></div><div data-el="busca:r0" style="opacity:0"><div style="font-size:12px;font-weight:400;color:var(--text-strong)">PLD horário — NE · série 2026</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint);margin-top:2px">Intelligence · série</div></div></div>
+            <div style="position:relative;padding:8px 0 7px"><div data-el="busca:f1" style="position:absolute;top:0;left:0;height:1px;width:0%;background:var(--rule)"></div><div data-el="busca:r1" style="opacity:0"><div style="font-size:12px;font-weight:400;color:var(--text-strong)">Nota técnica 014 — teto e piso do PLD</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint);margin-top:2px">Intelligence · nota técnica</div></div></div>
+            <div style="position:relative;padding:8px 0 7px"><div data-el="busca:f2" style="position:absolute;top:0;left:0;height:1px;width:0%;background:var(--rule)"></div><div data-el="busca:r2" style="opacity:0"><div style="font-size:12px;font-weight:400;color:var(--text-strong)">Migração NE — consumidores livres</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint);margin-top:2px">Advisory · parecer</div></div></div>
+          </div>
+          <div data-el="busca:n" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint);padding-top:6px;border-top:1px solid var(--rule)">3 resultados · 0,41 s</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="busca" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="busca" data-el="busca:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="busca:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="busca" onInput="{{ onScrub }}" aria-label="linha do tempo — busca" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="busca:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 3,40 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 3,40 s · digitação 74 ms/caractere · resultados escalonados 260 ms<br>campo sem container — texto com fio; resultado entra por fio + opacidade</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">07</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Upload — recepção de medição</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">3,60 s</span></div>
+        <div data-el="upload:stage" style="display:grid;align-content:center;gap:9px;padding:16px 18px;min-height:190px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text-strong)">medicao_planta_2026-07.csv</span><span data-el="upload:bytes" style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,0 / 4,2 MB</span></div>
+          <div style="position:relative;height:1px;background:var(--rule)"><div data-el="upload:bar" style="position:absolute;left:0;top:0;height:1px;width:0%;background:var(--acento-contexto)"></div></div>
+          <div style="position:relative;height:16px">
+            <div data-el="upload:m1" style="position:absolute;left:0;top:0;opacity:0;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">recebido · validando colunas…</div>
+            <div data-el="upload:m2" style="position:absolute;left:0;top:0;opacity:0;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted)">42&#8201;018 linhas · 96 colunas · pronto para apuração</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="upload" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="upload" data-el="upload:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="upload:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="upload" onInput="{{ onScrub }}" aria-label="linha do tempo — upload" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="upload:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 3,60 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 3,60 s · bytes em tabular · validação nomeada após o recebimento<br>anima largura de fio · opacidade — sem porcentagem circular</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">08</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Transição de página</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">1,80 s</span></div>
+        <div data-el="transicao:stage" style="display:grid;align-content:center;padding:16px 18px;min-height:190px">
+          <div style="position:relative;border:1px solid var(--rule);height:132px;overflow:hidden">
+            <div data-el="transicao:top" style="position:absolute;top:0;left:0;height:4px;width:0%;background:var(--gradiente-incandescente);z-index:3"></div>
+            <div data-el="transicao:a" style="position:absolute;inset:0;padding:14px 14px">
+              <div style="font-family:'Zilla Slab',serif;font-weight:600;font-size:14px;color:var(--text-strong)">Painel — PLD</div>
+              <div style="height:1px;background:var(--rule-strong);margin:9px 0 0;max-width:72%"></div>
+              <div style="height:1px;background:var(--rule);margin:11px 0 0;max-width:88%"></div>
+              <div style="height:1px;background:var(--rule);margin:11px 0 0;max-width:60%"></div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);margin-top:12px">apuração mensal · 2026-08</div>
+            </div>
+            <div style="position:absolute;inset:0;padding:14px 14px">
+              <div data-el="transicao:bt" style="opacity:0;font-family:'Zilla Slab',serif;font-weight:600;font-size:14px;color:var(--text-strong)">Séries — carga horária</div>
+              <div style="max-width:72%"><div data-el="transicao:b0" style="height:1px;width:0%;background:var(--rule-strong);margin:9px 0 0"></div></div>
+              <div style="max-width:88%"><div data-el="transicao:b1" style="height:1px;width:0%;background:var(--rule);margin:11px 0 0"></div></div>
+              <div style="max-width:60%"><div data-el="transicao:b2" style="height:1px;width:0%;background:var(--rule);margin:11px 0 0"></div></div>
+              <div data-el="transicao:bm" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);margin-top:12px">Fonte: ONS · 24 h · submercado SE/CO</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="transicao" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="transicao" data-el="transicao:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="transicao:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="transicao" onInput="{{ onScrub }}" aria-label="linha do tempo — transição" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="transicao:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 1,80 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 1,80 s · fio incandescente de 4 px demarca o topo · corte por opacidade<br>posição de layout nunca anima — a página não desliza, ela se redesenha</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">09</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Reconexão — fonte indisponível</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">5,00 s</span></div>
+        <div data-el="reconexao:stage" style="display:grid;align-content:center;gap:12px;padding:16px 18px;min-height:190px">
+          <div style="position:relative;min-height:58px">
+            <div data-el="reconexao:err" style="position:absolute;left:0;right:0;top:0;border-left:2px solid var(--data-atencao);padding:2px 0 2px 10px">
+              <div style="font-weight:500;font-size:12px;color:var(--text-strong)">Fonte ONS — indisponível</div>
+              <div data-el="reconexao:cd" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);margin-top:3px;font-variant-numeric:tabular-nums">nova tentativa em 3 s</div>
+              <div style="position:relative;height:2px;background:var(--rule);margin-top:8px;max-width:220px"><div data-el="reconexao:ind" style="position:absolute;inset:0;background:var(--data-atencao);transform:scaleX(0);transform-origin:left"></div></div>
+            </div>
+            <div data-el="reconexao:ok" style="position:absolute;left:0;right:0;top:0;opacity:0;border-left:2px solid var(--rule-strong);padding:2px 0 2px 10px">
+              <div style="font-weight:500;font-size:12px;color:var(--text-strong)">Reconectado</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);margin-top:3px">defasagem 00:07 · série retomada sem lacuna</div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--rule);padding-top:9px"><span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)">PLD SE/CO · dado de 14:28 mantido</span><span style="font-family:'JetBrains Mono',monospace;font-size:13px;font-variant-numeric:tabular-nums;color:var(--text-muted)">287,45</span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="reconexao" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="reconexao" data-el="reconexao:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="reconexao:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="reconexao" onInput="{{ onScrub }}" aria-label="linha do tempo — reconexão" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="reconexao:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 5,00 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 5,00 s · contagem em mono · fio indeterminado 700 ms × 2 · advisory como fio, nunca vermelho<br>o dado anterior permanece em tela com hora declarada — sem tela em branco</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="03 Loaders de dado" style="margin-top:30px">
+    <x-import component-from-global-scope="NIVARDesignSystem_0a22a8.SectionHeader" numero="03" titulo="Loaders de dado" nota="6 leituras · o dado desenha a própria espera" hint-size="100%,40px"></x-import>
+    <div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule);border-left:1px solid var(--rule)">
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">01</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Quatro fontes em paralelo</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">3,60 s</span></div>
+        <div data-el="fontes:stage" style="display:grid;align-content:center;gap:10px;padding:16px 18px;min-height:190px">
+          <div style="display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.08em;color:var(--text-muted)">ONS</span><div style="position:relative;height:1px;background:var(--rule)"><div data-el="fontes:b0" style="position:absolute;left:0;top:0;height:1px;width:0%;background:var(--acento-contexto)"></div></div></div>
+          <div data-el="fontes:s0" style="margin-top:-6px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);padding-left:54px">fila</div>
+          <div style="display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.08em;color:var(--text-muted)">CCEE</span><div style="position:relative;height:1px;background:var(--rule)"><div data-el="fontes:b1" style="position:absolute;left:0;top:0;height:1px;width:0%;background:var(--acento-contexto)"></div></div></div>
+          <div data-el="fontes:s1" style="margin-top:-6px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);padding-left:54px">fila</div>
+          <div style="display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.08em;color:var(--text-muted)">ANEEL</span><div style="position:relative;height:1px;background:var(--rule)"><div data-el="fontes:b2" style="position:absolute;left:0;top:0;height:1px;width:0%;background:var(--acento-contexto)"></div></div></div>
+          <div data-el="fontes:s2" style="margin-top:-6px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);padding-left:54px">fila</div>
+          <div style="display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.08em;color:var(--text-muted)">EPE</span><div style="position:relative;height:1px;background:var(--rule)"><div data-el="fontes:b3" style="position:absolute;left:0;top:0;height:1px;width:0%;background:var(--acento-contexto)"></div></div></div>
+          <div data-el="fontes:s3" style="margin-top:-6px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);padding-left:54px">fila</div>
+          <div data-el="fontes:done" style="opacity:0;border-top:1px solid var(--rule);padding-top:7px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted)">4 de 4 fontes · 96 séries derivadas · 14:30 BRT</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="fontes" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="fontes" data-el="fontes:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="fontes:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="fontes" onInput="{{ onScrub }}" aria-label="linha do tempo — fontes" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="fontes:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 3,60 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 3,60 s · quatro fios em paralelo · cada fonte no próprio ritmo<br>o estado é texto por fonte — fila · lendo · concluído; nunca semáforo</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">02</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Ordem de mérito</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">3,20 s</span></div>
+        <div data-el="despacho:stage" style="display:grid;align-content:center;gap:9px;padding:16px 18px;min-height:190px">
+          <div style="display:grid;grid-template-columns:74px 1fr 58px;gap:10px;align-items:center"><span style="font-size:10.5px;font-weight:400;color:var(--text-muted)">hidráulica</span><div style="position:relative;height:9px"><div data-el="despacho:b0" style="position:absolute;left:0;top:0;bottom:0;width:0%;background:var(--acento-contexto)"></div></div><span data-el="despacho:v0" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:10px;font-variant-numeric:tabular-nums;color:var(--text-strong);text-align:right">38,2 GW</span></div>
+          <div style="display:grid;grid-template-columns:74px 1fr 58px;gap:10px;align-items:center"><span style="font-size:10.5px;font-weight:400;color:var(--text-muted)">eólica</span><div style="position:relative;height:9px"><div data-el="despacho:b1" style="position:absolute;left:0;top:0;bottom:0;width:0%;background:var(--acento-contexto)"></div></div><span data-el="despacho:v1" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:10px;font-variant-numeric:tabular-nums;color:var(--text-strong);text-align:right">10,3 GW</span></div>
+          <div style="display:grid;grid-template-columns:74px 1fr 58px;gap:10px;align-items:center"><span style="font-size:10.5px;font-weight:400;color:var(--text-muted)">solar</span><div style="position:relative;height:9px"><div data-el="despacho:b2" style="position:absolute;left:0;top:0;bottom:0;width:0%;background:var(--acento-contexto)"></div></div><span data-el="despacho:v2" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:10px;font-variant-numeric:tabular-nums;color:var(--text-strong);text-align:right">6,6 GW</span></div>
+          <div style="display:grid;grid-template-columns:74px 1fr 58px;gap:10px;align-items:center"><span style="font-size:10.5px;font-weight:400;color:var(--text-muted)">térmica</span><div style="position:relative;height:9px"><div data-el="despacho:b3" style="position:absolute;left:0;top:0;bottom:0;width:0%;background:var(--acento-contexto)"></div></div><span data-el="despacho:v3" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:10px;font-variant-numeric:tabular-nums;color:var(--text-strong);text-align:right">13,2 GW</span></div>
+          <div style="display:grid;grid-template-columns:74px 1fr 58px;gap:10px;align-items:center"><span style="font-size:10.5px;font-weight:400;color:var(--text-muted)">importação</span><div style="position:relative;height:9px"><div data-el="despacho:b4" style="position:absolute;left:0;top:0;bottom:0;width:0%;background:var(--acento-contexto)"></div></div><span data-el="despacho:v4" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:10px;font-variant-numeric:tabular-nums;color:var(--text-strong);text-align:right">5,1 GW</span></div>
+          <div data-el="despacho:done" style="opacity:0;border-top:1px solid var(--rule);padding-top:7px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted)">carga atendida 73,4 GW · despacho 14:30</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="despacho" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="despacho" data-el="despacho:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="despacho:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="despacho" onInput="{{ onScrub }}" aria-label="linha do tempo — despacho" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="despacho:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 3,20 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 3,20 s · barras em sequência de mérito · 700 ms cada · valor após o desenho<br>uma cor só — participação na carga não é direção de mercado</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">03</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Reservatório — EAR</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">2,80 s</span></div>
+        <div data-el="reserva:stage" style="display:flex;gap:20px;align-items:center;justify-content:center;padding:16px 18px;min-height:190px">
+          <div style="position:relative;width:54px;height:120px;border:1px solid var(--rule-strong)">
+            <div style="position:absolute;left:0;right:0;top:25%;height:1px;background:var(--rule)"></div>
+            <div style="position:absolute;left:0;right:0;top:50%;height:1px;background:var(--rule)"></div>
+            <div style="position:absolute;left:0;right:0;top:75%;height:1px;background:var(--rule)"></div>
+            <div data-el="reserva:nivel" style="position:absolute;left:0;right:0;bottom:0;height:0%;background:var(--acento-contexto)"></div>
+          </div>
+          <div style="display:grid;gap:4px">
+            <span data-el="reserva:pct" style="font-family:'JetBrains Mono',monospace;font-size:25px;font-variant-numeric:tabular-nums;color:var(--text-strong)">0,0 %</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)">EAR · SE/CO</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">energia armazenada · 2026-08-05</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="reserva" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="reserva" data-el="reserva:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="reserva:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="reserva" onInput="{{ onScrub }}" aria-label="linha do tempo — reservatório" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="reserva:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 2,80 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 2,80 s · altura de barra 1 200 ms · contagem em tabular acompanha o easing<br>marcas de 25 · 50 · 75 % em fio — o nível cobre as marcas ao subir</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">04</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Consulta aos submercados</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">2,80 s · loop</span></div>
+        <div data-el="subm:stage" style="display:grid;align-content:center;padding:16px 18px;min-height:190px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule);border-left:1px solid var(--rule);max-width:236px;margin:0 auto;width:100%">
+            <div style="position:relative;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:15px 12px 17px"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.08em;color:var(--text-muted)">SE/CO</span><div style="position:absolute;left:0;right:0;bottom:0;height:2px"><div data-el="subm:f0" style="height:2px;background:var(--acento-contexto);transform:scaleX(0);transform-origin:left"></div></div></div>
+            <div style="position:relative;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:15px 12px 17px"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.08em;color:var(--text-muted)">S</span><div style="position:absolute;left:0;right:0;bottom:0;height:2px"><div data-el="subm:f1" style="height:2px;background:var(--acento-contexto);transform:scaleX(0);transform-origin:left"></div></div></div>
+            <div style="position:relative;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:15px 12px 17px"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.08em;color:var(--text-muted)">NE</span><div style="position:absolute;left:0;right:0;bottom:0;height:2px"><div data-el="subm:f2" style="height:2px;background:var(--acento-contexto);transform:scaleX(0);transform-origin:left"></div></div></div>
+            <div style="position:relative;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:15px 12px 17px"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.08em;color:var(--text-muted)">N</span><div style="position:absolute;left:0;right:0;bottom:0;height:2px"><div data-el="subm:f3" style="height:2px;background:var(--acento-contexto);transform:scaleX(0);transform-origin:left"></div></div></div>
+          </div>
+          <div style="text-align:center;margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">consultando os quatro submercados…</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="subm" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="subm" data-el="subm:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="subm:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="subm" onInput="{{ onScrub }}" aria-label="linha do tempo — submercados" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="subm:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 2,80 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">ciclo 2,80 s · loop · fio de 2 px por submercado, SE/CO → S → NE → N<br>indeterminado que desenha — o único elemento que repete, repete desenhando</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">05</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">60 Hz — fio senoidal</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">1,40 s · loop</span></div>
+        <div data-el="freq:stage" style="display:grid;place-items:center;align-content:center;gap:12px;padding:16px 18px;min-height:190px">
+          <svg viewBox="0 0 300 80" style="width:100%;max-width:270px;display:block" fill="none">
+            <path d="M8 40 C19 12 32 12 43 40 C54 68 67 68 78 40 C89 12 102 12 113 40 C124 68 137 68 148 40 C159 12 172 12 183 40 C194 68 207 68 218 40 C229 12 242 12 253 40 C264 68 277 68 288 40" stroke="var(--rule)" stroke-width="1.5"></path>
+            <path data-el="freq:pulso" d="M8 40 C19 12 32 12 43 40 C54 68 67 68 78 40 C89 12 102 12 113 40 C124 68 137 68 148 40 C159 12 172 12 183 40 C194 68 207 68 218 40 C229 12 242 12 253 40 C264 68 277 68 288 40" stroke="var(--acento-contexto)" stroke-width="2" style="stroke-dasharray:56 2000;stroke-dashoffset:56"></path>
+          </svg>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--text-muted);font-variant-numeric:tabular-nums">60,0 Hz · rede síncrona</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="freq" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="freq" data-el="freq:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="freq:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="freq" onInput="{{ onScrub }}" aria-label="linha do tempo — 60 Hz" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="freq:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 1,40 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">ciclo 1,40 s · loop · janela de 56 px percorre a senoide a velocidade constante<br>alternativa ao loader da casa para espera curta em contexto de série</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">06</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Ingestão — log de apuração</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">4,00 s</span></div>
+        <div data-el="ingestao:stage" style="display:grid;align-content:center;gap:8px;padding:16px 18px;min-height:190px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)">Apuração · CCEE</span><span data-el="ingestao:n" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint);font-variant-numeric:tabular-nums">0 linhas</span></div>
+          <div data-el="ingestao:l0" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted)">→ LIQ_CCEE_2026-07.csv · 4,2 MB</div>
+          <div data-el="ingestao:l1" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted)">42&#8201;018 linhas · separador ; · UTF-8</div>
+          <div data-el="ingestao:l2" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted)">consistência: 3 avisos · 0 erros</div>
+          <div data-el="ingestao:l3" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted)">derivando 96 séries…</div>
+          <div data-el="ingestao:l4" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-strong)">gravado · apuração 2026-07 disponível</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="ingestao" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="ingestao" data-el="ingestao:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="ingestao:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="ingestao" onInput="{{ onScrub }}" aria-label="linha do tempo — ingestão" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="ingestao:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 4,00 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 4,00 s · log em mono · linhas por opacidade · contagem 0 → 42 018<br>consistência declara avisos e erros — nunca amacia</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="04 Estados de produto" style="margin-top:30px">
+    <x-import component-from-global-scope="NIVARDesignSystem_0a22a8.SectionHeader" numero="04" titulo="Estados de produto" nota="score · simulação · apuração · comparador" hint-size="100%,40px"></x-import>
+    <div style="margin-top:12px;display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--rule);border-left:1px solid var(--rule)">
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">01</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15.5px;color:var(--text-strong)">Energy Score — anel</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">2,60 s</span></div>
+        <div data-el="score:stage" style="display:flex;gap:26px;align-items:center;justify-content:center;padding:18px;min-height:196px">
+          <div style="position:relative;width:124px;height:124px">
+            <svg viewBox="0 0 124 124" style="width:124px;display:block" fill="none">
+              <circle cx="62" cy="62" r="54" stroke="var(--rule)" stroke-width="1"></circle>
+              <circle data-el="score:anel" cx="62" cy="62" r="54" stroke="var(--acento-contexto)" stroke-width="3" transform="rotate(-90 62 62)" style="stroke-dasharray:340;stroke-dashoffset:340"></circle>
+            </svg>
+            <div style="position:absolute;inset:0;display:grid;place-items:center"><div style="text-align:center"><div data-el="score:num" style="font-family:'JetBrains Mono',monospace;font-size:28px;font-variant-numeric:tabular-nums;color:var(--text-strong)">0</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint)">de 100</div></div></div>
+          </div>
+          <div style="display:grid;gap:5px">
+            <span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)">Energy Score</span>
+            <span style="font-size:12.5px;font-weight:400;color:var(--text-strong)">planta de mineração · MG</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.7;color:var(--text-faint)">método publicado 2026-06<br>dado coletado 2026-08</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="score" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="score" data-el="score:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="score:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="score" onInput="{{ onScrub }}" aria-label="linha do tempo — score" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="score:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 2,60 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 2,60 s · anel 1 400 ms (dashoffset) · contagem 0 → 72 em tabular<br>anel — um dos cinco usos de raio pleno · método publicado antes do resultado</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">02</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15.5px;color:var(--text-strong)">Simulação convergindo</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">4,20 s</span></div>
+        <div data-el="simula:stage" style="display:grid;gap:10px;align-content:center;padding:18px 22px;min-height:196px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)">Simulate · arbitragem tarifária</span><span data-el="simula:cen" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint);font-variant-numeric:tabular-nums">cenário 0 / 500</span></div>
+          <div style="display:flex;align-items:baseline;gap:10px"><span data-el="simula:val" style="font-family:'JetBrains Mono',monospace;font-size:24px;font-variant-numeric:tabular-nums;color:var(--text-strong)">R$ 3,84 mi</span><span data-el="simula:pm" style="font-family:'JetBrains Mono',monospace;font-size:12px;font-variant-numeric:tabular-nums;color:var(--text-muted)">± 1,20</span></div>
+          <div style="position:relative;height:1px;background:var(--rule)"><div data-el="simula:bar" style="position:absolute;left:0;top:0;height:1px;width:0%;background:var(--acento-contexto)"></div></div>
+          <div data-el="simula:done" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted)">convergiu · desvio ≤ 2 % · 500 cenários · amostra ilustrativa</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="simula" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="simula" data-el="simula:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="simula:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="simula" onInput="{{ onScrub }}" aria-label="linha do tempo — simulação" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="simula:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 4,20 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 4,20 s · o valor oscila e converge (decaimento exponencial) · ± estreita até 0,08<br>a incerteza é declarada e diminui — nunca desaparece do rótulo</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">03</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15.5px;color:var(--text-strong)">Apuração em quatro etapas</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">4,40 s</span></div>
+        <div data-el="pipeline:stage" style="display:grid;align-content:center;padding:16px 22px;min-height:196px">
+          <div style="position:relative;display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:baseline;padding:8px 0 10px"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">01</span><span style="font-size:12.5px;font-weight:400;color:var(--text-strong)">coleta</span><span data-el="pipeline:s0" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">—</span><div style="position:absolute;left:34px;right:0;bottom:0;height:1px;background:var(--rule)"><div data-el="pipeline:f0" style="height:1px;width:0%;background:var(--acento-contexto)"></div></div></div>
+          <div style="position:relative;display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:baseline;padding:8px 0 10px"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">02</span><span style="font-size:12.5px;font-weight:400;color:var(--text-strong)">consistência</span><span data-el="pipeline:s1" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">—</span><div style="position:absolute;left:34px;right:0;bottom:0;height:1px;background:var(--rule)"><div data-el="pipeline:f1" style="height:1px;width:0%;background:var(--acento-contexto)"></div></div></div>
+          <div style="position:relative;display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:baseline;padding:8px 0 10px"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">03</span><span style="font-size:12.5px;font-weight:400;color:var(--text-strong)">derivação</span><span data-el="pipeline:s2" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">—</span><div style="position:absolute;left:34px;right:0;bottom:0;height:1px;background:var(--rule)"><div data-el="pipeline:f2" style="height:1px;width:0%;background:var(--acento-contexto)"></div></div></div>
+          <div style="position:relative;display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:baseline;padding:8px 0 10px"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">04</span><span style="font-size:12.5px;font-weight:400;color:var(--text-strong)">publicação</span><span data-el="pipeline:s3" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">—</span><div style="position:absolute;left:34px;right:0;bottom:0;height:1px;background:var(--rule)"><div data-el="pipeline:f3" style="height:1px;width:0%;background:var(--acento-contexto)"></div></div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="pipeline" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="pipeline" data-el="pipeline:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="pipeline:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="pipeline" onInput="{{ onScrub }}" aria-label="linha do tempo — apuração" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="pipeline:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 4,40 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 4,40 s · quatro etapas · fio por etapa · estado por texto à direita<br>coleta → consistência → derivação → publicação — a ordem prova o método</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">04</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15.5px;color:var(--text-strong)">Comparador — duas colunas</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">3,00 s</span></div>
+        <div data-el="compara:stage" style="display:grid;align-content:center;padding:16px 22px;min-height:196px">
+          <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:0 18px">
+            <div style="display:grid;align-content:start">
+              <div style="font-family:'Zilla Slab',serif;font-weight:600;font-size:14px;color:var(--text-strong);padding-bottom:6px;border-bottom:1px solid var(--rule-heavy)">SE/CO</div>
+              <div data-el="compara:l0" style="opacity:0;display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:7px 0;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint)">PLD · R$/MWh</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-variant-numeric:tabular-nums;color:var(--text-strong)">287,45</span></div>
+              <div data-el="compara:l1" style="opacity:0;display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:7px 0;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint)">carga · GW</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-variant-numeric:tabular-nums;color:var(--text-strong)">42,1</span></div>
+              <div data-el="compara:l2" style="opacity:0;display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:7px 0;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint)">EAR · %</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-variant-numeric:tabular-nums;color:var(--text-strong)">62,4</span></div>
+            </div>
+            <div data-el="compara:div" style="background:var(--rule-strong);transform:scaleY(0);transform-origin:top"></div>
+            <div style="display:grid;align-content:start">
+              <div style="font-family:'Zilla Slab',serif;font-weight:600;font-size:14px;color:var(--text-strong);padding-bottom:6px;border-bottom:1px solid var(--rule-heavy)">NE</div>
+              <div data-el="compara:r0" style="opacity:0;display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:7px 0;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint)">PLD · R$/MWh</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-variant-numeric:tabular-nums;color:var(--text-strong)">265,08</span></div>
+              <div data-el="compara:r1" style="opacity:0;display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:7px 0;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint)">carga · GW</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-variant-numeric:tabular-nums;color:var(--text-strong)">11,8</span></div>
+              <div data-el="compara:r2" style="opacity:0;display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:7px 0;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint)">EAR · %</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-variant-numeric:tabular-nums;color:var(--text-strong)">71,2</span></div>
+            </div>
+          </div>
+          <div data-el="compara:delta" style="opacity:0;margin-top:10px;padding-top:7px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted)">Δ PLD +22,37 R$/MWh · <span style="color:var(--data-alta)">↑ SE/CO</span> — amostra ilustrativa</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="compara" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="compara" data-el="compara:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="compara:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="compara" onInput="{{ onScrub }}" aria-label="linha do tempo — comparador" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="compara:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 3,00 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 3,00 s · divisor central 700 ms (scaleY) · colunas em eco, esquerda antes<br>Δ com direção em hardware — cor no dado é direção, nunca status</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="05 Transições" style="margin-top:30px">
+    <x-import component-from-global-scope="NIVARDesignSystem_0a22a8.SectionHeader" numero="05" titulo="Transições e sobreposição" nota="6 movimentos · corte por opacidade e fio" hint-size="100%,40px"></x-import>
+    <div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule);border-left:1px solid var(--rule)">
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">01</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Troca de submercado</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">2,20 s</span></div>
+        <div data-el="subtroca:stage" style="display:grid;gap:12px;align-content:center;padding:16px 18px;min-height:190px">
+          <div style="position:relative;height:20px">
+            <div data-el="subtroca:selA" style="position:absolute;inset:0;display:flex;gap:16px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;color:var(--text-strong);border-bottom:1px solid var(--rule-heavy);padding-bottom:2px">SE/CO</span><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;color:var(--text-faint)">S</span><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;color:var(--text-faint)">NE</span><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;color:var(--text-faint)">N</span></div>
+            <div data-el="subtroca:selB" style="position:absolute;inset:0;display:flex;gap:16px;align-items:baseline;opacity:0"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;color:var(--text-faint)">SE/CO</span><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;color:var(--text-faint)">S</span><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;color:var(--text-strong);border-bottom:1px solid var(--rule-heavy);padding-bottom:2px">NE</span><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;color:var(--text-faint)">N</span></div>
+          </div>
+          <div style="position:relative;height:32px">
+            <div data-el="subtroca:valA" style="position:absolute;left:0;top:0;display:flex;align-items:baseline;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:23px;font-variant-numeric:tabular-nums;color:var(--text-strong)">287,45</span><span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">R$/MWh</span></div>
+            <div data-el="subtroca:valB" style="position:absolute;left:0;top:0;opacity:0;display:flex;align-items:baseline;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:23px;font-variant-numeric:tabular-nums;color:var(--text-strong)">265,08</span><span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">R$/MWh</span></div>
+          </div>
+          <svg viewBox="0 0 260 64" style="width:100%;display:block" fill="none">
+            <line x1="2" y1="58" x2="258" y2="58" stroke="var(--rule)" stroke-width="1"></line>
+            <path data-el="subtroca:lineA" d="M2 40 C40 46 70 44 100 36 C140 26 180 30 220 20 C235 16 250 14 258 12" stroke="var(--serie-linha)" stroke-width="1.5"></path>
+            <path data-el="subtroca:lineB" d="M2 30 C40 24 70 34 100 40 C140 46 180 38 220 30 C235 27 250 22 258 20" stroke="var(--serie-linha)" stroke-width="1.5" style="stroke-dasharray:600;stroke-dashoffset:600"></path>
+          </svg>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="subtroca" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="subtroca" data-el="subtroca:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="subtroca:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="subtroca" onInput="{{ onScrub }}" aria-label="linha do tempo — troca de submercado" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="subtroca:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 2,20 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 2,20 s · seletor e valor por crossfade 300 ms · série nova desenha 900 ms<br>o recorte muda, a moldura fica — posição de layout nunca anima</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">02</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Troca de período</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">2,40 s</span></div>
+        <div data-el="periodo:stage" style="display:grid;gap:10px;align-content:center;padding:16px 18px;min-height:190px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline">
+            <span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)">carga · SE/CO</span>
+            <div style="position:relative;height:14px;width:92px">
+              <div data-el="periodo:segA" style="position:absolute;inset:0;display:flex;gap:6px;justify-content:flex-end;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px"><span style="color:var(--text-strong);border-bottom:1px solid var(--rule-heavy)">1D</span><span style="color:var(--text-faint)">·</span><span style="color:var(--text-faint)">1S</span><span style="color:var(--text-faint)">·</span><span style="color:var(--text-faint)">1M</span></div>
+              <div data-el="periodo:segB" style="position:absolute;inset:0;opacity:0;display:flex;gap:6px;justify-content:flex-end;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px"><span style="color:var(--text-faint)">1D</span><span style="color:var(--text-faint)">·</span><span style="color:var(--text-strong);border-bottom:1px solid var(--rule-heavy)">1S</span><span style="color:var(--text-faint)">·</span><span style="color:var(--text-faint)">1M</span></div>
+            </div>
+          </div>
+          <svg viewBox="0 0 260 78" style="width:100%;display:block" fill="none">
+            <line x1="2" y1="60" x2="258" y2="60" stroke="var(--rule-strong)" stroke-width="1"></line>
+            <path data-el="periodo:lineA" d="M2 44 C30 50 60 48 90 40 C130 30 170 34 210 24 C230 19 248 16 258 14" stroke="var(--serie-linha)" stroke-width="1.5"></path>
+            <path data-el="periodo:lineB" d="M2 24 C30 20 55 38 85 42 C120 47 150 22 185 18 C215 15 240 30 258 34" stroke="var(--serie-linha)" stroke-width="1.5" style="stroke-dasharray:600;stroke-dashoffset:600"></path>
+            <g data-el="periodo:labA"><text x="2" y="74" style="font:400 8.5px 'JetBrains Mono',monospace" fill="var(--text-faint)">00h</text><text x="130" y="74" text-anchor="middle" style="font:400 8.5px 'JetBrains Mono',monospace" fill="var(--text-faint)">12h</text><text x="258" y="74" text-anchor="end" style="font:400 8.5px 'JetBrains Mono',monospace" fill="var(--text-faint)">23h</text></g>
+            <g data-el="periodo:labB" style="opacity:0"><text x="2" y="74" style="font:400 8.5px 'JetBrains Mono',monospace" fill="var(--text-faint)">seg</text><text x="130" y="74" text-anchor="middle" style="font:400 8.5px 'JetBrains Mono',monospace" fill="var(--text-faint)">qua</text><text x="258" y="74" text-anchor="end" style="font:400 8.5px 'JetBrains Mono',monospace" fill="var(--text-faint)">dom</text></g>
+          </svg>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="periodo" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="periodo" data-el="periodo:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="periodo:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="periodo" onInput="{{ onScrub }}" aria-label="linha do tempo — troca de período" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="periodo:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 2,40 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 2,40 s · 1D → 1S · série antiga sai por opacidade · nova desenha 1 200 ms<br>segmentado de período é mono — recorte de dado, não navegação</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">03</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Linha expansível</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">2,40 s</span></div>
+        <div data-el="expande:stage" style="display:grid;align-content:center;padding:16px 18px;min-height:190px">
+          <div style="max-width:290px;margin:0 auto;width:100%">
+            <div style="display:flex;justify-content:space-between;align-items:center;height:30px"><span style="display:flex;gap:9px;align-items:baseline"><span data-el="expande:glifo" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-muted)">+</span><span style="font-size:12.5px;font-weight:400;color:var(--text-strong)">SE/CO</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--text-strong)">287,45</span></div>
+            <div data-el="expande:panel" style="height:0;overflow:hidden;border-bottom:1px solid var(--rule)">
+              <div style="padding:8px 2px 12px 21px">
+                <div style="height:1px;background:var(--rule)"><div data-el="expande:pfio" style="height:1px;width:0%;background:var(--acento-contexto)"></div></div>
+                <div data-el="expande:ptx" style="opacity:0;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted)">média 7 d 281,07 · máx 302,11 · mín 240,88</div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;height:30px;border-bottom:1px solid var(--rule)"><span style="display:flex;gap:9px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-faint)">+</span><span style="font-size:12.5px;font-weight:400;color:var(--text-strong)">S</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--text-strong)">291,12</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;height:30px;border-bottom:1px solid var(--rule)"><span style="display:flex;gap:9px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-faint)">+</span><span style="font-size:12.5px;font-weight:400;color:var(--text-strong)">NE</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--text-strong)">265,08</span></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="expande" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="expande" data-el="expande:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="expande:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="expande" onInput="{{ onScrub }}" aria-label="linha do tempo — linha expansível" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="expande:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 2,40 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 2,40 s · o painel aparece inteiro e empurra as linhas — altura nunca anima<br>a revelação é o fio de 700 ms · + vira − · sem popover, sem gaveta</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">04</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Diálogo de confirmação</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">2,60 s</span></div>
+        <div data-el="dialogo:stage" style="display:grid;align-content:center;padding:16px 18px;min-height:190px">
+          <div style="position:relative;border:1px solid var(--rule);height:142px;overflow:hidden">
+            <div data-el="dialogo:bg" style="padding:12px 14px">
+              <div style="font-family:'Zilla Slab',serif;font-weight:600;font-size:13px;color:var(--text-strong)">Vistas salvas</div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;padding-bottom:6px;border-bottom:1px solid var(--rule)"><span style="font-size:11px;font-weight:400;color:var(--text-strong)">Q3 · submercado NE</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint)">14 séries</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;padding-bottom:6px;border-bottom:1px solid var(--rule)"><span style="font-size:11px;font-weight:400;color:var(--text-strong)">Carga · industrial MG</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint)">8 séries</span></div>
+            </div>
+            <div data-el="dialogo:panel" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78%;background:var(--surface-page);border:1px solid var(--rule-strong);padding:12px 14px;opacity:0">
+              <div style="font-family:'Zilla Slab',serif;font-weight:600;font-size:13.5px;color:var(--text-strong)">Excluir a vista salva?</div>
+              <div style="margin-top:3px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">Q3 · submercado NE · 14 séries</div>
+              <div style="height:1px;background:var(--rule);margin-top:10px"><div data-el="dialogo:dfio" style="height:1px;width:0%;background:var(--rule-strong)"></div></div>
+              <div style="display:flex;gap:16px;margin-top:10px;justify-content:flex-end;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)">Cancelar</span><span style="background:var(--btn-primario-bg);color:var(--btn-primario-fg);border:1px solid var(--btn-primario-fio);font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px">Excluir</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="dialogo" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="dialogo" data-el="dialogo:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="dialogo:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="dialogo" onInput="{{ onScrub }}" aria-label="linha do tempo — diálogo" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="dialogo:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 2,60 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 2,60 s · painel sólido · opacidade 150 ms · fio interno 700 ms<br>sem sombra e sem blur — o fundo escurece por estado (0,4)</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">05</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Toast — auto-dispensa</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">4,00 s</span></div>
+        <div data-el="toast:stage" style="display:grid;align-content:center;padding:16px 18px;min-height:190px">
+          <div style="position:relative;border:1px solid var(--rule);height:142px;overflow:hidden">
+            <div style="padding:12px 14px">
+              <div style="font-family:'Zilla Slab',serif;font-weight:600;font-size:13px;color:var(--text-strong)">Exportações</div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;padding-bottom:6px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-strong)">Parecer_PLD_2026-08.pdf</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint)">412 KB</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;padding-bottom:6px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted)">Series_PLD_2026-07.csv</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint)">1,8 MB</span></div>
+            </div>
+            <div data-el="toast:bar" style="position:absolute;left:10px;right:10px;bottom:10px;border:1px solid var(--rule-strong);background:var(--surface-raised);padding:8px 12px 10px;opacity:0">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><span style="font-size:11.5px;font-weight:500;color:var(--text-strong)">Exportação concluída</span><span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">×</span></div>
+              <div style="margin-top:2px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted)">Parecer_PLD_2026-08.pdf · 412 KB</div>
+              <div data-el="toast:cd" style="position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--acento-contexto)"></div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="toast" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="toast" data-el="toast:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="toast:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="toast" onInput="{{ onScrub }}" aria-label="linha do tempo — toast" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="toast:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 4,00 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">dur 4,00 s · barra plana sem ícone · o fio da base é o cronômetro da dispensa<br>entra e sai por opacidade · 2,6 s de leitura antes de dispensar</div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:auto 1fr auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">06</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15px;color:var(--text-strong)">Claro ↔ noturno</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">4,00 s · loop</span></div>
+        <div data-el="modotroca:stage" style="display:grid;align-content:center;padding:16px 18px;min-height:190px">
+          <div data-el="modotroca:panel" style="border:1px solid #D5CDB9;background:#F6F2E9;padding:14px 16px;max-width:250px;margin:0 auto;width:100%">
+            <div data-el="modotroca:t1" style="font-family:'Zilla Slab',serif;font-weight:600;font-size:14px;color:#14120F">PLD por submercado</div>
+            <div data-el="modotroca:fio" style="height:1px;background:#D5CDB9;margin:9px 0"></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline"><span data-el="modotroca:t2" style="font-size:11px;font-weight:400;color:#6E6659">SE/CO</span><span data-el="modotroca:t3" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;font-variant-numeric:tabular-nums;color:#14120F">287,45</span></div>
+          </div>
+          <div style="text-align:center;margin-top:12px"><span data-el="modotroca:lbl" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">modo claro</span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="modotroca" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="modotroca" data-el="modotroca:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="modotroca:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="modotroca" onInput="{{ onScrub }}" aria-label="linha do tempo — claro e noturno" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="modotroca:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 4,00 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">ciclo 4,00 s · loop · o fundo troca por passo — nunca interpola<br>texto e fio correm os 150 ms; a regra proíbe animar fundo, não que ele mude</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="06 Sequência de boot" style="margin-top:30px">
+    <x-import component-from-global-scope="NIVARDesignSystem_0a22a8.SectionHeader" numero="06" titulo="Sequência de boot" nota="16:9 · 14 s · exportável como vídeo" hint-size="100%,40px"></x-import>
+    <div style="margin-top:12px;display:grid;grid-template-columns:1fr;border-top:1px solid var(--rule);border-left:1px solid var(--rule)">
+      <div style="display:grid;grid-template-rows:auto auto auto auto;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+        <div style="display:flex;align-items:baseline;gap:9px;padding:9px 12px;border-bottom:1px solid var(--rule)"><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;color:var(--accent-house)">01</span><span style="font-family:'Zilla Slab',serif;font-weight:600;font-size:15.5px;color:var(--text-strong)">Splash → marca → esqueleto → dado → ao vivo</span><span style="flex:1"></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);white-space:nowrap">14,00 s</span></div>
+
+        <div data-el="boot:stage" data-mode="noturno" data-screen-label="boot" data-om-exportable-video-with-duration-secs="14" style="position:relative;width:100%;aspect-ratio:16/9;background:var(--tinta);overflow:hidden;color:var(--text-body)">
+          <div data-el="b:top" style="position:absolute;top:0;left:0;height:4px;width:0%;background:var(--gradiente-incandescente);z-index:6"></div>
+          <div data-el="b:ui" style="position:absolute;inset:0;opacity:0;padding:30px 40px 26px;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;gap:22px">
+              <img src="assets/nivar-wordmark.svg" alt="NIVAR" style="height:21px;display:block">
+              <span style="flex:1"></span>
+              <span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;letter-spacing:.09em;color:var(--text-strong);border-bottom:1px solid var(--rule-heavy);padding-bottom:2px">PAINEL</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;letter-spacing:.09em;color:var(--text-faint)">SÉRIES</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;letter-spacing:.09em;color:var(--text-faint)">NOTAS</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10px;letter-spacing:.09em;color:var(--text-faint)">ACESSO</span>
+            </div>
+            <div style="margin:12px 0 18px"><div data-el="b:hfio" style="height:1px;width:0%;background:var(--rule)"></div></div>
+            <div style="display:flex;align-items:baseline;gap:12px">
+              <span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;color:var(--accent-house)">01</span>
+              <span data-el="b:seclab" style="opacity:0;font-family:'Zilla Slab',serif;font-weight:600;font-size:18px;color:var(--text-strong)">PLD por submercado</span>
+              <div style="flex:1;align-self:center"><div data-el="b:secfio" style="height:1px;width:0%;background:var(--rule)"></div></div>
+              <span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.09em;color:var(--text-faint)">APURAÇÃO MENSAL</span>
+            </div>
+            <div style="display:grid;grid-template-columns:5fr 7fr;gap:36px;flex:1;margin-top:16px;min-height:0">
+              <div>
+                <div style="display:flex;justify-content:space-between;padding:0 0 7px;border-bottom:1px solid var(--rule-heavy);font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)"><span>Submercado</span><span>R$/MWh</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;height:38px;border-bottom:1px solid var(--rule)"><span style="font-size:13px;font-weight:300">SE/CO</span><span style="position:relative;width:120px;height:100%;display:flex;align-items:center;justify-content:flex-end"><span data-el="b:v0" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:14px;font-variant-numeric:tabular-nums;color:var(--text-strong)">287,45</span><span data-el="b:sk0" style="position:absolute;right:0;top:50%;height:1px;width:0%;background:var(--rule-strong)"></span></span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;height:38px;border-bottom:1px solid var(--rule)"><span style="font-size:13px;font-weight:300">S</span><span style="position:relative;width:120px;height:100%;display:flex;align-items:center;justify-content:flex-end"><span data-el="b:v1" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:14px;font-variant-numeric:tabular-nums;color:var(--text-strong)">291,12</span><span data-el="b:sk1" style="position:absolute;right:0;top:50%;height:1px;width:0%;background:var(--rule-strong)"></span></span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;height:38px;border-bottom:1px solid var(--rule)"><span style="font-size:13px;font-weight:300">NE</span><span style="position:relative;width:120px;height:100%;display:flex;align-items:center;justify-content:flex-end"><span data-el="b:v2" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:14px;font-variant-numeric:tabular-nums;color:var(--text-strong)">265,08</span><span data-el="b:sk2" style="position:absolute;right:0;top:50%;height:1px;width:0%;background:var(--rule-strong)"></span></span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;height:38px;border-bottom:1px solid var(--rule)"><span style="font-size:13px;font-weight:300">N</span><span style="position:relative;width:120px;height:100%;display:flex;align-items:center;justify-content:flex-end"><span data-el="b:v3" style="opacity:0;font-family:'JetBrains Mono',monospace;font-size:14px;font-variant-numeric:tabular-nums;color:var(--text-strong)">258,31</span><span data-el="b:sk3" style="position:absolute;right:0;top:50%;height:1px;width:0%;background:var(--rule-strong)"></span></span></div>
+                <div data-el="b:live" style="opacity:0;display:flex;align-items:center;gap:8px;margin-top:14px"><span style="width:6px;height:6px;border-radius:50%;background:var(--cinza-quente-claro)"></span><span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)">Ao vivo</span><span data-el="b:ts" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint);font-variant-numeric:tabular-nums">2026-08-06 · 14:30:00 BRT</span></div>
+              </div>
+              <div style="min-width:0">
+                <svg viewBox="0 0 560 250" style="width:100%;height:auto;display:block" fill="none">
+                  <text x="26" y="16" style="font:500 9px 'JetBrains Mono',monospace;letter-spacing:.08em" fill="var(--text-faint)">CARGA · GW</text>
+                  <line data-el="b:ax1" x1="26" y1="26" x2="26" y2="218" stroke="var(--rule-strong)" stroke-width="1"></line>
+                  <line data-el="b:ax0" x1="26" y1="218" x2="548" y2="218" stroke="var(--rule-strong)" stroke-width="1"></line>
+                  <text x="26" y="236" style="font:400 9px 'JetBrains Mono',monospace" fill="var(--text-faint)">00h</text>
+                  <text x="200" y="236" text-anchor="middle" style="font:400 9px 'JetBrains Mono',monospace" fill="var(--text-faint)">12h</text>
+                  <text x="390" y="236" text-anchor="middle" style="font:400 9px 'JetBrains Mono',monospace" fill="var(--text-faint)">18h</text>
+                  <text x="548" y="236" text-anchor="end" style="font:400 9px 'JetBrains Mono',monospace" fill="var(--text-faint)">23h</text>
+                  <path data-el="b:line" d="M26 176 C58 182 88 184 118 176 C150 166 172 148 204 136 C236 124 258 128 286 112 C314 96 342 78 366 64 C378 58 385 54 390 48" stroke="var(--serie-linha)" stroke-width="1.5" style="stroke-dasharray:800;stroke-dashoffset:800"></path>
+                  <circle data-el="b:dot" cx="390" cy="48" r="3.5" fill="var(--serie-ponto)" style="opacity:0"></circle>
+                  <text data-el="b:var" x="390" y="32" text-anchor="end" style="font:500 10px 'JetBrains Mono',monospace;opacity:0" fill="var(--data-alta)">↑ +2,4% · 24 h</text>
+                  <g transform="translate(0,218) scale(1,-1)">
+                    <rect data-el="b:bar0" x="428" width="24" y="0" height="0" fill="var(--acento-contexto)"></rect>
+                    <rect data-el="b:bar1" x="458" width="24" y="0" height="0" fill="var(--acento-contexto)"></rect>
+                    <rect data-el="b:bar2" x="488" width="24" y="0" height="0" fill="var(--acento-contexto)"></rect>
+                    <rect data-el="b:bar3" x="518" width="24" y="0" height="0" fill="var(--acento-contexto)"></rect>
+                  </g>
+                  <text x="440" y="236" text-anchor="middle" style="font:400 8.5px 'JetBrains Mono',monospace" fill="var(--text-faint)">SE</text>
+                  <text x="470" y="236" text-anchor="middle" style="font:400 8.5px 'JetBrains Mono',monospace" fill="var(--text-faint)">S</text>
+                  <text x="500" y="236" text-anchor="middle" style="font:400 8.5px 'JetBrains Mono',monospace" fill="var(--text-faint)">NE</text>
+                  <text x="530" y="236" text-anchor="middle" style="font:400 8.5px 'JetBrains Mono',monospace" fill="var(--text-faint)">N</text>
+                </svg>
+              </div>
+            </div>
+            <div data-el="b:prov" style="opacity:0;border-top:1px solid var(--rule);padding-top:9px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-faint)">Fonte: ONS · CCEE · ANEEL · EPE — <span style="color:var(--ilustrativa-fg)">amostra ilustrativa</span> · apuração mensal · 2026-08-06 · 14:30 BRT</div>
+          </div>
+          <div data-el="b:splash" style="position:absolute;inset:0;background:var(--tinta);display:grid;place-items:center;z-index:5">
+            <div style="display:grid;justify-items:center;gap:22px">
+              <div style="position:relative;width:430px;height:150px;display:grid;place-items:center">
+                <div data-el="b:loaderw" style="position:absolute">
+                  <svg viewBox="0 0 100 100" style="width:104px;display:block;overflow:visible" fill="none">
+                    <defs><linearGradient id="gBL" gradientUnits="userSpaceOnUse" x1="24" y1="0" x2="76" y2="0"><stop offset="0" stop-color="#7A1F0D"></stop><stop offset="0.5" stop-color="#C17D1F"></stop><stop offset="1" stop-color="#F5C63C"></stop></linearGradient></defs>
+                    <path data-el="b:loader" d="M24 84 C24 62 24 38 24 16 C50 32 50 68 76 84 C76 62 76 38 76 16" stroke="url(#gBL)" stroke-width="11" stroke-linecap="butt" stroke-linejoin="miter" vector-effect="non-scaling-stroke" style="transform-box:fill-box;transform-origin:center;transform:scale(0.12)"></path>
+                  </svg>
+                </div>
+                <svg viewBox="0 0 425 140" style="position:absolute;width:400px;display:block" fill="none">
+                  <defs><linearGradient id="gBW" gradientUnits="userSpaceOnUse" x1="22" y1="0" x2="400" y2="0"><stop offset="0" stop-color="#7A1F0D"></stop><stop offset="0.5" stop-color="#C17D1F"></stop><stop offset="1" stop-color="#F5C63C"></stop></linearGradient></defs>
+                  <path data-el="b:w0" d="M22 112 C22 80 22 50 22 18 C54 40 60 92 108 112 C108 80 108 50 108 18" stroke="url(#gBW)" stroke-width="16" stroke-linecap="butt" stroke-linejoin="miter" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+                  <path data-el="b:w1" d="M140 32 L140 112" stroke="url(#gBW)" stroke-width="13" stroke-linecap="butt" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+                  <path data-el="b:w2" d="M170 32 L200 112 L230 32" stroke="url(#gBW)" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+                  <path data-el="b:w3" d="M254 112 L284 32 L314 112" stroke="url(#gBW)" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+                  <path data-el="b:w4" d="M342 112 L342 32" stroke="url(#gBW)" stroke-width="13" stroke-linecap="butt" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+                  <path data-el="b:w5" d="M342 32 C378 32 394 44 386 56 C378 68 362 64 342 64" stroke="url(#gBW)" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+                  <path data-el="b:w6" d="M370 62 C382 80 390 96 398 112" stroke="url(#gBW)" stroke-width="13" stroke-linecap="butt" style="stroke-dasharray:1200;stroke-dashoffset:1200"></path>
+                </svg>
+              </div>
+              <div data-el="b:tag" style="opacity:0;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)">Inteligência do mercado de energia elétrica</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--rule)"><button data-act="replay" data-piece="boot" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">reiniciar</button><button data-act="pp" data-piece="boot" data-el="boot:pp" onClick="{{ onCtrl }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)" style-hover="color:var(--fg-hover)">pausar</button><div style="position:relative;flex:1;height:16px"><div style="position:absolute;left:0;right:0;top:7px;height:3px;background:var(--rule)"></div><div data-el="boot:fill" style="position:absolute;left:0;top:7px;height:3px;width:0%;background:var(--acento-contexto)"><div style="position:absolute;right:-4px;top:-3px;width:9px;height:9px;background:var(--text-strong)"></div></div><input type="range" min="0" max="1000" data-piece="boot" onInput="{{ onScrub }}" aria-label="linha do tempo — boot" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0"></div><span data-el="boot:time" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap">0,00 / 14,00 s</span></div>
+        <div style="padding:7px 12px 9px;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.75;color:var(--text-faint)">0–2 s N abre · 2–4,6 s wordmark escreve · 5,7–6,2 s corte por opacidade · 6,2–8 s esqueleto desenha · 8,3–10 s dado chega · 11,2 s ao vivo · 12,6 s o fio incandescente demarca o topo<br>o filme é noturno — a incandescência lê sobre tinta · exportável como vídeo (Share → Export)</div>
+      </div>
+    </div>
+  </section>
+
+  <div style="margin-top:26px">
+    <x-import component-from-global-scope="NIVARDesignSystem_0a22a8.Provenance" dc-props="{{ provProps }}" hint-size="100%,32px"></x-import>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;modo&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;noturno&quot;,&quot;claro&quot;],&quot;default&quot;:&quot;noturno&quot;,&quot;tsType&quot;:&quot;'noturno'|'claro'&quot;,&quot;section&quot;:&quot;Tema&quot;},&quot;autoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Movimento&quot;},&quot;velocidade&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.25,&quot;max&quot;:2,&quot;step&quot;:0.25,&quot;unit&quot;:&quot;×&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Movimento&quot;}}">
+const EASE = 'cubic-bezier(0.65,0,0.35,1)';
+class Component extends DCLogic {
+  state = { mode: this.props.modo ?? 'noturno' };
+  P = {};
+  rmOn = false;
+  q(s) { return document.querySelector('[data-el="' + s + '"]'); }
+  fs(ms) { return (Math.max(0, ms) / 1000).toFixed(2).replace('.', ','); }
+  hz(v) { return v.toFixed(1).replace('.', ','); }
+  mk(el, kf, o = {}) { const a = el.animate(kf, Object.assign({ fill: 'both', easing: EASE }, o)); a.pause(); a.currentTime = 0; return a; }
+  reg(id, dur, anims, opts = {}) {
+    anims = anims.filter(Boolean);
+    const p = { id, dur, anims, loop: !!opts.loop, tick: opts.tick || null, playing: false };
+    this.P[id] = p;
+    const r = this.props.velocidade ?? 1;
+    anims.forEach(a => { a.playbackRate = r; });
+    if (this.rmOn) { this.seek(id, dur); this.lbl(id, 'retomar'); }
+    else if (this.props.autoplay ?? true) this.play(id);
+    else this.seek(id, 0);
+  }
+  play(id) {
+    const p = this.P[id]; if (!p) return;
+    if (!p.loop && (p.anims[0].currentTime || 0) >= p.dur - 1) this.seek(id, 0);
+    p.anims.forEach(a => a.play()); p.playing = true; this.lbl(id, 'pausar');
+    const rg = this.q(id + ':range'); if (rg && document.activeElement === rg) rg.blur();
+  }
+  pause(id) { const p = this.P[id]; if (!p) return; p.anims.forEach(a => a.pause()); p.playing = false; this.lbl(id, 'retomar'); }
+  seek(id, t) { const p = this.P[id]; if (!p) return; p.anims.forEach(a => { a.currentTime = t; }); this.paint(p, t); }
+  lbl(id, s) { const e = this.q(id + ':pp'); if (e) e.textContent = s; }
+  paint(p, t) {
+    const r = this.q(p.id + ':time'); if (r) r.textContent = this.fs(t) + ' / ' + this.fs(p.dur) + ' s';
+    const f = this.q(p.id + ':fill'); if (f) f.style.width = (Math.max(0, Math.min(1, t / p.dur)) * 100) + '%';
+    if (p.tick) { try { p.tick(t); } catch (e) {} }
+  }
+  onCtrl = (e) => {
+    const d = e.currentTarget.dataset, p = this.P[d.piece]; if (!p) return;
+    if (d.act === 'replay') { this.seek(d.piece, 0); this.play(d.piece); }
+    else { p.playing ? this.pause(d.piece) : this.play(d.piece); }
+  };
+  onScrub = (e) => {
+    const id = e.currentTarget.dataset.piece, p = this.P[id]; if (!p) return;
+    this.pause(id); this.seek(id, (+e.currentTarget.value / 1000) * p.dur);
+  };
+  onReplayAll = () => { if (this.rmOn) return; for (const id in this.P) { this.seek(id, 0); this.play(id); } };
+  onRm = (e) => {
+    const on = e.currentTarget.dataset.rm === 'on';
+    this.rmOn = on;
+    const bOn = this.q('rm:on'), bOff = this.q('rm:off');
+    if (bOn) { bOn.style.color = on ? 'var(--text-strong)' : 'var(--text-faint)'; bOn.style.borderBottomColor = on ? 'var(--rule-heavy)' : 'transparent'; }
+    if (bOff) { bOff.style.color = on ? 'var(--text-faint)' : 'var(--text-strong)'; bOff.style.borderBottomColor = on ? 'transparent' : 'var(--rule-heavy)'; }
+    for (const id in this.P) { const p = this.P[id]; if (on) { this.pause(id); this.seek(id, p.dur); } else { this.seek(id, 0); this.play(id); } }
+  };
+  onMode = (m) => { this.setState({ mode: m }); const pg = this.q('page'); if (pg) pg.setAttribute('data-mode', m); };
+  componentDidMount() {
+    const builders = ['bColapso', 'bEnergiza', 'bCorrente', 'bReliga', 'bSinc', 'bTabela', 'bGrafico', 'bAovivo', 'bValida', 'bPdf', 'bBusca', 'bUpload', 'bTransicao', 'bReconexao', 'bFontes', 'bDespacho', 'bReserva', 'bSubm', 'bFreq', 'bIngestao', 'bScore', 'bSimula', 'bPipeline', 'bCompara', 'bSubtroca', 'bPeriodo', 'bExpande', 'bDialogo', 'bToast', 'bModotroca', 'bBoot'];
+    builders.forEach(n => { try { this[n](); } catch (e) { console.error(n, e); } });
+    const step = () => {
+      for (const id in this.P) {
+        const p = this.P[id]; if (!p.playing) continue;
+        let t = p.anims[0].currentTime || 0;
+        if (p.loop) t = t % p.dur;
+        else if (t >= p.dur) { t = p.dur; p.playing = false; this.lbl(id, 'retomar'); }
+        this.paint(p, t);
+        const rg = this.q(id + ':range'); if (rg && document.activeElement !== rg) rg.value = Math.round(Math.max(0, Math.min(1, t / p.dur)) * 1000);
+      }
+      this._raf = requestAnimationFrame(step);
+    };
+    step();
+  }
+  componentWillUnmount() { cancelAnimationFrame(this._raf); }
+  componentDidUpdate(pp) {
+    if (pp.velocidade !== this.props.velocidade) { const r = this.props.velocidade ?? 1; for (const id in this.P) this.P[id].anims.forEach(a => { a.playbackRate = r; }); }
+    if (pp.modo !== this.props.modo && this.props.modo) this.onMode(this.props.modo);
+  }
+  clock(id, dur, loop) { return this.mk(this.q(id + ':stage'), [{ opacity: 1 }, { opacity: 1 }], { duration: dur, iterations: loop ? Infinity : 1 }); }
+
+  bColapso() {
+    const n = this.q('colapso:n');
+    const a = this.mk(n, [
+      { transform: 'scale(0.12) rotate(0deg)', offset: 0 },
+      { transform: 'scale(1) rotate(360deg)', offset: 0.45 },
+      { transform: 'scale(1) rotate(360deg)', offset: 0.58 },
+      { transform: 'scale(0.12) rotate(720deg)', offset: 1 }
+    ], { duration: 3400, iterations: Infinity, easing: 'cubic-bezier(0.4,0,0.6,1)' });
+    this.reg('colapso', 3400, [this.clock('colapso', 3400, true), a], { loop: true });
+  }
+  bEnergiza() {
+    const T = [[0, 900], [950, 450], [1250, 600], [1600, 600], [1950, 450], [2250, 500], [2600, 450]];
+    const anims = [this.clock('energiza', 3200, false)];
+    T.forEach(([d, du], i) => {
+      const el = this.q('energiza:p' + i); const L = el.getTotalLength();
+      el.style.strokeDasharray = L;
+      anims.push(this.mk(el, [{ strokeDashoffset: L }, { strokeDashoffset: 0 }], { duration: du, delay: d }));
+    });
+    this.reg('energiza', 3200, anims);
+  }
+  bCorrente() {
+    const W = 70, tempo = 2000, start = 200;
+    const us = [], Ls = [];
+    for (let i = 0; i < 7; i++) { us.push(this.q('corrente:u' + i)); Ls.push(us[i].getTotalLength()); }
+    const total = Ls.reduce((a, b) => a + b, 0);
+    const lenEl = this.q('corrente:len'); if (lenEl) lenEl.textContent = Math.round(total).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u2009') + ' px';
+    const anims = [this.clock('corrente', 3400, false)];
+    let cum = 0;
+    for (let i = 0; i < 7; i++) {
+      const L = Ls[i], d = ((L + W) / total) * tempo, delay = start + (cum / total) * tempo;
+      us[i].style.strokeDasharray = W + ' ' + (L + 2 * W);
+      anims.push(this.mk(us[i], [{ strokeDashoffset: W }, { strokeDashoffset: -L }], { duration: d, delay, easing: 'linear' }));
+      anims.push(this.mk(this.q('corrente:l' + i), [{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: delay + d * 0.45 }));
+      cum += L;
+    }
+    this.reg('corrente', 3400, anims);
+  }
+  bReliga() {
+    const pat = (el, delay, frames, dur) => this.mk(el, frames.map(([o, off]) => ({ opacity: o, offset: off, easing: 'step-end' })), { duration: dur, delay });
+    const anims = [this.clock('religa', 2400, false),
+      pat(this.q('religa:g0'), 0, [[0, 0], [1, .07], [0, .11], [1, .16], [.3, .22], [1, .3], [1, 1]], 1400),
+      pat(this.q('religa:g1'), 300, [[0, 0], [1, .12], [0, .2], [1, .28], [1, 1]], 1200),
+      pat(this.q('religa:g2'), 520, [[0, 0], [.4, .1], [0, .18], [1, .26], [1, 1]], 1200),
+      pat(this.q('religa:g3'), 760, [[0, 0], [1, .09], [0, .14], [1, .22], [.5, .3], [1, .38], [1, 1]], 1300),
+      pat(this.q('religa:g4'), 1050, [[0, 0], [1, .15], [0, .22], [1, .34], [1, 1]], 1100)];
+    const hzEl = this.q('religa:hz');
+    this.reg('religa', 2400, anims, { tick: (t) => {
+      if (!hzEl) return;
+      if (t < 1900) { const v = 58.6 + 1.4 * (t / 1900) + 0.25 * Math.sin(t / 47) * (1 - t / 1900); hzEl.textContent = this.hz(v) + ' Hz'; }
+      else hzEl.textContent = '60,0 Hz · sincronizado';
+    } });
+  }
+  bSinc() {
+    const gen = (phase) => { const kfs = []; const N = 48; for (let k = 0; k <= N; k++) { const x = k / N; const y = 14 * Math.exp(-3.4 * x) * Math.sin(2 * Math.PI * 2.6 * x + phase); kfs.push({ transform: 'translateY(' + y.toFixed(2) + 'px)', offset: x, easing: 'linear' }); } return kfs; };
+    const anims = [this.clock('sinc', 3200, false)];
+    for (let i = 0; i < 5; i++) anims.push(this.mk(this.q('sinc:g' + i), gen(i * 1.1), { duration: 3200 }));
+    const hzEl = this.q('sinc:hz');
+    this.reg('sinc', 3200, anims, { tick: (t) => {
+      if (!hzEl) return; const x = t / 3200;
+      if (x < 0.85) { const v = 60 - 2.2 * Math.exp(-3.4 * x) * Math.abs(Math.cos(2 * Math.PI * 2.6 * x)); hzEl.textContent = this.hz(v) + ' Hz'; }
+      else hzEl.textContent = '60,0 Hz · rede síncrona';
+    } });
+  }
+  bTabela() {
+    const anims = [this.clock('tabela', 3000, false)];
+    for (let i = 0; i < 4; i++) {
+      const sk = this.q('tabela:sk' + i), v = this.q('tabela:v' + i);
+      anims.push(this.mk(sk, [{ width: '0%' }, { width: '100%' }], { duration: 700, delay: i * 140 }));
+      anims.push(this.mk(sk, [{ opacity: 1 }, { opacity: 0 }], { duration: 300, delay: 1500 + i * 120 }));
+      anims.push(this.mk(v, [{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: 1500 + i * 120 }));
+    }
+    this.reg('tabela', 3000, anims);
+  }
+  bGrafico() {
+    const anims = [this.clock('grafico', 2600, false)];
+    const draw = (sel, du, delay) => { const el = this.q(sel); const L = el.getTotalLength(); el.style.strokeDasharray = L; anims.push(this.mk(el, [{ strokeDashoffset: L }, { strokeDashoffset: 0 }], { duration: du, delay })); };
+    draw('grafico:ax1', 700, 0); draw('grafico:ax0', 700, 150); draw('grafico:line', 1200, 700);
+    anims.push(this.mk(this.q('grafico:dot'), [{ opacity: 0 }, { opacity: 1 }], { duration: 200, delay: 1950 }));
+    anims.push(this.mk(this.q('grafico:var'), [{ opacity: 0 }, { opacity: 1 }], { duration: 250, delay: 2050 }));
+    [64, 72, 44, 34].forEach((h, i) => anims.push(this.mk(this.q('grafico:bar' + i), [{ height: '0px' }, { height: h + 'px' }], { duration: 1000, delay: 900 + i * 130 })));
+    this.reg('grafico', 2600, anims);
+  }
+  bAovivo() {
+    const cyc = 3000;
+    const anims = [this.clock('aovivo', cyc, true),
+      this.mk(this.q('aovivo:a'), [{ opacity: 1, offset: 0 }, { opacity: 1, offset: .42 }, { opacity: 0, offset: .52 }, { opacity: 0, offset: .9 }, { opacity: 1, offset: 1 }], { duration: cyc, iterations: Infinity }),
+      this.mk(this.q('aovivo:b'), [{ opacity: 0, offset: 0 }, { opacity: 0, offset: .42 }, { opacity: 1, offset: .52 }, { opacity: 1, offset: .9 }, { opacity: 0, offset: 1 }], { duration: cyc, iterations: Infinity })];
+    const ts = this.q('aovivo:ts');
+    this.reg('aovivo', cyc, anims, { loop: true, tick: (t) => { if (ts) ts.textContent = '14:30:0' + Math.min(2, Math.floor(t / 1000)) + ' BRT'; } });
+  }
+  bValida() {
+    const anims = [this.clock('valida', 5000, false),
+      this.mk(this.q('valida:loopfio'), [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 1400, delay: 200, iterations: 3 }),
+      this.mk(this.q('valida:loopfio'), [{ opacity: 1 }, { opacity: 0 }], { duration: 150, delay: 4400 }),
+      this.mk(this.q('valida:okfio'), [{ opacity: 0 }, { opacity: 1 }], { duration: 250, delay: 4400 }),
+      this.mk(this.q('valida:msg'), [{ opacity: 0 }, { opacity: 1 }], { duration: 350, delay: 4550 })];
+    this.reg('valida', 5000, anims);
+  }
+  bPdf() {
+    const anims = [this.clock('pdf', 3800, false),
+      this.mk(this.q('pdf:bar'), [{ width: '0%' }, { width: '100%' }], { duration: 3200, delay: 200, easing: 'linear' }),
+      this.mk(this.q('pdf:gen'), [{ opacity: 1 }, { opacity: 0.35 }], { duration: 250, delay: 3450 }),
+      this.mk(this.q('pdf:done'), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 3500 })];
+    const pct = this.q('pdf:pct'), fase = this.q('pdf:fase');
+    this.reg('pdf', 3800, anims, { tick: (t) => {
+      const p = Math.max(0, Math.min(1, (t - 200) / 3200));
+      if (pct) pct.textContent = Math.round(p * 100) + ' %';
+      if (fase) fase.textContent = t < 1300 ? 'compondo folha…' : t < 2600 ? 'gravando séries…' : t < 3400 ? 'assinando procedência…' : 'pronto';
+    } });
+  }
+  bBusca() {
+    const anims = [this.clock('busca', 3400, false),
+      this.mk(this.q('busca:caret'), [{ opacity: 1, offset: 0, easing: 'step-end' }, { opacity: 0, offset: 0.103, easing: 'step-end' }, { opacity: 1, offset: 0.206, easing: 'step-end' }, { opacity: 0, offset: 0.309, easing: 'step-end' }, { opacity: 1, offset: 0.412, easing: 'step-end' }, { opacity: 1, offset: 0.441 }, { opacity: 0, offset: 0.471 }, { opacity: 0, offset: 1 }], { duration: 3400 })];
+    for (let i = 0; i < 3; i++) {
+      anims.push(this.mk(this.q('busca:f' + i), [{ width: '0%' }, { width: '100%' }], { duration: 450, delay: 1700 + i * 260 }));
+      anims.push(this.mk(this.q('busca:r' + i), [{ opacity: 0 }, { opacity: 1 }], { duration: 350, delay: 1750 + i * 260 }));
+    }
+    anims.push(this.mk(this.q('busca:n'), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 2600 }));
+    const qEl = this.q('busca:q'), QUERY = 'pld submercado ne';
+    this.reg('busca', 3400, anims, { tick: (t) => { if (qEl) qEl.textContent = QUERY.slice(0, Math.floor(Math.max(0, Math.min(1260, t - 150)) / 74)); } });
+  }
+  bUpload() {
+    const anims = [this.clock('upload', 3600, false),
+      this.mk(this.q('upload:bar'), [{ width: '0%' }, { width: '100%' }], { duration: 2200, delay: 300, easing: 'linear' }),
+      this.mk(this.q('upload:m1'), [{ opacity: 0, offset: 0 }, { opacity: 0, offset: 0.722 }, { opacity: 1, offset: 0.792 }, { opacity: 1, offset: 0.861 }, { opacity: 0, offset: 0.917 }, { opacity: 0, offset: 1 }], { duration: 3600 }),
+      this.mk(this.q('upload:m2'), [{ opacity: 0 }, { opacity: 1 }], { duration: 250, delay: 3200 })];
+    const by = this.q('upload:bytes');
+    this.reg('upload', 3600, anims, { tick: (t) => {
+      if (!by) return; const mb = 4.2 * Math.max(0, Math.min(1, (t - 300) / 2200));
+      by.textContent = mb.toFixed(1).replace('.', ',') + ' / 4,2 MB';
+    } });
+  }
+  bTransicao() {
+    const anims = [this.clock('transicao', 1800, false),
+      this.mk(this.q('transicao:top'), [{ width: '0%' }, { width: '100%' }], { duration: 450, delay: 150 }),
+      this.mk(this.q('transicao:top'), [{ opacity: 1 }, { opacity: 0 }], { duration: 300, delay: 1350 }),
+      this.mk(this.q('transicao:a'), [{ opacity: 1 }, { opacity: 0 }], { duration: 300, delay: 380 }),
+      this.mk(this.q('transicao:bt'), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 680 }),
+      this.mk(this.q('transicao:bm'), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 950 })];
+    for (let i = 0; i < 3; i++) anims.push(this.mk(this.q('transicao:b' + i), [{ width: '0%' }, { width: '100%' }], { duration: 450, delay: 700 + i * 130 }));
+    this.reg('transicao', 1800, anims);
+  }
+  bReconexao() {
+    const anims = [this.clock('reconexao', 5000, false),
+      this.mk(this.q('reconexao:ind'), [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 700, delay: 3000, iterations: 2 }),
+      this.mk(this.q('reconexao:err'), [{ opacity: 1 }, { opacity: 0 }], { duration: 250, delay: 4400 }),
+      this.mk(this.q('reconexao:ok'), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 4500 })];
+    const cd = this.q('reconexao:cd');
+    this.reg('reconexao', 5000, anims, { tick: (t) => {
+      if (!cd) return;
+      if (t < 3000) cd.textContent = 'nova tentativa em ' + (3 - Math.floor(t / 1000)) + ' s';
+      else cd.textContent = 'consultando ONS…';
+    } });
+  }
+  bBoot() {
+    const DUR = 14000;
+    const anims = [this.clock('boot', DUR, false)];
+    const A = (sel, kf, o) => { const el = this.q(sel); if (el) anims.push(this.mk(el, kf, o)); };
+    const draw = (sel, du, delay) => { const el = this.q(sel); if (!el) return; const L = el.getTotalLength(); el.style.strokeDasharray = L; anims.push(this.mk(el, [{ strokeDashoffset: L }, { strokeDashoffset: 0 }], { duration: du, delay })); };
+    A('b:loader', [{ transform: 'scale(0.12) rotate(-720deg)' }, { transform: 'scale(1) rotate(0deg)' }], { duration: 1900 });
+    A('b:loaderw', [{ opacity: 1 }, { opacity: 0 }], { duration: 300, delay: 2000 });
+    const WT = [[2300, 650], [2980, 380], [3200, 480], [3480, 480], [3760, 380], [3980, 420], [4230, 380]];
+    WT.forEach(([d, du], i) => draw('b:w' + i, du, d));
+    A('b:tag', [{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: 4700 });
+    A('b:splash', [{ opacity: 1 }, { opacity: 0 }], { duration: 500, delay: 5700 });
+    A('b:ui', [{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: 5900 });
+    A('b:hfio', [{ width: '0%' }, { width: '100%' }], { duration: 700, delay: 6200 });
+    A('b:seclab', [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 6600 });
+    A('b:secfio', [{ width: '0%' }, { width: '100%' }], { duration: 500, delay: 6650 });
+    for (let i = 0; i < 4; i++) {
+      A('b:sk' + i, [{ width: '0%' }, { width: '100%' }], { duration: 600, delay: 6800 + i * 150 });
+      A('b:sk' + i, [{ opacity: 1 }, { opacity: 0 }], { duration: 250, delay: 8300 + i * 140 });
+      A('b:v' + i, [{ opacity: 0 }, { opacity: 1 }], { duration: 350, delay: 8300 + i * 140 });
+    }
+    draw('b:ax1', 600, 7000); draw('b:ax0', 600, 7200); draw('b:line', 1200, 8600);
+    A('b:dot', [{ opacity: 0 }, { opacity: 1 }], { duration: 200, delay: 9850 });
+    A('b:var', [{ opacity: 0 }, { opacity: 1 }], { duration: 250, delay: 10000 });
+    [96, 104, 62, 48].forEach((h, i) => A('b:bar' + i, [{ height: '0px' }, { height: h + 'px' }], { duration: 900, delay: 8800 + i * 160 }));
+    A('b:live', [{ opacity: 0 }, { opacity: 1 }], { duration: 350, delay: 11200 });
+    A('b:prov', [{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: 11800 });
+    A('b:top', [{ width: '0%' }, { width: '100%' }], { duration: 800, delay: 12600 });
+    const ts = this.q('b:ts'), root = this.q('boot:stage');
+    this.reg('boot', DUR, anims, { tick: (t) => {
+      if (ts) ts.textContent = '2026-08-06 · 14:30:0' + Math.min(2, Math.max(0, Math.floor((t - 11200) / 1000))) + ' BRT';
+      if (root) root.setAttribute('data-screen-label', 'boot · t=' + Math.floor(t / 1000) + 's');
+    } });
+    if (root) root.addEventListener('data-om-seek-to-time-frame', (e) => {
+      const tt = Math.max(0, Math.min(14, (e.detail && e.detail.time) || 0)) * 1000;
+      this.pause('boot'); this.seek('boot', tt);
+    });
+  }
+  ss(p) { p = Math.max(0, Math.min(1, p)); return p * p * (3 - 2 * p); }
+  fi(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u2009'); }
+  bFontes() {
+    const T = [[200, 1400], [400, 2200], [700, 1600], [900, 2400]];
+    const done = ['8\u2009760 registros', 'liquidação 2026-07', 'tarifas · 63 distribuidoras', 'carga mensal · PDE'];
+    const anims = [this.clock('fontes', 3600, false)];
+    const sEls = [];
+    T.forEach(([d, du], i) => { anims.push(this.mk(this.q('fontes:b' + i), [{ width: '0%' }, { width: '100%' }], { duration: du, delay: d })); sEls.push(this.q('fontes:s' + i)); });
+    anims.push(this.mk(this.q('fontes:done'), [{ opacity: 0 }, { opacity: 1 }], { duration: 250, delay: 3350 }));
+    this.reg('fontes', 3600, anims, { tick: (t) => { T.forEach(([d, du], i) => { const e = sEls[i]; if (e) e.textContent = t < d ? 'fila' : t < d + du ? 'lendo…' : done[i]; }); } });
+  }
+  bDespacho() {
+    const W = [52, 14, 9, 18, 7];
+    const anims = [this.clock('despacho', 3200, false)];
+    W.forEach((w, i) => {
+      anims.push(this.mk(this.q('despacho:b' + i), [{ width: '0%' }, { width: w + '%' }], { duration: 700, delay: i * 450 }));
+      anims.push(this.mk(this.q('despacho:v' + i), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: i * 450 + 550 }));
+    });
+    anims.push(this.mk(this.q('despacho:done'), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 2800 }));
+    this.reg('despacho', 3200, anims);
+  }
+  bReserva() {
+    const anims = [this.clock('reserva', 2800, false),
+      this.mk(this.q('reserva:nivel'), [{ height: '0%' }, { height: '62.4%' }], { duration: 1200, delay: 400 })];
+    const pct = this.q('reserva:pct');
+    this.reg('reserva', 2800, anims, { tick: (t) => { if (pct) pct.textContent = (62.4 * this.ss((t - 400) / 1200)).toFixed(1).replace('.', ',') + ' %'; } });
+  }
+  bSubm() {
+    const anims = [this.clock('subm', 2800, true)];
+    for (let i = 0; i < 4; i++) {
+      const s = i * 0.25, e = s + 0.2;
+      anims.push(this.mk(this.q('subm:f' + i), [
+        { transform: 'scaleX(0)', offset: 0 }, { transform: 'scaleX(0)', offset: s },
+        { transform: 'scaleX(1)', offset: e }, { transform: 'scaleX(1)', offset: 0.97 },
+        { transform: 'scaleX(0)', offset: 1 }
+      ], { duration: 2800, iterations: Infinity }));
+    }
+    this.reg('subm', 2800, anims, { loop: true });
+  }
+  bFreq() {
+    const el = this.q('freq:pulso'); const L = el.getTotalLength();
+    el.style.strokeDasharray = '56 ' + L;
+    const anims = [this.clock('freq', 1400, true),
+      this.mk(el, [{ strokeDashoffset: 56 }, { strokeDashoffset: -L }], { duration: 1400, iterations: Infinity, easing: 'linear' })];
+    this.reg('freq', 1400, anims, { loop: true });
+  }
+  bIngestao() {
+    const D = [300, 1100, 1900, 2600, 3300];
+    const anims = [this.clock('ingestao', 4000, false)];
+    D.forEach((d, i) => anims.push(this.mk(this.q('ingestao:l' + i), [{ opacity: 0 }, { opacity: 1 }], { duration: 250, delay: d })));
+    const n = this.q('ingestao:n');
+    this.reg('ingestao', 4000, anims, { tick: (t) => { if (n) n.textContent = this.fi(42018 * Math.max(0, Math.min(1, (t - 1100) / 800))) + ' linhas'; } });
+  }
+  bScore() {
+    const anel = this.q('score:anel'); const L = 2 * Math.PI * 54;
+    anel.style.strokeDasharray = L;
+    const anims = [this.clock('score', 2600, false),
+      this.mk(anel, [{ strokeDashoffset: L }, { strokeDashoffset: L * 0.28 }], { duration: 1400, delay: 300 })];
+    const num = this.q('score:num');
+    this.reg('score', 2600, anims, { tick: (t) => { if (num) num.textContent = Math.round(72 * this.ss((t - 300) / 1400)); } });
+  }
+  bSimula() {
+    const anims = [this.clock('simula', 4200, false),
+      this.mk(this.q('simula:bar'), [{ width: '0%' }, { width: '100%' }], { duration: 3600, delay: 100, easing: 'linear' }),
+      this.mk(this.q('simula:done'), [{ opacity: 0 }, { opacity: 1 }], { duration: 250, delay: 3750 })];
+    const val = this.q('simula:val'), pm = this.q('simula:pm'), cen = this.q('simula:cen');
+    this.reg('simula', 4200, anims, { tick: (t) => {
+      const decay = Math.exp(-t / 1200), noise = (Math.sin(t / 83) + Math.sin(t / 47)) * 0.5;
+      if (val) val.textContent = 'R$ ' + (3.84 + 0.42 * noise * decay).toFixed(2).replace('.', ',') + ' mi';
+      if (pm) pm.textContent = '± ' + Math.max(0.08, 1.2 * Math.exp(-t / 1400)).toFixed(2).replace('.', ',');
+      if (cen) cen.textContent = 'cenário ' + Math.min(500, Math.floor(t / 7.2)) + ' / 500';
+    } });
+  }
+  bPipeline() {
+    const T = [[200, 900], [1300, 900], [2400, 800], [3400, 700]];
+    const done = ['4 fontes', '0 erros · 3 avisos', '96 séries', 'apuração 2026-07'];
+    const anims = [this.clock('pipeline', 4400, false)];
+    const sEls = [];
+    T.forEach(([d, du], i) => { anims.push(this.mk(this.q('pipeline:f' + i), [{ width: '0%' }, { width: '100%' }], { duration: du, delay: d })); sEls.push(this.q('pipeline:s' + i)); });
+    this.reg('pipeline', 4400, anims, { tick: (t) => { T.forEach(([d, du], i) => { const e = sEls[i]; if (e) e.textContent = t < d ? '—' : t < d + du ? 'em curso' : done[i]; }); } });
+  }
+  bCompara() {
+    const anims = [this.clock('compara', 3000, false),
+      this.mk(this.q('compara:div'), [{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], { duration: 700, delay: 100 })];
+    for (let i = 0; i < 3; i++) {
+      anims.push(this.mk(this.q('compara:l' + i), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 500 + i * 180 }));
+      anims.push(this.mk(this.q('compara:r' + i), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 1100 + i * 180 }));
+    }
+    anims.push(this.mk(this.q('compara:delta'), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 2300 }));
+    this.reg('compara', 3000, anims);
+  }
+  bSubtroca() {
+    const lb = this.q('subtroca:lineB'); const L = lb.getTotalLength(); lb.style.strokeDasharray = L; lb.style.strokeDashoffset = L;
+    const anims = [this.clock('subtroca', 2200, false),
+      this.mk(this.q('subtroca:selA'), [{ opacity: 1 }, { opacity: 0 }], { duration: 300, delay: 400 }),
+      this.mk(this.q('subtroca:selB'), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 400 }),
+      this.mk(this.q('subtroca:valA'), [{ opacity: 1 }, { opacity: 0 }], { duration: 300, delay: 400 }),
+      this.mk(this.q('subtroca:valB'), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 500 }),
+      this.mk(this.q('subtroca:lineA'), [{ opacity: 1 }, { opacity: 0 }], { duration: 250, delay: 500 }),
+      this.mk(lb, [{ strokeDashoffset: L }, { strokeDashoffset: 0 }], { duration: 900, delay: 750 })];
+    this.reg('subtroca', 2200, anims);
+  }
+  bPeriodo() {
+    const lb = this.q('periodo:lineB'); const L = lb.getTotalLength(); lb.style.strokeDasharray = L; lb.style.strokeDashoffset = L;
+    const anims = [this.clock('periodo', 2400, false),
+      this.mk(this.q('periodo:segA'), [{ opacity: 1 }, { opacity: 0 }], { duration: 300, delay: 300 }),
+      this.mk(this.q('periodo:segB'), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 300 }),
+      this.mk(this.q('periodo:labA'), [{ opacity: 1 }, { opacity: 0 }], { duration: 300, delay: 600 }),
+      this.mk(this.q('periodo:labB'), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 700 }),
+      this.mk(this.q('periodo:lineA'), [{ opacity: 1 }, { opacity: 0 }], { duration: 250, delay: 500 }),
+      this.mk(lb, [{ strokeDashoffset: L }, { strokeDashoffset: 0 }], { duration: 1200, delay: 700 })];
+    this.reg('periodo', 2400, anims);
+  }
+  bExpande() {
+    const anims = [this.clock('expande', 2400, false),
+      this.mk(this.q('expande:panel'), [{ height: '0px' }, { height: '46px' }], { duration: 1, delay: 400 }),
+      this.mk(this.q('expande:pfio'), [{ width: '0%' }, { width: '100%' }], { duration: 700, delay: 430 }),
+      this.mk(this.q('expande:ptx'), [{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 950 })];
+    const g = this.q('expande:glifo');
+    this.reg('expande', 2400, anims, { tick: (t) => { if (g) g.textContent = t >= 400 ? '−' : '+'; } });
+  }
+  bDialogo() {
+    const anims = [this.clock('dialogo', 2600, false),
+      this.mk(this.q('dialogo:bg'), [{ opacity: 1 }, { opacity: 0.4 }], { duration: 200, delay: 300 }),
+      this.mk(this.q('dialogo:panel'), [{ opacity: 0 }, { opacity: 1 }], { duration: 150, delay: 300 }),
+      this.mk(this.q('dialogo:dfio'), [{ width: '0%' }, { width: '100%' }], { duration: 700, delay: 500 })];
+    this.reg('dialogo', 2600, anims);
+  }
+  bToast() {
+    const anims = [this.clock('toast', 4000, false),
+      this.mk(this.q('toast:bar'), [{ opacity: 0, offset: 0 }, { opacity: 0, offset: 0.075 }, { opacity: 1, offset: 0.125 }, { opacity: 1, offset: 0.85 }, { opacity: 0, offset: 0.925 }, { opacity: 0, offset: 1 }], { duration: 4000 }),
+      this.mk(this.q('toast:cd'), [{ width: '100%' }, { width: '0%' }], { duration: 2600, delay: 600, easing: 'linear' })];
+    this.reg('toast', 4000, anims);
+  }
+  bModotroca() {
+    const rampa = 0.0375, s1 = 0.48;
+    const cor = (el, a, b) => this.mk(el, [
+      { color: a, offset: 0 }, { color: a, offset: s1 }, { color: b, offset: s1 + rampa },
+      { color: b, offset: 0.96 }, { color: a, offset: 1 }
+    ], { duration: 4000, iterations: Infinity, easing: 'linear' });
+    const anims = [this.clock('modotroca', 4000, true),
+      this.mk(this.q('modotroca:panel'), [
+        { backgroundColor: '#F6F2E9', easing: 'step-end', offset: 0 },
+        { backgroundColor: '#14120F', easing: 'step-end', offset: s1 },
+        { backgroundColor: '#F6F2E9', offset: 1 }
+      ], { duration: 4000, iterations: Infinity }),
+      this.mk(this.q('modotroca:panel'), [
+        { borderColor: '#D5CDB9', offset: 0 }, { borderColor: '#D5CDB9', offset: s1 }, { borderColor: '#3A342B', offset: s1 + rampa },
+        { borderColor: '#3A342B', offset: 0.96 }, { borderColor: '#D5CDB9', offset: 1 }
+      ], { duration: 4000, iterations: Infinity, easing: 'linear' }),
+      this.mk(this.q('modotroca:fio'), [
+        { backgroundColor: '#D5CDB9', offset: 0 }, { backgroundColor: '#D5CDB9', offset: s1 }, { backgroundColor: '#3A342B', offset: s1 + rampa },
+        { backgroundColor: '#3A342B', offset: 0.96 }, { backgroundColor: '#D5CDB9', offset: 1 }
+      ], { duration: 4000, iterations: Infinity, easing: 'linear' }),
+      cor(this.q('modotroca:t1'), '#14120F', '#F6F2E9'),
+      cor(this.q('modotroca:t3'), '#14120F', '#F6F2E9'),
+      cor(this.q('modotroca:t2'), '#6E6659', '#A79D8C')];
+    const lbl = this.q('modotroca:lbl');
+    this.reg('modotroca', 4000, anims, { loop: true, tick: (t) => { if (lbl) lbl.textContent = t < 1920 ? 'modo claro' : t < 3900 ? 'modo noturno' : 'modo claro'; } });
+  }
+  renderVals() {
+    return {
+      mode: this.state.mode,
+      onMode: this.onMode, onCtrl: this.onCtrl, onScrub: this.onScrub, onRm: this.onRm, onReplayAll: this.onReplayAll,
+      provProps: { fontes: ['ONS', 'CCEE', 'ANEEL', 'EPE'], recorte: 'apuração mensal', timestamp: '2026-08-06 · 14:30 BRT', ilustrativa: true, fio: true }
+    };
+  }
+}
+</script>
+</body>
+</html>

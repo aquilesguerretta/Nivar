@@ -7,17 +7,28 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routers import (
     ai,
     ancillary,
+    argos_signal_inspection,
+    ariadne_operator,
     atlas,
+    atlas_world,
+    auth,
+    conta_luz,
+    conversations,
+    diagnostico,
     energy,
     fuel_mix,
     lmp,
     news,
     outages_v2,
+    products,
+    progress,
     reserve_margin,
+    solar_proposal,
     spark_spread,
     stream,
     weather,
 )
+from app.routers.infra import router as infra_router
 from app.services.pjm_stream import HUB
 
 
@@ -70,6 +81,36 @@ app.include_router(reserve_margin.router)  # /api/reserve-margin/*
 app.include_router(outages_v2.router)  # /api/outages/*
 app.include_router(ancillary.router)  # /api/ancillary/*
 app.include_router(stream.router)  # /api/stream (SSE)
+app.include_router(infra_router)  # /api/infra/* (Wave 7 static infrastructure)
+
+# Wave 9 platform identity — one account per person, activation per product.
+app.include_router(auth.router)  # /api/auth/*
+app.include_router(products.router)  # /api/products/*
+
+# Wave 10 world atlas — real Our World in Data country energy profiles.
+app.include_router(atlas_world.router)  # /api/atlas/world/*
+
+# Wave 11 progress — per-account lesson/badge/streak tracking, event-logged.
+app.include_router(progress.router)  # /api/progress/*
+
+# Conta de Luz Express Wave 2 — authenticated intake and manual delivery.
+app.include_router(conta_luz.router)  # /api/conta-luz-express/*
+
+# Solar Proposal Validator Wave 2 — sibling Advisory intake and delivery.
+app.include_router(solar_proposal.router)  # /api/solar-proposal-validator/*
+
+# Diagnóstico Energético Wave 2 — structured scoping intake (not a file upload).
+app.include_router(diagnostico.router)  # /api/diagnostico-energetico/*
+
+# Diagnóstico Energético Wave 2 — human messaging (any entitled product).
+app.include_router(conversations.router)  # /api/conversations/*
+app.include_router(conversations.operator_router)  # /api/operator/conversations/*
+
+# NIV-48 Ariadne operator instrument — authenticated, workspace-scoped Core access.
+app.include_router(ariadne_operator.router)  # /api/operator/ariadne/*
+
+# NIV-52 Argos Signal inspection — authenticated, read-only, server-owned scenarios.
+app.include_router(argos_signal_inspection.router)  # /api/operator/argos/ons-capacidade/*
 
 
 @app.get("/health")

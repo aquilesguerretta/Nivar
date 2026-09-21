@@ -1,0 +1,41 @@
+<!-- @dsCard group="Components" viewport="700x436" name="Tabela, card de dado e procedência" subtitle="Bordas colapsadas, célula numérica em mono tabular, cards de fio compartilhado, etiqueta de fonte" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Dado</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:700px;overflow:hidden}.g{display:grid;grid-template-columns:1fr 1fr}.bl{padding:14px 16px;display:grid;align-content:start;gap:16px}.bl+.bl{border-left:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:8px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.nv-card__valor{font-size:19px}.nv-tab td,.nv-tab td.nv-num{font-size:12.5px}.nv-tab th,.nv-tab td{padding:5px 8px}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { DataTable, DataCard, DataCardGrid, Provenance } = window.NIVARDesignSystem_0a22a8;
+const COLS = [
+  { key: 'sub', label: 'Submercado' },
+  { key: 'pld', label: 'PLD R$/MWh', tipo: 'numero' },
+  { key: 'var', label: 'Var.', tipo: 'delta' },
+];
+const ROWS = [
+  { sub: 'SE/CO', pld: 214.8, var: 11.4 },
+  { sub: 'Sul', pld: 198.11, var: -4.8 },
+  { sub: 'Nordeste', pld: 96.04, var: 0 },
+  { sub: 'Norte', pld: 1021.5, var: 38.2 },
+];
+function Bloco({ modo, rotulo, nota }) {
+  return (
+    <div className="bl" {...(modo ? { 'data-mode': modo } : {})}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <DataCardGrid columns={2}>
+        <DataCard etiqueta="PLD SE/CO" valor={214.8} unidade="R$/MWh" delta={11.4} familia="intelligence" />
+        <DataCard etiqueta="Carga SIN" valor={101328} casas={0} unidade="MW" delta={-4.8} />
+      </DataCardGrid>
+      <DataTable columns={COLS} rows={ROWS} linhaHover={2} footer={{ sub: 'Total SIN', pld: 382.61 }} />
+      <Provenance fontes={['ONS','CCEE','ANEEL','EPE']} recorte="apuração mensal" timestamp="2026-08-04 · 14:30 BRT" ilustrativa />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<div className="g">
+  <Bloco rotulo="Modo claro" nota="zebra papel-2" />
+  <Bloco modo="noturno" rotulo="Modo noturno" nota="zebra tinta-2" />
+</div>);
+</script></body></html>

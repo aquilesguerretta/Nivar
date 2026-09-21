@@ -1,0 +1,69 @@
+<!-- @dsCard group="Components" viewport="1060x1820" name="Escolha, deslizante e unidade" subtitle="Caixa e rádio com preenchimento do acento em uso · trilho fino sem sombra · afixo mono dentro do campo" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Escolha, deslizante e unidade</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:1060px;overflow:hidden}.g{display:grid;grid-template-columns:1fr 1fr}.bl{padding:16px 18px 20px;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:13px;background:var(--surface-page)}.bl+.bl{border-left:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.par{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px}.mob{display:grid;grid-template-columns:343px 343px;border-top:1px solid var(--rule-strong)}.mob .bl{width:343px}@media (max-width:640px){.par{grid-template-columns:1fr}}[data-largura="mobile"] .par{grid-template-columns:1fr}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">const { Checkbox, Radio, Slider, UnitField, Input, LabeledDivider } = window.NIVARDesignSystem_0a22a8;
+function Bloco({ modo, largura, rotulo, nota, s }) {
+  const attrs = {};
+  if (modo) attrs['data-mode'] = modo;
+  if (largura) attrs['data-largura'] = largura;
+  return (
+    <div className="bl" {...attrs}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <span className="eti">caixa de seleção · repouso, hover, marcada, parcial, desabilitada</span>
+      <div className="nv-escolha-pilha">
+        <Checkbox id={s + 'c1'} label="Norte" />
+        <Checkbox id={s + 'c2'} label="Nordeste" state="hover" />
+        <Checkbox id={s + 'c3'} label="Sudeste/Centro-Oeste" defaultChecked />
+        <Checkbox id={s + 'c4'} label="Todos os submercados" nota="dois de quatro selecionados" indeterminado />
+        <Checkbox id={s + 'c5'} label="Sul" nota="sem apuração no período" disabled />
+      </div>
+      <span className="eti">rádio · escolha única, disco pleno concêntrico</span>
+      <div className="nv-escolha-pilha">
+        <Radio id={s + 'r1'} name={s + 'rec'} value="h" label="Apuração horária" defaultChecked />
+        <Radio id={s + 'r2'} name={s + 'rec'} value="d" label="Apuração diária" state="hover" />
+        <Radio id={s + 'r3'} name={s + 'rec'} value="m" label="Apuração mensal" nota="fecha no dia 5" />
+        <Radio id={s + 'r4'} name={s + 'rec'} value="a" label="Apuração anual" disabled />
+      </div>
+      <span className="eti">a mesma peça, três acentos de contexto</span>
+      <div className="nv-escolha-fila">
+        <span style={{ '--acento-contexto': 'var(--family-software)' }}><Checkbox id={s + 'f1'} label="Software" defaultChecked /></span>
+        <span style={{ '--acento-contexto': 'var(--family-hardware)' }}><Checkbox id={s + 'f2'} label="Hardware" defaultChecked /></span>
+        <span style={{ '--acento-contexto': 'var(--family-academy)' }}><Radio id={s + 'f3'} name={s + 'fam'} label="Academy" defaultChecked /></span>
+      </div>
+      <span className="eti">deslizante · trilho de 3px, alça quadrada, sem sombra</span>
+      <Slider id={s + 's1'} label="Teto de PLD" min={0} max={600} step={10} defaultValue={280} unidade="R$/MWh" />
+      <Slider id={s + 's2'} label="Carga mínima" min={0} max={100} defaultValue={62} unidade="%" />
+      <Slider id={s + 's3'} label="Janela de apuração" min={1} max={12} defaultValue={6} unidade="meses" disabled />
+      <span className="eti">campo com unidade · prefixo, sufixo, os dois — e obrigatório</span>
+      <div className="par">
+        <UnitField id={s + 'u1'} label="Preço de contrato" prefixo="R$" sufixo="/MWh" defaultValue="214,80" obrigatorio />
+        <UnitField id={s + 'u2'} label="Consumo mensal" sufixo="MWh" defaultValue="1 284,00" />
+        <UnitField id={s + 'u3'} label="Desconto na tarifa" sufixo="%" defaultValue="18,4" />
+        <UnitField id={s + 'u4'} label="Demanda contratada" prefixo="≥" sufixo="kW" placeholder="0" hint="Fora de faixa exige parecer." />
+      </div>
+      <LabeledDivider>validação assíncrona</LabeledDivider>
+      <div className="par">
+        <UnitField id={s + 'v1'} label="CNPJ da unidade" numerico={false} defaultValue="12.345.678/0001-90" verificando />
+        <Input id={s + 'v2'} label="E-mail corporativo" defaultValue="energia@usina.com.br" verificando />
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<>
+  <div className="g">
+    <Bloco s="c" rotulo="Modo claro" nota="marcado preenche com o acento do contexto" />
+    <Bloco s="n" modo="noturno" rotulo="Modo noturno" nota="glifo × na caixa, disco no rádio" />
+  </div>
+  <div className="mob">
+    <Bloco s="mc" largura="mobile" rotulo="Móvel claro" nota="343px · 44px de toque por padding do rótulo" />
+    <Bloco s="mn" largura="mobile" modo="noturno" rotulo="Móvel noturno" nota="343px · alça sobe para 16px" />
+  </div>
+</>);
+</script></body></html>

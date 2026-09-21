@@ -1,0 +1,35 @@
+.nv-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:13px;font-weight:500;letter-spacing:.02em;line-height:1;padding:9px 16px;border:var(--fio) solid transparent;border-radius:0;background:none;cursor:pointer;text-align:left;transition:color var(--dur-hover) var(--ease),border-color var(--dur-hover) var(--ease),opacity var(--dur-hover) var(--ease)}
+.nv-btn:focus-visible{outline:2px solid var(--accent-focus);outline-offset:2px}
+.nv-btn:disabled{opacity:.4;cursor:not-allowed}
+.nv-btn--compacto{padding:6px 11px;font-size:12px}
+.nv-btn__glifo{font-family:var(--font-data);font-size:12px;line-height:1}
+.nv-btn--primario{background:var(--btn-primario-bg);border-color:var(--btn-primario-fio);color:var(--btn-primario-fg)}
+.nv-btn--primario:hover:not(:disabled){background:var(--btn-primario-bg-hover);border-color:var(--btn-primario-fio-hover)}
+.nv-btn--primario:active:not(:disabled){background:var(--btn-primario-bg-press);border-color:var(--btn-primario-fio-press);transition-duration:var(--dur-estado)}
+.nv-btn--secundario{border-color:var(--rule-heavy);color:var(--text-strong)}
+.nv-btn--secundario:hover:not(:disabled){color:var(--fg-hover);border-color:var(--fio-hover)}
+.nv-btn--secundario:active:not(:disabled){color:var(--fg-press);border-color:var(--fio-press);transition-duration:var(--dur-estado)}
+.nv-btn--terciario{padding-left:0;padding-right:0;border-color:transparent;border-bottom-color:var(--rule-strong);color:var(--text-strong)}
+.nv-btn--terciario:hover:not(:disabled){color:var(--fg-hover);border-bottom-color:var(--fio-hover)}
+.nv-btn--terciario:active:not(:disabled){color:var(--fg-press);border-bottom-color:var(--fio-press);transition-duration:var(--dur-estado)}
+.nv-btn--is-hover.nv-btn--primario{background:var(--btn-primario-bg-hover);border-color:var(--btn-primario-fio-hover)}
+.nv-btn--is-press.nv-btn--primario{background:var(--btn-primario-bg-press);border-color:var(--btn-primario-fio-press)}
+.nv-btn--is-hover.nv-btn--secundario{color:var(--fg-hover);border-color:var(--fio-hover)}
+.nv-btn--is-press.nv-btn--secundario{color:var(--fg-press);border-color:var(--fio-press)}
+.nv-btn--is-hover.nv-btn--terciario{color:var(--fg-hover);border-bottom-color:var(--fio-hover)}
+.nv-btn--is-press.nv-btn--terciario{color:var(--fg-press);border-bottom-color:var(--fio-press)}
+.nv-btn--is-foco{outline:2px solid var(--accent-focus);outline-offset:2px}
+
+/* LINK DE DOWNLOAD — nao e botao: download e navegacao para um arquivo que ja existe.
+   Nome e extensao em mono, tamanho em secundario, glifo unicode a esquerda. */
+.nv-baixar{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:baseline;gap:3px 10px;border-bottom:0;text-decoration:none;color:var(--link);transition:color var(--dur-hover) var(--ease)}
+.nv-baixar__glifo{grid-row:1;font-family:var(--font-data);font-weight:400;font-size:12px;line-height:1.4;color:var(--text-faint);transition:color var(--dur-hover) var(--ease)}
+.nv-baixar__nome{grid-row:1;justify-self:start;font-family:var(--font-data);font-weight:400;font-size:12.5px;line-height:1.4;letter-spacing:.01em;color:var(--link);border-bottom:var(--fio) solid var(--link-fio);padding-bottom:1px;transition:color var(--dur-hover) var(--ease),border-color var(--dur-hover) var(--ease);white-space:nowrap}
+.nv-baixar__ext{font-weight:500;color:inherit}
+.nv-baixar__meta{grid-row:1;display:flex;align-items:baseline;gap:6px;font-family:var(--font-data);font-weight:400;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);white-space:nowrap;font-variant-numeric:tabular-nums}
+.nv-baixar__sep{opacity:.55}
+.nv-baixar__nota{grid-column:2/-1;font-family:var(--font-data);font-weight:400;font-size:9.5px;line-height:1.5;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint)}
+.nv-baixar:hover .nv-baixar__nome{color:var(--link-hover);border-bottom-color:currentColor}
+.nv-baixar:hover .nv-baixar__glifo{color:var(--link-hover)}
+.nv-baixar:focus-visible{outline:var(--fio-forte) solid var(--accent-focus);outline-offset:2px}
+.nv-baixar--desabilitado{opacity:.4;cursor:not-allowed;pointer-events:none}

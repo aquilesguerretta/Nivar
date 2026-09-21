@@ -173,7 +173,7 @@ export function JournalView() {
                 fontWeight: 600,
                 letterSpacing: '0.16em',
                 textTransform: 'uppercase',
-                color: '#fff',
+                color: C.textPrimary,
                 cursor: mode === 'list' ? 'pointer' : 'not-allowed',
                 opacity: mode === 'list' ? 1 : 0.5,
               }}
@@ -378,7 +378,7 @@ export function JournalView() {
                   fontWeight: 600,
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
-                  color: '#fff',
+                  color: C.textPrimary,
                   cursor: 'pointer',
                 }}
               >

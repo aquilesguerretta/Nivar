@@ -1,0 +1,9 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Terminal initial-selection verification</title></head><body style="margin:0"><div id="root"></div><script type="module">
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { TerminalPreview } from '/src/pages/terminal-brasil/TerminalBrasil.tsx';
+const query = new URLSearchParams(location.search);
+const props = query.has('index') ? { initialRegion: 'nordeste', initialProbeIndex: Number(query.get('index')) } : {};
+createRoot(document.getElementById('root')).render(React.createElement(BrowserRouter, null, React.createElement(TerminalPreview, props)));
+</script></body></html>

@@ -1,0 +1,2549 @@
+{
+  "url": "https://blueprintjs.com/docs/#core/components/table",
+  "title": "Blueprint – Documentation",
+  "text": "Blueprint v6.x is now in stable release. Still using v5.x? Click here to view the legacy docs →\nBlueprint \nv6\nView on GitHub\nDark theme\nshift + D\nSearch...\nshift + S\nBLUEPRINT\nGetting started\nReading the documentation\nDesign Principles\nCORE\n6.18.0\nDATETIME\n6.2.4\nICONS\n6.13.0\nSELECT\n6.3.4\nTABLE\n6.2.4\nLABS\n6.4.4\n© 2026\nPalantir\nEdit this page\nBlueprint\nBlueprint is a React-based UI toolkit for the web.\n\nIt is optimized for building complex data-dense interfaces for desktop applications.\n\nGetting started\nGit repository\nCode Sandbox\nContributing\nBlueprint v6.x is now available\n\nCheck out the migration guides to upgrade from v5.x →\n\nQuick start\nInstall\n\n@blueprintjs/core is the primary Blueprint library package, home to over 40 UI components. Install it with your Node.js package manager of choice:\n\npnpm add @blueprintjs/core react react-dom\n\n\nAdditional UI components and APIs are available in:\n\n@blueprintjs/icons\n@blueprintjs/datetime\n@blueprintjs/select\n@blueprintjs/table\n\nThe navigation sidebar lists all the available packages, separated by use case and significant dependencies. All have peer dependencies on react and react-dom.\n\nImport\n\nImport React components from the appropriate package.\n\nimport { Button } from \"@blueprintjs/core\";\n\n<Button intent=\"success\" text=\"button content\" onClick={incrementCounter} />;\n\n\nFor this button to be styled correctly in the DOM, it needs its associated CSS to be loaded on the page. Don't forget to include the main CSS file from each Blueprint package and their dependencies! The following example shows an index.html file; the same stylesheets should be loaded if you use a bundler like Webpack.\n\n<link href=\"path/to/node_modules/normalize.css/normalize.css\" rel=\"stylesheet\" />\n<link href=\"path/to/node_modules/@blueprintjs/core/lib/css/blueprint.css\" rel=\"stylesheet\" />\n<!-- blueprint-icons.css file must be included alongside blueprint.css for icon font support -->\n<link href=\"path/to/node_modules/@blueprintjs/icons/lib/css/blueprint-icons.css\" rel=\"stylesheet\" />\n<!-- add other blueprint-*.css files here -->\n",
+  "links": [
+    {
+      "text": "Blueprint v6.x is now in stable release. Still using v5.x? Click here to view the legacy docs →",
+      "href": "https://blueprintjs.com/docs/versions/5"
+    },
+    {
+      "text": "",
+      "href": "https://blueprintjs.com/"
+    },
+    {
+      "text": "View on GitHub",
+      "href": "https://github.com/palantir/blueprint"
+    },
+    {
+      "text": "BLUEPRINT",
+      "href": "https://blueprintjs.com/docs/#blueprint"
+    },
+    {
+      "text": "Getting started",
+      "href": "https://blueprintjs.com/docs/#blueprint/getting-started"
+    },
+    {
+      "text": "Installing Blueprint",
+      "href": "https://blueprintjs.com/docs/#blueprint/getting-started.installing-blueprint"
+    },
+    {
+      "text": "JS environment",
+      "href": "https://blueprintjs.com/docs/#blueprint/getting-started.js-environment"
+    },
+    {
+      "text": "Language features",
+      "href": "https://blueprintjs.com/docs/#blueprint/getting-started.language-features"
+    },
+    {
+      "text": "TypeScript",
+      "href": "https://blueprintjs.com/docs/#blueprint/getting-started.typescript"
+    },
+    {
+      "text": "Vanilla JS APIs",
+      "href": "https://blueprintjs.com/docs/#blueprint/getting-started.vanilla-js-apis"
+    },
+    {
+      "text": "Reading the documentation",
+      "href": "https://blueprintjs.com/docs/#blueprint/reading-the-docs"
+    },
+    {
+      "text": "Understanding TypeScript",
+      "href": "https://blueprintjs.com/docs/#blueprint/reading-the-docs.understanding-typescript"
+    },
+    {
+      "text": "Design Principles",
+      "href": "https://blueprintjs.com/docs/#blueprint/principles"
+    },
+    {
+      "text": "Browser support",
+      "href": "https://blueprintjs.com/docs/#blueprint/principles.browser-support"
+    },
+    {
+      "text": "API Contract",
+      "href": "https://blueprintjs.com/docs/#blueprint/principles.api-contract"
+    },
+    {
+      "text": "CORE",
+      "href": "https://blueprintjs.com/docs/#core"
+    },
+    {
+      "text": "6.18.0",
+      "href": "https://www.npmjs.com/package/@blueprintjs/core"
+    },
+    {
+      "text": "Accessibility",
+      "href": "https://blueprintjs.com/docs/#core/accessibility"
+    },
+    {
+      "text": "Focus management",
+      "href": "https://blueprintjs.com/docs/#core/accessibility.focus-management"
+    },
+    {
+      "text": "JavaScript API",
+      "href": "https://blueprintjs.com/docs/#core/accessibility.javascript-api"
+    },
+    {
+      "text": "Ignoring focus style manager",
+      "href": "https://blueprintjs.com/docs/#core/accessibility.ignoring-focus-style-manager"
+    },
+    {
+      "text": "Color contrast",
+      "href": "https://blueprintjs.com/docs/#core/accessibility.color-contrast"
+    },
+    {
+      "text": "Focus indication contrast",
+      "href": "https://blueprintjs.com/docs/#core/accessibility.focus-indication-contrast"
+    },
+    {
+      "text": "Classes",
+      "href": "https://blueprintjs.com/docs/#core/classes"
+    },
+    {
+      "text": "Modifiers",
+      "href": "https://blueprintjs.com/docs/#core/classes.modifiers"
+    },
+    {
+      "text": "Namespacing",
+      "href": "https://blueprintjs.com/docs/#core/classes.namespacing"
+    },
+    {
+      "text": "Current namespace prefix",
+      "href": "https://blueprintjs.com/docs/#core/classes.current-namespace-prefix"
+    },
+    {
+      "text": "Custom namespace",
+      "href": "https://blueprintjs.com/docs/#core/classes.custom-namespace"
+    },
+    {
+      "text": "Linting",
+      "href": "https://blueprintjs.com/docs/#core/classes.linting"
+    },
+    {
+      "text": "Colors",
+      "href": "https://blueprintjs.com/docs/#core/colors"
+    },
+    {
+      "text": "Gray scale",
+      "href": "https://blueprintjs.com/docs/#core/colors.gray-scale"
+    },
+    {
+      "text": "Core colors",
+      "href": "https://blueprintjs.com/docs/#core/colors.core-colors"
+    },
+    {
+      "text": "Extended colors",
+      "href": "https://blueprintjs.com/docs/#core/colors.extended-colors"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/colors.usage"
+    },
+    {
+      "text": "Color schemes",
+      "href": "https://blueprintjs.com/docs/#core/colors.color-schemes"
+    },
+    {
+      "text": "Sequential color schemes",
+      "href": "https://blueprintjs.com/docs/#core/colors.sequential-color-schemes"
+    },
+    {
+      "text": "Diverging color schemes",
+      "href": "https://blueprintjs.com/docs/#core/colors.diverging-color-schemes"
+    },
+    {
+      "text": "Qualitative color schemes",
+      "href": "https://blueprintjs.com/docs/#core/colors.qualitative-color-schemes"
+    },
+    {
+      "text": "Typography",
+      "href": "https://blueprintjs.com/docs/#core/typography"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/typography.usage"
+    },
+    {
+      "text": "UI text",
+      "href": "https://blueprintjs.com/docs/#core/typography.ui-text"
+    },
+    {
+      "text": "Running text",
+      "href": "https://blueprintjs.com/docs/#core/typography.running-text"
+    },
+    {
+      "text": "Headings",
+      "href": "https://blueprintjs.com/docs/#core/typography.headings"
+    },
+    {
+      "text": "Links",
+      "href": "https://blueprintjs.com/docs/#core/typography.links"
+    },
+    {
+      "text": "Preformatted text",
+      "href": "https://blueprintjs.com/docs/#core/typography.preformatted-text"
+    },
+    {
+      "text": "Block quotes",
+      "href": "https://blueprintjs.com/docs/#core/typography.block-quotes"
+    },
+    {
+      "text": "Lists",
+      "href": "https://blueprintjs.com/docs/#core/typography.lists"
+    },
+    {
+      "text": "Internationalization",
+      "href": "https://blueprintjs.com/docs/#core/typography.internationalization"
+    },
+    {
+      "text": "Right-to-left (RTL) support",
+      "href": "https://blueprintjs.com/docs/#core/typography.right-to-left-rtl-support"
+    },
+    {
+      "text": "Dark theme",
+      "href": "https://blueprintjs.com/docs/#core/typography.dark-theme"
+    },
+    {
+      "text": "Variables",
+      "href": "https://blueprintjs.com/docs/#core/variables"
+    },
+    {
+      "text": "Font variables",
+      "href": "https://blueprintjs.com/docs/#core/variables.font-variables"
+    },
+    {
+      "text": "Icon variables",
+      "href": "https://blueprintjs.com/docs/#core/variables.icon-variables"
+    },
+    {
+      "text": "Grids &amp; dimensions",
+      "href": "https://blueprintjs.com/docs/#core/variables.grids-andamp-dimensions"
+    },
+    {
+      "text": "Grid system",
+      "href": "https://blueprintjs.com/docs/#core/variables.grid-system"
+    },
+    {
+      "text": "Layering",
+      "href": "https://blueprintjs.com/docs/#core/variables.layering"
+    },
+    {
+      "text": "Light theme styles",
+      "href": "https://blueprintjs.com/docs/#core/variables.light-theme-styles"
+    },
+    {
+      "text": "Dark theme styles",
+      "href": "https://blueprintjs.com/docs/#core/variables.dark-theme-styles"
+    },
+    {
+      "text": "Elevation drop shadows",
+      "href": "https://blueprintjs.com/docs/#core/variables.elevation-drop-shadows"
+    },
+    {
+      "text": "Color aliases",
+      "href": "https://blueprintjs.com/docs/#core/variables.color-aliases"
+    },
+    {
+      "text": "Breadcrumbs",
+      "href": "https://blueprintjs.com/docs/#core/components/breadcrumbs"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/breadcrumbs.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/breadcrumbs.examples"
+    },
+    {
+      "text": "Basic",
+      "href": "https://blueprintjs.com/docs/#core/components/breadcrumbs.basic"
+    },
+    {
+      "text": "Icon",
+      "href": "https://blueprintjs.com/docs/#core/components/breadcrumbs.icon"
+    },
+    {
+      "text": "Overflow",
+      "href": "https://blueprintjs.com/docs/#core/components/breadcrumbs.overflow"
+    },
+    {
+      "text": "Customizing breadcrumbs",
+      "href": "https://blueprintjs.com/docs/#core/components/breadcrumbs.customizing-breadcrumbs"
+    },
+    {
+      "text": "Collapse direction",
+      "href": "https://blueprintjs.com/docs/#core/components/breadcrumbs.collapse-direction"
+    },
+    {
+      "text": "Disabled",
+      "href": "https://blueprintjs.com/docs/#core/components/breadcrumbs.disabled"
+    },
+    {
+      "text": "Interactive Playground",
+      "href": "https://blueprintjs.com/docs/#core/components/breadcrumbs.interactive-playground"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/breadcrumbs.props-interface"
+    },
+    {
+      "text": "Breadcrumb",
+      "href": "https://blueprintjs.com/docs/#core/components/breadcrumbs.breadcrumb"
+    },
+    {
+      "text": "Buttons",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.examples"
+    },
+    {
+      "text": "Basic",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.basic"
+    },
+    {
+      "text": "Intent",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.intent"
+    },
+    {
+      "text": "Variant",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.variant"
+    },
+    {
+      "text": "Minimal",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.minimal"
+    },
+    {
+      "text": "Outlined",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.outlined"
+    },
+    {
+      "text": "Size",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.size"
+    },
+    {
+      "text": "Fill",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.fill"
+    },
+    {
+      "text": "Aligned text",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.aligned-text"
+    },
+    {
+      "text": "Ellipsized text",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.ellipsized-text"
+    },
+    {
+      "text": "Icons with text",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.icons-with-text"
+    },
+    {
+      "text": "Icon buttons",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.icon-buttons"
+    },
+    {
+      "text": "Button states",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.button-states"
+    },
+    {
+      "text": "AnchorButton",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.anchorbutton"
+    },
+    {
+      "text": "Interactive Playground",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.interactive-playground"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/buttons.props-interface"
+    },
+    {
+      "text": "Button group",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.examples"
+    },
+    {
+      "text": "Basic",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.basic"
+    },
+    {
+      "text": "Intent",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.intent"
+    },
+    {
+      "text": "Variant",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.variant"
+    },
+    {
+      "text": "Outlined and minimal",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.outlined-and-minimal"
+    },
+    {
+      "text": "Size",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.size"
+    },
+    {
+      "text": "Fill",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.fill"
+    },
+    {
+      "text": "Icons only",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.icons-only"
+    },
+    {
+      "text": "Icons with tooltips",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.icons-with-tooltips"
+    },
+    {
+      "text": "Flex layout",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.flex-layout"
+    },
+    {
+      "text": "Vertical layout",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.vertical-layout"
+    },
+    {
+      "text": "Usage with popovers",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.usage-with-popovers"
+    },
+    {
+      "text": "Interactive Playground",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.interactive-playground"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/button-group.props-interface"
+    },
+    {
+      "text": "Callout",
+      "href": "https://blueprintjs.com/docs/#core/components/callout"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/callout.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/callout.examples"
+    },
+    {
+      "text": "Basic",
+      "href": "https://blueprintjs.com/docs/#core/components/callout.basic"
+    },
+    {
+      "text": "Intent",
+      "href": "https://blueprintjs.com/docs/#core/components/callout.intent"
+    },
+    {
+      "text": "Icon",
+      "href": "https://blueprintjs.com/docs/#core/components/callout.icon"
+    },
+    {
+      "text": "Compact",
+      "href": "https://blueprintjs.com/docs/#core/components/callout.compact"
+    },
+    {
+      "text": "Minimal",
+      "href": "https://blueprintjs.com/docs/#core/components/callout.minimal"
+    },
+    {
+      "text": "Interactive Playground",
+      "href": "https://blueprintjs.com/docs/#core/components/callout.interactive-playground"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/callout.props-interface"
+    },
+    {
+      "text": "Card",
+      "href": "https://blueprintjs.com/docs/#core/components/card"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/card.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/card.examples"
+    },
+    {
+      "text": "Basic",
+      "href": "https://blueprintjs.com/docs/#core/components/card.basic"
+    },
+    {
+      "text": "Interactive",
+      "href": "https://blueprintjs.com/docs/#core/components/card.interactive"
+    },
+    {
+      "text": "Compact",
+      "href": "https://blueprintjs.com/docs/#core/components/card.compact"
+    },
+    {
+      "text": "Elevation",
+      "href": "https://blueprintjs.com/docs/#core/components/card.elevation"
+    },
+    {
+      "text": "Interactive Playground",
+      "href": "https://blueprintjs.com/docs/#core/components/card.interactive-playground"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/card.props-interface"
+    },
+    {
+      "text": "Card List",
+      "href": "https://blueprintjs.com/docs/#core/components/card-list"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/card-list.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/card-list.examples"
+    },
+    {
+      "text": "Basic",
+      "href": "https://blueprintjs.com/docs/#core/components/card-list.basic"
+    },
+    {
+      "text": "Bordered",
+      "href": "https://blueprintjs.com/docs/#core/components/card-list.bordered"
+    },
+    {
+      "text": "Compact",
+      "href": "https://blueprintjs.com/docs/#core/components/card-list.compact"
+    },
+    {
+      "text": "Combining with section",
+      "href": "https://blueprintjs.com/docs/#core/components/card-list.combining-with-section"
+    },
+    {
+      "text": "Interactive Playground",
+      "href": "https://blueprintjs.com/docs/#core/components/card-list.interactive-playground"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/card-list.props-interface"
+    },
+    {
+      "text": "Control card",
+      "href": "https://blueprintjs.com/docs/#core/components/control-card"
+    },
+    {
+      "text": "Switch card",
+      "href": "https://blueprintjs.com/docs/#core/components/control-card.switch-card"
+    },
+    {
+      "text": "Checkbox card",
+      "href": "https://blueprintjs.com/docs/#core/components/control-card.checkbox-card"
+    },
+    {
+      "text": "Radio card",
+      "href": "https://blueprintjs.com/docs/#core/components/control-card.radio-card"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/control-card.props-interface"
+    },
+    {
+      "text": "Combining with CardList",
+      "href": "https://blueprintjs.com/docs/#core/components/control-card.combining-with-cardlist"
+    },
+    {
+      "text": "Collapse",
+      "href": "https://blueprintjs.com/docs/#core/components/collapse"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/collapse.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/collapse.examples"
+    },
+    {
+      "text": "Basic",
+      "href": "https://blueprintjs.com/docs/#core/components/collapse.basic"
+    },
+    {
+      "text": "Keeping children mounted",
+      "href": "https://blueprintjs.com/docs/#core/components/collapse.keeping-children-mounted"
+    },
+    {
+      "text": "Interactive Playground",
+      "href": "https://blueprintjs.com/docs/#core/components/collapse.interactive-playground"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/collapse.props-interface"
+    },
+    {
+      "text": "Divider",
+      "href": "https://blueprintjs.com/docs/#core/components/divider"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/divider.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/divider.examples"
+    },
+    {
+      "text": "Basic",
+      "href": "https://blueprintjs.com/docs/#core/components/divider.basic"
+    },
+    {
+      "text": "Compact",
+      "href": "https://blueprintjs.com/docs/#core/components/divider.compact"
+    },
+    {
+      "text": "Vertical",
+      "href": "https://blueprintjs.com/docs/#core/components/divider.vertical"
+    },
+    {
+      "text": "Interactive Playground",
+      "href": "https://blueprintjs.com/docs/#core/components/divider.interactive-playground"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/divider.props-interface"
+    },
+    {
+      "text": "Editable text",
+      "href": "https://blueprintjs.com/docs/#core/components/editable-text"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/editable-text.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/editable-text.examples"
+    },
+    {
+      "text": "Basic",
+      "href": "https://blueprintjs.com/docs/#core/components/editable-text.basic"
+    },
+    {
+      "text": "Disabled",
+      "href": "https://blueprintjs.com/docs/#core/components/editable-text.disabled"
+    },
+    {
+      "text": "Multiline mode",
+      "href": "https://blueprintjs.com/docs/#core/components/editable-text.multiline-mode"
+    },
+    {
+      "text": "Intent",
+      "href": "https://blueprintjs.com/docs/#core/components/editable-text.intent"
+    },
+    {
+      "text": "Select text on focus",
+      "href": "https://blueprintjs.com/docs/#core/components/editable-text.select-text-on-focus"
+    },
+    {
+      "text": "Interactive Playground",
+      "href": "https://blueprintjs.com/docs/#core/components/editable-text.interactive-playground"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/editable-text.props-interface"
+    },
+    {
+      "text": "Entity Title",
+      "href": "https://blueprintjs.com/docs/#core/components/entity-title"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/entity-title.import"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/entity-title.props-interface"
+    },
+    {
+      "text": "HTML elements",
+      "href": "https://blueprintjs.com/docs/#core/components/html"
+    },
+    {
+      "text": "Nested usage",
+      "href": "https://blueprintjs.com/docs/#core/components/html.nested-usage"
+    },
+    {
+      "text": "Linting",
+      "href": "https://blueprintjs.com/docs/#core/components/html.linting"
+    },
+    {
+      "text": "HTML table",
+      "href": "https://blueprintjs.com/docs/#core/components/html-table"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/html-table.props-interface"
+    },
+    {
+      "text": "HotkeysTarget",
+      "href": "https://blueprintjs.com/docs/#core/components/hotkeys-target"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/hotkeys-target.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/hotkeys-target.examples"
+    },
+    {
+      "text": "Hotkeys",
+      "href": "https://blueprintjs.com/docs/#core/components/hotkeys-target.hotkeys"
+    },
+    {
+      "text": "Modifier keys",
+      "href": "https://blueprintjs.com/docs/#core/components/hotkeys-target.modifier-keys"
+    },
+    {
+      "text": "Basic Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/hotkeys-target.basic-usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/hotkeys-target.props-interface"
+    },
+    {
+      "text": "Hotkey configuration",
+      "href": "https://blueprintjs.com/docs/#core/components/hotkeys-target.hotkey-configuration"
+    },
+    {
+      "text": "Icon",
+      "href": "https://blueprintjs.com/docs/#core/components/icon"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/icon.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/icon.examples"
+    },
+    {
+      "text": "Basic",
+      "href": "https://blueprintjs.com/docs/#core/components/icon.basic"
+    },
+    {
+      "text": "Usage with other components",
+      "href": "https://blueprintjs.com/docs/#core/components/icon.usage-with-other-components"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/icon.props-interface"
+    },
+    {
+      "text": "DOM attributes",
+      "href": "https://blueprintjs.com/docs/#core/components/icon.dom-attributes"
+    },
+    {
+      "text": "Static components",
+      "href": "https://blueprintjs.com/docs/#core/components/icon.static-components"
+    },
+    {
+      "text": "CSS API",
+      "href": "https://blueprintjs.com/docs/#core/components/icon.css-api"
+    },
+    {
+      "text": "Linknew",
+      "href": "https://blueprintjs.com/docs/#core/components/link"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/link.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/link.examples"
+    },
+    {
+      "text": "Basic",
+      "href": "https://blueprintjs.com/docs/#core/components/link.basic"
+    },
+    {
+      "text": "Within text",
+      "href": "https://blueprintjs.com/docs/#core/components/link.within-text"
+    },
+    {
+      "text": "Underline",
+      "href": "https://blueprintjs.com/docs/#core/components/link.underline"
+    },
+    {
+      "text": "Color",
+      "href": "https://blueprintjs.com/docs/#core/components/link.color"
+    },
+    {
+      "text": "External links",
+      "href": "https://blueprintjs.com/docs/#core/components/link.external-links"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/link.props-interface"
+    },
+    {
+      "text": "Menu",
+      "href": "https://blueprintjs.com/docs/#core/components/menu"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/menu.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/menu.examples"
+    },
+    {
+      "text": "Basic",
+      "href": "https://blueprintjs.com/docs/#core/components/menu.basic"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/menu.props-interface"
+    },
+    {
+      "text": "Menu item",
+      "href": "https://blueprintjs.com/docs/#core/components/menu.menu-item"
+    },
+    {
+      "text": "Menu divider",
+      "href": "https://blueprintjs.com/docs/#core/components/menu.menu-divider"
+    },
+    {
+      "text": "Dropdowns",
+      "href": "https://blueprintjs.com/docs/#core/components/menu.dropdowns"
+    },
+    {
+      "text": "Submenus",
+      "href": "https://blueprintjs.com/docs/#core/components/menu.submenus"
+    },
+    {
+      "text": "Navbar",
+      "href": "https://blueprintjs.com/docs/#core/components/navbar"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/navbar.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/navbar.usage"
+    },
+    {
+      "text": "Fixed to viewport top",
+      "href": "https://blueprintjs.com/docs/#core/components/navbar.fixed-to-viewport-top"
+    },
+    {
+      "text": "Fixed width",
+      "href": "https://blueprintjs.com/docs/#core/components/navbar.fixed-width"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/navbar.props-interface"
+    },
+    {
+      "text": "Non-ideal state",
+      "href": "https://blueprintjs.com/docs/#core/components/non-ideal-state"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/non-ideal-state.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/non-ideal-state.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/non-ideal-state.props-interface"
+    },
+    {
+      "text": "Overflow list",
+      "href": "https://blueprintjs.com/docs/#core/components/overflow-list"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/overflow-list.import"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/overflow-list.props-interface"
+    },
+    {
+      "text": "Panel stack",
+      "href": "https://blueprintjs.com/docs/#core/components/panel-stack"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/panel-stack.import"
+    },
+    {
+      "text": "Panels",
+      "href": "https://blueprintjs.com/docs/#core/components/panel-stack.panels"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/panel-stack.props-interface"
+    },
+    {
+      "text": "Progress bar",
+      "href": "https://blueprintjs.com/docs/#core/components/progress-bar"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/progress-bar.import"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/progress-bar.props-interface"
+    },
+    {
+      "text": "Resize sensor",
+      "href": "https://blueprintjs.com/docs/#core/components/resize-sensor"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/resize-sensor.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/resize-sensor.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/resize-sensor.props-interface"
+    },
+    {
+      "text": "Section",
+      "href": "https://blueprintjs.com/docs/#core/components/section"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/section.import"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/section.props-interface"
+    },
+    {
+      "text": "Section card",
+      "href": "https://blueprintjs.com/docs/#core/components/section.section-card"
+    },
+    {
+      "text": "Skeleton",
+      "href": "https://blueprintjs.com/docs/#core/components/skeleton"
+    },
+    {
+      "text": "CSS",
+      "href": "https://blueprintjs.com/docs/#core/components/skeleton.css"
+    },
+    {
+      "text": "Spinner",
+      "href": "https://blueprintjs.com/docs/#core/components/spinner"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/spinner.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/spinner.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/spinner.props-interface"
+    },
+    {
+      "text": "Tabs",
+      "href": "https://blueprintjs.com/docs/#core/components/tabs"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/tabs.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/tabs.usage"
+    },
+    {
+      "text": "Tabs",
+      "href": "https://blueprintjs.com/docs/#core/components/tabs.tabs"
+    },
+    {
+      "text": "Tab",
+      "href": "https://blueprintjs.com/docs/#core/components/tabs.tab"
+    },
+    {
+      "text": "TabPanel",
+      "href": "https://blueprintjs.com/docs/#core/components/tabs.tabpanel"
+    },
+    {
+      "text": "Tag",
+      "href": "https://blueprintjs.com/docs/#core/components/tag"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/tag.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/tag.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/tag.props-interface"
+    },
+    {
+      "text": "Compound Tag",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag.usage"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag.examples"
+    },
+    {
+      "text": "Basic",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag.basic"
+    },
+    {
+      "text": "Intent",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag.intent"
+    },
+    {
+      "text": "Minimal",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag.minimal"
+    },
+    {
+      "text": "Size",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag.size"
+    },
+    {
+      "text": "Fill",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag.fill"
+    },
+    {
+      "text": "Round",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag.round"
+    },
+    {
+      "text": "Icons",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag.icons"
+    },
+    {
+      "text": "Removable",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag.removable"
+    },
+    {
+      "text": "Interactive",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag.interactive"
+    },
+    {
+      "text": "Interactive Playground",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag.interactive-playground"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/compound-tag.props-interface"
+    },
+    {
+      "text": "Text",
+      "href": "https://blueprintjs.com/docs/#core/components/text"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/text.import"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/text.props-interface"
+    },
+    {
+      "text": "Tree",
+      "href": "https://blueprintjs.com/docs/#core/components/tree"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/tree.import"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/tree.props-interface"
+    },
+    {
+      "text": "Instance methods",
+      "href": "https://blueprintjs.com/docs/#core/components/tree.instance-methods"
+    },
+    {
+      "text": "Tree node",
+      "href": "https://blueprintjs.com/docs/#core/components/tree.tree-node"
+    },
+    {
+      "text": "Form group",
+      "href": "https://blueprintjs.com/docs/#core/components/form-group"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/form-group.import"
+    },
+    {
+      "text": "Props",
+      "href": "https://blueprintjs.com/docs/#core/components/form-group.props"
+    },
+    {
+      "text": "Control group",
+      "href": "https://blueprintjs.com/docs/#core/components/control-group"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/control-group.import"
+    },
+    {
+      "text": "Flex layout",
+      "href": "https://blueprintjs.com/docs/#core/components/control-group.flex-layout"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/control-group.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/control-group.props-interface"
+    },
+    {
+      "text": "Label",
+      "href": "https://blueprintjs.com/docs/#core/components/label"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/label.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/label.usage"
+    },
+    {
+      "text": "Props",
+      "href": "https://blueprintjs.com/docs/#core/components/label.props"
+    },
+    {
+      "text": "Checkbox",
+      "href": "https://blueprintjs.com/docs/#core/components/checkbox"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/checkbox.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/checkbox.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/checkbox.props-interface"
+    },
+    {
+      "text": "Radio",
+      "href": "https://blueprintjs.com/docs/#core/components/radio"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/radio.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/radio.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/radio.props-interface"
+    },
+    {
+      "text": "RadioGroup",
+      "href": "https://blueprintjs.com/docs/#core/components/radio.radiogroup"
+    },
+    {
+      "text": "HTML select",
+      "href": "https://blueprintjs.com/docs/#core/components/html-select"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/html-select.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/html-select.props-interface"
+    },
+    {
+      "text": "Segmented control",
+      "href": "https://blueprintjs.com/docs/#core/components/segmented-control"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/segmented-control.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/segmented-control.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/segmented-control.props-interface"
+    },
+    {
+      "text": "Slider",
+      "href": "https://blueprintjs.com/docs/#core/components/sliders"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/sliders.import"
+    },
+    {
+      "text": "Slider",
+      "href": "https://blueprintjs.com/docs/#core/components/sliders.slider"
+    },
+    {
+      "text": "Range slider",
+      "href": "https://blueprintjs.com/docs/#core/components/sliders.range-slider"
+    },
+    {
+      "text": "Multi slider",
+      "href": "https://blueprintjs.com/docs/#core/components/sliders.multi-slider"
+    },
+    {
+      "text": "Handle",
+      "href": "https://blueprintjs.com/docs/#core/components/sliders.handle"
+    },
+    {
+      "text": "Switch",
+      "href": "https://blueprintjs.com/docs/#core/components/switch"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/switch.import"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/switch.props-interface"
+    },
+    {
+      "text": "Input group",
+      "href": "https://blueprintjs.com/docs/#core/components/input-group"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/input-group.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/input-group.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/input-group.props-interface"
+    },
+    {
+      "text": "Search input",
+      "href": "https://blueprintjs.com/docs/#core/components/input-group.search-input"
+    },
+    {
+      "text": "Text area",
+      "href": "https://blueprintjs.com/docs/#core/components/text-area"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/text-area.import"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/text-area.props-interface"
+    },
+    {
+      "text": "File input",
+      "href": "https://blueprintjs.com/docs/#core/components/file-input"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/file-input.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/file-input.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/file-input.props-interface"
+    },
+    {
+      "text": "Numeric input",
+      "href": "https://blueprintjs.com/docs/#core/components/numeric-input"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/numeric-input.import"
+    },
+    {
+      "text": "Interactions",
+      "href": "https://blueprintjs.com/docs/#core/components/numeric-input.interactions"
+    },
+    {
+      "text": "Basic example",
+      "href": "https://blueprintjs.com/docs/#core/components/numeric-input.basic-example"
+    },
+    {
+      "text": "Extended example",
+      "href": "https://blueprintjs.com/docs/#core/components/numeric-input.extended-example"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/numeric-input.usage"
+    },
+    {
+      "text": "Uncontrolled mode",
+      "href": "https://blueprintjs.com/docs/#core/components/numeric-input.uncontrolled-mode"
+    },
+    {
+      "text": "Controlled mode",
+      "href": "https://blueprintjs.com/docs/#core/components/numeric-input.controlled-mode"
+    },
+    {
+      "text": "Numeric precision",
+      "href": "https://blueprintjs.com/docs/#core/components/numeric-input.numeric-precision"
+    },
+    {
+      "text": "Styling",
+      "href": "https://blueprintjs.com/docs/#core/components/numeric-input.styling"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/numeric-input.props-interface"
+    },
+    {
+      "text": "Tag input",
+      "href": "https://blueprintjs.com/docs/#core/components/tag-input"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/tag-input.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/tag-input.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/tag-input.props-interface"
+    },
+    {
+      "text": "Overlaydeprecated",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay.usage"
+    },
+    {
+      "text": "Scrolling interactions",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay.scrolling-interactions"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay.props-interface"
+    },
+    {
+      "text": "Overlay2",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay2"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay2.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay2.usage"
+    },
+    {
+      "text": "DOM layout",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay2.dom-layout"
+    },
+    {
+      "text": "Child refs",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay2.child-refs"
+    },
+    {
+      "text": "Single child with automatic ref",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay2.single-child-with-automatic-ref"
+    },
+    {
+      "text": "Single child with manual ref",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay2.single-child-with-manual-ref"
+    },
+    {
+      "text": "Multiple children",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay2.multiple-children"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/overlay2.props-interface"
+    },
+    {
+      "text": "Portal",
+      "href": "https://blueprintjs.com/docs/#core/components/portal"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/portal.import"
+    },
+    {
+      "text": "DOM Behavior",
+      "href": "https://blueprintjs.com/docs/#core/components/portal.dom-behavior"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/portal.props-interface"
+    },
+    {
+      "text": "React context options",
+      "href": "https://blueprintjs.com/docs/#core/components/portal.react-context-options"
+    },
+    {
+      "text": "Alert",
+      "href": "https://blueprintjs.com/docs/#core/components/alert"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/alert.import"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/alert.props-interface"
+    },
+    {
+      "text": "Context Menu",
+      "href": "https://blueprintjs.com/docs/#core/components/context-menu"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/context-menu.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/context-menu.usage"
+    },
+    {
+      "text": "Advanced usage",
+      "href": "https://blueprintjs.com/docs/#core/components/context-menu.advanced-usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/context-menu.props-interface"
+    },
+    {
+      "text": "Context Menu Popover",
+      "href": "https://blueprintjs.com/docs/#core/components/context-menu-popover"
+    },
+    {
+      "text": "Declarative API",
+      "href": "https://blueprintjs.com/docs/#core/components/context-menu-popover.declarative-api"
+    },
+    {
+      "text": "Imperative API",
+      "href": "https://blueprintjs.com/docs/#core/components/context-menu-popover.imperative-api"
+    },
+    {
+      "text": "Dialog",
+      "href": "https://blueprintjs.com/docs/#core/components/dialog"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/dialog.import"
+    },
+    {
+      "text": "Dialog",
+      "href": "https://blueprintjs.com/docs/#core/components/dialog.dialog"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/dialog.usage"
+    },
+    {
+      "text": "Dialog props",
+      "href": "https://blueprintjs.com/docs/#core/components/dialog.dialog-props"
+    },
+    {
+      "text": "Dialog body props",
+      "href": "https://blueprintjs.com/docs/#core/components/dialog.dialog-body-props"
+    },
+    {
+      "text": "Dialog footer props",
+      "href": "https://blueprintjs.com/docs/#core/components/dialog.dialog-footer-props"
+    },
+    {
+      "text": "Multistep dialog",
+      "href": "https://blueprintjs.com/docs/#core/components/dialog.multistep-dialog"
+    },
+    {
+      "text": "Multistep dialog props",
+      "href": "https://blueprintjs.com/docs/#core/components/dialog.multistep-dialog-props"
+    },
+    {
+      "text": "DialogStep",
+      "href": "https://blueprintjs.com/docs/#core/components/dialog.dialogstep"
+    },
+    {
+      "text": "Drawer",
+      "href": "https://blueprintjs.com/docs/#core/components/drawer"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/drawer.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/drawer.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/drawer.props-interface"
+    },
+    {
+      "text": "Popoverdeprecated",
+      "href": "https://blueprintjs.com/docs/#core/components/popover"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.props-interface"
+    },
+    {
+      "text": "Concepts",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.concepts"
+    },
+    {
+      "text": "Structure",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.structure"
+    },
+    {
+      "text": "Placement",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.placement"
+    },
+    {
+      "text": "Modifiers",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.modifiers"
+    },
+    {
+      "text": "Controlled mode",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.controlled-mode"
+    },
+    {
+      "text": "Interactions",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.interactions"
+    },
+    {
+      "text": "Closing on click",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.closing-on-click"
+    },
+    {
+      "text": "Backdrop",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.backdrop"
+    },
+    {
+      "text": "Portal rendering",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.portal-rendering"
+    },
+    {
+      "text": "Style",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.style"
+    },
+    {
+      "text": "Dark theme",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.dark-theme"
+    },
+    {
+      "text": "Sizing",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.sizing"
+    },
+    {
+      "text": "Minimal style",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.minimal-style"
+    },
+    {
+      "text": "Testing",
+      "href": "https://blueprintjs.com/docs/#core/components/popover.testing"
+    },
+    {
+      "text": "PopoverNextnew",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.props-interface"
+    },
+    {
+      "text": "Concepts",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.concepts"
+    },
+    {
+      "text": "Structure",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.structure"
+    },
+    {
+      "text": "Placement",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.placement"
+    },
+    {
+      "text": "Middleware",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.middleware"
+    },
+    {
+      "text": "Controlled mode",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.controlled-mode"
+    },
+    {
+      "text": "Interactions",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.interactions"
+    },
+    {
+      "text": "Backdrop",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.backdrop"
+    },
+    {
+      "text": "Portal rendering",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.portal-rendering"
+    },
+    {
+      "text": "Style",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.style"
+    },
+    {
+      "text": "Dark theme",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.dark-theme"
+    },
+    {
+      "text": "Sizing",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.sizing"
+    },
+    {
+      "text": "Arrow control",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.arrow-control"
+    },
+    {
+      "text": "Animation style",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.animation-style"
+    },
+    {
+      "text": "Migrating from Popover",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.migrating-from-popover"
+    },
+    {
+      "text": "Focus behavior",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.focus-behavior"
+    },
+    {
+      "text": "Positioning",
+      "href": "https://blueprintjs.com/docs/#core/components/popover-next.positioning"
+    },
+    {
+      "text": "Toast",
+      "href": "https://blueprintjs.com/docs/#core/components/toast"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/toast.usage"
+    },
+    {
+      "text": "Toast",
+      "href": "https://blueprintjs.com/docs/#core/components/toast.toast"
+    },
+    {
+      "text": "OverlayToaster",
+      "href": "https://blueprintjs.com/docs/#core/components/toast.overlaytoaster"
+    },
+    {
+      "text": "Static usage",
+      "href": "https://blueprintjs.com/docs/#core/components/toast.static-usage"
+    },
+    {
+      "text": "Example",
+      "href": "https://blueprintjs.com/docs/#core/components/toast.example"
+    },
+    {
+      "text": "React component usage",
+      "href": "https://blueprintjs.com/docs/#core/components/toast.react-component-usage"
+    },
+    {
+      "text": "Tooltip",
+      "href": "https://blueprintjs.com/docs/#core/components/tooltip"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#core/components/tooltip.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/components/tooltip.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/components/tooltip.props-interface"
+    },
+    {
+      "text": "Combining with Popover",
+      "href": "https://blueprintjs.com/docs/#core/components/tooltip.combining-with-popover"
+    },
+    {
+      "text": "BlueprintProvider",
+      "href": "https://blueprintjs.com/docs/#core/context/blueprint-provider"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/context/blueprint-provider.usage"
+    },
+    {
+      "text": "Usage with other providers",
+      "href": "https://blueprintjs.com/docs/#core/context/blueprint-provider.usage-with-other-providers"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/context/blueprint-provider.props-interface"
+    },
+    {
+      "text": "HotkeysProvider",
+      "href": "https://blueprintjs.com/docs/#core/context/hotkeys-provider"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/context/hotkeys-provider.usage"
+    },
+    {
+      "text": "Usage with other providers",
+      "href": "https://blueprintjs.com/docs/#core/context/hotkeys-provider.usage-with-other-providers"
+    },
+    {
+      "text": "Advanced usage",
+      "href": "https://blueprintjs.com/docs/#core/context/hotkeys-provider.advanced-usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/context/hotkeys-provider.props-interface"
+    },
+    {
+      "text": "OverlaysProvider",
+      "href": "https://blueprintjs.com/docs/#core/context/overlays-provider"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/context/overlays-provider.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/context/overlays-provider.props-interface"
+    },
+    {
+      "text": "PortalProvider",
+      "href": "https://blueprintjs.com/docs/#core/context/portal-provider"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/context/portal-provider.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#core/context/portal-provider.props-interface"
+    },
+    {
+      "text": "useHotkeys",
+      "href": "https://blueprintjs.com/docs/#core/hooks/use-hotkeys"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/hooks/use-hotkeys.usage"
+    },
+    {
+      "text": "Hook options",
+      "href": "https://blueprintjs.com/docs/#core/hooks/use-hotkeys.hook-options"
+    },
+    {
+      "text": "Hotkey configuration",
+      "href": "https://blueprintjs.com/docs/#core/hooks/use-hotkeys.hotkey-configuration"
+    },
+    {
+      "text": "Key combos",
+      "href": "https://blueprintjs.com/docs/#core/hooks/use-hotkeys.key-combos"
+    },
+    {
+      "text": "Named keys",
+      "href": "https://blueprintjs.com/docs/#core/hooks/use-hotkeys.named-keys"
+    },
+    {
+      "text": "Aliased keys",
+      "href": "https://blueprintjs.com/docs/#core/hooks/use-hotkeys.aliased-keys"
+    },
+    {
+      "text": "Key combo tester",
+      "href": "https://blueprintjs.com/docs/#core/hooks/use-hotkeys.key-combo-tester"
+    },
+    {
+      "text": "useOverlayStack",
+      "href": "https://blueprintjs.com/docs/#core/hooks/use-overlay-stack"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#core/hooks/use-overlay-stack.usage"
+    },
+    {
+      "text": "DATETIME",
+      "href": "https://blueprintjs.com/docs/#datetime"
+    },
+    {
+      "text": "6.2.4",
+      "href": "https://www.npmjs.com/package/@blueprintjs/datetime"
+    },
+    {
+      "text": "DatePicker",
+      "href": "https://blueprintjs.com/docs/#datetime/date-picker"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#datetime/date-picker.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#datetime/date-picker.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#datetime/date-picker.props-interface"
+    },
+    {
+      "text": "Shortcuts",
+      "href": "https://blueprintjs.com/docs/#datetime/date-picker.shortcuts"
+    },
+    {
+      "text": "Modifiers",
+      "href": "https://blueprintjs.com/docs/#datetime/date-picker.modifiers"
+    },
+    {
+      "text": "Localization",
+      "href": "https://blueprintjs.com/docs/#datetime/date-picker.localization"
+    },
+    {
+      "text": "Using a locale code",
+      "href": "https://blueprintjs.com/docs/#datetime/date-picker.using-a-locale-code"
+    },
+    {
+      "text": "Using a Locale object",
+      "href": "https://blueprintjs.com/docs/#datetime/date-picker.using-a-locale-object"
+    },
+    {
+      "text": "DateInput",
+      "href": "https://blueprintjs.com/docs/#datetime/date-input"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#datetime/date-input.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#datetime/date-input.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#datetime/date-input.props-interface"
+    },
+    {
+      "text": "Date formatting",
+      "href": "https://blueprintjs.com/docs/#datetime/date-input.date-formatting"
+    },
+    {
+      "text": "Localization",
+      "href": "https://blueprintjs.com/docs/#datetime/date-input.localization"
+    },
+    {
+      "text": "DateRangePicker",
+      "href": "https://blueprintjs.com/docs/#datetime/date-range-picker"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#datetime/date-range-picker.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#datetime/date-range-picker.usage"
+    },
+    {
+      "text": "Date ranges",
+      "href": "https://blueprintjs.com/docs/#datetime/date-range-picker.date-ranges"
+    },
+    {
+      "text": "Shortcuts",
+      "href": "https://blueprintjs.com/docs/#datetime/date-range-picker.shortcuts"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#datetime/date-range-picker.props-interface"
+    },
+    {
+      "text": "Localization",
+      "href": "https://blueprintjs.com/docs/#datetime/date-range-picker.localization"
+    },
+    {
+      "text": "DateRangeInput",
+      "href": "https://blueprintjs.com/docs/#datetime/date-range-input"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#datetime/date-range-input.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#datetime/date-range-input.usage"
+    },
+    {
+      "text": "Date formatting",
+      "href": "https://blueprintjs.com/docs/#datetime/date-range-input.date-formatting"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#datetime/date-range-input.props-interface"
+    },
+    {
+      "text": "Localization",
+      "href": "https://blueprintjs.com/docs/#datetime/date-range-input.localization"
+    },
+    {
+      "text": "Time picker",
+      "href": "https://blueprintjs.com/docs/#datetime/timepicker"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#datetime/timepicker.import"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#datetime/timepicker.props-interface"
+    },
+    {
+      "text": "Timezone select",
+      "href": "https://blueprintjs.com/docs/#datetime/timezone-select"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#datetime/timezone-select.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#datetime/timezone-select.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#datetime/timezone-select.props-interface"
+    },
+    {
+      "text": "ICONS",
+      "href": "https://blueprintjs.com/docs/#icons"
+    },
+    {
+      "text": "6.13.0",
+      "href": "https://www.npmjs.com/package/@blueprintjs/icons"
+    },
+    {
+      "text": "Loading icons",
+      "href": "https://blueprintjs.com/docs/#icons/loading-icons"
+    },
+    {
+      "text": "Using static imports",
+      "href": "https://blueprintjs.com/docs/#icons/loading-icons.using-static-imports"
+    },
+    {
+      "text": "Using dynamic imports",
+      "href": "https://blueprintjs.com/docs/#icons/loading-icons.using-dynamic-imports"
+    },
+    {
+      "text": "Icons list",
+      "href": "https://blueprintjs.com/docs/#icons/icons-list"
+    },
+    {
+      "text": "Next iconsnew",
+      "href": "https://blueprintjs.com/docs/#icons/next-icons"
+    },
+    {
+      "text": "Search next icons",
+      "href": "https://blueprintjs.com/docs/#icons/next-icons.search-next-icons"
+    },
+    {
+      "text": "SELECT",
+      "href": "https://blueprintjs.com/docs/#select"
+    },
+    {
+      "text": "6.3.4",
+      "href": "https://www.npmjs.com/package/@blueprintjs/select"
+    },
+    {
+      "text": "Select",
+      "href": "https://blueprintjs.com/docs/#select/select-component"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#select/select-component.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#select/select-component.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#select/select-component.props-interface"
+    },
+    {
+      "text": "Querying",
+      "href": "https://blueprintjs.com/docs/#select/select-component.querying"
+    },
+    {
+      "text": "Non-ideal states",
+      "href": "https://blueprintjs.com/docs/#select/select-component.non-ideal-states"
+    },
+    {
+      "text": "Styling",
+      "href": "https://blueprintjs.com/docs/#select/select-component.styling"
+    },
+    {
+      "text": "Button styling",
+      "href": "https://blueprintjs.com/docs/#select/select-component.button-styling"
+    },
+    {
+      "text": "Placeholder styling",
+      "href": "https://blueprintjs.com/docs/#select/select-component.placeholder-styling"
+    },
+    {
+      "text": "Disabled styling",
+      "href": "https://blueprintjs.com/docs/#select/select-component.disabled-styling"
+    },
+    {
+      "text": "Custom menu",
+      "href": "https://blueprintjs.com/docs/#select/select-component.custom-menu"
+    },
+    {
+      "text": "Controlled usage",
+      "href": "https://blueprintjs.com/docs/#select/select-component.controlled-usage"
+    },
+    {
+      "text": "Creating new items",
+      "href": "https://blueprintjs.com/docs/#select/select-component.creating-new-items"
+    },
+    {
+      "text": "Controlling the active item",
+      "href": "https://blueprintjs.com/docs/#select/select-component.controlling-the-active-item"
+    },
+    {
+      "text": "Item renderer",
+      "href": "https://blueprintjs.com/docs/#select/select-component.item-renderer"
+    },
+    {
+      "text": "Item list renderer",
+      "href": "https://blueprintjs.com/docs/#select/select-component.item-list-renderer"
+    },
+    {
+      "text": "Using renderFilteredItems()",
+      "href": "https://blueprintjs.com/docs/#select/select-component.using-renderfiltereditems"
+    },
+    {
+      "text": "Suggest",
+      "href": "https://blueprintjs.com/docs/#select/suggest"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#select/suggest.import"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#select/suggest.props-interface"
+    },
+    {
+      "text": "MultiSelect",
+      "href": "https://blueprintjs.com/docs/#select/multi-select"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#select/multi-select.import"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#select/multi-select.props-interface"
+    },
+    {
+      "text": "Omnibar",
+      "href": "https://blueprintjs.com/docs/#select/omnibar"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#select/omnibar.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#select/omnibar.usage"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#select/omnibar.props-interface"
+    },
+    {
+      "text": "QueryList",
+      "href": "https://blueprintjs.com/docs/#select/query-list"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#select/query-list.import"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#select/query-list.props-interface"
+    },
+    {
+      "text": "Renderer API",
+      "href": "https://blueprintjs.com/docs/#select/query-list.renderer-api"
+    },
+    {
+      "text": "TABLE",
+      "href": "https://blueprintjs.com/docs/#table"
+    },
+    {
+      "text": "6.2.4",
+      "href": "https://www.npmjs.com/package/@blueprintjs/table"
+    },
+    {
+      "text": "Table features",
+      "href": "https://blueprintjs.com/docs/#table/features"
+    },
+    {
+      "text": "Sorting",
+      "href": "https://blueprintjs.com/docs/#table/features.sorting"
+    },
+    {
+      "text": "Re-rendering cells",
+      "href": "https://blueprintjs.com/docs/#table/features.re-rendering-cells"
+    },
+    {
+      "text": "Focused cell",
+      "href": "https://blueprintjs.com/docs/#table/features.focused-cell"
+    },
+    {
+      "text": "Editing",
+      "href": "https://blueprintjs.com/docs/#table/features.editing"
+    },
+    {
+      "text": "Reordering",
+      "href": "https://blueprintjs.com/docs/#table/features.reordering"
+    },
+    {
+      "text": "Reordering columns",
+      "href": "https://blueprintjs.com/docs/#table/features.reordering-columns"
+    },
+    {
+      "text": "Reordering rows",
+      "href": "https://blueprintjs.com/docs/#table/features.reordering-rows"
+    },
+    {
+      "text": "Example",
+      "href": "https://blueprintjs.com/docs/#table/features.example"
+    },
+    {
+      "text": "Loading states",
+      "href": "https://blueprintjs.com/docs/#table/features.loading-states"
+    },
+    {
+      "text": "Table loading states",
+      "href": "https://blueprintjs.com/docs/#table/features.table-loading-states"
+    },
+    {
+      "text": "Column loading states",
+      "href": "https://blueprintjs.com/docs/#table/features.column-loading-states"
+    },
+    {
+      "text": "Cells",
+      "href": "https://blueprintjs.com/docs/#table/features.cells"
+    },
+    {
+      "text": "Formatting",
+      "href": "https://blueprintjs.com/docs/#table/features.formatting"
+    },
+    {
+      "text": "Freezing",
+      "href": "https://blueprintjs.com/docs/#table/features.freezing"
+    },
+    {
+      "text": "JavaScript API",
+      "href": "https://blueprintjs.com/docs/#table/api"
+    },
+    {
+      "text": "Table",
+      "href": "https://blueprintjs.com/docs/#table/api.table"
+    },
+    {
+      "text": "Instance methods",
+      "href": "https://blueprintjs.com/docs/#table/api.instance-methods"
+    },
+    {
+      "text": "Column",
+      "href": "https://blueprintjs.com/docs/#table/api.column"
+    },
+    {
+      "text": "Cell",
+      "href": "https://blueprintjs.com/docs/#table/api.cell"
+    },
+    {
+      "text": "ColumnHeaderCell",
+      "href": "https://blueprintjs.com/docs/#table/api.columnheadercell"
+    },
+    {
+      "text": "EditableName",
+      "href": "https://blueprintjs.com/docs/#table/api.editablename"
+    },
+    {
+      "text": "EditableCell",
+      "href": "https://blueprintjs.com/docs/#table/api.editablecell"
+    },
+    {
+      "text": "RowHeaderCell",
+      "href": "https://blueprintjs.com/docs/#table/api.rowheadercell"
+    },
+    {
+      "text": "Region",
+      "href": "https://blueprintjs.com/docs/#table/api.region"
+    },
+    {
+      "text": "TruncatedFormat",
+      "href": "https://blueprintjs.com/docs/#table/api.truncatedformat"
+    },
+    {
+      "text": "JSONFormat",
+      "href": "https://blueprintjs.com/docs/#table/api.jsonformat"
+    },
+    {
+      "text": "LABS",
+      "href": "https://blueprintjs.com/docs/#labs"
+    },
+    {
+      "text": "6.4.4",
+      "href": "https://www.npmjs.com/package/@blueprintjs/labs"
+    },
+    {
+      "text": "Boxnew",
+      "href": "https://blueprintjs.com/docs/#labs/box"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#labs/box.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#labs/box.usage"
+    },
+    {
+      "text": "Composition with asChild",
+      "href": "https://blueprintjs.com/docs/#labs/box.composition-with-aschild"
+    },
+    {
+      "text": "Layout props",
+      "href": "https://blueprintjs.com/docs/#labs/box.layout-props"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#labs/box.examples"
+    },
+    {
+      "text": "Padding",
+      "href": "https://blueprintjs.com/docs/#labs/box.padding"
+    },
+    {
+      "text": "Margin",
+      "href": "https://blueprintjs.com/docs/#labs/box.margin"
+    },
+    {
+      "text": "Object Card",
+      "href": "https://blueprintjs.com/docs/#labs/box.object-card"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#labs/box.props-interface"
+    },
+    {
+      "text": "Flexnew",
+      "href": "https://blueprintjs.com/docs/#labs/flex"
+    },
+    {
+      "text": "Import",
+      "href": "https://blueprintjs.com/docs/#labs/flex.import"
+    },
+    {
+      "text": "Usage",
+      "href": "https://blueprintjs.com/docs/#labs/flex.usage"
+    },
+    {
+      "text": "Flexbox props",
+      "href": "https://blueprintjs.com/docs/#labs/flex.flexbox-props"
+    },
+    {
+      "text": "Examples",
+      "href": "https://blueprintjs.com/docs/#labs/flex.examples"
+    },
+    {
+      "text": "Direction",
+      "href": "https://blueprintjs.com/docs/#labs/flex.direction"
+    },
+    {
+      "text": "Alignment",
+      "href": "https://blueprintjs.com/docs/#labs/flex.alignment"
+    },
+    {
+      "text": "Gap",
+      "href": "https://blueprintjs.com/docs/#labs/flex.gap"
+    },
+    {
+      "text": "Props interface",
+      "href": "https://blueprintjs.com/docs/#labs/flex.props-interface"
+    },
+    {
+      "text": "Palantir",
+      "href": "https://www.palantir.com/"
+    },
+    {
+      "text": "Edit this page",
+      "href": "https://github.com/palantir/blueprint/blob/develop/packages/docs-app/src/blueprint.mdx"
+    },
+    {
+      "text": "",
+      "href": ""
+    },
+    {
+      "text": "",
+      "href": "https://blueprintjs.com/docs/#blueprint"
+    },
+    {
+      "text": "Getting started",
+      "href": "https://blueprintjs.com/docs/#blueprint/getting-started"
+    },
+    {
+      "text": "Git repository",
+      "href": "https://github.com/palantir/blueprint"
+    },
+    {
+      "text": "Code Sandbox",
+      "href": "https://codesandbox.io/p/sandbox/blueprint-v6-react-18-template-lc69nt"
+    },
+    {
+      "text": "Contributing",
+      "href": "https://github.com/palantir/blueprint#contributing"
+    },
+    {
+      "text": "migration guides to upgrade from v5.x →",
+      "href": "https://github.com/palantir/blueprint/wiki/Blueprint-6.0"
+    },
+    {
+      "text": "",
+      "href": ""
+    },
+    {
+      "text": "",
+      "href": "https://blueprintjs.com/docs/#blueprint.quick-start"
+    },
+    {
+      "text": "",
+      "href": ""
+    },
+    {
+      "text": "",
+      "href": "https://blueprintjs.com/docs/#blueprint.install"
+    },
+    {
+      "text": "@blueprintjs/core",
+      "href": "https://www.npmjs.com/package/@blueprintjs/core"
+    },
+    {
+      "text": "@blueprintjs/icons",
+      "href": "https://www.npmjs.com/package/@blueprintjs/icons"
+    },
+    {
+      "text": "@blueprintjs/datetime",
+      "href": "https://www.npmjs.com/package/@blueprintjs/datetime"
+    },
+    {
+      "text": "@blueprintjs/select",
+      "href": "https://www.npmjs.com/package/@blueprintjs/select"
+    },
+    {
+      "text": "@blueprintjs/table",
+      "href": "https://www.npmjs.com/package/@blueprintjs/table"
+    },
+    {
+      "text": "",
+      "href": ""
+    },
+    {
+      "text": "",
+      "href": "https://blueprintjs.com/docs/#blueprint.import"
+    }
+  ],
+  "buttons": [
+    {
+      "text": "",
+      "label": "Copy code snippet to clipboard"
+    }
+  ],
+  "media": [],
+  "controls": [
+    {
+      "tag": "DIV",
+      "role": "banner",
+      "label": null,
+      "id": "",
+      "text": "Blueprint v6.x is now in stable release. Still using v5.x? Click here to view the legacy docs →"
+    },
+    {
+      "tag": "DIV",
+      "role": "navigation",
+      "label": null,
+      "id": "",
+      "text": "Blueprint \nv6\nView on GitHub\nDark theme\nshift + D\nSearch...\nshift + S\nBLUEPRINT\nGetting started\nRead"
+    },
+    {
+      "tag": "SPAN",
+      "role": "button",
+      "label": "Version 6",
+      "id": "",
+      "text": "v6"
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "MAIN",
+      "role": "main",
+      "label": null,
+      "id": "",
+      "text": "Edit this page\nBlueprint\nBlueprint is a React-based UI toolkit for the web.\n\nIt is optimized for bui"
+    },
+    {
+      "tag": "A",
+      "role": "button",
+      "label": null,
+      "id": "",
+      "text": "Edit this page"
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    }
+  ]
+}

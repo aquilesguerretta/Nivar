@@ -1,0 +1,20 @@
+.nv-dialogo{display:grid;background:var(--surface-page);border:var(--fio) solid var(--rule-heavy);border-radius:0;max-width:520px}
+.nv-dialogo--critico{border-top:2px solid var(--advisory)}
+.nv-dialogo__cab{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 16px;border-bottom:var(--fio) solid var(--rule)}
+.nv-dialogo__eti{font-family:var(--font-data);font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+.nv-dialogo__titulo{font-family:var(--font-display);font-weight:600;font-size:19px;line-height:1.16;letter-spacing:-.01em;color:var(--text-strong);margin:0}
+.nv-dialogo__corpo{display:grid;gap:10px;padding:14px 16px}
+.nv-dialogo__texto{font-family:var(--font-body);font-weight:300;font-size:14px;line-height:1.5;color:var(--text-muted);margin:0}
+.nv-dialogo__linha{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:baseline}
+.nv-dialogo__k{font-family:var(--font-data);font-weight:500;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint)}
+.nv-dialogo__v{font-family:var(--font-data);font-weight:500;font-size:11.5px;letter-spacing:.04em;color:var(--text-strong);font-variant-numeric:tabular-nums;text-align:right}
+.nv-dialogo__fio{height:1px;background:var(--rule);transform:translateY(-3px)}
+.nv-dialogo__rodape{display:flex;justify-content:flex-end;align-items:center;gap:14px;padding:12px 16px;border-top:var(--fio) solid var(--rule)}
+
+.nv-aviso{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:9px 0;border-top:var(--fio) solid var(--rule-heavy);border-bottom:var(--fio) solid var(--rule);background:none}
+.nv-aviso__texto{font-family:var(--font-body);font-weight:400;font-size:13px;line-height:1.4;color:var(--text-strong)}
+.nv-aviso__meta{display:flex;align-items:baseline;gap:14px;font-family:var(--font-data);font-weight:400;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint);font-variant-numeric:tabular-nums;white-space:nowrap}
+.nv-aviso__fechar{font-family:var(--font-data);font-size:12px;line-height:1;color:var(--text-faint);background:none;border:0;padding:0;cursor:pointer;transition:color var(--dur-hover) var(--ease)}
+.nv-aviso__fechar:hover{color:var(--fg-hover)}
+.nv-aviso__fechar:focus-visible{outline:2px solid var(--accent-focus);outline-offset:3px}
+.nv-aviso--advisory{border-top-color:var(--advisory);border-top-width:2px}

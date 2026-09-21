@@ -1,0 +1,30 @@
+<!-- @dsCard group="Mobile" viewport="700x1692" name="Vazio e erro em móvel" subtitle="Par chave/valor do erro empilha e o fio some; a fonte que falhou e a última apuração permanecem inteiras" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Vazio e erro em móvel</title>
+<link rel="stylesheet" href="../styles.css">
+<style>body{width:700px;overflow:hidden}.bl{padding:14px 16px;display:grid;gap:14px;align-content:start}.bl+.bl{border-top:1px solid var(--rule)}.par{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule)}.par>.bl{border-top:0}.par>.bl+.bl{border-left:1px solid var(--rule)}.cab{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.cab b{font-family:var(--font-display);font-size:14px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<script type="text/babel">const { EmptyState, ErrorState, Button } = window.NIVARDesignSystem_0a22a8;
+function Conteudo() {
+  return (<React.Fragment>
+    <EmptyState variant="sem-resultado" filtros={['PLD acima de R$ 900,00','Submercado Sul']}
+      acoes={<Button variant="terciario">Remover filtro</Button>} />
+    <ErrorState variant="falha-carregamento" acoes={<Button variant="secundario" size="compacto">Tentar novamente</Button>} />
+  </React.Fragment>);
+}
+function Painel() {
+  return (<React.Fragment>
+    <div className="bl"><div className="cab"><b>Desktop · modo claro</b><span className="eti">≥ 640px</span></div><Conteudo /></div>
+    <div className="bl" data-mode="noturno"><div className="cab"><b>Desktop · modo noturno</b><span className="eti">≥ 640px</span></div><Conteudo /></div>
+    <div className="par">
+      <div className="bl" data-largura="mobile"><div className="cab"><b>Móvel · claro</b><span className="eti">343px</span></div><Conteudo movel /></div>
+      <div className="bl" data-mode="noturno" data-largura="mobile"><div className="cab"><b>Móvel · noturno</b><span className="eti">343px</span></div><Conteudo movel /></div>
+    </div>
+  </React.Fragment>);
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Painel />);
+</script></body></html>

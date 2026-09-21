@@ -1,0 +1,185 @@
+{
+  "title": "NIVAR — Marcas de leitura",
+  "version": "G2.3.1",
+  "viewBox": [
+    0,
+    0,
+    32,
+    32
+  ],
+  "grammar": "Massa preenchida, cortes nítidos, terminais retos, ombros curvos e margens ópticas. Nenhum contêiner comum. Uma cor. Seleção após crítica topológica independente.",
+  "families": [
+    {
+      "id": "intelligence",
+      "patron": "Argos",
+      "family": "Intelligence",
+      "verb": "Observar",
+      "selected": "Campo registrado",
+      "behavior": "Um campo curvo é lido contra uma aresta fixa; a testemunha cruza o corte interno. Observar estabelece uma relação entre campo e referência.",
+      "routes": [
+        {
+          "name": "Registro duplo",
+          "paths": [
+            "M4 4H10V28H4Z",
+            "M14 8H20V24H14Z",
+            "M24 12H28V20H24Z"
+          ],
+          "decision": "Rejeitado: a leitura descendente vira um gráfico de barras; forte em dados, fraco como marca persistente."
+        },
+        {
+          "name": "Campo registrado",
+          "paths": [
+            "M16 8C26 11 28 17 23 23C20 27 15 29 9 29L12 17V13H18Z",
+            "M10 3L13 10L5 29H3V3Z"
+          ],
+          "decision": "Selecionado após quatro provas: registro dentro do campo; abandonadas a letra G, a lente genérica e a leitura de sol/paisagem."
+        },
+        {
+          "name": "Margem de observação",
+          "paths": [
+            "M4 4H28V10H10V22H28V28H4Z",
+            "M15 14H25V18H15Z"
+          ],
+          "decision": "Rejeitado: boa moldura editorial, mas o retângulo sugere uma função de enquadramento e se aproxima demais de Hefesto."
+        }
+      ]
+    },
+    {
+      "id": "advisory",
+      "patron": "Sócrates",
+      "family": "Advisory",
+      "verb": "Questionar",
+      "selected": "Contraprova",
+      "behavior": "Duas massas desiguais disputam um mesmo intervalo. Uma continuidade plausível encontra uma objeção; a conclusão permanece aberta.",
+      "routes": [
+        {
+          "name": "Objeção marginal",
+          "paths": [
+            "M4 4H10V22H20V28H4Z",
+            "M16 4H28V10H22V18H16Z"
+          ],
+          "decision": "Rejeitado: a pausa é legível, porém lembra aspas e um comando de comentário."
+        },
+        {
+          "name": "Contraprova",
+          "paths": [
+            "M3 3H16C16 9 10 10 10 16C10 22 16 23 16 29H3Z",
+            "M29 6H25C19 6 16 12 18 17C22 19 22 23 22 28H29Z"
+          ],
+          "decision": "Selecionado após crítica independente: oposição lateral desigual, sem reconstruir o S rotacional da primeira seleção."
+        },
+        {
+          "name": "Premissa interrompida",
+          "paths": [
+            "M4 4H16V10H10V28H4Z",
+            "M20 4H28V28H16V22H22V10H20Z"
+          ],
+          "decision": "Rejeitado: a premissa ausente exige explicação e o conjunto parece um sinal de programação."
+        }
+      ]
+    },
+    {
+      "id": "academy",
+      "patron": "Perseu",
+      "family": "Academy",
+      "verb": "Transmitir",
+      "selected": "Matriz e passagem",
+      "behavior": "Um fragmento ausente da matriz aparece adiante. A mesma forma é recebida sem perder sua correspondência com a origem.",
+      "routes": [
+        {
+          "name": "Sinal recebido",
+          "paths": [
+            "M4 20H10V28H4Z",
+            "M4 4C17 4 28 15 28 28H22C22 18 14 10 4 10Z",
+            "M4 14C12 14 18 20 18 28H12C12 23 9 20 4 20Z"
+          ],
+          "decision": "Rejeitado: transmissão literal e reconhecível demais como RSS; não pode adquirir autoria própria."
+        },
+        {
+          "name": "Matriz e passagem",
+          "paths": [
+            "M3 10L11 4L20 9V13L16 16L18 22L22 24L20 28H9L3 23Z",
+            "M26 11L29 10L31 14L28 22L24 20L22 14Z"
+          ],
+          "decision": "Selecionado após crítica independente: correspondência geométrica entre ausência e fragmento transmitido. Rejeitados o P e os dois r."
+        },
+        {
+          "name": "Impressão seguinte",
+          "paths": [
+            "M4 4H12V20H4Z",
+            "M16 10H24V26H16Z",
+            "M4 24H12V28H4Z",
+            "M28 4H30V20H28Z"
+          ],
+          "decision": "Rejeitado: duas impressões sólidas suportam redução, mas parecem peças sem transferência clara e ficam próximas do ritmo de Argos."
+        }
+      ]
+    },
+    {
+      "id": "software",
+      "patron": "Ariadne",
+      "family": "Software",
+      "verb": "Organizar",
+      "selected": "Registro convergente",
+      "behavior": "Entradas de ritmos e espessuras diferentes convergem fisicamente numa espinha comum. A organização preserva a diferença das entradas.",
+      "routes": [
+        {
+          "name": "Encaixe",
+          "paths": [
+            "M4 4H16V10H10V16H4Z",
+            "M20 4H28V16H22V10H20Z",
+            "M4 20H10V22H16V28H4Z",
+            "M22 20H28V28H20V22H22Z"
+          ],
+          "decision": "Rejeitado: modular, mas quatro cantos viram ícone de expansão ou kit geométrico."
+        },
+        {
+          "name": "Registro convergente",
+          "paths": [
+            "M4 4H10C15 4 17 10 23 10H28V28H4V23C14 23 16 24 23 24V20C14 20 13 18 4 18V13C12 13 15 16 23 16V12C15 12 13 9 4 9Z"
+          ],
+          "decision": "Selecionado após crítica independente e nova exploração gerada: canais desiguais de fato unidos; rejeitados E, tridente, checkmark e junção radial genérica."
+        },
+        {
+          "name": "Concordância",
+          "paths": [
+            "M4 4H10V22H14V10H20V22H24V4H30V28H4Z"
+          ],
+          "decision": "Rejeitado: coeso, mas a simetria transforma organização em grade estática; parece monograma W."
+        }
+      ]
+    },
+    {
+      "id": "hardware",
+      "patron": "Hefesto",
+      "family": "Hardware",
+      "verb": "Medir e construir",
+      "selected": "Esquadro e padrão",
+      "behavior": "Um padrão destacado se registra contra um esquadro maciço. A diagonal e o batente estabelecem uma referência material antes da construção.",
+      "routes": [
+        {
+          "name": "Módulo de aferição",
+          "paths": [
+            "M4 4H28V28H4Z M10 10V22H22V10Z"
+          ],
+          "decision": "Rejeitado: robusto, porém o anel quadrado é indistinto e não mostra medição."
+        },
+        {
+          "name": "Esquadro e padrão",
+          "paths": [
+            "M3 28L12 4H18L11 22H22V16H28V28Z",
+            "M22 4H28V10H22Z"
+          ],
+          "decision": "Mantido como controle após a crítica: o padrão separado se relaciona claramente com o esquadro; sua diagonal distingue a silhueta."
+        },
+        {
+          "name": "Aferição escalonada",
+          "paths": [
+            "M4 22H10V16H16V10H22V4H28V28H4Z"
+          ],
+          "decision": "Rejeitado: legível, mas a escada vira gráfico de crescimento e invade a linguagem analítica de Intelligence."
+        }
+      ]
+    }
+  ]
+}

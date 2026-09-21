@@ -26,6 +26,31 @@ import {
   earthquakeLabelLayer,
 } from './layers/intelligenceLayers';
 import { buildPipelineTermini } from './utils/buildPipelineTermini';
+import { C } from '@/design/tokens';
+// ATLAS Wave 5 — color ramps lifted out of this file. See
+// `layers/colorRamps.ts` header for the new-vs-legacy split rationale.
+import {
+  lmpHeatExpression,
+  legacyClusterColorExpression,
+  legacyFuelColorExpression,
+  legacyFuelOutageColorExpression,
+  legacyVoltageColorExpression,
+  legacyVoltageWidthExpression,
+} from './layers/colorRamps';
+// ATLAS Wave 5 — all-US infrastructure layer specs. Each module owns
+// the LayerProps for one source (generation / transmission / batteries).
+import {
+  allUsGenClusterLayer,
+  allUsGenClusterCountLayer,
+  allUsGenCircleLayer,
+} from './layers/generationLayers';
+import {
+  allUsTxGlowLayer,
+  allUsTxCoreLayer,
+} from './layers/transmissionLayers';
+import {
+  allUsBatteryCircleLayer,
+} from './layers/batteryLayers';
 
 // ── Constants ─────────────────────────────────────────────────────────────
 
@@ -91,51 +116,6 @@ function pickInitialView(): CameraState {
   return introPlayed ? PJM_OVERVIEW : GLOBE_START;
 }
 
-// ── Voltage colour mapping ────────────────────────────────────────────────
-
-const voltageColor: any = [
-  'match',
-  ['get', 'VOLTAGE'],
-  '735',  '#FFFFFF',
-  '765',  '#FFFFFF',
-  '500',  '#00FFF0',
-  '345',  '#00A3FF',
-  '230',  '#6B7FD4',
-  '161',  '#8B5CF6',
-  '138',  '#7C3AED',
-  '115',  '#6D28D9',
-  '#4B3D8F',
-];
-
-const voltageWidth: any = [
-  'interpolate', ['linear'], ['zoom'],
-  4,  ['match', ['get', 'VOLTAGE'], '500', 1.5, '345', 1.2, '230', 0.8, 0.4],
-  8,  ['match', ['get', 'VOLTAGE'], '500', 3.0, '345', 2.5, '230', 1.8, 1.0],
-  12, ['match', ['get', 'VOLTAGE'], '500', 5.0, '345', 4.0, '230', 3.0, 1.8],
-];
-
-// ── Fuel colour mapping ───────────────────────────────────────────────────
-
-const fuelColor: any = [
-  'match', ['upcase', ['coalesce', ['get', 'PRIM_FUEL'], ['get', 'fuel_type'], '']],
-  'NG',    '#E67E22',
-  'GAS',   '#E67E22',
-  'NUC',   '#9B59B6',
-  'NUCLEAR','#9B59B6',
-  'WIND',  '#00A3FF',
-  'WND',   '#00A3FF',
-  'SUN',   '#F1C40F',
-  'SOLAR', '#F1C40F',
-  'COAL',  '#636E72',
-  'COL',   '#636E72',
-  'WAT',   '#3498DB',
-  'HYDRO', '#3498DB',
-  'BAT',   '#00E676',
-  'GEO',   '#FF6B35',
-  'OIL',   '#A0522D',
-  '#BDC3C7',
-];
-
 // ── Layer style definitions ───────────────────────────────────────────────
 
 // All overlay layers use `slot: 'top'` so Mapbox Standard (Terminal) style
@@ -146,8 +126,8 @@ const txGlowLayer: LayerProps = {
   id:   'tx-glow',
   type: 'line',
   paint: {
-    'line-color':   voltageColor,
-    'line-width':   voltageWidth,
+    'line-color':   legacyVoltageColorExpression,
+    'line-width':   legacyVoltageWidthExpression,
     'line-blur':    6,
     'line-opacity': 0.35,
   },
@@ -157,8 +137,8 @@ const txCoreLayer: LayerProps = {
   id:   'tx-core',
   type: 'line',
   paint: {
-    'line-color':   voltageColor,
-    'line-width':   voltageWidth,
+    'line-color':   legacyVoltageColorExpression,
+    'line-width':   legacyVoltageWidthExpression,
     'line-opacity': 0.9,
   },
 };
@@ -168,14 +148,9 @@ const plantClusterLayer: LayerProps = {
   type:   'circle',
   filter: ['has', 'point_count'],
   paint:  {
-    'circle-color': [
-      'step', ['get', 'point_count'],
-      '#00A3FF', 10,
-      '#FFB800', 30,
-      '#FF3B3B',
-    ] as any,
-    'circle-radius':  ['step', ['get', 'point_count'], 14, 10, 20, 30, 26] as any,
-    'circle-opacity': 0.95,
+    'circle-color':        legacyClusterColorExpression,
+    'circle-radius':       ['step', ['get', 'point_count'], 14, 10, 20, 30, 26] as any,
+    'circle-opacity':      0.95,
     'circle-stroke-width': 1.5,
     'circle-stroke-color': 'rgba(255,255,255,0.55)',
   },
@@ -191,7 +166,7 @@ const plantClusterCountLayer: LayerProps = {
     'text-font':   ['Open Sans Bold', 'Arial Unicode MS Bold'],
   },
   paint: {
-    'text-color':      '#ffffff',
+    'text-color':      C.textPrimary,
     'text-halo-color': 'rgba(0,0,0,0.8)',
     'text-halo-width': 1,
   },
@@ -207,12 +182,7 @@ const hubDotLayer: LayerProps = {
       'interpolate', ['linear'], ['zoom'],
       4, 6,  8, 12,  12, 18,
     ] as any,
-    'circle-color':        [
-      'interpolate', ['linear'], ['get', 'lmp'],
-      30, '#00A3FF',
-      34, '#FFB800',
-      37, '#FF3B3B',
-    ] as any,
+    'circle-color':        lmpHeatExpression,
     'circle-opacity':      1.0,
     'circle-stroke-width': 2,
     'circle-stroke-color': 'rgba(255,255,255,0.75)',
@@ -240,19 +210,6 @@ const hubLabelLayer: LayerProps = {
 // ── Outage markers (Wave 2 — driven by AtlasSnapshot.outages) ─────────────
 // Outage rings appear / disappear as the scrubber moves through each
 // outage's active window. Color encodes fuel; halo encodes severity.
-
-const fuelOutageColor: any = [
-  'match', ['upcase', ['coalesce', ['get', 'fuel'], '']],
-  'NG',    '#E67E22',
-  'NUC',   '#9B59B6',
-  'COAL',  '#636E72',
-  'WIND',  '#00A3FF',
-  'SOLAR', '#F1C40F',
-  'HYDRO', '#3498DB',
-  'BAT',   '#00E676',
-  'OIL',   '#A0522D',
-  '#FF3B3B',
-];
 
 const outageHaloLayer: LayerProps = {
   id:   'outages-halo',
@@ -284,7 +241,7 @@ const outageRingLayer: LayerProps = {
       2500, 20,
     ] as any,
     'circle-color':        'rgba(0,0,0,0)',
-    'circle-stroke-color': fuelOutageColor,
+    'circle-stroke-color': legacyFuelOutageColorExpression,
     'circle-stroke-width': 2,
     'circle-opacity':      1,
   },
@@ -322,7 +279,7 @@ const plantCircleFallback: LayerProps = {
       ['coalesce', ['get', 'INSTALL_MW'], ['get', 'capacity_mw'], 100],
       50, 4, 500, 7, 2000, 12, 5000, 18,
     ] as any,
-    'circle-color':        fuelColor,
+    'circle-color':        legacyFuelColorExpression,
     'circle-opacity':      1.0,
     'circle-stroke-width': 1,
     'circle-stroke-color': 'rgba(255,255,255,0.55)',
@@ -352,15 +309,59 @@ export interface GridAtlasMapProps {
   pipelineGeoJson:    GeoJSON.FeatureCollection | null;
   earthquakeGeoJson:  GeoJSON.FeatureCollection | null;
   weatherGeoJson:     GeoJSON.FeatureCollection | null;
+  /**
+   * ATLAS Wave 5 — all-US generation FeatureCollection. ~15K EIA
+   * generators when wired to live; bbox-clipped before render so
+   * only viewport-resident features hit the GPU.
+   */
+  allUsGenerationGeoJson?: GeoJSON.FeatureCollection | null;
+  /**
+   * ATLAS Wave 5 — all-US transmission FeatureCollection. LineString
+   * features. Backend pre-simplifies geometry to the requested LOD;
+   * the frontend just renders what came back.
+   */
+  allUsTransmissionGeoJson?: GeoJSON.FeatureCollection | null;
+  /**
+   * ATLAS Wave 5 — all-US battery storage FeatureCollection. Point
+   * features. No clustering — fleet size is small enough that
+   * individual dots scale to a national render.
+   */
+  allUsBatteriesGeoJson?: GeoJSON.FeatureCollection | null;
   showTx:             boolean;
   showPlants:         boolean;
   showNodes:          boolean;
   showSubstations:    boolean;
   showGasPipelines:   boolean;
   showEarthquakes:    boolean;
+  /** Wave 5 toggle — controls visibility of the all-US generation layer. */
+  showAllUsGeneration?: boolean;
+  /** Wave 5 toggle — controls visibility of the all-US transmission layer. */
+  showAllUsTransmission?: boolean;
+  /** Wave 5 toggle — controls visibility of the battery storage layer. */
+  showBatteries?: boolean;
   onZoneClick:        (zoneId: string | null) => void;
   onPlantHover:       (props: Record<string, unknown> | null, x: number, y: number) => void;
   onZoneHover:        (name: string | null) => void;
+  /**
+   * Wave 5 — fired when the user clicks an individual all-US generator
+   * dot. Properties are the unwrapped GenerationUnit shape.
+   */
+  onGeneratorClick?:  (props: Record<string, unknown>) => void;
+  /**
+   * Wave 5 — fired when the user clicks a battery dot. Properties
+   * are the unwrapped BatteryAsset shape.
+   */
+  onBatteryClick?:    (props: Record<string, unknown>) => void;
+  /**
+   * Wave 5 — fired on every map moveend (debounced upstream by
+   * GridAtlasView before it fires the bbox-driven hooks). Carries
+   * current viewport bounds + LOD derived from zoom.
+   */
+  onViewportChange?:  (v: {
+    bbox: [number, number, number, number];
+    lod:  'low' | 'mid' | 'high';
+    zoom: number;
+  }) => void;
 }
 
 // ── Component ─────────────────────────────────────────────────────────────
@@ -371,9 +372,12 @@ const GridAtlasMap = forwardRef<GridAtlasMapHandle, GridAtlasMapProps>(
       mapStyle, txGeoJson, plantGeoJson, hubGeoJson, outagesGeoJson,
       substationGeoJson, pipelineGeoJson, earthquakeGeoJson,
       weatherGeoJson,
+      allUsGenerationGeoJson, allUsTransmissionGeoJson, allUsBatteriesGeoJson,
       showTx, showPlants, showNodes,
       showSubstations, showGasPipelines, showEarthquakes,
+      showAllUsGeneration, showAllUsTransmission, showBatteries,
       onZoneClick, onPlantHover, onZoneHover,
+      onGeneratorClick, onBatteryClick, onViewportChange,
     },
     ref,
   ) {
@@ -400,13 +404,24 @@ const GridAtlasMap = forwardRef<GridAtlasMapHandle, GridAtlasMapProps>(
     const onMapClick = useCallback((e: any) => {
       const features = e.features as any[];
       if (!features?.length) { onZoneClick(null); return; }
+      const f = features[0];
+      // Wave 5 — branch on the layer that produced the hit so the
+      // asset detail panel and the legacy zone-select don't compete.
+      if (f.layer?.id === 'all-us-gen-circle' && onGeneratorClick) {
+        onGeneratorClick(f.properties as Record<string, unknown>);
+        return;
+      }
+      if (f.layer?.id === 'all-us-batteries-circle' && onBatteryClick) {
+        onBatteryClick(f.properties as Record<string, unknown>);
+        return;
+      }
       const zoneId =
-        features[0]?.properties?.zone_id ??
-        features[0]?.properties?.ZONE ??
-        features[0]?.properties?.name ??
+        f?.properties?.zone_id ??
+        f?.properties?.ZONE ??
+        f?.properties?.name ??
         null;
       onZoneClick(zoneId);
-    }, [onZoneClick]);
+    }, [onZoneClick, onGeneratorClick, onBatteryClick]);
 
     const onMouseMove = useCallback((e: any) => {
       const features = e.features as any[];
@@ -459,7 +474,7 @@ const GridAtlasMap = forwardRef<GridAtlasMapHandle, GridAtlasMapProps>(
           color:            '#0A0A0B',
           'high-color':     '#0D1520',
           'horizon-blend':   0.04,
-          'space-color':    '#000005',
+          'space-color':    C.bgBase,
           'star-intensity':  0.7,
         } as any);
       } catch { /* ignore */ }
@@ -471,6 +486,22 @@ const GridAtlasMap = forwardRef<GridAtlasMapHandle, GridAtlasMapProps>(
 
       applyStyleSetup();
       setStyleLoaded(true);
+
+      // Wave 5 — fire an initial onViewportChange so the bbox-driven
+      // hooks in GridAtlasView can refresh from the resolved camera
+      // (which may differ from the GridAtlasView seed, e.g. when a
+      // returning user lands at a saved camera position).
+      const b = map.getBounds();
+      if (b && onViewportChange) {
+        const zoom = map.getZoom();
+        const lod: 'low' | 'mid' | 'high' =
+          zoom <= 4 ? 'low' : zoom <= 7 ? 'mid' : 'high';
+        onViewportChange({
+          bbox: [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()],
+          lod,
+          zoom,
+        });
+      }
 
       // Cinematic intro — only once per session.
       let introPlayed = false;
@@ -490,7 +521,7 @@ const GridAtlasMap = forwardRef<GridAtlasMapHandle, GridAtlasMapProps>(
           try { sessionStorage.setItem(SS_INTRO_PLAYED, '1'); } catch { /* ignore */ }
         }, 350);
       }
-    }, [applyStyleSetup]);
+    }, [applyStyleSetup, onViewportChange]);
 
     // Re-apply terrain/config whenever a new style loads (style swap).
     useEffect(() => {
@@ -505,6 +536,10 @@ const GridAtlasMap = forwardRef<GridAtlasMapHandle, GridAtlasMapProps>(
     }, [applyStyleSetup]);
 
     // Persist camera to sessionStorage so nav-away / nav-back restores position.
+    // Wave 5 — same handler also fires onViewportChange (debounced 250ms via
+    // a ref-held timer) so the bbox-driven hooks in GridAtlasView refetch
+    // for the new viewport without spamming the network during a pan.
+    const bboxFetchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const onMoveEnd = useCallback(() => {
       const map = mapRef.current?.getMap();
       if (!map) return;
@@ -516,11 +551,43 @@ const GridAtlasMap = forwardRef<GridAtlasMapHandle, GridAtlasMapProps>(
         pitch:     map.getPitch(),
         bearing:   map.getBearing(),
       });
+
+      // Debounced viewport fan-out — coalesce a flurry of moveends
+      // (e.g. inertial pan) into a single fetch for the resting frame.
+      if (bboxFetchTimer.current) clearTimeout(bboxFetchTimer.current);
+      bboxFetchTimer.current = setTimeout(() => {
+        const m = mapRef.current?.getMap();
+        if (!m || !onViewportChange) return;
+        const b = m.getBounds();
+        if (!b) return;
+        const zoom = m.getZoom();
+        // LOD ladder — must match the backend's LodLevel ranges.
+        const lod: 'low' | 'mid' | 'high' =
+          zoom <= 4 ? 'low' : zoom <= 7 ? 'mid' : 'high';
+        onViewportChange({
+          bbox: [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()],
+          lod,
+          zoom,
+        });
+      }, 250);
+    }, [onViewportChange]);
+
+    // Tear down the pending fetch timer on unmount so a stale callback
+    // doesn't fire after the map is gone.
+    useEffect(() => {
+      return () => {
+        if (bboxFetchTimer.current) clearTimeout(bboxFetchTimer.current);
+      };
     }, []);
 
     const interactiveLayerIds = [
       ...(showPlants ? ['plant-circles', 'plant-clusters'] : []),
       ...(showNodes  ? ['hub-dots'] : []),
+      // Wave 5 — clicking a single all-US generator opens the asset
+      // detail panel via onGeneratorClick. Cluster bubbles aren't
+      // interactive (would need a fly-into-cluster handler — future).
+      ...(showAllUsGeneration ? ['all-us-gen-circle'] : []),
+      ...(showBatteries       ? ['all-us-batteries-circle'] : []),
     ];
 
     return (
@@ -547,6 +614,16 @@ const GridAtlasMap = forwardRef<GridAtlasMapHandle, GridAtlasMapProps>(
           </Source>
         )}
 
+        {/* All-US Transmission — Wave 5. Renders above the PJM-focused
+            `transmission` source. LineString features pre-simplified
+            backend-side to the requested LOD. ~50K segments at high LOD. */}
+        {styleLoaded && showAllUsTransmission && allUsTransmissionGeoJson && (
+          <Source id="all-us-transmission" type="geojson" data={allUsTransmissionGeoJson}>
+            <Layer {...allUsTxGlowLayer} />
+            <Layer {...allUsTxCoreLayer} />
+          </Source>
+        )}
+
         {/* Power Plants */}
         {styleLoaded && showPlants && plantGeoJson && (
           <Source
@@ -556,6 +633,30 @@ const GridAtlasMap = forwardRef<GridAtlasMapHandle, GridAtlasMapProps>(
             <Layer {...plantClusterLayer} />
             <Layer {...plantClusterCountLayer} />
             <Layer {...plantCircleFallback} />
+          </Source>
+        )}
+
+        {/* All-US Generation — Wave 5. Renders above the PJM `plants`
+            source. ~15K EIA generators clustered by Mapbox to z8.
+            Source data flows from useGenerationUnits via a
+            FeatureCollection adapter in GridAtlasView. */}
+        {styleLoaded && showAllUsGeneration && allUsGenerationGeoJson && (
+          <Source
+            id="all-us-generation" type="geojson" data={allUsGenerationGeoJson}
+            cluster={true} clusterMaxZoom={8} clusterRadius={40}
+          >
+            <Layer {...allUsGenClusterLayer} />
+            <Layer {...allUsGenClusterCountLayer} />
+            <Layer {...allUsGenCircleLayer} />
+          </Source>
+        )}
+
+        {/* Battery storage — Wave 5. ~3-4k national fleet, no
+            clustering. Status-coded stroke discriminates operating /
+            under-construction / retired without an extra layer. */}
+        {styleLoaded && showBatteries && allUsBatteriesGeoJson && (
+          <Source id="all-us-batteries" type="geojson" data={allUsBatteriesGeoJson}>
+            <Layer {...allUsBatteryCircleLayer} />
           </Source>
         )}
 

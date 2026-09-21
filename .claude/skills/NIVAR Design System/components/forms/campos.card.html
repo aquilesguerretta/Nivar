@@ -1,0 +1,32 @@
+<!-- @dsCard group="Components" viewport="700x476" name="Campo de entrada" subtitle="Texto, numérico e seleção × vazio, preenchido, foco, erro, desabilitado — nos dois modos" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Campo de entrada</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:700px;overflow:hidden}.bl{padding:14px 16px}.bl+.bl{border-top:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:9px;margin-bottom:12px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px 12px}.nv-campo__caixa{min-width:0}.nv-campo{align-content:start}.nv-campo__rotulo{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Input, NumberInput, Select } = window.NIVARDesignSystem_0a22a8;
+function Bloco({ modo, rotulo, nota, k }) {
+  return (
+    <div className="bl" {...(modo ? { 'data-mode': modo } : {})}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <div className="grid">
+        <Input id={k+'a'} label="Texto · vazio" placeholder="00.000.000/0000-00" hint="CNPJ da unidade" />
+        <Input id={k+'b'} label="Texto · preenchido" defaultValue="Mineradora Serra Alta S.A." />
+        <NumberInput id={k+'c'} label="Numérico · foco" defaultValue="214,80" unidade="R$/MWh" state="foco" />
+        <Select id={k+'d'} label="Seleção · erro" placeholder="Selecione o submercado" options={['Sudeste/Centro-Oeste','Sul','Nordeste','Norte']} error="Campo obrigatório" />
+        <NumberInput id={k+'e'} label="Numérico · desabilitado" defaultValue="68 412" unidade="MW" disabled />
+        <Select id={k+'f'} label="Seleção · preenchida" defaultValue="Mensal" options={['Mensal','Anual']} />
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<React.Fragment>
+  <Bloco rotulo="Modo claro" nota="erro em brasa · fio brasa" k="c" />
+  <Bloco modo="noturno" rotulo="Modo noturno" nota="erro em papel · fio hardware" k="n" />
+</React.Fragment>);
+</script></body></html>

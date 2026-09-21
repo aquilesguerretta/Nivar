@@ -1,0 +1,51 @@
+<!-- @dsCard group="Components" viewport="1060x1240" name="Seção recolhível" subtitle="Marcador + / − em mono, nunca chevron girando · revelação por fio se desenhando, altura nunca anima" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Seção recolhível</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:1060px;overflow:hidden}.g{display:grid;grid-template-columns:1fr 1fr}.bl{padding:16px 18px 20px;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:13px;background:var(--surface-page)}.bl+.bl{border-left:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.lista{display:grid;border-bottom:1px solid var(--rule)}.mob{display:grid;grid-template-columns:343px 343px;border-top:1px solid var(--rule-strong)}.mob .bl{width:343px}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">const { Collapsible, SectionHeader, DownloadLink, Provenance, LabeledDivider } = window.NIVARDesignSystem_0a22a8;
+function Bloco({ modo, largura, rotulo, nota, s }) {
+  const attrs = {};
+  if (modo) attrs['data-mode'] = modo;
+  if (largura) attrs['data-largura'] = largura;
+  return (
+    <div className="bl" {...attrs}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <SectionHeader numero="07" titulo="Nota metodológica" nota="apuração de agosto" />
+      <div className="lista">
+        <Collapsible id={s + 'a'} titulo="Premissas do cenário de afluência" nota="4 itens" padrao>
+          <p>A projeção parte da afluência mediana do histórico de 1931 a 2025, sem ajuste de tendência climática. Feriado móvel entra como dia útil na média horária.</p>
+          <p>O horário de verão não é aplicado desde 2019 e não foi reintroduzido na série reprocessada.</p>
+          <DownloadLink arquivo="premissas-2026-08.csv" formato="CSV" tamanho="12 KB" />
+        </Collapsible>
+        <Collapsible id={s + 'b'} titulo="Como a migração afeta o contrato vigente" nota="6 min">
+          <p>O aviso prévio de 180 dias corre a partir da denúncia formal, e não da assinatura do contrato de mercado livre.</p>
+        </Collapsible>
+        <Collapsible id={s + 'c'} titulo="O que muda na apuração de setembro" nota="2 itens">
+          <p>A CCEE passa a publicar a decomposição horária no mesmo dia da apuração.</p>
+        </Collapsible>
+      </div>
+      <LabeledDivider>seção solta, sem fio compartilhado</LabeledDivider>
+      <Collapsible id={s + 'd'} titulo="Limites declarados desta leitura" fio={false}>
+        <p>A série reprocessada não retroage a 2020. Comparações com o histórico anterior a 2021 exigem parecer.</p>
+      </Collapsible>
+      <Provenance fontes={['ONS', 'CCEE']} recorte="apuração mensal" ilustrativa fio />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<>
+  <div className="g">
+    <Bloco s="c" rotulo="Modo claro" nota="+ fechado · − aberto · fio de 700ms" />
+    <Bloco s="n" modo="noturno" rotulo="Modo noturno" nota="fio compartilhado entre seções em lista" />
+  </div>
+  <div className="mob">
+    <Bloco s="mc" largura="mobile" rotulo="Móvel claro" nota="343px · nota desce, corpo perde a indentação" />
+    <Bloco s="mn" largura="mobile" modo="noturno" rotulo="Móvel noturno" nota="343px · cabeçalho a 44px de toque" />
+  </div>
+</>);
+</script></body></html>

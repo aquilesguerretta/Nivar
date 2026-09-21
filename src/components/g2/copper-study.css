@@ -1,0 +1,80 @@
+.g2 .g23-copper-study {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #262829;
+  isolation: isolate;
+}
+.g2 .g23-copper-study video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 69% 50%;
+}
+.g2 .g23-copper-study[data-failed="true"] video {
+  visibility: hidden;
+}
+.g2 .g23-copper-study__fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 69% 50%;
+}
+.g2 .g23-copper-study:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #191d1c9e, transparent 62%);
+  pointer-events: none;
+}
+.g2 .g23-copper-study__controls {
+  position: absolute;
+  top: 19px;
+  left: 20px;
+  right: 20px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 9px;
+}
+.g2 .g23-copper-study__controls button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  border: 1px solid #d4c7b178;
+  padding: 10px 13px;
+  background: #252928ed;
+  color: #eee4d3;
+  font: 10px/1.4 var(--g2-mono);
+  text-align: left;
+}
+.g2 .g23-copper-study__controls button:hover {
+  background: #373b36;
+}
+.g2 .g23-copper-study__controls button:focus-visible {
+  outline: 2px solid #e5c095;
+  outline-offset: 4px;
+}
+.g2 .g23-copper-study__controls > span {
+  max-width: 47ch;
+  padding: 5px 8px;
+  background: #252928d6;
+  color: #e3d9c9;
+  font: 8px/1.6 var(--g2-mono);
+}
+@media (max-width: 650px) {
+  .g2 .g23-copper-study__controls {
+    top: 14px;
+    left: 14px;
+    right: 14px;
+  }
+  .g2 .g23-copper-study__controls button {
+    font-size: 9px;
+  }
+}

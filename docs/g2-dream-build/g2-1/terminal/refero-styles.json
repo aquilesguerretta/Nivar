@@ -1,0 +1,1077 @@
+{
+  "records": [
+    {
+      "dos": [
+        "Prioritize Dark Frost (#1e1e1e) or Pitch Black (#000000) for interactive elements, reserving Polar White (#ffffff) for primary action roles and key information.",
+        "Apply negative letter-spacing from the Inter font definition to all headings and large display text for a tight, authoritative feel.",
+        "Use Data Blue (#6798ff) exclusively for functional accents, interactive states, and data points, avoiding decorative use.",
+        "Maintain an 8px base unit for all spacing, particularly elementGap and cardPadding, ensuring a consistent density.",
+        "Render all primary button and card elements with an 8px border-radius to maintain a consistent soft containment.",
+        "Utilize JetBrains Mono font for any labels, tokens, or data fields that require a fixed-width, technical appearance.",
+        "Implement the subtle 1px border with Light Gray (#454545) or Polar White (rgba(255, 255, 255, 0.24)) for ghost/outlined elements."
+      ],
+      "donts": [
+        "Avoid using highly saturated, non-semantic colors beyond Data Blue (#6798ff); maintain a grayscale palette for most UI elements.",
+        "Do not deviate from the specified negative letter-spacing values for Inter headings; incorrect tracking will compromise the brand's typographic signature.",
+        "Do not introduce strong shadows or excessive elevation; the system relies on subtle background shifts and borders for depth.",
+        "Avoid using Polar White (#ffffff) as a general background color; it is reserved for foreground elements on dark surfaces.",
+        "Do not use default browser link colors (e.g. #0000ee); ensure all interactive text adheres to the defined color palette, typically Data Blue or Silver Dust.",
+        "Do not apply large, decorative imagery; maintain tight crops or abstract graphics that integrate seamlessly with the dark UI.",
+        "Avoid irregular border radii; adhere strictly to 8px for most components and 66px for specific circular features."
+      ],
+      "theme": "dark",
+      "colors": [
+        {
+          "hex": "#0a0a0a",
+          "name": "Midnight Charcoal",
+          "role": "Primary page background, base surface for many components, establishing the dark theme",
+          "group": "neutral"
+        },
+        {
+          "hex": "#000000",
+          "name": "Pitch Black",
+          "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+          "group": "neutral"
+        },
+        {
+          "hex": "#141414",
+          "name": "Off-Black",
+          "role": "Subtle background for UI sections and elevated surfaces, slightly lighter than Pitch Black to create depth",
+          "group": "neutral"
+        },
+        {
+          "hex": "#1e1e1e",
+          "name": "Dark Frost",
+          "role": "Background for secondary buttons and interactive elements, providing a soft lift from the surrounding dark surfaces",
+          "group": "neutral"
+        },
+        {
+          "hex": "#313131",
+          "name": "Medium Gray",
+          "role": "Soft borders around images and subtle dividers, providing minimal visual separation",
+          "group": "neutral"
+        },
+        {
+          "hex": "#454545",
+          "name": "Light Gray",
+          "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+          "group": "neutral"
+        },
+        {
+          "hex": "#7c7c7c",
+          "name": "Dim Gray",
+          "role": "Muted text for secondary information, ghost button text, and subtle icons, receding slightly into the background",
+          "group": "neutral"
+        },
+        {
+          "hex": "#a7a7a7",
+          "name": "Silver Dust",
+          "role": "Medium-contrast borders, control outlines, and structural separators. Do not promote it to the primary CTA color",
+          "group": "neutral"
+        },
+        {
+          "hex": "#ffffff",
+          "name": "Polar White",
+          "role": "Primary text, prominent icons, and filled button backgrounds, providing maximum contrast on dark surfaces",
+          "group": "neutral"
+        },
+        {
+          "hex": "#6798ff",
+          "name": "Data Blue",
+          "role": "Violet outline accent for tags, dividers, and focused UI edges",
+          "group": "brand"
+        }
+      ],
+      "layout": "The page primarily uses a max-width contained layout, though the hero section is full-bleed with a dark background and a central headline. Content often alternates between centered stacked blocks and two-column layouts featuring text on one side and a product visual or data interface on the other. Vertical rhythm is maintained by consistent 32px section gaps. Navigation is a sticky top bar with ghost buttons, transitioning to a primary filled button for key actions. A card grid is used for feature display, maintaining a consistent 8px radius on all card elements.",
+      "imagery": "This system features a blend of product screenshots, abstract geometric graphics, and minimal iconography. Product screenshots are typically tightly cropped, showcasing the UI on dark surfaces, often within larger graphical containers. Abstract graphics, particularly 3D wireframe grids, serve as atmospheric backgrounds rather than content. Icons are generally filled, monochromatic (often white or a subtle gray), with a consistent medium stroke weight, acting as functional rather than decorative elements. Image density is moderate, with visuals often complementing large text blocks without overwhelming them.",
+      "spacing": {
+        "radius": {
+          "cards": "8px",
+          "images": "8px",
+          "buttons": "8px",
+          "circularElements": "66px"
+        },
+        "density": "compact",
+        "baseUnit": 8,
+        "elementGap": "8px",
+        "sectionGap": "32px",
+        "cardPadding": "16px",
+        "pageMaxWidth": null
+      },
+      "industry": "ai",
+      "surfaces": [
+        {
+          "hex": "#0a0a0a",
+          "name": "Midnight Charcoal",
+          "level": 1,
+          "purpose": "Primary page background and recessed areas."
+        },
+        {
+          "hex": "#141414",
+          "name": "Off-Black",
+          "level": 2,
+          "purpose": "Background for main content blocks and slightly-raised sections."
+        },
+        {
+          "hex": "#1e1e1",
+          "name": "Dark Frost",
+          "level": 3,
+          "purpose": "Background for interactive elements, secondary buttons, and some data cards."
+        }
+      ],
+      "northStar": "Midnight Command Center",
+      "typeScale": [
+        {
+          "role": "caption",
+          "size": 14,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.083
+        },
+        {
+          "role": "body",
+          "size": 16,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.012
+        },
+        {
+          "role": "subheading",
+          "size": 20,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.021
+        },
+        {
+          "role": "heading",
+          "size": 24,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.025
+        },
+        {
+          "role": "heading-lg",
+          "size": 40,
+          "lineHeight": 1.29,
+          "letterSpacing": -0.031
+        },
+        {
+          "role": "display",
+          "size": 56,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.036
+        }
+      ],
+      "components": [
+        {
+          "name": "Ghost Navigation Button",
+          "role": "Main navigation and secondary actions in headers/footers.",
+          "description": "Transparent background, Polar White text (rgba(255, 255, 255, 0.64)), no border, 0px radius, 0px padding. Designed for minimal visual weight."
+        },
+        {
+          "name": "Filled Secondary Button",
+          "role": "Standard secondary call-to-action or functional button within dark UIs.",
+          "description": "Dark Frost (rgb(30,30,30)) background, Polar White (rgb(255,255,255)) text, 8px border-radius, 10px vertical padding, 11px horizontal padding."
+        },
+        {
+          "name": "Filled Primary Button",
+          "role": "Key call-to-action button, often guiding user flow.",
+          "description": "Polar White (rgb(255,255,255)) background, Midnight Charcoal (rgb(10,10,10)) text, 8px border-radius, 10px vertical padding, 16px horizontal padding."
+        },
+        {
+          "name": "Outlined Tertiary Button",
+          "role": "Less prominent interactive elements, often in data displays or advanced controls.",
+          "description": "Transparent background, Polar White (rgb(255,255,255)) text, with a subtle Polar White (rgba(255, 255, 255, 0.24)) 1px border. 8px border-radius, 10px vertical padding, 16px horizontal padding."
+        },
+        {
+          "name": "Circular Card Background",
+          "role": "Used as a distinctive visual element or container, possibly for testimonials or key metrics.",
+          "description": "Pitch Black (rgb(0,0,0)) background, 66px border-radius, no shadow or padding."
+        },
+        {
+          "name": "Data Overlay Card",
+          "role": "Containers for displaying data visualizations or complex UI elements.",
+          "description": "Off-Black (rgb(20,20,20)) background, 8px border-radius, no shadow or padding. Subtly elevated from the primary page background."
+        }
+      ],
+      "typography": [
+        {
+          "role": "Primary typeface for all UI text, headings, and body copy. Its range of weights and optical adjustments for larger sizes (negative letter-spacing) contribute to the system's precise and authoritative feel.",
+          "sizes": "14px, 16px, 20px, 24px, 40px, 56px, 64px",
+          "family": "Inter",
+          "source": "google",
+          "weight": "400, 500, 600",
+          "lineHeight": "1.13, 1.14, 1.20, 1.29, 1.33, 1.40, 1.50, 1.57",
+          "substitute": "System UI",
+          "letterSpacing": "-0.036, -0.031, -0.025, -0.021, -0.012",
+          "fontFeatureSettings": "'liga'"
+        },
+        {
+          "role": "Monospaced typeface used for small, functional text such as labels, metadata, or code snippets, providing clear distinction and technical precision.",
+          "sizes": "12px, 14px",
+          "family": "JetBrains Mono",
+          "source": "custom",
+          "weight": "400",
+          "lineHeight": "1.00, 1.40",
+          "substitute": "Fira Code",
+          "letterSpacing": "0.083, 0.071",
+          "fontFeatureSettings": "'liga'"
+        }
+      ],
+      "description": "Dovetail employs a dark-mode command center aesthetic centered on crisp functionality. A deep charcoal canvas serves as the backdrop for subtly elevated, monochromatic interface elements. Typography is compact and precise, utilizing negative letter-spacing for large text to convey authority. A singular vivid blue acts as a functional accent, highlighting interactive states and critical data points within an otherwise cool-toned grayscale palette, creating a focused, efficient user experience.",
+      "customSections": [
+        {
+          "title": "Agent Prompt Guide",
+          "content": "### Quick Color Reference\ntext: #ffffff\nbackground: #0a0a0a\nborder: #454545\naccent: #6798ff\nprimary action: #1e1e1e (filled action)\n\n### 3-5 Example Component Prompts\n1. Create a Primary Action Button: #1e1e1e background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n2. Create a feature card: Off-Black (#141414) background, 8px border-radius, no shadow. Heading at 20px Inter weight 500, Polar White (#ffffff). Body text at 16px Inter weight 400, Silver Dust (#a7a7a7). Include an icon in Data Blue (#6798ff).\n3. Create an outlined button for data filtering: Transparent background, Polar White (#ffffff) text, 1px border in rgba(255, 255, 255, 0.24), 8px border-radius, 10px vertical padding, 16px horizontal padding.\n4. Design a small label in JetBrains Mono: 12px JetBrains Mono weight 400, Data Blue (#6798ff), letter-spacing 0.071em. Background Dark Frost (#1e1e1e) with 4px radius and 4px padding."
+        }
+      ],
+      "title": "Dovetail"
+    },
+    {
+      "dos": [
+        "Prioritize Calibre font for all text. Utilize its full range of weights to establish hierarchy, maintaining the crisp, data-centric feel.",
+        "Use Absolute Zero (#000000) for base page backgrounds, Charcoal Black (#0b0b0b) for primary card surfaces, and Ghost Gray (#131313) for subtle layering.",
+        "Apply a 99px border-radius for all primary action buttons, ensuring a consistent, friendly pill shape.",
+        "Introduce Sky Surge (#479ffa) or Tangelo Flame (#ffa16c) sparingly as functional highlights for navigation or critical information, never for large areas.",
+        "Maintain tight letter-spacing for headings (e.g., -0.0800em at 54px) to ensure a compact, controlled visual appearance.",
+        "Employ transparency and backdrop filters (e.g., blur(10px)) for floating elements or overlays to create depth without heavy drop shadows.",
+        "Use 1px solid rgba(255, 255, 255, 0.1) hair-thin borders for subtle separation between elements within cards or lists."
+      ],
+      "donts": [
+        "Avoid using multiple font families; Calibre is the sole typeface for branding and content.",
+        "Refrain from large, visually dominating images; focus on product screenshots, data visualizations, or minimal abstract elements.",
+        "Do not use generic box-shadows. Shadows should be subtle, usually with dark hues or inset, as defined in component descriptions.",
+        "Never use highly saturated colors for backgrounds or large text blocks; reserve vivid hues for small, functional accents.",
+        "Avoid excessive padding within components; Fey emphasizes information density and a compact layout.",
+        "Do not introduce strong color gradients across full sections or cards; gradients are reserved for subtle accents or interactive element highlights only.",
+        "Do not use generic system icon sets. Icons should align with the defined outline style and minimal appearance."
+      ],
+      "theme": "dark",
+      "colors": [
+        {
+          "hex": "#000000",
+          "name": "Absolute Zero",
+          "role": "Page background, deep card surfaces, shadow base",
+          "group": "neutral"
+        },
+        {
+          "hex": "#0b0b0b",
+          "name": "Charcoal Black",
+          "role": "Default card backgrounds, elevated surfaces",
+          "group": "neutral"
+        },
+        {
+          "hex": "#131313",
+          "name": "Ghost Gray",
+          "role": "Slightly lighter card background for layered appearance",
+          "group": "neutral"
+        },
+        {
+          "hex": "#191919",
+          "name": "Muted Ash",
+          "role": "Subtly elevated card backgrounds, hover states",
+          "group": "neutral"
+        },
+        {
+          "hex": "#333333",
+          "name": "Faded Steel",
+          "role": "Subtle button backgrounds, deeper text contrast",
+          "group": "neutral"
+        },
+        {
+          "hex": "#525252",
+          "name": "Dark Slate",
+          "role": "Subtle borders, secondary text, faint shadows",
+          "group": "neutral"
+        },
+        {
+          "hex": "#828282",
+          "name": "Cadet Gray",
+          "role": "Muted text, decorative strokes, helper icons",
+          "group": "neutral"
+        },
+        {
+          "hex": "#868f97",
+          "name": "Storm Gray",
+          "role": "Primary text for body and headings, clear borders",
+          "group": "neutral"
+        },
+        {
+          "hex": "#999999",
+          "name": "Light Asphalt",
+          "role": "Tertiary text, subtle separators",
+          "group": "neutral"
+        },
+        {
+          "hex": "#cccccc",
+          "name": "Silver Mist",
+          "role": "Lighter text for low contrast areas, icon highlights",
+          "group": "neutral"
+        },
+        {
+          "hex": "#e6e6e6",
+          "name": "Smoke White",
+          "role": "Button text, high-contrast helper text",
+          "group": "neutral"
+        },
+        {
+          "hex": "#ffffff",
+          "name": "Canvas White",
+          "role": "High-contrast text, primary icons, strong borders",
+          "group": "neutral"
+        },
+        {
+          "hex": "#479ffa",
+          "name": "Sky Surge",
+          "role": "Blue outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color",
+          "group": "brand"
+        },
+        {
+          "hex": "#ffa16c",
+          "name": "Tangelo Flame",
+          "role": "Section headlines, accent borders — creating a focal point for key information",
+          "group": "brand"
+        },
+        {
+          "hex": "#4ebe96",
+          "name": "Zenith Green",
+          "role": "Green outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color",
+          "group": "accent"
+        },
+        {
+          "hex": "#fffd00",
+          "name": "Aurora Yellow",
+          "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+          "group": "accent",
+          "gradient": "linear-gradient(90deg, rgba(254, 253, 0, 0.2) 0%, rgba(255, 255, 255, 0.2) 11.85%)"
+        }
+      ],
+      "layout": "The page primarily uses a max-width contained layout of 1220px, with some full-bleed sections, particularly at the top hero and for background elements. The hero features a large, dark visual element with centered text overlays and a sticky top navigation. Sections flow vertically with consistent spacing (24px element and section gap) and often feature two-column arrangements of text on the left and a product screenshot or data visualization on the right. Content blocks are information-dense, often using card grids (likely 3-column judging by visual patterns) for feature showcases. The overall rhythm is structured yet fluid, avoiding stark visual dividers in favor of subtle background shifts and card separation.",
+      "imagery": "The site uses high-fidelity product screenshots of the Fey interface, often presented in mockups of devices. These are typically contained within cards or display areas, sometimes featuring subtle atmospheric blur effects or partial transparency. Photography is absent. Icons are minimalist, outlined, and monochromatic, primarily in white or light gray. Visual density is high, with imagery serving to demonstrate product functionality and data visualization rather than decorative atmosphere. Abstract graphics, when present, are subtle gradients or blurred shapes, contributing to depth.",
+      "spacing": {
+        "radius": {
+          "cards": "16px",
+          "icons": "6px",
+          "buttons": "99px",
+          "heroElement": "275px",
+          "interactiveElements": "10px"
+        },
+        "density": "comfortable",
+        "baseUnit": null,
+        "elementGap": "24px",
+        "sectionGap": "24px",
+        "cardPadding": "18px",
+        "pageMaxWidth": "1220px"
+      },
+      "industry": "fintech",
+      "elevation": [
+        {
+          "style": "rgba(0, 0, 0, 0.5) 0px 0px 35px 0px",
+          "element": "Header Bar"
+        },
+        {
+          "style": "rgba(255, 255, 255, 0.32) 1.25px 1.25px 1.25px 0px inset, rgba(255, 255, 255, 0.05) 1.25px -1.25px 1.25px 0px inset, rgba(0, 0, 0, 0.753) 9.22562px 43.5671px 43.3172px 0px",
+          "element": "Tooltip/Floating Card"
+        },
+        {
+          "style": "rgba(0, 0, 0, 0.8) 0px 0px 44px 0px",
+          "element": "General Elevated Element"
+        },
+        {
+          "style": "rgba(0, 0, 0, 0.85) 0px 1px 0px 0px, rgba(255, 255, 255, 0.25) 0px 0px 14px 0px",
+          "element": "Button Focus/Active"
+        }
+      ],
+      "northStar": "Midnight Command Center: high-definition data on frosted glass.",
+      "typeScale": [
+        {
+          "role": "caption",
+          "size": 10,
+          "lineHeight": 1.58
+        },
+        {
+          "role": "heading",
+          "size": 18,
+          "lineHeight": 1.3
+        },
+        {
+          "role": "heading-lg",
+          "size": 24,
+          "lineHeight": 1.25
+        },
+        {
+          "role": "display-sm",
+          "size": 26,
+          "lineHeight": 1.2
+        },
+        {
+          "role": "display",
+          "size": 48,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.96
+        },
+        {
+          "role": "display-lg",
+          "size": 54,
+          "lineHeight": 1,
+          "letterSpacing": -1.08
+        }
+      ],
+      "components": [
+        {
+          "name": "Primary Action Button",
+          "role": "Filled button indicating primary action.",
+          "description": "Background: #e6e6e6, Text: #000000, Border-radius: 99px, Padding: 7px vertical, 16px horizontal. Font: Calibre, weight 400."
+        },
+        {
+          "name": "Ghost Navigation Button",
+          "role": "Subtle, non-filled button for navigation or secondary actions.",
+          "description": "Background: transparent, Text: #ffffff, Border-radius: 50% for icon-only, 99px for text. Padding: 0px."
+        },
+        {
+          "name": "Subtle Pill Button",
+          "role": "Discreet interactive elements or tags.",
+          "description": "Background: rgba(255, 255, 255, 0.05), Text: #e6e6e6, Border-radius: 6px, Padding: 3.75px vertical, 8-10px horizontal. Border: 1px solid rgba(255, 255, 255, 0.1)."
+        },
+        {
+          "name": "Data Card",
+          "role": "Container for financial data visualizations and text.",
+          "description": "Background: #0b0b0b, Border-radius: 16px, Box-shadow: none. Padding: 18px on all sides for content unless explicitly overridden internally."
+        },
+        {
+          "name": "Elevated Tooltip Card",
+          "role": "Floating informational panels.",
+          "description": "Background: rgba(62, 62, 62, 0.4), Border-radius: 275px (highly rounded, almost circular), Padding: 17.5px. Inset shadows provide internal depth: rgba(255, 255, 255, 0.32) 1.25px 1.25px 1.25px inset, rgba(255, 255, 255, 0.05) 1.25px -1.25px 1.25px inset."
+        },
+        {
+          "name": "Header Bar",
+          "role": "Sticky site header.",
+          "description": "Background: #000000, Border-radius: 12px 12px 0px 0px (rounded top, sharp bottom). Shadow: rgba(0, 0, 0, 0.5) 0px 0px 35px 0px. Minimal internal padding."
+        }
+      ],
+      "typography": [
+        {
+          "role": "The sole typeface for all content. Its technical, compact nature suits dense financial data and UI. Tightly tracked larger sizes maintain visual precision.",
+          "sizes": "10px, 11px, 12px, 14px, 15px, 16px, 18px, 24px, 26px, 48px, 54px",
+          "family": "calibre",
+          "source": "custom",
+          "weight": "400, 500, 600, 700",
+          "lineHeight": "1.00, 1.10, 1.20, 1.25, 1.30, 1.32, 1.36, 1.40, 1.50, 1.58",
+          "substitute": "Inter",
+          "letterSpacing": "-0.0800em at 54px, -0.0530em at 48px"
+        }
+      ],
+      "description": "Fey uses a commanding dark mode palette, leveraging deep blacks and subtle gradients as a backdrop for high-fidelity financial data. White and muted grays provide essential text hierarchy and UI structure, while sparse, vivid chromatic accents draw attention to critical insights and interactive elements. The system emphasizes clarity and data density through compact typography and minimal component padding, offering a direct and focused user experience. Transparency and blurred surfaces create a sense of depth without resorting to heavy shadows.",
+      "customSections": [
+        {
+          "title": "Agent Prompt Guide",
+          "content": "**Quick Color Reference**\ntext: #868f97\nbackground: #000000\nborder: #ffffff\naccent: #479ffa\nprimary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n2. Create a data card displaying financial metrics: background #0b0b0b, 16px border-radius, 18px padding. Headline text is Calibre weight 600 at 18px, color #868f97. Body text is Calibre weight 400 at 14px, color #868f97.\n3. Create a ghost navigation link: transparent background, text #ffffff, Calibre weight 500 at 16px, no padding. Hover state changes text color to #479ffa.\n4. Design an elevated tooltip: background rgba(62, 62, 62, 0.4), 275px border-radius, 17.5px padding. Text is Calibre weight 400 at 12px, color #cccccc, with inset shadows that include rgba(255, 255, 255, 0.32) 1.25px 1.25px 1.25px inset."
+        }
+      ],
+      "title": "Fey"
+    },
+    {
+      "dos": [
+        "Use 'Pitch Black' (#08090a) for the primary page background to establish the dark theme.",
+        "Apply 'Porcelain' (#f7f8f8) for all primary text and important icons to ensure readability.",
+        "Highlight primary interactive elements exclusively with 'Neon Lime' (#e4f222) as a background, restricting its use to guide user attention.",
+        "Create depth and hierarchy by layering surfaces using 'Pitch Black' (#08090a), 'Graphite' (#0f1011), and 'Deep Slate' (#161718) backgrounds.",
+        "Employ the Inter Variable font family with specific letter-spacing adjustments for all UI text, such as -0.22px for display sizes and -0.11px for body text, to maintain a tight, precise feel.",
+        "Utilize 6px border-radius for all primary buttons, cards, and input fields to maintain a consistent, subtly rounded aesthetic.",
+        "Use 'Storm Cloud' (#8a8f98) for secondary text and descriptive labels to recede into the background."
+      ],
+      "donts": [
+        "Do not introduce additional bright or saturated colors beyond 'Neon Lime' (#e4f222) for interactive elements; maintain its singular role.",
+        "Avoid using harsh white backgrounds or light-themed patterns, as the system is anchored in a dark mode aesthetic.",
+        "Do not deviate from the specified typeface choices; 'Inter Variable' and 'Berkeley Mono' are fundamental to the visual identity.",
+        "Refrain from using strong, diffuse shadows; elevation is achieved through subtle layering and sharp, contained shadows like rgba(0, 0, 0, 0.4) 0px 2px 4px 0px.",
+        "Do not apply broad, decorative background gradients across large sections of the UI; gradients are subtle and contained to specific functional areas.",
+        "Do not use generic border-radii; adhere to 6px for key components like cards and buttons, and 2px for smaller tags, to preserve the signature balance of softness and precision.",
+        "Avoid large amounts of white space; the design is compact, leveraging an 8px element gap as a standard measurement."
+      ],
+      "theme": "dark",
+      "colors": [
+        {
+          "hex": "#08090a",
+          "name": "Pitch Black",
+          "role": "Page background, primary surface for base elements, subtly integrated into shadows for depth.",
+          "group": "neutral"
+        },
+        {
+          "hex": "#0f1011",
+          "name": "Graphite",
+          "role": "Elevated card backgrounds, slightly lighter than the canvas to denote layering.",
+          "group": "neutral"
+        },
+        {
+          "hex": "#161718",
+          "name": "Deep Slate",
+          "role": "Secondary elevated card backgrounds, providing another layer of visual hierarchy.",
+          "group": "neutral"
+        },
+        {
+          "hex": "#23252a",
+          "name": "Charcoal Grey",
+          "role": "Borders and some shadowed card surfaces, framing elements with a subtle distinction.",
+          "group": "neutral"
+        },
+        {
+          "hex": "#323334",
+          "name": "Muted Ash",
+          "role": "Subtle borders and dividers, indicating soft separations within the dark theme.",
+          "group": "neutral"
+        },
+        {
+          "hex": "#383b3f",
+          "name": "Gunmetal",
+          "role": "Tertiary background elements and input borders, a darker neutral for functional elements.",
+          "group": "neutral"
+        },
+        {
+          "hex": "#f7f8f8",
+          "name": "Porcelain",
+          "role": "Primary text and icons, providing strong contrast for readability against dark backgrounds.",
+          "group": "neutral"
+        },
+        {
+          "hex": "#d0d6e0",
+          "name": "Light Steel",
+          "role": "Secondary text and borders, for less prominent information or structural lines.",
+          "group": "neutral"
+        },
+        {
+          "hex": "#8a8f98",
+          "name": "Storm Cloud",
+          "role": "Tertiary text, descriptive labels, and inactive states, recedes into the background for low-priority details.",
+          "group": "neutral"
+        },
+        {
+          "hex": "#62666d",
+          "name": "Fog Grey",
+          "role": "Muted text for metadata, timestamps, and further de-emphasized content.",
+          "group": "neutral"
+        },
+        {
+          "hex": "#e5e5e6",
+          "name": "Alabaster",
+          "role": "Informational borders and subtle fills, often seen in code blocks or explanatory components.",
+          "group": "neutral"
+        },
+        {
+          "hex": "#e4f222",
+          "name": "Neon Lime",
+          "role": "Primary action indicators, active states, and focus elements — a high-energy focal point.",
+          "group": "brand"
+        },
+        {
+          "hex": "#5e6ad2",
+          "name": "Aether Blue",
+          "role": "Decorative highlights and occasional background elements, suggesting a technological or informational context.",
+          "group": "accent"
+        },
+        {
+          "hex": "#008d2c",
+          "name": "Forest Green",
+          "role": "Positive status indicators, success messages, and related iconography.",
+          "group": "semantic"
+        },
+        {
+          "hex": "#02b8cc",
+          "name": "Cyan Spark",
+          "role": "Informational highlights and unique icon fills, providing a cool accent.",
+          "group": "accent"
+        },
+        {
+          "hex": "#27a644",
+          "name": "Emerald",
+          "role": "Success and completion states, often paired with green text.",
+          "group": "semantic"
+        },
+        {
+          "hex": "#eb5757",
+          "name": "Warning Red",
+          "role": "Observed in icon fill, body borderColor, other fill. Extracted usage does not support a distinct primary control color.",
+          "group": "semantic"
+        },
+        {
+          "hex": "#6366f1",
+          "name": "Deep Violet",
+          "role": "Background accents in specific content blocks, indicating a distinct informational category.",
+          "group": "accent"
+        },
+        {
+          "hex": "#8b5cf6",
+          "name": "Amethyst",
+          "role": "Another variant of violet for backgrounds, used interchangeably with Deep Violet for visual diversity.",
+          "group": "accent"
+        }
+      ],
+      "layout": "The page primarily uses a full-bleed structure for background content, with main content sections constrained by a centered maximum width (not explicitly defined but visually present). The hero section features a full-bleed 'Pitch Black' background with a centered, prominent headline. Subsequent sections alternate between dark backgrounds for narrative content and embedded UI examples, often featuring split layouts (text on one side, product UI on the other). Content is generally arranged in vertical stacks or multi-column grids for feature display. Navigation consists of a sticky top bar and frequently observed left-hand sidebar for application-like structures. Spacing is compact yet deliberate, creating a dense but organized information flow.",
+      "imagery": "The site's visual language is dominated by UI elements and product screenshots, emphasizing functionality over decorative imagery. Where images appear, they are often contained within realistic product mockups or embedded application frames. Abstract graphics are minimal, primarily serving as subtle background textures or data visualizations. Icons are filled, minimalist, and mono-color, often adopting the 'Porcelain' (#f7f8f8) or 'Storm Cloud' (#8a8f98) neutral palette, enhancing the dashboard aesthetic. The overall density of imagery is low; it serves an explanatory or product showcase role rather than a decorative one.",
+      "spacing": {
+        "radius": {
+          "pill": "9999px",
+          "tags": "2px",
+          "cards": "6px",
+          "badges": "4px",
+          "inputs": "6px",
+          "buttons": "6px",
+          "default": "6px"
+        },
+        "density": "compact",
+        "baseUnit": 4,
+        "elementGap": "8px",
+        "sectionGap": "24px",
+        "cardPadding": "12px",
+        "pageMaxWidth": null
+      },
+      "industry": "ai",
+      "surfaces": [
+        {
+          "hex": "#08090a",
+          "name": "Pitch Black Canvas",
+          "level": 0,
+          "purpose": "Base page background and deepest surface level."
+        },
+        {
+          "hex": "#0f1011",
+          "name": "Graphite Card",
+          "level": 1,
+          "purpose": "Primary card surface for general content, slightly elevated from the canvas."
+        },
+        {
+          "hex": "#161718",
+          "name": "Deep Slate Elevated Card",
+          "level": 2,
+          "purpose": "More prominent card surface, used for focused content sections or lists."
+        },
+        {
+          "hex": "#23252a",
+          "name": "Charcoal Grey Overlay",
+          "level": 3,
+          "purpose": "Accent surface for borders, shadows, and subtle overlays, providing clear separation."
+        }
+      ],
+      "elevation": [
+        {
+          "style": "rgba(0, 0, 0, 0.4) 0px 2px 4px 0px",
+          "element": "Default Card"
+        },
+        {
+          "style": "rgba(0, 0, 0, 0.2) 0px 0px 12px 0px inset",
+          "element": "Sidebar/Menu Element Focus"
+        },
+        {
+          "style": "rgb(35, 37, 42) 0px 0px 0px 1px inset",
+          "element": "Elevated Card Inset"
+        },
+        {
+          "style": "rgba(0, 0, 0, 0.2) 0px 0px 0px 1px",
+          "element": "Card Border/Input Focus"
+        },
+        {
+          "style": "rgba(0, 0, 0, 0.01) 0px 5px 2px 0px, rgba(0, 0, 0, 0.04) 0px 3px 2px 0px, rgba(0, 0, 0, 0.07) 0px 1px 1px 0px, rgba(0, 0, 0, 0.08) 0px 0px 1px 0px",
+          "element": "Navigation/Button Subtle Lift"
+        }
+      ],
+      "northStar": "Midnight Command Center: A dark, layered interface lit by precise accents, like a high-tech control panel.",
+      "typeScale": [
+        {
+          "role": "caption",
+          "size": 10,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.1
+        },
+        {
+          "role": "body",
+          "size": 14,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.13
+        },
+        {
+          "role": "heading",
+          "size": 24,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.22
+        },
+        {
+          "role": "heading-lg",
+          "size": 48,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.22
+        },
+        {
+          "role": "display",
+          "size": 72,
+          "lineHeight": 1,
+          "letterSpacing": -0.22
+        }
+      ],
+      "components": [
+        {
+          "html": "<style>\n  :root {\n    --color-pitch-black: #08090a;\n    --color-graphite: #0f1011;\n    --color-deep-slate: #161718;\n    --color-charcoal-grey: #23252a;\n    --color-muted-ash: #323334;\n    --color-gunmetal: #383b3f;\n    --color-porcelain: #f7f8f8;\n    --color-light-steel: #d0d6e0;\n    --color-storm-cloud: #8a8f98;\n    --color-fog-grey: #62666d;\n    --color-neon-lime: #e4f222;\n    --color-aether-blue: #5e6ad2;\n    --color-warning-red: #eb5757;\n    --color-emerald: #27a644;\n    --color-cyan-spark: #02b8cc;\n    --font-inter-variable: 'Inter', sans-serif;\n    --font-berkeley-mono: 'IBM Plex Mono', monospace;\n  }\n\n  .issue-card-wrapper {\n    background: var(--color-pitch-black);\n    padding: 24px;\n    font-family: var(--font-inter-variable);\n    min-width: 320px;\n    max-width: 600px;\n    box-sizing: border-box;\n  }\n\n  .issue-card {\n    background: var(--color-graphite);\n    border-radius: 6px;\n    box-shadow: rgba(0,0,0,0.4) 0px 2px 4px 0px, rgb(35,37,42) 0px 0px 0px 1px inset;\n    overflow: hidden;\n  }\n\n  .issue-card-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    padding: 10px 14px;\n    border-bottom: 1px solid var(--color-charcoal-grey);\n  }\n\n  .issue-card-header-left {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n  }\n\n  .issue-id {\n    font-family: var(--font-berkeley-mono);\n    font-size: 11px;\n    color: var(--color-fog-grey);\n    letter-spacing: -0.1px;\n  }\n\n  .issue-title-header {\n    font-size: 13px;\n    font-weight: 510;\n    color: var(--color-porcelain);\n    letter-spacing: -0.12px;\n  }\n\n  .issue-star {\n    color: #f4c430;\n    font-size: 13px;\n  }\n\n  .issue-nav {\n    display: flex;\n    align-items: center;\n    gap: 4px;\n    color: var(--color-fog-grey);\n    font-size: 12px;\n  }\n\n  .issue-nav-btn {\n    background: var(--color-charcoal-grey);\n    border: none;\n    border-radius: 4px;\n    color: var(--color-storm-cloud);\n    width: 22px;\n    height: 22px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    cursor: pointer;\n    padding: 0;\n  }\n\n  .issue-card-body {\n    padding: 20px;\n  }\n\n  .issue-title {\n    font-size: 16px;\n    font-weight: 590;\n    color: var(--color-porcelain);\n    letter-spacing: -0.15px;\n    margin: 0 0 10px 0;\n  }\n\n  .issue-description {\n    font-size: 13px;\n    line-height: 1.6;\n    color: var(--color-storm-cloud);\n    letter-spacing: -0.11px;\n    margin: 0 0 20px 0;\n  }\n\n  .issue-description code {\n    font-family: var(--font-berkeley-mono);\n    font-size: 11px;\n    background: var(--color-charcoal-grey);\n    color: var(--color-light-steel);\n    padding: 2px 5px;\n    border-radius: 3px;\n    letter-spacing: -0.1px;\n  }\n\n  .issue-meta {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n  }\n\n  .issue-meta-row {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n  }\n\n  .meta-label {\n    font-size: 12px;\n    color: var(--color-fog-grey);\n    letter-spacing: -0.1px;\n    width: 72px;\n    flex-shrink: 0;\n  }\n\n  .meta-value {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    font-size: 12px;\n    color: var(--color-storm-cloud);\n    letter-spacing: -0.1px;\n  }\n\n  .status-dot {\n    width: 12px;\n    height: 12px;\n    border-radius: 50%;\n    border: 2px solid #f4c430;\n    background: transparent;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n\n  .status-dot-inner {\n    width: 5px;\n    height: 5px;\n    border-radius: 50%;\n    background: #f4c430;\n  }\n\n  .priority-bars {\n    display: flex;\n    align-items: flex-end;\n    gap: 1.5px;\n    height: 12px;\n  }\n\n  .priority-bar {\n    width: 3px;\n    border-radius: 1px;\n    background: var(--color-warning-red);\n  }\n\n  .avatar-circle {\n    width: 16px;\n    height: 16px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, #5e6ad2 0%, #27a644 100%);\n    flex-shrink: 0;\n  }\n\n  .issue-divider {\n    height: 1px;\n    background: var(--color-charcoal-grey);\n    margin: 16px 0;\n  }\n\n  .issue-activity-label {\n    font-size: 12px;\n    font-weight: 590;\n    color: var(--color-porcelain);\n    letter-spacing: -0.1px;\n    margin-bottom: 12px;\n  }\n\n  .activity-item {\n    display: flex;\n    align-items: flex-start;\n    gap: 8px;\n    margin-bottom: 10px;\n  }\n\n  .activity-avatar {\n    width: 20px;\n    height: 20px;\n    border-radius: 50%;\n    flex-shrink: 0;\n    margin-top: 1px;\n  }\n\n  .activity-avatar-linear {\n    background: linear-gradient(135deg, var(--color-aether-blue), #4f46e5);\n  }\n\n  .activity-avatar-karri {\n    background: linear-gradient(135deg, #e07b54, #c9553a);\n  }\n\n  .activity-avatar-triage {\n    background: linear-gradient(135deg, var(--color-emerald), #1a7a33);\n  }\n\n  .activity-text {\n    font-size: 12px;\n    line-height: 1.5;\n    color: var(--color-storm-cloud);\n    letter-spacing: -0.1px;\n  }\n\n  .activity-text strong {\n    color: var(--color-light-steel);\n    font-weight: 510;\n  }\n\n  .activity-text .tag {\n    display: inline-block;\n    background: var(--color-charcoal-grey);\n    color: var(--color-storm-cloud);\n    border-radius: 3px;\n    padding: 0 4px;\n    font-size: 11px;\n    font-family: var(--font-berkeley-mono);\n  }\n\n  .activity-time {\n    font-size: 11px;\n    color: var(--color-fog-grey);\n    margin-left: 4px;\n  }\n</style>\n\n<div class=\"issue-card-wrapper\">\n  <div class=\"issue-card\">\n    <div class=\"issue-card-header\">\n      <div class=\"issue-card-header-left\">\n        <span class=\"issue-title-header\">Faster app launch</span>\n        <span class=\"issue-star\">★</span>\n      </div>\n      <div style=\"display:flex;align-items:center;gap:10px;\">\n        <span class=\"issue-id\">02 / 145</span>\n        <div class=\"issue-nav\">\n          <button class=\"issue-nav-btn\">\n            <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" fill=\"none\">\n              <path d=\"M6.5 2L3.5 5L6.5 8\" stroke=\"#8a8f98\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n            </svg>\n          </button>\n          <button class=\"issue-nav-btn\">\n            <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" fill=\"none\">\n              <path d=\"M3.5 2L6.5 5L3.5 8\" stroke=\"#8a8f98\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n            </svg>\n          </button>\n        </div>\n        <span class=\"issue-id\" style=\"font-family:var(--font-inter-variable);color:var(--color-fog-grey);font-size:11px;\">ENG-2703</span>\n      </div>\n    </div>\n\n    <div class=\"issue-card-body\">\n      <div style=\"display:flex;gap:16px;\">\n        <div style=\"flex:1;\">\n          <h3 class=\"issue-title\">Faster app launch</h3>\n          <p class=\"issue-description\">\n            Render UI before <code>vehicle_state</code> sync when minimum required state is present, instead of blocking on full refresh during iOS startup.\n          </p>\n\n          <div class=\"issue-meta\">\n            <div class=\"issue-meta-row\">\n              <span class=\"meta-label\">Status</span>\n              <div class=\"meta-value\">\n                <div class=\"status-dot\"><div class=\"status-dot-inner\"></div></div>\n                In Progress\n              </div>\n            </div>\n            <div class=\"issue-meta-row\">\n              <span class=\"meta-label\">Priority</span>\n              <div class=\"meta-value\">\n                <div class=\"priority-bars\">\n                  <div class=\"priority-bar\" style=\"height:4px;\"></div>\n                  <div class=\"priority-bar\" style=\"height:7px;\"></div>\n                  <div class=\"priority-bar\" style=\"height:10px;\"></div>\n                </div>\n                High\n              </div>\n            </div>\n            <div class=\"issue-meta-row\">\n              <span class=\"meta-label\">Assignee</span>\n              <div class=\"meta-value\">\n                <div class=\"avatar-circle\" style=\"background:linear-gradient(135deg,#e07b54,#c9553a);\"></div>\n                jori\n              </div>\n            </div>\n            <div class=\"issue-meta-row\">\n              <span class=\"meta-label\">Agent</span>\n              <div class=\"meta-value\">\n                <div class=\"avatar-circle\" style=\"background:linear-gradient(135deg,#24292e,#444d56);\"></div>\n                GitHub Copilot\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"issue-divider\"></div>\n\n      <div class=\"issue-activity-label\">Activity</div>\n\n      <div class=\"activity-item\">\n        <div class=\"activity-avatar activity-avatar-linear\"></div>\n        <div class=\"activity-text\">\n          <strong>Linear</strong> created the issue via <strong>Slack</strong> on behalf of <strong>karri</strong>\n          <span class=\"activity-time\">· 2min ago</span>\n        </div>\n      </div>\n\n      <div class=\"activity-item\">\n        <div class=\"activity-avatar activity-avatar-triage\"></div>\n        <div class=\"activity-text\">\n          <strong>Triage Intelligence</strong> added the label <span class=\"tag\">Performance</span> and <span class=\"tag\">iOS</span>\n          <span class=\"activity-time\">· 2min ago</span>\n        </div>\n      </div>\n\n      <div class=\"activity-item\">\n        <div class=\"activity-avatar activity-avatar-karri\"></div>\n        <div class=\"activity-text\">\n          <strong>karri</strong>\n          <span class=\"activity-time\">· 4 min ago</span>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>",
+          "name": "Issue Card",
+          "role": "",
+          "description": ""
+        },
+        {
+          "html": "<style>\n  :root {\n    --color-pitch-black: #08090a;\n    --color-graphite: #0f1011;\n    --color-charcoal-grey: #23252a;\n    --color-gunmetal: #383b3f;\n    --color-porcelain: #f7f8f8;\n    --color-light-steel: #d0d6e0;\n    --color-storm-cloud: #8a8f98;\n    --color-fog-grey: #62666d;\n    --color-neon-lime: #e4f222;\n    --font-inter-variable: 'Inter', sans-serif;\n  }\n\n  .btn-group-wrapper {\n    background: var(--color-pitch-black);\n    padding: 40px 24px;\n    font-family: var(--font-inter-variable);\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 32px;\n    box-sizing: border-box;\n    max-width: 600px;\n  }\n\n  .btn-group-headline {\n    text-align: center;\n  }\n\n  .btn-group-headline h2 {\n    font-size: 32px;\n    font-weight: 590;\n    color: var(--color-porcelain);\n    letter-spacing: -0.22px;\n    line-height: 1.2;\n    margin: 0 0 10px 0;\n  }\n\n  .btn-group-headline p {\n    font-size: 14px;\n    color: var(--color-storm-cloud);\n    letter-spacing: -0.13px;\n    line-height: 1.6;\n    margin: 0;\n  }\n\n  .btn-row {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-wrap: wrap;\n    justify-content: center;\n  }\n\n  .btn-primary {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    background: var(--color-neon-lime);\n    color: var(--color-pitch-black);\n    font-family: var(--font-inter-variable);\n    font-size: 14px;\n    font-weight: 590;\n    letter-spacing: -0.13px;\n    padding: 9px 18px;\n    border-radius: 6px;\n    border: none;\n    cursor: pointer;\n    text-decoration: none;\n    box-shadow: rgba(0,0,0,0.3) 0px 2px 6px 0px;\n    transition: opacity 0.15s;\n  }\n\n  .btn-primary:hover {\n    opacity: 0.9;\n  }\n\n  .btn-secondary {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    background: transparent;\n    color: var(--color-porcelain);\n    font-family: var(--font-inter-variable);\n    font-size: 14px;\n    font-weight: 510;\n    letter-spacing: -0.13px;\n    padding: 9px 18px;\n    border-radius: 6px;\n    border: 1px solid var(--color-charcoal-grey);\n    cursor: pointer;\n    text-decoration: none;\n    transition: border-color 0.15s;\n  }\n\n  .btn-secondary:hover {\n    border-color: var(--color-gunmetal);\n  }\n\n  .btn-ghost {\n    display: inline-flex;\n    align-items: center;\n    gap: 5px;\n    background: transparent;\n    color: var(--color-storm-cloud);\n    font-family: var(--font-inter-variable);\n    font-size: 13px;\n    font-weight: 400;\n    letter-spacing: -0.11px;\n    padding: 9px 12px;\n    border-radius: 6px;\n    border: none;\n    cursor: pointer;\n    text-decoration: none;\n    transition: color 0.15s;\n  }\n\n  .btn-ghost:hover {\n    color: var(--color-light-steel);\n  }\n\n  .btn-notice {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    background: transparent;\n    border: none;\n    padding: 0;\n    font-family: var(--font-inter-variable);\n    font-size: 12px;\n    color: var(--color-fog-grey);\n    letter-spacing: -0.1px;\n  }\n\n  .notice-dot {\n    width: 6px;\n    height: 6px;\n    border-radius: 50%;\n    background: var(--color-neon-lime);\n    flex-shrink: 0;\n  }\n\n  .divider-line {\n    width: 1px;\n    height: 18px;\n    background: var(--color-charcoal-grey);\n  }\n</style>\n\n<div class=\"btn-group-wrapper\">\n  <div class=\"btn-group-headline\">\n    <h2>Start building with Linear</h2>\n    <p>Purpose-built for planning and building products.<br>Designed for the AI era.</p>\n  </div>\n\n  <div class=\"btn-row\">\n    <a href=\"#\" class=\"btn-primary\">\n      Get started free\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\">\n        <path d=\"M3 7h8M7.5 4l3.5 3-3.5 3\" stroke=\"#08090a\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </a>\n    <a href=\"#\" class=\"btn-secondary\">\n      Request a demo\n    </a>\n  </div>\n\n  <div style=\"display:flex;align-items:center;gap:16px;\">\n    <span class=\"btn-notice\">\n      <span class=\"notice-dot\"></span>\n      No credit card required\n    </span>\n    <div class=\"divider-line\"></div>\n    <a href=\"#\" class=\"btn-ghost\">\n      View pricing\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\">\n        <path d=\"M2.5 6h7M6.5 3.5L9 6l-2.5 2.5\" stroke=\"#8a8f98\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </a>\n    <div class=\"divider-line\"></div>\n    <a href=\"#\" class=\"btn-ghost\">\n      See customers\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\">\n        <path d=\"M2.5 6h7M6.5 3.5L9 6l-2.5 2.5\" stroke=\"#8a8f98\" stroke-width=\"1.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </a>\n  </div>\n</div>",
+          "name": "CTA Button Group",
+          "role": "",
+          "description": ""
+        },
+        {
+          "html": "<style>\n  :root {\n    --color-pitch-black: #08090a;\n    --color-graphite: #0f1011;\n    --color-deep-slate: #161718;\n    --color-charcoal-grey: #23252a;\n    --color-muted-ash: #323334;\n    --color-gunmetal: #383b3f;\n    --color-porcelain: #f7f8f8;\n    --color-light-steel: #d0d6e0;\n    --color-storm-cloud: #8a8f98;\n    --color-fog-grey: #62666d;\n    --color-neon-lime: #e4f222;\n    --color-warning-red: #eb5757;\n    --color-emerald: #27a644;\n    --color-cyan-spark: #02b8cc;\n    --color-aether-blue: #5e6ad2;\n    --font-inter-variable: 'Inter', sans-serif;\n    --font-berkeley-mono: 'IBM Plex Mono', monospace;\n  }\n\n  .board-wrapper {\n    background: var(--color-pitch-black);\n    padding: 20px;\n    font-family: var(--font-inter-variable);\n    box-sizing: border-box;\n    max-width: 600px;\n  }\n\n  .board-columns {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 12px;\n  }\n\n  .board-column {\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n  }\n\n  .column-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    padding: 4px 2px 8px 2px;\n    border-bottom: 1px solid var(--color-charcoal-grey);\n    margin-bottom: 4px;\n  }\n\n  .column-title {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    font-size: 12px;\n    font-weight: 510;\n    color: var(--color-storm-cloud);\n    letter-spacing: -0.1px;\n  }\n\n  .col-icon-circle {\n    width: 14px;\n    height: 14px;\n    border-radius: 50%;\n    border: 1.5px solid var(--color-fog-grey);\n    flex-shrink: 0;\n  }\n\n  .col-icon-progress {\n    width: 14px;\n    height: 14px;\n    border-radius: 50%;\n    border: 1.5px solid #f4c430;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n\n  .col-icon-progress-inner {\n    width: 6px;\n    height: 6px;\n    border-radius: 50%;\n    background: #f4c430;\n  }\n\n  .column-count {\n    font-size: 11px;\n    color: var(--color-fog-grey);\n    font-family: var(--font-berkeley-mono);\n    letter-spacing: -0.1px;\n  }\n\n  .column-add {\n    background: none;\n    border: none;\n    color: var(--color-fog-grey);\n    cursor: pointer;\n    padding: 0;\n    display: flex;\n    align-items: center;\n    font-size: 16px;\n    line-height: 1;\n  }\n\n  .issue-item {\n    background: var(--color-graphite);\n    border-radius: 6px;\n    padding: 10px 12px;\n    box-shadow: rgb(35,37,42) 0px 0px 0px 1px inset, rgba(0,0,0,0.3) 0px 1px 3px 0px;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n    cursor: pointer;\n    transition: background 0.12s;\n  }\n\n  .issue-item:hover {\n    background: var(--color-deep-slate);\n  }\n\n  .issue-item-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n  }\n\n  .issue-item-id {\n    font-family: var(--font-berkeley-mono);\n    font-size: 10px;\n    color: var(--color-fog-grey);\n    letter-spacing: -0.1px;\n  }\n\n  .issue-item-avatar {\n    width: 14px;\n    height: 14px;\n    border-radius: 50%;\n    flex-shrink: 0;\n  }\n\n  .issue-item-title {\n    font-size: 12px;\n    font-weight: 400;\n    color: var(--color-porcelain);\n    letter-spacing: -0.11px;\n    line-height: 1.4;\n    margin: 0;\n  }\n\n  .issue-item-tags {\n    display: flex;\n    align-items: center;\n    gap: 4px;\n    flex-wrap: wrap;\n  }\n\n  .issue-tag {\n    display: inline-flex;\n    align-items: center;\n    gap: 3px;\n    background: var(--color-charcoal-grey);\n    border-radius: 2px;\n    padding: 1px 5px;\n    font-size: 10px;\n    color: var(--color-storm-cloud);\n    letter-spacing: -0.08px;\n  }\n\n  .tag-dot {\n    width: 5px;\n    height: 5px;\n    border-radius: 50%;\n    flex-shrink: 0;\n  }\n\n  .issue-item-footer {\n    display: flex;\n    align-items: center;\n    gap: 4px;\n  }\n\n  .priority-icon {\n    display: flex;\n    align-items: flex-end;\n    gap: 1px;\n    height: 10px;\n  }\n\n  .priority-bar-sm {\n    width: 2px;\n    border-radius: 1px;\n  }\n</style>\n\n<div class=\"board-wrapper\">\n  <div class=\"board-columns\">\n    <!-- TODO Column -->\n    <div class=\"board-column\">\n      <div class=\"column-header\">\n        <div class=\"column-title\">\n          <div class=\"col-icon-circle\"></div>\n          Todo\n        </div>\n        <div style=\"display:flex;align-items:center;gap:8px;\">\n          <span class=\"column-count\">71</span>\n          <button class=\"column-add\">+</button>\n        </div>\n      </div>\n\n      <!-- Issue 1 -->\n      <div class=\"issue-item\">\n        <div class=\"issue-item-header\">\n          <span class=\"issue-item-id\">ENG-926</span>\n          <div class=\"issue-item-avatar\" style=\"background:linear-gradient(135deg,#8b5cf6,#5e6ad2);\"></div>\n        </div>\n        <p class=\"issue-item-title\">Remove UI inconsistencies</p>\n        <div class=\"issue-item-tags\">\n          <span class=\"issue-tag\">\n            <span class=\"tag-dot\" style=\"background:var(--color-warning-red);\"></span>\n            Bug\n          </span>\n          <span class=\"issue-tag\">\n            <span class=\"tag-dot\" style=\"background:var(--color-aether-blue);\"></span>\n            Design\n          </span>\n        </div>\n      </div>\n\n      <!-- Issue 2 -->\n      <div class=\"issue-item\">\n        <div class=\"issue-item-header\">\n          <span class=\"issue-item-id\">ENG-2088</span>\n          <div class=\"issue-item-avatar\" style=\"background:linear-gradient(135deg,#374151,#6b7280);\"></div>\n        </div>\n        <p class=\"issue-item-title\">TypeError: Cannot read properties</p>\n        <div class=\"issue-item-tags\">\n          <span class=\"issue-tag\">\n            <span class=\"tag-dot\" style=\"background:var(--color-warning-red);\"></span>\n            Bug\n          </span>\n        </div>\n      </div>\n\n      <!-- Issue 3 -->\n      <div class=\"issue-item\">\n        <div class=\"issue-item-header\">\n          <span class=\"issue-item-id\">ENG-924</span>\n          <div class=\"issue-item-avatar\" style=\"background:linear-gradient(135deg,#374151,#6b7280);\"></div>\n        </div>\n        <p class=\"issue-item-title\">Upgrade to Claude Opus 4.5</p>\n        <div class=\"issue-item-tags\">\n          <span class=\"issue-tag\">\n            <span class=\"tag-dot\" style=\"background:var(--color-cyan-spark);\"></span>\n            AI\n          </span>\n        </div>\n      </div>\n\n      <!-- Issue 4 -->\n      <div class=\"issue-item\">\n        <div class=\"issue-item-header\">\n          <span class=\"issue-item-id\">ENG-1882</span>\n          <div class=\"issue-item-avatar\" style=\"background:linear-gradient(135deg,#374151,#6b7280);\"></div>\n        </div>\n        <p class=\"issue-item-title\">Optimize load times</p>\n        <div class=\"issue-item-tags\">\n          <span class=\"issue-tag\">\n            <span class=\"tag-dot\" style=\"background:var(--color-emerald);\"></span>\n            Performance\n          </span>\n        </div>\n      </div>\n    </div>\n\n    <!-- IN PROGRESS Column -->\n    <div class=\"board-column\">\n      <div class=\"column-header\">\n        <div class=\"column-title\">\n          <div class=\"col-icon-progress\"><div class=\"col-icon-progress-inner\"></div></div>\n          In Progress\n        </div>\n        <div style=\"display:flex;align-items:center;gap:8px;\">\n          <span class=\"column-count\">3</span>\n          <button class=\"column-add\">+</button>\n        </div>\n      </div>\n\n      <!-- Issue 1 -->\n      <div class=\"issue-item\">\n        <div class=\"issue-item-header\">\n          <span class=\"issue-item-id\">ENG-1487</span>\n          <div class=\"issue-item-avatar\" style=\"background:linear-gradient(135deg,#374151,#9ca3af);\"></div>\n        </div>\n        <p class=\"issue-item-title\">Remove contentData from GraphQL API</p>\n        <div class=\"issue-item-footer\">\n          <div class=\"priority-icon\">\n            <div class=\"priority-bar-sm\" style=\"height:3px;background:var(--color-storm-cloud);\"></div>\n            <div class=\"priority-bar-sm\" style=\"height:5px;background:var(--color-storm-cloud);\"></div>\n            <div class=\"priority-bar-sm\" style=\"height:7px;background:var(--color-storm-cloud);\"></div>\n          </div>\n          <span style=\"font-family:var(--font-berkeley-mono);font-size:10px;color:var(--color-fog-grey);letter-spacing:-0.1px;\">61039</span>\n        </div>\n      </div>\n\n      <!-- Issue 2 -->\n      <div class=\"issue-item\">\n        <div class=\"issue-item-header\">\n          <span class=\"issue-item-id\">MKT-1028</span>\n          <div class=\"issue-item-avatar\" style=\"background:linear-gradient(135deg,#e07b54,#c9553a);\"></div>\n        </div>\n        <p class=\"issue-item-title\">Launch page assets</p>\n        <div class=\"issue-item-tags\">\n          <span class=\"issue-tag\">\n            <span class=\"tag-dot\" style=\"background:var(--color-aether-blue);\"></span>\n            Design\n          </span>\n        </div>\n      </div>\n\n      <!-- Issue 3 -->\n      <div class=\"issue-item\">\n        <div class=\"issue-item-header\">\n          <span class=\"issue-item-id\">ENG-2187</span>\n          <div class=\"issue-item-avatar\" style=\"background:linear-gradient(135deg,#8b5cf6,#5e6ad2);\"></div>\n        </div>\n        <p class=\"issue-item-title\">Prevent duplicate ride requests on poor connection</p>\n        <div class=\"issue-item-tags\">\n          <span class=\"issue-tag\">\n            <span class=\"tag-dot\" style=\"background:var(--color-warning-red);\"></span>\n            Bug\n          </span>\n        </div>\n        <div class=\"issue-item-footer\">\n          <span style=\"font-family:var(--font-berkeley-mono);font-size:10px;color:var(--color-fog-grey);letter-spacing:-0.1px;\">62048</span>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>",
+          "name": "Issue List Board",
+          "role": "",
+          "description": ""
+        },
+        {
+          "name": "Primary Action Button",
+          "role": "Call to action button",
+          "description": "Filled button with 'Neon Lime' background (#e4f222), 'Pitch Black' text (#08090a), 6px border-radius, and variable padding. Used for primary user actions."
+        },
+        {
+          "name": "Ghost Navigation Button",
+          "role": "Navigation and secondary actions",
+          "description": "Ghost button with transparent background, 'Porcelain' text (#f7f8f8), no explicit padding, and 0px border-radius. Navigational links or simple interactive elements."
+        },
+        {
+          "name": "Subtle Link Button",
+          "role": "Tertiary actions and links",
+          "description": "Ghost button with transparent background, 'Light Steel' text (#d0d6e0), 6px border-radius, and minimal padding (0px top/bottom, 6px left/right). Used for less prominent interactive elements or textual links."
+        },
+        {
+          "name": "Navigation Item Button",
+          "role": "Sidebar navigation items",
+          "description": "Ghost button with transparent background, 'Storm Cloud' text (#8a8f98), 2px border-radius, and no explicit padding. Used for items in a navigation list."
+        },
+        {
+          "name": "Default Card",
+          "role": "Content container",
+          "description": "Card with 'Graphite' background (#0f1011), 6px border-radius, and an outer shadow of rgba(0, 0, 0, 0.4) 0px 2px 4px 0px. Padding is 8px on all sides."
+        },
+        {
+          "name": "Elevated Card",
+          "role": "Prominent content container",
+          "description": "Card with 'Deep Slate' background (#161718), 12px top border-radius (0px bottom), and an inset shadow of rgb(35, 37, 42) 0px 0px 0px 1px. Padding is 24px vertical and 0px horizontal."
+        },
+        {
+          "name": "Nested Card",
+          "role": "Internal content grouping",
+          "description": "Card with 'Pitch Black' background (#08090a) and 12px border-radius, no shadow. Padding 8px on all sides, used for containing sub-elements within larger cards."
+        },
+        {
+          "name": "Input Field",
+          "role": "User input fields",
+          "description": "Input field with transparent background, 'Porcelain' text (#f7f8f8), 'Charcoal Grey' border (#23252a), and 6px border-radius. Padding is 12px vertical and 14px horizontal."
+        },
+        {
+          "name": "Subtle Input Field",
+          "role": "Search or secondary input fields",
+          "description": "Input field with 'Gunmetal' background (#383b3f), 'Porcelain' text (#f7f8f8), no explicit border, and 0px border-radius. Used for less emphasized data entry."
+        },
+        {
+          "name": "Badge",
+          "role": "Label or tag",
+          "description": "Badge with a 'Gunmetal' background (#383b3f), 'Storm Cloud' text (#8a8f98), 4px border-radius, and padding of 0px vertical and 6px horizontal. Used for small categorical labels."
+        }
+      ],
+      "typography": [
+        {
+          "role": "Primary UI typeface for all content including headings, body text, and interactive elements. Its variable weights provide a clean, modern aesthetic with strong technical readability.",
+          "sizes": "10px, 11px, 12px, 13px, 14px, 15px, 16px, 17px, 20px, 24px, 32px, 48px, 64px, 72px",
+          "family": "Inter Variable",
+          "source": "custom",
+          "weight": "300, 400, 510, 590",
+          "lineHeight": "1.00, 1.13, 1.20, 1.33, 1.40, 1.47, 1.50, 1.60, 2.00, 2.46, 2.75",
+          "substitute": "Inter",
+          "letterSpacing": "-0.22, -0.15, -0.13, -0.12, -0.11, -0.1",
+          "fontFeatureSettings": "\"cv01\", \"ss03\""
+        },
+        {
+          "role": "Monospaced font for code snippets, technical details, and certain data displays, ensuring consistent character alignment and technical clarity.",
+          "sizes": "12px, 13px, 14px",
+          "family": "Berkeley Mono",
+          "source": "custom",
+          "weight": "400",
+          "lineHeight": "1.30, 1.40, 1.50, 1.71",
+          "substitute": "IBM Plex Mono",
+          "letterSpacing": "-0.15"
+        }
+      ],
+      "description": "Linear presents a sophisticated and focused dark-mode experience, reminiscent of a command center dashboard. A deep charcoal base creates a serious, immersive canvas, while subtle gradients and layered surfaces build depth without harsh contrasts. Distinctive muted text colors (#8a8f98 for secondary, #62666d for tertiary) maintain readability against the dark backdrop. Critically, interaction is marked by a single vivid lime green (#e4f222), applied selectively to primary calls to action, preventing visual clutter and guiding the user's eye with precision.",
+      "customSections": [
+        {
+          "title": "Agent Prompt Guide",
+          "content": "Quick Color Reference:\n- text: #f7f8f8 (Porcelain)\n- background: #08090a (Pitch Black)\n- border: #23252a (Charcoal Grey)\n- accent: #5e6ad2 (Aether Blue)\n- primary action: #e4f222 (filled action)\n\n3-5 Example Component Prompts:\n- Create a call-to-action button: 'Neon Lime' background (#e4f222), 'Pitch Black' text (#08090a), Inter Variable font weight 590 at 15px, 6px border-radius, 12px vertical and 24px horizontal padding.\n- Create a default card with content: 'Graphite' background (#0f1011), 6px border-radius, rgba(0, 0, 0, 0.4) 0px 2px 4px 0px shadow. Inside, use Inter Variable font weight 400 at 14px with 'Porcelain' text (#f7f8f8), and a subsection headline at 17px weight 510 with 'Porcelain' text (#f7f8f8). Apply 8px padding internally.\n- Create a sidebar navigation item: Ghost button with transparent background, 'Storm Cloud' text (#8a8f98), Inter Variable font weight 400 at 14px, 2px border-radius, no padding.\n- Create an input field: transparent background with a 'Gunmetal' fill (#383b3f), 'Light Steel' text (#d0d6e0) using Inter Variable font weight 400 at 14px, 6px border-radius. Inset with a 1px 'Charcoal Grey' border (#23252a). Padding 12px vertical and 14px horizontal."
+        }
+      ],
+      "title": "Linear"
+    },
+    {
+      "dos": [
+        "Always use Midnight Ink (#0f1011) as the primary page background to maintain the dark theme.",
+        "Utilize Lyondisplay App weight 300 for prominent headlines, letting its lightness convey subtle authority.",
+        "Apply a generous 16px border-radius to static cards and 8px to interactive components like buttons and inputs.",
+        "Structure primary buttons as Ghost White text on a transparent background, accented with a light border, to maintain visual lightness.",
+        "Incorporate accent colors like Ocean Glimmer (#00b3dd) or Violet Haze (#847dff) primarily within card backgrounds or data visualizations, as functional highlights.",
+        "Maintain comfortable element spacing with 12px as a common `elementGap` between related items.",
+        "Ensure all body text uses Suisseintl weight 400 for optimal readability on dark backgrounds."
+      ],
+      "donts": [
+        "Avoid using harsh, saturated primary colors for large background areas; reserve vivid hues for contained accents.",
+        "Do not introduce strong drop shadows; the system relies on distinct background colors and subtle borders for elevation.",
+        "Do not deviate from the specified font families or their intended weights and letter spacing, as these are critical for brand identity.",
+        "Never use Ghost White (#ffffff) text directly on Slate Canvas (#000000) for large text blocks; primary text should sit against Midnight Ink or Elevated Charcoal for optimal contrast.",
+        "Avoid using generic button styles; always apply the specific radius (8px or 1440px) as defined for primary actions.",
+        "Do not create dense layouts; maintain a comfortable density with ample padding and vertical spacing.",
+        "Don't use more than a single accent color in any given visual area to avoid visual clutter and maintain focus."
+      ],
+      "theme": "dark",
+      "colors": [
+        {
+          "hex": "#0f1011",
+          "name": "Midnight Ink",
+          "role": "Primary page and large section background; Complex background gradient for hero sections, adding atmospheric depth",
+          "group": "neutral",
+          "gradient": "linear-gradient(rgb(15, 16, 17), rgb(19, 29, 39) 18%, rgb(26, 71, 136) 37%, rgb(64, 138, 193) 69%, rgb(64, 138, 193) 102%)"
+        },
+        {
+          "hex": "#2e2e2e",
+          "name": "Elevated Charcoal",
+          "role": "Card backgrounds, secondary container surfaces",
+          "group": "neutral"
+        },
+        {
+          "hex": "#000000",
+          "name": "Slate Canvas",
+          "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color",
+          "group": "neutral"
+        },
+        {
+          "hex": "#ffffff",
+          "name": "Ghost White",
+          "role": "Primary text, button text on dark backgrounds, active states, borders",
+          "group": "neutral"
+        },
+        {
+          "hex": "#f5f5f7",
+          "name": "Faded Mist",
+          "role": "Secondary text for headlines, subtle borders",
+          "group": "neutral"
+        },
+        {
+          "hex": "#cacaca",
+          "name": "Subtle Ash",
+          "role": "Tertiary text, divider lines, muted elements",
+          "group": "neutral"
+        },
+        {
+          "hex": "#6a6b6b",
+          "name": "Whisper Blue",
+          "role": "Placeholder text, minor descriptive text, inactive button borders",
+          "group": "neutral"
+        },
+        {
+          "hex": "#00b3dd",
+          "name": "Ocean Glimmer",
+          "role": "Decorative card backgrounds, accent in data visualizations",
+          "group": "accent"
+        },
+        {
+          "hex": "#847dff",
+          "name": "Violet Haze",
+          "role": "Decorative card backgrounds, accent in data visualizations, icon fills",
+          "group": "accent"
+        },
+        {
+          "hex": "#d1c9ff",
+          "name": "Lavender Mist",
+          "role": "Muted decorative card backgrounds, secondary accent",
+          "group": "accent"
+        },
+        {
+          "hex": "#dd90d8",
+          "name": "Soft Rose",
+          "role": "Decorative card backgrounds, accent for specific data points",
+          "group": "accent"
+        },
+        {
+          "hex": "#4b49aa",
+          "name": "Deep Indigo",
+          "role": "Stronger decorative card backgrounds, prominent accent",
+          "group": "accent"
+        },
+        {
+          "hex": "#90b8f0",
+          "name": "Sky Tint",
+          "role": "Light decorative card backgrounds, tertiary accent",
+          "group": "accent"
+        },
+        {
+          "hex": "#195f97",
+          "name": "Deep Sea",
+          "role": "Subtle blue tint for borders and muted text, often in navigation",
+          "group": "accent"
+        },
+        {
+          "hex": "#2b2b2c",
+          "name": "Dark Sky Gradient",
+          "role": "Background gradient for hero sections, conveying depth and atmosphere",
+          "group": "neutral",
+          "gradient": "linear-gradient(135deg, rgb(43, 43, 44), rgb(19, 19, 19))"
+        }
+      ],
+      "layout": "The page uses a max-width 1200px centered layout for content sections. The hero section is full-bleed, featuring atmospheric photography or gradient backgrounds with a large, centered headline and a centered call-to-action block. Subsequent sections maintain consistent vertical spacing, creating a comfortable, unhurried rhythm. Content is often presented in centered stacks or a 3-column card grid, with cards dynamically themed. Navigation is a sticky top bar, minimal and semi-transparent, supporting a secondary Log In button and a prominent 'Get Started' ghost button. The layout feels spacious and deliberate, with breathing room between major content blocks.",
+      "imagery": "The site primarily uses dark, atmospheric photography as background elements in hero sections, often with cloud formations, setting a reflective and expansive mood. Product screenshots are contained within device mockups (like iPhones), showcasing the UI in a dark mode context, implying functionality and data visualization. Illustrations are absent. Icons are minimal, monochromatic, and outlined, reinforcing the clean, data-focused UI. Imagery serves as decorative atmosphere or explanatory product showcase, not content-heavy. The overall density is text-dominant.",
+      "spacing": {
+        "radius": {
+          "cards": "16px",
+          "buttons": "8px",
+          "largeCards": "30px",
+          "pillButtons": "1440px",
+          "circularElements": "14385.6px"
+        },
+        "density": "comfortable",
+        "baseUnit": 4,
+        "elementGap": "12px",
+        "sectionGap": "64px",
+        "cardPadding": "32px",
+        "pageMaxWidth": "1200px"
+      },
+      "industry": "fintech",
+      "surfaces": [
+        {
+          "hex": "#0f1011",
+          "name": "Midnight Ink Canvas",
+          "level": 0,
+          "purpose": "Primary base background for the entire application, providing a deep, consistent dark theme."
+        },
+        {
+          "hex": "#2e2e2",
+          "name": "Elevated Charcoal Card",
+          "level": 1,
+          "purpose": "Background for cards and secondary content blocks, slightly elevating them from the base canvas without heavy shadows."
+        },
+        {
+          "hex": "#000000",
+          "name": "Slate Canvas Input",
+          "level": 2,
+          "purpose": "Used for interactive elements like input fields and some button backgrounds, providing a distinct contrast for usability against deeper neutrals."
+        }
+      ],
+      "northStar": "Midnight Command Center – screens glowing with data against a dark, seamless backdrop.",
+      "typeScale": [
+        {
+          "role": "caption",
+          "size": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.182
+        },
+        {
+          "role": "body",
+          "size": 14,
+          "lineHeight": 1.5
+        },
+        {
+          "role": "heading",
+          "size": 38,
+          "lineHeight": 1
+        },
+        {
+          "role": "heading-lg",
+          "size": 80,
+          "lineHeight": 0.9
+        },
+        {
+          "role": "display",
+          "size": 96,
+          "lineHeight": 0.9
+        }
+      ],
+      "components": [
+        {
+          "name": "Primary Ghost Button",
+          "role": "Main call to action on dark backgrounds.",
+          "description": "Ghost White text on a transparent background with an 8px radius. Text is 16px Suisseintltrial weight 400. Hover state shows a subtle white background fill. Padding: 12px vertical, 18px horizontal."
+        },
+        {
+          "name": "Light Filled Button",
+          "role": "Call to action on dark backgrounds where immediate strong contrast is needed.",
+          "description": "Slate Canvas text on a Ghost White background with an 8px radius. Text is 16px Suisseintltrial weight 400. Padding: 12px vertical, 18px horizontal."
+        },
+        {
+          "name": "Circular Micro Button",
+          "role": "Small, interactive buttons for secondary actions or toggles.",
+          "description": "Ghost White text on a transparent background with a 100% border radius (effectively circular). Background is rgba(255, 255, 255, 0.2). Padding: 1px vertical, 6px horizontal."
+        },
+        {
+          "name": "Pill Input Field",
+          "role": "Search bars or prominent single-line text inputs.",
+          "description": "Slate Canvas background with a 1440px border-radius (pill shape). Ghost White text color at 16px Suisseintl weight 400. Left padding 32px, right padding 10px. Subtle border rgba(255, 255, 255, 0.15)."
+        },
+        {
+          "name": "Themed Content Card",
+          "role": "Displaying data or information with a unique thematic background color.",
+          "description": "Features a large 16px border-radius. Background colors vary, often utilizing Ocean Glimmer, Violet Haze, or Soft Rose. No box shadow, relying instead on distinct background color for separation. Padding: 90px."
+        },
+        {
+          "name": "Seamless Card",
+          "role": "Cards seamlessly integrated into the background with no discernible borders or shadows.",
+          "description": "No border radius, no box shadow, transparent background. Typically used for internal content organization or when imagery fills the card area."
+        },
+        {
+          "name": "Floating Data Card",
+          "role": "Elevated card for statistical data or features, used against a dark background.",
+          "description": "Elevated Charcoal background with a 30px border radius. Padding: 32px. No box shadow, distinct color defines elevation."
+        }
+      ],
+      "typography": [
+        {
+          "role": "Display headlines and hero titles. The 300 weight is used for large, elegant branding, conveying authority through visual lightness instead of heavy impact.",
+          "sizes": "38px, 80px, 96px",
+          "family": "Lyondisplay App",
+          "source": "custom",
+          "weight": "300, 400",
+          "lineHeight": "0.90, 1.00",
+          "substitute": "Playfair Display, Lora"
+        },
+        {
+          "role": "Navigation, interactive elements, and certain card labels. Its slightly wider tracking gives it an airy, modern feel, especially at smaller sizes.",
+          "sizes": "11px, 14px, 16px",
+          "family": "Suisseintltrial",
+          "source": "custom",
+          "weight": "400",
+          "lineHeight": "1.00, 1.50, 1.67, 2.18",
+          "substitute": "Montserrat, Lato",
+          "letterSpacing": "0.182em"
+        },
+        {
+          "role": "Body text, subheadings, and general UI text. Its normal letter spacing ensures readability for longer blocks of text.",
+          "sizes": "12px, 14px, 16px, 18px",
+          "family": "Suisseintl",
+          "source": "custom",
+          "weight": "300, 400",
+          "lineHeight": "1.00, 1.41, 1.43, 1.50, 2.00",
+          "substitute": "Inter, Roboto",
+          "letterSpacing": "normal"
+        },
+        {
+          "role": "Used for code snippets, financial figures, and technical data where fixed-width alignment and precise character distinction are important.",
+          "sizes": "10px, 11px, 12px, 16px",
+          "family": "Roboto Mono",
+          "source": "google",
+          "weight": "400, 500",
+          "lineHeight": "1.35, 1.40, 1.50, 2.00",
+          "substitute": "Space Mono, Fira Code",
+          "letterSpacing": "0.016em, 0.021em, 0.182em"
+        }
+      ],
+      "description": "Origin Financial employs a 'Dark Canvas, Subtle Glow' visual system. It uses a deep, rich dark grey as its primary background, accented by layers of lighter, desaturated greys for elevated surfaces and text. Typography is elegant, with a focus on restrained display fonts and highly legible body text. While largely monochromatic, the system introduces a spectrum of soft, vivid colors within functional cards, creating a sense of dynamic data visualization and subtle branding rather than overt color blocking.",
+      "customSections": [
+        {
+          "title": "Agent Prompt Guide",
+          "content": "Quick Color Reference:\ntext: #ffffff\nbackground: #0f1011\nborder: #ffffff\naccent: #847dff\nprimary action: #ffffff (filled action)\n\nExample Component Prompts:\n\n1. Create a Primary Action Button: #ffffff background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Create a Themed Content Card: Use 'Ocean Glimmer' (#00b3dd) for the background with 16px border-radius. Inside, place a title 'Spending Overview' using Suisseintl weight 400, 18px, Ghost White text, and body text 'View your monthly budget' using Suisseintl weight 400, 14px, Ghost White text.\n\n3. Create a Pill Input Field: Use Slate Canvas (#000000) background with 1440px border-radius. Placeholder text 'How have tariffs imp' in Whisper Blue (#6a6b6b) with Suisseintl weight 400, 16px. Left padding 32px, right padding 10px. Include a small circular submit button on the right with Ghost White icon, rgba(255, 255, 255, 0.2) background, 100% radius, 1px vertical 6px horizontal padding."
+        }
+      ],
+      "title": "Origin Financial"
+    }
+  ]
+}

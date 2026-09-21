@@ -66,7 +66,7 @@ export function PDFExportButton({
             : hover
               ? C.electricBlueLight
               : C.electricBlue,
-          color: isDisabled ? C.textMuted : '#FFFFFF',
+          color: isDisabled ? C.textMuted : C.textPrimary,
           border: 'none',
           borderRadius: R.md,
           fontFamily: F.mono,

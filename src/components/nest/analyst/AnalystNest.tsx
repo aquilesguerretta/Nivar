@@ -28,6 +28,10 @@ import {
   SEASONAL_PATTERN,
   ANOMALY_DETECTIONS,
 } from '@/lib/mock/analyst-mock';
+import { QueryBuilderView } from './QueryBuilder/QueryBuilderView';
+import { ReportDraftingView } from './ReportDrafting/ReportDraftingView';
+
+type AnalystTab = 'overview' | 'query-builder' | 'report-drafting';
 
 const DATE_RANGES = ['1D', '1W', '1M', '3M', '6M', '1Y', 'Custom'] as const;
 type DateRange = typeof DATE_RANGES[number];
@@ -522,42 +526,126 @@ function SectionHeader({ eyebrow, identity }: { eyebrow: string; identity: strin
   );
 }
 
+// ─── TAB STRIP ────────────────────────────────────────────────────
+function AnalystTabButton({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      style={{
+        background: 'transparent',
+        border: 'none',
+        cursor: 'pointer',
+        fontFamily: F.mono,
+        fontSize: 12,
+        fontWeight: 600,
+        letterSpacing: '0.16em',
+        textTransform: 'uppercase',
+        color: active ? C.electricBlue : C.textMuted,
+        padding: `${S.sm} 0`,
+        borderBottom: active
+          ? `2px solid ${C.electricBlue}`
+          : '2px solid transparent',
+        marginBottom: -1,
+        transition: 'color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
 // ─── MAIN ──────────────────────────────────────────────────────────
 export function AnalystNest() {
+  const [tab, setTab] = useState<AnalystTab>('overview');
+
   return (
     <PageAtmosphere tint="analyst">
+      {/* Tab strip — Wave 6 surgical addition */}
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: '2fr 1fr',
-          gap: S.sm,
-          padding: S.xl,
+          position: 'relative',
+          zIndex: 1,
+          display: 'flex',
+          gap: S.lg,
+          padding: `${S.md} ${S.xl} 0`,
+          borderBottom: `1px solid ${C.borderDefault}`,
         }}
       >
-        {/* LEFT COLUMN */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: S.xl }}>
-          <AnalystHeroBlock />
-          <ComparisonChartCard />
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: S.md,
-            }}
-          >
-            <CorrelationMatrixCard />
-            <SeasonalPatternCard />
-            <AnomalyDetectionCard />
+        <AnalystTabButton
+          active={tab === 'overview'}
+          onClick={() => setTab('overview')}
+        >
+          OVERVIEW
+        </AnalystTabButton>
+        <AnalystTabButton
+          active={tab === 'query-builder'}
+          onClick={() => setTab('query-builder')}
+        >
+          QUERY BUILDER
+        </AnalystTabButton>
+        <AnalystTabButton
+          active={tab === 'report-drafting'}
+          onClick={() => setTab('report-drafting')}
+        >
+          REPORT DRAFTING
+        </AnalystTabButton>
+      </div>
+
+      {tab === 'overview' && (
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '2fr 1fr',
+            gap: S.sm,
+            padding: S.xl,
+          }}
+        >
+          {/* LEFT COLUMN */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: S.xl }}>
+            <AnalystHeroBlock />
+            <ComparisonChartCard />
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: S.md,
+              }}
+            >
+              <CorrelationMatrixCard />
+              <SeasonalPatternCard />
+              <AnomalyDetectionCard />
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: S.xl }}>
+            <SavedQueriesSection />
+            <AnnotationsSection />
+            <ExportPanelCard />
           </div>
         </div>
+      )}
 
-        {/* RIGHT COLUMN */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: S.xl }}>
-          <SavedQueriesSection />
-          <AnnotationsSection />
-          <ExportPanelCard />
+      {tab === 'query-builder' && (
+        <div style={{ padding: S.xl }}>
+          <QueryBuilderView />
         </div>
-      </div>
+      )}
+
+      {tab === 'report-drafting' && (
+        <div style={{ padding: S.xl }}>
+          <ReportDraftingView />
+        </div>
+      )}
     </PageAtmosphere>
   );
 }

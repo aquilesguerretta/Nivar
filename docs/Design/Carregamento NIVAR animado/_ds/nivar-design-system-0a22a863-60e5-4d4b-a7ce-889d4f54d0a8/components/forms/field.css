@@ -1,0 +1,115 @@
+.nv-campo{display:grid;gap:6px}
+.nv-campo__rotulo{font-family:var(--font-body);font-weight:500;font-size:11px;line-height:1.1;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.nv-campo__caixa{display:flex;align-items:stretch;border:var(--fio) solid var(--campo-fio);border-radius:0;background:none;transition:border-color var(--dur-estado) var(--ease)}
+.nv-campo__ctrl{flex:1;min-width:0;font-family:var(--font-body);font-weight:400;font-size:14px;line-height:1.2;color:var(--text-strong);background:none;border:0;padding:9px 11px;outline:0}
+.nv-campo__ctrl::placeholder{color:var(--text-faint);font-weight:300}
+.nv-campo__ctrl--num{font-family:var(--font-data);font-variant-numeric:tabular-nums lining-nums;text-align:right;letter-spacing:-.005em}
+.nv-campo__unid{display:flex;align-items:center;padding:0 11px;border-left:var(--fio) solid var(--campo-fio);font-family:var(--font-data);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint);white-space:nowrap}
+.nv-campo__glifo{display:flex;align-items:center;padding:0 11px;font-family:var(--font-data);font-size:12px;color:var(--text-muted);pointer-events:none}
+.nv-campo__caixa:focus-within{border-color:var(--accent-focus);outline:2px solid var(--accent-focus);outline-offset:2px}
+.nv-campo--erro .nv-campo__caixa{border-color:var(--campo-erro-fio)}
+.nv-campo--erro .nv-campo__unid{border-left-color:var(--campo-erro-fio)}
+.nv-campo--desabilitado{opacity:.4}
+.nv-campo--desabilitado .nv-campo__ctrl,.nv-campo--desabilitado select{cursor:not-allowed}
+.nv-campo__nota{font-family:var(--font-body);font-weight:300;font-size:12px;line-height:1.4;color:var(--text-faint)}
+.nv-campo__erro{display:flex;gap:6px;font-family:var(--font-body);font-weight:400;font-size:12px;line-height:1.4;color:var(--campo-erro-texto)}
+.nv-campo__erro i{font-family:var(--font-data);font-style:normal;color:var(--campo-erro-fio)}
+.nv-campo__caixa--foco{border-color:var(--accent-focus);outline:2px solid var(--accent-focus);outline-offset:2px}
+/* ESCOLHA — caixa e rádio. O preenchimento marcado usa a cor de acento em uso no contexto,
+   nunca uma cor propria fixa. Raio zero na caixa; o circulo do radio e excecao declarada. */
+.nv-escolha{display:inline-grid;grid-template-columns:auto minmax(0,1fr);align-items:start;gap:9px;position:relative;cursor:pointer}
+.nv-escolha__ctrl{position:absolute;width:15px;height:15px;top:2px;left:0;margin:0;opacity:0;cursor:pointer}
+.nv-escolha__marca{width:15px;height:15px;margin-top:2px;flex:none;display:grid;place-items:center;border:var(--fio) solid var(--campo-fio);background:none;font-family:var(--font-data);font-size:11px;line-height:1;color:var(--btn-primario-fg);transition:border-color var(--dur-estado) var(--ease)}
+.nv-escolha__marca--circulo{border-radius:var(--radius-circulo)}
+.nv-escolha:hover .nv-escolha__marca,.nv-escolha--is-hover .nv-escolha__marca{border-color:var(--fio-hover)}
+.nv-escolha__ctrl:checked+.nv-escolha__marca{background:var(--acento-contexto,var(--accent-house));border-color:var(--acento-contexto,var(--accent-house))}
+.nv-escolha__ctrl:checked+.nv-escolha__marca--quadrado::after{content:"×"}
+.nv-escolha__ctrl:indeterminate+.nv-escolha__marca--quadrado{background:var(--acento-contexto,var(--accent-house));border-color:var(--acento-contexto,var(--accent-house))}
+.nv-escolha__ctrl:indeterminate+.nv-escolha__marca--quadrado::after{content:"–"}
+.nv-escolha__ctrl:checked+.nv-escolha__marca--circulo::after{content:"";width:6px;height:6px;border-radius:var(--radius-circulo);background:var(--btn-primario-fg)}
+.nv-escolha__ctrl:focus-visible+.nv-escolha__marca{outline:var(--fio-forte) solid var(--accent-focus);outline-offset:2px}
+.nv-escolha--is-foco .nv-escolha__marca{outline:var(--fio-forte) solid var(--accent-focus);outline-offset:2px}
+.nv-escolha__texto{display:grid;gap:2px;font-family:var(--font-body);font-weight:400;font-size:13.5px;line-height:1.42;color:var(--text-body)}
+.nv-escolha__nota{font-weight:300;font-size:12px;line-height:1.4;color:var(--text-faint)}
+.nv-escolha--desabilitado{opacity:.4;cursor:not-allowed}
+.nv-escolha--desabilitado .nv-escolha__ctrl{cursor:not-allowed}
+.nv-escolha-pilha{display:grid;gap:10px}
+.nv-escolha-fila{display:flex;flex-wrap:wrap;gap:10px 20px}
+
+/* CONTROLE DESLIZANTE — trilho de 3px com raio zero, preenchido ate a alca na cor de acento do
+   contexto. Alca quadrada de 13px com fio de 1px. Sem sombra: profundidade e fio.
+   O trilho e a alca sao elementos proprios e o <input type=range> fica invisivel por cima: as
+   pseudo-classes ::-webkit-slider-* nao existem em todo motor, e o desenho do sistema nao pode
+   depender delas. O input nativo continua respondendo a teclado, arraste e leitor de tela. */
+.nv-desl{display:grid;gap:7px}
+.nv-desl__cab{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.nv-desl__rotulo{font-family:var(--font-body);font-weight:500;font-size:11px;line-height:1.1;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.nv-desl__leitura{display:inline-flex;align-items:baseline;gap:5px;font-family:var(--font-data);font-weight:500;font-size:15px;line-height:1.1;letter-spacing:-.006em;color:var(--text-strong);font-variant-numeric:tabular-nums lining-nums}
+.nv-desl__unid{font-weight:400;font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint)}
+.nv-desl__trilho{position:relative;display:flex;align-items:center;height:16px;padding:0 7px}
+.nv-desl__ctrl{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:pointer;-webkit-appearance:none;appearance:none;background:none}
+.nv-desl__pista{position:relative;flex:1;height:3px;background:var(--rule-strong)}
+.nv-desl__preenchido{position:absolute;left:0;top:0;height:3px;width:var(--desl-pct,0%);background:var(--acento-contexto,var(--accent-house))}
+.nv-desl__alca{position:absolute;top:50%;left:var(--desl-pct,0%);width:13px;height:13px;margin-top:-7px;margin-left:-6.5px;border:var(--fio) solid var(--rule-heavy);border-radius:0;background:var(--surface-page);box-shadow:none}
+.nv-desl__ctrl:focus-visible+.nv-desl__pista .nv-desl__alca{outline:var(--fio-forte) solid var(--accent-focus);outline-offset:2px}
+.nv-desl__marcas{display:flex;justify-content:space-between;gap:12px;font-family:var(--font-data);font-weight:400;font-size:9.5px;letter-spacing:.07em;color:var(--text-faint);font-variant-numeric:tabular-nums}
+.nv-desl--desabilitado{opacity:.4}
+.nv-desl--desabilitado .nv-desl__ctrl{cursor:not-allowed}
+
+/* CAMPO COM UNIDADE — afixo dentro do campo, mono, cor secundaria, sem fio separador.
+   O fio de .nv-campo__unid fica reservado a entrada tabular (NumberInput). */
+.nv-campo__afixo{display:flex;align-items:center;font-family:var(--font-data);font-weight:400;font-size:12px;letter-spacing:.02em;color:var(--text-faint);white-space:nowrap;-webkit-user-select:none;user-select:none;pointer-events:none}
+.nv-campo__afixo--pre{padding:0 0 0 11px}
+.nv-campo__afixo--suf{padding:0 11px 0 0}
+.nv-campo__afixo--pre+.nv-campo__ctrl{padding-left:6px}
+.nv-campo__ctrl+.nv-campo__afixo--suf{margin-left:-4px}
+
+/* MARCADOR DE CAMPO OBRIGATORIO — uma convencao so: asterisco em acento junto ao rotulo. */
+.nv-campo__obrig{margin-left:3px;font-family:var(--font-data);font-weight:500;font-size:12px;line-height:1;color:var(--accent-house)}
+
+/* VALIDACAO ASSINCRONA — fio de 1px se desenhando na base do campo, em loop. Nunca spinner:
+   a revelacao no sistema e desenho de traco. So transform anima. */
+.nv-campo--verificando .nv-campo__caixa{position:relative;border-color:var(--rule-strong)}
+.nv-campo__tracado{position:absolute;left:0;right:0;bottom:-1px;height:var(--fio-forte);background:var(--acento-contexto,var(--accent-focus));transform:scaleX(0);transform-origin:left;animation:nv-verifica 1400ms var(--ease) infinite}
+@keyframes nv-verifica{0%{transform:scaleX(0);transform-origin:left}49.9%{transform:scaleX(1);transform-origin:left}50%{transform:scaleX(1);transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+.nv-campo__verifica{font-family:var(--font-data);font-weight:400;font-size:10px;line-height:1.4;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint)}
+@media (prefers-reduced-motion:reduce){.nv-campo__tracado{animation:none;transform:scaleX(1);opacity:.5}}
+
+/* ENTRADA MULTI-SELECAO — chip de fio DENTRO do campo, raio zero, removivel por ×. O espaco
+   restante continua digitavel: o campo nao vira caixa de leitura depois da primeira escolha. */
+.nv-multi__caixa{flex-wrap:wrap;align-items:center;gap:5px;padding:5px}
+.nv-multi__chip{display:inline-flex;align-items:center;gap:5px;padding:2px 3px 2px 7px;border:var(--fio) solid var(--tag-fio);border-radius:0;background:none;font-family:var(--font-body);font-weight:500;font-size:11px;line-height:1.3;letter-spacing:.08em;text-transform:uppercase;color:var(--text-strong);white-space:nowrap}
+.nv-multi__x{position:relative;display:flex;align-items:center;justify-content:center;width:15px;height:15px;padding:0;background:none;border:0;border-radius:0;font-family:var(--font-data);font-size:12px;line-height:1;color:var(--text-faint);cursor:pointer;transition:color var(--dur-hover) var(--ease)}
+.nv-multi__x:hover{color:var(--fg-hover)}
+.nv-multi__x:focus-visible{outline:var(--fio-forte) solid var(--accent-focus);outline-offset:1px}
+.nv-multi__ctrl{flex:1 1 7ch;min-width:7ch;padding:4px 6px}
+.nv-multi{position:relative}
+.nv-multi__lista{position:absolute;top:100%;left:0;right:0;z-index:25;display:grid;margin:0;padding:0;list-style:none;background:var(--surface-page);border:var(--fio) solid var(--rule-heavy);border-top:0}
+.nv-multi__item{border-bottom:var(--fio) solid var(--rule)}
+.nv-multi__item:last-child{border-bottom:0}
+.nv-multi__item-b{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:4px 14px;width:100%;text-align:left;background:none;border:0;border-radius:0;padding:9px 11px;cursor:pointer}
+.nv-multi__item-b:hover .nv-multi__item-t{color:var(--fg-hover)}
+.nv-multi__item-b:focus-visible{outline:var(--fio-forte) solid var(--accent-focus);outline-offset:-2px}
+.nv-multi__item-t{font-family:var(--font-body);font-weight:400;font-size:13.5px;line-height:1.35;color:var(--text-body);transition:color var(--dur-hover) var(--ease)}
+.nv-multi__item-m{font-family:var(--font-data);font-weight:400;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint);white-space:nowrap}
+.nv-multi__vazio{padding:10px 11px;font-family:var(--font-body);font-weight:300;font-size:13px;line-height:1.4;color:var(--text-muted)}
+
+select.nv-campo__ctrl{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:0}
+
+/* FORMULARIO DE ACESSO — uma coluna, sem ilustracao ao lado e sem gradiente de fundo.
+   A declaracao de rodape nao e aviso legal: e a tese em copy. */
+.nv-acesso{display:grid;gap:16px;max-width:392px}
+.nv-acesso__cab{display:grid;gap:6px}
+.nv-acesso__eyebrow{font-family:var(--font-data);font-weight:500;font-size:10.5px;line-height:1.2;letter-spacing:.11em;text-transform:uppercase;color:var(--accent-house)}
+.nv-acesso__titulo{font-family:var(--font-display);font-weight:500;font-size:24px;line-height:1.16;letter-spacing:-.01em;color:var(--text-strong);margin:0}
+.nv-acesso__lede{font-family:var(--font-body);font-weight:300;font-size:13.5px;line-height:1.5;color:var(--text-muted);margin:0;text-wrap:pretty}
+.nv-acesso__campos{display:grid;gap:12px}
+.nv-acesso__acao{display:grid;justify-items:start;gap:10px;padding-top:2px}
+.nv-acesso__acao .nv-btn{width:100%;justify-content:center}
+.nv-acesso__esqueci{white-space:nowrap;font-family:var(--font-data);font-weight:400;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;border-bottom:var(--fio) solid var(--rule-strong);padding-bottom:2px;transition:color var(--dur-hover) var(--ease),border-color var(--dur-hover) var(--ease)}
+.nv-acesso__esqueci:hover{color:var(--fg-hover);border-bottom-color:var(--fio-hover)}
+.nv-acesso__troca{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;font-family:var(--font-body);font-weight:300;font-size:13px;line-height:1.4;color:var(--text-muted);margin:0;padding-top:12px;border-top:var(--fio) solid var(--rule)}
+.nv-acesso__troca-b{font-family:var(--font-body);font-weight:500;font-size:13px;line-height:1.4;color:var(--text-strong);background:none;border:0;border-bottom:var(--fio) solid var(--rule-strong);border-radius:0;padding:0 0 1px;cursor:pointer;transition:color var(--dur-hover) var(--ease),border-color var(--dur-hover) var(--ease)}
+.nv-acesso__troca-b:hover{color:var(--fg-hover);border-bottom-color:var(--fio-hover)}
+.nv-acesso__troca-b:focus-visible{outline:2px solid var(--accent-focus);outline-offset:3px}
+.nv-acesso__registro{font-family:var(--font-body);font-weight:300;font-size:12px;line-height:1.5;color:var(--text-faint);margin:0;padding-top:11px;border-top:var(--fio) solid var(--rule);text-wrap:pretty}

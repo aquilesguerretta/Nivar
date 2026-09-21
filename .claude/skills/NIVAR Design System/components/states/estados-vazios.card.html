@@ -1,0 +1,29 @@
+<!-- @dsCard group="Components" viewport="700x728" name="Estado vazio" subtitle="Sem dado, sem resultado, sem permissão — o vazio declara a razão, não pede desculpa" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Estado vazio</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:700px;overflow:hidden}.g{display:grid;grid-template-columns:1fr 1fr}.bl{padding:14px 16px;display:grid;align-content:start;gap:14px}.bl+.bl{border-left:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:8px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.nv-est{max-width:none;padding:12px 0 14px}.nv-est__titulo{font-size:17px}.nv-est+.nv-est{border-top:1px solid var(--rule)}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">const { EmptyState, Button } = window.NIVARDesignSystem_0a22a8;
+function Bloco({ modo, rotulo, nota }) {
+  return (
+    <div className="bl" {...(modo ? { 'data-mode': modo } : {})}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <div>
+        <EmptyState variant="sem-dado" />
+        <EmptyState variant="sem-resultado" filtros={['PLD acima de R$ 900,00','Submercado Sul']}
+          acoes={<Button variant="terciario">Remover filtro</Button>} />
+        <EmptyState variant="sem-permissao" />
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<div className="g">
+  <Bloco rotulo="Modo claro" nota="eixo em fio · filtro devolvido" />
+  <Bloco modo="noturno" rotulo="Modo noturno" nota="mesma estrutura, sem ilustração" />
+</div>);
+</script></body></html>

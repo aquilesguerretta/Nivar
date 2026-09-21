@@ -1,0 +1,74 @@
+# NIVAR G2 — a living notebook of evidence
+
+This is an experimental, working Brazil platform on `wave/nivar-g2-dream-build`. It is ready for the owner's inspection, not a declaration of final brand approval. The isolated checkout is `C:\dev\gridalpha-v2-nivar-g2`; the local server runs at `http://127.0.0.1:4173/br`. Nothing was merged or deployed.
+
+The visual thesis is that evidence has a visible life. A number arrives from the physical energy system, keeps its source and unit, becomes a comparison, survives a challenge, and leaves behind a reading that another person can examine. The light public notebook and dark operational workspace share that sequence. Neither treats uncertainty as an aesthetic accessory.
+
+## What to inspect first
+
+Start with the [Portal Brasil](http://127.0.0.1:4173/br). Let the complete film play, then pause and select its chapters. Follow the scroll through the five-family index, working Terminal passage, editorial brief, Advisory case and the human learning/fieldwork pairing. Then open the [Terminal Brasil](http://127.0.0.1:4173/br/terminal): change region, metric and period, select a note, examine the source, export the actual selected series, and switch the dataset to unavailable. The empty state is part of the product.
+
+Next inspect [Advisory](http://127.0.0.1:4173/br/advisory), its evidence/contradiction/opinion sequence and the [operator workspace](http://127.0.0.1:4173/operador). Open a sample case, attach a local document, annotate it, explicitly bind an annotation to that source, and export the local notebook. The interface explains where the demonstration ends and a real source begins. Finish with the account and one real intake. Account authentication and the intake APIs retain their existing behavior.
+
+## The platform that exists
+
+| Surface                | Inspection route                                                                | Working behavior and boundary                                                                                                                                                                                                                             |
+| ---------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Portal Brasil          | `/br`                                                                           | Scrollable editorial home, original wordmark, six-stage film, five-family navigation, real search dialog, light/dark modes, interactive Terminal passage.                                                                                                 |
+| Intelligence           | `/br/intelligence`                                                              | Publication-led landing, topic selection and primary-source directory. The Energy Brief is an explicitly methodological demonstration edition.                                                                                                            |
+| Advisory               | `/br/advisory`                                                                  | Keyboard-operable evidence/contradiction/opinion tabs, three service territories, real CLE entry and clearly labeled operator sample routes. Existing catalog availability is preserved.                                                                  |
+| Academy                | `/br/academy`                                                                   | Human learning imagery, selectable learning paths and real links/counts derived from Alexandria's unchanged curriculum.                                                                                                                                   |
+| Software               | `/br/software`                                                                  | An actual interactive Terminal passage, visible relationships and workflow, restrained operational identity.                                                                                                                                              |
+| Hardware               | `/br/hardware`                                                                  | Recognizable electrical metering context, method/traceability disclosures and an honest development status. No invented shipping hardware.                                                                                                                |
+| Terminal Brasil        | `/br/terminal`                                                                  | Four regions, three metrics, three periods; chart/table/reading update together; selected-event notes, map, searchable source drawer, CSV, light/dark and unavailable mode. Dataset is fixed and synthetic, never live Brazilian market data.             |
+| Energy Brief           | `/br/brief`                                                                     | Five methodological readings, source links, reading-list persistence and downloadable Markdown. No fabricated news, authorship or customer case.                                                                                                          |
+| Method / design record | `/br/metodo`, `/br/sistema`                                                     | Source/method/uncertainty explanation and the experimental system with its live Design Loop record.                                                                                                                                                       |
+| Account                | `/entrar`, `/criar-conta`, `/conta`                                             | Redesigned entry and four account sections; actual identity/product/history clients, downloadable deliverables, meaningful errors/retry, password reveal and truthful recovery limitations.                                                               |
+| Real Advisory intake   | `/conta-de-luz-express`, `/solar-proposal-validator`, `/diagnostico-energetico` | Shared G2 visual frame. Original entitlement, validation, upload, submission, activation and history logic preserved. These are real API-wired forms, even where catalog availability remains future-facing.                                              |
+| Operator               | `/operador`, existing product and case routes                                   | Search/filter/sort/preview over the existing seven illustrative cases; local document preview, content-signature checks, SHA-256 binding, field notes, contradictions, local draft and export. No invented backend persistence or operator authorization. |
+
+The existing `/br/familia/:familiaId` routes continue to work. The US surfaces retain their existing routes and data systems.
+
+## Identity, typography and motion
+
+The experimental wordmark is original SVG: N, V and A share a deliberate diagonal construction, I gives the sequence a pause, and R provides an open outward leg. It is used consistently in public, account and operational navigation. Existing family emblems remain secondary, monochrome identifiers; the product is not a mythology theme. Argos observes, Socrates questions, Perseus transmits, Ariadne organizes and Hephaestus measures. Diogenes belongs to the house's continuing inquiry.
+
+Newsreader carries complete interpretive statements. Instrument Sans organizes navigation, forms and prose. IBM Plex Mono identifies units, time, source and record. All are self-hosted and their SIL Open Font License notices ship with the build. The mineral Ferro/Lavanda public palette becomes graphite, espresso, aubergine and restrained amber in workspaces. Oxide marks a challenge or intervention; it does not fill the page. Rules, proportions and typography carry depth.
+
+The selected hero is an **18-second native React/CSS/SVG product-film prototype**, not an MP4 background. One `EV—001` evidence record moves through acquisition, ledger, tentative observation, contradiction, published method and an open next question. Its six synthetic slots retain two explicit gaps. The published method compares endpoints, checks coverage and requests the missing measurements before concluding. Pause, restart and chapter selection are available; reduced motion opens a still; offscreen and hidden playback suspend. Native text keeps the source and caveat readable and accessible.
+
+## Assets and failed experiments
+
+Higgsfield generated the reservoir and initial learning scene, plus early object imagery, a Seedance motion study and a hosted Blender 3D study. Native ImageGen produced the recognizable metering-panel illustration and removed a stray cylindrical desk prop from the selected learning image. The final runtime uses only three image subjects, with a responsive reservoir derivative. Each is labeled generated at use. None is presented as a real plant, customer, classroom, certified wiring diagram or NIVAR product photograph.
+
+The owner's correction decisively improved the work. The black cylinder, laboratory index plates, imagined field instrument and their video/3D derivatives were rejected and removed from runtime. Their files remain only as labeled process history under `rejected-assets/` and `motion/`. The learning scene now depends on people and documents. The film expresses measurement through an electrical diagram and a native record. The earlier Commons photo candidate was excluded after full-resolution inspection revealed a photograph of a framed photograph.
+
+See [asset provenance](asset-provenance.md), [generation requests](asset-generation-prompts.json), [final Academy edit](academy-final-edit.json), and [runtime checksums](asset-checksums.json). Original generated PNGs are in `renders/`. Font licenses are in `public/g2/licenses/`. Existing patron emblems and the repository's sourced Brazil geometry were reused without alteration. No external motion/3D library implementation or stock model was copied into the runtime.
+
+## Application integrity and Alexandria
+
+The rebuild creates scoped G2 components and pages inside the existing Brazil route boundary, plus scoped account/operator/intake styling. It adds three font dependencies. It does not change `src/main.tsx`, global `src/index.css`, shared auth, API clients, catalogs, backend, migrations or deployment configuration. Relative `/api/...` transport and httpOnly-cookie semantics remain intact.
+
+Alexandria's source, assets, tokens, curriculum, navigation and route ownership were kept completely untouched. New font faces have unique names and styles require a G2 surface root. Eighteen sampled Alexandria font/color records match the pre-build baseline; the native post-change screenshot and comparison JSON are under `screens/`. Its fourteen existing game tests also pass. The original dirty checkout was never used as the editing workspace.
+
+The independent integration audit fixed three concrete issues: failed logout now remains visible with a retry; malformed local annotation storage cannot crash the case; replacing a local document never silently transfers the old annotation to a new source hash. [The audit](integration-audit.md) records the exact fixture checks and their limits. No real credentials or backend write requests were used for QA.
+
+## Responsive behavior and inspection evidence
+
+Public surfaces have native captures in both modes at 1440×1000 and 390×844 in `public-final/`. The nine-route, four-condition sweep passed all 36 render checks with no JavaScript exceptions, broken images or horizontal overflow. Family navigation becomes a compact menu; the hero recomposes its evidence sheet and chapter controls; account sections remain all visible in a 2×2 mobile navigation grid. The mobile Terminal puts the chart and first interpretation in its initial reading area.
+
+Additional captures cover actual account fixtures, real intake openings and operator surfaces in `screens/`, and Terminal interactions in `terminal-inspection/`. `motion-runtime/` contains native frames sampled across a complete playing cycle and runtime control checks. Dense seam inspection is separate from settled chapter screenshots. A frame sequence is evidence of continuity and legibility at sampled instants, not proof of perfectly smooth 60fps rendering on every device.
+
+See [verification](verification.md) for commands and results and [Design Loop history](loop-progress.md) for independent binary verdicts. The critics rejected weak measurement causality, tiny provenance, a decorative contradiction, an empty return frame, a mobile Terminal layout, a clipped account label and a colliding loop seam. Those findings drove the revisions; prior failed renders remain labeled in the archive.
+
+## What I would keep, and what needs the owner's judgment
+
+I would keep the public/operational relationship, the three typographic voices, the restrained wordmark, the persistent evidence record, and the habit of putting a challenge beside a conclusion. The family's different workflows provide identity more convincingly than five unrelated visual systems. The most useful lesson was that rigor becomes recognizable through a traceable operation, not through a symbolic object.
+
+The least certain part is the exact density and pacing of the film for a first-time visitor; direct chapter controls make examination possible, but owner observation on a real phone will be valuable. The artwork remains generated editorial material. A later documentary shoot should replace it when real project access and provenance exist. The Terminal and operator are functional demonstrations; connecting real Brazil feeds or privileged production case handling requires backend work outside this build. The account's unavailable edit/recovery actions remain honest about current capability.
+
+The production build still reports inherited large bundles, an existing CSS comment warning and an Atlas import warning. This branch does not restructure Alexandria or the application's global dependency graph to conceal those issues. A live backend/customer submission was deliberately not used as a test fixture. No merger or deployment follows from this handoff; the owner decides what to retain.
+
+## Branch record
+
+Baseline: `2ded03dece025e39bd9947eed4adf9ae0b1e7333`. Branch: `wave/nivar-g2-dream-build`. Final implementation and handoff commits are recorded in the delivery message and local Git log. Run `git log --oneline 2ded03de..HEAD` from the isolated checkout for the exact sequence. The local preview is left running for inspection; restart it with `npm run dev -- --host 127.0.0.1 --port 4173 --strictPort` if needed.
