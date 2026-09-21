@@ -41,6 +41,7 @@ interface AriadneScenarioStudioProps {
   reconciliationRequired: boolean;
   runMutation: MutationRunner;
   workspaceId: string;
+  onInvestigateRun: (runId: string) => void;
 }
 
 const newestScenarioId = (detail: WorkspaceDetail) =>
@@ -103,6 +104,7 @@ export function AriadneScenarioStudio({
   reconciliationRequired,
   runMutation,
   workspaceId,
+  onInvestigateRun,
 }: AriadneScenarioStudioProps) {
   const locked = busy !== null || reconciliationRequired;
   const assumptionChoices = useMemo(() => assumptionVersionChoices(detail), [detail]);
@@ -440,6 +442,11 @@ export function AriadneScenarioStudio({
                     <div><dt>Implementação</dt><dd><code>{model?.implementationIdentity ?? "indisponível"}</code></dd></div>
                   </dl>
                 </details>
+                {result && (
+                  <button type="button" className="ariadne-fields__add" onClick={() => onInvestigateRun(run.id)}>
+                    <GitBranch size={13} /> Investigar resultado
+                  </button>
+                )}
               </article>
             );
           })}
