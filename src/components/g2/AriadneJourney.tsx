@@ -1,289 +1,151 @@
-import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, ArrowUpRight, FileText } from "lucide-react";
-import { BRASIL_OUTLINE_D, BRASIL_VIEWBOX, SUBMERCADOS } from "../../lib/geo/brasil-outline";
-import { formatValue, getSeries, REGIONS, SAMPLE_VERSION, SOURCE_RECORDS } from "../../pages/terminal-brasil/sample";
-import type { RegionId } from "../../pages/terminal-brasil/sample";
+import { useId, useLayoutEffect, useRef, useState } from "react";
+import type { CSSProperties, PointerEvent } from "react";
+import { ArrowLeft, ArrowRight, Expand, Minus, Plus, RotateCcw, ScanEye } from "lucide-react";
+import { AriadneArchiveRecord } from "./AriadneArchiveRecord";
+import type { ArchiveFocus } from "./AriadneArchiveRecord";
 import "./ariadne-journey.css";
 
-const loadTerminal = () => import("../../pages/terminal-brasil/TerminalBrasil");
-const STAGES = ["Território", "Observação", "Origem", "Instrumento"];
+const STAGES = ["Organização", "Estado", "Cenário", "Decisão"] as const;
+const OBJECTS = [
+  { id: "v1", label: "Estado v1", note: "Preservado", x: .34, y: .66, pin: "v1" },
+  { id: "v2", label: "Estado v2", note: "Atual", x: .68, y: .26, pin: "v2" },
+  { id: "scenario-a", label: "Cenário A", note: "Origem v1", x: .15, y: .36, pin: "A" },
+  { id: "scenario-b", label: "Cenário B", note: "Origem v2", x: .425, y: .13, pin: "B" },
+] as const;
+const WALK: ArchiveFocus[] = ["v1", "scenario-a", "result-a", "v2", "compare", "scenario-b", "result-b"];
+const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+const objectFor = (focus: ArchiveFocus | null) => OBJECTS.find(object => object.id === (focus === "result-a" ? "v1" : focus === "result-b" ? "v2" : focus));
+const stageFor = (focus: ArchiveFocus | null) => !focus ? 0 : focus.startsWith("scenario") ? 2 : focus.startsWith("result") ? 3 : 1;
 
-/** A presentation of the existing deterministic fixture. It never fetches or invents telemetry. */
+/** An explorable editorial illustration, with local synthetic records only. */
 export function AriadneJourney({ compact = false }: { compact?: boolean }) {
-  const id = useId();
-  const journey = useRef<HTMLDivElement>(null);
-  const stage = useRef<HTMLDivElement>(null);
-  const record = useRef<HTMLDivElement>(null);
-  const chart = useRef<SVGPathElement>(null);
-  const area = useRef<SVGPathElement>(null);
-  const filament = useRef<SVGPathElement>(null);
-  const previousPath = useRef("");
-  const previousAreaPath = useRef("");
-  const [phase, setPhase] = useState(0);
-  const [region, setRegion] = useState<RegionId>("sudesteCentroOeste");
-  const [selectedIndex, setSelectedIndex] = useState(14);
-  const [showTerminal, setShowTerminal] = useState(false);
-  const [EarnedTerminal, setEarnedTerminal] = useState<typeof import("../../pages/terminal-brasil/TerminalBrasil").TerminalPreview | null>(null);
-  const [terminalEntryUrl, setTerminalEntryUrl] = useState<string | null>(null);
-  const transfer = useRef<HTMLDivElement>(null);
-  const instrumentEntered = useRef(false);
-  const [handoff, setHandoff] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
-  const [introducing, setIntroducing] = useState(false);
-  const [reduced, setReduced] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  const series = useMemo(() => getSeries(region, "24h", "price"), [region]);
-  const regionInfo = REGIONS.find(item => item.id === region)!;
-  const market = SUBMERCADOS.find(item => item.id === region)!;
-  const observation = series[selectedIndex];
-  const plotHeight = phase >= 2 ? 138 : 192;
-  const baseline = plotHeight - 26;
-  const ordinate = (value: number) => baseline - value * ((plotHeight - 50) / 250);
-  const points = series.map((point, index) => ({ x: 28 + index * 23.4, y: ordinate(point.value) }));
-  const selectedPoint = points[selectedIndex];
-  const path = points.map((point, index) => `${index ? "L" : "M"}${point.x.toFixed(2)} ${point.y.toFixed(2)}`).join(" ");
-  const areaPath = `${path} L566.2 ${baseline} L28 ${baseline} Z`;
+  const [focus, setFocus] = useState<ArchiveFocus | null>(null);
+  const [camera, setCamera] = useState({ zoom: 1, x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const drag = useRef<{ id: number; x: number; y: number; startX: number; startY: number } | null>(null);
+  const overviewButton = useRef<HTMLButtonElement>(null);
+  const recordPanel = useRef<HTMLDivElement>(null);
+  const visual = useRef<HTMLDivElement>(null);
+  const focusRecord = useRef(false);
+  const recordId = useId();
+  const activeStage = stageFor(focus);
+  const selectedObject = objectFor(focus);
+  const selectedV1 = focus === "v1" || focus === "scenario-a" || focus === "result-a";
 
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReduced(media.matches);
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    if (!introducing) return;
-    const timer = window.setTimeout(() => setIntroducing(false), 650);
-    return () => window.clearTimeout(timer);
-  }, [introducing]);
-
-  useEffect(() => {
-    if (phase > 0) void loadTerminal();
-  }, [phase]);
-
-  const terminalReady = Boolean(terminalEntryUrl);
-
-  // A selected receipt crosses into the graph in viewport space. The receiving
-  // annotation is the same fixture value, not a second authored data example.
+  function frame(zoom: number, x = selectedObject?.x ?? .5, y = selectedObject?.y ?? .5) {
+    const limit = (zoom - 1) / 2;
+    setCamera({ zoom, x: clamp((.5 - x) * zoom, -limit, limit), y: clamp((.5 - y) * zoom, -limit, limit) });
+  }
   useLayoutEffect(() => {
-    if (!showTerminal || !terminalReady || instrumentEntered.current) return;
-    instrumentEntered.current = true;
-    let frame = 0;
-    let animation: Animation | undefined;
-    let typeAnimation: Animation | undefined;
-    let finished = false;
-    const deadline = performance.now() + 1200;
-    const complete = () => { finished = true; setHandoff(null); };
-    const enter = () => {
-      const instrument = journey.current?.querySelector<HTMLElement>(".g22-aj-terminal");
-      const destination = instrument?.querySelector<HTMLElement>(".g2t-context-plane");
-      if (!instrument || !destination) {
-        if (performance.now() < deadline) frame = requestAnimationFrame(enter);
-        else { instrument?.scrollIntoView({ block: "start", behavior: "instant" }); complete(); }
-        return;
-      }
-      destination.scrollIntoView({ block: "center", behavior: "instant" });
-      const target = destination.getBoundingClientRect();
-      if (reduced) { complete(); return; }
-      if (!handoff || !transfer.current) { complete(); return; }
-      const receipt = transfer.current;
-      const value = receipt.querySelector("strong");
-      const duration = 620;
-      animation = receipt.animate([
-        { left: `${handoff.x}px`, top: `${handoff.y}px`, width: `${handoff.width}px`, height: `${handoff.height}px`, opacity: 1 },
-        { left: `${target.x}px`, top: `${target.y}px`, width: `${target.width}px`, height: `${target.height}px`, opacity: 1, offset: .88 },
-        { left: `${target.x}px`, top: `${target.y}px`, width: `${target.width}px`, height: `${target.height}px`, opacity: 1 },
-      ], { duration, easing: "cubic-bezier(.2,.76,.2,1)", fill: "forwards" });
-      typeAnimation = value?.animate([{ fontSize: "38px" }, { fontSize: getComputedStyle(destination.querySelector("strong")!).fontSize }], { duration: duration * .88, easing: "cubic-bezier(.2,.76,.2,1)", fill: "forwards" });
-      animation.onfinish = complete;
-    };
-    // Allow the newly mounted responsive chart to establish its receiving point.
-    frame = requestAnimationFrame(() => { frame = requestAnimationFrame(enter); });
-    return () => {
-      cancelAnimationFrame(frame);
-      animation?.cancel();
-      typeAnimation?.cancel();
-      if (!finished) instrumentEntered.current = false;
-    };
-  }, [showTerminal, terminalReady, handoff, reduced]);
+    if (!focus) return;
+    const readingRequested = focusRecord.current;
+    if (readingRequested) {
+      recordPanel.current?.focus({ preventScroll: true });
+      focusRecord.current = false;
+    }
+    // Keep a newly opened object in view, including selections made below the art.
+    const narrow = (visual.current?.closest(".g24-ariadne")?.clientWidth ?? 0) <= 690;
+    const target = narrow && readingRequested ? recordPanel.current : visual.current;
+    const bounds = target?.getBoundingClientRect();
+    if (bounds && (bounds.top < 135 || bounds.top > window.innerHeight * .45)) {
+      target?.scrollIntoView({ block: "start", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+    }
+  }, [focus]);
 
-  useEffect(() => {
-    const element = chart.current;
-    const from = previousPath.current;
-    const fromArea = previousAreaPath.current;
-    const areaElement = area.current;
-    previousPath.current = path;
-    previousAreaPath.current = areaPath;
-    if (!element || !from || reduced || phase === 0) return;
-    const animation = element.animate([{ d: `path("${from}")` }, { d: `path("${path}")` }], {
-      duration: 620,
-      easing: "cubic-bezier(.2,.75,.25,1)",
-    });
-    const areaAnimation = areaElement?.animate([
-      { d: `path("${fromArea}")` },
-      { d: `path("${areaPath}")` },
-    ], { duration:620, easing:"cubic-bezier(.2,.75,.25,1)" });
-    return () => {
-      // A rapid second selection continues from the shape actually on screen.
-      const rendered = getComputedStyle(element).getPropertyValue("d").match(/^path\("(.*)"\)$/)?.[1];
-      const renderedArea = areaElement && getComputedStyle(areaElement).getPropertyValue("d").match(/^path\("(.*)"\)$/)?.[1];
-      if (rendered) previousPath.current = rendered;
-      if (renderedArea) previousAreaPath.current = renderedArea;
-      animation.cancel();
-      areaAnimation?.cancel();
-    };
-  }, [path, areaPath, reduced, phase]);
-
-  // One filament follows two actual, selected objects through their native layout motion.
-  useLayoutEffect(() => {
-    const surface = stage.current;
-    if (!surface || phase === 0) return;
-    let frame = 0;
-    let until = 0;
-    const draw = (time: number) => {
-      const source = surface.querySelector(`[data-market="${region}"] circle`)?.getBoundingClientRect();
-      const destination = record.current?.querySelector(".g22-aj-record-head i")?.getBoundingClientRect();
-      if (source && destination && filament.current) {
-        const bounds = surface.getBoundingClientRect();
-        const x1 = source.x + source.width / 2 - bounds.x;
-        const y1 = source.y + source.height / 2 - bounds.y;
-        const x2 = destination.x + destination.width / 2 - bounds.x;
-        const y2 = destination.y + destination.height / 2 - bounds.y;
-        const bend = Math.max(40, Math.abs(x2 - x1) * .55);
-        filament.current.setAttribute("d", `M${x1} ${y1} C${x1 + bend} ${y1}, ${x2 - bend} ${y2}, ${x2} ${y2}`);
-      }
-      if (time < until && !reduced) frame = requestAnimationFrame(draw);
-    };
-    const track = () => { cancelAnimationFrame(frame); until = performance.now() + 1050; frame = requestAnimationFrame(draw); };
-    const observer = new ResizeObserver(track);
-    observer.observe(surface);
-    track();
-    return () => { cancelAnimationFrame(frame); observer.disconnect(); };
-  }, [region, phase, reduced]);
-
-  function chooseRegion(next: RegionId) {
-    if (phase === 3) return;
-    const origin = stage.current?.querySelector(`[data-market="${next}"]`)?.getBoundingClientRect();
-    setRegion(next);
-    if (phase > 0) return;
-    setPhase(1);
-    setIntroducing(!reduced);
-    if (reduced || !origin) return;
-    requestAnimationFrame(() => {
-      const element = record.current;
-      if (!element) return;
-      const destination = element.getBoundingClientRect();
-      element.animate([
-        { transform: `translate(${origin.x + origin.width / 2 - destination.x}px, ${origin.y + origin.height / 2 - destination.y}px) scale(.07)`, opacity: 0.25 },
-        { transform: "translate(0,0) scale(1)", opacity: 1 },
-      ], { duration: 520, easing: "cubic-bezier(.18,.76,.2,1)", fill: "backwards" });
-    });
+  function select(next: ArchiveFocus, moveFocus = false) {
+    focusRecord.current = moveFocus;
+    setFocus(next);
+    const object = objectFor(next);
+    frame(object ? (next.startsWith("scenario") ? 1.85 : 1.55) : 1, object?.x, object?.y);
   }
-
-  function openOrigin() {
-    setPhase(2);
-    requestAnimationFrame(() => stage.current?.scrollIntoView({ block: "start", behavior: reduced ? "instant" : "smooth" }));
+  function overview() { setFocus(null); frame(1); }
+  function selectStage(index: number) {
+    if (index === 0) overview();
+    else if (index === 1) select(selectedV1 ? "v1" : "v2");
+    else if (index === 2) select(selectedV1 ? "scenario-a" : "scenario-b");
+    else select(selectedV1 ? "result-a" : "result-b");
   }
-
-  async function openInstrument() {
-    const module = await loadTerminal();
-    setEarnedTerminal(() => module.TerminalPreview);
-    const bounds = record.current?.querySelector(".g22-aj-measurement")?.getBoundingClientRect();
-    if (bounds && !reduced) setHandoff({ x: bounds.x, y: bounds.y, width: bounds.width, height: Math.max(108, bounds.height) });
-    instrumentEntered.current = false;
-    setTerminalEntryUrl(null);
-    setPhase(3);
-    setShowTerminal(true);
+  function startDrag(event: PointerEvent<HTMLDivElement>) {
+    if (camera.zoom <= 1 || event.button !== 0 || (event.target as HTMLElement).closest("button")) return;
+    drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY, startX: camera.x, startY: camera.y };
+    event.currentTarget.setPointerCapture(event.pointerId);
+    setDragging(true);
   }
+  function moveDrag(event: PointerEvent<HTMLDivElement>) {
+    if (!drag.current || event.pointerId !== drag.current.id) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const limit = (camera.zoom - 1) / 2;
+    setCamera({ ...camera, x: clamp(drag.current.startX + (event.clientX - drag.current.x) / rect.width, -limit, limit), y: clamp(drag.current.startY + (event.clientY - drag.current.y) / rect.height, -limit, limit) });
+  }
+  function endDrag() { drag.current = null; setDragging(false); }
+  const worldStyle = { "--archive-zoom": camera.zoom, transform: `translate(${camera.x * 100}%, ${camera.y * 100}%) scale(${camera.zoom})` } as CSSProperties;
 
   return (
-    <div ref={journey} className={`g22-ariadne${compact ? " g22-ariadne--compact" : ""}`} data-phase={phase} data-introducing={introducing} data-handoff={!!handoff} data-reduced-motion={reduced}>
-      <div className="g22-aj-orientation">
-        <span className="g22-aj-kicker">ARIADNE / O FIO DA LEITURA</span>
-        <ol aria-label="Percurso até o Terminal">
-          {STAGES.map((label, index) => <li key={label} data-current={phase === index} data-complete={phase > index}>
-            <span>{String(index + 1).padStart(2, "0")}</span><span>{label}</span>
-          </li>)}
+    <section className={`g24-ariadne${compact ? " g24-ariadne--compact" : ""}`} data-stage={activeStage} data-focus={focus ?? "overview"} aria-label="Ariadne: continuidade do contexto privado" onKeyDown={event => { if (event.key === "Escape" && focus) { overview(); overviewButton.current?.focus(); } }}>
+      <header className="g24-ariadne__orientation">
+        <span className="g24-ariadne__kicker">ARIADNE / ARQUIVO VIVO</span>
+        <ol aria-label="Explorar a continuidade Ariadne">
+          {STAGES.map((stage, index) => <li key={stage} data-current={activeStage === index}><button type="button" onClick={() => selectStage(index)} aria-pressed={activeStage === index} aria-controls={recordId}><span>{String(index + 1).padStart(2, "0")}</span><span>{stage}</span></button></li>)}
         </ol>
-      </div>
+      </header>
 
-      <div className="g22-aj-stage" ref={stage} aria-hidden={phase === 3} inert={phase === 3}>
-        <svg className="g22-aj-filament" aria-hidden="true"><path ref={filament} /></svg>
-        <figure className="g22-aj-patron">
-          <img src="/g2/g21/emblems/ariadne-hero-1200.webp" alt="Ariadne segura o fio entre as mãos. Gravura editorial gerada." width={1200} height={1200} loading="lazy" />
-        </figure>
-
-        <div className="g22-aj-invitation" aria-hidden={phase > 0}>
-          <span className="g22-aj-kicker">01 / ESCOLHA UMA REGIÃO</span>
-          <h3>O contexto<br /><em>vem primeiro.</em></h3>
-          <p>Selecione um lugar.<br />Acompanhe o que se conecta a ele.</p>
-        </div>
-
-        <div className="g22-aj-geography">
-          <svg viewBox={BRASIL_VIEWBOX} aria-label="Submercados brasileiros. Selecione uma região nos controles abaixo." role="img">
-            <path className="g22-aj-outline" d={BRASIL_OUTLINE_D} />
-            {SUBMERCADOS.map(item => <path key={item.id} d={item.d} className="g22-aj-market" data-selected={phase > 0 && region === item.id} onClick={() => chooseRegion(item.id)} />)}
-            {SUBMERCADOS.map(item => <g key={item.id} data-market={item.id} transform={`translate(${item.centroid[0]} ${item.centroid[1]})`} className="g22-aj-map-mark" data-selected={phase > 0 && region === item.id} aria-hidden="true">
-              <circle r="7" /><text x="15" y="6">{item.sigla}</text>
-            </g>)}
-            {phase > 0 && <circle className="g22-aj-map-ring" cx={market.centroid[0]} cy={market.centroid[1]} r="20" />}
-          </svg>
-          <span className="g22-aj-map-caption">IBGE · SUBMERCADOS</span>
-        </div>
-
-        <div className="g22-aj-record" ref={record} aria-hidden={phase === 0} inert={phase === 0}>
-          <div className="g22-aj-record-head">
-            <span><i />{regionInfo.code}<span className="g22-aj-full-region"> / {regionInfo.short}</span></span>
-            <span>{observation.label} · 10 SET 2026</span>
+      <figure className="g24-ariadne__scene">
+        <figcaption className="g24-ariadne__art-copy" data-inspecting={focus !== null}>
+          <div className="g24-ariadne__invitation">
+            <span className="g24-ariadne__kicker">A ORGANIZAÇÃO COMO ESTADO VIVO</span>
+            <h2>O presente<br />não apaga<br /><em>o passado.</em></h2>
+            <p>Dois tempos da mesma organização.<br />Um arquivo que você pode percorrer.</p>
+            <button className="g24-ariadne__enter" onClick={() => select("v1", true)}><ScanEye size={17} /><span>Explorar o primeiro estado</span><ArrowRight size={16} /></button>
+            <div className="g24-ariadne__patron"><img src="/g2/g21/emblems/ariadne-hero-1200.webp" alt="Ariadne com seu carretel." width={1200} height={1200} loading="lazy" /><span>ARIADNE<strong>O contexto muda.<br />O vínculo permanece.</strong></span></div>
           </div>
-          <div className="g22-aj-measurement">
-            <div><span className="g22-aj-kicker">{phase === 3 ? "CONTEXTO DE ENTRADA" : "OBSERVAÇÃO SELECIONADA"}</span><strong>{formatValue(observation.value, "price")}<small>R$/MWh</small></strong></div>
-            <span className="g22-aj-sample">AMOSTRA<br />SINTÉTICA</span>
+          <div id={recordId} ref={recordPanel} tabIndex={-1} className="g24-ariadne__record" role="region" aria-label="Detalhes do objeto selecionado" aria-live="polite" aria-atomic="false">
+            {focus && <AriadneArchiveRecord key={focus} focus={focus} onSelect={next => select(next, true)} />}
           </div>
-          <div className="g22-aj-plot">
-            <svg viewBox={`0 0 600 ${plotHeight}`} role="img" aria-label={`Preço simulado em ${regionInfo.name}, 24 observações horárias. Seleção: ${observation.label}, ${formatValue(observation.value, "price")} reais por megawatt-hora. Não são dados de mercado.`}>
-              <defs><linearGradient id={`${id}-fill`} x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#9a8eaa" stopOpacity=".22" /><stop offset="100%" stopColor="#9a8eaa" stopOpacity="0" /></linearGradient></defs>
-              <g className="g22-aj-axis">
-                {[100, 200].map(value => <g key={value}><line x1="28" x2="567" y1={ordinate(value)} y2={ordinate(value)} /><text x="579" y={ordinate(value)+4}>{value}</text></g>)}
-                <line x1="28" x2="567" y1={baseline} y2={baseline} /><text x="28" y={plotHeight-3}>00h</text><text x="290" y={plotHeight-3}>12h</text><text x="546" y={plotHeight-3}>23h</text>
-              </g>
-              <path className="g22-aj-area" ref={area} d={areaPath} fill={`url(#${id}-fill)`} />
-              <path className="g22-aj-curve" ref={chart} d={path} pathLength="1" />
-              <g className="g22-aj-probe" style={{ transform: `translate(${selectedPoint.x}px, ${selectedPoint.y}px)` }}><line y1="0" y2={baseline - selectedPoint.y} /><circle r="6" /><circle className="g22-aj-point-core" r="2" /></g>
-            </svg>
-            <label className="g22-aj-scrubber"><span>SEGUIR UM INSTANTE</span><input type="range" min="0" max="23" value={selectedIndex} disabled={phase === 3} onChange={event => setSelectedIndex(Number(event.target.value))} aria-label="Selecionar observação horária da amostra" aria-valuetext={`${observation.label}, ${formatValue(observation.value, "price")} R$/MWh, amostra sintética`} /><span>{observation.label}</span></label>
+        </figcaption>
+
+        <div ref={visual} className="g24-ariadne__visual">
+          <div className="g24-ariadne__camera-bar">
+            <span>ORG-DEMO-01 <span>· ARQUIVO ILUSTRATIVO</span></span>
+            <div role="group" aria-label="Enquadramento da arte">
+              <button type="button" onClick={() => frame(clamp(camera.zoom - .35, 1, 2.4))} disabled={camera.zoom <= 1} aria-label="Afastar a cena"><Minus size={16} /></button>
+              <output aria-label="Ampliação da cena">{Math.round(camera.zoom * 100)}%</output>
+              <button type="button" onClick={() => frame(clamp(camera.zoom + .35, 1, 2.4))} disabled={camera.zoom >= 2.4} aria-label="Aproximar a cena"><Plus size={16} /></button>
+              <button type="button" ref={overviewButton} onClick={overview} aria-label="Voltar à visão completa"><Expand size={16} /></button>
+            </div>
           </div>
-          <div className="g22-aj-record-bottom"><span>24 INSTANTES · MESMA REGIÃO · MESMA UNIDADE</span><span>EV / {String(selectedIndex + 1).padStart(2, "0")}</span></div>
-
-          <div className="g22-aj-origin" aria-hidden={phase < 2} inert={phase < 2}>
-            <div className="g22-aj-source-binding"><FileText size={16} /><span>A ORIGEM DESTA OBSERVAÇÃO</span><span>{regionInfo.code} / {observation.label}</span></div>
-            <h4>O número não<br />viaja sozinho.</h4>
-            <p>{SOURCE_RECORDS[0].text}</p>
-            <dl><div><dt>REFERÊNCIA</dt><dd>{observation.timestamp}</dd></div><div><dt>NATUREZA</dt><dd>Demonstração. Sem fonte oficial conectada.</dd></div></dl>
-            <button type="button" className="g22-aj-origin-enter" onClick={openInstrument}>Levar esta observação ao Terminal <ArrowRight size={16} /></button>
+          <div className="g24-ariadne__art" data-dragging={dragging} data-zoomed={camera.zoom > 1} tabIndex={0} role="group" aria-label="Arquivo ilustrado interativo. Selecione um livro ou uma folha. Quando ampliado, arraste a cena ou use as setas para deslocar." onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag} onLostPointerCapture={endDrag} onKeyDown={event => {
+            if (event.target !== event.currentTarget || camera.zoom <= 1 || !["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) return;
+            event.preventDefault();
+            const limit = (camera.zoom - 1) / 2;
+            setCamera({ ...camera, x: clamp(camera.x + (event.key === "ArrowLeft" ? .06 : event.key === "ArrowRight" ? -.06 : 0), -limit, limit), y: clamp(camera.y + (event.key === "ArrowUp" ? .06 : event.key === "ArrowDown" ? -.06 : 0), -limit, limit) });
+          }}>
+            <div className="g24-ariadne__world" style={worldStyle}>
+              <img className="g24-ariadne__art-light" src="/g2/niv53/ariadne-archive-light.webp" alt="Dois fólios conservam versões da mesma organização. Folhas de cenário permanecem ligadas ao seu livro por um fio de cobre." width={2048} height={1360} loading="lazy" draggable={false} />
+              <img className="g24-ariadne__art-dark" src="/g2/niv53/ariadne-archive-dark.webp" alt="Dois fólios conservam versões da mesma organização. Folhas de cenário permanecem ligadas ao seu livro por um fio de cobre." width={2048} height={1360} loading="lazy" draggable={false} />
+              {OBJECTS.map(object => {
+                const screenX = .5 + (object.x - .5) * camera.zoom + camera.x;
+                const screenY = .5 + (object.y - .5) * camera.zoom + camera.y;
+                return <button type="button" key={object.id} className="g24-ariadne__pin" style={{ left: `${object.x * 100}%`, top: `${object.y * 100}%`, visibility: screenX < .06 || screenX > .94 || screenY < .09 || screenY > .91 ? "hidden" : "visible" }} data-selected={selectedObject?.id === object.id} aria-pressed={selectedObject?.id === object.id} aria-label={`Inspecionar ${object.label}`} aria-controls={recordId} onClick={() => select(object.id)}><span>{object.pin}</span><span>{object.label}<small>{object.note}</small></span><Plus size={12} /></button>;
+              })}
+            </div>
+            <span className="g24-ariadne__scene-hint" aria-hidden="true">{camera.zoom > 1 ? "ARRASTE PARA EXAMINAR OS DETALHES" : "TOQUE NOS LIVROS E NAS FOLHAS"}</span>
           </div>
+          <div className="g24-ariadne__object-index" role="group" aria-label="Objetos do arquivo">
+            {OBJECTS.map(object => <button type="button" key={object.id} onClick={() => select(object.id)} aria-pressed={selectedObject?.id === object.id} aria-controls={recordId}><strong>{object.pin}</strong><span>{object.label}<small>{object.note}</small></span></button>)}
+          </div>
+          <div className="g24-ariadne__art-note"><span>{focus ? `${focus === "compare" ? "V1 / V2" : selectedObject?.label.toUpperCase()} · REGISTRO ABERTO` : "DOIS TEMPOS. UMA IDENTIDADE."}</span><button type="button" onClick={() => select("compare")} aria-pressed={focus === "compare"} aria-controls={recordId}>Comparar v1 e v2 <ArrowRight size={14} /></button></div>
         </div>
+      </figure>
 
-        <div className="g22-aj-thread" aria-live="polite" aria-atomic="true">
-          <span>{phase === 0 ? "O PERCURSO AINDA ESTÁ ABERTO" : `${regionInfo.code} → ${observation.label} → ${phase >= 2 ? "ORIGEM DECLARADA" : "EXAMINAR A ORIGEM"}`}</span>
+      <footer className="g24-ariadne__controls">
+        <span>{focus ? `EXPLORANDO / ${focus === "compare" ? "O QUE MUDA · O QUE PERMANECE" : focus.startsWith("result") ? `RESULTADO ${selectedV1 ? "A" : "B"}` : selectedObject?.label.toUpperCase()}` : "EXPLORE LIVROS, PREMISSAS E ORIGENS."}</span>
+        <div>
+          <button type="button" onClick={overview} aria-label="Recomeçar a exploração"><RotateCcw size={14} /></button>
+          <button type="button" disabled={!focus} onClick={() => { const step = WALK.indexOf(focus!); if (step <= 0) overview(); else select(WALK[step - 1]); }} aria-label="Explorar a etapa anterior"><ArrowLeft size={15} /> Anterior</button>
+          <button type="button" onClick={() => select(WALK[(focus ? WALK.indexOf(focus) + 1 : 0) % WALK.length])}>Seguir o fio <ArrowRight size={15} /></button>
         </div>
-      </div>
-
-      <div className="g22-aj-controls">
-        <div className="g22-aj-regions" role="group" aria-label="Selecionar região para seguir o fio da leitura">
-          {REGIONS.map(item => <button type="button" key={item.id} disabled={phase === 3} onClick={() => chooseRegion(item.id)} aria-pressed={phase > 0 && region === item.id}><span>{item.code}</span><span>{item.short}</span><i /></button>)}
-        </div>
-        <div className="g22-aj-action">
-          {phase === 0 && <span>Comece pela região ↑</span>}
-          {phase === 1 && <button type="button" onClick={openOrigin}>Seguir até a fonte <ArrowRight size={18} /></button>}
-          {phase === 2 && <><button type="button" className="g22-aj-back" onClick={() => setPhase(1)} aria-label="Voltar à observação"><ArrowLeft size={17} /></button><button type="button" onClick={openInstrument}>Revelar o Terminal <ArrowRight size={18} /></button></>}
-          {phase === 3 && <button type="button" onClick={() => { setShowTerminal(false); setPhase(2); }}><ArrowLeft size={17} />Rever o percurso</button>}
-        </div>
-      </div>
-      <p className="g22-aj-disclosure">{SAMPLE_VERSION} · Série demonstrativa fixa. Sem cotação, previsão ou telemetria ao vivo.</p>
-
-      {showTerminal && EarnedTerminal && <div className="g22-aj-terminal"><div className="g22-aj-terminal-title"><button type="button" className="g22-aj-return" onClick={() => { setShowTerminal(false); setHandoff(null); setPhase(2); }}><ArrowLeft size={15} /> Rever percurso</button><span>04 / O INSTRUMENTO</span><p>O fio continua.</p><Link to={terminalEntryUrl ?? `/br/terminal?region=${encodeURIComponent(region)}&observation=${selectedIndex}`}>Abrir em tela inteira <ArrowUpRight size={16} /></Link></div><EarnedTerminal initialRegion={region} initialProbeIndex={selectedIndex} onEntryUrlChange={setTerminalEntryUrl} /></div>}
-      {handoff && createPortal(<div ref={transfer} className="g22-aj-transfer" aria-hidden="true" style={{ left: handoff.x, top: handoff.y, width: handoff.width, height: handoff.height }}><span>OBSERVAÇÃO / {regionInfo.code}</span><strong>{formatValue(observation.value, "price")}<small>R$/MWh</small></strong><span>{observation.label} · AMOSTRA SINTÉTICA</span></div>, document.body)}
-    </div>
+      </footer>
+      <p className="g24-ariadne__disclosure">ILUSTRAÇÃO INTERATIVA · EXEMPLO PRIVADO SINTÉTICO · NENHUM DADO DE CLIENTE</p>
+    </section>
   );
 }

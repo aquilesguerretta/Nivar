@@ -160,16 +160,17 @@
   max-width: 19ch;
 }
 .g2-terminal-passage {
-  background: #121315;
-  color: #ede7de;
-  --g2-paper: #121315;
-  --g2-ink: #ede7de;
-  --g2-secondary: #b0a8ad;
-  --g2-rule: #3e393e;
-  --g2-soft: #222024;
-  --g2-raised: #1b1c1e;
-  --g2-oxide: #d48b74;
-  color-scheme: dark;
+  --g2-paper: var(--g2t-bg);
+  --g2-ink: var(--g2t-ink);
+  --g2-secondary: var(--g2t-secondary);
+  --g2-rule: var(--g2t-rule);
+  --g2-soft: var(--g2t-panel);
+  --g2-raised: var(--g2t-surface);
+  --g2-oxide: var(--g2t-accent);
+  --g2-lavender: var(--g2t-accent);
+  background: var(--g2t-bg);
+  color: var(--g2t-ink);
+  color-scheme: inherit;
 }
 .g2-passage-foot {
   display: flex;

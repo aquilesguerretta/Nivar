@@ -10,6 +10,8 @@ import {
 } from "../../components/g2/NivarShell";
 import { DESTINOS_BR } from "../../lib/data/br-destinos";
 import { AriadneJourney } from "../../components/g2/AriadneJourney";
+import { ArgosObservation } from "../../components/g2/ArgosObservation";
+import { useNivarTheme } from "../../components/g2/nivar-theme";
 import { NotFound } from "../NotFound";
 import "./g2-pages.css";
 import "./g21-families.css";
@@ -77,6 +79,14 @@ const NOTES = [
     slug: "incerteza",
   },
 ];
+function ArgosPortrait() {
+  const dark = useNivarTheme();
+  return <div className="g53-argos-portrait">
+    <img src={dark ? "/g2/niv53/argos-observer.webp" : "/g2/niv53/argos-observer-light.webp"} width={2048} height={1360} alt="Argos observa o horizonte. Relevo editorial gerado a partir da gravura da família." />
+    <span>ARGOS / OBSERVAR · ILUSTRAÇÃO GERADA</span>
+  </div>;
+}
+
 function Intelligence() {
   const [topic, setTopic] = useState("Todos");
   return (
@@ -89,7 +99,7 @@ function Intelligence() {
         name="Intelligence"
         verb="ARGOS / OBSERVAR"
       />
-      <section className="g2-intelligence-masthead g2-container">
+      <section className="g2-intelligence-masthead g53-intelligence-masthead g2-container">
         <div className="g21-editorial-title">
           <span className="g2-eyebrow">NIVAR INTELLIGENCE</span>
           <h1>
@@ -102,11 +112,9 @@ function Intelligence() {
             <br />E espaço para o que ainda não sabemos.
           </p>
         </div>
-        <div className="g21-editorial-seal">
-          <FamilyEmblem family="intelligence" size={300} variant="hero" />
-          <span className="g2-mono">ARGOS / OBSERVAR</span>
-        </div>
+        <ArgosPortrait />
       </section>
+      <ArgosObservation />
       <section className="g2-intelligence-cover g2-container">
         <figure>
           <img
@@ -498,7 +506,7 @@ function Software() {
         <div className="g22-software-heading">
           <div>
             <span className="g2-eyebrow">
-              INSTRUMENTOS DE LEITURA E OPERAÇÃO
+              CONTINUIDADE, CENÁRIO E DECISÃO
             </span>
             <h1>
               Complexidade não precisa <br />
@@ -506,8 +514,9 @@ function Software() {
             </h1>
           </div>
           <p className="g2-lead">
-            Uma região leva a uma série. Uma mudança leva a uma pergunta. Uma
-            leitura leva à fonte. Software que torna o percurso legível.
+            Uma organização reúne estados, contratos, unidades e premissas. O
+            fio preserva o contexto entre o que existe, o que se supõe e o que
+            se decide.
           </p>
         </div>
         <AriadneJourney />
@@ -518,18 +527,18 @@ function Software() {
           {[
             {
               n: "01",
-              title: "Selecione um contexto.",
-              text: "Região e período permanecem no campo de visão. A leitura acompanha a seleção.",
+              title: "Reúna o estado.",
+              text: "Unidades, contratos e evidências privadas permanecem ligados à organização certa.",
             },
             {
               n: "02",
-              title: "Observe a relação.",
-              text: "Um gráfico ganha contexto junto da geografia, da unidade e da interpretação.",
+              title: "Abra um cenário.",
+              text: "Premissas e hipóteses ficam separadas do estado observado que lhes deu contexto.",
             },
             {
               n: "03",
-              title: "Volte à origem.",
-              text: "A fonte, a natureza da série e as transformações ficam acessíveis na mesma tela.",
+              title: "Preserve a decisão.",
+              text: "Resultado, versões e contexto formam uma linhagem que pode ser reconstruída depois.",
             },
           ].map((m) => (
             <article key={m.n}>
@@ -549,20 +558,20 @@ function Software() {
         </h2>
         <div>
           <article>
-            <span className="g2-status">DEMONSTRAÇÃO DISPONÍVEL</span>
-            <h3>Terminal Brasil</h3>
+            <span className="g2-status">BANCADA V0 DISPONÍVEL</span>
+            <h3>Ariadne</h3>
             <p>
-              Exploração por região, período e série. Contexto, método e
-              exportação de dados demonstrativos.
+              Estado privado, premissas, cenários e resultados ligados por uma
+              memória de decisão reconstruível.
             </p>
-            <TextLink to="/br/terminal">Abrir o instrumento</TextLink>
+            <TextLink to="/operador/ariadne">Abrir a bancada</TextLink>
           </article>
           <article>
             <span className="g2-status">EM DESENVOLVIMENTO</span>
-            <h3>Séries conectadas, API e alertas</h3>
+            <h3>Modelos ligados ao estado privado</h3>
             <p>
-              A conexão com dados brasileiros e os serviços de integração ainda
-              não estão disponíveis nesta experiência.
+              A ampliação dos modelos e dos conectores depende de casos reais
+              governados; esta página não simula integração ativa.
             </p>
             <Provenance>
               Disponibilidade declarada. Sem simulação de integração ativa.

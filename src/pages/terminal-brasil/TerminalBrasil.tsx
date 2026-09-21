@@ -27,6 +27,7 @@ import {
 } from "../../lib/geo/brasil-outline";
 import { FamilyEmblem, Wordmark } from "../../components/g2/Brand";
 import { useNivarFavicon } from "../../components/g2/use-nivar-favicon";
+import { useNivarTheme } from "../../components/g2/nivar-theme";
 import {
   describeSeries,
   formatValue,
@@ -172,7 +173,9 @@ function TerminalBrasil({
   const [sourceMode, setSourceMode] = useState<"sample" | "unavailable">(
     initialSourceMode,
   );
-  const [tone, setTone] = useState<"graphite" | "paper">(initialTone);
+  const houseDark = useNivarTheme();
+  const [selectedTone, setTone] = useState<"graphite" | "paper">(initialTone);
+  const tone = compact ? (houseDark ? "graphite" : "paper") : selectedTone;
   const [eventIndex, setEventIndex] = useState(initialEventIndex);
   const [comparisons, setComparisons] = useState<RegionId[]>(initialWorkspace?.compare ?? []);
   const [representation, setRepresentation] = useState<Representation>(initialWorkspace?.view ?? "chart");
@@ -414,7 +417,7 @@ function TerminalBrasil({
       data-metric={metric}
       data-selection={selectionKind}
       data-selection-revision={selectionRevision}
-      aria-label="Terminal Brasil — ambiente demonstrativo"
+      aria-label="Terminal Brasil — instrumento Argos de inspeção"
       onKeyDown={event => { if (event.key === "Escape" && focused && !dialogRef.current?.open) setFocused(false); }}
     >
       <header className="g2t-header">
@@ -428,7 +431,7 @@ function TerminalBrasil({
         </Link>
         <div className="g2t-product">
           <span>
-            Terminal Brasil<small>UM INSTRUMENTO DE ANÁLISE</small>
+            Terminal Brasil · Argos<small>INTELLIGENCE · INSTRUMENTO DE INSPEÇÃO</small>
           </span>
         </div>
         <nav aria-label="Navegação do Terminal" className="g2t-nav">
@@ -474,15 +477,26 @@ function TerminalBrasil({
                 <span className="g2t-cross" aria-hidden="true">
                   +
                 </span>{" "}
-                BRASIL / CADERNO 001
+                ARGOS / BRASIL / INSPEÇÃO 001
               </div>
-              <h1>Uma pergunta. Mais de uma perspectiva.</h1>
+              <h1>Território, mudança, evidência.</h1>
             </div>
             <p>
-              Observar o sinal.
+              Rastrear o sinal.
               <br />
-              <span>Comparar. Examinar. Preservar.</span>
+              <span>Examinar a cadeia. Preservar o limite.</span>
             </p>
+          </div>
+        )}
+
+        {!compact && (
+          <div className="g2t-argos-orientation">
+          <ol className="g2t-argos-sequence" aria-label="Percurso de inspeção Argos">
+            {["Território", "Detecção", "Evidência", "Avaliação", "Resultado"].map((label, index) => (
+              <li key={label}><span>{String(index + 1).padStart(2, "0")}</span>{label}</li>
+            ))}
+          </ol>
+          <p className="g2t-argos-outcomes"><span>Possíveis resultados da avaliação</span><strong>SIGNAL / PROMOTE</strong><strong>HOLD</strong><strong>REJECT</strong></p>
           </div>
         )}
 
@@ -1148,8 +1162,10 @@ export default function TerminalPage() {
   useNivarFavicon();
   const [params] = useSearchParams();
   const initial = parseWorkspace(params);
-  if (!params.has("tone")) {
-    try { const stored = localStorage.getItem("nivar-g2-mode"); if (stored === "light") initial.tone = "paper"; else if (stored === "dark") initial.tone = "graphite"; } catch { /* Explicit URL/default remains valid. */ }
+  const explicitTone = params.get("tone");
+  if (explicitTone !== "paper" && explicitTone !== "graphite") {
+    initial.tone = "paper";
+    try { if (localStorage.getItem("nivar-g2-mode") === "dark") initial.tone = "graphite"; } catch { /* Match the House's light default when storage is unavailable. */ }
   }
   const contextKey = params.toString();
   return <TerminalBrasil key={contextKey} initialWorkspace={initial} initialRegion={initial.region} initialPeriod={initial.period} initialMetric={initial.metric} initialSourceMode={initial.source} initialTone={initial.tone} initialEventIndex={initial.note} initialProbeIndex={initial.observation} />;

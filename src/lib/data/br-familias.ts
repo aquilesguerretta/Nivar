@@ -16,12 +16,11 @@
 // DOMÍNIO. Nenhuma dessas strings foi escrita aqui.
 //
 // ATRIBUÍDO pelo implementador, sujeito a veto: qual produto pertence a
-// qual família. Nenhuma fonte do repositório declara esse vínculo — a
-// Fase 1 desta wave confirmou que ele não existia em lugar nenhum
-// (`br-destinos.ts` é lista plana; o `PRODUCT_CATALOG` do backend é a
-// mesma lista de ids, e é o que UMA conta ativa, não o mapa público).
-// Cada atribuição saiu de cruzar a descrição do próprio produto com a
-// linha de domínio da família, e está justificada em `porQue` abaixo.
+// qual família. A lista pública continua plana em `br-destinos.ts`; esta
+// camada registra o vínculo comercial. A fronteira revisada desta wave
+// torna Terminal Brasil e Energy Brief instrumentos de Intelligence /
+// Argos, enquanto Ariadne permanece como continuidade privada de
+// Software. Cada atribuição está justificada em `porQue` abaixo.
 //
 // ─── HARDWARE FICA VAZIA, E ISSO É O ESTADO REAL ─────────────────────
 // Nenhum dos cinco produtos catalogados é medição em campo, telemetria
@@ -93,10 +92,10 @@ export const FAMILIAS_BR: FamiliaBR[] = [
     hex: '#C17D1F',
     token: 'var(--family-software)',
     paragrafo:
-      'Produto que roda — painel, série ao vivo, alerta. Instrumento de leitura contínua, não relatório de um recorte.',
-    produtoIds: ['terminal-brasil'],
+      'Continuidade do estado privado — organização, versões, cenários e decisões preservados em uma mesma linhagem.',
+    produtoIds: [],
     porQue:
-      'Terminal Brasil é painel de dados ao vivo (PLD, reservatórios, matriz) — "produto instrumentado" na definição da família.',
+      'Ariadne é a espinha de estado e decisão da família Software. Sua bancada existe como superfície operacional, mas ainda não integra o catálogo público de cinco destinos.',
   },
   {
     id: 'advisory',
@@ -117,10 +116,10 @@ export const FAMILIAS_BR: FamiliaBR[] = [
     hex: '#F5C63C',
     token: 'var(--family-intelligence)',
     paragrafo:
-      'Leitura periódica do mercado, publicada em ciclo — o que mudou, com fonte e recorte temporal declarados em cada número.',
-    produtoIds: ['energy-brief'],
+      'Observação do mundo energético compartilhado — o que mudou, onde, quando e com qual cadeia de evidência.',
+    produtoIds: ['terminal-brasil', 'energy-brief'],
     porQue:
-      'Energy Brief é boletim semanal — publicação em ciclo, que é literalmente o domínio da família.',
+      'Terminal Brasil observa e investiga realidade externa compartilhada; Energy Brief publica a leitura em ciclo. Ambos pertencem a Argos / Intelligence.',
   },
 ];
 
