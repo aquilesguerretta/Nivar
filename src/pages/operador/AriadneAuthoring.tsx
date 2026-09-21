@@ -22,6 +22,7 @@ import {
   type WorkspaceDetail,
 } from "../../lib/ariadne/operatorApi";
 import { AriadneScenarioStudio } from "./AriadneScenarioStudio";
+import { AriadneHistoryCompare } from "./AriadneHistoryCompare";
 import { FieldEditor, TechnicalId } from "./AriadneFieldEditor";
 
 type MutationRunner = (
@@ -96,6 +97,12 @@ export function AriadneAuthoring({
     blankAuthoringField(),
   ]);
   const [assumptionOrigin, setAssumptionOrigin] = useState<AssumptionOrigin>("human_defined");
+  const [investigationRunId, setInvestigationRunId] = useState<string | null>(null);
+
+  const investigateRun = (runId: string) => {
+    setInvestigationRunId(runId);
+    document.getElementById("ariadne-history")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     if (!detail.objects.some((item) => item.id === selectedObjectId)) {
@@ -257,6 +264,7 @@ export function AriadneAuthoring({
         <a href="#ariadne-assumptions">Assumptions</a>
         <a href="#ariadne-scenarios">Scenarios</a>
         <a href="#ariadne-runs">Runs</a>
+        <a href="#ariadne-history">History / Compare</a>
       </nav>
 
       {formError && <div className="ariadne-authoring__form-error" role="alert">{formError}</div>}
@@ -400,6 +408,13 @@ export function AriadneAuthoring({
         detail={detail}
         reconciliationRequired={reconciliationRequired}
         runMutation={runMutation}
+        workspaceId={workspaceId}
+        onInvestigateRun={investigateRun}
+      />
+
+      <AriadneHistoryCompare
+        detail={detail}
+        initialRunId={investigationRunId}
         workspaceId={workspaceId}
       />
 

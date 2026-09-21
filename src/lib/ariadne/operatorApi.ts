@@ -221,11 +221,11 @@ export async function settleMutationAgainstWorkspace(
 export function replayPresentation(replay: Replay) {
   return replay.matches
     ? {
-        status: "MATCH CONFIRMADO",
-        detail: "O output é idêntico ao X armazenado.",
+        status: "MATCH",
+        detail: "Replay reproduziu o output armazenado.",
       }
     : {
-        status: "MISMATCH DETECTADO",
+        status: "DIVERGENCE",
         detail: "O replay divergiu; o resultado histórico permanece inalterado.",
       };
 }
