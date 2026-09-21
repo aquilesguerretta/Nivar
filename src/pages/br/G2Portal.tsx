@@ -51,10 +51,10 @@ const HOUSE_FAMILIES = [
     name: "Software",
     verb: "Organizar",
     n: "04",
-    title: "Complexidade, com um caminho legível.",
-    desc: "Instrumentos para explorar relações, acompanhar séries e voltar à origem de um dado.",
-    product: "Terminal Brasil",
-    productPath: "/br/terminal",
+    title: "O presente preserva sua origem.",
+    desc: "Estados, premissas e cenários da organização permanecem ligados às versões que lhes deram origem.",
+    product: "Conhecer Ariadne",
+    productPath: "/br/familia/software",
   },
   {
     id: "hardware",
@@ -116,17 +116,17 @@ export function G2Portal() {
       <HouseChapters families={HOUSE_FAMILIES} />
       <section className="g2-terminal-passage">
         <div className="g2-container g2-section">
-          <SectionLabel number="02">NIVAR Software · Ariadne</SectionLabel>
+          <SectionLabel number="02">NIVAR Intelligence · Argos</SectionLabel>
           <div className="g2-section-intro">
             <h2>
-              O sistema inteiro.
+              Uma mudança no território.
               <br />
-              <em>As relações à vista.</em>
+              <em>A evidência à vista.</em>
             </h2>
             <div>
               <p className="g2-lead">
-                Um espaço para sair do número isolado. Conecte região, período e
-                contexto. Abra a origem de cada leitura.
+                Observe um instante. Delimite região e período. Abra a origem
+                da leitura e examine o que ela permite afirmar.
               </p>
               <TextLink to="/br/terminal">Entrar no Terminal Brasil</TextLink>
             </div>

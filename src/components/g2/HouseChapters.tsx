@@ -11,10 +11,10 @@ import "./house-chapters.css";
 
 type FamilyChapter = { id: string; name: string; verb: string; n: string; title: string; desc: string; product: string; productPath: string };
 const CHAPTER_ART: Record<string, { asset: string; patron: string; detail: string }> = {
-  intelligence: { asset: "transmission-territory", patron: "Argos", detail: "ATENÇÃO / CONTEXTO / LEITURA" },
+  intelligence: { asset: "transmission-territory", patron: "Argos", detail: "DETECÇÃO / EVIDÊNCIA / RESULTADO" },
   advisory: { asset: "advisory-examination", patron: "Sócrates", detail: "PREMISSA / EVIDÊNCIA / CONTRADITÓRIO" },
   academy: { asset: "academy-transparency", patron: "Perseu", detail: "CONCEITO / COMPREENSÃO / AUTONOMIA" },
-  software: { asset: "substation-rain", patron: "Ariadne", detail: "ORIGEM / RELAÇÃO / PERCURSO" },
+  software: { asset: "substation-rain", patron: "Ariadne", detail: "ESTADO / LINHAGEM / CONTINUIDADE" },
   hardware: { asset: "copper-connection", patron: "Hefesto", detail: "GRANDEZA / INSTRUMENTO / REGISTRO" },
 };
 

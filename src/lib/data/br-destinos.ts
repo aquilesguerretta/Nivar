@@ -39,7 +39,7 @@ export const DESTINOS_BR: DestinoBR[] = [
     id: 'terminal-brasil',
     titulo: 'Terminal Brasil',
     descricao:
-      'PLD por submercado, dados do ONS, reservatórios e matriz elétrica em tempo real.',
+      'Investigação por território, mudança e cadeia de evidência — demonstração com base sintética.',
     status: 'em-breve',
     rota: null,
   },

@@ -1,12 +1,17 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { formatValue, getSeries, REGIONS, SAMPLE_VERSION } from "../../pages/terminal-brasil/sample";
 import type { RegionId } from "../../pages/terminal-brasil/sample";
+import { SERIES_COLORS } from "../../pages/terminal-brasil/analysis-format";
+import { useNivarTheme } from "./nivar-theme";
 import "./terminal-threshold.css";
 
 /** A close view of the existing fixture, with the same observation at entry. */
 export function TerminalThreshold() {
+  const dark = useNivarTheme();
+  const fillId = `${useId().replaceAll(":", "")}-threshold-fill`;
   const root = useRef<HTMLDivElement>(null);
   const curve = useRef<SVGPathElement>(null), previous = useRef("");
   const [entered, setEntered] = useState(false);
@@ -44,7 +49,7 @@ export function TerminalThreshold() {
       animation.cancel();
     };
   }, [line]);
-  return <div className="g22-terminal-threshold" ref={root} data-entered={entered}>
+  return <div className="g22-terminal-threshold" ref={root} data-entered={entered} style={{ "--threshold-series": SERIES_COLORS[region] } as CSSProperties}>
     <div className="g22-threshold-top"><span>NIVAR / TERMINAL BRASIL</span><span>10 SET 2026 · AMOSTRA SINTÉTICA</span></div>
     <div className="g22-threshold-layout">
       <div className="g22-threshold-regions" role="group" aria-label="Submercado da prévia do Terminal">
@@ -55,15 +60,15 @@ export function TerminalThreshold() {
       <div className="g22-threshold-instrument">
         <div className="g22-threshold-reading"><div><span>02 / PREÇO SIMULADO · {name}</span><p><strong>{formatValue(selected.value, "price")}</strong><span>R$/MWh</span></p></div><time dateTime={selected.timestamp}>{selected.label}<small>10.09.2026 · UTC−3</small></time></div>
         <svg viewBox={`0 0 ${plotWidth} 260`} className="g22-threshold-plot" aria-hidden="true">
-          <defs><linearGradient id="g22-threshold-fill" x1="0" x2="0" y1="0" y2="1"><stop stopColor="#c5a67b" stopOpacity=".16"/><stop offset="1" stopColor="#c5a67b" stopOpacity="0"/></linearGradient></defs>
+          <defs><linearGradient id={fillId} x1="0" x2="0" y1="0" y2="1"><stop stopColor="var(--threshold-series)" stopOpacity=".23"/><stop offset="1" stopColor="var(--threshold-series)" stopOpacity="0"/></linearGradient></defs>
           <g className="g22-threshold-grid">{[0, 100, 200, 300].map(value => <g key={value}><line x1="36" x2={plotWidth - 40} y1={y(value)} y2={y(value)} /><text x="23" y={y(value) + 4} textAnchor="end">{value}</text></g>)}{[0, 6, 12, 18, 23].map(i => <text key={i} x={x(i)} y="249" textAnchor="middle">{series[i].label}</text>)}</g>
-          <path className="g22-threshold-area" d={`${line} L${x(23)} 224 L36 224 Z`} fill="url(#g22-threshold-fill)"/>
+          <path className="g22-threshold-area" d={`${line} L${x(23)} 224 L36 224 Z`} fill={`url(#${fillId})`}/>
           <path ref={curve} className="g22-threshold-line" d={line} pathLength="1" />
           <g className="g22-threshold-probe"><line x1={x(index)} x2={x(index)} y1={y(selected.value)} y2="224"/><circle cx={x(index)} cy={y(selected.value)} r="9"/><circle cx={x(index)} cy={y(selected.value)} r="3"/></g>
         </svg>
         <label className="g22-threshold-scrub"><span>EXAMINAR UM INSTANTE</span><input aria-label="Horário da observação na prévia do Terminal" aria-valuetext={`${selected.label}, ${formatValue(selected.value, "price")} R$/MWh, ${name}`} type="range" min="0" max="23" step="1" value={index} onChange={event => setIndex(Number(event.target.value))}/><output>{selected.label}</output></label>
       </div>
     </div>
-    <div className="g22-threshold-bottom"><details><summary>03 / VOLTAR À ORIGEM</summary><p>Série sintética NIVAR · {SAMPLE_VERSION}. Perfil fixo para explorar o produto. Não representa PLD, preço executável ou previsão. A linha conecta as 24 observações; a seleção não demonstra uma causa.</p></details><Link to={`/br/terminal?region=${region}&period=24h&metric=price&observation=${index}`}>Continuar desta observação <ArrowUpRight size={18}/></Link></div>
+    <div className="g22-threshold-bottom"><details><summary>03 / VOLTAR À ORIGEM</summary><p>Série sintética NIVAR · {SAMPLE_VERSION}. Perfil fixo para explorar o produto. Não representa PLD, preço executável ou previsão. A linha conecta as 24 observações; a seleção não demonstra uma causa.</p></details><Link to={`/br/terminal?region=${region}&period=24h&metric=price&observation=${index}&tone=${dark ? "graphite" : "paper"}`}>Continuar desta observação <ArrowUpRight size={18}/></Link></div>
   </div>;
 }
