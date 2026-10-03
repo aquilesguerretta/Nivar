@@ -1,0 +1,35 @@
+# Fechamento Assistido v0 — frozen engineering contract
+
+Experimental development only. Synthetic engineering corpus is not the real Golden Dataset. NIV-18/19/20/50 remain open. No commercial, regulatory, tax or payment authority.
+
+## Ownership / baseline
+
+Base: `bfb47e80ba2854dbc973ffdd7bd30a3ee03926c3` (fetched development wave). Production branch observation: `1ffe298885c161093eac699c4875736e1b6c34f3`. Main: `ab8b1a3fd2da8c36c76bf289c506d576c93f5015`. Existing open PR #8 targets main; untouched. Isolated branch `codex/ariadne-fechamento-assistido-v0`.
+
+CREATE/MODIFY: Ariadne intake/close services, routes, models, UI, tests, fixtures, docs, additive migration 0016; minimal Core executor and router/model registration; Alpha snapshot integration to hide workflow-only records and protect reserved confirmation states. READ ONLY: auth, existing upload primitives, existing Alpha scalar behavior, design tokens/charts, canonical sources. NEVER MODIFY: Argos/Alexandria/Advisory logic, public pages, deployment, historical migrations 0012–0015, canonical decisions/statuses, private attachments.
+
+## Layouts and review
+
+CSV: UTF-8, comma or semicolon delimiter, header row, rectangular table. XLSX: ordinary tables with header in row 1; operator selects one sheet and maps columns once per batch. No formulas, macros, external links, embedded objects, hidden-row interpretation or merged-cell layouts. Raw lexical values and sheet/cell/row locators are retained. PDF: original plus bounded native text by page; **no automatic field extraction**. Scanned pages identified; manual source-linked table records require an explicit page. No OCR/LLM/remote URL retrieval.
+
+Canonical mapped fields: `item_key`, `component`, `scope`, `period` (YYYY-MM), `currency`, `tax_basis` (`exclusive`/`inclusive`), `amount`, `quantity`, `quantity_unit`, `price`, `price_unit`, `invoice_id`, `row_type` (`line`/`subtotal`). `item_key/component/scope/period` required. Invoices additionally require currency/tax_basis. Quantity and price join by exact item_key/component/scope/period. Price requires currency/tax_basis. Supported component: `energy`. Other components remain NOT VERIFIED. Subtotals match all lines of one invoice_id; no partial subtotal claim.
+
+Roles: `invoice`, `quantity`, `price`, `context`. Independent checks require three distinct original content hashes. An invoice alone supports only internal arithmetic. Source association is a reviewed engineering assertion, not proof of source truth.
+
+Numeric mode is explicit: `dot`, `comma`, or `strict` (no ambiguous single separator with three trailing digits). Thousands separators and scientific notation are rejected. Blanks remain null; zero remains zero. Exact decimals travel as strings. Max 18 significant digits / 6 fractional places; server Decimal context precision 48. Native XLSX numeric cells use their invariant lexical format independently of the selected text-number mode. BRL only in v0; compatible tax basis mandatory. Unsupported currencies retain their source amount/currency and never acquire a canonical BRL amount. kWh↔MWh conversion only (1000 kWh = 1 MWh); no kW/MWmed conversion. Quantity×price rounded HALF_UP to BRL cents at each line; billed is rounded to cents; difference = billed − expected. Subtotals sum rounded line amounts and require one unambiguous subtotal. Credit quantity/amount retain signed meaning; price must be nonnegative. Match means exact equality after rounding.
+
+Candidates: proposed → validated (errors separately shown) → confirmed or excluded. Confirmation appends a Core state version; remapping/correction never edits history. Excluded/invalid invoice candidates remain visible as NOT VERIFIED. Imported source revisions explicitly supersede one earlier same-role source in the same review. Duplicates/conflicting candidates grouped, never silently picked or added. Unreviewed input is visible, not eligible.
+
+## Checks / outputs
+
+A: line amount vs invoice quantity×invoice price and invoice subtotal vs its complete set of lines, labelled internal consistency. B: invoice amount vs independently supported quantity×reviewed price. C: missing/ambiguous/duplicate/conflicting/superseded/incompatible inputs. Separate internal and independent results. Classifications: Conciliado no escopo verificado; Divergência a investigar; Não verificável com os dados/regras disponíveis.
+
+No complex contract flex, CCEE settlement, tax interpretation, full TUSD/TE validation, penalties or compliance. No savings KPI. No invoice-total extrapolation. Exception handling (`open`, `explained`, `accepted`, `follow_up`) appends status/note/reason against exact saved result and item; never changes computation.
+
+Every run freezes source hashes/IDs, confirmation versions, mappings/normalization, exact inputs, coverage, decimal/unit/rounding assumptions and rule/model identity. Replay/export uses those saved versions. Export ZIP contains readable report, safe CSV, exact JSON manifest and treatment snapshot; export snapshot is keyed by a saved package identity. Consequential writes use persisted idempotency receipts in the same transaction; same key/body retries recover committed response, conflicting bodies return 409.
+
+Limits: 8 MiB/file and serialized preview, 20 MiB uncompressed XLSX, 2000 rows/file, 40 columns, 20 sheets, 300 ZIP entries, 64 files/review, 64 MiB originals plus previews/review, 8000 normalized records/calculation, 100 PDF pages, 5000 PDF objects, 10-second isolated parsing deadline. PDF decoded non-image content has a cumulative 20 MiB budget; passive Form XObjects are preserved but isolated from native text extraction and explicitly manual-only. PDF actions, attachments and active content are rejected. Related duplicate/conflict source references are stored once per group. Authenticated operator + owned workspace enforced for every route. Originals stored privately in PostgreSQL BYTEA, no public filesystem. Feature gate requires server `ARIADNE_CLOSE_DEV=1`, `ARIADNE_CLOSE_ENV=development|test` and non-production runtime; frontend `import.meta.env.DEV` and `VITE_ARIADNE_CLOSE_DEV=1`. No production settings changed.
+
+## Independent corpus answers
+
+See `tests/ariadne_close/fixtures/expected.json`, authored before the engine. Mandatory example: 100000 kWh × 250 BRL/MWh = **25000.00 BRL**; billed **26000.00**; difference **1000.00**, divergence to investigate. Also reconciled, credit, blank, duplicate, correction, unsupported and rounding cases. These are synthetic engineering evidence only.
