@@ -1,4 +1,12 @@
-# Fechamento Assistido v0 — local Founder evaluation
+# Ariadne review desk — local development evaluation
+
+**Current correction wave:** use the [review desk evaluation guide](evaluation.md), [real public-data report](real-world-report.md), [public provenance/retrieval](public-corpus.md), [contract](review-desk-contract.md) and [ADR 002](adr-002.md). The primary route now opens a task-first desk; the old interface remains at `/operador/ariadne/fechamento/avancado`. The authentic public-data workflow has already been completed by the engineer. No repeat synthetic demonstration is required from the Founder.
+
+The correction services use loopback8073/5180 and a separate disposable browser database; the earlier Founder8072/5178 session is preserved. Current process IDs and stop commands are in the evaluation guide. No migration is added or edited by this wave.
+
+## Historical PR #28 evaluation setup
+
+The following records the earlier hardening evaluation, including environment/migration status at that time. For the current wave follow `evaluation.md`; the earlier services have been resumed for Founder use, so statements below about stopped services are historical.
 
 Experimental development workflow at `/operador/ariadne/fechamento`. This is one bounded monthly review, using real CSV/XLSX/PDF intake and synthetic engineering fixtures. The feature is closed by default and absent from production builds. It does not activate Corporate Workspace / Planejador or change the real-case/commercial gates.
 
@@ -82,7 +90,7 @@ node tools/gridalpha-detect/bin/gridalpha-detect.mjs src
 git diff --check
 ```
 
-The browser harness requires installed Playwright and Chromium. `RUNTIME_NODE_MODULES` must point to the directory containing Playwright's package, such as the bundled Codex Node dependencies. Both harnesses assert a localhost URL:
+The legacy browser harness requires installed Playwright and Chromium and now targets `/fechamento/avancado`. It was not run in the review-desk wave; that wave used the actual in-app browser. `RUNTIME_NODE_MODULES` must point to the directory containing Playwright's package, such as the bundled Codex Node dependencies. Both harnesses assert a localhost URL:
 
 ```powershell
 $env:RUNTIME_NODE_MODULES = 'C:\Users\aquil\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules'
