@@ -100,8 +100,8 @@ try {
   await click("Iniciar revisão");
   await page.getByLabel("Papel da fonte", { exact: true }).waitFor();
   const imports = [
-    ["invoice", "tests/ariadne_close/fixtures/invoice.csv"],
-    ["quantity", "tests/ariadne_close/fixtures/quantity.csv"],
+    ["invoice", path.join(fixtures, "invoice.csv")],
+    ["quantity", path.join(fixtures, "quantity.csv")],
     ["price", path.join(fixtures, "price.xlsx")],
   ];
   for (const [role, filename] of imports) {

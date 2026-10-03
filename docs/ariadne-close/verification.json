@@ -3,16 +3,16 @@
   "postgresql": "17.11 disposable local instance",
   "python": {
     "command": "python -m pytest -q",
-    "passed": 323,
+    "passed": 389,
     "failed": 0,
     "errors": 0,
     "skipped": 0,
-    "warnings": 117,
-    "durationSeconds": 62.505,
-    "timestamp": "2026-10-03T00:44:11.839361-04:00",
+    "warnings": 119,
+    "durationSeconds": 73.78,
+    "timestamp": "2026-10-03T10:00:18.405329-04:00",
     "suiteCounts": {
       "tests.argos_memory": 153,
-      "tests.ariadne_close": 121,
+      "tests.ariadne_close": 187,
       "tests.ariadne_core": 19,
       "tests.ariadne_operator": 21,
       "tests.production-stabilization": 9
@@ -35,7 +35,13 @@
       "browser-evidence/adverse-measurements.json",
       "browser-evidence/production-gate.json"
     ],
-    "productionBuildGateChecks": 1
+    "productionBuildGateChecks": 1,
+    "productionApiRequestsSent": 0,
+    "measuredAt": [
+      "2026-10-03T13:57:49.667Z",
+      "2026-10-03T14:00:31.447Z",
+      "2026-10-03T14:00:18.128Z"
+    ]
   },
   "static": {
     "compileall": "passed",
@@ -53,14 +59,65 @@
     "headCount": 1,
     "cleanUpgrade": "passed",
     "existingAlpha0015Upgrade": "passed",
-    "historicalScalarReplayPreserved": true
+    "historicalScalarReplayPreserved": true,
+    "updateOnlyGuards": "passed on all five tables",
+    "restrictiveDependencies": "passed",
+    "controlledDependencyOrderedDeletion": "passed without disabling triggers/cascade",
+    "retainedCloseReplayAndExactExport": "passed",
+    "oldBrowserDatabasePreserved": true,
+    "newBrowserDatabase": "ariadne_close_hardening_browser",
+    "sharedEnvironmentEvidence": "no shared application observed; unseen shared deployments not inspected, additive correction required if discovered"
   },
-  "independentReview": "read-only correctness, isolation, ownership and visual review: no remaining actionable findings",
-  "verdict": "ARIADNE ASSISTED CLOSE ENGINEERING PASS",
+  "independentReview": "two read-only reviews: no remaining actionable findings; fixture-order and effective route-registration suggestions implemented",
+  "verdict": "ARIADNE ASSISTED CLOSE HARDENING PASS",
   "validationScope": "synthetic engineering only; no real reference-case/commercial/regulatory gate closed",
   "release": {
     "draftPr": "https://github.com/aquilesguerretta/Nivar/pull/28",
     "automaticPreview": "existing GitHub/Vercel integration triggered; no manual deployment/configuration change",
     "productionChanged": false
+  },
+  "reviewedHead": "5499c12b235a5af390da7a9ef690a4c796b44d38",
+  "implementationHead": "c09a985d6a395b2c7b636fde30b94d6c69a8737c",
+  "focusedHardening": {
+    "passed": 66,
+    "failed": 0,
+    "skipped": 0,
+    "deselected": 43,
+    "evidence": "tests/ariadne_close/test_hardening_api.py and controlled OOXML tests; also included in full Python"
+  },
+  "redPhaseReproduction": {
+    "failed": 26,
+    "passed": 2,
+    "deselected": 71,
+    "meaning": "intentional pre-fix behavioral reproduction, superseded by final green gates"
+  },
+  "operatorMeasurement": {
+    "kind": "automated interaction; human reading/decision time unmeasured",
+    "elapsedMs": 4120,
+    "unsupportedComponent": {
+      "elapsedMs": 111,
+      "operatorActions": 2,
+      "outcome": "visible NOT VERIFIED; no amount extrapolated"
+    },
+    "financialValuesManuallyEntered": 0,
+    "batchMappingsConfirmed": 3,
+    "mappingsReusedFromPreviousBatch": 0,
+    "duplicateFinancialEntry": 0,
+    "stepsToSourceValues": 1,
+    "stepsToOriginalDownload": 2
+  },
+  "requestOrdering": {
+    "gateAuthOwnerDenialsReceiveCalls": 0,
+    "gateAuthOwnerDenialsBytes": 0,
+    "validCookieRenewal": "passed",
+    "dbResourcesClosedBeforeReceive": "passed",
+    "authorizedBound": "passed",
+    "framework": "FastAPI 0.142.2"
+  },
+  "evaluation": {
+    "route": "http://127.0.0.1:5178/operador/ariadne/fechamento",
+    "inputPackage": "C:\\Users\\aquil\\AppData\\Local\\Temp\\ariadne-close-synthetic-browser\\synthetic-input-package.zip",
+    "instructions": "README.md",
+    "localProcesses": "stopped; no listeners on 8072/5178/5179/55472 after cleanup"
   }
 }

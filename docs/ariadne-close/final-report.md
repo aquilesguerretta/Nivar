@@ -1,5 +1,7 @@
 # Ariadne Assisted Close v0 — engineering report
 
+Historical report of the original implementation at reviewed head `5499c12b235a5af390da7a9ef690a4c796b44d38`. Its counts and timing below describe that run. The [targeted hardening report](hardening-report.md) and `verification.json` supersede verification and lifecycle/request-ordering details after the independent review. Three review findings were reproduced and corrected; the original "no unresolved defect" statement is not the current review record.
+
 Verdict: **ARIADNE ASSISTED CLOSE ENGINEERING PASS** for the bounded experimental development implementation. This does not validate a commercial launch, regulatory methodology, client result or real reference case.
 
 ## 1. Base, branch and release boundary
@@ -48,7 +50,7 @@ Consequential writes use UUID idempotency keys, persisted body fingerprints and 
 
 ## 7. Core, API, migration and compatibility
 
-Additive `0016_ariadne_close` introduces five close metadata tables, append-only triggers and a Core Result `(id, tenant_id)` unique constraint for scoped foreign keys. One Alembic head. Frozen DDL; historical 0012–0015 untouched. Clean upgrade, 0015 upgrade with synthetic existing Alpha runs, downgrade/reupgrade lifecycle and preservation/replay were exercised on PostgreSQL 17.11.
+Additive `0016_ariadne_close` introduces five close metadata tables and a Core Result `(id, tenant_id)` unique constraint for scoped foreign keys. PR #28 hardening amends the unmerged migration's guards to reject UPDATE only; restrictive dependencies and separately authorized lifecycle work remain required. One Alembic head; historical 0012–0015 untouched. Clean upgrade, 0015 upgrade with synthetic existing Alpha runs, downgrade/reupgrade lifecycle and preservation/replay were exercised on PostgreSQL 17.11.
 
 Core adds exact `assisted_close` model dispatch for version `0.1.0`; existing scalar identity, integer multiplier behavior and replay are preserved. [ADR](adr-001.md) documents this extension. Close originals/receipts/treatments/packages are metadata; confirmed inputs and authoritative results remain Core data.
 
