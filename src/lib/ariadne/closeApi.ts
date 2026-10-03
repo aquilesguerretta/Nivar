@@ -31,12 +31,62 @@ export interface Candidate {
   amount?: string | null;
   quantity?: string | null;
   price?: string | null;
+  label?: string;
+  snippet?: string;
+  page?: number;
+  operation?: string | null;
+  issues?: string[];
+  values?: Record<string, string | null>;
+  source_id?: string;
 }
 export interface Mapping {
   sheet: string;
   mapping: Record<string, string>;
   numericMode: "strict" | "dot" | "comma";
   manualRows: Record<string, string | number>[];
+  reviewMode?: "table" | "observations" | "context";
+  defaults?: Record<string, string>;
+}
+export interface Inspection {
+  kind: string;
+  parserVersion?: string;
+  sha256?: string;
+  tables: {
+    name: string;
+    sheet?: string;
+    headerRow?: number;
+    columns: string[];
+    rows: Candidate[];
+    proposedMapping: Record<string, string>;
+  }[];
+  pages: { number: number; text: string; status: string }[];
+  sheets?: {
+    name: string;
+    hidden: boolean;
+    warnings: string[];
+    cells: {
+      locator: string;
+      raw: string | null;
+      formula?: string;
+      cachedValue?: string | null;
+      issues: string[];
+    }[];
+  }[];
+  extraction: string;
+  warnings?: string[];
+  observations?: Candidate[];
+  provenance?: Record<string, unknown>;
+  proposal?: {
+    role: CloseRole | null;
+    description: string;
+    period?: string;
+    scope?: string;
+    distributor?: string;
+    invoiceId?: string;
+    class?: string;
+    currency?: string;
+    evidence: string[];
+  };
 }
 export interface Source {
   id: string;
@@ -47,16 +97,7 @@ export interface Source {
   supersedesId: string | null;
   confirmationVersionId: string | null;
   confirmation: (Mapping & { rows: Candidate[] }) | null;
-  preview: {
-    tables: {
-      name: string;
-      columns: string[];
-      rows: Candidate[];
-      proposedMapping: Record<string, string>;
-    }[];
-    pages: { number: number; text: string; status: string }[];
-    extraction: string;
-  };
+  preview: Inspection;
 }
 export interface Review {
   id: string;
@@ -251,8 +292,16 @@ export const closeApi = {
     write<WorkspaceSummary>("/close/workspaces", { label, synthetic }),
   reviews: (w: string, signal?: AbortSignal) =>
     request<{ data: Review[] }>(root(w), { signal }),
-  start: (w: string, scope: string, period: string) =>
-    write<Review>(root(w), { scope, period }),
+  start: (w: string, scope: string, period: string, ruleVersion = "0.1.0") =>
+    write<Review>(root(w), { scope, period, ruleVersion }),
+  inspect: (w: string, file: File) => {
+    const form = new FormData();
+    form.set("file", file);
+    return request<Inspection>(
+      `/workspaces/${encodeURIComponent(w)}/close/inspect`,
+      { method: "POST", body: form },
+    );
+  },
   detail: (w: string, r: string, signal?: AbortSignal) =>
     request<CloseDetail>(root(w, r), { signal }),
   upload: async (
@@ -261,14 +310,18 @@ export const closeApi = {
     file: File,
     role: CloseRole,
     supersedesId: string,
+    inspection = false,
+    provenance?: Record<string, unknown>,
   ) => {
     const form = new FormData();
     form.set("file", file);
     form.set("role", role);
     if (supersedesId) form.set("supersedesId", supersedesId);
+    if (inspection) form.set("inspection", "true");
+    if (provenance) form.set("provenance", JSON.stringify(provenance));
     return write<{ id: string; duplicate: boolean }>(
       root(w, r) + "/sources",
-      { role, supersedesId, filename: file.name },
+      { role, supersedesId, filename: file.name, inspection, provenance },
       form,
       await fingerprint(await file.arrayBuffer()),
     );
@@ -330,4 +383,6 @@ export const closeApi = {
     BASE + root(w, r) + `/packages/${id}/export`,
   originalUrl: (w: string, r: string, id: string) =>
     BASE + root(w, r) + `/sources/${id}/original`,
+  pageUrl: (w: string, r: string, id: string, page: number) =>
+    BASE + root(w, r) + `/sources/${id}/pages/${page}/image`,
 };

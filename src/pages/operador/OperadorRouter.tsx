@@ -44,6 +44,7 @@ import { FilaView } from './FilaView';
 import { PedidoView } from './PedidoView';
 import { AriadneWorkbench } from './AriadneWorkbench';
 import { AriadneClose } from './AriadneClose';
+import { AriadneReviewDesk } from './AriadneReviewDesk';
 import { ArgosSignalInspection } from './ArgosSignalInspection';
 import { NotFound } from '../NotFound';
 import { PRODUTOS_COM_FILA } from '../../lib/operador/catalogo';
@@ -55,7 +56,7 @@ export function OperadorRouter() {
         <Route index element={<FilaView />} />
         <Route path="argos" element={<ArgosSignalInspection />} />
         <Route path="ariadne" element={<AriadneWorkbench />} />
-        {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_CLOSE_DEV === '1' && <Route path="ariadne/fechamento" element={<AriadneClose />} />}
+        {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_CLOSE_DEV === '1' && <><Route path="ariadne/fechamento" element={<AriadneReviewDesk />} /><Route path="ariadne/fechamento/avancado" element={<AriadneClose />} /></>}
         {PRODUTOS_COM_FILA.map((p) => (
           <Fragment key={p.produtoId}>
             <Route path={p.produtoId} element={<FilaView />} />

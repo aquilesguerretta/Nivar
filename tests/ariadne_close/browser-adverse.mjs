@@ -7,7 +7,7 @@ import { tmpdir } from "node:os";
 const { chromium } = createRequire(
   path.join(process.env.RUNTIME_NODE_MODULES, "package.json"),
 )("playwright");
-const evidence = path.resolve("docs/ariadne-close/browser-evidence");
+const evidence = path.resolve(process.env.ARIADNE_QA_OUTPUT ?? "docs/ariadne-close/browser-evidence");
 const previous = JSON.parse(
   await readFile(path.join(evidence, "measurements.json"), "utf8"),
 );

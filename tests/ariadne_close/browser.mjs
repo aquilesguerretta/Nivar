@@ -14,7 +14,7 @@ const fixtures =
   process.env.ARIADNE_QA_FIXTURES ??
   path.join(tmpdir(), "ariadne-close-synthetic-browser");
 assert.match(base, /^http:\/\/(127\.0\.0\.1|localhost):/);
-const output = path.resolve("docs/ariadne-close/browser-evidence");
+const output = path.resolve(process.env.ARIADNE_QA_OUTPUT ?? "docs/ariadne-close/browser-evidence");
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const context = await browser.newContext({
@@ -78,7 +78,7 @@ try {
   await click("Entrar");
   await page.waitForURL("**/conta");
   checks.push("existing auth UI establishes actual cookie session");
-  await page.goto(base + "/operador/ariadne/fechamento");
+  await page.goto(base + "/operador/ariadne/fechamento/avancado");
   await page
     .getByRole("heading", { name: "Fechamento assistido", exact: true })
     .waitFor();
