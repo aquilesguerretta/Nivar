@@ -1,3 +1,4 @@
+from app.db.models import ariadne_close as _ariadne_close  # register assisted close metadata
 from app.db.models.ariadne_core import (
     ASSUMPTION_ORIGINS,
     AriadneAssumptionSet,

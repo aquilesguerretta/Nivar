@@ -8,6 +8,7 @@ from app.routers import (
     ai,
     ancillary,
     argos_signal_inspection,
+    ariadne_close,
     ariadne_operator,
     atlas,
     atlas_world,
@@ -108,6 +109,7 @@ app.include_router(conversations.operator_router)  # /api/operator/conversations
 
 # NIV-48 Ariadne operator instrument — authenticated, workspace-scoped Core access.
 app.include_router(ariadne_operator.router)  # /api/operator/ariadne/*
+app.include_router(ariadne_close.router)  # development feature gate, closed by default
 
 # NIV-52 Argos Signal inspection — authenticated, read-only, server-owned scenarios.
 app.include_router(argos_signal_inspection.router)  # /api/operator/argos/ons-capacidade/*
