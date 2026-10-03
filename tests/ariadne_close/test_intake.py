@@ -29,6 +29,69 @@ def xlsx_bytes(rows, *, extra_sheet=False):
     return stream.getvalue()
 
 
+def xlsx_hidden_variant(rows, target, value):
+    """Controlled OOXML literals, independent of the writer's hidden encoding."""
+    import xml.etree.ElementTree as ET
+
+    namespace = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+    output = io.BytesIO()
+    with zipfile.ZipFile(io.BytesIO(xlsx_bytes(rows))) as source, zipfile.ZipFile(
+        output, "w"
+    ) as result:
+        for name in source.namelist():
+            content = source.read(name)
+            if name == "xl/worksheets/sheet1.xml":
+                root = ET.fromstring(content)
+                if target == "column":
+                    cols = ET.Element(namespace + "cols")
+                    element = ET.SubElement(cols, namespace + "col", min="1", max="40")
+                    root.insert(
+                        list(root).index(root.find(namespace + "sheetData")), cols
+                    )
+                else:
+                    rows_xml = root.findall(
+                        namespace + "sheetData/" + namespace + "row"
+                    )
+                    element = rows_xml[0 if target == "header" else 1]
+                if value is not None:
+                    element.set("hidden", value)
+                content = ET.tostring(root, encoding="utf-8")
+            result.writestr(name, content)
+    return output.getvalue()
+
+
+@pytest.mark.parametrize("target", ["row", "header", "column"])
+@pytest.mark.parametrize("value", ["1", "true", " \ttrue\n"])
+def test_hidden_boolean_true_layout_rejected(target, value):
+    with pytest.raises(ValueError, match="ocult"):
+        parse_file(
+            xlsx_hidden_variant([["value", "blank"], ["250.125", None]], target, value),
+            "hidden.xlsx",
+        )
+
+
+@pytest.mark.parametrize("target", ["row", "header", "column"])
+@pytest.mark.parametrize("value", [None, "0", "false", " \tfalse\n"])
+def test_visible_boolean_layout_preserves_raw_and_locators(target, value):
+    table = parse_file(
+        xlsx_hidden_variant([["value", "blank"], ["250.125", None]], target, value),
+        "visible.xlsx",
+    )["tables"][0]
+    assert table["rows"][0]["values"] == {"value": "250.125", "blank": None}
+    assert table["rows"][0]["cells"] == {"value": "Inputs!A2", "blank": "Inputs!B2"}
+
+
+@pytest.mark.parametrize("target", ["row", "column"])
+@pytest.mark.parametrize(
+    "value", ["", "TRUE", "False", "2", "yes", "\u00a0false\u00a0"]
+)
+def test_invalid_hidden_boolean_rejected(target, value):
+    with pytest.raises(ValueError, match="boolean"):
+        parse_file(
+            xlsx_hidden_variant([["value"], ["250.125"]], target, value), "invalid.xlsx"
+        )
+
+
 def pdf_bytes(native=True):
     writer = PdfWriter()
     page = writer.add_blank_page(width=300, height=300)

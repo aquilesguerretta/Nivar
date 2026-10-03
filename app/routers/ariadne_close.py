@@ -3,6 +3,7 @@
 import hashlib
 import os
 import uuid
+from contextlib import AsyncExitStack
 from typing import Literal
 from fastapi import (
     APIRouter,
@@ -13,7 +14,10 @@ from fastapi import (
     File,
     Form,
     Response,
+    Request,
 )
+from fastapi.dependencies.utils import get_dependant, solve_dependencies
+from fastapi.exceptions import RequestValidationError
 from pydantic import BaseModel, ConfigDict, Field
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
@@ -64,12 +68,67 @@ def require_development():
         raise HTTPException(404, "Fechamento experimental desativado")
 
 
+def _preflight_access(
+    request: Request,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Bodyless access check; the normal handler still rechecks after transfer."""
+    require_operator(user)
+    workspace_id = request.path_params.get("workspace_id")
+    if workspace_id is None:
+        return
+    try:
+        workspace_id = uuid.UUID(workspace_id)
+        review_id = request.path_params.get("review_id")
+        review_id = uuid.UUID(review_id) if review_id else None
+    except ValueError as exc:
+        raise HTTPException(422, "Identificador de contexto inválido") from exc
+    workspace = context(workspace_id, user, db)
+    if review_id is not None:
+        try:
+            service.review_row(db, workspace, review_id)
+        except LookupError as exc:
+            raise _error(exc) from exc
+
+
 class BoundedCloseRoute(APIRoute):
     def get_route_handler(self):
         handler = super().get_route_handler()
+        preflight = get_dependant(path=self.path, call=_preflight_access)
 
         async def bounded(request):
+            # Normal FastAPI dependencies run after body parsing. Gate explicitly
+            # before receive(), then resolve the existing auth/DB dependencies.
+            require_development()
             if request.method == "POST":
+                async with AsyncExitStack() as stack:
+                    keys = ("fastapi_inner_astack", "fastapi_function_astack")
+                    previous = {key: request.scope.get(key) for key in keys}
+                    # Newer FastAPI uses scope stacks; older versions use the
+                    # explicit argument. Both must close before awaiting upload.
+                    for key in keys:
+                        request.scope[key] = stack
+                    try:
+                        solved = await solve_dependencies(
+                            request=request,
+                            dependant=preflight,
+                            body=None,
+                            dependency_overrides_provider=(
+                                self.dependency_overrides_provider or request.app
+                            ),
+                            async_exit_stack=stack,
+                            embed_body_fields=False,
+                        )
+                        if solved.errors:
+                            raise RequestValidationError(solved.errors)
+                        await run_in_threadpool(_preflight_access, **solved.values)
+                    finally:
+                        for key, original in previous.items():
+                            if original is None:
+                                request.scope.pop(key, None)
+                            else:
+                                request.scope[key] = original
                 limit = MAX_BYTES + 256 * 1024
                 chunks, size = [], 0
                 async for chunk in request.stream():

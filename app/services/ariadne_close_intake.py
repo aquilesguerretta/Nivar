@@ -64,6 +64,17 @@ def _table(name, matrix, locators, *, numeric_cells=()):
     return {"name": name, "columns": headers, "rows": rows, "proposedMapping": proposed}
 
 
+def _reject_hidden(value, kind):
+    if value is None:
+        return
+    # XML Schema boolean: case-sensitive, with XML whitespace collapse only.
+    normalized = re.sub(r"[ \t\r\n]+", " ", value).strip(" ")
+    if normalized not in ("1", "true", "0", "false"):
+        raise ValueError("Atributo hidden não é boolean XML válido")
+    if normalized in ("1", "true"):
+        raise ValueError(f"{kind} ocultas não suportadas")
+
+
 def _xlsx(data):
     tables = []
     with zipfile.ZipFile(io.BytesIO(data)) as z:
@@ -144,6 +155,8 @@ def _xlsx(data):
             if not path.startswith("xl/worksheets/"):
                 raise ValueError("Layout de planilha não suportado")
             root = _xml(z.read(path))
+            for column in root.findall("m:cols/m:col", NS):
+                _reject_hidden(column.get("hidden"), "Colunas")
             if (
                 root.find("m:mergeCells", NS) is not None
                 or root.find(".//m:f", NS) is not None
@@ -152,12 +165,13 @@ def _xlsx(data):
             matrix, locators, numeric_cells = [], [], []
             previous_row = 0
             for row in root.findall("m:sheetData/m:row", NS):
+                _reject_hidden(row.get("hidden"), "Linhas")
                 number = int(row.get("r", "0"))
                 if number <= previous_row:
                     raise ValueError("Referências de linha duplicadas/fora de ordem")
                 previous_row = number
-                if number < 1 or number > MAX_ROWS + 1 or row.get("hidden") == "1":
-                    raise ValueError("Linhas ocultas/limite de linhas não suportado")
+                if number < 1 or number > MAX_ROWS + 1:
+                    raise ValueError("Limite de linhas não suportado")
                 while len(matrix) < number:
                     matrix.append([])
                     locators.append(f"{sheet.get('name')}!row:{len(matrix)}")

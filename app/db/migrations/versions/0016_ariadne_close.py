@@ -1,4 +1,9 @@
-"""Add assisted close metadata with frozen DDL; preserve Core histories."""
+"""Add close metadata; protect retained history without prescribing retention.
+
+Unmerged 0016: only known applications are disposable local evaluation/test DBs.
+UPDATE is rejected; restrictive FKs preserve dependency integrity on DELETE.
+Lifecycle authorization/orchestration are separate, with no product delete API.
+"""
 
 from alembic import op
 
@@ -126,12 +131,12 @@ def upgrade():
         "ariadne_result_id_tenant_key", "ariadne_result", ["id", "tenant_id"]
     )
     op.execute(
-        "CREATE FUNCTION ariadne_close_reject_mutation() RETURNS trigger AS $$ BEGIN RAISE EXCEPTION 'assisted close records are append-only'; END; $$ LANGUAGE plpgsql"
+        "CREATE FUNCTION ariadne_close_reject_mutation() RETURNS trigger AS $$ BEGIN RAISE EXCEPTION 'assisted close records cannot be updated; append a new version'; END; $$ LANGUAGE plpgsql"
     )
     for table, sql in zip(TABLES, DDL):
         op.execute(sql)
         op.execute(
-            f"CREATE TRIGGER {table}_immutable BEFORE UPDATE OR DELETE ON {table} FOR EACH ROW EXECUTE FUNCTION ariadne_close_reject_mutation()"
+            f"CREATE TRIGGER {table}_immutable BEFORE UPDATE ON {table} FOR EACH ROW EXECUTE FUNCTION ariadne_close_reject_mutation()"
         )
 
 
