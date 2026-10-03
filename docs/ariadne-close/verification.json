@@ -1,0 +1,59 @@
+{
+  "base": "bfb47e80ba2854dbc973ffdd7bd30a3ee03926c3",
+  "postgresql": "17.11 disposable local instance",
+  "python": {
+    "command": "python -m pytest -q",
+    "passed": 323,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "warnings": 117,
+    "durationSeconds": 62.505,
+    "timestamp": "2026-10-03T00:44:11.839361-04:00",
+    "suiteCounts": {
+      "tests.argos_memory": 153,
+      "tests.ariadne_close": 121,
+      "tests.ariadne_core": 19,
+      "tests.ariadne_operator": 21,
+      "tests.production-stabilization": 9
+    }
+  },
+  "frontend": {
+    "command": "node --experimental-strip-types --test <all tests/**/*.test.ts>",
+    "passed": 72,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "mainChecks": 24,
+    "adverseChecks": 18,
+    "failed": 0,
+    "skipped": 0,
+    "pageErrors": 0,
+    "evidence": [
+      "browser-evidence/measurements.json",
+      "browser-evidence/adverse-measurements.json"
+    ]
+  },
+  "static": {
+    "compileall": "passed",
+    "tsc-b": "passed",
+    "npm-build": "passed",
+    "git-diff-check": "passed"
+  },
+  "designDetector": {
+    "p0": 0,
+    "p1": 0,
+    "informationalP2": 25
+  },
+  "migrations": {
+    "head": "0016_ariadne_close",
+    "headCount": 1,
+    "cleanUpgrade": "passed",
+    "existingAlpha0015Upgrade": "passed",
+    "historicalScalarReplayPreserved": true
+  },
+  "independentReview": "read-only correctness, isolation, ownership and visual review: no remaining actionable findings",
+  "verdict": "ARIADNE ASSISTED CLOSE ENGINEERING PASS",
+  "validationScope": "synthetic engineering only; no real reference-case/commercial/regulatory gate closed"
+}
