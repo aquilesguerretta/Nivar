@@ -398,6 +398,21 @@ def _execute_model_version(
     assumption_version: AriadneAssumptionSetVersion,
     configuration: dict[str, Any],
 ) -> dict[str, Any]:
+    from app.services import ariadne_close_engine as close
+
+    if model_definition.name == close.MODEL:
+        if (
+            model_version.semantic_version != close.VERSION
+            or model_version.implementation_identity != close.IMPLEMENTATION
+            or model_version.input_contract != close.INPUT_CONTRACT
+            or model_version.output_contract != close.OUTPUT_CONTRACT
+        ):
+            raise ValueError("no executor for exact assisted close metadata")
+        return close.execute_close(
+            state_payload=state_version.payload,
+            assumption_values=assumption_version.values,
+            execution_configuration=configuration,
+        )
     if (
         model_definition.name != DETERMINISTIC_SCALAR_MODEL
         or model_version.semantic_version != DETERMINISTIC_SCALAR_SEMANTIC_VERSION
@@ -480,7 +495,11 @@ def execute_scenario(
     result = AriadneResult(
         tenant_id=tenant_id,
         model_run_id=model_run.id,
-        result_key="scalar_result",
+        result_key=(
+            "assisted_close"
+            if model_definition.name == "assisted_close"
+            else "scalar_result"
+        ),
         payload=payload,
         unit=None,
         produced_at=produced_at,

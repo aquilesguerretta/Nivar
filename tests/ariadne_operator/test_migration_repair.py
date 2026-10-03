@@ -21,6 +21,7 @@ from sqlalchemy.exc import OperationalError
 REVISION_0013 = "0013_ariadne_operator_workspace"
 REVISION_0014 = "0014_ariadne_workspace_repair"
 REVISION_0015 = "0015_ariadne_operator_label"
+REVISION_HEAD = "0016_ariadne_close"
 
 
 def _database_url() -> str | None:
@@ -153,13 +154,13 @@ def _assert_workspace_schema(connection) -> None:
 def test_clean_chain_reaches_one_head_with_exact_workspace_schema(clean_database):
     config, url = clean_database
     heads = ScriptDirectory.from_config(config).get_heads()
-    assert heads == [REVISION_0015]
+    assert heads == [REVISION_HEAD]
 
     command.upgrade(config, "head")
     engine = create_engine(url)
     try:
         with engine.connect() as connection:
-            assert _version(connection) == REVISION_0015
+            assert _version(connection) == REVISION_HEAD
             assert _relation_oid(connection, "public.ariadne_model_run") is not None
             _assert_workspace_schema(connection)
     finally:
@@ -201,7 +202,7 @@ def test_0014_repairs_0013_history_with_only_workspace_table_missing(clean_datab
         command.upgrade(config, "head")
 
         with engine.connect() as connection:
-            assert _version(connection) == REVISION_0015
+            assert _version(connection) == REVISION_HEAD
             _assert_workspace_schema(connection)
             assert {
                 relation: _relation_oid(connection, relation)

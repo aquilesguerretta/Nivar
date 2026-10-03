@@ -26,6 +26,7 @@ from app.db.models.ariadne_core import (
     AriadneStateEvidence,
 )
 from app.db.models.ariadne_operator import AriadneOperatorObjectPresentation
+from app.db.models.ariadne_close import CloseSource
 from app.db.models.user import User
 from app.db.session import get_db
 from app.services.ariadne_core import (
@@ -152,17 +153,15 @@ def _conflict(detail: str) -> HTTPException:
 
 
 def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any]:
-    evidence = list(
-        db.execute(
-            select(AriadneEvidenceRef)
-            .where(AriadneEvidenceRef.tenant_id == tenant_id)
-            .order_by(AriadneEvidenceRef.recorded_at, AriadneEvidenceRef.id)
-        ).scalars()
-    )
     objects = list(
         db.execute(
             select(AriadnePrivateObject)
-            .where(AriadnePrivateObject.tenant_id == tenant_id)
+            .where(
+                AriadnePrivateObject.tenant_id == tenant_id,
+                ~AriadnePrivateObject.object_type.startswith(
+                    "assisted_close_", autoescape=True
+                ),
+            )
             .order_by(AriadnePrivateObject.created_at, AriadnePrivateObject.id)
         ).scalars()
     )
@@ -177,7 +176,10 @@ def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any
     states = list(
         db.execute(
             select(AriadnePrivateStateVersion)
-            .where(AriadnePrivateStateVersion.tenant_id == tenant_id)
+            .where(
+                AriadnePrivateStateVersion.tenant_id == tenant_id,
+                AriadnePrivateStateVersion.object_id.in_([row.id for row in objects]),
+            )
             .order_by(
                 AriadnePrivateStateVersion.object_id,
                 AriadnePrivateStateVersion.version,
@@ -187,8 +189,13 @@ def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any
     state_evidence_rows = list(
         db.execute(
             select(AriadneStateEvidence)
-            .where(AriadneStateEvidence.tenant_id == tenant_id)
-            .order_by(AriadneStateEvidence.created_at, AriadneStateEvidence.evidence_ref_id)
+            .where(
+                AriadneStateEvidence.tenant_id == tenant_id,
+                AriadneStateEvidence.state_version_id.in_([row.id for row in states]),
+            )
+            .order_by(
+                AriadneStateEvidence.created_at, AriadneStateEvidence.evidence_ref_id
+            )
         ).scalars()
     )
     evidence_by_state: dict[uuid.UUID, list[str]] = {}
@@ -196,18 +203,64 @@ def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any
         evidence_by_state.setdefault(binding.state_version_id, []).append(
             str(binding.evidence_ref_id)
         )
+    close_evidence_ids = (
+        select(AriadneStateEvidence.evidence_ref_id)
+        .join(
+            AriadnePrivateStateVersion,
+            AriadneStateEvidence.state_version_id == AriadnePrivateStateVersion.id,
+        )
+        .join(
+            AriadnePrivateObject,
+            AriadnePrivateStateVersion.object_id == AriadnePrivateObject.id,
+        )
+        .where(
+            AriadneStateEvidence.tenant_id == tenant_id,
+            AriadnePrivateObject.object_type.startswith(
+                "assisted_close_", autoescape=True
+            ),
+        )
+        .union(
+            select(CloseSource.evidence_id).where(
+                CloseSource.workspace_id == workspace.id
+            )
+        )
+    )
+    # Hide workflow-only references; preserve any support actually used by Alpha.
+    evidence = list(
+        db.execute(
+            select(AriadneEvidenceRef)
+            .where(
+                AriadneEvidenceRef.tenant_id == tenant_id,
+                (~AriadneEvidenceRef.id.in_(close_evidence_ids))
+                | AriadneEvidenceRef.id.in_(
+                    [row.evidence_ref_id for row in state_evidence_rows]
+                ),
+            )
+            .order_by(AriadneEvidenceRef.recorded_at, AriadneEvidenceRef.id)
+        ).scalars()
+    )
 
     assumption_sets = list(
         db.execute(
             select(AriadneAssumptionSet)
-            .where(AriadneAssumptionSet.tenant_id == tenant_id)
+            .where(
+                AriadneAssumptionSet.tenant_id == tenant_id,
+                ~AriadneAssumptionSet.name.startswith(
+                    "assisted_close:", autoescape=True
+                ),
+            )
             .order_by(AriadneAssumptionSet.created_at, AriadneAssumptionSet.id)
         ).scalars()
     )
     assumption_versions = list(
         db.execute(
             select(AriadneAssumptionSetVersion)
-            .where(AriadneAssumptionSetVersion.tenant_id == tenant_id)
+            .where(
+                AriadneAssumptionSetVersion.tenant_id == tenant_id,
+                AriadneAssumptionSetVersion.assumption_set_id.in_(
+                    [row.id for row in assumption_sets]
+                ),
+            )
             .order_by(
                 AriadneAssumptionSetVersion.assumption_set_id,
                 AriadneAssumptionSetVersion.version,
@@ -217,14 +270,18 @@ def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any
     scenarios = list(
         db.execute(
             select(AriadneScenario)
-            .where(AriadneScenario.tenant_id == tenant_id)
+            .where(
+                AriadneScenario.tenant_id == tenant_id,
+                AriadneScenario.state_version_id.in_([row.id for row in states]),
+            )
             .order_by(AriadneScenario.created_at, AriadneScenario.id)
         ).scalars()
     )
     definitions = list(
         db.execute(
             select(AriadneModelDefinition).where(
-                AriadneModelDefinition.tenant_id == tenant_id
+                AriadneModelDefinition.tenant_id == tenant_id,
+                AriadneModelDefinition.name != "assisted_close",
             )
         ).scalars()
     )
@@ -232,21 +289,30 @@ def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any
     model_versions = list(
         db.execute(
             select(AriadneModelVersion)
-            .where(AriadneModelVersion.tenant_id == tenant_id)
+            .where(
+                AriadneModelVersion.tenant_id == tenant_id,
+                AriadneModelVersion.model_definition_id.in_(definitions_by_id),
+            )
             .order_by(AriadneModelVersion.created_at, AriadneModelVersion.id)
         ).scalars()
     )
     runs = list(
         db.execute(
             select(AriadneModelRun)
-            .where(AriadneModelRun.tenant_id == tenant_id)
+            .where(
+                AriadneModelRun.tenant_id == tenant_id,
+                AriadneModelRun.scenario_id.in_([row.id for row in scenarios]),
+            )
             .order_by(AriadneModelRun.started_at, AriadneModelRun.id)
         ).scalars()
     )
     results = list(
         db.execute(
             select(AriadneResult)
-            .where(AriadneResult.tenant_id == tenant_id)
+            .where(
+                AriadneResult.tenant_id == tenant_id,
+                AriadneResult.model_run_id.in_([row.id for row in runs]),
+            )
             .order_by(AriadneResult.produced_at, AriadneResult.id)
         ).scalars()
     )
@@ -480,6 +546,14 @@ def post_state(
 ):
     _, tenant_id = _authorized_context(workspace_id, user, db)
     try:
+        object_row = db.execute(
+            select(AriadnePrivateObject).where(
+                AriadnePrivateObject.id == object_id,
+                AriadnePrivateObject.tenant_id == tenant_id,
+            )
+        ).scalar_one_or_none()
+        if object_row and object_row.object_type.startswith("assisted_close_"):
+            raise ValueError("Este estado é revisado pelo fluxo de fechamento assistido")
         row = create_state_version(
             db,
             tenant_id=tenant_id,

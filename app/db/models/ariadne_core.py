@@ -446,6 +446,7 @@ class AriadneResult(Base):
 
     __tablename__ = "ariadne_result"
     __table_args__ = (
+        UniqueConstraint("id", "tenant_id", name="ariadne_result_id_tenant_key"),
         ForeignKeyConstraint(
             ["model_run_id", "tenant_id"],
             ["ariadne_model_run.id", "ariadne_model_run.tenant_id"],
