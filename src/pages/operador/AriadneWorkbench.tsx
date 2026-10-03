@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Activity,
   Archive,
@@ -366,6 +367,7 @@ export function AriadneWorkbench() {
           <p className="g2-ops__eyebrow">ARIADNE ANALYST WORKBENCH / INTERNAL ALPHA</p>
           <h1>Organize o que a organização sabe.</h1>
           <p>Evidência, estado observado e premissas preservados como uma linha contínua de versões.</p>
+          {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_CLOSE_DEV === "1" && <Link className="g2-ops__button" to="/operador/ariadne/fechamento">Fechamento assistido · experimento →</Link>}
         </div>
         <div className="ariadne__classification" aria-label="Classificação do workspace">
           {detail?.workspace.synthetic ? <FlaskConical size={17} /> : <GitBranch size={17} />}
