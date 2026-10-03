@@ -32,8 +32,10 @@
     "pageErrors": 0,
     "evidence": [
       "browser-evidence/measurements.json",
-      "browser-evidence/adverse-measurements.json"
-    ]
+      "browser-evidence/adverse-measurements.json",
+      "browser-evidence/production-gate.json"
+    ],
+    "productionBuildGateChecks": 1
   },
   "static": {
     "compileall": "passed",
@@ -55,5 +57,10 @@
   },
   "independentReview": "read-only correctness, isolation, ownership and visual review: no remaining actionable findings",
   "verdict": "ARIADNE ASSISTED CLOSE ENGINEERING PASS",
-  "validationScope": "synthetic engineering only; no real reference-case/commercial/regulatory gate closed"
+  "validationScope": "synthetic engineering only; no real reference-case/commercial/regulatory gate closed",
+  "release": {
+    "draftPr": "https://github.com/aquilesguerretta/Nivar/pull/28",
+    "automaticPreview": "existing GitHub/Vercel integration triggered; no manual deployment/configuration change",
+    "productionChanged": false
+  }
 }

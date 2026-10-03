@@ -66,6 +66,8 @@ node tests/ariadne_close/browser.mjs
 node tests/ariadne_close/browser-adverse.mjs
 ```
 
-They authenticate through the real login UI and import actual fixture files. Screenshots and measurements overwrite only `docs/ariadne-close/browser-evidence`. The synthetic ZIP there is an example saved export, not seeded application data. Automated timing does not include human reading time and establishes no spreadsheet savings baseline.
+For an additional actual production-build gate check, serve the already built frontend locally in another terminal with `VITE_BACKEND_URL=http://127.0.0.1:8072` and `npm run preview -- --host 127.0.0.1 --port 5179 --strictPort`, then run `node tests/ariadne_close/browser-production-gate.mjs`. That browser check intercepts API requests locally and verifies the experimental route is unavailable. It never exercises the remote Vercel preview or a production backend.
+
+The two development workflow harnesses authenticate through the real login UI and import actual fixture files. Screenshots and measurements overwrite only `docs/ariadne-close/browser-evidence`. The synthetic ZIP there is an example saved export, not seeded application data. Automated timing does not include human reading time and establishes no spreadsheet savings baseline.
 
 Server gate: both `ARIADNE_CLOSE_DEV=1` and `ARIADNE_CLOSE_ENV=development|test`, with no production runtime marker. Frontend gate: `import.meta.env.DEV` plus `VITE_ARIADNE_CLOSE_DEV=1`. This task did not change any production settings.

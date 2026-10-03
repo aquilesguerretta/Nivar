@@ -6,7 +6,9 @@ Verdict: **ARIADNE ASSISTED CLOSE ENGINEERING PASS** for the bounded experimenta
 
 Freshly fetched integration base: `origin/wave/nivar-g2-dream-build`, `bfb47e80ba2854dbc973ffdd7bd30a3ee03926c3`. Isolated worktree `C:\dev\ariadne-fechamento-assistido-v0`, branch `codex/ariadne-fechamento-assistido-v0`. Production branch observed at `1ffe298885c161093eac699c4875736e1b6c34f3`; main at `ab8b1a3fd2da8c36c76bf289c506d576c93f5015`. Existing PR #8 and unrelated worktrees were inspected and preserved. The final response and Draft PR identify the exact final head; obtain it locally with `git rev-parse HEAD`.
 
-One Draft PR targets the development wave. No merge, deployment, production configuration/database/migration, canonical decision or task-status change. The user explicitly overrides legacy direct-production, "Sem PR" and CURSOR-only instructions for this isolated slice; unrelated instructions remain intact.
+Draft PR [#28](https://github.com/aquilesguerretta/Nivar/pull/28) targets the development wave. No merge, manual deployment, production configuration/database/migration, canonical decision or task-status change. The user explicitly overrides legacy direct-production, "Sem PR" and CURSOR-only instructions for this isolated slice; unrelated instructions remain intact.
+
+Opening the authorized PR triggered the existing GitHub/Vercel integration's automatic preview build. No Vercel configuration or deployment command was changed/executed. The experimental workflow remains excluded from the normal production frontend build; a separate real-browser local production-build gate check verifies the unavailable route without accessing an API. Production remains untouched.
 
 ## 2. What an operator can finish
 
@@ -67,6 +69,7 @@ Adverse tests exercise malicious/oversized XLSX/PDF, formulas/macros/external li
 | Existing + new frontend behavior tests | 72 | 0 | 0 | Actual epoch/idempotency functions and existing suites |
 | Main real-browser workflow | 24 checks | 0 | 0 | `browser-evidence/measurements.json` |
 | Adverse real-browser workflow | 18 checks | 0 | 0 | `browser-evidence/adverse-measurements.json` |
+| Actual local production-build route gate | 1 check | 0 | 0 | `browser-evidence/production-gate.json`; no API access |
 | `python -m compileall` | Pass | 0 | 0 | Application and close tests |
 | `npx tsc -b` / `npm run build` | Pass | 0 | 0 | Real project type/build gate |
 | Existing design detector | 0 P0 / 0 P1 | 0 blocking | 0 | 25 pre-existing informational P2 findings elsewhere |
@@ -100,7 +103,7 @@ NIV-18/19/20/50 remain open and their HOLD/commercial gates remain intact. A rig
 | B: private intake / review | `app/services/ariadne_close_intake.py`, `app/services/ariadne_close.py`, `app/routers/ariadne_close.py`, `app/db/models/ariadne_close.py` |
 | C: calculation / history | `app/services/ariadne_close_engine.py`; minimal `app/services/ariadne_core.py`, `app/db/models/ariadne_core.py`; `app/db/migrations/versions/0016_ariadne_close.py` |
 | D: operational UI / export | `src/pages/operador/AriadneClose.tsx`, `ariadne-close.css`, `src/lib/ariadne/closeApi.ts`; minimal `OperadorRouter.tsx`, `AriadneWorkbench.tsx`; export in the owned close service/router |
-| E: safety / regression / evidence | `tests/ariadne_close/{test_engine,test_intake,test_api,test_upgrade}.py`, `prepare_browser.py`, `browser.mjs`, `browser-adverse.mjs`; `tests/operador/ariadne-close.test.ts`; minimal expected-head update in `tests/ariadne_operator/test_migration_repair.py`; `browser-evidence/*` |
+| E: safety / regression / evidence | `tests/ariadne_close/{test_engine,test_intake,test_api,test_upgrade}.py`, `prepare_browser.py`, `browser.mjs`, `browser-adverse.mjs`, `browser-production-gate.mjs`; `tests/operador/ariadne-close.test.ts`; minimal expected-head update in `tests/ariadne_operator/test_migration_repair.py`; `browser-evidence/*` |
 | Minimal shared integration | `app/db/models/__init__.py`, `app/main.py`, `app/routers/ariadne_operator.py`, `requirements.txt` |
 | Evaluation handoff | `docs/ariadne-close/{README,source-readout,final-report}.md`, `verification.json` |
 
@@ -108,4 +111,4 @@ For the exact complete list, including screenshot filenames: `git diff --name-on
 
 ## 14. Verdict
 
-**ARIADNE ASSISTED CLOSE ENGINEERING PASS.** The experimental workflow meets its bounded engineering scope on synthetic fixtures and supported operator files through one real implementation. It is prepared as a Draft PR for Founder evaluation, with no merge/deployment and no commercial, regulatory or real-case approval.
+**ARIADNE ASSISTED CLOSE ENGINEERING PASS.** The experimental workflow meets its bounded engineering scope on synthetic fixtures and supported operator files through one real implementation. It is prepared as a Draft PR for Founder evaluation, with no merge/manual deployment and no commercial, regulatory or real-case approval.
