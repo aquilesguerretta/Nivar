@@ -75,8 +75,9 @@ def _reject_hidden(value, kind):
         raise ValueError(f"{kind} ocultas não suportadas")
 
 
-def _xlsx(data):
+def _xlsx(data, *, inspection=False):
     tables = []
+    inventory = []
     with zipfile.ZipFile(io.BytesIO(data)) as z:
         infos = z.infolist()
         names = [i.filename for i in infos]
@@ -111,11 +112,34 @@ def _xlsx(data):
             raise ValueError("Macros/links/objetos ativos não suportados")
         if "xl/workbook.xml" not in names or "[Content_Types].xml" not in names:
             raise ValueError("Conteúdo não é XLSX")
+        active_types = (
+            "macroenabled",
+            "vbaproject",
+            "activex",
+            "oleobject",
+            "externallink",
+            "connections",
+            "querytable",
+            "macrosheet",
+        )
+        if any(
+            any(token in e.get("ContentType", "").lower() for token in active_types)
+            for e in _xml(z.read("[Content_Types].xml"))
+        ):
+            raise ValueError("Macros/links/objetos ativos não suportados")
         for n in names:
             if n.endswith(".rels"):
                 root = _xml(z.read(n))
                 if any(e.get("TargetMode") == "External" for e in root):
                     raise ValueError("Relações externas não suportadas")
+                if any(
+                    any(
+                        token in e.get("Type", "").lower().rsplit("/", 1)[-1]
+                        for token in (*active_types, "package")
+                    )
+                    for e in root
+                ):
+                    raise ValueError("Macros/links/objetos ativos não suportados")
         shared = []
         if "xl/sharedStrings.xml" in names:
             shared = [
@@ -140,7 +164,7 @@ def _xlsx(data):
             ):
                 raise ValueError("Nome de planilha inválido/duplicado")
             sheet_names.add(name.casefold())
-            if sheet.get("state", "visible") != "visible":
+            if not inspection and sheet.get("state", "visible") != "visible":
                 raise ValueError("Planilhas ocultas não suportadas")
             target = rels[
                 sheet.get(
@@ -155,6 +179,18 @@ def _xlsx(data):
             if not path.startswith("xl/worksheets/"):
                 raise ValueError("Layout de planilha não suportado")
             root = _xml(z.read(path))
+            if inspection:
+                from app.services.ariadne_close_inspection import sheet_regions
+
+                regions, details = sheet_regions(
+                    root, name, sheet.get("state", "visible"), shared, NS
+                )
+                total_rows += len({c["row"] for c in details["cells"]})
+                if total_rows > MAX_ROWS + 1 or len(tables) + len(regions) > 30:
+                    raise ValueError("Limite total de linhas/regiões excedido")
+                tables.extend(regions)
+                inventory.append(details)
+                continue
             for column in root.findall("m:cols/m:col", NS):
                 _reject_hidden(column.get("hidden"), "Colunas")
             if (
@@ -228,9 +264,19 @@ def _xlsx(data):
             if total_rows > MAX_ROWS:
                 raise ValueError("Limite total de 2000 linhas excedido")
             tables.append(table)
-    if not tables:
+    if not tables and not inspection:
         raise ValueError("Nenhuma tabela suportada")
-    return {"kind": "xlsx", "tables": tables, "pages": [], "extraction": "tables_only"}
+    result = {
+        "kind": "xlsx",
+        "tables": tables,
+        "pages": [],
+        "extraction": "tables_only",
+    }
+    if inspection:
+        result.update(
+            sheets=inventory, warnings=[w for s in inventory for w in s["warnings"]]
+        )
+    return result
 
 
 def _column(number):
@@ -382,14 +428,25 @@ def _pdf(data):
         return _pdf_document(data)
 
 
-def parse_file(data, filename):
+def parse_file(data, filename, *, inspection=False):
     if not data or len(data) > MAX_BYTES:
         raise ValueError("Arquivo vazio ou excede 8 MiB")
     extension = filename.lower().rsplit(".", 1)[-1]
     if extension == "pdf" and data.startswith(b"%PDF-"):
-        return _bounded_preview(_pdf(data))
+        preview = _pdf(data)
+        if inspection:
+            from app.services.ariadne_close_inspection import propose, pdf_provenance
+
+            preview = propose(preview)
+            preview["provenance"] = pdf_provenance(data)
+        return _bounded_preview(preview)
     if extension == "xlsx" and data.startswith(b"PK\x03\x04"):
-        return _bounded_preview(_xlsx(data))
+        preview = _xlsx(data, inspection=inspection)
+        if inspection:
+            from app.services.ariadne_close_inspection import propose
+
+            preview = propose(preview)
+        return _bounded_preview(preview)
     if extension == "csv":
         text = data.decode("utf-8-sig", errors="strict")
         if "\x00" in text:
@@ -407,18 +464,21 @@ def parse_file(data, filename):
             if len(cells) > 40 or any(len(cell) > 2000 for cell in cells):
                 raise ValueError("Limite de colunas/tamanho da célula excedido")
             matrix.append(cells)
-        return _bounded_preview(
-            {
-                "kind": "csv",
-                "tables": [
-                    _table(
-                        "CSV", matrix, [f"CSV:row:{i+1}" for i in range(len(matrix))]
-                    )
-                ],
-                "pages": [],
-                "extraction": "tables_only",
-            }
-        )
+        preview = {
+            "kind": "csv",
+            "tables": [
+                _table("CSV", matrix, [f"CSV:row:{i+1}" for i in range(len(matrix))])
+            ],
+            "pages": [],
+            "extraction": "tables_only",
+        }
+        if inspection:
+            from app.services.ariadne_close_inspection import propose
+
+            preview = propose(preview)
+        return _bounded_preview(preview)
+    if inspection and extension in ("pdf", "xlsx"):
+        raise ValueError("Assinatura do conteúdo não corresponde ao PDF/XLSX informado")
     raise ValueError("Tipos aceitos: CSV UTF-8, XLSX comum e PDF")
 
 
@@ -431,28 +491,59 @@ def _bounded_preview(preview):
     return preview
 
 
-def _worker(connection, data, filename):
+def _worker(connection, data, filename, inspection=False):
     import logging
 
     logging.disable(logging.CRITICAL)
     try:
-        connection.send((True, parse_file(data, filename)))
-    except Exception:
+        connection.send((True, parse_file(data, filename, inspection=inspection)))
+    except Exception as exc:
         # No document contents or parser details leave the isolation process.
         connection.send(
             (
                 False,
-                "Arquivo inválido/ativo, layout não suportado ou limite de processamento excedido",
+                (
+                    _public_error(exc)
+                    if inspection
+                    else "Arquivo inválido/ativo, layout não suportado ou limite de processamento excedido"
+                ),
             )
         )
     finally:
         connection.close()
 
 
-def parse_isolated(data, filename, *, timeout=10):
+def _public_error(exc):
+    # Whitelist fixed messages only; no parser exception/raw private value leaks.
+    messages = (
+        "Macros/links/objetos ativos não suportados",
+        "Relações externas não suportadas",
+        "Conteúdo ativo/embutido em PDF não suportado",
+        "Arquivo XLSX excede limite descompactado",
+        "Arquivo vazio ou excede 8 MiB",
+        "Atributo hidden não é boolean XML válido",
+        "PDF protegido ou excede 100 páginas",
+        "DTD/entidades XML não suportados",
+        "Tipos aceitos: CSV UTF-8, XLSX comum e PDF",
+        "Assinatura do conteúdo não corresponde ao PDF/XLSX informado",
+        "Nenhuma tabela suportada",
+        "Limite total de linhas/regiões excedido",
+        "Cabeçalhos vazios/duplicados ou tabela larga",
+        "Tabela não retangular",
+    )
+    return (
+        str(exc)
+        if isinstance(exc, ValueError) and str(exc) in messages
+        else "Estrutura inválida ou limite seguro excedido; original não importado"
+    )
+
+
+def parse_isolated(data, filename, *, timeout=10, inspection=False):
     ctx = mp.get_context("spawn")
     parent, child = ctx.Pipe(duplex=False)
-    process = ctx.Process(target=_worker, args=(child, data, filename), daemon=True)
+    process = ctx.Process(
+        target=_worker, args=(child, data, filename, inspection), daemon=True
+    )
     process.start()
     child.close()
     try:

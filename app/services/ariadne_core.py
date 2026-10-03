@@ -401,14 +401,21 @@ def _execute_model_version(
     from app.services import ariadne_close_engine as close
 
     if model_definition.name == close.MODEL:
+        from app.services import ariadne_close_engine_v2
+
+        executor = (
+            close
+            if model_version.semantic_version == close.VERSION
+            else ariadne_close_engine_v2
+        )
         if (
-            model_version.semantic_version != close.VERSION
-            or model_version.implementation_identity != close.IMPLEMENTATION
-            or model_version.input_contract != close.INPUT_CONTRACT
-            or model_version.output_contract != close.OUTPUT_CONTRACT
+            model_version.semantic_version != executor.VERSION
+            or model_version.implementation_identity != executor.IMPLEMENTATION
+            or model_version.input_contract != executor.INPUT_CONTRACT
+            or model_version.output_contract != executor.OUTPUT_CONTRACT
         ):
             raise ValueError("no executor for exact assisted close metadata")
-        return close.execute_close(
+        return executor.execute_close(
             state_payload=state_version.payload,
             assumption_values=assumption_version.values,
             execution_configuration=configuration,

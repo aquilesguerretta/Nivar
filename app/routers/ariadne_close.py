@@ -1,6 +1,7 @@
 """Experimental authenticated close routes, closed by default in every runtime."""
 
 import hashlib
+import json
 import os
 import uuid
 from contextlib import AsyncExitStack
@@ -162,6 +163,7 @@ class WorkspaceBody(Strict):
 class ReviewBody(Strict):
     scope: str = Field(min_length=1, max_length=160)
     period: str = Field(pattern=r"^\d{4}-(0[1-9]|1[0-2])$")
+    ruleVersion: Literal["0.1.0", "0.2.0"] = "0.1.0"
 
 
 class MappingBody(Strict):
@@ -169,6 +171,8 @@ class MappingBody(Strict):
     mapping: dict[str, str]
     numericMode: Literal["strict", "dot", "comma"] = "strict"
     manualRows: list[dict] = Field(default_factory=list, max_length=50)
+    reviewMode: Literal["table", "observations", "context"] = "table"
+    defaults: dict[str, str] = Field(default_factory=dict, max_length=12)
 
 
 class ConfirmBody(MappingBody):
@@ -291,8 +295,33 @@ def start_review(
         key,
         "start review",
         body.model_dump(),
-        lambda: service.start_review(db, workspace, body.scope.strip(), body.period),
+        lambda: service.start_review(
+            db, workspace, body.scope.strip(), body.period, body.ruleVersion
+        ),
     )
+
+
+@router.post("/workspaces/{workspace_id}/close/inspect")
+async def inspect_source(
+    workspace_id: uuid.UUID,
+    file: UploadFile = File(),
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    context(workspace_id, user, db)
+    try:
+        data = await read_bounded(file, MAX_BYTES)
+        preview = await run_in_threadpool(
+            parse_isolated,
+            data,
+            safe_filename(file.filename, "source"),
+            inspection=True,
+        )
+        return {**preview, "sha256": hashlib.sha256(data).hexdigest()}
+    except InvalidAdvisoryUpload as exc:
+        raise HTTPException(exc.status_code, str(exc)) from exc
+    except ValueError as exc:
+        raise _error(exc) from exc
 
 
 @router.get("/workspaces/{workspace_id}/close/reviews/{review_id}")
@@ -346,6 +375,8 @@ async def upload_source(
     review_id: uuid.UUID,
     role: Literal["invoice", "quantity", "price", "context"] = Form(),
     supersedesId: uuid.UUID | None = Form(default=None),
+    inspection: bool = Form(default=False),
+    provenance: str | None = Form(default=None, max_length=16384),
     file: UploadFile = File(),
     key: uuid.UUID = Header(alias="Idempotency-Key"),
     user: User = Depends(get_current_user),
@@ -354,10 +385,33 @@ async def upload_source(
     workspace = context(workspace_id, user, db)
     try:
         review = service.review_row(db, workspace, review_id)
+        if inspection:
+            service.require_inspection_review(db, review)
         filename = safe_filename(file.filename, "source")
         declared = file.content_type
         data = await read_bounded(file, MAX_BYTES)
-        preview = await run_in_threadpool(parse_isolated, data, filename)
+        preview = await run_in_threadpool(
+            parse_isolated, data, filename, inspection=inspection
+        )
+        if provenance:
+            try:
+                supplied = json.loads(provenance)
+            except (ValueError, RecursionError) as exc:
+                raise ValueError(
+                    "Proveniência deve ser um objeto JSON limitado"
+                ) from exc
+            if not isinstance(supplied, dict):
+                raise ValueError("Proveniência deve ser um objeto JSON limitado")
+            if (
+                supplied.get("sha256")
+                and supplied["sha256"] != hashlib.sha256(data).hexdigest()
+            ):
+                raise ValueError("Hash de proveniência não corresponde ao arquivo")
+            preview["provenance"] = {
+                "embedded": preview.get("provenance", {}),
+                "attributed": supplied,
+                "status": "operator-reviewed attribution; not authenticity proof",
+            }
         accepted = {
             "csv": ("text/csv", "application/vnd.ms-excel"),
             "xlsx": (
@@ -376,6 +430,8 @@ async def upload_source(
         "filename": filename,
         "sha256": hashlib.sha256(data).hexdigest(),
         "supersedesId": str(supersedesId) if supersedesId else None,
+        "inspection": inspection,
+        "provenance": preview.get("provenance"),
     }
     return _write(
         db,
@@ -415,6 +471,33 @@ def original(
             source.original, media_type=source.content_type, headers=headers
         )
     except LookupError as exc:
+        raise _error(exc) from exc
+
+
+@router.get(
+    "/workspaces/{workspace_id}/close/reviews/{review_id}/sources/{source_id}/pages/{page_number}/image"
+)
+def page_image(
+    workspace_id: uuid.UUID,
+    review_id: uuid.UUID,
+    source_id: uuid.UUID,
+    page_number: int,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    workspace = context(workspace_id, user, db)
+    try:
+        source = service.source_row(db, workspace, review_id, source_id)
+        if source.preview["kind"] != "pdf":
+            raise ValueError("Esta fonte não é um PDF")
+        from app.services.ariadne_close_pages import render_page
+
+        return Response(
+            render_page(source.original, page_number),
+            media_type="image/png",
+            headers={"Cache-Control": "no-store", "X-Content-Type-Options": "nosniff"},
+        )
+    except (ValueError, LookupError) as exc:
         raise _error(exc) from exc
 
 
