@@ -1,0 +1,37 @@
+{
+  "evaluatedOn": "2026-10-03",
+  "base": "04150fea408ede94f4e1e7ab647e10687a0978bf",
+  "branch": "codex/ariadne-real-review-desk",
+  "postgres": "17.11; explicitly disposable ariadne_close_test at 127.0.0.1:55472",
+  "python": {"passed":421,"failed":0,"skipped":0,"warnings":124,"seconds":70.24,"core":19,"operator":21,"close":219,"argos":153,"productionStabilization":9},
+  "frontend": {"passed":76,"failed":0,"skipped":0,"cancelled":0,"files":8},
+  "gates": {"tscBuild":true,"productionBuild":true,"compileall":true,"diffCheck":true,"alembicHead":"0016_ariadne_close","migrationChanges":false},
+  "designDetector": {"files":752,"P0":0,"P1":0,"P2":25},
+  "productionExclusion": {"localBrowserNotFound":true,"routeUiApiMarkersAbsentFromJs":6,"scopedCssStillBundled":true},
+  "corpusDependentPythonTests": {"executedLocally":3,"maySkipWhenLocalCorpusAbsent":true},
+  "browser": {
+    "interface":"actual Codex in-app browser controlled through CUA",
+    "reviewDatabase":"ariadne_close_review_desk_final_browser; empty before normal signup",
+    "reviewSourceResultSeeding":false,
+    "publicFlow":"import / propose / confirm / context / calculate / investigate all seven / source image / follow_up / saved export / refresh / replay / provenance / re-export",
+    "savedResult":"39dc7900-73e0-4ca4-ba7e-fef30abe4ade",
+    "savedPackage":"c50f90bc-7a31-480a-9e83-263928e1b004",
+    "internalChecks":4,"independentlyCovered":0,"notIndependentlyVerifiable":7,
+    "historicalExportMemberPayloadsEqualAfterReload":3,
+    "viewports":[
+      {"width":1440,"height":900,"theme":"light","scrollWidth":1440,"horizontalOverflow":false},
+      {"width":1440,"height":900,"theme":"dark","scrollWidth":1440,"horizontalOverflow":false},
+      {"width":1920,"height":1080,"theme":"light","scrollWidth":1920,"horizontalOverflow":false},
+      {"width":1920,"height":1080,"theme":"dark","scrollWidth":1920,"horizontalOverflow":false}
+    ],
+    "otherVerified":"keyboard; loading/empty/error/long source states; complex workbook inventory; Alpha20/24 authoring/scenario/history/replay; Advisory illustrative route; legacy advanced route",
+    "legacyBrowserHarnessesRun":false,
+    "browserNetworkFaultInjectionRepeated":false
+  },
+  "effort": {"scope":"authenticated empty desk; automated file chooser actions, not human usability","actionsBeforeFirstSourceInsight":2,"milestonesBeforeCalculation":9,"numericFieldsEntered":0,"contextFieldsEntered":0,"mappingEdits":0,"treatmentTextFieldsEntered":2,"requiredDuplicateEntry":0,"extraActionsToSnippetFromSelectedResult":0,"extraActionsToSourcePage":1,"targetedUnsupportedFields":8,"chooserToCalculationIssuedSeconds":302.506,"traceToPostExportEvidenceSeconds":1812.563,"humanDurationMeasured":false,"excelBaselineMeasured":false},
+  "localArtifacts":"C:\\dev\\ariadne-real-public-evaluation-20261003; uncommitted, outside webroot",
+  "processes":{"correctionBackend":{"address":"127.0.0.1:8073","pid":52304},"correctionFrontend":{"address":"127.0.0.1:5180","pid":28576},"preview5181Stopped":true,"earlierFounder8072And5178Preserved":true,"disposablePg55472Preserved":true},
+  "productionOrCanonicalChanges":false,
+  "verdict":"ARIADNE REAL-WORLD PRODUCT PASS",
+  "qualification":"bounded authentic-source review; not commercial/regulatory/reference-case or independent financial validation"
+}

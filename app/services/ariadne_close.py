@@ -99,7 +99,12 @@ def review_payload(row):
     }
 
 
-def start_review(db, workspace, scope, period):
+def start_review(db, workspace, scope, period, rule_version="0.1.0"):
+    from app.services import ariadne_close_engine_v2
+
+    executor = engine if rule_version == engine.VERSION else ariadne_close_engine_v2
+    if rule_version != executor.VERSION:
+        raise ValueError("Versão de regra não suportada")
     existing = db.execute(
         select(CloseReview).where(
             CloseReview.workspace_id == workspace.id,
@@ -108,6 +113,23 @@ def start_review(db, workspace, scope, period):
         )
     ).scalar_one_or_none()
     if existing:
+        from app.db.models.ariadne_core import AriadneAssumptionSetVersion
+
+        policy = (
+            db.execute(
+                select(AriadneAssumptionSetVersion).where(
+                    AriadneAssumptionSetVersion.assumption_set_id
+                    == existing.assumption_set_id,
+                    AriadneAssumptionSetVersion.version == 1,
+                )
+            )
+            .scalar_one()
+            .values
+        )
+        if policy != {"policy": executor.POLICY}:
+            raise Conflict(
+                "Revisão já preservada com outra versão de regra; abra uma nova revisão privada"
+            )
         return review_payload(existing)
     tenant = tenant_id_for(workspace.id)
     obj = core.create_private_object(
@@ -120,7 +142,7 @@ def start_review(db, workspace, scope, period):
         db,
         tenant_id=tenant,
         assumption_set_id=assumptions.id,
-        values={"policy": engine.POLICY},
+        values={"policy": executor.POLICY},
         origin="rule",
         value_schema={"policy": {"type": "object"}},
     )
@@ -135,6 +157,27 @@ def start_review(db, workspace, scope, period):
     db.add(row)
     db.flush()
     return review_payload(row)
+
+
+def require_inspection_review(db, review):
+    from app.db.models.ariadne_core import AriadneAssumptionSetVersion
+    from app.services import ariadne_close_engine_v2
+
+    policy = (
+        db.execute(
+            select(AriadneAssumptionSetVersion).where(
+                AriadneAssumptionSetVersion.assumption_set_id
+                == review.assumption_set_id,
+                AriadneAssumptionSetVersion.version == 1,
+            )
+        )
+        .scalar_one()
+        .values
+    )
+    if policy != {"policy": ariadne_close_engine_v2.POLICY}:
+        raise Conflict(
+            "Revisão histórica usa a regra anterior; importe pela interface avançada ou abra uma nova revisão privada"
+        )
 
 
 def import_source(
@@ -154,6 +197,12 @@ def import_source(
         if supersedes_id and existing.supersedes_id != supersedes_id:
             raise Conflict(
                 "Arquivo duplicado não pode substituir outra fonte; revise a associação"
+            )
+        if existing.preview.get("parserVersion") != preview.get(
+            "parserVersion"
+        ) or existing.preview.get("provenance") != preview.get("provenance"):
+            raise Conflict(
+                "Arquivo já importado com outra inspeção/proveniência; mantenha a versão original"
             )
         return {"id": str(existing.id), "duplicate": True}
     count, total = db.execute(
@@ -189,7 +238,7 @@ def import_source(
         source_artifact_id=str(source_id),
         source_version=digest,
         locator="original",
-        transform_ref="ariadne.tables.v1 / manual PDF",
+        transform_ref=preview.get("parserVersion", "ariadne.tables.v1 / manual PDF"),
     )
     content_type = {
         "csv": "text/csv",
@@ -217,6 +266,45 @@ def import_source(
 
 
 def candidates(source, review, body):
+    mode = body.get("reviewMode", "table")
+    if mode == "context":
+        if source.role != "context":
+            raise ValueError("Reconhecimento contextual exige fonte de contexto")
+        return [
+            {
+                "index": i + 1,
+                "locator": r["locator"],
+                "raw": r["values"],
+                "cells": r.get("cells", {}),
+                "errors": [],
+                "validation": "context_only",
+                "recordKind": "context_acknowledgement",
+            }
+            for i, r in enumerate(
+                [r for t in source.preview["tables"] for r in t["rows"]]
+            )
+        ]
+    if mode == "observations":
+        if source.role != "invoice" or not source.preview.get("observations"):
+            raise ValueError("Fonte sem observações de fatura no layout implementado")
+        proposal = source.preview["proposal"]
+        errors = (
+            []
+            if proposal.get("scope") == review.scope
+            and proposal.get("period") == review.period
+            else ["Escopo/período proposto diverge da revisão"]
+        )
+        return [
+            {
+                **r,
+                "recordKind": "invoice_observation",
+                "raw": {"snippet": r["snippet"]},
+                "cells": {},
+                "errors": errors,
+                "validation": "invalid" if errors else "valid",
+            }
+            for r in source.preview["observations"]
+        ]
     mapping = body["mapping"]
     if set(mapping) - set(engine.FIELDS):
         raise ValueError("Campos de mapeamento não suportados")
@@ -260,8 +348,46 @@ def candidates(source, review, body):
             raise ValueError("Planilha/coluna desconhecida")
         table_rows = table["rows"]
     normalized = []
+    defaults = body.get("defaults", {})
+    if set(defaults) - {
+        "scope",
+        "period",
+        "currency",
+        "component",
+        "tax_basis",
+        "quantity_unit",
+        "price_unit",
+        "invoice_id",
+        "row_type",
+    }:
+        raise ValueError("Valores padrão não suportados")
     for raw in table_rows:
         values = {f: raw["values"].get(mapping.get(f)) for f in engine.FIELDS}
+        origins = {}
+        if source.preview.get("parserVersion") == "ariadne.inspect.v2":
+            import re
+
+            for field in ("amount", "quantity", "price"):
+                value = values.get(field)
+                mode = body["numericMode"]
+                if isinstance(value, str) and (
+                    (
+                        mode == "comma"
+                        and re.fullmatch(r"[+-]?\d{1,3}(?:\.\d{3})+,\d+", value.strip())
+                    )
+                    or (
+                        mode == "dot"
+                        and re.fullmatch(r"[+-]?\d{1,3}(?:,\d{3})+\.\d+", value.strip())
+                    )
+                ):
+                    values[field] = value.replace("." if mode == "comma" else ",", "")
+                    origins[field] = (
+                        "operator-confirmed grouped decimal / ariadne.inspect.v2"
+                    )
+        for field, value in defaults.items():
+            if values.get(field) in (None, ""):
+                values[field] = value
+                origins[field] = "operator-confirmed batch context"
         # OOXML numeric cells have an invariant dot decimal lexical form.
         numeric = {
             f
@@ -277,6 +403,16 @@ def candidates(source, review, body):
             numeric_fields=numeric,
         )
         row["validation"] = "invalid" if row["errors"] else "valid"
+        row["errors"].extend(raw.get("issues", []))
+        if row["row_type"] == "subtotal" and source.preview.get("parserVersion"):
+            if len(source.preview["tables"]) > 1 or any(
+                s.get("unclassifiedCells") for s in source.preview.get("sheets", [])
+            ):
+                row["errors"].append(
+                    "Completude não estabelecida: regiões/células fora da seleção; subtotal não elegível"
+                )
+        row["validation"] = "invalid" if row["errors"] else "valid"
+        row["valueOrigins"] = origins
         row.update(index=raw["index"], raw=raw["values"], cells=raw.get("cells", {}))
         normalized.append(row)
     return normalized
@@ -297,16 +433,24 @@ def confirm_source(db, workspace, review, source, body):
         raise ValueError("Linhas inválidas/ambíguas não podem ser confirmadas")
     for row in rows:
         row["eligible"] = row["index"] in selected and source.role != "context"
-        row["humanConfirmation"] = "confirmed" if row["eligible"] else "excluded"
+        row["humanConfirmation"] = (
+            "acknowledged_context"
+            if source.role == "context"
+            else "confirmed" if row["eligible"] else "excluded"
+        )
     payload = {
         "rows": rows,
         "mapping": body["mapping"],
         "sheet": body["sheet"],
         "numericMode": body["numericMode"],
         "manualRows": body.get("manualRows", []),
-        "normalizationVersion": engine.POLICY["normalization"],
+        "normalizationVersion": source.preview.get(
+            "parserVersion", engine.POLICY["normalization"]
+        ),
         "sourceId": str(source.id),
         "sourceVersion": source.sha256,
+        "reviewMode": body.get("reviewMode", "table"),
+        "defaults": body.get("defaults", {}),
     }
     evidence_ids = [source.evidence_id]
     for row in rows:
@@ -316,7 +460,7 @@ def confirm_source(db, workspace, review, source, body):
             source_artifact_id=str(source.id),
             source_version=source.sha256,
             locator=row["locator"],
-            transform_ref=engine.POLICY["normalization"],
+            transform_ref=payload["normalizationVersion"],
         )
         evidence_ids.append(evidence.id)
     state = core.create_state_version(
@@ -368,7 +512,7 @@ def list_sources(db, review):
     return [_source_payload(db, s) for s in sources]
 
 
-def _model(db, tenant):
+def _model(db, tenant, executor=engine):
     definition = db.execute(
         select(AriadneModelDefinition).where(
             AriadneModelDefinition.tenant_id == tenant,
@@ -382,7 +526,7 @@ def _model(db, tenant):
     version = db.execute(
         select(AriadneModelVersion).where(
             AriadneModelVersion.model_definition_id == definition.id,
-            AriadneModelVersion.semantic_version == engine.VERSION,
+            AriadneModelVersion.semantic_version == executor.VERSION,
         )
     ).scalar_one_or_none()
     if not version:
@@ -390,10 +534,10 @@ def _model(db, tenant):
             db,
             tenant_id=tenant,
             model_definition_id=definition.id,
-            semantic_version=engine.VERSION,
-            implementation_identity=engine.IMPLEMENTATION,
-            input_contract=engine.INPUT_CONTRACT,
-            output_contract=engine.OUTPUT_CONTRACT,
+            semantic_version=executor.VERSION,
+            implementation_identity=executor.IMPLEMENTATION,
+            input_contract=executor.INPUT_CONTRACT,
+            output_contract=executor.OUTPUT_CONTRACT,
         )
     return version
 
@@ -472,6 +616,21 @@ def calculate(db, workspace, review, expected_versions):
             AriadneAssumptionSetVersion.version == 1,
         )
     ).scalar_one()
+    from app.services import ariadne_close_engine_v2
+
+    executor = (
+        engine
+        if assumption.values == {"policy": engine.POLICY}
+        else ariadne_close_engine_v2
+    )
+    if assumption.values != {"policy": executor.POLICY}:
+        raise ValueError("Política da revisão sem executor exato")
+    if executor is engine and any(
+        r.get("recordKind") == "invoice_observation" for r in records
+    ):
+        raise ValueError(
+            "Observações nativas exigem nova revisão v0.2; históricos v0.1 preservados"
+        )
     scenario = core.create_scenario(
         db,
         tenant_id=review.tenant_id,
@@ -483,8 +642,8 @@ def calculate(db, workspace, review, expected_versions):
         db,
         tenant_id=review.tenant_id,
         scenario_id=scenario.id,
-        model_version_id=_model(db, review.tenant_id).id,
-        execution_configuration=engine.POLICY,
+        model_version_id=_model(db, review.tenant_id, executor).id,
+        execution_configuration=executor.POLICY,
     )
     return {"id": str(run.result.id), "runId": str(run.model_run.id)}
 
