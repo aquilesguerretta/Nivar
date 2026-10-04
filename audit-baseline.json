@@ -1,0 +1,634 @@
+{
+  "version": 1,
+  "tool": "gridalpha-detect",
+  "scannedFiles": 477,
+  "durationMs": 285,
+  "bySeverity": {
+    "P0": 40,
+    "P1": 0,
+    "P2": 22,
+    "P3": 0
+  },
+  "findings": [
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 4 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/analytics/tabs/BatteryArb.tsx",
+      "line": 230,
+      "column": 7,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 4 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/analytics/tabs/BatteryArb.tsx",
+      "line": 328,
+      "column": 11,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 4 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/analytics/tabs/Convergence.tsx",
+      "line": 452,
+      "column": 11,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 3 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/analytics/tabs/MarginalFuel.tsx",
+      "line": 205,
+      "column": 5,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 4 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/analytics/tabs/PriceIntelligence.tsx",
+      "line": 282,
+      "column": 9,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 4 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/analytics/tabs/SparkSpread.tsx",
+      "line": 328,
+      "column": 7,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/atlas/GridAtlasMap.tsx",
+      "line": 99,
+      "column": 11,
+      "snippet": "'735',  '#FFFFFF',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/atlas/GridAtlasMap.tsx",
+      "line": 100,
+      "column": 11,
+      "snippet": "'765',  '#FFFFFF',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#ffffff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/atlas/GridAtlasMap.tsx",
+      "line": 194,
+      "column": 24,
+      "snippet": "'text-color':      '#ffffff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure black (#000) — use C.bgBase (or another four-tier token).",
+      "file": "src/components/atlas/GridAtlasMap.tsx",
+      "line": 462,
+      "column": 29,
+      "snippet": "'space-color':    '#000005',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/atlas/GridAtlasView.tsx",
+      "line": 332,
+      "column": 45,
+      "snippet": ": p.temperature_c < 20 ? '#FFFFFF'",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/atlas/GridAtlasView.tsx",
+      "line": 653,
+      "column": 77,
+      "snippet": "<Toggle label=\"SUBSTATIONS\"     active={showSubstations}    color=\"#FFFFFF\"        onToggle={() => setShowSubstations(p ",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/GlobalShell.tsx",
+      "line": 194,
+      "column": 16,
+      "snippet": "color: '#FFFFFF',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/LMPCard.tsx",
+      "line": 37,
+      "column": 89,
+      "snippet": "<span style={{ fontFamily: F.mono, fontSize: '72px', fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1 }}>",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/LMPCard.tsx",
+      "line": 81,
+      "column": 70,
+      "snippet": "<div style={{ fontFamily: F.mono, fontSize: '28px', color: '#FFFFFF', fontWeight: 'bold' }}>",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/LMPCard.tsx",
+      "line": 92,
+      "column": 73,
+      "snippet": "<span style={{ fontFamily: F.mono, fontSize: '28px', color: '#FFFFFF', fontWeight: 'bold' }}>",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/LMPCard.tsx",
+      "line": 157,
+      "column": 90,
+      "snippet": "<div style={{ fontFamily: F.mono, fontSize: '64px', fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1 }}>",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/LMPCard.tsx",
+      "line": 238,
+      "column": 20,
+      "snippet": "color: '#FFFFFF',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/LMPCard.tsx",
+      "line": 346,
+      "column": 95,
+      "snippet": "<div style={{ fontFamily: F.mono, fontSize: '15px', fontWeight: '600', color: '#FFFFFF', fontVariantNumeric: 'tabular-nu",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/LMPCard.tsx",
+      "line": 495,
+      "column": 101,
+      "snippet": "<span style={{ fontFamily: F.mono, fontSize: '13px', fontWeight: 'bold', color: '#FFFFFF' }}>",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/LMPCard.tsx",
+      "line": 599,
+      "column": 20,
+      "snippet": "color: '#FFFFFF',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 3 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/analyst/AnalystNest.tsx",
+      "line": 541,
+      "column": 11,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "no-tailwind-on-layout",
+      "severity": "P0",
+      "message": "Tailwind layout utility \"relative\" on a terminal element — use inline styles with S tokens or px values.",
+      "file": "src/components/nest/everyone/EveryoneNest.tsx",
+      "line": 28,
+      "column": 10,
+      "snippet": "<div className=\"relative\">",
+      "reference": "Tailwind on layout-critical elements"
+    },
+    {
+      "rule": "no-tailwind-on-layout",
+      "severity": "P0",
+      "message": "Tailwind layout utility \"absolute\" on a terminal element — use inline styles with S tokens or px values.",
+      "file": "src/components/nest/everyone/EveryoneNest.tsx",
+      "line": 31,
+      "column": 11,
+      "snippet": "className=\"absolute inset-0 rounded-full animate-live-ping\"",
+      "reference": "Tailwind on layout-critical elements"
+    },
+    {
+      "rule": "no-tailwind-on-layout",
+      "severity": "P0",
+      "message": "Tailwind layout utility \"w-2\" on a terminal element — use inline styles with S tokens or px values.",
+      "file": "src/components/nest/everyone/EveryoneNest.tsx",
+      "line": 36,
+      "column": 9,
+      "snippet": "className={`w-2 h-2 rounded-full relative ${status === 'live' ? 'animate-status-pulse' : ''}`}",
+      "reference": "Tailwind on layout-critical elements"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 3 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/industrial/IndustrialNest.tsx",
+      "line": 117,
+      "column": 7,
+      "snippet": "<div style={{",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/nest/industrial/StrategySimulator/ExportMemoButton.tsx",
+      "line": 57,
+      "column": 39,
+      "snippet": "color: busy ? C.textMuted : '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/nest/industrial/StrategySimulator/FacilityProfileForm.tsx",
+      "line": 330,
+      "column": 20,
+      "snippet": "color: '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/nest/industrial/StrategySimulator/SimulatorView.tsx",
+      "line": 168,
+      "column": 24,
+      "snippet": "color: '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 5 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/industrial/StrategySimulator/StrategyRanking.tsx",
+      "line": 62,
+      "column": 7,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 4 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/storage/DABidOptimizer/AssetDetail.tsx",
+      "line": 63,
+      "column": 9,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/nest/storage/DABidOptimizer/AssetRegistrationForm.tsx",
+      "line": 369,
+      "column": 20,
+      "snippet": "color: '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/nest/storage/DABidOptimizer/ExportBidPackButton.tsx",
+      "line": 60,
+      "column": 39,
+      "snippet": "color: busy ? C.textMuted : '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 4 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/storage/DABidOptimizer/FleetOverview.tsx",
+      "line": 58,
+      "column": 7,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 5 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/storage/DABidOptimizer/FleetOverview.tsx",
+      "line": 84,
+      "column": 7,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 3 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/storage/DABidOptimizer/FleetOverview.tsx",
+      "line": 197,
+      "column": 9,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/nest/storage/DABidOptimizer/OptimizerView.tsx",
+      "line": 183,
+      "column": 24,
+      "snippet": "color: '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/nest/student/StudentNest.tsx",
+      "line": 427,
+      "column": 20,
+      "snippet": "color: '#FFFFFF',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 3 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/trader/HeroLMPBlock.tsx",
+      "line": 391,
+      "column": 7,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/nest/trader/journal/JournalEntryEditor.tsx",
+      "line": 602,
+      "column": 20,
+      "snippet": "color: '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 3 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/trader/journal/JournalPnLChart.tsx",
+      "line": 86,
+      "column": 7,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/nest/trader/journal/JournalView.tsx",
+      "line": 176,
+      "column": 24,
+      "snippet": "color: '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/nest/trader/journal/JournalView.tsx",
+      "line": 381,
+      "column": 26,
+      "snippet": "color: '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 3 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/trader/journal/JournalView.tsx",
+      "line": 276,
+      "column": 13,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 3 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/trader/TraderNest.tsx",
+      "line": 76,
+      "column": 13,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 4 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/trader/ZoneWatchlist.tsx",
+      "line": 208,
+      "column": 7,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 5 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/trader/ZoneWatchlist.tsx",
+      "line": 233,
+      "column": 15,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 4 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/nest/trader/ZoneWatchlist.tsx",
+      "line": 281,
+      "column": 17,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/peregrine/PeregrineFullPage.tsx",
+      "line": 161,
+      "column": 40,
+      "snippet": "borderRadius: R.md, color: '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/peregrine/PeregrineFullPage.tsx",
+      "line": 200,
+      "column": 43,
+      "snippet": "color: feedTab === tab.id ? '#fff' : C.textMuted,",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure black (#000) — use C.bgBase (or another four-tier token).",
+      "file": "src/components/peregrine/VideoDrawer.tsx",
+      "line": 66,
+      "column": 38,
+      "snippet": "flexShrink: 0, background: '#000',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/shared/AnnotatableChart.tsx",
+      "line": 177,
+      "column": 25,
+      "snippet": "color: active ? '#fff' : hover ? C.electricBlue : C.textSecondary,",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/shared/AnnotationDot.tsx",
+      "line": 54,
+      "column": 25,
+      "snippet": "color: active ? '#fff' : C.electricBlueLight,",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/shared/AnnotationDrawer.tsx",
+      "line": 224,
+      "column": 20,
+      "snippet": "color: '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/shared/AnnotationDrawer.tsx",
+      "line": 320,
+      "column": 27,
+      "snippet": "color: active ? '#fff' : C.electricBlueLight,",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/shared/AnnotationLayer.tsx",
+      "line": 201,
+      "column": 26,
+      "snippet": "color: '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/shared/InlineAITrigger.tsx",
+      "line": 176,
+      "column": 18,
+      "snippet": "color: '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#FFFFFF) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/shared/PDFExportButton.tsx",
+      "line": 69,
+      "column": 45,
+      "snippet": "color: isDisabled ? C.textMuted : '#FFFFFF',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/shared/SaveViewModal.tsx",
+      "line": 199,
+      "column": 32,
+      "snippet": "color: canSave ? '#fff' : C.textMuted,",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 3 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/vault/Alexandria.tsx",
+      "line": 580,
+      "column": 9,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "equal-weight-grid",
+      "severity": "P2",
+      "message": "Grid <div> with 3 direct children and no dominant focal marker — add data-hero/data-focal/className \"hero\" to one child, or suppress if equal-weight is intentional.",
+      "file": "src/components/vault/Alexandria.tsx",
+      "line": 772,
+      "column": 13,
+      "snippet": "<div",
+      "reference": "Equal-weight grids without a dominant focal element"
+    },
+    {
+      "rule": "no-pure-black-white",
+      "severity": "P0",
+      "message": "Pure white (#fff) — use C.textPrimary (or another four-tier token).",
+      "file": "src/components/vault/LessonSummaryPanel.tsx",
+      "line": 195,
+      "column": 24,
+      "snippet": "color:         '#fff',",
+      "reference": "Pure black #000000 or pure white #FFFFFF"
+    }
+  ]
+}

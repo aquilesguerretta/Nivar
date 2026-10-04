@@ -57,7 +57,7 @@ export function ExportBidPackButton({ fleet, result }: Props) {
           fontWeight: 600,
           letterSpacing: '0.16em',
           textTransform: 'uppercase',
-          color: busy ? C.textMuted : '#fff',
+          color: busy ? C.textMuted : C.textPrimary,
           cursor: busy ? 'not-allowed' : 'pointer',
           opacity: busy ? 0.55 : 1,
         }}

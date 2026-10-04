@@ -1,0 +1,20 @@
+.nv-publista{display:grid;gap:0;list-style:none;margin:0;padding:0;border-top:var(--fio) solid var(--rule-strong)}
+.nv-pub{display:grid;grid-template-columns:146px minmax(0,1fr) auto;align-items:baseline;gap:5px 20px;padding:12px 0;border-bottom:var(--fio) solid var(--rule)}
+.nv-pub__fam{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-body);font-weight:500;font-size:11px;line-height:1.1;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
+.nv-pub__ponto{width:7px;height:7px;border-radius:50%;flex:none}
+.nv-pub__corpo{display:grid;gap:3px;min-width:0}
+.nv-pub__titulo{font-family:var(--font-display);font-weight:500;font-size:17px;line-height:1.2;letter-spacing:-.006em;color:var(--text-strong);margin:0;text-wrap:pretty}
+.nv-pub__link{color:inherit;text-decoration:none;border-bottom:0;transition:color var(--dur-hover) var(--ease)}
+.nv-pub__link:hover{color:var(--fg-hover)}
+.nv-pub__link:focus-visible{outline:2px solid var(--accent-focus);outline-offset:3px}
+.nv-pub__resumo{font-family:var(--font-body);font-weight:300;font-size:13px;line-height:1.5;color:var(--text-muted);margin:0;text-wrap:pretty}
+.nv-pub__meta{display:grid;gap:3px;justify-items:end;text-align:right;font-family:var(--font-data);font-weight:400;font-size:10.5px;line-height:1.3;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+.nv-pub__tipo{color:var(--text-muted);font-weight:500}
+.nv-pub__sep{opacity:.55}
+
+.nv-citacao{display:grid;gap:9px;margin:0;padding:2px 0 3px 20px;border-left:var(--fio-forte) solid var(--citacao-cor,var(--accent-house))}
+.nv-citacao__numero{display:flex;align-items:baseline;gap:9px}
+.nv-citacao__n{font-family:var(--font-data);font-weight:500;font-size:40px;line-height:1;letter-spacing:-.02em;color:var(--text-strong);font-variant-numeric:tabular-nums lining-nums}
+.nv-citacao__un{font-family:var(--font-data);font-weight:400;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);white-space:nowrap}
+.nv-citacao__texto{font-family:var(--font-display);font-weight:500;font-size:24px;line-height:1.24;letter-spacing:-.01em;color:var(--text-strong);margin:0;max-width:42ch;text-wrap:pretty}
+.nv-citacao__fonte{font-family:var(--font-data);font-weight:400;font-size:10.5px;line-height:1.5;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint)}

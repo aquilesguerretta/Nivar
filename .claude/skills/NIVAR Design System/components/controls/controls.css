@@ -1,0 +1,57 @@
+.nv-abas{display:flex;flex-wrap:wrap;gap:20px;align-items:baseline;border-bottom:var(--fio) solid var(--rule)}
+.nv-abas__item{font-family:var(--font-body);font-weight:400;font-size:13.5px;line-height:1.2;letter-spacing:.01em;color:var(--text-muted);background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:0 0 7px;cursor:pointer;transition:color var(--dur-hover) var(--ease),border-color var(--dur-hover) var(--ease)}
+.nv-abas__item:hover,.nv-abas__item--is-hover{color:var(--fg-hover);border-bottom-color:var(--fio-hover)}
+.nv-abas__item--ativa{color:var(--text-strong);font-weight:500;border-bottom-color:var(--aba-cor,var(--accent-house))}
+.nv-abas__item:disabled{opacity:.4;cursor:not-allowed}
+.nv-abas__item:focus-visible{outline:2px solid var(--accent-focus);outline-offset:3px}
+
+.nv-filtro{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 14px}
+.nv-filtro__campo{flex:1 1 150px;min-width:0}
+.nv-filtro__acoes{display:flex;align-items:center;gap:14px;padding-bottom:1px;margin-left:auto}
+.nv-filtro__resumo{flex-basis:100%;display:flex;flex-wrap:wrap;gap:4px 10px;font-family:var(--font-data);font-weight:400;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);font-variant-numeric:tabular-nums}
+.nv-filtro__resumo b{color:var(--text-muted);font-weight:500}
+.nv-filtro__resumo i{font-style:normal;color:var(--rule-strong)}
+
+.nv-dens{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+.nv-dens__rotulo{font-family:var(--font-data);font-weight:500;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);margin-right:2px}
+.nv-dens__op{font-family:var(--font-data);font-weight:400;font-size:11px;line-height:1.2;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);background:none;border:0;border-bottom:var(--fio) solid transparent;border-radius:0;padding:0 0 3px;cursor:pointer;transition:color var(--dur-estado) var(--ease),border-color var(--dur-estado) var(--ease)}
+.nv-dens__op:hover{color:var(--fg-hover)}
+.nv-dens__op--ativo{color:var(--text-strong);font-weight:500;border-bottom-color:var(--accent-house)}
+.nv-dens__op:focus-visible{outline:var(--fio-forte) solid var(--accent-focus);outline-offset:3px}
+.nv-dens__sep{font-family:var(--font-data);font-size:11px;color:var(--rule-strong)}
+
+/* SELETOR DE SUBMERCADO — as quatro opcoes fixas. Ativa marcada por fio de 2px na cor da
+   familia; nunca preenchimento solido, nunca pilula. O padding compensa o fio mais grosso
+   para que a linha de base nao se mova entre estados. */
+.nv-sub{display:grid;gap:7px}
+.nv-sub__rotulo{font-family:var(--font-body);font-weight:500;font-size:11px;line-height:1.1;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.nv-sub__ops{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 20px}
+.nv-sub__op{white-space:nowrap;font-family:var(--font-body);font-weight:400;font-size:13.5px;line-height:1.2;letter-spacing:.01em;color:var(--text-muted);background:none;border:0;border-bottom:var(--fio) solid var(--rule-strong);border-radius:0;padding:0 0 5px;cursor:pointer;transition:color var(--dur-hover) var(--ease),border-color var(--dur-hover) var(--ease)}
+.nv-sub__op:hover:not(:disabled){color:var(--fg-hover);border-bottom-color:var(--fio-hover)}
+.nv-sub__op--ativa{color:var(--text-strong);font-weight:500;border-bottom-width:var(--fio-forte);border-bottom-color:var(--sub-cor,var(--accent-house));padding-bottom:4px}
+.nv-sub__op:disabled{opacity:.4;cursor:not-allowed}
+.nv-sub__op:focus-visible{outline:2px solid var(--accent-focus);outline-offset:3px}
+
+/* CAMPO DE BUSCA — sem container. Texto com cursor e fio inferior de 1px que engrossa em foco.
+   Desvio declarado: foco e o fio de 2px em advisory, nao anel — um campo sem caixa nao tem o
+   que anelar, e advisory segue sendo usado so como fio sobre papel. */
+.nv-busca{position:relative;display:grid;gap:6px}
+.nv-busca__rotulo{font-family:var(--font-body);font-weight:500;font-size:11px;line-height:1.1;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.nv-busca__ctrl{width:100%;font-family:var(--font-body);font-weight:400;font-size:15px;line-height:1.4;color:var(--text-strong);background:none;border:0;border-bottom:var(--fio) solid var(--campo-fio);border-radius:0;padding:0 0 7px;appearance:none;-webkit-appearance:none;caret-color:var(--accent-house);transition:border-color var(--dur-estado) var(--ease)}
+.nv-busca__ctrl::-webkit-search-cancel-button{appearance:none;-webkit-appearance:none}
+.nv-busca__ctrl::placeholder{color:var(--text-faint);font-weight:300}
+.nv-busca__ctrl:focus{outline:0;border-bottom-width:var(--fio-forte);border-bottom-color:var(--accent-focus);padding-bottom:6px}
+.nv-busca__lista{position:absolute;top:100%;left:0;right:0;z-index:25;display:grid;background:var(--surface-page);border-bottom:var(--fio) solid var(--rule-heavy)}
+.nv-busca--fluxo .nv-busca__lista{position:static;background:none}
+.nv-busca__total{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;margin:0;padding:8px 0 7px;border-bottom:var(--fio) solid var(--rule);font-family:var(--font-data);font-weight:400;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);font-variant-numeric:tabular-nums}
+.nv-busca__termo{color:var(--text-muted)}
+.nv-busca__itens{display:grid;margin:0;padding:0;list-style:none}
+.nv-busca__item{border-bottom:var(--fio) solid var(--rule)}
+.nv-busca__item:last-child{border-bottom:0}
+.nv-busca__item-b{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:3px 14px;width:100%;text-align:left;background:none;border:0;border-radius:0;padding:9px 0;cursor:pointer;transition:color var(--dur-hover) var(--ease)}
+.nv-busca__item-b:hover .nv-busca__item-t{color:var(--fg-hover)}
+.nv-busca__item-b:focus-visible{outline:2px solid var(--accent-focus);outline-offset:-2px}
+.nv-busca__item-t{font-family:var(--font-body);font-weight:300;font-size:13.5px;line-height:1.35;color:var(--text-body);min-width:0;transition:color var(--dur-hover) var(--ease)}
+.nv-busca__marca{font-weight:500;color:var(--text-strong)}
+.nv-busca__item-m{font-family:var(--font-data);font-weight:400;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint);white-space:nowrap}
+.nv-busca__vazio{font-family:var(--font-body);font-weight:300;font-size:13px;line-height:1.45;color:var(--text-muted);margin:0;padding:10px 0}

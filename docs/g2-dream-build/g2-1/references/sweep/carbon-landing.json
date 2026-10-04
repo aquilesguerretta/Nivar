@@ -1,0 +1,737 @@
+{
+  "url": "https://carbondesignsystem.com/data-visualization/color-palettes/",
+  "title": "Color palettes – Carbon Design System",
+  "text": "Skip to main content\nCarbon Design System\nSearch\nFoundations\nIBM Brand Center\nIBM Design Language\nImplementation\nCarbon Design System\nCarbon for IBM Products\nCarbon for Cloud\nCarbon for IBM.com\nIBM Event Design\nIBM Workplace Design\nPractices\nEnterprise Design Thinking\nIBM Accessibility\nIBM Design for AI\nIBM Design Research\nIBM Experience Standards\nCommunity\nIBM Design\nAll about Carbon\nWhat’s happening\nDesigning\nDeveloping\nContributing\nMigrating\nElements\nGuidelines\nComponents\nPatterns\nCommunity assets\nData visualization\nGet started\nChart types\nChart anatomy\nSimple charts\nFlow Charts\nSpatial Charts\nGantt charts\nColor palettes\nAxes and labels\nLegends\nDashboards\nHelp\nGitHub\nColor palettes\n\nThe color palette for data visualizations is a select subset of the IBM Design Language color palette. It is designed to maximize accessibility and harmony within a page.\n\nNote: This guidance is a work in progress. To see our roadmap, make feature requests, or contribute, please go to carbon-charts GitHub repository.\n\nCategorical palettes\nSequential palettes\nAlert palette\nGradient use\nColor in action\nCategorical palettes\n\nCategorical (or qualitative) palettes are best when you want to distinguish discrete categories of data that do not have an inherent correlation.\n\nThe colors of this palette should be applied in sequence strictly as described below. The sequence is carefully curated to maximize contrast between neighboring colors to help with visual differentiation.\n\nLight\nDark\n01. Purple 70\n6929c4\n02. Cyan 50\n1192e8\n03. Teal 70\n005d5d\n04. Magenta 70\n9f1853\n05. Red 50\nfa4d56\n06. Red 90\n570408\n07. Green 60\n198038\n08. Blue 80\n002d9c\n09. Magenta 50\nee538b\n10. Yellow 50\nb28600\n11. Teal 50\n009d9a\n12. Cyan 90\n012749\n13. Orange 70\n8a3800\n14. Purple 50\na56eff\n\nYou can override the categorical sequence with one of the following palettes if the exact number of data categories is predictable.\n\nLight\nDark\n1-Color group\nOption 1\nPurple 70\n6929c4\nOption 2\nBlue 80\n002d9c\nOption 3\nCyan 50\n1192e8\nOption 4\nTeal 70\n005d5d\nSequential palettes\nMonochromatic\n\nThe monochromatic palettes are good for relationship charts and trend charts. In light themes, the darkest color denotes the largest values. In dark themes, the lightest color denotes the largest values.\n\nDiscrete\nContinuous\nOption 1\nBlue 10\nedf5ff\nBlue 20\nd0e2ff\nBlue 30\na6c8ff\nBlue 40\n78a9ff\nBlue 50\n4589ff\nBlue 60\n0f62fe\nBlue 70\n0043ce\nBlue 80\n002d9c\nBlue 90\n001d6c\nBlue 100\n001141\nOption 2\nPurple 10\nf6f2ff\nPurple 20\ne8daff\nPurple 30\nd4bbff\nPurple 40\nbe95ff\nPurple 50\na56eff\nPurple 60\n8a3ffc\nPurple 70\n6929c4\nPurple 80\n491d8b\nPurple 90\n31135e\nPurple 100\n1c0f30\nOption 3\nCyan 10\ne5f6ff\nCyan 20\nbae6ff\nCyan 30\n82cfff\nCyan 40\n33b1ff\nCyan 50\n1192e8\nCyan 60\n0072c3\nCyan 70\n00539a\nCyan 80\n003a6d\nCyan 90\n012749\nCyan 100\n1c0f30\nOption 4\nTeal 10\nd9fbfb\nTeal 20\n9ef0f0\nTeal 30\n3ddbd9\nTeal 40\n08bdba\nTeal 50\n009d9a\nTeal 60\n007d79\nTeal 70\n005d5d\nTeal 80\n004144\nTeal 90\n022b30\nTeal 100\n081a1c\nDiverging palettes\n\nPlease note that diverging palettes do not differentiate between light and dark themes.\n\nPalette 1\n\nThe red-cyan palette has a natural association with temperature. Use this palette for data representing hot-vs-cold.\n\nPalette 2\n\nThe purple-teal palette is good for data with no temperature associations, such as performance, sales, and rates of change.\n\nDiscrete\nContinuous\nOption 1\nRed 80\n750e13\nRed 70\na2191f\nRed 60\nda1e28\nRed 50\nfa4d56\nRed 40\nff8389\nRed 30\nffb3b8\nRed 20\nffd7d9\nRed 10\nfff1f1\nCyan 10\ne5f6ff\nCyan 20\nbae6ff\nCyan 30\n82cfff\nCyan 40\n33b1ff\nCyan 50\n1192e8\nCyan 60\n0072c3\nCyan 70\n00539a\nCyan 80\n003a6d\nOption 2\nPurple 80\n491d8b\nPurple 70\n6929c4\nPurple 60\n8a3ffc\nPurple 50\na56eff\nPurple 40\nbe95ff\nPurple 30\nd4bbff\nPurple 20\ne8daff\nPurple 10\nf6f2ff\nTeal 10\nd9fbfb\nTeal 20\n9ef0f0\nTeal 30\n3ddbd9\nTeal 40\n08bdba\nTeal 50\n009d9a\nTeal 60\n007d79\nTeal 70\n005d5d\nTeal 80\n004144\nAlert palette\n\nAlert colors are used to reflect status. Typically, red represents danger or error; orange represents a serious warning; yellow represents a regular warning, and green represents normal or success.\n\nLight\nDark\n01. Red 60\nda1e28\n02. Orange 40\nff832b\n03. Yellow 30\nf1c21b\n04. Green 60\n198038\nGradient use\n\nNote: Gradients are not yet supported in Carbon Charts. This exploration is subject to change.\n\nGradients are good for highlighting extremes in a range of values. Use a gradient on single category visualizations only if needed. Multiple gradients are often inaccessible and are discouraged in our system. Gradients should not be used to represent any meaningful progression or divergence. Never use a gradient in place of a sequential palette.\n\nFor the full list of approved gradient options, see the IBM Design Language Color page.\n\nColor in action\n\nSee the IBM Design color palette in action across multiple business units and applications. Deliberate hits of color are composed with rich neutrals for a well-balanced cohesive experience.\n\nEdit this page on GitHub\nPrevious\nData visualization: Gantt charts\nNext\nData visualization: Axes and labels\nContact us\nPrivacy\nTerms of use\nAccessibility\nIBM.com\nMedium\n𝕏\n\nHave questions? Email us\nat carbon@us.ibm.com\nor open an issue on GitHub.\n\nReact Components version ^1.115.0\nLast updated 09 September 2026\nCopyright © 2026 IBM",
+  "links": [
+    {
+      "text": "Skip to main content",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/#main-content"
+    },
+    {
+      "text": "Carbon Design System",
+      "href": "https://carbondesignsystem.com/"
+    },
+    {
+      "text": "IBM Brand Center",
+      "href": "https://ibm.com/brand"
+    },
+    {
+      "text": "IBM Design Language",
+      "href": "https://ibm.com/design/language"
+    },
+    {
+      "text": "Carbon Design System",
+      "href": "https://www.carbondesignsystem.com/"
+    },
+    {
+      "text": "Carbon for IBM Products",
+      "href": "http://ibm.biz/carbon4ibmproducts"
+    },
+    {
+      "text": "Carbon for Cloud",
+      "href": "https://ibm.biz/carbon4cloud"
+    },
+    {
+      "text": "Carbon for IBM.com",
+      "href": "https://www.ibm.com/standards/carbon/"
+    },
+    {
+      "text": "IBM Event Design",
+      "href": "https://www.ibm.com/design/event/"
+    },
+    {
+      "text": "IBM Workplace Design",
+      "href": "https://www.ibm.com/design/workplace/"
+    },
+    {
+      "text": "Enterprise Design Thinking",
+      "href": "https://www.ibm.com/design/thinking/"
+    },
+    {
+      "text": "IBM Accessibility",
+      "href": "https://www.ibm.com/able/"
+    },
+    {
+      "text": "IBM Design for AI",
+      "href": "https://www.ibm.com/design/ai"
+    },
+    {
+      "text": "IBM Design Research",
+      "href": "https://www.ibm.com/design/research/"
+    },
+    {
+      "text": "IBM Experience Standards",
+      "href": "https://w3.ibm.com/design/experience-standards/"
+    },
+    {
+      "text": "IBM Design",
+      "href": "https://w3.ibm.com/design/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/all-about-carbon/what-is-carbon/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/all-about-carbon/who-uses-carbon/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/all-about-carbon/the-carbon-ecosystem/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/all-about-carbon/releases/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/whats-happening/news-and-articles/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/whats-happening/meetups/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/designing/get-started/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/designing/kits/figma/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/designing/design-resources/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/developing/get-started/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/developing/frameworks/react/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/developing/carbon-mcp/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/developing/dev-resources/resources/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/developing/react-tutorial/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/developing/web-components-tutorial/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/developing/community-frameworks/angular/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/contributing/get-started/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/contributing/product-development-lifecycle/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/contributing/component-checklist/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/contributing/documentation/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/migrating/guide/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/migrating/faq/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/elements/2x-grid/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/elements/color/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/elements/icons/library/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/elements/pictograms/library/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/elements/motion/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/elements/spacing/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/elements/themes/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/elements/typography/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/guidelines/accessibility/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/guidelines/carbon-for-ai/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/guidelines/content/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/overview/components/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/accordion/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/ai-label/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/breadcrumb/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/checkbox/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/code-snippet/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/contained-list/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/content-switcher/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/data-table/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/date-picker/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/dropdown/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/file-uploader/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/form/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/inline-loading/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/link/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/loading/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/menu/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/menu-buttons/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/modal/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/notification/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/number-input/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/pagination/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/popover/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/progress-bar/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/progress-indicator/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/radio-button/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/search/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/select/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/slider/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/structured-list/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/tabs/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/tag/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/text-input/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/tile/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/toggle/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/toggletip/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/tooltip/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/tree-view/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/UI-shell-header/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/UI-shell-left-panel/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/components/UI-shell-right-panel/usage/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/common-actions/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/dialog-pattern/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/disabled-states/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/disclosures-pattern/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/empty-states-pattern/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/filtering/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/fluid-styles/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/forms-pattern/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/global-header/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/loading-pattern/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/login-pattern/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/notification-pattern/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/overflow-content/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/read-only-states-pattern/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/search-pattern/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/status-indicator-pattern/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/patterns/text-toolbar-pattern/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/community/overview/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/community/domain-guidance/"
+    },
+    {
+      "text": "Get started",
+      "href": "https://carbondesignsystem.com/data-visualization/getting-started/"
+    },
+    {
+      "text": "Chart types",
+      "href": "https://carbondesignsystem.com/data-visualization/chart-types/"
+    },
+    {
+      "text": "Chart anatomy",
+      "href": "https://carbondesignsystem.com/data-visualization/chart-anatomy/"
+    },
+    {
+      "text": "Simple charts",
+      "href": "https://carbondesignsystem.com/data-visualization/simple-charts/"
+    },
+    {
+      "text": "Flow Charts",
+      "href": "https://carbondesignsystem.com/data-visualization/flow-charts/"
+    },
+    {
+      "text": "Spatial Charts",
+      "href": "https://carbondesignsystem.com/data-visualization/spatial-charts/"
+    },
+    {
+      "text": "Gantt charts",
+      "href": "https://carbondesignsystem.com/data-visualization/gantt-charts/"
+    },
+    {
+      "text": "Color palettes",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/"
+    },
+    {
+      "text": "Axes and labels",
+      "href": "https://carbondesignsystem.com/data-visualization/axes-and-labels/"
+    },
+    {
+      "text": "Legends",
+      "href": "https://carbondesignsystem.com/data-visualization/legends/"
+    },
+    {
+      "text": "Dashboards",
+      "href": "https://carbondesignsystem.com/data-visualization/dashboards/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/help/faq/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/help/certificate-of-originality/"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/help/contact-us/"
+    },
+    {
+      "text": "GitHub",
+      "href": "https://github.com/carbon-design-system/carbon"
+    },
+    {
+      "text": "GitHub repository",
+      "href": "https://github.com/carbon-design-system/carbon-charts"
+    },
+    {
+      "text": "Categorical palettes",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/#categorical-palettes"
+    },
+    {
+      "text": "Sequential palettes",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/#sequential-palettes"
+    },
+    {
+      "text": "Alert palette",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/#alert-palette"
+    },
+    {
+      "text": "Gradient use",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/#gradient-use"
+    },
+    {
+      "text": "Color in action",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/#color-in-action"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/#categorical-palettes"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/#sequential-palettes"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/#monochromatic"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/#diverging-palettes"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/#alert-palette"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/#gradient-use"
+    },
+    {
+      "text": "Color page",
+      "href": "https://www.ibm.com/design/language/color#gradients"
+    },
+    {
+      "text": "",
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/#color-in-action"
+    },
+    {
+      "text": "Edit this page on GitHub",
+      "href": "https://github.com/carbon-design-system/carbon-website/edit/main/src/pages/data-visualization/color-palettes/index.mdx"
+    },
+    {
+      "text": "Previous\nData visualization: Gantt charts",
+      "href": "https://carbondesignsystem.com/data-visualization/gantt-charts/"
+    },
+    {
+      "text": "Next\nData visualization: Axes and labels",
+      "href": "https://carbondesignsystem.com/data-visualization/axes-and-labels/"
+    },
+    {
+      "text": "Contact us",
+      "href": "https://www.carbondesignsystem.com/help/contact-us"
+    },
+    {
+      "text": "Privacy",
+      "href": "https://www.ibm.com/privacy"
+    },
+    {
+      "text": "Terms of use",
+      "href": "https://www.ibm.com/legal"
+    },
+    {
+      "text": "Accessibility",
+      "href": "https://www.ibm.com/able"
+    },
+    {
+      "text": "IBM.com",
+      "href": "https://www.ibm.com/"
+    },
+    {
+      "text": "Medium",
+      "href": "https://medium.com/carbondesign"
+    },
+    {
+      "text": "𝕏",
+      "href": "https://x.com/_carbondesign"
+    },
+    {
+      "text": "carbon@us.ibm.com",
+      "href": "mailto:carbon@us.ibm.com"
+    },
+    {
+      "text": "GitHub.",
+      "href": "https://github.com/carbon-design-system/carbon-website/issues/new"
+    }
+  ],
+  "buttons": [
+    {
+      "text": "",
+      "label": "Open menu"
+    },
+    {
+      "text": "",
+      "label": "Open search"
+    },
+    {
+      "text": "",
+      "label": "Clear search"
+    },
+    {
+      "text": "",
+      "label": "Switch sites"
+    },
+    {
+      "text": "All about Carbon",
+      "label": null
+    },
+    {
+      "text": "What’s happening",
+      "label": null
+    },
+    {
+      "text": "Designing",
+      "label": null
+    },
+    {
+      "text": "Developing",
+      "label": null
+    },
+    {
+      "text": "Contributing",
+      "label": null
+    },
+    {
+      "text": "Migrating",
+      "label": null
+    },
+    {
+      "text": "Elements",
+      "label": null
+    },
+    {
+      "text": "Guidelines",
+      "label": null
+    },
+    {
+      "text": "Components",
+      "label": null
+    },
+    {
+      "text": "Patterns",
+      "label": null
+    },
+    {
+      "text": "Community assets",
+      "label": null
+    },
+    {
+      "text": "Data visualization",
+      "label": null
+    },
+    {
+      "text": "Help",
+      "label": null
+    },
+    {
+      "text": "Light",
+      "label": null
+    },
+    {
+      "text": "Dark",
+      "label": null
+    },
+    {
+      "text": "Light",
+      "label": null
+    },
+    {
+      "text": "Dark",
+      "label": null
+    },
+    {
+      "text": "1-Color group",
+      "label": null
+    },
+    {
+      "text": "Discrete",
+      "label": null
+    },
+    {
+      "text": "Continuous",
+      "label": null
+    },
+    {
+      "text": "Discrete",
+      "label": null
+    },
+    {
+      "text": "Continuous",
+      "label": null
+    },
+    {
+      "text": "Light",
+      "label": null
+    },
+    {
+      "text": "Dark",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Back to Top"
+    }
+  ]
+}

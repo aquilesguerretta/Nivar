@@ -1,0 +1,84 @@
+:root{
+/* ESCALA DE INCANDESCENCIA — valores literais, ordem declarada. Cor e temperatura. */
+--brasa:#7A1F0D;--hardware:#B8481F;--academy:#A8432A;--software:#C17D1F;--advisory:#E8A317;--intelligence:#F5C63C;
+--tinta:#14120F;--papel:#F6F2E9;
+
+/* Neutros quentes derivados de tinta/papel. Nenhum neutro frio no sistema. */
+--tinta-2:#1D1A16;--tinta-3:#26221C;--tinta-4:#332E26;
+--papel-2:#EEE9DC;--papel-3:#E4DDCB;
+--fio-tinta:#3A342B;--fio-tinta-forte:#524A3D;
+--fio-papel:#D5CDB9;--fio-papel-forte:#B8AE97;
+--cinza-quente:#6E6659;--cinza-quente-claro:#9A9081;
+
+/* SEMANTICO — superficie */
+--surface-page:var(--papel);--surface-raised:var(--papel-2);--surface-sunken:var(--papel-3);
+--surface-ink:var(--tinta);--surface-ink-raised:var(--tinta-2);--surface-ink-sunken:var(--tinta-3);
+
+/* SEMANTICO — texto */
+--text-strong:var(--tinta);--text-body:#231F1A;--text-muted:var(--cinza-quente);--text-faint:#8B8274;
+--text-invert:var(--papel);--text-invert-muted:#A79D8C;--text-invert-faint:#7A7264;
+
+/* SEMANTICO — fio (a profundidade vem do fio de 1px, nunca de sombra) */
+--rule:var(--fio-papel);--rule-strong:var(--fio-papel-forte);--rule-heavy:var(--tinta);
+--rule-ink:var(--fio-tinta);--rule-ink-strong:var(--fio-tinta-forte);
+
+/* SEMANTICO — marca e familia */
+--accent-house:var(--brasa);--accent-focus:var(--advisory);
+--family-intelligence:var(--intelligence);--family-advisory:var(--advisory);
+--family-software:var(--software);--family-academy:var(--academy);--family-hardware:var(--hardware);
+
+/* SEMANTICO — dado (direcao no mercado, nao "sucesso/erro") */
+--data-alta:var(--hardware);--data-baixa:var(--software);--data-neutro:var(--cinza-quente);
+--data-atencao:var(--advisory);--data-critico:var(--brasa);
+
+--link:var(--brasa);--link-hover:var(--hardware);--link-fio:var(--fio-papel-forte);
+/* Cor de acento em uso no contexto. Redefina num ancestral para que escolha, deslizante e
+   preenchimento marcado herdem a familia da tela. */
+--acento-contexto:var(--brasa);
+--gradiente-incandescente:linear-gradient(90deg,var(--brasa) 0%,var(--software) 50%,var(--intelligence) 100%);
+}
+
+:root{
+/* estado de interacao — hover sobe um passo na escala, press desce um passo a partir do hover */
+--fg-hover:var(--academy);/* @kind color */--fio-hover:var(--academy);/* @kind color */
+--fg-press:var(--brasa);/* @kind color */--fio-press:var(--brasa);/* @kind color */
+--btn-primario-bg:var(--brasa);/* @kind color */--btn-primario-fg:var(--papel);/* @kind color */--btn-primario-fio:var(--brasa);/* @kind color */
+--btn-primario-bg-hover:var(--academy);/* @kind color */--btn-primario-fio-hover:var(--academy);/* @kind color */
+--btn-primario-bg-press:var(--tinta);/* @kind color */--btn-primario-fio-press:var(--tinta);/* @kind color */
+--campo-fio:var(--rule-strong);/* @kind color */--campo-erro-fio:var(--brasa);/* @kind color */--campo-erro-texto:var(--brasa);/* @kind color */
+--zebra:var(--papel-2);/* @kind color */
+--tag-fio:var(--rule-strong);/* @kind color */
+--ilustrativa-fg:var(--text-strong);/* @kind color */--ilustrativa-fio:var(--advisory);/* @kind color */
+--serie-linha:var(--tinta);/* @kind color */--serie-ponto:var(--brasa);/* @kind color */
+}
+/* MODO NOTURNO — remapeia apenas aliases semanticos. Nenhum valor da escala e alterado. */
+[data-mode="noturno"]{
+--surface-page:var(--tinta);/* @kind color */--surface-raised:var(--tinta-2);/* @kind color */--surface-sunken:var(--tinta-3);/* @kind color */
+--text-strong:var(--papel);/* @kind color */--text-body:var(--papel);/* @kind color */--text-muted:var(--text-invert-muted);/* @kind color */--text-faint:var(--text-invert-faint);/* @kind color */
+--rule:var(--fio-tinta);/* @kind color */--rule-strong:var(--fio-tinta-forte);/* @kind color */--rule-heavy:var(--papel);/* @kind color */
+--accent-house:var(--intelligence);/* @kind color */--accent-focus:var(--advisory);/* @kind color */
+--link:var(--intelligence);/* @kind color */--link-hover:var(--advisory);/* @kind color */--link-fio:var(--fio-tinta-forte);/* @kind color */
+--acento-contexto:var(--intelligence);/* @kind color */
+--fg-hover:var(--advisory);/* @kind color */--fio-hover:var(--advisory);/* @kind color */
+--fg-press:var(--software);/* @kind color */--fio-press:var(--software);/* @kind color */
+--btn-primario-fio:var(--hardware);/* @kind color */
+--campo-fio:var(--fio-tinta-forte);/* @kind color */--campo-erro-fio:var(--hardware);/* @kind color */--campo-erro-texto:var(--papel);/* @kind color */
+--zebra:var(--tinta-2);/* @kind color */
+--btn-primario-fio-hover:var(--advisory);/* @kind color */--btn-primario-fio-press:var(--hardware);/* @kind color */
+--tag-fio:var(--fio-tinta-forte);/* @kind color */
+--ilustrativa-fg:var(--advisory);/* @kind color */
+--serie-linha:var(--intelligence);/* @kind color */--serie-ponto:var(--intelligence);/* @kind color */
+}
+[data-mode="noturno"]{background:var(--surface-page);color:var(--text-body)}
+
+/* SUBSTRATO FIXO — papel impresso não tem modo noturno. Reancora os aliases claros dentro de
+   um ancestral noturno: prévia de exportação, folha de PDF, qualquer superfície que já é papel.
+   Nenhum valor da escala de incandescência é alterado, como no escopo de modo. */
+[data-substrato="papel"]{
+--surface-page:var(--papel);/* @kind color */--surface-raised:var(--papel-2);/* @kind color */--surface-sunken:var(--papel-3);/* @kind color */
+--text-strong:var(--tinta);/* @kind color */--text-body:#231F1A;/* @kind color */--text-muted:var(--cinza-quente);/* @kind color */--text-faint:#8B8274;/* @kind color */
+--rule:var(--fio-papel);/* @kind color */--rule-strong:var(--fio-papel-forte);/* @kind color */--rule-heavy:var(--tinta);/* @kind color */
+--zebra:var(--papel-2);/* @kind color */--accent-house:var(--brasa);/* @kind color */--link:var(--brasa);/* @kind color */--link-hover:var(--hardware);/* @kind color */
+--link-fio:var(--fio-papel-forte);/* @kind color */--acento-contexto:var(--brasa);/* @kind color */
+}
+[data-substrato="papel"]{background:var(--surface-page);color:var(--text-body)}

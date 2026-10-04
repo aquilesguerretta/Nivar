@@ -198,7 +198,7 @@ export function AnnotationLayer({
                   background: C.electricBlue,
                   border: 'none',
                   borderRadius: R.sm,
-                  color: '#fff',
+                  color: C.textPrimary,
                   fontFamily: F.sans,
                   fontSize: 11,
                   fontWeight: 600,

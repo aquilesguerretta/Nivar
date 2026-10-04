@@ -1,0 +1,83 @@
+{
+  "name": "NIVAR-G2.3.1-owner-review",
+  "startingHead": "aa54f8f32f11e1742cfd1cbe80c7219a217c2de7",
+  "branch": "wave/nivar-g2-dream-build",
+  "entry": "docs/g2-dream-build/g2-3-1/review.html",
+  "delivery": "docs/g2-dream-build/g2-3-1/delivery.json",
+  "include": [
+    "docs/g2-dream-build/g2-3-1/review.html",
+    "docs/g2-dream-build/g2-3-1/README.md",
+    "docs/g2-dream-build/g2-3-1/OWNER-ANSWERS.md",
+    "docs/g2-dream-build/g2-3-1/OWNER-BRIEF.txt",
+    "docs/g2-dream-build/g2-3-1/compact-package-spec.json",
+    "docs/g2-dream-build/g2-3-1/package-review.py",
+    "docs/g2-dream-build/g2-3-1/delivery.json",
+    "docs/g2-dream-build/g2-3-1/baseline/starting-head.txt",
+    "docs/g2-dream-build/g2-3-1/baseline/alexandria-sha256.txt",
+    "docs/g2-dream-build/g2-3-1/qa/*.md",
+    "docs/g2-dream-build/g2-3-1/qa/*.json",
+    "docs/g2-dream-build/g2-3-1/qa/*.log",
+    "docs/g2-dream-build/g2-3-1/qa/*.mjs",
+    "docs/g2-dream-build/g2-3-1/qa/compile-qa.py",
+    "docs/g2-dream-build/g2-3-1/qa/finish-evidence.py",
+    "docs/g2-dream-build/g2-3-1/qa/*.png",
+    "docs/g2-dream-build/g2-3-1/hero/MOTION-CRITIQUE.md",
+    "docs/g2-dream-build/g2-3-1/hero/research/REFERENCE-DECISIONS.md",
+    "docs/g2-dream-build/g2-3-1/hero/generated/*.md",
+    "docs/g2-dream-build/g2-3-1/hero/generated/*.json",
+    "docs/g2-dream-build/g2-3-1/hero/generated/*.html",
+    "docs/g2-dream-build/g2-3-1/hero/generated/*/film-960.mp4",
+    "docs/g2-dream-build/g2-3-1/hero/generated/*/poster.webp",
+    "docs/g2-dream-build/g2-3-1/hero/generated/*/contact-24.jpg",
+    "docs/g2-dream-build/g2-3-1/hero/generated/*/frame-*.jpg",
+    "docs/g2-dream-build/g2-3-1/hero/generated/*/probe.json",
+    "docs/g2-dream-build/g2-3-1/hero/real-media/*.md",
+    "docs/g2-dream-build/g2-3-1/hero/real-media/*.json",
+    "docs/g2-dream-build/g2-3-1/hero/real-media/candidate-contact-sheet.jpg",
+    "docs/g2-dream-build/g2-3-1/insignia/*.html",
+    "docs/g2-dream-build/g2-3-1/insignia/*.md",
+    "docs/g2-dream-build/g2-3-1/insignia/*.json",
+    "docs/g2-dream-build/g2-3-1/insignia/material-study.py",
+    "docs/g2-dream-build/g2-3-1/insignia/candidates/*.svg",
+    "docs/g2-dream-build/g2-3-1/insignia/small-size-actual-pixels.png",
+    "docs/g2-dream-build/g2-3-1/insignia/small-size-iteration-01.png",
+    "docs/g2-dream-build/g2-3-1/insignia/browser-small-size-desktop.png",
+    "docs/g2-dream-build/g2-3-1/insignia/browser-context-light.png",
+    "docs/g2-dream-build/g2-3-1/insignia/browser-context-dark.png",
+    "docs/g2-dream-build/g2-3-1/insignia/topology-revision-02.png",
+    "docs/g2-dream-build/g2-3-1/insignia/topology-revision-03.png",
+    "docs/g2-dream-build/g2-3-1/insignia/argos-refinement-04.png",
+    "docs/g2-dream-build/g2-3-1/insignia/generated-exploration-*.png",
+    "docs/g2-dream-build/g2-3-1/insignia/material-*.png",
+    "public/g2/g231/**/*",
+    "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final.mp4",
+    "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-provenance.json",
+    "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-validation.json",
+    "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final.mp4",
+    "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-provenance.json",
+    "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-validation.json"
+  ],
+  "includeLists": [
+    "docs/g2-dream-build/g2-3-1/hero/evidence/encoded/portable-files.txt"
+  ],
+  "exclude": [
+    "docs/g2-dream-build/g2-3-1/qa/full-lint.json",
+    "**/*-full.png",
+    "**/*-rgb-lossless.mp4",
+    "**/*.blend",
+    "**/originals/**",
+    "**/original.mp4"
+  ],
+  "portableHtmlRewrites": {
+    "public/g2/g231/hero/real/credits.html": {
+      "href=\"/br#filme-do-metodo\"": "href=\"../../../../../docs/g2-dream-build/g2-3-1/review.html#filme\""
+    }
+  },
+  "notes": [
+    "Selection preserves repository-relative paths; no wholesale directory copy.",
+    "Raw captures, prepared frames, rejected motion recordings, lossless masters, original photographs and Blender projects remain in the working archive.",
+    "Rejected creative video CANDIDATE A is deliberately included as a lightweight film-960.mp4 with its contact sheet.",
+    "delivery.json is a post-commit receipt; it is required for --build and can be absent during --dry-run.",
+    "The package is a local review artifact, not a deployment of the NIVAR product."
+  ]
+}

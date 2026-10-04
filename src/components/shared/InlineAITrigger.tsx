@@ -173,7 +173,7 @@ function TriggerIconButton({
           fontFamily: F.mono,
           fontSize: 10,
           fontWeight: 700,
-          color: '#fff',
+          color: C.textPrimary,
           lineHeight: 1,
         }}
       >

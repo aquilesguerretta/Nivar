@@ -1,0 +1,20 @@
+.nv-skel{display:grid;gap:8px}
+.nv-skel__fio{display:block;height:1px;width:0;background:var(--rule-strong);animation:nv-desenha var(--dur-desenho) var(--ease) forwards}
+.nv-skel__fio--forte{background:var(--rule-heavy);opacity:.5}
+.nv-skel--tabela{gap:0;border:var(--fio) solid var(--rule)}
+.nv-skel__cab,.nv-skel__linha{display:grid;gap:12px;align-items:center;padding:11px 12px;border-bottom:var(--fio) solid var(--rule)}
+.nv-skel__cab{border-bottom-color:var(--rule-strong)}
+.nv-skel--tabela>.nv-skel__linha:last-child{border-bottom:0}
+.nv-skel--texto{gap:12px}
+.nv-skel--card{display:grid;gap:12px;align-content:start;padding:14px 16px;border:var(--fio) solid var(--rule)}
+.nv-skel__fio--curto{max-width:38%}
+.nv-skel__fio--meio{max-width:64%}
+.nv-skel__barras{display:flex;align-items:flex-end;gap:5px;height:48px}
+.nv-skel__barra{flex:1;height:0;background:var(--rule-strong);animation:nv-cresce var(--dur-desenho-longo) var(--ease) forwards}
+@keyframes nv-desenha{to{width:100%}}
+@keyframes nv-cresce{to{height:var(--h,24px)}}
+
+.nv-loader{display:grid;justify-items:start;gap:12px}
+.nv-loader__marca{display:block;overflow:visible}
+.nv-loader__legenda{font-family:var(--font-data);font-weight:500;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){.nv-skel__fio{width:100%;animation:none}.nv-skel__barra{height:var(--h,24px);animation:none}.nivar-loader-nucleo{animation:none}}

@@ -1,0 +1,315 @@
+<!-- @dsCard group="Foundations" viewport="1280x3180" name="Calibragem 01 — Cor + Tipografia" subtitle="Prova de calibragem: escala de incandescência pareada com Zilla Slab / Work Sans / JetBrains Mono" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>NIVAR · Calibragem 01 — Cor + Tipografia</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+body{width:1280px;background:var(--papel)}
+.rule{border-top:var(--fio) solid var(--rule)}
+.eti{font-family:var(--font-data);font-size:var(--ts-dado-5);line-height:var(--lh-dado-5);letter-spacing:.1em;text-transform:uppercase;font-weight:500;font-variant-numeric:tabular-nums}
+.num{font-family:var(--font-data);font-variant-numeric:tabular-nums lining-nums;font-weight:400}
+
+/* MASTHEAD */
+.mast{background:var(--tinta);color:var(--text-invert);display:grid;grid-template-columns:1fr auto;align-items:end;gap:32px;padding:24px 24px 20px}
+.mast img{display:block;height:44px;width:auto}
+.mast-sub{margin-top:10px;font-size:var(--ts-corpo-2);font-weight:300;color:var(--text-invert-muted);max-width:52ch}
+.mast-meta{display:grid;gap:4px;text-align:right;color:var(--text-invert-faint)}
+.mast-meta b{color:var(--intelligence);font-weight:500}
+.bar{height:4px;background:var(--gradiente-incandescente)}
+
+/* STRIP */
+.strip{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:var(--fio) solid var(--rule)}
+.strip>div{padding:10px 12px;border-left:var(--fio) solid var(--rule);display:grid;gap:3px}
+.strip>div:first-child{border-left:0}
+.strip .k{color:var(--text-faint)}
+.strip .v{font-family:var(--font-display);font-weight:500;font-size:15px;color:var(--text-strong);letter-spacing:-.01em}
+
+/* SECTION HEAD — sem container, só fio */
+.sh{display:grid;grid-template-columns:auto auto 1fr auto;align-items:baseline;gap:16px;padding:24px 24px 8px}
+.sh h2{font-size:var(--ts-titulo-2);font-weight:600;letter-spacing:-.006em}
+.sh .n{font-family:var(--font-data);font-size:var(--ts-dado-4);color:var(--brasa);font-weight:500}
+.sh .line{height:1px;background:var(--rule);transform:translateY(-4px)}
+.sh .r{color:var(--text-faint);max-width:46ch;text-align:right}
+.body-note{padding:0 24px 14px;font-size:var(--ts-corpo-2);font-weight:300;color:var(--text-muted);max-width:96ch}
+
+/* ESCALA */
+.esc{border-top:var(--fio) solid var(--rule-strong)}
+.esc-h,.esc-r{display:grid;grid-template-columns:132px 168px 1fr 96px 118px 88px 88px;align-items:center}
+.esc-h{border-bottom:var(--fio) solid var(--rule);color:var(--text-faint)}
+.esc-h>*{padding:7px 12px;border-left:var(--fio) solid var(--rule)}
+.esc-h>*:first-child{border-left:0}
+.esc-r{border-bottom:var(--fio) solid var(--rule)}
+.esc-r>*{padding:11px 12px;border-left:var(--fio) solid var(--rule);min-height:60px;display:flex;flex-direction:column;justify-content:center}
+.esc-r>*:first-child{border-left:0;padding:0;min-height:60px}
+.sw{height:60px;width:100%}
+.esc-r .nm{font-family:var(--font-display);font-size:21px;font-weight:500;color:var(--text-strong);letter-spacing:-.01em;line-height:1.1}
+.esc-r .fam{font-size:11px;font-family:var(--font-data);letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-top:3px}
+.esc-r .fn{font-size:var(--ts-corpo-2);font-weight:300;color:var(--text-muted);line-height:1.45}
+.esc-r .hx,.esc-r .rgb{font-family:var(--font-data);font-size:var(--ts-dado-4);font-variant-numeric:tabular-nums}
+.esc-r .rgb{color:var(--text-faint);font-size:12px}
+.ct{font-family:var(--font-data);font-size:15px;font-variant-numeric:tabular-nums;font-weight:500;text-align:right;display:block}
+.ct-t{font-size:10px;letter-spacing:.06em;text-transform:uppercase;text-align:right;display:block;margin-top:3px;font-family:var(--font-data)}
+.ok{color:var(--academy)}.mid{color:var(--software)}.no{color:var(--text-faint)}
+.esc-r.dark>*{border-color:var(--rule-ink)}
+
+/* PAREAMENTO */
+.par{display:grid;grid-template-columns:repeat(3,1fr);border-top:var(--fio) solid var(--rule-strong);border-bottom:var(--fio) solid var(--rule)}
+.par>section{border-left:var(--fio) solid var(--rule);padding:20px;display:grid;align-content:start;gap:12px}
+.par>section:first-child{border-left:0}
+.par .cap{display:flex;justify-content:space-between;gap:12px;padding-bottom:8px;border-bottom:var(--fio) solid var(--rule);color:var(--text-faint)}
+.par h3{font-family:var(--font-display);font-size:28px;font-weight:600;line-height:1.08;letter-spacing:-.016em}
+.par .lede{font-size:15px;font-weight:300;line-height:1.5;color:var(--text-muted)}
+.par .fig{display:flex;align-items:baseline;gap:8px;padding-top:10px;border-top:var(--fio) solid var(--rule)}
+.par .fig .v{font-family:var(--font-data);font-size:38px;font-weight:500;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.par .fig .u{font-family:var(--font-data);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint)}
+.par .kv{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:13px}
+.par .kv dt{font-weight:300;color:var(--text-muted)}
+.par .kv dd{margin:0;font-family:var(--font-data);font-size:13px;font-variant-numeric:tabular-nums;text-align:right}
+.par section.ink{background:var(--tinta);color:var(--text-invert)}
+.par section.ink .cap,.par section.ink .fig .u{color:var(--text-invert-faint)}
+.par section.ink .cap,.par section.ink .fig,.par section.ink .kv{border-color:var(--rule-ink)}
+.par section.ink h3{color:var(--papel)}
+.par section.ink .lede,.par section.ink .kv dt{color:var(--text-invert-muted)}
+.par section.ink .cap{border-bottom-color:var(--rule-ink)}
+
+/* TIPOGRAFIA */
+.tip{display:grid;grid-template-columns:1fr 1fr;border-top:var(--fio) solid var(--rule-strong)}
+.tip>div{border-left:var(--fio) solid var(--rule)}
+.tip>div:first-child{border-left:0}
+.tr{display:grid;grid-template-columns:1fr 176px;gap:16px;align-items:baseline;padding:13px 20px;border-bottom:var(--fio) solid var(--rule)}
+.tr .spec{font-family:var(--font-data);font-size:10.5px;line-height:1.5;letter-spacing:.02em;color:var(--text-faint);text-align:right;font-variant-numeric:tabular-nums}
+.tr .spec b{display:block;color:var(--text-muted);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.smp{color:var(--text-strong);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.d1{font-family:var(--font-display);font-weight:600;font-size:64px;line-height:1.02;letter-spacing:-.022em}
+.d2{font-family:var(--font-display);font-weight:600;font-size:44px;line-height:1.06;letter-spacing:-.018em}
+.d3{font-family:var(--font-display);font-weight:500;font-size:32px;line-height:1.1;letter-spacing:-.014em}
+.d4{font-family:var(--font-display);font-weight:500;font-size:24px;line-height:1.16;letter-spacing:-.01em}
+.d5{font-family:var(--font-display);font-weight:500;font-size:19px;line-height:1.24;letter-spacing:-.006em}
+.b1{font-family:var(--font-body);font-weight:300;font-size:19px;line-height:1.5;letter-spacing:-.004em}
+.b2{font-family:var(--font-body);font-weight:400;font-size:15px;line-height:1.58}
+.b3{font-family:var(--font-body);font-weight:300;font-size:15px;line-height:1.58}
+.b4{font-family:var(--font-body);font-weight:400;font-size:13.5px;line-height:1.52}
+.b5{font-family:var(--font-body);font-weight:500;font-size:11px;line-height:1.1;letter-spacing:.1em;text-transform:uppercase}
+.m1{font-family:var(--font-data);font-weight:500;font-size:40px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.m2{font-family:var(--font-data);font-weight:500;font-size:26px;line-height:1.05;letter-spacing:-.014em;font-variant-numeric:tabular-nums}
+.m3{font-family:var(--font-data);font-weight:400;font-size:17px;line-height:1.2;font-variant-numeric:tabular-nums}
+.m4{font-family:var(--font-data);font-weight:400;font-size:13px;line-height:1.3;font-variant-numeric:tabular-nums}
+.m5{font-family:var(--font-data);font-weight:500;font-size:11px;line-height:1.25;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+
+/* TABULAR */
+.tab{display:grid;grid-template-columns:1fr 1fr 300px;border-top:var(--fio) solid var(--rule-strong);border-bottom:var(--fio) solid var(--rule)}
+.tab>div{border-left:var(--fio) solid var(--rule);padding:16px 20px}
+.tab>div:first-child{border-left:0}
+.tab .hd{display:flex;justify-content:space-between;gap:12px;padding-bottom:8px;margin-bottom:10px;border-bottom:var(--fio) solid var(--rule);color:var(--text-faint)}
+table{width:100%}
+th{text-align:left;font-family:var(--font-data);font-size:10px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint);padding:0 0 6px;border-bottom:var(--fio) solid var(--rule)}
+th.r,td.r{text-align:right}
+td{padding:5px 0;border-bottom:var(--fio) solid var(--rule);font-size:13px}
+td.z{font-family:var(--font-body);font-weight:400;font-size:14px}
+td.j{font-family:var(--font-data);font-weight:400;font-size:14px;font-variant-numeric:tabular-nums lining-nums}
+td.p{font-family:var(--font-body);font-weight:400;font-size:14px;font-variant-numeric:proportional-nums}
+.verdict{font-size:13px;font-weight:300;line-height:1.5;color:var(--text-muted)}
+.verdict b{font-weight:500;color:var(--text-strong)}
+
+/* FAMILIAS */
+.fams{display:grid;grid-template-columns:repeat(5,1fr);border-top:var(--fio) solid var(--rule-strong);border-bottom:var(--fio) solid var(--rule);background:var(--tinta)}
+.fams>div{border-left:var(--fio) solid var(--rule-ink);padding:18px 16px 16px;display:grid;gap:10px;justify-items:start}
+.fams>div:first-child{border-left:0}
+.fams svg{display:block;height:52px;width:52px}
+.fams .nm{font-family:var(--font-display);font-size:20px;font-weight:500;letter-spacing:-.01em}
+.fams .hx{font-family:var(--font-data);font-size:11px;letter-spacing:.06em;color:var(--text-invert-faint)}
+.fams .ds{font-size:12.5px;font-weight:300;line-height:1.45;color:var(--text-invert-muted)}
+
+/* FOOT */
+.foot{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;padding:16px 24px 22px;border-top:var(--fio) solid var(--rule)}
+.no-list{display:flex;flex-wrap:wrap;gap:6px 20px;color:var(--text-faint)}
+.no-list span::before{content:"×  ";color:var(--brasa)}
+.foot .rt{text-align:right;color:var(--text-faint);display:grid;gap:4px}
+</style></head><body>
+
+<header class="mast">
+<div>
+<img src="../assets/nivar-wordmark.svg" alt="NIVAR">
+<p class="mast-sub">Inteligência independente do mercado de energia elétrica. O dado público do setor — ONS, CCEE, ANEEL, EPE — tornado legível para o consumidor industrial no mercado livre.</p>
+</div>
+<div class="mast-meta eti">
+<div><b>CALIBRAGEM 01</b></div>
+<div>COR + TIPOGRAFIA</div>
+<div>PROVA DE PALETA · 8 VALORES</div>
+<div>2026-08-04</div>
+</div>
+</header>
+<div class="bar"></div>
+
+<div class="strip eti">
+<div><span class="k">DISPLAY</span><span class="v">Zilla Slab 500 · 600</span></div>
+<div><span class="k">CORPO</span><span class="v">Work Sans 300 · 400 · 500</span></div>
+<div><span class="k">DADO NUMÉRICO</span><span class="v">JetBrains Mono 400 · 500</span></div>
+<div><span class="k">RAIO / SOMBRA</span><span class="v">0 · nenhuma · fio 1px</span></div>
+<div><span class="k">EASING ÚNICO</span><span class="v">0.65 · 0 · 0.35 · 1</span></div>
+</div>
+
+<div class="sh"><span class="n">01</span><h2>Escala de incandescência</h2><div class="line"></div><p class="r eti">Cor é temperatura, não decoração. Cada família ocupa uma posição física na escala.</p></div>
+<p class="body-note">Os oito valores são literais. A ordem abaixo é a ordem declarada da escala — brasa na base, intelligence no topo. As duas últimas colunas são o contraste medido (WCAG) de cada valor contra papel e contra tinta: é isso que define se uma temperatura pode carregar texto ou apenas fio, marca e preenchimento.</p>
+
+<div class="esc">
+<div class="esc-h eti"><span>VALOR</span><span>NOME</span><span>FUNÇÃO NO SISTEMA</span><span>HEX</span><span>RGB</span><span>/ PAPEL</span><span>/ TINTA</span></div>
+
+<div class="esc-r"><div class="sw" style="background:#7A1F0D"></div>
+<div><span class="nm">brasa</span><span class="fam">casa · raiz</span></div>
+<div class="fn">Marca da casa e nível crítico do dado. Texto de destaque sobre papel. O único vermelho do sistema.</div>
+<div class="hx">#7A1F0D</div><div class="rgb">122 · 31 · 13</div>
+<div><span class="ct ok">9.3:1</span><span class="ct-t ok">texto</span></div>
+<div><span class="ct no">1.8:1</span><span class="ct-t no">—</span></div></div>
+
+<div class="esc-r"><div class="sw" style="background:#B8481F"></div>
+<div><span class="nm">hardware</span><span class="fam">família · medição</span></div>
+<div class="fn">Medição em campo, telemetria, ativo físico. Direção de alta no dado de mercado.</div>
+<div class="hx">#B8481F</div><div class="rgb">184 · 72 · 31</div>
+<div><span class="ct ok">4.7:1</span><span class="ct-t ok">texto</span></div>
+<div><span class="ct mid">3.5:1</span><span class="ct-t mid">≥19px</span></div></div>
+
+<div class="esc-r"><div class="sw" style="background:#A8432A"></div>
+<div><span class="nm">academy</span><span class="fam">família · formação</span></div>
+<div class="fn">Formação, currículo, certificação. Registro mais terroso da escala.</div>
+<div class="hx">#A8432A</div><div class="rgb">168 · 67 · 42</div>
+<div><span class="ct ok">5.4:1</span><span class="ct-t ok">texto</span></div>
+<div><span class="ct mid">3.1:1</span><span class="ct-t mid">≥24px</span></div></div>
+
+<div class="esc-r"><div class="sw" style="background:#C17D1F"></div>
+<div><span class="nm">software</span><span class="fam">família · produto</span></div>
+<div class="fn">Produto instrumentado, API, painel. Pivô da escala: vira sobre tinta. Direção de baixa no dado.</div>
+<div class="hx">#C17D1F</div><div class="rgb">193 · 125 · 31</div>
+<div><span class="ct mid">3.0:1</span><span class="ct-t mid">≥24px</span></div>
+<div><span class="ct ok">5.5:1</span><span class="ct-t ok">texto</span></div></div>
+
+<div class="esc-r"><div class="sw" style="background:#E8A317"></div>
+<div><span class="nm">advisory</span><span class="fam">família · parecer</span></div>
+<div class="fn">Parecer, contraditório, foco. Anel de foco do sistema. Sobre papel: fio e preenchimento, nunca texto.</div>
+<div class="hx">#E8A317</div><div class="rgb">232 · 163 · 23</div>
+<div><span class="ct no">1.9:1</span><span class="ct-t no">só fio</span></div>
+<div><span class="ct ok">8.6:1</span><span class="ct-t ok">texto</span></div></div>
+
+<div class="esc-r"><div class="sw" style="background:#F5C63C"></div>
+<div><span class="nm">intelligence</span><span class="fam">família · leitura</span></div>
+<div class="fn">Leitura do mercado, série temporal, publicação. Topo térmico: o dado sobre tinta.</div>
+<div class="hx">#F5C63C</div><div class="rgb">245 · 198 · 60</div>
+<div><span class="ct no">1.4:1</span><span class="ct-t no">só fio</span></div>
+<div><span class="ct ok">11.6:1</span><span class="ct-t ok">texto</span></div></div>
+
+<div class="esc-r"><div class="sw" style="background:#14120F"></div>
+<div><span class="nm">tinta</span><span class="fam">substrato · escuro</span></div>
+<div class="fn">Texto sobre papel e substrato do painel de dado. Preto quente — nunca #000.</div>
+<div class="hx">#14120F</div><div class="rgb">20 · 18 · 15</div>
+<div><span class="ct ok">16.7:1</span><span class="ct-t ok">texto</span></div>
+<div><span class="ct no">1.0:1</span><span class="ct-t no">—</span></div></div>
+
+<div class="esc-r"><div class="sw" style="background:#F6F2E9;box-shadow:inset 0 0 0 1px var(--rule)"></div>
+<div><span class="nm">papel</span><span class="fam">substrato · claro</span></div>
+<div class="fn">Substrato editorial padrão. Branco quente de papel de relatório — nunca #FFF.</div>
+<div class="hx">#F6F2E9</div><div class="rgb">246 · 242 · 233</div>
+<div><span class="ct no">1.0:1</span><span class="ct-t no">—</span></div>
+<div><span class="ct ok">16.7:1</span><span class="ct-t ok">texto</span></div></div>
+</div>
+
+<div class="sh"><span class="n">02</span><h2>Pareamento em uso</h2><div class="line"></div><p class="r eti">Três contextos. Mesmas três famílias tipográficas, três substratos.</p></div>
+
+<div class="par">
+<section>
+<div class="cap eti"><span>A · EDITORIAL</span><span>tinta / papel</span></div>
+<h3>O consumidor livre paga a conta de uma decisão que não tomou</h3>
+<p class="lede">Zilla Slab 600 em título, Work Sans 300 em olho, JetBrains Mono no dado. Substrato papel. Este é o registro padrão de publicação — nota técnica, carta, relatório.</p>
+<div class="fig"><span class="v" style="color:var(--brasa)">R$ 214,80</span><span class="u">/MWh · PLD SE/CO</span></div>
+<dl class="kv"><dt>Título</dt><dd>Zilla Slab 600 · 28/1.08</dd><dt>Olho</dt><dd>Work Sans 300 · 15/1.5</dd><dt>Dado</dt><dd>JetBrains Mono 500 · 38</dd></dl>
+</section>
+
+<section class="ink">
+<div class="cap eti"><span>B · PAINEL</span><span>papel / tinta</span></div>
+<h3>Curva de carga, submercado Sudeste/Centro-Oeste</h3>
+<p class="lede">Substrato tinta. O topo térmico da escala carrega o dado: intelligence e advisory só alcançam contraste de texto aqui. Registro de painel, terminal e série temporal.</p>
+<div class="fig"><span class="v" style="color:var(--intelligence)">68 412</span><span class="u">MW médios · amostra</span></div>
+<dl class="kv"><dt>Título</dt><dd>Zilla Slab 600 · 28/1.08</dd><dt>Dado quente</dt><dd>intelligence 11.6:1</dd><dt>Fio</dt><dd>#3A342B · 1px</dd></dl>
+</section>
+
+<section>
+<div class="cap eti"><span>C · FAMÍLIA</span><span>advisory / papel</span></div>
+<h3>Parecer independente sobre migração ao mercado livre</h3>
+<p class="lede">A família entra como fio, marca e preenchimento — não como texto. Sobre papel, advisory a 1.9:1 é sinal, nunca leitura. O texto permanece tinta.</p>
+<div class="fig" style="border-top-color:var(--advisory);border-top-width:2px"><span class="v" style="color:var(--tinta)">0 %</span><span class="u">da receita vem de comissão</span></div>
+<dl class="kv"><dt>Fio de acento</dt><dd>advisory · 2px</dd><dt>Texto</dt><dd>tinta 16.7:1</dd><dt>Preenchimento</dt><dd>advisory · 100 %</dd></dl>
+</section>
+</div>
+
+<div class="sh"><span class="n">03</span><h2>Escala tipográfica</h2><div class="line"></div><p class="r eti">Display e corpo. Nenhum passo decorativo — cada nível tem função.</p></div>
+
+<div class="tip" style="grid-template-columns:1fr">
+<div>
+<div class="tr"><span class="smp d1">Incandescência</span><span class="spec"><b>display-1</b>Zilla Slab 600<br>64 / 1.02 / −0.022em</span></div>
+<div class="tr"><span class="smp d2">Mercado livre de energia</span><span class="spec"><b>display-2</b>Zilla Slab 600<br>44 / 1.06 / −0.018em</span></div>
+<div class="tr"><span class="smp d3">Leitura do dado público</span><span class="spec"><b>display-3</b>Zilla Slab 500<br>32 / 1.10 / −0.014em</span></div>
+<div class="tr"><span class="smp d4">Submercado Sudeste/Centro-Oeste</span><span class="spec"><b>título</b>Zilla Slab 500<br>24 / 1.16 / −0.010em</span></div>
+<div class="tr" style="border-bottom:0"><span class="smp d5">Nota técnica · série histórica ONS</span><span class="spec"><b>título-2</b>Zilla Slab 500<br>19 / 1.24 / −0.006em</span></div>
+</div>
+</div>
+
+<div class="tip">
+<div>
+<div class="tr"><span class="smp b1">A receita não depende da conclusão entregue.</span><span class="spec"><b>lede</b>Work Sans 300<br>19 / 1.50 / −0.004em</span></div>
+<div class="tr"><span class="smp b2">Lê o dado público do setor e o torna legível.</span><span class="spec"><b>corpo</b>Work Sans 400<br>15 / 1.58</span></div>
+<div class="tr"><span class="smp b3">Não vende energia, não intermedia contrato.</span><span class="spec"><b>corpo-leve</b>Work Sans 300<br>15 / 1.58</span></div>
+<div class="tr"><span class="smp b4">Fonte: ONS · CCEE · ANEEL · EPE. Amostra ilustrativa.</span><span class="spec"><b>nota</b>Work Sans 400<br>13.5 / 1.52</span></div>
+<div class="tr" style="border-bottom:0"><span class="smp b5">Submercado · apuração mensal</span><span class="spec"><b>etiqueta</b>Work Sans 500<br>11 / 1.10 / +0.100em</span></div>
+</div>
+<div>
+<div class="tr"><span class="smp m1">214,80</span><span class="spec"><b>dado-1</b>Mono 500 · tnum<br>40 / 1.00 / −0.020em</span></div>
+<div class="tr"><span class="smp m2">68 412 MW</span><span class="spec"><b>dado-2</b>Mono 500 · tnum<br>26 / 1.05 / −0.014em</span></div>
+<div class="tr"><span class="smp m3">+11,4 % a.a.</span><span class="spec"><b>dado-3</b>Mono 400 · tnum<br>17 / 1.20</span></div>
+<div class="tr"><span class="smp m4">2026-08-04 · 14:30 BRT</span><span class="spec"><b>dado-4</b>Mono 400 · tnum<br>13 / 1.30</span></div>
+<div class="tr" style="border-bottom:0"><span class="smp m5" style="color:var(--text-muted)">CCEE · SE/CO · R$/MWh &nbsp;·&nbsp; 0123456789 · 1lI · 0O</span><span class="spec"><b>dado-5</b>Mono 500 · tnum<br>11 / 1.25 / +0.020em</span></div>
+</div>
+</div>
+
+<div class="sh"><span class="n">04</span><h2>Prova do dado tabular</h2><div class="line"></div><p class="r eti">Por que JetBrains Mono é obrigatório e não preferido.</p></div>
+
+<div class="tab">
+<div>
+<div class="hd eti"><span>JETBRAINS MONO · TABULAR</span><span class="ok">CORRETO</span></div>
+<table><thead><tr><th>Submercado</th><th class="r">PLD R$/MWh</th><th class="r">Carga MW</th></tr></thead><tbody>
+<tr><td class="z">Sudeste/Centro-Oeste</td><td class="r j">214,80</td><td class="r j">68 412</td></tr>
+<tr><td class="z">Sul</td><td class="r j">198,11</td><td class="r j">14 907</td></tr>
+<tr><td class="z">Nordeste</td><td class="r j">96,04</td><td class="r j">11 238</td></tr>
+<tr><td class="z">Norte</td><td class="r j">1 021,50</td><td class="r j">6 771</td></tr>
+</tbody></table>
+</div>
+<div>
+<div class="hd eti"><span>WORK SANS · PROPORCIONAL</span><span class="no">REJEITADO</span></div>
+<table><thead><tr><th>Submercado</th><th class="r">PLD R$/MWh</th><th class="r">Carga MW</th></tr></thead><tbody>
+<tr><td class="z">Sudeste/Centro-Oeste</td><td class="r p">214,80</td><td class="r p">68 412</td></tr>
+<tr><td class="z">Sul</td><td class="r p">198,11</td><td class="r p">14 907</td></tr>
+<tr><td class="z">Nordeste</td><td class="r p">96,04</td><td class="r p">11 238</td></tr>
+<tr><td class="z">Norte</td><td class="r p">1 021,50</td><td class="r p">6 771</td></tr>
+</tbody></table>
+</div>
+<div>
+<div class="hd eti"><span>VEREDITO</span><span>04 · a</span></div>
+<p class="verdict">O <b>1</b> proporcional é estreito: a coluna da direita perde o alinhamento de casa decimal e a vírgula deixa de formar eixo vertical. Em série histórica de 200 linhas o erro é cumulativo e a leitura de ordem de magnitude morre.</p>
+<p class="verdict" style="margin-top:10px">Regra: <b>todo número que aparece em coluna, série ou comparação usa JetBrains Mono com tabular-nums.</b> Número dentro de frase corrida pode permanecer em Work Sans.</p>
+<p class="verdict" style="margin-top:10px;color:var(--text-faint)">Separador decimal: vírgula. Separador de milhar: espaço fino. Amostra ilustrativa — não é dado de apuração.</p>
+</div>
+</div>
+
+<div class="sh"><span class="n">05</span><h2>As cinco famílias</h2><div class="line"></div><p class="r eti">A casa marca as cinco famílias, não os produtos. O produto herda a marca e se identifica pelo nome.</p></div>
+
+<div class="fams">
+<div><svg viewBox="0 0 100 100" aria-hidden="true" style="color:#F5C63C"><g stroke="currentColor" stroke-width="5.5" fill="none"><path d="M50 50 L58 18 M50 50 L82 58 M50 50 L42 82 M50 50 L18 42"></path><path d="M58 18 L82 58 M42 82 L18 42"></path></g><g fill="currentColor"><circle cx="58" cy="18" r="6.5"></circle><circle cx="82" cy="58" r="6.5"></circle><circle cx="42" cy="82" r="6.5"></circle><circle cx="18" cy="42" r="6.5"></circle><circle cx="50" cy="50" r="10"></circle></g></svg><span class="nm" style="color:#F5C63C">Intelligence</span><span class="hx">#F5C63C · 11.6:1</span><span class="ds">Leitura do mercado. Série, publicação, nota técnica.</span></div>
+<div><svg viewBox="0 0 100 100" aria-hidden="true" style="color:#E8A317"><g fill="none" stroke="currentColor" stroke-width="6.5" stroke-linecap="round"><path d="M14 22 L52 50"></path><path d="M14 50 L52 50"></path><path d="M14 78 L52 50"></path></g><circle cx="66" cy="50" r="14" fill="none" stroke="currentColor" stroke-width="6.5"></circle></svg><span class="nm" style="color:#E8A317">Advisory</span><span class="hx">#E8A317 · 8.6:1</span><span class="ds">Parecer e contraditório. Sem comissão, sem intermediação.</span></div>
+<div><svg viewBox="0 0 100 100" aria-hidden="true" style="color:#C17D1F"><g fill="none" stroke="currentColor" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 20 L14 50 L32 80"></path><path d="M68 20 L86 50 L68 80"></path></g><path d="M40 62 L40 38 L60 62 L60 38" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="miter"></path></svg><span class="nm" style="color:#C17D1F">Software</span><span class="hx">#C17D1F · 5.5:1</span><span class="ds">Produto instrumentado. API, painel, alerta.</span></div>
+<div><svg viewBox="0 0 100 100" aria-hidden="true" style="color:#A8432A"><g fill="none" stroke="currentColor" stroke-width="5.5" stroke-linejoin="miter" stroke-linecap="round"><path d="M14 86 L38 46"></path><path d="M86 86 L62 46"></path><path d="M24 70 L76 70"></path><path d="M38 46 L38 32"></path><path d="M62 46 L62 32"></path><path d="M38 32 L62 32"></path><path d="M38 32 L14 22"></path><path d="M62 32 L86 22"></path><path d="M50 32 L50 14"></path></g></svg><span class="nm" style="color:#A8432A">Academy</span><span class="hx">#A8432A · 3.1:1</span><span class="ds">Formação e certificação do time de energia.</span></div>
+<div><svg viewBox="0 0 100 100" aria-hidden="true" style="color:#B8481F"><g fill="none" stroke="currentColor" stroke-width="6.5" stroke-linecap="round"><path d="M50 14 L50 30"></path><path d="M18 30 L82 30"></path><path d="M34 44 L66 44"></path><path d="M18 58 L82 58"></path><path d="M34 72 L66 72"></path><path d="M50 72 L50 86"></path></g></svg><span class="nm" style="color:#B8481F">Hardware</span><span class="hx">#B8481F · 3.5:1</span><span class="ds">Medição em campo. Telemetria e ativo físico.</span></div>
+</div>
+
+<div class="foot">
+<div class="no-list eti"><span>azul</span><span>verde</span><span>verde-escuro + dourado</span><span>border-radius ≠ 0</span><span>box-shadow</span><span>gradiente decorativo</span><span>card dentro de card</span><span>chip pílula</span><span>glassmorphism</span><span>Inter</span><span>Helvetica</span><span>Geist</span><span>Playfair Display</span><span>Roboto Slab</span></div>
+<div class="rt eti"><div>NIVAR · SISTEMA DE DESIGN</div><div>CALIBRAGEM 01 · COR + TIPOGRAFIA</div><div>ESPAÇAMENTO ENTRE BLOCOS ≤ 32PX</div></div>
+</div>
+
+</body></html>

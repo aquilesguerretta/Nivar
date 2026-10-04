@@ -1,0 +1,741 @@
+{
+  "url": "https://ourworldindata.org/redesigning-our-interactive-data-visualizations#highlighting-the-data-sources",
+  "title": "Redesigning our interactive data visualizations | Our World in Data",
+  "text": "Our World\nin Data\nBrowse by topic\nData\nLatest\nResources\nAbout\nSubscribe\nDonate\nRedesigning our interactive data visualizations\nHow our data visualizations have changed, our plans to improve things further, and how you can help.\nBy Marwa Boukarim, Christian Swinehart, and Sophia Mersmann\nOctober 18, 2023\nBrowse past versions\nReuse our work freely\n\nOur mission at Our World in Data is to publish “research and data to make progress against the world’s largest problems.”\n\nTo achieve this, we are building a team with diverse skills and backgrounds. Our team’s researchers and data scientists bring together and explain the data and research. Designers and software developers build and maintain the online publication you are reading now.\n\nUsually, our researchers do the writing; in this article, we flip things around. Three product and engineering team members discuss our recent work on a major project: the redesign of our Grapher, the tool that displays our data in interactive visualizations.\n\nIn this article, we talk about the changes we’ve made, why we made them, our plans to improve things further, and how you can help.\n\nRedesigning our data visualization software\n\nMaintaining and improving the software that powers our interactive data visualizations is a significant part of our team’s work every month.\n\nHowever, the latest round of changes marks the outcome of a more substantial and concerted effort to rethink and improve the layout and functionality of our charts.\n\nThis is what the Grapher looked like before the redesign we launched today:\n\nDownload\n\nAnd this is what the same chart looks like in the now redesigned Grapher:\n\nThe updates fall into four categories:\n\nSelecting a view\nDownloading and sharing\nHighlighting the data sources\nEnabling full-screen data exploration\nSelecting a view\n\nMost of our graphics allow you to view the same dataset in multiple ways: as a chart, a color-coded map, and a spreadsheet-like table. To switch between these different views, you can click on the buttons in the upper left corner of the graphic:\n\nSwitching between the different views\n\nWithin each view, you can fine-tune how it is displayed and highlight specific entities within the dataset through the controls in its upper right corner. Each view’s controls are slightly different, containing just the settings relevant to what you’re currently looking at.\n\nChart views\n\nCharts allow you to narrow down the elements of a given dataset by selecting among their ‘entities’—frequently corresponding to countries, regions, and continents. Click on the Edit countries and regions button to open a menu allowing you to include additional countries or remove countries currently in the chart.\n\nChanging countries\n\nTo make changes to the style of the chart rather than its contents, click on the Settings button to open a menu with all the configurable options for the current chart. For instance, many charts allow you to split the data, presenting it as multiple discrete graphics rather than overlaying multiple lines on a single pair of axes. The Align axis scales switch toggles whether the y-axes on the charts are kept constant to allow for country-to-country comparisons or are zoomed to show the range of values in each country independently.\n\nUsing settings to switch to small multiples view\nTable views\n\nTables now have enhanced contrast between rows and more consistent alignment to improve their readability. Their rows can be re-sorted by clicking on the column headings, and include summary statistics when a range of years has been selected using the timeline slider. The switch in the upper right corner allows you to examine just the table rows that correspond to entities specified in the chart view.\n\nSwitching to the table view and customizing its presentation\nMap views\n\nMaps typically show the entire world by default but can be focused on particular regions using the menu in their upper right corner.\n\nClicking on a country on a map will take you to that specific country's chart view (when applicable).\n\nInteracting with the map view\nDownloading and sharing\n\nThe downloading and sharing options are in the bottom right corner. The download menu offers graphics (SVG or PNG files) and tabular data (CSV file). The sharing options include quick sharing of the chart on X/Twitter and Facebook, and provide an embed code to include interactive charts on your website.\n\nDownloading rendered charts and data\nBuilt for reuse\n\nReusability is at the core of our Grapher tool. All our interactive visualizations are free to use and can be embedded in your own website using the code snippet provided in the download menu. You can see this in action, for example, in this article by the charity GiveDirectly.\n\nAs with every other tool developed and used at Our World in Data, the Grapher is open-source. You can find all the code in a Github repository, published under the MIT license.\n\nSharing dynamic previews of our charts\n\nWhen you share a link to a Grapher chart on social media or messaging apps, we will show a preview thumbnail that shows the exact chart configuration.\n\nSo, for example, if you're looking at a chart of population growth in South Korea, you will also see a preview for South Korea. The same also works if you've selected a different tab, changed the timespan, selected multiple countries, etc.\n\nThese previews will appear on Twitter, Slack, Facebook, LinkedIn, WhatsApp, Signal, and many other platforms.\n\nDownload\nHighlighting the data sources\n\nOur World in Data brings together data published by a wide range of sources to make it more accessible and understandable. However, the data is only there thanks to the dedicated efforts of the statisticians, researchers, and institutions that produce it and make it available for reuse. For this to continue, these individuals and institutions must receive the recognition they need to continue their essential work.\n\nIn each of our visualizations, the source of the data is always displayed prominently. Clicking \"Learn more about this data\" shows an overlay with more in-depth information.\n\nFind out more information about the data\nEnabling full-screen data exploration\n\nFinally, the full-screen zoom button allows you to expand any chart to use your entire browser window, which is especially helpful for pages containing many smaller charts or getting a closer look at data in tables.\n\nSwitch to a fullscreen view\nSubscribe to our newsletters\n\nWe send two regular newsletters so you can stay up to date on our work and receive curated highlights from across Our World in Data.\n\nSubscribe\nWhat’s next?\n\nWe are already planning some new and improved features for the next release of Grapher. Upcoming improvements include a whole new country/entity selector, an optimized mobile experience, a new and improved Sources view, support for multiple chart types in a single Grapher, animated transitions, and much more.\n\nIn the meantime, we welcome any suggestions you might have as we strive to make our charts even more readable and configurable, empowering you to dig even deeper. You can leave us your feedback by clicking on the “Feedback” button in the bottom right corner of our website.\n\nIf you’re interested in talking to our design team on a 45- to 60-minute video call to discuss your experience using Our World in Data and how we might improve it, please fill out this form.\n\nOpening the feedback window\nReuse this work freely\n\nAll visualizations, data, and articles produced by Our World in Data are completely open access under the Creative Commons BY license. You have the permission to use, distribute, and reproduce these in any medium, provided the source and authors are credited.\n\nThe data produced by third parties and made available by Our World in Data is subject to the license terms from the original third-party authors. We will always indicate the original source of the data in our documentation, so you should always check the license of any such third-party data before use and redistribution.\n\nAll of our charts can be embedded in any site.\n\nOur World in Data is free and accessible for everyone.\n\nHelp us do this work by making a donation.\n\nDonate now\n\nOur World in Data is a project of Global Change Data Lab, a nonprofit based in the UK (Reg. Charity No. 1186433). Our charts, articles, and data are licensed under CC BY, unless stated otherwise. The source code for our tools and software is made publicly available for transparency and educational reference under a custom license. Re-use requires permission. Third-party materials, including some charts and data, are subject to third-party licenses. See our FAQs for more details.\n\nEXPLORE\nTopics\nData\nData Insights\nRESOURCES\nLatest\nSDG Tracker\nTeaching with OWID\nABOUT\nAbout us\nOrganization\nFunding\nTeam\nJobs\nFAQs\nRSS FEEDS\nResearch & Writing\nData Insights\nFOLLOW US\nPrivacy policy\nCookie notice\nLegal disclaimer\nGrapher license\nSend feedback",
+  "links": [
+    {
+      "text": "Our World\nin Data",
+      "href": "https://ourworldindata.org/"
+    },
+    {
+      "text": "",
+      "href": "https://www.oxfordmartin.ox.ac.uk/global-development"
+    },
+    {
+      "text": "",
+      "href": "https://www.ox.ac.uk/"
+    },
+    {
+      "text": "",
+      "href": "https://global-change-data-lab.org/"
+    },
+    {
+      "text": "Data",
+      "href": "https://ourworldindata.org/search"
+    },
+    {
+      "text": "Latest",
+      "href": "https://ourworldindata.org/latest"
+    },
+    {
+      "text": "Donate",
+      "href": "https://ourworldindata.org/donate"
+    },
+    {
+      "text": "Marwa Boukarim",
+      "href": "https://ourworldindata.org/team#marwa-boukarim"
+    },
+    {
+      "text": "Christian Swinehart",
+      "href": "https://ourworldindata.org/team#christian-swinehart"
+    },
+    {
+      "text": "Sophia Mersmann",
+      "href": "https://ourworldindata.org/team#sophia-mersmann"
+    },
+    {
+      "text": "Reuse our work freely",
+      "href": "https://ourworldindata.org/redesigning-our-interactive-data-visualizations#article-licence"
+    },
+    {
+      "text": "building a team",
+      "href": "https://ourworldindata.org/jobs"
+    },
+    {
+      "text": "",
+      "href": "https://ourworldindata.org/redesigning-our-interactive-data-visualizations#redesigning-our-data-visualization-software"
+    },
+    {
+      "text": "",
+      "href": "https://ourworldindata.org/redesigning-our-interactive-data-visualizations#selecting-a-view"
+    },
+    {
+      "text": "",
+      "href": "https://ourworldindata.org/redesigning-our-interactive-data-visualizations#chart-views"
+    },
+    {
+      "text": "",
+      "href": "https://ourworldindata.org/redesigning-our-interactive-data-visualizations#table-views"
+    },
+    {
+      "text": "",
+      "href": "https://ourworldindata.org/redesigning-our-interactive-data-visualizations#map-views"
+    },
+    {
+      "text": "",
+      "href": "https://ourworldindata.org/redesigning-our-interactive-data-visualizations#downloading-and-sharing"
+    },
+    {
+      "text": "",
+      "href": "https://ourworldindata.org/redesigning-our-interactive-data-visualizations#built-for-reuse"
+    },
+    {
+      "text": "this article",
+      "href": "https://www.givedirectly.org/extreme-poverty-2023/"
+    },
+    {
+      "text": "Github repository",
+      "href": "https://github.com/owid/owid-grapher"
+    },
+    {
+      "text": "",
+      "href": "https://ourworldindata.org/redesigning-our-interactive-data-visualizations#sharing-dynamic-previews-of-our-charts"
+    },
+    {
+      "text": "",
+      "href": "https://ourworldindata.org/redesigning-our-interactive-data-visualizations#highlighting-the-data-sources"
+    },
+    {
+      "text": "",
+      "href": "https://ourworldindata.org/redesigning-our-interactive-data-visualizations#enabling-full-screen-data-exploration"
+    },
+    {
+      "text": "Subscribe",
+      "href": "https://ourworldindata.org/subscribe"
+    },
+    {
+      "text": "",
+      "href": "https://ourworldindata.org/redesigning-our-interactive-data-visualizations#what-s-next"
+    },
+    {
+      "text": "fill out this form",
+      "href": "https://forms.gle/i1JZwvXxTE2bYxUm9"
+    },
+    {
+      "text": "Creative Commons BY license",
+      "href": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "text": "our charts can be embedded",
+      "href": "https://ourworldindata.org/faqs#how-can-i-embed-one-of-your-interactive-charts-in-my-website"
+    },
+    {
+      "text": "FAQs",
+      "href": "https://ourworldindata.org/faqs"
+    },
+    {
+      "text": "Donate now",
+      "href": "https://ourworldindata.org/donate"
+    },
+    {
+      "text": "Global Change Data Lab",
+      "href": "https://global-change-data-lab.org/"
+    },
+    {
+      "text": "CC BY",
+      "href": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "text": "custom license",
+      "href": "https://github.com/owid/owid-grapher/blob/master/LICENSE.md"
+    },
+    {
+      "text": "FAQs",
+      "href": "https://ourworldindata.org/faqs"
+    },
+    {
+      "text": "",
+      "href": "https://www.oxfordmartin.ox.ac.uk/global-development"
+    },
+    {
+      "text": "",
+      "href": "https://www.ox.ac.uk/"
+    },
+    {
+      "text": "",
+      "href": "https://global-change-data-lab.org/"
+    },
+    {
+      "text": "",
+      "href": "https://www.ycombinator.com/"
+    },
+    {
+      "text": "Topics",
+      "href": "https://ourworldindata.org/#all-topics"
+    },
+    {
+      "text": "Data",
+      "href": "https://ourworldindata.org/search"
+    },
+    {
+      "text": "Data Insights",
+      "href": "https://ourworldindata.org/latest?type=data-insight"
+    },
+    {
+      "text": "Latest",
+      "href": "https://ourworldindata.org/latest"
+    },
+    {
+      "text": "SDG Tracker",
+      "href": "https://ourworldindata.org/sdgs"
+    },
+    {
+      "text": "Teaching with OWID",
+      "href": "https://ourworldindata.org/teaching"
+    },
+    {
+      "text": "About us",
+      "href": "https://ourworldindata.org/about"
+    },
+    {
+      "text": "Organization",
+      "href": "https://ourworldindata.org/organization"
+    },
+    {
+      "text": "Funding",
+      "href": "https://ourworldindata.org/funding"
+    },
+    {
+      "text": "Team",
+      "href": "https://ourworldindata.org/team"
+    },
+    {
+      "text": "Jobs",
+      "href": "https://ourworldindata.org/jobs"
+    },
+    {
+      "text": "FAQs",
+      "href": "https://ourworldindata.org/faqs"
+    },
+    {
+      "text": "Research & Writing",
+      "href": "https://ourworldindata.org/atom.xml"
+    },
+    {
+      "text": "Data Insights",
+      "href": "https://ourworldindata.org/atom-data-insights.xml"
+    },
+    {
+      "text": "",
+      "href": "https://x.com/ourworldindata"
+    },
+    {
+      "text": "",
+      "href": "https://www.instagram.com/ourworldindata/"
+    },
+    {
+      "text": "",
+      "href": "https://www.threads.net/@ourworldindata"
+    },
+    {
+      "text": "",
+      "href": "https://facebook.com/ourworldindata"
+    },
+    {
+      "text": "",
+      "href": "https://www.linkedin.com/company/ourworldindata"
+    },
+    {
+      "text": "",
+      "href": "https://bsky.app/profile/ourworldindata.org"
+    },
+    {
+      "text": "",
+      "href": "https://github.com/owid"
+    },
+    {
+      "text": "",
+      "href": "https://ourworldindata.org/subscribe"
+    },
+    {
+      "text": "Privacy policy",
+      "href": "https://ourworldindata.org/privacy-policy"
+    },
+    {
+      "text": "Cookie notice",
+      "href": "https://ourworldindata.org/cookie-notice"
+    },
+    {
+      "text": "Legal disclaimer",
+      "href": "https://ourworldindata.org/organization#legal-disclaimer"
+    },
+    {
+      "text": "Grapher license",
+      "href": "https://github.com/owid/owid-grapher/blob/master/LICENSE.md"
+    },
+    {
+      "text": "Send feedback",
+      "href": "https://ourworldindata.org/feedback"
+    },
+    {
+      "text": "donations",
+      "href": "https://ourworldindata.org/donate"
+    },
+    {
+      "text": "Privacy Policy",
+      "href": "https://ourworldindata.org/privacy-policy"
+    },
+    {
+      "text": "manage your cookie settings",
+      "href": "https://ourworldindata.org/cookie-notice#cookie-preferences"
+    }
+  ],
+  "buttons": [
+    {
+      "text": "",
+      "label": "Toggle menu"
+    },
+    {
+      "text": "Browse by topic",
+      "label": "Toggle topics menu"
+    },
+    {
+      "text": "Resources",
+      "label": "Toggle resources menu"
+    },
+    {
+      "text": "About",
+      "label": "Toggle about menu"
+    },
+    {
+      "text": "",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": null
+    },
+    {
+      "text": "Subscribe",
+      "label": "Toggle subscribe menu"
+    },
+    {
+      "text": "Browse past versions",
+      "label": null
+    },
+    {
+      "text": "Download",
+      "label": "Download"
+    },
+    {
+      "text": "Download",
+      "label": "Download"
+    },
+    {
+      "text": "",
+      "label": "Subscribe"
+    },
+    {
+      "text": "Send message",
+      "label": "Submit feedback"
+    },
+    {
+      "text": "",
+      "label": "Feedback"
+    },
+    {
+      "text": "Reject optional cookies",
+      "label": null
+    },
+    {
+      "text": "Accept optional cookies",
+      "label": null
+    }
+  ],
+  "media": [
+    {
+      "tag": "IMG",
+      "src": "https://ourworldindata.org/oms-logo.svg",
+      "alt": "Oxford Martin School logo",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    },
+    {
+      "tag": "IMG",
+      "src": "https://ourworldindata.org/oxford-logo.svg",
+      "alt": "University of Oxford logo",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    },
+    {
+      "tag": "IMG",
+      "src": "https://ourworldindata.org/gcdl-logo.svg",
+      "alt": "Global Change Data Lab logo",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      }
+    },
+    {
+      "tag": "IMG",
+      "src": "https://ourworldindata.org/cdn-cgi/imagedelivery/qLq-8BTgXU8yG0N6HnOy8g/ebc90764-e78f-40f7-1712-f57d48fa1900/w=1250",
+      "alt": "A screenshot of our data visualization tool, \"Grapher\", before the redesign in October 2023",
+      "rect": {
+        "x": 289.875,
+        "y": -8290,
+        "w": 845.25,
+        "h": 596.40625
+      }
+    },
+    {
+      "tag": "VIDEO",
+      "src": "https://assets.ourworldindata.org/videos/1_Video_ContentSwitcher.mp4",
+      "rect": {
+        "x": 291.9375,
+        "y": -6524.6875,
+        "w": 841.109375,
+        "h": 600
+      },
+      "paused": true,
+      "time": 0
+    },
+    {
+      "tag": "VIDEO",
+      "src": "https://assets.ourworldindata.org/videos/2_Video_EditCountriesAndRegions.mp4",
+      "rect": {
+        "x": 290.9375,
+        "y": -5467.09375,
+        "w": 843.109375,
+        "h": 600
+      },
+      "paused": true,
+      "time": 0
+    },
+    {
+      "tag": "VIDEO",
+      "src": "https://assets.ourworldindata.org/videos/3_Video_Settings.mp4",
+      "rect": {
+        "x": 336.5,
+        "y": -4553.265625,
+        "w": 752,
+        "h": 594
+      },
+      "paused": true,
+      "time": 0
+    },
+    {
+      "tag": "VIDEO",
+      "src": "https://assets.ourworldindata.org/videos/4_Video_Table.mp4",
+      "rect": {
+        "x": 291.9375,
+        "y": -3601.34375,
+        "w": 841.109375,
+        "h": 600
+      },
+      "paused": true,
+      "time": 0
+    },
+    {
+      "tag": "VIDEO",
+      "src": "https://assets.ourworldindata.org/videos/5_Video_Map.mp4",
+      "rect": {
+        "x": 291.9375,
+        "y": -2683.203125,
+        "w": 841.109375,
+        "h": 600
+      },
+      "paused": true,
+      "time": 0
+    },
+    {
+      "tag": "VIDEO",
+      "src": "https://assets.ourworldindata.org/videos/6_Video_DownloadAndShare.mp4",
+      "rect": {
+        "x": 335.5,
+        "y": -1745.15625,
+        "w": 754,
+        "h": 592
+      },
+      "paused": true,
+      "time": 0
+    },
+    {
+      "tag": "IMG",
+      "src": "https://ourworldindata.org/cdn-cgi/imagedelivery/qLq-8BTgXU8yG0N6HnOy8g/4495586d-8ab1-463a-ed70-ce1d56b4c100/w=598",
+      "alt": "Shown is the social media card preview that is now shown when you share a chart on a social network",
+      "rect": {
+        "x": 398.53125,
+        "y": -424.234375,
+        "w": 627.9375,
+        "h": 375.921875
+      }
+    },
+    {
+      "tag": "VIDEO",
+      "src": "https://assets.ourworldindata.org/videos/7_Video_Sources.mp4",
+      "rect": {
+        "x": 290.953125,
+        "y": 378.703125,
+        "w": 843.078125,
+        "h": 600
+      },
+      "paused": false,
+      "time": 4.071984
+    },
+    {
+      "tag": "VIDEO",
+      "src": "https://assets.ourworldindata.org/videos/8_Video_FullScreen.mp4",
+      "rect": {
+        "x": 289.890625,
+        "y": 1260.96875,
+        "w": 845.21875,
+        "h": 455.796875
+      },
+      "paused": true,
+      "time": 0
+    },
+    {
+      "tag": "VIDEO",
+      "src": "https://assets.ourworldindata.org/videos/9_Video_Feedback.mp4",
+      "rect": {
+        "x": 289.875,
+        "y": 2432.046875,
+        "w": 845.234375,
+        "h": 497.75
+      },
+      "paused": true,
+      "time": 0
+    },
+    {
+      "tag": "IMG",
+      "src": "https://ourworldindata.org/owid-logo.svg",
+      "alt": "Our World in Data logo",
+      "rect": {
+        "x": 660.5,
+        "y": 3048.390625,
+        "w": 104,
+        "h": 57
+      }
+    },
+    {
+      "tag": "IMG",
+      "src": "https://ourworldindata.org/oms-logo.svg",
+      "alt": "Oxford Martin School logo",
+      "rect": {
+        "x": 72.5625,
+        "y": 3672.25,
+        "w": 59.640625,
+        "h": 64
+      }
+    },
+    {
+      "tag": "IMG",
+      "src": "https://ourworldindata.org/oxford-logo.svg",
+      "alt": "University of Oxford logo",
+      "rect": {
+        "x": 140.203125,
+        "y": 3672.25,
+        "w": 59.640625,
+        "h": 64
+      }
+    },
+    {
+      "tag": "IMG",
+      "src": "https://ourworldindata.org/gcdl-logo.svg",
+      "alt": "Global Change Data Lab logo",
+      "rect": {
+        "x": 207.84375,
+        "y": 3672.25,
+        "w": 49.703125,
+        "h": 64
+      }
+    },
+    {
+      "tag": "IMG",
+      "src": "https://ourworldindata.org/yc-logo.svg",
+      "alt": "Y Combinator logo",
+      "rect": {
+        "x": 72.5625,
+        "y": 3744.25,
+        "w": 123,
+        "h": 30
+      }
+    }
+  ],
+  "controls": [
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "DIV",
+      "role": "combobox",
+      "label": null,
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "FORM",
+      "role": "search",
+      "label": null,
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "INPUT",
+      "role": null,
+      "label": null,
+      "id": "autocomplete-1-input",
+      "text": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "DIV",
+      "role": "status",
+      "label": null,
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "INPUT",
+      "role": null,
+      "label": null,
+      "id": "feedback.name",
+      "text": ""
+    },
+    {
+      "tag": "INPUT",
+      "role": null,
+      "label": null,
+      "id": "feedback.email",
+      "text": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    },
+    {
+      "tag": "svg",
+      "role": "img",
+      "label": null,
+      "id": ""
+    }
+  ]
+}

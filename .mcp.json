@@ -1,10 +1,16 @@
 {
   "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/schemas/mcp.json",
-  "_": "CONDUIT Wave 4 — per-project MCP server registry. Read automatically by Claude Code when this repo is open. The Playwright MCP exposes playwright_screenshot, playwright_navigate, and other browser-automation tools that any agent can invoke for visual feedback. See .claude/commands/screenshot-loop.md.",
+  "_": "Per-project MCP server registry. Read automatically by Claude Code when this repo is open. Playwright MCP — visual feedback / screenshot loop (CONDUIT Wave 4). gridalpha-tokens MCP — tokens_search / primitive_lookup / figma_reference_lookup over src/design/tokens.ts (ARCHITECT Wave 6, wired CHROMA Wave 5.2). The gridalpha-tokens command path is absolute and machine-specific; other contributors should follow tools/gridalpha-tokens-mcp/CONFIGURATION.md to wire their own venv (or override in ~/.claude.json).",
   "mcpServers": {
     "playwright": {
       "command": "npx",
       "args": ["-y", "@playwright/mcp@latest"]
+    },
+    "gridalpha-tokens": {
+      "command": "C:/Users/aquil/OneDrive - The Pennsylvania State University/Desktop/GridAlpha v2/tools/gridalpha-tokens-mcp/.venv/Scripts/python.exe",
+      "args": [
+        "C:/Users/aquil/OneDrive - The Pennsylvania State University/Desktop/GridAlpha v2/tools/gridalpha-tokens-mcp/server.py"
+      ]
     }
   }
 }

@@ -1,0 +1,13 @@
+# Craft review — transmission and return to inquiry
+
+**PASS** for this piece against the seven observable mechanisms in `bar.md`, within the sampling limits below.
+
+The transmission card makes the revised interpretation inspectable: “Tendência não demonstrada” is the dominant reading, supported by 68 → 108 MW, coverage of four of six intervals, and an explicit invitation to new evidence. EV-001 and the fixed source, unit, and period strip preserve the record's identity. Its structure reads as a published method note rather than ornamental UI. The inquiry chapter then exposes the same six intervals, keeping 08 h and 16 h visibly unresolved while asking what remains to measure. This carries the contradiction into the next question rather than discarding it for a brand-only end card.
+
+The desktop and mobile loop-seam samples preserve EV-001 and 68 MW throughout the return to measurement. The inquiry text and interval table leave before the infrastructure photograph and measurement relation enter; there is no observed collision, clipped text, or competing outgoing/incoming question. The source annotation stays fixed while the record changes position and size. The neutral stage, limited accent, and consistent ruled document form transfer the reference mechanisms without copying the reference object or interface.
+
+At 390 px, the note, open-interval table, and measurement relation form deliberate vertical compositions. Text remains legible, the evidence object stays complete, and the active chapter statement follows directly below it. In the settled views, the main note or measurement dominates before the metadata.
+
+Evidence inspected: `bar.md`; all four cited reference PNGs; the supplied desktop/mobile settled chapter 5 and 6 screenshots; `motion-runtime/frame-00.png` through `frame-13.png`; every supplied desktop and mobile seam sample from 2850 through 4050; and the seam capture's actual elapsed times in `motion-seam/results.json`. No application code, previous criticism, or builder rationale was read.
+
+**Evidence limit:** this is a frame-sequence review, not a continuous 60 fps playback certification. The 1.5-second runtime samples show brief transition states with an empty ruled card at the entries into transmission and inquiry, while the record identity and source strip remain visible. They do not establish the duration or smoothness of those intermediate states. The denser seam samples directly support the observed clean return on both viewport sizes, but cannot certify every intervening frame. Controls, reduced motion, and precise end-to-end cadence need separate behavioral verification; this verdict does not certify them.

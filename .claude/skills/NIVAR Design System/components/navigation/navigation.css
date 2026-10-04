@@ -1,0 +1,35 @@
+.nv-nav{display:flex;flex-wrap:wrap;gap:20px;align-items:baseline}
+.nv-nav__item{font-family:var(--font-body);font-weight:400;font-size:13.5px;line-height:1.2;letter-spacing:.01em;color:var(--text-muted);background:none;border:0;border-bottom:2px solid transparent;padding:0 0 5px;cursor:pointer;text-decoration:none;transition:color var(--dur-hover) var(--ease),border-color var(--dur-hover) var(--ease)}
+.nv-nav__item:hover,.nv-nav__item--is-hover{color:var(--fg-hover);border-bottom-color:var(--fio-hover)}
+.nv-nav__item--ativo,.nv-nav__item[aria-current=page]{color:var(--text-strong);font-weight:500;border-bottom-color:var(--accent-house)}
+.nv-nav__item:focus-visible{outline:2px solid var(--accent-focus);outline-offset:3px}
+
+.nv-mig{display:flex;flex-wrap:wrap;align-items:baseline;gap:7px;font-family:var(--font-data);font-weight:400;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint)}
+.nv-mig a{color:var(--text-muted);border-bottom:0;text-decoration:none;transition:color var(--dur-hover) var(--ease)}
+.nv-mig a:hover{color:var(--fg-hover)}
+.nv-mig__sep{color:var(--rule-strong)}
+.nv-mig__atual{color:var(--text-strong);font-weight:500}
+
+.nv-pag{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding-top:9px;border-top:var(--fio) solid var(--rule)}
+.nv-pag__faixa{font-family:var(--font-data);font-weight:400;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);font-variant-numeric:tabular-nums lining-nums}
+.nv-pag__faixa b{color:var(--text-strong);font-weight:500}
+.nv-pag__ctrl{display:flex;align-items:baseline;gap:14px}
+.nv-pag__n{font-family:var(--font-data);font-weight:400;font-size:11.5px;line-height:1.2;font-variant-numeric:tabular-nums;color:var(--text-muted);background:none;border:0;border-bottom:1px solid transparent;padding:0 0 3px;cursor:pointer;transition:color var(--dur-hover) var(--ease),border-color var(--dur-hover) var(--ease)}
+.nv-pag__n:hover:not(:disabled){color:var(--fg-hover);border-bottom-color:var(--fio-hover)}
+.nv-pag__n--ativo{color:var(--text-strong);font-weight:500;border-bottom-color:var(--accent-house)}
+.nv-pag__n:disabled{opacity:.4;cursor:not-allowed}
+.nv-pag__n:focus-visible{outline:2px solid var(--accent-focus);outline-offset:3px}
+.nv-pag__elipse{font-family:var(--font-data);font-size:11.5px;color:var(--rule-strong)}
+
+.nv-modo{display:flex;align-items:baseline;gap:8px}
+.nv-modo__op{font-family:var(--font-data);font-weight:400;font-size:11px;line-height:1.2;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);background:none;border:0;border-bottom:1px solid transparent;padding:0 0 3px;cursor:pointer;transition:color var(--dur-estado) var(--ease),border-color var(--dur-estado) var(--ease)}
+.nv-modo__op:hover{color:var(--fg-hover)}
+.nv-modo__op--ativo{color:var(--text-strong);font-weight:500;border-bottom-color:var(--accent-house)}
+.nv-modo__op:focus-visible{outline:2px solid var(--accent-focus);outline-offset:3px}
+.nv-modo__sep{font-family:var(--font-data);font-size:11px;color:var(--rule-strong)}
+
+/* LINK DE PULAR PARA O CONTEUDO — primeiro elemento navegavel da pagina. Fora da viewport por
+   posicao (nao por opacidade nem display), para continuar na ordem de tabulacao. */
+.nv-pular{position:absolute;top:0;left:0;z-index:100;transform:translateY(-140%);padding:9px 14px;background:var(--surface-page);border:var(--fio) solid var(--rule-heavy);border-radius:0;font-family:var(--font-body);font-weight:500;font-size:13px;line-height:1.2;color:var(--text-strong);text-decoration:none}
+.nv-pular:focus,.nv-pular:focus-visible,.nv-pular--visivel{transform:translateY(0);outline:var(--fio-forte) solid var(--accent-focus);outline-offset:2px}
+.nv-pular--visivel{position:relative;display:inline-block}

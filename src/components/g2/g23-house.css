@@ -1,0 +1,41 @@
+/* G2.3 · A parent identity, five behaviours. Scoped to the NIVAR shell. */
+.g2 .g23-masthead{position:sticky;top:0;z-index:30;isolation:isolate;background:color-mix(in srgb,var(--g2-paper) 94%,transparent);backdrop-filter:blur(22px);border-top:2px solid var(--g2-ink);transition:background .3s ease}
+.g2[data-scrolled=true] .g23-masthead{background:color-mix(in srgb,var(--g2-paper) 98%,transparent)}
+.g2 .g23-masthead:before{content:"";position:absolute;inset:0;z-index:-1;background:url('/g2/g21/mineral-paper.webp') center/600px;opacity:.06;pointer-events:none}
+.g2 .g23-masthead .g2-header{position:relative;top:auto;height:86px;background:transparent;backdrop-filter:none;border-bottom:0;gap:24px}
+.g2 .g23-masthead .g2-brand{gap:24px}.g2 .g23-masthead .g2-brand>span{font-size:8px;letter-spacing:.11em;line-height:1.7;padding-left:23px}
+.g2 .g23-masthead .g2-wordmark{transition:opacity .2s}.g2 .g23-masthead .g2-brand:hover .g2-wordmark{opacity:.74}
+.g2 .g23-masthead .g2-desktop-nav{gap:23px}.g2 .g23-masthead .g2-desktop-nav>a{font-size:12px}
+.g2 .g23-masthead .g2-desktop-nav>a:after{bottom:15px;height:1px;background:var(--g2-oxide)}
+.g2 .g23-masthead .g2-icon-button{min-width:44px;min-height:44px}.g2 .g23-masthead .g2-account-link{font-size:12px}
+.g2 .g23-context-rail{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:33px;padding:0 56px;border-block:1px solid var(--g2-rule);font:9px/1.6 var(--g2-mono);color:var(--g2-secondary)}
+.g2 .g23-context-rail>span:first-child{display:flex;align-items:center;gap:12px;min-width:220px}.g2 .g23-context-rail b{color:var(--g2-ink);font-weight:500;letter-spacing:.08em}.g2 .g23-context-rail i{display:block;width:20px;height:1px;background:var(--g2-oxide)}
+.g2 .g23-context-rail>div{display:flex;gap:26px}.g2 .g23-context-rail a{display:flex;align-items:center;gap:8px;min-height:32px}.g2 .g23-context-rail a:hover{color:var(--g2-ink)}
+.g2 .g23-masthead .g2-mobile-nav{position:absolute;top:100%;left:0;right:0;max-height:calc(100dvh - 110px);overflow:auto;overscroll-behavior:contain;border-bottom:1px solid var(--g2-ink)}
+.g2 .g23-family-index{display:inline-flex;align-items:center;justify-content:center;flex:none;font:500 12px/1 var(--g2-mono);font-variant-numeric:tabular-nums;letter-spacing:.04em;color:var(--g2-secondary);border-block:1px solid var(--g2-rule);padding:7px 2px;min-width:25px}
+.g2 .g23-footer{position:relative;padding:64px 0 0;border-top:1px solid var(--g2-rule);background:var(--g2-soft);color:var(--g2-ink)}
+.g2 .g23-footer-heading{display:flex;justify-content:space-between;align-items:end;gap:32px;padding-bottom:42px;border-bottom:1px solid var(--g2-rule)}
+.g2 .g23-footer-heading p{font:23px/1.35 var(--g2-serif);letter-spacing:-.03em;max-width:35ch}
+.g2 .g23-footer-index{display:grid;grid-template-columns:1fr 1.15fr 1.4fr 1fr;gap:42px;padding:36px 0 46px}
+.g2 .g23-footer-index>div{display:flex;flex-direction:column;align-items:stretch}.g2 .g23-footer-index>div>span{font:9px/1.6 var(--g2-mono);letter-spacing:.07em;color:var(--g2-secondary);margin-bottom:17px}
+.g2 .g23-footer-index a{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:39px;font-size:12px;border-bottom:1px solid transparent;line-height:1.45}.g2 .g23-footer-index a svg{opacity:.45;flex:none}.g2 .g23-footer-index a:hover{border-bottom-color:var(--g2-rule);color:var(--g2-oxide)}
+.g2 .g23-footer-index small,.g2 .g23-footer-index p{font:10px/1.7 var(--g2-sans);color:var(--g2-secondary);max-width:28ch;margin-top:16px}
+.g2 .g23-footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:75px;border-top:1px solid var(--g2-rule);font:9px/1.7 var(--g2-mono);color:var(--g2-secondary)}.g2 .g23-footer-bottom em{font:italic 21px var(--g2-serif);color:var(--g2-ink)}
+@media(max-width:1200px){.g2 .g23-masthead .g2-header{padding-inline:32px}.g2 .g23-masthead .g2-brand>span{display:none}.g2 .g23-context-rail{padding-inline:32px}.g2 .g23-footer-index{gap:28px}}
+@media(max-width:900px){.g2 .g23-masthead .g2-header{height:74px}.g2 .g23-masthead .g2-desktop-nav{display:none}.g2 .g23-masthead .g2-mobile-menu{display:inline-flex}.g2 .g23-rail-principle{display:none}.g2 .g23-footer-index{grid-template-columns:1fr 1fr;gap:36px 48px}.g2 .g23-masthead .g2-mode{display:inline-flex}}
+@media(max-width:600px){.g2 .g23-masthead .g2-header{height:66px;padding-inline:20px;gap:12px}.g2 .g23-masthead .g2-brand .g2-wordmark{height:25px;width:104px}.g2 .g23-masthead .g2-header-actions{gap:0}.g2 .g23-masthead .g2-account-link{display:none}.g2 .g23-context-rail{padding-inline:20px;font-size:8px;gap:12px}.g2 .g23-context-rail>span:first-child{min-width:0;gap:8px}.g2 .g23-context-rail>div>a:first-child{display:none}.g2 .g23-footer{padding-top:39px}.g2 .g23-footer-heading{display:block;padding-bottom:28px}.g2 .g23-footer-heading>.g2-wordmark{height:36px;width:150px}.g2 .g23-footer-heading p{margin-top:24px;font-size:21px}.g2 .g23-footer-index{grid-template-columns:1fr 1fr;gap:30px 24px;padding-block:28px}.g2 .g23-footer-index a{font-size:11px;min-height:44px}.g2 .g23-footer-index>div>span{font-size:8px;margin-bottom:10px}.g2 .g23-footer-bottom{padding-block:22px;flex-wrap:wrap;gap:13px}.g2 .g23-footer-bottom>span:nth-child(2){margin-left:auto}.g2 .g23-footer-bottom em{width:100%;font-size:20px}}
+@media(prefers-reduced-motion:reduce){.g2 .g23-masthead,.g2 .g23-masthead *{transition:none!important}.g2-shell{scroll-behavior:auto}}
+.g2-shell [id]{scroll-margin-top:135px}
+@media(max-width:900px){.g2-shell [id]{scroll-margin-top:110px}}
+.g21-house-collage>.g23-copper-study{position:absolute;inset:0;aspect-ratio:auto;height:100%}
+.g21-house-chapter[data-family=hardware] .g21-house-verb{bottom:75px}
+.g21-house-chapter[data-family=hardware] .g21-house-portrait{pointer-events:none;bottom:45px}
+.g21-house-chapter[data-family=hardware] .g21-house-photo-credit{display:none}
+/* Review correction: source, status and navigation are information, not texture. */
+.g2 .g23-masthead .g2-brand>span{font-size:9px}
+.g2 .g23-context-rail{font-size:10px;min-height:40px}
+.g2 .g23-context-rail a{min-height:38px}
+.g2 .g23-footer-index>div>span,.g2 .g23-footer-bottom{font-size:10px}
+.g2 .g23-footer-index small,.g2 .g23-footer-index p{font-size:12px}
+.g2 .g22-finale-aperture-head,.g2 .g22-finale-origin>span,.g2 .g23-finale-samples button span{font-size:10px}
+@media(max-width:600px){.g2 .g23-context-rail{font-size:9px}.g2 .g23-footer-index>div>span{font-size:9px}.g2 .g23-footer-index a{font-size:12px}.g2 .g22-finale-aperture-head{font-size:9px}}

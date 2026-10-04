@@ -1,17 +1,16 @@
 // FORGE Wave 4 — V2 backend fetch wrapper.
-// Single point of entry for every canonical-envelope endpoint. Reads
-// `VITE_BACKEND_URL` from Vite env, falls back to the Railway prod
-// service. Validates the canonical envelope shape so callers never have
-// to defensively check `meta`/`data` themselves.
+// Single point of entry for every canonical-envelope endpoint. Browser
+// requests stay same-origin; Vercel/Vite proxy `/api/*` to the backend.
+// Validates the canonical envelope shape so callers never have to
+// defensively check `meta`/`data` themselves.
 
+import { BROWSER_API_BASE, browserApiUrl } from '@/lib/backendBase';
 import type { ApiEnvelope } from '@/lib/types/api';
 
 // ─── Configuration ────────────────────────────────────────────────
 
-/** Resolved base URL for the V2 backend. */
-export const BASE_URL: string =
-  (import.meta.env.VITE_BACKEND_URL as string | undefined) ??
-  'https://gridalpha-v2-production.up.railway.app';
+/** Empty by design: existing URL builders therefore produce `/api/...`. */
+export const BASE_URL = BROWSER_API_BASE;
 
 /**
  * Global mock-mode toggle. When `true`, hooks bypass real fetches and
@@ -66,14 +65,14 @@ export interface FetchEnvelopeOptions {
 /**
  * Fetch a canonical-envelope JSON response and validate its shape.
  *
- * @param path  Path relative to BASE_URL, e.g. '/api/lmp/current?zone=WEST_HUB'
+ * @param path  Same-origin API path, e.g. '/api/lmp/current?zone=WEST_HUB'
  * @throws ApiError on non-2xx status or invalid envelope.
  */
 export async function fetchEnvelope<TData>(
   path: string,
   options: FetchEnvelopeOptions = {},
 ): Promise<ApiEnvelope<TData>> {
-  const url = `${BASE_URL}${path}`;
+  const url = browserApiUrl(path);
   let res: Response;
   try {
     res = await fetch(url, {

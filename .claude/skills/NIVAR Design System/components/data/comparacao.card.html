@@ -1,0 +1,68 @@
+<!-- @dsCard group="Components" viewport="1060x1580" name="Comparação e tendência inline" subtitle="Colunas espelhadas com divisor central de fio · indicador de direção em uma linha de texto" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Comparação e tendência</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:1060px;overflow:hidden}.g{display:grid;grid-template-columns:1fr 1fr}.bl{padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:13px;background:var(--surface-page)}.bl+.bl{border-left:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.fila{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px}.frase{font-family:var(--font-body);font-weight:300;font-size:14px;line-height:1.7;color:var(--text-body);margin:0}.mob{display:grid;grid-template-columns:343px 343px;border-top:1px solid var(--rule-strong)}.mob .bl{width:343px}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">const { Comparison, TrendInline, Provenance } = window.NIVARDesignSystem_0a22a8;
+const LINHAS = [
+  { rotulo: 'PLD médio', a: 214.8, b: 268.4, unidade: 'R$/MWh' },
+  { rotulo: 'Carga verificada', a: 42318, b: 12064, unidade: 'MWmed', casas: 0 },
+  { rotulo: 'Energia armazenada', a: 61.4, b: 38.2, unidade: '%' },
+  { rotulo: 'Migração no mês', a: 1284, b: 402, unidade: 'unidades', casas: 0 },
+  { rotulo: 'Déficit projetado', a: 0, b: 0, textoA: 'sem apuração', textoB: 'sem apuração', delta: 0 },
+];
+const TAB = [
+  ['Norte', '198,40', 2.1], ['Nordeste', '203,10', -0.8], ['Sudeste/CO', '214,80', 4.2],
+  ['Sul', '268,40', 9.1], ['Média ponderada', '221,18', 3.4],
+];
+function Bloco({ modo, largura, rotulo, nota }) {
+  const attrs = {};
+  if (modo) attrs['data-mode'] = modo;
+  if (largura) attrs['data-largura'] = largura;
+  return (
+    <div className="bl" {...attrs}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <span className="eti">comparação lado a lado · a base é a coluna da esquerda</span>
+      <Comparison
+        a={{ nome: 'Sudeste/Centro-Oeste', sub: 'jul 2026' }}
+        b={{ nome: 'Sul', sub: 'jul 2026' }}
+        linhas={LINHAS}
+        nota="Diferença calculada de A para B · hardware para alta, software para baixa."
+      />
+      <span className="eti">tendência inline · em tabela densa</span>
+      <div className="nv-tab-rolo">
+        <table className="nv-tab nv-tab--zebra nv-tab--hover">
+          <thead><tr><th>Submercado</th><th className="nv-num">R$/MWh</th><th className="nv-num">Δ mês</th></tr></thead>
+          <tbody>{TAB.map(([s, v, d]) => (
+            <tr key={s}><td>{s}</td><td className="nv-num">{v}</td><td className="nv-num"><TrendInline delta={d} tamanho="compacto" /></td></tr>
+          ))}</tbody>
+        </table>
+      </div>
+      <span className="eti">tendência inline · em frase e em lista</span>
+      <div className="fila">
+        <TrendInline delta={4.2} base="vs. jul" />
+        <TrendInline delta={-11.8} base="vs. jul" />
+        <TrendInline delta={0} base="estável" />
+        <TrendInline delta={62.1} direcao="atencao" base="fora de faixa" />
+        <TrendInline valor={53.6} unidade="R$/MWh" delta={1} base="diferença" />
+      </div>
+      <Provenance fontes={['ONS', 'CCEE']} recorte="apuração mensal" timestamp="2026-08-04 · 14:30 BRT" ilustrativa fio />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<>
+  <div className="g">
+    <Bloco rotulo="Modo claro" nota="valor encosta no divisor · rótulo na borda externa" />
+    <Bloco modo="noturno" rotulo="Modo noturno" nota="mesma direção de cor · sem verde e sem vermelho" />
+  </div>
+  <div className="mob">
+    <Bloco largura="mobile" rotulo="Móvel claro" nota="343px · rótulo em linha própria, mirror mantido" />
+    <Bloco largura="mobile" modo="noturno" rotulo="Móvel noturno" nota="343px · tabela rola, primeira coluna fixa" />
+  </div>
+</>);
+</script></body></html>

@@ -1,0 +1,35 @@
+.nv-graf{display:block;overflow:visible}
+.nv-graf__eixo{stroke:var(--rule-strong);stroke-width:1;fill:none}
+.nv-graf__ref{stroke:var(--rule);stroke-width:1;fill:none}
+.nv-graf__tick{font-family:var(--font-data);font-size:10px;font-weight:400;fill:var(--text-faint);letter-spacing:.04em}
+.nv-graf__tick--forte{fill:var(--text-muted);font-weight:500}
+.nv-serie__linha{fill:none;stroke:var(--serie-linha);stroke-width:2;stroke-linejoin:round;stroke-linecap:butt;vector-effect:non-scaling-stroke}
+.nv-serie__ponto{fill:var(--serie-ponto)}
+.nv-serie__guia{stroke:var(--rule-strong);stroke-width:1;fill:none}
+.nv-barra__ret{shape-rendering:crispEdges}
+.nv-graf-cab{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;padding-bottom:9px;margin-bottom:11px;border-bottom:var(--fio) solid var(--rule)}
+.nv-graf-cab__t{font-family:var(--font-display);font-weight:500;font-size:15px;line-height:1.2;letter-spacing:-.008em;color:var(--text-strong);white-space:nowrap}
+.nv-graf-cab__v{display:flex;align-items:baseline;gap:7px}
+.nv-graf-cab__num{font-family:var(--font-data);font-weight:500;font-size:19px;letter-spacing:-.012em;font-variant-numeric:tabular-nums;color:var(--text-strong)}
+.nv-graf-cab__delta{font-family:var(--font-data);font-weight:500;font-size:12px;font-variant-numeric:tabular-nums}
+.nv-graf__legenda{display:flex;flex-wrap:wrap;gap:6px 16px;padding-top:9px;border-top:var(--fio) solid var(--rule);font-family:var(--font-data);font-weight:400;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint)}
+.nv-graf__legenda--sem-fio{padding-top:0;border-top:0}
+.nv-graf__legenda span{display:flex;align-items:center;gap:6px}
+.nv-graf__legenda i{width:9px;height:9px;flex:none}
+/* A amostra imita o desenho da marca que representa: traco de 14x2px para serie (a mesma
+   espessura da linha), bloco de 9x9px com raio zero para barra (a mesma forma da barra). */
+.nv-graf__leg-item{display:flex;align-items:center;gap:6px}
+.nv-graf__legenda .nv-graf__leg-amostra{flex:none;border-radius:0}
+.nv-graf__legenda .nv-graf__leg-amostra--linha{width:14px;height:2px}
+.nv-graf__legenda .nv-graf__leg-amostra--barra{width:9px;height:9px}
+.nv-graf__leg-valor{font-weight:500;font-size:10.5px;letter-spacing:.02em;color:var(--text-strong);font-variant-numeric:tabular-nums lining-nums}
+
+/* CONTROLE SEGMENTADO DE PERIODO — seletor denso em mono. Nao e aba: aba troca de vista em
+   corpo de 13.5px, isto troca o recorte da mesma serie. Ativo e fio de 2px, nunca preenchimento. */
+.nv-per{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 7px}
+.nv-per__op{font-family:var(--font-data);font-weight:400;font-size:10.5px;line-height:1.2;letter-spacing:.09em;color:var(--text-faint);background:none;border:0;border-bottom:var(--fio) solid transparent;border-radius:0;padding:0 0 4px;cursor:pointer;transition:color var(--dur-estado) var(--ease),border-color var(--dur-estado) var(--ease)}
+.nv-per__op:hover:not(:disabled){color:var(--fg-hover);border-bottom-color:var(--fio-hover)}
+.nv-per__op--ativo{color:var(--text-strong);font-weight:500;border-bottom-width:var(--fio-forte);border-bottom-color:var(--acento-contexto,var(--accent-house));padding-bottom:3px}
+.nv-per__op:disabled{opacity:.4;cursor:not-allowed}
+.nv-per__op:focus-visible{outline:var(--fio-forte) solid var(--accent-focus);outline-offset:3px}
+.nv-per__sep{font-family:var(--font-data);font-size:10.5px;color:var(--rule-strong)}

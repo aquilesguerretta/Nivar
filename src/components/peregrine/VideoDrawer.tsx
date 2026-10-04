@@ -63,7 +63,7 @@ export default function VideoDrawer({
         </div>
         <div style={{
           position: 'relative', paddingTop: '56.25%',
-          flexShrink: 0, background: '#000',
+          flexShrink: 0, background: C.bgBase,
         }}>
           <iframe
             src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}

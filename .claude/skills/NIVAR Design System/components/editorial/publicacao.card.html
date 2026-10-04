@@ -1,0 +1,55 @@
+<!-- @dsCard group="Components" viewport="1060x1540" name="Publicação e citação editorial" subtitle="Item de lista com fio compartilhado · destaque tipográfico com fio de acento da família" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Publicação e citação</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:1060px;overflow:hidden}.g{display:grid;grid-template-columns:1fr 1fr}.bl{padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:13px;background:var(--surface-page)}.bl+.bl{border-left:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.pilha{display:grid;gap:20px}.mob{display:grid;grid-template-columns:343px 343px;border-top:1px solid var(--rule-strong)}.mob .bl{width:343px}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">const { PublicationList, PublicationCard, PullQuote, SectionHeader } = window.NIVARDesignSystem_0a22a8;
+const PUBS = [
+  { familia: 'intelligence', tipo: 'Nota técnica', titulo: 'O PLD de julho e a distância entre curva projetada e apuração', resumo: 'A projeção de junho errou por 18,4% no Sudeste, e o desvio está na afluência, não na carga.', data: '2026-08-04', leitura: '6 min' },
+  { familia: 'advisory', tipo: 'Parecer', titulo: 'Reajuste de encargo setorial: o que o consumidor livre pode contestar', resumo: 'Três pontos do cálculo da CDE não sobrevivem ao contraditório técnico.', data: '2026-07-29', leitura: '11 min' },
+  { familia: 'intelligence', tipo: 'Carta', titulo: 'Migração ao mercado livre: o custo do aviso prévio de 180 dias', resumo: 'O prazo regulatório vale mais que a economia anunciada em 31% dos casos analisados.', data: '2026-07-22', leitura: '4 min' },
+  { familia: 'software', tipo: 'Relatório', titulo: 'Séries horárias reprocessadas: mudança na decomposição do PLD', resumo: 'A série de 2021 a 2024 foi reprocessada após correção de metodologia na CCEE.', data: '2026-07-15', leitura: '8 min' },
+  { familia: 'hardware', tipo: 'Nota técnica', titulo: 'Telemetria de fronteira e a divergência entre medidor e apuração', resumo: 'Em 12 pontos de medição a diferença mensal passou de 2%, e o padrão é sistemático.', data: '2026-07-08', leitura: '9 min' },
+];
+function Bloco({ modo, largura, rotulo, nota }) {
+  const attrs = {};
+  if (modo) attrs['data-mode'] = modo;
+  if (largura) attrs['data-largura'] = largura;
+  return (
+    <div className="bl" {...attrs}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <SectionHeader numero="04" titulo="Publicações" nota="apuração de agosto" />
+      <PublicationList>{PUBS.map((p) => <PublicationCard key={p.titulo} {...p} />)}</PublicationList>
+      <span className="eti">citação editorial · número central</span>
+      <PullQuote
+        numero="18,4 %"
+        unidade="de desvio"
+        familia="intelligence"
+        texto="A projeção de junho errou por 18,4% no Sudeste — e o erro está na afluência, não na carga."
+        fonte="Nota técnica 2026-08 · ONS · CCEE"
+      />
+      <span className="eti">citação editorial · achado sem número</span>
+      <PullQuote
+        familia="advisory"
+        texto="O consumidor livre paga a conta de uma decisão que não tomou."
+        fonte="Parecer 2026-07 · contraditório técnico"
+      />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<>
+  <div className="g">
+    <Bloco rotulo="Modo claro" nota="fio da lista, não do item · ponto carrega a família" />
+    <Bloco modo="noturno" rotulo="Modo noturno" nota="título em Zilla Slab · meta em mono à direita" />
+  </div>
+  <div className="mob">
+    <Bloco largura="mobile" rotulo="Móvel claro" nota="343px · três colunas empilham" />
+    <Bloco largura="mobile" modo="noturno" rotulo="Móvel noturno" nota="343px · resumo continua em uma linha de sentido" />
+  </div>
+</>);
+</script></body></html>

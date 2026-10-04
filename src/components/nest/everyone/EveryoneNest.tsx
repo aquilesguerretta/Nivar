@@ -25,16 +25,16 @@ import { useLiveOpsData } from '../../../hooks/data/useLiveOpsData';
 export function StatusDot({ status }: { status: 'live' | 'stale' | 'fallback' }) {
   const colors = { live: C.alertNormal, stale: C.alertWarning, fallback: C.alertCritical };
   return (
-    <div className="relative">
+    <div style={{ position: 'relative' }}>
       {status === 'live' && (
         <div
-          className="absolute inset-0 rounded-full animate-live-ping"
-          style={{ backgroundColor: colors[status] }}
+          className="rounded-full animate-live-ping"
+          style={{ position: 'absolute', inset: 0, backgroundColor: colors[status] }}
         />
       )}
       <div
-        className={`w-2 h-2 rounded-full relative ${status === 'live' ? 'animate-status-pulse' : ''}`}
-        style={{ backgroundColor: colors[status], color: colors[status] }}
+        className={`rounded-full ${status === 'live' ? 'animate-status-pulse' : ''}`}
+        style={{ position: 'relative', width: 8, height: 8, backgroundColor: colors[status], color: colors[status] }}
       />
     </div>
   );
@@ -613,26 +613,26 @@ function nestFuelColor(type: string): string {
 
 // PJM zone dropdown options — id drives selectedZone, name is the display label.
 const PJM_ZONES: Array<{ id: string; name: string }> = [
-  { id: 'WESTERN_HUB', name: 'WEST HUB' },
+  { id: 'WEST_HUB',    name: 'WEST HUB' },
   { id: 'PSEG',        name: 'PSEG'     },
   { id: 'RECO',        name: 'RECO'     },
   { id: 'COMED',       name: 'COMED'    },
   { id: 'AEP',         name: 'AEP'      },
-  { id: 'DOM',         name: 'DOM'      },
+  { id: 'DOMINION',    name: 'DOM'      },
   { id: 'DUQ',         name: 'DUQ'      },
   { id: 'JCPL',        name: 'JCPL'     },
   { id: 'PPL',         name: 'PPL'      },
   { id: 'PECO',        name: 'PECO'     },
   { id: 'BGE',         name: 'BGE'      },
   { id: 'PENELEC',     name: 'PENELEC'  },
-  { id: 'MET_ED',      name: 'MET-ED'   },
+  { id: 'METED',       name: 'MET-ED'   },
   { id: 'ATSI',        name: 'ATSI'     },
   { id: 'DEOK',        name: 'DEOK'     },
   { id: 'DAY',         name: 'DAY'      },
-  { id: 'CE',          name: 'CE'       },
+  { id: 'DPL',         name: 'DPL'      },
   { id: 'EKPC',        name: 'EKPC'     },
-  { id: 'APS',         name: 'APS'      },
-  { id: 'AECO',        name: 'AECO'     },
+  { id: 'PEPCO',       name: 'PEPCO'    },
+  { id: 'OVEC',        name: 'OVEC'     },
 ];
 
 // ── EveryoneNest (the legacy NestView, fallback when profile is null/everyone) ──
@@ -662,7 +662,7 @@ export function EveryoneNest({
     }));
   })();
 
-  const zoneValue = selectedZone ?? 'WESTERN_HUB';
+  const zoneValue = selectedZone ?? 'WEST_HUB';
   const kpiCells: Array<{ key: string; label: string; view: React.ReactNode }> = [
     { key: 'lmp',     label: 'LMP HUB',      view: <LMPCard       selectedZone={selectedZone} onExpand={()  => onNavigateKPI('lmp')}     /> },
     { key: 'spark',   label: 'SPARK SPREAD', view: <SparkKPIView  selectedZone={selectedZone} onNavigate={() => onNavigateKPI('spread')}  /> },

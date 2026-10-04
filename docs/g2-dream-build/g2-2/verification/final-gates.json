@@ -1,0 +1,38 @@
+[
+  {
+    "check": "typecheck",
+    "command": "npx tsc -b",
+    "started": "2026-09-12T00:55:44.975349+00:00",
+    "exitCode": 0
+  },
+  {
+    "check": "eslint",
+    "command": "npx eslint src/components/g2/HeroFilm.tsx src/components/g2/HouseChapters.tsx src/components/g2/NivarShell.tsx src/components/g2/AriadneJourney.tsx src/components/g2/HouseFinale.tsx src/components/g2/TerminalThreshold.tsx src/pages/br/FamilyPages.tsx src/pages/br/G2Portal.tsx src/pages/terminal-brasil/TerminalBrasil.tsx src/pages/terminal-brasil/terminal-motion.ts",
+    "started": "2026-09-12T00:56:22.488303+00:00",
+    "exitCode": 0
+  },
+  {
+    "check": "pattern-audit",
+    "command": "node tools/gridalpha-detect/bin/gridalpha-detect.mjs src",
+    "started": "2026-09-12T00:56:36.729781+00:00",
+    "exitCode": 0
+  },
+  {
+    "check": "path-safety",
+    "command": "node docs/g2-dream-build/g2-2/terminal/check-path-safety.mjs",
+    "started": "2026-09-12T00:56:42.935986+00:00",
+    "exitCode": 0
+  },
+  {
+    "check": "build",
+    "command": "npm run build",
+    "started": "2026-09-12T00:56:43.335324+00:00",
+    "exitCode": 0
+  },
+  {
+    "check": "diff-check",
+    "command": "git diff --check",
+    "started": "2026-09-12T00:58:01.852851+00:00",
+    "exitCode": 0
+  }
+]

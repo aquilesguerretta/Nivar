@@ -1,0 +1,11 @@
+{
+  "mandatory": {"quantity": "100000", "quantity_unit": "kWh", "price": "250", "price_unit": "BRL/MWh", "amount": "26000", "expected": "25000.00", "difference": "1000.00", "classification": "divergence"},
+  "reconciled": {"quantity": "100", "quantity_unit": "MWh", "price": "250", "price_unit": "BRL/MWh", "amount": "25000", "expected": "25000.00", "difference": "0.00", "classification": "reconciled"},
+  "credit": {"quantity": "-2000", "quantity_unit": "kWh", "price": "250", "price_unit": "BRL/MWh", "amount": "-500", "expected": "-500.00", "difference": "0.00", "classification": "reconciled"},
+  "rounding": {"quantity": "1", "quantity_unit": "kWh", "price": "5", "price_unit": "BRL/MWh", "amount": "0.01", "expected": "0.01", "difference": "0.00", "classification": "reconciled"},
+  "missing": {"quantity": null, "quantity_unit": "kWh", "price": "250", "price_unit": "BRL/MWh", "amount": "26000", "expected": null, "difference": null, "classification": "not_verifiable"},
+  "zero": {"quantity": "0", "quantity_unit": "kWh", "price": "250", "price_unit": "BRL/MWh", "amount": "0", "expected": "0.00", "difference": "0.00", "classification": "reconciled"},
+  "unsupported": {"component": "tax", "quantity": "100000", "quantity_unit": "kWh", "price": "250", "price_unit": "BRL/MWh", "amount": "26000", "expected": null, "difference": null, "classification": "not_verifiable"},
+  "correction": {"quantity": "100000", "quantity_unit": "kWh", "price": "250", "price_unit": "BRL/MWh", "amount": "25000", "expected": "25000.00", "difference": "0.00", "classification": "reconciled"},
+  "extreme_conversion": {"quantity": "999999999999999999", "quantity_unit": "MWh", "price": "999999999999999999", "price_unit": "BRL/kWh", "amount": "0", "expected": "999999999999999998000000000000000001000.00", "difference": "-999999999999999998000000000000000001000.00", "classification": "divergence"}
+}

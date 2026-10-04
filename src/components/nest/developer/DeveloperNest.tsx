@@ -24,7 +24,43 @@ import {
   BINDING_CONSTRAINTS_12M,
   PPA_BENCHMARKS,
   POLICY_TRACKER,
+  UNDERWRITING_DEFAULTS,
 } from '@/lib/mock/developer-mock';
+import { CalculatorView } from './UnderwritingCalculator/CalculatorView';
+import { setUnderwritingState } from '@/services/contextProviders/developerNestContext';
+import type { ProjectSpec } from '@/lib/underwriting/types';
+
+type DeveloperTab = 'overview' | 'underwriting';
+
+// FORGE Wave 5 — seed the Underwriting Calculator from the first
+// project in PROJECT_PIPELINE so the form is pre-filled when the user
+// switches to the Underwriting tab for the first time.
+function seedUnderwritingSpec(): ProjectSpec {
+  const project = PROJECT_PIPELINE[0];
+  const defaults = UNDERWRITING_DEFAULTS[project.technology];
+  const zoneFromName = ['WEST_HUB', 'PSEG', 'JCPL', 'BGE', 'DOMINION', 'COMED', 'AEP', 'RECO'].find(
+    (z) => project.name.toUpperCase().includes(z),
+  ) ?? 'WEST_HUB';
+  const codYear = Number(project.expectedCod.slice(0, 4));
+  return {
+    id: project.id,
+    name: project.name,
+    technology: project.technology,
+    capacityMW: project.mw,
+    zone: zoneFromName,
+    codYear: Number.isFinite(codYear) ? codYear : 2028,
+    economicLifeYears: defaults.economicLifeYears,
+    capexPerMW: defaults.capexPerMW,
+    opexPerMWYear: defaults.opexPerMWYear,
+    debtRatio: defaults.debtRatio,
+    debtTenor: defaults.debtTenor,
+    debtRate: defaults.debtRate,
+    taxRate: 0.21,
+    discountRate: defaults.discountRate,
+    itcEligible: true,
+    ptcEligible: project.technology === 'Wind' || project.technology === 'Hybrid',
+  };
+}
 import type {
   DeveloperProject,
   DeveloperTechnology,
@@ -612,32 +648,114 @@ function SectionHeader({ eyebrow, identity }: { eyebrow: string; identity: strin
   );
 }
 
+// ─── TAB STRIP ────────────────────────────────────────────────────
+function DeveloperTabButton({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      style={{
+        background: 'transparent',
+        border: 'none',
+        cursor: 'pointer',
+        fontFamily: F.mono,
+        fontSize: 12,
+        fontWeight: 600,
+        letterSpacing: '0.16em',
+        textTransform: 'uppercase',
+        color: active ? C.electricBlue : C.textMuted,
+        padding: `${S.sm} 0`,
+        borderBottom: active
+          ? `2px solid ${C.electricBlue}`
+          : '2px solid transparent',
+        marginBottom: -1,
+        transition: 'color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
 // ─── MAIN ─────────────────────────────────────────────────────────
 export function DeveloperNest() {
+  const [tab, setTab] = useState<DeveloperTab>('overview');
+  const [underwritingSeed] = useState<ProjectSpec>(() => seedUnderwritingSpec());
+
   return (
     <PageAtmosphere tint="developer">
+      {/* Tab strip — surgical addition above the existing layout */}
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: '2fr 1fr',
-          gap: S.sm,
-          padding: S.xl,
+          position: 'relative',
+          zIndex: 1,
+          display: 'flex',
+          gap: S.lg,
+          padding: `${S.md} ${S.xl} 0`,
+          borderBottom: `1px solid ${C.borderDefault}`,
         }}
       >
-        {/* LEFT COLUMN */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: S.xl }}>
-          <DeveloperHeroBlock />
-          <ZoneRevenueCard />
-          <CongestionPatternCard />
-        </div>
-
-        {/* RIGHT COLUMN */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: S.xl }}>
-          <InterconnectionQueueSection />
-          <PolicyTrackerSection />
-          <PPABenchmarksSection />
-        </div>
+        <DeveloperTabButton
+          active={tab === 'overview'}
+          onClick={() => setTab('overview')}
+        >
+          OVERVIEW
+        </DeveloperTabButton>
+        <DeveloperTabButton
+          active={tab === 'underwriting'}
+          onClick={() => setTab('underwriting')}
+        >
+          UNDERWRITING CALCULATOR
+        </DeveloperTabButton>
       </div>
+
+      {tab === 'overview' && (
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '2fr 1fr',
+            gap: S.sm,
+            padding: S.xl,
+          }}
+        >
+          {/* LEFT COLUMN */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: S.xl }}>
+            <DeveloperHeroBlock />
+            <ZoneRevenueCard />
+            <CongestionPatternCard />
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: S.xl }}>
+            <InterconnectionQueueSection />
+            <PolicyTrackerSection />
+            <PPABenchmarksSection />
+          </div>
+        </div>
+      )}
+
+      {tab === 'underwriting' && (
+        <div style={{ padding: S.xl }}>
+          <CalculatorView
+            initial={underwritingSeed}
+            onResultsChange={(s) =>
+              setUnderwritingState({
+                spec: s.spec,
+                results: s.results,
+                scenario: s.scenario,
+              })
+            }
+          />
+        </div>
+      )}
     </PageAtmosphere>
   );
 }
