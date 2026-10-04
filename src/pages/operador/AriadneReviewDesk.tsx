@@ -26,6 +26,10 @@ import {
   sameInterpretation,
 } from "../../lib/ariadne/deskSelection";
 
+const reviewMode = (p: Inspection, role: CloseRole): Mapping['reviewMode'] =>
+  p.demandProfile ? 'demand_profile' : p.tariffReferences ? 'tariff_reference' :
+  role === 'context' ? 'context' : p.observations ? 'observations' : 'table';
+const structured = (p: Inspection) => !!(p.demandProfile || p.tariffReferences || p.observations);
 const roles: Record<CloseRole, string> = {
   invoice: "Fatura / valores faturados",
   quantity: "Quantidade independente",
@@ -38,7 +42,8 @@ const errorText = (e: unknown) =>
 const rowLabel = (r: Candidate) => {
   const raw = r.raw || r.values || {};
   return (
-    r.label ||
+    raw.rate_kind === 'OFFICIAL_TARIFF_REFERENCE' ? `${raw.effective_from}–${raw.effective_to} · ${raw.rate} BRL/kW` :
+    r.demand_kw ? `${r.label} · ${r.demand_kw} kW / contrato ${r.contracted_kw} kW` : r.label ||
     r.item_key ||
     (raw.DscModalidadeTarifaria
       ? `${raw.DscSubGrupo} · ${raw.DscModalidadeTarifaria} · ${raw.NomPostoTarifario}`
@@ -48,7 +53,7 @@ const rowLabel = (r: Candidate) => {
 };
 const rowValues = (r: Candidate) => {
   const raw = r.raw || r.values || {};
-  return raw.VlrTE !== undefined
+  return raw.rate_kind === 'OFFICIAL_TARIFF_REFERENCE' ? ['rate','unit','basis','modality'].map(k=>[k,raw[k]] as const) : raw.VlrTE !== undefined
     ? ["VlrTUSD", "VlrTE", "DscUnidadeTerciaria"].map(
         (k) => [k, raw[k]] as const,
       )
@@ -129,7 +134,7 @@ export function AriadneReviewDesk() {
   const item = calculation?.output.items.find((i) => i.id === itemId);
   const preservedPackage = saved || detail?.packages.find(p => p.resultId === calculation?.id)?.id;
   const rawRows =
-    preview?.observations ||
+    preview?.demandProfile || preview?.tariffReferences || preview?.observations ||
     (source?.role === "context" || role === "context"
       ? preview?.tables.flatMap((t) => t.rows)
       : preview?.tables.find((t) => t.name === mapping.sheet)?.rows) ||
@@ -241,11 +246,7 @@ export function AriadneReviewDesk() {
               numericMode: "strict",
               manualRows: [],
               reviewMode:
-                source.role === "context"
-                  ? "context"
-                  : source.preview.observations
-                    ? "observations"
-                    : "table",
+                reviewMode(source.preview, source.role),
               defaults: {
                 scope: detail!.review.scope,
                 period: detail!.review.period,
@@ -260,7 +261,7 @@ export function AriadneReviewDesk() {
       !source ||
       pending ||
       calculation ||
-      (!source.preview.observations && source.role !== "context")
+      (!structured(source.preview) && source.role !== "context")
     )
       return;
     const controller = new AbortController();
@@ -269,7 +270,7 @@ export function AriadneReviewDesk() {
       mapping: {},
       numericMode: "strict",
       manualRows: [],
-      reviewMode: source.role === "context" ? "context" : "observations",
+      reviewMode: reviewMode(source.preview, source.role),
     };
     void closeApi
       .candidates(workspace, review, source.id, next, controller.signal)
@@ -390,14 +391,10 @@ export function AriadneReviewDesk() {
         numericMode: "strict",
         manualRows: [],
         reviewMode:
-          result.proposal?.role === "context"
-            ? "context"
-            : result.observations
-              ? "observations"
-              : "table",
+          reviewMode(result, result.proposal?.role || "context"),
       });
       setSelected(
-        (result.observations || table?.rows || [])
+        (result.demandProfile || result.tariffReferences || result.observations || table?.rows || [])
           .filter((r) => !r.issues?.length)
           .map((r) => r.index),
       );
@@ -437,11 +434,7 @@ export function AriadneReviewDesk() {
       const next = {
         ...mapping,
         reviewMode:
-          source.role === "context"
-            ? "context"
-            : source.preview.observations
-              ? "observations"
-              : "table",
+          reviewMode(source.preview, source.role),
       } as Mapping;
       const response = await closeApi.candidates(
         workspace,
@@ -469,7 +462,9 @@ export function AriadneReviewDesk() {
       if (!current()) return;
       setLoadToken((t) => t + 1);
       setNotice(
-        source.role === "context"
+        source.preview.tariffReferences
+          ? "Referência revisada. A aplicabilidade no planejamento ainda exige premissa explícita; nenhum preço bruto foi validado."
+          : source.role === "context"
           ? "Referência reconhecida; continua sem elegibilidade financeira."
           : "Interpretação confirmada. A confirmação não prova a verdade da fonte.",
       );
@@ -779,13 +774,17 @@ export function AriadneReviewDesk() {
           {!pending && source && !calculation && (
             <div className="desk__batch">
               <strong>
-                {source.role === "context"
+                {source.preview.demandProfile
+                  ? "Demanda mensal observada · confira cada página; não é medição independente"
+                  : source.preview.tariffReferences
+                    ? "Referência externa antes de tributos · revise dimensões e vigência"
+                    : source.role === "context"
                   ? "Referência contextual; não entra no cálculo como preço"
                   : source.preview.observations
                     ? "Observações nativas da fatura; somente checks internos"
                     : "Selecione uma região e revise o mapeamento"}
               </strong>
-              {source.role !== "context" && !source.preview.observations && (
+              {source.role !== "context" && !structured(source.preview) && (
                 <>
                   <label>
                     Região
@@ -868,7 +867,7 @@ export function AriadneReviewDesk() {
                 </>
               )}
               <div className="desk__actions">
-                {source.role !== "context" && !source.preview.observations && (
+                {source.role !== "context" && !structured(source.preview) && (
                   <button disabled={!!busy} onClick={() => void validate()}>
                     Revisar candidatos
                   </button>
@@ -882,7 +881,7 @@ export function AriadneReviewDesk() {
                       JSON.stringify([...selected].sort((a, b) => a - b)) ===
                         JSON.stringify(
                           source.confirmation.rows
-                            .filter((r) => r.eligible)
+                            .filter((r) => r.eligible || r.planningConfirmed)
                             .map((r) => r.index)
                             .sort((a, b) => a - b),
                         ))
@@ -1014,7 +1013,7 @@ export function AriadneReviewDesk() {
                             type="checkbox"
                             checked={selected.includes(r.index)}
                             disabled={
-                              r.errors?.length > 0 || source?.role === "context"
+                              r.errors?.length > 0 || (source?.role === "context" && !source.preview.tariffReferences)
                             }
                             onChange={(e) =>
                               setSelected(
@@ -1097,6 +1096,9 @@ export function AriadneReviewDesk() {
               </button>
               {calculation && (
                 <>
+                  {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_PLAN_DEV === '1' &&
+                    calculation.inputs.records.some(row => row.recordKind === 'demand_fact' && row.eligible && !row.errors.length) &&
+                    <Link className="desk__primary" to={`/operador/ariadne/planejamento?workspace=${workspace}&review=${review}&baseline=${calculation.id}`}>Planejar a partir deste estado →</Link>}
                   <button
                     disabled={!!busy}
                     onClick={() =>
