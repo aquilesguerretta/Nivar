@@ -110,6 +110,9 @@ app.include_router(conversations.operator_router)  # /api/operator/conversations
 # NIV-48 Ariadne operator instrument — authenticated, workspace-scoped Core access.
 app.include_router(ariadne_operator.router)  # /api/operator/ariadne/*
 app.include_router(ariadne_close.router)  # development feature gate, closed by default
+from app.routers import ariadne_planning
+
+app.include_router(ariadne_planning.router)  # separate closed development gate
 
 # NIV-52 Argos Signal inspection — authenticated, read-only, server-owned scenarios.
 app.include_router(argos_signal_inspection.router)  # /api/operator/argos/ons-capacidade/*

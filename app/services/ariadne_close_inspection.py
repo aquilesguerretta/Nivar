@@ -363,6 +363,9 @@ def propose(preview):
                 )
     if preview["kind"] == "pdf":
         invoice(preview)
+    from app.services.ariadne_demand_intake import propose_demand
+
+    propose_demand(preview)
     return preview
 
 
