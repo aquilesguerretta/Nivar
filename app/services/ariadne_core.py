@@ -400,6 +400,22 @@ def _execute_model_version(
 ) -> dict[str, Any]:
     from app.services import ariadne_close_engine as close
 
+    from app.services import ariadne_planning_engine as planning
+
+    if model_definition.name == planning.MODEL:
+        if (
+            model_version.semantic_version != planning.VERSION
+            or model_version.implementation_identity != planning.IMPLEMENTATION
+            or model_version.input_contract != planning.INPUT_CONTRACT
+            or model_version.output_contract != planning.OUTPUT_CONTRACT
+        ):
+            raise ValueError("no executor for exact demand planning metadata")
+        return planning.execute_planning(
+            state_payload=state_version.payload,
+            assumption_values=assumption_version.values,
+            execution_configuration=configuration,
+        )
+
     if model_definition.name == close.MODEL:
         from app.services import ariadne_close_engine_v2
 
@@ -505,7 +521,11 @@ def execute_scenario(
         result_key=(
             "assisted_close"
             if model_definition.name == "assisted_close"
-            else "scalar_result"
+            else (
+                "demand_contract_screening"
+                if model_definition.name == "demand_contract_screening"
+                else "scalar_result"
+            )
         ),
         payload=payload,
         unit=None,
