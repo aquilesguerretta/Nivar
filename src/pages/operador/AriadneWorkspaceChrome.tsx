@@ -1,47 +1,45 @@
 import type { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ArrowUpRight, ExternalLink, FileText, Moon, Sun } from "lucide-react";
 import { Wordmark } from "../../components/g2/Brand";
-import {
-  FamilyInsignia,
-  type FamilyInsigniaName,
-} from "../../components/g2/FamilyInsignia";
+import { FamilyInsignia } from "../../components/g2/FamilyInsignia";
+import { families, familyPath, operatorFamiliesPath } from "./OperatorFamilies";
 import "./ariadne-workspace.css";
-
-const families: ReadonlyArray<[FamilyInsigniaName, string]> = [
-  ["intelligence", "Intelligence"],
-  ["advisory", "Advisory"],
-  ["academy", "Academy"],
-  ["software", "Software"],
-  ["hardware", "Hardware"],
-];
 
 export function AriadneWorkspaceHeader({
   dark,
   toggleTheme,
+  onAriadne,
 }: {
   dark: boolean;
   toggleTheme: () => void;
+  onAriadne: boolean;
 }) {
   return (
     <header className="aw-header">
       <div className="aw-header__brand">
-        <Link to="/br" aria-label="NIVAR — Portal Brasil">
+        <Link className="aw-header__operator" to={operatorFamiliesPath}>
           <Wordmark height={21} />
+          <span>Operador</span>
         </Link>
-        <Link className="aw-header__instrument" to="/operador/ariadne">
-          Ariadne
-        </Link>
+        {onAriadne && (
+          <Link className="aw-header__instrument" to="/operador/ariadne">
+            Ariadne
+          </Link>
+        )}
       </div>
       <nav aria-label="Famílias NIVAR" className="aw-header__families">
-        {families.map(([id, label]) => (
-          <Link key={id} to={`/br/${id}`} data-active={id === "software"}>
+        <NavLink to={operatorFamiliesPath} end>
+          Famílias
+        </NavLink>
+        {families.map(({ id, name }) => (
+          <NavLink key={id} to={familyPath(id)} data-active={onAriadne && id === "software"}>
             <FamilyInsignia family={id} size={20} decorative />
-            {label}
-            {id === "software" && (
+            {name}
+            {onAriadne && id === "software" && (
               <span className="aw-sr-only"> · família atual</span>
             )}
-          </Link>
+          </NavLink>
         ))}
       </nav>
       <div className="aw-header__tools">

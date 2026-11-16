@@ -21,8 +21,8 @@
 // As rotas de produto saem de `PRODUTOS_COM_FILA`, o mesmo catálogo que
 // alimenta a lateral. Duas consequências, e as duas são o ponto:
 //
-//  1. Produto sem fila não tem rota. Não existe endereço válido para
-//     uma família que não opera nada.
+//  1. Produto sem fila não tem rota de pedidos. As páginas de família no
+//     console de desenvolvimento informam quais fluxos estão disponíveis.
 //  2. `/operador/qualquer-coisa` NÃO casa com nenhuma rota de produto e
 //     cai no catch-all — 404 REAL, com o caminho na tela.
 //
@@ -46,6 +46,7 @@ import { AriadneWorkbench } from './AriadneWorkbench';
 import { AriadneClose } from './AriadneClose';
 import { AriadneReviewDesk } from './AriadneReviewDesk';
 import { AriadnePlanning } from './AriadnePlanning';
+import { families, OperatorFamiliesOverview, OperatorFamilyPage } from './OperatorFamilies';
 import { ArgosSignalInspection } from './ArgosSignalInspection';
 import { NotFound } from '../NotFound';
 import { PRODUTOS_COM_FILA } from '../../lib/operador/catalogo';
@@ -58,7 +59,18 @@ export function OperadorRouter() {
         <Route path="argos" element={<ArgosSignalInspection />} />
         <Route path="ariadne" element={<AriadneWorkbench />} />
         {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_CLOSE_DEV === '1' && import.meta.env.VITE_ARIADNE_PLAN_DEV === '1' && <Route path="ariadne/planejamento" element={<AriadnePlanning />} />}
-        {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_CLOSE_DEV === '1' && <><Route path="ariadne/fechamento" element={<AriadneReviewDesk />} /><Route path="ariadne/fechamento/avancado" element={<AriadneClose />} /></>}
+        {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_CLOSE_DEV === '1' && (
+          <>
+            <Route path="ariadne/fechamento" element={<AriadneReviewDesk />} />
+            <Route path="ariadne/fechamento/avancado" element={<AriadneClose />} />
+            <Route path="familias">
+              <Route index element={<OperatorFamiliesOverview />} />
+              {families.map((family) => (
+                <Route key={family.id} path={family.id} element={<OperatorFamilyPage family={family} />} />
+              ))}
+            </Route>
+          </>
+        )}
         {PRODUTOS_COM_FILA.map((p) => (
           <Fragment key={p.produtoId}>
             <Route path={p.produtoId} element={<FilaView />} />

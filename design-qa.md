@@ -27,3 +27,11 @@ Browser evidence: changed the month and the reviewed row, observed matching proo
 Automated gates: 486 Python and 81 frontend tests passed without failures or skips; `tsc -b`, production build, design detector (0 P0, 25 existing P2 notices) and diff check passed. The redesign is separate from PR #30 and has not been deployed.
 
 final result: passed
+
+## Operador family navigation
+
+Browser feedback added a smaller “Operador” label beside NIVAR in the shared header, an overview at `/operador/familias` and one internal page per family. The status labels describe the workflows available in this development console. Intelligence links to the synthetic Argos inspection, Advisory to the illustrative queue and Software to the Ariadne review desk and Core Alpha. Academy and Hardware have no operator workflow to open.
+
+Browser checks opened all five pages through the official insignia links and verified the current-page marker. Returning to the overview with Enter, opening the Advisory queue and Argos, returning to the exact review and finding the page 14 PDF action all worked. The shared header was also checked on Connected Planning. The overview rendered without horizontal overflow at 1440×900, 1920×1080 and 390×844.
+
+The follow-up passed all 81 frontend tests, type checking, the production build, the design detector and the diff check. The new routes and page content were absent from the production JavaScript even with both Vite evaluation flags set.

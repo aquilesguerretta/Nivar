@@ -29,13 +29,14 @@ export function ConsoleLayout() {
   const selected = pathname.replace(/^\/operador\/?/, "").split("/")[0];
   const isAriadne = selected === "ariadne";
   const isArgos = selected === "argos";
-  const ariWorkspace =
+  const useWorkspaceShell =
     import.meta.env.DEV &&
     import.meta.env.VITE_ARIADNE_CLOSE_DEV === "1" &&
-    (/^\/operador\/ariadne\/fechamento\/?$/.test(pathname) ||
+    (selected === "familias" ||
+      /^\/operador\/ariadne\/fechamento\/?$/.test(pathname) ||
       (import.meta.env.VITE_ARIADNE_PLAN_DEV === "1" &&
         /^\/operador\/ariadne\/planejamento\/?$/.test(pathname)));
-  if (ariWorkspace) {
+  if (useWorkspaceShell) {
     return (
       <div
         className="g2 g2-ops aw-shell"
@@ -43,7 +44,11 @@ export function ConsoleLayout() {
         data-g2-theme={dark ? "dark" : "light"}
         lang="pt-BR"
       >
-        <AriadneWorkspaceHeader dark={dark} toggleTheme={() => setDark(!dark)} />
+        <AriadneWorkspaceHeader
+          dark={dark}
+          toggleTheme={() => setDark(!dark)}
+          onAriadne={isAriadne}
+        />
         <main className="aw-shell__main">
           <Outlet />
         </main>

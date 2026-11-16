@@ -1,4 +1,4 @@
-/* Quiet Professional — scoped to the two development-only Ariadne routes. */
+/* Quiet Professional — scoped to the development workspace shell. */
 .aw-shell[data-ops-theme] {
   --aw-paper: #fcfaf6;
   --aw-rail: #f6f3ed;
@@ -76,6 +76,14 @@
   display: inline-flex;
   align-items: center;
 }
+.aw-header__operator {
+  gap: 9px;
+}
+.aw-header__operator span {
+  font-size: 12px;
+  font-weight: 500;
+  color: #ded4c8;
+}
 .aw-header .aw-header__instrument {
   border-left: 1px solid #625b51;
   padding-left: 17px;
@@ -98,7 +106,7 @@
   border-bottom: 2px solid transparent;
   font-size: 14px;
 }
-.aw-header__families a[data-active="true"] {
+.aw-header__families a:is([data-active="true"], [aria-current="page"]) {
   border-color: #d79d67;
   font-weight: 700;
 }
@@ -125,6 +133,69 @@
 }
 .aw-header__tools button {
   cursor: pointer;
+}
+.aw-family-directory {
+  width: min(100%, 980px);
+  margin-inline: auto;
+  padding: clamp(26px, 5vw, 64px) clamp(18px, 4vw, 40px);
+}
+.aw-family-directory header {
+  margin-bottom: 26px;
+}
+.aw-family-directory header h1 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 10px;
+  font: 400 clamp(32px, 4vw, 50px)/1.1 "Newsreader Variable", Georgia, serif;
+  color: var(--aw-ink);
+}
+.aw-family-directory header p {
+  margin: 6px 0 0;
+  color: var(--aw-muted);
+  font-size: 15px;
+}
+.aw-family-directory .aw-back {
+  margin-bottom: 20px;
+}
+.aw-family-directory__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--aw-rule);
+}
+.aw-family-directory__row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(9rem, auto) auto;
+  align-items: center;
+  gap: clamp(10px, 2vw, 24px);
+  min-height: 68px;
+  padding: 12px 14px;
+  color: var(--aw-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--aw-rule);
+}
+.aw-family-directory__row:hover {
+  background: var(--aw-rail);
+}
+.aw-family-directory__identity {
+  display: grid;
+  gap: 3px;
+  font-size: 14px;
+  color: var(--aw-muted);
+}
+.aw-family-directory__identity strong {
+  font-size: 17px;
+  color: var(--aw-ink);
+}
+.aw-family-directory .aw-family-directory__status {
+  color: var(--aw-accent);
+  font-size: 13px;
+  font-weight: 650;
+}
+.aw-family-directory__destination {
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-height: 50px;
 }
 .aw-sr-only {
   position: absolute;
@@ -705,5 +776,18 @@
   }
   .aw-shell .plan__decision input {
     width: 103px;
+  }
+}
+@media (max-width: 560px) {
+  .aw-family-directory__row:not(.aw-family-directory__destination) {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+  .aw-family-directory__row .aw-family-directory__status {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .aw-family-directory__row:not(.aw-family-directory__destination) > :last-child {
+    grid-column: 3;
+    grid-row: 1 / span 2;
   }
 }
