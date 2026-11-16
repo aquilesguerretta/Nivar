@@ -55,7 +55,7 @@ The explicit local proxy target is mandatory; the repository default is remote. 
 2. SelectFebruary2020. Inspect294.48kW,15.20BRL/kW and the component arithmetic. Try280.45 then280.46 to see the strict threshold change.
 3. Select a preserved alternative; duplicate it, change a premise and preserve the new exploration. Open comparison. Refresh and reconstruct; expect an identical retained result. Export the exact JSON.
 4. InspectMay's mixed-tariff gap andNovember's missing supplier identity. Do not treat physical coverage as monetary verification.
-5. Manually verify **Abrir fonte original · página14** in an ordinary browser. Automated in-app browser navigation to the authenticated `blob:` PDF was blocked by its security policy. This outstanding visual-source check is not represented as passed; no workaround or renderer safety weakening was used.
+5. Under **2020-02 · prova** in the right column, click **Abrir fonte original · página 14**, just below **15.20 BRL/kW**. Expect the authenticated original to open at page 14 in a new tab. The [November revalidation](final-report.md#november-2026-closure-revalidation--2026-11-15) records the Founder's manual PASS and the link's discoverability issue.
 
 The full original PDF is retained privately. Native OCR tokens/raw locators are inspectable. Its8.28MP one-bit CCITT pages exceed the existing safe inline preview limits, so no fabricated thumbnail/new OCR is provided.
 
@@ -85,14 +85,12 @@ git diff --check
 
 Lifecycle suites only upgrade/downgrade the named disposable test DB. Corpus-gated tests require the separately acquired authentic package; don't silently substitute new downloads in historical reviews.
 
-Current loopback services: backend50128 on8074, Vite45544 on5182, PostgreSQL50416 on55472. Verify command lines and ports before stopping after a restart:
+The loopback ports are backend 8074, Vite 5182 and PostgreSQL 55472. PIDs change on restart. Use Ctrl+C in the terminals that started the backend and frontend, or look up the current PIDs and verify their command lines before stopping them:
 
 ```powershell
 Get-NetTCPConnection -State Listen -LocalPort 8074,5182,55472 | Select-Object LocalAddress,LocalPort,OwningProcess
-Get-CimInstance Win32_Process -Filter 'ProcessId=50128 OR ProcessId=45544' | Select-Object ProcessId,CommandLine
-Stop-Process -Id 50128,45544
 # Only after every other local evaluator has stopped using the disposable cluster:
 & 'C:\Program Files\PostgreSQL\17\bin\pg_ctl.exe' stop -D C:\dev\ariadne-close-pg17-20261002 -m fast -w
 ```
 
-Ctrl+C in each owning terminal also stops its service. Temporary production-build preview5183 is stopped after QA. Earlier evaluator processes were found stopped before this wave; their databases were not reset. No background worker, deployment or next-module work remains.
+Only start the services needed for the current evaluation. Stop any temporary production-build preview after QA.

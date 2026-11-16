@@ -1,5 +1,7 @@
 # Connected Planning Round 2 — real demand-contract lab
 
+The October verdict below is historical. See the [November 2026 closure revalidation](#november-2026-closure-revalidation--2026-11-15) for the current verdict.
+
 Verdict: **ARIADNE CONNECTED PLANNING BLOCKED**. The bounded implementation and automated engineering gates passed. Product acceptance criterion 7 still requires a manual browser check of the authenticated original PDF: automated in-app navigation to its `blob:` URL was rejected by browser security policy. No workaround, public original, new provider or weaker renderer limit was introduced. This is an evaluation blocker, not a demonstrated private-data breach. All independent implementation, testing, review and release-preparation work was completed.
 
 ## 1. Base, branch and release
@@ -156,3 +158,24 @@ This adapter supports one tested historical Enel A4-green scan form and declared
 ## 20. Acceptance verdict
 
 Criteria1–6 and8–14 have concrete engineering/browser evidence within the declared partial scope. Criterion7's inline rule/calculation proof works, but automatic original-PDF page opening was security-blocked. Therefore **ARIADNE CONNECTED PLANNING BLOCKED**, pending that manual evaluation. Engineering completion is not commercial/regulatory/reference-case approval. This delivery ends here, without Contract Intelligence, merge or deployment.
+
+## November 2026 closure revalidation — 2026-11-15
+
+**ARIADNE CONNECTED PLANNING REAL-WORLD PASS**, limited to this engineering evaluation. The Founder manually opened the authenticated original from the February 2020 Planning proof via **Abrir fonte original · página 14** and confirmed it opened. This resolves the October product acceptance blocker. The automated browser restriction was not bypassed. The proof shows 294.48 kW observed demand and uses a separate BRL 15.20/kW tariff reference; the latter need not appear on the invoice.
+
+**Usability follow-up:** the Founder had difficulty finding the link because it looks like plain text. Make the action visibly identifiable as a link in a later UI change; this documentation-only revalidation leaves the interface unchanged.
+
+The development wave remained at `17319a70829e3811374c08be994d858347782a55`; no rebase. The executable head tested was `03e236db7d31dd9c3bdc916aa6c919b0490dc5a8`. The October Sobral/ARIS evidence, ANEEL original/derived inputs, frozen methodology and oracle hashes were checked without downloading replacements.
+
+| Fresh gate | Pass | Fail | Skip |
+|---|---:|---:|---:|
+| Full Python on disposable PostgreSQL 17.11 | 486 | 0 | 0 |
+| Authentic corpus-dependent tests, included above | 11 | 0 | 0 |
+| All frontend tests | 81 | 0 | 0 |
+| Exact replay of the final evaluation databases | 11 | 0 | 0 |
+
+The retained replay covered 2 Close, 4 scalar and 5 Planning results. The two Close reference exports and the preserved Planning baseline export also matched the retained and replayed outputs and exact lineage IDs. The broader diagnostic found eight pre-commit records in a separate disposable prototype database with Decimal precision 40; the unchanged published Close v0.1 executor correctly rejects that configuration (precision 48). Those records were neither rewritten nor counted as passing the replay gate.
+
+`compileall`, `npx tsc -b`, `npm run build`, development-only bundle exclusion, design detector (0 P0, 25 existing informational P2), and `git diff --check` passed. Alembic remains at `0016_ariadne_close`. No dependency or runtime changes were made; the pre-existing Browserslist data warning advanced from eight to nine months. The closure changes only documentation.
+
+Sobral remains an engineering/reference fixture, **not the adopted NIV-18 Golden Dataset**. Commercial, regulatory and reference-case gates, including NIV-18/19/20/50, remain intact. No change to production, no merge or deployment, no Notion/Linear edits and no Contract Intelligence work.
