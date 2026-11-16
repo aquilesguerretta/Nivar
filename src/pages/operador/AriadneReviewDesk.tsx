@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { ArrowUpRight, Download, FileText, History, Plus, Upload } from "lucide-react";
+import { AriadneContext, AriadneSourceAction } from "./AriadneWorkspaceChrome";
 import {
   Bar,
   BarChart,
@@ -489,7 +491,7 @@ export function AriadneReviewDesk() {
   }
   const uploadControl = (
     <label className="desk__import">
-      Importar arquivos
+      <Upload size={16} aria-hidden /> Importar arquivos
       <input
         aria-label="Importar arquivos"
         type="file"
@@ -506,7 +508,7 @@ export function AriadneReviewDesk() {
 
   return (
     <section
-      className="desk"
+      className="desk aw-review"
       aria-label="Mesa de revisão Ariadne"
       onDragOver={(e) => e.preventDefault()}
       onDrop={(e) => {
@@ -514,19 +516,15 @@ export function AriadneReviewDesk() {
         void inspect(Array.from(e.dataTransfer.files));
       }}
     >
-      <header className="desk__bar">
-        <div>
-          <span>ARIADNE / FECHAMENTO ASSISTIDO</span>
-          <h1>
-            {period
-              ? `${period.slice(5)}/${period.slice(0, 4)} · ${preview?.proposal?.distributor || detail?.sources.find((s) => s.preview.proposal?.distributor)?.preview.proposal?.distributor || "Revisão de energia"}`
-              : "Mesa de revisão"}
-          </h1>
-          {scope && (
-            <small>Unidade {scope} · desenvolvimento experimental</small>
-          )}
-        </div>
-        <nav>
+      <AriadneContext
+        title="Mesa de revisão"
+        context={scope && <>
+          Unidade {scope}
+          {period && ` · ${period.slice(5)}/${period.slice(0, 4)}`}
+          {preview?.proposal?.distributor && ` · ${preview.proposal.distributor}`}
+        </>}
+        status={calculation ? "Resultado preservado" : pending ? "Fonte a confirmar" : "Desenvolvimento"}
+        actions={<nav className="aw-review__controls" aria-label="Ações da revisão">
           {(preview || detail) && uploadControl}
           <button
             disabled={!!busy}
@@ -541,7 +539,7 @@ export function AriadneReviewDesk() {
               setQuery({});
             }}
           >
-            Nova revisão
+            <Plus size={15} aria-hidden /> Nova revisão
           </button>
           <button
             disabled={!!busy}
@@ -562,10 +560,10 @@ export function AriadneReviewDesk() {
               });
             }}
           >
-            Histórico
+            <History size={15} aria-hidden /> Histórico
           </button>
-        </nav>
-      </header>
+        </nav>}
+      />
       {history && (
         <aside className="desk__history">
           <strong>Revisões preservadas</strong>
@@ -617,6 +615,7 @@ export function AriadneReviewDesk() {
           {visibleSources.map((s) => (
             <button
               className={`desk__source ${!pending && s.id === activeSource ? "desk__source--selected" : ""}`}
+              aria-pressed={!pending && s.id === activeSource}
               key={s.id}
               disabled={!!busy}
               onClick={() => {
@@ -632,7 +631,7 @@ export function AriadneReviewDesk() {
                 });
               }}
             >
-              <strong>{s.filename}</strong>
+              <strong><FileText size={16} aria-hidden /> {s.filename}</strong>
               <span>{s.preview.proposal?.description || roles[s.role]}</span>
               <small>
                 {s.confirmationVersionId
@@ -685,16 +684,12 @@ export function AriadneReviewDesk() {
             </details>
           ))}
         </aside>
-        <main className="desk__review">
+        <section className="desk__review" aria-labelledby="ariadne-review-title">
           <div className="desk__pane-title">
-            <h2>Revisão</h2>
-            <span>
-              {calculation
-                ? "Resultado preservado"
-                : pending
-                  ? "Proposta · confirme antes de usar"
-                  : "Interpretações e cobertura"}
-            </span>
+            <h2 id="ariadne-review-title">{calculation ? "Itens da revisão" : "Preparar a revisão"}</h2>
+            {!calculation && (
+              <span>{pending ? "Proposta · confirme antes de usar" : "Interpretações e cobertura"}</span>
+            )}
           </div>
           {!preview && !calculation && (
             <div className="desk__drop">
@@ -922,29 +917,29 @@ export function AriadneReviewDesk() {
                     {calculation.output.items.map((i) => (
                       <tr key={i.id} aria-selected={i.id === itemId}>
                         <td>
-                          <button onClick={() => selectItem(i.id)}>
+                          <button aria-pressed={i.id === itemId} onClick={() => selectItem(i.id)}>
                             {i.itemKey || i.group}
                           </button>
                         </td>
                         <td>{money(i.billed)}</td>
                         <td>
                           {i.internal.classification === "reconciled"
-                            ? "Consistente"
+                            ? "Reconciliado"
                             : i.internal.classification === "divergence"
                               ? "Divergência"
                               : "Sem regra"}
                         </td>
                         <td>
-                          {i.independent.classification === "not_verifiable"
+                          <span className="aw-coverage">{i.independent.classification === "not_verifiable"
                             ? "Não verificável"
-                            : i.independent.label}
+                            : i.independent.label}</span>
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-              <div
+              {calculation.output.items.some((i) => i.internal.expected !== null) && <div
                 className="desk__chart"
                 aria-label="Valores faturados e esperados internamente"
               >
@@ -971,11 +966,11 @@ export function AriadneReviewDesk() {
                     <XAxis dataKey="label" hide />
                     <YAxis width={45} />
                     <Tooltip />
-                    <Bar dataKey="billed" name="Faturado" fill="#89704e" />
+                    <Bar dataKey="billed" name="Faturado" fill="var(--aw-accent)" />
                     <Bar
                       dataKey="expected"
                       name="Esperado interno"
-                      fill="#687866"
+                      fill="var(--aw-chart-bar)"
                     />
                   </BarChart>
                 </ResponsiveContainer>
@@ -983,7 +978,7 @@ export function AriadneReviewDesk() {
                   Faturado × esperado interno · BRL · gráfico ilustrativo dos
                   valores persistidos, sem auditoria independente
                 </small>
-              </div>
+              </div>}
             </>
           ) : rows.length ? (
             <div className="desk__table-scroll">
@@ -1075,7 +1070,7 @@ export function AriadneReviewDesk() {
                     (s) => s.role === "invoice" && s.confirmationVersionId,
                   )
                 }
-                className="desk__primary"
+                className={calculation ? undefined : "desk__primary"}
                 onClick={() =>
                   void act(
                     "Executando checks e preservando resultado…",
@@ -1098,7 +1093,7 @@ export function AriadneReviewDesk() {
                 <>
                   {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_PLAN_DEV === '1' &&
                     calculation.inputs.records.some(row => row.recordKind === 'demand_fact' && row.eligible && !row.errors.length) &&
-                    <Link className="desk__primary" to={`/operador/ariadne/planejamento?workspace=${workspace}&review=${review}&baseline=${calculation.id}`}>Planejar a partir deste estado →</Link>}
+                    <Link className="desk__primary" to={`/operador/ariadne/planejamento?workspace=${workspace}&review=${review}&baseline=${calculation.id}`}>Planejar a partir deste estado <ArrowUpRight size={15} aria-hidden /></Link>}
                   <button
                     disabled={!!busy}
                     onClick={() =>
@@ -1142,28 +1137,22 @@ export function AriadneReviewDesk() {
               )}
                 {preservedPackage && (
                   <a href={closeApi.exportUrl(workspace, review, preservedPackage)}>
-                  Baixar pacote ZIP
+                  <Download size={15} aria-hidden /> Baixar pacote ZIP
                 </a>
               )}
             </footer>
           )}
-        </main>
+        </section>
         <aside className="desk__proof">
           <div className="desk__pane-title">
-            <h2>Fonte → cálculo → conclusão</h2>
+            <h2>{item && (item.itemKey || item.group) && !(item.itemKey || item.group).startsWith("page:") ? `${item.itemKey || item.group} · prova` : "Prova da revisão"}</h2>
           </div>
           {preview ? (
             <>
+              {original && <AriadneSourceAction href={original + `#page=${pageNumber}`} page={pdf ? pageNumber : undefined} />}
               <div className="desk__source-actions">
                 {original && (
                   <>
-                    <a
-                      href={original + `#page=${pageNumber}`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Abrir documento · página {pageNumber}
-                    </a>
                     {source && (
                       <button onClick={() => setShowDocument(!showDocument)}>
                         {showDocument ? "Voltar à prova" : "Ver página aqui"}
@@ -1173,7 +1162,7 @@ export function AriadneReviewDesk() {
                 )}
                 {source && (
                   <a href={closeApi.originalUrl(workspace, review, source.id)}>
-                    Baixar original
+                    <Download size={15} aria-hidden /> Baixar original
                   </a>
                 )}
                 {source && pdf && <a href={closeApi.pageUrl(workspace, review, source.id, pageNumber)} target="_blank" rel="noreferrer">Ampliar página</a>}
@@ -1206,8 +1195,10 @@ export function AriadneReviewDesk() {
                 )
               ) : (
                 <>
-                  <h3>Fonte {row?.locator && <small>{row.locator}</small>}</h3>
-                  <pre className="desk__snippet">
+                  <details className="aw-disclosure" open={!item}>
+                    <summary>Fonte e valores brutos</summary>
+                    {row?.locator && <small className="aw-locator">{row.locator}</small>}
+                    <pre className="desk__snippet">
                     {row?.snippet ||
                       Object.entries(row?.raw || row?.values || {})
                         .map(
@@ -1218,7 +1209,8 @@ export function AriadneReviewDesk() {
                       preview.pages.find((p) => p.number === pageNumber)
                         ?.text ||
                       "Selecione uma linha para inspecionar os valores e células."}
-                  </pre>
+                    </pre>
+                  </details>
                   {row && (
                     <>
                       <h3>Interpretação</h3>
