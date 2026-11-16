@@ -122,10 +122,28 @@ export function ArgosSignalInspection() {
   return (
     <section id="argos-signal-inspection" className="g24-argos g24-argos--operator" data-phase={phase} data-result={decision} aria-label="Inspeção operacional do Signal Argos">
       <header className="g24-argos__header">
-        <div><span className="g24-argos__kicker">ARGOS / INSPEÇÃO DE SIGNAL V0</span><h1>Do território<br /><em>até a evidência.</em></h1></div>
-        <div className="g24-argos__intro"><p>Observar uma mudança.<br />Rastrear o que a sustenta.</p><button className="g24-argos__play" type="button" onClick={inPlayback ? () => setPlaying(false) : play}>{inPlayback ? <Pause size={14} /> : phase === 4 ? <RotateCcw size={14} /> : <Play size={14} />}{inPlayback ? "Pausar percurso" : phase === 4 ? "Rever percurso" : "Ver o percurso"}<span>13 s</span></button></div>
+        <h1>Inspeção de sinais</h1>
+        <div className="g24-argos__intro"><button className="g24-argos__play" type="button" onClick={inPlayback ? () => setPlaying(false) : play}>{inPlayback ? <Pause size={14} /> : phase === 4 ? <RotateCcw size={14} /> : <Play size={14} />}{inPlayback ? "Pausar percurso" : phase === 4 ? "Rever percurso" : "Ver o percurso"}<span>13 s</span></button></div>
       </header>
 
+      <div className="g24-argos__scenarios">
+        <span>Cenários de inspeção</span>
+        <div role="group" aria-label="Selecionar cenário de inspeção">
+          {ARGOS_INSPECTION_SCENARIOS.map((scenario) => (
+            <button type="button" key={scenario.id} aria-pressed={scenarioId === scenario.id}
+              onClick={() => {
+                if (scenarioId === scenario.id) return;
+                setLoading(true);
+                setError(null);
+                setInspection(null);
+                setScenarioId(scenario.id);
+                setPlaying(false);
+              }}>
+              {scenario.label}<small>{scenario.goldReference}</small>
+            </button>
+          ))}
+        </div>
+      </div>
       <nav className="g24-argos__steps" aria-label="Etapas da inspeção Argos">
         {STEPS.map((step, index) => <button type="button" key={step} onClick={() => goTo(index)} aria-pressed={phase === index} data-complete={phase > index}><span>{String(index + 1).padStart(2, "0")}</span><span>{step}</span></button>)}
       </nav>
@@ -159,7 +177,6 @@ export function ArgosSignalInspection() {
         </article>
       </div>
 
-      <div className="g24-argos__scenarios"><span>CENÁRIOS<br />SERVER-OWNED</span><div role="group" aria-label="Selecionar cenário de inspeção">{ARGOS_INSPECTION_SCENARIOS.map((scenario, index) => <button type="button" key={scenario.id} aria-pressed={scenarioId === scenario.id} onClick={() => { setLoading(true); setError(null); setInspection(null); setScenarioId(scenario.id); setPlaying(false); }}><span>{String(index + 1).padStart(2, "0")}</span>{scenario.label}<small>{scenario.goldReference}</small></button>)}</div></div>
       <footer className="g24-argos__footer"><p>NIV-52 <span>·</span> SEM DADO AO VIVO <span>·</span> SEM MUTATION</p><div><button type="button" onClick={() => goTo(phase - 1)} disabled={phase === 0} aria-label="Etapa anterior"><ArrowLeft size={16} /></button>{phase < 4 ? <button type="button" className="g24-argos__next" onClick={() => goTo(phase + 1)}>{STEPS[phase + 1]}<ArrowRight size={16} /></button> : <Link to="/br/terminal">Explorar Terminal Brasil<ArrowUpRight size={16} /></Link>}</div></footer>
     </section>
   );

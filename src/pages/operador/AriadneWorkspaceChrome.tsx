@@ -1,67 +1,6 @@
 import type { ReactNode } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { ArrowUpRight, ExternalLink, FileText, Moon, Sun } from "lucide-react";
-import { Wordmark } from "../../components/g2/Brand";
-import { FamilyInsignia } from "../../components/g2/FamilyInsignia";
-import { families, familyPath, operatorFamiliesPath } from "./OperatorFamilies";
+import { ExternalLink, FileText } from "lucide-react";
 import "./ariadne-workspace.css";
-
-export function AriadneWorkspaceHeader({
-  dark,
-  toggleTheme,
-  onAriadne,
-}: {
-  dark: boolean;
-  toggleTheme: () => void;
-  onAriadne: boolean;
-}) {
-  return (
-    <header className="aw-header">
-      <div className="aw-header__brand">
-        <Link className="aw-header__operator" to={operatorFamiliesPath}>
-          <Wordmark height={21} />
-          <span>Operador</span>
-        </Link>
-        {onAriadne && (
-          <Link className="aw-header__instrument" to="/operador/ariadne">
-            Ariadne
-          </Link>
-        )}
-      </div>
-      <nav aria-label="Famílias NIVAR" className="aw-header__families">
-        <NavLink to={operatorFamiliesPath} end>
-          Famílias
-        </NavLink>
-        {families.map(({ id, name }) => (
-          <NavLink key={id} to={familyPath(id)} data-active={onAriadne && id === "software"}>
-            <FamilyInsignia family={id} size={20} decorative />
-            {name}
-            {onAriadne && id === "software" && (
-              <span className="aw-sr-only"> · família atual</span>
-            )}
-          </NavLink>
-        ))}
-      </nav>
-      <div className="aw-header__tools">
-        <button
-          type="button"
-          onClick={toggleTheme}
-          aria-label={dark ? "Modo claro" : "Modo escuro"}
-          title={dark ? "Modo claro" : "Modo escuro"}
-        >
-          {dark ? (
-            <Sun size={17} aria-hidden />
-          ) : (
-            <Moon size={17} aria-hidden />
-          )}
-        </button>
-        <Link to="/conta">
-          Conta <ArrowUpRight size={14} aria-hidden />
-        </Link>
-      </div>
-    </header>
-  );
-}
 
 export function AriadneContext({
   navigation,

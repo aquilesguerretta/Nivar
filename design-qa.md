@@ -35,3 +35,15 @@ Browser feedback added a smaller “Operador” label beside NIVAR in the shared
 Browser checks opened all five pages through the official insignia links and verified the current-page marker. Returning to the overview with Enter, opening the Advisory queue and Argos, returning to the exact review and finding the page 14 PDF action all worked. The shared header was also checked on Connected Planning. The overview rendered without horizontal overflow at 1440×900, 1920×1080 and 390×844.
 
 The follow-up passed all 81 frontend tests, type checking, the production build, the design detector and the diff check. The new routes and page content were absent from the production JavaScript even with both Vite evaluation flags set.
+
+## Operador unified console
+
+The existing development gate now enables a shared navigation shell for the overview, all five families and every existing Operator product route. The navigation retains the official family insignia, shows the current family and product, and offers a keyboard destination search with Ctrl+K or Command+K. The Review Desk and Planning open in a full-width workspace with an optional sidebar.
+
+- Advisory groups the three existing product queues and their cadernos under a shared navigation. The queue puts filters, orders and the selected summary together. Product counts come from the synthetic queue.
+- Intelligence puts the Argos scenario selector above the map and evidence. Software lists the Ariadne Core, Review Desk and gated Planning surfaces.
+- Academy provides the catalog link to Alexandria. Hardware states that equipment workflows are unavailable in this console.
+
+Browser checks covered all families, the three Advisory queues and cadernos, queue filtering and clearing, opening Alexandria, exact review context, the page 14 PDF action, Planning navigation and the keyboard destination search. Light and dark checks included 1440×900, 1920×1080 and 390×844. The shared evaluation backend returned 503 for the Argos inspection request. The browser check covered its failed-closed state, and all 17 Argos API tests passed with snapshots on disposable PostgreSQL.
+
+All 81 frontend tests passed. Type checking, the production build, the design detector and the whitespace check passed. The production JavaScript excludes the new shell and route content with both evaluation flags set.

@@ -14,7 +14,8 @@ import {
 import { Wordmark } from "../../components/g2/Brand";
 import { nomeDoProduto, PRODUTOS_COM_FILA } from "../../lib/operador/catalogo";
 import { FILA_MOCK, pendentes } from "../../lib/operador/mock";
-import { AriadneWorkspaceHeader } from "./AriadneWorkspaceChrome";
+import { OperatorWorkspace } from "./OperatorWorkspace";
+import { operatorWorkspaceEnabled } from "./operatorWorkspaceRoutes";
 import "../../components/g2/g2.css";
 import "./g2-operations.css";
 
@@ -23,38 +24,16 @@ export function EstilosConsole() {
 }
 
 export function ConsoleLayout() {
+  return operatorWorkspaceEnabled ? <OperatorWorkspace /> : <LegacyConsole />;
+}
+
+function LegacyConsole() {
   const { pathname } = useLocation();
   const [dark, setDark] = useState(false);
   const [menu, setMenu] = useState(false);
   const selected = pathname.replace(/^\/operador\/?/, "").split("/")[0];
   const isAriadne = selected === "ariadne";
   const isArgos = selected === "argos";
-  const useWorkspaceShell =
-    import.meta.env.DEV &&
-    import.meta.env.VITE_ARIADNE_CLOSE_DEV === "1" &&
-    (selected === "familias" ||
-      /^\/operador\/ariadne\/fechamento\/?$/.test(pathname) ||
-      (import.meta.env.VITE_ARIADNE_PLAN_DEV === "1" &&
-        /^\/operador\/ariadne\/planejamento\/?$/.test(pathname)));
-  if (useWorkspaceShell) {
-    return (
-      <div
-        className="g2 g2-ops aw-shell"
-        data-ops-theme={dark ? "dark" : "light"}
-        data-g2-theme={dark ? "dark" : "light"}
-        lang="pt-BR"
-      >
-        <AriadneWorkspaceHeader
-          dark={dark}
-          toggleTheme={() => setDark(!dark)}
-          onAriadne={isAriadne}
-        />
-        <main className="aw-shell__main">
-          <Outlet />
-        </main>
-      </div>
-    );
-  }
   return (
     <div
       className="g2 g2-ops"
