@@ -364,9 +364,8 @@ export function AriadneWorkbench() {
     <div className="ariadne">
       <header className="ariadne__heading">
         <div>
-          <p className="g2-ops__eyebrow">ARIADNE ANALYST WORKBENCH / INTERNAL ALPHA</p>
-          <h1>Organize o que a organização sabe.</h1>
-          <p>Evidência, estado observado e premissas preservados como uma linha contínua de versões.</p>
+          <h1>Ariadne Core</h1>
+          <p>Abra um workspace para editar evidências e premissas, comparar cenários ou revisar execuções.</p>
           {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_CLOSE_DEV === "1" && <Link className="g2-ops__button" to="/operador/ariadne/fechamento">Fechamento assistido · experimento →</Link>}
         </div>
         <div className="ariadne__classification" aria-label="Classificação do workspace">

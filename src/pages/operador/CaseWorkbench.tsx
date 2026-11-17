@@ -29,6 +29,7 @@ import {
 } from "../../lib/operador/catalogo";
 import { formatarIdade, formatarData } from "../../lib/operador/idade";
 import { estadoDoPedido } from "./operatorViewUtils";
+import { operatorWorkspaceEnabled } from "./operatorWorkspaceRoutes";
 
 interface Evidence {
   id: string;
@@ -172,6 +173,7 @@ export function CaseWorkbench({ pedido }: { pedido: PedidoNaFila }) {
   const [dirty, setDirty] = useState(false);
   const [page, setPage] = useState(1);
   const fileRef = useRef<HTMLInputElement>(null);
+  const sourcePanelRef = useRef<HTMLElement>(null);
   const sequence = useRef(0);
   const evidence = evidenceFor(pedido);
   const current = evidence.find((e) => e.id === selected) ?? evidence[0];
@@ -337,10 +339,185 @@ export function CaseWorkbench({ pedido }: { pedido: PedidoNaFila }) {
     setSaved("Caderno exportado. Arquivo local, sem envio.");
   }
 
+  function focusSource() {
+    const panel = sourcePanelRef.current;
+    const workspace = panel?.closest("main");
+    if (!panel || !workspace) return;
+    const offset = panel.getBoundingClientRect().top - workspace.getBoundingClientRect().top;
+    if (offset < 0 || offset > workspace.clientHeight - 120) {
+      workspace.scrollBy({ top: offset - 8 });
+    }
+    panel.focus({ preventScroll: true });
+  }
+
+  const sourcePanel = (
+    <aside ref={sourcePanelRef} className="g2-case__source-panel" aria-labelledby="g2-case-source-title" tabIndex={-1}>
+      <div className="g2-case__section-heading">
+        <h2 id="g2-case-source-title">Fonte do caso</h2>
+        <span>{isDiagnostic ? "FICHA" : "DOCUMENTO"}</span>
+      </div>
+      {isDiagnostic && (
+        <div className="g2-case__intake">
+          <span>RELATO ILUSTRATIVO DO CLIENTE</span>
+          <blockquote>
+            {FICHAS_MOCK[pedido.id]?.concern ?? "Relato ausente."}
+          </blockquote>
+          <p>
+            Uma declaração inicia a investigação. Ela ainda precisa ser
+            confrontada com evidência.
+          </p>
+        </div>
+      )}
+      {source ? (
+        <div className="g2-case__document">
+          <div className="g2-case__document-toolbar">
+            <span title={source.filename}>{source.filename}</span>
+            <button
+              type="button"
+              aria-label="Remover documento local"
+              onClick={() => {
+                setSource(null);
+                record("Fonte local removida da visualização.");
+              }}
+            >
+              <X size={15} />
+            </button>
+          </div>
+          {source.mime === "application/pdf" ? (
+            <iframe
+              src={`${source.url}#page=${page}`}
+              title={`Documento local ${source.filename}, página solicitada ${page}`}
+            />
+          ) : (
+            <img
+              src={source.url}
+              alt={`Documento local: ${source.filename}`}
+            />
+          )}
+          <div className="g2-case__document-controls">
+            {source.mime === "application/pdf" && (
+              <label>
+                Página{" "}
+                <input
+                  type="number"
+                  min={1}
+                  max={9999}
+                  value={page}
+                  onChange={(e) =>
+                    setPage(
+                      Math.min(
+                        9999,
+                        Math.max(1, Number(e.target.value) || 1),
+                      ),
+                    )
+                  }
+                />
+              </label>
+            )}
+            <a href={source.url} target="_blank" rel="noreferrer">
+              Abrir fonte local ↗
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div className="g2-case__source-empty">
+          <FileText size={32} strokeWidth={1} />
+          <span>{pedido.arquivo ?? "Evidência complementar"}</span>
+          <h3>
+            {isDiagnostic ? "Ficha da solicitação" : "Original indisponível nesta amostra"}
+          </h3>
+          <p>
+            {isDiagnostic
+              ? "Abra uma fonte local para confrontar o que foi declarado."
+              : "O documento original não integra esta amostra. Nenhum valor foi extraído ou verificado."}
+          </p>
+          <button
+            type="button"
+            className="g2-ops__button"
+            onClick={() => fileRef.current?.click()}
+            disabled={sourceBusy}
+          >
+            <Upload size={14} />{" "}
+            {sourceBusy ? "Verificando arquivo…" : "Abrir documento local"}
+          </button>
+          <small>
+            PDF, PNG ou JPEG · até 20 MB
+            <br />
+            Processado no navegador. Nunca enviado.
+          </small>
+        </div>
+      )}
+      <input
+        ref={fileRef}
+        type="file"
+        accept="application/pdf,image/png,image/jpeg"
+        onChange={attach}
+        className="g2-ops__sr"
+        tabIndex={-1}
+        aria-label="Selecionar documento local"
+      />
+      {sourceError && (
+        <p className="g2-case__error" role="alert">
+          {sourceError}
+        </p>
+      )}
+      {source && (
+        <>
+          <div className="g2-case__source-meta">
+            <span>
+              <Fingerprint size={14} /> IDENTIDADE DA FONTE LOCAL
+            </span>
+            <dl>
+              <div>
+                <dt>Tipo / tamanho</dt>
+                <dd>
+                  {source.mime} ·{" "}
+                  {source.bytes < 1024
+                    ? source.bytes + " B"
+                    : Math.round(source.bytes / 1024) + " KB"}
+                </dd>
+              </div>
+              <div>
+                <dt>SHA-256</dt>
+                <dd className="g2-case__hash">{source.hash}</dd>
+              </div>
+              <div>
+                <dt>Transporte</dt>
+                <dd>Local · não enviado</dd>
+              </div>
+            </dl>
+            <p>
+              O hash identifica estes bytes. Não comprova a autenticidade do
+              conteúdo.
+            </p>
+          </div>
+          <button
+            type="button"
+            className="g2-ops__text-button"
+            disabled={sourceBusy}
+            onClick={() => fileRef.current?.click()}
+          >
+            <Plus size={13} /> Abrir outra fonte local
+          </button>
+        </>
+      )}
+      <div className="g2-case__source-note">
+        <span>REGRA DE LEITURA</span>
+        <p>
+          Ausência não é zero.
+          <br />
+          Estimativa não é medição.
+          <br />
+          Uma alegação não é uma conclusão.
+        </p>
+      </div>
+    </aside>
+  );
+
   return (
     <div className="g2-case">
       <Link className="g2-case__back" to={`/operador/${pedido.produtoId}`}>
-        <ArrowLeft size={13} /> {nomeDoProduto(pedido.produtoId)}
+        <ArrowLeft size={13} aria-hidden /> {operatorWorkspaceEnabled ? "Voltar à fila" : nomeDoProduto(pedido.produtoId)}
       </Link>
       <header className="g2-case__heading">
         <div>
@@ -354,9 +531,16 @@ export function CaseWorkbench({ pedido }: { pedido: PedidoNaFila }) {
             </span>
           </p>
         </div>
-        <button type="button" className="g2-ops__button" onClick={exportDraft}>
-          <Download size={14} /> Exportar caderno
-        </button>
+        <div className="g2-case__heading-actions">
+          {operatorWorkspaceEnabled && (
+            <button type="button" className="g2-ops__button" onClick={focusSource}>
+              <FileText size={14} aria-hidden /> Ver fonte
+            </button>
+          )}
+          <button type="button" className="g2-ops__button" onClick={exportDraft}>
+            <Download size={14} /> Exportar caderno
+          </button>
+        </div>
       </header>
       <div className="g2-case__process" aria-label="Método do caderno">
         <span>
@@ -376,169 +560,7 @@ export function CaseWorkbench({ pedido }: { pedido: PedidoNaFila }) {
         </span>
       </div>
       <div className="g2-case__workspace">
-        <aside className="g2-case__source-panel" aria-label="Fonte do caso">
-          <div className="g2-case__section-heading">
-            <h2>O que chegou.</h2>
-            <span>{isDiagnostic ? "FICHA" : "DOCUMENTO"}</span>
-          </div>
-          {isDiagnostic && (
-            <div className="g2-case__intake">
-              <span>RELATO ILUSTRATIVO DO CLIENTE</span>
-              <blockquote>
-                {FICHAS_MOCK[pedido.id]?.concern ?? "Relato ausente."}
-              </blockquote>
-              <p>
-                Uma declaração inicia a investigação. Ela ainda precisa ser
-                confrontada com evidência.
-              </p>
-            </div>
-          )}
-          {source ? (
-            <div className="g2-case__document">
-              <div className="g2-case__document-toolbar">
-                <span title={source.filename}>{source.filename}</span>
-                <button
-                  type="button"
-                  aria-label="Remover documento local"
-                  onClick={() => {
-                    setSource(null);
-                    record("Fonte local removida da visualização.");
-                  }}
-                >
-                  <X size={15} />
-                </button>
-              </div>
-              {source.mime === "application/pdf" ? (
-                <iframe
-                  src={`${source.url}#page=${page}`}
-                  title={`Documento local ${source.filename}, página solicitada ${page}`}
-                />
-              ) : (
-                <img
-                  src={source.url}
-                  alt={`Documento local: ${source.filename}`}
-                />
-              )}
-              <div className="g2-case__document-controls">
-                {source.mime === "application/pdf" && (
-                  <label>
-                    Página{" "}
-                    <input
-                      type="number"
-                      min={1}
-                      max={9999}
-                      value={page}
-                      onChange={(e) =>
-                        setPage(
-                          Math.min(
-                            9999,
-                            Math.max(1, Number(e.target.value) || 1),
-                          ),
-                        )
-                      }
-                    />
-                  </label>
-                )}
-                <a href={source.url} target="_blank" rel="noreferrer">
-                  Abrir fonte local ↗
-                </a>
-              </div>
-            </div>
-          ) : (
-            <div className="g2-case__source-empty">
-              <FileText size={32} strokeWidth={1} />
-              <span>{pedido.arquivo ?? "Evidência complementar"}</span>
-              <h3>
-                {isDiagnostic
-                  ? "O relato abre a pergunta."
-                  : "O nome do arquivo não é a evidência."}
-              </h3>
-              <p>
-                {isDiagnostic
-                  ? "Abra uma fonte local para confrontar o que foi declarado."
-                  : "O documento original não integra esta amostra. Nenhum valor foi extraído ou verificado."}
-              </p>
-              <button
-                type="button"
-                className="g2-ops__button"
-                onClick={() => fileRef.current?.click()}
-                disabled={sourceBusy}
-              >
-                <Upload size={14} />{" "}
-                {sourceBusy ? "Verificando arquivo…" : "Abrir documento local"}
-              </button>
-              <small>
-                PDF, PNG ou JPEG · até 20 MB
-                <br />
-                Processado no navegador. Nunca enviado.
-              </small>
-            </div>
-          )}
-          <input
-            ref={fileRef}
-            type="file"
-            accept="application/pdf,image/png,image/jpeg"
-            onChange={attach}
-            className="g2-ops__sr"
-            tabIndex={-1}
-            aria-label="Selecionar documento local"
-          />
-          {sourceError && (
-            <p className="g2-case__error" role="alert">
-              {sourceError}
-            </p>
-          )}
-          {source && (
-            <>
-              <div className="g2-case__source-meta">
-                <span>
-                  <Fingerprint size={14} /> IDENTIDADE DA FONTE LOCAL
-                </span>
-                <dl>
-                  <div>
-                    <dt>Tipo / tamanho</dt>
-                    <dd>
-                      {source.mime} ·{" "}
-                      {source.bytes < 1024
-                        ? source.bytes + " B"
-                        : Math.round(source.bytes / 1024) + " KB"}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>SHA-256</dt>
-                    <dd className="g2-case__hash">{source.hash}</dd>
-                  </div>
-                  <div>
-                    <dt>Transporte</dt>
-                    <dd>Local · não enviado</dd>
-                  </div>
-                </dl>
-                <p>
-                  O hash identifica estes bytes. Não comprova a autenticidade do
-                  conteúdo.
-                </p>
-              </div>
-              <button
-                type="button"
-                className="g2-ops__text-button"
-                disabled={sourceBusy}
-                onClick={() => fileRef.current?.click()}
-              >
-                <Plus size={13} /> Abrir outra fonte local
-              </button>
-            </>
-          )}
-          <div className="g2-case__source-note">
-            <span>REGRA DE LEITURA</span>
-            <p>
-              Ausência não é zero.
-              <br />
-              Estimativa não é medição.
-              <br />
-              Uma alegação não é uma conclusão.
-            </p>
-          </div>
-        </aside>
+        {!operatorWorkspaceEnabled && sourcePanel}
         <section className="g2-case__analysis" aria-label="Análise do caso">
           <nav className="g2-case__tabs" aria-label="Seções do caderno">
             {(
@@ -842,6 +864,7 @@ export function CaseWorkbench({ pedido }: { pedido: PedidoNaFila }) {
             </button>
           </footer>
         </section>
+        {operatorWorkspaceEnabled && sourcePanel}
       </div>
     </div>
   );

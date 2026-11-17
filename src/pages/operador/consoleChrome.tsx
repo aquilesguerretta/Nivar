@@ -14,6 +14,8 @@ import {
 import { Wordmark } from "../../components/g2/Brand";
 import { nomeDoProduto, PRODUTOS_COM_FILA } from "../../lib/operador/catalogo";
 import { FILA_MOCK, pendentes } from "../../lib/operador/mock";
+import { OperatorWorkspace } from "./OperatorWorkspace";
+import { operatorWorkspaceEnabled } from "./operatorWorkspaceRoutes";
 import "../../components/g2/g2.css";
 import "./g2-operations.css";
 
@@ -22,6 +24,10 @@ export function EstilosConsole() {
 }
 
 export function ConsoleLayout() {
+  return operatorWorkspaceEnabled ? <OperatorWorkspace /> : <LegacyConsole />;
+}
+
+function LegacyConsole() {
   const { pathname } = useLocation();
   const [dark, setDark] = useState(false);
   const [menu, setMenu] = useState(false);

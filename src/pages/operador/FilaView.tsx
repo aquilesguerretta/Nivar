@@ -77,13 +77,12 @@ export function FilaView() {
     <div className="g2-queue">
       <header className="g2-queue__heading">
         <div>
-          <p className="g2-ops__eyebrow">ADVISORY / FILA DE ANÁLISE</p>
           <h1>
             {product
               ? nomeDoProduto(product.produtoId)
-              : "Onde a leitura começa."}
+              : "Todos os pedidos"}
           </h1>
-          <p>O que chegou. O que falta. O que merece uma pergunta melhor.</p>
+          <p>Filtre a fila, examine um pedido e abra seu caderno de análise.</p>
         </div>
         {first && (
           <CaseLink p={first}>
@@ -99,24 +98,24 @@ export function FilaView() {
           aria-pressed={filter === "all"}
           onClick={() => setFilter("all")}
         >
-          <b>{String(base.length).padStart(2, "0")}</b>
-          <span>pedidos na amostra</span>
+          <b>{base.length}</b>
+          <span>Todos</span>
         </button>
         <button
           type="button"
           aria-pressed={filter === "pending"}
           onClick={() => setFilter("pending")}
         >
-          <b>{String(pending.length).padStart(2, "0")}</b>
-          <span>por ler</span>
+          <b>{pending.length}</b>
+          <span>Por ler</span>
         </button>
         <button
           type="button"
           aria-pressed={filter === "unknown"}
           onClick={() => setFilter("unknown")}
         >
-          <b>{String(unknown.length).padStart(2, "0")}</b>
-          <span>sem estado informado</span>
+          <b>{unknown.length}</b>
+          <span>Sem estado</span>
         </button>
         <div>
           <span>RELÓGIO DA AMOSTRA</span>
