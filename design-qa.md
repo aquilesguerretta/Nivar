@@ -47,3 +47,34 @@ The existing development gate now enables a shared navigation shell for the over
 Browser checks covered all families, the three Advisory queues and cadernos, queue filtering and clearing, opening Alexandria, exact review context, the page 14 PDF action, Planning navigation and the keyboard destination search. Light and dark checks included 1440×900, 1920×1080 and 390×844. The shared evaluation backend returned 503 for the Argos inspection request. The browser check covered its failed-closed state, and all 17 Argos API tests passed with snapshots on disposable PostgreSQL.
 
 All 81 frontend tests passed. Type checking, the production build, the design detector and the whitespace check passed. The production JavaScript excludes the new shell and route content with both evaluation flags set.
+
+## Refero refinement
+
+The NIVAR paper, graphite and copper palette, wordmark and existing typography frame the layout.
+
+- The caderno puts the work in the center and the source to the right. The mobile “Ver fonte” action focuses the source within the workspace. [Linear issue detail](https://refero.design/pages/1a493a2c-7d09-4143-b0dd-745781ea7991)
+- The queue aligns its filters, list and selected order summary in one frame with thin dividers. [Linear issue list](https://refero.design/pages/ab6ce0f5-7d32-4e4e-bdd4-d47a817c1d3e) · [GitHub Issues](https://refero.design/pages/1c4dd82d-3d2e-41d7-a105-0b1738e154f6)
+- The command menu highlights the selected result and displays the shortcuts. It matches words across the destination and family, prioritizes title matches and supports arrow keys, Enter and Escape. [1Password search](https://refero.design/pages/51ef8034-c4df-4c20-9dfd-c01b098c18fe)
+
+Browser verification covered the three Advisory cadernos, the queue, command results and shortcuts, and the Ariadne page 14 source link. The caderno was checked at 1440×900, 1920×1080 and 390×844. The mobile source action kept focus and scroll within the workspace.
+
+### Argos in the local Draft #31 preview
+
+The earlier HTTP 503 came from running the preview without a snapshot-pair configuration or snapshots in the local disposable evaluation database. This evaluation uses the three committed synthetic fixture pairs and the existing authenticated inspection API. In the browser, each scenario yielded the expected `PROMOTE`, `HOLD` or `REJECT` decision and displayed its exact From/To snapshot evidence.
+
+Use the Draft #31 checkout at `C:/dev/gridalpha-v2-ariadne-quiet-professional` for both terminals. Reuse the documented disposable database and local QA session settings. The Draft #31 preview uses backend port `8076` and frontend port `5184`. The Planning preview uses backend port `8074`. [Local Planning setup](docs/ariadne-planning/README.md)
+
+Set the following in the Draft #31 backend terminal before starting Uvicorn. Seed only once, in the verified disposable database with an empty `argos_snapshot` table. Keep the generated UUID pairs outside the repository.
+
+```powershell
+$argosConfig = 'C:/dev/ariadne-close-browser-fixtures/operator-pr31-argos-snapshots.json'
+# Run the next three lines only for the first seed of an empty disposable database.
+$seed = @(C:/dev/ariadne-close-runtime/Scripts/python.exe -m app.scripts.seed_argos_signal_inspection)
+if ($LASTEXITCODE -ne 0 -or -not $seed[0]) { throw 'Argos seed failed' }
+Set-Content -LiteralPath $argosConfig -Value $seed[0] -Encoding ascii
+
+$env:ARGOS_SIGNAL_INSPECTION_SNAPSHOTS = (Get-Content -Raw -LiteralPath $argosConfig).Trim()
+C:/dev/ariadne-close-runtime/Scripts/python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8076 --lifespan off
+```
+
+In the frontend terminal, set `VITE_BACKEND_URL=http://127.0.0.1:8076` and retain the two documented Ariadne development flags. Start Vite with `npm run dev -- --host 127.0.0.1 --port 5184 --strictPort`. Open `http://127.0.0.1:5184/operador/argos`. Use Ctrl+C in the two Draft #31 terminals to stop these processes.

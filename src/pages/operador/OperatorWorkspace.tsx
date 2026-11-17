@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight, ChevronRight, LayoutGrid, Moon, PanelLeft, Search, Sun, X } from "lucide-react";
 import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Wordmark } from "../../components/g2/Brand";
@@ -35,11 +35,36 @@ export function OperatorWorkspace() {
   const [dark, setDark] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [query, setQuery] = useState("");
+  const [activeIndex, setActiveIndex] = useState(0);
   const dialog = useRef<HTMLDialogElement>(null);
   const main = useRef<HTMLElement>(null);
   const queryField = useRef<HTMLInputElement>(null);
   const searchText = normalize(query.trim());
-  const results = destinations.filter(({ label, group }) => normalize(`${label} ${group}`).includes(searchText));
+  const words = searchText.split(/\s+/).filter(Boolean);
+  const results = destinations
+    .map((item) => {
+      const title = normalize(item.label);
+      const matches = words.every((word) => `${title} ${normalize(item.group)}`.includes(word));
+      const rank = title === searchText ? 0 : title.startsWith(searchText) ? 1 : title.includes(searchText) ? 2 : 3;
+      return { item, matches, rank };
+    })
+    .filter(({ matches }) => matches)
+    .sort((left, right) => left.rank - right.rank)
+    .map(({ item }) => item);
+  const activeItem = results[activeIndex];
+
+  const openSearch = useCallback(() => {
+    setQuery("");
+    setActiveIndex(0);
+    dialog.current?.showModal();
+    queryField.current?.focus();
+  }, []);
+
+  function openDestination(to: string) {
+    dialog.current?.close();
+    setShowMenu(false);
+    navigate(to);
+  }
 
   useEffect(() => {
     main.current?.scrollTo(0, 0);
@@ -49,16 +74,12 @@ export function OperatorWorkspace() {
     function onShortcut(event: KeyboardEvent) {
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
-        if (!dialog.current?.open) {
-          setQuery("");
-          dialog.current?.showModal();
-          queryField.current?.focus();
-        }
+        if (!dialog.current?.open) openSearch();
       }
     }
     window.addEventListener("keydown", onShortcut);
     return () => window.removeEventListener("keydown", onShortcut);
-  }, []);
+  }, [openSearch]);
 
   return (
     <div className="g2 g2-ops aw-shell ow-shell" data-focus={focus} data-menu={showMenu}
@@ -84,7 +105,7 @@ export function OperatorWorkspace() {
           </nav>
           <div className="ow-top__actions">
             <button type="button" className="ow-open-search" aria-label="Buscar família ou produto"
-              onClick={() => { setQuery(""); dialog.current?.showModal(); queryField.current?.focus(); }}>
+              onClick={openSearch}>
               <Search size={16} aria-hidden /><span>Ir para…</span><kbd>Ctrl K</kbd>
             </button>
             <button type="button" className="ow-icon-button" onClick={() => setDark(!dark)}
@@ -134,29 +155,42 @@ export function OperatorWorkspace() {
       <dialog className="ow-command" aria-labelledby="ow-command-title" ref={dialog}>
         <form className="ow-command__header" onSubmit={(event) => {
           event.preventDefault();
-          if (query.trim() && results[0]) {
-            dialog.current?.close();
-            setShowMenu(false);
-            navigate(results[0].to);
-          }
+          if (activeItem) openDestination(activeItem.to);
         }}>
           <label id="ow-command-title" htmlFor="ow-command-query"><Search size={18} aria-hidden /><span className="aw-sr-only">Ir para uma tela do Operador</span></label>
-          <input id="ow-command-query" ref={queryField} type="search" value={query}
-            onChange={(event) => setQuery(event.target.value)} placeholder="Buscar família ou produto…" />
+          <input id="ow-command-query" ref={queryField} type="text" value={query}
+            role="combobox" aria-expanded="true" aria-autocomplete="list" aria-controls="ow-command-results"
+            aria-activedescendant={activeItem ? `ow-destination-${activeIndex}` : undefined}
+            onChange={(event) => { setQuery(event.target.value); setActiveIndex(0); }}
+            onKeyDown={(event) => {
+              if (!results.length || !["ArrowUp", "ArrowDown"].includes(event.key)) return;
+              event.preventDefault();
+              const offset = event.key === "ArrowDown" ? 1 : -1;
+              const nextIndex = (activeIndex + offset + results.length) % results.length;
+              setActiveIndex(nextIndex);
+              document.getElementById(`ow-destination-${nextIndex}`)?.scrollIntoView({ block: "nearest" });
+            }}
+            placeholder="Buscar família ou produto…" />
           <button type="button" className="ow-icon-button" aria-label="Fechar busca" onClick={() => dialog.current?.close()}>
             <X size={17} aria-hidden />
           </button>
         </form>
-        <ul className="ow-command__results ow-list" aria-label="Destinos">
-          {results.map(({ to, label, group }) => (
-            <li key={to}>
-              <Link to={to} onClick={() => { dialog.current?.close(); setShowMenu(false); }}>
-                <span>{label}<small>{group}</small></span><ArrowRight size={15} aria-hidden />
-              </Link>
+        <ul id="ow-command-results" className="ow-command__results ow-list" role="listbox" aria-label="Destinos">
+          {results.map(({ to, label, group }, index) => (
+            <li key={to} id={`ow-destination-${index}`} role="option" aria-selected={index === activeIndex}
+              onPointerMove={() => { if (index !== activeIndex) setActiveIndex(index); }}
+              onClick={() => openDestination(to)}>
+              <span>{label}<small>{group}</small></span>
+              {index === activeIndex && <ArrowRight size={15} aria-hidden />}
             </li>
           ))}
         </ul>
         {results.length === 0 && <p className="ow-command__empty" role="status">Nenhum destino encontrado.</p>}
+        <footer className="ow-command__keys">
+          <span><kbd>↑</kbd> <kbd>↓</kbd> Percorrer</span>
+          <span><kbd>Enter</kbd> Abrir</span>
+          <span><kbd>Esc</kbd> Fechar</span>
+        </footer>
       </dialog>
     </div>
   );
