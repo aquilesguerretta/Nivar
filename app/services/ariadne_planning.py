@@ -13,7 +13,7 @@ from app.db.models.ariadne_core import (
 from app.services import (
     ariadne_core as core,
     ariadne_close as close,
-    ariadne_planning_engine as engine,
+    ariadne_planning_engine_v0_1_1 as engine,
 )
 
 
@@ -104,7 +104,8 @@ def _model(db, tenant):
 
 
 def result_lineage(db, review, baseline_id, result_id):
-    base = baseline(db, review, baseline_id)
+    # Historical reads bind retained Close lineage, not today's eligibility rules.
+    base = close.result_lineage(db, review, baseline_id)
     lineage = core.reconstruct_result_lineage(
         db, tenant_id=review.tenant_id, result_id=result_id
     )
@@ -192,7 +193,7 @@ def duplicate(db, review, baseline_id, result_id, body):
 
 
 def saved(db, review, baseline_id):
-    l = baseline(db, review, baseline_id)
+    l = close.result_lineage(db, review, baseline_id)
     ids = db.execute(
         select(AriadneResult.id)
         .join(AriadneModelRun, AriadneModelRun.id == AriadneResult.model_run_id)

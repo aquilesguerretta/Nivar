@@ -374,3 +374,256 @@ def test_authentic_file_actual_intake_api_path_without_manual_values(api):
         assert point["covered"] == 7
     assert curve["lowestExplored"]["cost"] == "30938.69"
     assert curve["lowestExplored"]["candidateKw"] == "288.000000"
+
+
+def hardening_baseline(api, demand, tariff):
+    """Use real upload, candidate review, confirmation and frozen Close execution."""
+    w = post(
+        api,
+        "/api/operator/ariadne/close/workspaces",
+        {"label": "Correctness regression", "synthetic": True},
+    )
+    root = f"/api/operator/ariadne/workspaces/{w['id']}/close/reviews"
+    review = post(
+        api, root, {"scope": "TEST-UNIT", "period": "2019-06", "ruleVersion": "0.2.0"}
+    )
+    root += "/" + review["id"]
+    upload_confirm(api, root, demand, "demand.csv", "invoice", "demand_profile")
+    upload_confirm(api, root, tariff, "tariff.csv", "context", "tariff_reference")
+    result = calculate(api, root)
+    return root, root + f"/calculations/{result['id']}/planning"
+
+
+@pytest.mark.parametrize(
+    "distributor,supplier",
+    [
+        ("", ""),
+        ("broken", "broken"),
+        ("07047251000170", "11222333000181"),
+    ],
+)
+def test_intake_confirmation_cannot_invent_identity_for_money(
+    api, distributor, supplier
+):
+    root, p = hardening_baseline(
+        api,
+        demand_csv(distributor_cnpj=distributor),
+        tariff_csv().replace(b"07047251000170", supplier.encode()),
+    )
+    saved = post(api, p + "/scenarios", BODY)
+    assert saved["output"]["version"] == "0.1.1"
+    assert saved["output"]["coverage"] == {
+        "physical": 1,
+        "covered": 0,
+        "total": 1,
+        "complete": False,
+    }
+    assert saved["output"]["cost"] is None
+    month = saved["output"]["months"][0]
+    assert "Identidade" in " ".join(month["reasons"])
+    assert month["raw"]["distributor_cnpj"] == distributor
+    assert month["sourceRef"]["sourceVersion"]
+    assert month["sourceRef"]["confirmationVersionId"]
+    assert api["client"].get(p + f"/scenarios/{saved['id']}/replay").json()["matches"]
+    assert (
+        api["client"].get(p + f"/scenarios/{saved['id']}/export").json()["output"]
+        == saved["output"]
+    )
+
+
+@pytest.mark.parametrize("period", ["2019-13", ""])
+@pytest.mark.parametrize("reverse", [False, True])
+def test_invalid_intake_period_stays_in_saved_baseline_denominator(
+    api, period, reverse
+):
+    good = demand_csv().splitlines()
+    invalid = demand_csv(period=period).splitlines()[1]
+    rows = [good[1], invalid]
+    if reverse:
+        rows.reverse()
+    root, p = hardening_baseline(
+        api, b"\n".join([good[0], *rows]) + b"\n", tariff_csv()
+    )
+    saved = post(api, p + "/scenarios", BODY)
+    out = saved["output"]
+    assert out["coverage"] == {
+        "physical": 1,
+        "covered": 1,
+        "total": 2,
+        "complete": False,
+    }
+    assert out["cost"] == "4256.00"
+    rejected = next(m for m in out["months"] if m["period"] is None)
+    assert rejected["raw"]["period"] == period
+    assert "Referência mensal ausente/ambígua" in rejected["reasons"]
+    assert rejected["sourceRef"]["locator"].endswith("row:2" if reverse else "row:3")
+    assert rejected["sourceRef"]["confirmationVersionId"]
+    assert api["client"].get(p + f"/scenarios/{saved['id']}").json()["output"] == out
+    assert api["client"].get(p + f"/scenarios/{saved['id']}/replay").json()["matches"]
+    assert (
+        api["client"].get(p + f"/scenarios/{saved['id']}/export").json()["output"]
+        == out
+    )
+
+
+def test_persisted_010_defective_result_replays_and_exports_exactly_beside_011(api):
+    from app.db.models.ariadne_core import AriadneModelVersion, AriadneScenario
+    from app.services import ariadne_core as core, ariadne_planning_engine as old
+
+    root, p = hardening_baseline(
+        api,
+        demand_csv(distributor_cnpj=""),
+        tariff_csv().replace(b"07047251000170", b""),
+    )
+    saved = post(api, p + "/scenarios", BODY)
+    with api["factory"]() as db:
+        new_version = db.get(AriadneModelVersion, uuid.UUID(saved["modelVersionId"]))
+        tenant = new_version.tenant_id
+        scenario = db.scalar(
+            select(AriadneScenario).where(
+                AriadneScenario.assumption_set_version_id
+                == uuid.UUID(saved["assumptionVersionId"])
+            )
+        )
+        # Synthetic retained 0.1.0 run: application writes now select only 0.1.1.
+        version = core.create_model_version(
+            db,
+            tenant_id=tenant,
+            model_definition_id=new_version.model_definition_id,
+            semantic_version=old.VERSION,
+            implementation_identity=old.IMPLEMENTATION,
+            input_contract=old.INPUT_CONTRACT,
+            output_contract=old.OUTPUT_CONTRACT,
+        )
+        run = core.execute_scenario(
+            db,
+            tenant_id=tenant,
+            scenario_id=scenario.id,
+            model_version_id=version.id,
+            execution_configuration=old.POLICY,
+        )
+        old_id, old_output = str(run.result.id), run.result.payload
+        frozen_state = core.reconstruct_result_lineage(
+            db, tenant_id=tenant, result_id=run.result.id
+        ).state_version.payload
+        db.commit()
+    assert old_output["version"] == "0.1.0" and old_output["cost"] == "4256.00"
+    assert saved["output"]["version"] == "0.1.1" and saved["output"]["cost"] is None
+    assert api["client"].get(p + f"/scenarios/{old_id}").json()["output"] == old_output
+    replay = api["client"].get(p + f"/scenarios/{old_id}/replay").json()
+    assert replay["matches"] and replay["output"] == old_output
+    assert (
+        api["client"].get(p + f"/scenarios/{old_id}/export").json()["output"]
+        == old_output
+    )
+    copy = post(api, p + f"/scenarios/{old_id}/duplicate", {"name": "Corrected branch"})
+    assert copy["parentResultId"] == old_id
+    assert copy["output"]["version"] == "0.1.1" and copy["output"]["cost"] is None
+    assert copy["stateVersionId"] == saved["stateVersionId"]
+    with api["factory"]() as db:
+        assert (
+            core.reconstruct_result_lineage(
+                db, tenant_id=tenant, result_id=uuid.UUID(old_id)
+            ).state_version.payload
+            == frozen_state
+        )
+    assert api["client"].get(p + f"/scenarios/{saved['id']}/replay").json()["matches"]
+    close_path = p.rsplit("/planning", 1)[0]
+    assert api["client"].get(close_path + "/replay").json()["matches"]
+
+
+def test_stricter_period_eligibility_does_not_block_retained_010_reads(api):
+    from copy import deepcopy
+    from app.db.models.ariadne_core import AriadneResult
+    from app.services import ariadne_core as core, ariadne_planning_engine as old
+
+    _, root, _, _, baseline = build(api)
+    with api["factory"]() as db:
+        retained = db.get(AriadneResult, uuid.UUID(baseline["id"]))
+        base = core.reconstruct_result_lineage(
+            db, tenant_id=retained.tenant_id, result_id=retained.id
+        )
+        tenant = base.result.tenant_id
+        payload = deepcopy(base.state_version.payload)
+        next(r for r in payload["records"] if r.get("recordKind") == "demand_fact")[
+            "period"
+        ] = None
+        # Legacy Core fixture, not an intake-confirmation bypass in the product.
+        state = core.create_state_version(
+            db,
+            tenant_id=tenant,
+            object_id=base.private_object.id,
+            payload=payload,
+            evidence_ref_ids=[e.id for e in base.evidence_refs],
+        )
+        close_scenario = core.create_scenario(
+            db,
+            tenant_id=tenant,
+            name="Retained period fixture",
+            state_version_id=state.id,
+            assumption_set_version_id=base.assumption_set_version.id,
+            hypothetical_state={},
+        )
+        close_run = core.execute_scenario(
+            db,
+            tenant_id=tenant,
+            scenario_id=close_scenario.id,
+            model_version_id=base.model_version.id,
+            execution_configuration=base.model_run.execution_configuration,
+        )
+        model = service._model(db, tenant)
+        version = core.create_model_version(
+            db,
+            tenant_id=tenant,
+            model_definition_id=model.model_definition_id,
+            semantic_version=old.VERSION,
+            implementation_identity=old.IMPLEMENTATION,
+            input_contract=old.INPUT_CONTRACT,
+            output_contract=old.OUTPUT_CONTRACT,
+        )
+        branch = core.create_assumption_set(db, tenant_id=tenant, name="Retained 0.1.0")
+        assumptions = core.create_assumption_set_version(
+            db,
+            tenant_id=tenant,
+            assumption_set_id=branch.id,
+            values={
+                k: BODY[k]
+                for k in ("candidateKw", "normalRegime", "tariffApplicability")
+            },
+            origin="human_defined",
+            value_schema=old.INPUT_CONTRACT,
+        )
+        scenario = core.create_scenario(
+            db,
+            tenant_id=tenant,
+            name="Retained 0.1.0",
+            state_version_id=state.id,
+            assumption_set_version_id=assumptions.id,
+            hypothetical_state={
+                "baselineId": str(close_run.result.id),
+                "reviewId": root.rsplit("/", 1)[1],
+            },
+        )
+        run = core.execute_scenario(
+            db,
+            tenant_id=tenant,
+            scenario_id=scenario.id,
+            model_version_id=version.id,
+            execution_configuration=old.POLICY,
+        )
+        p = root + f"/calculations/{close_run.result.id}/planning"
+        old_id, output = str(run.result.id), run.result.payload
+        db.commit()
+    assert output["version"] == "0.1.0" and output["coverage"]["physical"] == 1
+    assert api["client"].get(p + f"/scenarios/{old_id}").json()["output"] == output
+    assert api["client"].get(p + "/scenarios").json()[0]["output"] == output
+    assert api["client"].get(p + f"/scenarios/{old_id}/replay").json()["matches"]
+    assert (
+        api["client"].get(p + f"/scenarios/{old_id}/export").json()["output"] == output
+    )
+    post(
+        api,
+        p + "/preview",
+        {k: BODY[k] for k in ("candidateKw", "normalRegime", "tariffApplicability")},
+        status=422,
+    )

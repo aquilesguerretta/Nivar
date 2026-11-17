@@ -403,14 +403,21 @@ def _execute_model_version(
     from app.services import ariadne_planning_engine as planning
 
     if model_definition.name == planning.MODEL:
+        from app.services import ariadne_planning_engine_v0_1_1
+
+        executor = (
+            planning
+            if model_version.semantic_version == planning.VERSION
+            else ariadne_planning_engine_v0_1_1
+        )
         if (
-            model_version.semantic_version != planning.VERSION
-            or model_version.implementation_identity != planning.IMPLEMENTATION
-            or model_version.input_contract != planning.INPUT_CONTRACT
-            or model_version.output_contract != planning.OUTPUT_CONTRACT
+            model_version.semantic_version != executor.VERSION
+            or model_version.implementation_identity != executor.IMPLEMENTATION
+            or model_version.input_contract != executor.INPUT_CONTRACT
+            or model_version.output_contract != executor.OUTPUT_CONTRACT
         ):
             raise ValueError("no executor for exact demand planning metadata")
-        return planning.execute_planning(
+        return executor.execute_planning(
             state_payload=state_version.payload,
             assumption_values=assumption_version.values,
             execution_configuration=configuration,

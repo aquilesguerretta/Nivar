@@ -2,7 +2,7 @@ from copy import deepcopy
 import json
 from pathlib import Path
 import pytest
-from app.services import ariadne_planning_engine as engine
+from app.services import ariadne_planning_engine_v0_1_1 as engine
 from app.services.ariadne_close_intake import parse_file
 from tests.ariadne_planning.test_demand_intake import PUBLIC
 
@@ -107,7 +107,7 @@ def test_independent_frozen_arithmetic(case):
 def test_missing_and_conflicting_facts_are_visible_uncovered(field, value):
     s = state()
     s["records"][0][field] = value
-    if field in ("eligible", "modality"):
+    if field in ("eligible", "modality") or (field == "period" and value is None):
         # Another confirmed month makes an observed contract available.
         extra = deepcopy(state()["records"][0])
         extra["period"] = "2019-07"
