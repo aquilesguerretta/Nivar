@@ -32,11 +32,13 @@ import sys
 from datetime import datetime, timezone
 
 import requests
+from sqlalchemy.orm import Session
+
+from app.db.models.argos_memory import ArgosSnapshot
 
 from app.db.session import SessionLocal
 from app.services.argos_memory import capture_snapshot
 
-logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
 
 USER_AGENT = "GridAlpha/1.0 (+https://github.com/aquilesguerretta/gridalpha-v2)"
@@ -90,30 +92,37 @@ def fetch() -> tuple[bytes, dict[str, str | int | None]]:
     return response.content, metadata
 
 
+def persist_capture(
+    session: Session,
+    data: bytes,
+    metadata: dict[str, str | int | None],
+    retrieved_at: datetime,
+) -> ArgosSnapshot:
+    return capture_snapshot(
+        session,
+        source_id=SOURCE_ID,
+        data=data,
+        content_type="text/csv",
+        adapter_version=ADAPTER_VERSION,
+        retrieved_at=retrieved_at,
+        # Neither hosting metadata nor retrieval time is a publisher date.
+        published_at=None,
+        reference_time_start=None,
+        reference_time_end=None,
+        source_timezone="America/Sao_Paulo",
+        acquisition_metadata=metadata,
+        rights_record_ref=RIGHTS_RECORD_REF,
+        rights_summary_state=RIGHTS_SUMMARY_STATE,
+    )
+
+
 def run() -> None:
     data, metadata = fetch()
     retrieved_at = datetime.now(timezone.utc)
 
     session = SessionLocal()
     try:
-        snapshot = capture_snapshot(
-            session,
-            source_id=SOURCE_ID,
-            data=data,
-            content_type="text/csv",
-            adapter_version=ADAPTER_VERSION,
-            retrieved_at=retrieved_at,
-            # ONS does not establish a publication or reference time for this
-            # current-state dataset — left explicitly unknown, not backfilled
-            # from retrieved_at.
-            published_at=None,
-            reference_time_start=None,
-            reference_time_end=None,
-            source_timezone="America/Sao_Paulo",
-            acquisition_metadata=metadata,
-            rights_record_ref=RIGHTS_RECORD_REF,
-            rights_summary_state=RIGHTS_SUMMARY_STATE,
-        )
+        snapshot = persist_capture(session, data, metadata, retrieved_at)
         session.commit()
         session.refresh(snapshot)
     except Exception:
@@ -135,6 +144,7 @@ def run() -> None:
 
 
 def main() -> int:
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     try:
         run()
     except Exception:
