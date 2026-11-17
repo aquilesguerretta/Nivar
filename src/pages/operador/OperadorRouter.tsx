@@ -16,6 +16,8 @@
 // derrubou: o estado de modo mora no chassi, então trocar de produto
 // remontava tudo e a tela voltava para claro. Com layout, o chassi monta
 // UMA vez e as views trocam no `<Outlet />`.
+// As duas telas experimentais Ariadne usam seu layout de tarefa, sob os mesmos
+// gates de desenvolvimento. Alpha e demais produtos mantêm ConsoleLayout.
 //
 // ─── A TABELA DE ROTAS É DERIVADA, NÃO DIGITADA ──────────────────────
 // As rotas de produto saem de `PRODUTOS_COM_FILA`, o mesmo catálogo que
@@ -46,6 +48,7 @@ import { AriadneWorkbench } from './AriadneWorkbench';
 import { AriadneClose } from './AriadneClose';
 import { AriadneReviewDesk } from './AriadneReviewDesk';
 import { AriadnePlanning } from './AriadnePlanning';
+import { AriadneWorkspaceLayout } from './AriadneWorkspaceChrome';
 import { ArgosSignalInspection } from './ArgosSignalInspection';
 import { NotFound } from '../NotFound';
 import { PRODUTOS_COM_FILA } from '../../lib/operador/catalogo';
@@ -57,8 +60,7 @@ export function OperadorRouter() {
         <Route index element={<FilaView />} />
         <Route path="argos" element={<ArgosSignalInspection />} />
         <Route path="ariadne" element={<AriadneWorkbench />} />
-        {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_CLOSE_DEV === '1' && import.meta.env.VITE_ARIADNE_PLAN_DEV === '1' && <Route path="ariadne/planejamento" element={<AriadnePlanning />} />}
-        {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_CLOSE_DEV === '1' && <><Route path="ariadne/fechamento" element={<AriadneReviewDesk />} /><Route path="ariadne/fechamento/avancado" element={<AriadneClose />} /></>}
+        {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_CLOSE_DEV === '1' && <Route path="ariadne/fechamento/avancado" element={<AriadneClose />} />}
         {PRODUTOS_COM_FILA.map((p) => (
           <Fragment key={p.produtoId}>
             <Route path={p.produtoId} element={<FilaView />} />
@@ -66,6 +68,12 @@ export function OperadorRouter() {
           </Fragment>
         ))}
       </Route>
+      {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_CLOSE_DEV === '1' && (
+        <Route element={<AriadneWorkspaceLayout />}>
+          <Route path="ariadne/fechamento" element={<AriadneReviewDesk />} />
+          {import.meta.env.VITE_ARIADNE_PLAN_DEV === '1' && <Route path="ariadne/planejamento" element={<AriadnePlanning />} />}
+        </Route>
+      )}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

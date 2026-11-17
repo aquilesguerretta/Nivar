@@ -1,6 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import {
+  ArrowLeft,
+  ChartNoAxesColumn,
+  Copy,
+  Download,
+  History,
+  TriangleAlert,
+} from "lucide-react";
+import { AriadneContext, AriadneSourceAction } from "./AriadneWorkspaceChrome";
+import {
   ComposedChart,
   LineChart,
   Line,
@@ -18,6 +27,7 @@ import {
   samePlanAssumptions,
   planMonthKey,
   selectedPlanMonth,
+  planPreviewForDisplay,
 } from "../../lib/ariadne/planningSelection";
 import {
   planningApi,
@@ -29,7 +39,13 @@ import {
 import "./ariadne-review-desk.css";
 import "./ariadne-planning.css";
 const brl = (s: string | null | undefined) =>
-  s == null ? "Não coberto" : `${s} BRL`;
+  s == null
+    ? "Não coberto"
+    : `R$ ${s.replace(
+        /^(-?)(\d+)(?:\.(\d+))?$/,
+        (_, sign, int, fraction) =>
+          `${sign}${int.replace(/\B(?=(\d{3})+(?!\d))/g, ".")}${fraction ? `,${fraction}` : ""}`,
+      )}`;
 const errorText = (e: unknown) =>
   e instanceof Error ? e.message : "Falha de planejamento";
 // Development-only, numeric timing evidence; no workspace/source fields in logs.
@@ -167,7 +183,7 @@ export function AriadnePlanning() {
           )
             return;
           measure("ariadne-plan-candidate-response", started);
-          setView(response);
+          setView(planPreviewForDisplay(response, selected, assumptions));
           setPending(false);
           requestAnimationFrame(() =>
             measure("ariadne-plan-candidate-visual", started),
@@ -254,11 +270,14 @@ export function AriadnePlanning() {
   if (!w || !r || !b)
     return (
       <section className="desk plan">
-        <h1>Planejamento de demanda</h1>
-        <p>Abra um estado revisado com observações de demanda.</p>
-        <Link to="/operador/ariadne/fechamento">
-          Ir para a mesa de revisão →
-        </Link>
+        <AriadneContext title="Planejamento" status="Desenvolvimento" />
+        <div className="aw-empty">
+          <h2>Planeje a partir de um estado revisado</h2>
+          <p>Abra uma revisão com observações de demanda para começar.</p>
+          <Link className="aw-back" to="/operador/ariadne/fechamento">
+            <ArrowLeft size={15} aria-hidden /> Ir para a mesa de revisão
+          </Link>
+        </div>
       </section>
     );
   return (
@@ -266,21 +285,81 @@ export function AriadnePlanning() {
       className="desk plan"
       aria-label="Laboratório de demanda contratada"
     >
-      <header className="desk__bar">
-        <div>
-          <span>ARIADNE / DEMANDA CONTRATADA</span>
-          <h1>Histórico real. Contrato hipotético.</h1>
-          <small>
-            Unidade {output?.scope} · referência antes de tributos ·
-            desenvolvimento experimental
-          </small>
-        </div>
-        <Link
-          to={`/operador/ariadne/fechamento?workspace=${w}&review=${r}&result=${b}`}
-        >
-          ← Estado revisado
-        </Link>
-      </header>
+      <AriadneContext
+        title="Planejamento"
+        navigation={
+          <Link
+            className="aw-back"
+            to={`/operador/ariadne/fechamento?workspace=${w}&review=${r}&result=${b}`}
+          >
+            <ArrowLeft size={15} aria-hidden /> Estado revisado
+          </Link>
+        }
+        context={
+          output && (
+            <>
+              Unidade {output.scope}
+              {proof && ` · ${proof.label}`} · Desenvolvimento
+            </>
+          )
+        }
+        status={
+          output &&
+          (pending
+            ? "Atualizando…"
+            : preserved
+              ? "Cenário preservado"
+              : "Explorando")
+        }
+        announcement={
+          output ? (preserved ? "Cenário preservado" : "Explorando") : ""
+        }
+        actions={
+          output && (
+            <div className="plan__save">
+              <label>
+                Nome do cenário
+                <input
+                  value={name}
+                  maxLength={160}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </label>
+              <button
+                className="desk__primary"
+                disabled={
+                  pending ||
+                  !!busy ||
+                  !name.trim() ||
+                  !!error ||
+                  (!historical && view?.newerBaselineExists)
+                }
+                onClick={() =>
+                  void act("Preservando cenário…", async (current) => {
+                    const result = await planningApi.save(root, {
+                      candidateKw: candidate,
+                      normalRegime: normal,
+                      tariffApplicability: applicable,
+                      name,
+                      acknowledgeHistoricalBaseline: historical,
+                    });
+                    if (current())
+                      setQuery({
+                        workspace: w,
+                        review: r,
+                        baseline: b,
+                        ...(proof ? { month: proof.label, item: month } : {}),
+                        scenario: result.id,
+                      });
+                  })
+                }
+              >
+                Preservar cenário
+              </button>
+            </div>
+          )
+        }
+      />
       {error && (
         <p role="alert" className="desk__error">
           {error}
@@ -292,7 +371,7 @@ export function AriadnePlanning() {
         </p>
       )}
       {!output ? (
-        <p role="status">
+        <p role="status" className="aw-empty">
           {pending ? "Abrindo o estado preservado…" : "Baseline indisponível."}
         </p>
       ) : (
@@ -313,189 +392,6 @@ export function AriadnePlanning() {
           )}
           <div className="plan__workspace" aria-busy={pending}>
             <aside className="plan__baseline">
-              <h2>
-                Baseline observado{" "}
-                <small>
-                  {output.coverage.physical}/{output.coverage.total}
-                </small>
-              </h2>
-              <p>
-                Contrato {output.baselineKw} kW · máximo observado{" "}
-                {output.maximumKw} kW
-              </p>
-              <div className="plan__months">
-                {output.months.map((m, i) => (
-                  <button
-                    key={m.label + i}
-                    aria-pressed={month === planMonthKey(m)}
-                    className={
-                      month === planMonthKey(m) ? "plan__selected" : ""
-                    }
-                    onClick={() => chooseMonth(planMonthKey(m), m.label)}
-                  >
-                    <span>{m.label}</span>
-                    <strong>
-                      {m.demandKw == null ? "Ilegível" : `${m.demandKw} kW`}
-                    </strong>
-                    <small>
-                      {m.covered
-                        ? m.trigger
-                          ? "Ultrapassagem modelada"
-                          : "Coberto"
-                        : "Não coberto"}
-                    </small>
-                  </button>
-                ))}
-              </div>
-              <p className="plan__muted">
-                Fonte pesquisável de documento escaneado. Sem novo OCR;
-                históricos sobrepostos não preenchem lacunas.
-              </p>
-            </aside>
-            <main className="plan__canvas">
-              <div className="plan__decision">
-                <label>
-                  Demanda candidata · kW
-                  <input
-                    aria-label="Demanda candidata em kW"
-                    type="number"
-                    min="30"
-                    max="100000"
-                    step="0.01"
-                    value={candidate}
-                    onChange={(e) => setCandidate(e.target.value)}
-                  />
-                </label>
-                <span role="status">
-                  {pending
-                    ? "Atualizando…"
-                    : preserved
-                      ? "CENÁRIO PRESERVADO"
-                      : "EXPLORANDO"}
-                </span>
-              </div>
-              <input
-                aria-label="Explorar demanda contratada"
-                className="plan__slider"
-                type="range"
-                min={view?.curve?.[0]?.candidateKw || 30}
-                max={view?.curve?.at(-1)?.candidateKw || 1000}
-                step="1"
-                value={candidate}
-                onChange={(e) => setCandidate(e.target.value)}
-              />
-              <p className="plan__legend">
-                ● Registrado{" "}
-                <span style={{ color: "#77786c" }}>━ observado</span>{" "}
-                <span style={{ color: "#a97740" }}>━ candidato</span>{" "}
-                <span style={{ color: "#a45b43" }}>┄ 105%</span> · translúcido:
-                sem custo coberto
-              </p>
-              <div
-                className="plan__demand"
-                aria-label="Perfil mensal de demanda e limiar"
-              >
-                <ResponsiveContainer width="100%" height="100%">
-                  <ComposedChart
-                    data={output.months.map((m) => ({
-                      ...m,
-                      value: m.demandKw == null ? null : Number(m.demandKw),
-                    }))}
-                    margin={{ left: 0, right: 12, top: 12, bottom: 0 }}
-                  >
-                    <XAxis
-                      dataKey="label"
-                      tick={{ fontSize: 10 }}
-                      tickFormatter={(label) =>
-                        String(label).startsWith("Página ")
-                          ? `p.${String(label).split(" ")[1]}`
-                          : String(label)
-                      }
-                    />
-                    <YAxis unit=" kW" width={62} domain={[0, "auto"]} />
-                    <Tooltip />
-                    <Bar
-                      dataKey="value"
-                      name="Registrado"
-                      isAnimationActive={false}
-                    >
-                      {output.months.map((m, i) => (
-                        <Cell
-                          key={i}
-                          opacity={m.covered ? 1 : 0.4}
-                          fill={
-                            planMonthKey(m) === month
-                              ? "#a97740"
-                              : m.trigger
-                                ? "#a45b43"
-                                : "#697966"
-                          }
-                        />
-                      ))}
-                    </Bar>
-                    <ReferenceLine
-                      y={Number(output.baselineKw)}
-                      stroke="#77786c"
-                    />
-                    <ReferenceLine
-                      y={Number(output.assumptions.candidateKw)}
-                      stroke="#a97740"
-                    />
-                    {normal && (
-                      <ReferenceLine
-                        y={Number(output.months[0]?.thresholdKw)}
-                        stroke="#a45b43"
-                        strokeDasharray="4 4"
-                      />
-                    )}
-                  </ComposedChart>
-                </ResponsiveContainer>
-              </div>
-              <div className="plan__curve">
-                <h2>
-                  Custo × demanda contratada{" "}
-                  <small>
-                    {output.coverage.covered}/{output.coverage.total} meses
-                  </small>
-                </h2>
-                <ResponsiveContainer width="100%" height={145}>
-                  <LineChart
-                    data={(view?.curve || []).map((p) => ({
-                      kw: Number(p.candidateKw),
-                      cost: p.cost == null ? null : Number(p.cost),
-                    }))}
-                    margin={{ left: 0, right: 15, top: 12 }}
-                  >
-                    <XAxis
-                      dataKey="kw"
-                      type="number"
-                      domain={["dataMin", "dataMax"]}
-                      unit=" kW"
-                    />
-                    <YAxis width={62} domain={["auto", "auto"]} />
-                    <Tooltip />
-                    <Line
-                      type="linear"
-                      dataKey="cost"
-                      name="BRL cobertos"
-                      stroke="#a97740"
-                      dot={false}
-                      isAnimationActive={false}
-                      connectNulls={false}
-                    />
-                    <ReferenceLine
-                      x={Number(output.assumptions.candidateKw)}
-                      stroke="#a45b43"
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-                <p>
-                  {view?.lowestExplored
-                    ? `Menor custo modelado no intervalo explorado: ${view.lowestExplored.candidateKw} kW · ${brl(view.lowestExplored.cost)}.`
-                    : "Reconheça as premissas para explorar custos."}{" "}
-                  Não é recomendação contratual.
-                </p>
-              </div>
               <div className="plan__branches">
                 <label>
                   Cenário{" "}
@@ -524,9 +420,230 @@ export function AriadnePlanning() {
                 <button
                   disabled={!!busy || pending}
                   onClick={() => setCompare(!compare)}
+                  aria-expanded={compare}
+                  aria-controls={
+                    compare ? "ariadne-preserved-comparison" : undefined
+                  }
                 >
-                  Comparar preservados ({saved.length})
+                  <ChartNoAxesColumn size={15} aria-hidden /> Comparar
+                  preservados ({saved.length})
                 </button>
+              </div>
+              <h2>Meses do baseline</h2>
+              <p className="plan__muted">
+                {output.coverage.physical}/{output.coverage.total} físicos ·{" "}
+                {output.coverage.covered}/{output.coverage.total} com custo
+              </p>
+              <div className="plan__months">
+                {output.months.map((m, i) => (
+                  <button
+                    key={m.label + i}
+                    aria-pressed={month === planMonthKey(m)}
+                    className={
+                      month === planMonthKey(m) ? "plan__selected" : ""
+                    }
+                    onClick={() => chooseMonth(planMonthKey(m), m.label)}
+                  >
+                    <span className="plan__month-label" title={m.label}>
+                      {m.label.startsWith("Página ")
+                        ? m.label.split(" · ")[0]
+                        : m.label}
+                    </span>
+                    <strong>
+                      {m.demandKw == null ? "—" : `${m.demandKw} kW`}
+                    </strong>
+                    <small className="aw-coverage">
+                      {m.covered
+                        ? "Coberto"
+                        : m.physicalCovered
+                          ? "Só demanda"
+                          : "Sem leitura"}
+                      {m.trigger && (
+                        <span
+                          className="plan__overrun"
+                          title="Ultrapassagem modelada"
+                        >
+                          <TriangleAlert size={12} aria-hidden />
+                          <span className="aw-sr-only">
+                            {" "}
+                            · ultrapassagem modelada
+                          </span>
+                        </span>
+                      )}
+                    </small>
+                  </button>
+                ))}
+              </div>
+              <p className="plan__muted">
+                Fonte pesquisável de documento escaneado. Sem novo OCR;
+                históricos sobrepostos não preenchem lacunas.
+              </p>
+            </aside>
+            <section
+              className="plan__canvas"
+              aria-labelledby="ariadne-demand-title"
+            >
+              <h2 id="ariadne-demand-title">Demanda contratada</h2>
+              <p className="plan__muted">
+                Contrato observado: {output.baselineKw} kW · máximo de{" "}
+                {output.maximumKw ?? "—"} kW
+              </p>
+              <div className="plan__candidate">
+                <div className="plan__decision">
+                  <label>
+                    Demanda candidata · kW
+                    <input
+                      aria-label="Demanda candidata em kW"
+                      type="number"
+                      min="30"
+                      max="100000"
+                      step="0.01"
+                      value={candidate}
+                      onChange={(e) => setCandidate(e.target.value)}
+                    />
+                  </label>
+                </div>
+                <input
+                  aria-label="Explorar demanda contratada"
+                  className="plan__slider"
+                  type="range"
+                  min={view?.curve?.[0]?.candidateKw || 30}
+                  max={view?.curve?.at(-1)?.candidateKw || 1000}
+                  step="1"
+                  value={candidate}
+                  onChange={(e) => setCandidate(e.target.value)}
+                />
+              </div>
+              <p className="plan__legend">
+                <span data-key="registered">Registrado</span>
+                <span data-key="baseline">Contrato observado</span>
+                <span data-key="candidate">Candidato</span>
+                {normal && <span data-key="threshold">Limiar de 105%</span>}
+                <span data-key="uncovered">Sem custo coberto</span>
+              </p>
+              <div
+                className="plan__demand"
+                aria-label="Perfil mensal de demanda e limiar"
+              >
+                <ResponsiveContainer width="100%" height="100%">
+                  <ComposedChart
+                    data={output.months.map((m) => ({
+                      ...m,
+                      value: m.demandKw == null ? null : Number(m.demandKw),
+                    }))}
+                    margin={{ left: 0, right: 12, top: 12, bottom: 0 }}
+                    onClick={(state) => {
+                      if (state.activeTooltipIndex == null) return;
+                      const selectedMonth =
+                        output.months[Number(state.activeTooltipIndex)];
+                      if (selectedMonth)
+                        chooseMonth(
+                          planMonthKey(selectedMonth),
+                          selectedMonth.label,
+                        );
+                    }}
+                  >
+                    <XAxis
+                      dataKey="label"
+                      tick={{ fontSize: 10 }}
+                      tickFormatter={(label) =>
+                        String(label).startsWith("Página ")
+                          ? `p.${String(label).split(" ")[1]}`
+                          : String(label)
+                      }
+                    />
+                    <YAxis unit=" kW" width={62} domain={[0, "auto"]} />
+                    <Tooltip
+                      cursor={{ fill: "var(--desk-select)", opacity: 0.65 }}
+                    />
+                    <Bar
+                      dataKey="value"
+                      name="Registrado"
+                      isAnimationActive={false}
+                    >
+                      {output.months.map((m, i) => (
+                        <Cell
+                          key={i}
+                          opacity={m.covered ? 1 : 0.4}
+                          fill={
+                            planMonthKey(m) === month
+                              ? "var(--aw-accent)"
+                              : m.trigger
+                                ? "var(--aw-chart-overrun)"
+                                : "var(--aw-chart-bar)"
+                          }
+                        />
+                      ))}
+                    </Bar>
+                    <ReferenceLine
+                      y={Number(output.baselineKw)}
+                      stroke="var(--aw-chart-neutral)"
+                    />
+                    <ReferenceLine
+                      y={Number(output.assumptions.candidateKw)}
+                      stroke="var(--aw-accent)"
+                      strokeWidth={2.5}
+                    />
+                    {normal && (
+                      <ReferenceLine
+                        y={Number(output.months[0]?.thresholdKw)}
+                        stroke="var(--aw-chart-neutral)"
+                        strokeDasharray="4 4"
+                      />
+                    )}
+                  </ComposedChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="plan__curve">
+                <h2>
+                  Custo × demanda contratada{" "}
+                  <small>
+                    {output.coverage.covered}/{output.coverage.total} meses
+                  </small>
+                </h2>
+                {!!view?.curve?.length && (
+                  <ResponsiveContainer width="100%" height={145}>
+                    <LineChart
+                      data={(view?.curve || []).map((p) => ({
+                        kw: Number(p.candidateKw),
+                        cost: p.cost == null ? null : Number(p.cost),
+                      }))}
+                      margin={{ left: 0, right: 15, top: 12 }}
+                    >
+                      <XAxis
+                        dataKey="kw"
+                        type="number"
+                        domain={["dataMin", "dataMax"]}
+                        unit=" kW"
+                      />
+                      <YAxis width={62} domain={["auto", "auto"]} />
+                      <Tooltip />
+                      <Line
+                        type="linear"
+                        dataKey="cost"
+                        name="BRL cobertos"
+                        stroke="var(--aw-accent)"
+                        dot={false}
+                        isAnimationActive={false}
+                        connectNulls={false}
+                      />
+                      <ReferenceLine
+                        x={Number(output.assumptions.candidateKw)}
+                        stroke="var(--aw-chart-neutral)"
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                )}
+                <p>
+                  {view?.lowestExplored
+                    ? `Menor custo modelado no intervalo explorado: ${view.lowestExplored.candidateKw} kW · ${brl(view.lowestExplored.cost)}.`
+                    : preserved && !pending
+                      ? `Resultado preservado no modelo ${output.version}. Altere uma premissa para explorar com o modelo atual.`
+                      : "Reconheça as premissas para explorar custos."}{" "}
+                  Não é recomendação contratual.
+                </p>
+              </div>
+              <div className="plan__saved-actions">
                 {selected && (
                   <button
                     disabled={!!busy || pending}
@@ -551,11 +668,37 @@ export function AriadnePlanning() {
                       })
                     }
                   >
-                    Duplicar cenário
+                    <Copy size={15} aria-hidden /> Duplicar cenário
                   </button>
                 )}
+                {selected && (
+                  <div className="plan__actions">
+                    <button
+                      disabled={!!busy}
+                      onClick={() =>
+                        void act("Reconstruindo…", async (current) => {
+                          const result = await planningApi.replay(
+                            root,
+                            selected.id,
+                          );
+                          if (current())
+                            setNotice(
+                              result.matches
+                                ? "Replay exato: resultado idêntico."
+                                : "Falha de replay.",
+                            );
+                        })
+                      }
+                    >
+                      <History size={15} aria-hidden /> Reconstruir resultado
+                    </button>
+                    <a href={planningApi.exportUrl(root, selected.id)}>
+                      <Download size={15} aria-hidden /> Exportar cenário exato
+                    </a>
+                  </div>
+                )}
               </div>
-            </main>
+            </section>
             <aside className="plan__impact">
               <h2>Impacto no escopo coberto</h2>
               <p className="plan__delta">{pending ? "…" : brl(output.delta)}</p>
@@ -563,6 +706,7 @@ export function AriadnePlanning() {
                 Candidato menos baseline modelado · {output.coverage.covered}/
                 {output.coverage.total} meses
               </p>
+              <p>Referência tarifária antes de tributos</p>
               <dl>
                 <div>
                   <dt>Custo modelado</dt>
@@ -572,143 +716,92 @@ export function AriadnePlanning() {
                   <dt>Baseline modelado</dt>
                   <dd>{brl(output.baselineCost)}</dd>
                 </div>
-                <div>
-                  <dt>Ultrapassagem / exposição não usada</dt>
-                  <dd>
-                    {brl(output.overrunCost)} / {brl(output.unusedExposure)}
-                  </dd>
-                </div>
-                <div>
-                  <dt>Meses acima do limite / abaixo do contrato</dt>
-                  <dd>
-                    {output.overrunMonths} / {output.unusedMonths} ·{" "}
-                    {output.coverage.physical} meses físicos
-                  </dd>
-                </div>
               </dl>
-              <fieldset disabled={!!busy}>
-                <legend>Premissas explícitas</legend>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={normal}
-                    onChange={(e) => setNormal(e.target.checked)}
-                  />{" "}
-                  Simular regime normal, sem sazonalidade reconhecida, rural ou
-                  período de teste.
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={applicable}
-                    onChange={(e) => setApplicable(e.target.checked)}
-                  />{" "}
-                  Reconheço a referência A4 verde ordinária e sua base antes de
-                  tributos; sem comparação à fatura bruta.
-                </label>
-              </fieldset>
-              <div className="plan__save">
-                <label>
-                  Nome do cenário
-                  <input
-                    value={name}
-                    maxLength={160}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </label>
-                <button
-                  className="desk__primary"
-                  disabled={
-                    pending ||
-                    !!busy ||
-                    !name.trim() ||
-                    !!error ||
-                    (!historical && view?.newerBaselineExists)
-                  }
-                  onClick={() =>
-                    void act("Preservando cenário…", async (current) => {
-                      const result = await planningApi.save(root, {
-                        candidateKw: candidate,
-                        normalRegime: normal,
-                        tariffApplicability: applicable,
-                        name,
-                        acknowledgeHistoricalBaseline: historical,
-                      });
-                      if (current())
-                        setQuery({
-                          workspace: w,
-                          review: r,
-                          baseline: b,
-                          ...(proof ? { month: proof.label, item: month } : {}),
-                          scenario: result.id,
-                        });
-                    })
-                  }
-                >
-                  Preservar cenário
-                </button>
-              </div>
-              {selected && (
-                <div className="plan__actions">
-                  <button
-                    disabled={!!busy}
-                    onClick={() =>
-                      void act("Reconstruindo…", async (current) => {
-                        const result = await planningApi.replay(
-                          root,
-                          selected.id,
-                        );
-                        if (current())
-                          setNotice(
-                            result.matches
-                              ? "Replay exato: resultado idêntico."
-                              : "Falha de replay.",
-                          );
-                      })
-                    }
-                  >
-                    Reconstruir resultado
-                  </button>
-                  <a href={planningApi.exportUrl(root, selected.id)}>
-                    Exportar cenário exato
-                  </a>
-                </div>
-              )}
+              <details className="aw-disclosure plan__impact-detail">
+                <summary>Detalhes do impacto</summary>
+                <dl>
+                  <div>
+                    <dt>Ultrapassagem / exposição não usada</dt>
+                    <dd>
+                      {brl(output.overrunCost)} / {brl(output.unusedExposure)}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Meses acima do limite / abaixo do contrato</dt>
+                    <dd>
+                      {output.overrunMonths} / {output.unusedMonths} ·{" "}
+                      {output.coverage.physical} meses físicos
+                    </dd>
+                  </div>
+                </dl>
+              </details>
               {busy && <p role="status">{busy}</p>}
               {proof && (
                 <article className="plan__proof">
                   <h2>{proof.label} · prova</h2>
-                  <p>
-                    {proof.demandKw ?? "Ausente"} kW observado →{" "}
-                    {output.assumptions.candidateKw} kW hipotético
-                  </p>
-                  <p>
-                    {pending
-                      ? "Atualizando cálculo…"
-                      : `Regular ${brl(proof.modeled?.regular)} + ultrapassagem ${brl(proof.modeled?.overrun)} = ${brl(proof.modeled?.total)}`}
-                  </p>
-                  <p>
-                    {proof.rate
-                      ? `${proof.rate.rate} BRL/kW · ${proof.rate.effective_from}–${proof.rate.effective_to}`
-                      : "Referência não coberta"}
-                  </p>
+                  <AriadneSourceAction
+                    href={
+                      (original ||
+                        closeApi.originalUrl(w, r, proof.sourceRef.sourceId)) +
+                      (proof.sourceRef.page
+                        ? `#page=${proof.sourceRef.page}`
+                        : "")
+                    }
+                    page={proof.sourceRef.page}
+                  />
+                  <dl>
+                    <div>
+                      <dt>Demanda observada</dt>
+                      <dd>
+                        {proof.demandKw == null
+                          ? "Sem leitura"
+                          : `${proof.demandKw} kW`}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Demanda candidata</dt>
+                      <dd>{output.assumptions.candidateKw} kW</dd>
+                    </div>
+                    <div>
+                      <dt>Referência externa</dt>
+                      <dd>
+                        {proof.rate
+                          ? `${brl(proof.rate.rate)}/kW`
+                          : "Não coberta"}
+                      </dd>
+                    </div>
+                    {pending ? (
+                      <div>
+                        <dt>Subtotal modelado</dt>
+                        <dd>Atualizando…</dd>
+                      </div>
+                    ) : proof.modeled ? (
+                      <>
+                        <div>
+                          <dt>Componente regular</dt>
+                          <dd>{brl(proof.modeled.regular)}</dd>
+                        </div>
+                        <div>
+                          <dt>Ultrapassagem modelada</dt>
+                          <dd>{brl(proof.modeled.overrun)}</dd>
+                        </div>
+                        <div className="plan__proof-total">
+                          <dt>Subtotal modelado do mês</dt>
+                          <dd>{brl(proof.modeled.total)}</dd>
+                        </div>
+                      </>
+                    ) : (
+                      <div>
+                        <dt>Subtotal modelado</dt>
+                        <dd>Não coberto</dd>
+                      </div>
+                    )}
+                  </dl>
                   {proof.reasons.map((reason) => (
                     <p className="desk__invalid" key={reason}>
                       {reason}
                     </p>
                   ))}
-                  <a
-                    href={
-                      original
-                        ? `${original}#page=${proof.sourceRef.page}`
-                        : closeApi.originalUrl(w, r, proof.sourceRef.sourceId)
-                    }
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Abrir fonte original · página{" "}
-                    {proof.sourceRef.page || "tabela"}
-                  </a>
                   <details>
                     <summary>Localizadores e valores brutos</summary>
                     <pre>
@@ -732,6 +825,12 @@ export function AriadnePlanning() {
                     <p>{proof.formula}</p>
                     <p>{output.policy.rule}</p>
                     <p>{proof.rate?.authority}</p>
+                    {proof.rate && (
+                      <p>
+                        Vigência da referência: {proof.rate.effective_from}–
+                        {proof.rate.effective_to}
+                      </p>
+                    )}
                     <p>{output.policy.rounding}</p>
                     <a
                       href={output.policy.authorityUrl}
@@ -747,10 +846,34 @@ export function AriadnePlanning() {
                   </details>
                 </article>
               )}
+              <details className="aw-disclosure" open={!scenarioId}>
+                <summary>Premissas do cenário</summary>
+                <fieldset disabled={!!busy}>
+                  <legend>Premissas explícitas</legend>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={normal}
+                      onChange={(e) => setNormal(e.target.checked)}
+                    />{" "}
+                    Simular regime normal, sem sazonalidade reconhecida, rural
+                    ou período de teste.
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={applicable}
+                      onChange={(e) => setApplicable(e.target.checked)}
+                    />{" "}
+                    Reconheço a referência A4 verde ordinária e sua base antes
+                    de tributos; sem comparação à fatura bruta.
+                  </label>
+                </fieldset>
+              </details>
             </aside>
           </div>
           {compare && (
-            <div className="plan__comparison">
+            <div className="plan__comparison" id="ariadne-preserved-comparison">
               <h2>Baseline e alternativas preservadas</h2>
               <table>
                 <thead>
@@ -769,7 +892,7 @@ export function AriadnePlanning() {
                     <td>Baseline observado</td>
                     <td>{output.baselineKw}</td>
                     <td>{brl(output.baselineCost)}</td>
-                    <td>0.00 BRL</td>
+                    <td>{brl("0.00")}</td>
                     <td>Ver perfil observado</td>
                     <td>
                       {output.coverage.covered}/{output.coverage.total}
