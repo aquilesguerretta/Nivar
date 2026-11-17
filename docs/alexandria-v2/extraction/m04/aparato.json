@@ -1,0 +1,3575 @@
+{
+  "modulo": "04",
+  "fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo04.html",
+  "camada": "fonte",
+  "metodo": "Python 3 + BeautifulSoup (html.parser) sobre a árvore; quiz avaliado a partir do literal `var Q=[…]` do <script> via node. extratores/m04_extrator.py.",
+  "caso": {
+    "id": "m04-caso",
+    "tipo": "caso",
+    "marcador": "§Caso",
+    "rotulo_fonte": "Operação A — Parte 4",
+    "parte_declarada_na_fonte": "Parte 4",
+    "parte_nota": "A fonte rotula este caso como \"Operação A — Parte 4\" e o lede cita \"As Partes 1 a 3 olharam consumo, rede e tecnologia\" (módulos anteriores). Registro literal; pelo P17 o produto não usa numeração de \"Parte\" como estrutura da Alexandria.",
+    "titulo": {
+      "html": "A planta pela lente do risco de mercado",
+      "texto": "A planta pela lente do risco de mercado"
+    },
+    "lede": {
+      "html": "Operação A — mineração em Minas Gerais. As Partes 1 a 3 olharam consumo, rede e tecnologia. Esta parte olha exposição: como o custo de energia desta planta reage ao que o mercado fizer.",
+      "texto": "Operação A — mineração em Minas Gerais. As Partes 1 a 3 olharam consumo, rede e tecnologia. Esta parte olha exposição: como o custo de energia desta planta reage ao que o mercado fizer."
+    },
+    "contexto": [
+      {
+        "id": "m04-caso-p1",
+        "html": "O perfil de carga de uma operação de mineração tem características que este módulo torna legíveis. É carga pesada e majoritariamente contínua — britagem, moagem, bombeamento, correias, ventilação — com fator de carga alto e pouca elasticidade horária real. Alta previsibilidade de volume é uma vantagem contratual: quanto mais previsível o consumo, mais estreita pode ser a banda de flexibilidade negociada, e banda estreita é moeda de troca em preço.",
+        "texto": "O perfil de carga de uma operação de mineração tem características que este módulo torna legíveis. É carga pesada e majoritariamente contínua — britagem, moagem, bombeamento, correias, ventilação — com fator de carga alto e pouca elasticidade horária real. Alta previsibilidade de volume é uma vantagem contratual: quanto mais previsível o consumo, mais estreita pode ser a banda de flexibilidade negociada, e banda estreita é moeda de troca em preço.",
+        "origem": {
+          "seletor": "section#caso > .wrap > p",
+          "trecho_inicial": "<p>O perfil de carga de uma operação de mineração tem características que este módulo torn",
+          "linha_aprox": 972
+        }
+      },
+      {
+        "id": "m04-caso-p2",
+        "html": "Mas previsibilidade não significa constância, e é aí que mora o diagnóstico. Variação de teor do minério, parada programada de manutenção, ciclo de preço da commodity e decisão de estocar ou despachar produto mudam o consumo anual de forma que o contrato precisa acomodar. Uma operação que reduz turno por três meses por causa de preço de mercado internacional não tem como avisar a comercializadora com dois anos de antecedência — e é exatamente esse descasamento entre o ciclo do negócio e o ciclo do contrato que a Parte 4 investiga.",
+        "texto": "Mas previsibilidade não significa constância, e é aí que mora o diagnóstico. Variação de teor do minério, parada programada de manutenção, ciclo de preço da commodity e decisão de estocar ou despachar produto mudam o consumo anual de forma que o contrato precisa acomodar. Uma operação que reduz turno por três meses por causa de preço de mercado internacional não tem como avisar a comercializadora com dois anos de antecedência — e é exatamente esse descasamento entre o ciclo do negócio e o ciclo do contrato que a Parte 4 investiga.",
+        "origem": {
+          "seletor": "section#caso > .wrap > p",
+          "trecho_inicial": "<p>Mas previsibilidade não significa constância, e é aí que mora o diagnóstico. Variação d",
+          "linha_aprox": 974
+        }
+      }
+    ],
+    "dados_do_caso": {
+      "empresa": "Operação A",
+      "setor_e_local": "mineração em Minas Gerais",
+      "anotacao_da_extracao": "Os dois valores acima são substrings literais do lede (L970). Não há tabela de dados numéricos no caso do M04."
+    },
+    "perguntas": {
+      "numero": "C.1",
+      "titulo": "As oito perguntas de diagnóstico",
+      "natureza": "anotacao_da_extracao: perguntas de diagnóstico que o analista faz à operação (não perguntas de avaliação do learner).",
+      "itens": [
+        {
+          "id": "m04-caso-q01",
+          "ordem": 1,
+          "tema": "Ambiente atual.",
+          "pergunta": {
+            "html": "A operação está no ambiente regulado ou já migrou? Se está cativa, qual o gatilho que faria a avaliação de migração fazer sentido — e ele já ocorreu?",
+            "texto": "A operação está no ambiente regulado ou já migrou? Se está cativa, qual o gatilho que faria a avaliação de migração fazer sentido — e ele já ocorreu?"
+          },
+          "origem": {
+            "seletor": "section#caso ol.num-list > li",
+            "trecho_inicial": "<li><b>Ambiente atual.</b> A operação está no ambiente regulado ou já migrou? Se está cati",
+            "linha_aprox": 978
+          }
+        },
+        {
+          "id": "m04-caso-q02",
+          "ordem": 2,
+          "tema": "Exposição descoberta.",
+          "pergunta": {
+            "html": "Se houver contrato, qual a diferença histórica entre volume contratado e volume medido, mês a mês, nos últimos 12 a 24 meses? Essa diferença, valorada a diferentes cenários de PLD, produz qual banda de custo?",
+            "texto": "Se houver contrato, qual a diferença histórica entre volume contratado e volume medido, mês a mês, nos últimos 12 a 24 meses? Essa diferença, valorada a diferentes cenários de PLD, produz qual banda de custo?"
+          },
+          "origem": {
+            "seletor": "section#caso ol.num-list > li",
+            "trecho_inicial": "<li><b>Exposição descoberta.</b> Se houver contrato, qual a diferença histórica entre volu",
+            "linha_aprox": 979
+          }
+        },
+        {
+          "id": "m04-caso-q03",
+          "ordem": 3,
+          "tema": "Aderência de perfil.",
+          "pergunta": {
+            "html": "O contrato existente é flat, sazonalizado ou modulado? O perfil contratado acompanha o perfil real de consumo da planta, ou existe descasamento sistemático em determinadas horas ou meses?",
+            "texto": "O contrato existente é flat, sazonalizado ou modulado? O perfil contratado acompanha o perfil real de consumo da planta, ou existe descasamento sistemático em determinadas horas ou meses?"
+          },
+          "origem": {
+            "seletor": "section#caso ol.num-list > li",
+            "trecho_inicial": "<li><b>Aderência de perfil.</b> O contrato existente é flat, sazonalizado ou modulado? O p",
+            "linha_aprox": 980
+          }
+        },
+        {
+          "id": "m04-caso-q04",
+          "ordem": 4,
+          "tema": "Submercado.",
+          "pergunta": {
+            "html": "A referência do contrato coincide com o submercado da carga? Se não, qual foi historicamente a diferença de preço entre os dois — e ela é material diante do volume?",
+            "texto": "A referência do contrato coincide com o submercado da carga? Se não, qual foi historicamente a diferença de preço entre os dois — e ela é material diante do volume?"
+          },
+          "origem": {
+            "seletor": "section#caso ol.num-list > li",
+            "trecho_inicial": "<li><b>Submercado.</b> A referência do contrato coincide com o submercado da carga? Se não",
+            "linha_aprox": 981
+          }
+        },
+        {
+          "id": "m04-caso-q05",
+          "ordem": 5,
+          "tema": "Indexação.",
+          "pergunta": {
+            "html": "Qual índice reajusta o contrato e como ele se comportou contra o orçamento nos últimos ciclos? Existe teto de reajuste? O índice escolhido tem alguma relação com a receita da operação, ou o contrato criou um descasamento macro?",
+            "texto": "Qual índice reajusta o contrato e como ele se comportou contra o orçamento nos últimos ciclos? Existe teto de reajuste? O índice escolhido tem alguma relação com a receita da operação, ou o contrato criou um descasamento macro?"
+          },
+          "origem": {
+            "seletor": "section#caso ol.num-list > li",
+            "trecho_inicial": "<li><b>Indexação.</b> Qual índice reajusta o contrato e como ele se comportou contra o orç",
+            "linha_aprox": 982
+          }
+        },
+        {
+          "id": "m04-caso-q06",
+          "ordem": 6,
+          "tema": "Fonte e descasamento.",
+          "pergunta": {
+            "html": "Uma proposta de PPA de fonte específica — eólica ou solar, do cardápio do Módulo 03 — entrega energia em quais horas, e essas horas coincidem com as horas de consumo da planta? Quem absorve corte de geração no contrato?",
+            "texto": "Uma proposta de PPA de fonte específica — eólica ou solar, do cardápio do Módulo 03 — entrega energia em quais horas, e essas horas coincidem com as horas de consumo da planta? Quem absorve corte de geração no contrato?"
+          },
+          "origem": {
+            "seletor": "section#caso ol.num-list > li",
+            "trecho_inicial": "<li><b>Fonte e descasamento.</b> Uma proposta de PPA de fonte específica — eólica ou solar",
+            "linha_aprox": 983
+          }
+        },
+        {
+          "id": "m04-caso-q07",
+          "ordem": 7,
+          "tema": "Saída.",
+          "pergunta": {
+            "html": "Qual o custo documentado de rescisão antecipada, sob quais condições ele é acionado, e como ele se compara ao valor presente do contrato remanescente?",
+            "texto": "Qual o custo documentado de rescisão antecipada, sob quais condições ele é acionado, e como ele se compara ao valor presente do contrato remanescente?"
+          },
+          "origem": {
+            "seletor": "section#caso ol.num-list > li",
+            "trecho_inicial": "<li><b>Saída.</b> Qual o custo documentado de rescisão antecipada, sob quais condições ele",
+            "linha_aprox": 984
+          }
+        },
+        {
+          "id": "m04-caso-q08",
+          "ordem": 8,
+          "tema": "Contraparte.",
+          "pergunta": {
+            "html": "Quem é o vendedor, qual a estrutura societária, quais garantias são exigidas de cada lado e qual o custo de capital de giro dessas garantias?",
+            "texto": "Quem é o vendedor, qual a estrutura societária, quais garantias são exigidas de cada lado e qual o custo de capital de giro dessas garantias?"
+          },
+          "origem": {
+            "seletor": "section#caso ol.num-list > li",
+            "trecho_inicial": "<li><b>Contraparte.</b> Quem é o vendedor, qual a estrutura societária, quais garantias sã",
+            "linha_aprox": 985
+          }
+        }
+      ]
+    },
+    "o_que_nao_faz": {
+      "numero": "C.2",
+      "titulo": {
+        "html": "O que a Parte 4 <em>não</em> faz",
+        "texto": "O que a Parte 4 não faz"
+      },
+      "html": "Não escolhe ambiente, não recomenda fornecedor, não estima economia. As oito perguntas produzem um mapa de exposição, não uma decisão. A decisão exige doze meses de dados medidos, o contrato vigente na íntegra e o plano industrial da operação — três insumos que só a empresa tem e que nenhum diagnóstico externo substitui.",
+      "texto": "Não escolhe ambiente, não recomenda fornecedor, não estima economia. As oito perguntas produzem um mapa de exposição, não uma decisão. A decisão exige doze meses de dados medidos, o contrato vigente na íntegra e o plano industrial da operação — três insumos que só a empresa tem e que nenhum diagnóstico externo substitui.",
+      "origem": {
+        "seletor": "section#caso h3 (C.2)",
+        "trecho_inicial": "<h3><span class=\"num\">C.2</span>O que a Parte 4 <em>não</em> faz</h3>",
+        "linha_aprox": 988
+      }
+    },
+    "decisao_pedida": null,
+    "decisao_nota": "A fonte declara explicitamente que o caso não pede decisão: \"Não escolhe ambiente, não recomenda fornecedor, não estima economia. As oito perguntas produzem um mapa de exposição, não uma decisão.\" (C.2). Um Desafio de decisão (P17) é camada Alexandria e só pode usar os fatos acima.",
+    "callouts": [
+      {
+        "rotulo": "Disciplina do caso",
+        "classe": "box rd",
+        "paragrafos": [
+          {
+            "html": "Nada aqui é recomendação. Qualquer achado se comunica como <strong>oportunidade potencial de economia a ser validada com dados completos</strong> — nunca como valor de economia. E a identificação permanece anonimizada: Operação A, mineração em Minas Gerais, sem nome, município exato ou dado sensível.",
+            "texto": "Nada aqui é recomendação. Qualquer achado se comunica como oportunidade potencial de economia a ser validada com dados completos — nunca como valor de economia. E a identificação permanece anonimizada: Operação A, mineração em Minas Gerais, sem nome, município exato ou dado sensível."
+          }
+        ],
+        "exibir_ao_learner": null,
+        "origem": {
+          "seletor": "section#caso .box",
+          "trecho_inicial": "<div class=\"box rd\">",
+          "linha_aprox": 991
+        }
+      },
+      {
+        "rotulo": "Onde isso entra no produto",
+        "classe": "box gd",
+        "paragrafos": [
+          {
+            "html": "As oito perguntas acima <em>são</em> o roteiro de diagnóstico do <strong>Mercado Livre Readiness</strong>. Formalizadas em template, com as respostas alimentando uma matriz de exposição por cenário, viram o entregável do produto. O caso da família é o piloto de validação do roteiro, não uma peça de marketing.",
+            "texto": "As oito perguntas acima são o roteiro de diagnóstico do Mercado Livre Readiness. Formalizadas em template, com as respostas alimentando uma matriz de exposição por cenário, viram o entregável do produto. O caso da família é o piloto de validação do roteiro, não uma peça de marketing."
+          }
+        ],
+        "exibir_ao_learner": false,
+        "origem": {
+          "seletor": "section#caso .box",
+          "trecho_inicial": "<div class=\"box gd\">",
+          "linha_aprox": 996
+        }
+      }
+    ],
+    "vinculos": {
+      "aulas": null,
+      "nota": "O caso cita \"Módulo 03\" (pergunta 6) e \"a Parte 4\"; não declara vínculo com aula do M04."
+    },
+    "origem": {
+      "seletor": "section#caso .sec-id",
+      "trecho_inicial": "<div class=\"sec-id\"><b>§Caso</b> · Operação A — Parte 4</div>",
+      "linha_aprox": 968
+    }
+  },
+  "avaliacao": {
+    "id": "m04-quiz",
+    "tipo": "quiz",
+    "marcador": "§Quiz",
+    "rotulo": "Verificação interativa de domínio",
+    "titulo_secao": {
+      "html": "Dez perguntas. Resposta imediata.",
+      "texto": "Dez perguntas. Resposta imediata."
+    },
+    "lede": {
+      "html": "Quiz de fluência. Cada resposta tem retorno explicativo com a aula de origem. O critério de domínio do módulo é acertar pelo menos <strong>8 de 10</strong> sem consultar.",
+      "texto": "Quiz de fluência. Cada resposta tem retorno explicativo com a aula de origem. O critério de domínio do módulo é acertar pelo menos 8 de 10 sem consultar."
+    },
+    "criterio_literal": "8 de 10",
+    "questoes": [
+      {
+        "id": "m04-quiz-q01",
+        "ordem": 1,
+        "rotulo_renderizado": "Questão 1 de 10",
+        "enunciado": "Num sistema com muita solar despachando ao meio-dia, por que o preço de curto prazo daquele horário tende a cair?",
+        "alternativas": [
+          {
+            "indice": 0,
+            "letra": "A",
+            "texto": "Porque o custo marginal da solar é próximo de zero e ela passa a definir o preço"
+          },
+          {
+            "indice": 1,
+            "letra": "B",
+            "texto": "Porque a solar desloca a curva de oferta e a usina que fica na margem passa a ser mais barata"
+          },
+          {
+            "indice": 2,
+            "letra": "C",
+            "texto": "Porque o regulador reduz o teto de preço nos horários de alta geração renovável"
+          },
+          {
+            "indice": 3,
+            "letra": "D",
+            "texto": "Porque a demanda cai ao meio-dia na maioria dos sistemas"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "Porque a solar desloca a curva de oferta e a usina que fica na margem passa a ser mais barata"
+        },
+        "explicacao": "Aula 01. A solar quase nunca é a usina marginal — ela empurra a fila. O preço cai porque quem ficou na margem é mais barato, não porque a solar é barata. Confundir os dois é o erro conceitual mais comum sobre efeito ordem de mérito.",
+        "aula_citada_na_explicacao": "01",
+        "origem": {
+          "seletor": "script var Q[0].q",
+          "trecho_inicial": "{q:'Num sistema com muita solar despachando ao meio-dia, por que o preço de curto prazo da",
+          "linha_aprox": 1745
+        },
+        "origem_explicacao": {
+          "seletor": "script var Q[0].f",
+          "trecho_inicial": "a:1,f:'Aula 01. A solar quase nunca é a usina marginal — ela empurra a fila. O preço cai p",
+          "linha_aprox": 1750
+        }
+      },
+      {
+        "id": "m04-quiz-q02",
+        "ordem": 2,
+        "rotulo_renderizado": "Questão 2 de 10",
+        "enunciado": "O que exatamente o PLD valora?",
+        "alternativas": [
+          {
+            "indice": 0,
+            "letra": "A",
+            "texto": "O preço médio da energia consumida no país"
+          },
+          {
+            "indice": 1,
+            "letra": "B",
+            "texto": "A diferença entre a energia contratada e a energia efetivamente medida"
+          },
+          {
+            "indice": 2,
+            "letra": "C",
+            "texto": "O custo total da conta de luz de um consumidor livre"
+          },
+          {
+            "indice": 3,
+            "letra": "D",
+            "texto": "O preço fixado nos leilões regulados de energia nova"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "A diferença entre a energia contratada e a energia efetivamente medida"
+        },
+        "explicacao": "Aula 02. PLD é preço de liquidação de diferenças. Um agente perfeitamente contratado tem exposição próxima de zero e é quase indiferente ao PLD. Quem trata o PLD como \"o preço da energia\" superestima o impacto dele na fatura.",
+        "aula_citada_na_explicacao": "02",
+        "origem": {
+          "seletor": "script var Q[1].q",
+          "trecho_inicial": "{q:'O que exatamente o PLD valora?',",
+          "linha_aprox": 1751
+        },
+        "origem_explicacao": {
+          "seletor": "script var Q[1].f",
+          "trecho_inicial": "a:1,f:'Aula 02. PLD é preço de liquidação de diferenças. Um agente perfeitamente contratad",
+          "linha_aprox": 1756
+        }
+      },
+      {
+        "id": "m04-quiz-q03",
+        "ordem": 3,
+        "rotulo_renderizado": "Questão 3 de 10",
+        "enunciado": "Qual a função do PLDmax estrutural, distinta do PLDmax horário?",
+        "alternativas": [
+          {
+            "indice": 0,
+            "letra": "A",
+            "texto": "Limitar o preço de cada hora individualmente"
+          },
+          {
+            "indice": 1,
+            "letra": "B",
+            "texto": "Limitar a média do período, com ajuste dos valores horários preservando o perfil da curva"
+          },
+          {
+            "indice": 2,
+            "letra": "C",
+            "texto": "Definir o piso abaixo do qual o preço não pode cair"
+          },
+          {
+            "indice": 3,
+            "letra": "D",
+            "texto": "Estabelecer o preço-teto dos leilões regulados"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "Limitar a média do período, com ajuste dos valores horários preservando o perfil da curva"
+        },
+        "explicacao": "Aula 02. O teto horário limita cada hora; o estrutural limita a média, ajustando o conjunto de valores horários sem destruir o formato da curva. Em 2026: horário R$ 1.611,04/MWh, estrutural R$ 785,27/MWh, piso R$ 57,31/MWh.",
+        "aula_citada_na_explicacao": "02",
+        "origem": {
+          "seletor": "script var Q[2].q",
+          "trecho_inicial": "{q:'Qual a função do PLDmax estrutural, distinta do PLDmax horário?',",
+          "linha_aprox": 1757
+        },
+        "origem_explicacao": {
+          "seletor": "script var Q[2].f",
+          "trecho_inicial": "a:1,f:'Aula 02. O teto horário limita cada hora; o estrutural limita a média, ajustando o ",
+          "linha_aprox": 1762
+        }
+      },
+      {
+        "id": "m04-quiz-q04",
+        "ordem": 4,
+        "rotulo_renderizado": "Questão 4 de 10",
+        "enunciado": "Uma hidrelétrica com reservatório baixo pode ficar acima do gás na ordem de mérito. Por quê?",
+        "alternativas": [
+          {
+            "indice": 0,
+            "letra": "A",
+            "texto": "Porque o custo de manutenção da hidrelétrica sobe quando o reservatório está baixo"
+          },
+          {
+            "indice": 1,
+            "letra": "B",
+            "texto": "Porque o valor da água é um custo de oportunidade que cresce quando a água fica escassa"
+          },
+          {
+            "indice": 2,
+            "letra": "C",
+            "texto": "Porque o regulador determina que térmicas sejam despachadas antes em período seco"
+          },
+          {
+            "indice": 3,
+            "letra": "D",
+            "texto": "Porque a eficiência da turbina cai com o nível do reservatório"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "Porque o valor da água é um custo de oportunidade que cresce quando a água fica escassa"
+        },
+        "explicacao": "Aula 01. Usar água hoje significa não tê-la amanhã. Quando a escassez futura fica provável, esse custo de oportunidade sobe e pode ultrapassar o CVU de uma térmica. É o mecanismo central do despacho hidrotérmico e a raiz da volatilidade do preço brasileiro.",
+        "aula_citada_na_explicacao": "01",
+        "origem": {
+          "seletor": "script var Q[3].q",
+          "trecho_inicial": "{q:'Uma hidrelétrica com reservatório baixo pode ficar acima do gás na ordem de mérito. Po",
+          "linha_aprox": 1763
+        },
+        "origem_explicacao": {
+          "seletor": "script var Q[3].f",
+          "trecho_inicial": "a:1,f:'Aula 01. Usar água hoje significa não tê-la amanhã. Quando a escassez futura fica p",
+          "linha_aprox": 1768
+        }
+      },
+      {
+        "id": "m04-quiz-q05",
+        "ordem": 5,
+        "rotulo_renderizado": "Questão 5 de 10",
+        "enunciado": "Por que uma térmica de ponta pode não se pagar num mercado só de energia, mesmo sendo necessária ao sistema?",
+        "alternativas": [
+          {
+            "indice": 0,
+            "letra": "A",
+            "texto": "Porque o custo variável dela é alto demais para ser competitivo em qualquer hora"
+          },
+          {
+            "indice": 1,
+            "letra": "B",
+            "texto": "Porque ela roda poucas horas e os tetos de preço impedem que essas horas paguem o custo fixo do ano"
+          },
+          {
+            "indice": 2,
+            "letra": "C",
+            "texto": "Porque contratos de longo prazo são proibidos para térmicas de ponta"
+          },
+          {
+            "indice": 3,
+            "letra": "D",
+            "texto": "Porque o operador prefere despachar renováveis mesmo quando é mais caro"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "Porque ela roda poucas horas e os tetos de preço impedem que essas horas paguem o custo fixo do ano"
+        },
+        "explicacao": "Aula 03. É o missing money problem. Teto de preço, raridade dos eventos críticos e inaceitabilidade política de preços extremos quebram o mecanismo de escassez que a teoria assume. Daí a necessidade de mecanismos que paguem disponibilidade.",
+        "aula_citada_na_explicacao": "03",
+        "origem": {
+          "seletor": "script var Q[4].q",
+          "trecho_inicial": "{q:'Por que uma térmica de ponta pode não se pagar num mercado só de energia, mesmo sendo ",
+          "linha_aprox": 1769
+        },
+        "origem_explicacao": {
+          "seletor": "script var Q[4].f",
+          "trecho_inicial": "a:1,f:'Aula 03. É o missing money problem. Teto de preço, raridade dos eventos críticos e ",
+          "linha_aprox": 1774
+        }
+      },
+      {
+        "id": "m04-quiz-q06",
+        "ordem": 6,
+        "rotulo_renderizado": "Questão 6 de 10",
+        "enunciado": "Num leilão A-5, o que significa o número 5?",
+        "alternativas": [
+          {
+            "indice": 0,
+            "letra": "A",
+            "texto": "Cinco anos de duração do contrato assinado"
+          },
+          {
+            "indice": 1,
+            "letra": "B",
+            "texto": "Cinco anos entre a contratação e o início do suprimento"
+          },
+          {
+            "indice": 2,
+            "letra": "C",
+            "texto": "Cinco rodadas de lances previstas no edital"
+          },
+          {
+            "indice": 3,
+            "letra": "D",
+            "texto": "Cinco por cento de deságio mínimo exigido"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "Cinco anos entre a contratação e o início do suprimento"
+        },
+        "explicacao": "Aula 04. A letra marca o ano de início da entrega; o número diz a antecedência da contratação. Quanto mais longa a maturação do projeto, maior a antecedência necessária para viabilizar financiamento.",
+        "aula_citada_na_explicacao": "04",
+        "origem": {
+          "seletor": "script var Q[5].q",
+          "trecho_inicial": "{q:'Num leilão A-5, o que significa o número 5?',",
+          "linha_aprox": 1775
+        },
+        "origem_explicacao": {
+          "seletor": "script var Q[5].f",
+          "trecho_inicial": "a:1,f:'Aula 04. A letra marca o ano de início da entrega; o número diz a antecedência da c",
+          "linha_aprox": 1780
+        }
+      },
+      {
+        "id": "m04-quiz-q07",
+        "ordem": 7,
+        "rotulo_renderizado": "Questão 7 de 10",
+        "enunciado": "Num leilão reverso liquidado por lance individual, qual a relação entre preço de corte e preço médio contratado?",
+        "alternativas": [
+          {
+            "indice": 0,
+            "letra": "A",
+            "texto": "São sempre iguais, porque o corte define o preço de todos"
+          },
+          {
+            "indice": 1,
+            "letra": "B",
+            "texto": "O preço médio fica abaixo do corte, porque cada vencedor recebe o próprio lance"
+          },
+          {
+            "indice": 2,
+            "letra": "C",
+            "texto": "O preço médio fica acima do corte, porque os melhores projetos cobram mais"
+          },
+          {
+            "indice": 3,
+            "letra": "D",
+            "texto": "Não há relação definida — depende do número de participantes"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "O preço médio fica abaixo do corte, porque cada vencedor recebe o próprio lance"
+        },
+        "explicacao": "Aula 04. Com liquidação por lance, cada vencedor recebe o que ofertou e a média fica abaixo do corte. Com preço uniforme, todos recebem o corte e a diferença migra para os geradores. A regra está no edital, e sobre contratos longos ela vale bilhões.",
+        "aula_citada_na_explicacao": "04",
+        "origem": {
+          "seletor": "script var Q[6].q",
+          "trecho_inicial": "{q:'Num leilão reverso liquidado por lance individual, qual a relação entre preço de corte",
+          "linha_aprox": 1781
+        },
+        "origem_explicacao": {
+          "seletor": "script var Q[6].f",
+          "trecho_inicial": "a:1,f:'Aula 04. Com liquidação por lance, cada vencedor recebe o que ofertou e a média fic",
+          "linha_aprox": 1786
+        }
+      },
+      {
+        "id": "m04-quiz-q08",
+        "ordem": 8,
+        "rotulo_renderizado": "Questão 8 de 10",
+        "enunciado": "Uma empresa com consumo concentrado à noite assina um PPA solar flat com preço médio abaixo do mercado. Qual o problema estrutural?",
+        "alternativas": [
+          {
+            "indice": 0,
+            "letra": "A",
+            "texto": "O preço vai subir com a indexação e anular a vantagem"
+          },
+          {
+            "indice": 1,
+            "letra": "B",
+            "texto": "A energia contratada aparece em horas diferentes das horas de consumo, gerando sobra e falta que penalizam o comprador nas duas pontas"
+          },
+          {
+            "indice": 2,
+            "letra": "C",
+            "texto": "Contratos solares não podem ser assinados por consumidores industriais"
+          },
+          {
+            "indice": 3,
+            "letra": "D",
+            "texto": "O submercado de uma usina solar é sempre diferente do submercado da carga"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "A energia contratada aparece em horas diferentes das horas de consumo, gerando sobra e falta que penalizam o comprador nas duas pontas"
+        },
+        "explicacao": "Aula 05. Descasamento de perfil. Sobra de dia liquidada barato e falta de noite liquidada caro — as duas contra o comprador. Volume anual correto e perfil errado é uma das formas mais eficientes de transformar contrato barato em custo alto.",
+        "aula_citada_na_explicacao": "05",
+        "origem": {
+          "seletor": "script var Q[7].q",
+          "trecho_inicial": "{q:'Uma empresa com consumo concentrado à noite assina um PPA solar flat com preço médio a",
+          "linha_aprox": 1787
+        },
+        "origem_explicacao": {
+          "seletor": "script var Q[7].f",
+          "trecho_inicial": "a:1,f:'Aula 05. Descasamento de perfil. Sobra de dia liquidada barato e falta de noite liq",
+          "linha_aprox": 1792
+        }
+      },
+      {
+        "id": "m04-quiz-q09",
+        "ordem": 9,
+        "rotulo_renderizado": "Questão 9 de 10",
+        "enunciado": "O que o hedge faz com o custo de energia de uma empresa?",
+        "alternativas": [
+          {
+            "indice": 0,
+            "letra": "A",
+            "texto": "Reduz o custo esperado, por isso vale sempre a pena"
+          },
+          {
+            "indice": 1,
+            "letra": "B",
+            "texto": "Reduz a dispersão em torno do custo esperado, sem reduzir o custo esperado"
+          },
+          {
+            "indice": 2,
+            "letra": "C",
+            "texto": "Elimina completamente o risco de preço e de volume"
+          },
+          {
+            "indice": 3,
+            "letra": "D",
+            "texto": "Transfere o risco regulatório para a contraparte"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "Reduz a dispersão em torno do custo esperado, sem reduzir o custo esperado"
+        },
+        "explicacao": "Aula 06. Hedge compra previsibilidade, não desconto. Se o mercado cair depois, o hedge vai parecer erro — não foi. Explicar isso ao conselho antes de contratar é parte do trabalho, não depois.",
+        "aula_citada_na_explicacao": "06",
+        "origem": {
+          "seletor": "script var Q[8].q",
+          "trecho_inicial": "{q:'O que o hedge faz com o custo de energia de uma empresa?',",
+          "linha_aprox": 1793
+        },
+        "origem_explicacao": {
+          "seletor": "script var Q[8].f",
+          "trecho_inicial": "a:1,f:'Aula 06. Hedge compra previsibilidade, não desconto. Se o mercado cair depois, o he",
+          "linha_aprox": 1798
+        }
+      },
+      {
+        "id": "m04-quiz-q10",
+        "ordem": 10,
+        "rotulo_renderizado": "Questão 10 de 10",
+        "enunciado": "Qual a diferença essencial entre um leilão de reserva de capacidade e um leilão de energia?",
+        "alternativas": [
+          {
+            "indice": 0,
+            "letra": "A",
+            "texto": "O de capacidade tem prazo contratual mais curto"
+          },
+          {
+            "indice": 1,
+            "letra": "B",
+            "texto": "O objeto contratado é disponibilidade de potência, não entrega de energia"
+          },
+          {
+            "indice": 2,
+            "letra": "C",
+            "texto": "O de capacidade é restrito a fontes renováveis"
+          },
+          {
+            "indice": 3,
+            "letra": "D",
+            "texto": "O de capacidade é organizado pelo operador do sistema, não pelo regulador"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "O objeto contratado é disponibilidade de potência, não entrega de energia"
+        },
+        "explicacao": "Aula 03. O vencedor se compromete a estar disponível, não a gerar um volume. É a tentativa brasileira de endereçar o missing money sem criar um mercado de capacidade permanente — e é a mesma lógica do leilão de armazenamento previsto para dezembro de 2026.",
+        "aula_citada_na_explicacao": "03",
+        "origem": {
+          "seletor": "script var Q[9].q",
+          "trecho_inicial": "{q:'Qual a diferença essencial entre um leilão de reserva de capacidade e um leilão de ene",
+          "linha_aprox": 1799
+        },
+        "origem_explicacao": {
+          "seletor": "script var Q[9].f",
+          "trecho_inicial": "a:1,f:'Aula 03. O vencedor se compromete a estar disponível, não a gerar um volume. É a te",
+          "linha_aprox": 1804
+        }
+      }
+    ],
+    "faixas_de_placar_script": [
+      {
+        "condicao_codigo": "if(sc>=8){",
+        "classe": "score show pass",
+        "mensagem": "Critério de domínio atingido. Passe para o §Voz: as trinta e duas perguntas-relâmpago primeiro, o roteiro de cinco minutos depois — em voz alta, sem consultar.",
+        "linha_aprox": 1832
+      },
+      {
+        "condicao_codigo": "}else{",
+        "classe": "score show fail",
+        "mensagem": "Abaixo do critério de 8/10. Leia os retornos acima, refaça as aulas indicadas por inteiro e volte. Não avance para o §Voz antes de fechar 8.",
+        "linha_aprox": 1835
+      }
+    ],
+    "faixas_nota": "condicao_codigo é o trecho literal do if/else; só `mensagem` é texto exibido. P18: nenhuma faixa declara domínio no produto.",
+    "rotulos_de_interface_fonte": {
+      "botao_corrigir": "Corrigir",
+      "botao_refazer": "Refazer",
+      "placar_template_codigo": "$id('q-num').textContent=sc+' / 10';",
+      "cabecalho_questao_template_codigo": "html+='<div class=\"q\" id=\"q-'+i+'\"><div class=\"qh\">Questão '+(i+1)+' de 10</div><div class=\"qt\">'+Q[i].q+'</div>';",
+      "linhas": [
+        1097,
+        1829,
+        1808
+      ]
+    },
+    "mecanica_fonte": {
+      "anotacao_da_extracao": true,
+      "descricao": "Uma correção para as 10 questões de uma vez (botão Corrigir), feedback idêntico para acerto e erro, marcação verde/vermelha (opt right/wrong), botão Refazer limpa seleção, sem persistência. Questão não respondida conta como erro e ainda recebe o feedback.",
+      "gabarito_sempre_b": true,
+      "nota_gabarito": "Todas as 10 questões têm gabarito no índice 1 (alternativa B). Registro de fato da fonte; embaralhar é decisão da camada Alexandria."
+    },
+    "vinculos": {
+      "nota": "Vínculo com aula só existe como prefixo \"Aula NN.\" na explicação (aula_citada_na_explicacao)."
+    },
+    "origem": {
+      "seletor": "section#quiz .sec-id",
+      "trecho_inicial": "<div class=\"sec-id\"><b>§Quiz</b> · Verificação interativa de domínio</div>",
+      "linha_aprox": 1092
+    },
+    "origem_script": {
+      "seletor": "script var Q",
+      "trecho_inicial": "var Q=[",
+      "linha_aprox": 1744
+    }
+  },
+  "checklist_final": {
+    "id": "m04-checklist-final",
+    "titulo": {
+      "html": "Você domina o Bloco 4 quando",
+      "texto": "Você domina o Bloco 4 quando"
+    },
+    "lede": {
+      "html": "Vinte verificações. Responda sem travar e sem consultar. Cada uma que falhar aponta uma aula específica — e a aula é para ser refeita inteira, não consultada em diagonal.",
+      "texto": "Vinte verificações. Responda sem travar e sem consultar. Cada uma que falhar aponta uma aula específica — e a aula é para ser refeita inteira, não consultada em diagonal."
+    },
+    "contagem_declarada_prosa": "Vinte verificações",
+    "itens": [
+      {
+        "id": "m04-check-01",
+        "tipo": "item_de_checklist",
+        "ordem": 1,
+        "html": "Explica em três frases por que eletricidade é uma commodity diferente de petróleo ou minério",
+        "texto": "Explica em três frases por que eletricidade é uma commodity diferente de petróleo ou minério",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Explica em três frases por que eletricidade é uma commodity diferente de petróleo ou m",
+          "linha_aprox": 1184
+        }
+      },
+      {
+        "id": "m04-check-02",
+        "tipo": "item_de_checklist",
+        "ordem": 2,
+        "html": "Distingue custo fixo, custo variável, custo médio e custo marginal sem confundi-los",
+        "texto": "Distingue custo fixo, custo variável, custo médio e custo marginal sem confundi-los",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Distingue custo fixo, custo variável, custo médio e custo marginal sem confundi-los</l",
+          "linha_aprox": 1185
+        }
+      },
+      {
+        "id": "m04-check-03",
+        "tipo": "item_de_checklist",
+        "ordem": 3,
+        "html": "Explica por que uma usina de custo marginal zero não faz o preço cair a zero",
+        "texto": "Explica por que uma usina de custo marginal zero não faz o preço cair a zero",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Explica por que uma usina de custo marginal zero não faz o preço cair a zero</li>",
+          "linha_aprox": 1186
+        }
+      },
+      {
+        "id": "m04-check-04",
+        "tipo": "item_de_checklist",
+        "ordem": 4,
+        "html": "Explica o que é margem inframarginal e por que ela é a receita de custo fixo num mercado só-de-energia",
+        "texto": "Explica o que é margem inframarginal e por que ela é a receita de custo fixo num mercado só-de-energia",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Explica o que é margem inframarginal e por que ela é a receita de custo fixo num merca",
+          "linha_aprox": 1187
+        }
+      },
+      {
+        "id": "m04-check-05",
+        "tipo": "item_de_checklist",
+        "ordem": 5,
+        "html": "Explica por que o preço de curto prazo brasileiro é calculado por modelo e não ofertado em pregão",
+        "texto": "Explica por que o preço de curto prazo brasileiro é calculado por modelo e não ofertado em pregão",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Explica por que o preço de curto prazo brasileiro é calculado por modelo e não ofertad",
+          "linha_aprox": 1188
+        }
+      },
+      {
+        "id": "m04-check-06",
+        "tipo": "item_de_checklist",
+        "ordem": 6,
+        "html": "Mostra como o valor da água pode empurrar a hidráulica para cima do gás na ordem de mérito",
+        "texto": "Mostra como o valor da água pode empurrar a hidráulica para cima do gás na ordem de mérito",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Mostra como o valor da água pode empurrar a hidráulica para cima do gás na ordem de mé",
+          "linha_aprox": 1189
+        }
+      },
+      {
+        "id": "m04-check-07",
+        "tipo": "item_de_checklist",
+        "ordem": 7,
+        "html": "Descreve como o custo marginal se forma de maneira diferente em térmica, hidráulica, renovável, bateria e demanda flexível",
+        "texto": "Descreve como o custo marginal se forma de maneira diferente em térmica, hidráulica, renovável, bateria e demanda flexível",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Descreve como o custo marginal se forma de maneira diferente em térmica, hidráulica, r",
+          "linha_aprox": 1190
+        }
+      },
+      {
+        "id": "m04-check-08",
+        "tipo": "item_de_checklist",
+        "ordem": 8,
+        "html": "Define PLD corretamente — preço de liquidação de diferenças, não preço da energia",
+        "texto": "Define PLD corretamente — preço de liquidação de diferenças, não preço da energia",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Define PLD corretamente — preço de liquidação de diferenças, não preço da energia</li>",
+          "linha_aprox": 1191
+        }
+      },
+      {
+        "id": "m04-check-09",
+        "tipo": "item_de_checklist",
+        "ordem": 9,
+        "html": "Explica a relação entre CMO e PLD e o papel dos três limites regulatórios",
+        "texto": "Explica a relação entre CMO e PLD e o papel dos três limites regulatórios",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Explica a relação entre CMO e PLD e o papel dos três limites regulatórios</li>",
+          "linha_aprox": 1192
+        }
+      },
+      {
+        "id": "m04-check-10",
+        "tipo": "item_de_checklist",
+        "ordem": 10,
+        "html": "Nomeia os quatro submercados e explica o que significa o sistema estar acoplado",
+        "texto": "Nomeia os quatro submercados e explica o que significa o sistema estar acoplado",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Nomeia os quatro submercados e explica o que significa o sistema estar acoplado</li>",
+          "linha_aprox": 1193
+        }
+      },
+      {
+        "id": "m04-check-11",
+        "tipo": "item_de_checklist",
+        "ordem": 11,
+        "html": "Explica por que o PLD não é o preço que a fábrica paga na conta",
+        "texto": "Explica por que o PLD não é o preço que a fábrica paga na conta",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Explica por que o PLD não é o preço que a fábrica paga na conta</li>",
+          "linha_aprox": 1194
+        }
+      },
+      {
+        "id": "m04-check-12",
+        "tipo": "item_de_checklist",
+        "ordem": 12,
+        "html": "Explica por que o preço de contrato para o ano seguinte pode estar muito acima do PLD do dia",
+        "texto": "Explica por que o preço de contrato para o ano seguinte pode estar muito acima do PLD do dia",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Explica por que o preço de contrato para o ano seguinte pode estar muito acima do PLD ",
+          "linha_aprox": 1195
+        }
+      },
+      {
+        "id": "m04-check-13",
+        "tipo": "item_de_checklist",
+        "ordem": 13,
+        "html": "Diferencia vender energia de vender disponibilidade, com a unidade de cada um",
+        "texto": "Diferencia vender energia de vender disponibilidade, com a unidade de cada um",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Diferencia vender energia de vender disponibilidade, com a unidade de cada um</li>",
+          "linha_aprox": 1196
+        }
+      },
+      {
+        "id": "m04-check-14",
+        "tipo": "item_de_checklist",
+        "ordem": 14,
+        "html": "Descreve o missing money problem e as três razões pelas quais o mecanismo de escassez falha",
+        "texto": "Descreve o missing money problem e as três razões pelas quais o mecanismo de escassez falha",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Descreve o missing money problem e as três razões pelas quais o mecanismo de escassez ",
+          "linha_aprox": 1197
+        }
+      },
+      {
+        "id": "m04-check-15",
+        "tipo": "item_de_checklist",
+        "ordem": 15,
+        "html": "Explica por que teto de preço e mecanismo de capacidade são duas metades da mesma decisão",
+        "texto": "Explica por que teto de preço e mecanismo de capacidade são duas metades da mesma decisão",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Explica por que teto de preço e mecanismo de capacidade são duas metades da mesma deci",
+          "linha_aprox": 1198
+        }
+      },
+      {
+        "id": "m04-check-16",
+        "tipo": "item_de_checklist",
+        "ordem": 16,
+        "html": "Explica o que é um leilão de reserva de capacidade e por que ele não é um leilão de energia",
+        "texto": "Explica o que é um leilão de reserva de capacidade e por que ele não é um leilão de energia",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Explica o que é um leilão de reserva de capacidade e por que ele não é um leilão de en",
+          "linha_aprox": 1199
+        }
+      },
+      {
+        "id": "m04-check-17",
+        "tipo": "item_de_checklist",
+        "ordem": 17,
+        "html": "Lê a nomenclatura A-1 a A-6 e explica a diferença entre energia nova e existente",
+        "texto": "Lê a nomenclatura A-1 a A-6 e explica a diferença entre energia nova e existente",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Lê a nomenclatura A-1 a A-6 e explica a diferença entre energia nova e existente</li>",
+          "linha_aprox": 1200
+        }
+      },
+      {
+        "id": "m04-check-18",
+        "tipo": "item_de_checklist",
+        "ordem": 18,
+        "html": "Diferencia preço de corte de preço médio contratado e sabe dizer por que a distinção é material",
+        "texto": "Diferencia preço de corte de preço médio contratado e sabe dizer por que a distinção é material",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Diferencia preço de corte de preço médio contratado e sabe dizer por que a distinção é",
+          "linha_aprox": 1201
+        }
+      },
+      {
+        "id": "m04-check-19",
+        "tipo": "item_de_checklist",
+        "ordem": 19,
+        "html": "Lista de memória pelo menos oito cláusulas de PPA e o risco que cada uma aloca",
+        "texto": "Lista de memória pelo menos oito cláusulas de PPA e o risco que cada uma aloca",
+        "marcacao_p14": [
+          "producao_oral_ou_livre",
+          "sem_consulta"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Lista de memória pelo menos oito cláusulas de PPA e o risco que cada uma aloca</li>",
+          "linha_aprox": 1202
+        }
+      },
+      {
+        "id": "m04-check-20",
+        "tipo": "item_de_checklist",
+        "ordem": 20,
+        "html": "Defende em voz alta, para um comprador industrial, quando um PPA de longo prazo vale mais que ficar exposto ao spot",
+        "texto": "Defende em voz alta, para um comprador industrial, quando um PPA de longo prazo vale mais que ficar exposto ao spot",
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ],
+        "origem": {
+          "seletor": "section#final ul.ck > li",
+          "trecho_inicial": "<li>Defende em voz alta, para um comprador industrial, quando um PPA de longo prazo vale m",
+          "linha_aprox": 1203
+        }
+      }
+    ],
+    "nota": "Os mesmos 20 itens aparecem em modulo.json criterio.itens[3] (mesmos ids).",
+    "origem": {
+      "seletor": "section#final h2",
+      "trecho_inicial": "<h2>Você domina o Bloco 4 quando</h2>",
+      "linha_aprox": 1181
+    }
+  },
+  "exercicios": {
+    "id": "m04-exercicios",
+    "titulo_secao": {
+      "html": "Nove exercícios com gabarito",
+      "texto": "Nove exercícios com gabarito"
+    },
+    "lede": {
+      "html": "Resolva antes de abrir. O objetivo não é acertar — é descobrir onde o raciocínio trava. Um exercício que você resolve sem hesitar não ensinou nada; guarde a atenção para os que travaram.",
+      "texto": "Resolva antes de abrir. O objetivo não é acertar — é descobrir onde o raciocínio trava. Um exercício que você resolve sem hesitar não ensinou nada; guarde a atenção para os que travaram."
+    },
+    "itens": [
+      {
+        "id": "m04-ex-01",
+        "tag_summary": "01 · Quem é a usina marginal",
+        "numero": "01",
+        "titulo": "Quem é a usina marginal",
+        "rotulos_fonte": [
+          "Enunciado.",
+          "Gabarito."
+        ],
+        "enunciado": {
+          "html": "Demanda de 900 MW. Disponível: solar 200 MW a R$ 0/MWh, eólica 200 MW a R$ 20/MWh, hidráulica 300 MW com valor da água estimado em R$ 90/MWh, gás 300 MW com CVU de R$ 300/MWh. Qual usina é marginal e qual preço se forma?",
+          "texto": "Demanda de 900 MW. Disponível: solar 200 MW a R$ 0/MWh, eólica 200 MW a R$ 20/MWh, hidráulica 300 MW com valor da água estimado em R$ 90/MWh, gás 300 MW com CVU de R$ 300/MWh. Qual usina é marginal e qual preço se forma?"
+        },
+        "resposta_referencia": [
+          {
+            "html": "Solar + eólica + hidráulica somam 700 MW. Faltam 200 MW, atendidos por gás. A usina marginal é o gás e o preço formado é R$ 300/MWh.",
+            "texto": "Solar + eólica + hidráulica somam 700 MW. Faltam 200 MW, atendidos por gás. A usina marginal é o gás e o preço formado é R$ 300/MWh."
+          },
+          {
+            "html": "O detalhe que importa: 700 dos 900 MW foram gerados a custo bem abaixo de R$ 300. A solar embolsou R$ 300/MWh tendo custo zero; a eólica, R$ 280 de margem; a hidráulica, R$ 210. Essa é a margem inframarginal, e é dela que essas usinas recuperam custo fixo. Quem só olha o preço formado não vê que a mesma hora produziu quatro resultados econômicos completamente diferentes.",
+            "texto": "O detalhe que importa: 700 dos 900 MW foram gerados a custo bem abaixo de R$ 300. A solar embolsou R$ 300/MWh tendo custo zero; a eólica, R$ 280 de margem; a hidráulica, R$ 210. Essa é a margem inframarginal, e é dela que essas usinas recuperam custo fixo. Quem só olha o preço formado não vê que a mesma hora produziu quatro resultados econômicos completamente diferentes."
+          }
+        ],
+        "criterio": null,
+        "criterio_nota": "A fonte não declara critério por exercício; só a instrução geral do lede de §Ex.",
+        "aula_vinculada": null,
+        "sem_aula_P9": true,
+        "mencao_aula_em_texto": [],
+        "mencao_outro_exercicio": [],
+        "codigo": {
+          "id": "m04-ex-01",
+          "prompt_igual": true,
+          "tag_igual": true,
+          "gabarito_igual_texto_concatenado": true,
+          "gabarito_diferencas": [],
+          "gabarito_preserva_paragrafos": false,
+          "gabarito_preserva_html_inline": false,
+          "points": 1,
+          "points_nota": "points: 1 não tem origem na fonte."
+        },
+        "origem": {
+          "seletor": "section#ex details",
+          "trecho_inicial": "<details><summary>01 · Quem é a usina marginal</summary><div class=\"det-bd\">",
+          "linha_aprox": 1031
+        }
+      },
+      {
+        "id": "m04-ex-02",
+        "tag_summary": "02 · O reservatório muda a fila",
+        "numero": "02",
+        "titulo": "O reservatório muda a fila",
+        "rotulos_fonte": [
+          "Enunciado.",
+          "Gabarito."
+        ],
+        "enunciado": {
+          "html": "Mesmo sistema do exercício 01, mas o reservatório caiu e o valor da água subiu para R$ 340/MWh. O que acontece com a ordem e com o preço?",
+          "texto": "Mesmo sistema do exercício 01, mas o reservatório caiu e o valor da água subiu para R$ 340/MWh. O que acontece com a ordem e com o preço?"
+        },
+        "resposta_referencia": [
+          {
+            "html": "A hidráulica sai da terceira posição e vai para a quarta, atrás do gás. A fila vira: solar 200, eólica 200, gás 300 = 700 MW; faltam 200 MW, atendidos pela hidráulica. A marginal agora é a <em>hidráulica</em> e o preço é R$ 340/MWh.",
+            "texto": "A hidráulica sai da terceira posição e vai para a quarta, atrás do gás. A fila vira: solar 200, eólica 200, gás 300 = 700 MW; faltam 200 MW, atendidos pela hidráulica. A marginal agora é a hidráulica e o preço é R$ 340/MWh."
+          },
+          {
+            "html": "Repare no que aconteceu: nenhuma usina mudou, nenhum combustível ficou mais caro, a demanda é a mesma — e o preço subiu 13%. O que mudou foi uma expectativa sobre o futuro, traduzida em custo de oportunidade pelo modelo. É esse mecanismo que torna o preço brasileiro tão sensível a notícia de chuva.",
+            "texto": "Repare no que aconteceu: nenhuma usina mudou, nenhum combustível ficou mais caro, a demanda é a mesma — e o preço subiu 13%. O que mudou foi uma expectativa sobre o futuro, traduzida em custo de oportunidade pelo modelo. É esse mecanismo que torna o preço brasileiro tão sensível a notícia de chuva."
+          }
+        ],
+        "criterio": null,
+        "criterio_nota": "A fonte não declara critério por exercício; só a instrução geral do lede de §Ex.",
+        "aula_vinculada": null,
+        "sem_aula_P9": true,
+        "mencao_aula_em_texto": [],
+        "mencao_outro_exercicio": [
+          "exercício 01"
+        ],
+        "codigo": {
+          "id": "m04-ex-02",
+          "prompt_igual": true,
+          "tag_igual": true,
+          "gabarito_igual_texto_concatenado": true,
+          "gabarito_diferencas": [],
+          "gabarito_preserva_paragrafos": false,
+          "gabarito_preserva_html_inline": false,
+          "points": 1,
+          "points_nota": "points: 1 não tem origem na fonte."
+        },
+        "origem": {
+          "seletor": "section#ex details",
+          "trecho_inicial": "<details><summary>02 · O reservatório muda a fila</summary><div class=\"det-bd\">",
+          "linha_aprox": 1037
+        }
+      },
+      {
+        "id": "m04-ex-03",
+        "tag_summary": "03 · Custo da exposição",
+        "numero": "03",
+        "titulo": "Custo da exposição",
+        "rotulos_fonte": [
+          "Enunciado.",
+          "Gabarito."
+        ],
+        "enunciado": {
+          "html": "Uma indústria contratou 1.000 MWh no mês e mediu 1.150 MWh. O PLD médio do período foi R$ 480/MWh. Qual o custo bruto da exposição? E se o PLD tivesse sido R$ 156/MWh?",
+          "texto": "Uma indústria contratou 1.000 MWh no mês e mediu 1.150 MWh. O PLD médio do período foi R$ 480/MWh. Qual o custo bruto da exposição? E se o PLD tivesse sido R$ 156/MWh?"
+        },
+        "resposta_referencia": [
+          {
+            "html": "Exposição = 150 MWh. A R$ 480/MWh: R$ 72.000. A R$ 156/MWh: R$ 23.400.",
+            "texto": "Exposição = 150 MWh. A R$ 480/MWh: R$ 72.000. A R$ 156/MWh: R$ 23.400."
+          },
+          {
+            "html": "Mesma decisão de contratação, mesmo desvio operacional, custo três vezes maior — e a empresa não controlou nenhuma das duas variáveis. É por isso que a banda de flexibilidade é uma cláusula econômica, não jurídica: ela define o tamanho da aposta que a empresa faz involuntariamente todo mês.",
+            "texto": "Mesma decisão de contratação, mesmo desvio operacional, custo três vezes maior — e a empresa não controlou nenhuma das duas variáveis. É por isso que a banda de flexibilidade é uma cláusula econômica, não jurídica: ela define o tamanho da aposta que a empresa faz involuntariamente todo mês."
+          }
+        ],
+        "criterio": null,
+        "criterio_nota": "A fonte não declara critério por exercício; só a instrução geral do lede de §Ex.",
+        "aula_vinculada": null,
+        "sem_aula_P9": true,
+        "mencao_aula_em_texto": [],
+        "mencao_outro_exercicio": [],
+        "codigo": {
+          "id": "m04-ex-03",
+          "prompt_igual": true,
+          "tag_igual": true,
+          "gabarito_igual_texto_concatenado": true,
+          "gabarito_diferencas": [],
+          "gabarito_preserva_paragrafos": false,
+          "gabarito_preserva_html_inline": false,
+          "points": 1,
+          "points_nota": "points: 1 não tem origem na fonte."
+        },
+        "origem": {
+          "seletor": "section#ex details",
+          "trecho_inicial": "<details><summary>03 · Custo da exposição</summary><div class=\"det-bd\">",
+          "linha_aprox": 1043
+        }
+      },
+      {
+        "id": "m04-ex-04",
+        "tag_summary": "04 · Sobrecontratação",
+        "numero": "04",
+        "titulo": "Sobrecontratação",
+        "rotulos_fonte": [
+          "Enunciado.",
+          "Gabarito."
+        ],
+        "enunciado": {
+          "html": "A mesma indústria contratou 1.000 MWh a R$ 355/MWh e mediu apenas 850 MWh, com PLD de R$ 140/MWh. Qual o problema econômico?",
+          "texto": "A mesma indústria contratou 1.000 MWh a R$ 355/MWh e mediu apenas 850 MWh, com PLD de R$ 140/MWh. Qual o problema econômico?"
+        },
+        "resposta_referencia": [
+          {
+            "html": "Ela pagou 1.000 MWh a R$ 355 = R$ 355.000, e a sobra de 150 MWh é liquidada a R$ 140/MWh = R$ 21.000. O custo efetivo dos 850 MWh que ela de fato usou é (355.000 − 21.000) / 850 ≈ <strong>R$ 393/MWh</strong> — acima do preço que ela julgava ter travado.",
+            "texto": "Ela pagou 1.000 MWh a R$ 355 = R$ 355.000, e a sobra de 150 MWh é liquidada a R$ 140/MWh = R$ 21.000. O custo efetivo dos 850 MWh que ela de fato usou é (355.000 − 21.000) / 850 ≈ R$ 393/MWh — acima do preço que ela julgava ter travado."
+          },
+          {
+            "html": "Sobrecontratar não é neutro: é comprar caro para revender barato. E a assimetria é cruel — a sobra costuma aparecer justamente quando o PLD está baixo, porque as duas coisas têm a mesma causa: atividade econômica fraca.",
+            "texto": "Sobrecontratar não é neutro: é comprar caro para revender barato. E a assimetria é cruel — a sobra costuma aparecer justamente quando o PLD está baixo, porque as duas coisas têm a mesma causa: atividade econômica fraca."
+          }
+        ],
+        "criterio": null,
+        "criterio_nota": "A fonte não declara critério por exercício; só a instrução geral do lede de §Ex.",
+        "aula_vinculada": null,
+        "sem_aula_P9": true,
+        "mencao_aula_em_texto": [],
+        "mencao_outro_exercicio": [],
+        "codigo": {
+          "id": "m04-ex-04",
+          "prompt_igual": true,
+          "tag_igual": true,
+          "gabarito_igual_texto_concatenado": true,
+          "gabarito_diferencas": [],
+          "gabarito_preserva_paragrafos": false,
+          "gabarito_preserva_html_inline": false,
+          "points": 1,
+          "points_nota": "points: 1 não tem origem na fonte."
+        },
+        "origem": {
+          "seletor": "section#ex details",
+          "trecho_inicial": "<details><summary>04 · Sobrecontratação</summary><div class=\"det-bd\">",
+          "linha_aprox": 1049
+        }
+      },
+      {
+        "id": "m04-ex-05",
+        "tag_summary": "05 · Missing money na mão",
+        "numero": "05",
+        "titulo": "Missing money na mão",
+        "rotulos_fonte": [
+          "Enunciado.",
+          "Gabarito."
+        ],
+        "enunciado": {
+          "html": "Uma térmica de ponta de 150 MW custa R$ 320/kW-ano para ficar disponível. Ela roda 180 horas por ano com margem líquida de R$ 450/MWh. A receita de energia cobre o custo fixo? Quanto falta, por kW-ano?",
+          "texto": "Uma térmica de ponta de 150 MW custa R$ 320/kW-ano para ficar disponível. Ela roda 180 horas por ano com margem líquida de R$ 450/MWh. A receita de energia cobre o custo fixo? Quanto falta, por kW-ano?"
+        },
+        "resposta_referencia": [
+          {
+            "html": "Energia gerada = 150 MW × 180 h = 27.000 MWh. Receita = 27.000 × 450 = R$ 12,15 milhões. Custo fixo = 150.000 kW × 320 = R$ 48 milhões. Falta <strong>R$ 35,85 milhões</strong> — ou R$ 239/kW-ano.",
+            "texto": "Energia gerada = 150 MW × 180 h = 27.000 MWh. Receita = 27.000 × 450 = R$ 12,15 milhões. Custo fixo = 150.000 kW × 320 = R$ 48 milhões. Falta R$ 35,85 milhões — ou R$ 239/kW-ano."
+          },
+          {
+            "html": "Esse número é exatamente o que um mecanismo de capacidade precisaria pagar para o ativo existir. É o missing money, medido. E note quanto teria que subir a margem para fechar sem capacidade: seriam necessários R$ 1.778/MWh nas 180 horas — acima do teto horário do PLD. O teto não é um detalhe do problema; é o problema.",
+            "texto": "Esse número é exatamente o que um mecanismo de capacidade precisaria pagar para o ativo existir. É o missing money, medido. E note quanto teria que subir a margem para fechar sem capacidade: seriam necessários R$ 1.778/MWh nas 180 horas — acima do teto horário do PLD. O teto não é um detalhe do problema; é o problema."
+          }
+        ],
+        "criterio": null,
+        "criterio_nota": "A fonte não declara critério por exercício; só a instrução geral do lede de §Ex.",
+        "aula_vinculada": null,
+        "sem_aula_P9": true,
+        "mencao_aula_em_texto": [],
+        "mencao_outro_exercicio": [],
+        "codigo": {
+          "id": "m04-ex-05",
+          "prompt_igual": true,
+          "tag_igual": true,
+          "gabarito_igual_texto_concatenado": true,
+          "gabarito_diferencas": [],
+          "gabarito_preserva_paragrafos": false,
+          "gabarito_preserva_html_inline": false,
+          "points": 1,
+          "points_nota": "points: 1 não tem origem na fonte."
+        },
+        "origem": {
+          "seletor": "section#ex details",
+          "trecho_inicial": "<details><summary>05 · Missing money na mão</summary><div class=\"det-bd\">",
+          "linha_aprox": 1055
+        }
+      },
+      {
+        "id": "m04-ex-06",
+        "tag_summary": "06 · Preço de corte e preço médio",
+        "numero": "06",
+        "titulo": "Preço de corte e preço médio",
+        "rotulos_fonte": [
+          "Enunciado.",
+          "Gabarito."
+        ],
+        "enunciado": {
+          "html": "Um leilão reverso demanda 800 MW. Propostas: A 300 MW a R$ 180; B 250 MW a R$ 210; C 400 MW a R$ 245; D 200 MW a R$ 290. Teto do edital: R$ 260/MWh. Qual o preço de corte, qual o preço médio por lance, e qual o custo anual da diferença entre os dois arranjos de liquidação, considerando 800 MW médios?",
+          "texto": "Um leilão reverso demanda 800 MW. Propostas: A 300 MW a R$ 180; B 250 MW a R$ 210; C 400 MW a R$ 245; D 200 MW a R$ 290. Teto do edital: R$ 260/MWh. Qual o preço de corte, qual o preço médio por lance, e qual o custo anual da diferença entre os dois arranjos de liquidação, considerando 800 MW médios?"
+        },
+        "resposta_referencia": [
+          {
+            "html": "D está acima do teto e é excluída. Contratam-se A (300), B (250) e 250 MW de C — total 800 MW. Preço de corte = R$ 245/MWh. Preço médio por lance = (300×180 + 250×210 + 250×245) / 800 = (54.000 + 52.500 + 61.250) / 800 = <strong>R$ 209,69/MWh</strong>.",
+            "texto": "D está acima do teto e é excluída. Contratam-se A (300), B (250) e 250 MW de C — total 800 MW. Preço de corte = R$ 245/MWh. Preço médio por lance = (300×180 + 250×210 + 250×245) / 800 = (54.000 + 52.500 + 61.250) / 800 = R$ 209,69/MWh."
+          },
+          {
+            "html": "A diferença é R$ 35,31/MWh. Sobre 800 MW médios ao longo de um ano — 800 × 8.760 = 7.008.000 MWh — isso equivale a cerca de <strong>R$ 247 milhões por ano</strong> transferidos do consumidor para os geradores, dependendo apenas da regra de liquidação do edital. Nenhuma tecnologia mudou; só a regra.",
+            "texto": "A diferença é R$ 35,31/MWh. Sobre 800 MW médios ao longo de um ano — 800 × 8.760 = 7.008.000 MWh — isso equivale a cerca de R$ 247 milhões por ano transferidos do consumidor para os geradores, dependendo apenas da regra de liquidação do edital. Nenhuma tecnologia mudou; só a regra."
+          }
+        ],
+        "criterio": null,
+        "criterio_nota": "A fonte não declara critério por exercício; só a instrução geral do lede de §Ex.",
+        "aula_vinculada": null,
+        "sem_aula_P9": true,
+        "mencao_aula_em_texto": [],
+        "mencao_outro_exercicio": [],
+        "codigo": {
+          "id": "m04-ex-06",
+          "prompt_igual": true,
+          "tag_igual": true,
+          "gabarito_igual_texto_concatenado": false,
+          "gabarito_diferencas": [
+            {
+              "fonte": "'$ 209,69/MWh. A diferenç'",
+              "codigo": "'$ 209,69/MWh . A diferenç'"
+            }
+          ],
+          "gabarito_preserva_paragrafos": false,
+          "gabarito_preserva_html_inline": false,
+          "points": 1,
+          "points_nota": "points: 1 não tem origem na fonte."
+        },
+        "origem": {
+          "seletor": "section#ex details",
+          "trecho_inicial": "<details><summary>06 · Preço de corte e preço médio</summary><div class=\"det-bd\">",
+          "linha_aprox": 1061
+        }
+      },
+      {
+        "id": "m04-ex-07",
+        "tag_summary": "07 · PPA com perfil errado",
+        "numero": "07",
+        "titulo": "PPA com perfil errado",
+        "rotulos_fonte": [
+          "Enunciado.",
+          "Gabarito."
+        ],
+        "enunciado": {
+          "html": "Uma empresa com 900 MWh/mês de consumo, concentrado no período noturno, recebe proposta de PPA solar de 600 MWh/mês em contrato flat, a preço abaixo da curva de mercado. Liste os riscos a analisar antes de qualquer conclusão.",
+          "texto": "Uma empresa com 900 MWh/mês de consumo, concentrado no período noturno, recebe proposta de PPA solar de 600 MWh/mês em contrato flat, a preço abaixo da curva de mercado. Liste os riscos a analisar antes de qualquer conclusão."
+        },
+        "resposta_referencia": [
+          {
+            "html": "Descasamento de perfil — geração diurna contra consumo noturno, gerando sobra de dia e falta de noite, ambas liquidadas contra o comprador; ausência de modulação; sazonalização da geração solar contra a sazonalidade do consumo; submercado do contrato contra submercado da carga; quem absorve corte de geração; natureza do contrato — físico, financeiro ou virtual; titularidade dos atributos ambientais; garantias exigidas e seu custo de capital de giro; multa de rescisão; e efeito da regra vigente de desconto na tarifa de uso da rede sobre a economia comparada.",
+            "texto": "Descasamento de perfil — geração diurna contra consumo noturno, gerando sobra de dia e falta de noite, ambas liquidadas contra o comprador; ausência de modulação; sazonalização da geração solar contra a sazonalidade do consumo; submercado do contrato contra submercado da carga; quem absorve corte de geração; natureza do contrato — físico, financeiro ou virtual; titularidade dos atributos ambientais; garantias exigidas e seu custo de capital de giro; multa de rescisão; e efeito da regra vigente de desconto na tarifa de uso da rede sobre a economia comparada."
+          },
+          {
+            "html": "O preço médio abaixo do mercado é a <em>última</em> coisa a olhar, não a primeira — e frequentemente é baixo justamente porque o vendedor sabe que o perfil vale menos.",
+            "texto": "O preço médio abaixo do mercado é a última coisa a olhar, não a primeira — e frequentemente é baixo justamente porque o vendedor sabe que o perfil vale menos."
+          }
+        ],
+        "criterio": null,
+        "criterio_nota": "A fonte não declara critério por exercício; só a instrução geral do lede de §Ex.",
+        "aula_vinculada": null,
+        "sem_aula_P9": true,
+        "mencao_aula_em_texto": [],
+        "mencao_outro_exercicio": [],
+        "codigo": {
+          "id": "m04-ex-07",
+          "prompt_igual": true,
+          "tag_igual": true,
+          "gabarito_igual_texto_concatenado": true,
+          "gabarito_diferencas": [],
+          "gabarito_preserva_paragrafos": false,
+          "gabarito_preserva_html_inline": false,
+          "points": 1,
+          "points_nota": "points: 1 não tem origem na fonte."
+        },
+        "origem": {
+          "seletor": "section#ex details",
+          "trecho_inicial": "<details><summary>07 · PPA com perfil errado</summary><div class=\"det-bd\">",
+          "linha_aprox": 1067
+        }
+      },
+      {
+        "id": "m04-ex-08",
+        "tag_summary": "08 · Swap e custo efetivo",
+        "numero": "08",
+        "titulo": "Swap e custo efetivo",
+        "rotulos_fonte": [
+          "Enunciado.",
+          "Gabarito."
+        ],
+        "enunciado": {
+          "html": "Uma empresa consome 10.000 MWh/mês e trava 7.000 MWh num swap a R$ 320/MWh. O PLD do mês fecha em R$ 470/MWh. Qual o resultado do swap, o custo total do mês e o custo efetivo por MWh? E se o PLD tivesse fechado em R$ 180?",
+          "texto": "Uma empresa consome 10.000 MWh/mês e trava 7.000 MWh num swap a R$ 320/MWh. O PLD do mês fecha em R$ 470/MWh. Qual o resultado do swap, o custo total do mês e o custo efetivo por MWh? E se o PLD tivesse fechado em R$ 180?"
+        },
+        "resposta_referencia": [
+          {
+            "html": "Cenário alto: resultado do swap = (470 − 320) × 7.000 = <strong>+R$ 1,05 milhão</strong>. Custo sem hedge = 10.000 × 470 = R$ 4,7 milhões. Custo com hedge = R$ 3,65 milhões. Custo efetivo = <strong>R$ 365/MWh</strong>.",
+            "texto": "Cenário alto: resultado do swap = (470 − 320) × 7.000 = +R$ 1,05 milhão. Custo sem hedge = 10.000 × 470 = R$ 4,7 milhões. Custo com hedge = R$ 3,65 milhões. Custo efetivo = R$ 365/MWh."
+          },
+          {
+            "html": "Cenário baixo: resultado = (180 − 320) × 7.000 = <strong>−R$ 980 mil</strong>. Custo sem hedge = R$ 1,8 milhão. Custo com hedge = R$ 2,78 milhões. Custo efetivo = <strong>R$ 278/MWh</strong>.",
+            "texto": "Cenário baixo: resultado = (180 − 320) × 7.000 = −R$ 980 mil. Custo sem hedge = R$ 1,8 milhão. Custo com hedge = R$ 2,78 milhões. Custo efetivo = R$ 278/MWh."
+          },
+          {
+            "html": "A amplitude sem hedge seria de R$ 180 a R$ 470 — 290 reais. Com hedge, de R$ 278 a R$ 365 — 87 reais. O hedge não escolheu um lado; ele comprimiu o intervalo em 70%. Essa é a única coisa que ele faz, e é a única coisa que se deve prometer ao conselho.",
+            "texto": "A amplitude sem hedge seria de R$ 180 a R$ 470 — 290 reais. Com hedge, de R$ 278 a R$ 365 — 87 reais. O hedge não escolheu um lado; ele comprimiu o intervalo em 70%. Essa é a única coisa que ele faz, e é a única coisa que se deve prometer ao conselho."
+          }
+        ],
+        "criterio": null,
+        "criterio_nota": "A fonte não declara critério por exercício; só a instrução geral do lede de §Ex.",
+        "aula_vinculada": null,
+        "sem_aula_P9": true,
+        "mencao_aula_em_texto": [],
+        "mencao_outro_exercicio": [],
+        "codigo": {
+          "id": "m04-ex-08",
+          "prompt_igual": true,
+          "tag_igual": true,
+          "gabarito_igual_texto_concatenado": false,
+          "gabarito_diferencas": [
+            {
+              "fonte": "' 1,05 milhão. Custo sem '",
+              "codigo": "' 1,05 milhão . Custo sem '"
+            },
+            {
+              "fonte": "'= R$ 365/MWh. Cenário ba'",
+              "codigo": "'= R$ 365/MWh . Cenário ba'"
+            },
+            {
+              "fonte": "' −R$ 980 mil. Custo sem '",
+              "codigo": "' −R$ 980 mil . Custo sem '"
+            },
+            {
+              "fonte": "'= R$ 278/MWh. A amplitud'",
+              "codigo": "'= R$ 278/MWh . A amplitud'"
+            }
+          ],
+          "gabarito_preserva_paragrafos": false,
+          "gabarito_preserva_html_inline": false,
+          "points": 1,
+          "points_nota": "points: 1 não tem origem na fonte."
+        },
+        "origem": {
+          "seletor": "section#ex details",
+          "trecho_inicial": "<details><summary>08 · Swap e custo efetivo</summary><div class=\"det-bd\">",
+          "linha_aprox": 1073
+        }
+      },
+      {
+        "id": "m04-ex-09",
+        "tag_summary": "09 · Portfólio e política de risco",
+        "numero": "09",
+        "titulo": "Portfólio e política de risco",
+        "rotulos_fonte": [
+          "Enunciado.",
+          "Gabarito."
+        ],
+        "enunciado": {
+          "html": "Uma empresa consome 10.000 MWh/mês e tem política de risco que exige no mínimo 80% contratado e limita a exposição ao curto prazo a R$ 500 mil por mês no cenário de estresse. O cenário de estresse adotado é PLD de R$ 700/MWh. A empresa está contratada em 85%. A posição atende à política?",
+          "texto": "Uma empresa consome 10.000 MWh/mês e tem política de risco que exige no mínimo 80% contratado e limita a exposição ao curto prazo a R$ 500 mil por mês no cenário de estresse. O cenário de estresse adotado é PLD de R$ 700/MWh. A empresa está contratada em 85%. A posição atende à política?"
+        },
+        "resposta_referencia": [
+          {
+            "html": "Exposição = 15% × 10.000 = 1.500 MWh/mês. No cenário de estresse: 1.500 × 700 = <strong>R$ 1,05 milhão</strong> — mais que o dobro do limite de R$ 500 mil.",
+            "texto": "Exposição = 15% × 10.000 = 1.500 MWh/mês. No cenário de estresse: 1.500 × 700 = R$ 1,05 milhão — mais que o dobro do limite de R$ 500 mil."
+          },
+          {
+            "html": "Ou seja: a empresa cumpre o critério de percentual e <em>viola</em> o critério de valor. Os dois critérios não são redundantes, e é comum uma política ter só o primeiro. Para respeitar o limite de R$ 500 mil a R$ 700/MWh, a exposição máxima seria de 714 MWh/mês — cerca de 7,1% do consumo. A política precisaria exigir 93% contratado, não 80%.",
+            "texto": "Ou seja: a empresa cumpre o critério de percentual e viola o critério de valor. Os dois critérios não são redundantes, e é comum uma política ter só o primeiro. Para respeitar o limite de R$ 500 mil a R$ 700/MWh, a exposição máxima seria de 714 MWh/mês — cerca de 7,1% do consumo. A política precisaria exigir 93% contratado, não 80%."
+          },
+          {
+            "html": "A lição é sobre desenho de política, não sobre contratação: <strong>limite percentual e limite financeiro precisam ser calibrados um contra o outro, no cenário de estresse que a empresa realmente teme.</strong> Uma política com os dois números desalinhados dá conforto falso — e o falso conforto é pior que a ausência de política, porque ninguém revisa o que parece resolvido.",
+            "texto": "A lição é sobre desenho de política, não sobre contratação: limite percentual e limite financeiro precisam ser calibrados um contra o outro, no cenário de estresse que a empresa realmente teme. Uma política com os dois números desalinhados dá conforto falso — e o falso conforto é pior que a ausência de política, porque ninguém revisa o que parece resolvido."
+          }
+        ],
+        "criterio": null,
+        "criterio_nota": "A fonte não declara critério por exercício; só a instrução geral do lede de §Ex.",
+        "aula_vinculada": null,
+        "sem_aula_P9": true,
+        "mencao_aula_em_texto": [],
+        "mencao_outro_exercicio": [],
+        "codigo": {
+          "id": "m04-ex-09",
+          "prompt_igual": true,
+          "tag_igual": true,
+          "gabarito_igual_texto_concatenado": true,
+          "gabarito_diferencas": [],
+          "gabarito_preserva_paragrafos": false,
+          "gabarito_preserva_html_inline": false,
+          "points": 1,
+          "points_nota": "points: 1 não tem origem na fonte."
+        },
+        "origem": {
+          "seletor": "section#ex details",
+          "trecho_inicial": "<details><summary>09 · Portfólio e política de risco</summary><div class=\"det-bd\">",
+          "linha_aprox": 1080
+        }
+      }
+    ],
+    "soltos_P9": [
+      "m04-ex-01",
+      "m04-ex-02",
+      "m04-ex-03",
+      "m04-ex-04",
+      "m04-ex-05",
+      "m04-ex-06",
+      "m04-ex-07",
+      "m04-ex-08",
+      "m04-ex-09"
+    ],
+    "nota": "Os 9 exercícios são soltos: o <summary> traz só \"NN · Título\" e a varredura por \"Aula NN\" em enunciado e gabarito dá zero. O exercício 02 cita \"exercício 01\" (dependência entre exercícios, não vínculo de aula).",
+    "origem": {
+      "seletor": "section#ex .sec-id",
+      "trecho_inicial": "<div class=\"sec-id\"><b>§Ex</b> · Exercícios</div>",
+      "linha_aprox": 1027
+    }
+  },
+  "referencias": {
+    "id": "m04-referencias",
+    "titulo_secao": {
+      "html": "Onde verificar cada afirmação",
+      "texto": "Onde verificar cada afirmação"
+    },
+    "lede": {
+      "html": "Toda ordem de grandeza deste módulo veio de uma destas fontes. Nenhuma delas é estável ao longo do tempo — verifique na data de uso antes de qualquer material externo.",
+      "texto": "Toda ordem de grandeza deste módulo veio de uma destas fontes. Nenhuma delas é estável ao longo do tempo — verifique na data de uso antes de qualquer material externo."
+    },
+    "itens": [
+      {
+        "id": "m04-ref-01",
+        "rotulo_src": "ANEEL · limites de PLD 2026",
+        "instituicao": "ANEEL",
+        "titulo_ou_recorte": "limites de PLD 2026",
+        "descricao": {
+          "html": "Despacho nº 3.850, de 23 de dezembro de 2025 — fixa a TEO em R$ 18,27/MWh, a TEO Itaipu em R$ 57,31/MWh, a TSA em R$ 10,41/Mvar-h e os limites do PLD para 2026: mínimo R$ 57,31/MWh, máximo estrutural R$ 785,27/MWh e máximo horário R$ 1.611,04/MWh.",
+          "texto": "Despacho nº 3.850, de 23 de dezembro de 2025 — fixa a TEO em R$ 18,27/MWh, a TEO Itaipu em R$ 57,31/MWh, a TSA em R$ 10,41/Mvar-h e os limites do PLD para 2026: mínimo R$ 57,31/MWh, máximo estrutural R$ 785,27/MWh e máximo horário R$ 1.611,04/MWh."
+        },
+        "url": "https://www.gov.br/aneel/pt-br/assuntos/noticias/2025/aneel-define-tarifas-de-energia-de-otimizacao-de-servicos-ancilares-e-pld-para-2026",
+        "texto_do_link": "gov.br/aneel · notícia oficial do despacho",
+        "datas_citadas": [
+          "2026",
+          "23 de dezembro de 2025"
+        ],
+        "data_verificacao": null,
+        "tipo_fonte": null,
+        "li_html": "<span class=\"src\">ANEEL · limites de PLD 2026</span>Despacho nº 3.850, de 23 de dezembro de 2025 — fixa a TEO em R$ 18,27/MWh, a TEO Itaipu em R$ 57,31/MWh, a TSA em R$ 10,41/Mvar-h e os limites do PLD para 2026: mínimo R$ 57,31/MWh, máximo estrutural R$ 785,27/MWh e máximo horário R$ 1.611,04/MWh.<br><a href=\"https://www.gov.br/aneel/pt-br/assuntos/noticias/2025/aneel-define-tarifas-de-energia-de-otimizacao-de-servicos-ancilares-e-pld-para-2026\">gov.br/aneel · notícia oficial do despacho</a>",
+        "origem": {
+          "seletor": "section#ref ul.ref-list > li",
+          "trecho_inicial": "<li><span class=\"src\">ANEEL · limites de PLD 2026</span>Despacho nº 3.850, de 23 de dezemb",
+          "linha_aprox": 1296
+        }
+      },
+      {
+        "id": "m04-ref-02",
+        "rotulo_src": "ANEEL · metodologia dos limites",
+        "instituicao": "ANEEL",
+        "titulo_ou_recorte": "metodologia dos limites",
+        "descricao": {
+          "html": "Resolução Normativa nº 858/2019 — critérios e procedimentos para o cálculo do PLDmin e criação das figuras de PLDmax estrutural e PLDmax horário, com atualização anual por IPCA.",
+          "texto": "Resolução Normativa nº 858/2019 — critérios e procedimentos para o cálculo do PLDmin e criação das figuras de PLDmax estrutural e PLDmax horário, com atualização anual por IPCA."
+        },
+        "url": null,
+        "texto_do_link": null,
+        "datas_citadas": [
+          "2019"
+        ],
+        "data_verificacao": null,
+        "tipo_fonte": null,
+        "li_html": "<span class=\"src\">ANEEL · metodologia dos limites</span>Resolução Normativa nº 858/2019 — critérios e procedimentos para o cálculo do PLDmin e criação das figuras de PLDmax estrutural e PLDmax horário, com atualização anual por IPCA.",
+        "origem": {
+          "seletor": "section#ref ul.ref-list > li",
+          "trecho_inicial": "<li><span class=\"src\">ANEEL · metodologia dos limites</span>Resolução Normativa nº 858/201",
+          "linha_aprox": 1297
+        }
+      },
+      {
+        "id": "m04-ref-03",
+        "rotulo_src": "CCEE · dados e metodologia do PLD",
+        "instituicao": "CCEE",
+        "titulo_ou_recorte": "dados e metodologia do PLD",
+        "descricao": {
+          "html": "Cálculo diário por hora e por submercado a partir do CMO obtido no encadeamento NEWAVE/DECOMP/DESSEM, com aplicação dos limites vigentes. Boletins InfoPLD Diário e Mensal, projeções de preço e séries históricas desde 2001 no portal de dados abertos.",
+          "texto": "Cálculo diário por hora e por submercado a partir do CMO obtido no encadeamento NEWAVE/DECOMP/DESSEM, com aplicação dos limites vigentes. Boletins InfoPLD Diário e Mensal, projeções de preço e séries históricas desde 2001 no portal de dados abertos."
+        },
+        "url": "https://www.ccee.org.br/dados-e-analises/dados-pld",
+        "texto_do_link": "ccee.org.br · dados PLD",
+        "datas_citadas": [
+          "2001"
+        ],
+        "data_verificacao": null,
+        "tipo_fonte": null,
+        "li_html": "<span class=\"src\">CCEE · dados e metodologia do PLD</span>Cálculo diário por hora e por submercado a partir do CMO obtido no encadeamento NEWAVE/DECOMP/DESSEM, com aplicação dos limites vigentes. Boletins InfoPLD Diário e Mensal, projeções de preço e séries históricas desde 2001 no portal de dados abertos.<br><a href=\"https://www.ccee.org.br/dados-e-analises/dados-pld\">ccee.org.br · dados PLD</a>",
+        "origem": {
+          "seletor": "section#ref ul.ref-list > li",
+          "trecho_inicial": "<li><span class=\"src\">CCEE · dados e metodologia do PLD</span>Cálculo diário por hora e po",
+          "linha_aprox": 1298
+        }
+      },
+      {
+        "id": "m04-ref-04",
+        "rotulo_src": "ANEEL · homologação dos LRCAP 2026",
+        "instituicao": "ANEEL",
+        "titulo_ou_recorte": "homologação dos LRCAP 2026",
+        "descricao": {
+          "html": "Resultado e adjudicação do 2º e do 3º Leilões de Reserva de Capacidade na forma de Potência, realizados em março de 2026. O 2º contratou 18,97 GW de hidrelétricas e térmicas a gás e carvão; o 3º, 501,3 MW de térmicas a óleo diesel, óleo combustível e biodiesel.",
+          "texto": "Resultado e adjudicação do 2º e do 3º Leilões de Reserva de Capacidade na forma de Potência, realizados em março de 2026. O 2º contratou 18,97 GW de hidrelétricas e térmicas a gás e carvão; o 3º, 501,3 MW de térmicas a óleo diesel, óleo combustível e biodiesel."
+        },
+        "url": "https://www.gov.br/aneel/pt-br/assuntos/noticias/2026/agencia-homologa-leiloes-de-reserva-de-capacidade-de-potencia-lrcap-2026",
+        "texto_do_link": "gov.br/aneel · homologação LRCAP 2026",
+        "datas_citadas": [
+          "2026",
+          "março de 2026"
+        ],
+        "data_verificacao": null,
+        "tipo_fonte": null,
+        "li_html": "<span class=\"src\">ANEEL · homologação dos LRCAP 2026</span>Resultado e adjudicação do 2º e do 3º Leilões de Reserva de Capacidade na forma de Potência, realizados em março de 2026. O 2º contratou 18,97 GW de hidrelétricas e térmicas a gás e carvão; o 3º, 501,3 MW de térmicas a óleo diesel, óleo combustível e biodiesel.<br><a href=\"https://www.gov.br/aneel/pt-br/assuntos/noticias/2026/agencia-homologa-leiloes-de-reserva-de-capacidade-de-potencia-lrcap-2026\">gov.br/aneel · homologação LRCAP 2026</a>",
+        "origem": {
+          "seletor": "section#ref ul.ref-list > li",
+          "trecho_inicial": "<li><span class=\"src\">ANEEL · homologação dos LRCAP 2026</span>Resultado e adjudicação do ",
+          "linha_aprox": 1299
+        }
+      },
+      {
+        "id": "m04-ref-05",
+        "rotulo_src": "EPE · LRCAP 2026",
+        "instituicao": "EPE",
+        "titulo_ou_recorte": "LRCAP 2026",
+        "descricao": {
+          "html": "Resultados, notas técnicas, decks de cálculo e revisão de garantia física dos empreendimentos vencedores. Diretrizes nas Portarias Normativas MME nº 118 e nº 119, ambas de 23 de outubro de 2025.",
+          "texto": "Resultados, notas técnicas, decks de cálculo e revisão de garantia física dos empreendimentos vencedores. Diretrizes nas Portarias Normativas MME nº 118 e nº 119, ambas de 23 de outubro de 2025."
+        },
+        "url": "https://www.epe.gov.br/pt/leiloes-de-energia/leiloes/leilao-de-reserva-de-capacidade-na-forma-de-potencia-2026",
+        "texto_do_link": "epe.gov.br · LRCAP 2026",
+        "datas_citadas": [
+          "2026",
+          "23 de outubro de 2025"
+        ],
+        "data_verificacao": null,
+        "tipo_fonte": null,
+        "li_html": "<span class=\"src\">EPE · LRCAP 2026</span>Resultados, notas técnicas, decks de cálculo e revisão de garantia física dos empreendimentos vencedores. Diretrizes nas Portarias Normativas MME nº 118 e nº 119, ambas de 23 de outubro de 2025.<br><a href=\"https://www.epe.gov.br/pt/leiloes-de-energia/leiloes/leilao-de-reserva-de-capacidade-na-forma-de-potencia-2026\">epe.gov.br · LRCAP 2026</a>",
+        "origem": {
+          "seletor": "section#ref ul.ref-list > li",
+          "trecho_inicial": "<li><span class=\"src\">EPE · LRCAP 2026</span>Resultados, notas técnicas, decks de cálculo ",
+          "linha_aprox": 1300
+        }
+      },
+      {
+        "id": "m04-ref-06",
+        "rotulo_src": "MME · 1º LRCAP de armazenamento",
+        "instituicao": "MME",
+        "titulo_ou_recorte": "1º LRCAP de armazenamento",
+        "descricao": {
+          "html": "Portaria Normativa MME nº 136, de junho de 2026 — regras e sistemática do leilão de contratação de potência a partir de novos sistemas de armazenamento, em duas modalidades (com e sem requisito de conteúdo nacional), certames previstos para 2 e 4 de dezembro de 2026, suprimento a partir de agosto de 2028 e contratos de 15 anos.",
+          "texto": "Portaria Normativa MME nº 136, de junho de 2026 — regras e sistemática do leilão de contratação de potência a partir de novos sistemas de armazenamento, em duas modalidades (com e sem requisito de conteúdo nacional), certames previstos para 2 e 4 de dezembro de 2026, suprimento a partir de agosto de 2028 e contratos de 15 anos."
+        },
+        "url": null,
+        "texto_do_link": null,
+        "datas_citadas": [
+          "4 de dezembro de 2026",
+          "de agosto de 2028",
+          "de junho de 2026"
+        ],
+        "data_verificacao": null,
+        "tipo_fonte": null,
+        "li_html": "<span class=\"src\">MME · 1º LRCAP de armazenamento</span>Portaria Normativa MME nº 136, de junho de 2026 — regras e sistemática do leilão de contratação de potência a partir de novos sistemas de armazenamento, em duas modalidades (com e sem requisito de conteúdo nacional), certames previstos para 2 e 4 de dezembro de 2026, suprimento a partir de agosto de 2028 e contratos de 15 anos.",
+        "origem": {
+          "seletor": "section#ref ul.ref-list > li",
+          "trecho_inicial": "<li><span class=\"src\">MME · 1º LRCAP de armazenamento</span>Portaria Normativa MME nº 136,",
+          "linha_aprox": 1301
+        }
+      },
+      {
+        "id": "m04-ref-07",
+        "rotulo_src": "Lei nº 15.269, de novembro de 2025",
+        "instituicao": null,
+        "titulo_ou_recorte": "Lei nº 15.269, de novembro de 2025",
+        "descricao": {
+          "html": "Marco legal do cronograma de abertura do mercado livre para consumidores de baixa tensão e alteração das condições de acesso ao desconto na tarifa de uso da rede para novos contratos de energia incentivada. O detalhamento institucional completo do ACR e do ACL é escopo do Bloco 9.",
+          "texto": "Marco legal do cronograma de abertura do mercado livre para consumidores de baixa tensão e alteração das condições de acesso ao desconto na tarifa de uso da rede para novos contratos de energia incentivada. O detalhamento institucional completo do ACR e do ACL é escopo do Bloco 9."
+        },
+        "url": null,
+        "texto_do_link": null,
+        "datas_citadas": [
+          "de novembro de 2025"
+        ],
+        "data_verificacao": null,
+        "tipo_fonte": null,
+        "li_html": "<span class=\"src\">Lei nº 15.269, de novembro de 2025</span>Marco legal do cronograma de abertura do mercado livre para consumidores de baixa tensão e alteração das condições de acesso ao desconto na tarifa de uso da rede para novos contratos de energia incentivada. O detalhamento institucional completo do ACR e do ACL é escopo do Bloco 9.",
+        "origem": {
+          "seletor": "section#ref ul.ref-list > li",
+          "trecho_inicial": "<li><span class=\"src\">Lei nº 15.269, de novembro de 2025</span>Marco legal do cronograma d",
+          "linha_aprox": 1302
+        }
+      },
+      {
+        "id": "m04-ref-08",
+        "rotulo_src": "ONS · dados abertos",
+        "instituicao": "ONS",
+        "titulo_ou_recorte": "dados abertos",
+        "descricao": {
+          "html": "Séries históricas de restrição de operação por constrained-off em usinas eólicas e fotovoltaicas, carga verificada, intercâmbio entre submercados, EAR e ENA por subsistema.",
+          "texto": "Séries históricas de restrição de operação por constrained-off em usinas eólicas e fotovoltaicas, carga verificada, intercâmbio entre submercados, EAR e ENA por subsistema."
+        },
+        "url": "https://dados.ons.org.br/",
+        "texto_do_link": "dados.ons.org.br",
+        "datas_citadas": [],
+        "data_verificacao": null,
+        "tipo_fonte": null,
+        "li_html": "<span class=\"src\">ONS · dados abertos</span>Séries históricas de restrição de operação por constrained-off em usinas eólicas e fotovoltaicas, carga verificada, intercâmbio entre submercados, EAR e ENA por subsistema.<br><a href=\"https://dados.ons.org.br/\">dados.ons.org.br</a>",
+        "origem": {
+          "seletor": "section#ref ul.ref-list > li",
+          "trecho_inicial": "<li><span class=\"src\">ONS · dados abertos</span>Séries históricas de restrição de operação",
+          "linha_aprox": 1303
+        }
+      },
+      {
+        "id": "m04-ref-09",
+        "rotulo_src": "ONS · serviços ancilares",
+        "instituicao": "ONS",
+        "titulo_ou_recorte": "serviços ancilares",
+        "descricao": {
+          "html": "Descrição dos serviços necessários à segurança e à estabilidade do sistema: controle de frequência, suporte de reativo, autorrestabelecimento, sistemas especiais de proteção e reserva de potência operativa.",
+          "texto": "Descrição dos serviços necessários à segurança e à estabilidade do sistema: controle de frequência, suporte de reativo, autorrestabelecimento, sistemas especiais de proteção e reserva de potência operativa."
+        },
+        "url": null,
+        "texto_do_link": null,
+        "datas_citadas": [],
+        "data_verificacao": null,
+        "tipo_fonte": null,
+        "li_html": "<span class=\"src\">ONS · serviços ancilares</span>Descrição dos serviços necessários à segurança e à estabilidade do sistema: controle de frequência, suporte de reativo, autorrestabelecimento, sistemas especiais de proteção e reserva de potência operativa.",
+        "origem": {
+          "seletor": "section#ref ul.ref-list > li",
+          "trecho_inicial": "<li><span class=\"src\">ONS · serviços ancilares</span>Descrição dos serviços necessários à ",
+          "linha_aprox": 1304
+        }
+      },
+      {
+        "id": "m04-ref-10",
+        "rotulo_src": "Referências de preço de contrato",
+        "instituicao": null,
+        "titulo_ou_recorte": "Referências de preço de contrato",
+        "descricao": {
+          "html": "Curvas de preço futuro do mercado livre são produzidas por ambientes de negociação e consultorias privadas, com liquidez concentrada no submercado Sudeste/Centro-Oeste. Os patamares citados na Aula 02 são ordem de grandeza publicada, não cotação oficial — para uso comercial, contrate a fonte.",
+          "texto": "Curvas de preço futuro do mercado livre são produzidas por ambientes de negociação e consultorias privadas, com liquidez concentrada no submercado Sudeste/Centro-Oeste. Os patamares citados na Aula 02 são ordem de grandeza publicada, não cotação oficial — para uso comercial, contrate a fonte."
+        },
+        "url": null,
+        "texto_do_link": null,
+        "datas_citadas": [],
+        "data_verificacao": null,
+        "tipo_fonte": null,
+        "li_html": "<span class=\"src\">Referências de preço de contrato</span>Curvas de preço futuro do mercado livre são produzidas por ambientes de negociação e consultorias privadas, com liquidez concentrada no submercado Sudeste/Centro-Oeste. Os patamares citados na Aula 02 são ordem de grandeza publicada, não cotação oficial — para uso comercial, contrate a fonte.",
+        "origem": {
+          "seletor": "section#ref ul.ref-list > li",
+          "trecho_inicial": "<li><span class=\"src\">Referências de preço de contrato</span>Curvas de preço futuro do mer",
+          "linha_aprox": 1305
+        }
+      },
+      {
+        "id": "m04-ref-11",
+        "rotulo_src": "Leitura de aprofundamento",
+        "instituicao": null,
+        "titulo_ou_recorte": "Leitura de aprofundamento",
+        "descricao": {
+          "html": "Stoft, <em>Power System Economics</em>; Kirschen e Strbac, <em>Fundamentals of Power System Economics</em>; Hunt, <em>Making Competition Work in Electricity</em>. Referência conceitual sólida; a aplicação institucional brasileira exige as fontes primárias acima, porque o desenho de despacho centralizado por custo não é o caso tratado nesses livros.",
+          "texto": "Stoft, Power System Economics; Kirschen e Strbac, Fundamentals of Power System Economics; Hunt, Making Competition Work in Electricity. Referência conceitual sólida; a aplicação institucional brasileira exige as fontes primárias acima, porque o desenho de despacho centralizado por custo não é o caso tratado nesses livros."
+        },
+        "url": null,
+        "texto_do_link": null,
+        "datas_citadas": [],
+        "data_verificacao": null,
+        "tipo_fonte": null,
+        "li_html": "<span class=\"src\">Leitura de aprofundamento</span>Stoft, <em>Power System Economics</em>; Kirschen e Strbac, <em>Fundamentals of Power System Economics</em>; Hunt, <em>Making Competition Work in Electricity</em>. Referência conceitual sólida; a aplicação institucional brasileira exige as fontes primárias acima, porque o desenho de despacho centralizado por custo não é o caso tratado nesses livros.",
+        "origem": {
+          "seletor": "section#ref ul.ref-list > li",
+          "trecho_inicial": "<li><span class=\"src\">Leitura de aprofundamento</span>Stoft, <em>Power System Economics</e",
+          "linha_aprox": 1306
+        }
+      }
+    ],
+    "nota": "anotacao_da_extracao: instituicao/titulo_ou_recorte são o rótulo span.src dividido em \" · \" (quando há). datas_citadas são substrings literais que casam padrão de data/ano (inclui anos soltos); nenhuma é data de verificação. data_verificacao e tipo_fonte são null: a fonte não declara. Colofão de versão: não há no M04 (rodapé sem versão/data).",
+    "no_codigo": "Nenhuma das 11 referências está em src/ como referência (BibliotecaView não tem M04; references: [] nas 7 aulas). A nota de fonte da Aula 02 (Despacho 3.850) está no corpo da aula.",
+    "origem": {
+      "seletor": "section#ref .sec-id",
+      "trecho_inicial": "<div class=\"sec-id\"><b>§Ref</b> · Fontes</div>",
+      "linha_aprox": 1292
+    }
+  },
+  "glossario": {
+    "id": "m04-glossario",
+    "titulo_secao": {
+      "html": "Cinquenta e oito termos",
+      "texto": "Cinquenta e oito termos"
+    },
+    "lede": {
+      "html": "Vocabulário operacional do bloco. Se você não consegue usar o termo numa frase própria, sobre uma situação concreta, ainda não é seu.",
+      "texto": "Vocabulário operacional do bloco. Se você não consegue usar o termo numa frase própria, sobre uma situação concreta, ainda não é seu."
+    },
+    "familias": [
+      {
+        "rotulo_summary": "Formação de preço e despacho · 15 termos",
+        "familia": "Formação de preço e despacho",
+        "contagem_declarada": "15 termos",
+        "contagem_medida": 15,
+        "linha_aprox": 1215
+      },
+      {
+        "rotulo_summary": "Curto prazo, liquidação e hidrologia · 14 termos",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "contagem_declarada": "14 termos",
+        "contagem_medida": 14,
+        "linha_aprox": 1233
+      },
+      {
+        "rotulo_summary": "Contratos, cláusulas e ambientes · 16 termos",
+        "familia": "Contratos, cláusulas e ambientes",
+        "contagem_declarada": "16 termos",
+        "contagem_medida": 16,
+        "linha_aprox": 1250
+      },
+      {
+        "rotulo_summary": "Capacidade, leilões, risco e métrica · 13 termos",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "contagem_declarada": "13 termos",
+        "contagem_medida": 13,
+        "linha_aprox": 1269
+      }
+    ],
+    "termos": [
+      {
+        "id": "m04-lex-custo-fixo",
+        "termo_span_literal": "Custo fixo.",
+        "termo": "Custo fixo",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Custo que existe independentemente de a usina gerar: investimento, serviço da dívida, depreciação, seguros, conexão e equipe mínima. Define quanto o ativo precisa faturar no ano para não destruir valor, mas não influencia a decisão de despachar hoje.",
+          "texto": "Custo que existe independentemente de a usina gerar: investimento, serviço da dívida, depreciação, seguros, conexão e equipe mínima. Define quanto o ativo precisa faturar no ano para não destruir valor, mas não influencia a decisão de despachar hoje."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-custo-fixo",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Custo fixo.</span> Custo que existe independentemente de a usina ger",
+          "linha_aprox": 1216
+        }
+      },
+      {
+        "id": "m04-lex-custo-variavel",
+        "termo_span_literal": "Custo variável.",
+        "termo": "Custo variável",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Custo que cresce com a geração, dominado por combustível em usinas térmicas e praticamente ausente em solar e eólica. É o que entra na ordem de mérito e, portanto, o que determina se a usina roda.",
+          "texto": "Custo que cresce com a geração, dominado por combustível em usinas térmicas e praticamente ausente em solar e eólica. É o que entra na ordem de mérito e, portanto, o que determina se a usina roda."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-custo-variavel",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Custo variável.</span> Custo que cresce com a geração, dominado por ",
+          "linha_aprox": 1217
+        }
+      },
+      {
+        "id": "m04-lex-custo-marginal",
+        "termo_span_literal": "Custo marginal.",
+        "termo": "Custo marginal",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Custo de produzir um megawatt-hora adicional a partir da condição atual do sistema. Único dos três custos que forma preço de curto prazo.",
+          "texto": "Custo de produzir um megawatt-hora adicional a partir da condição atual do sistema. Único dos três custos que forma preço de curto prazo."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-custo-marginal",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": [
+            "aula-04-01"
+          ]
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Custo marginal.</span> Custo de produzir um megawatt-hora adicional ",
+          "linha_aprox": 1218
+        }
+      },
+      {
+        "id": "m04-lex-custo-medio",
+        "termo_span_literal": "Custo médio.",
+        "termo": "Custo médio",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Custo total dividido pela energia gerada no período. Útil para avaliar desempenho histórico de um ativo e enganoso para decidir despacho, porque embute custo fixo já afundado.",
+          "texto": "Custo total dividido pela energia gerada no período. Útil para avaliar desempenho histórico de um ativo e enganoso para decidir despacho, porque embute custo fixo já afundado."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-custo-medio",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Custo médio.</span> Custo total dividido pela energia gerada no perí",
+          "linha_aprox": 1219
+        }
+      },
+      {
+        "id": "m04-lex-cvu",
+        "termo_span_literal": "CVU.",
+        "termo": "CVU",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Custo Variável Unitário declarado de uma usina térmica, em R$/MWh, segundo regra regulatória. É a informação que posiciona a usina na fila de despacho centralizado.",
+          "texto": "Custo Variável Unitário declarado de uma usina térmica, em R$/MWh, segundo regra regulatória. É a informação que posiciona a usina na fila de despacho centralizado."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-cvu",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">CVU.</span> Custo Variável Unitário declarado de uma usina térmica, ",
+          "linha_aprox": 1220
+        }
+      },
+      {
+        "id": "m04-lex-ordem-de-merito",
+        "termo_span_literal": "Ordem de mérito.",
+        "termo": "Ordem de mérito",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Ordenação dos recursos de geração por custo variável crescente, do mais barato ao mais caro, até que a demanda seja atendida. É a espinha dorsal do despacho econômico e da formação de preço.",
+          "texto": "Ordenação dos recursos de geração por custo variável crescente, do mais barato ao mais caro, até que a demanda seja atendida. É a espinha dorsal do despacho econômico e da formação de preço."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-ordem-de-merito",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": [
+            "aula-04-01"
+          ]
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Ordem de mérito.</span> Ordenação dos recursos de geração por custo ",
+          "linha_aprox": 1221
+        }
+      },
+      {
+        "id": "m04-lex-usina-marginal",
+        "termo_span_literal": "Usina marginal.",
+        "termo": "Usina marginal",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Última usina necessária para atender a demanda em determinado instante. Seu custo define o custo marginal do sistema e, por consequência, o preço de curto prazo.",
+          "texto": "Última usina necessária para atender a demanda em determinado instante. Seu custo define o custo marginal do sistema e, por consequência, o preço de curto prazo."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-usina-marginal",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Usina marginal.</span> Última usina necessária para atender a demand",
+          "linha_aprox": 1222
+        }
+      },
+      {
+        "id": "m04-lex-margem-inframarginal",
+        "termo_span_literal": "Margem inframarginal.",
+        "termo": "Margem inframarginal",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Diferença entre o preço formado e o custo próprio de uma usina que gerou abaixo da margem. É a receita com a qual usinas de baixo custo variável recuperam seu custo fixo num mercado que remunera apenas energia.",
+          "texto": "Diferença entre o preço formado e o custo próprio de uma usina que gerou abaixo da margem. É a receita com a qual usinas de baixo custo variável recuperam seu custo fixo num mercado que remunera apenas energia."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-margem-inframarginal",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Margem inframarginal.</span> Diferença entre o preço formado e o cus",
+          "linha_aprox": 1223
+        }
+      },
+      {
+        "id": "m04-lex-cmo",
+        "termo_span_literal": "CMO.",
+        "termo": "CMO",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Custo Marginal de Operação — custo de atender uma unidade adicional de carga, obtido pela otimização do sistema considerando disponibilidade, restrições e valor futuro da água. É o insumo direto do PLD.",
+          "texto": "Custo Marginal de Operação — custo de atender uma unidade adicional de carga, obtido pela otimização do sistema considerando disponibilidade, restrições e valor futuro da água. É o insumo direto do PLD."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-cmo",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">CMO.</span> Custo Marginal de Operação — custo de atender uma unidad",
+          "linha_aprox": 1224
+        }
+      },
+      {
+        "id": "m04-lex-valor-da-agua",
+        "termo_span_literal": "Valor da água.",
+        "termo": "Valor da água",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Custo de oportunidade de usar hoje a água armazenada em vez de preservá-la para o futuro. Não é desembolso, é decisão intertemporal — e é o que posiciona a hidráulica na ordem de mérito num sistema hidrotérmico.",
+          "texto": "Custo de oportunidade de usar hoje a água armazenada em vez de preservá-la para o futuro. Não é desembolso, é decisão intertemporal — e é o que posiciona a hidráulica na ordem de mérito num sistema hidrotérmico."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-valor-da-agua",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Valor da água.</span> Custo de oportunidade de usar hoje a água arma",
+          "linha_aprox": 1225
+        }
+      },
+      {
+        "id": "m04-lex-despacho-centralizado",
+        "termo_span_literal": "Despacho centralizado.",
+        "termo": "Despacho centralizado",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Modelo em que o operador determina a geração de cada usina por otimização de custo do sistema, e não por cruzamento de lances de preço dos agentes. É o modelo brasileiro e a razão de o preço ser calculado, não negociado.",
+          "texto": "Modelo em que o operador determina a geração de cada usina por otimização de custo do sistema, e não por cruzamento de lances de preço dos agentes. É o modelo brasileiro e a razão de o preço ser calculado, não negociado."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-despacho-centralizado",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Despacho centralizado.</span> Modelo em que o operador determina a g",
+          "linha_aprox": 1226
+        }
+      },
+      {
+        "id": "m04-lex-efeito-ordem-de-merito",
+        "termo_span_literal": "Efeito ordem de mérito.",
+        "termo": "Efeito ordem de mérito",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Redução do preço de curto prazo causada pela entrada de geração de custo marginal baixo, que desloca a curva de oferta e empurra a usina marginal para uma posição mais barata. O preço cai porque a margem mudou, não porque a fonte nova é barata.",
+          "texto": "Redução do preço de curto prazo causada pela entrada de geração de custo marginal baixo, que desloca a curva de oferta e empurra a usina marginal para uma posição mais barata. O preço cai porque a margem mudou, não porque a fonte nova é barata."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-efeito-ordem-de-merito",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Efeito ordem de mérito.</span> Redução do preço de curto prazo causa",
+          "linha_aprox": 1227
+        }
+      },
+      {
+        "id": "m04-lex-heat-rate",
+        "termo_span_literal": "Heat rate.",
+        "termo": "Heat rate",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Quantidade de combustível necessária por unidade de energia gerada. Mede a eficiência de uma térmica e explica boa parte da diferença de custo variável entre duas usinas que queimam o mesmo combustível.",
+          "texto": "Quantidade de combustível necessária por unidade de energia gerada. Mede a eficiência de uma térmica e explica boa parte da diferença de custo variável entre duas usinas que queimam o mesmo combustível."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-heat-rate",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Heat rate.</span> Quantidade de combustível necessária por unidade d",
+          "linha_aprox": 1228
+        }
+      },
+      {
+        "id": "m04-lex-curva-de-oferta",
+        "termo_span_literal": "Curva de oferta.",
+        "termo": "Curva de oferta",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Representação da capacidade disponível ordenada por custo marginal crescente. Cruzá-la com a demanda produz o preço; deslocá-la para a direita reduz o preço sem que nenhum custo tenha mudado.",
+          "texto": "Representação da capacidade disponível ordenada por custo marginal crescente. Cruzá-la com a demanda produz o preço; deslocá-la para a direita reduz o preço sem que nenhum custo tenha mudado."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-curva-de-oferta",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Curva de oferta.</span> Representação da capacidade disponível orden",
+          "linha_aprox": 1229
+        }
+      },
+      {
+        "id": "m04-lex-demanda-flexivel",
+        "termo_span_literal": "Demanda flexível.",
+        "termo": "Demanda flexível",
+        "familia": "Formação de preço e despacho",
+        "definicao": {
+          "html": "Carga capaz de reduzir ou deslocar consumo em resposta a sinal econômico ou a despacho. Compete com geração na formação do preço, mas seu custo marginal é o custo de oportunidade da produção não realizada — em geral alto.",
+          "texto": "Carga capaz de reduzir ou deslocar consumo em resposta a sinal econômico ou a despacho. Compete com geração na formação do preço, mas seu custo marginal é o custo de oportunidade da produção não realizada — em geral alto."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-demanda-flexivel",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Demanda flexível.</span> Carga capaz de reduzir ou deslocar consumo ",
+          "linha_aprox": 1230
+        }
+      },
+      {
+        "id": "m04-lex-pld",
+        "termo_span_literal": "PLD.",
+        "termo": "PLD",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Preço de Liquidação das Diferenças. Preço que valora o descasamento entre energia contratada e energia efetivamente medida, apurado por hora e por submercado. Não é o preço da energia contratada nem o preço da conta de luz.",
+          "texto": "Preço de Liquidação das Diferenças. Preço que valora o descasamento entre energia contratada e energia efetivamente medida, apurado por hora e por submercado. Não é o preço da energia contratada nem o preço da conta de luz."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-pld",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": [
+            "aula-04-02",
+            "aula-04-06"
+          ]
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">PLD.</span> Preço de Liquidação das Diferenças. Preço que valora o d",
+          "linha_aprox": 1234
+        }
+      },
+      {
+        "id": "m04-lex-pldmin",
+        "termo_span_literal": "PLDmin.",
+        "termo": "PLDmin",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Piso regulatório do PLD, fixado anualmente pela ANEEL e correspondente ao maior valor entre a TEO e a TEO Itaipu. Impede que o preço vá a zero mesmo em situação de sobreoferta severa.",
+          "texto": "Piso regulatório do PLD, fixado anualmente pela ANEEL e correspondente ao maior valor entre a TEO e a TEO Itaipu. Impede que o preço vá a zero mesmo em situação de sobreoferta severa."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-pldmin",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">PLDmin.</span> Piso regulatório do PLD, fixado anualmente pela ANEEL",
+          "linha_aprox": 1235
+        }
+      },
+      {
+        "id": "m04-lex-pldmax-horario",
+        "termo_span_literal": "PLDmax horário.",
+        "termo": "PLDmax horário",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Teto aplicável a cada hora individualmente, referenciado no custo variável das térmicas mais caras representadas na programação da operação.",
+          "texto": "Teto aplicável a cada hora individualmente, referenciado no custo variável das térmicas mais caras representadas na programação da operação."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-pldmax-horario",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">PLDmax horário.</span> Teto aplicável a cada hora individualmente, r",
+          "linha_aprox": 1236
+        }
+      },
+      {
+        "id": "m04-lex-pldmax-estrutural",
+        "termo_span_literal": "PLDmax estrutural.",
+        "termo": "PLDmax estrutural",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Teto aplicável à média do período. Os valores horários do dia são ajustados para que a média o respeite, preservando o formato da curva de preços ao longo das 24 horas.",
+          "texto": "Teto aplicável à média do período. Os valores horários do dia são ajustados para que a média o respeite, preservando o formato da curva de preços ao longo das 24 horas."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-pldmax-estrutural",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">PLDmax estrutural.</span> Teto aplicável à média do período. Os valo",
+          "linha_aprox": 1237
+        }
+      },
+      {
+        "id": "m04-lex-submercado",
+        "termo_span_literal": "Submercado.",
+        "termo": "Submercado",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Região de referência para preço e contabilização. São quatro: Sudeste/Centro-Oeste, Sul, Nordeste e Norte. Preços diferentes entre eles indicam restrição de intercâmbio.",
+          "texto": "Região de referência para preço e contabilização. São quatro: Sudeste/Centro-Oeste, Sul, Nordeste e Norte. Preços diferentes entre eles indicam restrição de intercâmbio."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-submercado",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Submercado.</span> Região de referência para preço e contabilização.",
+          "linha_aprox": 1238
+        }
+      },
+      {
+        "id": "m04-lex-acoplamento",
+        "termo_span_literal": "Acoplamento.",
+        "termo": "Acoplamento",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Situação em que os limites de intercâmbio não estão saturados e os preços dos submercados convergem. O descolamento é o sinal de que a rede, e não a economia, passou a determinar o preço local.",
+          "texto": "Situação em que os limites de intercâmbio não estão saturados e os preços dos submercados convergem. O descolamento é o sinal de que a rede, e não a economia, passou a determinar o preço local."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-acoplamento",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Acoplamento.</span> Situação em que os limites de intercâmbio não es",
+          "linha_aprox": 1239
+        }
+      },
+      {
+        "id": "m04-lex-liquidacao",
+        "termo_span_literal": "Liquidação.",
+        "termo": "Liquidação",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Processo de apuração e pagamento das diferenças entre contratado e medido no mercado de curto prazo, conduzido pela CCEE segundo as regras de comercialização vigentes.",
+          "texto": "Processo de apuração e pagamento das diferenças entre contratado e medido no mercado de curto prazo, conduzido pela CCEE segundo as regras de comercialização vigentes."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-liquidacao",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Liquidação.</span> Processo de apuração e pagamento das diferenças e",
+          "linha_aprox": 1240
+        }
+      },
+      {
+        "id": "m04-lex-exposicao",
+        "termo_span_literal": "Exposição.",
+        "termo": "Exposição",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Volume, em MWh, não coberto por contrato e portanto valorado ao preço de curto prazo. É a variável que transforma volatilidade de preço em variação de caixa — e a única sobre a qual o consumidor tem controle direto.",
+          "texto": "Volume, em MWh, não coberto por contrato e portanto valorado ao preço de curto prazo. É a variável que transforma volatilidade de preço em variação de caixa — e a única sobre a qual o consumidor tem controle direto."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-exposicao",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": [
+            "aula-04-06"
+          ]
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Exposição.</span> Volume, em MWh, não coberto por contrato e portant",
+          "linha_aprox": 1241
+        }
+      },
+      {
+        "id": "m04-lex-ena",
+        "termo_span_literal": "ENA.",
+        "termo": "ENA",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Energia Natural Afluente. Energia equivalente à vazão que chega aos aproveitamentos hidrelétricos, comparada à média de longo termo. É o fluxo que entra no sistema.",
+          "texto": "Energia Natural Afluente. Energia equivalente à vazão que chega aos aproveitamentos hidrelétricos, comparada à média de longo termo. É o fluxo que entra no sistema."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-ena",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">ENA.</span> Energia Natural Afluente. Energia equivalente à vazão qu",
+          "linha_aprox": 1242
+        }
+      },
+      {
+        "id": "m04-lex-ear",
+        "termo_span_literal": "EAR.",
+        "termo": "EAR",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Energia Armazenada. Energia equivalente ao volume útil disponível nos reservatórios. É o estoque — e é a variável que o modelo protege quando o fluxo decepciona.",
+          "texto": "Energia Armazenada. Energia equivalente ao volume útil disponível nos reservatórios. É o estoque — e é a variável que o modelo protege quando o fluxo decepciona."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-ear",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">EAR.</span> Energia Armazenada. Energia equivalente ao volume útil d",
+          "linha_aprox": 1243
+        }
+      },
+      {
+        "id": "m04-lex-periodo-umido-e-seco",
+        "termo_span_literal": "Período úmido e seco.",
+        "termo": "Período úmido e seco",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Ciclo hidrológico anual do sistema brasileiro: aproximadamente dezembro a abril recompõe reservatórios, maio a novembro consome estoque. Um período úmido frustrado eleva o preço antes do período seco começar, porque o modelo antecipa.",
+          "texto": "Ciclo hidrológico anual do sistema brasileiro: aproximadamente dezembro a abril recompõe reservatórios, maio a novembro consome estoque. Um período úmido frustrado eleva o preço antes do período seco começar, porque o modelo antecipa."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-periodo-umido-e-seco",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Período úmido e seco.</span> Ciclo hidrológico anual do sistema bras",
+          "linha_aprox": 1244
+        }
+      },
+      {
+        "id": "m04-lex-preco-spot",
+        "termo_span_literal": "Preço spot.",
+        "termo": "Preço spot",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Preço de curto prazo de uma commodity. No mercado elétrico brasileiro, essa função é cumprida pelo PLD, com a diferença de que ele é calculado por modelo e não formado por negociação.",
+          "texto": "Preço de curto prazo de uma commodity. No mercado elétrico brasileiro, essa função é cumprida pelo PLD, com a diferença de que ele é calculado por modelo e não formado por negociação."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-preco-spot",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Preço spot.</span> Preço de curto prazo de uma commodity. No mercado",
+          "linha_aprox": 1245
+        }
+      },
+      {
+        "id": "m04-lex-curva-forward",
+        "termo_span_literal": "Curva forward.",
+        "termo": "Curva forward",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Conjunto de preços negociados hoje para entrega futura. Reflete a expectativa do mercado somada ao prêmio de risco cobrado por quem carrega a incerteza — por isso pode divergir bastante do spot corrente.",
+          "texto": "Conjunto de preços negociados hoje para entrega futura. Reflete a expectativa do mercado somada ao prêmio de risco cobrado por quem carrega a incerteza — por isso pode divergir bastante do spot corrente."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-curva-forward",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Curva forward.</span> Conjunto de preços negociados hoje para entreg",
+          "linha_aprox": 1246
+        }
+      },
+      {
+        "id": "m04-lex-premio-de-risco",
+        "termo_span_literal": "Prêmio de risco.",
+        "termo": "Prêmio de risco",
+        "familia": "Curto prazo, liquidação e hidrologia",
+        "definicao": {
+          "html": "Diferença entre o preço de um contrato futuro e o valor esperado do preço spot no mesmo período. É o que o vendedor cobra para assumir a incerteza no lugar do comprador, e é a razão econômica de o contrato existir.",
+          "texto": "Diferença entre o preço de um contrato futuro e o valor esperado do preço spot no mesmo período. É o que o vendedor cobra para assumir a incerteza no lugar do comprador, e é a razão econômica de o contrato existir."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-premio-de-risco",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Prêmio de risco.</span> Diferença entre o preço de um contrato futur",
+          "linha_aprox": 1247
+        }
+      },
+      {
+        "id": "m04-lex-ppa",
+        "termo_span_literal": "PPA.",
+        "termo": "PPA",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Power Purchase Agreement — contrato de compra e venda de energia de médio ou longo prazo que define preço, volume, prazo e condições comerciais, alocando riscos explicitamente entre vendedor e comprador.",
+          "texto": "Power Purchase Agreement — contrato de compra e venda de energia de médio ou longo prazo que define preço, volume, prazo e condições comerciais, alocando riscos explicitamente entre vendedor e comprador."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-ppa",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": [
+            "aula-04-05"
+          ]
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">PPA.</span> Power Purchase Agreement — contrato de compra e venda de",
+          "linha_aprox": 1251
+        }
+      },
+      {
+        "id": "m04-lex-ppa-fisico",
+        "termo_span_literal": "PPA físico.",
+        "termo": "PPA físico",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Contrato associado à entrega e ao registro do montante de energia entre as partes. Substitui suprimento e é o formato padrão de contratação industrial no mercado livre brasileiro.",
+          "texto": "Contrato associado à entrega e ao registro do montante de energia entre as partes. Substitui suprimento e é o formato padrão de contratação industrial no mercado livre brasileiro."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-ppa-fisico",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">PPA físico.</span> Contrato associado à entrega e ao registro do mon",
+          "linha_aprox": 1252
+        }
+      },
+      {
+        "id": "m04-lex-ppa-financeiro",
+        "termo_span_literal": "PPA financeiro.",
+        "termo": "PPA financeiro",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Contrato que liquida apenas a diferença entre o preço contratado e um preço de referência. Funciona como proteção de preço e não coloca energia física na planta — o comprador continua precisando de suprimento.",
+          "texto": "Contrato que liquida apenas a diferença entre o preço contratado e um preço de referência. Funciona como proteção de preço e não coloca energia física na planta — o comprador continua precisando de suprimento."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-ppa-financeiro",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">PPA financeiro.</span> Contrato que liquida apenas a diferença entre",
+          "linha_aprox": 1253
+        }
+      },
+      {
+        "id": "m04-lex-contrato-por-diferenca",
+        "termo_span_literal": "Contrato por diferença.",
+        "termo": "Contrato por diferença",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Estrutura em que as partes liquidam contra um preço de exercício: se o mercado fica abaixo, uma paga; se fica acima, a outra compensa. É a forma financeira mais pura de travar preço.",
+          "texto": "Estrutura em que as partes liquidam contra um preço de exercício: se o mercado fica abaixo, uma paga; se fica acima, a outra compensa. É a forma financeira mais pura de travar preço."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-contrato-por-diferenca",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Contrato por diferença.</span> Estrutura em que as partes liquidam c",
+          "linha_aprox": 1254
+        }
+      },
+      {
+        "id": "m04-lex-ppa-virtual",
+        "termo_span_literal": "PPA virtual.",
+        "termo": "PPA virtual",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Contrato financeiro vinculado a um projeto renovável específico, em que o comprador não recebe fisicamente aquela energia mas liquida diferenças e normalmente recebe os atributos ambientais associados.",
+          "texto": "Contrato financeiro vinculado a um projeto renovável específico, em que o comprador não recebe fisicamente aquela energia mas liquida diferenças e normalmente recebe os atributos ambientais associados."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-ppa-virtual",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">PPA virtual.</span> Contrato financeiro vinculado a um projeto renov",
+          "linha_aprox": 1255
+        }
+      },
+      {
+        "id": "m04-lex-modulacao",
+        "termo_span_literal": "Modulação.",
+        "termo": "Modulação",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Distribuição horária do volume contratado. É a cláusula que determina se o contrato acompanha o perfil real de consumo ou entrega energia nas horas erradas.",
+          "texto": "Distribuição horária do volume contratado. É a cláusula que determina se o contrato acompanha o perfil real de consumo ou entrega energia nas horas erradas."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-modulacao",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Modulação.</span> Distribuição horária do volume contratado. É a clá",
+          "linha_aprox": 1256
+        }
+      },
+      {
+        "id": "m04-lex-sazonalizacao",
+        "termo_span_literal": "Sazonalização.",
+        "termo": "Sazonalização",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Distribuição mensal do volume contratado. Crítica para consumidores com ciclo definido — safra, irrigação, refrigeração, mineração sazonal — cujo consumo anual está certo mas mal distribuído.",
+          "texto": "Distribuição mensal do volume contratado. Crítica para consumidores com ciclo definido — safra, irrigação, refrigeração, mineração sazonal — cujo consumo anual está certo mas mal distribuído."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-sazonalizacao",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Sazonalização.</span> Distribuição mensal do volume contratado. Crít",
+          "linha_aprox": 1257
+        }
+      },
+      {
+        "id": "m04-lex-contrato-flat",
+        "termo_span_literal": "Contrato flat.",
+        "termo": "Contrato flat",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Contrato com volume uniforme em todos os períodos. Simples de precificar e frequentemente inadequado, porque quase nenhuma planta industrial consome de forma uniforme.",
+          "texto": "Contrato com volume uniforme em todos os períodos. Simples de precificar e frequentemente inadequado, porque quase nenhuma planta industrial consome de forma uniforme."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-contrato-flat",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Contrato flat.</span> Contrato com volume uniforme em todos os perío",
+          "linha_aprox": 1258
+        }
+      },
+      {
+        "id": "m04-lex-flexibilidade",
+        "termo_span_literal": "Flexibilidade.",
+        "termo": "Flexibilidade",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Banda percentual dentro da qual o consumo pode variar sem penalidade contratual. Banda larga custa mais caro no preço e vale mais quando a produção é volátil; banda estreita transfere o risco de volume ao comprador.",
+          "texto": "Banda percentual dentro da qual o consumo pode variar sem penalidade contratual. Banda larga custa mais caro no preço e vale mais quando a produção é volátil; banda estreita transfere o risco de volume ao comprador."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-flexibilidade",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Flexibilidade.</span> Banda percentual dentro da qual o consumo pode",
+          "linha_aprox": 1259
+        }
+      },
+      {
+        "id": "m04-lex-take-or-pay",
+        "termo_span_literal": "Take-or-pay.",
+        "termo": "Take-or-pay",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Obrigação de pagar um volume mínimo mesmo sem consumi-lo. Protege a receita do vendedor e converte queda de produção em custo morto para o comprador.",
+          "texto": "Obrigação de pagar um volume mínimo mesmo sem consumi-lo. Protege a receita do vendedor e converte queda de produção em custo morto para o comprador."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-take-or-pay",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Take-or-pay.</span> Obrigação de pagar um volume mínimo mesmo sem co",
+          "linha_aprox": 1260
+        }
+      },
+      {
+        "id": "m04-lex-sobrecontratacao",
+        "termo_span_literal": "Sobrecontratação.",
+        "termo": "Sobrecontratação",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Situação em que o volume contratado excede o consumo medido, gerando sobra liquidada ao preço de curto prazo — tipicamente baixo, porque as causas da queda de consumo e da queda de preço costumam ser as mesmas.",
+          "texto": "Situação em que o volume contratado excede o consumo medido, gerando sobra liquidada ao preço de curto prazo — tipicamente baixo, porque as causas da queda de consumo e da queda de preço costumam ser as mesmas."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-sobrecontratacao",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Sobrecontratação.</span> Situação em que o volume contratado excede ",
+          "linha_aprox": 1261
+        }
+      },
+      {
+        "id": "m04-lex-indexacao",
+        "termo_span_literal": "Indexação.",
+        "termo": "Indexação",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Mecanismo contratual de reajuste do preço ao longo do tempo, por índice de inflação, câmbio ou fórmula híbrida. Determina o custo total do contrato mais do que o preço de partida.",
+          "texto": "Mecanismo contratual de reajuste do preço ao longo do tempo, por índice de inflação, câmbio ou fórmula híbrida. Determina o custo total do contrato mais do que o preço de partida."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-indexacao",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Indexação.</span> Mecanismo contratual de reajuste do preço ao longo",
+          "linha_aprox": 1262
+        }
+      },
+      {
+        "id": "m04-lex-change-in-law",
+        "termo_span_literal": "Change in law.",
+        "termo": "Change in law",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Cláusula que define como mudanças regulatórias, tributárias ou setoriais afetam preço e obrigações. Em setor tão regulado quanto o elétrico brasileiro, é cláusula estrutural e não formalidade jurídica.",
+          "texto": "Cláusula que define como mudanças regulatórias, tributárias ou setoriais afetam preço e obrigações. Em setor tão regulado quanto o elétrico brasileiro, é cláusula estrutural e não formalidade jurídica."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-change-in-law",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Change in law.</span> Cláusula que define como mudanças regulatórias",
+          "linha_aprox": 1263
+        }
+      },
+      {
+        "id": "m04-lex-lastro",
+        "termo_span_literal": "Lastro.",
+        "termo": "Lastro",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Respaldo físico ou comercial exigido para que um agente possa vender energia. Vender sem lastro suficiente é infração de regra de mercado, não apenas risco comercial.",
+          "texto": "Respaldo físico ou comercial exigido para que um agente possa vender energia. Vender sem lastro suficiente é infração de regra de mercado, não apenas risco comercial."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-lastro",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Lastro.</span> Respaldo físico ou comercial exigido para que um agen",
+          "linha_aprox": 1264
+        }
+      },
+      {
+        "id": "m04-lex-acr",
+        "termo_span_literal": "ACR.",
+        "termo": "ACR",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Ambiente de Contratação Regulada, no qual distribuidoras contratam energia por leilão para atender consumidores cativos, que pagam tarifa regulada e não escolhem fornecedor.",
+          "texto": "Ambiente de Contratação Regulada, no qual distribuidoras contratam energia por leilão para atender consumidores cativos, que pagam tarifa regulada e não escolhem fornecedor."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-acr",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">ACR.</span> Ambiente de Contratação Regulada, no qual distribuidoras",
+          "linha_aprox": 1265
+        }
+      },
+      {
+        "id": "m04-lex-acl",
+        "termo_span_literal": "ACL.",
+        "termo": "ACL",
+        "familia": "Contratos, cláusulas e ambientes",
+        "definicao": {
+          "html": "Ambiente de Contratação Livre, no qual consumidores elegíveis negociam diretamente preço, prazo, fonte, indexação e condições comerciais, assumindo em troca a gestão do próprio portfólio e da própria exposição.",
+          "texto": "Ambiente de Contratação Livre, no qual consumidores elegíveis negociam diretamente preço, prazo, fonte, indexação e condições comerciais, assumindo em troca a gestão do próprio portfólio e da própria exposição."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-acl",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">ACL.</span> Ambiente de Contratação Livre, no qual consumidores eleg",
+          "linha_aprox": 1266
+        }
+      },
+      {
+        "id": "m04-lex-capacidade",
+        "termo_span_literal": "Capacidade.",
+        "termo": "Capacidade",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "definicao": {
+          "html": "Disponibilidade de potência, medida em MW. Responde à pergunta \"quem estará disponível quando o sistema precisar\" — e não à pergunta de quanto foi produzido.",
+          "texto": "Disponibilidade de potência, medida em MW. Responde à pergunta \"quem estará disponível quando o sistema precisar\" — e não à pergunta de quanto foi produzido."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-capacidade",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": [
+            "aula-04-03"
+          ]
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Capacidade.</span> Disponibilidade de potência, medida em MW. Respon",
+          "linha_aprox": 1270
+        }
+      },
+      {
+        "id": "m04-lex-energia",
+        "termo_span_literal": "Energia.",
+        "termo": "Energia",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "definicao": {
+          "html": "Produção ou consumo ao longo do tempo, medido em MWh. Responde à pergunta \"quanto foi produzido\" e é o produto que praticamente todo mercado remunera bem.",
+          "texto": "Produção ou consumo ao longo do tempo, medido em MWh. Responde à pergunta \"quanto foi produzido\" e é o produto que praticamente todo mercado remunera bem."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-energia",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": [
+            "aula-04-03"
+          ]
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Energia.</span> Produção ou consumo ao longo do tempo, medido em MWh",
+          "linha_aprox": 1271
+        }
+      },
+      {
+        "id": "m04-lex-missing-money",
+        "termo_span_literal": "Missing money.",
+        "termo": "Missing money",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "definicao": {
+          "html": "Insuficiência estrutural da receita de energia para remunerar a capacidade necessária à confiabilidade do sistema, causada por tetos de preço, raridade dos eventos de escassez e inaceitabilidade política de preços extremos.",
+          "texto": "Insuficiência estrutural da receita de energia para remunerar a capacidade necessária à confiabilidade do sistema, causada por tetos de preço, raridade dos eventos de escassez e inaceitabilidade política de preços extremos."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-missing-money",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": [
+            "aula-04-03"
+          ]
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Missing money.</span> Insuficiência estrutural da receita de energia",
+          "linha_aprox": 1272
+        }
+      },
+      {
+        "id": "m04-lex-energy-only",
+        "termo_span_literal": "Energy-only.",
+        "termo": "Energy-only",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "definicao": {
+          "html": "Desenho de mercado que remunera principalmente energia, dependendo de margens inframarginais e de preços de escassez para financiar capacidade. Funciona em teoria e exige tetos altos ou nulos para funcionar na prática.",
+          "texto": "Desenho de mercado que remunera principalmente energia, dependendo de margens inframarginais e de preços de escassez para financiar capacidade. Funciona em teoria e exige tetos altos ou nulos para funcionar na prática."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-energy-only",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Energy-only.</span> Desenho de mercado que remunera principalmente e",
+          "linha_aprox": 1273
+        }
+      },
+      {
+        "id": "m04-lex-preco-de-escassez",
+        "termo_span_literal": "Preço de escassez.",
+        "termo": "Preço de escassez",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "definicao": {
+          "html": "Elevação deliberada do preço em momentos de oferta insuficiente, com a função de remunerar disponibilidade e sinalizar necessidade de investimento. Economicamente eficiente e politicamente difícil de sustentar.",
+          "texto": "Elevação deliberada do preço em momentos de oferta insuficiente, com a função de remunerar disponibilidade e sinalizar necessidade de investimento. Economicamente eficiente e politicamente difícil de sustentar."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-preco-de-escassez",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": [
+            "aula-04-03"
+          ]
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Preço de escassez.</span> Elevação deliberada do preço em momentos d",
+          "linha_aprox": 1274
+        }
+      },
+      {
+        "id": "m04-lex-valor-da-energia-nao-suprida",
+        "termo_span_literal": "Valor da energia não suprida.",
+        "termo": "Valor da energia não suprida",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "definicao": {
+          "html": "Estimativa do custo econômico de não atender uma carga. Varia por ordens de grandeza entre uma residência e um processo industrial contínuo, e é a referência conceitual para calibrar preço de escassez.",
+          "texto": "Estimativa do custo econômico de não atender uma carga. Varia por ordens de grandeza entre uma residência e um processo industrial contínuo, e é a referência conceitual para calibrar preço de escassez."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-valor-da-energia-nao-suprida",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Valor da energia não suprida.</span> Estimativa do custo econômico d",
+          "linha_aprox": 1275
+        }
+      },
+      {
+        "id": "m04-lex-reserva-de-capacidade",
+        "termo_span_literal": "Reserva de capacidade.",
+        "termo": "Reserva de capacidade",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "definicao": {
+          "html": "Produto de disponibilidade contratado para segurança de suprimento, desacoplado da entrega de energia. O vencedor se compromete a estar disponível, e é remunerado por isso independentemente de gerar.",
+          "texto": "Produto de disponibilidade contratado para segurança de suprimento, desacoplado da entrega de energia. O vencedor se compromete a estar disponível, e é remunerado por isso independentemente de gerar."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-reserva-de-capacidade",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Reserva de capacidade.</span> Produto de disponibilidade contratado ",
+          "linha_aprox": 1276
+        }
+      },
+      {
+        "id": "m04-lex-lrcap",
+        "termo_span_literal": "LRCAP.",
+        "termo": "LRCAP",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "definicao": {
+          "html": "Leilão de Reserva de Capacidade na forma de Potência. Instrumento brasileiro de contratação de disponibilidade, realizado de forma pontual em vez de por mercado permanente de capacidade.",
+          "texto": "Leilão de Reserva de Capacidade na forma de Potência. Instrumento brasileiro de contratação de disponibilidade, realizado de forma pontual em vez de por mercado permanente de capacidade."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-lrcap",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">LRCAP.</span> Leilão de Reserva de Capacidade na forma de Potência. ",
+          "linha_aprox": 1277
+        }
+      },
+      {
+        "id": "m04-lex-leilao-reverso",
+        "termo_span_literal": "Leilão reverso.",
+        "termo": "Leilão reverso",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "definicao": {
+          "html": "Disputa em que os vendedores competem reduzindo preço até que a quantidade demandada seja atendida. Substitui a negociação bilateral por competição pública quando o comprador é regulado.",
+          "texto": "Disputa em que os vendedores competem reduzindo preço até que a quantidade demandada seja atendida. Substitui a negociação bilateral por competição pública quando o comprador é regulado."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-leilao-reverso",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": [
+            "aula-04-04"
+          ]
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Leilão reverso.</span> Disputa em que os vendedores competem reduzin",
+          "linha_aprox": 1278
+        }
+      },
+      {
+        "id": "m04-lex-preco-de-corte",
+        "termo_span_literal": "Preço de corte.",
+        "termo": "Preço de corte",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "definicao": {
+          "html": "Preço do último lance aceito num leilão reverso. Coincide com o preço médio apenas quando o edital liquida por preço uniforme; quando liquida por lance individual, a média fica abaixo.",
+          "texto": "Preço do último lance aceito num leilão reverso. Coincide com o preço médio apenas quando o edital liquida por preço uniforme; quando liquida por lance individual, a média fica abaixo."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-preco-de-corte",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Preço de corte.</span> Preço do último lance aceito num leilão rever",
+          "linha_aprox": 1279
+        }
+      },
+      {
+        "id": "m04-lex-revenue-stacking",
+        "termo_span_literal": "Revenue stacking.",
+        "termo": "Revenue stacking",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "definicao": {
+          "html": "Combinação de múltiplas fontes de receita sobre o mesmo ativo — energia, capacidade, serviços ancilares, redução de demanda, atributos. É o que viabiliza projetos que nenhuma dessas receitas pagaria sozinha.",
+          "texto": "Combinação de múltiplas fontes de receita sobre o mesmo ativo — energia, capacidade, serviços ancilares, redução de demanda, atributos. É o que viabiliza projetos que nenhuma dessas receitas pagaria sozinha."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-revenue-stacking",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Revenue stacking.</span> Combinação de múltiplas fontes de receita s",
+          "linha_aprox": 1280
+        }
+      },
+      {
+        "id": "m04-lex-risco-de-base",
+        "termo_span_literal": "Risco de base.",
+        "termo": "Risco de base",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "definicao": {
+          "html": "Diferença entre o preço da referência contratual ou do instrumento de proteção e o preço da exposição efetiva. Aparece tipicamente como descasamento de submercado, e é o risco que sobra depois que todos os outros foram tratados.",
+          "texto": "Diferença entre o preço da referência contratual ou do instrumento de proteção e o preço da exposição efetiva. Aparece tipicamente como descasamento de submercado, e é o risco que sobra depois que todos os outros foram tratados."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-risco-de-base",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Risco de base.</span> Diferença entre o preço da referência contratu",
+          "linha_aprox": 1281
+        }
+      },
+      {
+        "id": "m04-lex-canibalizacao",
+        "termo_span_literal": "Canibalização.",
+        "termo": "Canibalização",
+        "familia": "Capacidade, leilões, risco e métrica",
+        "definicao": {
+          "html": "Redução do preço capturado por uma fonte causada pela concentração da geração dessa mesma fonte nas mesmas horas. Explica por que o valor marginal de um projeto cai conforme a penetração da tecnologia cresce na região.",
+          "texto": "Redução do preço capturado por uma fonte causada pela concentração da geração dessa mesma fonte nas mesmas horas. Explica por que o valor marginal de um projeto cai conforme a penetração da tecnologia cresce na região."
+        },
+        "vinculos": {
+          "aulas": null
+        },
+        "codigo": {
+          "id": "gl-m04-canibalizacao",
+          "unit_igual_familia": true,
+          "definicao_igual": true,
+          "aulaIds_codigo": []
+        },
+        "no_codigo": true,
+        "origem": {
+          "seletor": "section#lex details .det-bd > p",
+          "trecho_inicial": "<p><span class=\"term\">Canibalização.</span> Redução do preço capturado por uma fonte causa",
+          "linha_aprox": 1282
+        }
+      }
+    ],
+    "termos_nao_reintroduzidos": {
+      "html": "Termos já estabelecidos nos Módulos 01 a 03 — kW, kWh, kVA, fator de carga, fator de potência, SIN, despacho, inércia, TUSD, TUST, ESS, MRE, curtailment, fator de capacidade, LCOE, VPL, TIR, WACC — não são reintroduzidos aqui. Consulte o glossário do módulo de origem.",
+      "texto": "Termos já estabelecidos nos Módulos 01 a 03 — kW, kWh, kVA, fator de carga, fator de potência, SIN, despacho, inércia, TUSD, TUST, ESS, MRE, curtailment, fator de capacidade, LCOE, VPL, TIR, WACC — não são reintroduzidos aqui. Consulte o glossário do módulo de origem.",
+      "origem": {
+        "seletor": "section#lex > p (nota final)",
+        "trecho_inicial": "<p style=\"font-size:12.5px;color:var(--txt-3);margin-top:20px\">Termos já estabelecidos nos",
+        "linha_aprox": 1285
+      }
+    },
+    "comparacao_codigo": {
+      "anotacao_da_extracao": true,
+      "termos_fonte": 58,
+      "termos_codigo_gl_m04": 58,
+      "faltam_no_codigo": [],
+      "so_no_codigo": [],
+      "definicao_divergente": [],
+      "familia_divergente": [],
+      "aulaIds_nota": "aulaIds do código foram derivados pela Wave 34 (âncora estrutural); a fonte não declara vínculo termo→aula."
+    },
+    "origem": {
+      "seletor": "section#lex .sec-id",
+      "trecho_inicial": "<div class=\"sec-id\"><b>§Lex</b> · Glossário Alexandria</div>",
+      "linha_aprox": 1211
+    }
+  },
+  "divergencias": [
+    {
+      "id": "div-m04-caso-parte4",
+      "tema": "Caso rotulado \"Parte 4\" (P17)",
+      "leitura_a": "fonte: \"§Caso · Operação A — Parte 4\"; lede cita Partes 1 a 3",
+      "leitura_b": "P17: produto usa \"Caso — Operação A\", sem \"Partes\" como estrutura",
+      "resolvida": false,
+      "anotacao_da_extracao": true
+    },
+    {
+      "id": "div-m04-quiz-gabarito-b",
+      "tema": "Gabarito do quiz sempre na alternativa B",
+      "leitura_a": "fonte: a:1 nas 10 questões",
+      "leitura_b": "Padrão previsível; nenhuma alteração na camada fonte",
+      "resolvida": false,
+      "anotacao_da_extracao": true
+    },
+    {
+      "id": "div-m04-quiz-aula-q10",
+      "tema": "Aula citada no feedback da Q10",
+      "leitura_a": "Q10 (leilão de reserva de capacidade) cita \"Aula 03\"",
+      "leitura_b": "O tema também é tratado na Aula 04 (4.3) e em §Voz/§Final; registrado sem escolher",
+      "resolvida": false,
+      "anotacao_da_extracao": true,
+      "nota_verificacao": "Verificação 2026-09-17: não é contradição. A própria 4.3 (L660) remete o tema à Aula 03: \"E reserva de capacidade — o LRCAP da Aula 03 — contrata disponibilidade de potência\". Registro mantido só como vínculo múltiplo (Aula 03 é a casa declarada; 4.3 a retoma)."
+    },
+    {
+      "id": "div-m04-ex-codigo-gabarito",
+      "tema": "Gabarito dos exercícios no código achata a estrutura",
+      "leitura_a": "fonte: 2–3 <p> por gabarito, com <strong>/<em>",
+      "leitura_b": "código (MODULO_04_EXERCICIOS_SOLTOS): parágrafos concatenados com espaço e tags removidas; points: 1 sem origem",
+      "resolvida": false,
+      "anotacao_da_extracao": true
+    },
+    {
+      "id": "div-m04-ex-codigo-espaco",
+      "tema": "Espaço espúrio antes da pontuação no código (Ex·06, Ex·08)",
+      "leitura_a": "fonte: \"<strong>R$ 209,69/MWh</strong>.\" (sem espaço)",
+      "leitura_b": "código: \"R$ 209,69/MWh .\" — 1 ocorrência no Ex·06 e 4 no Ex·08 (ver exercicios.itens[].codigo.gabarito_diferencas)",
+      "resolvida": false,
+      "anotacao_da_extracao": true
+    },
+    {
+      "id": "div-m04-corpo-codigo-residuos",
+      "tema": "Resíduos no corpo das aulas, vistos de passagem (fora do escopo deste grupo)",
+      "leitura_a": "fonte: <span class=\"hl\">margem inframarginal</span> (Aula 01, 1.1); lede da Aula 02 \"…o preço de uma <em>diferença</em>.\"",
+      "leitura_b": "código: 7 tags \"</b>\" órfãs em MODULO_04_CORPO, uma para cada span.hl das aulas (a 8ª span.hl da fonte está no §00, fora do código); ex.: \"margem inframarginal</b>\" (aula-04-01). E \"diferença .\" em MODULO_04_LEAD aula-04-02. A conferir na extração das aulas.",
+      "resolvida": false,
+      "anotacao_da_extracao": true
+    },
+    {
+      "id": "div-m04-lex-contagem",
+      "tema": "Contagem do léxico",
+      "leitura_a": "prosa \"Cinquenta e oito termos\" e summaries 15+14+16+13",
+      "leitura_b": "markup: 58 termos; código: 58 gl-m04 — concordam",
+      "resolvida": false,
+      "anotacao_da_extracao": true,
+      "severidade": "nenhuma"
+    },
+    {
+      "id": "div-m04-catalogo-familia-contratos",
+      "tema": "Catálogo canônico lista 15 nomes na família \"Contratos, cláusulas e ambientes (16)\"",
+      "leitura_a": "fonte: 16 termos, o primeiro é \"PPA\"",
+      "leitura_b": "catálogo canônico: começa em \"PPA físico\" (omite \"PPA\")",
+      "resolvida": false,
+      "anotacao_da_extracao": true
+    },
+    {
+      "id": "div-m04-ref-sem-versao",
+      "tema": "Referências sem data de verificação",
+      "leitura_a": "fonte: datas só dentro das descrições (datas de atos)",
+      "leitura_b": "lede: \"verifique na data de uso\"; D5 exige última verificação — ausente",
+      "resolvida": false,
+      "anotacao_da_extracao": true
+    },
+    {
+      "id": "div-m04-final-vinculo-aula",
+      "tema": "§Final diz que cada item aponta uma aula, mas nenhum item declara a aula",
+      "leitura_a": "lede do §Final: \"Cada uma que falhar aponta uma aula específica\"",
+      "leitura_b": "itens: zero referência \"Aula NN\"",
+      "resolvida": false,
+      "anotacao_da_extracao": true
+    }
+  ],
+  "verificacao_automatica": {
+    "strings_conferidas": 1307,
+    "falhas_substring": [],
+    "origens_fora_da_linha": [],
+    "cobertura_por_token": {
+      "§00": {
+        "tokens_fonte": 722,
+        "cobertos": 722,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§MAP": {
+        "tokens_fonte": 196,
+        "cobertos": 196,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§Caso": {
+        "tokens_fonte": 627,
+        "cobertos": 627,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§Erros": {
+        "tokens_fonte": 427,
+        "cobertos": 427,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§Ex": {
+        "tokens_fonte": 1424,
+        "cobertos": 1422,
+        "pct": 99.9,
+        "amostra_nao_cobertos": [
+          "ex",
+          "exercícios"
+        ]
+      },
+      "§Quiz": {
+        "tokens_fonte": 39,
+        "cobertos": 39,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§Voz": {
+        "tokens_fonte": 1232,
+        "cobertos": 1232,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§Final": {
+        "tokens_fonte": 365,
+        "cobertos": 365,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§Lex": {
+        "tokens_fonte": 1987,
+        "cobertos": 1984,
+        "pct": 99.8,
+        "amostra_nao_cobertos": [
+          "lex",
+          "glossário",
+          "alexandria"
+        ]
+      },
+      "§Ref": {
+        "tokens_fonte": 566,
+        "cobertos": 564,
+        "pct": 99.6,
+        "amostra_nao_cobertos": [
+          "ref",
+          "fontes"
+        ]
+      },
+      "hero": {
+        "tokens_fonte": 58,
+        "cobertos": 58,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "Inst · 01": {
+        "tokens_fonte": 127,
+        "cobertos": 125,
+        "pct": 98.4,
+        "amostra_nao_cobertos": [
+          "inst",
+          "01"
+        ]
+      },
+      "Inst · 02": {
+        "tokens_fonte": 139,
+        "cobertos": 137,
+        "pct": 98.6,
+        "amostra_nao_cobertos": [
+          "inst",
+          "02"
+        ]
+      },
+      "Inst · 03": {
+        "tokens_fonte": 121,
+        "cobertos": 119,
+        "pct": 98.3,
+        "amostra_nao_cobertos": [
+          "inst",
+          "03"
+        ]
+      },
+      "Inst · 04": {
+        "tokens_fonte": 103,
+        "cobertos": 101,
+        "pct": 98.1,
+        "amostra_nao_cobertos": [
+          "inst",
+          "04"
+        ]
+      },
+      "Inst · 05": {
+        "tokens_fonte": 159,
+        "cobertos": 157,
+        "pct": 98.7,
+        "amostra_nao_cobertos": [
+          "inst",
+          "05"
+        ]
+      },
+      "Inst · 06": {
+        "tokens_fonte": 106,
+        "cobertos": 104,
+        "pct": 98.1,
+        "amostra_nao_cobertos": [
+          "inst",
+          "06"
+        ]
+      },
+      "Inst · 07": {
+        "tokens_fonte": 141,
+        "cobertos": 139,
+        "pct": 98.6,
+        "amostra_nao_cobertos": [
+          "inst",
+          "07"
+        ]
+      }
+    },
+    "nota": "Conferência automática: cada string de conteúdo (campos não listados como anotação) é substring da fonte (HTML cru, texto sem tags ou literal do script, com espaços colapsados); cada origem.trecho_inicial está a até ±3 linhas de linha_aprox. A cobertura por token mede o texto da seção presente no objeto extraído (sec-id/h2/lede das seções entram via roteiro em modulo.json e não são somados aqui)."
+  }
+}

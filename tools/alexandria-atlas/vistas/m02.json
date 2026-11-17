@@ -1,0 +1,1041 @@
+{
+  "modulo": "modulo-02",
+  "vistas": [
+    {
+      "id": "m02-a01-sin-quatro-subsistemas",
+      "modulo": "modulo-02",
+      "aula": 1,
+      "titulo": "O SIN e os quatro subsistemas",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [
+        "linhas",
+        "submercados"
+      ],
+      "destaque": {
+        "submercados": [
+          "SE",
+          "S",
+          "NE",
+          "N"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Atende a quase totalidade do consumo do país (a referência usual é da ordem de 99% da carga), dividido em <strong>quatro subsistemas</strong>: Sudeste/Centro-Oeste, Sul, Nordeste e a maior parte do Norte.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 235
+      },
+      "leitura": [
+        0,
+        1,
+        2
+      ],
+      "nota_de_dado": "O mapa pinta estados inteiros em cada subsistema, sem separar as áreas do Norte atendidas por sistemas isolados; Roraima aparece sem cor."
+    },
+    {
+      "id": "m02-a01-trocas-entre-regioes",
+      "modulo": "modulo-02",
+      "aula": 1,
+      "titulo": "Interligar para trocar energia entre regiões",
+      "capitulo": "trocas",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "submercados": [
+          "S",
+          "NE"
+        ]
+      },
+      "satelite": false,
+      "momento": "2015-11",
+      "trecho": {
+        "texto": "Por que interligar um país inteiro? Porque a interligação permite transferir energia entre regiões, aproveitar a <strong>complementaridade</strong> entre fontes — chove no Sul quando seca no Nordeste, venta à noite quando o sol se põe —, reduzir o custo total e aumentar a confiabilidade.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 237
+      },
+      "leitura": [
+        3,
+        4,
+        9
+      ],
+      "nota_de_dado": "O mapa mostra um mês por vez: a vista abre em novembro de 2015, quando o Sul (reservatórios a 96,7%) exportava 3,2 GW médios e o Nordeste (a 4,5%) importava 2,0 GW médios."
+    },
+    {
+      "id": "m02-a01-sistemas-isolados",
+      "modulo": "modulo-02",
+      "aula": 1,
+      "titulo": "Sistemas isolados da região Norte",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -72.11,
+          -6.97,
+          -49.66,
+          4.99
+        ]
+      },
+      "camadas": [
+        "oleo",
+        "gas",
+        "linhas",
+        "subestacoes"
+      ],
+      "destaque": {
+        "usinas": [
+          "UTE.GN.AM.037683-3.1",
+          "UTE.PE.AM.035824-0.1",
+          "UTE.PE.AM.035839-8.1",
+          "UTE.PE.AM.055254-2.1",
+          "UTE.PE.AP.032304-7.1",
+          "UTE.PE.AM.037736-8.1"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Fora do SIN ficam os <strong>sistemas isolados</strong> — concentrados na região Norte, supridos majoritariamente por térmicas locais a diesel e gás, com combustível chegando por logística fluvial complexa.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 239
+      },
+      "leitura": [
+        5
+      ],
+      "nota_de_dado": "O Atlas não marca os sistemas isolados como camada; a vista destaca seis das maiores térmicas a óleo e a gás da região Norte que ficam a mais de 300 km de qualquer linha ou subestação do mapa."
+    },
+    {
+      "id": "m02-a02-malha-440-kv",
+      "modulo": "modulo-02",
+      "aula": 2,
+      "titulo": "A malha de 440 kV no estado de São Paulo",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -53.86,
+          -24.38,
+          -44.7,
+          -19.39
+        ]
+      },
+      "camadas": [
+        "linhas",
+        "subestacoes"
+      ],
+      "destaque": {
+        "linhas": [
+          "SPAGV-4ARA-1",
+          "SPAGV-4RPR-1",
+          "SPALP-4MRD-1MS",
+          "SPALP-4TAQ-1",
+          "SPARA-4ARS-1",
+          "SPARA-4MOM31",
+          "SPARA-4MSOL1",
+          "SPARA-4MSOL2",
+          "SPARA-4PCB-1",
+          "SPARA24ARA-1",
+          "SPARA24ARA-2",
+          "SPARA24ARA-3",
+          "SPARR-4SERP1",
+          "SPASS-4BAU-1",
+          "SPASS-4SUR-1",
+          "SPAZL-4BOJ-1",
+          "SPAZL-4SAA-1",
+          "SPBAG-4BAU-1",
+          "SPBAG-4BAU-2",
+          "SPBAG-4ILS-1",
+          "SPBAG-4ILS-2",
+          "SPBAU-4ARA-1",
+          "SPBAU-4CAV-1",
+          "SPBAU-4GET-1",
+          "SPBAU-4GET-2",
+          "SPBAU-4STO-1",
+          "SPBOJ-4FDI-1",
+          "SPCAV-4BOJ-1",
+          "SPCAV-4GSP-1",
+          "SPCAV-4STO-1",
+          "SPCBA24EMG-1",
+          "SPCBA24OES-1",
+          "SPCPV-4ASS-1",
+          "SPEMG-4JAN-1",
+          "SPEMG-4OES-1",
+          "SPEMG-4SLY-1",
+          "SPFDI-4TAU-1",
+          "SPGET-4JUP-2",
+          "SPGET-4MRR-1MS",
+          "SPGSP-4JAN-1",
+          "SPILS-4AGV-1",
+          "SPILS-4ISO21MS",
+          "SPILS-4ISO22MS",
+          "SPILS-4MSOL1",
+          "SPILS-4MSOL2",
+          "SPILS-4TRI-1",
+          "SPILS-4TRI-2",
+          "SPJUP-4MRR-1MS",
+          "SPJUP-4MRR-2MS",
+          "SPJUP-4TRI-1",
+          "SPMOM34SAA-1",
+          "SPOES-4BAU-2",
+          "SPOES-4UBRC1",
+          "SPPCB-4SBO-1",
+          "SPPPR-4NPP-1",
+          "SPPPR-4NPP-2",
+          "SPPPR-4TAQ-1",
+          "SPPPR-4TAQ-2",
+          "SPRPR-4SBO-1",
+          "SPSAA-4SLY-1",
+          "SPSBO-4SUR-1",
+          "SPSERP4SAA-1",
+          "SPSUR-4BOJ-1",
+          "SPTAQ-4ASS-1",
+          "SPTAQ-4CPV-1",
+          "SPUBRC4BAU-1"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "440 kV no estado de SP; 345 kV em MG/RJ; 230 kV em todo o país",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 254
+      },
+      "leitura": [
+        19,
+        20
+      ],
+      "nota_de_dado": "A vista destaca as 66 linhas de 440 kV em operação; as de outras tensões ficam ao fundo, sem destaque."
+    },
+    {
+      "id": "m02-a02-corredor-765-itaipu",
+      "modulo": "modulo-02",
+      "aula": 2,
+      "titulo": "O corredor de 765 kV de Itaipu a Tijuco Preto",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -55.59,
+          -25.7,
+          -45.24,
+          -23.44
+        ]
+      },
+      "camadas": [
+        "hidro",
+        "linhas",
+        "subestacoes"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.PR.001161-4.1"
+        ],
+        "linhas": [
+          "PRSTIV7STF61",
+          "PRSTIV7STF62",
+          "PRSTIV7STF63",
+          "SPSTIA7STIV1PR",
+          "SPSTIA7STIV2PR",
+          "SPSTIA7STIV3PR",
+          "SPSTIA7STTP1",
+          "SPSTIA7STTP2",
+          "SPSTIA7STTP3"
+        ],
+        "subestacoes": [
+          "PRSTF6",
+          "SPSTTP"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Corredor Itaipu (60 Hz) → Tijuco Preto/SP",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 254
+      },
+      "leitura": [
+        10,
+        11
+      ],
+      "nota_de_dado": null
+    },
+    {
+      "id": "m02-a02-elo-itaipu-ibiuna",
+      "modulo": "modulo-02",
+      "aula": 2,
+      "titulo": "O elo de corrente contínua de Itaipu a Ibiúna",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -55.59,
+          -25.7,
+          -45.24,
+          -23.44
+        ]
+      },
+      "camadas": [
+        "hidro",
+        "linhas",
+        "subestacoes"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.PR.001161-4.1"
+        ],
+        "linhas": [
+          "PRSTF56STIN1SP",
+          "PRSTF56STIN2SP",
+          "PRSTF56STIN3SP",
+          "PRSTF56STIN4SP"
+        ],
+        "subestacoes": [
+          "PRSTF5",
+          "SPSTIN"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Itaipu (lado paraguaio) chega ao Brasil por bipolos DC de ±600 kV até Ibiúna/SP: não há como sincronizar 50 Hz com 60 Hz em AC.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 258
+      },
+      "leitura": [
+        16,
+        17,
+        21,
+        22
+      ],
+      "nota_de_dado": "No cadastro da ANEEL a usina aparece como Itaipu (Parte Brasileira), com 7.000 MW; a metade paraguaia, de 50 Hz, não tem registro próprio no Atlas."
+    },
+    {
+      "id": "m02-a02-amazonia-ao-sudeste",
+      "modulo": "modulo-02",
+      "aula": 2,
+      "titulo": "Da Amazônia ao Sudeste em corrente contínua",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -67.15,
+          -24.99,
+          -41.23,
+          -0.77
+        ]
+      },
+      "camadas": [
+        "hidro",
+        "linhas",
+        "subestacoes"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.PA.030354-2.1",
+          "UHE.PH.RO.029707-0.1",
+          "UHE.PH.RO.029736-4.1"
+        ],
+        "linhas": [
+          "PAXNG-8EST-1MG",
+          "PAXNG-8EST-2MG",
+          "PAXNG-8TRIO1RJ",
+          "PAXNG-8TRIO2RJ",
+          "ROCPV-6ARA21SP",
+          "ROCPV-6ARA22SP",
+          "ROCPV-6ARA23SP",
+          "ROCPV-6ARA24SP"
+        ],
+        "subestacoes": [
+          "PAXIN",
+          "MGSTES",
+          "RJTRIO",
+          "ROCPH",
+          "SPARA2"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "O problema brasileiro é geográfico: as grandes hidrelétricas da Amazônia (Belo Monte, complexo do Madeira) estão a mais de dois mil quilômetros dos centros de carga do Sudeste. A resposta foram alguns dos maiores elos HVDC do mundo — os bipolos de ±800 kV de Belo Monte.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 259
+      },
+      "leitura": [
+        12,
+        13,
+        14,
+        15,
+        17,
+        24,
+        25,
+        26
+      ],
+      "nota_de_dado": "O Atlas não tem os centros de carga; a vista mostra as subestações onde os elos chegam: Estreito (MG), Araraquara 2 (SP) e Terminal Rio (RJ)."
+    },
+    {
+      "id": "m02-a03-subestacoes-no-tronco",
+      "modulo": "modulo-02",
+      "aula": 3,
+      "titulo": "Subestações ao longo de um tronco de transmissão",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -55.59,
+          -25.69,
+          -45.24,
+          -23.5
+        ]
+      },
+      "camadas": [
+        "hidro",
+        "linhas",
+        "subestacoes"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.PR.001161-4.1"
+        ],
+        "linhas": [
+          "PRSTIV7STF61",
+          "PRSTIV7STF62",
+          "PRSTIV7STF63",
+          "SPSTIA7STIV1PR",
+          "SPSTIA7STIV2PR",
+          "SPSTIA7STIV3PR",
+          "SPSTIA7STTP1",
+          "SPSTIA7STTP2",
+          "SPSTIA7STTP3"
+        ],
+        "subestacoes": [
+          "PRSTF6",
+          "PRSTIV",
+          "SPSTIA",
+          "SPSTTP"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Entre a usina e a sua tomada existem, tipicamente, de quatro a sete subestações.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 216
+      },
+      "leitura": [
+        27
+      ],
+      "nota_de_dado": "A aula não nomeia um caminho: a vista usa como exemplo o tronco de 765 kV de Itaipu a São Paulo, com quatro subestações de transmissão; as de distribuição, que completam o caminho até a tomada, não estão no Atlas."
+    },
+    {
+      "id": "m02-a03-tijuco-preto-de-cima",
+      "modulo": "modulo-02",
+      "aula": 3,
+      "titulo": "A subestação Tijuco Preto vista de cima",
+      "capitulo": "rede",
+      "camera": {
+        "centro": [
+          -46.2735,
+          -23.7107
+        ],
+        "zoom": 13
+      },
+      "camadas": [
+        "linhas",
+        "subestacoes"
+      ],
+      "destaque": {
+        "subestacoes": [
+          "SPSTTP"
+        ]
+      },
+      "satelite": true,
+      "momento": null,
+      "trecho": {
+        "texto": "A subestação é onde a rede transforma, manobra, protege, mede e controla.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 216
+      },
+      "leitura": [
+        27
+      ],
+      "nota_de_dado": "A aula não nomeia uma subestação neste trecho; a vista usa Tijuco Preto, terminal do tronco de 765 kV de Itaipu citado na Aula 02."
+    },
+    {
+      "id": "m02-a04-rampa-fim-da-tarde",
+      "modulo": "modulo-02",
+      "aula": 4,
+      "titulo": "A rampa do fim da tarde, hora a hora",
+      "capitulo": "dia",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {},
+      "satelite": false,
+      "momento": "2026-10",
+      "trecho": {
+        "texto": "Esse degrau é a <strong>rampa do fim da tarde</strong>: em poucas horas, o sistema precisa substituir dezenas de gigawatts de sol por hidro flexível, térmicas, baterias e importação entre regiões.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 290
+      },
+      "leitura": [
+        28,
+        29
+      ],
+      "nota_de_dado": "O Atlas mostra a média de cada hora por fonte e a carga, sem baterias; percorra a régua do meio-dia às 18h: em outubro de 2026, somados os quatro subsistemas, a solar cai de 42,9 para 0,15 GW médios e a hidráulica sobe de 30,0 para 65,6 GW."
+    },
+    {
+      "id": "m02-a05-intercambios-no-balanco",
+      "modulo": "modulo-02",
+      "aula": 5,
+      "titulo": "Os intercâmbios que completam o balanço",
+      "capitulo": "trocas",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "submercados": [
+          "SE",
+          "S",
+          "NE",
+          "N"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "No SIN, hidrelétricas e renováveis variáveis têm custo de combustível praticamente nulo e entram primeiro; térmicas entram conforme necessidade e custo; intercâmbios entre regiões completam o balanço.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 299
+      },
+      "leitura": [
+        31
+      ],
+      "nota_de_dado": "O Atlas mostra o intercâmbio líquido médio do mês entre subsistemas, não a ordem de mérito do despacho."
+    },
+    {
+      "id": "m02-a05-agua-guardada",
+      "modulo": "modulo-02",
+      "aula": 5,
+      "titulo": "A água guardada nos reservatórios",
+      "capitulo": "agua",
+      "camera": {
+        "limites": [
+          -50.71,
+          -22.69,
+          -39.77,
+          -1.81
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "reservatorios": [
+          "251",
+          "275",
+          "169",
+          "6",
+          "156",
+          "24"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Água não tem custo de combustível — mas tem algo mais sutil: <strong>custo de oportunidade</strong>. Cada metro cúbico turbinado hoje é um metro cúbico que não estará no reservatório na estiagem.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 303
+      },
+      "leitura": [
+        32,
+        33
+      ],
+      "nota_de_dado": "A vista destaca os seis reservatórios de maior volume útil com série de energia armazenada no Atlas; os demais seguem no mapa, sem destaque."
+    },
+    {
+      "id": "m02-a06-armazenamento-no-programa-mensal",
+      "modulo": "modulo-02",
+      "aula": 6,
+      "titulo": "O armazenamento que o Programa Mensal considera",
+      "capitulo": "agua",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "submercados": [
+          "SE",
+          "S",
+          "NE",
+          "N"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Elaborado com os agentes, usando armazenamento dos reservatórios, previsões de carga, meteorologia e afluências.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 320
+      },
+      "leitura": [
+        39
+      ],
+      "nota_de_dado": "O Atlas mostra a energia armazenada por subsistema e por reservatório; previsões de carga, meteorologia e afluências não estão no mapa."
+    },
+    {
+      "id": "m02-a06-meio-dia-solar",
+      "modulo": "modulo-02",
+      "aula": 6,
+      "titulo": "Meio-dia: solar no máximo",
+      "capitulo": "dia",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {},
+      "satelite": false,
+      "momento": "2026-10",
+      "trecho": {
+        "texto": "Solar no máximo; carga líquida afunda. Em regiões com muita geração local, sobra; em outras, congestionamento. Hidro segura a flexibilidade.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 326
+      },
+      "leitura": [
+        42
+      ],
+      "nota_de_dado": "O Atlas mostra a geração e a carga médias de cada hora por subsistema, não o congestionamento; em outubro de 2026, às 12h, o Nordeste gerou 21,4 GW médios para uma carga de 14,6 GW. Na média horária, o máximo da solar nos quatro subsistemas é às 11h: 43,8 GW médios, contra 42,9 GW às 12h."
+    },
+    {
+      "id": "m02-a08-agosto-2023-norte-nordeste",
+      "modulo": "modulo-02",
+      "aula": 8,
+      "titulo": "15 de agosto de 2023: Norte e Nordeste separados",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [
+        "linhas",
+        "submercados"
+      ],
+      "destaque": {
+        "submercados": [
+          "N",
+          "NE"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Às 8h31 de 15 de agosto de 2023, uma linha de 500 kV no Ceará saiu de operação. Em segundos, o Norte e o Nordeste se separaram do resto do SIN e cerca de um quarto da carga do país foi interrompida.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 221
+      },
+      "leitura": [
+        44,
+        45,
+        46,
+        49
+      ],
+      "nota_de_dado": "A aula não nomeia a linha de 500 kV; a vista destaca os subsistemas Norte e Nordeste, que se separaram do restante do SIN."
+    },
+    {
+      "id": "m02-a08-eolicas-solares-nordeste",
+      "modulo": "modulo-02",
+      "aula": 8,
+      "titulo": "Eólicas e solares do Nordeste",
+      "capitulo": "rede",
+      "camera": {
+        "centro": [
+          -40.34,
+          -8.83
+        ],
+        "zoom": 6.05
+      },
+      "camadas": [
+        "eolica",
+        "solar",
+        "submercados"
+      ],
+      "destaque": {
+        "submercados": [
+          "NE"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Esse é o pano de fundo técnico das restrições operativas impostas às renováveis do Nordeste depois de 2023.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 350
+      },
+      "leitura": [
+        47
+      ],
+      "nota_de_dado": "O Atlas não tem as restrições operativas; a vista mostra as eólicas e solares e abre no centro do Nordeste: arraste o mapa para percorrer a região e aproxime para ver as usinas menores."
+    },
+    {
+      "id": "m02-a08-reservatorios-maio-2001",
+      "modulo": "modulo-02",
+      "aula": 8,
+      "titulo": "Os reservatórios em maio de 2001",
+      "capitulo": "agua",
+      "camera": {
+        "limites": [
+          -50.09,
+          -22.02,
+          -39.84,
+          -8.08
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "reservatorios": [
+          "251",
+          "169",
+          "6",
+          "156",
+          "24",
+          "31",
+          "25"
+        ]
+      },
+      "satelite": false,
+      "momento": "2001-05",
+      "trecho": {
+        "texto": "O racionamento de 2001–2002 obrigou o país a cortar cerca de 20% do consumo, sob gestão de uma câmara de crise criada em maio de 2001.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 362
+      },
+      "leitura": [
+        50,
+        51
+      ],
+      "nota_de_dado": "O racionamento não aparece no mapa; a vista mostra a energia armazenada no fim de maio de 2001: 29,9% no Sudeste/Centro-Oeste e 27,3% no Nordeste, com os sete reservatórios destacados entre 17% e 26%."
+    },
+    {
+      "id": "m02-a08-tronco-itaipu-itabera",
+      "modulo": "modulo-02",
+      "aula": 8,
+      "titulo": "Itaberá no tronco de 765 kV de Itaipu",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -55.59,
+          -25.69,
+          -45.24,
+          -23.5
+        ]
+      },
+      "camadas": [
+        "hidro",
+        "linhas",
+        "subestacoes"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.PR.001161-4.1"
+        ],
+        "linhas": [
+          "PRSTIV7STF61",
+          "PRSTIV7STF62",
+          "PRSTIV7STF63",
+          "SPSTIA7STIV1PR",
+          "SPSTIA7STIV2PR",
+          "SPSTIA7STIV3PR",
+          "SPSTIA7STTP1",
+          "SPSTIA7STTP2",
+          "SPSTIA7STTP3"
+        ],
+        "subestacoes": [
+          "SPSTIA"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Uma tempestade na região de Itaberá/SP desligou as três linhas de 765 kV do tronco de Itaipu praticamente ao mesmo tempo. O sistema perdeu o equivalente à maior usina do país em segundos; o distúrbio em cascata atingiu cerca de 40% da carga nacional.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 363
+      },
+      "leitura": [
+        52,
+        53,
+        54,
+        55
+      ],
+      "nota_de_dado": "O Atlas não tem cidades como camada; Itaberá aparece pela subestação de mesmo nome, por onde passam os três circuitos de 765 kV."
+    },
+    {
+      "id": "m02-a10-linhas-previstas-nordeste",
+      "modulo": "modulo-02",
+      "aula": 10,
+      "titulo": "Linhas previstas na fronteira do Nordeste",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -50.1,
+          -20.21,
+          -33.16,
+          -0.89
+        ]
+      },
+      "camadas": [
+        "linhas",
+        "linhas-previstas",
+        "submercados"
+      ],
+      "destaque": {
+        "linhas": [
+          "MAGAR-8SVA-1GO",
+          "MAGAR-8SVA-2GO",
+          "PITEIV5GAR-1MA",
+          "TOCO--5RGV-3PI",
+          "BACORT5ARI21MG",
+          "BAJUSS5SJDP1MG",
+          "BAJUSS5SJDP2MG"
+        ],
+        "submercados": [
+          "NE"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Resultado: um dos segmentos de infraestrutura mais previsíveis e disputados do país — e a razão de o leilão de transmissão ser o evento que destrava (ou atrasa) o escoamento renovável do Nordeste.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 388
+      },
+      "leitura": [
+        64
+      ],
+      "nota_de_dado": "O Atlas não tem os leilões; a vista destaca linhas de 500 kV ou mais, ainda sem data de operação no cadastro do ONS e com previsão a partir de 2029, que cruzam a fronteira do subsistema Nordeste."
+    },
+    {
+      "id": "m02-a10-intercambio-nordeste-sudeste",
+      "modulo": "modulo-02",
+      "aula": 10,
+      "titulo": "Intercâmbio do Nordeste para o Sudeste",
+      "capitulo": "trocas",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "submercados": [
+          "NE",
+          "SE"
+        ]
+      },
+      "satelite": false,
+      "momento": "2025-09",
+      "trecho": {
+        "texto": "<strong>Entre submercados</strong> — o limite de intercâmbio separa os preços: o PLD do lado exportador cai, o do importador sobe. O custo do congestionamento fica <em>visível</em> no <strong>spread de PLD</strong> entre submercados — qualquer agente enxerga NE barato e SE caro na tela.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 394
+      },
+      "leitura": [
+        65,
+        66,
+        72
+      ],
+      "nota_de_dado": "O Atlas mostra o intercâmbio médio do mês, não o PLD nem o limite da interligação; a vista abre em setembro de 2025, mês de maior exportação líquida do Nordeste na série: 9,9 GW médios, dos quais 5,7 GW para o Sudeste/Centro-Oeste."
+    },
+    {
+      "id": "m02-a10-madrugada-ventosa-nordeste",
+      "modulo": "modulo-02",
+      "aula": 10,
+      "titulo": "A madrugada ventosa do Nordeste",
+      "capitulo": "dia",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "submercados": [
+          "NE"
+        ]
+      },
+      "satelite": false,
+      "momento": "2026-10",
+      "trecho": {
+        "texto": "As razões se dividem em duas famílias, e a distinção virou disputa bilionária: <strong>razão elétrica</strong> (restrição de escoamento, controle de tensão, segurança — frequentemente associada a limites de transmissão) e <strong>razão energética</strong> (sobra estrutural: geração compulsória maior que a carga, como em madrugadas ventosas de baixa demanda no Nordeste).",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 398
+      },
+      "leitura": [
+        71
+      ],
+      "nota_de_dado": "O Atlas mostra a média de cada hora, não o corte de geração; leve a régua das horas até 3h: em outubro de 2026, a eólica do Nordeste gerou nessa hora 16,4 GW médios para uma carga de 14,5 GW."
+    },
+    {
+      "id": "m02-a10-corte-eolicas-solares",
+      "modulo": "modulo-02",
+      "aula": 10,
+      "titulo": "Corte de geração: eólicas e solares do Nordeste",
+      "capitulo": "rede",
+      "camera": {
+        "centro": [
+          -40.34,
+          -8.83
+        ],
+        "zoom": 6.05
+      },
+      "camadas": [
+        "eolica",
+        "solar",
+        "linhas",
+        "subestacoes",
+        "submercados"
+      ],
+      "destaque": {
+        "submercados": [
+          "NE"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Desde as restrições operativas que se seguiram ao evento de agosto de 2023, os volumes de corte sobre eólicas e solares do Nordeste cresceram a ponto de virar pauta de resultado trimestral, judicialização e regulamentação de compensação — a fronteira viva entre operação e regulação.",
+        "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+        "linha": 398
+      },
+      "leitura": [
+        69,
+        70
+      ],
+      "nota_de_dado": "O Atlas não tem os volumes de corte; a vista mostra as eólicas e solares e a rede que as escoa, e abre no centro do Nordeste: arraste o mapa para percorrer a região e aproxime para ver as usinas menores."
+    }
+  ],
+  "sem_vista": [
+    {
+      "aula": 1,
+      "tema": "DIT (69 a 138 kV) e a fronteira dos 230 kV",
+      "motivo": "a malha do Atlas é a do ONS, quase toda de 230 kV ou mais (22 linhas abaixo disso); não há rede de subtransmissão para comparar com a Rede Básica"
+    },
+    {
+      "aula": 1,
+      "tema": "Extensão da Rede Básica (180–190 mil quilômetros de linhas)",
+      "motivo": "a extensão é um número, não um lugar; a malha em operação que o Atlas desenha (195,5 mil km no cadastro do ONS) já aparece na vista do SIN"
+    },
+    {
+      "aula": 2,
+      "tema": "Paraguai e a metade de 50 Hz de Itaipu no globo",
+      "motivo": "o capítulo mundo mostra o perfil energético de cada país, não a frequência da rede; o trecho ficou na vista do elo de Itaipu a Ibiúna"
+    },
+    {
+      "aula": 2,
+      "tema": "Troncos de 500 kV de intercâmbio entre Norte, Nordeste e Sudeste",
+      "motivo": "a aula não nomeia as linhas, e a célula da tabela que cita esses troncos é curta demais para servir de trecho; os intercâmbios entre subsistemas estão nas vistas de trocas das Aulas 01, 05 e 10"
+    },
+    {
+      "aula": 5,
+      "tema": "PLD por submercado",
+      "motivo": "o Atlas não tem preço de energia"
+    },
+    {
+      "aula": 5,
+      "tema": "Térmica cara gerando enquanto sobra renovável barata em outra região",
+      "motivo": "o Atlas não tem o despacho por usina nem os limites de transmissão; o que ele mostra é o intercâmbio entre subsistemas, na vista de trocas da aula"
+    },
+    {
+      "aula": 6,
+      "tema": "Centro nacional e centros regionais de operação do ONS",
+      "motivo": "o Atlas não tem os centros de operação como ativo"
+    },
+    {
+      "aula": 6,
+      "tema": "Milhares de subestações telemedidas pelo SCADA",
+      "motivo": "a aula não nomeia subestações; na escala do país o mapa não desenha nenhuma (a camada só entra a partir do zoom 4,6) e a vista ficava apenas com o contorno dos quatro subsistemas"
+    },
+    {
+      "aula": 7,
+      "tema": "Comunidades isoladas atendidas por microrredes",
+      "motivo": "a aula não nomeia lugares e o Atlas não tem camada de sistemas isolados nem de microrredes"
+    },
+    {
+      "aula": 8,
+      "tema": "Linha de 500 kV no Ceará que deu início ao evento de 15/08/2023",
+      "motivo": "a aula não nomeia a linha; a vista do evento destaca os subsistemas que se separaram"
+    },
+    {
+      "aula": 9,
+      "tema": "Perdas não técnicas por distribuidora (Sul, Rio de Janeiro e parte da região Norte)",
+      "motivo": "o Atlas não tem áreas de concessão das distribuidoras"
+    },
+    {
+      "aula": 9,
+      "tema": "Nível regulatório de perdas de cada distribuidora",
+      "motivo": "o Atlas não tem áreas de concessão das distribuidoras"
+    },
+    {
+      "aula": 9,
+      "tema": "Centro de gravidade do submercado e fatores de perda da Rede Básica",
+      "motivo": "o Atlas não tem o centro de gravidade dos submercados nem perdas elétricas"
+    },
+    {
+      "aula": 10,
+      "tema": "Distribuidora local e o monopólio do fio",
+      "motivo": "o Atlas não tem áreas de concessão das distribuidoras"
+    },
+    {
+      "aula": 10,
+      "tema": "Linha saturada dentro do Nordeste, invisível ao PLD",
+      "motivo": "o Atlas não tem carregamento nem limite das linhas; mostrar a malha interna não mostraria a saturação"
+    },
+    {
+      "aula": 10,
+      "tema": "Mercados de desenho nodal no exterior",
+      "motivo": "a aula não nomeia nenhum país"
+    },
+    {
+      "aula": 10,
+      "tema": "Sinal locacional na tarifa de transmissão (TUST)",
+      "motivo": "o Atlas não tem tarifas de transmissão por ponto de conexão"
+    }
+  ]
+}

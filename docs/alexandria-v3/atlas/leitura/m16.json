@@ -1,0 +1,466 @@
+{
+  "modulo": "modulo-16",
+  "titulo_modulo": "Tendências e Disrupções",
+  "arquivos_fonte": [
+    "src/lib/data/alexandria-modulo-16-content.ts",
+    "docs/alexandria-v2/extraction/m16/aparato.json"
+  ],
+  "aulas": [
+    {
+      "numero": 1,
+      "chave": "aula-16-01",
+      "titulo": "Cinco posições, e a evidência que cada uma exige"
+    },
+    {
+      "numero": 2,
+      "chave": "aula-16-02",
+      "titulo": "Cinco candidatos, e quase nunca é o primeiro"
+    },
+    {
+      "numero": 3,
+      "chave": "aula-16-03",
+      "titulo": "Eletrificação de transporte: converter frota em MW"
+    },
+    {
+      "numero": 4,
+      "chave": "aula-16-04",
+      "titulo": "Armazenamento: potência, energia e duração são três números"
+    },
+    {
+      "numero": 5,
+      "chave": "aula-16-05",
+      "titulo": "Medição avançada: o que ela habilita, quem paga, e de quem é o dado"
+    },
+    {
+      "numero": 6,
+      "chave": "aula-16-06",
+      "titulo": "Descentralização depois da geração distribuída"
+    },
+    {
+      "numero": 7,
+      "chave": "aula-16-07",
+      "titulo": "Carbono: dois mercados sem relação de substituição"
+    },
+    {
+      "numero": 8,
+      "chave": "aula-16-08",
+      "titulo": "Centros de dados: os cinco números do mesmo empreendimento"
+    },
+    {
+      "numero": 9,
+      "chave": "aula-16-09",
+      "titulo": "Inteligência artificial aplicada: separar previsão de decisão"
+    },
+    {
+      "numero": 10,
+      "chave": "aula-16-10",
+      "titulo": "Mapear posicionamento sem emitir veredito sobre ninguém"
+    }
+  ],
+  "mencoes": [
+    {
+      "aula": 1,
+      "tipo": "outro",
+      "nome": "Pontos de conexão e fila de acesso",
+      "trecho": "Quando protocolar é barato, o agente racional protocola em mais de um ponto de conexão para o mesmo projeto, protocola cedo para reservar posição na fila, e protocola por opção mesmo com decisão de investimento pendente.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 94,
+      "contexto": "A aula explica por que a soma dos pedidos de acesso descreve opções tomadas e não carga futura: o mesmo projeto protocola em vários pontos de conexão.",
+      "ganho_no_mapa": "Ver vários pedidos do mesmo projeto em pontos de conexão diferentes mostra por que a soma da fila conta a mesma carga mais de uma vez.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 2,
+      "tipo": "outro",
+      "nome": "Conexão à rede como restrição local",
+      "trecho": "<b>Primeira:</b> conexão é um problema local, e apresentação de estratégia é um documento nacional — a média esconde a restrição. <b>Segunda:</b> a informação de capacidade remanescente de escoamento por ponto não circula com a mesma facilidade que preço de equipamento, o que faz o gargalo parecer ausente para quem não o consultou.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 105,
+      "contexto": "A aula argumenta que conexão à rede é o gargalo mais subestimado porque é local e a informação de capacidade por ponto não circula.",
+      "ganho_no_mapa": "No mapa a média nacional se desfaz: o aluno vê que a restrição mora em pontos específicos da rede, e não no país como um todo.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "linha",
+      "nome": "Reforço de rede (planejamento e licitação)",
+      "trecho": "<b>Terceira:</b> o prazo de reforço de rede é medido em anos e determinado por processo de planejamento e de licitação — ou seja, ele não responde a capital privado no mesmo horizonte em que responde a decisão de investimento. Um projeto pode ter dinheiro, equipamento, licença e cliente, e ainda assim esperar reforço.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 105,
+      "contexto": "A terceira razão estrutural do gargalo de conexão: o reforço de rede leva anos e depende de processo de planejamento e de licitação.",
+      "ganho_no_mapa": "Ver a rede existente ao redor de um ponto saturado mostra que a saída é obra de rede, com prazo que o capital privado não encurta.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "subestacao",
+      "nome": "Barramento (capacidade remanescente de escoamento)",
+      "trecho": "Há uma consequência analítica que vale para os seis temas deste módulo: <b>quando o gargalo é conexão, a localização vira variável de primeira ordem</b>. Deixa de fazer sentido perguntar “quanto de armazenamento cabe no país” e passa a fazer sentido perguntar “quanto cabe naquele barramento, naquele ano”.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 106,
+      "contexto": "A aula conclui que, quando o gargalo é conexão, a pergunta deixa de ser nacional e passa a ser por barramento e por ano.",
+      "ganho_no_mapa": "Com as subestações na tela, a pergunta da aula vira gesto: tocar um barramento e perguntar quanto ainda cabe ali, naquele ano.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "outro",
+      "nome": "Pontos de recarga públicos e semipúblicos",
+      "trecho": "<b>Recarga:</b> 25.429 pontos públicos e semipúblicos em junho de 2026, 21% acima da apuração de fevereiro (21.061), sendo 34% de corrente contínua.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 114,
+      "contexto": "A caixa de números vivos traz a contagem de pontos de recarga do país, com a ressalva de que a fonte é entidade setorial interessada.",
+      "ganho_no_mapa": "Os pontos de recarga no mapa mostram onde a frota elétrica de fato encosta na rede, em vez de uma contagem nacional sem lugar.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "outro",
+      "nome": "Transformador de distribuição de bairro e garagem de frota",
+      "trecho": "O problema aparece num transformador de distribuição de um bairro em que trinta veículos chegam entre dezoito e vinte horas, ou numa garagem de logística em que cem veículos conectam simultaneamente ao fim do turno.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 123,
+      "contexto": "A aula mostra que a frota elétrica pesa menos de um por cento no agregado nacional, mas pode saturar um transformador de bairro ou uma garagem de frota.",
+      "ganho_no_mapa": "A escala de bairro no mapa materializa a tese da aula: o problema é de potência local, invisível em qualquer número nacional.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "subestacao",
+      "nome": "Barramento (capacidade remanescente de escoamento)",
+      "trecho": "Disponibilidade medida e comandabilidade — e a localização, porque capacidade remanescente de escoamento é por barramento.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 150,
+      "contexto": "No armazenamento à frente do medidor, a localização é grandeza crítica porque a capacidade remanescente de escoamento é definida por barramento.",
+      "ganho_no_mapa": "Ver os barramentos com folga e os saturados explica por que dois projetos idênticos de armazenamento valem diferente conforme o ponto de conexão.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "mercado_estrangeiro",
+      "nome": "Dois mercados estrangeiros (não nomeados pela fonte)",
+      "trecho": "O currículo escreve que a rede inteligente brasileira está atrasada em comparação com dois mercados estrangeiros.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 177,
+      "contexto": "A aula recusa fazer a comparação internacional de medição avançada e ensina o que precisaria ser igual para que ela significasse algo.",
+      "ganho_no_mapa": "Pouco: a fonte não nomeia os dois mercados de propósito, e o globo só entraria quando o Bloco 17 fizer a comparação.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "outro",
+      "nome": "Geração distribuída instalada (cerca de 47 GW)",
+      "trecho": "<b>Cerca de 47 GW de potência instalada</b>, segunda maior fonte da matriz.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 185,
+      "contexto": "A primeira camada da cadeia de descentralização é a geração distribuída já instalada, tratada no Módulo 11 e aqui usada só como marcador de escala.",
+      "ganho_no_mapa": "Uma camada de geração distribuída por município mostraria onde está a base física sobre a qual a agregação atuaria.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "outro",
+      "nome": "Corte de geração na borda da rede",
+      "trecho": "Com participação alta de geração não observada nem comandada, a resposta operativa disponível passa a ser o corte, que é a ferramenta mais grosseira.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 185,
+      "contexto": "Na camada de observabilidade, a aula diz que sem enxergar nem comandar a geração da borda a única resposta operativa é o corte.",
+      "ganho_no_mapa": "Onde a geração distribuída se concentra, o mapa indicaria os trechos de rede em que o corte passa a ser a resposta disponível.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "sistema_isolado",
+      "nome": "Sistemas isolados",
+      "trecho": "O documento de planejamento publicado em fevereiro de 2026 sobre microrredes para sistemas isolados é evidência de <b>maturação institucional</b>, e não de mercado massificado: ele integra análise técnica, econômica, regulatória e socioambiental para um conjunto de sistemas em que a alternativa corrente é geração a óleo diesel com logística cara.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 194,
+      "contexto": "A aula mostra que microrrede fecha onde a alternativa é cara, e usa os sistemas isolados atendidos a diesel como o caso em que a economia já fecha.",
+      "ganho_no_mapa": "Ver os sistemas isolados fora do alcance da rede interligada explica, pela distância, por que ali a alternativa é diesel com logística cara.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "pais",
+      "nome": "Brasil — fator médio de emissão da rede",
+      "trecho": "Some-se a isso que o fator médio da rede brasileira é baixo e volátil por hidrologia, e obtém-se o caso em que uma empresa “reduz emissões” num ano sem ter mudado nada no seu consumo — apenas choveu mais.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 214,
+      "contexto": "No escopo 2 pelo método de localização, o fator médio da rede brasileira é baixo e varia com a hidrologia, o que muda o número reportado sem que o consumo mude.",
+      "ganho_no_mapa": "Ver o parque hidrelétrico e seus reservatórios ao lado das térmicas mostra de onde vem o fator médio e por que um ano de chuva o derruba.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 8,
+      "tipo": "outro",
+      "nome": "Pedidos de parecer de acesso de centros de dados (38 GW)",
+      "trecho": "Os dois números que circulam no país, ambos oficiais, ambos do primeiro degrau da escada: em 1º de junho de 2026, o ministério setorial informou <b>38 GW em pedidos de parecer de acesso</b> para projetos de centro de dados, dos quais <b>7,1 GW</b> associados a investimentos estimados em <b>R$ 159 bilhões</b>.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 226,
+      "contexto": "A aula apresenta o número mais citado do tema e o classifica como o primeiro dos cinco degraus: potência solicitada, não carga.",
+      "ganho_no_mapa": "Distribuídos pelos pontos de conexão, os pedidos deixariam de ser um total nacional e mostrariam onde a pressão sobre a rede se concentra.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 8,
+      "tipo": "pais",
+      "nome": "Brasil — carga média projetada do sistema",
+      "trecho": "Ou seja: a soma dos <em>pedidos</em> de centro de dados é da mesma ordem de grandeza da carga média projetada do país inteiro daqui a dez anos.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 228,
+      "contexto": "A aula compara a soma dos pedidos de centros de dados com a carga média projetada do país para mostrar que são números de degraus diferentes.",
+      "ganho_no_mapa": "O país inteiro como referência de escala ajuda a ver que a fila de pedidos não cabe como carga real na rede que existe.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "outro",
+      "nome": "Fila de acesso ao sistema de transmissão",
+      "trecho": "A leitura forte é: <b>a magnitude dos pedidos indica que o gargalo se deslocou para conexão à rede</b> — que é exatamente o que a criação de uma política específica de gestão da fila de pedidos de acesso ao sistema de transmissão demonstra.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 229,
+      "contexto": "A leitura forte do número de 38 GW: ele informa pressão sobre a fila de acesso à transmissão, e não carga futura.",
+      "ganho_no_mapa": "Com linhas e subestações na tela, a fila ganha endereço: o aluno vê em que pontos da transmissão os pedidos disputam a mesma capacidade.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 10,
+      "tipo": "outro",
+      "nome": "Fila de acesso (hidrogênio e centros de dados)",
+      "trecho": "A segunda é o <b>hidrogênio</b>, e ele é o item deste bloco com maior distância entre atenção recebida e ativo operando: aparece com 27,9 GW em solicitações de conexão até 2038 — degrau 1 da escada — e disputa a mesma fila de acesso que os centros de dados.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 275,
+      "contexto": "No fechamento, a aula registra que o hidrogênio aparece só como solicitação de conexão e disputa a mesma fila de acesso dos centros de dados.",
+      "ganho_no_mapa": "Ver os dois tipos de pedido nos mesmos pontos de conexão mostra a disputa pela mesma capacidade de rede que a aula descreve.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 10,
+      "tipo": "mercado_estrangeiro",
+      "nome": "Jurisdições estrangeiras (comparação remetida ao Bloco 17)",
+      "trecho": "O Bloco 17 — Cenário Internacional Comparativo — é onde ela é o objeto legítimo, com mercados organizados, desenhos institucionais e trajetórias de política tratados diretamente.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 276,
+      "contexto": "A ponte final declara que a comparação entre países não é feita neste módulo e fica para o Bloco 17.",
+      "ganho_no_mapa": "Nenhum neste módulo: nenhum país é nomeado, e o globo só ganha conteúdo no bloco seguinte.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "outro",
+      "nome": "Transformador de distribuição de bairro e garagem de frota",
+      "trecho": "Mas “não tem impacto” também está errado: <b>o problema é de potência local</b> — um transformador de bairro, uma garagem de logística —, e nenhum número agregado o revela.",
+      "arquivo": "src/lib/data/alexandria-modulo-16-content.ts",
+      "linha": 374,
+      "contexto": "O exercício 13 retoma a tese da Aula 03: a frota elétrica não dobra a demanda do país, mas o problema existe em escala local.",
+      "ganho_no_mapa": "A mesma escala de bairro da Aula 03 mostra o que o número agregado do exercício não revela.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Minas Gerais (Operação A — mineração)",
+      "trecho": "A Operação A — mineração em Minas Gerais, submercado Sudeste/Centro-Oeste, fator de carga elevado, bombeamento como carga deslocável — foi tomadora em todas as quinze partes anteriores.",
+      "arquivo": "docs/alexandria-v2/extraction/m16/aparato.json",
+      "linha": 99,
+      "contexto": "O caso transversal reaparece na parte 16: a mineração anonimizada em Minas Gerais passa de tomadora a possível fornecedora de flexibilidade.",
+      "ganho_no_mapa": "Destacar o estado dá lugar ao caso e permite sobrepor a rede da região em que a operação se conecta.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Submercado Sudeste/Centro-Oeste",
+      "trecho": "A Operação A — mineração em Minas Gerais, submercado Sudeste/Centro-Oeste, fator de carga elevado, bombeamento como carga deslocável — foi tomadora em todas as quinze partes anteriores.",
+      "arquivo": "docs/alexandria-v2/extraction/m16/aparato.json",
+      "linha": 99,
+      "contexto": "O lede do caso situa a Operação A no submercado Sudeste/Centro-Oeste.",
+      "ganho_no_mapa": "O contorno do submercado mostra o espaço elétrico em que a operação compra energia e disputa conexão.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Submercado Sudeste/Centro-Oeste",
+      "trecho": "Há um efeito indireto e incerto — concorrência por capacidade de conexão e por energia contratada no mesmo submercado —, e ele só se verifica com dados de fila de acesso na região dela.",
+      "arquivo": "docs/alexandria-v2/extraction/m16/aparato.json",
+      "linha": 219,
+      "contexto": "No diagnóstico do caso, centros de dados são classificados como ruído para a operação, salvo pela concorrência por conexão e energia no mesmo submercado.",
+      "ganho_no_mapa": "Sobrepor a fila de acesso à região da operação mostraria se a concorrência por conexão é fato ou só hipótese a monitorar.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "subestacao",
+      "nome": "Barramento (capacidade remanescente de escoamento)",
+      "trecho": "quanto ainda cabe num barramento sem violação de critério; é local e datada.",
+      "arquivo": "docs/alexandria-v2/extraction/m16/aparato.json",
+      "linha": 4501,
+      "contexto": "Definição de glossário de capacidade remanescente de escoamento: grandeza local e datada, medida por barramento.",
+      "ganho_no_mapa": "A definição pede um mapa: cada barramento com o quanto ainda cabe e a data da apuração.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "subestacao",
+      "nome": "Barramento (capacidade remanescente de escoamento)",
+      "trecho": "<b>Ganham:</b> desenvolvedores com ponto de conexão em barramento de capacidade remanescente, fabricantes nacionalizados elegíveis ao produto com exigência de conteúdo local, consumidores industriais com pico previsível.",
+      "arquivo": "docs/alexandria-v2/extraction/m16/aparato.json",
+      "linha": 512,
+      "contexto": "Na ficha de armazenamento, ganha quem tem ponto de conexão em barramento com capacidade remanescente.",
+      "ganho_no_mapa": "Os barramentos com folga no mapa são, literalmente, o ativo que a ficha diz que decide quem ganha.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "outro",
+      "nome": "Fila de acesso ao sistema de transmissão",
+      "trecho": "<b>Conexão à rede.</b> A magnitude dos pedidos e a criação de política específica de gestão da fila de acesso ao sistema de transmissão são a evidência direta.",
+      "arquivo": "docs/alexandria-v2/extraction/m16/aparato.json",
+      "linha": 868,
+      "contexto": "Na ficha de centros de dados, o gargalo vinculante é conexão à rede, evidenciado pela fila de acesso à transmissão.",
+      "ganho_no_mapa": "A fila de acesso sobre a rede de transmissão mostra onde o gargalo da ficha está fisicamente.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "outro",
+      "nome": "Localização de centros de dados (transmissão, geração próxima, fibra e água)",
+      "trecho": "<b>Ganham:</b> transmissoras, geradores com energia disponível próxima aos pontos de interesse, construtoras, e proprietários de terreno com múltiplas rotas de fibra e disponibilidade hídrica. <b>Perdem:</b> projetos concorrentes na mesma fila de acesso, e o consumidor local se o reforço de rede for socializado sem contrapartida.",
+      "arquivo": "docs/alexandria-v2/extraction/m16/aparato.json",
+      "linha": 904,
+      "contexto": "A ficha de centros de dados lista quem ganha e quem perde, e quase todos os critérios são de localização: rede, geração próxima, fibra, água.",
+      "ganho_no_mapa": "Linhas, subestações e usinas próximas no mapa mostram por que certos terrenos atraem os pedidos e quem fica na mesma fila.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "linha",
+      "nome": "Plano de outorgas de transmissão de 2026 (reforços para cargas eletrointensivas)",
+      "trecho": "Consulta pública do plano de outorgas de transmissão de energia elétrica de 2026, considerando reforços para cargas eletrointensivas, incluindo centros de dados e hidrogênio.",
+      "arquivo": "docs/alexandria-v2/extraction/m16/aparato.json",
+      "linha": 3214,
+      "contexto": "Entre as referências está a consulta pública do plano de outorgas de transmissão, que considera reforços para centros de dados e hidrogênio.",
+      "ganho_no_mapa": "Os reforços planejados sobre a rede existente mostrariam onde a transmissão se prepara para as cargas que hoje estão só na fila.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "sistema_isolado",
+      "nome": "Sistemas isolados",
+      "trecho": "Documento de planejamento sobre microrredes para sistemas isolados, de fevereiro de 2026, integrando análise técnica, econômica, regulatória e socioambiental.",
+      "arquivo": "docs/alexandria-v2/extraction/m16/aparato.json",
+      "linha": 3168,
+      "contexto": "Referência do documento de planejamento sobre microrredes para sistemas isolados, citado na Aula 06.",
+      "ganho_no_mapa": "A camada de sistemas isolados dá endereço ao conjunto de localidades a que o documento se refere.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "pais",
+      "nome": "Brasil — fator médio de emissão da rede",
+      "trecho": "emissão por unidade de energia do sistema; no Brasil é baixo e volátil por hidrologia.",
+      "arquivo": "docs/alexandria-v2/extraction/m16/aparato.json",
+      "linha": 7508,
+      "contexto": "Definição de glossário do fator médio da rede, com a observação de que no Brasil ele é baixo e varia com a hidrologia.",
+      "ganho_no_mapa": "O parque hidrelétrico no mapa explica as duas palavras da definição: baixo porque é hídrico, volátil porque depende de chuva.",
+      "relevancia": "baixa"
+    }
+  ],
+  "vistas_sugeridas": [
+    {
+      "aula": 2,
+      "titulo": "Quanto cabe naquele barramento",
+      "o_que_mostra": "Brasil com subestações e linhas de transmissão; ao aproximar, cada barramento exibe a capacidade remanescente de escoamento com a data da apuração, no lugar de um número nacional. A aula não nomeia barramento; a camada de capacidade depende de dado externo do planejamento e do operador.",
+      "nomes": [
+        "Conexão à rede como restrição local",
+        "Barramento (capacidade remanescente de escoamento)",
+        "Reforço de rede (planejamento e licitação)"
+      ],
+      "camadas": [
+        "subestacoes",
+        "linhas",
+        "outra: capacidade remanescente de escoamento por barramento"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "Potência local: onde a recarga encosta na rede",
+      "o_que_mostra": "Aproximação urbana com os pontos de recarga públicos e semipúblicos. O destaque é a concentração em poucos bairros, em contraste com o peso de menos de um por cento no agregado nacional que a aula calcula. A camada de pontos depende de dado externo.",
+      "nomes": [
+        "Pontos de recarga públicos e semipúblicos",
+        "Transformador de distribuição de bairro e garagem de frota"
+      ],
+      "camadas": [
+        "outra: pontos de recarga públicos e semipúblicos"
+      ]
+    },
+    {
+      "aula": 4,
+      "titulo": "Armazenamento: a localização é por barramento",
+      "o_que_mostra": "Subestações e linhas com a capacidade remanescente de escoamento por barramento, a mesma camada da Aula 02. Destaque para a diferença entre um barramento com folga e um saturado: o mesmo sistema de armazenamento vale diferente em cada um.",
+      "nomes": [
+        "Barramento (capacidade remanescente de escoamento)"
+      ],
+      "camadas": [
+        "subestacoes",
+        "linhas",
+        "outra: capacidade remanescente de escoamento por barramento"
+      ]
+    },
+    {
+      "aula": 6,
+      "titulo": "Sistemas isolados: onde a microrrede fecha",
+      "o_que_mostra": "Câmera sobre o conjunto de sistemas isolados, com as térmicas que os atendem e as linhas de transmissão mais próximas. O destaque é a distância até a rede interligada, que explica o diesel com logística cara. A aula não nomeia nenhum sistema.",
+      "nomes": [
+        "Sistemas isolados"
+      ],
+      "camadas": [
+        "usinas_termica",
+        "linhas",
+        "outra: sistemas isolados"
+      ]
+    },
+    {
+      "aula": 7,
+      "titulo": "Uma rede que emite menos quando chove",
+      "o_que_mostra": "Brasil com hidrelétricas, reservatórios e térmicas. Mostra de onde vem o fator médio da rede usado no método de localização do escopo 2 e por que ele varia com a hidrologia sem que o consumidor mude nada.",
+      "nomes": [
+        "Brasil — fator médio de emissão da rede"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "reservatorios_bacias",
+        "usinas_termica"
+      ]
+    },
+    {
+      "aula": 8,
+      "titulo": "A fila de acesso à transmissão",
+      "o_que_mostra": "Brasil com linhas e subestações. O destaque seriam os pontos de conexão com pedidos de parecer de acesso de centros de dados, rotulados pelo degrau em que estão (solicitado, com parecer, contratado, energizado, consumido). A aula traz só o total nacional; a localização dos pedidos depende de dado externo.",
+      "nomes": [
+        "Pedidos de parecer de acesso de centros de dados (38 GW)",
+        "Fila de acesso ao sistema de transmissão"
+      ],
+      "camadas": [
+        "linhas",
+        "subestacoes",
+        "outra: pedidos de parecer de acesso por ponto de conexão"
+      ]
+    },
+    {
+      "aula": 0,
+      "titulo": "Operação A em Minas Gerais, dentro do Sudeste/Centro-Oeste",
+      "o_que_mostra": "Minas Gerais destacada no submercado Sudeste/Centro-Oeste, com linhas e subestações da região. Sem ponto exato: o caso é anonimizado e declara não informar o município.",
+      "nomes": [
+        "Minas Gerais (Operação A — mineração)",
+        "Submercado Sudeste/Centro-Oeste"
+      ],
+      "camadas": [
+        "submercados",
+        "linhas",
+        "subestacoes"
+      ]
+    }
+  ]
+}

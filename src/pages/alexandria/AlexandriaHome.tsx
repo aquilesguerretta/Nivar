@@ -34,14 +34,10 @@
 // caso que o React Router avisa que muda na v7.
 // ─────────────────────────────────────────────────────────────
 
-import { useRef } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import type { CurriculumTrack } from '@/lib/types/alexandria';
-import { AlexandriaShell } from '@/components/alexandria/shell/AlexandriaShell';
-import { TrilhasHub } from '@/components/alexandria/navigation/TrilhasHub';
-import { AlexandriaLandingHero } from '@/components/alexandria/landing/AlexandriaLandingHero';
-import { AS } from '@/design/alexandria-tokens';
-import { AlexandriaRouter, trilhaSugerida } from './AlexandriaRouter';
+import { AlexandriaRouter } from './AlexandriaRouter';
+import { HomeV3 } from '@/components/alexandria/v3/HomeV3';
 
 const TRACKS_VALIDOS: CurriculumTrack[] = ['universal', 'brasil', 'usa'];
 
@@ -62,52 +58,9 @@ export function AlexandriaHome() {
   const naEntrada = pathname.replace(/\/+$/, '') === '/alexandria';
   if (!naEntrada) return <AlexandriaRouter trackDeEntrada={trackDeEntrada} />;
 
-  return <Entrada trilhaSugeridaId={trilhaSugerida(trackDeEntrada)} />;
-}
-
-function Entrada({ trilhaSugeridaId }: { trilhaSugeridaId: string | null }) {
-  const alvoDoHub = useRef<HTMLDivElement>(null);
-
-  /** Rola o container, não o elemento.
-   *
-   *  `elemento.scrollIntoView({ behavior: 'smooth' })` NÃO funciona quando o
-   *  scroller é um container aninhado — e o scroller aqui é o `<main>` do
-   *  shell, não o documento. Medido nas três variantes: `scrollIntoView`
-   *  com `auto` rola 477px, com `smooth` rola 0, e `scrollTo` no container
-   *  com `smooth` rola os mesmos 477px. Só a primeira forma quebra, então
-   *  a correção é chamar `scrollTo` no `<main>`, não trocar o easing. */
-  const irParaOHub = () => {
-    const alvo = alvoDoHub.current;
-    const scroller = alvo?.closest('main');
-    if (!alvo || !scroller) return;
-    const reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    scroller.scrollTo({
-      top: Math.max(0, alvo.offsetTop - 16),
-      behavior: reduzido ? 'auto' : 'smooth',
-    });
-  };
-
-  return (
-    // 'trilhas', não 'biblioteca' (LYCEUM Wave 15 — correção de uma string).
-    // Esta declaração vence `ativoPorRota` no header, então enquanto dizia
-    // 'biblioteca' a entrada acendia Biblioteca — e como o item Trilhas
-    // navega para cá, clicar em Trilhas acendia Biblioteca. Desde que a
-    // Biblioteca ganhou superfície própria em `/alexandria/biblioteca`,
-    // esta página representa Trilhas: ela lista as três.
-    <AlexandriaShell navAtivo="trilhas">
-      <div style={{ display: 'flex', flexDirection: 'column', gap: AS.xxl }}>
-        <AlexandriaLandingHero onComecar={irParaOHub} />
-
-        {/* O hub é o mesmo componente da Wave 3, intocado — inclusive o
-            destaque por `?trilha=`, que continua sendo dele. O hero não
-            bloqueia: quem chega pelo portal já vê a trilha destacada
-            rolando a página, sem clique nenhum. */}
-        <div ref={alvoDoHub} style={{ scrollMarginTop: AS.lg }}>
-          <TrilhasHub trilhaSugeridaId={trilhaSugeridaId} />
-        </div>
-      </div>
-    </AlexandriaShell>
-  );
+  // v3: a entrada é a Home nova (apresentação para quem chega, mesa de
+  // estudo para quem tem conta). A antiga usava progresso de mock (S3).
+  return <HomeV3 />;
 }
 
 export default AlexandriaHome;

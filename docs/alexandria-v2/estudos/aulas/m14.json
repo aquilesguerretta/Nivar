@@ -1,0 +1,555 @@
+{
+  "modulo": "modulo-14",
+  "titulo_modulo": "Biocombustíveis e Bioenergia",
+  "trilha": "T3 · Especialização Estratégica (2º módulo da trilha)",
+  "data_estudo": "2026-09-17",
+  "autor": "estudo de leitura (camada Alexandria, revisável conforme P3/P11)",
+  "fontes_lidas": [
+    "docs/alexandria-v2/bar.md (§0, §4 inteiro, S1–S7, §7, §9, §11)",
+    "docs/alexandria-v2/decisoes/2026-09-16-ambiguidades-de-conteudo.md (P17–P25)",
+    "src/lib/data/alexandria-modulo-14-content.ts (MODULO_14_LEAD, MODULO_14_CORPO, MODULO_14_AULAS, MODULO_14_EXERCICIOS_SOLTOS, MODULO_14_INSTRUMENTOS)",
+    "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo14.html (hero, §00 Tese, §MAP, a01–a08, 10 div.inst com o <script> completo, §Caso, §Erros; só leitura)",
+    "docs/alexandria-v2/media-lab/aulas/ESTILO.md e media-lab/aulas/m14/_trabalho/cands.txt"
+  ],
+  "convencoes": {
+    "bloco_indice": "Índice base 0 em MODULO_14_CORPO[aulaId]. 'depois do bloco N' = o instrumento ou ato entra logo após esse bloco, como na fonte.",
+    "camada": "'fonte' = literal do HTML/content.ts; 'alexandria' = texto conectivo, pergunta, previsão ou ato desenhado aqui, nunca atribuído à fonte (decisão de 2026-09-16).",
+    "numeros_de_instrumento": "Os valores padrão dos instrumentos são cenários didáticos da fonte. A própria fonte diz que são entradas editáveis ou ilustrativas. Na interface: 'cenário didático do módulo', nunca benchmark (mesma lógica de P19)."
+  },
+  "estado_extracao_e_codigo": {
+    "extraction_m14": "Só existe extraction/m14/extratores/m14_lib.mjs. Não há modulo.json nem aparato.json verificados. Este estudo leu o HTML-fonte direto.",
+    "media_plano": "media-lab/aulas/m14/plano.json NÃO existe. Há 32 candidatos do Commons listados em _trabalho/cands.txt (c01–c32; as imagens c01–c28 estão baixadas). blender/ e originais/ estão vazios. As sugestões de mídia abaixo são provisórias, feitas pelo nome do arquivo e sem inspeção visual.",
+    "instrumentos": "MODULO_14_INSTRUMENTOS = [] e as 8 aulas têm instruments: []. Os 10 instrumentos da fonte (INST·01 no §MAP e INST·02–10 nas aulas) não estão portados (§9, linha 'Instrumentos de M09, M13, M14, M16, M17').",
+    "renderizador": "ApostilaPanel só conhece titulo/paragrafo/formula/nota/lista/tabela. As estruturas próprias da fonte foram achatadas em tabela ou lista na extração: div.saf (calendário de safra), div.rt (destinos do bagaço), div.flux (três grandezas), div.clk (linha do tempo normativa), div.dual (par de cartões), div.est (faixa de estado regulatório) e div.lv (três níveis, a01). Toda visualização abaixo é trabalho novo.",
+    "exercicios": "14 exercícios, todos soltos (a fonte não vincula nenhum a aula). Pela P9, ficam na Revisão do módulo. Abaixo aparecem só como 'afinidade', para recuperação e próximo passo.",
+    "aparato_do_modulo": "Quiz com 10 questões (critério da fonte: 8 acertos; P18: nunca 'Aprovado'), 18 erros comuns, roteiro oral de 8 min (P14: atividade recomendada), checklist de 26 itens, 158 termos, 34 referências, Caso Operação A 'Parte 14' (P17: sem numeração de parte)."
+  },
+  "qa_de_conteudo_encontrado": [
+    {"id": "QA-M14-01", "onde": "INST·07 (a06), script da fonte", "defeito": "A leitura 'Energia entregue' calcula vol*36/1000 com vol em milhões de Nm³. Para o padrão de 15 mi Nm³ dá 0,54 e exibe '1 TJ/ano'. O valor correto é 540 TJ/ano (15×10⁶ Nm³ × 36 MJ = 540×10⁶ MJ), coerente com a prosa ('10 milhões de Nm³ equivalem a 360 TJ') e com o Ex 08 (8 mi → 288 TJ). O erro é de três ordens de grandeza.", "acao": "Corrigir ao portar (a camada de cálculo é da Alexandria). Registrar no QA."},
+    {"id": "QA-M14-02", "onde": "INST·08 (a07), script da fonte", "defeito": "O campo se chama 'Diferencial de intensidade de carbono' em gCO₂e/MJ, mas o código o trata como % do fóssil de referência (ref × dic/100) e o veredito o lê como '%'. No padrão (100 mi L, 55, etanol 1G) o instrumento dá ≈102.389 t, contra 116.050 t no Ex 13 (55 gCO₂e/MJ direto, 21,1 MJ/L). A densidade também diverge: 21,3 MJ/L no instrumento contra 21,1 MJ/L no Ex 13.", "acao": "CONTENT QA: definir a unidade do campo e a densidade de referência. Não escolher uma leitura em silêncio."},
+    {"id": "QA-M14-03", "onde": "INST·10 (a08), script da fonte", "defeito": "A prosa manda 'decida antes de clicar', mas clicar no enunciado já revela defeito, falta e forma corrigida. Não há passo de compromisso, o que viola C7.", "acao": "Ao portar, inserir a classificação registrada antes da revelação."},
+    {"id": "QA-M14-04", "onde": "Vereditos dos INST·02, 03, 05, 06, 07, 08, 09 (classes ok/att/per)", "defeito": "O estado do veredito é codificado por classe de cor na fonte, o que é risco de semáforo (S2).", "acao": "Na Alexandria: silhueta + palavra, nunca cor."},
+    {"id": "QA-M14-05", "onde": "a08 bloco 4 (ficha rota 02); a01 bloco 19; a03 blocos 12–13; MODULO_14_LEAD da aula-14-04", "defeito": "Há linguagem interna ou legada voltada ao learner: 'Ver §00.1' (código proibido por S4) e 'Bloco 16/12/14' no lugar de 'Módulo'.", "acao": "Ligar à Tese do módulo por nome. Usar 'Módulo NN' na camada editorial."},
+    {"id": "QA-M14-06", "onde": "Notas tom 'gold' 'Onde isso entra no produto' (a01 b18, a02 b15, a04 b14, a05 b15, a06 b15, a07 b19, a08 b17; a03 não tem)", "defeito": "P7 (não exibir) e P24 ('GridAlpha Energy Brief/Research/Regulatory Radar').", "acao": "Fora da interface. As notas gold 'régua de maturidade' (a03 b13) NÃO são desse tipo e ficam."},
+    {"id": "QA-M14-07", "onde": "a02 bloco 10; §00.3", "defeito": "A prosa diz 'critério de domínio deste bloco'. S3 só admite 'domínio' junto de Demonstrado. A própria fonte declara esse critério como construído, não citado.", "acao": "Na interface: 'Critério do módulo (construído pela fonte)'. É cronometrado ('em menos de um minuto'), logo P14: atividade recomendada."},
+    {"id": "QA-M14-08", "onde": "a07 prosa e INST·08", "defeito": "A fonte diz '99%' e '88%' (40 mi / 40,39 mi e 40 mi / 45,28 mi). A conferência aritmética dá 99,0% e 88,3%. Está coerente, só registro.", "acao": "Nenhuma."}
+  ],
+  "aulas": [
+    {
+      "aulaId": "aula-14-01",
+      "titulo": "Etanol hidratado e etanol anidro",
+      "subtitulo_fonte": "Dois produtos da mesma destilaria, dois mercados que não se parecem em nada",
+      "ensina": "A mesma molécula vira dois produtos com motores de demanda independentes. O hidratado responde a preço relativo na bomba; o anidro é demanda derivada (volume de gasolina C × teor fixado pelo CNPE). Por isso um agregado ('produção de etanol caiu 2,8%') esconde dois movimentos opostos. Decisão na bomba: custo por km, não a regra dos 70%.",
+      "natureza": ["mercado/regulação", "cálculo", "leitura de agregado"],
+      "representacao": {
+        "arquetipo": "Díptico editorial com bancada de cálculo",
+        "descricao": "A abertura é uma prancha dividida em duas colunas-espelho, 'Hidratado · demanda de bomba' e 'Anidro · demanda derivada', cada uma com o próprio número-âncora (22,7 bi L e 13,2 bi L, ano-calendário 2025, ANP). As duas convergem numa linha de soma (35,9 bi L, −2,8%) que mostra o agregado apagando os dois sinais. Depois vem a faixa de estado do teor (E35 teto · E32 vigente · temporário 180 d · E30 anterior) e, na seção 01.3, a bancada do INST·02 em largura de prancha.",
+        "por_que": "O mecanismo central é uma divisão: um nome, dois mercados. Um díptico faz o learner ver a separação antes de ler sobre ela, e a soma no rodapé materializa o erro que a aula combate. A coluna editorial pura esconderia isso numa tabela de três linhas."
+      },
+      "abertura_C3": {
+        "pergunta": {"camada": "alexandria", "texto": "Em 2025 a produção total de etanol caiu 2,8%. Isso quer dizer que o mercado de etanol encolheu?"},
+        "objetivo": {"camada": "alexandria", "texto": "Separar um volume de etanol em hidratado e anidro e dizer qual motor move cada um."},
+        "previsao_util": {
+          "tem": true,
+          "forma": "Previsão categórica: 'Das duas metades (hidratado e anidro), qual subiu em 2025, qual caiu, e por quê?' O learner escolhe o sinal de cada uma e o motor (preço de bomba × teor obrigatório) antes de ver o díptico.",
+          "numeros_fonte": "Total −2,8% (≈35,9 bi L); anidro +3,1% (13,2 bi L), atribuído pela ANP à elevação de E27 para E30 em ago/2025; vendas de hidratado −5,9%, atribuídas à menor competitividade frente à gasolina C (ANP, Anuário Estatístico 2026, publicado em 26/06/2026).",
+          "segunda_previsao": "Antes do INST·02 (camada Alexandria): 'Gasolina C a R$ 6,20 e hidratado a R$ 4,15 (índice 66,9%, abaixo de 70%). Com 11,5 km/L na gasolina e 8,0 km/L no etanol, qual sai mais barato por km, e por quanto?' Cálculo: gasolina R$ 0,539/km, etanol R$ 0,519/km, etanol −3,8%. A faixa da fonte chama isso de 'margem estreita'. Os preços e rendimentos são o cenário padrão do instrumento: 'cenário didático; valores não atribuídos a pesquisa de preços'."
+        }
+      },
+      "ato_C9": {
+        "tipo": "prever + comparar",
+        "descricao": "Registrar o sinal e o motor de cada metade (hidratado/anidro) antes do díptico. Depois, no INST·02, registrar a previsão de custo/km e ver previsto × calculado.",
+        "alternativa_identificar_erro": "Erros comuns da fonte ligados a esta aula: 'Etanol vale a pena abaixo de 70%', 'E32 significa 32% de hidratado na bomba', 'A produção de etanol caiu no ano passado'. Servem como checagem curta de classificação."
+      },
+      "visualizacao_C6": [
+        {"o_que": "Díptico com soma: duas colunas (hidratado, anidro), cada uma com volume 2025 e variação atribuída, convergindo no total com −2,8%", "unidade": "bilhões de litros, ano-calendário 2025", "trabalho": "mostrar que o agregado esconde dois movimentos opostos", "existe_no_codigo": "não (hoje é tabela de 3 linhas)", "cuidado": "A fonte dá a variação de VENDAS do hidratado (−5,9%), não a de produção. Não desenhar uma cascata de produção com esse número."},
+        {"o_que": "Faixa de estados do teor de anidro: teto E35 (Lei 14.993/2024) · vigente E32 (Res. CNPE 9/2026, desde 1º/8/2026) · temporário 180 d prorrogável 1× · anterior E30 (1º/8/2025–31/7/2026)", "unidade": "% em volume na gasolina C comum", "trabalho": "separar os estados de um mesmo percentual e antecipar a A04", "existe_no_codigo": "não (div.est achatado em lista)"},
+        {"o_que": "INST·02: duas barras de custo/km (gasolina × etanol) com o índice de preço e a razão de rendimento lado a lado", "unidade": "R$/km; %", "trabalho": "mostrar que o limiar é a razão de rendimento do veículo, não 0,70", "existe_no_codigo": "não; a fonte só mostra leituras numéricas", "forma_prometida": "'Calculadora de paridade por custo/km' não promete figura; a figura é ganho da Alexandria"}
+      ],
+      "instrumento_C5": {
+        "id": "INST·02 — Calculadora de paridade por custo/km",
+        "posicao": "depois do bloco 16 (fórmula do índice de paridade), antes do parágrafo de frota (bloco 17). Na fonte, idem.",
+        "controles": "gasolina C R$/L (padrão 6,20), hidratado R$/L (4,15), rendimento gasolina km/L (11,5), rendimento etanol km/L (8,0)",
+        "saidas": "índice de preço, razão de rendimento, custo/km de cada um, diferença %; veredito em 5 faixas (≤−5, ≤−2, <2, <5, ≥5%)",
+        "previsao": "sim (camada Alexandria, ver abertura). As faixas de veredito são classificação do instrumento da fonte, não tolerância (P6).",
+        "fonte_na_prancha": "Nota da fonte: preços são entradas editáveis (pesquisa de preços da ANP na praça, com data) e o rendimento deve ser medido no mesmo veículo, trajeto e período."
+      },
+      "checagem_C7": "Previsto × calculado no mesmo cenário (sinal e magnitude de custo/km). Depois da tentativa, a referência é a fórmula de custo/km e o veredito da fonte. Sem tolerância numérica inventada: autoavaliação em três níveis sobre 'identifiquei qual combustível é mais barato por km e por quê'.",
+      "recuperacao_proximo_C10": {
+        "recuperacao": "Anterior no currículo: M01·A08 (o mesmo padrão 'um número esconde dois' em FCap). Primeira aula do módulo: recuperação cruzada opcional.",
+        "proximo": "A02 (o mix). 'Não atende' → 'Rever 01.1 · A diferença comercial'.",
+        "afinidade_revisao": "Ex 05 (E32: 10 mi L de gasolina C → 3,2 mi anidro), Ex 07 (35,9 × 37,5 bi L), Ex 01 (base temporal). Quiz Q1 e Q2.",
+        "serve_a": "Critério do módulo (construído pela fonte): nomear base temporal, rota e concorrente de um número de bioenergia."
+      },
+      "midia": {
+        "onde_ajuda": "Junto de 01.1, uma foto documental de bomba de etanol no Brasil ancora 'o hidratado compete na bomba'.",
+        "candidatos": ["c03 Sao Paulo ethanol pump 04 2008", "c04 Ethanol fuel pump Brazil", "c23 Tambore ethanol pump SAO 01 2011"],
+        "evitar": "c05 'Fuel prices at Rio & Sao Paulo 2008' mostra preços de 2008 e seria lida como dado. Só entra com legenda de data, e mesmo assim é dispensável.",
+        "plano_curadoria": "ausente (plano.json não existe)"
+      },
+      "mobile_390": "O díptico vira duas faixas empilhadas com um fio entre elas; a linha de soma fica fixa logo abaixo. A previsão (dois seletores sinal/motor) cabe no 1º viewport depois da pergunta. A faixa de estados vira uma lista vertical de 4 linhas com glifo e palavra. O INST·02 põe os 4 campos em coluna e as duas barras de custo/km em largura total.",
+      "lacunas_dependencias": [
+        "Os preços e rendimentos do INST·02 não têm fonte declarada: são cenário didático, e a interface deve dizer isso.",
+        "A variação de produção do hidratado em 2025 não é declarada (só a de vendas).",
+        "O explicador de três níveis (div.lv) foi achatado numa nota. Recuperar como C4 'três níveis no ponto de uso'.",
+        "§9: portar o INST·02; persistir a previsão; renderizar div.est.",
+        "E32 é temporário (180 dias a partir de 1º/8/2026). O número vivo precisa de data de verificação visível."
+      ],
+      "ambicao": "A aula é memorável se o learner vê o número agregado se partir em dois diante dele. O mesmo cenário depois vira bancada: um carro com índice abaixo de 70% em que o etanol ganha por pouco. Com a razão de rendimento mudada para 0,65, o etanol perde, e a 'regra dos 70%' cai diante dos olhos do learner, sem fato novo."
+    },
+    {
+      "aulaId": "aula-14-02",
+      "titulo": "O mix açúcar-etanol",
+      "subtitulo_fonte": "A arbitragem que a planta faz todo dia, e a restrição que o preço relativo não mostra",
+      "ensina": "O valor da cana está no ATR (kg/t), e cada kg de ATR vira açúcar ou etanol por decisão comercial da planta. O preço relativo é só sinal. A faixa de alternância (engenharia) e a posição já contratada decidem quanto do sinal é executável.",
+      "natureza": ["mercado", "cálculo", "sistema com restrição física"],
+      "representacao": {
+        "arquetipo": "Prancha dividida com instrumento vivo (régua de faixa)",
+        "descricao": "Em cima, a conversão de base (tonelada → ATR) como fórmula executável. No meio, uma 'mesa de sinais opostos' com a tabela Conab (etanol +8,5% × açúcar −0,5% sobre cana +5,3%). A seção 02.3 é uma prancha única em que o INST·03 é a figura principal: uma régua de 0–100% açúcar com a faixa de alternância do perfil sombreada, o mix praticado como marcador e a seta do sinal de preço batendo no limite da faixa.",
+        "por_que": "A aula afirma uma relação espacial: o sinal aponta, a faixa limita. Uma régua com faixa e marcador desenha exatamente isso. Parágrafo sozinho não mostra 'bater no teto'."
+      },
+      "abertura_C3": {
+        "pergunta": {"camada": "alexandria", "texto": "O preço paga mais pelo ATR no etanol. A usina vai produzir mais etanol?"},
+        "objetivo": {"camada": "alexandria", "texto": "Converter moagem em ATR e dizer quanto de um sinal de preço uma planta consegue executar, dado o seu perfil."},
+        "previsao_util": {
+          "tem": true,
+          "forma_1": "Previsão com opção 'não é possível concluir' (C5): 'Na safra 2026/27 a cana cresce 5,3%, o etanol total 8,5% e o açúcar cai 0,5%. Isso prova que as usinas desviaram ATR do açúcar para o etanol?' Resposta da fonte: não dá para separar sem o dado de mix industrial (há mais cana, mais milho e possivelmente deslocamento de mix).",
+          "numeros_fonte": "Conab, 1º Levantamento 2026/27 (28/04/2026): cana 709,1 Mt (+5,3%); etanol total 40,69 bi L (+8,5%); etanol de cana 29,26 bi L (+7,1%); milho 11,43 bi L (+12,3%); açúcar 43,95 Mt (−0,5%). Ano-safra; 1º de 4 levantamentos.",
+          "forma_2": "Antes do INST·03 (camada Alexandria): 'Planta mista, faixa 30–65% para açúcar, mix atual 48%. O ATR paga R$ 1,26/kg no etanol e R$ 1,18/kg no açúcar. Quantos pontos percentuais de mix a planta ainda consegue deslocar para o etanol?' Calculado: prêmio −6,6% (favorece o etanol) e deslocamento executável de −18 p.p. (até o piso de 30%). As faixas de perfil são ilustrativas segundo a própria fonte."
+        }
+      },
+      "ato_C9": {
+        "tipo": "manipular até uma meta + prever",
+        "descricao": "No INST·03, com o sinal de preço mantido a favor do etanol, encontrar o perfil em que o sinal não desloca nada (destilaria autônoma: faixa 0–0) e a configuração em que o mix praticado já está no limite (vocacionada a açúcar, mix ≤55% → deslocamento 0). Registrar a leitura: 'sinal ≠ resultado'.",
+        "alternativa": "Cálculo curto de ATR total com os números da prosa (3 Mt × 138 kg/t = 414 Mkg), com previsão antes."
+      },
+      "visualizacao_C6": [
+        {"o_que": "Régua de mix: eixo 0–100% açúcar; faixa de alternância sombreada (30–65 / 55–80 / 0); marcador do mix praticado; seta do sinal de preço com ponta que para no limite", "unidade": "% do ATR destinado a açúcar", "trabalho": "mostrar que a restrição física corta o sinal", "existe_no_codigo": "não", "forma_prometida": "A 'Régua de mix' da fonte desenha só 3 barras (açúcar, etanol, teto de açúcar) e omite o piso da faixa. A promessa de 'régua' não é cumprida inteira; a Alexandria deve desenhar a faixa com piso e teto."},
+        {"o_que": "Mesa de sinais opostos (Conab 2026/27): barras divergentes em torno de zero para cana, etanol total, etanol de cana, etanol de milho e açúcar", "unidade": "variação % sobre 2025/26, ano-safra, projeção", "trabalho": "ver sinais opostos sobre a mesma safra", "existe_no_codigo": "não (tabela)", "cuidado": "Rotular 'projeção · 1º levantamento'. No máximo 4 categorias em destaque: cana, etanol total, açúcar e milho, com o etanol de cana como detalhe."}
+      ],
+      "instrumento_C5": {
+        "id": "INST·03 — Régua de mix açúcar-etanol",
+        "posicao": "depois do bloco 13 (parágrafo 'o instrumento abaixo recusa fazê-lo'), antes da nota 'A pergunta que fecha a Lente de Arbitragem' (bloco 14). Na fonte, idem.",
+        "controles": "perfil (mista 30–65 · açúcar 55–80 · destilaria 0), R$/kg ATR açúcar (1,18), R$/kg ATR etanol (1,26), mix praticado % açúcar (48)",
+        "saidas": "faixa, prêmio relativo, destino indicado pelo preço, deslocamento executável; veredito que cruza dois sinais",
+        "previsao": "sim (deslocamento executável)",
+        "fonte_na_prancha": "Nota da fonte: remunerações por kg de ATR são entradas editáveis; as faixas são ilustrativas de perfil, não de planta real."
+      },
+      "checagem_C7": "Previsto × calculado para o deslocamento. Na previsão 1, a opção 'não é possível concluir' é a de referência, e a explicação da fonte (três contribuições inseparáveis sem mix) só aparece depois do registro.",
+      "recuperacao_proximo_C10": {
+        "recuperacao": "Da A01, antes de mostrar: 'Qual das duas metades do etanol responde a preço de bomba?'",
+        "proximo": "A03 (rotas alternativas). 'Não atende' → 'Rever 02.3 · A restrição que o preço não mostra'.",
+        "afinidade_revisao": "Ex 09 (2,5 Mt × 140 = 350 Mkg ATR). Erro/INST·10 e10 ('etanol de cana cresceu; setor em expansão').",
+        "serve_a": "Critério do módulo: produto concorrente (açúcar pelo mesmo ATR)."
+      },
+      "midia": {
+        "onde_ajuda": "Em 02.1, a colheita ou a moagem dá corpo à 'tonelada de cana'. Em 02.3, a imagem de uma usina mista com destilaria e armazenagem ancora 'capacidade instalada'.",
+        "candidatos": ["c06–c08 colheita mecanizada Piracicaba", "c01/c02 destilaria Costa Pinto Piracicaba (documental: legenda com nome e data do Commons)", "c09 São Martinho sugar mill"],
+        "regra": "Documental nomeia a instalação só com o crédito do Commons. Nunca usar uma foto para ilustrar 'perfil mista/vocacionada' (seria atribuir perfil a uma planta real).",
+        "plano_curadoria": "ausente"
+      },
+      "mobile_390": "A régua fica horizontal em largura total (0–100%) com o marcador acima e a faixa sombreada; os controles vão abaixo, e o perfil vira um seletor segmentado de 3. A mesa de sinais vira uma lista de barras divergentes curtas com rótulo à esquerda. A previsão 1 fica no 1º viewport como pergunta com 3 opções.",
+      "lacunas_dependencias": [
+        "Remunerações por kg de ATR: cenário do instrumento, sem fonte de preço.",
+        "Faixas de alternância: ilustrativas por declaração da fonte.",
+        "O mix industrial efetivo da safra não é dado pela fonte, e por isso a previsão 1 não tem resposta numérica.",
+        "§9: portar o INST·03; persistir a previsão; P8 não se aplica (o título bate)."
+      ],
+      "ambicao": "Uma seta de preço que 'bate na parede' da faixa e para. Quando o learner troca para destilaria autônoma, a seta continua apontando e nada se move. Essa imagem resume a Lente de Arbitragem e é reutilizável no módulo inteiro."
+    },
+    {
+      "aulaId": "aula-14-03",
+      "titulo": "Rotas alternativas de etanol",
+      "subtitulo_fonte": "Uma rota que não tem safra do mesmo jeito, e outra que come o insumo da própria caldeira",
+      "ensina": "O milho é armazenável e quebra a sazonalidade da cana, mas precisa comprar fonte térmica, o que muda o custo e a intensidade de carbono. O etanol 2G usa o bagaço, que já tem destinos (vapor, eletricidade, venda), e por isso só vale se superar o valor do que deixou de ser produzido.",
+      "natureza": ["comparação de tecnologias", "sistema (balanço de insumo)", "leitura de alegação corporativa"],
+      "representacao": {
+        "arquetipo": "Mesa de comparação + diagrama de destinos com conservação",
+        "descricao": "Parte 03.1 abre com um calendário comparado de 12 meses (cana Centro-Sul ABR–NOV × milho o ano todo; esquema ilustrativo da fonte) e o contraste térmico (cana queima o próprio resíduo × milho compra calor). Parte 03.2 traz um diagrama de destinos do bagaço: um fluxo que se divide em vapor de processo (prioritário), eletricidade exportada, hidrólise 2G e venda, em que puxar fibra para 2G encolhe visivelmente os outros ramos. Fecha com um 'dossiê de prova' (6 linhas: o que provar × evidência × risco) e a régua de maturidade em 4 estágios. O INST·04 é a mesa de comparação 3 rotas × 7 dimensões.",
+        "por_que": "São duas ideias espaciais distintas: tempo (calendário) e conservação de insumo (fluxo). Uma coluna editorial com listas as achata. O fluxo com conservação é a única forma que torna visível 'cada tonelada que vai para cá não vai para lá'."
+      },
+      "abertura_C3": {
+        "pergunta": {"camada": "alexandria", "texto": "Se o etanol de segunda geração usa bagaço, ele está aproveitando um resíduo que seria descartado?"},
+        "objetivo": {"camada": "alexandria", "texto": "Dizer o que cada rota alternativa ganha e o que ela custa, e nomear o que deixa de ser feito com o mesmo insumo."},
+        "previsao_util": {
+          "tem": true,
+          "forma": "Previsão categórica (camada Alexandria): 'Verdadeiro, falso ou verdadeiro e insuficiente: a 2G aproveita resíduo que hoje é descartado.' Referência da fonte (INST·10 e12 e quiz Q6): o bagaço não é descartado; é o combustível do vapor de processo e da bioeletricidade.",
+          "numeros_fonte": "Não é numérica. Números da aula: milho 25% do etanol (BEN 2026, ano-calendário 2025) × ≈28,1% (Conab 2026/27, projeção), no §00.1. Raízen: 'até 50%' a mais por área, informação da companhia (fonte corporativa, rotular como tal)."
+        }
+      },
+      "ato_C9": {
+        "tipo": "classificar/ordenar + identificar o erro",
+        "descricao": "Depois da lista de destinos (bloco 9): ordenar os quatro destinos do bagaço por prioridade dentro da planta (vapor de processo primeiro, 'não negociável') e marcar qual encolhe quando a hidrólise cresce. Em seguida, classificar o enunciado da abertura.",
+        "alternativa": "No dossiê de prova (bloco 11): para uma alegação dada (ex.: 'rendimento de campanha piloto'), escolher qual linha de prova falta. Todas as linhas são da tabela da fonte."
+      },
+      "visualizacao_C6": [
+        {"o_que": "Calendário comparado 12 meses (cana Centro-Sul moagem típica ABR–NOV; milho JAN–DEZ)", "unidade": "meses; esquema ilustrativo", "trabalho": "mostrar por que o ciclo da cana atravessa dois anos-calendário e o do milho não", "existe_no_codigo": "não (div.saf achatado em tabela com maiúsculas)", "rotulo": "'Esquema ilustrativo de janela operacional típica' (texto da fonte)"},
+        {"o_que": "Fluxo de destinos do bagaço com conservação (4 ramos; o vapor como ramo fixo prioritário)", "unidade": "sem valores: esquema qualitativo; a fonte não dá frações", "trabalho": "tornar visível o custo de oportunidade da 2G", "existe_no_codigo": "não (div.rt achatado em lista)", "cuidado": "Não inventar percentuais de repartição. Usar larguras relativas manipuláveis e declaradas como esquema."},
+        {"o_que": "Régua de maturidade em 4 estágios (memorando · estudo conceitual · planta anunciada sem financiamento/contrato · planta com contrato, financiamento e licença)", "unidade": "estágio ordinal", "trabalho": "impedir a soma de estágios", "existe_no_codigo": "não (nota)"}
+      ],
+      "instrumento_C5": {
+        "id": "INST·04 — Comparador de rotas de etanol — três rotas, sete dimensões",
+        "posicao": "Na fonte: depois do bloco 13 (nota da régua de maturidade), fim da aula, o que é risco de Regra-mãe 1 (instrumento como apêndice). Proposta: manter o INST·04 depois do bloco 13 como 'síntese comparativa', mas com o ato principal antes (depois do bloco 9) e a checagem C7 depois do instrumento, para a aula não terminar no instrumento.",
+        "controles": "dimensão (insumo, sazonalidade, fonte térmica, coprodutos, intensidade de carbono, produto concorrente, maturidade)",
+        "saidas": "tabela 3 rotas × dimensão + 'ressalva de comparabilidade' da dimensão",
+        "previsao": "não (exploratório). Ato alternativo C3: antes de abrir cada dimensão, o learner aponta qual rota difere das outras duas (ex.: fonte térmica → milho).",
+        "fonte_na_prancha": "O comparador da fonte não classifica nenhuma rota como superior. Preservar essa frase."
+      },
+      "checagem_C7": "Ordenação registrada → referência (lista da fonte com 'prioridade absoluta' do vapor) → o que acrescenta (a frase 'o valor do 2G precisa superar o valor do que deixou de ser produzido') → autoavaliação em 3 níveis.",
+      "recuperacao_proximo_C10": {
+        "recuperacao": "Da A02: 'Por que um sinal de preço a favor do etanol pode não mover nenhum ATR?'",
+        "proximo": "A04 (biodiesel). 'Não atende' → 'Rever 03.2 · a rota que disputa o bagaço'. Ponte explícita para a A05 (o mesmo bagaço na caldeira).",
+        "afinidade_revisao": "Ex 04 (bagaço: quatro destinos e órgãos), Ex 11 (gás natural como fonte térmica → milho). Quiz Q5, Q6. Erros 'Resíduo é insumo gratuito' e 'milho já é 28%'.",
+        "serve_a": "Critério do módulo: rota e produto concorrente."
+      },
+      "midia": {
+        "onde_ajuda": "Em 03.2, junto da lista de destinos, uma foto de pilha de bagaço mostra que o 'resíduo' é um estoque físico de combustível. Em 03.1, a imagem de uma planta de etanol de milho só com legenda documental precisa, e ela é dos EUA.",
+        "candidatos": ["c15 Sugarcane bagasse", "c16 Bagasse dsc08999", "c18 Bagasse being loaded", "c29 Bagasse manipulation", "c27 ADM corn plant (Columbus, Nebraska) — só se a legenda disser EUA; nunca como planta brasileira", "c32 Range Fuels plant USDA — planta celulósica nos EUA; evitar, porque sugere um caso que a fonte não trata"],
+        "evitar": "c17 (Maui) e c28 'Abandoned sugarcane bagasse' reforçam a leitura 'bagaço é descarte', justamente o erro que a aula combate. Só serviriam com legenda que explore o contraste, e mesmo assim é arriscado.",
+        "plano_curadoria": "ausente"
+      },
+      "mobile_390": "O calendário vira duas faixas de 12 células compactas (iniciais dos meses), empilhadas. O fluxo do bagaço vira uma árvore vertical com os ramos como barras horizontais. A mesa do INST·04 vira um seletor de dimensão e três cartões de rota empilhados, com a ressalva fixa abaixo. O dossiê de prova vira um disclosure por linha.",
+      "lacunas_dependencias": [
+        "A fonte não dá a repartição quantitativa do bagaço entre destinos: o fluxo é qualitativo.",
+        "Volumes de 2G não declarados ('confirmar em fonte da própria companhia').",
+        "A informação da Raízen é corporativa e deve aparecer rotulada como tal (a fonte exige isso).",
+        "§9: portar o INST·04; renderizar div.saf e div.rt."
+      ],
+      "ambicao": "Um fluxo que o learner puxa: arrastar fibra para a hidrólise e ver o ramo da eletricidade afinar em tempo real, sem números inventados. Isso faz 'a arbitragem mais limpa do módulo' ser sentida, não lida."
+    },
+    {
+      "aulaId": "aula-14-04",
+      "titulo": "Biodiesel e a política de conteúdo obrigatório",
+      "subtitulo_fonte": "Como um percentual fixado por resolução cria um mercado inteiro — e quem paga por ele",
+      "ensina": "A demanda de B100 é volume de diesel B × teor obrigatório; sem o teor, a demanda some. Um percentual de mistura tem quatro estados simultâneos (teto legal, vigente, trajetória, prazo vencido não implementado), e só o vigente descreve litros vendidos. A política tem dois lados, e dizer os dois é o conteúdo.",
+      "natureza": ["mercado/regulação", "cálculo", "leitura de norma"],
+      "representacao": {
+        "arquetipo": "Relógio normativo (faixa de estados) + calculadora de demanda derivada + mesa dos dois lados",
+        "descricao": "O centro da aula (04.2) é uma faixa de estados: quatro casas com o mesmo tipo de objeto (B25 teto · B15 vigente desde 1º/8/2025 · B20 trajetória até mar/2030 · B16 prazo mar/2026 vencido e não implementado), cada uma com norma, data e silhueta própria, e 'verificado em 02/08/2026'. A seção 04.3 é a bancada do INST·05. A seção 04.4 fecha com uma 'mesa dos dois lados' (A favor × Contra) em colunas de peso igual, sem veredito.",
+        "por_que": "O mecanismo é classificatório (estado) e aritmético (demanda derivada). A faixa de estados é o objeto que o learner precisa levar para M16 e para o anidro. Os dois lados em colunas iguais materializam a exigência de equilíbrio da fonte."
+      },
+      "abertura_C3": {
+        "pergunta": {"camada": "alexandria", "texto": "Um interlocutor diz que a mistura de biodiesel é de 16%. Isso está em vigor?"},
+        "objetivo": {"camada": "alexandria", "texto": "Classificar um percentual de mistura em um dos quatro estados e calcular quanta demanda um ponto percentual cria."},
+        "previsao_util": {
+          "tem": true,
+          "forma_1": "Previsão de estado: 'B16 está em vigor em 2 de agosto de 2026?' (sim / não / não é possível dizer só pela lei). Referência da fonte: não; prazo legal vencido e não implementado; vigente é B15.",
+          "forma_2": "Antes do INST·05 (camada Alexandria): 'Com 60 bilhões de litros/ano de diesel B no cenário do instrumento, quantos litros de B100 um único ponto percentual de mistura cria?' Calculado: 0,6 bi L/p.p.; B15 → 9,0 bi L; B16 → 9,6 bi L.",
+          "numeros_fonte": "Estados verificados em 02/08/2026 (fonte). O volume de 60 bi L é padrão do instrumento, e a fonte manda o usuário declarar fonte e data: rotular como cenário."
+        }
+      },
+      "ato_C9": {
+        "tipo": "classificar",
+        "descricao": "Arrastar quatro cartões (B25, B15, B20/2030, B16/mar-2026) para os quatro estados, com a norma de cada um. Depois, no INST·05, escolher o estado 'vigente' e digitar um valor divergente para ver o veredito 'estado incoerente'.",
+        "alternativa": "Identificar o erro na notícia 'o conselho aprovou mudanças na mistura de biodiesel' (14/07/2026: mudou a regra de fornecimento, não o teor). A pergunta de verificação da fonte: 'mudou o número, mudou a regra de quem pode fornecer, ou mudou o prazo?'"
+      },
+      "visualizacao_C6": [
+        {"o_que": "Faixa de estados do percentual (4 casas, silhueta + palavra + norma + data)", "unidade": "% em volume de B100 no diesel B", "trabalho": "separar teto, vigente, trajetória e vencido", "existe_no_codigo": "não (lista)", "reuso": "A01 (anidro), A06 (meta 0,5% de biometano), M16"},
+        {"o_que": "INST·05: barra de demanda derivada no teor simulado × no teor de comparação, com o 'ponto percentual' destacado como incremento", "unidade": "bilhões de litros/ano", "trabalho": "mostrar que 1 p.p. = bilhões de litros garantidos", "existe_no_codigo": "não; a fonte só mostra leituras", "forma_prometida": "'Calculadora' não promete figura; a barra é ganho da Alexandria"},
+        {"o_que": "Mesa dos dois lados (colunas de igual largura)", "unidade": "texto", "trabalho": "equilíbrio como conteúdo", "existe_no_codigo": "não (nota)"}
+      ],
+      "instrumento_C5": {
+        "id": "INST·05 — Calculadora de demanda derivada por conteúdo obrigatório",
+        "posicao": "depois do bloco 9 (parágrafo 04.3), antes do título 04.4 (bloco 10). Na fonte, idem.",
+        "controles": "combustível base (diesel B · gasolina C), estado (vigente, teto, anunciado, vencido), volume bi L/ano (60), % mistura (15), % comparação (16)",
+        "saidas": "demanda derivada, demanda no % de comparação, bi L por p.p., base fóssil deslocada; veredito que confere o valor contra a referência do estado (±0,25 p.p. é regra de igualdade do instrumento, não tolerância da fonte)",
+        "previsao": "sim (1 p.p.)",
+        "fonte_na_prancha": "Nota da fonte: volume e percentuais são entradas com fonte e data a declarar (séries da ANP; resolução do CNPE); a conta ignora estoque, densidade e transição."
+      },
+      "checagem_C7": "A classificação registrada é comparada com a referência (a lista dos quatro estados da fonte) e com 'o que acrescenta' (o parágrafo sobre o B16 vencido). Nova tentativa disponível.",
+      "recuperacao_proximo_C10": {
+        "recuperacao": "Da A01: 'Qual é o teor de anidro em vigor e qual é o teto legal?' (E32 × E35).",
+        "proximo": "A05 (bagaço e cogeração). 'Não atende' → 'Rever 04.2 · Os quatro estados de um percentual'.",
+        "afinidade_revisao": "Ex 03 (B16 em vigor?), Ex 06 (200 mi L × 15% = 30 mi L; B16 = 32), Ex 10 (a reunião de julho). Quiz Q3. Erros 'B15 é biodiesel puro', 'A mistura obrigatória é X%', 'O CNPE aprovou... então o teor subiu'.",
+        "serve_a": "Critério do módulo: base temporal e estado de política de um percentual.",
+        "caso": "Caso Operação A · §Caso.1 (fração de biodiesel da linha de diesel 'por decisão de quem?') como aplicação."
+      },
+      "midia": {
+        "onde_ajuda": "Pouca. Em 04.1, uma foto de uma planta de biodiesel pode dar corpo à 'transesterificação', mas passa mal no teste de remoção. Prefiro zero imagens, ou uma no máximo.",
+        "candidatos": ["c19 Biodiesel.JPG (amostra de produto; útil para B100 × diesel B só se a legenda permitir)", "c20 Planta de biodiesel"],
+        "plano_curadoria": "ausente"
+      },
+      "mobile_390": "A faixa de estados vira uma lista vertical de 4 cartões com glifo, palavra, valor e norma. A classificação por arrasto troca para seletor por toque (cada cartão com 4 opções). O INST·05 empilha os seletores e põe a barra em largura total. A mesa dos dois lados vira duas seções sequenciais com o mesmo peso tipográfico e âncora 'Contra' visível a partir de 'A favor'.",
+      "lacunas_dependencias": [
+        "Volume nacional de diesel B não declarado na prosa: o padrão de 60 bi L é cenário.",
+        "Os 'quatro estados' são número vivo verificado em 02/08/2026 e precisam de data visível e de rotina de reconfirmação.",
+        "§9: portar o INST·05; renderizar div.est; persistir a classificação."
+      ],
+      "ambicao": "A faixa de estados como objeto reconhecível do currículo inteiro: o learner vê 'B16' numa casa de silhueta 'vencido' e entende, sem ler, que uma data na lei não é um litro na bomba."
+    },
+    {
+      "aulaId": "aula-14-05",
+      "titulo": "Bagaço, cogeração e a sazonalidade",
+      "subtitulo_fonte": "Três números para a mesma planta, e por que meio ano de entrega é complementaridade",
+      "ensina": "Uma cogeração tem três grandezas: potência instalada, energia gerada (dias de safra × disponibilidade) e energia exportada (menos autoconsumo e perdas). Só a exportada vira receita. A entrega concentrada na safra do Centro-Sul coincide com o período seco, e por isso é complemento sazonal da hidrologia, não firmeza anual. O contrato precisa dizer quem cobre a entressafra.",
+      "natureza": ["conceito físico/grandeza", "cálculo", "sistema (complementaridade)", "contrato"],
+      "representacao": {
+        "arquetipo": "Laboratório guiado com previsão (padrão M01·A08) + calendário comparado",
+        "descricao": "A abertura é a previsão sobre 80 MW. A seção 05.1 é a 'escada das três grandezas': o teto teórico (80 MW × 8.760 h) cai para a energia gerada e depois para a exportada, e cada degrau recebe o nome da sua causa (dias, disponibilidade, autoconsumo). A seção 05.2 é um calendário de 12 meses com duas faixas: a moagem típica do Centro-Sul (esquema ilustrativo, A03) e as bandeiras tarifárias de 2025 (amarela mai e dez; vermelha jun–nov; jan–abr não declarado). O INST·06 fica logo depois da 'leitura fina' e vira a bancada.",
+        "por_que": "O erro-alvo é numérico e forte (700 × 160 GWh), por isso a previsão ensina. A complementaridade é uma afirmação sobre coincidência no tempo, e só um eixo de meses a mostra."
+      },
+      "abertura_C3": {
+        "pergunta": {"camada": "alexandria", "texto": "Uma cogeração a bagaço tem 80 MW instalados. Quanta energia ela entrega à rede em um ano?"},
+        "objetivo": {"camada": "alexandria", "texto": "Separar potência instalada, energia gerada e energia exportada, e explicar por que 'firme na safra' é complementaridade."},
+        "previsao_util": {
+          "tem": true,
+          "forma": "Previsão numérica registrada (GWh/ano exportados), com os valores do cenário na pergunta: 80 MW, 210 dias de safra, 88% de disponibilidade na safra, 55% de autoconsumo.",
+          "numeros_fonte": "Cenário didático do módulo (INST·06, Ex 02, erro comum 'Esta usina tem 80 MW, então gera 700 GWh'). Calculado: teto ingênuo 700,8 GWh; gerado ≈355 GWh; exportado ≈160 GWh; FCap anual ≈22,8%; FCap na safra ≈39,6%. A fonte arredonda para 'cerca de 355/160 GWh' e 'em torno de 23%'.",
+          "regra_de_entrada": "Arredondamento técnico é regra de entrada da Alexandria (P19), não tolerância da fonte (P6)."
+        }
+      },
+      "ato_C9": {
+        "tipo": "prever + manipular até uma meta",
+        "descricao": "Registrar a previsão e ver previsto × calculado no mesmo cenário. Depois, manipular o INST·06 até achar o autoconsumo em que a planta 'não vende energia' (≥90%, veredito da fonte) e explicar por que isso não a torna uma planta ruim.",
+        "alternativa": "Identificar o erro: 'o BEN mostra −1,7% de bagaço e a bioeletricidade bateu recorde, logo um dos dois está errado' (a fonte explica que medem grandezas diferentes)."
+      },
+      "visualizacao_C6": [
+        {"o_que": "Escada das três grandezas (teto 8.760 h → gerado → exportado), com a causa de cada degrau", "unidade": "GWh/ano; MW", "trabalho": "mostrar onde a energia 'desaparece'", "existe_no_codigo": "não; a fonte (INST·06) desenha 3 barras (teto, gerado, exportado)", "forma_prometida": "'as três grandezas lado a lado' é cumprido pela fonte com barras. A Alexandria deve manter isso e acrescentar a potência como grandeza de outra unidade (MW) sem misturar eixos"},
+        {"o_que": "Calendário comparado: moagem típica Centro-Sul × bandeiras 2025", "unidade": "meses de 2025; bandeira por nome", "trabalho": "provar a coincidência que a aula afirma", "existe_no_codigo": "não", "cuidado": "Zero semáforo (S2): as bandeiras vão por padrão ou hachura com rótulo 'amarela' e 'vermelha', nunca por cor. Jan–abr: 'não declarado' (a fonte não informa). Fonte: Anuário Estatístico de Energia Elétrica 2026 (bandeiras e −4,8% hidráulica). Moagem: 'esquema ilustrativo'."},
+        {"o_que": "Composição da bioeletricidade 2025: 66,1 TWh; bagaço 60,9%, licor preto 28,1%, restante sem detalhe", "unidade": "TWh; % da bioeletricidade", "trabalho": "mostrar que 'biomassa' não é só cana (05.4)", "existe_no_codigo": "não", "cuidado": "O resto (11,0%) não é detalhado pela fonte: 'outras, não declarado'."}
+      ],
+      "instrumento_C5": {
+        "id": "INST·06 — Simulador de cogeração sazonal — as três grandezas lado a lado",
+        "posicao": "depois do bloco 8 (nota 'Uma leitura fina…'), antes do título 05.3 (bloco 9). Na fonte, idem.",
+        "controles": "potência MW (80), dias de safra (210), autoconsumo % (55), disponibilidade % (88)",
+        "saidas": "MW, GWh gerado, GWh exportado, FCap anual, FCap na safra; barras; veredito em 5 casos (aut≥90, dias≥330, FCap≥35, ≥18, resto)",
+        "previsao": "sim (GWh exportados). O quadro previsto × calculado fica visível durante a exploração (C5).",
+        "p21": "Renomear 'Fator de capacidade anual' e 'FC dentro da safra' para 'FCap anual' e 'FCap na safra'.",
+        "fonte_na_prancha": "Nota da fonte: todos os valores são editáveis e nenhum descreve unidade específica."
+      },
+      "checagem_C7": "Previsto × calculado com a decomposição (qual fator o learner esqueceu: dias, disponibilidade ou autoconsumo), seguido de autoavaliação. 'Não atende' leva a 'Rever 05.1'.",
+      "recuperacao_proximo_C10": {
+        "recuperacao": "Da A03: 'Quais são os destinos concorrentes do bagaço, e qual tem prioridade?' Cruzada com M01·A08 (FCap): 'Por que 100 MW solar ≠ 100 MW térmica?'",
+        "proximo": "A06 (biogás e biometano). Ponte para M09 (contratação ACR/ACL) quando o learner não tiver feito M09.",
+        "afinidade_revisao": "Ex 02 (80 MW), quiz Q4, erros 'Todo MWh de biomassa é firme' e '80 MW → 700 GWh'.",
+        "serve_a": "Critério do módulo (2ª parte): explicar por que a usina entrega energia firme em metade do ano e por que isso é complementaridade.",
+        "caso": "§Caso.3 (contratar energia de cogeração: sazonalização, cobertura da entressafra, coincidência com a bandeira) como aplicação."
+      },
+      "midia": {
+        "onde_ajuda": "Em 05.1, uma foto documental de caldeira ou chaminé de usina sucroenergética dá escala física à 'potência instalada'. Uma segunda imagem é dispensável.",
+        "candidatos": ["c10–c13 Usina Furlan 290912 REFON (conferir visualmente se mostram caldeira/turbina)", "c14 Usina Rio Pardo", "c25 Usina de cana ÁlcoolAzul", "c26 Usina cana"],
+        "regra": "Não usar a foto de uma usina real como ilustração dos '80 MW' do cenário (seria atribuir o cenário a ela).",
+        "plano_curadoria": "ausente"
+      },
+      "mobile_390": "O 1º viewport traz a pergunta e o campo de previsão (GWh), com os quatro valores do cenário em linha de aparato. A escada vira barras horizontais empilhadas com a causa em legenda curta. O calendário vira 12 colunas estreitas com iniciais, faixas com padrão e legenda textual abaixo, sem hover. No INST·06 os campos ficam em 2×2, com o quadro previsto × calculado fixo no topo da prancha enquanto se rola dentro dela.",
+      "lacunas_dependencias": [
+        "Não há série mensal de hidrologia na fonte: afirmar só a coincidência declarada (bandeiras 2025), não desenhar curva de reservatório.",
+        "Bandeiras de jan–abr/2025 não declaradas.",
+        "11% da bioeletricidade sem composição.",
+        "§9: portar o INST·06; persistir a previsão; P21 FCap."
+      ],
+      "ambicao": "É a aula-irmã da M01·A08, e deve ser o padrão-ouro da T3: o learner chuta perto de 700, vê a escada derrubar para 160, e depois vê a janela de moagem cair exatamente sobre os meses de bandeira vermelha. Duas surpresas honestas, ambas da fonte."
+    },
+    {
+      "aulaId": "aula-14-06",
+      "titulo": "Biogás e biometano",
+      "subtitulo_fonte": "O resíduo como insumo, e uma economia que é de logística e de escala mínima",
+      "ensina": "Biogás não é biometano: entre os dois há uma planta de purificação, com norma (ANP 886/2022 aterro/esgoto; 906/2022 agrossilvopastoril). A economia da rota é decidida pela rota de entrega e pela escala mínima, não pela tecnologia. O programa de 2024–2026 cria a demanda, mas regulamentado não é o mesmo que líquido.",
+      "natureza": ["comparação de rotas de entrega", "cálculo", "mercado/regulação (linha do tempo)"],
+      "representacao": {
+        "arquetipo": "Mesa de rotas de entrega + régua de escala + linha do tempo normativa",
+        "descricao": "A seção 06.1 é uma anatomia curta 'biogás → purificação/compressão/medição → biometano', com as duas resoluções como etiquetas de entrada. A seção 06.2 é uma mesa de seis rotas de entrega (vantagem × limitação que decide) acoplada ao INST·07, em que a mesma margem na planta se desfaz de formas diferentes com a distância. A seção 06.3 é uma linha do tempo vertical (Lei 2024 → Decreto 2025 → Res. ANP 995/996 fev/2026 → Res. CNPE 4/2026 abr → 1º certificador abr/2026) seguida das 'quatro precisões'.",
+        "por_que": "O mecanismo é logístico (distância × escala). A melhor representação é uma comparação entre rotas com uma variável contínua (km) que muda o resultado. A regulação é uma sequência datada, e a linha do tempo é a forma natural."
+      },
+      "abertura_C3": {
+        "pergunta": {"camada": "alexandria", "texto": "Um projeto de biometano tem margem de R$ 1,20 por metro cúbico. Ele é viável?"},
+        "objetivo": {"camada": "alexandria", "texto": "Dizer por que a rota de entrega e a escala mínima decidem a economia do biometano mais que o preço."},
+        "previsao_util": {
+          "tem": true,
+          "forma": "Previsão ordinal antes do INST·07 (camada Alexandria): 'Ordene as quatro rotas (térmica local, GNC em carreta, injeção em rede, veicular dedicado) da que mais perde margem com a distância para a que menos perde.' Referência derivada dos parâmetros do instrumento: GNC (0,0035 R$/Nm³·km) > veicular (0,0030) > rede (0,0008) > local (0,0002). A prosa da fonte confirma GNC como 'a que mais degrada com distância'.",
+          "numeros_fonte": "Parâmetros logísticos por rota são 'ilustrativos de ordem de grandeza' pela própria fonte e não são benchmark. Padrão: 15 mi Nm³/ano, 80 km, R$ 2,30 e R$ 0,85/Nm³. A resposta à pergunta de abertura vem do INST·10 e9 e do quiz Q8: falta escala e continuidade do substrato."
+        }
+      },
+      "ato_C9": {
+        "tipo": "manipular até uma meta",
+        "descricao": "No INST·07, rota 'comprimido em carreta', aumentar a distância até a margem unitária zerar. Calculado com o padrão: 2,30 − 0,85 − 0,45 − 0,0035·d = 0 → d ≈ 286 km. Depois, trocar para 'térmica local' e explicar por que a mesma planta tolera distâncias muito maiores e por que isso não resolve (exige cliente junto da fonte).",
+        "alternativa": "Ordenar os cinco marcos normativos por data (classificar/ordenar)."
+      },
+      "visualizacao_C6": [
+        {"o_que": "Curvas de margem × distância para as 4 rotas do instrumento (retas com inclinações diferentes), com o ponto de margem zero marcado", "unidade": "R$/Nm³ × km", "trabalho": "mostrar que a rota decide mais que o preço", "existe_no_codigo": "não; a fonte não desenha nada no INST·07", "forma_prometida": "'Régua de biometano — escala mínima e rota de entrega' promete uma régua. Hoje só há leituras. Desenhar a régua de escala (volume × referência da rota: 2/8/12/6 mi Nm³) e as retas de margem", "rotulo": "parâmetros ilustrativos de ordem de grandeza (fonte)"},
+        {"o_que": "Linha do tempo normativa 2024–2026 (5 marcos)", "unidade": "datas", "trabalho": "mostrar a densidade de atos infralegais e o estado 'fase inicial'", "existe_no_codigo": "não (div.clk achatado em tabela)"},
+        {"o_que": "Anatomia biogás → biometano (esquema de etapas)", "unidade": "sem números", "trabalho": "tornar visível a planta que o erro 'biogás direto na rede' ignora", "existe_no_codigo": "não"}
+      ],
+      "instrumento_C5": {
+        "id": "INST·07 — Régua de biometano — escala mínima e rota de entrega",
+        "posicao": "depois do bloco 7 (tabela de rotas de entrega), antes do título 06.3 (bloco 8). Na fonte, idem.",
+        "controles": "rota (local, GNC, rede, frota), volume mi Nm³/ano (15), distância km (80), preço líquido R$/Nm³ (2,30), opex R$/Nm³ (0,85)",
+        "saidas": "energia entregue (TJ/ano), custo logístico, margem unitária, escala mínima da rota; veredito em 5 casos",
+        "previsao": "sim (ordem das rotas)",
+        "defeito": "QA-M14-01: a energia entregue sai 1.000× menor (mostra '1 TJ/ano' para 540 TJ/ano). Corrigir ao portar.",
+        "fonte_na_prancha": "Nota da fonte: parâmetros logísticos ilustrativos; preço, opex e PCI vêm do contrato; nenhuma conclusão é recomendação."
+      },
+      "checagem_C7": "Ordem registrada → referência (inclinações do instrumento) → o que acrescenta (a escala mínima: margem boa com volume abaixo da referência é 'a falha mais comum', segundo a fonte) → autoavaliação.",
+      "recuperacao_proximo_C10": {
+        "recuperacao": "Da A05: 'Qual das três grandezas de uma cogeração gera receita?' (A mesma lógica 'capacidade ≠ entrega' volta aqui.)",
+        "proximo": "A07 (RenovaBio). 'Não atende' → 'Rever 06.2 · A rota de entrega decide a economia'.",
+        "afinidade_revisao": "Ex 08 (8 mi Nm³ × 36 = 288 TJ), Ex 12 (potencial + capacidade + produção somados). Quiz Q8. Erros 'Biogás pode entrar direto na rede', 'Capacidade autorizada é produção', 'Resíduo é insumo gratuito'.",
+        "serve_a": "Critério do módulo: rota e grandeza.",
+        "caso": "§Caso.2 (biometano para a frota da Operação A: o que precisa ser verdade, o que pode falhar, o que ainda não se sabe) como aplicação de decisão (P17 autoriza Desafio de decisão só com fatos do caso)."
+      },
+      "midia": {
+        "onde_ajuda": "Em 06.1, uma foto documental de biodigestor ancora 'digestão anaeróbia' como coisa física. Em 06.3 nenhuma imagem é necessária.",
+        "candidatos": ["c31 Anaerobic Digester in Wooster, Ohio (EUA: legenda documental)", "c21/c22 Biogasanlage (Alemanha: legenda documental)", "c30 Aplicação de Vinhaça (Brasil; ancora a vinhaça como substrato com uso concorrente, a fertirrigação)"],
+        "preferencia": "c30 é brasileiro e ensina o concorrente (fertirrigação). É a melhor candidata se a imagem for boa.",
+        "plano_curadoria": "ausente"
+      },
+      "mobile_390": "A mesa de 6 rotas vira cartões empilhados (rota, vantagem, limitação), com a limitação em destaque. No INST·07 o seletor de rota vai em 2×2, os campos em coluna e o gráfico margem × distância em largura total com uma reta por vez mais a rota ativa sobreposta às outras em fio fino. A linha do tempo fica vertical, naturalmente mobile.",
+      "lacunas_dependencias": [
+        "Parâmetros logísticos ilustrativos (fonte).",
+        "Estado do programa verificado em 02/08/2026: metas individuais de 2026 e número de certificados emitidos não declarados ('confirme na agência').",
+        "Potencial técnico-econômico citado sem número ('estimativas oficiais'): não quantificar.",
+        "QA-M14-01.",
+        "§9: portar o INST·07; renderizar div.clk."
+      ],
+      "ambicao": "Retas de margem que cruzam o zero em distâncias diferentes: o learner vê que 'o preço do biometano' não existe sem uma rota. É o complemento visual exato da frase 'a economia não é de tecnologia, é de logística'."
+    },
+    {
+      "aulaId": "aula-14-07",
+      "titulo": "RenovaBio e o crédito de descarbonização",
+      "subtitulo_fonte": "O produto que não é físico: quem tem obrigação, como o preço se forma, e por que ele não pode ser cravado",
+      "ensina": "O CBIO é um ativo regulatório que passa por seis etapas (meta nacional → meta individual → certificação → emissão → negociação → aposentadoria), cada uma com dono, documento e modo de falhar. A quantidade depende de volume vendido, energia e diferencial de intensidade de carbono certificado por unidade. O preço sai de estoque × obrigação e não se crava. Meta nacional ≠ soma das individuais, e daí vêm os 99% × 88%.",
+      "natureza": ["mercado/regulação", "sistema (pipeline institucional)", "cálculo de ordem de grandeza"],
+      "representacao": {
+        "arquetipo": "Diagrama de sistema (engrenagem de 6 etapas) + figura de denominador duplo + bancada de ordem de grandeza",
+        "descricao": "A seção 07.1 é uma engrenagem horizontal de seis estações (dono · documento · modo de falhar) em que a Raízen aparece nas duas pontas (emissora e obrigada), como diz a fonte. A seção 07.2 é a figura central: o mesmo numerador (≈40 mi aposentados em 2025) sobre dois denominadores (40,39 mi nacional → 99%; 45,28 mi individuais ajustadas → 88%), mais o par 2026 (48,09 × 49,01 mi, +1,9%). A seção 07.3 traz a fórmula conceitual como bancada (rotulada 'não é a fórmula regulatória') e os 'seis lugares onde uma alegação se desfaz' como checklist de auditoria. A seção 07.4 fecha com o INST·08 e o preço como entrada editável com fonte e data.",
+        "por_que": "O mecanismo é institucional e sequencial, e o erro dominante é de denominador. Uma figura com um numerador e duas frações ensina o erro em um olhar."
+      },
+      "abertura_C3": {
+        "pergunta": {"camada": "alexandria", "texto": "Em 2025 o cumprimento das metas do RenovaBio foi de 99% ou de 88%?"},
+        "objetivo": {"camada": "alexandria", "texto": "Dizer qual denominador está por trás de um percentual de cumprimento e de onde vem a quantidade de créditos de uma planta."},
+        "previsao_util": {
+          "tem": true,
+          "forma": "Previsão categórica: 'A meta nacional de 2026 é de 48,09 milhões de créditos. A soma das metas individuais publicadas pela ANP é maior, menor ou igual?' Referência da fonte: maior, 49,01 mi (≈+1,9%). O erro útil é supor igualdade por construção (quiz Q7, alternativa A).",
+          "numeros_fonte": "Res. CNPE nº 21/2025 (30/12/2025): 48,09 mi. ANP (31/03/2026): 49,01 mi, com as três maiores distribuidoras em 52,7%. 2025: ≈40 mi aposentados; meta nacional 40,39 mi (99%); individuais ajustadas 45,28 mi (88%). Estoque no início de 2026: ≈19,5 mi.",
+          "segunda": "Opcional, antes do INST·08: ordem de grandeza de créditos para 100 mi L. A resposta depende de QA-M14-02 e fica bloqueada até a unidade ser definida."
+        }
+      },
+      "ato_C9": {
+        "tipo": "prever + identificar o erro",
+        "descricao": "Registrar a previsão da soma. Depois, dadas duas manchetes ('RenovaBio cumpre 99% da meta' e 'distribuidoras cumprem só 88%'), escolher qual denominador cada uma usa e se alguma está errada (nenhuma está; ambas são incompletas).",
+        "alternativa": "No INST·08, trocar 'certificado vigente' para 'sem certificação' e explicar por que os créditos vão a zero com as emissões evitadas inalteradas (quiz Q9)."
+      },
+      "visualizacao_C6": [
+        {"o_que": "Denominador duplo (2025): uma barra de aposentados sobre duas réguas, 40,39 e 45,28 mi → 99% e 88%", "unidade": "milhões de créditos; %", "trabalho": "mostrar que o percentual depende do denominador", "existe_no_codigo": "não"},
+        {"o_que": "Meta nacional × soma das individuais 2026 (48,09 × 49,01 mi)", "unidade": "milhões de créditos", "trabalho": "desfazer a suposição de igualdade", "existe_no_codigo": "não (div.dual achatado em tabela)"},
+        {"o_que": "Engrenagem de 6 etapas (dono · documento · falha)", "unidade": "sem números", "trabalho": "localizar onde cada falha acontece", "existe_no_codigo": "não (tabela de 6 linhas)"},
+        {"o_que": "INST·08: barras energia → emissões evitadas → créditos (com o 'zero' visível sem certificação) e receita com o preço como entrada", "unidade": "TJ; t CO₂e; créditos; R$", "trabalho": "separar fato físico de ativo regulatório", "existe_no_codigo": "não; a fonte não desenha", "forma_prometida": "'Régua de crédito' promete régua e hoje só há leituras"}
+      ],
+      "instrumento_C5": {
+        "id": "INST·08 — Régua de crédito de descarbonização",
+        "posicao": "Na fonte: depois do bloco 18 (nota 'Números vivos', que diz 'o instrumento abaixo'), antes do bloco 19 (nota gold, excluída por P7). Na prática fica no fim da aula, com risco de Regra-mãe 1. Proposta: manter a posição (a prosa o invoca ali), com o ato principal (denominadores) depois do bloco 7, para o instrumento não ser o único ato, e fechar com a checagem.",
+        "controles": "rota (1G, milho, biodiesel, biometano), certificação (vigente, renovação, sem), volume (100), diferencial (55), preço R$/crédito (30, editável)",
+        "saidas": "energia TJ, t CO₂e evitadas, créditos (teto conceitual), receita, R$/L sobre a margem; veredito em 6 casos",
+        "previsao": "não obrigatória (instrumento de ordem de grandeza com unidade em QA). Ato do instrumento: condição a encontrar (sem certificação → zero).",
+        "defeito": "QA-M14-02 (unidade do diferencial; densidade 21,3 × 21,1 MJ/L).",
+        "fonte_na_prancha": "Nota da fonte: preço de ordem de grandeza do 1º semestre de 2026, a partir de dados da bolsa registradora, consultado em 02/08/2026, a substituir pelo índice corrente. Resultado = teto conceitual."
+      },
+      "checagem_C7": "A escolha de denominador registrada → referência (parágrafo 07.2 da fonte) → critério ('cita os dois denominadores') → autoavaliação.",
+      "recuperacao_proximo_C10": {
+        "recuperacao": "Da A04: 'Em que estado está o B16?' Da A06: 'Qual a diferença entre programa regulamentado e mercado líquido?'",
+        "proximo": "A08 (síntese). 'Não atende' → 'Rever 07.2 · Meta nacional não é a soma das individuais'.",
+        "afinidade_revisao": "Ex 13 (116 mil créditos; teto conceitual, depende de QA-M14-02). Quiz Q7, Q9. Erros 'CBIO é subsídio fixo por litro', '99% ou 88%', 'CBIO e CGOB somados', 'Bioenergia é carbono zero'.",
+        "serve_a": "Critério do módulo: grandeza e estado (ativo regulatório × fato físico)."
+      },
+      "midia": {
+        "onde_ajuda": "Nenhuma foto passa no teste de remoção: o objeto não é físico, e a fonte insiste nisso ('a única que não tem massa'). As figuras programáticas bastam.",
+        "candidatos": [],
+        "plano_curadoria": "ausente"
+      },
+      "mobile_390": "A engrenagem vira uma sequência vertical numerada de 6 estações com disclosure para o 'modo de falhar'. O denominador duplo vira duas barras empilhadas com o mesmo numerador e percentual à direita. No INST·08 os seletores ficam em 2×2 e 1×3 e a cadeia energia → t CO₂e → créditos → R$ vira uma coluna de leituras com a linha 'créditos' mostrando '0 · sem certificação' em palavra, não em cor.",
+      "lacunas_dependencias": [
+        "O preço do CBIO não é cravado pela fonte ('poucas dezenas de reais' em 2026; 'superior a cem' em 2024). O padrão de 30 é entrada.",
+        "A fórmula regulatória exata não é dada; só a conceitual, rotulada.",
+        "QA-M14-02.",
+        "§9: portar o INST·08; persistir a previsão."
+      ],
+      "ambicao": "Um numerador, duas frações, duas manchetes verdadeiras. Se o learner sair desta aula perguntando 'sobre qual denominador?' a qualquer percentual, a aula funcionou, e a figura é pequena e memorável."
+    },
+    {
+      "aulaId": "aula-14-08",
+      "titulo": "Síntese — ler uma cadeia",
+      "subtitulo_fonte": "Seis fichas de campo fixo, e um campo deixado deliberadamente em branco",
+      "ensina": "Seis rotas em fichas de campos idênticos permitem a leitura lateral. Todo número de bioenergia só é utilizável com base temporal, rota e produto concorrente; quando falta um, a resposta é perguntar, não discordar. Enunciados verdadeiros podem ser insuficientes.",
+      "natureza": ["síntese", "classificação", "leitura crítica de enunciados"],
+      "representacao": {
+        "arquetipo": "Mesa de leitura lateral (matriz 6 rotas × 8 campos) + banca de verificação",
+        "descricao": "A primeira prancha é uma matriz: colunas = 6 rotas; linhas = insumo, conversão, produto, escala e sazonalidade, marco e órgão, matriz, concorrente, 'o que este número não diz'. A última linha tem campos de entrada do learner, que a fonte manda preencher antes do verificador. O INST·09 vem como uma grade insumo × destino (5 × 7) com estado de cada célula (consolidado, limitado, marginal, indireto, não se aplica). O INST·10 é a banca: 12 enunciados, classificação registrada do defeito e só então a revelação (defeito, o que falta, a pergunta, a forma corrigida). A aula termina no registro e no caminho Revisão → Avaliação → Caso.",
+        "por_que": "A fonte declara o princípio: campo fixo permite leitura lateral. Seis tabelas empilhadas destroem isso, e a matriz o restaura. O instrumento assinatura é classificatório, por isso a banca com compromisso antes da revelação é a forma certa."
+      },
+      "abertura_C3": {
+        "pergunta": {"camada": "alexandria", "texto": "“A gasolina brasileira tem 30% de etanol anidro.” O que falta para essa frase ser utilizável?"},
+        "objetivo": {"camada": "alexandria", "texto": "Diante de um número de bioenergia, nomear base temporal, rota e produto concorrente, e fazer a pergunta que falta."},
+        "previsao_util": {
+          "tem": false,
+          "motivo": "Não há resultado numérico a prever. O equivalente é a classificação do defeito registrada antes da revelação (C7), que a própria fonte pede ('decida antes de clicar'). O enunciado de abertura é o e1 do INST·10 (base temporal vencida: E30 até 31/07/2026; E32 desde 01/08/2026)."
+        }
+      },
+      "ato_C9": {
+        "tipo": "classificar + responder exercício da fonte",
+        "descricao": "(1) Preencher 'o que este número não diz' em pelo menos uma ficha (a fonte pede 'pelo menos mais dois itens'). (2) No INST·10, classificar o defeito dominante de pelo menos 4 enunciados (um por tipo: base temporal, rota, grandeza, concorrente) antes da revelação, e comparar o próprio item com o 'o que exatamente falta'.",
+        "nota": "Este é o ato 'exercício da fonte' legítimo: o campo em branco é exercício declarado dentro da própria aula, não um dos 14 soltos."
+      },
+      "visualizacao_C6": [
+        {"o_que": "Matriz de fichas 6 × 8 com leitura lateral (destaque de linha ao focar um campo)", "unidade": "texto; números com base temporal colada", "trabalho": "comparar rotas pelo mesmo campo", "existe_no_codigo": "não (6 tabelas separadas; div.emp achatado)", "cuidado": "Cada número mantém a base ('ano-safra 2026/27, 1º levantamento' × 'ano-calendário 2025'). Rota 02 aponta os dois números como não comparáveis e não pode virar coluna somável."},
+        {"o_que": "Grade insumo × destino (INST·09), 35 células com estado por silhueta", "unidade": "estado categórico", "trabalho": "ver a cascata e o 'não se aplica' como informação", "existe_no_codigo": "não", "forma_prometida": "A fonte promete 'produto cartesiano completo', mas desenha uma linha por vez (chips). A Alexandria deve desenhar a grade inteira e abrir a célula"},
+        {"o_que": "Banca de enunciados (INST·10) com os 4 tipos de defeito", "unidade": "categórico", "trabalho": "treinar o critério do módulo", "existe_no_codigo": "não"}
+      ],
+      "instrumento_C5": [
+        {
+          "id": "INST·09 — Classificador de insumo — rota, produto, órgão e concorrente",
+          "posicao": "depois do bloco 13 (título 08.1), antes do título 08.2 (bloco 14). Na fonte, idem.",
+          "controles": "insumo (cana, bagaço e palha, milho, óleo e gordura, resíduo orgânico) × destino (açúcar, etanol, vapor e eletricidade, biometano, biodiesel e diesel renovável, ração e alimento, uso material)",
+          "saidas": "estado da combinação, destino deslocado, descrição, pergunta",
+          "previsao": "não (consulta). Ato opcional: antes de abrir, o learner marca 'bagaço → açúcar' como aplicável ou não."
+        },
+        {
+          "id": "INST·10 — Verificador de base temporal e rota — instrumento assinatura",
+          "posicao": "depois do bloco 15 (parágrafo 'decida antes de clicar'), antes da nota 'O critério, em uma sequência de um minuto' (bloco 16). Na fonte, idem.",
+          "controles": "filtro por tipo; 12 enunciados",
+          "saidas": "defeito dominante, categoria, o que falta, pergunta, forma corrigida",
+          "previsao": "classificação obrigatória antes da revelação (corrige QA-M14-03)",
+          "fonte_na_prancha": "Nota da fonte: enunciados construídos a partir de dados verificados em 02/08/2026."
+        }
+      ],
+      "checagem_C7": "Para cada enunciado: classificação registrada → defeito dominante da fonte → 'o que exatamente falta' → autoavaliação. No campo em branco das fichas: item do learner lado a lado com os itens que o INST·10 revela para a mesma rota (a fonte manda 'depois confira contra o que o verificador devolve').",
+      "recuperacao_proximo_C10": {
+        "recuperacao": "Um item de cada aula anterior, com a origem visível, antes da resposta antiga: A01 (anidro × hidratado), A02 (sinal × faixa), A03 (destinos do bagaço), A04 (estado do B16), A05 (80 MW → ?), A06 (margem × escala), A07 (denominador).",
+        "proximo": "Última aula: Revisão do módulo (14 exercícios, com tentativa antes do gabarito) → Avaliação do módulo (quiz de 10, critério literal da fonte '8 acertos' como resultado de avaliação, nunca 'Aprovado'/Demonstrado; P5, P18) → Caso Operação A (título sem 'Parte 14', P17; Desafio de decisão da camada Alexandria autorizado só com fatos do caso). Experiência jogável: linha 'em desenho' (P25).",
+        "afinidade_revisao": "Ex 14 (síntese: 'o Brasil já resolveu o transporte com etanol'), Ex 01, Ex 07. Quiz Q2, Q10.",
+        "serve_a": "Critério do módulo (construído pela fonte), exibido como atividade recomendada por ser cronometrado (P14)."
+      },
+      "midia": {
+        "onde_ajuda": "Em nenhum lugar dentro da matriz. No máximo, uma miniatura documental por coluna de rota, como reconhecimento visual, e só se passar no teste de remoção (provavelmente não passa). Síntese boa é tipográfica.",
+        "candidatos": ["opcional: c02 (1G), c27 (milho, EUA, legenda), c16 (bagaço), c20 (biodiesel), c31 (biogás), c24 (distribuição)"],
+        "plano_curadoria": "ausente"
+      },
+      "mobile_390": "A matriz 6 × 8 não cabe: vira alternância 'por rota' (6 fichas deslizáveis com os campos na mesma ordem e posição) e 'por campo' (escolhe o campo e vê as 6 rotas em lista). O modo 'por campo' preserva a leitura lateral. A grade do INST·09 vira seletor de insumo + lista de 7 destinos com estado em palavra. No INST·10, o enunciado ocupa a largura, os 4 tipos viram botões ≥44px e a revelação abre abaixo.",
+      "lacunas_dependencias": [
+        "Rota 03 (2G): escala nacional sem número (fonte corporativa).",
+        "Rota 05: capacidade no painel da ANP com data-base não trazida.",
+        "'Ver §00.1' precisa virar link para a Tese (S4).",
+        "QA-M14-03.",
+        "§9: portar os INST·09 e 10; renderizar div.emp como matriz; persistir classificações; extrair e registrar o quiz."
+      ],
+      "ambicao": "A síntese vira uma mesa de trabalho, não um resumo: o learner escreve o que o número não diz, depois vê as mesmas lacunas vindas do verificador, e percebe que já fazia a pergunta certa. Fecha o módulo com o gesto que o critério pede: perguntar em vez de discordar."
+    }
+  ],
+  "transversal": {
+    "padroes_do_modulo": [
+      "Quatro lentes recorrentes (base temporal, rota, grandeza, estado de política) aparecem em todas as aulas. Um glifo por lente, usado nas aulas, nos erros comuns e no INST·10, dá coesão sem layout único.",
+      "Todo número vivo tem data de verificação (02/08/2026) e deve exibi-la junto do bloco (S4).",
+      "Os vereditos da fonte 'recusam concluir por um sinal só': manter essa forma, que é boa pedagogia, sem cor (S2)."
+    ],
+    "distribuicao_de_arquetipos": {
+      "aula-14-01": "díptico + bancada",
+      "aula-14-02": "prancha com régua viva",
+      "aula-14-03": "mesa de comparação + fluxo com conservação",
+      "aula-14-04": "relógio normativo + calculadora + dois lados",
+      "aula-14-05": "laboratório guiado com previsão + calendário",
+      "aula-14-06": "mesa de rotas + retas de margem + linha do tempo",
+      "aula-14-07": "engrenagem institucional + denominador duplo",
+      "aula-14-08": "matriz de leitura lateral + banca de verificação"
+    },
+    "features_registradas": "docs/alexandria-v2/estudos/features-propostas-aulas.md (seção M14)"
+  }
+}

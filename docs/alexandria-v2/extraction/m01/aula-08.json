@@ -1,0 +1,982 @@
+{
+  "meta": {
+    "grupo": "aula08",
+    "modulo": "M01",
+    "aula": "M01·A08",
+    "fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo01.html",
+    "fonte_somente_leitura": true,
+    "fonte_total_linhas": 3212,
+    "aula_linhas": {
+      "inicio": 2004,
+      "fim": 2095,
+      "nota": "comentário de abertura 2004; section.aula 2006-2095"
+    },
+    "extraido_em": "2026-09-16",
+    "metodo": "Extração programática (script node sobre fatias do HTML por linha + regex ancorado; nenhuma prosa digitada). Campos `html` guardam o innerHTML literal; campos `texto` são o mesmo conteúdo com tags removidas e entidades decodificadas.",
+    "protocolo": "docs/alexandria/extraction-protocol.md",
+    "taxonomia": "docs/alexandria/instrument-taxonomy.md",
+    "contrato": "docs/alexandria-v2/bar.md (§4 Peça C, §9, P3, P5, P6, P8, P9, P11, P14)",
+    "convencoes": {
+      "ausencia": "null + campo *_nota explicando o que foi medido",
+      "ids": "m01-a08-bNN-<tipo> para blocos (ordem da fonte); m01-inst-06; m01-ex-06; m01-a08-fig-01; m01-quiz-q08",
+      "vinculos": "só quando a fonte declara (tag, posição dentro da section, remissão textual literal); correspondência textual é marcada como tal"
+    }
+  },
+  "aula": {
+    "id": "m01-a08",
+    "numero": 8,
+    "marcador": {
+      "num": "Aula 08",
+      "nome": "Capacidade instalada e fator de capacidade",
+      "origem": {
+        "seletor": "div.aula-marker",
+        "trecho_inicial": "Aula 08 Capacidade instalada e fator de capacidade",
+        "linha_aprox": 2008
+      }
+    },
+    "titulo_h2_html": "100 MW solar <em>≠</em> 100 MW térmica.",
+    "titulo_h2_texto": "100 MW solar ≠ 100 MW térmica.",
+    "titulo_h2_origem": {
+      "seletor": "h2.aula-title",
+      "trecho_inicial": "100 MW solar ≠ 100 MW térmica.",
+      "linha_aprox": 2009
+    },
+    "pergunta_mapa": {
+      "numero": "08",
+      "tema": "Capacidade instalada e fator de capacidade",
+      "pergunta_html": "Por que <span class=\"hl\">100 MW solar</span> ≠ <span class=\"hl\">100 MW térmica</span>?",
+      "pergunta_texto": "Por que 100 MW solar ≠ 100 MW térmica?",
+      "origem": {
+        "seletor": "§ MAP table > tbody > tr(08)",
+        "trecho_inicial": "Por que 100 MW solar ≠ 100 MW térmica?",
+        "linha_aprox": 1346
+      },
+      "nota": "Única pergunta que a fonte declara para esta aula. Vive na tabela do § MAP, não na aula."
+    },
+    "duracao_min": null,
+    "dificuldade": null,
+    "video": null,
+    "ausencias_nota": "Sem duração, dificuldade, vídeo, <img>, referência por aula ou \"Vale lembrar\" dentro da section. Medido na fatia 2006-2095."
+  },
+  "blocos": [
+    {
+      "id": "m01-a08-b01-lead",
+      "tipo": "lead",
+      "html": "Comparar fontes de geração apenas por capacidade instalada é o erro de leitor casual da matriz elétrica. Para análise séria, o que importa é o fator de capacidade — quanto a usina <em>efetivamente</em> entrega ao longo do tempo.",
+      "texto": "Comparar fontes de geração apenas por capacidade instalada é o erro de leitor casual da matriz elétrica. Para análise séria, o que importa é o fator de capacidade — quanto a usina efetivamente entrega ao longo do tempo.",
+      "origem": {
+        "seletor": "section.aula(Aula 08) > .container > p.lead",
+        "trecho_inicial": "Comparar fontes de geração apenas por capacidade instalada é",
+        "linha_aprox": 2011
+      }
+    },
+    {
+      "id": "m01-a08-b02-titulo",
+      "tipo": "titulo",
+      "numero": "8.1",
+      "texto": "Capacidade instalada vs. geração efetiva",
+      "html": "<span class=\"num\">8.1</span>Capacidade instalada vs. geração efetiva",
+      "origem": {
+        "seletor": "h3 > span.num(8.1)",
+        "trecho_inicial": "8.1Capacidade instalada vs. geração efetiva",
+        "linha_aprox": 2013
+      }
+    },
+    {
+      "id": "m01-a08-b03-paragrafo",
+      "tipo": "paragrafo",
+      "html": "<strong>Capacidade instalada</strong> é o tamanho nominal da usina ou equipamento de geração — o máximo teórico que ela pode produzir se operasse em potência plena, 24 horas por dia, 365 dias por ano. Uma usina solar de 100 MW tem capacidade instalada de 100 MW.",
+      "texto": "Capacidade instalada é o tamanho nominal da usina ou equipamento de geração — o máximo teórico que ela pode produzir se operasse em potência plena, 24 horas por dia, 365 dias por ano. Uma usina solar de 100 MW tem capacidade instalada de 100 MW.",
+      "origem": {
+        "seletor": "h3(8.1) ~ p:nth-of-type(1)",
+        "trecho_inicial": "Capacidade instalada é o tamanho nominal da usina ou equipam",
+        "linha_aprox": 2014
+      }
+    },
+    {
+      "id": "m01-a08-b04-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Isso não significa que ela gera 100 MW o tempo todo. A solar não gera à noite. A eólica depende do vento. A hidrelétrica depende de chuva e reservatório. A térmica depende de combustível disponível e despacho do sistema. <strong>Geração efetiva</strong> é o que a usina <em>realmente</em> produziu em um período, medido em MWh.",
+      "texto": "Isso não significa que ela gera 100 MW o tempo todo. A solar não gera à noite. A eólica depende do vento. A hidrelétrica depende de chuva e reservatório. A térmica depende de combustível disponível e despacho do sistema. Geração efetiva é o que a usina realmente produziu em um período, medido em MWh.",
+      "origem": {
+        "seletor": "h3(8.1) ~ p:nth-of-type(2)",
+        "trecho_inicial": "Isso não significa que ela gera 100 MW o tempo todo. A solar",
+        "linha_aprox": 2016
+      }
+    },
+    {
+      "id": "m01-a08-b05-titulo",
+      "tipo": "titulo",
+      "numero": "8.2",
+      "texto": "O fator de capacidade",
+      "html": "<span class=\"num\">8.2</span>O fator de capacidade",
+      "origem": {
+        "seletor": "h3 > span.num(8.2)",
+        "trecho_inicial": "8.2O fator de capacidade",
+        "linha_aprox": 2018
+      }
+    },
+    {
+      "id": "m01-a08-b06-formula",
+      "tipo": "formula",
+      "eq_html": "FC <span class=\"op\">=</span> Geração real <span class=\"op\">÷</span> (Capacidade instalada <span class=\"op\">×</span> horas do período)",
+      "eq_texto": "FC = Geração real ÷ (Capacidade instalada × horas do período)",
+      "desc": null,
+      "origem": {
+        "seletor": "div.formula > div.eq",
+        "trecho_inicial": "",
+        "linha_aprox": 2019
+      },
+      "nota": "div.formula sem div.desc na fonte (a classe .desc existe no CSS, linha ~456, mas não é usada aqui). desc = null medido."
+    },
+    {
+      "id": "m01-a08-b07-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Uma usina de <span class=\"hl\">100 MW</span> tem geração máxima teórica em um ano de <span class=\"hl\">100 × 8.760 = 876.000 MWh</span>. Se ela gerou efetivamente <span class=\"hl\">220.000 MWh</span>, o FC foi de 25,1%. Use a calculadora abaixo:",
+      "texto": "Uma usina de 100 MW tem geração máxima teórica em um ano de 100 × 8.760 = 876.000 MWh. Se ela gerou efetivamente 220.000 MWh, o FC foi de 25,1%. Use a calculadora abaixo:",
+      "origem": {
+        "seletor": "h3(8.2) ~ p (a que invoca o instrumento)",
+        "trecho_inicial": "Uma usina de 100 MW tem geração máxima teórica em um ano de ",
+        "linha_aprox": 2023
+      },
+      "vinculos": {
+        "instrumento": "m01-inst-06",
+        "papel": "invoca o instrumento: \"Use a calculadora abaixo:\""
+      }
+    },
+    {
+      "id": "m01-a08-b08-instrumento",
+      "tipo": "instrumento",
+      "ref": "m01-inst-06",
+      "texto": "Calculadora · Fator de capacidade",
+      "origem": {
+        "seletor": "div.instrument (comentário <!-- INSTRUMENT 06: Capacity factor --> na linha 2025)",
+        "trecho_inicial": "Calculadora · Fator de capacidade",
+        "linha_aprox": 2026
+      },
+      "vinculos": {
+        "instrumento": "m01-inst-06"
+      },
+      "nota": "Posição literal na fonte: entre o parágrafo de 8.2 (linha 2023) e o h3 de 8.3 (linha 2056). Especificação completa em instrumentos[0]."
+    },
+    {
+      "id": "m01-a08-b09-titulo",
+      "tipo": "titulo",
+      "numero": "8.3",
+      "texto": "FCs típicos por fonte",
+      "html": "<span class=\"num\">8.3</span>FCs típicos por fonte",
+      "origem": {
+        "seletor": "h3 > span.num(8.3)",
+        "trecho_inicial": "8.3FCs típicos por fonte",
+        "linha_aprox": 2056
+      }
+    },
+    {
+      "id": "m01-a08-b10-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Cada tecnologia tem um fator de capacidade característico, determinado pela física da fonte primária, pela tecnologia de geração e pelo padrão de despacho no sistema:",
+      "texto": "Cada tecnologia tem um fator de capacidade característico, determinado pela física da fonte primária, pela tecnologia de geração e pelo padrão de despacho no sistema:",
+      "origem": {
+        "seletor": "h3(8.3) ~ p",
+        "trecho_inicial": "Cada tecnologia tem um fator de capacidade característico, d",
+        "linha_aprox": 2057
+      }
+    },
+    {
+      "id": "m01-a08-b11-figura",
+      "tipo": "figura",
+      "ref": "m01-a08-fig-01",
+      "texto": null,
+      "origem": {
+        "seletor": "div.cf-chart",
+        "trecho_inicial": "",
+        "linha_aprox": 2059
+      },
+      "vinculos": {
+        "figura": "m01-a08-fig-01"
+      },
+      "nota": "Especificação completa em figuras[0]."
+    },
+    {
+      "id": "m01-a08-b12-destaque",
+      "tipo": "destaque",
+      "tom": "gold",
+      "rotulo": "Por que isso importa para o Brasil",
+      "html": "A matriz brasileira é dominada por hidrelétricas com fator de capacidade médio em torno de 50%, fortemente dependente de regime hidrológico anual. Quando você lê \"a matriz brasileira é 60% hidro\", essa é a participação por <strong>capacidade instalada</strong>. Em <strong>geração efetiva</strong>, a participação flutua ano a ano com chuvas, despacho térmico complementar e estado dos reservatórios. Confundir capacidade com geração — esse é o erro que separa estudante de analista nas conversas sobre matriz elétrica.",
+      "texto": "A matriz brasileira é dominada por hidrelétricas com fator de capacidade médio em torno de 50%, fortemente dependente de regime hidrológico anual. Quando você lê \"a matriz brasileira é 60% hidro\", essa é a participação por capacidade instalada. Em geração efetiva, a participação flutua ano a ano com chuvas, despacho térmico complementar e estado dos reservatórios. Confundir capacidade com geração — esse é o erro que separa estudante de analista nas conversas sobre matriz elétrica.",
+      "origem": {
+        "seletor": "div.callout.gold",
+        "trecho_inicial": "A matriz brasileira é dominada por hidrelétricas com fator d",
+        "linha_aprox": 2090
+      },
+      "nota": "Um único callout: rótulo (div.callout-label, linha 2091) + corpo (p, linha 2092). A fonte não usa a expressão \"Vale lembrar\" nesta aula."
+    }
+  ],
+  "figuras": [
+    {
+      "id": "m01-a08-fig-01",
+      "tipo": "grafico_barras_horizontais_css",
+      "seletor": "div.cf-chart",
+      "titulo": null,
+      "titulo_nota": "A figura não tem título próprio; o h3 imediatamente anterior é \"FCs típicos por fonte\" (linha 2056) e o parágrafo introdutório está na linha 2057.",
+      "unidade": "%",
+      "unidade_nota": "Unidade inferida do rótulo de faixa (\"~85–95%\") — não há eixo nem legenda declarando unidade.",
+      "dados": [
+        {
+          "fonte_geracao": "Nuclear",
+          "faixa_rotulo": "~85–95%",
+          "largura_barra_css_pct": 90,
+          "classe_cor": "nuclear",
+          "origem": {
+            "seletor": "div.cf-bar > div.cf-bar-label",
+            "trecho_inicial": "Nuclear ~85–95%",
+            "linha_aprox": 2061
+          }
+        },
+        {
+          "fonte_geracao": "Carvão (base load)",
+          "faixa_rotulo": "~55–75%",
+          "largura_barra_css_pct": 65,
+          "classe_cor": "fossil",
+          "origem": {
+            "seletor": "div.cf-bar > div.cf-bar-label",
+            "trecho_inicial": "Carvão (base load) ~55–75%",
+            "linha_aprox": 2065
+          }
+        },
+        {
+          "fonte_geracao": "Gás natural CCGT",
+          "faixa_rotulo": "~40–60%",
+          "largura_barra_css_pct": 50,
+          "classe_cor": "fossil",
+          "origem": {
+            "seletor": "div.cf-bar > div.cf-bar-label",
+            "trecho_inicial": "Gás natural CCGT ~40–60%",
+            "linha_aprox": 2069
+          }
+        },
+        {
+          "fonte_geracao": "Hidrelétrica (BR · média)",
+          "faixa_rotulo": "~45–55%",
+          "largura_barra_css_pct": 50,
+          "classe_cor": "hydro",
+          "origem": {
+            "seletor": "div.cf-bar > div.cf-bar-label",
+            "trecho_inicial": "Hidrelétrica (BR · média) ~45–55%",
+            "linha_aprox": 2073
+          }
+        },
+        {
+          "fonte_geracao": "Eólica onshore (NE BR)",
+          "faixa_rotulo": "~40–55%",
+          "largura_barra_css_pct": 48,
+          "classe_cor": "wind",
+          "origem": {
+            "seletor": "div.cf-bar > div.cf-bar-label",
+            "trecho_inicial": "Eólica onshore (NE BR) ~40–55%",
+            "linha_aprox": 2077
+          }
+        },
+        {
+          "fonte_geracao": "Solar fotovoltaica (BR)",
+          "faixa_rotulo": "~20–28%",
+          "largura_barra_css_pct": 24,
+          "classe_cor": "solar",
+          "origem": {
+            "seletor": "div.cf-bar > div.cf-bar-label",
+            "trecho_inicial": "Solar fotovoltaica (BR) ~20–28%",
+            "linha_aprox": 2081
+          }
+        },
+        {
+          "fonte_geracao": "Térmica a óleo (peaker)",
+          "faixa_rotulo": "~5–15%",
+          "largura_barra_css_pct": 10,
+          "classe_cor": "fossil",
+          "origem": {
+            "seletor": "div.cf-bar > div.cf-bar-label",
+            "trecho_inicial": "Térmica a óleo (peaker) ~5–15%",
+            "linha_aprox": 2085
+          }
+        }
+      ],
+      "leitura_largura": "A largura CSS de cada barra (style=\"width: N%\") coincide, nas 7 barras, com o ponto médio arredondado da faixa do rótulo — mas a fonte não declara isso. É dado visual, não dado declarado.",
+      "fonte_citada": null,
+      "fonte_citada_nota": "Nenhuma fonte, nota de rodapé ou p.srcnote acompanha o gráfico. Números sem procedência declarada na fonte (relevante para S4 / C6 \"fonte sob o gráfico\").",
+      "origem": {
+        "seletor": "div.cf-chart",
+        "trecho_inicial": "Nuclear ~85–95%",
+        "linha_aprox": 2059
+      },
+      "linha_fim_aprox": 2088
+    }
+  ],
+  "tabelas": [],
+  "tabelas_nota": "Nenhum <table> dentro da section da Aula 08. A única tabela que menciona a aula é a do § MAP (linha 1346), registrada em aula.pergunta_mapa.",
+  "destaques": [
+    "m01-a08-b12-destaque"
+  ],
+  "vale_lembrar": null,
+  "vale_lembrar_nota": "A expressão \"Vale lembrar\" não ocorre no HTML do M01 (grep sem resultado). O único destaque da aula é o callout.gold (ver destaques).",
+  "termos_lexico": {
+    "vinculo_declarado_pela_fonte": false,
+    "nota": "O glossário da fonte (§ Lex, linhas ~2520-2680) não declara aula por termo. Abaixo: verbetes cujo nome-base (sem parênteses) ocorre como palavra no texto da section da Aula 08 (incluindo o instrumento). Correspondência textual, não posse — ler ocorrencias_contexto antes de ligar (§2 do protocolo).",
+    "total_verbetes_fonte": 38,
+    "candidatos": [
+      {
+        "termo": "Fator de capacidade (FC)",
+        "unidade_rotulo": "Geração",
+        "definicao_html": "Razão entre a geração efetiva e a geração máxima teórica de uma usina, no período. Mede quanto da capacidade instalada foi efetivamente convertida em energia. Difere drasticamente por tecnologia: nuclear 85–95%, hidro BR ~50%, solar fotovoltaica BR ~25%, térmica peaker &lt;15%.",
+        "ocorrencias_contexto": [
+          "Aula 08Capacidade instalada e fator de capacidade 100 MW solar ≠ 100 MW térmica. Comparar",
+          ". Para análise séria, o que importa é o fator de capacidade — quanto a usina efetivamente entrega a",
+          "uziu em um período, medido em MWh. 8.2O fator de capacidade FC = Geração real ÷ (Capacidade instala",
+          "Use a calculadora abaixo: Calculadora · Fator de capacidade INST · 06 Capacidade instalada MW Geraç",
+          "ração no período MWh Horas do período h Fator de capacidade 25,1% Faixa típica de usina solar fotov",
+          "ípicos por fonte Cada tecnologia tem um fator de capacidade característico, determinado pela física",
+          "ileira é dominada por hidrelétricas com fator de capacidade médio em torno de 50%, fortemente depen"
+        ],
+        "n_ocorrencias": 7,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Fator de capacidade (FC)",
+          "linha_aprox": 2576
+        }
+      },
+      {
+        "termo": "Potência",
+        "unidade_rotulo": "W, kW, MW",
+        "definicao_html": "Taxa instantânea de uso, geração ou transformação de energia. Unidade SI é o watt (W). Difere de energia: potência mede velocidade; energia mede volume acumulado.",
+        "ocorrencias_contexto": [
+          "co que ela pode produzir se operasse em potência plena, 24 horas por dia, 365 dias por a"
+        ],
+        "n_ocorrencias": 1,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Potência",
+          "linha_aprox": 2644
+        }
+      }
+    ]
+  },
+  "instrumentos": [
+    {
+      "id": "m01-inst-06",
+      "id_fonte": "INST · 06",
+      "kind_taxonomia": "calculadora",
+      "kind_nota": "docs/alexandria/instrument-taxonomy.md lista \"Calculadora · Fator de capacidade\" em `calculadora` (3 campos numéricos → 1 saída, com fórmula). Confirmado pela marcação: 3 input[type=number], 1 saída numérica + 1 texto de leitura dinâmico.",
+      "titulo": "Calculadora · Fator de capacidade",
+      "pergunta": null,
+      "pergunta_nota": "A prancha do instrumento não tem pergunta própria. As perguntas que a fonte declara para esta aula estão fora do instrumento: (a) a pergunta do § MAP, linha 1346 (ver aula.pergunta_mapa); (b) o enunciado do Ex · 06 (exercicios[0]). Qualquer pergunta de previsão (bar C3/C5) seria DERIVADA — P3/P11 — não extraída.",
+      "vinculos": {
+        "aula": "m01-a08",
+        "exercicio_relacionado": null,
+        "termo": "gl-fator-de-capacidade-fc"
+      },
+      "vinculos_nota": "O vínculo aula↔instrumento é por posição (o div.instrument está dentro da section da Aula 08). O vínculo com o termo é por correspondência textual do título, não declarado pela fonte.",
+      "entradas": [
+        {
+          "id": "i06-cap",
+          "rotulo": "Capacidade instalada",
+          "unidade": "MW",
+          "tipo_input": "number",
+          "padrao": 100,
+          "min": 0,
+          "max": null,
+          "max_nota": "Sem atributo max na fonte.",
+          "step": 10,
+          "origem": {
+            "seletor": "input#i06-cap",
+            "trecho_inicial": "Capacidade instalada MW",
+            "linha_aprox": 2035
+          }
+        },
+        {
+          "id": "i06-gen",
+          "rotulo": "Geração no período",
+          "unidade": "MWh",
+          "tipo_input": "number",
+          "padrao": 220000,
+          "min": 0,
+          "max": null,
+          "max_nota": "Sem atributo max na fonte.",
+          "step": 1000,
+          "origem": {
+            "seletor": "input#i06-gen",
+            "trecho_inicial": "Geração no período MWh",
+            "linha_aprox": 2039
+          }
+        },
+        {
+          "id": "i06-h",
+          "rotulo": "Horas do período",
+          "unidade": "h",
+          "tipo_input": "number",
+          "padrao": 8760,
+          "min": 0,
+          "max": null,
+          "max_nota": "Sem atributo max na fonte.",
+          "step": 24,
+          "origem": {
+            "seletor": "input#i06-h",
+            "trecho_inicial": "Horas do período h",
+            "linha_aprox": 2043
+          }
+        }
+      ],
+      "saidas": [
+        {
+          "id": "i06-fc",
+          "rotulo": "Fator de capacidade",
+          "unidade": "%",
+          "valor_inicial_marcacao": "25,1",
+          "formula_exata_script": [
+            "const C = parseFloat(cap.value) || 0;",
+            "const G = parseFloat(gen.value) || 0;",
+            "const T = parseFloat(h.value) || 1;",
+            "const max = C * T;",
+            "const FC = max > 0 ? G / max : 0;"
+          ],
+          "formula_exibida_na_aula": "FC = Geração real ÷ (Capacidade instalada × horas do período)",
+          "formula_exibida_na_aula_origem": {
+            "seletor": "div.formula > div.eq",
+            "linha_aprox": 2020,
+            "nota": "Está na prosa de 8.2, FORA do div.instrument."
+          },
+          "formatacao_script": "fc.textContent = (FC * 100).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });",
+          "formatacao_descricao": "FC × 100, pt-BR, exatamente 1 casa decimal (minimumFractionDigits: 1, maximumFractionDigits: 1).",
+          "coercao_entradas": {
+            "i06-cap": "const C = parseFloat(cap.value) || 0;",
+            "i06-gen": "const G = parseFloat(gen.value) || 0;",
+            "i06-h": "const T = parseFloat(h.value) || 1;",
+            "nota": "Resíduo do original, sinalizado e não corrigido (§10): `|| 0` faz capacidade/geração vazias virarem 0; `|| 1` faz horas vazias OU zero virarem 1. Com max = 0, FC = 0 (ramo \"muito baixo\")."
+          },
+          "origem": {
+            "seletor": "div.instrument-output > span#i06-fc",
+            "trecho_inicial": "Fator de capacidade 25,1%",
+            "linha_aprox": 2048
+          }
+        }
+      ],
+      "texto_leitura": {
+        "id": "i06-interp",
+        "tipo": "dinamico_por_faixa",
+        "seletor": "div.instrument-note > b#i06-interp",
+        "texto_inicial_marcacao": "Faixa típica de usina solar fotovoltaica em latitudes brasileiras. Compare com FCs típicos abaixo.",
+        "texto_inicial_marcacao_origem": {
+          "seletor": "b#i06-interp",
+          "trecho_inicial": "Faixa típica de usina solar fotovoltaica em latitudes brasil",
+          "linha_aprox": 2051
+        },
+        "ramos": [
+          {
+            "condicao_literal": "if (FC >= 0.85)",
+            "limiar_inferior_fc": 0.85,
+            "texto": "Faixa típica de nuclear ou térmica a carvão operando como base load. Geração praticamente contínua o ano inteiro.",
+            "origem": {
+              "seletor": "script (IIFE INSTRUMENT 06) > calc()",
+              "trecho_inicial": "Faixa típica de nuclear ou térmica a carvão operando como ba",
+              "linha_aprox": 2952
+            }
+          },
+          {
+            "condicao_literal": "else if (FC >= 0.55)",
+            "limiar_inferior_fc": 0.55,
+            "texto": "Faixa de térmica de base (carvão, gás natural CCGT) ou hidrelétrica em ano hidrológico favorável.",
+            "origem": {
+              "seletor": "script (IIFE INSTRUMENT 06) > calc()",
+              "trecho_inicial": "Faixa de térmica de base (carvão, gás natural CCGT) ou hidre",
+              "linha_aprox": 2953
+            }
+          },
+          {
+            "condicao_literal": "else if (FC >= 0.40)",
+            "limiar_inferior_fc": 0.4,
+            "texto": "Faixa típica de hidrelétrica brasileira (média anual) ou eólica em região de bom regime de ventos (Nordeste).",
+            "origem": {
+              "seletor": "script (IIFE INSTRUMENT 06) > calc()",
+              "trecho_inicial": "Faixa típica de hidrelétrica brasileira (média anual) ou eól",
+              "linha_aprox": 2954
+            }
+          },
+          {
+            "condicao_literal": "else if (FC >= 0.25)",
+            "limiar_inferior_fc": 0.25,
+            "texto": "Faixa típica de eólica em regiões de vento moderado ou solar fotovoltaica com tracker em Nordeste BR.",
+            "origem": {
+              "seletor": "script (IIFE INSTRUMENT 06) > calc()",
+              "trecho_inicial": "Faixa típica de eólica em regiões de vento moderado ou solar",
+              "linha_aprox": 2955
+            }
+          },
+          {
+            "condicao_literal": "else if (FC >= 0.15)",
+            "limiar_inferior_fc": 0.15,
+            "texto": "Faixa típica de solar fotovoltaica em latitudes brasileiras. Compare com FCs típicos abaixo.",
+            "origem": {
+              "seletor": "script (IIFE INSTRUMENT 06) > calc()",
+              "trecho_inicial": "Faixa típica de solar fotovoltaica em latitudes brasileiras.",
+              "linha_aprox": 2956
+            }
+          },
+          {
+            "condicao_literal": "else",
+            "limiar_inferior_fc": null,
+            "texto": "Fator de capacidade muito baixo — característico de térmica peaker (acionada apenas em horas críticas).",
+            "origem": {
+              "seletor": "script (IIFE INSTRUMENT 06) > calc()",
+              "trecho_inicial": "Fator de capacidade muito baixo — característico de térmica ",
+              "linha_aprox": 2957
+            }
+          }
+        ],
+        "nota": "O texto do div.instrument-note NÃO é nota estática: é o elemento que calc() sobrescreve (interp.textContent) em cada input e uma vez no carregamento (linha 2960 `calc();`). O texto da marcação é só o valor antes de o script rodar."
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i06-cap": 100,
+          "i06-gen": 220000,
+          "i06-h": 8760
+        },
+        "origem": "atributos value dos inputs (linhas 2035, 2039, 2043); repetidos na prosa de 8.2 (linha 2023: 100 MW, 8.760 h, 220.000 MWh, 25,1%).",
+        "saida_calculada_pelo_script": {
+          "i06-fc": "25,1",
+          "fc_bruto": 0.2511415525114155
+        },
+        "ramo_ativo_pelo_script": "else if (FC >= 0.25)",
+        "texto_leitura_pelo_script": "Faixa típica de eólica em regiões de vento moderado ou solar fotovoltaica com tracker em Nordeste BR.",
+        "nota": "Calculado executando a mesma lógica das linhas 2945-2950 com os valores-padrão. Ver divergência DIV-01: o texto da marcação (linha 2051) é de outro ramo."
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "A fonte não cita procedência para o cenário-padrão (100 MW / 220.000 MWh / 8.760 h) nem para os limiares das faixas (0,85 / 0,55 / 0,40 / 0,25 / 0,15). 8.760 = horas de um ano não bissexto (implícito em \"100 × 8.760\" na linha 2023; não declarado como tal).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada (P6). O instrumento não tem previsão, gabarito nem correção; não existe \"dentro/fora\".",
+      "figura_prometida": null,
+      "figura_prometida_nota": "O título (\"Calculadora · …\") não promete forma desenhada. O texto do ramo ≥0,15 manda comparar \"com FCs típicos abaixo\" — referência à figura m01-a08-fig-01 (div.cf-chart), que vive fora do instrumento.",
+      "origem": {
+        "seletor": "section.aula(Aula 08) div.instrument",
+        "trecho_inicial": "Calculadora · Fator de capacidade INST · 06",
+        "linha_aprox": 2026
+      },
+      "linha_fim_aprox": 2054,
+      "script_origem": {
+        "seletor": "script: IIFE \"INSTRUMENT 06: Capacity Factor\"",
+        "linha_aprox": 2935,
+        "linha_fim_aprox": 2962
+      }
+    }
+  ],
+  "invocacoes_no_texto": [
+    {
+      "id": "m01-a08-inv-01",
+      "alvo": "m01-inst-06",
+      "tipo": "invocacao_direta",
+      "texto": "Use a calculadora abaixo:",
+      "bloco": "m01-a08-b07-paragrafo",
+      "origem": {
+        "seletor": "h3(8.2) ~ p",
+        "trecho_inicial": "Use a calculadora abaixo:",
+        "linha_aprox": 2023
+      },
+      "posicao_instrumento": "imediatamente depois deste parágrafo (linhas 2025-2054), antes do h3 8.3"
+    },
+    {
+      "id": "m01-a08-inv-02",
+      "alvo": "m01-a08-fig-01",
+      "tipo": "remissao_do_instrumento_para_figura",
+      "texto": "Compare com FCs típicos abaixo.",
+      "bloco": null,
+      "origem": {
+        "seletor": "b#i06-interp (texto inicial e ramo FC >= 0.15)",
+        "trecho_inicial": "Compare com FCs típicos abaixo.",
+        "linha_aprox": 2051
+      },
+      "posicao_instrumento": "o texto de leitura do INST·06 remete ao div.cf-chart (linha 2059), que vem depois do h3 8.3"
+    }
+  ],
+  "exercicios": [
+    {
+      "id": "m01-ex-06",
+      "tipo": "discursiva_com_gabarito",
+      "tag_fonte": "Ex · 06 · Aula 08",
+      "vinculo_declarado": {
+        "aula": "m01-a08",
+        "como": "span.exercise-tag \"… · Aula 08\" (tag de posse, §4 do protocolo)"
+      },
+      "enunciado_html": "Uma usina solar de <b>50 MW</b> gerou <b>131.400 MWh</b> em um ano (8.760 horas). Calcule o fator de capacidade. É um número razoável para solar no Brasil?",
+      "enunciado_texto": "Uma usina solar de 50 MW gerou 131.400 MWh em um ano (8.760 horas). Calcule o fator de capacidade. É um número razoável para solar no Brasil?",
+      "resposta_referencia_html": "Geração máxima teórica: <span class=\"calc\">50 × 8.760 = 438.000 MWh</span>. FC: <span class=\"calc\">131.400 ÷ 438.000 = 0,30 = 30%</span>. <b>Interpretação:</b> 30% é um pouco acima da média típica brasileira (~20–28%) — sugere usina bem localizada (Nordeste ou regiões de alta irradiação) e/ou tecnologia mais moderna com tracker solar. Para comparação: hidrelétrica brasileira média opera em torno de 50% de FC; nuclear opera 85–95%; térmica peaker pode ficar abaixo de 15%.",
+      "resposta_referencia_texto": "Geração máxima teórica: 50 × 8.760 = 438.000 MWh. FC: 131.400 ÷ 438.000 = 0,30 = 30%. Interpretação: 30% é um pouco acima da média típica brasileira (~20–28%) — sugere usina bem localizada (Nordeste ou regiões de alta irradiação) e/ou tecnologia mais moderna com tracker solar. Para comparação: hidrelétrica brasileira média opera em torno de 50% de FC; nuclear opera 85–95%; térmica peaker pode ficar abaixo de 15%.",
+      "criterio": null,
+      "criterio_nota": "Sem critério por exercício na fonte. O único critério declarado é de nível do § Drill (todos os exercícios), citado em criterio_modulo_drill.",
+      "criterio_modulo_drill": {
+        "texto": "Resolva cada exercício mentalmente ou no papel antes de revelar a resposta. Os exercícios alcançam todas as nove aulas. O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+        "origem": {
+          "seletor": "§ Drill > p",
+          "trecho_inicial": "Resolva cada exercício mentalmente ou no papel antes de reve",
+          "linha_aprox": 2389
+        }
+      },
+      "mecanica_fonte": "button.exercise-toggle \"Revelar gabarito\" (onclick toggleAns) — referência revelável sem tentativa registrada (ver bar C7).",
+      "vinculos": {
+        "aula": "m01-a08",
+        "instrumento": null,
+        "instrumento_nota": "Não declarado. O exercício usa a mesma fórmula do INST·06 (50 MW, 131.400 MWh, 8.760 h), mas a fonte não liga um ao outro.",
+        "termo": null
+      },
+      "origem": {
+        "seletor": "§ Drill > div.exercise:nth-of-type(6)",
+        "trecho_inicial": "Ex · 06 · Aula 08 Uma usina solar de 50 MW gerou 131.400 MWh em um ano (8.760 ",
+        "linha_aprox": 2436
+      },
+      "linha_fim_aprox": 2443
+    }
+  ],
+  "relacionados_nao_vinculados": [
+    {
+      "id": "m01-quiz-q08",
+      "tipo": "questao_quiz_multipla_escolha",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Sem tag de aula no array `questions` do script. Tema coincide com a Aula 08; posse NÃO declarada — pertence à avaliação do módulo (§ Quiz), não a esta aula. Listado só para rastreio.",
+      "posicao_no_quiz": 8,
+      "total_questoes_no_array": 10,
+      "enunciado": "Uma usina solar de 50 MW gerou 100.000 MWh em um ano (8.760 h). Qual o fator de capacidade?",
+      "opcoes": [
+        "12,3%",
+        "22,8%",
+        "50,0%",
+        "11,4%"
+      ],
+      "indice_correto": 1,
+      "opcao_correta": "22,8%",
+      "feedback": "FC = 100.000 ÷ (50 × 8.760) = 100.000 ÷ 438.000 = 22,8%. Está dentro da faixa típica de solar fotovoltaica em latitudes brasileiras (~20–28%). Para comparação: hidro BR ~50%, nuclear 85–95%.",
+      "criterio_quiz_fonte": {
+        "texto": "Quiz de fluência. Cada resposta tem feedback explicativo. O critério de domínio do módulo é acertar pelo menos <strong>8 de 10</strong> sem consultar.",
+        "origem": {
+          "seletor": "§ Quiz > p",
+          "linha_aprox": 2474
+        }
+      },
+      "origem": {
+        "seletor": "script: const questions = [...]",
+        "trecho_inicial": "Uma usina solar de 50 MW gerou 100.000 MWh em um ano (8.760 ",
+        "linha_aprox": 3130
+      }
+    },
+    {
+      "id": "m01-checklist-fc",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática.",
+      "texto": "Diferenciar capacidade instalada e fator de capacidade por fonte.",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Diferenciar capacidade instalada e fator de capacidade por f",
+        "linha_aprox": 2509
+      }
+    }
+  ],
+  "cobertura_texto_por_token": {
+    "tokens_fonte_sem_instrumento": 349,
+    "tokens_casados": 345,
+    "pct": 98.9,
+    "tokens_nao_casados": [
+      "08capacidade",
+      "1capacidade",
+      "2o",
+      "3fcs"
+    ],
+    "nota": "Denominador = texto da section 2006-2095 sem o div.instrument (2025-2054), §5. Os 4 tokens não casados são artefato do medidor: a remoção de tags cola spans adjacentes (\"08\" + \"Capacidade\", \"8.1\" + \"Capacidade\", \"8.2\" + \"O\", \"8.3\" + \"FCs\"); as palavras estão presentes nos campos numero/texto. Cobertura efetiva: 100%."
+  },
+  "divergencias": [
+    {
+      "id": "DIV-01",
+      "tipo": "fonte_contraditoria_interna",
+      "o_que": "Texto de leitura do INST·06 no cenário-padrão.",
+      "leitura_a": {
+        "texto": "Faixa típica de usina solar fotovoltaica em latitudes brasileiras. Compare com FCs típicos abaixo.",
+        "origem": {
+          "seletor": "b#i06-interp (marcação)",
+          "linha_aprox": 2051
+        },
+        "argumento": "É o texto que o autor escreveu para o estado inicial (25,1%); coerente com a figura, que dá solar BR ~20–28%."
+      },
+      "leitura_b": {
+        "texto": "Faixa típica de eólica em regiões de vento moderado ou solar fotovoltaica com tracker em Nordeste BR.",
+        "origem": {
+          "seletor": "script calc(), ramo else if (FC >= 0.25)",
+          "linha_aprox": 2955
+        },
+        "argumento": "calc() roda no carregamento (linha 2960); com 100/220000/8760, FC = 0.251142 ≥ 0,25, então a marcação é sobrescrita por este texto e é ele que o learner vê."
+      },
+      "nota_texto": "Nenhuma das duas leituras coincide com o texto de marcação E com um ramo ao mesmo tempo: a marcação (linha 2051) diz \"Faixa típica de usina solar fotovoltaica em latitudes brasileiras. Compare com FCs típicos abaixo.\"; o ramo else if (FC >= 0.15) (linha 2956) diz \"Faixa típica de solar fotovoltaica em latitudes brasileiras. Compare com FCs típicos abaixo.\" (sem \"usina\"). A marcação não é texto de nenhum ramo do script. [Acrescentado na verificação.]",
+      "decisao": "não escolhida — registrar para reconciliação curricular (P8)."
+    },
+    {
+      "id": "DIV-02",
+      "tipo": "fonte_contraditoria_interna",
+      "o_que": "Faixas do script do INST·06 × faixas da figura cf-chart (mesma aula).",
+      "leitura_a": {
+        "texto": "Figura: Nuclear ~85–95% | Carvão (base load) ~55–75% | Gás natural CCGT ~40–60% | Hidrelétrica (BR · média) ~45–55% | Eólica onshore (NE BR) ~40–55% | Solar fotovoltaica (BR) ~20–28% | Térmica a óleo (peaker) ~5–15%",
+        "origem": {
+          "seletor": "div.cf-chart",
+          "linha_aprox": 2059
+        }
+      },
+      "leitura_b": {
+        "texto": "Script: if (FC >= 0.85) → Faixa típica de nuclear ou térmica a carvão operando como base load. Geração praticamente contínua o ano inteiro. | else if (FC >= 0.55) → Faixa de térmica de base (carvão, gás natural CCGT) ou hidrelétrica em ano hidrológico favorável. | else if (FC >= 0.40) → Faixa típica de hidrelétrica brasileira (média anual) ou eólica em região de bom regime de ventos (Nordeste). | else if (FC >= 0.25) → Faixa típica de eólica em regiões de vento moderado ou solar fotovoltaica com tracker em Nordeste BR. | else if (FC >= 0.15) → Faixa típica de solar fotovoltaica em latitudes brasileiras. Compare com FCs típicos abaixo. | else → Fator de capacidade muito baixo — característico de térmica peaker (acionada apenas em horas críticas).",
+        "origem": {
+          "seletor": "script calc()",
+          "linha_aprox": 2952
+        }
+      },
+      "exemplos": [
+        "Solar FV BR ~20–28% na figura; no script, FC entre 0,25 e 0,28 cai no ramo \"eólica em vento moderado ou solar com tracker\", não no ramo \"solar fotovoltaica em latitudes brasileiras\" (0,15–0,25).",
+        "Carvão ~55–75% na figura; no script \"térmica a carvão operando como base load\" está no ramo ≥0,85.",
+        "Gás CCGT ~40–60% na figura; no script CCGT aparece só no ramo ≥0,55.",
+        "Hidrelétrica BR ~45–55% na figura; o script põe hidrelétrica média em 0,40–0,55 e \"hidrelétrica em ano hidrológico favorável\" em ≥0,55 — compatível, mas o limite 0,55 corta a faixa da figura."
+      ],
+      "decisao": "não escolhida — as duas escalas coexistem na fonte."
+    },
+    {
+      "id": "DIV-03",
+      "tipo": "fonte_valor_pontual_x_faixa",
+      "o_que": "FC típico de solar e peaker aparece como ponto num lugar e faixa em outro.",
+      "leitura_a": {
+        "texto": "Razão entre a geração efetiva e a geração máxima teórica de uma usina, no período. Mede quanto da capacidade instalada foi efetivamente convertida em energia. Difere drasticamente por tecnologia: nuclear 85–95%, hidro BR ~50%, solar fotovoltaica BR ~25%, térmica peaker <15%.",
+        "origem": {
+          "seletor": "§ Lex Fator de capacidade (FC)",
+          "linha_aprox": 2577
+        }
+      },
+      "leitura_b": {
+        "texto": "Figura: Solar fotovoltaica (BR) ~20–28%; Térmica a óleo (peaker) ~5–15%",
+        "origem": {
+          "seletor": "div.cf-chart",
+          "linha_aprox": 2081
+        }
+      },
+      "decisao": "não escolhida — compatíveis (25% dentro de 20–28%), mas não idênticas; \"peaker <15%\" (léxico) × \"~5–15%\" (figura) × \"abaixo de 15%\" (gabarito Ex 06)."
+    },
+    {
+      "id": "DIV-04",
+      "tipo": "fonte_sigla_ambigua",
+      "o_que": "A sigla FC designa duas grandezas no mesmo módulo.",
+      "leitura_a": {
+        "texto": "Fator de capacidade (FC)",
+        "origem": {
+          "seletor": "§ Lex",
+          "linha_aprox": 2576
+        },
+        "uso": "Aula 08 (formula e prosa de 8.2)"
+      },
+      "leitura_b": {
+        "texto": "Fator de carga (FC)",
+        "origem": {
+          "seletor": "§ Lex",
+          "linha_aprox": 2580
+        },
+        "uso": "Aula 05 e quiz (\"Qual o fator de carga?\" → \"FC = Demanda média ÷ Demanda máxima\")"
+      },
+      "decisao": "não escolhida — ligação termo↔aula por sigla \"FC\" é ambígua; ligar pelo nome completo."
+    },
+    {
+      "id": "DIV-05",
+      "tipo": "prosa_x_markup_modulo",
+      "o_que": "Afirmação do § Drill sobre cobertura dos exercícios.",
+      "leitura_a": {
+        "texto": "Resolva cada exercício mentalmente ou no papel antes de revelar a resposta. Os exercícios alcançam todas as nove aulas. O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+        "origem": {
+          "seletor": "§ Drill > p",
+          "linha_aprox": 2389
+        }
+      },
+      "leitura_b": {
+        "texto": "Ex · 01 · Aula 01 | Ex · 02 · Aula 02 | Ex · 03 · Aula 04 | Ex · 04 · Aula 05 | Ex · 05 · Aula 07 | Ex · 06 · Aula 08 | Ex · 07 · 3 níveis · Aula 05 | Ex · 08 · Síntese · Diagnóstico inicial",
+        "origem": {
+          "seletor": "span.exercise-tag (8 ocorrências)",
+          "linha_aprox": 2392,
+          "linha_fim_aprox": 2457
+        },
+        "argumento": "As tags cobrem as Aulas 01, 02, 04, 05, 07 e 08 (mais uma síntese); Aulas 03, 06 e 09 ficam sem exercício com tag."
+      },
+      "decisao": "não escolhida — markup vence para posse (§5), prosa registrada. Não afeta a posse do Ex 06 pela A08."
+    },
+    {
+      "id": "DIV-06",
+      "tipo": "criterio_contraditorio_modulo (P5)",
+      "o_que": "Critério do quiz (fora da aula, mas a questão 8 é sobre FC).",
+      "leitura_a": {
+        "texto": "Quiz de fluência. Cada resposta tem feedback explicativo. O critério de domínio do módulo é acertar pelo menos <strong>8 de 10</strong> sem consultar.",
+        "origem": {
+          "seletor": "§ Quiz > p",
+          "linha_aprox": 2474
+        }
+      },
+      "leitura_b": {
+        "texto": "if (correct >= 9) scoreMsg.textContent = 'Domínio sólido. Pronto para o Módulo 02.'; else if (correct >= 7) scoreMsg.textContent = 'Bom. Revise os pontos errados, depois avance para o próximo módulo.'; else if (correct >= 5) scoreMsg.textContent = 'Domínio parcial. Volte às aulas onde errou antes de avançar.'; else scoreMsg.textContent = 'Refaça o estudo. O critério de domínio é 8/10 — sem atalho.';",
+        "origem": {
+          "seletor": "script quiz, mensagens de pontuação",
+          "linha_aprox": 3199
+        },
+        "argumento": "Com 8/10 o script diz \"Bom. Revise os pontos errados, depois avance…\", não \"Domínio sólido\" (≥9)."
+      },
+      "decisao": "não escolhida — P5: preservar critério literal até a reconciliação."
+    }
+  ],
+  "comparacao_codigo": {
+    "arquivos": [
+      "src/lib/data/alexandria-modulo-01-content.ts (INSTRUMENTOS_MODULO_01 inst-06 ~l.115-128; MODULO_01_LEAD aula-01-08 ~l.170; MODULO_01_CORPO aula-01-08 ~l.302-312; MODULO_01_AULAS aula-01-08 ~l.522-548)",
+      "src/lib/data/alexandria-instrument-calculators.ts (inst-06 ~l.1772-1804; helpers n/nOu ~l.42-53)",
+      "src/lib/data/alexandria-glossario.ts (gl-fator-de-capacidade-fc ~l.155; gl-potencia ~l.291)",
+      "src/lib/data/alexandria-curriculo.ts (só agrega MODULO_01_*; nada específico da A08)",
+      "src/components/alexandria/viewer/AulaViewer.tsx ~l.111-120 e InstrumentPanel.tsx ~l.32, ~l.300-346 (lidos para entender o efeito das divergências; não são fonte)"
+    ],
+    "verificacoes_programaticas": {
+      "lead_verbatim": true,
+      "p_8_1_a_verbatim": true,
+      "p_8_1_b_verbatim": true,
+      "p_8_2_verbatim": false,
+      "p_8_3_verbatim": true,
+      "callout_corpo_verbatim": true,
+      "formula_eq_texto_no_corpo": false,
+      "cf_chart_algum_rotulo_no_corpo": false,
+      "ex_enunciado_verbatim": true,
+      "ex_gabarito_verbatim": true,
+      "ex_tag_verbatim": true,
+      "inst_titulo_verbatim": true,
+      "inst_nota_inicial_verbatim_como_note": true,
+      "ramos_verbatim_no_calculador": true,
+      "span_orfao_no_corpo_8_2": 3
+    },
+    "conforme": [
+      "Lead (p.lead) verbatim em MODULO_01_LEAD[\"aula-01-08\"].",
+      "Parágrafos 8.1 (dois), 8.3 e corpo do callout verbatim no corpo.",
+      "Títulos 8.1/8.2/8.3 com número e texto corretos.",
+      "Título da aula = texto do h2 (sem o <em> em volta de \"≠\" — campo de texto puro, §14) e subtítulo = marcador.",
+      "INST·06: título, ids dos 3 campos, rótulos, unidades, padrões (100 / 220000 / 8760), min 0, steps (10 / 1000 / 24), ausência de max, id/rótulo/unidade da saída.",
+      "Lógica do cálculo e os 6 textos de faixa verbatim, na mesma ordem e com os mesmos limiares; `|| 1` das horas preservado e sinalizado.",
+      "Ex · 06: tag, enunciado e gabarito verbatim; vinculado à aula-01-08 (tag de posse declarada).",
+      "durationMinutes/difficulty/video = null, coerente com a fonte."
+    ],
+    "divergencias": [
+      {
+        "id": "COD-01",
+        "gravidade": "alta",
+        "onde": "MODULO_01_CORPO[\"aula-01-08\"]",
+        "o_que": "A figura div.cf-chart (7 barras, faixas de FC por fonte) não existe no corpo portado. Nenhum bloco a representa — perda silenciosa de dado (§5, §12 \"desenho não porta\" exige ao menos o conteúdo numérico/textual).",
+        "fonte": "linhas 2059-2088"
+      },
+      {
+        "id": "COD-02",
+        "gravidade": "alta",
+        "onde": "AulaViewer.tsx + MODULO_01_AULAS",
+        "o_que": "O instrumento não tem posição no fluxo: fica em `aula.instruments` e é renderizado depois de TODA a apostila. Na fonte ele está entre o parágrafo de 8.2 (\"Use a calculadora abaixo:\") e o h3 8.3. Viola bar C5 (posição no ponto da prosa) e Regra-mãe 1; o \"abaixo\" da prosa passa a apontar para a seção 8.3 e o callout.",
+        "fonte": "linhas 2023-2056"
+      },
+      {
+        "id": "COD-03",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-08\"] bloco de 8.2",
+        "o_que": "Parágrafo de 8.2 não é verbatim: os três <span class=\"hl\"> de abertura foram removidos mas os três </span> de fechamento ficaram (HTML malformado: \"Uma usina de 100 MW</span> tem …\"). Contagem de </span> no bloco da aula no código: 3.",
+        "fonte": "linha 2023"
+      },
+      {
+        "id": "COD-04",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-08\"]",
+        "o_que": "O bloco div.formula (eq \"FC = Geração real ÷ (Capacidade instalada × horas do período)\") não foi portado, embora AulaBloco tenha kind \"formula\".",
+        "fonte": "linhas 2019-2021"
+      },
+      {
+        "id": "COD-05",
+        "gravidade": "média",
+        "onde": "INSTRUMENTOS_MODULO_01 inst-06 .formula",
+        "o_que": "formula = \"FC = geração ÷ (capacidade × horas)\" é paráfrase (minúsculas, sem \"real\", \"instalada\", \"do período\") e não existe no HTML. O texto literal da fonte é o da div.formula da prosa (fora do instrumento). O comentário do calculador repete a paráfrase como \"Original:\".",
+        "fonte": "linha 2020"
+      },
+      {
+        "id": "COD-06",
+        "gravidade": "média",
+        "onde": "INSTRUMENTOS_MODULO_01 inst-06 .note + InstrumentPanel",
+        "o_que": "O texto inicial de b#i06-interp foi portado como `note` ESTÁTICA (envolto em <b>). Na fonte é o próprio elemento de leitura, sobrescrito por calc(). O painel renderiza `veredito` e `note` juntos: no cenário-padrão aparecem ao mesmo tempo o ramo ≥0,25 (\"…eólica … ou solar fotovoltaica com tracker em Nordeste BR.\") e o texto da marcação (\"Faixa típica de usina solar fotovoltaica…\" — que não é o texto de nenhum ramo; o ramo ≥0,15 não tem \"usina\"), e a note continua fixa para qualquer entrada. Ver também DIV-01.",
+        "fonte": "linhas 2050-2052, 2951-2960"
+      },
+      {
+        "id": "COD-07",
+        "gravidade": "baixa",
+        "onde": "InstrumentPanel.tsx fmt()",
+        "o_que": "Formatação da saída diverge: fonte usa minimumFractionDigits 1 / maximumFractionDigits 1 (\"25,1\"; \"30,0\"); o painel usa maximumFractionDigits 2 sem mínimo (\"25,11\"; \"30\").",
+        "fonte": "linha 2950"
+      },
+      {
+        "id": "COD-08",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-08\"] callout",
+        "o_que": "callout.gold portado como nota {label: null, html: \"Por que isso importa para o Brasil\"} seguida de um paragrafo solto com o corpo. Na fonte o texto \"Por que isso importa para o Brasil\" é o RÓTULO (div.callout-label) e o parágrafo é o CORPO do callout. Hierarquia invertida/partida.",
+        "fonte": "linhas 2090-2093"
+      },
+      {
+        "id": "COD-09",
+        "gravidade": "baixa",
+        "onde": "MODULO_01_AULAS aula-01-08 activities[0].points",
+        "o_que": "`points: 1` não tem origem na fonte (o § Drill não pontua exercícios). Valor atribuído pelo código.",
+        "fonte": "linhas 2436-2443"
+      },
+      {
+        "id": "COD-10",
+        "gravidade": "baixa",
+        "onde": "alexandria-glossario.ts aulaIds",
+        "o_que": "aulaIds [\"aula-01-08\"] em \"Fator de capacidade (FC)\" e a inclusão de \"aula-01-08\" em \"Potência\" são derivações do código (a fonte não declara aula por termo). \"Potência\" casa só por \"potência plena\" (8.1), não pelo conceito — ver termos_lexico.",
+        "fonte": "linhas 2576-2577, 2644"
+      },
+      {
+        "id": "COD-11",
+        "gravidade": "baixa",
+        "onde": "alexandria-instrument-calculators.ts n()",
+        "o_que": "n() usa Number(v) e o original usa parseFloat(v) || 0. Diferem para strings com sufixo não numérico (\"12abc\": parseFloat → 12, Number → 0). Com input[type=number] a diferença é praticamente inalcançável; registrada por fidelidade (§10).",
+        "fonte": "linhas 2945-2946"
+      },
+      {
+        "id": "COD-12",
+        "gravidade": "informativa",
+        "onde": "ids",
+        "o_que": "Código usa \"inst-06\", \"ex-06\", \"aula-01-08\"; esta extração usa \"m01-inst-06\", \"m01-ex-06\", \"m01-a08\" (ids estáveis com prefixo de módulo). Mapeamento 1:1.",
+        "fonte": null
+      }
+    ]
+  },
+  "contagens": {
+    "blocos": 12,
+    "blocos_por_tipo": {
+      "lead": 1,
+      "titulo": 3,
+      "paragrafo": 4,
+      "formula": 1,
+      "instrumento": 1,
+      "figura": 1,
+      "destaque": 1
+    },
+    "secoes_numeradas": [
+      "8.1",
+      "8.2",
+      "8.3"
+    ],
+    "figuras": 1,
+    "barras_figura": 7,
+    "tabelas": 0,
+    "destaques": 1,
+    "vale_lembrar": 0,
+    "instrumentos": 1,
+    "entradas_instrumento": 3,
+    "saidas_numericas_instrumento": 1,
+    "ramos_texto_leitura": 6,
+    "invocacoes_no_texto": 2,
+    "exercicios_vinculados": 1,
+    "relacionados_nao_vinculados": 2,
+    "termos_lexico_candidatos": 2,
+    "verbetes_lexico_modulo": 38,
+    "divergencias_fonte": 6,
+    "divergencias_codigo": 12
+  }
+}

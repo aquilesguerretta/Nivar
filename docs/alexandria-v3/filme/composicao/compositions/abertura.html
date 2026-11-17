@@ -1,0 +1,35 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" /></head>
+<body>
+  <template>
+    <style>
+      #root { position: absolute; inset: 0; background: var(--tinta); }
+      #ab-grupo { position: absolute; left: 140px; top: 360px; width: 760px; color: var(--papel); }
+      #ab-tit { font-size: 168px; font-weight: 380; letter-spacing: -0.015em; line-height: 1; }
+      #ab-sub { margin-top: 18px; font-size: 46px; font-style: italic; font-weight: 340; color: rgba(242,236,223,0.88); }
+      #ab-fio { display: block; width: 72px; height: 1px; margin-top: 40px; background: var(--ouro-claro); }
+      #ab-num { margin-top: 18px; line-height: 1.7; color: var(--ouro-claro); }
+    </style>
+    <!-- Trecho reservado: esta cena pode ser substituída pela fala do Fundador (ver index.html). -->
+    <div id="root" data-composition-id="abertura" data-width="1920" data-height="1080">
+      <video id="ab-v" class="plano clip" src="assets/v1.mp4" muted playsinline data-start="0" data-duration="7.6" data-track-index="0"></video>
+      <div id="ab-grupo">
+        <h1 id="ab-tit" class="serif">Alexandria</h1>
+        <p id="ab-sub" class="serif">Um currículo de energia.</p>
+        <span id="ab-fio"></span>
+        <p id="ab-num" class="mono"><span class="bloco">17 módulos · 3 trilhas</span><span class="bloco">141 aulas · 165 instrumentos</span></p>
+      </div>
+      <div class="selo">GRAVURA GERADA</div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power2.out";
+      tl.fromTo("#ab-tit", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1.4, ease: E }, 0.6);
+      tl.fromTo("#ab-sub", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 1.2, ease: E }, 1.8);
+      tl.fromTo("#ab-fio", { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.9, ease: E }, 3.0);
+      tl.fromTo("#ab-num", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: E }, 3.4);
+      tl.to("#ab-grupo", { opacity: 0, duration: 0.6, ease: "sine.inOut" }, 6.6);
+      window.__timelines["abertura"] = tl;
+    </script>
+  </template>
+</body></html>

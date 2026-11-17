@@ -1,0 +1,1417 @@
+{
+  "modulo": "modulo-02",
+  "titulo_modulo": "Como Funciona uma Rede Elétrica",
+  "arquivos_fonte": [
+    "src/lib/data/alexandria-modulo-02-content.ts",
+    "docs/alexandria-v2/extraction/m02/modulo.md",
+    "docs/alexandria-v2/extraction/m02/aparato.md"
+  ],
+  "aulas": [
+    {
+      "numero": 1,
+      "chave": "aula-02-01",
+      "titulo": "Quatro camadas, um organismo."
+    },
+    {
+      "numero": 2,
+      "chave": "aula-02-02",
+      "titulo": "A matemática que desenha o sistema."
+    },
+    {
+      "numero": 3,
+      "chave": "aula-02-03",
+      "titulo": "As articulações do sistema."
+    },
+    {
+      "numero": 4,
+      "chave": "aula-02-04",
+      "titulo": "A demanda respira — e o operador respira junto."
+    },
+    {
+      "numero": 5,
+      "chave": "aula-02-05",
+      "titulo": "Quem liga agora — e por quê."
+    },
+    {
+      "numero": 6,
+      "chave": "aula-02-06",
+      "titulo": "A sala que enxerga um continente."
+    },
+    {
+      "numero": 7,
+      "chave": "aula-02-07",
+      "titulo": "Os bastidores que ninguém vê — e todo mundo paga."
+    },
+    {
+      "numero": 8,
+      "chave": "aula-02-08",
+      "titulo": "Os dez segundos que decidem tudo."
+    },
+    {
+      "numero": 9,
+      "chave": "aula-02-09",
+      "titulo": "A energia que some — e quem paga por ela."
+    },
+    {
+      "numero": 10,
+      "chave": "aula-02-10",
+      "titulo": "Onde a infraestrutura encosta no dinheiro."
+    }
+  ],
+  "mencoes": [
+    {
+      "aula": 1,
+      "tipo": "outro",
+      "nome": "Sistema Interligado Nacional (SIN)",
+      "trecho": "O <strong>Sistema Interligado Nacional (SIN)</strong> é a malha que conecta geração e carga em escala continental — um sistema hidro-termo-eólico de grande porte, com predominância histórica de hidrelétricas e múltiplos proprietários, na definição do próprio ONS.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 235,
+      "contexto": "A seção 1.2 define o SIN como a malha que liga geração e carga em escala continental.",
+      "ganho_no_mapa": "Ver a malha inteira sobre o país mostra o que significa escala continental e por onde a energia pode circular.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 1,
+      "tipo": "submercado",
+      "nome": "Quatro subsistemas do SIN (Sudeste/Centro-Oeste, Sul, Nordeste e Norte)",
+      "trecho": "Atende a quase totalidade do consumo do país (a referência usual é da ordem de 99% da carga), dividido em <strong>quatro subsistemas</strong>: Sudeste/Centro-Oeste, Sul, Nordeste e a maior parte do Norte.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 235,
+      "contexto": "A mesma seção divide o SIN em quatro subsistemas e diz quanto do consumo do país ele atende.",
+      "ganho_no_mapa": "Com os quatro subsistemas coloridos, o aluno vê as fronteiras e o tamanho relativo de cada um.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 1,
+      "tipo": "submercado",
+      "nome": "Quatro submercados de preço (PLD)",
+      "trecho": "A fronteira física da rede e a fronteira econômica do preço são a mesma fronteira.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 236,
+      "contexto": "A aula afirma que os quatro subsistemas são os quatro submercados onde o PLD é apurado.",
+      "ganho_no_mapa": "O mesmo desenho serve para a rede e para o preço: o aluno vê que a linha que separa regiões separa também PLDs.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 1,
+      "tipo": "intercambio",
+      "nome": "Complementaridade entre regiões (Sul e Nordeste)",
+      "trecho": "Porque a interligação permite transferir energia entre regiões, aproveitar a <strong>complementaridade</strong> entre fontes — chove no Sul quando seca no Nordeste, venta à noite quando o sol se põe —, reduzir o custo total e aumentar a confiabilidade.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 237,
+      "contexto": "A aula justifica a interligação do país pela complementaridade entre regiões e fontes.",
+      "ganho_no_mapa": "Ver Sul e Nordeste ligados pelos troncos mostra como a chuva de um lado cobre a seca do outro.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 1,
+      "tipo": "intercambio",
+      "nome": "Interligações do SIN (socorro entre regiões e caminho da falha)",
+      "trecho": "a mesma malha que permite uma região socorrer a outra é o caminho pelo qual uma falha viaja",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 237,
+      "contexto": "A aula antecipa o tema da Aula 08: a interligação dá robustez no dia a dia e risco sistêmico no dia extremo.",
+      "ganho_no_mapa": "Os troncos entre regiões aparecem como pontes: o aluno vê por onde o socorro e a falha podem passar.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 1,
+      "tipo": "sistema_isolado",
+      "nome": "Sistemas isolados da região Norte",
+      "trecho": "Fora do SIN ficam os <strong>sistemas isolados</strong> — concentrados na região Norte, supridos majoritariamente por térmicas locais a diesel e gás, com combustível chegando por logística fluvial complexa.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 239,
+      "contexto": "A seção 1.3 descreve os sistemas isolados, fora do SIN, supridos por térmicas locais com combustível levado por rio.",
+      "ganho_no_mapa": "Ver onde a malha termina e os sistemas isolados começam explica a logística fluvial e o custo da energia ali.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 1,
+      "tipo": "linha",
+      "nome": "Rede Básica (linhas de 230 kV ou mais)",
+      "trecho": "a Rede Básica tem algo na casa de 180–190 mil quilômetros de linhas, pelo dado do ONS",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 241,
+      "contexto": "A nota de números vivos ensina a citar a extensão da Rede Básica em ordem de grandeza e com atribuição.",
+      "ganho_no_mapa": "Acender só a Rede Básica dá ao aluno a noção visual de quanto fio cabe nessa ordem de grandeza.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 1,
+      "tipo": "linha",
+      "nome": "DIT — Demais Instalações de Transmissão (69 a 138 kV)",
+      "trecho": "Instalações de transmissoras abaixo de 230 kV — tipicamente 69 a 138 kV — são as <strong>DIT (Demais Instalações de Transmissão)</strong>, uma zona intermediária que conecta a Rede Básica às redes das distribuidoras e a alguns consumidores muito grandes.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 243,
+      "contexto": "A seção 1.4 define as DIT como a zona intermediária entre a Rede Básica e as redes das distribuidoras.",
+      "ganho_no_mapa": "Com 69 a 138 kV em outra cor, o aluno vê a zona intermediária que costura a Rede Básica às distribuidoras.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 1,
+      "tipo": "linha",
+      "nome": "Fronteira dos 230 kV",
+      "trecho": "a fronteira dos 230 kV é uma fronteira de regime jurídico, de operador e de cobrança",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 244,
+      "contexto": "A aula mostra que o limite de 230 kV separa contrato com o ONS e TUST de contrato com a distribuidora e TUSD.",
+      "ganho_no_mapa": "Alternar o filtro de tensão em 230 kV mostra no mapa a fronteira que muda operador e cobrança.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 1,
+      "tipo": "intercambio",
+      "nome": "Intercâmbios entre os quatro subsistemas",
+      "trecho": "os quatro subsistemas, os intercâmbios entre eles, a carga e a geração por fonte em tempo quase real, a partir dos dados abertos do ONS",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 247,
+      "contexto": "O destaque de produto descreve a visualização viva da aula: subsistemas, intercâmbios, carga e geração por fonte.",
+      "ganho_no_mapa": "É literalmente uma vista de mapa: subsistemas e setas de intercâmbio entre eles.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "linha",
+      "nome": "Tronco de 765 kV Itaipu → Tijuco Preto/SP",
+      "trecho": "Corredor Itaipu (60 Hz) → Tijuco Preto/SP",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 254,
+      "contexto": "Tabela da escada de tensões: o nível de 765 kV em corrente alternada tem como exemplo o corredor de Itaipu.",
+      "ganho_no_mapa": "Ver o corredor de Itaipu até São Paulo mostra o tronco de máxima capacidade em corrente alternada.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "subestacao",
+      "nome": "Tijuco Preto/SP (terminal do corredor de 765 kV)",
+      "trecho": "Corredor Itaipu (60 Hz) → Tijuco Preto/SP",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 254,
+      "contexto": "A tabela nomeia Tijuco Preto, em São Paulo, como ponto de chegada do corredor de 765 kV de Itaipu.",
+      "ganho_no_mapa": "Marcar o terminal mostra onde a energia de Itaipu entra na malha do Sudeste.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "bipolo",
+      "nome": "Bipolo Xingu–Estreito (±800 kV, Belo Monte)",
+      "trecho": "Bipolos de Belo Monte: Xingu→Estreito (~2.100 km) e Xingu→Terminal Rio (~2.540 km, entre os mais longos do mundo)",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 254,
+      "contexto": "Tabela da escada de tensões: ±800 kV em corrente contínua é o nível dos bipolos de Belo Monte.",
+      "ganho_no_mapa": "O traçado de cerca de 2.100 km mostra a distância que só a corrente contínua em ultra-alta tensão vence.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "bipolo",
+      "nome": "Bipolo Xingu–Terminal Rio (±800 kV, Belo Monte)",
+      "trecho": "Bipolos de Belo Monte: Xingu→Estreito (~2.100 km) e Xingu→Terminal Rio (~2.540 km, entre os mais longos do mundo)",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 254,
+      "contexto": "A mesma célula cita o segundo bipolo de Belo Monte, até o Terminal Rio, entre os mais longos do mundo.",
+      "ganho_no_mapa": "Ver os dois bipolos lado a lado mostra dois caminhos diferentes para a mesma usina chegar ao Sudeste.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "subestacao",
+      "nome": "Terminais Xingu, Estreito e Terminal Rio (bipolos de Belo Monte)",
+      "trecho": "Bipolos de Belo Monte: Xingu→Estreito (~2.100 km) e Xingu→Terminal Rio (~2.540 km, entre os mais longos do mundo)",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 254,
+      "contexto": "Os bipolos de Belo Monte são descritos pelos seus terminais: saem de Xingu e chegam a Estreito e ao Terminal Rio.",
+      "ganho_no_mapa": "Marcar as pontas dos bipolos mostra onde a corrente contínua nasce e onde volta a ser alternada.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "bipolo",
+      "nome": "Bipolos do Madeira (Porto Velho–Araraquara, ±600 kV)",
+      "trecho": "Madeira (Porto Velho→Araraquara, ~2.375 km) e Itaipu 50 Hz (Foz→Ibiúna)",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 254,
+      "contexto": "Tabela da escada de tensões: ±600 kV em corrente contínua é o nível do elo do Madeira.",
+      "ganho_no_mapa": "O traçado de Porto Velho a Araraquara mostra a geração de Rondônia atravessando o país até São Paulo.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "bipolo",
+      "nome": "Elo HVDC de Itaipu 50 Hz (Foz–Ibiúna, ±600 kV)",
+      "trecho": "Madeira (Porto Velho→Araraquara, ~2.375 km) e Itaipu 50 Hz (Foz→Ibiúna)",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 254,
+      "contexto": "A mesma célula cita o elo de corrente contínua que leva a parte de 50 Hz de Itaipu de Foz até Ibiúna.",
+      "ganho_no_mapa": "Ver o elo ao lado do tronco de 765 kV mostra que a mesma usina chega ao Sudeste por duas tecnologias.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "subestacao",
+      "nome": "Terminais Porto Velho, Araraquara, Foz e Ibiúna (elos de ±600 kV)",
+      "trecho": "Madeira (Porto Velho→Araraquara, ~2.375 km) e Itaipu 50 Hz (Foz→Ibiúna)",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 254,
+      "contexto": "Os elos de ±600 kV são descritos pelos seus terminais: Porto Velho e Araraquara, Foz e Ibiúna.",
+      "ganho_no_mapa": "Marcar os terminais mostra de onde sai e onde chega cada elo de corrente contínua.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "linha",
+      "nome": "Troncos de 500 kV de intercâmbio Norte–Nordeste–Sudeste",
+      "trecho": "Espinha dorsal da Rede Básica\", \"Grandes troncos de intercâmbio N–NE–SE",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 254,
+      "contexto": "Tabela da escada de tensões: 500 kV em corrente alternada é a espinha dorsal da Rede Básica.",
+      "ganho_no_mapa": "Acender só os 500 kV revela a espinha dorsal que liga Norte, Nordeste e Sudeste.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "linha",
+      "nome": "Malha regional de 440, 345 e 230 kV",
+      "trecho": "440 kV no estado de SP; 345 kV em MG/RJ; 230 kV em todo o país",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 254,
+      "contexto": "Tabela da escada de tensões: 440, 345 e 230 kV formam a malha regional, com cada nível predominando em um lugar.",
+      "ganho_no_mapa": "O mapa mostra que cada tensão tem território: 440 kV em São Paulo, 345 kV em Minas e Rio, 230 kV no país todo.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "linha",
+      "nome": "Linhas de transmissão por nível de tensão",
+      "trecho": "Quando você vê uma linha no mapa, a tensão dela conta a história do trabalho que ela faz.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 255,
+      "contexto": "A aula fecha a escada de tensões dizendo que o nível de cada linha é uma otimização entre capital e perdas.",
+      "ganho_no_mapa": "A própria frase pede o mapa: com as linhas coloridas por tensão, o aluno lê o trabalho de cada uma.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "interconexao_internacional",
+      "nome": "Itaipu 50 Hz (lado paraguaio) → Ibiúna/SP",
+      "trecho": "Itaipu (lado paraguaio) chega ao Brasil por bipolos DC de ±600 kV até Ibiúna/SP: não há como sincronizar 50 Hz com 60 Hz em AC.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 258,
+      "contexto": "A seção 2.3 dá a interligação assíncrona como segunda razão para usar HVDC: a metade de 50 Hz de Itaipu.",
+      "ganho_no_mapa": "Ver a usina na fronteira e o elo até Ibiúna mostra uma interligação entre dois sistemas de frequências diferentes.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "UHE Itaipu",
+      "trecho": "Itaipu (lado paraguaio) chega ao Brasil por bipolos DC de ±600 kV até Ibiúna/SP: não há como sincronizar 50 Hz com 60 Hz em AC.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 258,
+      "contexto": "Itaipu aparece como a usina que gera em duas frequências e por isso chega ao Brasil por dois caminhos.",
+      "ganho_no_mapa": "Localizar Itaipu na fronteira explica por que metade dela gera na frequência do país vizinho.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "pais",
+      "nome": "Paraguai (lado de 50 Hz de Itaipu)",
+      "trecho": "Itaipu (lado paraguaio) chega ao Brasil por bipolos DC de ±600 kV até Ibiúna/SP: não há como sincronizar 50 Hz com 60 Hz em AC.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 258,
+      "contexto": "O lado paraguaio de Itaipu opera em 50 Hz, frequência que não pode ser sincronizada com os 60 Hz brasileiros.",
+      "ganho_no_mapa": "No globo, Brasil e Paraguai aparecem como sistemas de frequências diferentes ligados por uma usina.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "UHE Belo Monte",
+      "trecho": "O problema brasileiro é geográfico: as grandes hidrelétricas da Amazônia (Belo Monte, complexo do Madeira) estão a mais de dois mil quilômetros dos centros de carga do Sudeste.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 259,
+      "contexto": "O destaque explica por que o Brasil é caso de escola: as grandes hidrelétricas ficam muito longe da carga.",
+      "ganho_no_mapa": "Ver Belo Monte na Amazônia e a carga no Sudeste torna a distância de dois mil quilômetros concreta.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "Complexo hidrelétrico do Madeira",
+      "trecho": "O problema brasileiro é geográfico: as grandes hidrelétricas da Amazônia (Belo Monte, complexo do Madeira) estão a mais de dois mil quilômetros dos centros de carga do Sudeste.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 259,
+      "contexto": "O complexo do Madeira é o segundo exemplo de grande geração amazônica distante dos centros de carga.",
+      "ganho_no_mapa": "Localizar o complexo do Madeira mostra a outra ponta do elo que chega a São Paulo.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "estado_regiao",
+      "nome": "Centros de carga do Sudeste",
+      "trecho": "O problema brasileiro é geográfico: as grandes hidrelétricas da Amazônia (Belo Monte, complexo do Madeira) estão a mais de dois mil quilômetros dos centros de carga do Sudeste.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 259,
+      "contexto": "O Sudeste é apresentado como o destino da energia gerada na Amazônia.",
+      "ganho_no_mapa": "Ver a carga concentrada no Sudeste explica para onde apontam os grandes elos.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "subestacao",
+      "nome": "Subestações entre a usina e a tomada",
+      "trecho": "Entre a usina e a sua tomada existem, tipicamente, de quatro a sete subestações.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 216,
+      "contexto": "O lead apresenta a subestação como a articulação da rede, onde a energia troca de nível de tensão.",
+      "ganho_no_mapa": "Seguir um caminho da usina até uma cidade e contar as subestações mostra as articulações de que a aula fala.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "intercambio",
+      "nome": "Importação entre regiões na rampa do fim da tarde",
+      "trecho": "em poucas horas, o sistema precisa substituir dezenas de gigawatts de sol por hidro flexível, térmicas, baterias e importação entre regiões.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 290,
+      "contexto": "A seção 4.2 descreve a rampa do fim da tarde e os recursos que substituem o sol que se põe.",
+      "ganho_no_mapa": "O mapa mostra de onde pode vir a importação entre regiões quando a solar some.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "usina",
+      "nome": "Hidrelétricas flexíveis",
+      "trecho": "Quem sobe a montanha das 17h às 20h? Hidrelétricas flexíveis (a vantagem estrutural brasileira), térmicas flexíveis",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 295,
+      "contexto": "O destaque lista os recursos que vencem a rampa e põe as hidrelétricas flexíveis como vantagem estrutural brasileira.",
+      "ganho_no_mapa": "Ver onde estão as hidrelétricas mostra de onde vem a flexibilidade que cobre a rampa.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 4,
+      "tipo": "outro",
+      "nome": "SIN (frequência única em toda a rede)",
+      "trecho": "É o batimento cardíaco do sistema, visível em qualquer ponto da rede ao mesmo tempo",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 294,
+      "contexto": "A seção 4.4 explica a frequência como medidor do balanço, igual em todos os pontos do sistema interligado.",
+      "ganho_no_mapa": "Ver a malha inteira lembra que a mesma medida vale ao mesmo tempo em qualquer ponto dela.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 5,
+      "tipo": "intercambio",
+      "nome": "Intercâmbios entre regiões no despacho",
+      "trecho": "No SIN, hidrelétricas e renováveis variáveis têm custo de combustível praticamente nulo e entram primeiro; térmicas entram conforme necessidade e custo; intercâmbios entre regiões completam o balanço.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 299,
+      "contexto": "A seção 5.1 apresenta a ordem de mérito no SIN e diz que os intercâmbios entre regiões completam o balanço.",
+      "ganho_no_mapa": "As setas entre subsistemas mostram que o despacho também decide quanto cada região manda para a outra.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "usina",
+      "nome": "Hidrelétricas com reservatório",
+      "trecho": "A matriz brasileira tem uma peculiaridade que torna o despacho daqui diferente de quase todo o mundo: quase metade dela é hidroeletricidade com reservatório.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 303,
+      "contexto": "A seção 5.2 abre o valor da água dizendo que quase metade da matriz é hidroeletricidade com reservatório.",
+      "ganho_no_mapa": "Ver as hidrelétricas com reservatório mostra onde está a parte da matriz que funciona como estoque.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "reservatorio",
+      "nome": "Reservatórios (estoque de energia)",
+      "trecho": "Cada metro cúbico turbinado hoje é um metro cúbico que não estará no reservatório na estiagem.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 303,
+      "contexto": "A aula explica o custo de oportunidade da água: turbinar hoje é não ter a água na estiagem.",
+      "ganho_no_mapa": "Os reservatórios no mapa viram tanques: o aluno vê onde fica o estoque que o despacho decide gastar ou guardar.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "submercado",
+      "nome": "PLD por submercado",
+      "trecho": "o PLD — o preço de curto prazo — é calculado para cada hora do dia seguinte com base no CMO, respeitando piso e teto regulatórios, por submercado.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 305,
+      "contexto": "A aula faz a ponte do despacho para o mercado: o preço de curto prazo sai do custo marginal, por submercado.",
+      "ganho_no_mapa": "Com os submercados coloridos, o aluno vê que cada região tem o seu preço.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "intercambio",
+      "nome": "Restrição entre regiões (térmica cara aqui, renovável barata lá)",
+      "trecho": "Quando você vir uma térmica cara gerando enquanto sobra renovável barata em outra região, não é incompetência: é uma restrição falando.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 309,
+      "contexto": "A seção 5.3 opõe despacho econômico e despacho por segurança: a rede e a segurança furam a ordem de mérito.",
+      "ganho_no_mapa": "Ver a térmica numa região e a renovável sobrando em outra mostra que entre as duas existe um fio com limite.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (vento na maquete do SIN)",
+      "trecho": "O simulador abaixo é uma maquete didática do SIN. Mova a demanda, o vento do Nordeste, o sol do meio-dia e — o mais importante — o estado dos reservatórios, que reposiciona a hidroeletricidade na pilha via valor da água.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 311,
+      "contexto": "A seção 5.4 apresenta o simulador de despacho, cujos controles são demanda, vento do Nordeste, sol e reservatórios.",
+      "ganho_no_mapa": "Ver os parques eólicos do Nordeste e os reservatórios dá lugar aos controles do simulador.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "outro",
+      "nome": "Centros de operação do ONS (nacional e regionais)",
+      "trecho": "Opera a partir do centro nacional e de centros regionais",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 316,
+      "contexto": "A seção 6.1 descreve o ONS e diz que ele opera de um centro nacional e de centros regionais.",
+      "ganho_no_mapa": "Marcar os centros de operação mostra de onde se rege um sistema do tamanho de um continente.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "sistema_isolado",
+      "nome": "Sistemas isolados (planejamento da operação pelo ONS desde 2017)",
+      "trecho": "É responsável pela coordenação e controle da operação das instalações de geração e transmissão no SIN — e, desde 2017, também pelo planejamento da operação dos sistemas isolados.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 316,
+      "contexto": "A mesma seção diz que o ONS coordena o SIN e, desde 2017, planeja a operação dos sistemas isolados.",
+      "ganho_no_mapa": "Ver SIN e sistemas isolados juntos mostra as duas áreas que hoje estão sob o planejamento do operador.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "reservatorio",
+      "nome": "Reservatórios (armazenamento e afluências no PMO)",
+      "trecho": "Elaborado com os agentes, usando armazenamento dos reservatórios, previsões de carga, meteorologia e afluências. Fixa a política de geração térmica e os intercâmbios entre regiões.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 320,
+      "contexto": "A tabela dos horizontes diz que o Programa Mensal usa o armazenamento dos reservatórios e as afluências.",
+      "ganho_no_mapa": "Os reservatórios no mapa são o dado de entrada do plano mensal: o aluno vê o que o operador olha primeiro.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "intercambio",
+      "nome": "Intercâmbios entre regiões (fixados no PMO)",
+      "trecho": "Elaborado com os agentes, usando armazenamento dos reservatórios, previsões de carga, meteorologia e afluências. Fixa a política de geração térmica e os intercâmbios entre regiões.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 320,
+      "contexto": "O Programa Mensal fixa a política de geração térmica e os intercâmbios entre regiões.",
+      "ganho_no_mapa": "As setas entre subsistemas mostram uma das saídas do plano mensal.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "subestacao",
+      "nome": "Milhares de subestações telemedidas (SCADA)",
+      "trecho": "coleta medições e estados de equipamentos de milhares de subestações — frequência, tensões, fluxos em cada linha, posição de cada disjuntor, alarmes",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 323,
+      "contexto": "A seção 6.3 descreve o SCADA, que leva à sala de operação o estado de milhares de subestações.",
+      "ganho_no_mapa": "Acender todas as subestações de uma vez dá a medida do que a sala enxerga.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "estado_regiao",
+      "nome": "Regiões com sobra de geração local ao meio-dia",
+      "trecho": "Solar no máximo; carga líquida afunda. Em regiões com muita geração local, sobra; em outras, congestionamento. Hidro segura a flexibilidade.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 326,
+      "contexto": "A tabela do dia na operação descreve o meio-dia: sobra em regiões com muita geração local e congestionamento em outras.",
+      "ganho_no_mapa": "Ver onde está a solar mostra quais regiões sobram ao meio-dia e para onde a energia tenta ir.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 7,
+      "tipo": "sistema_isolado",
+      "nome": "Comunidades isoladas (microrredes)",
+      "trecho": "Aplicações naturais: hospitais, mineração, comunidades isoladas, data centers, indústrias com carga crítica.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 344,
+      "contexto": "A seção 7.3 apresenta a microrrede e lista as aplicações naturais, entre elas comunidades isoladas.",
+      "ganho_no_mapa": "Ver onde a malha não chega mostra o tipo de lugar em que a microrrede deixa de ser opção e vira solução.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "evento",
+      "nome": "Blecaute de 15 de agosto de 2023",
+      "trecho": "Às 8h31 de 15 de agosto de 2023, uma linha de 500 kV no Ceará saiu de operação. Em segundos, o Norte e o Nordeste se separaram do resto do SIN e cerca de um quarto da carga do país foi interrompida.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 221,
+      "contexto": "O lead abre a aula com o evento de 15/08/2023, do desligamento da linha à separação de Norte e Nordeste.",
+      "ganho_no_mapa": "Ver o Ceará e a fronteira entre Norte/Nordeste e o resto do SIN mostra como um ponto vira um quarto do país.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "linha",
+      "nome": "Linha de 500 kV no Ceará (gatilho de 15/08/2023)",
+      "trecho": "A análise do ONS apontou a combinação de uma atuação de proteção em uma linha de 500 kV no Ceará com um comportamento inadequado de parques eólicos e solares diante do afundamento de tensão que se seguiu",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 364,
+      "contexto": "A seção 8.6 resume a análise do ONS: atuação de proteção em uma linha no Ceará somada ao comportamento de parques eólicos e solares.",
+      "ganho_no_mapa": "Localizar a linha no Ceará e os parques ao redor mostra onde o evento começou.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "intercambio",
+      "nome": "Separação Norte/Nordeste do restante do SIN",
+      "trecho": "reduções abruptas e simultâneas de injeção que transformaram um evento local em separação Norte/Nordeste e corte da ordem de um quarto da carga do SIN.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 364,
+      "contexto": "A mesma passagem descreve como o evento local virou separação entre Norte/Nordeste e o resto do sistema.",
+      "ganho_no_mapa": "Ver os troncos que ligam Norte e Nordeste ao Sudeste mostra a costura que se abriu.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "estado_regiao",
+      "nome": "Renováveis do Nordeste (restrições operativas depois de 2023)",
+      "trecho": "Esse é o pano de fundo técnico das restrições operativas impostas às renováveis do Nordeste depois de 2023.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 350,
+      "contexto": "A seção 8.1 liga a perda de inércia à geração por inversor e às restrições impostas às renováveis do Nordeste.",
+      "ganho_no_mapa": "Ver a concentração de eólicas e solares no Nordeste mostra onde o sistema ficou mais leve.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "outro",
+      "nome": "ERAC — Esquema Regional de Alívio de Carga",
+      "trecho": "o Esquema Regional de Alívio de Carga corta blocos de consumo automaticamente por subfrequência, em estágios (o primeiro tipicamente na casa de 58,5 Hz, conforme a região)",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 352,
+      "contexto": "A tabela das camadas de defesa põe o ERAC como última linha, com estágios que variam por região.",
+      "ganho_no_mapa": "O mapa por região lembra que o corte automático é regional: cada área tem o seu esquema.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "intercambio",
+      "nome": "Interligações entre regiões (caminho do distúrbio)",
+      "trecho": "a interligação que dá robustez no dia a dia — uma região socorrendo a outra — é o mesmo caminho pelo qual o distúrbio viaja no dia extremo",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 358,
+      "contexto": "A seção 8.4 responde ao critério do módulo: a interligação que socorre é o caminho por onde o distúrbio viaja.",
+      "ganho_no_mapa": "Os troncos entre regiões são o desenho da resposta: por eles um apagão sai de uma região e chega a outra.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 8,
+      "tipo": "evento",
+      "nome": "Racionamento de 2001–2002",
+      "trecho": "O racionamento de 2001–2002 obrigou o país a cortar cerca de 20% do consumo, sob gestão de uma câmara de crise criada em maio de 2001.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 362,
+      "contexto": "A seção 8.6 conta o racionamento como crise de energia, não de potência.",
+      "ganho_no_mapa": "Ver os reservatórios e as hidrelétricas mostra de onde vinha a energia que faltou.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "reservatorio",
+      "nome": "Reservatórios vazios em 2001",
+      "trecho": "MWh — reservatórios vazios após anos de hidrologia ruim e subinvestimento",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 362,
+      "contexto": "A aula explica 2001 pelos reservatórios vazios depois de anos de hidrologia ruim e subinvestimento.",
+      "ganho_no_mapa": "Os reservatórios no mapa são o estoque que acabou: o aluno vê o que significa um sistema sem água guardada.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "evento",
+      "nome": "Blecaute de 10 de novembro de 2009 (a noite de Itaipu)",
+      "trecho": "<strong>10 de novembro de 2009 — a noite de Itaipu.</strong> Uma tempestade na região de Itaberá/SP desligou as três linhas de 765 kV do tronco de Itaipu praticamente ao mesmo tempo.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 363,
+      "contexto": "A seção 8.6 conta o evento de 2009: uma tempestade desligou as três linhas do tronco de Itaipu.",
+      "ganho_no_mapa": "Ver o tronco de 765 kV passando por Itaberá mostra três circuitos no mesmo corredor, expostos à mesma tempestade.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "cidade",
+      "nome": "Itaberá/SP",
+      "trecho": "Uma tempestade na região de Itaberá/SP desligou as três linhas de 765 kV do tronco de Itaipu praticamente ao mesmo tempo.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 363,
+      "contexto": "Itaberá, em São Paulo, é o lugar da tempestade que derrubou o tronco de Itaipu em 2009.",
+      "ganho_no_mapa": "Marcar Itaberá no corredor mostra o ponto exato onde o tronco foi cortado.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "linha",
+      "nome": "Tronco de 765 kV de Itaipu (três circuitos no mesmo corredor)",
+      "trecho": "o critério N-1 protege contra falhas simples, não contra modos de falha comuns que derrubam três circuitos do mesmo corredor de uma vez.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 363,
+      "contexto": "A lição de 2009: o critério N-1 não cobre modos de falha comuns que derrubam vários circuitos do mesmo corredor.",
+      "ganho_no_mapa": "Ver os três circuitos lado a lado no mesmo corredor torna visível o modo de falha comum.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "usina",
+      "nome": "UHE Itaipu",
+      "trecho": "O sistema perdeu o equivalente à maior usina do país em segundos; o distúrbio em cascata atingiu cerca de 40% da carga nacional.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 363,
+      "contexto": "A perda do tronco equivaleu a perder a maior usina do país, e o distúrbio atingiu cerca de 40% da carga nacional.",
+      "ganho_no_mapa": "Ver Itaipu numa ponta e a carga na outra mostra o que o sistema perdeu quando o corredor caiu.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 9,
+      "tipo": "linha",
+      "nome": "Rede Básica (230 kV ou mais): perdas pequenas",
+      "trecho": "A Rede Básica, operando em 230 kV ou mais, perde uma fração pequena do que transporta; a rede de baixa tensão, levando corrente alta por quilômetros de poste, perde várias vezes mais por MWh entregue.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 369,
+      "contexto": "A seção 9.1 compara as perdas técnicas da Rede Básica com as da baixa tensão.",
+      "ganho_no_mapa": "A Rede Básica no mapa é o trecho em que a energia viaja longe perdendo pouco.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 9,
+      "tipo": "distribuidora",
+      "nome": "Distribuidoras do Sul (perdas não técnicas baixas)",
+      "trecho": "distribuidoras do Sul operam com indicadores baixos de um dígito, enquanto concessões com grandes áreas de informalidade urbana — Rio de Janeiro e parte da região Norte são os casos clássicos — convivem com perdas não técnicas que podem ultrapassar um terço do mercado de baixa tensão.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 371,
+      "contexto": "A seção 9.2 descreve a variância regional das perdas não técnicas, com o Sul no extremo baixo.",
+      "ganho_no_mapa": "Um mapa por área de concessão mostra o Sul claro e outros lugares escuros: a perda tem geografia.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 9,
+      "tipo": "distribuidora",
+      "nome": "Concessões do Rio de Janeiro (grandes áreas de informalidade urbana)",
+      "trecho": "distribuidoras do Sul operam com indicadores baixos de um dígito, enquanto concessões com grandes áreas de informalidade urbana — Rio de Janeiro e parte da região Norte são os casos clássicos — convivem com perdas não técnicas que podem ultrapassar um terço do mercado de baixa tensão.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 371,
+      "contexto": "O Rio de Janeiro é citado como caso clássico de concessão com perdas não técnicas muito altas.",
+      "ganho_no_mapa": "Destacar o Rio de Janeiro mostra onde a perda não técnica pode passar de um terço do mercado de baixa tensão.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 9,
+      "tipo": "distribuidora",
+      "nome": "Concessões de parte da região Norte",
+      "trecho": "distribuidoras do Sul operam com indicadores baixos de um dígito, enquanto concessões com grandes áreas de informalidade urbana — Rio de Janeiro e parte da região Norte são os casos clássicos — convivem com perdas não técnicas que podem ultrapassar um terço do mercado de baixa tensão.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 371,
+      "contexto": "Parte da região Norte é o outro caso clássico de perdas não técnicas altas citado na aula.",
+      "ganho_no_mapa": "Destacar a região Norte completa o contraste com o Sul.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 9,
+      "tipo": "distribuidora",
+      "nome": "Nível regulatório de perdas por distribuidora",
+      "trecho": "A ANEEL reconhece, para cada distribuidora, um nível <strong>regulatório</strong> de perdas — o patamar considerado eficiente para aquela realidade de concessão.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 375,
+      "contexto": "A seção 9.3 explica que cada distribuidora tem um nível regulatório de perdas, repassado à tarifa.",
+      "ganho_no_mapa": "O mapa por área de concessão mostra que o número de perdas muda de distribuidora para distribuidora.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 9,
+      "tipo": "submercado",
+      "nome": "Centro de gravidade do submercado",
+      "trecho": "a energia dos contratos é referenciada ao <strong>centro de gravidade</strong> do submercado, e a contabilização da CCEE aplica fatores de perda da Rede Básica",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 376,
+      "contexto": "No mercado livre, a energia é referenciada ao centro de gravidade do submercado e leva fatores de perda da Rede Básica.",
+      "ganho_no_mapa": "Ver o submercado e a Rede Básica dentro dele ajuda a entender o transporte que o consumidor livre paga.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 10,
+      "tipo": "distribuidora",
+      "nome": "Distribuidora local (monopólio do fio)",
+      "trecho": "o <strong>fio</strong> continua sendo monopólio regulado da distribuidora local, pago via TUSD, com encargos em cima",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 385,
+      "contexto": "A seção 10.1 separa energia, fio e encargos: no mercado livre muda quem vende a energia, não quem é dono do fio.",
+      "ganho_no_mapa": "O mapa das áreas de concessão mostra que cada planta está dentro do território de uma única distribuidora.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 10,
+      "tipo": "outro",
+      "nome": "Sinal locacional na TUST (metodologia nodal)",
+      "trecho": "o sinal econômico de localização existe no Brasil — ele só não mora no preço da energia; mora na tarifa de transmissão",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 387,
+      "contexto": "A seção 10.2 explica que a TUST varia conforme o ponto da malha onde o agente se conecta.",
+      "ganho_no_mapa": "Ver geração longe e carga perto ou longe mostra por que a posição na malha muda a tarifa de transmissão.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 10,
+      "tipo": "linha",
+      "nome": "Escoamento renovável do Nordeste (leilões de transmissão)",
+      "trecho": "Resultado: um dos segmentos de infraestrutura mais previsíveis e disputados do país — e a razão de o leilão de transmissão ser o evento que destrava (ou atrasa) o escoamento renovável do Nordeste.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 388,
+      "contexto": "A aula explica a remuneração das transmissoras e por que o leilão de transmissão destrava o escoamento do Nordeste.",
+      "ganho_no_mapa": "Ver as linhas que saem do Nordeste mostra o caminho por onde a geração renovável precisa escoar.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 10,
+      "tipo": "intercambio",
+      "nome": "Tronco saturado (lado exportador e lado importador)",
+      "trecho": "Quando o fluxo desejado excede o limite de um tronco, o ONS precisa <strong>redespachar fora da ordem de mérito</strong>: corta geração barata do lado exportador (<em>constrained-off</em>) e liga geração cara do lado importador (<em>constrained-on</em>).",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 392,
+      "contexto": "A seção 10.4 define o congestionamento: o operador corta geração barata de um lado e liga geração cara do outro.",
+      "ganho_no_mapa": "Um tronco destacado entre duas regiões mostra os dois lados: o que exporta e é cortado, o que importa e paga caro.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 10,
+      "tipo": "intercambio",
+      "nome": "Intercâmbio Nordeste → Sudeste (spread de PLD)",
+      "trecho": "o limite de intercâmbio separa os preços: o PLD do lado exportador cai, o do importador sobe. O custo do congestionamento fica <em>visível</em> no <strong>spread de PLD</strong> entre submercados — qualquer agente enxerga NE barato e SE caro na tela.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 394,
+      "contexto": "Entre submercados, o limite de intercâmbio separa os preços e o custo fica visível no spread de PLD.",
+      "ganho_no_mapa": "Nordeste e Sudeste em cores de preço diferentes, com o tronco entre eles, mostram a restrição virando spread.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 10,
+      "tipo": "linha",
+      "nome": "Linha saturada dentro do Nordeste (invisível ao PLD)",
+      "trecho": "O PLD <em>não enxerga</em> uma linha saturada dentro do Nordeste.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 395,
+      "contexto": "Dentro de um submercado, o modelo de preço ignora restrições internas e o sobrecusto vira encargo.",
+      "ganho_no_mapa": "Ver uma linha congestionada dentro de um submercado de cor única mostra o gargalo que o preço não revela.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 10,
+      "tipo": "mercado_estrangeiro",
+      "nome": "Mercados de desenho nodal (não nomeados na aula)",
+      "trecho": "Onde mercados nodais transformam a restrição em preço local — caro onde falta, barato onde sobra —, o Brasil a transforma em ESS difuso e em corte de geração.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 396,
+      "contexto": "A aula contrasta o desenho brasileiro com mercados nodais, sem nomear nenhum deles.",
+      "ganho_no_mapa": "No globo, o contraste só faz sentido se a vista apontar mercados nodais; a aula não diz quais.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 10,
+      "tipo": "submercado",
+      "nome": "Nordeste (curtailment de eólicas e solares)",
+      "trecho": "Desde as restrições operativas que se seguiram ao evento de agosto de 2023, os volumes de corte sobre eólicas e solares do Nordeste cresceram a ponto de virar pauta de resultado trimestral, judicialização e regulamentação de compensação",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 398,
+      "contexto": "A seção 10.5 descreve o crescimento dos cortes de geração eólica e solar no Nordeste depois de agosto de 2023.",
+      "ganho_no_mapa": "Ver os parques eólicos e solares do Nordeste e as linhas de saída mostra onde a energia é cortada.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 10,
+      "tipo": "evento",
+      "nome": "Evento de agosto de 2023 (origem das restrições operativas)",
+      "trecho": "Desde as restrições operativas que se seguiram ao evento de agosto de 2023, os volumes de corte sobre eólicas e solares do Nordeste cresceram a ponto de virar pauta de resultado trimestral, judicialização e regulamentação de compensação",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 398,
+      "contexto": "A aula volta ao evento de agosto de 2023 como ponto de partida das restrições que elevaram os cortes.",
+      "ganho_no_mapa": "Ligar esta vista à do evento mostra a mesma região antes e depois das restrições.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 10,
+      "tipo": "submercado",
+      "nome": "Nordeste (sobra em madrugadas ventosas de baixa demanda)",
+      "trecho": "sobra estrutural: geração compulsória maior que a carga, como em madrugadas ventosas de baixa demanda no Nordeste",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 398,
+      "contexto": "A aula distingue o corte por razão elétrica do corte por razão energética e dá o exemplo das madrugadas no Nordeste.",
+      "ganho_no_mapa": "Ver muita geração eólica e pouca carga na mesma região mostra a sobra que nem a rede livre resolveria.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 10,
+      "tipo": "intercambio",
+      "nome": "Nordeste ventoso e Sudeste pesado (modelo de dois nós)",
+      "trecho": "O instrumento final do módulo destila tudo num modelo de dois nós: um Nordeste ventoso e um Sudeste pesado, ligados por um intercâmbio com limite. Encha o fio e veja os preços se separarem; encha mais e veja o vento ser cortado enquanto térmica cara liga do outro lado.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 401,
+      "contexto": "A seção 10.6 apresenta o simulador de dois submercados ligados por um intercâmbio com limite.",
+      "ganho_no_mapa": "O mapa é o próprio modelo: Nordeste de um lado, Sudeste do outro e um fio entre eles.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 10,
+      "tipo": "submercado",
+      "nome": "Nordeste (eólica e térmica local) e Sudeste (hidro e térmicas) no simulador",
+      "trecho": "Modelo de dois nós com pilhas de custo <b>ilustrativas</b> (NE: eólica + térmica local; SE: hidro + térmicas).",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 208,
+      "contexto": "A nota do simulador de dois submercados descreve a pilha de geração de cada nó: eólica e térmica local no Nordeste, hidro e térmicas no Sudeste.",
+      "ganho_no_mapa": "Ligar as usinas por fonte em cada região mostra de onde vem a pilha de custo de cada lado do fio.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 10,
+      "tipo": "submercado",
+      "nome": "Quatro submercados e dezenas de troncos (SIN real)",
+      "trecho": "O SIN real tem quatro submercados, dezenas de troncos e despacho horário",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 208,
+      "contexto": "A nota do simulador avisa que o modelo de dois nós simplifica um sistema de quatro submercados e dezenas de troncos.",
+      "ganho_no_mapa": "Ver os quatro submercados e os troncos reais mostra o quanto o modelo de dois nós simplifica.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Submercados e sinal locacional (tese do módulo)",
+      "trecho": "Existem submercados, sinal locacional na tarifa de transmissão, congestionamento e redespacho",
+      "arquivo": "docs/alexandria-v2/extraction/m02/modulo.md",
+      "linha": 74,
+      "contexto": "Terceira consequência da tese do módulo: localização importa porque os fios têm limite e perdas.",
+      "ganho_no_mapa": "Os submercados no mapa são a instituição que nasce do limite do fio.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "evento",
+      "nome": "Apagões de 2001, 2009 e 2023 e cortes de renovável no Nordeste",
+      "trecho": "Sustentar cinco minutos de conversa sobre os apagões de 2001, 2009 e 2023 — e sobre os cortes de geração renovável no Nordeste — sem repetir mito de notícia.",
+      "arquivo": "docs/alexandria-v2/extraction/m02/modulo.md",
+      "linha": 98,
+      "contexto": "Capacidade esperada ao final do módulo: falar dos três eventos e dos cortes no Nordeste sem repetir mito.",
+      "ganho_no_mapa": "Três vistas de evento e uma de curtailment dão ao aluno o roteiro visual dessa conversa.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "cidade",
+      "nome": "Brasília (sala de operação do ONS)",
+      "trecho": "Como o plano do mês vira ordem no segundo — e o que uma sala em Brasília enxerga?",
+      "arquivo": "docs/alexandria-v2/extraction/m02/modulo.md",
+      "linha": 111,
+      "contexto": "Pergunta da Aula 06 no mapa das aulas do módulo; é a única passagem que dá cidade à sala de operação.",
+      "ganho_no_mapa": "Marcar Brasília e abrir o país inteiro em volta mostra o que cabe na tela de uma única sala.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Nordeste (vento cortado, roteiro de voz)",
+      "trecho": "O limite físico de uma linha vira diferença de preço entre regiões, vira encargo rateado, vira vento cortado no Nordeste.",
+      "arquivo": "docs/alexandria-v2/extraction/m02/modulo.md",
+      "linha": 241,
+      "contexto": "Fecho do roteiro de cinco minutos do módulo, que resume como o limite do fio vira dinheiro.",
+      "ganho_no_mapa": "A vista do Nordeste com as linhas de saída resume a frase: preço diferente, encargo e vento cortado.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "intercambio",
+      "nome": "Troncos de intercâmbio inter-regionais (painel de três níveis da Aula 01)",
+      "trecho": "A topologia hidro-dominada com grandes troncos de intercâmbio inter-regionais é o que viabiliza a otimização energética interanual — e o que cria a exposição estrutural a congestionamento de escoamento.",
+      "arquivo": "docs/alexandria-v2/extraction/m02/modulo.md",
+      "linha": 311,
+      "contexto": "Versão para especialista do painel de três níveis da Aula 01, que não está no corpo portado da aula.",
+      "ganho_no_mapa": "Os grandes troncos entre regiões mostram ao mesmo tempo a otimização e a exposição a congestionamento.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Nordeste (risco de curtailment em projetos de geração)",
+      "trecho": "projetos de geração no Nordeste carregam risco de curtailment que precisa entrar em qualquer análise de investimento ou contrato.",
+      "arquivo": "docs/alexandria-v2/extraction/m02/modulo.md",
+      "linha": 325,
+      "contexto": "Versão para executivo do painel de três níveis da Aula 10, que não está no corpo portado da aula.",
+      "ganho_no_mapa": "Ver onde os projetos se concentram no Nordeste mostra onde o risco de corte se acumula.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Minas Gerais (caso Operação A)",
+      "trecho": "Mineração de médio porte · Minas Gerais · Grupo A4 (13,8 kV)",
+      "arquivo": "docs/alexandria-v2/extraction/m02/aparato.md",
+      "linha": 28,
+      "contexto": "Cabeçalho do caso de referência: a mesma mineração de Minas Gerais, agora lida com a lente da rede.",
+      "ganho_no_mapa": "Situar a mina em Minas Gerais, no submercado Sudeste/Centro-Oeste, liga a fatura do caso à rede que a atende.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "reservatorio",
+      "nome": "Reservatórios (efeito na fatura do caso)",
+      "trecho": "no ambiente cativo, decisões tomadas a mil quilômetros chegam na conta: despacho térmico de estiagem vira bandeira tarifária; redespacho por restrição vira ESS rateado; o estado dos reservatórios da Aula 05 vira o humor da fatura do trimestre.",
+      "arquivo": "docs/alexandria-v2/extraction/m02/aparato.md",
+      "linha": 48,
+      "contexto": "O caso mostra como despacho de estiagem, redespacho e estado dos reservatórios chegam à fatura do cliente cativo.",
+      "ganho_no_mapa": "Ver os reservatórios longe da mina mostra que o que acontece a mil quilômetros chega na conta.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "bipolo",
+      "nome": "Bipolos de Belo Monte (checklist final)",
+      "trecho": "Explicar quando HVDC vence o AC — e citar os bipolos de Belo Monte como exemplo",
+      "arquivo": "docs/alexandria-v2/extraction/m02/aparato.md",
+      "linha": 183,
+      "contexto": "Item do checklist final do módulo, que pede os bipolos de Belo Monte como exemplo de HVDC.",
+      "ganho_no_mapa": "A vista dos bipolos é a resposta visual a este item do checklist.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "bipolo",
+      "nome": "Bipolos de Itaipu, Madeira e Belo Monte (verbete Bipolo)",
+      "trecho": "Os elos de Itaipu (±600 kV), Madeira (±600 kV) e Belo Monte (±800 kV) são bipolos.",
+      "arquivo": "docs/alexandria-v2/extraction/m02/aparato.md",
+      "linha": 261,
+      "contexto": "Verbete do glossário que define bipolo e lista os três grandes elos brasileiros.",
+      "ganho_no_mapa": "Os três elos juntos no mapa mostram o conjunto de corrente contínua do país.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Nordeste (verbete Curtailment)",
+      "trecho": "Cresceu fortemente no Nordeste após as restrições operativas de 2023 e a expansão renovável acima do ritmo do escoamento.",
+      "arquivo": "docs/alexandria-v2/extraction/m02/aparato.md",
+      "linha": 268,
+      "contexto": "Verbete do glossário que define curtailment e diz onde e por que ele cresceu.",
+      "ganho_no_mapa": "Geração renovável e linhas de saída do Nordeste lado a lado mostram a expansão acima do ritmo do escoamento.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "interconexao_internacional",
+      "nome": "Itaipu 50 Hz (verbete HVDC)",
+      "trecho": "Vence o AC em três situações: distâncias muito longas, interligação de sistemas assíncronos (Itaipu 50 Hz) e travessias submarinas. O Brasil opera alguns dos elos mais longos do mundo.",
+      "arquivo": "docs/alexandria-v2/extraction/m02/aparato.md",
+      "linha": 282,
+      "contexto": "Verbete do glossário que resume quando a corrente contínua vence e cita Itaipu 50 Hz.",
+      "ganho_no_mapa": "O elo de Itaipu e os bipolos longos mostram duas das três situações do verbete.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "intercambio",
+      "nome": "Intercâmbio entre subsistemas (verbete Intercâmbio)",
+      "trecho": "Fluxo de energia entre subsistemas/submercados pelos grandes troncos de interligação. Quando o intercâmbio satura, os submercados se separam em preço — o spread de PLD é o sintoma visível. Monitorar intercâmbios é monitorar a costura do SIN.",
+      "arquivo": "docs/alexandria-v2/extraction/m02/aparato.md",
+      "linha": 286,
+      "contexto": "Verbete do glossário que define intercâmbio e o liga ao spread de PLD.",
+      "ganho_no_mapa": "Os troncos entre subsistemas são a costura de que o verbete fala.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "evento",
+      "nome": "Itaberá/2009 (verbete N-1)",
+      "trecho": "Protege contra falhas simples — não contra modos de falha comuns que levam vários elementos de uma vez, como em Itaberá/2009.",
+      "arquivo": "docs/alexandria-v2/extraction/m02/aparato.md",
+      "linha": 289,
+      "contexto": "Verbete do glossário que define o critério N-1 e cita Itaberá em 2009 como modo de falha comum.",
+      "ganho_no_mapa": "A vista do corredor de Itaipu em Itaberá ilustra o limite do critério.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "linha",
+      "nome": "Rede Básica (verbete)",
+      "trecho": "Conjunto das instalações de transmissão em tensão igual ou superior a 230 kV.",
+      "arquivo": "docs/alexandria-v2/extraction/m02/aparato.md",
+      "linha": 303,
+      "contexto": "Verbete do glossário que define a Rede Básica pelo limite de 230 kV.",
+      "ganho_no_mapa": "Filtrar o mapa em 230 kV ou mais desenha a Rede Básica do verbete.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "evento",
+      "nome": "15/08/2023 (verbete Relé de proteção)",
+      "trecho": "Atuação incorreta de proteção é gatilho recorrente de grandes perturbações — inclusive no 15/08/2023.",
+      "arquivo": "docs/alexandria-v2/extraction/m02/aparato.md",
+      "linha": 305,
+      "contexto": "Verbete do glossário que liga a atuação de proteção às grandes perturbações, com o 15/08/2023 como exemplo.",
+      "ganho_no_mapa": "A vista do evento de 2023 mostra onde a proteção atuou.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "SIN e seus quatro subsistemas SE/CO, S, NE e N (verbete SIN)",
+      "trecho": "Sistema Interligado Nacional — a malha eletroenergética que conecta geração e carga em escala continental, atendendo a quase totalidade do consumo do país, dividida em quatro subsistemas (SE/CO, S, NE, N) que coincidem com os submercados de preço.",
+      "arquivo": "docs/alexandria-v2/extraction/m02/aparato.md",
+      "linha": 316,
+      "contexto": "Verbete do glossário que define o SIN e nomeia os quatro subsistemas pelas siglas.",
+      "ganho_no_mapa": "O mapa dos quatro subsistemas com as siglas é o desenho do verbete.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "evento",
+      "nome": "Racionamento de 2001 (Ex · 05 · Aula 08)",
+      "trecho": "Em 2001, o parque tinha MW suficientes para atender o pico — o que faltou foi <b>estoque</b>: anos de hidrologia ruim e subinvestimento esvaziaram os reservatórios, e um sistema hidro-dominado sem água não tem MWh para sustentar os meses seguintes.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 612,
+      "contexto": "Gabarito do exercício da Aula 08 sobre por que 2001 foi crise de energia e não de potência.",
+      "ganho_no_mapa": "Os reservatórios no mapa são o estoque de que o gabarito fala.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "Parque eólico no Nordeste cortado (Ex · 08 · Aula 10)",
+      "trecho": "Minha usina foi cortada na terça — e no mesmo dia o PLD do Sudeste estava alto. Como isso faz sentido?",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 670,
+      "contexto": "Enunciado do exercício de síntese da Aula 10: um executivo com parque eólico no Nordeste pergunta sobre o corte.",
+      "ganho_no_mapa": "Ver o parque no Nordeste, o tronco saturado e o Sudeste caro responde à pergunta do executivo.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "intercambio",
+      "nome": "Intercâmbio Nordeste → Sudeste saturado (Ex · 08 · Aula 10)",
+      "trecho": "a energia barata do seu parque só chega ao Sudeste se couber no intercâmbio. Com a interface saturada — e com as restrições operativas endurecidas desde 2023 —, o ONS corta geração no NE por segurança ou excesso local, enquanto o SE atende a ponta com térmica cara: os submercados se separam, e o seu corte e o PLD alto deles são duas faces da mesma restrição.",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 672,
+      "contexto": "Gabarito do exercício de síntese da Aula 10: corte no Nordeste e PLD alto no Sudeste são a mesma restrição.",
+      "ganho_no_mapa": "Os dois submercados separados pelo tronco saturado mostram as duas faces da mesma restrição.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "intercambio",
+      "nome": "Intercâmbio NE→SE no limite (Ex · 10)",
+      "trecho": "o intercâmbio NE→SE está no limite — a energia barata existe, mas não cabe no fio. O SE precisa ser atendido por geração local, mesmo cara (constrained-on), enquanto o vento pode estar sendo cortado do outro lado (constrained-off).",
+      "arquivo": "src/lib/data/alexandria-modulo-02-content.ts",
+      "linha": 422,
+      "contexto": "Gabarito do exercício solto Ex · 10: razão de rede para uma térmica cara ligar no Sudeste com vento sobrando no Nordeste.",
+      "ganho_no_mapa": "O tronco no limite entre Nordeste e Sudeste mostra a energia barata que não cabe no fio.",
+      "relevancia": "media"
+    }
+  ],
+  "vistas_sugeridas": [
+    {
+      "aula": 1,
+      "titulo": "O SIN e os quatro subsistemas",
+      "o_que_mostra": "Brasil inteiro com os quatro subsistemas coloridos e a malha de transmissão por cima; as fronteiras servem para a rede e para o preço.",
+      "nomes": [
+        "Sistema Interligado Nacional (SIN)",
+        "Quatro subsistemas do SIN (Sudeste/Centro-Oeste, Sul, Nordeste e Norte)",
+        "Quatro submercados de preço (PLD)"
+      ],
+      "camadas": [
+        "submercados",
+        "linhas"
+      ]
+    },
+    {
+      "aula": 1,
+      "titulo": "Onde a malha termina: os sistemas isolados",
+      "o_que_mostra": "Câmera sobre a região Norte, mostrando até onde a malha interligada chega e a área atendida por sistemas isolados com térmicas locais.",
+      "nomes": [
+        "Sistemas isolados da região Norte"
+      ],
+      "camadas": [
+        "linhas",
+        "usinas_termica",
+        "outra: sistemas isolados"
+      ]
+    },
+    {
+      "aula": 1,
+      "titulo": "Rede Básica e a fronteira dos 230 kV",
+      "o_que_mostra": "Brasil inteiro com as linhas de 230 kV ou mais numa cor e as de 69 a 138 kV em outra; o filtro de tensão alterna os dois lados da fronteira.",
+      "nomes": [
+        "Rede Básica (linhas de 230 kV ou mais)",
+        "DIT — Demais Instalações de Transmissão (69 a 138 kV)",
+        "Fronteira dos 230 kV"
+      ],
+      "camadas": [
+        "linhas",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 1,
+      "titulo": "Interligar para trocar",
+      "o_que_mostra": "Sul e Nordeste em destaque, com os troncos entre subsistemas e as setas de intercâmbio; hidrelétricas e eólicas ligadas para mostrar a complementaridade.",
+      "nomes": [
+        "Complementaridade entre regiões (Sul e Nordeste)",
+        "Interligações do SIN (socorro entre regiões e caminho da falha)",
+        "Intercâmbios entre os quatro subsistemas"
+      ],
+      "camadas": [
+        "submercados",
+        "linhas",
+        "usinas_hidro",
+        "usinas_eolica"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "A escada de tensões no mapa",
+      "o_que_mostra": "Brasil inteiro com as linhas coloridas por nível de tensão: 765 kV no corredor de Itaipu, 500 kV nos troncos entre regiões, 440, 345 e 230 kV na malha regional.",
+      "nomes": [
+        "Linhas de transmissão por nível de tensão",
+        "Tronco de 765 kV Itaipu → Tijuco Preto/SP",
+        "Troncos de 500 kV de intercâmbio Norte–Nordeste–Sudeste",
+        "Malha regional de 440, 345 e 230 kV"
+      ],
+      "camadas": [
+        "linhas",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "Da Amazônia ao Sudeste: os bipolos",
+      "o_que_mostra": "Câmera da Amazônia ao Sudeste com os elos de corrente contínua destacados: os dois bipolos de Belo Monte e o elo do Madeira, das usinas até os terminais.",
+      "nomes": [
+        "UHE Belo Monte",
+        "Complexo hidrelétrico do Madeira",
+        "Bipolo Xingu–Estreito (±800 kV, Belo Monte)",
+        "Bipolo Xingu–Terminal Rio (±800 kV, Belo Monte)",
+        "Bipolos do Madeira (Porto Velho–Araraquara, ±600 kV)",
+        "Terminais Xingu, Estreito e Terminal Rio (bipolos de Belo Monte)",
+        "Centros de carga do Sudeste"
+      ],
+      "camadas": [
+        "linhas",
+        "usinas_hidro",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "Itaipu: 60 Hz por um caminho, 50 Hz por outro",
+      "o_que_mostra": "Câmera de Itaipu a São Paulo com os dois caminhos da usina: o tronco de 765 kV em corrente alternada até Tijuco Preto e o elo de corrente contínua de Foz a Ibiúna; Paraguai em destaque.",
+      "nomes": [
+        "UHE Itaipu",
+        "Tronco de 765 kV Itaipu → Tijuco Preto/SP",
+        "Tijuco Preto/SP (terminal do corredor de 765 kV)",
+        "Elo HVDC de Itaipu 50 Hz (Foz–Ibiúna, ±600 kV)",
+        "Itaipu 50 Hz (lado paraguaio) → Ibiúna/SP",
+        "Paraguai (lado de 50 Hz de Itaipu)"
+      ],
+      "camadas": [
+        "linhas",
+        "usinas_hidro",
+        "subestacoes",
+        "mundo_paises"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "As articulações da rede",
+      "o_que_mostra": "Um corredor de transmissão de uma usina até uma cidade, com as subestações acesas ao longo do caminho, para contar as articulações entre a geração e a tomada.",
+      "nomes": [
+        "Subestações entre a usina e a tomada"
+      ],
+      "camadas": [
+        "subestacoes",
+        "linhas"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "Onde está guardada a água",
+      "o_que_mostra": "Brasil inteiro com hidrelétricas e reservatórios ligados; os reservatórios aparecem como o estoque que o despacho decide gastar ou guardar.",
+      "nomes": [
+        "Hidrelétricas com reservatório",
+        "Reservatórios (estoque de energia)"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "reservatorios_bacias"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "A pilha no mapa",
+      "o_que_mostra": "Subsistemas coloridos, com eólicas do Nordeste, térmicas e hidrelétricas ligadas e os troncos entre regiões; mostra a renovável barata de um lado e a térmica cara do outro.",
+      "nomes": [
+        "Nordeste (vento na maquete do SIN)",
+        "Restrição entre regiões (térmica cara aqui, renovável barata lá)",
+        "Intercâmbios entre regiões no despacho",
+        "PLD por submercado"
+      ],
+      "camadas": [
+        "usinas_eolica",
+        "usinas_termica",
+        "usinas_hidro",
+        "submercados",
+        "linhas"
+      ]
+    },
+    {
+      "aula": 6,
+      "titulo": "O que a sala enxerga",
+      "o_que_mostra": "Brasil inteiro com subestações, linhas, reservatórios e subsistemas ligados ao mesmo tempo, e a sala de operação marcada em Brasília.",
+      "nomes": [
+        "Centros de operação do ONS (nacional e regionais)",
+        "Milhares de subestações telemedidas (SCADA)",
+        "Reservatórios (armazenamento e afluências no PMO)",
+        "Intercâmbios entre regiões (fixados no PMO)",
+        "Brasília (sala de operação do ONS)"
+      ],
+      "camadas": [
+        "subestacoes",
+        "linhas",
+        "submercados",
+        "reservatorios_bacias",
+        "outra: centros de operação do ONS"
+      ]
+    },
+    {
+      "aula": 8,
+      "titulo": "15 de agosto de 2023: do Ceará à separação",
+      "o_que_mostra": "Câmera abre no Ceará, na malha de 500 kV, e recua até mostrar Norte e Nordeste separados do resto do SIN; parques eólicos e solares ligados.",
+      "nomes": [
+        "Blecaute de 15 de agosto de 2023",
+        "Linha de 500 kV no Ceará (gatilho de 15/08/2023)",
+        "Separação Norte/Nordeste do restante do SIN",
+        "Interligações entre regiões (caminho do distúrbio)"
+      ],
+      "camadas": [
+        "linhas",
+        "submercados",
+        "usinas_eolica",
+        "usinas_solar"
+      ]
+    },
+    {
+      "aula": 8,
+      "titulo": "10 de novembro de 2009: a noite de Itaipu",
+      "o_que_mostra": "Câmera segue o tronco de 765 kV de Itaipu até São Paulo e para em Itaberá, onde os três circuitos correm no mesmo corredor.",
+      "nomes": [
+        "Blecaute de 10 de novembro de 2009 (a noite de Itaipu)",
+        "Itaberá/SP",
+        "Tronco de 765 kV de Itaipu (três circuitos no mesmo corredor)",
+        "UHE Itaipu"
+      ],
+      "camadas": [
+        "linhas",
+        "usinas_hidro",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 8,
+      "titulo": "2001: reservatórios vazios",
+      "o_que_mostra": "Brasil inteiro com hidrelétricas e reservatórios ligados, para mostrar o estoque de energia que faltou no racionamento.",
+      "nomes": [
+        "Racionamento de 2001–2002",
+        "Reservatórios vazios em 2001"
+      ],
+      "camadas": [
+        "reservatorios_bacias",
+        "usinas_hidro"
+      ]
+    },
+    {
+      "aula": 8,
+      "titulo": "Onde o sistema ficou mais leve",
+      "o_que_mostra": "Câmera sobre o Nordeste com parques eólicos e usinas solares ligados, a geração por inversor que a aula associa à perda de inércia e às restrições depois de 2023.",
+      "nomes": [
+        "Renováveis do Nordeste (restrições operativas depois de 2023)"
+      ],
+      "camadas": [
+        "usinas_eolica",
+        "usinas_solar",
+        "linhas"
+      ]
+    },
+    {
+      "aula": 9,
+      "titulo": "A geografia das perdas não técnicas",
+      "o_que_mostra": "Brasil por área de concessão, com o Sul, o Rio de Janeiro e a região Norte em destaque como os extremos que a aula cita.",
+      "nomes": [
+        "Distribuidoras do Sul (perdas não técnicas baixas)",
+        "Concessões do Rio de Janeiro (grandes áreas de informalidade urbana)",
+        "Concessões de parte da região Norte",
+        "Nível regulatório de perdas por distribuidora"
+      ],
+      "camadas": [
+        "submercados",
+        "outra: áreas de concessão das distribuidoras"
+      ]
+    },
+    {
+      "aula": 10,
+      "titulo": "Dois submercados, um fio",
+      "o_que_mostra": "Nordeste e Sudeste em cores de preço diferentes, com os troncos de intercâmbio entre eles destacados; eólicas de um lado, térmicas e hidrelétricas do outro.",
+      "nomes": [
+        "Intercâmbio Nordeste → Sudeste (spread de PLD)",
+        "Nordeste ventoso e Sudeste pesado (modelo de dois nós)",
+        "Nordeste (eólica e térmica local) e Sudeste (hidro e térmicas) no simulador",
+        "Tronco saturado (lado exportador e lado importador)",
+        "Quatro submercados e dezenas de troncos (SIN real)"
+      ],
+      "camadas": [
+        "submercados",
+        "linhas",
+        "usinas_eolica",
+        "usinas_termica",
+        "usinas_hidro"
+      ]
+    },
+    {
+      "aula": 10,
+      "titulo": "Curtailment no Nordeste",
+      "o_que_mostra": "Câmera sobre o Nordeste com parques eólicos e usinas solares ligados e as linhas de saída da região destacadas, onde a geração disponível é cortada.",
+      "nomes": [
+        "Nordeste (curtailment de eólicas e solares)",
+        "Nordeste (sobra em madrugadas ventosas de baixa demanda)",
+        "Escoamento renovável do Nordeste (leilões de transmissão)",
+        "Evento de agosto de 2023 (origem das restrições operativas)"
+      ],
+      "camadas": [
+        "usinas_eolica",
+        "usinas_solar",
+        "linhas",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 10,
+      "titulo": "O gargalo que o preço não vê",
+      "o_que_mostra": "Submercado Nordeste em cor única, com as linhas internas à mostra: um gargalo dentro da região não muda o preço e vira encargo.",
+      "nomes": [
+        "Linha saturada dentro do Nordeste (invisível ao PLD)",
+        "Sinal locacional na TUST (metodologia nodal)"
+      ],
+      "camadas": [
+        "linhas",
+        "submercados",
+        "subestacoes"
+      ]
+    }
+  ]
+}

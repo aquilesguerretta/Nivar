@@ -1,0 +1,47 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" /></head>
+<body>
+  <template>
+    <style>
+      #root { position: absolute; inset: 0; }
+    </style>
+    <div id="root" data-composition-id="registro" data-width="1920" data-height="1080">
+      <div id="re-cena" class="fundo">
+        <div class="coluna">
+          <p id="re-cap" class="mono cap">05 · O registro</p>
+          <span id="re-fio" class="cap-fio"></span>
+          <h2 id="re-man" class="serif manchete">Com conta, o que você já percorreu <em>fica guardado</em></h2>
+          <p id="re-apoio" class="apoio">— em palavras, sem pontuação de jogo.</p>
+        </div>
+        <p id="re-nota1" class="nota-folha">Tela real · fim da Aula 08</p>
+        <p id="re-nota2" class="nota-folha">Tela real · /alexandria, com conta</p>
+        <div id="re-folha" class="folha">
+          <div id="re-j1" class="janela"><img src="assets/aula-registrada.png" alt="" /></div>
+          <div id="re-j2" class="janela"><img src="assets/home-conta.png" alt="" /></div>
+        </div>
+        <p class="selo tela">Tela real · conta de demonstração · dados de exemplo</p>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power2.out", S = "sine.inOut";
+      const W = 1160, H = 900;
+      const q = (cx, cy, s) => ({ x: W / 2 - cx * s, y: H / 2 - cy * s, scale: s, transformOrigin: "0% 0%" });
+      tl.fromTo("#re-cena", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: S }, 0);
+      tl.fromTo("#re-cap", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.5);
+      tl.fromTo("#re-fio", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 0.6);
+      tl.fromTo("#re-man", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.2, ease: E }, 0.9);
+      tl.fromTo("#re-apoio", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.0, ease: E }, 2.2);
+      tl.fromTo("#re-folha", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.0, ease: "power3.out" }, 0.3);
+      // o registro da aula (percorrida · com prática), depois o registro do percurso na Home com conta
+      tl.fromTo("#re-nota1", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 1.0);
+      tl.fromTo("#re-j1", q(895, 5440, 0.72), { ...q(895, 5520, 0.72), duration: 4.4, ease: "power1.inOut" }, 0.4);
+      tl.set("#re-j2", { opacity: 0, ...q(1240, 860, 0.85) }, 0);
+      tl.to("#re-j2", { opacity: 1, duration: 0.8, ease: S }, 4.6);
+      tl.to("#re-j2", { ...q(1250, 900, 0.9), duration: 4.2, ease: "power1.inOut" }, 4.6);
+      tl.to("#re-nota1", { opacity: 0, duration: 0.4 }, 4.6);
+      tl.fromTo("#re-nota2", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 5.0);
+      window.__timelines["registro"] = tl;
+    </script>
+  </template>
+</body></html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" /></head>
+<body>
+  <!-- Trecho do Fundador — NÃO LIGADO no corte atual. Espera assets/fundador.mp4 (a fala gravada por ele).
+       Para ligar: ver o comentário no topo de index.html. Nenhuma pessoa foi gerada no lugar dele. -->
+  <template>
+    <style>
+      #root { position: absolute; inset: 0; background: var(--tinta); }
+      #fd-assina { position: absolute; left: 140px; bottom: 120px; color: var(--papel); }
+    </style>
+    <div id="root" data-composition-id="fundador" data-width="1920" data-height="1080">
+      <video id="fd-v" class="plano" src="assets/fundador.mp4" playsinline data-has-audio="true" data-start="0" data-duration="8" data-track-index="0"></video>
+      <p id="fd-assina" class="mono">Aquiles Guerretta · Fundador da NIVAR</p>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#fd-assina", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 1.0);
+      tl.to("#fd-assina", { opacity: 0, duration: 0.6 }, 5.0);
+      window.__timelines["fundador"] = tl;
+    </script>
+  </template>
+</body></html>

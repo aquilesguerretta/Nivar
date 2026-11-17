@@ -1,0 +1,948 @@
+[
+ {
+  "nome": "col-rn-founder-claro-1440",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-35.9,-5.35],zoom:11.2,inclinacao:58,rumo:20})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "A tela que o Founder chamou de péssima: a maior densidade e a maior inclinação."
+ },
+ {
+  "nome": "col-rn-founder-noturno-1440",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "noturno",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-35.9,-5.35],zoom:11.2,inclinacao:58,rumo:20})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "A mesma cena no noturno: contraste de contorno e de envoltória de destaque."
+ },
+ {
+  "nome": "col-rn-founder-claro-390",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   390,
+   844
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-35.9,-5.35],zoom:11.2,inclinacao:58,rumo:20})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Celular: teto 6, 3 rótulos, área útil sem a folha."
+ },
+ {
+  "nome": "col-rn-founder-noturno-390",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   390,
+   844
+  ],
+  "modo": "noturno",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-35.9,-5.35],zoom:11.2,inclinacao:58,rumo:20})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Celular no noturno, a captura em que hoje há cerca de 25 aerogeradores."
+ },
+ {
+  "nome": "col-rn-de-cima",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-35.9,-5.35],zoom:11.2,inclinacao:0,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "G10: aerogerador vira selo e aparece o aviso para inclinar."
+ },
+ {
+  "nome": "col-rn-satelite",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "click": ".atl-controles .atl-controle-satelite"
+   },
+   {
+    "wait": 1500
+   },
+   {
+    "eval": "window.__atlas.ir({centro:[-35.9,-5.35],zoom:12.8,inclinacao:50,rumo:20})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Satélite acima de 12,5: nenhuma maquete, âncora e rótulo ficam (ligar Satélite pela interface). O Satélite é ligado pelo botão da interface (.atl-controles .atl-controle-satelite)."
+ },
+ {
+  "nome": "col-troca-9.3",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-35.9,-5.35],zoom:9.3,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Antes da troca: zero maquetes."
+ },
+ {
+  "nome": "col-troca-9.6",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-35.9,-5.35],zoom:9.6,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Meio da rampa: escala de cerca de 0,5, selo do vencedor a meio."
+ },
+ {
+  "nome": "col-troca-10.0",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-35.9,-5.35],zoom:10,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Fim da troca no N1: só marcos ≥300 MW em 193 usinas na tela."
+ },
+ {
+  "nome": "col-joinville-maranhao-iv",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-48.85,-26.3],zoom:11,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Térmica de 338 MW e três subestações (uma de 525 kV): fila única usina × rede, rótulos de SE. Repetir pela busca 'maranhao iv' com a ficha aberta."
+ },
+ {
+  "nome": "col-joinville-maranhao-iv-busca",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "click": ".atl-busca .atl-campo"
+   },
+   {
+    "fill": [
+     ".atl-busca .atl-campo",
+     "maranhao iv"
+    ]
+   },
+   {
+    "wait": 2500
+   },
+   {
+    "press": "Enter"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "A mesma Maranhão IV pela busca, com a ficha aberta: o destaque da busca e a seleção sobre a fila de maquetes (enquadramento é o da busca)."
+ },
+ {
+  "nome": "col-rmsp-10.5",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "assunto": [
+   -46.679,
+   -23.699
+  ],
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-46.6,-23.55],zoom:10.5,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "128 geradores pequenos: piso de 5 MW, agregação urbana e a cena mais pesada em fps."
+ },
+ {
+  "nome": "col-rmsp-12",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "noturno",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-46.6,-23.55],zoom:12,inclinacao:50,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "N3 urbano: subestações contra usinas e rótulos de bairro."
+ },
+ {
+  "nome": "col-itaipu",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "assunto": [
+   -54.587,
+   -25.408
+  ],
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-54.59,-25.41],zoom:12.6,inclinacao:55,rumo:-30})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Hierarquia: Itaipu, parte brasileira, a 146 px, maior caixa da cena; conversoras de Foz."
+ },
+ {
+  "nome": "col-belo-monte",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "assunto": [
+   -51.775,
+   -3.127
+  ],
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-51.77,-3.13],zoom:12,inclinacao:50,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Topo da lei (162 px) para o A7: Belo Monte > Tucuruí > Itaipu. Conferir a coordenada no cadastro."
+ },
+ {
+  "nome": "col-angra",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "assunto": [
+   -44.459,
+   -23.007
+  ],
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-44.46,-23.01],zoom:13,inclinacao:50,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Angra 1 e 2 a cerca de 220 m viram um conjunto de sítio '+1 unidade · 1.990 MW'; Angra 3 em obra fica fora e declarada."
+ },
+ {
+  "nome": "col-pecem",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "assunto": [
+   -38.809,
+   -3.552
+  ],
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-38.87,-3.55],zoom:12.5,inclinacao:50,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Carvão, gás, eólica e solar juntos: a agregação não mistura tipos e as silhuetas se distinguem."
+ },
+ {
+  "nome": "col-caetite-ba",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "assunto": [
+   -42.5,
+   -14.115
+  ],
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-42.6,-14.1],zoom:11,inclinacao:50,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Conjunto eólico da Bahia em serra: relevo no pé (A5 com terreno) e coletoras sem kV."
+ },
+ {
+  "nome": "col-pirapora-solar",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "assunto": [
+   -44.882,
+   -17.362
+  ],
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-44.95,-17.35],zoom:11,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Solares coladas: agregação de solar e o tamanho do modelo plano contra os demais."
+ },
+ {
+  "nome": "col-santos-combustivel",
+  "rota": "/alexandria/atlas?c=combustivel",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "assunto": [
+   -46.43,
+   -23.871
+  ],
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-46.4,-23.87],zoom:11.5,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Capítulo do combustível: refinaria, terminais, UTE Cubatão e Henry Borden; prioridade ANP declarada.",
+  "coberturaInformativa": "capítulo do combustível: a refinaria ganha o espaço e a térmica vizinha fica no símbolo"
+ },
+ {
+  "nome": "col-santos-combustivel-390",
+  "rota": "/alexandria/atlas?c=combustivel",
+  "viewport": [
+   390,
+   844
+  ],
+  "modo": "noturno",
+  "assunto": [
+   -46.43,
+   -23.871
+  ],
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-46.4,-23.87],zoom:11.5,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "O combustível no celular e no noturno."
+ },
+ {
+  "nome": "col-macae",
+  "rota": "/alexandria/atlas?c=combustivel",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "assunto": [
+   -41.866,
+   -22.306
+  ],
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-41.8,-22.37],zoom:11.5,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Termomacaé e Norte Fluminense coladas: conjunto de gás contra instalações de gás."
+ },
+ {
+  "nome": "col-piracicaba-limiar",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-47.65,-22.45],zoom:9.6,inclinacao:30,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Campo de biomassa todo pequeno no N1: quase nada em 3D e o aviso tem de declarar.",
+  "coberturaInformativa": "cena de limiar: campo de biomassa todo abaixo do piso do nível 1; o aviso manda aproximar"
+ },
+ {
+  "nome": "col-troca-9.8",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-35.9,-5.35],zoom:9.8,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Meio da rampa: escala de cerca de 0,5, selo do vencedor a meio."
+ },
+ {
+  "nome": "col-troca-10.2",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-35.9,-5.35],zoom:10.2,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Meio da rampa: escala de cerca de 0,5, selo do vencedor a meio."
+ },
+ {
+  "nome": "col-rn-reduzido",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-35.9,-5.35],zoom:11.2,inclinacao:58,rumo:20})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Meio da rampa: escala de cerca de 0,5, selo do vencedor a meio.",
+  "reduzido": true
+ },
+ {
+  "nome": "col-rmsp-satelite",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "click": ".atl-controles .atl-controle-satelite"
+   },
+   {
+    "wait": 1500
+   },
+   {
+    "eval": "window.__atlas.ir({centro:[-46.6,-23.55],zoom:12.6,inclinacao:50,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Satélite acima de 12,5: nenhuma maquete, âncora e rótulo ficam (ligar Satélite pela interface). O Satélite é ligado pelo botão da interface (.atl-controles .atl-controle-satelite)."
+ },
+ {
+  "nome": "col-itaipu-satelite",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "assunto": [
+   -54.587,
+   -25.408
+  ],
+  "espera": 4500,
+  "acoes": [
+   {
+    "click": ".atl-controles .atl-controle-satelite"
+   },
+   {
+    "wait": 1500
+   },
+   {
+    "eval": "window.__atlas.ir({centro:[-54.59,-25.41],zoom:12.6,inclinacao:55,rumo:-30})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Satélite acima de 12,5: nenhuma maquete, âncora e rótulo ficam (ligar Satélite pela interface). O Satélite é ligado pelo botão da interface (.atl-controles .atl-controle-satelite)."
+ },
+ {
+  "nome": "col-rn-satelite-12",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "click": ".atl-controles .atl-controle-satelite"
+   },
+   {
+    "wait": 1500
+   },
+   {
+    "eval": "window.__atlas.ir({centro:[-35.9,-5.35],zoom:12,inclinacao:50,rumo:20})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "porque": "Satélite acima de 12,5: nenhuma maquete, âncora e rótulo ficam (ligar Satélite pela interface). O Satélite é ligado pelo botão da interface (.atl-controles .atl-controle-satelite)."
+ },
+ {
+  "nome": "col-perto-ufv-3mw",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-36.7196,-5.264],zoom:15,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "assunto": [
+   -36.7196,
+   -5.264
+  ],
+  "coberturaInformativa": "de perto (A15): a cena mede a escolha de perto, não a cobertura de MW",
+  "porque": "A15: UFV Potiporã, 3 MW (RN), de perto: antes nunca tinha maquete (piso de 30 MW de perto)."
+ },
+ {
+  "nome": "col-perto-pch-8mw",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-52.301,-26.9546],zoom:15,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "assunto": [
+   -52.301,
+   -26.9546
+  ],
+  "coberturaInformativa": "de perto (A15): a cena mede a escolha de perto, não a cobertura de MW",
+  "porque": "A15: PCH Barra das Águas, 8,5 MW (SC): antes nunca; agora piso de leitura de 56 px."
+ },
+ {
+  "nome": "col-perto-se-230",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-38.2072,-12.4992],zoom:14,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "assunto": [
+   -38.2072,
+   -12.4992
+  ],
+  "coberturaInformativa": "de perto (A15): a cena mede a escolha de perto, não a cobertura de MW",
+  "porque": "A15: subestação de 230 kV (UTE Prosperidade, BA) no nível 4 com piso de 84 px. Ela fica colada à usina, que vence o espaço (certo): a maquete da subestação isolada é a cena col-perto-se-230-isolada."
+ },
+ {
+  "nome": "col-perto-se-230-isolada",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-39.7166,-14.2345],zoom:14,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "assunto": [
+   -39.7166,
+   -14.2345
+  ],
+  "coberturaInformativa": "de perto (A15): a cena mede a escolha de perto, não a cobertura de MW",
+  "porque": "Leva 2, item 3: subestação de 230 kV só 230 kV (Itagiba, BA, se:72, cadastro SINDAT, prec 4) sem usina a menos de 27 km e sem outra subestação a menos de 27 km; maquete de 84 px no zoom 14, a 1440 e a 390."
+ },
+ {
+  "nome": "col-perto-se-500",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-58.2589,-2.6842],zoom:14,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "assunto": [
+   -58.2589,
+   -2.6842
+  ],
+  "coberturaInformativa": "de perto (A15): a cena mede a escolha de perto, não a cobertura de MW",
+  "porque": "A15: subestação de 500 kV (Silves, AM): antes só a partir do zoom 16."
+ },
+ {
+  "nome": "col-perto-gnl",
+  "rota": "/alexandria/atlas?c=combustivel",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-46.3648,-23.9121],zoom:14.3,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "assunto": [
+   -46.3648,
+   -23.9121
+  ],
+  "coberturaInformativa": "de perto (A15): a cena mede a escolha de perto, não a cobertura de MW",
+  "porque": "Terminal de GNL (TRSP, Santos) de perto: antes só a partir do zoom 14,5. Leva 4 (codigo.md 9): no zoom 13 nada chegava a zEf 14 e o A15 dava n/d por construção; a cena sobe para 14,3."
+ },
+ {
+  "nome": "col-perto-rmsp-14",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-46.627,-23.546],zoom:14,inclinacao:50,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "assunto": [
+   -46.627,
+   -23.546
+  ],
+  "coberturaInformativa": "de perto (A15): a cena mede a escolha de perto, não a cobertura de MW",
+  "porque": "A15 e feira de geradores: RMSP no zoom 14 (decisão 1: se virar feira, subir o piso do óleo). Centro no aglomerado de grupos geradores da Mooca/Sé (Itaú Mooca, Torre Santander, Record)."
+ },
+ {
+  "nome": "col-perto-rmsp-15",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-46.627,-23.546],zoom:15,inclinacao:50,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "assunto": [
+   -46.627,
+   -23.546
+  ],
+  "coberturaInformativa": "de perto (A15): a cena mede a escolha de perto, não a cobertura de MW",
+  "porque": "RMSP no zoom 15. Centro no aglomerado de grupos geradores da Mooca/Sé (Itaú Mooca, Torre Santander, Record)."
+ },
+ {
+  "nome": "col-perto-manaus-14",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-60.02,-3.1],zoom:14,inclinacao:50,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "assunto": [
+   -60.02,
+   -3.1
+  ],
+  "coberturaInformativa": "de perto (A15): a cena mede a escolha de perto, não a cobertura de MW",
+  "porque": "A15: Manaus no zoom 14 (térmicas a óleo e subestações)."
+ },
+ {
+  "nome": "col-perto-manaus-15",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-60.02,-3.1],zoom:15,inclinacao:50,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "assunto": [
+   -60.02,
+   -3.1
+  ],
+  "coberturaInformativa": "de perto (A15): a cena mede a escolha de perto, não a cobertura de MW",
+  "porque": "Manaus no zoom 15."
+ },
+ {
+  "nome": "col-perto-reconcavo-14",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-38.32,-12.7],zoom:14.3,inclinacao:50,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "assunto": [
+   -38.32,
+   -12.7
+  ],
+  "coberturaInformativa": "de perto (A15): a cena mede a escolha de perto, não a cobertura de MW",
+  "porque": "Recôncavo (Camaçari) de perto. Leva 4 (codigo.md 9): no zoom 14 o Millennium desenhado tinha zEf 13,987 e nenhum candidato chegava ao nível 4; a cena sobe para 14,3 (o nome fica, para a série histórica)."
+ },
+ {
+  "nome": "col-perto-reconcavo-15",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-38.32,-12.7],zoom:15,inclinacao:50,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "assunto": [
+   -38.32,
+   -12.7
+  ],
+  "coberturaInformativa": "de perto (A15): a cena mede a escolha de perto, não a cobertura de MW",
+  "porque": "Recôncavo (Camaçari) no zoom 15."
+ },
+ {
+  "nome": "col-perto-copesul-16",
+  "rota": "/alexandria/atlas",
+  "viewport": [
+   1440,
+   900
+  ],
+  "modo": "claro",
+  "espera": 4500,
+  "acoes": [
+   {
+    "eval": "window.__atlas.ir({centro:[-51.7085,-29.939],zoom:16,inclinacao:45,rumo:0})"
+   },
+   {
+    "wait": 9000
+   }
+  ],
+  "assunto": [
+   -51.7085,
+   -29.939
+  ],
+  "coberturaInformativa": "de perto (A15): a cena mede a escolha de perto, não a cobertura de MW",
+  "porque": "Precisão pela fonte (prec): Copesul, que sumia de perto pelo zero final do número."
+ }
+]

@@ -1,11 +1,19 @@
 // AulaViewer — a aula completa.
 //
-//   VideoArea (estado "em produção" nas nove)
-//   → Apostila — o corpo da aula, conteúdo de página
+//   Apostila — o corpo da aula, conteúdo de página
 //   → InstrumentPanel, onde a aula tiver instrumento
 //   → ExercicioBlock
 //   → MaterialComplementar — referência real, ou a ausência declarada
+//   → VideoArea — a linha de vídeo, no metadado do fim
 //   → ConclusaoAula — LYCEUM Wave 31, ver abaixo
+//
+// O VÍDEO SAIU DO TOPO — r13 da Peça C. Ele abria a aula como um retângulo
+// tracejado em terracota escrito "VÍDEO EM PRODUÇÃO", e a 390 isso ocupava
+// o primeiro viewport inteiro, empurrando a pergunta da aula e o primeiro
+// ato para fora da tela (A2/D3). O tronco proíbe por duas portas: T12
+// ("ausência honesta … nunca no topo da aula") e T14 ("vídeo nunca é
+// herói"). Agora a ausência é linha de metadado, junto do resto do
+// metadado; ver `VideoArea.tsx`.
 //
 // ESTRUTURA DE ABA DESFEITA — LYCEUM Wave 39. Até aqui havia um tab strip
 // de quatro abas: Referência técnica · Apostila · Notas · Transcrição. A
@@ -26,24 +34,29 @@
 // extração alcançar o § Ref), a referência aparece ali como conteúdo de
 // verdade — a decisão é derivada de `aula.references`, não digitada.
 //
-// PROGRESSO REAL — LYCEUM Wave 31. `aula_iniciada` dispara uma vez por
-// `aula.id` genuinamente aberta (dependência do efeito é `aula.id`, não
-// toda renderização — trocar de aula via "Próxima aula" re-renderiza este
-// mesmo componente sem desmontar, e é exatamente aí que o efeito precisa
-// refirar). Falha de rede no evento é best-effort: loga e segue, nunca
-// bloqueia a leitura da aula.
+// PROGRESSO REAL — LYCEUM Wave 31, refeito na v3 (eventos). Até aqui
+// `aula_iniciada` disparava no `useEffect` de MONTAGEM: "percorrido"
+// significava "a rota foi aberta". Agora toda a mecânica vem de
+// `useLoopDaAula` (`src/lib/alexandria/`), e este arquivo só liga:
 //
-// Não existia ponto de conclusão explícito na interface antes desta wave
-// (sem botão "terminei", exercícios sem checagem, `activities: []` em
-// boa parte das aulas). Confirmado com o Aquiles: em vez de reaproveitar
-// "Próxima aula/Voltar" como afirmação implícita de conclusão, entra um
-// botão dedicado — `ConclusaoAula`, ao final, depois do `ExercicioBlock`.
+//   - `refRaiz` na raiz da aula — `aula_iniciada` sai no primeiro gesto
+//     real do aluno nela (rolar, tocar, digitar), nunca na montagem;
+//   - `refFim` logo depois do TEXTO da aula (a Apostila) — o fim visto é
+//     pré-condição do registro;
+//   - `ExercicioBlock.aoRegistrar` → `exercicio_respondido`, com `aulaId`;
+//   - `InstrumentPanel.aoUsar` → `instrumento_usado`, com `aulaId`;
+//   - o botão do fim → `aula_concluida`, SÓ com a pré-condição de
+//     `vereditoDeConclusao` (conta + gesto + fim do texto). Sem ela, o
+//     clique diz o que falta — mesmo contrato de `AcaoDeRegistro`.
+//
+// A aula é PERCORRIDA, não "concluída" (bar C9, P18): o botão e a
+// confirmação dizem isso. Conclusão confirmada avalia a família CONCLUSÃO
+// de conquistas (`badgeRules.ts`).
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { CurriculumAula, LessonReference } from '@/lib/types/alexandria';
 import { getCorpoAula, getLeadAula } from '@/lib/data/alexandria-curriculo';
-import { recordEvent, type AulaStatusInfo } from '@/lib/progress/progressApi';
-import { avaliarPorConclusao, concederBadges } from '@/lib/progress/badgeRules';
+import { useLoopDaAula, type LoopDaAulaMecanico } from '@/lib/alexandria/useLoopDaAula';
 import { A, A2, AT, AS, AR, AE } from '@/design/alexandria-tokens';
 import { VideoArea } from './VideoArea';
 import { ApostilaPanel } from './ApostilaPanel';
@@ -51,103 +64,72 @@ import { InstrumentPanel } from './InstrumentPanel';
 import { ExercicioBlock } from './ExercicioBlock';
 
 export function AulaViewer({ aula }: { aula: CurriculumAula }) {
+  // `key` por aula: "Próxima aula" reaproveita este componente, e sem a
+  // chave o gesto, o fim visto e as tentativas da aula anterior vazariam
+  // para a seguinte.
+  return <CorpoDaAula key={aula.id} aula={aula} />;
+}
+
+function CorpoDaAula({ aula }: { aula: CurriculumAula }) {
   // Resolvido pelo id da aula, não por módulo fixo — ver
   // `alexandria-curriculo.ts`.
   const blocos = getCorpoAula(aula.id);
   const lead = getLeadAula(aula.id);
-
-  // `null` = ainda não sabemos (efeito não resolveu, ou falhou). Nunca
-  // afirma "concluído" sem confirmação real do backend.
-  const [status, setStatus] = useState<AulaStatusInfo['status'] | null>(null);
-  const [marcando, setMarcando] = useState(false);
-  const [erroMarcar, setErroMarcar] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Troca de aula (Próxima/Anterior não desmonta este componente) —
-    // limpa o status da aula anterior antes de perguntar pela nova, para
-    // não mostrar "concluído" da aula que acabou de sair de cena.
-    setStatus(null);
-    setErroMarcar(null);
-    let vivo = true;
-
-    recordEvent('aula_iniciada', aula.id)
-      .then((r) => {
-        if (vivo && r.aulaStatus) setStatus(r.aulaStatus.status);
-      })
-      .catch((err: unknown) => {
-        // Best-effort: a aula continua legível mesmo sem registrar.
-        console.error('[alexandria] falha ao registrar aula_iniciada', err);
-      });
-
-    return () => {
-      vivo = false;
-    };
-  }, [aula.id]);
-
-  async function marcarConcluida() {
-    setMarcando(true);
-    setErroMarcar(null);
-    try {
-      const r = await recordEvent('aula_concluida', aula.id);
-      setStatus(r.aulaStatus?.status ?? 'concluido');
-
-      // Concessão de badge — LYCEUM Wave 39. Conclusão de aula é o único
-      // sinal que o produto emite, então é aqui que a avaliação cabe.
-      // Hoje NENHUMA das 13 regras dispara (ver `badgeRules.ts`: o
-      // veredito da wave é que nenhum critério tem evento real
-      // disponível), então isto devolve lista vazia sem abrir requisição.
-      // O caminho fica ligado para que abrir um bloqueio seja escrever
-      // uma regra, não montar encanamento.
-      await concederBadges(avaliarPorConclusao({ aulaId: aula.id }));
-    } catch (err) {
-      console.error('[alexandria] falha ao registrar aula_concluida', err);
-      setErroMarcar('Não foi possível salvar agora. Tente de novo.');
-    } finally {
-      setMarcando(false);
-    }
-  }
+  const loop = useLoopDaAula({ aulaId: aula.id, moduloId: aula.moduleId });
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: AS.xxl }}>
-      <VideoArea video={aula.video} />
-
+    <div ref={loop.refRaiz} style={{ display: 'flex', flexDirection: 'column', gap: AS.xxl }}>
       {/* O corpo da aula. Conteúdo de página — nunca atrás de um controle
-          que possa dispensá-lo. */}
-      <ApostilaPanel lead={lead} blocos={blocos} gravuras={aula.illustrations} />
+          que possa dispensá-lo. E é ele que abre a aula: nada de ausência
+          acima dele (T12, T14). O marcador de 1 px logo depois dele é o
+          "fim do texto" da regra de conclusão. */}
+      <div>
+        <ApostilaPanel lead={lead} blocos={blocos} gravuras={aula.illustrations} />
+        <span ref={loop.refFim} aria-hidden="true" data-capture="fim-do-texto" style={{ display: 'block', height: '1px' }} />
+      </div>
 
       {aula.instruments.map((inst) => (
-        <InstrumentPanel key={inst.id} instrumento={inst} />
+        <InstrumentPanel
+          key={inst.id}
+          instrumento={inst}
+          aoUsar={(uso) => loop.usarInstrumento(inst.id, uso)}
+        />
       ))}
 
-      <ExercicioBlock atividades={aula.activities} />
-
-      <MaterialComplementar referencias={aula.references} />
-
-      <ConclusaoAula
-        status={status}
-        marcando={marcando}
-        erro={erroMarcar}
-        onMarcar={marcarConcluida}
+      <ExercicioBlock
+        atividades={aula.activities}
+        registro={loop.conta === 'conta' ? 'conta' : loop.conta === 'visitante' ? 'visitante' : 'indefinido'}
+        aoRegistrar={(r) =>
+          void loop.emitirExercicio({
+            entidadeId: r.atividadeId,
+            ato: 'exercicio',
+            resposta: r.resposta,
+            antesDaReferencia: r.antesDaReferencia,
+          })
+        }
       />
+
+      {/* A gravação, quando existir, entra DEPOIS da aula — nunca acima
+          dela (T14). A ausência de vídeo não vira bloco: é uma linha da
+          declaração compacta de ausências, logo abaixo. */}
+      <VideoArea video={aula.video} />
+
+      <MaterialComplementar referencias={aula.references} temVideo={Boolean(aula.video)} />
+
+      <ConclusaoAula loop={loop} />
     </div>
   );
 }
 
-/** O único ponto de conclusão explícito da aula — LYCEUM Wave 31. Estado
- *  desconhecido (efeito ainda não resolveu ou falhou) mostra o botão, não
- *  um terceiro estado visual: nunca afirma "concluído" sem confirmação. */
-function ConclusaoAula({
-  status,
-  marcando,
-  erro,
-  onMarcar,
-}: {
-  status: AulaStatusInfo['status'] | null;
-  marcando: boolean;
-  erro: string | null;
-  onMarcar: () => void;
-}) {
-  if (status === 'concluido') {
+/** O único ponto de registro explícito da aula — LYCEUM Wave 31, com
+ *  pré-condição desde a v3. Estado desconhecido mostra o botão, nunca um
+ *  "percorrida" sem confirmação do servidor. O botão nunca fica
+ *  desabilitado: sem a pré-condição, o clique DIZ o que falta. */
+function ConclusaoAula({ loop }: { loop: LoopDaAulaMecanico }) {
+  const [aviso, setAviso] = useState<string | null>(null);
+  const marcando = loop.envioDaConclusao === 'enviando';
+
+  if (loop.status === 'concluido') {
     return (
       <div
         style={{
@@ -158,12 +140,15 @@ function ConclusaoAula({
           gap: AS.sm,
         }}
       >
-        <span style={{ ...AT.corpo, fontSize: '14px', color: A.oliva }}>
-          ✓ Aula concluída
+        <span data-capture="aula-percorrida" style={{ ...AT.corpo, fontSize: '14px', color: A.oliva }}>
+          ✓ Aula percorrida · registrada na sua conta
         </span>
       </div>
     );
   }
+
+  const erro =
+    loop.envioDaConclusao === 'falhou' ? 'Não foi possível registrar agora. Tente de novo.' : aviso;
 
   return (
     <div
@@ -178,7 +163,12 @@ function ConclusaoAula({
     >
       <button
         type="button"
-        onClick={onMarcar}
+        data-capture="registrar-aula"
+        onClick={async () => {
+          setAviso(null);
+          const r = await loop.concluir();
+          if (!r.registrada && 'veredito' in r && !r.veredito.pode) setAviso(r.veredito.frase);
+        }}
         disabled={marcando}
         style={{
           ...AT.rotulo,
@@ -192,10 +182,10 @@ function ConclusaoAula({
           transition: `color ${AE.estado} ${AE.easing}, border-color ${AE.estado} ${AE.easing}`,
         }}
       >
-        {marcando ? 'Marcando…' : 'Marcar aula como concluída'}
+        {marcando ? 'Registrando…' : 'Registrar aula como percorrida'}
       </button>
       {erro && (
-        <span style={{ ...AT.dado, fontSize: '11px', color: A.terracota }}>{erro}</span>
+        <span role="status" style={{ ...AT.dado, fontSize: '11px', color: A.terracota }}>{erro}</span>
       )}
     </div>
   );
@@ -211,7 +201,7 @@ function ConclusaoAula({
  *
  *  Uma declaração compacta em vez de três blocos empilhados: a regra de
  *  densidade do produto vale também para o que NÃO existe. */
-function MaterialComplementar({ referencias }: { referencias: LessonReference[] }) {
+function MaterialComplementar({ referencias, temVideo }: { referencias: LessonReference[]; temVideo: boolean }) {
   // Notas e Transcrição são ausência estrutural, não de extração — cada
   // uma com a razão real e atual, não a herdada.
   const ausencias: [string, string][] = [
@@ -224,6 +214,16 @@ function MaterialComplementar({ referencias }: { referencias: LessonReference[] 
       'Derivada de vídeo, e nenhuma aula extraída tem gravação — os HTML de origem não trazem vídeo nenhum. O texto da aula está acima, inteiro, e não é resumo.',
     ],
   ];
+  // O vídeo entra AQUI, na mesma declaração compacta, e não como bloco
+  // próprio no topo da aula (T12, T14 — r13 da Peça C). Fica antes da
+  // transcrição porque é a causa dela: sem gravação, não há o que
+  // transcrever.
+  if (!temVideo) {
+    ausencias.splice(1, 0, [
+      'Vídeo',
+      'Nenhuma aula do currículo tem gravação hoje. O texto acima é a aula completa — não é resumo nem transcrição de um vídeo que exista em outro lugar.',
+    ]);
+  }
   if (referencias.length === 0) {
     ausencias.unshift([
       'Referência técnica',

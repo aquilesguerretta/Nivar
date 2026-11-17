@@ -1,0 +1,1322 @@
+{
+ "modulo": "modulo-17",
+ "titulo_catalogo": "Cenário Internacional Comparativo",
+ "trilha": "T3 (Brasil, nível 3), quinto e último módulo da trilha (blocos 13–17). É o último módulo do currículo.",
+ "gerado_em": "2026-09-17",
+ "autor": "leitura de aula (agente), com a camada Alexandria marcada onde aparece",
+ "convencoes": {
+  "bloco_indice": "Índice 0-based em MODULO_17_CORPO[aulaId]. \"apos_bloco: N\" quer dizer que o instrumento ou o ato entra depois do bloco N e antes do N+1. A posição foi derivada de extraction/m17/instrumentos.json (ponto_de_invocacao: bloco anterior e bloco seguinte na fonte) e casada com os blocos do TS.",
+  "camadas": "A camada \"fonte\" é o literal do HTML/TS. A camada \"alexandria\" é texto pedagógico derivado (P3, P11, P19): pode ser revisado e nunca recebe rótulo de fonte.",
+  "numeros": "Todo número abaixo está no HTML-fonte, no TS ou na extração verificada. Os números marcados como \"derivado\" foram recalculados com as fórmulas do <script> da fonte (instrumentos.json) ou com aritmética simples sobre números da fonte, e são sempre da camada Alexandria.",
+  "perecibilidade": "A fonte inteira declara \"verificado em 04·08·2026\" e \"números vivos\". Hoje é 2026-09-17. Todo estado normativo ou de mercado citado abaixo aparece na interface com o selo \"verificado em 04/08/2026 · a reverificar\" (ver F-M12-1)."
+ },
+ "fontes_lidas": [
+  "src/lib/data/alexandria-modulo-17-content.ts: MODULO_17_LEAD (11), MODULO_17_CORPO (122 blocos), MODULO_17_EXERCICIOS_SOLTOS (18) e MODULO_17_AULAS (11, todas com instruments: [], illustrations: [] e video: null)",
+  "docs/alexandria-v2/extraction/m17/: README, modulo.json/.md, aparato.json/.md e instrumentos.json/.md (12 instrumentos com 96 estados capturados, grades #jg-main e #jg-us). A extração está verificada: 2.300 campos, 427 origens e 372 vereditos, todos com 0 falhas",
+  "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo17.html (só leitura). Conferências pontuais: pesos do #par3-demo (L1631–1680) e posição do #jg-us (L2081)",
+  "docs/alexandria-v2/bar.md (§0, §4, S1–S7, §7, §9, §11)",
+  "docs/alexandria-v2/decisoes/2026-09-16-ambiguidades-de-conteudo.md (P17–P25)",
+  "docs/alexandria-v2/media-lab/aulas/m17/: não há plano.json. Existem 4 originais com meta em _trabalho/meta (a07 VIIRS noturno, a08 cubas de alumínio, a10 telhados de Canberra, a10 mapa PVOUT do Chile)",
+  "docs/alexandria-v2/estudos/aulas/m16.json (formato e convenções)"
+ ],
+ "observacoes_modulo": {
+  "tese_do_modulo_fonte": "Nenhum número de um mercado é comparável ao de outro sem que se declare o que está dentro dele (as sete declarações de perímetro). Toda diferença que sobrevive à declaração se decompõe em três parcelas: dotação, desenho e política. O módulo trabalha com três lentes (perímetro, atribuição e pressuposto institucional), mais uma disciplina de unidade (os quatro números de penetração), e recusa ranking (§00, §MAP).",
+  "familia_de_representacao": "O módulo é um método aplicado a jurisdições. Três figuras-sistema devem atravessar as aulas e dar unidade sem uniformizar o layout: (1) a Régua das sete declarações (A01; reaparece em A10 e A11 e no caso); (2) a Barra de três parcelas, dotação · desenho · política, com a parcela \"que não explica nada\" marcada (A02; reaparece em A05, A06, A07 e A09); (3) a Grade de funções institucionais, operar · contabilizar · liquidar · fiscalizar · julgar · financiar (A07; reaparece em A04, A08 e A11). Uma quarta, a Escada dos quatro números, serve A07 e A09. Cada aula de jurisdição (A05–A10) mostra em que parcela e em que função ela ensina algo.",
+  "objeto_mundo": "A grade de 17 jurisdições × 4 dimensões (#jg-main, §MAP, INST·01) é o território do módulo. Ela não é um ranking: é uma mesa de reagrupamento. Cada aula de jurisdição acende as suas linhas nessa grade (localizar), e a A11 fecha voltando a ela.",
+  "instrumentos": "A fonte tem 12 instrumentos: o INST·01 fica no §MAP, fora de aula, e os INST·02–12 ficam um por aula, na ordem. Nenhum tem pergunta própria nem tolerância declarada. Só 5 declaram a fonte dos números (06, 07, 09, 10, 11); os padrões do 10 e do 11 são declarados como \"ilustrativos\". O código tem 0 de 12 portados (COD-M17-06; §9: M17 não portado). Oito dos doze são exploradores categóricos: eles pedem um ato de previsão ou de classificação antes da revelação, senão viram leitura clicável.",
+  "exercicios": "São 18 exercícios, todos soltos e todos com gabarito, em quatro categorias marcadas no markup por div.dvs: Perímetro 01–05, Atribuição 06–10, Pressuposto 11–14 e Unidade 15–18 (o código perdeu a categoria, COD-M17-07). Pelo P9 eles ficam na Revisão. Este estudo aponta o exercício correspondente a cada aula. Usá-lo dentro da aula, antes da referência, é uma re-ancoragem da camada Alexandria e pede decisão.",
+  "fichas": "§Fichas: 6 jurisdições × 7 campos (Brasil, Meio-atlântico, Sul central, Alemanha, China, Chile). O item (c) de \"Não permite concluir\" é uma lacuna-exercício sem referência nas seis: serve como ato secundário com autoavaliação.",
+  "caso": "O §Caso \"Operação A — Parte 17\" (P17: título \"Caso — Operação A\", sem \"Parte\") traz duas perguntas. A 1ª (\"o mecanismo de fronteira alcança o produto dela?\", em 5 etapas) é a aplicação da A08. A 2ª (\"uma operação comparável lá paga menos que vocês\", com 7 declarações, 6 ausentes) é a aplicação da A01. A fonte recusa decisão (\"Diagnóstico, sempre; recomendação fechada, nunca.\"). O Desafio de decisão (P17) deve respeitar essa recusa: decidir qual pergunta devolver e qual documento pedir, não recomendar.",
+  "checklist": "§Final: 30 itens autodeclarados. Este estudo usa os itens como \"Serve a\" por aula (C9).",
+  "quiz": "10 questões × 4 alternativas; o placar ≥ 8 é resultado de avaliação, nunca \"Aprovado\" (P18). A Q7 repete a frase numericamente errada do teto (div-m17-14).",
+  "voz": "O roteiro oral de 10 min em 7 faixas é uma \"atividade recomendada\" (P14), o fechamento natural depois da A11.",
+  "jogo": "P25: nenhuma experiência jogável nesta wave. No módulo, só a linha \"experiência jogável em desenho\".",
+  "regua_de_nomeacao": "O §00 libera nomear jurisdição, mercado organizado, operador e regulador quando eles são o objeto do estudo (faixa 1), e evita nomear empresas (faixa 3). A prosa das aulas, mesmo assim, descreve os operadores por função (\"meio-atlântico\", \"sul central\", \"costa oeste\"). Os instrumentos e as fichas nomeiam Alemanha, China e Chile. Proposta: legendas de mapa e rótulos usam a descrição funcional da própria fonte, e a decisão de nomear operadores norte-americanos fica com o Founder (faixa 1 permite; a prosa não usa).",
+  "qa_transversal": [
+   "P7/P24: há notas \"Onde isso entra no produto\" (tom gold) em A01, A02, A03, A04, A05, A06, A07, A08 e A10. Elas citam \"GridAlpha Brasil Terminal\", \"GridAlpha Research\", \"GridAlpha US Terminal\" e \"Regulatory Radar\". Ficam fora da interface. As frases \"Capacidade entregue: …\" dentro delas são as únicas capacidades do módulo (m17-cap-03…11) e podem virar \"Serve a\" só se forem reescritas na camada Alexandria, sem o produto.",
+   "A05 blocos 0–2 (conflito de interesse) citam \"um terminal do GridAlpha\" e o \"plano de negócios\". A declaração de parte interessada é pedagogia central (checklist 27, erro 19), mas o sujeito é a empresa. Decisão do Founder: reescrever como declaração editorial NIVAR (P24) ou mover para a camada de módulo.",
+   "S4, linguagem interna e códigos: A01 bloco 0 \"conforme a glosa do §00\"; A10 bloco 11 \"na colisão declarada no §MAP\"; A11 bloco 3 \"a §MAP mostrou por quê\"; A09 bloco 1 \"a validação de entrega inclui um teste específico\"; A08 bloco 5 \"O material comparativo que alimentou esta sessão\"; A06 bloco 8 fala de \"vazamento\" da régua (bloco P7, já sai). Os códigos viram links de âncora (\"a glosa de preço\", \"o mapa das jurisdições\"), e as frases de processo interno pedem reescrita editorial.",
+   "Referências cruzadas erradas: A02 bloco 14 (Especialista) diz \"a Aula 08 os separa\", quando é a Aula 09 (div-m17-01). A glosa \"carbono\" do §00 aponta a Aula 07, quando é a Aula 08 (div-m17-02).",
+   "Números a corrigir (CONTENT QA): A05 bloco 8, \"a diferença entre o teto e a estimativa sem teto é maior que o próprio teto\". Pela fonte, 554,72 − 325 = 229,72 < 325 (div-m17-14). O INST·07 (\"cerca de 70% acima\") confere: 554,72 ÷ 325 = 1,707. A frase não pode ir ao ar como está.",
+   "COD-M17-01: os 6 blocos \"Três níveis\" perderam o rótulo (A01 \"Câmbio nominal contra paridade de poder de compra\"; A02 \"Capacidade instalada contra geração\"; A03 \"Despacho por custo declarado contra despacho por oferta\" e \"Preço nodal, zonal e uniforme\"; A04 \"Mercado de capacidade contra mercado só de energia\"; A08 \"Teto e comércio, tributo e ajuste de fronteira\"). Restaurar (F-M05-5).",
+   "COD-M17-02: tabelas vindas de p7/tri/cn5/grg têm a 1ª linha de dado promovida a cabeçalho (A01 bloco 1, A03 bloco 7, A05 bloco 7, A08 bloco 0, A09 bloco 0, A11 bloco 5). Renderizar como lista definida, não como tabela com cabeçalho.",
+   "P21: \"fator de carga\" aparece por extenso na prosa (ok). O INST·06 tem o rótulo \"Fator de carga da carga\" e deve virar \"FCarga da carga (%)\" na 1ª ocorrência por extenso. \"Fator de utilização\" (A07, A09, ex-16) é uma grandeza própria da fonte: manter por extenso e nunca abreviar como FC.",
+   "Semáforo (S2): os instrumentos usam classes ok/att/per e o INST·08 pinta \"ausente\" de vermelho. No produto, estado por palavra e silhueta.",
+   "Perecibilidade: todos os estados de A05, A06, A07, A08 e A10 são de 04/08/2026. Pelo menos três marcos citados como futuros já passaram ou estão no mês corrente: \"leilão extraordinário de retaguarda marcado para setembro de 2026\" (A05), \"consulta pública … encerrada em junho de 2026\" (INST·07) e \"normas infralegais da primeira fase até dezembro de 2026\" (A08, ainda futuro). Selo de verificação obrigatório.",
+   "Ponte final (A11 bloco 7): promete \"a caixa de ferramentas — a planilha que transforma tudo isto em conta feita\". Não existe destino correspondente no currículo de 17 módulos. Não exibir como destino (S4, sem destino falso). A ponte vira \"Revisão → Avaliação do módulo\" ou \"ainda não disponível\"."
+  ]
+ },
+ "aulas": [
+  {
+   "aulaId": "aula-17-01",
+   "numero": 1,
+   "titulo": "As sete declarações que precedem qualquer comparação de preço",
+   "subtitulo_fonte": "Perímetro",
+   "blocos_no_corpo": 5,
+   "o_que_ensina": "Antes de comparar dois números de preço entre jurisdições, sete coisas precisam estar declaradas iguais ou ajustadas: o que está dentro, quem é o consumidor, qual mercado formou, granularidade e período, tributo e subsídio, base cambial e qual desenho formou. Se faltar uma, a comparação não é imprecisa: é inválida, e a resposta correta é devolver a pergunta. O câmbio, que todo mundo checa, costuma ser o único problema já resolvido.",
+   "natureza": [
+    "leitura de documento/número",
+    "taxonomia (checklist)",
+    "caso/diagnóstico"
+   ],
+   "representacao": {
+    "arquetipo": "Régua de sete declarações como palco: uma prancha em que dois números ficam lado a lado e sete trilhos entre eles se acendem ou ficam vazios",
+    "composicao": "Lede com o erro do câmbio → prosa do bloco 0 → as sete declarações (bloco 1) como uma régua vertical de 7 trilhos numerados, cada um com a frase-chave da fonte em destaque e o detalhe em disclosure → o caso €89/MWh (bloco 2) montado NA régua: dois cartões-número (\"€89/MWh · média aritmética de mercado de ofertas\" × \"valor de liquidação de um submercado brasileiro\") com os trilhos vazios → ato de classificar → INST·02 (a mesma régua, agora manipulável) → Três níveis (câmbio nominal × paridade), com um ato curto de decidir a base.",
+    "por_que": "A aula não ensina um valor; ensina uma lista de verificação que tem que virar hábito. A forma certa é um objeto único, reaproveitado: a régua. O caso €89 e o INST·02 são a mesma régua em dois estados (lido e manipulado), e o módulo inteiro volta a ela (A10, A11 e a 2ª pergunta do caso). Uma coluna de prosa com uma tabela de 7 linhas é exatamente o LMS genérico que o teste anti-LMS reprova."
+   },
+   "abertura": {
+    "pergunta": "\"Lá a energia é mais barata.\" Antes de perguntar pelo câmbio: o que precisa estar declarado para essa frase significar alguma coisa?",
+    "objetivo": "Enumerar as sete declarações de perímetro e dizer, diante de uma comparação concreta, quais faltam.",
+    "camada": "alexandria",
+    "derivada_de": "Lead da A01 + bloco 0 + erros comuns 01 e 02",
+    "previsao": {
+     "util": true,
+     "pergunta": "Um interlocutor põe lado a lado um preço médio de curto prazo europeu de €89/MWh e o preço de curto prazo médio de um submercado brasileiro no mesmo ano, convertidos pelo câmbio médio. Das sete declarações, quantas ele fez?",
+     "resposta_fonte": "Uma (a base cambial). Faltam seis (bloco 2; m17-ex-02; quiz Q1; caso, pergunta 2).",
+     "por_que_ensina": "O erro esperado (\"fez quase todas, só falta ajustar o câmbio\") é o erro que a aula combate: a única declaração feita é a que não era o problema.",
+     "regra_de_entrada": "Contagem inteira de 0 a 7. Quais seis faltam não entra na correção automática, porque o Ex 02 e a Q1 listam conjuntos diferentes (div-m17 nº 8). A lista entra como autoavaliação."
+    }
+   },
+   "ato_autentico": {
+    "tipo": "classificar",
+    "descricao": "Montar o caso €89 no INST·02: marcar como \"declarada\" cada declaração que o enunciado do bloco 2 realmente faz, antes de ler o veredito. O instrumento devolve quantas faltam e recusa concluir. Depois, comparar a própria marcação com a referência (só a base cambial).",
+    "exercita": "Enumerar as sete e reconhecer a ausência, que é o mecanismo central.",
+    "camada": "alexandria (tarefa e preset); fonte (as sete, o caso, o comportamento de recusa do INST·02)"
+   },
+   "atos_secundarios": [
+    "Decidir a base cambial (câmbio nominal ou paridade) para três usos tirados do bloco \"Três níveis\": acessibilidade residencial → paridade; equipamento importado ou dívida em moeda forte → nominal; competitividade exportadora → nominal. Três escolhas com justificativa; a referência vem do próprio bloco.",
+    "m17-ex-04 (tributo recuperável: normalizar dos dois lados ou de nenhum) e m17-ex-05 (média aritmética horária para um centro de dados), na Revisão ou re-ancorados (P9)."
+   ],
+   "visualizacao": {
+    "desenhar": [
+     {
+      "figura": "Régua das sete declarações",
+      "relacao": "dois números × sete trilhos de perímetro; cada trilho está declarado ou ausente",
+      "eixos": "vertical, com 7 trilhos numerados na ordem da fonte",
+      "unidade": "estado (declarada / ausente), por palavra e silhueta, sem cor",
+      "trabalho": "fazer a ausência visível: 1 de 7 acesos no caso €89"
+     },
+     {
+      "figura": "Razão entre camadas",
+      "relacao": "tarifa industrial cheia (4 camadas) × preço de curto prazo de atacado (1 camada)",
+      "eixos": "duas barras empilhadas, com energia na base",
+      "unidade": "sem valores: a fonte dá só \"a razão entre as duas pode passar de três\"",
+      "trabalho": "mostrar a forma da declaração 1. Figura esquemática, sem números; o valor 3 só aparece como a frase da fonte"
+     }
+    ],
+    "existe_no_codigo": false,
+    "forma_prometida_nao_desenhada": "\"Verificador de perímetro de preço\" promete 7 linhas com estado; não está portado. O bloco 1 é hoje uma tabela com o 1º item promovido a cabeçalho (COD-M17-02)."
+   },
+   "instrumento": [
+    {
+     "id": "INST·02",
+     "nome": "Verificador de perímetro de preço",
+     "apos_bloco": 2,
+     "posicao_na_fonte": "Depois do caso concreto (bloco 2) e antes do \"Três níveis\" de câmbio (bloco 3).",
+     "previsao": true,
+     "padrao_fonte": "As 7 declarações começam \"Ausentes\". Veredito: 7 de 7 ausentes, \"A comparação é inválida, não imprecisa\". Ramos: 0 falta → ok; 1–3 → atenção; ≥ 4 → inválida.",
+     "problema_pedagogico": "Começar vazio faz do instrumento uma checklist sem objeto. Proposta (camada alexandria): preset \"Caso €89\" com o enunciado visível acima dos trilhos; o learner marca, e o veredito só aparece depois do registro. Um segundo preset opcional seria a 2ª pergunta do caso (6 ausentes, a mesma forma).",
+     "fonte_de_valores": "Não há números. O comportamento de recusa é da fonte."
+    }
+   ],
+   "checagem": "Previsão (quantas declarações) × referência (1) no quadro fixo junto do INST·02. A marcação do learner × a referência trilho a trilho, com o que acrescenta e o critério, sem cor. Base cambial: 3 escolhas × a referência do bloco 3. Autoavaliação em três níveis para a lista das seis faltantes.",
+   "recuperacao": {
+    "antes_de_mostrar": "Do M10: \"Quais são as camadas de uma fatura brasileira?\" (a declaração 1 cita a dissecação do M10). Do M16: a régua de estágio aparece na A06 e na A08; aqui nenhuma.",
+    "origem_visivel": "M10"
+   },
+   "proximo_passo": {
+    "nao_atende": "Rever a régua das sete (bloco 1) e refazer o caso €89",
+    "leitura_sem_pratica": "Fazer o ato desta aula: montar o caso €89",
+    "demais": "Próxima · M17·A02 — Dotação, desenho e política: a diferença que sobreviveu ao perímetro"
+   },
+   "serve_a": [
+    "Checklist 1–10 (as sete declarações e seus detalhes)",
+    "Erros comuns 01, 02, 03, 13"
+   ],
+   "midia": {
+    "precisa": false,
+    "onde_ajuda": "Nenhuma imagem ganha no teste de remoção: a aula trata de números e declarações. A figura é a régua, programática.",
+    "curadoria": "Sem candidata no media-lab para a01."
+   },
+   "mobile_390": "A régua fica vertical a toda a largura; cada trilho é uma linha com número, nome e o estado em palavra; o detalhe entra em disclosure. Os dois cartões-número empilham acima da régua e ficam colados no topo enquanto o learner marca (sticky curto, sem cobrir o foco). O veredito aparece abaixo da régua, depois do registro. As 7 linhas têm alvo ≥ 44px.",
+   "lacunas_fonte": [
+    "O INST·02 não tem pergunta própria nem cenário: a pergunta e o preset são da camada Alexandria.",
+    "O caso €89 não tem o valor brasileiro: a fonte não dá o número do submercado. Não inventar; o cartão diz \"valor do mesmo ano, não declarado nesta aula\".",
+    "\"A razão entre as duas pode passar de três\" não tem base numérica: figura sem escala.",
+    "Os conjuntos das seis faltantes divergem entre Ex 02, Q1 e o bloco 2 (div-m17 nº 8)."
+   ],
+   "dependencias_s9": [
+    "Portar INST·02",
+    "Registro de previsão e de marcação",
+    "Rótulo do bloco \"Três níveis\" (COD-M17-01)",
+    "Tabela sem cabeçalho falso (COD-M17-02)"
+   ],
+   "qa_conteudo": [
+    "Bloco 0: \"conforme a glosa do §00\" → link \"a glosa de preço\" (S4).",
+    "Bloco 4: nota P7 com \"GridAlpha Brasil Terminal\" → fora."
+   ],
+   "nota_ambicao": "O momento memorável é o learner acender, sozinho, um único trilho de sete, e perceber que é justamente o câmbio. A régua que ele acabou de usar volta idêntica em A10, A11 e no caso: o módulo passa a ter uma ferramenta, não uma lista."
+  },
+  {
+   "aulaId": "aula-17-02",
+   "numero": 2,
+   "titulo": "Dotação, desenho e política: a diferença que sobreviveu ao perímetro",
+   "subtitulo_fonte": "Atribuição",
+   "blocos_no_corpo": 16,
+   "o_que_ensina": "A diferença que sobrevive ao perímetro se decompõe em dotação (o que o país tem e não escolheu), desenho (a arquitetura escolhida) e política (as escolhas fora da arquitetura, as mais voláteis). A decomposição tem que dizer qual parcela vincula, quais concorrem e qual não explica nada. Só o desenho é discutível como importação, e mesmo ele depende da dotação.",
+   "natureza": [
+    "modelo conceitual (decomposição)",
+    "comparação de jurisdições",
+    "atribuição causal"
+   ],
+   "representacao": {
+    "arquetipo": "Coluna editorial com a Barra de três parcelas como figura-sistema, seguida de uma bancada de decomposição",
+    "composicao": "Três seções (blocos 0–8), cada uma aberta pela parcela que define: a barra de três segmentos acende o segmento da seção. A regra operacional do bloco 5 (\"mudança de governo altera política; raramente desenho; nunca dotação\") vira uma tira de três horizontes de tempo. Bloco 8, a condicionalidade: uma seta desenho ← dotação. O exemplo estático (blocos 9–13) volta a ser o que era na fonte: três enunciados, cada um com a sua barra proporcional e a parcela que não explica marcada. O INST·03 entra como bancada: par × dimensão. O \"Três níveis\" (capacidade × geração) fica recolhido no fim, com a nota de deslocamento.",
+    "por_que": "A aula ensina uma forma, a de uma diferença repartida em três com uma parte nula. Essa forma precisa ser vista três vezes (exemplos) e depois produzida (ato). A barra é o objeto que o módulo reusa em A05, A06, A07 e A09, e só funciona se a parcela \"que não explica nada\" tiver silhueta própria (segmento vazio tracejado), porque essa é a informação que quase nunca aparece."
+   },
+   "abertura": {
+    "pergunta": "A diferença resistiu às sete declarações. Ela é lição, geografia ou governo?",
+    "objetivo": "Diante de uma diferença observada, dizer qual parcela vincula, quais concorrem e qual não explica nada.",
+    "camada": "alexandria (a pergunta usa as palavras do INST·03: \"lição, geografia ou governo\")",
+    "derivada_de": "Instrução do INST·03 + títulos dos blocos 0 e 3",
+    "previsao": {
+     "util": true,
+     "pergunta": "\"O preço de curto prazo deles varia muito mais que o nosso\", num mercado só de energia contra um despacho por custo declarado. Qual das três parcelas explica quase tudo, e qual quase nada?",
+     "resposta_fonte": "Desenho explica quase tudo; dotação não explica quase nada, e política tampouco (bloco 13, 2º exemplo; pesos da barra da fonte 1 · 8 · 1).",
+     "por_que_ensina": "O palpite natural é \"dotação\" ou \"política\"; é o caso em que o desenho domina, e ele prepara a A03 e a A04.",
+     "regra_de_entrada": "Escolha fechada (vincula: dotação/desenho/política; não explica: idem). Os pesos são ordinais e ilustrativos (fonte): não pedir número."
+    }
+   },
+   "ato_autentico": {
+    "tipo": "decidir com justificativa (decompor)",
+    "descricao": "No INST·03, par \"Meio-atlântico × sul central\", dimensão Regulação: antes da revelação, o learner marca qual parcela vincula e qual não explica nada, e escreve em uma linha por quê. Referência (fonte): desenho vincula quase sozinho (2 · 8 · 0); política não explica nada, porque a política federal é idêntica nos dois.",
+    "exercita": "A decomposição com a parcela nula, que é o mecanismo central.",
+    "camada": "alexandria (preset e tarefa); fonte (pesos e nota da célula pjm_erc/regul)",
+    "observacao": "Preset escolhido de propósito entre as células em que o rótulo \"não explica nada\" casa com peso 0 (div-m17-inst-02: em 13 das 24 células o rótulo aponta uma parcela de peso 1). Células consistentes com peso 0: pjm_erc/regul, br_de/descarb, br_cn/preco e as demais que a varredura confirmar."
+   },
+   "atos_secundarios": [
+    "Aplicar a simetria: decompor também o lado brasileiro de \"Brasil × Alemanha / Descarbonização\" (dotação vincula do lado brasileiro, política do lado alemão, desenho 0), checklist 15.",
+    "m17-ex-06 (intensidade de ~20 gCO₂e/kWh: política vincula, dotação concorre, desenho quase não explica) e m17-ex-07 (os dois mercados do mesmo país), na Revisão ou re-ancorados."
+   ],
+   "visualizacao": {
+    "desenhar": [
+     {
+      "figura": "Barra de três parcelas (figura-sistema)",
+      "relacao": "diferença = dotação + desenho + política, com a parcela nula marcada",
+      "eixos": "uma barra horizontal de 3 segmentos proporcionais; segmento de peso 0 como traço vazio com rótulo \"não explica\"",
+      "unidade": "pesos ordinais sem unidade (\"ilustrativos, não medida\", fonte)",
+      "dados_fonte": "Exemplo 1 (base nuclear × hidrotérmico) 2 · 2 · 6; exemplo 2 (energy-only × custo declarado) 1 · 8 · 1; exemplo 3 (renovável variável × hidráulico) 6 · 1 · 3 (HTML L1631–1680)",
+      "fonte_visivel": "Rótulo fixo \"proporções ordinais e ilustrativas, não medida\" (texto da fonte, bloco 10)",
+      "trabalho": "ver a mesma forma em três casos e notar que a parcela dominante muda"
+     },
+     {
+      "figura": "Três horizontes",
+      "relacao": "política muda em mandato; desenho raramente no mesmo mandato; dotação nunca",
+      "eixos": "tira de tempo com três faixas",
+      "unidade": "sem escala numérica além de \"menos de três anos\" e \"uma década … três administrações\" (bloco 4)",
+      "trabalho": "dar forma à regra operacional do bloco 5, que a A06 vai testar"
+     }
+    ],
+    "existe_no_codigo": false,
+    "forma_prometida_nao_desenhada": "O \"Exemplo estático\" da fonte desenha 3 barras (#par3-demo). O código fundiu os 3 numa nota \"Proporção\", perdeu os pesos e deixou um \"<\" solto (COD-M17-03). O INST·03 promete barra + legenda \"peso/total\" e não está portado."
+   },
+   "instrumento": [
+    {
+     "id": "INST·03",
+     "nome": "Decompositor de diferença",
+     "apos_bloco": 13,
+     "posicao_na_fonte": "Depois do exemplo estático (bloco 13) e antes do \"Três níveis\" (bloco 14).",
+     "previsao": true,
+     "padrao_fonte": "Brasil × meio-atlântico / Preço: 2 · 7 · 1, \"Parcela vinculante: desenho\"; o rótulo \"não explica\" aponta política, que tem peso 1.",
+     "problema_pedagogico": "(1) O padrão é uma das células inconsistentes (rótulo \"não explica\" com peso 1). (2) O veredito é revelado ao clicar: sem tentativa. Proposta: preset consistente (pjm_erc/regul) e revelação só depois da marcação. Nas células inconsistentes, exibir \"contribui pouco\" até o content QA decidir (não corrigir pesos da fonte).",
+     "fonte_de_valores": "Pesos declarados \"ordinais e ilustrativos\" pela fonte. Sem fonte externa."
+    }
+   ],
+   "checagem": "Previsão × exemplo 2. Marcação no INST·03 × nota da célula, lado a lado: resposta · referência · o que acrescenta (\"a política federal é idêntica nos dois\") · critério (\"nomeou a parcela nula\"). Autoavaliação para a justificativa de uma linha.",
+   "recuperacao": {
+    "antes_de_mostrar": "Da A01: \"Quantas das sete declarações o caso €89 fez?\" (antes do bloco 0, porque a aula parte de \"a diferença que sobreviveu\"). Do M12 (China pela ótica do poder) nada; do M09: \"o que é despacho centralizado?\" antes do 2º exemplo.",
+    "origem_visivel": "M17·A01, M09"
+   },
+   "proximo_passo": {
+    "nao_atende": "Rever o exemplo estático (três barras) e refazer a decomposição",
+    "demais": "Próxima · M17·A03 — Por custo declarado ou por oferta; nodal, zonal ou uniforme (a parcela de desenho aberta por dentro)"
+   },
+   "serve_a": [
+    "Checklist 11–15",
+    "Erros comuns 06, 07"
+   ],
+   "midia": {
+    "precisa": false,
+    "onde_ajuda": "Tentação: foto de bacia hidrográfica ou de usina nuclear para \"dotação\". Reprovaria no teste de remoção e induziria o erro que a aula combate (ler a imagem como mérito). Nenhuma imagem.",
+    "curadoria": "Sem candidata para a02."
+   },
+   "mobile_390": "Barras de três parcelas a toda a largura, com rótulos diretos abaixo de cada segmento (um por linha quando o segmento é estreito). Os três exemplos viram três cartões empilhados: enunciado → barra → nota. INST·03: dois seletores (par, dimensão) como listas de rolagem horizontal contida ou select nativo, seguidos da marcação (dois grupos de rádio) e da barra revelada. O \"Três níveis\" fica em disclosure.",
+   "lacunas_fonte": [
+    "Pesos ordinais sem medida (declarado pela fonte).",
+    "Barra 1 do exemplo estático: desenho tem o mesmo peso de dotação (2 = 2), mas a prosa diz que desenho \"é a que menos explica\" (div-m17-13). CONTENT QA: na interface, a barra não pode contradizer a prosa. Opção sem inventar: exibir a barra 1 sem o empate e com o texto, ou marcar \"pesos em revisão\".",
+    "Em 13 das 24 células do INST·03 a \"parcela que não explica nada\" tem peso 1 (div-m17-inst-02).",
+    "O \"Três níveis\" desta aula trata de capacidade × geração (tema da A07/A09), e o nível Especialista cita \"Aula 08\" em vez de 09 (div-m17-01). Não deslocar sem decisão; manter recolhido, com o link corrigido na camada editorial."
+   ],
+   "dependencias_s9": [
+    "Portar INST·03",
+    "Reconstruir o #par3-demo (COD-M17-03)",
+    "Registro de marcação e justificativa",
+    "Varredura de consistência rótulo × peso (F-M03-8)"
+   ],
+   "qa_conteudo": [
+    "Bloco 13: html fundido, com \"<\" solto → reconstruir da fonte.",
+    "Bloco 15: nota P7 → fora.",
+    "Bloco 14: \"a Aula 08 os separa\" → Aula 09."
+   ],
+   "nota_ambicao": "O segmento vazio. Uma barra em que um terço é um traço tracejado com a palavra \"não explica\" ensina mais que a definição das três parcelas, e é a imagem que o learner deve levar para as próximas nove aulas."
+  },
+  {
+   "aulaId": "aula-17-03",
+   "numero": 3,
+   "titulo": "Por custo declarado ou por oferta; nodal, zonal ou uniforme",
+   "subtitulo_fonte": "Desenho de despacho",
+   "blocos_no_corpo": 11,
+   "o_que_ensina": "Duas escolhas de desenho, independentes entre si: quem informa o custo (despacho por custo declarado ou por oferta, que decide onde fica o risco de a informação estar errada) e com que granularidade o preço se forma (nodal, zonal ou uniforme por submercado, que decide quem paga o congestionamento). Nenhuma domina em abstrato; o que decide é onde estão o recurso, a carga e a linha entre eles.",
+   "natureza": [
+    "mercado/regulação (desenho)",
+    "comparação de arquiteturas",
+    "sistema/rede (congestionamento)"
+   ],
+   "representacao": {
+    "arquetipo": "Mesa de comparação em matriz 2 × 3 (quem informa o custo × granularidade), com um palco de rede esquemático para o congestionamento",
+    "composicao": "Primeira escolha (blocos 0–4): tabela de dois regimes lida como duas colunas paralelas com \"entrega · custa · pressuposto\" alinhados, e a nota da conversa de vinte minutos (bloco 3) como diálogo de duas falas com a mesma unidade e naturezas diferentes. Segunda escolha (blocos 5–8): palco de rede com dois lados de uma linha congestionada; o learner alterna nodal / zonal / uniforme e vê quem paga (preço diferente por lado; preço único + custo de redespacho socializado; preço único + separação só quando o intercâmbio satura). Depois, a matriz 2 × 3 com as 6 jurisdições do INST·04 para posicionar (ato). Os dois \"Três níveis\" ficam recolhidos, cada um junto da sua escolha.",
+    "por_que": "O ensinamento escondido é que as duas escolhas são ortogonais: o Chile despacha por custo auditado e forma preço nodal. Só uma matriz deixa isso visível. O palco de rede é necessário porque a granularidade é uma pergunta física (\"onde está o congestionamento\"), e a prosa sozinha não mostra quem fica \"do lado errado de uma linha congestionada\"."
+   },
+   "abertura": {
+    "pergunta": "Dois interlocutores dizem \"o preço de ontem\" com a mesma unidade. Por que os números podem não ter a mesma natureza?",
+    "objetivo": "Posicionar uma jurisdição nas duas escolhas de desenho (quem informa o custo; granularidade) e dizer o que cada posição entrega e custa.",
+    "camada": "alexandria",
+    "derivada_de": "Nota do bloco 3 + lead",
+    "previsao": {
+     "util": true,
+     "pergunta": "Um sistema que despacha por custo (e não por oferta) pode formar preço nodal? Sim ou não.",
+     "resposta_fonte": "Sim: no INST·04, o Chile aparece com \"Por custo auditado, num sistema longitudinal\" e \"Nodal, com diferenças acentuadas entre norte e centro\".",
+     "por_que_ensina": "O palpite comum associa nodal a oferta (\"mercado sofisticado\"). O erro revela que as duas escolhas são independentes, e isso é o que a aula quer que fique.",
+     "regra_de_entrada": "Sim/não, com resposta tirada dos dados do INST·04."
+    }
+   },
+   "ato_autentico": {
+    "tipo": "classificar",
+    "descricao": "Posicionar as 6 jurisdições do INST·04 numa matriz (linhas: custo declarado ou auditado / oferta / administrado em transição; colunas: nodal / zonal / uniforme por submercado / provincial). Depois da marcação, o INST·04 revela. Referência (dados do instrumento): Brasil = custo declarado · uniforme por submercado; Meio-atlântico = oferta · nodal; Sul central = oferta · nodal; Alemanha = oferta · zonal; China = provincial, administrado em transição · provincial misto; Chile = custo auditado · nodal.",
+    "exercita": "Separar as duas escolhas de desenho e ler uma arquitetura como a combinação delas.",
+    "camada": "alexandria (matriz e tarefa); fonte (posições)"
+   },
+   "atos_secundarios": [
+    "No palco de rede: \"quem paga o congestionamento?\" nas três granularidades (resposta da fonte, bloco 7).",
+    "m17-ex-03 (o preço de um nó citado como preço do país) e m17-ex-14 (redespacho socializado × nodal: que instituição cada um exige)."
+   ],
+   "visualizacao": {
+    "desenhar": [
+     {
+      "figura": "Matriz 2 × 3 de desenho",
+      "relacao": "regime de despacho × granularidade do preço",
+      "eixos": "linhas: custo declarado/auditado, oferta, administrado; colunas: nodal, zonal, uniforme por submercado (+ provincial)",
+      "unidade": "posição categórica",
+      "dados_fonte": "INST·04, estados capturados (6 jurisdições)",
+      "trabalho": "mostrar que as duas escolhas são independentes (o Chile quebra a diagonal)"
+     },
+     {
+      "figura": "Palco de uma linha congestionada",
+      "relacao": "mesma energia, preços diferentes por lado (nodal) × preço único + custo de redespacho (zonal) × preço único com separação na saturação (uniforme)",
+      "eixos": "esquema de dois nós e uma linha; sem valores",
+      "unidade": "sem números: a fonte não dá valores para este exemplo",
+      "trabalho": "tornar concreta a frase \"a mesma energia custa mais para quem está do lado errado de uma linha congestionada\""
+     }
+    ],
+    "existe_no_codigo": false,
+    "forma_prometida_nao_desenhada": "\"Comparador de desenho de despacho\" promete \"quatro perguntas\" e tem 3 dimensões (div-m17-inst-06). Não desenha forma; é painel de texto. Não portado."
+   },
+   "instrumento": [
+    {
+     "id": "INST·04",
+     "nome": "Comparador de desenho de despacho",
+     "apos_bloco": 8,
+     "posicao_na_fonte": "Depois de \"As três coexistem no mundo…\" (bloco 8) e antes do \"Três níveis\" de granularidade (bloco 9).",
+     "previsao": true,
+     "padrao_fonte": "Brasil / \"Quem despacha e por qual critério\": \"Regime de custo declarado. O preço não resulta de ofertas; resulta de otimização com parâmetros regulatórios.\"",
+     "problema_pedagogico": "Como explorador, revela tudo no clique. Proposta: o painel fica velado até a matriz ser preenchida (F-M01-08) e passa a servir de referência por jurisdição. A instrução diz \"quatro perguntas\" e o script tem três: exibir três (a 4ª da instrução, \"quem despacha\", está fundida com \"por qual critério\").",
+     "fonte_de_valores": "Textos descritivos, sem números."
+    }
+   ],
+   "checagem": "Matriz do learner × matriz da fonte, célula a célula, com \"o que acrescenta\" (o texto da jurisdição no INST·04). Previsão (sim/não) × Chile. Sem cor: acerto marcado por palavra.",
+   "recuperacao": {
+    "antes_de_mostrar": "Do M04: \"O que é preço marginal?\" (antes do bloco 5). Do M09: \"Quem despacha no Brasil e com que critério?\" (antes da tabela do bloco 2). Da A02: \"Qual parcela esta aula abre por dentro?\" (desenho).",
+    "origem_visivel": "M04, M09, M17·A02"
+   },
+   "proximo_passo": {
+    "nao_atende": "Rever \"Segunda escolha\" e o palco de rede",
+    "demais": "Próxima · M17·A04 — Mercado de capacidade é um produto, não uma quantidade"
+   },
+   "serve_a": [
+    "Checklist 10",
+    "Erros comuns 11 (preço negativo como informação de tempo e lugar)"
+   ],
+   "midia": {
+    "precisa": false,
+    "onde_ajuda": "O palco de rede é esquemático e programático. Uma foto de linha de transmissão não acrescenta mecanismo.",
+    "curadoria": "Sem candidata para a03."
+   },
+   "mobile_390": "A matriz vira lista: um cartão por jurisdição com dois seletores (regime; granularidade), e a matriz desenhada aparece em miniatura depois da revelação. O palco de rede fica em escala reduzida, com os dois nós empilhados verticalmente e a linha entre eles; o seletor de granularidade é um grupo de 3 botões ≥ 44px. As duas tabelas de regime viram cartões por linha (\"Como se ordena\", \"O que entrega\"…), com os dois regimes lado a lado em duas colunas estreitas ou empilhados.",
+   "lacunas_fonte": [
+    "Nenhum número para o exemplo de congestionamento: figura esquemática.",
+    "Instrução do INST·04 com \"quatro perguntas\" para três dimensões (div-m17-inst-06)."
+   ],
+   "dependencias_s9": [
+    "Portar INST·04",
+    "Componente de matriz de classificação com revelação pós-tentativa (F-M12-5)",
+    "Rótulos dos dois \"Três níveis\" (COD-M17-01)",
+    "Tabela do bloco 7 sem cabeçalho falso (COD-M17-02)"
+   ],
+   "qa_conteudo": [
+    "Bloco 10: nota P7 → fora."
+   ],
+   "nota_ambicao": "Uma matriz em que o learner coloca o Chile na célula \"custo × nodal\" e percebe que a diagonal que tinha na cabeça (sofisticado = oferta + nodal) não existe. Tudo com dados da fonte."
+  },
+  {
+   "aulaId": "aula-17-04",
+   "numero": 4,
+   "titulo": "Mercado de capacidade é um produto, não uma quantidade",
+   "subtitulo_fonte": "Disponibilidade",
+   "blocos_no_corpo": 9,
+   "o_que_ensina": "Um mercado de capacidade compra disponibilidade futura acreditada numa cadeia de cinco elos (requisito, acreditação, curva de demanda administrada, leilão e obrigação, penalidade), e a penalidade é o elo que mais falha. O desenho oposto, só energia com escassez, depende de um pressuposto informal: a credibilidade de que o preço alto será permitido. O Brasil remunera disponibilidade com função equivalente e nome diferente (lastro, leilões de potência), sem formar preço separado para o atributo.",
+   "natureza": [
+    "mercado/regulação",
+    "desambiguação semântica",
+    "comparação de desenhos",
+    "cadeia causal"
+   ],
+   "representacao": {
+    "arquetipo": "Anatomia de um produto: cadeia de cinco elos desenhada como sequência, contra o desenho oposto, com as \"duas frases erradas\" como abertura de identificar o erro",
+    "composicao": "Abre com as duas frases erradas (bloco 0) como ato: o learner julga cada uma antes de ler a explicação. Glosa de capacidade (os cinco sentidos A–E do §00) como faixa curta: quatro quantidades + um produto. Blocos 1–3: a cadeia de cinco elos como sequência horizontal numerada; o elo 5 com marca \"o que mais falha\"; o elo 3 com a nota \"decisão regulatória, não resultado de mercado\". Blocos 4–6: a comparação capacidade central × só energia em duas colunas alinhadas (entrega · custa · falha típica · pressuposto). INST·05 como grade por jurisdição. \"Três níveis\" (goleiro reserva) recolhido.",
+    "por_que": "O título é uma distinção de categoria (produto × quantidade), e a aula abre com duas frases erradas em direções opostas: identificar o erro é o ato natural e vem da fonte. A cadeia de cinco elos é uma estrutura sequencial em que um elo quebrado invalida o todo. Desenhada como cadeia, ela deixa a penalidade ser o ponto fraco visível."
+   },
+   "abertura": {
+    "pergunta": "\"Por que o Brasil não tem mercado de capacidade?\" A resposta não é sim nem não. Qual é?",
+    "objetivo": "Explicar o que um mercado de capacidade compra, reconhecer o instrumento brasileiro de função equivalente e nomear a diferença de desenho.",
+    "camada": "alexandria (pergunta tirada da nota P7 do bloco 8, que não é exibida; a pergunta em si é conteúdo pedagógico)",
+    "derivada_de": "Bloco 0 + bloco 8",
+    "previsao": {
+     "util": true,
+     "pergunta": "Duas afirmações: (a) \"O Brasil não tem mercado de capacidade, então não remunera disponibilidade.\" (b) \"O instrumento brasileiro é a mesma coisa com outro nome.\" Qual é verdadeira?",
+     "resposta_fonte": "Nenhuma: as duas são falsas, em direções opostas (bloco 0; quiz Q9; erro comum 09).",
+     "por_que_ensina": "Quem escolhe uma das duas cai exatamente num dos dois erros que a aula nomeia.",
+     "regra_de_entrada": "Escolha entre (a), (b), ambas e nenhuma."
+    }
+   },
+   "ato_autentico": {
+    "tipo": "identificar o erro + ordenar",
+    "descricao": "(1) Julgar as duas frases (previsão acima), com a frase que corrige cada uma. (2) Ordenar os cinco elos da cadeia a partir de cartões embaralhados e marcar o elo \"que mais frequentemente falha\". Referência: requisito → acreditação → curva de demanda → leilão e obrigação → penalidade; o que falha é a penalidade (bloco 3).",
+    "exercita": "Reconhecer o que o produto compra e onde ele quebra.",
+    "camada": "alexandria (tarefa); fonte (frases, ordem e elo frágil)"
+   },
+   "atos_secundarios": [
+    "INST·05: para o Brasil, preencher \"quem remunera · produto · preço · penalidade · instituição\" antes de abrir a grade.",
+    "m17-ex-11 (leilão central no Brasil: quais funções existem) e m17-ex-12 (o pressuposto que não é instituição), na Revisão ou na A07."
+   ],
+   "visualizacao": {
+    "desenhar": [
+     {
+      "figura": "Glosa quíntupla de capacidade",
+      "relacao": "quatro quantidades que se medem (instalada, armazenamento, transporte, processamento) × um mecanismo que se compra",
+      "eixos": "faixa de 5 itens, com o 5º separado por fio",
+      "unidade": "MW / MWh / limite físico / MW computacional / produto",
+      "trabalho": "desfazer a colisão semântica que o lead anuncia"
+     },
+     {
+      "figura": "Cadeia de cinco elos",
+      "relacao": "requisito → acreditação → curva → leilão/obrigação → penalidade",
+      "eixos": "sequência horizontal",
+      "unidade": "sem números",
+      "trabalho": "mostrar que um elo fraco (penalidade, acreditação por placa) esvazia o produto"
+     }
+    ],
+    "existe_no_codigo": false,
+    "forma_prometida_nao_desenhada": "\"Grade de remuneração de disponibilidade\" promete uma grade por jurisdição; oferece só as 6 com ficha (div-m17-inst-07). Não portado."
+   },
+   "instrumento": [
+    {
+     "id": "INST·05",
+     "nome": "Grade de remuneração de disponibilidade",
+     "apos_bloco": 6,
+     "posicao_na_fonte": "Depois da tabela capacidade central × só energia (bloco 6) e antes do \"Três níveis\" (bloco 7).",
+     "previsao": false,
+     "padrao_fonte": "Brasil: \"Leilão de contrato de longo prazo com obrigação de lastro. A função de remunerar disponibilidade existe e tem nome diferente.\"",
+     "problema_pedagogico": "O ramo \"leilão de longo prazo\" reaproveita o texto brasileiro (\"obrigação de lastro\", \"as duas frases erradas\") também para o Chile (div-m17-inst-03). No Chile, exibir só as linhas de dados J até o content QA. Sem previsão: o ato é preencher o Brasil antes.",
+     "fonte_de_valores": "Textos, sem números; sem nota de fonte."
+    }
+   ],
+   "checagem": "Julgamento das frases × bloco 0. Ordem dos elos × lista da fonte (posição a posição). Preenchimento do Brasil × INST·05. Autoavaliação na frase que corrige cada erro.",
+   "recuperacao": {
+    "antes_de_mostrar": "Do M09: \"O que é lastro de garantia física?\" antes do bloco 0 (a aula cita o M09). Do M16: \"Quais são os quatro sentidos de capacidade?\" antes da glosa (o lead diz que o M16 os separou).",
+    "origem_visivel": "M09, M16"
+   },
+   "proximo_passo": {
+    "nao_atende": "Rever \"O que exatamente um mercado de capacidade compra\" (blocos 1–3)",
+    "demais": "Próxima · M17·A05 — Sete operadores, um país, e o experimento mais limpo do mundo (os dois desenhos lado a lado no mesmo país)"
+   },
+   "serve_a": [
+    "Checklist 16–17 (instituições por trás do mecanismo)",
+    "Erros comuns 09, 10"
+   ],
+   "midia": {
+    "precisa": false,
+    "onde_ajuda": "Nada físico a mostrar: é um produto contratual. Nenhuma imagem.",
+    "curadoria": "Sem candidata para a04."
+   },
+   "mobile_390": "As duas frases viram dois cartões com escolha logo abaixo do título. A cadeia de cinco elos fica vertical, com cartões arrastáveis e também botões subir/descer (teclado). A comparação em duas colunas vira pares de linhas \"Capacidade central / Só energia\" por atributo. A glosa quíntupla é uma lista com o 5º item separado.",
+   "lacunas_fonte": [
+    "Nenhum número sobre o instrumento brasileiro (volumes, preços de leilão de potência): a aula não os dá.",
+    "A glosa quíntupla diz que \"mora\" na Aula 04, mas está no §00 (div-m17-03). Trazer a glosa para o fluxo é fonte do mesmo módulo, com origem visível."
+   ],
+   "dependencias_s9": [
+    "Portar INST·05 (sem o texto brasileiro no ramo do Chile)",
+    "Componente de ordenação acessível (F-M01-03)",
+    "Rótulo \"Três níveis\" (COD-M17-01)"
+   ],
+   "qa_conteudo": [
+    "Bloco 8: nota P7 → fora."
+   ],
+   "nota_ambicao": "Abrir a aula com duas frases que o learner provavelmente já disse, e fazê-lo descobrir que as duas estão erradas em direções opostas. A cadeia de cinco elos com o último rachado fica como o diagrama do módulo sobre adequação."
+  },
+  {
+   "aulaId": "aula-17-05",
+   "numero": 5,
+   "titulo": "Sete operadores, um país, e o experimento mais limpo do mundo",
+   "subtitulo_fonte": "Mercados organizados",
+   "blocos_no_corpo": 17,
+   "o_que_ensina": "Os sete mercados organizados norte-americanos compartilham país, moeda, regime tributário e cadeia de equipamento, e por isso isolam a parcela de desenho. Três casos: capacidade central com preço nodal (leilões no teto: 329,17, 333,44 e 325 US$/MW-dia; sem teto, 554,72), só energia com escassez (cootimização desde 5/12/2025) e descarbonização por política estadual. Um preço de capacidade se lê decompondo curva administrada, acreditação, oferta qualificada e teto, e se converte em equivalente por energia.",
+   "natureza": [
+    "mercado/regulação",
+    "caso comparado (experimento natural)",
+    "cálculo (conversão MW-dia → MWh)",
+    "leitura de série de leilões"
+   ],
+   "representacao": {
+    "arquetipo": "Dossiê de laboratório: mapa esquemático dos sete como palco, série de leilões como gráfico-tese e conversor como bancada",
+    "composicao": "Declaração de parte interessada no topo, como caixa editorial curta e sóbria (decisão P24 pendente), antes da abertura, porque a fonte a exige \"antes da Aula 05\". Blocos 1–3 → grade dos sete (#jg-us, 7 traços da fonte) como mesa de sete cartões com os dois destacados; os dois de destaque são o par da A04. Caso principal (blocos 4–8): figura da série de leilões (três barras + teto + o contrafactual sem teto como marca separada), e a nota \"leitura fácil\" transformada em ato de atribuir cada fator a uma parcela. INST·06 depois. Casos extremos (blocos 9–15): dois cartões de dossiê em colunas paralelas (só energia · política estadual), cada um com \"o que o caso ensina / o que não ensina\".",
+    "por_que": "A aula é sobre um experimento natural: sete variantes com as outras parcelas quase constantes. A grade dos sete é o próprio experimento e está ausente do código (COD-M17-05). Os leilões são a única série numérica do módulo; a leitura errada (\"centros de dados encareceram\") só se desfaz vendo o preço colado no teto e o contrafactual acima. O conversor responde a \"US$ 325/MW-dia é muito?\", que ninguém consegue julgar sem converter."
+   },
+   "abertura": {
+    "pergunta": "US$ 325 por MW-dia parece caro. Quanto isso pesa por MWh para uma carga industrial?",
+    "objetivo": "Ler um resultado de leilão de capacidade decompondo o que forma o preço e convertê-lo em equivalente por energia.",
+    "camada": "alexandria",
+    "derivada_de": "Instrução e cenário-padrão do INST·06",
+    "previsao": {
+     "util": true,
+     "pergunta": "Preço de capacidade US$ 325/MW-dia, 100 MW acreditados, janela de 365 dias, carga com fator de carga (FCarga) de 85%. Qual o equivalente, em US$/MWh?",
+     "resposta_fonte": "Derivado com a fórmula do INST·06: custo da janela US$ 11,86 mi; energia 744,6 GWh; equivalente US$ 15,93/MWh (cenário-padrão capturado).",
+     "por_que_ensina": "A ordem de grandeza surpreende (um número \"de manchete\" vira dezenas de US$/MWh, não centenas), e o segundo passo mostra que ele depende do FCarga da carga: com FCarga 45% (o valor que a A01 usa para o consumidor de média tensão) o mesmo preço vira US$ 30,09/MWh (derivado).",
+     "regra_de_entrada": "Resposta numérica derivada, com arredondamento técnico normal (US$ 15,9–16/MWh) como regra de entrada da Alexandria (P19). Rótulo do cenário: \"valores de partida dos relatórios de leilão do operador; 100 MW e FCarga 85% são cenário didático\"."
+    }
+   },
+   "ato_autentico": {
+    "tipo": "estimar + atribuir (decompor um número)",
+    "descricao": "(1) Prever o equivalente por MWh e ver previsto × calculado no INST·06; mover o FCarga para 45% e registrar o novo valor. (2) Atribuir os quatro fatores do preço de capacidade da \"leitura fácil\" (bloco 8) às três parcelas: crescimento de carga = dotação de demanda; processo de conexão e metodologia de acreditação = desenho; teto negociado e aposentadoria induzida por regra estadual = política (referência: bloco 8).",
+    "exercita": "Converter o preço de disponibilidade e ler o número decomposto, que são as duas capacidades da aula.",
+    "camada": "alexandria (tarefas); fonte (números, fórmula, atribuição)"
+   },
+   "atos_secundarios": [
+    "Série de leilões: estimar quanto o contrafactual sem teto está acima do teto (554,72 ÷ 325 = +70,7%, derivado; o INST·07 diz \"cerca de 70% acima\").",
+    "Grade dos sete: localizar os dois destacados e dizer por que o par isola o desenho (m17-ex-07; quiz Q3).",
+    "Teste de viés que a própria fonte propõe (bloco 2): \"procure a parcela de dotação e a de política dele\". Tarefa de localizar no texto."
+   ],
+   "visualizacao": {
+    "desenhar": [
+     {
+      "figura": "Três leilões no teto, e o preço sem teto acima deles",
+      "relacao": "preço de fechamento por janela de entrega × teto × estimativa do operador sem teto",
+      "eixos": "x: entregas 2026/27, 2027/28, 2028/29; y: US$/MW-dia (0 a ~600)",
+      "unidade": "US$/MW-dia sobre capacidade acreditada",
+      "dados_fonte": "329,17; 333,44; 325; estimativa sem teto 554,72 (só para 2028/29). Volumes: 139 MW acima do requisito (26/27); 134.478,1 MW acreditados e ~810 MW não fechados (27/28); 138.317,8 + 10.864 = 149.182 MW, reserva 14,7%, custo US$ 16,4 bi contra ~30 bi sem teto (28/29).",
+      "fonte_visivel": "Relatórios de leilão de capacidade do operador, entregas 2026/2027 a 2028/2029 (nota do INST·06) · verificado em 04/08/2026 · a reverificar",
+      "trabalho": "desfazer a leitura \"queda de 2,5% = folga\": o preço fica colado no teto"
+     },
+     {
+      "figura": "Mesa dos sete operadores",
+      "relacao": "mesma moldura federal, sete desenhos",
+      "eixos": "grade de 7 cartões com traço da fonte; ou esquema de regiões sem fronteira exata",
+      "unidade": "categórica",
+      "dados_fonte": "#jg-us, 7 traços (instrumentos.json → grades_geradas_por_script.jg_us)",
+      "trabalho": "ver o experimento: o que varia e o que fica constante"
+     },
+     {
+      "figura": "Equivalente por MWh × FCarga",
+      "relacao": "equivalente = preço × MW × dias ÷ (MW × FCarga × 24 × dias)",
+      "eixos": "x: FCarga 5–100%; y: US$/MWh",
+      "unidade": "US$/MWh",
+      "trabalho": "mostrar que o mesmo preço pesa mais para carga de baixo FCarga (ramo fc < 0,35 do INST·06)"
+     }
+    ],
+    "existe_no_codigo": false,
+    "forma_prometida_nao_desenhada": "\"Conversor de preço de disponibilidade\" é calculadora (sem forma prometida). A grade #jg-us existe na fonte e falta no código."
+   },
+   "instrumento": [
+    {
+     "id": "INST·06",
+     "nome": "Conversor de preço de disponibilidade",
+     "apos_bloco": 8,
+     "posicao_na_fonte": "Depois de \"A leitura fácil e por que ela é errada\" (bloco 8) e antes de \"Primeiro caso extremo\" (bloco 9).",
+     "previsao": true,
+     "padrao_fonte": "US$ 325/MW-dia; 100 MW; FCarga 85%; 365 dias → US$ 11,86 mi; 744,6 GWh; US$ 15,93/MWh; \"Sobre a placa? não\".",
+     "problema_pedagogico": "O texto-base afirma \"o preço vigente está no teto negociado\" para qualquer valor digitado (nota da extração): mostrar essa frase só quando o preço for 325. O rótulo \"Fator de carga da carga\" vira \"FCarga da carga (%)\" (P21).",
+     "fonte_de_valores": "O preço tem fonte na nota do instrumento (consulta em 04/08/2026). 100 MW, 85% e 365 dias são padrões editáveis sem fonte externa: \"cenário didático\"."
+    }
+   ],
+   "instrumento_extra": {
+    "grade": "#jg-us (7 operadores), apos_bloco: 3 (na fonte, logo após \"Os sete não são versões da mesma coisa…\", L2081). Ausente do código (COD-M17-05)."
+   },
+   "checagem": "Quadro previsto × calculado (US$ 15,93) fixo junto do INST·06 enquanto o learner explora. Atribuição dos quatro fatores × bloco 8. Contrafactual: +70,7% (derivado) × \"cerca de 70%\" (INST·07).",
+   "recuperacao": {
+    "antes_de_mostrar": "Da A04: \"Quais são os cinco elos e qual mais falha?\" antes do caso principal. Da A02: \"Por que um par do mesmo país isola o desenho?\" antes do bloco 3.",
+    "origem_visivel": "M17·A04, M17·A02"
+   },
+   "proximo_passo": {
+    "nao_atende": "Rever \"A leitura fácil e por que ela é errada\" e refazer a conversão",
+    "demais": "Próxima · M17·A06 — A parcela de política, isolada no ambiente mais limpo possível (os mesmos mercados, agora com a política se movendo)"
+   },
+   "serve_a": [
+    "Checklist 27 (parte interessada)",
+    "Checklist 28 (cruzar dimensões)",
+    "Erros comuns 10, 19"
+   ],
+   "midia": {
+    "precisa": false,
+    "onde_ajuda": "Um mapa esquemático das regiões ajudaria a \"localizar\", mas fronteira de operador não é Natural Earth e não deve ser desenhada à mão como se fosse exata. Preferir a mesa de cartões. Se houver mapa, ele é esquemático e rotulado \"esquema, sem fronteiras reais\". Sem foto: um centro de dados reforçaria a manchete que a aula desmonta.",
+    "curadoria": "Sem candidata para a05."
+   },
+   "mobile_390": "Declaração de parte interessada em caixa curta recolhível, com a primeira frase visível. Mesa dos sete: lista de 7 linhas (nome funcional + traço), com os dois destacados primeiro. Gráfico de leilões com 3 barras verticais estreitas, linha do teto e a marca 554,72 rotulada diretamente; os volumes vão em disclosure por barra. INST·06: quatro controles em coluna (número + slider), três saídas numa faixa, e o quadro previsto × calculado fixo acima das saídas. Os dois casos extremos viram cartões empilhados.",
+   "lacunas_fonte": [
+    "Bloco 8 (e feedback da Q7): \"a diferença entre o teto e a estimativa sem teto é maior que o próprio teto\" é falso pelos números da fonte (229,72 < 325; div-m17-14). CONTENT QA. Não exibir; usar \"a estimativa sem teto fica cerca de 70% acima do teto\" (INST·07, fonte).",
+    "O teto das entregas 2026/27 e 2027/28 não tem valor próprio na fonte, só \"no teto\": a figura marca o teto como coincidente com o fechamento, sem inventar outro valor.",
+    "Sul central: \"preços mais baixos, menos voláteis\" nos primeiros seis meses sem números. Não desenhar série.",
+    "Costa oeste: nenhum número. Cartão só textual.",
+    "\"Leilão extraordinário de retaguarda marcado para setembro de 2026\": estado não verificado depois de 04/08/2026."
+   ],
+   "dependencias_s9": [
+    "Portar INST·06",
+    "Renderizar #jg-us (COD-M17-05)",
+    "Registro de previsão",
+    "Decisão do Founder sobre a declaração de parte interessada (P24)",
+    "Ficha de fonte dos relatórios de leilão (Biblioteca)"
+   ],
+   "qa_conteudo": [
+    "Bloco 0: div.conf virou título (COD-M17-04) → caixa editorial.",
+    "Blocos 0–2 citam \"terminal do GridAlpha\" e \"plano de negócios\" → decisão P24.",
+    "Bloco 7: tabela cn5 com cabeçalho falso (COD-M17-02).",
+    "Bloco 16: nota P7 \"GridAlpha US Terminal\" → fora."
+   ],
+   "nota_ambicao": "Três barras coladas numa linha de teto e, acima delas, um ponto isolado em 554,72: é a figura em que a manchete \"a energia ficou mais barata 2,5%\" morre. Logo depois, o learner descobre que US$ 325/MW-dia são uns US$ 16/MWh para uma carga de FCarga alto, e o dobro para uma de FCarga baixo."
+  },
+  {
+   "aulaId": "aula-17-06",
+   "numero": 6,
+   "titulo": "A parcela de política, isolada no ambiente mais limpo possível",
+   "subtitulo_fonte": "Ciclo político",
+   "blocos_no_corpo": 9,
+   "o_que_ensina": "Com dotação e desenho parados, o custo de capital de projetos eólicos e solares mudou em pouco mais de um ano por quatro instrumentos de quatro instituições: lei (4/7/2025), ordem executiva (três dias depois), orientação administrativa e decisão judicial. A política é volátil em horizonte de mandato, e tratá-la como estrutural erra nas duas direções. O federalismo, por sua vez, é desenho: estado e regulador federal dividem competências.",
+   "natureza": [
+    "história/narrativa normativa",
+    "mercado/regulação",
+    "classificação por estágio"
+   ],
+   "representacao": {
+    "arquetipo": "Linha do tempo normativa em faixas por instituição, com a data de verificação como marco e a régua de estágio como instrumento",
+    "composicao": "Bloco 1 → linha do tempo com quatro faixas (Legislativo · Executivo · Administração · Judiciário), eventos com data da fonte (2022 pacote; 4/7/2025 lei; +3 dias ordem executiva; orientação administrativa; decisão judicial; 4/7/2026 prazo de início de construção, já vencido; 31/12/2027 prazo de operação) e uma linha vertical \"verificado em 04/08/2026\". As duas faixas de fundo, dotação e desenho, ficam planas de ponta a ponta, e isso é a tese desenhada. Bloco 3 (4 linhas) → quatro marcos na linha. Bloco 4 → nota-núcleo como \"pergunta de bolso\" (qual instrumento, qual instituição, qual prazo). Blocos 5–7 → esquema de competências federal × estadual (dois níveis, uma linha cruzando estados). INST·07 no fim, com ato de prever a posição.",
+    "por_que": "A aula é literalmente uma sequência de atos normativos no tempo, com a tese \"dotação e desenho não se moveram\". Uma linha do tempo com faixas planas de dotação e desenho mostra a tese em um quadro. As faixas por instituição dão forma a \"quatro instrumentos, quatro instituições\"."
+   },
+   "abertura": {
+    "pergunta": "O custo de capital de uma classe inteira de projetos mudou em pouco mais de um ano. O desenho de mercado mudou? A dotação mudou? Então o que mudou?",
+    "objetivo": "Reconhecer a parcela de política pelo instrumento, pela instituição e pelo prazo, e classificar instrumentos estrangeiros na régua de estágio.",
+    "camada": "alexandria",
+    "derivada_de": "Lead + nota do bloco 4",
+    "previsao": {
+     "util": true,
+     "pergunta": "Quem projetou em 2025 a continuidade integral dos créditos e quem projetou a reversão total: qual dos dois acertou?",
+     "resposta_fonte": "Nenhum dos dois (bloco 4; m17-ex-08).",
+     "por_que_ensina": "Força o learner a escolher um lado e descobrir que a volatilidade da parcela de política pune as duas extrapolações.",
+     "regra_de_entrada": "Escolha entre continuidade, reversão, ambos e nenhum."
+    }
+   },
+   "ato_autentico": {
+    "tipo": "classificar (régua de estágio)",
+    "descricao": "No INST·07, antes de abrir cada painel, posicionar 4 dos 10 instrumentos na régua de cinco posições (Anunciado · Proposto · Aprovado · Regulamentado · Em operação), e para um deles escrever \"o que esta posição não autoriza concluir\". Seleção sugerida, só com os objetos desta aula e da anterior: término antecipado de créditos (Em operação), critério de gasto mínimo (Em operação), teto do leilão de capacidade do meio-atlântico (Em operação), meta chinesa de 70% até 2030 (Aprovado).",
+    "exercita": "Tratar política como estado datado e reversível, não como estrutura.",
+    "camada": "alexandria (seleção e tarefa); fonte (posições, \"não autoriza\", gatilhos)",
+    "observacao": "Os objetos de fronteira de carbono ficam para a A08, onde a régua reaparece com preset próprio (F-M03-4)."
+   },
+   "atos_secundarios": [
+    "Na linha do tempo: arrastar os quatro instrumentos para a faixa da instituição que os emitiu.",
+    "m17-ex-08 (decomponha a subida do custo de capital), na Revisão ou re-ancorado.",
+    "m17-ex-17 (meta futura × resultado realizado) como ponte para a A07."
+   ],
+   "visualizacao": {
+    "desenhar": [
+     {
+      "figura": "Um ano e quatro instituições; dotação e desenho não se moveram",
+      "relacao": "eventos normativos por instituição no tempo, sobre duas faixas constantes",
+      "eixos": "x: 2022 → 31/12/2027; faixas: Legislativo, Executivo, Administração, Judiciário; fundo: dotação, desenho (planas)",
+      "unidade": "datas",
+      "dados_fonte": "2022; 4/7/2025; 7/7/2025 (\"três dias depois\"); orientação administrativa (data não dada no corpo; a referência m17-ref-03 cita \"agosto de 2025\"); decisão judicial (sem data no corpo); 4/7/2026; 31/12/2027; verificação 4/8/2026",
+      "fonte_visivel": "Texto normativo, orientação administrativa e comunicado de operador (nota do INST·07) · verificado em 04/08/2026 · a reverificar",
+      "trabalho": "ver a política mover-se sozinha"
+     },
+     {
+      "figura": "Régua de cinco posições",
+      "relacao": "estágio → o que autoriza e o que não autoriza concluir",
+      "eixos": "régua horizontal de 5 posições (citada do M16)",
+      "unidade": "posição",
+      "trabalho": "figura compartilhada com M16 e A08"
+     }
+    ],
+    "existe_no_codigo": false,
+    "forma_prometida_nao_desenhada": "\"Régua de estágio aplicada a política estrangeira\" promete uma régua; não portado. No M16 a régua também não está portada."
+   },
+   "instrumento": [
+    {
+     "id": "INST·07",
+     "nome": "Régua de estágio aplicada a política estrangeira",
+     "apos_bloco": 7,
+     "posicao_na_fonte": "Depois de \"Isso tem duas leituras…\" (bloco 7) e antes da nota P7 (bloco 8), que sai: na prática, é o fim da aula.",
+     "previsao": true,
+     "padrao_fonte": "Ajuste de fronteira, regime definitivo: Em operação; \"Não autoriza concluir que há desembolso corrente…\".",
+     "problema_pedagogico": "O padrão é um objeto da A08, e na A06 abre fora do tema. Preset por aula: abrir em \"Término antecipado de créditos de eletricidade limpa\". Os rótulos da régua (Regulamentado) divergem de \"regulado e não construído\" da ficha, do caso e do §Lex (div-m17-inst-08): alinhar com o M16 no content QA.",
+     "fonte_de_valores": "Estados verificados em fonte primária em 04/08/2026 (nota do INST·07) · verificado em 04/08/2026 · a reverificar"
+    }
+   ],
+   "checagem": "Posições do learner × posições da fonte, uma a uma, com \"o que não autoriza concluir\" como \"o que acrescenta\". Previsão × bloco 4. Frase do learner em autoavaliação.",
+   "recuperacao": {
+    "antes_de_mostrar": "Do M16: \"Quais são as cinco posições da régua de estágio e o que cada uma exige?\" antes do INST·07 (a fonte cita, não reconstrói). Da A02: \"O que muda com a troca de governo: política, desenho ou dotação?\" antes do bloco 1.",
+    "origem_visivel": "M16, M17·A02"
+   },
+   "proximo_passo": {
+    "nao_atende": "Rever a nota \"O que isso ensina sobre a decomposição\" (bloco 4)",
+    "demais": "Próxima · M17·A07 — O maior sistema do mundo em capacidade instalada, e o que isso não significa"
+   },
+   "serve_a": [
+    "Checklist 14 (desenho × ciclo eleitoral)",
+    "Checklist 22 (régua de estágio)",
+    "Erros comuns 07, 12"
+   ],
+   "midia": {
+    "precisa": false,
+    "onde_ajuda": "Nenhuma: foto de parque solar ou de edifício legislativo seria atmosfera sem trabalho e tenderia a nomear lugar real.",
+    "curadoria": "Sem candidata para a06."
+   },
+   "mobile_390": "A linha do tempo gira para vertical (tempo de cima para baixo), com os eventos à direita e a instituição como etiqueta textual (não como coluna). As faixas \"dotação/desenho\" viram um fio contínuo à esquerda com a legenda \"não se moveu\". A tabela de 4 linhas vira 4 cartões presos aos eventos. Na régua de 5 posições, cinco botões em coluna, marcação antes do painel.",
+   "lacunas_fonte": [
+    "\"Duas coisas mudaram\" antes de uma tabela de quatro linhas (div-m17-12): o texto da interface não repete a contagem; usar \"O que mudou desde então\".",
+    "A data da decisão judicial e a da orientação administrativa não aparecem no corpo da aula. Não posicionar com data inventada: marcar \"2025\" e \"2026\" só onde o corpo diz (bloco 1: orientação \"subsequente\"; tabela: decisão sem data). Precisão maior exige a ficha m17-ref-03.",
+    "Estado em 04/08/2026. Desde então, sem verificação.",
+    "A régua de 5 posições do M16 não foi conferida por inteiro na extração."
+   ],
+   "dependencias_s9": [
+    "Portar INST·07 (e a régua do M16)",
+    "Preset por aula (F-M03-4)",
+    "Selo de verificação datado (F-M12-1)",
+    "Componente de linha do tempo em faixas (F-M10-06 / F-M07-3)"
+   ],
+   "qa_conteudo": [
+    "Bloco 8: nota P7 com \"Regulatory Radar\" e texto sobre \"vazamento\" da régua → fora.",
+    "Bloco 3: cabeçalho \"Estado em 4 de agosto de 2026\" → selo de verificação, não título de coluna."
+   ],
+   "nota_ambicao": "Duas faixas perfeitamente planas (dotação, desenho) sob quatro faixas agitadas de instituições, num intervalo de treze meses. É a demonstração da fonte, \"a mais limpa disponível\", transformada em imagem."
+  },
+  {
+   "aulaId": "aula-17-07",
+   "numero": 7,
+   "titulo": "O maior sistema do mundo em capacidade instalada, e o que isso não significa",
+   "subtitulo_fonte": "Escala e direcionamento",
+   "blocos_no_corpo": 12,
+   "o_que_ensina": "Participação em capacidade instalada (cerca de 47% eólica e solar de ~3,89 TW) não é participação em geração: a térmica pode crescer enquanto o fator de utilização dela cai. O desenho do sistema é um mercado administrado em transição declarada (64% do consumo em mercado em 2025, meta de ~70% até 2030), unificado em regras e diferenciado em preço, porque recurso e carga estão separados. A velocidade de execução depende de uma capacidade institucional que não se importa por decreto.",
+   "natureza": [
+    "comparação de jurisdição",
+    "unidade (potência × energia)",
+    "sistema/rede (distância recurso–carga)",
+    "pressuposto institucional"
+   ],
+   "representacao": {
+    "arquetipo": "Prancha dividida: escala (potência × energia) à esquerda, geografia (recurso a oeste e norte × carga no litoral leste) à direita; a grade de funções institucionais fecha a aula",
+    "composicao": "Blocos 0–2: dois números com a grandeza carimbada (3,89 TW potência; >10.000 TWh energia), barra de capacidade com 47% de eólica e solar, e ao lado a pergunta \"e na geração?\" sem número (a fonte não dá; ver lacunas). Blocos 3–6: linha de transição (2015 → 2025 64% → 2030 ~70% → 2035 unificado) e as metas de 2030 dos dois planos quinquenais. Bloco 7: imagem noturna documental como evidência de onde está a carga, com esquema de setas oeste→leste (>420 GW de transporte até 2030). Blocos 8–10: a Grade de funções institucionais (figura-sistema) com as condições do bloco 10. INST·08 no fim.",
+    "por_que": "A aula tem duas teses com formas diferentes: uma de unidade (potência ≠ energia) e uma de geografia (a distância é dotação e decide o preço diferenciado). A prancha dividida põe as duas lado a lado. A imagem noturna é a única da curadoria que faz trabalho de evidência: mostra carga concentrada no leste sem precisar de número."
+   },
+   "abertura": {
+    "pergunta": "Quase metade da capacidade já é eólica e solar. O carvão foi superado?",
+    "objetivo": "Separar capacidade instalada, geração e fator de utilização ao ler a escala de um sistema, e identificar de que instituições a sua velocidade depende.",
+    "camada": "alexandria (a pergunta é o \"erro comum\" do bloco 2 em forma de pergunta)",
+    "derivada_de": "Bloco 2; m17-ex-15; quiz Q5; erro comum 04",
+    "previsao": {
+     "util": true,
+     "pergunta": "Com cerca de 47% da capacidade instalada em eólica e solar, a participação dessas fontes na geração do mesmo ano é maior, igual ou menor que 47%? E a térmica, é majoritária na geração?",
+     "resposta_fonte": "Menor; a térmica continua majoritária em geração (bloco 2: \"alta participação em capacidade instalada e térmica ainda majoritária em geração … simultaneamente verdadeiras\").",
+     "por_que_ensina": "É o erro comum que a aula nomeia e o mais citado \"do setor elétrico mundial\".",
+     "regra_de_entrada": "Escolha categórica. Nenhum percentual de geração é pedido, porque a fonte não o dá."
+    }
+   },
+   "ato_autentico": {
+    "tipo": "estimar + verificar pressuposto",
+    "descricao": "(1) Estimar a ordem de grandeza do fator de utilização implícito nas metas renováveis de 2030: ~3,5 TW gerando ~6.000 TWh/ano → 6.000.000 GWh ÷ (3.500 GW × 8.760 h) ≈ 20% (derivado das metas da fonte, rotulado \"ordem de grandeza de metas, não resultado\"). (2) No INST·08, preset \"Planejamento estatal com financiamento dirigido\": antes de revelar, marcar para cada função se existe no Brasil, existe com outra natureza ou está ausente. Referência (fonte): operar = natureza distinta; contabilizar, fiscalizar, financiar e julgar = ausentes; \"quatro funções ausentes, e a diferença não é de desenho de mercado\".",
+    "exercita": "Potência × energia (unidade) e o pressuposto institucional, os dois mecanismos da aula.",
+    "camada": "alexandria (tarefas, preset e cálculo derivado); fonte (metas, grade institucional)",
+    "observacao": "A conta usa metas com \"cerca de\" e \"da ordem de\": a regra de entrada aceita faixa de ordem de grandeza (15–25%) como regra da Alexandria (P19), nunca como tolerância da fonte. Se a revisão (P3) preferir não derivar de metas, usar m17-ex-16 (1 GW, 2,19 TWh → 25%), que tem gabarito da fonte."
+   },
+   "atos_secundarios": [
+    "m17-ex-09 (\"Eles constroem em um ano o que levamos cinco\": capacidade de execução se comporta como dotação), o exercício mais próprio desta aula.",
+    "Localizar na imagem noturna onde está a carga e onde está o recurso descrito no bloco 7 (legenda com a descrição da fonte)."
+   ],
+   "visualizacao": {
+    "desenhar": [
+     {
+      "figura": "Duas grandezas, dois números",
+      "relacao": "capacidade instalada (potência) × consumo (energia), com a participação eólica e solar só na primeira",
+      "eixos": "barra de 3,89 TW com 1,8 TW marcados; barra de >10.000 TWh sem partição",
+      "unidade": "TW | TWh",
+      "dados_fonte": "3,89 TW (+16% no ano); 1,8 TW eólica e solar (~47%); >10.000 TWh (2025)",
+      "fonte_visivel": "Bloco de referências China (m17-ref-04) · verificado em 04/08/2026 · a reverificar",
+      "trabalho": "deixar a partição da geração visivelmente vazia: \"a fonte não informa aqui; a térmica segue majoritária\""
+     },
+     {
+      "figura": "Transição com calendário público",
+      "relacao": "participação do consumo transacionado em mercado",
+      "eixos": "x: 2015, 2025, 2030, 2035; y: % do consumo",
+      "unidade": "% do consumo",
+      "dados_fonte": "2025: ~64%; meta 2030: ~70%; 2035: sistema plenamente unificado (sem %); 2015: documento de reforma (sem %)",
+      "trabalho": "mostrar uma transição em curso, nem \"estatal sem preço\" nem \"liberalizado\""
+     },
+     {
+      "figura": "Grade de funções institucionais (figura-sistema)",
+      "relacao": "mecanismo → funções → quem ocupa no Brasil",
+      "eixos": "linhas: operar, contabilizar, liquidar, fiscalizar, julgar, financiar; colunas: requisito · situação brasileira",
+      "unidade": "estado por palavra (ocupada / outra natureza / ausente)",
+      "trabalho": "nomear o pressuposto em vez de responder \"funcionaria aqui?\""
+     }
+    ],
+    "existe_no_codigo": false,
+    "forma_prometida_nao_desenhada": "\"Verificador de pressuposto institucional\" promete a decomposição por função; não portado. O HTML pinta \"ausente\" de vermelho (S2)."
+   },
+   "instrumento": [
+    {
+     "id": "INST·08",
+     "nome": "Verificador de pressuposto institucional",
+     "apos_bloco": 10,
+     "posicao_na_fonte": "Depois de \"No caso desta jurisdição, a omissão é ainda mais custosa…\" (bloco 10) e antes da nota P7 (bloco 11).",
+     "previsao": true,
+     "padrao_fonte": "Mercado central de capacidade: \"Duas das cinco funções mudariam de natureza… Funções ausentes: 1 de 5\".",
+     "problema_pedagogico": "(1) O padrão não é o mecanismo da aula: preset \"Planejamento estatal com financiamento dirigido\". (2) Síntese × tabela divergem no padrão (\"duas mudariam de natureza\", mas há 2 distintas + 1 ausente; div-m17-inst-04). (3) \"Sistema de teto e comércio\" tem classe ok com \"nenhuma em operação\" (div-m17-inst-05). (4) O INST·08 é mencionado na A10 (bloco 15): link de volta.",
+     "fonte_de_valores": "Textos; usa \"o mapa do Módulo 07 como gabarito\". Sem números."
+    }
+   ],
+   "checagem": "Previsão categórica × bloco 2. Estimativa ≈ 20% × cálculo derivado mostrado com a fórmula. Marcação das funções × INST·08, função a função, com a situação brasileira como \"o que acrescenta\".",
+   "recuperacao": {
+    "antes_de_mostrar": "Do M07: \"Quem opera, quem contabiliza, quem liquida, quem fiscaliza e quem julga no setor brasileiro?\" antes do INST·08 (a aula cita o M07). Do M12: a aula declara que não reconta o argumento de poder, então nenhuma pergunta de M12. Da A03: \"Por que um preço uniforme nacional seria errado aqui?\" antes do bloco 7 (granularidade).",
+    "origem_visivel": "M07, M17·A03"
+   },
+   "proximo_passo": {
+    "nao_atende": "Rever \"Os números, com a grandeza declarada\" (blocos 1–2)",
+    "demais": "Próxima · M17·A08 — Teto e comércio, tributo e fronteira são três mecanismos distintos"
+   },
+   "serve_a": [
+    "Checklist 16, 17 (funções institucionais)",
+    "Checklist 19 (capacidade × geração)",
+    "Erros comuns 04, 08"
+   ],
+   "midia": {
+    "precisa": true,
+    "onde_ajuda": "Junto do bloco 7 (\"o recurso … está concentrado no oeste e no norte; a carga … no litoral leste\"): imagem noturna composta de satélite da Ásia Oriental. Trabalho: evidência visual de onde a carga se concentra. Classe: documental. Crédito: NASA Earth Observatory, domínio público; composição de dados do satélite Suomi NPP de abril e outubro de 2012. A legenda precisa dizer que luz noturna é indicador de ocupação, não medida de carga elétrica, e que a imagem é de 2012.",
+    "curadoria": "media-lab/aulas/m17/originais/m17-a07-china-noite-viirs-2012.jpg (5568×3836, PD, meta em _trabalho/meta). Candidata forte. Risco: a data de 2012 contra números de 2025; cortar para o território do sistema sem inventar fronteira desenhada (fronteiras, se houver, vêm do Natural Earth)."
+   },
+   "mobile_390": "A prancha dividida vira sequência: primeiro as duas barras (potência, energia) empilhadas com o mesmo título-afirmação, depois a imagem noturna a toda a largura com as setas esquemáticas sobrepostas em camada que se desliga, e só então a linha de transição. A grade institucional fica em cartões por função (função · requisito · situação brasileira), com a marcação do learner antes da revelação.",
+   "lacunas_fonte": [
+    "A fonte não dá a participação de eólica e solar (nem da térmica) na geração de 2025: só afirma que a térmica é majoritária. Não desenhar partição da geração.",
+    "1,8 ÷ 3,89 = 46,3%; a fonte diz \"perto de 47%\". Exibir o número da fonte, sem recalcular.",
+    "\"Mais de 420 GW de capacidade de transporte oeste-leste até 2030\" (plano do fim de 2025): meta, não realizado (erro comum 12).",
+    "Metas de 2030 com \"cerca de\", \"próxima de\" e \"da ordem de\": a conta derivada é ordem de grandeza.",
+    "Planos de 25/6/2026 e 23/7/2026: estado em 04/08/2026."
+   ],
+   "dependencias_s9": [
+    "Portar INST·08 (preset por aula; estado sem cor)",
+    "Registro de estimativa e marcação",
+    "Proveniência da imagem (M6) e revisão factual da legenda",
+    "Ficha de fonte m17-ref-04"
+   ],
+   "qa_conteudo": [
+    "Bloco 1: \"a Aula 09 separa os quatro números\" confere com a marcação; corrigir a A02, que diz Aula 08.",
+    "Bloco 11: nota P7 → fora."
+   ],
+   "nota_ambicao": "Uma prancha em que a mesma potência gigantesca convive com uma partição de geração deixada propositalmente vazia, e ao lado a Ásia à noite, iluminada no litoral leste, onde está a carga. O learner vê por que o preço não pode ser único antes de ler a frase."
+  },
+  {
+   "aulaId": "aula-17-08",
+   "numero": 8,
+   "titulo": "Teto e comércio, tributo e fronteira são três mecanismos distintos",
+   "subtitulo_fonte": "Carbono comparado",
+   "blocos_no_corpo": 10,
+   "o_que_ensina": "Teto e comércio fixa a quantidade (o preço emerge); o tributo fixa o preço (a quantidade emerge); o ajuste de fronteira precifica o carbono incorporado em produto importado e é o único que vira custo do exportador brasileiro. Nesse mecanismo, o que decide se o custo \"já corre\" é o cronograma: regime definitivo desde 1/1/2026, venda de certificados só em 1/2/2027, fator de entrada gradual até 2034, eletricidade indireta contada só para cimento e fertilizantes. E não há preço pago no Brasil para abater antes de 2030.",
+   "natureza": [
+    "mercado/regulação",
+    "cálculo (exposição)",
+    "classificação por estágio",
+    "leitura de regra (checklist normativo)"
+   ],
+   "representacao": {
+    "arquetipo": "Laboratório guiado: três mecanismos em mesa de comparação, depois um checklist normativo que alimenta uma calculadora em cascata (bruto → com fator → após abatimento)",
+    "composicao": "Bloco 0 → mesa de três colunas (fixa / emerge / onde entra / o que exige), com o \"Três níveis\" (recreio) recolhido logo abaixo. Blocos 2–4 → o checklist de sete perguntas do bloco 4 como fichário \"pergunta · estado verificado\", cada ficha com selo de data. Bloco 5 (defeito de fusão) → ato de identificar o erro, ANTES da explicação. Blocos 6–8 → linha do tempo dupla: bloco europeu (out/2023 → dez/2025 → 1/1/2026 → 1/2/2027 → 30/9/2027 → 2034) sobre o sistema brasileiro (dez/2024 → dez/2026 → 2027 → 2030 → 2031); o vão entre as duas é a \"assimetria como cenário-base da década\". INST·09 como cascata de três barras.",
+    "por_que": "A aula tem uma distinção de mecanismo (mesa), uma regra cheia de exceções (fichário), um cálculo em que o erro está na ordem das correções (cascata) e uma assimetria temporal (duas linhas do tempo). Uma coluna de prosa esconde o que decide: o cronograma. A cascata mostra que o mesmo número cai 20× só pelo fator de entrada."
+   },
+   "abertura": {
+    "pergunta": "Um exportador calcula volume × intensidade × preço do certificado e chega a milhões de euros. O custo já corre? E ele é desse tamanho?",
+    "objetivo": "Separar os três mecanismos, classificar o estágio de cada peça do ajuste de fronteira e estimar a obrigação do período corrigindo as três fontes de erro.",
+    "camada": "alexandria",
+    "derivada_de": "Bloco 5 + m17-ex-18 + quiz Q8 + INST·09",
+    "previsao": {
+     "util": true,
+     "pergunta": "Ferro e aço, 100 kt exportadas, intensidade direta 1,6 tCO₂e/t, certificado a €75/t: a exposição bruta é de €12,00 mi. Com o fator de entrada gradual de 5%, qual é a obrigação do período?",
+     "resposta_fonte": "Derivado com o INST·09 no cenário-padrão: €0,60 mi (€6,00 por tonelada de produto); a parcela indireta (0,25) não é contada para ferro e aço.",
+     "por_que_ensina": "A distância de 20× entre bruto e obrigação é exatamente o \"número de outra grandeza\" do bloco 5.",
+     "regra_de_entrada": "Numérica, com arredondamento técnico (€0,6 mi) como regra de entrada da Alexandria. Rótulo: \"valores de partida editáveis; fonte e data no painel; não substitui cálculo jurídico nem verificação acreditada\" (texto do INST·09)."
+    }
+   },
+   "ato_autentico": {
+    "tipo": "identificar o erro + estimar",
+    "descricao": "(1) Ler o cálculo do \"material externo\" (bloco 5, sem a explicação) e apontar as três razões pelas quais o número é de outra grandeza. Referência: preço não oficial do certificado; parcela elétrica incluída, que para aço está fora; fator de entrada ignorado (bloco 5; m17-ex-18). (2) Prever a obrigação no INST·09 e depois trocar o setor para Cimento, registrando o efeito.",
+    "exercita": "O cronograma e o perímetro do mecanismo de fronteira, o mecanismo central.",
+    "camada": "alexandria (tarefas); fonte (defeito, gabarito, fórmula)"
+   },
+   "atos_secundarios": [
+    "Mesa dos três mecanismos: classificar quatro afirmações do \"Executivo\" em quantidade fixa, preço fixo ou fronteira.",
+    "Régua de estágio (INST·07 com preset da A08): Ajuste de fronteira = Em operação; Venda de certificados = Regulamentado; Abatimento por preço pago na origem = Regulamentado; Sistema brasileiro de comércio de emissões = Regulamentado.",
+    "Caso — Operação A, 1ª pergunta (\"o mecanismo de fronteira alcança o produto dela?\", 5 etapas): é a aplicação desta aula e o ponto de entrada do Desafio de decisão (P17), limitado a escolher qual documento pedir e qual pergunta devolver.",
+    "m17-ex-13 (funções exigidas do lado de origem)."
+   ],
+   "visualizacao": {
+    "desenhar": [
+     {
+      "figura": "Do bruto à obrigação: a mesma exportação em três números",
+      "relacao": "bruto = t × intensidade × preço; com fator = bruto × fator; líquido = t × intensidade × max(0, preço − preço pago na origem) × fator",
+      "eixos": "três barras horizontais em escala comum",
+      "unidade": "€ mi",
+      "dados_fonte": "Cenário-padrão do INST·09: 160,0 kt CO₂e; €12,00 mi; €0,60 mi; €0,60 mi; €6,00/t",
+      "fonte_visivel": "Regulamento do mecanismo e atos de execução; preço conforme publicação oficial trimestral de 2026 (nota do INST·09) · verificado em 04/08/2026 · a reverificar",
+      "trabalho": "mostrar que o cronograma, e não o preço, é a variável decisiva"
+     },
+     {
+      "figura": "Duas linhas do tempo e o vão entre elas",
+      "relacao": "cronograma do mecanismo de destino × cronograma do sistema brasileiro",
+      "eixos": "x: 2023–2034; duas faixas",
+      "unidade": "datas",
+      "dados_fonte": "Destino: out/2023–dez/2025 transitório; 1/1/2026 definitivo; 1/2/2027 venda; 30/9/2027 1ª declaração; entrada gradual até 2034; preço de referência a partir de 2027. Brasil: lei dez/2024; normas infralegais até dez/2026; relato 2027; transação plena 2030; consolidação 2031.",
+      "trabalho": "dar forma a \"a assimetria é o cenário-base da década\""
+     }
+    ],
+    "existe_no_codigo": false,
+    "forma_prometida_nao_desenhada": "\"Calculadora de ajuste de fronteira\" não promete forma. A instrução afirma que a parcela elétrica \"altera o resultado mais do que qualquer outro parâmetro\", e isso é falso no padrão: +15,6% contra +100% do fator 5→10% e +20% do preço 75→90 (div-m17-inst-01)."
+   },
+   "instrumento": [
+    {
+     "id": "INST·09",
+     "nome": "Calculadora de ajuste de fronteira",
+     "apos_bloco": 8,
+     "posicao_na_fonte": "Depois de \"A leitura operacional é direta e desconfortável…\" (bloco 8) e antes da nota P7 (bloco 9).",
+     "previsao": true,
+     "padrao_fonte": "Ferro e aço; 100 kt/ano; 1,6 e 0,25 tCO₂e/t; €75/t; fator 5%; preço na origem 0 → 160,0 kt; €12,00 mi; €0,60 mi; €0,60 mi; €6,00/t; indireta contabilizada: não.",
+     "problema_pedagogico": "A frase da instrução sobre a parcela elétrica não pode ir ao ar (div-m17-inst-01). Substituir, na camada Alexandria, por uma tarefa \"descubra qual parâmetro mais move a obrigação\" (resposta medida: o fator de entrada). Setor Cimento com os mesmos números: 185 kt; €13,875 mi bruto; €0,694 mi com fator (derivado).",
+     "fonte_de_valores": "Nota de fonte do instrumento. Intensidades 1,6 e 0,25 e volume de 100 kt não têm fonte valor a valor (\"os valores de partida do 09 não têm fonte valor a valor\"; extração): rotular \"valores de partida\"."
+    }
+   ],
+   "checagem": "Três razões × bloco 5 (resposta · referência · o que acrescenta: \"o cronograma é a variável decisiva\" · critério). Obrigação prevista × calculada (€0,60 mi), no quadro fixo. Estágios × INST·07.",
+   "recuperacao": {
+    "antes_de_mostrar": "Do M16: \"O que é escopo 2?\" e \"Em que posição da régua está o sistema brasileiro de comércio de emissões?\" antes dos blocos 6–8 (a aula diz que o M16 já tratou). Da A06: \"O que a régua não autoriza concluir de uma norma aprovada?\" antes do bloco 4.",
+    "origem_visivel": "M16, M17·A06"
+   },
+   "proximo_passo": {
+    "nao_atende": "Rever \"O mecanismo de fronteira, verificado item por item\" (bloco 4)",
+    "demais": "Próxima · M17·A09 — Quatro números diferentes recebem o mesmo nome"
+   },
+   "serve_a": [
+    "Checklist 23–26",
+    "Erros comuns 15, 16, 17, 18"
+   ],
+   "midia": {
+    "precisa": true,
+    "onde_ajuda": "Junto da linha do bloco 4 sobre a eletricidade indireta (\"num alumínio primário é a maior parte da pegada … fica fora da obrigação\"): foto documental de uma sala de cubas de eletrólise de alumínio. Trabalho: tornar concreto que o alumínio primário é feito com eletricidade, que é exatamente a parcela que o mecanismo não conta. Classe: documental, com crédito; a legenda só afirma o que o metadado diz (alumínio, França, entre 1948 e 1967, domínio público, acervo DPLA/USAID) e nada sobre intensidade.",
+    "curadoria": "media-lab/aulas/m17/originais/m17-a08-cubas-aluminio-franca-1948-67.jpg (4023×2824, PD). Candidata média: a imagem é histórica e francesa, e o teste de remoção passa por pouco (memória e concretude, não evidência). Alternativa melhor, se houver: sala de cubas contemporânea com licença aberta. Nunca legendar com nome de fábrica não verificado."
+   },
+   "mobile_390": "Mesa de três mecanismos como três cartões com as mesmas quatro linhas. O fichário de 7 perguntas fica em disclosures, cada uma com o selo de data. Duas linhas do tempo verticais lado a lado estreitas (destino | Brasil), com o vão sombreado por hachura (sem cor semântica). INST·09: seletor de setor em 4 botões, seis entradas em coluna e a cascata de três barras horizontais acima das saídas.",
+   "lacunas_fonte": [
+    "Instrução do INST·09 contradita pela própria execução (div-m17-inst-01): CONTENT QA.",
+    "Intensidades e volume do cenário sem fonte valor a valor.",
+    "O preço do certificado de 2026 \"próximo de €75/t nos dois primeiros trimestres\": só vale como valor de partida datado.",
+    "\"Normas infralegais … até dezembro de 2026\": futuro em relação a hoje; o estado não foi verificado depois de 04/08/2026.",
+    "Bloco 5: o \"material externo\" não é identificado nem traz o valor exato (\"dezenas de milhões de euros\"). Não inventar o número.",
+    "Etapa 2 do caso (obrigação própria × precursor) é deixada em aberto pela fonte: não resolver na interface."
+   ],
+   "dependencias_s9": [
+    "Portar INST·09 (sem a frase falsa da instrução)",
+    "Portar INST·07 com preset da A08",
+    "Registro de previsão e de identificação de erro",
+    "Extração/render do caso (§9)",
+    "Proveniência da foto (M6)"
+   ],
+   "qa_conteudo": [
+    "Bloco 5: \"O material comparativo que alimentou esta sessão\" → reescrever sem o processo interno (S4).",
+    "Bloco 9: nota P7 com \"GridAlpha Research\" → fora.",
+    "Bloco 0: tabela tri com cabeçalho falso (COD-M17-02).",
+    "Glosa \"carbono\" do §00 aponta a Aula 07 (div-m17-02)."
+   ],
+   "nota_ambicao": "A cascata em que €12 milhões encolhem para €0,6 milhão só pela linha do cronograma, desenhada ao lado de duas linhas do tempo com um vão até 2030. O learner sai sabendo que a pergunta \"quanto custa?\" vem depois de \"quando começa a correr?\"."
+  },
+  {
+   "aulaId": "aula-17-09",
+   "numero": 9,
+   "titulo": "Quatro números diferentes recebem o mesmo nome",
+   "subtitulo_fonte": "Penetração",
+   "blocos_no_corpo": 9,
+   "o_que_ensina": "\"Penetração renovável\" são quatro números: capacidade instalada (o maior), geração no ano, pico instantâneo e energia consumida líquida de corte e de saldo de intercâmbio (o menor, e o único que descreve substituição real). A interconexão é dotação: um sistema muito interconectado resolveu parte do problema exportando-o. O contraste europeu (Caso A renovável, Caso B nuclear) só se lê com a grandeza declarada.",
+   "natureza": [
+    "unidade/definição",
+    "cálculo",
+    "comparação de jurisdições",
+    "sistema/rede (interconexão)"
+   ],
+   "representacao": {
+    "arquetipo": "Escada dos quatro números como instrumento central, em layout de laboratório, seguida de mesa de comparação de dois casos",
+    "composicao": "Bloco 0 → escada de quatro degraus (1 capacidade, 3 pico, 2 geração, 4 consumida líquida), cada um com a pergunta que responde. Previsão de ordenação antes. Bloco 1 → a regra do módulo como selo (\"nenhum número de penetração sem rótulo\"). Blocos 2–4 → esquema de interconexão: dois sistemas com a mesma penetração, um exportando excedente e outro cortando. Blocos 5–7 → mesa Caso A × Caso B, com o número de cada caso carimbado com o degrau que ele é (\"número 2\"). Bloco 8 → a península e o evento de abril de 2025, com a frase \"reforçou; não provou causalidade simples\". O INST·10 fecha a aula (é o último bloco na fonte).",
+    "por_que": "A aula é uma disciplina de rótulo; a forma natural é uma escada em que cada número tem nome e posição, e a distância entre o maior e o menor é o \"tamanho do erro\" (fonte). O INST·10 calcula exatamente isso, e deve estar no centro, não como apêndice. A mesa de dois casos exercita o rótulo em dados reais."
+   },
+   "abertura": {
+    "pergunta": "\"Eles têm 60% de renovável.\" Sessenta por cento de quê?",
+    "objetivo": "Rotular qualquer número de penetração como um dos quatro e dizer o que ele não permite concluir.",
+    "camada": "alexandria (a pergunta vem do lead, que cita a frase)",
+    "derivada_de": "Lead + bloco 0",
+    "previsao": {
+     "util": true,
+     "pergunta": "Um sistema com 140 GW renováveis de 250 GW, 190 TWh renováveis de 520 TWh gerados, pico instantâneo de 78%, 12 TWh de corte e saldo importador de 45 TWh. Ordene os quatro números do maior para o menor.",
+     "resposta_fonte": "Derivado com o INST·10 no cenário-padrão: pico 78,0% > capacidade 56,0% > geração 36,5% > consumida líquida 33,6%; maior ÷ menor = 2,32×.",
+     "por_que_ensina": "A intuição põe a capacidade no topo e a geração perto dela; o pico passa na frente e o número 4 fica abaixo do 2 por causa da importação. A razão 2,32× é o \"tamanho do erro\" de uma citação sem rótulo.",
+     "regra_de_entrada": "Ordenação de 4 itens. Rótulo do cenário: \"valores de partida ilustrativos e editáveis\" (nota da fonte). Nenhuma jurisdição real."
+    }
+   },
+   "ato_autentico": {
+    "tipo": "ordenar + manipular até uma meta",
+    "descricao": "(1) Prever a ordem dos quatro. (2) No INST·10, levar a razão maior ÷ menor para baixo de 1,4× (limiar do próprio script para trocar o veredito) mexendo no menor número possível de controles, e registrar quais precisou mudar. Corte e saldo movem só o número 4; como o maior é o pico (78%) e a capacidade (56%) já está 1,53× acima da geração (36,5%), a meta obriga a mexer no pico e na capacidade. Exemplo derivado: pico 45%, capacidade renovável 100 GW e saldo 0 dão 40,0 · 36,5 · 45,0 · 36,5 → 1,23×. O learner descobre que o recorde instantâneo e a placa sustentam o erro.",
+    "exercita": "Os quatro números como grandezas diferentes e o efeito de corte e intercâmbio no número 4.",
+    "camada": "alexandria (meta e tarefa); fonte (fórmulas, limiar 1,4 do ramo, valores de partida)",
+    "observacao": "Verificar a meta com a varredura do calculador (F-M03-8) antes de publicar; se ela não for alcançável só com os controles indicados, liberar os sete."
+   },
+   "atos_secundarios": [
+    "Classificar enunciados nos quatro números: \"Quase metade da capacidade já é eólica e solar\" (número 1; m17-ex-15); \"renováveis em cerca de 58,8% da geração líquida pública\" (número 2; a fonte o rotula); \"recorde instantâneo\" (número 3).",
+    "m17-ex-16: 1 GW gera 2,19 TWh → fator de utilização 25%, e por que não basta (o corte da rede).",
+    "Derivado do Caso B: nuclear 373 TWh de 547 TWh ≈ 68% da produção (camada Alexandria, com as duas parcelas visíveis)."
+   ],
+   "visualizacao": {
+    "desenhar": [
+     {
+      "figura": "Um sistema, quatro percentuais, um fator de 2,32 entre eles",
+      "relacao": "n1 = cap ren ÷ cap total; n2 = ger ren ÷ ger total; n3 = pico; n4 = ren consumida ÷ consumo (com corte e saldo)",
+      "eixos": "quatro barras rotuladas diretamente, ordenadas, com a razão maior ÷ menor anotada",
+      "unidade": "%",
+      "dados_fonte": "Cenário-padrão do INST·10: 56,0 · 36,5 · 78,0 · 33,6; corte sobre disponível 5,9%",
+      "fonte_visivel": "Valores de partida ilustrativos, editáveis; para uso externo, série de organismo oficial com metodologia publicada (nota do INST·10)",
+      "trabalho": "desenhar o tamanho do erro de uma citação sem rótulo"
+     },
+     {
+      "figura": "Mesma penetração, interconexão diferente",
+      "relacao": "excedente exportado × excedente cortado ou armazenado",
+      "eixos": "esquema de dois sistemas",
+      "unidade": "sem números",
+      "trabalho": "tornar visível \"o primeiro resolveu parte do problema exportando-o\""
+     }
+    ],
+    "existe_no_codigo": false,
+    "forma_prometida_nao_desenhada": "\"Decompositor de penetração renovável\" é calculadora; o HTML mostra números, não barras. Não portado."
+   },
+   "instrumento": [
+    {
+     "id": "INST·10",
+     "nome": "Decompositor de penetração renovável",
+     "apos_bloco": 8,
+     "posicao_na_fonte": "Último bloco da aula, depois da península (bloco 8).",
+     "previsao": true,
+     "padrao_fonte": "Cap. ren. 140 GW; cap. total 250 GW; ger. ren. 190 TWh; ger. total 520 TWh; pico 78%; corte 12 TWh; saldo +45 TWh → 56,0 / 36,5 / 78,0 / 33,6%; corte 5,9%; 2,32×.",
+     "problema_pedagogico": "Na fonte ele é apêndice, ao fim da aula. Proposta: a escada (bloco 0) já abre com a previsão, e o instrumento aparece velado logo depois do bloco 1 como figura e volta vivo no fim para a meta. Isso não altera a ordem da prosa (C5: o ponto que o invoca é o bloco 0). A regra de atribuição do número 4 (importação como não renovável) é declarada no veredito e deve ficar visível.",
+     "fonte_de_valores": "Ilustrativos, declarados pela fonte."
+    }
+   ],
+   "checagem": "Ordenação prevista × calculada (quadro fixo). Meta: estado do veredito por palavra (\"ainda recusa\" × \"razão abaixo de 1,4×\"). Classificações × m17-ex-15 e rótulos da fonte.",
+   "recuperacao": {
+    "antes_de_mostrar": "Da A07: \"Participação em capacidade permite concluir algo sobre geração?\" antes do bloco 0. Do M01: \"Qual a diferença entre MW e MWh?\" (fator de capacidade, FCap) antes do ex-16.",
+    "origem_visivel": "M17·A07, M01"
+   },
+   "proximo_passo": {
+    "nao_atende": "Rever a escada dos quatro números (bloco 0)",
+    "demais": "Próxima · M17·A10 — Cinco casos que ensinam o que os grandes não ensinam"
+   },
+   "serve_a": [
+    "Checklist 18–21",
+    "Erros comuns 04, 05, 20"
+   ],
+   "midia": {
+    "precisa": false,
+    "onde_ajuda": "A península e o evento de abril de 2025 tentam por uma foto, que reforçaria a causalidade simples que a aula recusa. Nenhuma imagem.",
+    "curadoria": "Sem candidata para a09."
+   },
+   "mobile_390": "Escada vertical com os quatro degraus a toda a largura e a ordenação por arrastar ou botões. Barras do INST·10 horizontais, rótulo no fim de cada barra, razão numa linha própria. Sete entradas em coluna, com corte e saldo primeiro (os controles da meta). Mesa Caso A × Caso B em cartões por atributo, com o número de degrau como etiqueta ao lado de cada valor.",
+   "lacunas_fonte": [
+    "O Caso A é descrito como \"expansão renovável acelerada\" e o preço €89/MWh é o mesmo da A01 (fonte). Os casos não são nomeados na aula, mas as fichas nomeiam Alemanha e França (decisão de nomeação).",
+    "Nenhum número de saldo de intercâmbio para os casos A e B, só \"importador\" e \"exportador\".",
+    "Península: \"acima de metade da geração num dos países\"; \"mais de dois terços do consumo\" no outro. São dois números de degraus diferentes na mesma frase; rotular cada um (a fonte já distingue geração e consumo).",
+    "Evento de abril de 2025: sem dado quantitativo; a fonte recusa a causalidade."
+   ],
+   "dependencias_s9": [
+    "Portar INST·10",
+    "Registro de ordenação e de meta",
+    "Varredura de alcançabilidade da meta (F-M03-8)"
+   ],
+   "qa_conteudo": [
+    "Bloco 1: \"a validação de entrega inclui um teste específico para isso\" → processo interno (S4); reescrever.",
+    "Bloco 7: tabela com cabeçalho vazio na 1ª célula: ok, a fonte tem th."
+   ],
+   "nota_ambicao": "Um único sistema fictício, quatro barras, e a frase \"o maior é 2,32× o menor\" escrita no gráfico. Depois o learner tenta fechar esse vão e percebe que o recorde instantâneo, o número que vai para o comunicado, é o que mais resiste."
+  },
+  {
+   "aulaId": "aula-17-10",
+   "numero": 10,
+   "titulo": "Cinco casos que ensinam o que os grandes não ensinam",
+   "subtitulo_fonte": "Os outros mercados",
+   "blocos_no_corpo": 17,
+   "o_que_ensina": "Cinco casos em que uma condição de sustentação do desenho falha: rede (recurso solar excelente não garante receita), camadas de implementação (texto legal ≠ despacho), moeda (desenho impecável em moeda instável entrega menos), solvência do comprador (qualidade do comprador é parâmetro de mercado) e planejamento com sequência explícita (desenho institucional importável). A pilha de custo comparável exige a mesma dissecação por camada dos dois lados.",
+   "natureza": [
+    "casos comparados",
+    "decisão/diagnóstico",
+    "cálculo (pilha de custo)"
+   ],
+   "representacao": {
+    "arquetipo": "Mesa de cinco dossiês (\"a condição que falhou\") com uma bancada de pilha de custo no fim",
+    "composicao": "Cada caso (blocos 0–15) vira um dossiê com a mesma anatomia: descrição funcional → condição que falha (uma palavra: rede · implementação · moeda · comprador · sequência) → lição transferível → número da fonte com grandeza, quando houver. O learner vê os cinco títulos e as cinco condições embaralhadas antes de ler (ato). O Chile tem o mapa de potencial fotovoltaico como evidência de \"recurso no norte\". A Austrália tem a foto de telhados junto de \"demanda operacional reduzida no meio do dia\". Depois da nota de planejamento (bloco 15), o INST·11 como pilha de custo A × B em três camadas, com previsão de inversão.",
+    "por_que": "São cinco casos paralelos com a mesma pergunta (\"que condição falhou?\"); uma mesa com anatomia fixa permite comparar sem virar ranking. A pilha de custo fecha a aula porque é a capacidade que a fonte nomeia e porque devolve o learner à régua da A01 em forma de número."
+   },
+   "abertura": {
+    "pergunta": "Em cada um destes cinco sistemas, uma condição que sustenta o desenho falhou. Qual, em cada caso?",
+    "objetivo": "Nomear a condição que falha em cada caso e montar uma pilha de custo comparável declarando o que ficou de fora.",
+    "camada": "alexandria",
+    "derivada_de": "Lead (\"o que acontece com o desenho quando uma das condições que o sustentam falha\") + blocos 1, 5, 8, 11 e 15",
+    "previsao": {
+     "util": true,
+     "pergunta": "Consumidor A paga 40 de energia, 45 de transporte e encargos e 12 de tributos não recuperáveis; B paga 65, 20 e 8 (mesma unidade por MWh). A é 38,5% mais barato em energia. Na fatura cheia, quem é mais barato?",
+     "resposta_fonte": "Derivado com o INST·11 no cenário-padrão: B (A 97,0 × B 93,0; A +4,3%). \"A ordenação inverte entre camadas.\"",
+     "por_que_ensina": "Quem compara só a energia conclui o contrário da fatura cheia: é a declaração 1 da A01 em forma de número.",
+     "regra_de_entrada": "Escolha A, B ou empate. Rótulo: \"valores de partida ilustrativos e editáveis, não referência de mercado\" (nota da fonte)."
+    }
+   },
+   "ato_autentico": {
+    "tipo": "classificar (casar caso × condição) + prever",
+    "descricao": "(1) Casar os cinco casos com a condição que falha (rede · camadas de implementação · moeda · solvência do comprador · sequência de planejamento), com a frase-chave da fonte como referência para cada um (blocos 2, 5, 8, 11, 15). (2) Prever a inversão no INST·11 e depois ajustar as camadas até a ordenação deixar de inverter, anotando qual camada decidiu.",
+    "exercita": "Ler um desenho pela condição que o sustenta e comparar custo por camada.",
+    "camada": "alexandria (tarefas e rótulos de condição); fonte (casos, frases, fórmula)"
+   },
+   "atos_secundarios": [
+    "m17-ex-10 (recurso solar excelente lido como retorno) com o dossiê do Chile.",
+    "m17-ex-01 e m17-ex-04 (tarifa industrial média; tributo recuperável) com o INST·11.",
+    "Reabrir a régua da A01 com a pilha montada: o INST·11 diz que \"faltam as outras cinco declarações\"."
+   ],
+   "visualizacao": {
+    "desenhar": [
+     {
+      "figura": "Pilha de custo em três camadas: a ordenação inverte",
+      "relacao": "camada 1 (energia), 1+2 (+ transporte e encargos), 1+2+3 (fatura cheia) para A e B",
+      "eixos": "duas barras empilhadas lado a lado, com linha entre os topos de cada camada",
+      "unidade": "unidade monetária por MWh (base declarada pelo learner)",
+      "dados_fonte": "Cenário-padrão do INST·11: 40,0 vs 65,0; 85,0 vs 85,0; 97,0 vs 93,0; Δ energia −38,5%; Δ cheia +4,3%",
+      "fonte_visivel": "Valores de partida ilustrativos (nota do INST·11)",
+      "trabalho": "a inversão desenhada; a camada intermediária empata (85 × 85) e deve aparecer, embora o teste do script não a use"
+     },
+     {
+      "figura": "Cinco dossiês, cinco condições",
+      "relacao": "caso → condição que falha → lição",
+      "eixos": "mesa de 5 colunas ou lista",
+      "unidade": "categórica",
+      "dados_fonte": "Números: ponta >270 GW (maio/2026); renováveis >metade no 4º tri/2025, atacado ~A$50/MWh; 46,5% no 1º tri/2026",
+      "trabalho": "comparar sem ranquear"
+     }
+    ],
+    "existe_no_codigo": false,
+    "forma_prometida_nao_desenhada": "\"Normalizador de preço ao consumidor\" promete \"pilha de custo … camada por camada\" e o HTML mostra só números. Não portado."
+   },
+   "instrumento": [
+    {
+     "id": "INST·11",
+     "nome": "Normalizador de preço ao consumidor",
+     "apos_bloco": 15,
+     "posicao_na_fonte": "Depois de \"A lição de desenho, e ela não é sobre tecnologia\" (bloco 15) e antes da nota P7 (bloco 16).",
+     "previsao": true,
+     "padrao_fonte": "A 40/45/12; B 65/20/8 → 40,0 vs 65,0; 85,0 vs 85,0; 97,0 vs 93,0; −38,5%; +4,3%; mais barato na cheia: B; veredito de inversão.",
+     "problema_pedagogico": "A unidade \"un/MWh\" é genérica: pedir ao learner que declare a base (nominal ou paridade), porque a nota de fonte o exige. A camada intermediária é exibida e ignorada no teste: desenhar mesmo assim.",
+     "fonte_de_valores": "Ilustrativos, declarados pela fonte."
+    }
+   ],
+   "checagem": "Casamento caso × condição com a frase da fonte ao lado de cada par. Previsão × cálculo (B), no quadro fixo. Autoavaliação na nota \"qual camada decidiu\".",
+   "recuperacao": {
+    "antes_de_mostrar": "Da A01: \"Quais são as sete declarações?\" antes do INST·11 (o veredito cita \"as outras cinco\"). Do M10: \"Quais camadas a fatura industrial brasileira tem?\" (a nota P7 cita o M10; a pergunta é pedagógica). Do M11: \"O que a geração atrás do medidor faz com a demanda operacional?\" antes do dossiê australiano.",
+    "origem_visivel": "M17·A01, M10, M11"
+   },
+   "proximo_passo": {
+    "nao_atende": "Rever o dossiê em que a condição foi trocada",
+    "demais": "Próxima · M17·A11 — O verificador aplicado, e o fechamento sem ranking"
+   },
+   "serve_a": [
+    "Checklist 3, 8, 9 (camadas, tributo simétrico, base cambial)",
+    "Checklist 28 (cruzar dimensões)",
+    "Erros comuns 03, 20"
+   ],
+   "midia": {
+    "precisa": true,
+    "onde_ajuda": "(1) Dossiê sul-americano, junto do bloco 1 (\"o recurso solar está concentrado no norte\"): mapa de potencial fotovoltaico (PVOUT) como evidência de onde está o recurso. Classe: documental/diagrama de fonte, com crédito Global Solar Atlas / Solargis / Banco Mundial-ESMAP, CC BY 4.0, 2021. A legenda diz o que o mapa mede (produção estimada de 1 kWp) e não sugere receita, porque essa é a lição. (2) Dossiê australiano, junto do bloco 13 (\"alta penetração de solar em telhado reduz a demanda operacional no meio do dia\"): foto de telhados residenciais com painéis. Classe: documental, crédito Benlisquare, CC BY-SA 4.0, fevereiro de 2026, Canberra (lugar do metadado).",
+    "curadoria": "media-lab/aulas/m17/originais/m17-a10-chile-potencial-fv-mapa.png (1842×2598, CC BY 4.0) é candidata forte: faz trabalho de evidência e prepara o erro \"recurso ≠ receita\". m17-a10-canberra-telhados-solares-2026.jpg (12288×8192, CC BY-SA 4.0) é candidata média: concretiza \"solar em telhado\" mas não mostra o efeito na demanda. A descrição do Commons (\"maior penetração per capita do mundo\") não está na fonte da aula e NÃO vai para a legenda. A aula descreve os países só por função, então nomear Chile e Austrália numa legenda documental exige a decisão de nomeação (faixa 1 permite)."
+   },
+   "mobile_390": "Os cinco dossiês viram cartões em sequência vertical, com a condição como etiqueta no topo (depois do ato). O ato de casar vira cinco selects, um por cartão. Mapa PVOUT em retrato (a proporção vertical do original ajuda a 390). Foto de telhados recortada em faixa. INST·11: seis entradas em duas colunas (A | B) de três linhas, e a pilha abaixo com as duas barras lado a lado.",
+   "lacunas_fonte": [
+    "Os casos não são nomeados na prosa; só as fichas e os instrumentos nomeiam Chile.",
+    "Bloco 4: \"O currículo ancora esse marcador numa administração anterior; o instrumento vigente é de outro ciclo político.\" Correção declarada pela fonte sem dizer qual administração; não completar.",
+    "Caso da moeda: nenhum número de inflação ou câmbio. Não desenhar série.",
+    "Caso asiático: só a ponta de >270 GW em maio de 2026.",
+    "Caso australiano: A$50/MWh e 46,5% sem nome de fonte no corpo (ver m17-ref-06).",
+    "O plano integrado de 2026 é citado sem data de publicação."
+   ],
+   "dependencias_s9": [
+    "Portar INST·11",
+    "Registro de casamento e de previsão",
+    "Proveniência das duas imagens (M6) e decisão de nomeação",
+    "Ficha de fonte m17-ref-06"
+   ],
+   "qa_conteudo": [
+    "Bloco 11: \"na colisão declarada no §MAP\" → link \"o mapa das jurisdições\" (S4).",
+    "Bloco 15: \"a pergunta do Instrumento 08\" → link para o INST·08 na A07.",
+    "Bloco 16: nota P7 → fora."
+   ],
+   "nota_ambicao": "Um mapa em que o norte do Chile brilha de recurso e, duas telas depois, uma pilha de custo em que o consumidor \"mais barato\" deixa de ser. O learner leva a frase da fonte \"recurso solar excelente não garante receita excelente\" junto com a imagem que tentaria convencê-lo do contrário."
+  },
+  {
+   "aulaId": "aula-17-11",
+   "numero": 11,
+   "titulo": "O verificador aplicado, e o fechamento sem ranking",
+   "subtitulo_fonte": "Síntese",
+   "blocos_no_corpo": 8,
+   "o_que_ensina": "Todo enunciado comparativo verdadeiro e insuficiente cai numa de quatro categorias de defeito (perímetro não declarado, atribuição errada, pressuposto institucional omitido, unidade inconsistente), cada uma com a pergunta que a desarma. O fechamento recusa \"o Brasil está atrasado\" e \"o modelo brasileiro é incomparável\" e devolve quatro coisas: perímetro, decomposição em três parcelas, pressuposto institucional e as condições que fariam a leitura mudar.",
+   "natureza": [
+    "síntese",
+    "diagnóstico (identificar o erro)",
+    "argumentação"
+   ],
+   "representacao": {
+    "arquetipo": "Banca de enunciados (triagem) com quatro bandejas de defeito, seguida de um fechamento editorial em duas colunas de recusa",
+    "composicao": "Bloco 1 → as quatro categorias como quatro bandejas, cada uma com a pergunta que desarma. INST·12 logo depois (é onde a fonte o põe): 12 enunciados, um por vez, a triar numa bandeja ANTES do painel \"falta · pergunta · forma corrigida\". Blocos 2–4 → volta ao mapa das jurisdições (INST·01, §MAP) em miniatura, mostrando que as quatro ordenações discordam (maior concordância entre duas dimensões: metade dos pares). Bloco 5 → duas recusas lado a lado. Bloco 6 → a resposta em quatro itens, que é a régua de saída. Bloco 7 (ponte) → Revisão do módulo e Avaliação, sem prometer \"a planilha\".",
+    "por_que": "A aula-síntese pede o ato mais autêntico do módulo, que a fonte já oferece: doze enunciados verdadeiros e insuficientes, três por categoria. Triar é ato de especialista; ler o painel sem triar é consumo. O mapa das jurisdições volta aqui porque o fechamento \"sem ranking\" é uma afirmação sobre ele."
+   },
+   "abertura": {
+    "pergunta": "Doze frases, todas verdadeiras, e todas levam a uma conclusão errada. Qual é o defeito de cada uma?",
+    "objetivo": "Classificar um enunciado comparativo na sua categoria de defeito e responder com a pergunta que o desarma.",
+    "camada": "alexandria (paráfrase do lead: \"Nenhum dos doze enunciados … é falso. Todos os doze levam a uma conclusão errada.\")",
+    "derivada_de": "Lead + instrução do INST·12",
+    "previsao": {
+     "util": false,
+     "pergunta": null,
+     "por_que_nao": "A aula é de triagem; a tentativa por enunciado já cumpre o papel da previsão (C3: instrumento de sandbox começa por outro ato)."
+    }
+   },
+   "ato_autentico": {
+    "tipo": "classificar (triagem com tentativa antes da referência)",
+    "descricao": "Triar os 12 enunciados do INST·12 nas quatro bandejas, um por vez, e para pelo menos um de cada bandeja escrever a pergunta que o desarma antes de ver o painel. Referência por enunciado (fonte): categoria (per/atr/ins/uni), o que falta, a pergunta e a forma corrigida. Exemplos: \"€89/MWh … o nosso ficou bem abaixo\" → perímetro; \"recurso solar excelente, então o melhor lugar para investir\" → atribuição; \"bastaria copiar a regra aqui\" → pressuposto; \"ajustando pelo poder de compra, a energia industrial deles é mais cara\" → unidade.",
+    "exercita": "As três lentes e a disciplina de unidade aplicadas juntas, que é o mecanismo central da síntese.",
+    "camada": "alexandria (bandejas e sequência); fonte (enunciados, categorias, respostas)"
+   },
+   "atos_secundarios": [
+    "Recusar as duas conclusões: para \"o Brasil está atrasado\", escrever a pergunta \"atrasado em qual métrica, com qual perímetro?\" e as quatro devoluções (bloco 6). Autoavaliação contra o bloco 5.",
+    "Voltar ao mapa das jurisdições (INST·01): trocar a dimensão e observar que os grupos mudam (fonte). O quiz Q10 pergunta pela variável fora da grade.",
+    "Roteiro oral de 10 minutos (§Voz) como atividade recomendada (P14), nunca evidência automática.",
+    "Caso — Operação A, 2ª pergunta (\"uma operação comparável lá paga menos que vocês\"): a régua da A01 aplicada ao caso."
+   ],
+   "visualizacao": {
+    "desenhar": [
+     {
+      "figura": "Quatro bandejas de defeito",
+      "relacao": "enunciado → categoria → pergunta que desarma",
+      "eixos": "quatro colunas com contador de enunciados triados",
+      "unidade": "contagem (3 por categoria, fonte)",
+      "trabalho": "mostrar a distribuição do learner × a da fonte depois da triagem"
+     },
+     {
+      "figura": "Quatro ordenações que discordam",
+      "relacao": "concordância entre pares de dimensões",
+      "eixos": "matriz 4 × 4 das dimensões (preço, descarbonização, regulação, investimento)",
+      "unidade": "índice de concordância 0–1",
+      "dados_fonte": "Reproduzido na extração (Jaccard sobre 136 pares): preço × investimento 0,500; regulação × investimento 0,395; preço × regulação 0,190; demais ≤ 0,125. A fórmula não está escrita na fonte.",
+      "trabalho": "fundamentar \"nenhum desenho domina todas as dimensões\" e \"maior concordância … metade dos pares\"",
+      "cuidado": "Como a fórmula não é da fonte, a matriz é camada Alexandria sobre dados da fonte; opcional. A versão mínima é a frase da fonte com o INST·01."
+     }
+    ],
+    "existe_no_codigo": false,
+    "forma_prometida_nao_desenhada": "\"Verificador de comparação · instrumento assinatura\" não promete forma; no HTML é navegação ← → com painel revelado. Não portado."
+   },
+   "instrumento": [
+    {
+     "id": "INST·12",
+     "nome": "Verificador de comparação · instrumento assinatura",
+     "apos_bloco": 1,
+     "posicao_na_fonte": "Depois da tabela das quatro categorias (bloco 1) e antes de \"O fechamento, e ele recusa as duas conclusões fáceis\" (bloco 2).",
+     "previsao": false,
+     "padrao_fonte": "Filtro \"Todos\", enunciado 1 de 12 (€89/MWh), painel já aberto.",
+     "problema_pedagogico": "O painel revela a categoria e a resposta no mesmo quadro do enunciado: sem tentativa (C7). Proposta: painel velado até a triagem; o filtro por categoria só depois de todos triados (senão ele entrega a resposta). A classe per/att de cada categoria é cor de semáforo (S2).",
+     "fonte_de_valores": "Enunciados construídos pela fonte; o €89/MWh e os 30% são enunciados, não dados a verificar."
+    },
+    {
+     "id": "INST·01",
+     "nome": "Mapa das jurisdições · reagrupamento por dimensão",
+     "apos_bloco": 3,
+     "posicao_na_fonte": "Fora de aula (§MAP). Proposta: miniatura com link na A11, sem duplicar o instrumento.",
+     "previsao": false
+    }
+   ],
+   "checagem": "Por enunciado: bandeja do learner × categoria da fonte; pergunta escrita × \"perg\" da fonte; forma corrigida como \"o que acrescenta\". Autoavaliação em três níveis para as perguntas escritas. Sem placar de acerto como competência (P18).",
+   "recuperacao": {
+    "antes_de_mostrar": "Da A01, A02, A07 e A09, uma pergunta por lente antes da respectiva bandeja: \"Quais são as sete declarações?\", \"Qual parcela não explica nada no caso da frota nuclear?\", \"De que funções depende um leilão central de capacidade?\", \"Quais são os quatro números?\". A origem fica visível em cada uma. Questão usada aqui sai da avaliação (C10).",
+    "origem_visivel": "M17·A01, A02, A07, A09"
+   },
+   "proximo_passo": {
+    "nao_atende": "Rever a aula da lente em que houve mais erros de triagem (A01 perímetro, A02 atribuição, A07 pressuposto, A09 unidade)",
+    "ultima_aula": "Revisão do módulo (18 exercícios por categoria, fichas, caso) → Avaliação do módulo (10 questões; o resultado é desempenho em avaliação, nunca \"Aprovado\", P18) → roteiro oral como atividade recomendada",
+    "demais": "Revisão do módulo 17. O currículo não tem próximo módulo; a \"caixa de ferramentas\" citada na ponte não existe como destino."
+   },
+   "serve_a": [
+    "Checklist 28, 29, 30",
+    "Erros comuns 20"
+   ],
+   "midia": {
+    "precisa": false,
+    "onde_ajuda": "Nenhuma. A figura mítica rara da rota (S2) poderia caber no fechamento do currículo, como atmosfera contida, mas não é necessária e não pode cobrir dado.",
+    "curadoria": "Sem candidata para a11."
+   },
+   "mobile_390": "Um enunciado por tela, grande, com quatro botões de bandeja ≥ 44px embaixo e o painel revelado abaixo depois da escolha; a barra de progresso da triagem (\"7 de 12 triados\") é Percorrido/Praticado, não pontuação. As quatro categorias ficam em disclosure acima do primeiro enunciado. As duas recusas em cartões empilhados. A matriz 4 × 4, se usada, vira lista de seis pares com o valor.",
+   "lacunas_fonte": [
+    "A fonte não declara a fórmula da concordância entre dimensões; a extração a reproduziu (Jaccard).",
+    "A ponte promete \"a caixa de ferramentas — a planilha\", que não existe como destino no produto.",
+    "\"leilão de longo prazo é o arranjo dominante em quatro das dezessete\" confere nos dados (br, cl, mx, in)."
+   ],
+   "dependencias_s9": [
+    "Portar INST·12 (velado até a triagem)",
+    "INST·01 no módulo (§MAP)",
+    "Registro de triagem e de pergunta",
+    "Avaliação do módulo extraída e registrada (§9)",
+    "Tabela sem cabeçalho falso nos blocos 1 e 5 (COD-M17-02)"
+   ],
+   "qa_conteudo": [
+    "Bloco 3: \"a §MAP mostrou por quê\" → link (S4).",
+    "Bloco 7 (ponte) → não prometer destino inexistente."
+   ],
+   "nota_ambicao": "O fim do currículo inteiro é uma banca: doze frases que o learner vai ouvir de verdade, quatro bandejas, e para cada frase a pergunta que ele passa a fazer. Terminar com um ato de especialista, e não com um parabéns, é o que fecha a expedição com dignidade."
+  }
+ ]
+}

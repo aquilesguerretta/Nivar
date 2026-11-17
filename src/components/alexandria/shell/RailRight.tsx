@@ -102,7 +102,7 @@ export function RailRight({ slots = {} }: { slots?: RailRightSlots }) {
           width: ALAYOUT.railRight,
           background: A.navy,
           border: `1px solid ${A.fioSobreNavy}`,
-          borderRadius: '12px',
+          borderRadius: 0,
           overflowY: 'auto',
           display: 'flex',
           flexDirection: 'column',

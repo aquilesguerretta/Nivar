@@ -1,0 +1,4574 @@
+{
+  "schema": "alexandria-v2/extraction/instrumentos@1",
+  "modulo": "05",
+  "grupo": "instrumentos",
+  "fonte": {
+    "arquivo": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo05.html",
+    "linhas_total": 1896,
+    "bytes": 213172,
+    "sha256": "12812a180e95792a7a29be5d284bedbe8c256fa3a5b95c18bc84d47eebeed73a"
+  },
+  "gerado_em": "2026-09-17",
+  "gerado_por": "docs/alexandria-v2/extraction/m05/extratores/m05_instrumentos.mjs",
+  "metodo": "Markup por div.inst (percorredor walk); script por cabeçalho /* ---------- INST 0N */; cenário-padrão e testes executando o <script> original inteiro em DOM simulado (node:vm); SIG avaliado do literal. Código: bundle esbuild de alexandria-modulo-05-content.ts e alexandria-instrument-calculators.ts.",
+  "convencoes": {
+    "linha": "Linha 1-based na fonte.",
+    "null": "Ausência declarada, com nota.",
+    "camada": "Tudo aqui é camada \"fonte\"; comparacao_codigo é medição."
+  },
+  "total": 6,
+  "fora_de_aula": [],
+  "fora_de_aula_nota": "Nenhum instrumento de módulo (§Lab/§MAP) no M05.",
+  "formatadores_comuns": {
+    "helpers": [
+      {
+        "linha": 1384,
+        "codigo": "function $id(x){return document.getElementById(x);}"
+      },
+      {
+        "linha": 1385,
+        "codigo": "function num(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}"
+      },
+      {
+        "linha": 1386,
+        "codigo": "function brl(v){return 'R$ '+Math.round(v).toLocaleString('pt-BR');}"
+      },
+      {
+        "linha": 1387,
+        "codigo": "function brl2(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}"
+      },
+      {
+        "linha": 1388,
+        "codigo": "function mi(v){"
+      },
+      {
+        "linha": 1389,
+        "codigo": "  var a=Math.abs(v);"
+      },
+      {
+        "linha": 1390,
+        "codigo": "  if(a>=1e9) return 'R$ '+(v/1e9).toLocaleString('pt-BR',{maximumFractionDigits:2})+' bi';"
+      },
+      {
+        "linha": 1391,
+        "codigo": "  if(a>=1e6) return 'R$ '+(v/1e6).toLocaleString('pt-BR',{maximumFractionDigits:2})+' mi';"
+      },
+      {
+        "linha": 1392,
+        "codigo": "  if(a>=1e3) return 'R$ '+(v/1e3).toLocaleString('pt-BR',{maximumFractionDigits:0})+' mil';"
+      },
+      {
+        "linha": 1393,
+        "codigo": "  return 'R$ '+Math.round(v).toLocaleString('pt-BR');"
+      },
+      {
+        "linha": 1394,
+        "codigo": "}"
+      },
+      {
+        "linha": 1395,
+        "codigo": "function mmi(v){ /* v já em R$ milhões */"
+      },
+      {
+        "linha": 1396,
+        "codigo": "  if(Math.abs(v)>=1000) return 'R$ '+(v/1000).toLocaleString('pt-BR',{maximumFractionDigits:2})+' bi';"
+      },
+      {
+        "linha": 1397,
+        "codigo": "  return 'R$ '+v.toLocaleString('pt-BR',{maximumFractionDigits:0})+' mi';"
+      },
+      {
+        "linha": 1398,
+        "codigo": "}"
+      },
+      {
+        "linha": 1399,
+        "codigo": "function clamp(v,a,b){return v<a?a:(v>b?b:v);}"
+      },
+      {
+        "linha": 1400,
+        "codigo": "function vd(el,cls,txt){el.className='verdict '+cls;el.textContent=txt;}"
+      }
+    ],
+    "link": [
+      {
+        "linha": 1418,
+        "codigo": "function link(id,cb){"
+      },
+      {
+        "linha": 1419,
+        "codigo": "  var r=$id(id), n=$id(id+'-n');"
+      },
+      {
+        "linha": 1420,
+        "codigo": "  if(!r) return null;"
+      },
+      {
+        "linha": 1421,
+        "codigo": "  r.addEventListener('input',function(){ if(n) n.value=r.value; cb(); });"
+      },
+      {
+        "linha": 1422,
+        "codigo": "  if(n) n.addEventListener('change',function(){"
+      },
+      {
+        "linha": 1423,
+        "codigo": "    var v=parseFloat(n.value);"
+      },
+      {
+        "linha": 1424,
+        "codigo": "    if(isNaN(v)) v=parseFloat(r.value);"
+      },
+      {
+        "linha": 1425,
+        "codigo": "    v=clamp(v,parseFloat(r.min),parseFloat(r.max));"
+      },
+      {
+        "linha": 1426,
+        "codigo": "    n.value=v; r.value=v; cb();"
+      },
+      {
+        "linha": 1427,
+        "codigo": "  });"
+      },
+      {
+        "linha": 1428,
+        "codigo": "  return r;"
+      },
+      {
+        "linha": 1429,
+        "codigo": "}"
+      }
+    ],
+    "nota": "link(): ao editar o campo number, o valor é limitado a [min,max] do range (clamp) e NaN volta ao valor do range; não há arredondamento ao passo. Não há parseFloat||1 neste módulo."
+  },
+  "instrumentos": [
+    {
+      "id": "m05-inst-01",
+      "tipo": "instrumento",
+      "camada": "fonte",
+      "id_fonte": "Inst · 01",
+      "titulo": "Simulador · Quando duplicar a rede fica caro",
+      "prefixo_titulo": "Simulador",
+      "mecanica": {
+        "entradas_numericas": 4,
+        "entradas_booleanas": 0,
+        "saidas": 4,
+        "saidas_textuais": [],
+        "grafico": "svg",
+        "veredito_ramos": 4,
+        "kind_catalogo_taxonomia": "simulador"
+      },
+      "aula": "01",
+      "aula_id_codigo": "aula-05-01",
+      "posicao_no_texto": {
+        "linhas": [
+          395,
+          424
+        ],
+        "subsecao": {
+          "numero": "1.3",
+          "titulo": "As outras três razões, além do custo de rede"
+        },
+        "depois_de": {
+          "tipo": "box",
+          "rotulo": "O que a regulação substitui",
+          "trecho": "Numa atividade competitiva, o cliente disciplina o fornecedor com a ameaça de ir embora. N",
+          "linha_aprox": 389
+        },
+        "antes_de": {
+          "tipo": "tres_niveis",
+          "rotulo": "Monopólio natural · três níveis",
+          "trecho": "Monopólio natural · três níveis",
+          "linha_aprox": 426
+        },
+        "comentario_html": "INST 01"
+      },
+      "invocacoes_no_texto": [],
+      "invocacoes_nota": "Nenhuma frase das aulas chama o instrumento (\"abaixo\", \"use o simulador\"…): zero ocorrências. Ligações textuais indiretas: Ex·01 \"A rua com cinco redes\".",
+      "intro": {
+        "html": "Divida um mercado entre operadores concorrentes e observe o que acontece com o custo médio por consumidor. O ponto do instrumento não é o número — é a forma da curva, e a pergunta de quando ela deixa de subir o suficiente para importar.",
+        "texto": "Divida um mercado entre operadores concorrentes e observe o que acontece com o custo médio por consumidor. O ponto do instrumento não é o número — é a forma da curva, e a pergunta de quando ela deixa de subir o suficiente para importar.",
+        "origem": {
+          "seletor": "div.inst p.inst-intro",
+          "trecho_inicial": "<p class=\"inst-intro\">Divida um mercado entre operadores concorrentes e observe o que acon",
+          "linha_aprox": 398
+        }
+      },
+      "pergunta": null,
+      "pergunta_nota": "A fonte não formula pergunta própria para o instrumento; o texto de abertura é uma instrução (inst-intro). O intro menciona \"a pergunta de quando ela deixa de subir o suficiente para importar\" — não é uma pergunta dirigida ao learner com resposta. Pergunta de previsão = camada Alexandria (P19).",
+      "entradas": [
+        {
+          "id": "i1-q",
+          "id_number": "i1-q-n",
+          "rotulo": "Consumidores no mercado",
+          "unidade": "mil",
+          "padrao": 200,
+          "min": 5,
+          "max": 1000,
+          "passo": 5,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Consumidores no mercado <span class=\"unit\">m",
+            "linha_aprox": 400
+          }
+        },
+        {
+          "id": "i1-f",
+          "id_number": "i1-f-n",
+          "rotulo": "Custo fixo de uma rede completa",
+          "unidade": "R$ mi",
+          "padrao": 900,
+          "min": 50,
+          "max": 3000,
+          "passo": 25,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Custo fixo de uma rede completa <span class=",
+            "linha_aprox": 403
+          }
+        },
+        {
+          "id": "i1-c",
+          "id_number": "i1-c-n",
+          "rotulo": "Custo incremental por consumidor",
+          "unidade": "R$/ano",
+          "padrao": 180,
+          "min": 20,
+          "max": 1200,
+          "passo": 10,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Custo incremental por consumidor <span class",
+            "linha_aprox": 406
+          }
+        },
+        {
+          "id": "i1-n",
+          "id_number": "i1-n-n",
+          "rotulo": "Operadores concorrentes na área",
+          "unidade": "redes",
+          "padrao": 1,
+          "min": 1,
+          "max": 6,
+          "passo": 1,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Operadores concorrentes na área <span class=",
+            "linha_aprox": 409
+          }
+        }
+      ],
+      "sinais": null,
+      "saidas": [
+        {
+          "id": "i1-cm",
+          "rotulo": "Custo médio",
+          "destaque": true,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1487,
+              "codigo": "$id('i1-cm').innerHTML=brl(cur)+'<span class=\"u\">/ano</span>';"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Custo médio</div><div class=\"n gold\" id=\"i1-cm\">—</div></di",
+            "linha_aprox": 416
+          }
+        },
+        {
+          "id": "i1-c1",
+          "rotulo": "Com rede única",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1488,
+              "codigo": "$id('i1-c1').innerHTML=brl(one)+'<span class=\"u\">/ano</span>';"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Com rede única</div><div class=\"n\" id=\"i1-c1\">—</div></div>",
+            "linha_aprox": 417
+          }
+        },
+        {
+          "id": "i1-w",
+          "rotulo": "Desperdício",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1489,
+              "codigo": "$id('i1-w').innerHTML=(waste<=0.001?'zero':(brl(waste)+'<span class=\"u\">/ano</span>'));"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Desperdício</div><div class=\"n\" id=\"i1-w\">—</div></div>",
+            "linha_aprox": 418
+          }
+        },
+        {
+          "id": "i1-tf",
+          "rotulo": "Custo fixo total",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1490,
+              "codigo": "$id('i1-tf').textContent=mi(N*f);"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Custo fixo total</div><div class=\"n\" id=\"i1-tf\">—</div></di",
+            "linha_aprox": 419
+          }
+        }
+      ],
+      "formulas_script": [
+        {
+          "linha": 1463,
+          "codigo": "var CRF=0.10, NMAX=6;"
+        },
+        {
+          "linha": 1464,
+          "codigo": "function cm(n,q,f,c){ return (n*f*CRF + c*q)/q; }"
+        },
+        {
+          "linha": 1466,
+          "codigo": "var Q=+$id('i1-q').value, F=+$id('i1-f').value, C=+$id('i1-c').value, N=+$id('i1-n').value;"
+        },
+        {
+          "linha": 1467,
+          "codigo": "var q=Q*1000, f=F*1e6;"
+        },
+        {
+          "linha": 1468,
+          "codigo": "var cur=cm(N,q,f,C), one=cm(1,q,f,C), waste=cur-one;"
+        },
+        {
+          "linha": 1469,
+          "codigo": "var pct=one>0?(waste/one*100):0;"
+        },
+        {
+          "linha": 1471,
+          "codigo": "var vals=[],i,mx=0;"
+        },
+        {
+          "linha": 1472,
+          "codigo": "for(i=1;i<=NMAX;i++){ var v=cm(i,q,f,C); vals.push(v); if(v>mx) mx=v; }"
+        }
+      ],
+      "formula_nota": "Linhas de cálculo do <script> original, verbatim (classificadas por regex; desenho, saída e veredito separados). Funções de formatação compartilhadas (num, brl, brl2, mi, mmi, clamp) em formatadores_comuns.",
+      "script": {
+        "cabecalho": "/* ---------- INST 01 — custo médio × número de redes ---------- */",
+        "linhas": [
+          1460,
+          1501
+        ],
+        "codigo": [
+          {
+            "linha": 1461,
+            "tipo": "estrutura",
+            "codigo": "(function(){"
+          },
+          {
+            "linha": 1462,
+            "tipo": "estrutura",
+            "codigo": "  if(!$id('i1-q')) return;"
+          },
+          {
+            "linha": 1463,
+            "tipo": "calculo",
+            "codigo": "  var CRF=0.10, NMAX=6;"
+          },
+          {
+            "linha": 1464,
+            "tipo": "calculo",
+            "codigo": "  function cm(n,q,f,c){ return (n*f*CRF + c*q)/q; }"
+          },
+          {
+            "linha": 1465,
+            "tipo": "estrutura",
+            "codigo": "  function run(){"
+          },
+          {
+            "linha": 1466,
+            "tipo": "calculo",
+            "codigo": "    var Q=+$id('i1-q').value, F=+$id('i1-f').value, C=+$id('i1-c').value, N=+$id('i1-n').value;"
+          },
+          {
+            "linha": 1467,
+            "tipo": "calculo",
+            "codigo": "    var q=Q*1000, f=F*1e6;"
+          },
+          {
+            "linha": 1468,
+            "tipo": "calculo",
+            "codigo": "    var cur=cm(N,q,f,C), one=cm(1,q,f,C), waste=cur-one;"
+          },
+          {
+            "linha": 1469,
+            "tipo": "calculo",
+            "codigo": "    var pct=one>0?(waste/one*100):0;"
+          },
+          {
+            "linha": 1471,
+            "tipo": "calculo",
+            "codigo": "    var vals=[],i,mx=0;"
+          },
+          {
+            "linha": 1472,
+            "tipo": "calculo",
+            "codigo": "    for(i=1;i<=NMAX;i++){ var v=cm(i,q,f,C); vals.push(v); if(v>mx) mx=v; }"
+          },
+          {
+            "linha": 1473,
+            "tipo": "desenho",
+            "codigo": "    var yMax=niceMax(mx*1.12);"
+          },
+          {
+            "linha": 1475,
+            "tipo": "desenho",
+            "codigo": "    var s=gridY(yMax,function(v){return Math.round(v);});"
+          },
+          {
+            "linha": 1476,
+            "tipo": "desenho",
+            "codigo": "    var pts='';"
+          },
+          {
+            "linha": 1477,
+            "tipo": "desenho",
+            "codigo": "    for(i=0;i<NMAX;i++){ pts+=xcat(i,NMAX).toFixed(1)+','+yv(vals[i],yMax).toFixed(1)+' '; }"
+          },
+          {
+            "linha": 1478,
+            "tipo": "desenho",
+            "codigo": "    s+='<polyline points=\"'+pts+'\" fill=\"none\" stroke=\"#06B6D4\" stroke-width=\"2.2\" stroke-linejoin=\"round\"/>';"
+          },
+          {
+            "linha": 1479,
+            "tipo": "desenho",
+            "codigo": "    for(i=0;i<NMAX;i++){"
+          },
+          {
+            "linha": 1480,
+            "tipo": "desenho",
+            "codigo": "      var sel=(i+1)===N;"
+          },
+          {
+            "linha": 1481,
+            "tipo": "desenho",
+            "codigo": "      s+='<circle cx=\"'+xcat(i,NMAX).toFixed(1)+'\" cy=\"'+yv(vals[i],yMax).toFixed(1)+'\" r=\"'+(sel?5:2.8)+'\" fill=\"'+(sel?'#F59E0B':'#06B6D4')+'\"/>';"
+          },
+          {
+            "linha": 1482,
+            "tipo": "estrutura",
+            "codigo": "    }"
+          },
+          {
+            "linha": 1483,
+            "tipo": "desenho",
+            "codigo": "    s+='<text x=\"'+xcat(N-1,NMAX).toFixed(1)+'\" y=\"'+(yv(vals[N-1],yMax)-11).toFixed(1)+'\" fill=\"#F59E0B\" font-size=\"10.5\" font-family=\"monospace\" text-anchor=\"middle\">'+brl(cur)+'</text>';"
+          },
+          {
+            "linha": 1484,
+            "tipo": "desenho",
+            "codigo": "    s+=xlab(['1 rede','2 redes','3 redes','4 redes','5 redes','6 redes']);"
+          },
+          {
+            "linha": 1485,
+            "tipo": "desenho",
+            "codigo": "    $id('i1-svg').innerHTML=s;"
+          },
+          {
+            "linha": 1487,
+            "tipo": "saida",
+            "codigo": "    $id('i1-cm').innerHTML=brl(cur)+'<span class=\"u\">/ano</span>';"
+          },
+          {
+            "linha": 1488,
+            "tipo": "saida",
+            "codigo": "    $id('i1-c1').innerHTML=brl(one)+'<span class=\"u\">/ano</span>';"
+          },
+          {
+            "linha": 1489,
+            "tipo": "saida",
+            "codigo": "    $id('i1-w').innerHTML=(waste<=0.001?'zero':(brl(waste)+'<span class=\"u\">/ano</span>'));"
+          },
+          {
+            "linha": 1490,
+            "tipo": "saida",
+            "codigo": "    $id('i1-tf').textContent=mi(N*f);"
+          },
+          {
+            "linha": 1492,
+            "tipo": "veredito",
+            "codigo": "    var v2=$id('i1-vd');"
+          },
+          {
+            "linha": 1493,
+            "tipo": "veredito",
+            "codigo": "    if(N===1) vd(v2,'ok','Rede única. O custo fixo de '+mi(f)+' é diluído entre '+num(q)+' consumidores, o que dá '+brl(f*CRF/q)+' por consumidor por ano só de infraestrutura. Repare quanto disso é custo de existir a rede, e não custo de entregar energia: é essa proporção que define quão forte é o monopólio natural aqui.');"
+          },
+          {
+            "linha": 1494,
+            "tipo": "veredito",
+            "codigo": "    else if(pct<=10) vd(v2,'att','Duplicar custa apenas '+pct.toFixed(1)+'% a mais por consumidor. Numa configuração assim — mercado grande e custo fixo relativamente baixo — o argumento de monopólio natural é fraco, e vale perguntar se a atividade não comportaria competição de fato. Nem toda infraestrutura de rede é monopólio natural na mesma intensidade.');"
+          },
+          {
+            "linha": 1495,
+            "tipo": "veredito",
+            "codigo": "    else if(pct<=50) vd(v2,'per','Sobrecusto de '+pct.toFixed(1)+'% por consumidor, ou '+brl(waste)+' por ano cada. A duplicação já é claramente ineficiente, e nenhuma competição entre as '+N+' redes recupera isso: a concorrência aqui aumenta o custo do sistema em vez de reduzi-lo. É o território clássico de competição pelo mercado, não no mercado.');"
+          },
+          {
+            "linha": 1496,
+            "tipo": "veredito",
+            "codigo": "    else vd(v2,'per','Sobrecusto de '+pct.toFixed(1)+'% por consumidor. Monopólio natural forte: o custo fixo domina completamente a estrutura, e replicar a rede desperdiça '+mi(waste*q)+' por ano no agregado — além de espaço público, servidão e licença ambiental, que nenhuma das '+N+' redes conseguiria replicar mesmo querendo pagar.');"
+          },
+          {
+            "linha": 1497,
+            "tipo": "estrutura",
+            "codigo": "  }"
+          },
+          {
+            "linha": 1498,
+            "tipo": "ligacao",
+            "codigo": "  link('i1-q',run); link('i1-f',run); link('i1-c',run); link('i1-n',run);"
+          },
+          {
+            "linha": 1499,
+            "tipo": "ligacao",
+            "codigo": "  run();"
+          },
+          {
+            "linha": 1500,
+            "tipo": "estrutura",
+            "codigo": "})();"
+          }
+        ]
+      },
+      "grafico": {
+        "svg": {
+          "id": "i1-svg",
+          "viewBox": "0 0 720 260",
+          "linha_aprox": 413
+        },
+        "barras": null,
+        "legenda": [
+          {
+            "cor": "#06B6D4",
+            "texto": "Custo médio anual por consumidor"
+          },
+          {
+            "cor": "#F59E0B",
+            "texto": "Configuração escolhida"
+          }
+        ],
+        "rotulos_eixo_x": [
+          "s+=xlab(['1 rede','2 redes','3 redes','4 redes','5 redes','6 redes']);"
+        ],
+        "nota": "Desenho não porta como dado (protocolo §12); legenda e rótulos literais registrados."
+      },
+      "veredito": {
+        "id": "i1-vd",
+        "valor_inicial_markup": "—",
+        "ramos": [
+          {
+            "ordem": 1,
+            "palavra": "if",
+            "condicao": "N===1",
+            "classe_css": "ok",
+            "expressao_js": "'Rede única. O custo fixo de '+mi(f)+' é diluído entre '+num(q)+' consumidores, o que dá '+brl(f*CRF/q)+' por consumidor por ano só de infraestrutura. Repare quanto disso é custo de existir a rede, e não custo de entregar energia: é essa proporção que define quão forte é o monopólio natural aqui.'",
+            "linha": 1493,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 2,
+            "palavra": "else if",
+            "condicao": "pct<=10",
+            "classe_css": "att",
+            "expressao_js": "'Duplicar custa apenas '+pct.toFixed(1)+'% a mais por consumidor. Numa configuração assim — mercado grande e custo fixo relativamente baixo — o argumento de monopólio natural é fraco, e vale perguntar se a atividade não comportaria competição de fato. Nem toda infraestrutura de rede é monopólio natural na mesma intensidade.'",
+            "linha": 1494,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 3,
+            "palavra": "else if",
+            "condicao": "pct<=50",
+            "classe_css": "per",
+            "expressao_js": "'Sobrecusto de '+pct.toFixed(1)+'% por consumidor, ou '+brl(waste)+' por ano cada. A duplicação já é claramente ineficiente, e nenhuma competição entre as '+N+' redes recupera isso: a concorrência aqui aumenta o custo do sistema em vez de reduzi-lo. É o território clássico de competição pelo mercado, não no mercado.'",
+            "linha": 1495,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 4,
+            "palavra": "else",
+            "condicao": null,
+            "classe_css": "per",
+            "expressao_js": "'Sobrecusto de '+pct.toFixed(1)+'% por consumidor. Monopólio natural forte: o custo fixo domina completamente a estrutura, e replicar a rede desperdiça '+mi(waste*q)+' por ano no agregado — além de espaço público, servidão e licença ambiental, que nenhuma das '+N+' redes conseguiria replicar mesmo querendo pagar.'",
+            "linha": 1496,
+            "coberto_no_teste": true
+          }
+        ],
+        "nota": "expressao_js é a expressão literal passada a vd(); classe_css ok/att/per é a cor do veredito na fonte (não exibir como semáforo)."
+      },
+      "disclaimer": {
+        "html": "Didático/ilustrativo — não usar para dimensionamento real. O modelo assume que cada operador replica integralmente o custo fixo e divide os consumidores igualmente, e converte o custo fixo em anuidade por um fator de recuperação de capital único de 10% ao ano. Redes reais têm compartilhamento parcial de infraestrutura, densidades muito diferentes por área e estrutura de custo por nível de tensão — nada disso está aqui.",
+        "texto": "Didático/ilustrativo — não usar para dimensionamento real. O modelo assume que cada operador replica integralmente o custo fixo e divide os consumidores igualmente, e converte o custo fixo em anuidade por um fator de recuperação de capital único de 10% ao ano. Redes reais têm compartilhamento parcial de infraestrutura, densidades muito diferentes por área e estrutura de custo por nível de tensão — nada disso está aqui.",
+        "origem": {
+          "seletor": "div.inst p.disc",
+          "trecho_inicial": "<p class=\"disc\">Didático/ilustrativo — não usar para dimensionamento real. O modelo assume",
+          "linha_aprox": 422
+        }
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "A fonte não cita origem externa para constantes nem cenário-padrão; o próprio instrumento se declara \"Didático/ilustrativo — não usar para dimensionamento real\" (disclaimer). Na interface: \"cenário didático; fonte externa não declarada\" (P19).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada na fonte (P6).",
+      "cenario_padrao": {
+        "entradas": {
+          "i1-q": 200,
+          "i1-f": 900,
+          "i1-c": 180,
+          "i1-n": 1
+        },
+        "saidas": {
+          "i1-cm": {
+            "html": "R$ 630<span class=\"u\">/ano</span>",
+            "texto": "R$ 630/ano"
+          },
+          "i1-c1": {
+            "html": "R$ 630<span class=\"u\">/ano</span>",
+            "texto": "R$ 630/ano"
+          },
+          "i1-w": {
+            "html": "zero",
+            "texto": "zero"
+          },
+          "i1-tf": {
+            "html": "R$ 900 mi",
+            "texto": "R$ 900 mi"
+          }
+        },
+        "veredito": {
+          "classe": "ok",
+          "texto": "Rede única. O custo fixo de R$ 900 mi é diluído entre 200.000 consumidores, o que dá R$ 450 por consumidor por ano só de infraestrutura. Repare quanto disso é custo de existir a rede, e não custo de entregar energia: é essa proporção que define quão forte é o monopólio natural aqui.",
+          "ramo_linha": 1493
+        },
+        "metodo": "<script> original executado inteiro em DOM simulado (node:vm), run() disparado com os value= do markup — o mesmo que a página faz no carregamento."
+      },
+      "comparacao_codigo": {
+        "status": "divergente",
+        "id_codigo": "m05-inst-01",
+        "kind_codigo": "simulador",
+        "titulo_igual": true,
+        "formula_codigo": null,
+        "nota_igual_disclaimer": true,
+        "campos_divergentes": [
+          {
+            "campo": "i1-n",
+            "diferencas": [
+              "id \"i1\" ≠ fonte \"i1-n\""
+            ]
+          }
+        ],
+        "saidas_codigo": [
+          "i1-cm",
+          "i1-c1",
+          "i1-w",
+          "i1-tf",
+          "i1-vd"
+        ],
+        "saidas_fonte": [
+          "i1-cm",
+          "i1-c1",
+          "i1-w",
+          "i1-tf",
+          "i1-vd"
+        ],
+        "rotulos_saida_iguais": [
+          {
+            "id": "i1-cm",
+            "igual": true
+          },
+          {
+            "id": "i1-c1",
+            "igual": true
+          },
+          {
+            "id": "i1-w",
+            "igual": true
+          },
+          {
+            "id": "i1-tf",
+            "igual": true
+          }
+        ],
+        "saidas_textuais_omitidas_em_valores": [],
+        "valores_extras_no_codigo": [
+          "i1-pct"
+        ],
+        "teste": {
+          "casos": 360,
+          "numerico_como_o_painel_semeia": {
+            "ok": 0,
+            "falha": 360,
+            "exemplos": [
+              {
+                "entrada": {
+                  "i1-q": 5,
+                  "i1-f": 50,
+                  "i1-c": 20,
+                  "i1-n": 1
+                },
+                "diferencas": [
+                  {
+                    "saida": "i1-cm",
+                    "fonte": "R$ 1.020/ano",
+                    "codigo": 20
+                  },
+                  {
+                    "saida": "i1-tf",
+                    "fonte": "R$ 50 mi",
+                    "codigo": 0
+                  }
+                ]
+              },
+              {
+                "entrada": {
+                  "i1-q": 5,
+                  "i1-f": 50,
+                  "i1-c": 20,
+                  "i1-n": 2
+                },
+                "diferencas": [
+                  {
+                    "saida": "i1-cm",
+                    "fonte": "R$ 2.020/ano",
+                    "codigo": 20
+                  },
+                  {
+                    "saida": "i1-w",
+                    "fonte": "R$ 1.000/ano",
+                    "codigo": 0
+                  },
+                  {
+                    "saida": "i1-tf",
+                    "fonte": "R$ 100 mi",
+                    "codigo": 0
+                  }
+                ]
+              },
+              {
+                "entrada": {
+                  "i1-q": 5,
+                  "i1-f": 50,
+                  "i1-c": 20,
+                  "i1-n": 3
+                },
+                "diferencas": [
+                  {
+                    "saida": "i1-cm",
+                    "fonte": "R$ 3.020/ano",
+                    "codigo": 20
+                  },
+                  {
+                    "saida": "i1-w",
+                    "fonte": "R$ 2.000/ano",
+                    "codigo": 0
+                  },
+                  {
+                    "saida": "i1-tf",
+                    "fonte": "R$ 150 mi",
+                    "codigo": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "numerico_com_ids_da_fonte": {
+            "ok": 360,
+            "falha": 0,
+            "exemplos": []
+          },
+          "ramo_do_veredito": {
+            "ok": 27,
+            "falha": 333,
+            "exemplos": [
+              {
+                "entrada": {
+                  "i1-q": 5,
+                  "i1-f": 50,
+                  "i1-c": 20,
+                  "i1-n": 1
+                },
+                "ramo_fonte_linha": 1493,
+                "ramo_fonte_indice": 0,
+                "ramo_codigo_indice": 1,
+                "veredito_codigo": "Duplicar custa pouco a mais por consumidor. Mercado grande e custo fixo baixo — o argumento de monopólio natural é fraco aqui. Nem toda infraestrutura de rede é monopólio natural na mesma intensidade."
+              },
+              {
+                "entrada": {
+                  "i1-q": 5,
+                  "i1-f": 50,
+                  "i1-c": 20,
+                  "i1-n": 2
+                },
+                "ramo_fonte_linha": 1496,
+                "ramo_fonte_indice": 3,
+                "ramo_codigo_indice": 1,
+                "veredito_codigo": "Duplicar custa pouco a mais por consumidor. Mercado grande e custo fixo baixo — o argumento de monopólio natural é fraco aqui. Nem toda infraestrutura de rede é monopólio natural na mesma intensidade."
+              },
+              {
+                "entrada": {
+                  "i1-q": 5,
+                  "i1-f": 50,
+                  "i1-c": 20,
+                  "i1-n": 3
+                },
+                "ramo_fonte_linha": 1496,
+                "ramo_fonte_indice": 3,
+                "ramo_codigo_indice": 1,
+                "veredito_codigo": "Duplicar custa pouco a mais por consumidor. Mercado grande e custo fixo baixo — o argumento de monopólio natural é fraco aqui. Nem toda infraestrutura de rede é monopólio natural na mesma intensidade."
+              }
+            ]
+          },
+          "ramo_do_veredito_com_ids_da_fonte": {
+            "ok": 360,
+            "falha": 0,
+            "exemplos": []
+          },
+          "veredito_verbatim": "0/360",
+          "ramos_fonte_cobertos": "4/4",
+          "vereditos_codigo_distintos_por_ramo": {
+            "1493": 1,
+            "1494": 1,
+            "1495": 1,
+            "1496": 1
+          },
+          "metodo": "Para cada entrada da grade: script original (DOM simulado) × INSTRUMENT_CALCULATORS[id] (bundle esbuild). Numérico: cada saída exibida pela fonte é lida de volta (pt-BR, bi/mi/mil) e comparada com valores[id] dentro da meia-unidade do último dígito exibido. Ramo: linha do vd() executado na fonte × ramo do texto do código (classificador por prefixo). Verbatim: texto do veredito idêntico."
+        }
+      }
+    },
+    {
+      "id": "m05-inst-02",
+      "tipo": "instrumento",
+      "camada": "fonte",
+      "id_fonte": "Inst · 02",
+      "titulo": "Simulador · Grau de separação",
+      "prefixo_titulo": "Simulador",
+      "mecanica": {
+        "entradas_numericas": 3,
+        "entradas_booleanas": 0,
+        "saidas": 4,
+        "saidas_textuais": [
+          "i2-b"
+        ],
+        "grafico": "svg",
+        "veredito_ramos": 3,
+        "kind_catalogo_taxonomia": "simulador"
+      },
+      "aula": "02",
+      "aula_id_codigo": "aula-05-02",
+      "posicao_no_texto": {
+        "linhas": [
+          500,
+          526
+        ],
+        "subsecao": {
+          "numero": "2.5",
+          "titulo": "O que unbundling não resolve"
+        },
+        "depois_de": {
+          "tipo": "paragrafo",
+          "rotulo": null,
+          "trecho": "Acesso formal não é acesso efetivo. Um regime pode ter tarifa de rede publicada, regra de ",
+          "linha_aprox": 497
+        },
+        "antes_de": {
+          "tipo": "tres_niveis",
+          "rotulo": "Unbundling · três níveis",
+          "trecho": "Unbundling · três níveis",
+          "linha_aprox": 528
+        },
+        "comentario_html": "INST 02"
+      },
+      "invocacoes_no_texto": [],
+      "invocacoes_nota": "Nenhuma frase das aulas chama o instrumento (\"abaixo\", \"use o simulador\"…): zero ocorrências. Ligações textuais indiretas: Ex·02 (discriminação vertical) e a tabela §2.2 (quatro graus).",
+      "intro": {
+        "html": "Escolha o grau de unbundling e o quanto o desenho depende de coordenação entre segmentos. O instrumento decompõe o resultado em duas parcelas que se movem em direções opostas — conflito residual e custo de coordenação — e mostra onde a soma das duas é menor.",
+        "texto": "Escolha o grau de unbundling e o quanto o desenho depende de coordenação entre segmentos. O instrumento decompõe o resultado em duas parcelas que se movem em direções opostas — conflito residual e custo de coordenação — e mostra onde a soma das duas é menor.",
+        "origem": {
+          "seletor": "div.inst p.inst-intro",
+          "trecho_inicial": "<p class=\"inst-intro\">Escolha o grau de unbundling e o quanto o desenho depende de coorden",
+          "linha_aprox": 503
+        }
+      },
+      "pergunta": null,
+      "pergunta_nota": "A fonte não formula pergunta própria para o instrumento; o texto de abertura é uma instrução (inst-intro). Pergunta de previsão = camada Alexandria (P19).",
+      "entradas": [
+        {
+          "id": "i2-g",
+          "id_number": "i2-g-n",
+          "rotulo": "Grau de separação",
+          "unidade": "1 contábil → 4 societária",
+          "padrao": 3,
+          "min": 1,
+          "max": 4,
+          "passo": 1,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Grau de separação <span class=\"unit\">1 contá",
+            "linha_aprox": 505
+          }
+        },
+        {
+          "id": "i2-c",
+          "id_number": "i2-c-n",
+          "rotulo": "Dependência de coordenação",
+          "unidade": "índice",
+          "padrao": 50,
+          "min": 0,
+          "max": 100,
+          "passo": 5,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Dependência de coordenação <span class=\"unit",
+            "linha_aprox": 508
+          }
+        },
+        {
+          "id": "i2-f",
+          "id_number": "i2-f-n",
+          "rotulo": "Qualidade da fiscalização de acesso",
+          "unidade": "índice",
+          "padrao": 55,
+          "min": 0,
+          "max": 100,
+          "passo": 5,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Qualidade da fiscalização de acesso <span cl",
+            "linha_aprox": 511
+          }
+        }
+      ],
+      "sinais": null,
+      "saidas": [
+        {
+          "id": "i2-r",
+          "rotulo": "Conflito residual",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1538,
+              "codigo": "$id('i2-r').textContent=cur.c.toFixed(0);"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Conflito residual</div><div class=\"n\" id=\"i2-r\">—</div></di",
+            "linha_aprox": 518
+          }
+        },
+        {
+          "id": "i2-k",
+          "rotulo": "Custo de coordenação",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1539,
+              "codigo": "$id('i2-k').textContent=cur.k.toFixed(0);"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Custo de coordenação</div><div class=\"n\" id=\"i2-k\">—</div><",
+            "linha_aprox": 519
+          }
+        },
+        {
+          "id": "i2-t",
+          "rotulo": "Atrito total",
+          "destaque": true,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1540,
+              "codigo": "$id('i2-t').textContent=cur.t.toFixed(0);"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Atrito total</div><div class=\"n gold\" id=\"i2-t\">—</div></di",
+            "linha_aprox": 520
+          }
+        },
+        {
+          "id": "i2-b",
+          "rotulo": "Grau de menor atrito",
+          "destaque": false,
+          "estilo": "font-size:14px",
+          "valor_inicial_markup": "—",
+          "textual": true,
+          "atribuicao_script": [
+            {
+              "linha": 1541,
+              "codigo": "$id('i2-b').textContent=NOME[best-1];"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Grau de menor atrito</div><div class=\"n\" id=\"i2-b\" style=\"f",
+            "linha_aprox": 521
+          }
+        }
+      ],
+      "formulas_script": [
+        {
+          "linha": 1505,
+          "codigo": "var BC=[100,68,40,12];      /* conflito residual por grau */"
+        },
+        {
+          "linha": 1506,
+          "codigo": "var BK=[6,22,45,85];        /* custo de coordenação por grau */"
+        },
+        {
+          "linha": 1507,
+          "codigo": "var NOME=['Contábil','Funcional','Jurídica','Societária'];"
+        },
+        {
+          "linha": 1508,
+          "codigo": "function calc(g,c,f){"
+        },
+        {
+          "linha": 1509,
+          "codigo": "var conf=BC[g-1]*(1-0.35*f/100);"
+        },
+        {
+          "linha": 1510,
+          "codigo": "var coor=BK[g-1]*(0.35+0.65*c/100);"
+        },
+        {
+          "linha": 1511,
+          "codigo": "return {c:conf,k:coor,t:conf+coor};"
+        },
+        {
+          "linha": 1514,
+          "codigo": "var G=+$id('i2-g').value, C=+$id('i2-c').value, F=+$id('i2-f').value;"
+        },
+        {
+          "linha": 1515,
+          "codigo": "var all=[],i,best=1,bt=1e9;"
+        },
+        {
+          "linha": 1516,
+          "codigo": "for(i=1;i<=4;i++){ var r=calc(i,C,F); all.push(r); if(r.t<bt){bt=r.t;best=i;} }"
+        },
+        {
+          "linha": 1517,
+          "codigo": "var cur=all[G-1];"
+        },
+        {
+          "linha": 1518,
+          "codigo": "var mx=0;"
+        },
+        {
+          "linha": 1519,
+          "codigo": "for(i=0;i<4;i++){ if(all[i].t>mx) mx=all[i].t; }"
+        }
+      ],
+      "formula_nota": "Linhas de cálculo do <script> original, verbatim (classificadas por regex; desenho, saída e veredito separados). Funções de formatação compartilhadas (num, brl, brl2, mi, mmi, clamp) em formatadores_comuns.",
+      "script": {
+        "cabecalho": "/* ---------- INST 02 — grau de separação ---------- */",
+        "linhas": [
+          1502,
+          1551
+        ],
+        "codigo": [
+          {
+            "linha": 1503,
+            "tipo": "estrutura",
+            "codigo": "(function(){"
+          },
+          {
+            "linha": 1504,
+            "tipo": "estrutura",
+            "codigo": "  if(!$id('i2-g')) return;"
+          },
+          {
+            "linha": 1505,
+            "tipo": "calculo",
+            "codigo": "  var BC=[100,68,40,12];      /* conflito residual por grau */"
+          },
+          {
+            "linha": 1506,
+            "tipo": "calculo",
+            "codigo": "  var BK=[6,22,45,85];        /* custo de coordenação por grau */"
+          },
+          {
+            "linha": 1507,
+            "tipo": "calculo",
+            "codigo": "  var NOME=['Contábil','Funcional','Jurídica','Societária'];"
+          },
+          {
+            "linha": 1508,
+            "tipo": "calculo",
+            "codigo": "  function calc(g,c,f){"
+          },
+          {
+            "linha": 1509,
+            "tipo": "calculo",
+            "codigo": "    var conf=BC[g-1]*(1-0.35*f/100);"
+          },
+          {
+            "linha": 1510,
+            "tipo": "calculo",
+            "codigo": "    var coor=BK[g-1]*(0.35+0.65*c/100);"
+          },
+          {
+            "linha": 1511,
+            "tipo": "calculo",
+            "codigo": "    return {c:conf,k:coor,t:conf+coor};"
+          },
+          {
+            "linha": 1512,
+            "tipo": "estrutura",
+            "codigo": "  }"
+          },
+          {
+            "linha": 1513,
+            "tipo": "estrutura",
+            "codigo": "  function run(){"
+          },
+          {
+            "linha": 1514,
+            "tipo": "calculo",
+            "codigo": "    var G=+$id('i2-g').value, C=+$id('i2-c').value, F=+$id('i2-f').value;"
+          },
+          {
+            "linha": 1515,
+            "tipo": "calculo",
+            "codigo": "    var all=[],i,best=1,bt=1e9;"
+          },
+          {
+            "linha": 1516,
+            "tipo": "calculo",
+            "codigo": "    for(i=1;i<=4;i++){ var r=calc(i,C,F); all.push(r); if(r.t<bt){bt=r.t;best=i;} }"
+          },
+          {
+            "linha": 1517,
+            "tipo": "calculo",
+            "codigo": "    var cur=all[G-1];"
+          },
+          {
+            "linha": 1518,
+            "tipo": "calculo",
+            "codigo": "    var mx=0;"
+          },
+          {
+            "linha": 1519,
+            "tipo": "calculo",
+            "codigo": "    for(i=0;i<4;i++){ if(all[i].t>mx) mx=all[i].t; }"
+          },
+          {
+            "linha": 1520,
+            "tipo": "desenho",
+            "codigo": "    var yMax=niceMax(mx*1.15);"
+          },
+          {
+            "linha": 1522,
+            "tipo": "desenho",
+            "codigo": "    var s=gridY(yMax,function(v){return Math.round(v);});"
+          },
+          {
+            "linha": 1523,
+            "tipo": "desenho",
+            "codigo": "    var bw=(PW/4)*0.46;"
+          },
+          {
+            "linha": 1524,
+            "tipo": "desenho",
+            "codigo": "    for(i=0;i<4;i++){"
+          },
+          {
+            "linha": 1525,
+            "tipo": "desenho",
+            "codigo": "      var x=xcat(i,4)-bw/2;"
+          },
+          {
+            "linha": 1526,
+            "tipo": "desenho",
+            "codigo": "      var hc=PH*clamp(all[i].c/yMax,0,1);"
+          },
+          {
+            "linha": 1527,
+            "tipo": "desenho",
+            "codigo": "      var hk=PH*clamp(all[i].k/yMax,0,1);"
+          },
+          {
+            "linha": 1528,
+            "tipo": "desenho",
+            "codigo": "      var base=PT+PH;"
+          },
+          {
+            "linha": 1529,
+            "tipo": "desenho",
+            "codigo": "      s+='<rect x=\"'+x.toFixed(1)+'\" y=\"'+(base-hc).toFixed(1)+'\" width=\"'+bw.toFixed(1)+'\" height=\"'+hc.toFixed(1)+'\" fill=\"#EF4444\" opacity=\"'+((i+1)===G?'.85':'.42')+'\" rx=\"1\"/>';"
+          },
+          {
+            "linha": 1530,
+            "tipo": "desenho",
+            "codigo": "      s+='<rect x=\"'+x.toFixed(1)+'\" y=\"'+(base-hc-hk).toFixed(1)+'\" width=\"'+bw.toFixed(1)+'\" height=\"'+hk.toFixed(1)+'\" fill=\"#06B6D4\" opacity=\"'+((i+1)===G?'.85':'.42')+'\" rx=\"1\"/>';"
+          },
+          {
+            "linha": 1531,
+            "tipo": "desenho",
+            "codigo": "      if((i+1)===G){"
+          },
+          {
+            "linha": 1532,
+            "tipo": "desenho",
+            "codigo": "        s+='<text x=\"'+xcat(i,4).toFixed(1)+'\" y=\"'+(base-hc-hk-8).toFixed(1)+'\" fill=\"#F59E0B\" font-size=\"10.5\" font-family=\"monospace\" text-anchor=\"middle\">'+all[i].t.toFixed(0)+'</text>';"
+          },
+          {
+            "linha": 1533,
+            "tipo": "estrutura",
+            "codigo": "      }"
+          },
+          {
+            "linha": 1534,
+            "tipo": "estrutura",
+            "codigo": "    }"
+          },
+          {
+            "linha": 1535,
+            "tipo": "desenho",
+            "codigo": "    s+=xlab(NOME);"
+          },
+          {
+            "linha": 1536,
+            "tipo": "desenho",
+            "codigo": "    $id('i2-svg').innerHTML=s;"
+          },
+          {
+            "linha": 1538,
+            "tipo": "saida",
+            "codigo": "    $id('i2-r').textContent=cur.c.toFixed(0);"
+          },
+          {
+            "linha": 1539,
+            "tipo": "saida",
+            "codigo": "    $id('i2-k').textContent=cur.k.toFixed(0);"
+          },
+          {
+            "linha": 1540,
+            "tipo": "saida",
+            "codigo": "    $id('i2-t').textContent=cur.t.toFixed(0);"
+          },
+          {
+            "linha": 1541,
+            "tipo": "saida",
+            "codigo": "    $id('i2-b').textContent=NOME[best-1];"
+          },
+          {
+            "linha": 1543,
+            "tipo": "veredito",
+            "codigo": "    var v=$id('i2-vd');"
+          },
+          {
+            "linha": 1544,
+            "tipo": "veredito",
+            "codigo": "    if(G===best) vd(v,'ok','Separação '+NOME[G-1].toLowerCase()+' é o ponto de menor atrito para esta combinação. Conflito residual em '+cur.c.toFixed(0)+' e custo de coordenação em '+cur.k.toFixed(0)+': nenhum dos dois domina. Note que o ótimo se desloca com a fiscalização — melhorar a fiscalização de acesso é frequentemente mais barato que aprofundar a separação.');"
+          },
+          {
+            "linha": 1545,
+            "tipo": "veredito",
+            "codigo": "    else if(Math.abs(G-best)===1) vd(v,'att','Atrito total de '+cur.t.toFixed(0)+', contra '+bt.toFixed(0)+' na separação '+NOME[best-1].toLowerCase()+'. A diferença é pequena — dentro da margem em que outros fatores decidem. Mas repare na direção: '+(G>best?'você está pagando coordenação a mais para comprar uma redução de conflito que a fiscalização já estava entregando.':'você está aceitando conflito residual a mais do que precisaria, apostando numa fiscalização que pode não se sustentar.'));"
+          },
+          {
+            "linha": 1546,
+            "tipo": "veredito",
+            "codigo": "    else vd(v,'per',(G>best?'Separação profunda demais para este contexto: ':'Separação rasa demais para este contexto: ')+'atrito total de '+cur.t.toFixed(0)+' contra '+bt.toFixed(0)+' no grau '+NOME[best-1].toLowerCase()+'. '+(G>best?'Com dependência de coordenação alta, cortar fundo destrói coordenação sem comprar redução proporcional de conflito.':'Com fiscalização fraca e conflito residual em '+cur.c.toFixed(0)+', a regra de acesso existe no papel e não é verificável na prática.'));"
+          },
+          {
+            "linha": 1547,
+            "tipo": "estrutura",
+            "codigo": "  }"
+          },
+          {
+            "linha": 1548,
+            "tipo": "ligacao",
+            "codigo": "  link('i2-g',run); link('i2-c',run); link('i2-f',run);"
+          },
+          {
+            "linha": 1549,
+            "tipo": "ligacao",
+            "codigo": "  run();"
+          },
+          {
+            "linha": 1550,
+            "tipo": "estrutura",
+            "codigo": "})();"
+          }
+        ]
+      },
+      "grafico": {
+        "svg": {
+          "id": "i2-svg",
+          "viewBox": "0 0 720 260",
+          "linha_aprox": 515
+        },
+        "barras": null,
+        "legenda": [
+          {
+            "cor": "#EF4444",
+            "texto": "Conflito residual"
+          },
+          {
+            "cor": "#06B6D4",
+            "texto": "Custo de coordenação"
+          },
+          {
+            "cor": "#F59E0B",
+            "texto": "Grau escolhido"
+          }
+        ],
+        "rotulos_eixo_x": [
+          "s+=xlab(NOME);"
+        ],
+        "nota": "Desenho não porta como dado (protocolo §12); legenda e rótulos literais registrados."
+      },
+      "veredito": {
+        "id": "i2-vd",
+        "valor_inicial_markup": "—",
+        "ramos": [
+          {
+            "ordem": 1,
+            "palavra": "if",
+            "condicao": "G===best",
+            "classe_css": "ok",
+            "expressao_js": "'Separação '+NOME[G-1].toLowerCase()+' é o ponto de menor atrito para esta combinação. Conflito residual em '+cur.c.toFixed(0)+' e custo de coordenação em '+cur.k.toFixed(0)+': nenhum dos dois domina. Note que o ótimo se desloca com a fiscalização — melhorar a fiscalização de acesso é frequentemente mais barato que aprofundar a separação.'",
+            "linha": 1544,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 2,
+            "palavra": "else if",
+            "condicao": "Math.abs(G-best)===1",
+            "classe_css": "att",
+            "expressao_js": "'Atrito total de '+cur.t.toFixed(0)+', contra '+bt.toFixed(0)+' na separação '+NOME[best-1].toLowerCase()+'. A diferença é pequena — dentro da margem em que outros fatores decidem. Mas repare na direção: '+(G>best?'você está pagando coordenação a mais para comprar uma redução de conflito que a fiscalização já estava entregando.':'você está aceitando conflito residual a mais do que precisaria, apostando numa fiscalização que pode não se sustentar.')",
+            "linha": 1545,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 3,
+            "palavra": "else",
+            "condicao": null,
+            "classe_css": "per",
+            "expressao_js": "(G>best?'Separação profunda demais para este contexto: ':'Separação rasa demais para este contexto: ')+'atrito total de '+cur.t.toFixed(0)+' contra '+bt.toFixed(0)+' no grau '+NOME[best-1].toLowerCase()+'. '+(G>best?'Com dependência de coordenação alta, cortar fundo destrói coordenação sem comprar redução proporcional de conflito.':'Com fiscalização fraca e conflito residual em '+cur.c.toFixed(0)+', a regra de acesso existe no papel e não é verificável na prática.')",
+            "linha": 1546,
+            "coberto_no_teste": true
+          }
+        ],
+        "nota": "expressao_js é a expressão literal passada a vd(); classe_css ok/att/per é a cor do veredito na fonte (não exibir como semáforo)."
+      },
+      "disclaimer": {
+        "html": "Didático/ilustrativo — não usar para dimensionamento real. Os índices são adimensionais e construídos apenas para tornar visível o formato do trade-off: o conflito residual cai com o grau de separação e é atenuado pela fiscalização de acesso; o custo de coordenação sobe com o grau e é amplificado pela dependência de coordenação. Nenhum dos dois é mensurável desta forma em um sistema real.",
+        "texto": "Didático/ilustrativo — não usar para dimensionamento real. Os índices são adimensionais e construídos apenas para tornar visível o formato do trade-off: o conflito residual cai com o grau de separação e é atenuado pela fiscalização de acesso; o custo de coordenação sobe com o grau e é amplificado pela dependência de coordenação. Nenhum dos dois é mensurável desta forma em um sistema real.",
+        "origem": {
+          "seletor": "div.inst p.disc",
+          "trecho_inicial": "<p class=\"disc\">Didático/ilustrativo — não usar para dimensionamento real. Os índices são ",
+          "linha_aprox": 524
+        }
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "A fonte não cita origem externa para constantes nem cenário-padrão; o próprio instrumento se declara \"Didático/ilustrativo — não usar para dimensionamento real\" (disclaimer). Na interface: \"cenário didático; fonte externa não declarada\" (P19).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada na fonte (P6).",
+      "cenario_padrao": {
+        "entradas": {
+          "i2-g": 3,
+          "i2-c": 50,
+          "i2-f": 55
+        },
+        "saidas": {
+          "i2-r": {
+            "html": "32",
+            "texto": "32"
+          },
+          "i2-k": {
+            "html": "30",
+            "texto": "30"
+          },
+          "i2-t": {
+            "html": "63",
+            "texto": "63"
+          },
+          "i2-b": {
+            "html": "Jurídica",
+            "texto": "Jurídica"
+          }
+        },
+        "veredito": {
+          "classe": "ok",
+          "texto": "Separação jurídica é o ponto de menor atrito para esta combinação. Conflito residual em 32 e custo de coordenação em 30: nenhum dos dois domina. Note que o ótimo se desloca com a fiscalização — melhorar a fiscalização de acesso é frequentemente mais barato que aprofundar a separação.",
+          "ramo_linha": 1544
+        },
+        "metodo": "<script> original executado inteiro em DOM simulado (node:vm), run() disparado com os value= do markup — o mesmo que a página faz no carregamento."
+      },
+      "comparacao_codigo": {
+        "status": "divergente",
+        "id_codigo": "m05-inst-02",
+        "kind_codigo": "simulador",
+        "titulo_igual": true,
+        "formula_codigo": null,
+        "nota_igual_disclaimer": true,
+        "campos_divergentes": [],
+        "saidas_codigo": [
+          "i2-r",
+          "i2-k",
+          "i2-t",
+          "i2-b",
+          "i2-vd"
+        ],
+        "saidas_fonte": [
+          "i2-r",
+          "i2-k",
+          "i2-t",
+          "i2-b",
+          "i2-vd"
+        ],
+        "rotulos_saida_iguais": [
+          {
+            "id": "i2-r",
+            "igual": true
+          },
+          {
+            "id": "i2-k",
+            "igual": true
+          },
+          {
+            "id": "i2-t",
+            "igual": true
+          },
+          {
+            "id": "i2-b",
+            "igual": true
+          }
+        ],
+        "saidas_textuais_omitidas_em_valores": [
+          "i2-b"
+        ],
+        "valores_extras_no_codigo": [],
+        "teste": {
+          "casos": 1764,
+          "numerico_como_o_painel_semeia": {
+            "ok": 1764,
+            "falha": 0,
+            "exemplos": []
+          },
+          "numerico_com_ids_da_fonte": {
+            "ok": 1764,
+            "falha": 0,
+            "exemplos": []
+          },
+          "ramo_do_veredito": {
+            "ok": 1764,
+            "falha": 0,
+            "exemplos": []
+          },
+          "ramo_do_veredito_com_ids_da_fonte": {
+            "ok": 1764,
+            "falha": 0,
+            "exemplos": []
+          },
+          "veredito_verbatim": "0/1764",
+          "ramos_fonte_cobertos": "3/3",
+          "vereditos_codigo_distintos_por_ramo": {
+            "1544": 3,
+            "1545": 5,
+            "1546": 3
+          },
+          "metodo": "Para cada entrada da grade: script original (DOM simulado) × INSTRUMENT_CALCULATORS[id] (bundle esbuild). Numérico: cada saída exibida pela fonte é lida de volta (pt-BR, bi/mi/mil) e comparada com valores[id] dentro da meia-unidade do último dígito exibido. Ramo: linha do vd() executado na fonte × ramo do texto do código (classificador por prefixo). Verbatim: texto do veredito idêntico."
+        }
+      }
+    },
+    {
+      "id": "m05-inst-03",
+      "tipo": "instrumento",
+      "camada": "fonte",
+      "id_fonte": "Inst · 03",
+      "titulo": "Simulador · Composição de contratação",
+      "prefixo_titulo": "Simulador",
+      "mecanica": {
+        "entradas_numericas": 4,
+        "entradas_booleanas": 0,
+        "saidas": 4,
+        "saidas_textuais": [],
+        "grafico": "barras html",
+        "veredito_ramos": 5,
+        "kind_catalogo_taxonomia": "simulador"
+      },
+      "aula": "03",
+      "aula_id_codigo": "aula-05-03",
+      "posicao_no_texto": {
+        "linhas": [
+          590,
+          618
+        ],
+        "subsecao": {
+          "numero": "3.4",
+          "titulo": "O híbrido brasileiro, em três dimensões"
+        },
+        "depois_de": {
+          "tipo": "paragrafo",
+          "rotulo": null,
+          "trecho": "A pergunta que fecha a aula é por que essa combinação, e a resposta não é ideológica. É a ",
+          "linha_aprox": 587
+        },
+        "antes_de": {
+          "tipo": "tres_niveis",
+          "rotulo": "Pool e bilateral · três níveis",
+          "trecho": "Pool e bilateral · três níveis",
+          "linha_aprox": 620
+        },
+        "comentario_html": "INST 03"
+      },
+      "invocacoes_no_texto": [],
+      "invocacoes_nota": "Nenhuma frase das aulas chama o instrumento (\"abaixo\", \"use o simulador\"…): zero ocorrências. Ligações textuais indiretas: nenhuma no §Ex; a Aula 03 remete ao Módulo 04 para contratos.",
+      "intro": {
+        "html": "Distribua o volume de um consumidor entre contratação de longo prazo, contratação de curto prazo e exposição descoberta. Observe o que muda no custo esperado e, principalmente, o que muda na largura da faixa de resultados possíveis — que é onde mora o risco.",
+        "texto": "Distribua o volume de um consumidor entre contratação de longo prazo, contratação de curto prazo e exposição descoberta. Observe o que muda no custo esperado e, principalmente, o que muda na largura da faixa de resultados possíveis — que é onde mora o risco.",
+        "origem": {
+          "seletor": "div.inst p.inst-intro",
+          "trecho_inicial": "<p class=\"inst-intro\">Distribua o volume de um consumidor entre contratação de longo prazo",
+          "linha_aprox": 593
+        }
+      },
+      "pergunta": null,
+      "pergunta_nota": "A fonte não formula pergunta própria para o instrumento; o texto de abertura é uma instrução (inst-intro). Pergunta de previsão = camada Alexandria (P19).",
+      "entradas": [
+        {
+          "id": "i3-l",
+          "id_number": "i3-l-n",
+          "rotulo": "Contrato longo",
+          "unidade": "% do volume",
+          "padrao": 60,
+          "min": 0,
+          "max": 100,
+          "passo": 5,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Contrato longo <span class=\"unit\">% do volum",
+            "linha_aprox": 595
+          }
+        },
+        {
+          "id": "i3-c",
+          "id_number": "i3-c-n",
+          "rotulo": "Contrato curto",
+          "unidade": "% do volume",
+          "padrao": 25,
+          "min": 0,
+          "max": 100,
+          "passo": 5,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Contrato curto <span class=\"unit\">% do volum",
+            "linha_aprox": 598
+          }
+        },
+        {
+          "id": "i3-p",
+          "id_number": "i3-p-n",
+          "rotulo": "Prêmio do contrato longo",
+          "unidade": "R$/MWh",
+          "padrao": 40,
+          "min": -60,
+          "max": 160,
+          "passo": 5,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Prêmio do contrato longo <span class=\"unit\">",
+            "linha_aprox": 601
+          }
+        },
+        {
+          "id": "i3-v",
+          "id_number": "i3-v-n",
+          "rotulo": "Volatilidade do curto prazo",
+          "unidade": "índice",
+          "padrao": 55,
+          "min": 0,
+          "max": 100,
+          "passo": 5,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Volatilidade do curto prazo <span class=\"uni",
+            "linha_aprox": 604
+          }
+        }
+      ],
+      "sinais": null,
+      "saidas": [
+        {
+          "id": "i3-e",
+          "rotulo": "Custo esperado",
+          "destaque": true,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1577,
+              "codigo": "$id('i3-e').innerHTML=brl2(custo)+'<span class=\"u\">/MWh</span>';"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Custo esperado</div><div class=\"n gold\" id=\"i3-e\">—</div></",
+            "linha_aprox": 610
+          }
+        },
+        {
+          "id": "i3-w",
+          "rotulo": "Cenário ruim",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1578,
+              "codigo": "$id('i3-w').innerHTML=brl2(ruim)+'<span class=\"u\">/MWh</span>';"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Cenário ruim</div><div class=\"n\" id=\"i3-w\">—</div></div>",
+            "linha_aprox": 611
+          }
+        },
+        {
+          "id": "i3-a",
+          "rotulo": "Amplitude",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1579,
+              "codigo": "$id('i3-a').innerHTML=brl2(amp)+'<span class=\"u\">/MWh</span>';"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Amplitude</div><div class=\"n\" id=\"i3-a\">—</div></div>",
+            "linha_aprox": 612
+          }
+        },
+        {
+          "id": "i3-d",
+          "rotulo": "Descoberto",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1580,
+              "codigo": "$id('i3-d').innerHTML=(over>0?('−'+num(over)):num(D))+'<span class=\"u\">%</span>';"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Descoberto</div><div class=\"n\" id=\"i3-d\">—</div></div>",
+            "linha_aprox": 613
+          }
+        }
+      ],
+      "formulas_script": [
+        {
+          "linha": 1555,
+          "codigo": "var SP=200;"
+        },
+        {
+          "linha": 1557,
+          "codigo": "var L=+$id('i3-l').value, C=+$id('i3-c').value, P=+$id('i3-p').value, V=+$id('i3-v').value;"
+        },
+        {
+          "linha": 1558,
+          "codigo": "var soma=L+C, over=Math.max(0,soma-100), D=Math.max(0,100-soma);"
+        },
+        {
+          "linha": 1559,
+          "codigo": "var custo;"
+        },
+        {
+          "linha": 1560,
+          "codigo": "if(over>0) custo=(L*(SP+P)+C*(SP+P*0.35)-over*SP*0.90)/100;"
+        },
+        {
+          "linha": 1561,
+          "codigo": "else custo=(L*(SP+P)+C*(SP+P*0.35)+D*SP)/100;"
+        },
+        {
+          "linha": 1562,
+          "codigo": "var sig=SP*(V/100)*((D+0.45*C)/100)*1.6;"
+        },
+        {
+          "linha": 1563,
+          "codigo": "var ruim=custo+2*sig, amp=4*sig;"
+        }
+      ],
+      "formula_nota": "Linhas de cálculo do <script> original, verbatim (classificadas por regex; desenho, saída e veredito separados). Funções de formatação compartilhadas (num, brl, brl2, mi, mmi, clamp) em formatadores_comuns.",
+      "script": {
+        "cabecalho": "/* ---------- INST 03 — composição de contratação ---------- */",
+        "linhas": [
+          1552,
+          1592
+        ],
+        "codigo": [
+          {
+            "linha": 1553,
+            "tipo": "estrutura",
+            "codigo": "(function(){"
+          },
+          {
+            "linha": 1554,
+            "tipo": "estrutura",
+            "codigo": "  if(!$id('i3-l')) return;"
+          },
+          {
+            "linha": 1555,
+            "tipo": "calculo",
+            "codigo": "  var SP=200;"
+          },
+          {
+            "linha": 1556,
+            "tipo": "estrutura",
+            "codigo": "  function run(){"
+          },
+          {
+            "linha": 1557,
+            "tipo": "calculo",
+            "codigo": "    var L=+$id('i3-l').value, C=+$id('i3-c').value, P=+$id('i3-p').value, V=+$id('i3-v').value;"
+          },
+          {
+            "linha": 1558,
+            "tipo": "calculo",
+            "codigo": "    var soma=L+C, over=Math.max(0,soma-100), D=Math.max(0,100-soma);"
+          },
+          {
+            "linha": 1559,
+            "tipo": "calculo",
+            "codigo": "    var custo;"
+          },
+          {
+            "linha": 1560,
+            "tipo": "calculo",
+            "codigo": "    if(over>0) custo=(L*(SP+P)+C*(SP+P*0.35)-over*SP*0.90)/100;"
+          },
+          {
+            "linha": 1561,
+            "tipo": "calculo",
+            "codigo": "    else custo=(L*(SP+P)+C*(SP+P*0.35)+D*SP)/100;"
+          },
+          {
+            "linha": 1562,
+            "tipo": "calculo",
+            "codigo": "    var sig=SP*(V/100)*((D+0.45*C)/100)*1.6;"
+          },
+          {
+            "linha": 1563,
+            "tipo": "calculo",
+            "codigo": "    var ruim=custo+2*sig, amp=4*sig;"
+          },
+          {
+            "linha": 1565,
+            "tipo": "desenho",
+            "codigo": "    var html='';"
+          },
+          {
+            "linha": 1566,
+            "tipo": "desenho",
+            "codigo": "    function bar(lb,pct,col,txt){"
+          },
+          {
+            "linha": 1567,
+            "tipo": "desenho",
+            "codigo": "      return '<div class=\"bar-row\"><div class=\"lb\">'+lb+'</div><div class=\"bar-track\">'+"
+          },
+          {
+            "linha": 1568,
+            "tipo": "desenho",
+            "codigo": "        '<div class=\"bar-fill\" style=\"width:'+clamp(pct,0,100).toFixed(1)+'%;background:'+col+';opacity:.85\"></div></div>'+"
+          },
+          {
+            "linha": 1569,
+            "tipo": "desenho",
+            "codigo": "        '<div class=\"vl\">'+txt+'</div></div>';"
+          },
+          {
+            "linha": 1570,
+            "tipo": "estrutura",
+            "codigo": "    }"
+          },
+          {
+            "linha": 1571,
+            "tipo": "desenho",
+            "codigo": "    html+=bar('Longo',L,'#3B82F6',num(L)+'%');"
+          },
+          {
+            "linha": 1572,
+            "tipo": "desenho",
+            "codigo": "    html+=bar('Curto',C,'#06B6D4',num(C)+'%');"
+          },
+          {
+            "linha": 1573,
+            "tipo": "desenho",
+            "codigo": "    if(over>0) html+=bar('Sobra',over,'#EF4444','+'+num(over)+'%');"
+          },
+          {
+            "linha": 1574,
+            "tipo": "desenho",
+            "codigo": "    else html+=bar('Descoberto',D,'#F59E0B',num(D)+'%');"
+          },
+          {
+            "linha": 1575,
+            "tipo": "desenho",
+            "codigo": "    $id('i3-bars').innerHTML=html;"
+          },
+          {
+            "linha": 1577,
+            "tipo": "saida",
+            "codigo": "    $id('i3-e').innerHTML=brl2(custo)+'<span class=\"u\">/MWh</span>';"
+          },
+          {
+            "linha": 1578,
+            "tipo": "saida",
+            "codigo": "    $id('i3-w').innerHTML=brl2(ruim)+'<span class=\"u\">/MWh</span>';"
+          },
+          {
+            "linha": 1579,
+            "tipo": "saida",
+            "codigo": "    $id('i3-a').innerHTML=brl2(amp)+'<span class=\"u\">/MWh</span>';"
+          },
+          {
+            "linha": 1580,
+            "tipo": "saida",
+            "codigo": "    $id('i3-d').innerHTML=(over>0?('−'+num(over)):num(D))+'<span class=\"u\">%</span>';"
+          },
+          {
+            "linha": 1582,
+            "tipo": "veredito",
+            "codigo": "    var v=$id('i3-vd');"
+          },
+          {
+            "linha": 1583,
+            "tipo": "veredito",
+            "codigo": "    if(over>0) vd(v,'per','As camadas somam '+num(soma)+'%: há '+num(over)+'% de sobrecontratação. A sobra é revendida ao curto prazo em condição que o comprador não escolhe, e o custo efetivo fica em '+brl2(custo)+'/MWh mesmo com preço travado. Sobrecontratar não é prudência — é comprar caro para revender barato, por contrato, todo mês.');"
+          },
+          {
+            "linha": 1584,
+            "tipo": "veredito",
+            "codigo": "    else if(D===0) vd(v,'att','Cem por cento contratado. Custo perfeitamente previsível em '+brl2(custo)+'/MWh e perfeitamente rígido: amplitude zero. Qualquer queda de produção vira sobrecontratação no mês seguinte. Previsibilidade total é uma escolha de política de risco, não um ótimo automático.');"
+          },
+          {
+            "linha": 1585,
+            "tipo": "veredito",
+            "codigo": "    else if(D<=15) vd(v,'ok','Exposição residual de '+num(D)+'%, custo esperado de '+brl2(custo)+'/MWh e amplitude de '+brl2(amp)+'/MWh. É a faixa em que a folga absorve variação operacional sem transformar o orçamento numa aposta direcional. Repare que o prêmio pago no contrato longo comprou redução de dispersão, não redução de custo.');"
+          },
+          {
+            "linha": 1586,
+            "tipo": "veredito",
+            "codigo": "    else if(D<=35) vd(v,'att','Exposição de '+num(D)+'%, com cenário ruim em '+brl2(ruim)+'/MWh contra '+brl2(custo)+'/MWh esperado. Ainda gerenciável, mas verifique se o cenário ruim cabe no limite financeiro da política de risco — e não apenas no limite percentual de exposição. São critérios diferentes, e atender um não garante o outro.');"
+          },
+          {
+            "linha": 1587,
+            "tipo": "veredito",
+            "codigo": "    else vd(v,'per','Exposição de '+num(D)+'%: a maior parte do custo de energia desta empresa é decidida pelo mercado de curto prazo, não por ela. Amplitude de '+brl2(amp)+'/MWh e cenário ruim em '+brl2(ruim)+'/MWh. Isso é uma posição direcional em preço de energia, assumida por quem não vive de negociar energia.');"
+          },
+          {
+            "linha": 1588,
+            "tipo": "estrutura",
+            "codigo": "  }"
+          },
+          {
+            "linha": 1589,
+            "tipo": "ligacao",
+            "codigo": "  link('i3-l',run); link('i3-c',run); link('i3-p',run); link('i3-v',run);"
+          },
+          {
+            "linha": 1590,
+            "tipo": "ligacao",
+            "codigo": "  run();"
+          },
+          {
+            "linha": 1591,
+            "tipo": "estrutura",
+            "codigo": "})();"
+          }
+        ]
+      },
+      "grafico": {
+        "svg": null,
+        "barras": {
+          "id": "i3-bars",
+          "linha_aprox": 608
+        },
+        "legenda": [],
+        "rotulos_eixo_x": [],
+        "nota": "Desenho não porta como dado (protocolo §12); legenda e rótulos literais registrados."
+      },
+      "veredito": {
+        "id": "i3-vd",
+        "valor_inicial_markup": "—",
+        "ramos": [
+          {
+            "ordem": 1,
+            "palavra": "if",
+            "condicao": "over>0",
+            "classe_css": "per",
+            "expressao_js": "'As camadas somam '+num(soma)+'%: há '+num(over)+'% de sobrecontratação. A sobra é revendida ao curto prazo em condição que o comprador não escolhe, e o custo efetivo fica em '+brl2(custo)+'/MWh mesmo com preço travado. Sobrecontratar não é prudência — é comprar caro para revender barato, por contrato, todo mês.'",
+            "linha": 1583,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 2,
+            "palavra": "else if",
+            "condicao": "D===0",
+            "classe_css": "att",
+            "expressao_js": "'Cem por cento contratado. Custo perfeitamente previsível em '+brl2(custo)+'/MWh e perfeitamente rígido: amplitude zero. Qualquer queda de produção vira sobrecontratação no mês seguinte. Previsibilidade total é uma escolha de política de risco, não um ótimo automático.'",
+            "linha": 1584,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 3,
+            "palavra": "else if",
+            "condicao": "D<=15",
+            "classe_css": "ok",
+            "expressao_js": "'Exposição residual de '+num(D)+'%, custo esperado de '+brl2(custo)+'/MWh e amplitude de '+brl2(amp)+'/MWh. É a faixa em que a folga absorve variação operacional sem transformar o orçamento numa aposta direcional. Repare que o prêmio pago no contrato longo comprou redução de dispersão, não redução de custo.'",
+            "linha": 1585,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 4,
+            "palavra": "else if",
+            "condicao": "D<=35",
+            "classe_css": "att",
+            "expressao_js": "'Exposição de '+num(D)+'%, com cenário ruim em '+brl2(ruim)+'/MWh contra '+brl2(custo)+'/MWh esperado. Ainda gerenciável, mas verifique se o cenário ruim cabe no limite financeiro da política de risco — e não apenas no limite percentual de exposição. São critérios diferentes, e atender um não garante o outro.'",
+            "linha": 1586,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 5,
+            "palavra": "else",
+            "condicao": null,
+            "classe_css": "per",
+            "expressao_js": "'Exposição de '+num(D)+'%: a maior parte do custo de energia desta empresa é decidida pelo mercado de curto prazo, não por ela. Amplitude de '+brl2(amp)+'/MWh e cenário ruim em '+brl2(ruim)+'/MWh. Isso é uma posição direcional em preço de energia, assumida por quem não vive de negociar energia.'",
+            "linha": 1587,
+            "coberto_no_teste": true
+          }
+        ],
+        "nota": "expressao_js é a expressão literal passada a vd(); classe_css ok/att/per é a cor do veredito na fonte (não exibir como semáforo)."
+      },
+      "disclaimer": {
+        "html": "Didático/ilustrativo — não usar para dimensionamento real. Preço de referência do curto prazo fixado em R$ 200/MWh, com dispersão proporcional ao índice de volatilidade e cenário ruim tomado como a cauda superior da faixa simulada. Não há modelagem hidrológica, sazonalidade, submercado, encargo, perda nem tributo — o instrumento existe apenas para mostrar como a composição desloca simultaneamente nível e dispersão do custo.",
+        "texto": "Didático/ilustrativo — não usar para dimensionamento real. Preço de referência do curto prazo fixado em R$ 200/MWh, com dispersão proporcional ao índice de volatilidade e cenário ruim tomado como a cauda superior da faixa simulada. Não há modelagem hidrológica, sazonalidade, submercado, encargo, perda nem tributo — o instrumento existe apenas para mostrar como a composição desloca simultaneamente nível e dispersão do custo.",
+        "origem": {
+          "seletor": "div.inst p.disc",
+          "trecho_inicial": "<p class=\"disc\">Didático/ilustrativo — não usar para dimensionamento real. Preço de referê",
+          "linha_aprox": 616
+        }
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "A fonte não cita origem externa para constantes nem cenário-padrão; o próprio instrumento se declara \"Didático/ilustrativo — não usar para dimensionamento real\" (disclaimer). Na interface: \"cenário didático; fonte externa não declarada\" (P19).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada na fonte (P6).",
+      "cenario_padrao": {
+        "entradas": {
+          "i3-l": 60,
+          "i3-c": 25,
+          "i3-p": 40,
+          "i3-v": 55
+        },
+        "saidas": {
+          "i3-e": {
+            "html": "R$ 227,50<span class=\"u\">/MWh</span>",
+            "texto": "R$ 227,50/MWh"
+          },
+          "i3-w": {
+            "html": "R$ 319,90<span class=\"u\">/MWh</span>",
+            "texto": "R$ 319,90/MWh"
+          },
+          "i3-a": {
+            "html": "R$ 184,80<span class=\"u\">/MWh</span>",
+            "texto": "R$ 184,80/MWh"
+          },
+          "i3-d": {
+            "html": "15<span class=\"u\">%</span>",
+            "texto": "15%"
+          }
+        },
+        "veredito": {
+          "classe": "ok",
+          "texto": "Exposição residual de 15%, custo esperado de R$ 227,50/MWh e amplitude de R$ 184,80/MWh. É a faixa em que a folga absorve variação operacional sem transformar o orçamento numa aposta direcional. Repare que o prêmio pago no contrato longo comprou redução de dispersão, não redução de custo.",
+          "ramo_linha": 1585
+        },
+        "metodo": "<script> original executado inteiro em DOM simulado (node:vm), run() disparado com os value= do markup — o mesmo que a página faz no carregamento."
+      },
+      "comparacao_codigo": {
+        "status": "divergente",
+        "id_codigo": "m05-inst-03",
+        "kind_codigo": "simulador",
+        "titulo_igual": true,
+        "formula_codigo": null,
+        "nota_igual_disclaimer": true,
+        "campos_divergentes": [],
+        "saidas_codigo": [
+          "i3-e",
+          "i3-w",
+          "i3-a",
+          "i3-d",
+          "i3-vd"
+        ],
+        "saidas_fonte": [
+          "i3-e",
+          "i3-w",
+          "i3-a",
+          "i3-d",
+          "i3-vd"
+        ],
+        "rotulos_saida_iguais": [
+          {
+            "id": "i3-e",
+            "igual": true
+          },
+          {
+            "id": "i3-w",
+            "igual": true
+          },
+          {
+            "id": "i3-a",
+            "igual": true
+          },
+          {
+            "id": "i3-d",
+            "igual": true
+          }
+        ],
+        "saidas_textuais_omitidas_em_valores": [],
+        "valores_extras_no_codigo": [],
+        "teste": {
+          "casos": 1815,
+          "numerico_como_o_painel_semeia": {
+            "ok": 1815,
+            "falha": 0,
+            "exemplos": []
+          },
+          "numerico_com_ids_da_fonte": {
+            "ok": 1815,
+            "falha": 0,
+            "exemplos": []
+          },
+          "ramo_do_veredito": {
+            "ok": 1815,
+            "falha": 0,
+            "exemplos": []
+          },
+          "ramo_do_veredito_com_ids_da_fonte": {
+            "ok": 1815,
+            "falha": 0,
+            "exemplos": []
+          },
+          "veredito_verbatim": "0/1815",
+          "ramos_fonte_cobertos": "5/5",
+          "vereditos_codigo_distintos_por_ramo": {
+            "1583": 1,
+            "1584": 1,
+            "1585": 1,
+            "1586": 1,
+            "1587": 1
+          },
+          "metodo": "Para cada entrada da grade: script original (DOM simulado) × INSTRUMENT_CALCULATORS[id] (bundle esbuild). Numérico: cada saída exibida pela fonte é lida de volta (pt-BR, bi/mi/mil) e comparada com valores[id] dentro da meia-unidade do último dígito exibido. Ramo: linha do vd() executado na fonte × ramo do texto do código (classificador por prefixo). Verbatim: texto do veredito idêntico."
+        }
+      }
+    },
+    {
+      "id": "m05-inst-04",
+      "tipo": "instrumento",
+      "camada": "fonte",
+      "id_fonte": "Inst · 04",
+      "titulo": "Termômetro · Risco de captura",
+      "prefixo_titulo": "Termômetro",
+      "mecanica": {
+        "entradas_numericas": 1,
+        "entradas_booleanas": 8,
+        "saidas": 4,
+        "saidas_textuais": [
+          "i4-r"
+        ],
+        "grafico": "barras html",
+        "veredito_ramos": 4,
+        "kind_catalogo_taxonomia": "quebra-cabeca (instrument-taxonomy.md; nome fora do enum)"
+      },
+      "aula": "04",
+      "aula_id_codigo": "aula-05-04",
+      "posicao_no_texto": {
+        "linhas": [
+          699,
+          719
+        ],
+        "subsecao": {
+          "numero": "4.5",
+          "titulo": "O teste de sete perguntas"
+        },
+        "depois_de": {
+          "tipo": "paragrafo",
+          "rotulo": null,
+          "trecho": "Sete \"sim\" indicam decisão técnica, ainda que desagradável para quem paga. A falha se conc",
+          "linha_aprox": 696
+        },
+        "antes_de": {
+          "tipo": "titulo",
+          "rotulo": "4.6 Onde isso vira a tese da GridAlpha",
+          "trecho": "Onde isso vira a tese da GridAlpha",
+          "linha_aprox": 721
+        },
+        "comentario_html": "INST 04"
+      },
+      "invocacoes_no_texto": [],
+      "invocacoes_nota": "Nenhuma frase das aulas chama o instrumento (\"abaixo\", \"use o simulador\"…): zero ocorrências. Ligações textuais indiretas: título do Ex·09 \"O termômetro dá vermelho\" (aparato.json m05-ex-09); os pesos/sinais espelham o \"teste de sete perguntas\" (§4.5).",
+      "intro": {
+        "html": "Marque os sinais presentes num processo decisório concreto — uma revisão tarifária, uma consulta pública, uma mudança de metodologia. O veredito não acusa ninguém: ele indica quanto do resultado é verificável por terceiros e onde a verificação falha.",
+        "texto": "Marque os sinais presentes num processo decisório concreto — uma revisão tarifária, uma consulta pública, uma mudança de metodologia. O veredito não acusa ninguém: ele indica quanto do resultado é verificável por terceiros e onde a verificação falha.",
+        "origem": {
+          "seletor": "div.inst p.inst-intro",
+          "trecho_inicial": "<p class=\"inst-intro\">Marque os sinais presentes num processo decisório concreto — uma rev",
+          "linha_aprox": 702
+        }
+      },
+      "pergunta": null,
+      "pergunta_nota": "A fonte não formula pergunta própria para o instrumento; o texto de abertura é uma instrução (inst-intro). Pergunta de previsão = camada Alexandria (P19).",
+      "entradas": [
+        {
+          "id": "i4-m",
+          "id_number": "i4-m-n",
+          "rotulo": "Materialidade da decisão",
+          "unidade": "R$ mi/ano em jogo",
+          "padrao": 120,
+          "min": 1,
+          "max": 2000,
+          "passo": 1,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Materialidade da decisão <span class=\"unit\">",
+            "linha_aprox": 705
+          }
+        }
+      ],
+      "sinais": {
+        "origem": {
+          "seletor": "<script> INST 04 var SIG",
+          "trecho_inicial": "var SIG=[",
+          "linha_aprox": 1596
+        },
+        "total": 8,
+        "soma_pesos": 100,
+        "padrao": "todos desmarcados (checkbox sem checked)",
+        "itens": [
+          {
+            "indice": 0,
+            "peso": 22,
+            "titulo": "Resultado não reproduzível por terceiro",
+            "descricao": "Um analista competente, com a metodologia e os dados publicados, não chega ao mesmo número.",
+            "linha_aprox": 1597
+          },
+          {
+            "indice": 1,
+            "peso": 20,
+            "titulo": "Metodologia divulgada depois da decisão",
+            "descricao": "O critério apareceu junto com o resultado, ou foi ajustado durante o processo sem justificativa.",
+            "linha_aprox": 1598
+          },
+          {
+            "indice": 2,
+            "peso": 20,
+            "titulo": "Dados de entrada não disponíveis",
+            "descricao": "A memória de cálculo não é pública, ou está em formato que impede reprocessamento.",
+            "linha_aprox": 1599
+          },
+          {
+            "indice": 3,
+            "peso": 12,
+            "titulo": "Contribuições sem resposta motivada",
+            "descricao": "As manifestações contrárias foram registradas, mas não respondidas com argumento técnico.",
+            "linha_aprox": 1600
+          },
+          {
+            "indice": 4,
+            "peso": 12,
+            "titulo": "Tratamento assimétrico entre pares",
+            "descricao": "Concessionárias comparáveis receberam critérios diferentes no mesmo ciclo, sem razão declarada.",
+            "linha_aprox": 1601
+          },
+          {
+            "indice": 5,
+            "peso": 6,
+            "titulo": "Decisão contraria metodologia publicada",
+            "descricao": "O ato se afasta do critério vigente sem justificativa técnica explícita no processo.",
+            "linha_aprox": 1602
+          },
+          {
+            "indice": 6,
+            "peso": 5,
+            "titulo": "Trânsito de quadros sem quarentena efetiva",
+            "descricao": "Circulação recente entre a empresa afetada e a instância decisória, sem impedimento observado.",
+            "linha_aprox": 1603
+          },
+          {
+            "indice": 7,
+            "peso": 3,
+            "titulo": "Participação concentrada no próprio setor",
+            "descricao": "A quase totalidade das contribuições veio de agentes economicamente interessados no resultado.",
+            "linha_aprox": 1604
+          }
+        ]
+      },
+      "saidas": [
+        {
+          "id": "i4-n",
+          "rotulo": "Sinais marcados",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "0<span class=\"u\">/8</span>",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1634,
+              "codigo": "$id('i4-n').innerHTML=n+'<span class=\"u\">/8</span>';"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Sinais marcados</div><div class=\"n\" id=\"i4-n\">0<span class=",
+            "linha_aprox": 711
+          }
+        },
+        {
+          "id": "i4-o",
+          "rotulo": "Índice de opacidade",
+          "destaque": true,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1635,
+              "codigo": "$id('i4-o').innerHTML=op+'<span class=\"u\">/100</span>';"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Índice de opacidade</div><div class=\"n gold\" id=\"i4-o\">—</d",
+            "linha_aprox": 712
+          }
+        },
+        {
+          "id": "i4-e",
+          "rotulo": "Exposição",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1636,
+              "codigo": "$id('i4-e').textContent=mmi(expo)+'/ano';"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Exposição</div><div class=\"n\" id=\"i4-e\">—</div></div>",
+            "linha_aprox": 713
+          }
+        },
+        {
+          "id": "i4-r",
+          "rotulo": "Reprodutibilidade",
+          "destaque": false,
+          "estilo": "font-size:14px",
+          "valor_inicial_markup": "—",
+          "textual": true,
+          "atribuicao_script": [
+            {
+              "linha": 1637,
+              "codigo": "$id('i4-r').textContent=repro;"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Reprodutibilidade</div><div class=\"n\" id=\"i4-r\" style=\"font",
+            "linha_aprox": 714
+          }
+        }
+      ],
+      "formulas_script": [
+        {
+          "linha": 1596,
+          "codigo": "var SIG=["
+        },
+        {
+          "linha": 1597,
+          "codigo": "{p:22,t:'Resultado não reproduzível por terceiro',d:'Um analista competente, com a metodologia e os dados publicados, não chega ao mesmo número.'},"
+        },
+        {
+          "linha": 1598,
+          "codigo": "{p:20,t:'Metodologia divulgada depois da decisão',d:'O critério apareceu junto com o resultado, ou foi ajustado durante o processo sem justificativa.'},"
+        },
+        {
+          "linha": 1599,
+          "codigo": "{p:20,t:'Dados de entrada não disponíveis',d:'A memória de cálculo não é pública, ou está em formato que impede reprocessamento.'},"
+        },
+        {
+          "linha": 1600,
+          "codigo": "{p:12,t:'Contribuições sem resposta motivada',d:'As manifestações contrárias foram registradas, mas não respondidas com argumento técnico.'},"
+        },
+        {
+          "linha": 1601,
+          "codigo": "{p:12,t:'Tratamento assimétrico entre pares',d:'Concessionárias comparáveis receberam critérios diferentes no mesmo ciclo, sem razão declarada.'},"
+        },
+        {
+          "linha": 1602,
+          "codigo": "{p:6,t:'Decisão contraria metodologia publicada',d:'O ato se afasta do critério vigente sem justificativa técnica explícita no processo.'},"
+        },
+        {
+          "linha": 1603,
+          "codigo": "{p:5,t:'Trânsito de quadros sem quarentena efetiva',d:'Circulação recente entre a empresa afetada e a instância decisória, sem impedimento observado.'},"
+        },
+        {
+          "linha": 1604,
+          "codigo": "{p:3,t:'Participação concentrada no próprio setor',d:'A quase totalidade das contribuições veio de agentes economicamente interessados no resultado.'}"
+        },
+        {
+          "linha": 1605,
+          "codigo": "];"
+        },
+        {
+          "linha": 1614,
+          "codigo": "var M=+$id('i4-m').value, op=0, n=0, k, marked=[];"
+        },
+        {
+          "linha": 1615,
+          "codigo": "for(k=0;k<boxes.length;k++){"
+        },
+        {
+          "linha": 1616,
+          "codigo": "var idx=+boxes[k].getAttribute('data-i');"
+        },
+        {
+          "linha": 1617,
+          "codigo": "var el=$id('i4-s'+idx);"
+        },
+        {
+          "linha": 1618,
+          "codigo": "if(boxes[k].checked){ op+=SIG[idx].p; n++; marked.push(idx); if(el) el.className='sig on'; }"
+        },
+        {
+          "linha": 1619,
+          "codigo": "else if(el) el.className='sig';"
+        },
+        {
+          "linha": 1621,
+          "codigo": "var expo=M*op/100;"
+        },
+        {
+          "linha": 1622,
+          "codigo": "var repro = (marked.indexOf(0)>=0) ? 'não' : ((marked.indexOf(1)>=0||marked.indexOf(2)>=0) ? 'parcial' : 'sim');"
+        }
+      ],
+      "formula_nota": "Linhas de cálculo do <script> original, verbatim (classificadas por regex; desenho, saída e veredito separados). Funções de formatação compartilhadas (num, brl, brl2, mi, mmi, clamp) em formatadores_comuns.",
+      "script": {
+        "cabecalho": "/* ---------- INST 04 — termômetro de risco de captura ---------- */",
+        "linhas": [
+          1593,
+          1649
+        ],
+        "codigo": [
+          {
+            "linha": 1594,
+            "tipo": "estrutura",
+            "codigo": "(function(){"
+          },
+          {
+            "linha": 1595,
+            "tipo": "estrutura",
+            "codigo": "  if(!$id('i4-sigs')) return;"
+          },
+          {
+            "linha": 1596,
+            "tipo": "calculo",
+            "codigo": "  var SIG=["
+          },
+          {
+            "linha": 1597,
+            "tipo": "calculo",
+            "codigo": "    {p:22,t:'Resultado não reproduzível por terceiro',d:'Um analista competente, com a metodologia e os dados publicados, não chega ao mesmo número.'},"
+          },
+          {
+            "linha": 1598,
+            "tipo": "calculo",
+            "codigo": "    {p:20,t:'Metodologia divulgada depois da decisão',d:'O critério apareceu junto com o resultado, ou foi ajustado durante o processo sem justificativa.'},"
+          },
+          {
+            "linha": 1599,
+            "tipo": "calculo",
+            "codigo": "    {p:20,t:'Dados de entrada não disponíveis',d:'A memória de cálculo não é pública, ou está em formato que impede reprocessamento.'},"
+          },
+          {
+            "linha": 1600,
+            "tipo": "calculo",
+            "codigo": "    {p:12,t:'Contribuições sem resposta motivada',d:'As manifestações contrárias foram registradas, mas não respondidas com argumento técnico.'},"
+          },
+          {
+            "linha": 1601,
+            "tipo": "calculo",
+            "codigo": "    {p:12,t:'Tratamento assimétrico entre pares',d:'Concessionárias comparáveis receberam critérios diferentes no mesmo ciclo, sem razão declarada.'},"
+          },
+          {
+            "linha": 1602,
+            "tipo": "calculo",
+            "codigo": "    {p:6,t:'Decisão contraria metodologia publicada',d:'O ato se afasta do critério vigente sem justificativa técnica explícita no processo.'},"
+          },
+          {
+            "linha": 1603,
+            "tipo": "calculo",
+            "codigo": "    {p:5,t:'Trânsito de quadros sem quarentena efetiva',d:'Circulação recente entre a empresa afetada e a instância decisória, sem impedimento observado.'},"
+          },
+          {
+            "linha": 1604,
+            "tipo": "calculo",
+            "codigo": "    {p:3,t:'Participação concentrada no próprio setor',d:'A quase totalidade das contribuições veio de agentes economicamente interessados no resultado.'}"
+          },
+          {
+            "linha": 1605,
+            "tipo": "calculo",
+            "codigo": "  ];"
+          },
+          {
+            "linha": 1606,
+            "tipo": "ligacao",
+            "codigo": "  var box=$id('i4-sigs'), html='',i;"
+          },
+          {
+            "linha": 1607,
+            "tipo": "desenho",
+            "codigo": "  for(i=0;i<SIG.length;i++){"
+          },
+          {
+            "linha": 1608,
+            "tipo": "desenho",
+            "codigo": "    html+='<label class=\"sig\" id=\"i4-s'+i+'\"><input type=\"checkbox\" data-i=\"'+i+'\"><span><b>'+SIG[i].t+'</b>'+SIG[i].d+'</span></label>';"
+          },
+          {
+            "linha": 1609,
+            "tipo": "estrutura",
+            "codigo": "  }"
+          },
+          {
+            "linha": 1610,
+            "tipo": "ligacao",
+            "codigo": "  box.innerHTML=html;"
+          },
+          {
+            "linha": 1611,
+            "tipo": "ligacao",
+            "codigo": "  var boxes=box.querySelectorAll('input[type=checkbox]');"
+          },
+          {
+            "linha": 1613,
+            "tipo": "estrutura",
+            "codigo": "  function run(){"
+          },
+          {
+            "linha": 1614,
+            "tipo": "calculo",
+            "codigo": "    var M=+$id('i4-m').value, op=0, n=0, k, marked=[];"
+          },
+          {
+            "linha": 1615,
+            "tipo": "calculo",
+            "codigo": "    for(k=0;k<boxes.length;k++){"
+          },
+          {
+            "linha": 1616,
+            "tipo": "calculo",
+            "codigo": "      var idx=+boxes[k].getAttribute('data-i');"
+          },
+          {
+            "linha": 1617,
+            "tipo": "calculo",
+            "codigo": "      var el=$id('i4-s'+idx);"
+          },
+          {
+            "linha": 1618,
+            "tipo": "calculo",
+            "codigo": "      if(boxes[k].checked){ op+=SIG[idx].p; n++; marked.push(idx); if(el) el.className='sig on'; }"
+          },
+          {
+            "linha": 1619,
+            "tipo": "calculo",
+            "codigo": "      else if(el) el.className='sig';"
+          },
+          {
+            "linha": 1620,
+            "tipo": "estrutura",
+            "codigo": "    }"
+          },
+          {
+            "linha": 1621,
+            "tipo": "calculo",
+            "codigo": "    var expo=M*op/100;"
+          },
+          {
+            "linha": 1622,
+            "tipo": "calculo",
+            "codigo": "    var repro = (marked.indexOf(0)>=0) ? 'não' : ((marked.indexOf(1)>=0||marked.indexOf(2)>=0) ? 'parcial' : 'sim');"
+          },
+          {
+            "linha": 1624,
+            "tipo": "desenho",
+            "codigo": "    var html2='';"
+          },
+          {
+            "linha": 1625,
+            "tipo": "desenho",
+            "codigo": "    if(marked.length===0) html2='<div class=\"bar-row\"><div class=\"lb\">—</div><div class=\"bar-track\"></div><div class=\"vl\">nenhum sinal</div></div>';"
+          },
+          {
+            "linha": 1626,
+            "tipo": "desenho",
+            "codigo": "    for(k=0;k<marked.length;k++){"
+          },
+          {
+            "linha": 1627,
+            "tipo": "desenho",
+            "codigo": "      var s=SIG[marked[k]];"
+          },
+          {
+            "linha": 1628,
+            "tipo": "desenho",
+            "codigo": "      html2+='<div class=\"bar-row\"><div class=\"lb\">'+s.p+' pts</div><div class=\"bar-track\">'+"
+          },
+          {
+            "linha": 1629,
+            "tipo": "desenho",
+            "codigo": "        '<div class=\"bar-fill\" style=\"width:'+(s.p/22*100).toFixed(1)+'%;background:#EF4444;opacity:.8\"></div></div>'+"
+          },
+          {
+            "linha": 1630,
+            "tipo": "desenho",
+            "codigo": "        '<div class=\"vl\" style=\"width:150px;text-align:left\">'+s.t.slice(0,26)+'</div></div>';"
+          },
+          {
+            "linha": 1631,
+            "tipo": "estrutura",
+            "codigo": "    }"
+          },
+          {
+            "linha": 1632,
+            "tipo": "desenho",
+            "codigo": "    $id('i4-bars').innerHTML=html2;"
+          },
+          {
+            "linha": 1634,
+            "tipo": "saida",
+            "codigo": "    $id('i4-n').innerHTML=n+'<span class=\"u\">/8</span>';"
+          },
+          {
+            "linha": 1635,
+            "tipo": "saida",
+            "codigo": "    $id('i4-o').innerHTML=op+'<span class=\"u\">/100</span>';"
+          },
+          {
+            "linha": 1636,
+            "tipo": "saida",
+            "codigo": "    $id('i4-e').textContent=mmi(expo)+'/ano';"
+          },
+          {
+            "linha": 1637,
+            "tipo": "saida",
+            "codigo": "    $id('i4-r').textContent=repro;"
+          },
+          {
+            "linha": 1639,
+            "tipo": "veredito",
+            "codigo": "    var v=$id('i4-vd');"
+          },
+          {
+            "linha": 1640,
+            "tipo": "veredito",
+            "codigo": "    if(op===0) vd(v,'ok','Nenhum sinal marcado. O processo é verificável: metodologia anterior, dados disponíveis, contribuições respondidas e resultado reproduzível. Isso não significa que o resultado agrade — significa que ele pode ser contestado no mérito técnico, que é a única forma produtiva de contestar.');"
+          },
+          {
+            "linha": 1641,
+            "tipo": "veredito",
+            "codigo": "    else if(op<=25) vd(v,'att','Opacidade de '+op+'/100 e '+mmi(expo)+' por ano de decisão não plenamente verificável. Os sinais presentes dificultam a verificação sem impedi-la. Encaminhamento adequado: pedido formal dos itens faltantes e registro público do pedido — não conclusão.');"
+          },
+          {
+            "linha": 1642,
+            "tipo": "veredito",
+            "codigo": "    else if(op<=55) vd(v,'per','Opacidade de '+op+'/100 sobre uma decisão de '+mmi(M)+' por ano, o que deixa '+mmi(expo)+' anuais fora de verificação independente. Reprodutibilidade: '+repro+'. O que se pode afirmar publicamente é exatamente isso — a lacuna e a materialidade. Captura é padrão institucional inferido ao longo do tempo, e não diagnóstico de um ato isolado.');"
+          },
+          {
+            "linha": 1643,
+            "tipo": "veredito",
+            "codigo": "    else vd(v,'per','Opacidade de '+op+'/100 com reprodutibilidade \"'+repro+'\". Nesta faixa, um terceiro competente não consegue refazer a conta, e a decisão só pode ser aceita por confiança — que é precisamente o que a transparência regulatória existe para tornar desnecessária. Ainda assim, a afirmação publicável continua sendo a lacuna verificada e a materialidade, nunca a imputação a instituição ou pessoa.');"
+          },
+          {
+            "linha": 1644,
+            "tipo": "estrutura",
+            "codigo": "  }"
+          },
+          {
+            "linha": 1645,
+            "tipo": "ligacao",
+            "codigo": "  for(i=0;i<boxes.length;i++){ boxes[i].addEventListener('change',run); }"
+          },
+          {
+            "linha": 1646,
+            "tipo": "ligacao",
+            "codigo": "  link('i4-m',run);"
+          },
+          {
+            "linha": 1647,
+            "tipo": "ligacao",
+            "codigo": "  run();"
+          },
+          {
+            "linha": 1648,
+            "tipo": "estrutura",
+            "codigo": "})();"
+          }
+        ]
+      },
+      "grafico": {
+        "svg": null,
+        "barras": {
+          "id": "i4-bars",
+          "linha_aprox": 709
+        },
+        "legenda": [],
+        "rotulos_eixo_x": [],
+        "nota": "Desenho não porta como dado (protocolo §12); legenda e rótulos literais registrados."
+      },
+      "veredito": {
+        "id": "i4-vd",
+        "valor_inicial_markup": "—",
+        "ramos": [
+          {
+            "ordem": 1,
+            "palavra": "if",
+            "condicao": "op===0",
+            "classe_css": "ok",
+            "expressao_js": "'Nenhum sinal marcado. O processo é verificável: metodologia anterior, dados disponíveis, contribuições respondidas e resultado reproduzível. Isso não significa que o resultado agrade — significa que ele pode ser contestado no mérito técnico, que é a única forma produtiva de contestar.'",
+            "linha": 1640,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 2,
+            "palavra": "else if",
+            "condicao": "op<=25",
+            "classe_css": "att",
+            "expressao_js": "'Opacidade de '+op+'/100 e '+mmi(expo)+' por ano de decisão não plenamente verificável. Os sinais presentes dificultam a verificação sem impedi-la. Encaminhamento adequado: pedido formal dos itens faltantes e registro público do pedido — não conclusão.'",
+            "linha": 1641,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 3,
+            "palavra": "else if",
+            "condicao": "op<=55",
+            "classe_css": "per",
+            "expressao_js": "'Opacidade de '+op+'/100 sobre uma decisão de '+mmi(M)+' por ano, o que deixa '+mmi(expo)+' anuais fora de verificação independente. Reprodutibilidade: '+repro+'. O que se pode afirmar publicamente é exatamente isso — a lacuna e a materialidade. Captura é padrão institucional inferido ao longo do tempo, e não diagnóstico de um ato isolado.'",
+            "linha": 1642,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 4,
+            "palavra": "else",
+            "condicao": null,
+            "classe_css": "per",
+            "expressao_js": "'Opacidade de '+op+'/100 com reprodutibilidade \"'+repro+'\". Nesta faixa, um terceiro competente não consegue refazer a conta, e a decisão só pode ser aceita por confiança — que é precisamente o que a transparência regulatória existe para tornar desnecessária. Ainda assim, a afirmação publicável continua sendo a lacuna verificada e a materialidade, nunca a imputação a instituição ou pessoa.'",
+            "linha": 1643,
+            "coberto_no_teste": true
+          }
+        ],
+        "nota": "expressao_js é a expressão literal passada a vd(); classe_css ok/att/per é a cor do veredito na fonte (não exibir como semáforo)."
+      },
+      "disclaimer": {
+        "html": "Didático/ilustrativo — não usar para dimensionamento real, e jamais como imputação a instituição ou pessoa. Os pesos são arbitrários e servem para treinar a hierarquia dos sinais: irreprodutibilidade e metodologia posterior pesam mais que participação desigual, porque as duas primeiras impedem qualquer verificação externa enquanto a terceira apenas a dificulta. A exposição é a materialidade ponderada pela opacidade.",
+        "texto": "Didático/ilustrativo — não usar para dimensionamento real, e jamais como imputação a instituição ou pessoa. Os pesos são arbitrários e servem para treinar a hierarquia dos sinais: irreprodutibilidade e metodologia posterior pesam mais que participação desigual, porque as duas primeiras impedem qualquer verificação externa enquanto a terceira apenas a dificulta. A exposição é a materialidade ponderada pela opacidade.",
+        "origem": {
+          "seletor": "div.inst p.disc",
+          "trecho_inicial": "<p class=\"disc\">Didático/ilustrativo — não usar para dimensionamento real, e jamais como i",
+          "linha_aprox": 717
+        }
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "A fonte não cita origem externa para constantes nem cenário-padrão; o próprio instrumento se declara \"Didático/ilustrativo — não usar para dimensionamento real\" (disclaimer). Na interface: \"cenário didático; fonte externa não declarada\" (P19).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada na fonte (P6).",
+      "cenario_padrao": {
+        "entradas": {
+          "i4-m": 120,
+          "sinal-0": false,
+          "sinal-1": false,
+          "sinal-2": false,
+          "sinal-3": false,
+          "sinal-4": false,
+          "sinal-5": false,
+          "sinal-6": false,
+          "sinal-7": false
+        },
+        "saidas": {
+          "i4-n": {
+            "html": "0<span class=\"u\">/8</span>",
+            "texto": "0/8"
+          },
+          "i4-o": {
+            "html": "0<span class=\"u\">/100</span>",
+            "texto": "0/100"
+          },
+          "i4-e": {
+            "html": "R$ 0 mi/ano",
+            "texto": "R$ 0 mi/ano"
+          },
+          "i4-r": {
+            "html": "sim",
+            "texto": "sim"
+          }
+        },
+        "veredito": {
+          "classe": "ok",
+          "texto": "Nenhum sinal marcado. O processo é verificável: metodologia anterior, dados disponíveis, contribuições respondidas e resultado reproduzível. Isso não significa que o resultado agrade — significa que ele pode ser contestado no mérito técnico, que é a única forma produtiva de contestar.",
+          "ramo_linha": 1640
+        },
+        "metodo": "<script> original executado inteiro em DOM simulado (node:vm), run() disparado com os value= do markup — o mesmo que a página faz no carregamento."
+      },
+      "comparacao_codigo": {
+        "status": "divergente",
+        "id_codigo": "m05-inst-04",
+        "kind_codigo": "quebra-cabeca",
+        "titulo_igual": true,
+        "formula_codigo": null,
+        "nota_igual_disclaimer": true,
+        "campos_divergentes": [
+          {
+            "campo": "i4-s0",
+            "diferencas": [
+              "checkbox da fonte virou select Presente/Ausente; rótulo \"Resultado não reproduzível por terceiro (22 pts)\" = t + \" (p pts)\" (consistente); descrição d do sinal ausente"
+            ]
+          },
+          {
+            "campo": "i4-s1",
+            "diferencas": [
+              "checkbox da fonte virou select Presente/Ausente; rótulo \"Metodologia divulgada depois da decisão (20 pts)\" = t + \" (p pts)\" (consistente); descrição d do sinal ausente"
+            ]
+          },
+          {
+            "campo": "i4-s2",
+            "diferencas": [
+              "checkbox da fonte virou select Presente/Ausente; rótulo \"Dados de entrada não disponíveis (20 pts)\" = t + \" (p pts)\" (consistente); descrição d do sinal ausente"
+            ]
+          },
+          {
+            "campo": "i4-s3",
+            "diferencas": [
+              "checkbox da fonte virou select Presente/Ausente; rótulo \"Contribuições sem resposta motivada (12 pts)\" = t + \" (p pts)\" (consistente); descrição d do sinal ausente"
+            ]
+          },
+          {
+            "campo": "i4-s4",
+            "diferencas": [
+              "checkbox da fonte virou select Presente/Ausente; rótulo \"Tratamento assimétrico entre pares (12 pts)\" = t + \" (p pts)\" (consistente); descrição d do sinal ausente"
+            ]
+          },
+          {
+            "campo": "i4-s5",
+            "diferencas": [
+              "checkbox da fonte virou select Presente/Ausente; rótulo \"Decisão contraria metodologia publicada (6 pts)\" = t + \" (p pts)\" (consistente); descrição d do sinal ausente"
+            ]
+          },
+          {
+            "campo": "i4-s6",
+            "diferencas": [
+              "checkbox da fonte virou select Presente/Ausente; rótulo \"Trânsito de quadros sem quarentena efetiva (5 pts)\" = t + \" (p pts)\" (consistente); descrição d do sinal ausente"
+            ]
+          },
+          {
+            "campo": "i4-s7",
+            "diferencas": [
+              "checkbox da fonte virou select Presente/Ausente; rótulo \"Participação concentrada no próprio setor (3 pts)\" = t + \" (p pts)\" (consistente); descrição d do sinal ausente"
+            ]
+          }
+        ],
+        "saidas_codigo": [
+          "i4-n",
+          "i4-o",
+          "i4-e",
+          "i4-r",
+          "i4-vd"
+        ],
+        "saidas_fonte": [
+          "i4-n",
+          "i4-o",
+          "i4-e",
+          "i4-r",
+          "i4-vd"
+        ],
+        "rotulos_saida_iguais": [
+          {
+            "id": "i4-n",
+            "igual": true
+          },
+          {
+            "id": "i4-o",
+            "igual": true
+          },
+          {
+            "id": "i4-e",
+            "igual": true
+          },
+          {
+            "id": "i4-r",
+            "igual": true
+          }
+        ],
+        "saidas_textuais_omitidas_em_valores": [
+          "i4-r"
+        ],
+        "valores_extras_no_codigo": [],
+        "teste": {
+          "casos": 768,
+          "numerico_como_o_painel_semeia": {
+            "ok": 768,
+            "falha": 0,
+            "exemplos": []
+          },
+          "numerico_com_ids_da_fonte": {
+            "ok": 768,
+            "falha": 0,
+            "exemplos": []
+          },
+          "ramo_do_veredito": {
+            "ok": 768,
+            "falha": 0,
+            "exemplos": []
+          },
+          "ramo_do_veredito_com_ids_da_fonte": {
+            "ok": 768,
+            "falha": 0,
+            "exemplos": []
+          },
+          "veredito_verbatim": "3/768",
+          "ramos_fonte_cobertos": "4/4",
+          "vereditos_codigo_distintos_por_ramo": {
+            "1640": 1,
+            "1641": 3,
+            "1642": 3,
+            "1643": 2
+          },
+          "metodo": "Para cada entrada da grade: script original (DOM simulado) × INSTRUMENT_CALCULATORS[id] (bundle esbuild). Numérico: cada saída exibida pela fonte é lida de volta (pt-BR, bi/mi/mil) e comparada com valores[id] dentro da meia-unidade do último dígito exibido. Ramo: linha do vd() executado na fonte × ramo do texto do código (classificador por prefixo). Verbatim: texto do veredito idêntico."
+        }
+      }
+    },
+    {
+      "id": "m05-inst-05",
+      "tipo": "instrumento",
+      "camada": "fonte",
+      "id_fonte": "Inst · 05",
+      "titulo": "Simulador · Ciclo de revisão tarifária",
+      "prefixo_titulo": "Simulador",
+      "mecanica": {
+        "entradas_numericas": 6,
+        "entradas_booleanas": 0,
+        "saidas": 4,
+        "saidas_textuais": [],
+        "grafico": "svg",
+        "veredito_ramos": 4,
+        "kind_catalogo_taxonomia": "simulador"
+      },
+      "aula": "05",
+      "aula_id_codigo": "aula-05-05",
+      "posicao_no_texto": {
+        "linhas": [
+          832,
+          867
+        ],
+        "subsecao": {
+          "numero": "5.7",
+          "titulo": "Por que isso aparece na conta industrial mesmo no mercado livre"
+        },
+        "depois_de": {
+          "tipo": "paragrafo",
+          "rotulo": null,
+          "trecho": "Há um segundo efeito, mais sutil e mais frequentemente ignorado: além de mudar a receita t",
+          "linha_aprox": 829
+        },
+        "antes_de": {
+          "tipo": "tres_niveis",
+          "rotulo": "WACC regulatório · três níveis",
+          "trecho": "WACC regulatório · três níveis",
+          "linha_aprox": 869
+        },
+        "comentario_html": "INST 05"
+      },
+      "invocacoes_no_texto": [],
+      "invocacoes_nota": "Nenhuma frase das aulas chama o instrumento (\"abaixo\", \"use o simulador\"…): zero ocorrências. Ligações textuais indiretas: Ex·04 (efeito de variação do custo de capital) e o lede da aula (\"identidade central\").",
+      "intro": {
+        "html": "Monte a Parcela B de uma distribuidora hipotética e acompanhe a trajetória dela ao longo de um ciclo — a revisão no ano zero, seguida dos reajustes anuais corrigidos por índice de preços menos o Fator X. Repare no efeito de um único ponto percentual no custo de capital.",
+        "texto": "Monte a Parcela B de uma distribuidora hipotética e acompanhe a trajetória dela ao longo de um ciclo — a revisão no ano zero, seguida dos reajustes anuais corrigidos por índice de preços menos o Fator X. Repare no efeito de um único ponto percentual no custo de capital.",
+        "origem": {
+          "seletor": "div.inst p.inst-intro",
+          "trecho_inicial": "<p class=\"inst-intro\">Monte a Parcela B de uma distribuidora hipotética e acompanhe a traj",
+          "linha_aprox": 835
+        }
+      },
+      "pergunta": null,
+      "pergunta_nota": "A fonte não formula pergunta própria para o instrumento; o texto de abertura é uma instrução (inst-intro). Pergunta de previsão = camada Alexandria (P19).",
+      "entradas": [
+        {
+          "id": "i5-b",
+          "id_number": "i5-b-n",
+          "rotulo": "Base de remuneração líquida",
+          "unidade": "R$ mi",
+          "padrao": 4000,
+          "min": 200,
+          "max": 20000,
+          "passo": 100,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Base de remuneração líquida <span class=\"uni",
+            "linha_aprox": 837
+          }
+        },
+        {
+          "id": "i5-w",
+          "id_number": "i5-w-n",
+          "rotulo": "WACC regulatório",
+          "unidade": "% real a.a.",
+          "padrao": 7.5,
+          "min": 3,
+          "max": 14,
+          "passo": 0.1,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">WACC regulatório <span class=\"unit\">% real a",
+            "linha_aprox": 840
+          }
+        },
+        {
+          "id": "i5-o",
+          "id_number": "i5-o-n",
+          "rotulo": "OPEX eficiente",
+          "unidade": "R$ mi/ano",
+          "padrao": 620,
+          "min": 30,
+          "max": 3000,
+          "passo": 10,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">OPEX eficiente <span class=\"unit\">R$ mi/ano<",
+            "linha_aprox": 843
+          }
+        },
+        {
+          "id": "i5-d",
+          "id_number": "i5-d-n",
+          "rotulo": "Reintegração regulatória",
+          "unidade": "R$ mi/ano",
+          "padrao": 180,
+          "min": 10,
+          "max": 1500,
+          "passo": 10,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Reintegração regulatória <span class=\"unit\">",
+            "linha_aprox": 846
+          }
+        },
+        {
+          "id": "i5-e",
+          "id_number": "i5-e-n",
+          "rotulo": "Energia faturada",
+          "unidade": "GWh/ano",
+          "padrao": 14000,
+          "min": 500,
+          "max": 60000,
+          "passo": 500,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Energia faturada <span class=\"unit\">GWh/ano<",
+            "linha_aprox": 849
+          }
+        },
+        {
+          "id": "i5-x",
+          "id_number": "i5-x-n",
+          "rotulo": "Índice de preços − Fator X",
+          "unidade": "% a.a.",
+          "padrao": 2.5,
+          "min": -4,
+          "max": 12,
+          "passo": 0.5,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Índice de preços − Fator X <span class=\"unit",
+            "linha_aprox": 852
+          }
+        }
+      ],
+      "sinais": null,
+      "saidas": [
+        {
+          "id": "i5-p",
+          "rotulo": "Parcela B ano 0",
+          "destaque": true,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1691,
+              "codigo": "$id('i5-p').textContent=mmi(pb0);"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Parcela B ano 0</div><div class=\"n gold\" id=\"i5-p\">—</div><",
+            "linha_aprox": 859
+          }
+        },
+        {
+          "id": "i5-c",
+          "rotulo": "Componente médio",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1692,
+              "codigo": "$id('i5-c').innerHTML=brl2(comp)+'<span class=\"u\">/MWh</span>';"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Componente médio</div><div class=\"n\" id=\"i5-c\">—</div></div",
+            "linha_aprox": 860
+          }
+        },
+        {
+          "id": "i5-s",
+          "rotulo": "Efeito de +1 p.p. no WACC",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1693,
+              "codigo": "$id('i5-s').textContent=mmi(sens)+'/ano';"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Efeito de +1 p.p. no WACC</div><div class=\"n\" id=\"i5-s\">—</",
+            "linha_aprox": 861
+          }
+        },
+        {
+          "id": "i5-f",
+          "rotulo": "Parcela B ano 4",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1694,
+              "codigo": "$id('i5-f').textContent=mmi(anos[4].t);"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Parcela B ano 4</div><div class=\"n\" id=\"i5-f\">—</div></div>",
+            "linha_aprox": 862
+          }
+        }
+      ],
+      "formulas_script": [
+        {
+          "linha": 1654,
+          "codigo": "var B=+$id('i5-b').value, Wc=+$id('i5-w').value, O=+$id('i5-o').value,"
+        },
+        {
+          "linha": 1655,
+          "codigo": "Dp=+$id('i5-d').value, E=+$id('i5-e').value, X=+$id('i5-x').value;"
+        },
+        {
+          "linha": 1656,
+          "codigo": "var rem=B*Wc/100;"
+        },
+        {
+          "linha": 1657,
+          "codigo": "var pb0=O+rem+Dp;"
+        },
+        {
+          "linha": 1658,
+          "codigo": "var comp=pb0/E*1000;              /* R$ mi / GWh * 1000 => R$/MWh */"
+        },
+        {
+          "linha": 1659,
+          "codigo": "var sens=B*0.01;                  /* efeito de +1 p.p. em R$ mi/ano */"
+        },
+        {
+          "linha": 1660,
+          "codigo": "var g=1+X/100;"
+        },
+        {
+          "linha": 1661,
+          "codigo": "var anos=[],i;"
+        },
+        {
+          "linha": 1663,
+          "codigo": "var fk=Math.pow(g,i);"
+        },
+        {
+          "linha": 1664,
+          "codigo": "anos.push({o:O*fk,r:rem*fk,d:Dp*fk,t:pb0*fk,c:comp*fk});"
+        },
+        {
+          "linha": 1666,
+          "codigo": "var mx=0, cmax=0;"
+        },
+        {
+          "linha": 1667,
+          "codigo": "for(i=0;i<5;i++){ if(anos[i].t>mx) mx=anos[i].t; if(anos[i].c>cmax) cmax=anos[i].c; }"
+        },
+        {
+          "linha": 1696,
+          "codigo": "var share=rem/pb0*100;"
+        },
+        {
+          "linha": 1697,
+          "codigo": "var shs=share>=10?share.toFixed(0):share.toFixed(1).replace('.',',');"
+        }
+      ],
+      "formula_nota": "Linhas de cálculo do <script> original, verbatim (classificadas por regex; desenho, saída e veredito separados). Funções de formatação compartilhadas (num, brl, brl2, mi, mmi, clamp) em formatadores_comuns.",
+      "script": {
+        "cabecalho": "/* ---------- INST 05 — ciclo de revisão tarifária ---------- */",
+        "linhas": [
+          1650,
+          1707
+        ],
+        "codigo": [
+          {
+            "linha": 1651,
+            "tipo": "estrutura",
+            "codigo": "(function(){"
+          },
+          {
+            "linha": 1652,
+            "tipo": "estrutura",
+            "codigo": "  if(!$id('i5-b')) return;"
+          },
+          {
+            "linha": 1653,
+            "tipo": "estrutura",
+            "codigo": "  function run(){"
+          },
+          {
+            "linha": 1654,
+            "tipo": "calculo",
+            "codigo": "    var B=+$id('i5-b').value, Wc=+$id('i5-w').value, O=+$id('i5-o').value,"
+          },
+          {
+            "linha": 1655,
+            "tipo": "calculo",
+            "codigo": "        Dp=+$id('i5-d').value, E=+$id('i5-e').value, X=+$id('i5-x').value;"
+          },
+          {
+            "linha": 1656,
+            "tipo": "calculo",
+            "codigo": "    var rem=B*Wc/100;"
+          },
+          {
+            "linha": 1657,
+            "tipo": "calculo",
+            "codigo": "    var pb0=O+rem+Dp;"
+          },
+          {
+            "linha": 1658,
+            "tipo": "calculo",
+            "codigo": "    var comp=pb0/E*1000;              /* R$ mi / GWh * 1000 => R$/MWh */"
+          },
+          {
+            "linha": 1659,
+            "tipo": "calculo",
+            "codigo": "    var sens=B*0.01;                  /* efeito de +1 p.p. em R$ mi/ano */"
+          },
+          {
+            "linha": 1660,
+            "tipo": "calculo",
+            "codigo": "    var g=1+X/100;"
+          },
+          {
+            "linha": 1661,
+            "tipo": "calculo",
+            "codigo": "    var anos=[],i;"
+          },
+          {
+            "linha": 1662,
+            "tipo": "desenho",
+            "codigo": "    for(i=0;i<5;i++){"
+          },
+          {
+            "linha": 1663,
+            "tipo": "calculo",
+            "codigo": "      var fk=Math.pow(g,i);"
+          },
+          {
+            "linha": 1664,
+            "tipo": "calculo",
+            "codigo": "      anos.push({o:O*fk,r:rem*fk,d:Dp*fk,t:pb0*fk,c:comp*fk});"
+          },
+          {
+            "linha": 1665,
+            "tipo": "estrutura",
+            "codigo": "    }"
+          },
+          {
+            "linha": 1666,
+            "tipo": "calculo",
+            "codigo": "    var mx=0, cmax=0;"
+          },
+          {
+            "linha": 1667,
+            "tipo": "calculo",
+            "codigo": "    for(i=0;i<5;i++){ if(anos[i].t>mx) mx=anos[i].t; if(anos[i].c>cmax) cmax=anos[i].c; }"
+          },
+          {
+            "linha": 1668,
+            "tipo": "desenho",
+            "codigo": "    var yMax=niceMax(mx*1.18);"
+          },
+          {
+            "linha": 1669,
+            "tipo": "desenho",
+            "codigo": "    var kc=cmax>0?(yMax*0.92/cmax):1;"
+          },
+          {
+            "linha": 1671,
+            "tipo": "desenho",
+            "codigo": "    var s=gridY(yMax,function(v){return v>=1000?(v/1000).toFixed(1)+'k':Math.round(v);});"
+          },
+          {
+            "linha": 1672,
+            "tipo": "desenho",
+            "codigo": "    var bw=(PW/5)*0.42, base=PT+PH;"
+          },
+          {
+            "linha": 1673,
+            "tipo": "desenho",
+            "codigo": "    for(i=0;i<5;i++){"
+          },
+          {
+            "linha": 1674,
+            "tipo": "desenho",
+            "codigo": "      var x=xcat(i,5)-bw/2, a=anos[i];"
+          },
+          {
+            "linha": 1675,
+            "tipo": "desenho",
+            "codigo": "      var ho=PH*clamp(a.o/yMax,0,1), hr=PH*clamp(a.r/yMax,0,1), hd=PH*clamp(a.d/yMax,0,1);"
+          },
+          {
+            "linha": 1676,
+            "tipo": "desenho",
+            "codigo": "      s+='<rect x=\"'+x.toFixed(1)+'\" y=\"'+(base-ho).toFixed(1)+'\" width=\"'+bw.toFixed(1)+'\" height=\"'+ho.toFixed(1)+'\" fill=\"#3B82F6\" opacity=\".75\" rx=\"1\"/>';"
+          },
+          {
+            "linha": 1677,
+            "tipo": "desenho",
+            "codigo": "      s+='<rect x=\"'+x.toFixed(1)+'\" y=\"'+(base-ho-hr).toFixed(1)+'\" width=\"'+bw.toFixed(1)+'\" height=\"'+hr.toFixed(1)+'\" fill=\"#06B6D4\" opacity=\".8\" rx=\"1\"/>';"
+          },
+          {
+            "linha": 1678,
+            "tipo": "desenho",
+            "codigo": "      s+='<rect x=\"'+x.toFixed(1)+'\" y=\"'+(base-ho-hr-hd).toFixed(1)+'\" width=\"'+bw.toFixed(1)+'\" height=\"'+hd.toFixed(1)+'\" fill=\"#A855F7\" opacity=\".7\" rx=\"1\"/>';"
+          },
+          {
+            "linha": 1679,
+            "tipo": "estrutura",
+            "codigo": "    }"
+          },
+          {
+            "linha": 1680,
+            "tipo": "desenho",
+            "codigo": "    var pts='';"
+          },
+          {
+            "linha": 1681,
+            "tipo": "desenho",
+            "codigo": "    for(i=0;i<5;i++){ pts+=xcat(i,5).toFixed(1)+','+yv(anos[i].c*kc,yMax).toFixed(1)+' '; }"
+          },
+          {
+            "linha": 1682,
+            "tipo": "desenho",
+            "codigo": "    s+='<polyline points=\"'+pts+'\" fill=\"none\" stroke=\"#F59E0B\" stroke-width=\"2\" stroke-dasharray=\"6 4\"/>';"
+          },
+          {
+            "linha": 1683,
+            "tipo": "desenho",
+            "codigo": "    for(i=0;i<5;i++){"
+          },
+          {
+            "linha": 1684,
+            "tipo": "desenho",
+            "codigo": "      s+='<circle cx=\"'+xcat(i,5).toFixed(1)+'\" cy=\"'+yv(anos[i].c*kc,yMax).toFixed(1)+'\" r=\"3\" fill=\"#F59E0B\"/>';"
+          },
+          {
+            "linha": 1685,
+            "tipo": "estrutura",
+            "codigo": "    }"
+          },
+          {
+            "linha": 1686,
+            "tipo": "desenho",
+            "codigo": "    s+='<text x=\"'+xcat(0,5).toFixed(1)+'\" y=\"'+(yv(anos[0].c*kc,yMax)-9).toFixed(1)+'\" fill=\"#F59E0B\" font-size=\"10\" font-family=\"monospace\" text-anchor=\"middle\">'+brl2(anos[0].c)+'/MWh</text>';"
+          },
+          {
+            "linha": 1687,
+            "tipo": "desenho",
+            "codigo": "    s+='<text x=\"'+xcat(4,5).toFixed(1)+'\" y=\"'+(yv(anos[4].c*kc,yMax)-9).toFixed(1)+'\" fill=\"#F59E0B\" font-size=\"10\" font-family=\"monospace\" text-anchor=\"middle\">'+brl2(anos[4].c)+'/MWh</text>';"
+          },
+          {
+            "linha": 1688,
+            "tipo": "desenho",
+            "codigo": "    s+=xlab(['Revisão','+1 ano','+2 anos','+3 anos','+4 anos']);"
+          },
+          {
+            "linha": 1689,
+            "tipo": "desenho",
+            "codigo": "    $id('i5-svg').innerHTML=s;"
+          },
+          {
+            "linha": 1691,
+            "tipo": "saida",
+            "codigo": "    $id('i5-p').textContent=mmi(pb0);"
+          },
+          {
+            "linha": 1692,
+            "tipo": "saida",
+            "codigo": "    $id('i5-c').innerHTML=brl2(comp)+'<span class=\"u\">/MWh</span>';"
+          },
+          {
+            "linha": 1693,
+            "tipo": "saida",
+            "codigo": "    $id('i5-s').textContent=mmi(sens)+'/ano';"
+          },
+          {
+            "linha": 1694,
+            "tipo": "saida",
+            "codigo": "    $id('i5-f').textContent=mmi(anos[4].t);"
+          },
+          {
+            "linha": 1696,
+            "tipo": "calculo",
+            "codigo": "    var share=rem/pb0*100;"
+          },
+          {
+            "linha": 1697,
+            "tipo": "calculo",
+            "codigo": "    var shs=share>=10?share.toFixed(0):share.toFixed(1).replace('.',',');"
+          },
+          {
+            "linha": 1698,
+            "tipo": "veredito",
+            "codigo": "    var v=$id('i5-vd');"
+          },
+          {
+            "linha": 1699,
+            "tipo": "veredito",
+            "codigo": "    if(X<0) vd(v,'att','Parcela B comprimida em termos reais ao longo do ciclo: de '+mmi(pb0)+' para '+mmi(anos[4].t)+'. Um índice líquido negativo significa Fator X acima da inflação — a empresa precisa entregar ganho de produtividade real só para manter a receita. Se o ganho não vier, o ajuste sai da qualidade ou do investimento, e a conta aparece na revisão seguinte.');"
+          },
+          {
+            "linha": 1700,
+            "tipo": "veredito",
+            "codigo": "    else if(share>=48) vd(v,'att','Remuneração do capital responde por '+shs+'% da Parcela B — concessão intensiva em capital. Nessa configuração, o custo de capital regulatório é o parâmetro dominante: cada ponto percentual vale '+mmi(sens)+' por ano, ou '+brl2(sens/E*1000)+'/MWh sobre o mercado faturado. É aqui que se concentra a disputa técnica da revisão, e é aqui que a análise independente tem mais a acrescentar.');"
+          },
+          {
+            "linha": 1701,
+            "tipo": "veredito",
+            "codigo": "    else if(share>=25) vd(v,'ok','Composição equilibrada: '+shs+'% de remuneração de capital, o restante em operação e reintegração. O componente médio de '+brl2(comp)+'/MWh é a parcela da tarifa que responde à eficiência da distribuidora — e é apenas uma parte do que a fatura cobra. Um ponto percentual no custo de capital move '+mmi(sens)+' por ano.');"
+          },
+          {
+            "linha": 1702,
+            "tipo": "veredito",
+            "codigo": "    else vd(v,'att','Remuneração do capital em apenas '+shs+'% da Parcela B: concessão intensiva em operação, não em ativos. Aqui o parâmetro que decide a revisão não é o custo de capital, e sim a metodologia de custo operacional eficiente — a empresa de referência. Discutir só a taxa de retorno numa concessão com este perfil é discutir a variável errada.');"
+          },
+          {
+            "linha": 1703,
+            "tipo": "estrutura",
+            "codigo": "  }"
+          },
+          {
+            "linha": 1704,
+            "tipo": "ligacao",
+            "codigo": "  link('i5-b',run); link('i5-w',run); link('i5-o',run); link('i5-d',run); link('i5-e',run); link('i5-x',run);"
+          },
+          {
+            "linha": 1705,
+            "tipo": "ligacao",
+            "codigo": "  run();"
+          },
+          {
+            "linha": 1706,
+            "tipo": "estrutura",
+            "codigo": "})();"
+          }
+        ]
+      },
+      "grafico": {
+        "svg": {
+          "id": "i5-svg",
+          "viewBox": "0 0 720 260",
+          "linha_aprox": 856
+        },
+        "barras": null,
+        "legenda": [
+          {
+            "cor": "#3B82F6",
+            "texto": "OPEX eficiente"
+          },
+          {
+            "cor": "#06B6D4",
+            "texto": "Remuneração do capital"
+          },
+          {
+            "cor": "#A855F7",
+            "texto": "Reintegração"
+          },
+          {
+            "cor": "#F59E0B",
+            "texto": "Componente médio R$/MWh"
+          }
+        ],
+        "rotulos_eixo_x": [
+          "s+=xlab(['Revisão','+1 ano','+2 anos','+3 anos','+4 anos']);"
+        ],
+        "nota": "Desenho não porta como dado (protocolo §12); legenda e rótulos literais registrados."
+      },
+      "veredito": {
+        "id": "i5-vd",
+        "valor_inicial_markup": "—",
+        "ramos": [
+          {
+            "ordem": 1,
+            "palavra": "if",
+            "condicao": "X<0",
+            "classe_css": "att",
+            "expressao_js": "'Parcela B comprimida em termos reais ao longo do ciclo: de '+mmi(pb0)+' para '+mmi(anos[4].t)+'. Um índice líquido negativo significa Fator X acima da inflação — a empresa precisa entregar ganho de produtividade real só para manter a receita. Se o ganho não vier, o ajuste sai da qualidade ou do investimento, e a conta aparece na revisão seguinte.'",
+            "linha": 1699,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 2,
+            "palavra": "else if",
+            "condicao": "share>=48",
+            "classe_css": "att",
+            "expressao_js": "'Remuneração do capital responde por '+shs+'% da Parcela B — concessão intensiva em capital. Nessa configuração, o custo de capital regulatório é o parâmetro dominante: cada ponto percentual vale '+mmi(sens)+' por ano, ou '+brl2(sens/E*1000)+'/MWh sobre o mercado faturado. É aqui que se concentra a disputa técnica da revisão, e é aqui que a análise independente tem mais a acrescentar.'",
+            "linha": 1700,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 3,
+            "palavra": "else if",
+            "condicao": "share>=25",
+            "classe_css": "ok",
+            "expressao_js": "'Composição equilibrada: '+shs+'% de remuneração de capital, o restante em operação e reintegração. O componente médio de '+brl2(comp)+'/MWh é a parcela da tarifa que responde à eficiência da distribuidora — e é apenas uma parte do que a fatura cobra. Um ponto percentual no custo de capital move '+mmi(sens)+' por ano.'",
+            "linha": 1701,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 4,
+            "palavra": "else",
+            "condicao": null,
+            "classe_css": "att",
+            "expressao_js": "'Remuneração do capital em apenas '+shs+'% da Parcela B: concessão intensiva em operação, não em ativos. Aqui o parâmetro que decide a revisão não é o custo de capital, e sim a metodologia de custo operacional eficiente — a empresa de referência. Discutir só a taxa de retorno numa concessão com este perfil é discutir a variável errada.'",
+            "linha": 1702,
+            "coberto_no_teste": true
+          }
+        ],
+        "nota": "expressao_js é a expressão literal passada a vd(); classe_css ok/att/per é a cor do veredito na fonte (não exibir como semáforo)."
+      },
+      "disclaimer": {
+        "html": "Didático/ilustrativo — não usar para dimensionamento real. Todos os valores são hipotéticos. O modelo mantém base, OPEX e reintegração constantes ao longo do ciclo e aplica o índice líquido do Fator X apenas sobre a Parcela B — simplificação grosseira: na prática a base cresce com investimento, a reintegração acompanha a base, o mercado varia e há componentes financeiros. O componente médio em R$/MWh não é tarifa: exclui Parcela A, perdas, tributos e estrutura horária.",
+        "texto": "Didático/ilustrativo — não usar para dimensionamento real. Todos os valores são hipotéticos. O modelo mantém base, OPEX e reintegração constantes ao longo do ciclo e aplica o índice líquido do Fator X apenas sobre a Parcela B — simplificação grosseira: na prática a base cresce com investimento, a reintegração acompanha a base, o mercado varia e há componentes financeiros. O componente médio em R$/MWh não é tarifa: exclui Parcela A, perdas, tributos e estrutura horária.",
+        "origem": {
+          "seletor": "div.inst p.disc",
+          "trecho_inicial": "<p class=\"disc\">Didático/ilustrativo — não usar para dimensionamento real. Todos os valore",
+          "linha_aprox": 865
+        }
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "A fonte não cita origem externa para constantes nem cenário-padrão; o próprio instrumento se declara \"Didático/ilustrativo — não usar para dimensionamento real\" (disclaimer). Na interface: \"cenário didático; fonte externa não declarada\" (P19).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada na fonte (P6).",
+      "cenario_padrao": {
+        "entradas": {
+          "i5-b": 4000,
+          "i5-w": 7.5,
+          "i5-o": 620,
+          "i5-d": 180,
+          "i5-e": 14000,
+          "i5-x": 2.5
+        },
+        "saidas": {
+          "i5-p": {
+            "html": "R$ 1,1 bi",
+            "texto": "R$ 1,1 bi"
+          },
+          "i5-c": {
+            "html": "R$ 78,57<span class=\"u\">/MWh</span>",
+            "texto": "R$ 78,57/MWh"
+          },
+          "i5-s": {
+            "html": "R$ 40 mi/ano",
+            "texto": "R$ 40 mi/ano"
+          },
+          "i5-f": {
+            "html": "R$ 1,21 bi",
+            "texto": "R$ 1,21 bi"
+          }
+        },
+        "veredito": {
+          "classe": "ok",
+          "texto": "Composição equilibrada: 27% de remuneração de capital, o restante em operação e reintegração. O componente médio de R$ 78,57/MWh é a parcela da tarifa que responde à eficiência da distribuidora — e é apenas uma parte do que a fatura cobra. Um ponto percentual no custo de capital move R$ 40 mi por ano.",
+          "ramo_linha": 1701
+        },
+        "metodo": "<script> original executado inteiro em DOM simulado (node:vm), run() disparado com os value= do markup — o mesmo que a página faz no carregamento."
+      },
+      "comparacao_codigo": {
+        "status": "divergente",
+        "id_codigo": "m05-inst-05",
+        "kind_codigo": "simulador",
+        "titulo_igual": true,
+        "formula_codigo": null,
+        "nota_igual_disclaimer": true,
+        "campos_divergentes": [],
+        "saidas_codigo": [
+          "i5-p",
+          "i5-c",
+          "i5-s",
+          "i5-f",
+          "i5-vd"
+        ],
+        "saidas_fonte": [
+          "i5-p",
+          "i5-c",
+          "i5-s",
+          "i5-f",
+          "i5-vd"
+        ],
+        "rotulos_saida_iguais": [
+          {
+            "id": "i5-p",
+            "igual": true
+          },
+          {
+            "id": "i5-c",
+            "igual": true
+          },
+          {
+            "id": "i5-s",
+            "igual": true
+          },
+          {
+            "id": "i5-f",
+            "igual": true
+          }
+        ],
+        "saidas_textuais_omitidas_em_valores": [],
+        "valores_extras_no_codigo": [],
+        "teste": {
+          "casos": 972,
+          "numerico_como_o_painel_semeia": {
+            "ok": 972,
+            "falha": 0,
+            "exemplos": []
+          },
+          "numerico_com_ids_da_fonte": {
+            "ok": 972,
+            "falha": 0,
+            "exemplos": []
+          },
+          "ramo_do_veredito": {
+            "ok": 0,
+            "falha": 972,
+            "exemplos": [
+              {
+                "entrada": {
+                  "i5-b": 200,
+                  "i5-w": 3,
+                  "i5-o": 30,
+                  "i5-d": 10,
+                  "i5-e": 500,
+                  "i5-x": -4
+                },
+                "ramo_fonte_linha": 1699,
+                "ramo_fonte_indice": 0,
+                "ramo_codigo_indice": 0,
+                "veredito_codigo": "A Parcela B é a parte que a revisão decide. Repare no peso da remuneração da base: é ali que um ponto percentual de WACC vira dezenas de milhões por ano, sem nenhuma mudança física na rede."
+              },
+              {
+                "entrada": {
+                  "i5-b": 200,
+                  "i5-w": 3,
+                  "i5-o": 30,
+                  "i5-d": 10,
+                  "i5-e": 500,
+                  "i5-x": 0
+                },
+                "ramo_fonte_linha": 1702,
+                "ramo_fonte_indice": 3,
+                "ramo_codigo_indice": 0,
+                "veredito_codigo": "A Parcela B é a parte que a revisão decide. Repare no peso da remuneração da base: é ali que um ponto percentual de WACC vira dezenas de milhões por ano, sem nenhuma mudança física na rede."
+              },
+              {
+                "entrada": {
+                  "i5-b": 200,
+                  "i5-w": 3,
+                  "i5-o": 30,
+                  "i5-d": 10,
+                  "i5-e": 500,
+                  "i5-x": 2.5
+                },
+                "ramo_fonte_linha": 1702,
+                "ramo_fonte_indice": 3,
+                "ramo_codigo_indice": 0,
+                "veredito_codigo": "A Parcela B é a parte que a revisão decide. Repare no peso da remuneração da base: é ali que um ponto percentual de WACC vira dezenas de milhões por ano, sem nenhuma mudança física na rede."
+              }
+            ]
+          },
+          "ramo_do_veredito_com_ids_da_fonte": {
+            "ok": 0,
+            "falha": 972,
+            "exemplos": [
+              {
+                "entrada": {
+                  "i5-b": 200,
+                  "i5-w": 3,
+                  "i5-o": 30,
+                  "i5-d": 10,
+                  "i5-e": 500,
+                  "i5-x": -4
+                },
+                "ramo_fonte_linha": 1699,
+                "ramo_fonte_indice": 0,
+                "ramo_codigo_indice": 0,
+                "veredito_codigo": "A Parcela B é a parte que a revisão decide. Repare no peso da remuneração da base: é ali que um ponto percentual de WACC vira dezenas de milhões por ano, sem nenhuma mudança física na rede."
+              },
+              {
+                "entrada": {
+                  "i5-b": 200,
+                  "i5-w": 3,
+                  "i5-o": 30,
+                  "i5-d": 10,
+                  "i5-e": 500,
+                  "i5-x": 0
+                },
+                "ramo_fonte_linha": 1702,
+                "ramo_fonte_indice": 3,
+                "ramo_codigo_indice": 0,
+                "veredito_codigo": "A Parcela B é a parte que a revisão decide. Repare no peso da remuneração da base: é ali que um ponto percentual de WACC vira dezenas de milhões por ano, sem nenhuma mudança física na rede."
+              },
+              {
+                "entrada": {
+                  "i5-b": 200,
+                  "i5-w": 3,
+                  "i5-o": 30,
+                  "i5-d": 10,
+                  "i5-e": 500,
+                  "i5-x": 2.5
+                },
+                "ramo_fonte_linha": 1702,
+                "ramo_fonte_indice": 3,
+                "ramo_codigo_indice": 0,
+                "veredito_codigo": "A Parcela B é a parte que a revisão decide. Repare no peso da remuneração da base: é ali que um ponto percentual de WACC vira dezenas de milhões por ano, sem nenhuma mudança física na rede."
+              }
+            ]
+          },
+          "veredito_verbatim": "0/972",
+          "ramos_fonte_cobertos": "4/4",
+          "vereditos_codigo_distintos_por_ramo": {
+            "1699": 1,
+            "1700": 1,
+            "1701": 1,
+            "1702": 1
+          },
+          "metodo": "Para cada entrada da grade: script original (DOM simulado) × INSTRUMENT_CALCULATORS[id] (bundle esbuild). Numérico: cada saída exibida pela fonte é lida de volta (pt-BR, bi/mi/mil) e comparada com valores[id] dentro da meia-unidade do último dígito exibido. Ramo: linha do vd() executado na fonte × ramo do texto do código (classificador por prefixo). Verbatim: texto do veredito idêntico."
+        }
+      }
+    },
+    {
+      "id": "m05-inst-06",
+      "tipo": "instrumento",
+      "camada": "fonte",
+      "id_fonte": "Inst · 06",
+      "titulo": "Mapa · Posição no desenho de mercado",
+      "prefixo_titulo": "Mapa",
+      "mecanica": {
+        "entradas_numericas": 3,
+        "entradas_booleanas": 0,
+        "saidas": 4,
+        "saidas_textuais": [
+          "i6-q",
+          "i6-r"
+        ],
+        "grafico": "svg",
+        "veredito_ramos": 3,
+        "kind_catalogo_taxonomia": "simulador (instrument-taxonomy.md; \"Mapa\", nome fora do enum)"
+      },
+      "aula": "06",
+      "aula_id_codigo": "aula-05-06",
+      "posicao_no_texto": {
+        "linhas": [
+          935,
+          961
+        ],
+        "subsecao": {
+          "numero": "6.4",
+          "titulo": "A dicotomia falsa que você precisa desmontar"
+        },
+        "depois_de": {
+          "tipo": "box",
+          "rotulo": "A formulação de três frases",
+          "trecho": "Todo sistema grande tem operador central por razão física. A diferença entre desenhos está",
+          "linha_aprox": 929
+        },
+        "antes_de": {
+          "tipo": "titulo",
+          "rotulo": "6.5 A matriz que você leva para qualquer desenho",
+          "trecho": "A matriz que você leva para qualquer desenho",
+          "linha_aprox": 963
+        },
+        "comentario_html": "INST 06"
+      },
+      "invocacoes_no_texto": [],
+      "invocacoes_nota": "Nenhuma frase das aulas chama o instrumento (\"abaixo\", \"use o simulador\"…): zero ocorrências. Ligações textuais indiretas: Ex·10 pede plotar um sistema \"no mapa de dois eixos\" (m05-ex-10); §6.1 define os dois eixos.",
+      "intro": {
+        "html": "Mova os dois eixos e observe em que quadrante a configuração cai, o que ela compra e onde ela tende a quebrar. Os três pontos de referência são configurações genéricas e anônimas, incluídas apenas para dar escala ao mapa — não representam nenhum sistema identificável.",
+        "texto": "Mova os dois eixos e observe em que quadrante a configuração cai, o que ela compra e onde ela tende a quebrar. Os três pontos de referência são configurações genéricas e anônimas, incluídas apenas para dar escala ao mapa — não representam nenhum sistema identificável.",
+        "origem": {
+          "seletor": "div.inst p.inst-intro",
+          "trecho_inicial": "<p class=\"inst-intro\">Mova os dois eixos e observe em que quadrante a configuração cai, o ",
+          "linha_aprox": 938
+        }
+      },
+      "pergunta": null,
+      "pergunta_nota": "A fonte não formula pergunta própria para o instrumento; o texto de abertura é uma instrução (inst-intro). Pergunta de previsão = camada Alexandria (P19).",
+      "entradas": [
+        {
+          "id": "i6-x",
+          "id_number": "i6-x-n",
+          "rotulo": "Revelação de custo",
+          "unidade": "0 oferta → 100 custo declarado",
+          "padrao": 85,
+          "min": 0,
+          "max": 100,
+          "passo": 5,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Revelação de custo <span class=\"unit\">0 ofer",
+            "linha_aprox": 940
+          }
+        },
+        {
+          "id": "i6-y",
+          "id_number": "i6-y-n",
+          "rotulo": "Remuneração de capacidade",
+          "unidade": "0 só energia → 100 formal",
+          "padrao": 45,
+          "min": 0,
+          "max": 100,
+          "passo": 5,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Remuneração de capacidade <span class=\"unit\"",
+            "linha_aprox": 943
+          }
+        },
+        {
+          "id": "i6-h",
+          "id_number": "i6-h-n",
+          "rotulo": "Peso do recurso armazenável plurianual",
+          "unidade": "%",
+          "padrao": 60,
+          "min": 0,
+          "max": 100,
+          "passo": 5,
+          "controle": "number + range gêmeo (um campo lógico)",
+          "number_igual_range": true,
+          "origem": {
+            "seletor": "div.inst .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Peso do recurso armazenável plurianual <span",
+            "linha_aprox": 946
+          }
+        }
+      ],
+      "sinais": null,
+      "saidas": [
+        {
+          "id": "i6-q",
+          "rotulo": "Quadrante",
+          "destaque": false,
+          "estilo": "font-size:13px",
+          "valor_inicial_markup": "—",
+          "textual": true,
+          "atribuicao_script": [
+            {
+              "linha": 1749,
+              "codigo": "$id('i6-q').textContent=quad;"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Quadrante</div><div class=\"n\" id=\"i6-q\" style=\"font-size:13",
+            "linha_aprox": 953
+          }
+        },
+        {
+          "id": "i6-co",
+          "rotulo": "Coerência com o parque",
+          "destaque": true,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1750,
+              "codigo": "$id('i6-co').innerHTML=coer.toFixed(0)+'<span class=\"u\">/100</span>';"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Coerência com o parque</div><div class=\"n gold\" id=\"i6-co\">",
+            "linha_aprox": 954
+          }
+        },
+        {
+          "id": "i6-d",
+          "rotulo": "Distância do Brasil",
+          "destaque": false,
+          "estilo": null,
+          "valor_inicial_markup": "—",
+          "textual": false,
+          "atribuicao_script": [
+            {
+              "linha": 1751,
+              "codigo": "$id('i6-d').textContent=dist.toFixed(0);"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Distância do Brasil</div><div class=\"n\" id=\"i6-d\">—</div></",
+            "linha_aprox": 955
+          }
+        },
+        {
+          "id": "i6-r",
+          "rotulo": "Risco dominante",
+          "destaque": false,
+          "estilo": "font-size:13px",
+          "valor_inicial_markup": "—",
+          "textual": true,
+          "atribuicao_script": [
+            {
+              "linha": 1752,
+              "codigo": "$id('i6-r').textContent=risco;"
+            }
+          ],
+          "origem": {
+            "seletor": "div.inst .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Risco dominante</div><div class=\"n\" id=\"i6-r\" style=\"font-s",
+            "linha_aprox": 956
+          }
+        }
+      ],
+      "formulas_script": [
+        {
+          "linha": 1711,
+          "codigo": "var W2=720,H2=300,ML=64,MR=24,MT=22,MB=44;"
+        },
+        {
+          "linha": 1712,
+          "codigo": "var MW=W2-ML-MR, MH=H2-MT-MB;"
+        },
+        {
+          "linha": 1713,
+          "codigo": "var BR={x:85,y:45};"
+        },
+        {
+          "linha": 1714,
+          "codigo": "var REF=[{x:20,y:15,n:'A'},{x:25,y:80,n:'B'},{x:55,y:50,n:'C'}];"
+        },
+        {
+          "linha": 1715,
+          "codigo": "function px(x){return ML+MW*clamp(x,0,100)/100;}"
+        },
+        {
+          "linha": 1716,
+          "codigo": "function py(y){return MT+MH*(1-clamp(y,0,100)/100);}"
+        },
+        {
+          "linha": 1718,
+          "codigo": "var X=+$id('i6-x').value, Y=+$id('i6-y').value, Hh=+$id('i6-h').value;"
+        },
+        {
+          "linha": 1719,
+          "codigo": "var xId=15+0.75*Hh, yId=70-0.35*Hh;"
+        },
+        {
+          "linha": 1720,
+          "codigo": "var coer=clamp(100-0.55*Math.abs(X-xId)-0.45*Math.abs(Y-yId),0,100);"
+        },
+        {
+          "linha": 1721,
+          "codigo": "var dist=Math.sqrt(Math.pow(X-BR.x,2)+Math.pow(Y-BR.y,2));"
+        },
+        {
+          "linha": 1722,
+          "codigo": "var quad = X<50 ? (Y<50?'Oferta · só energia':'Oferta · capacidade formal')"
+        },
+        {
+          "linha": 1723,
+          "codigo": ": (Y<50?'Custo · só energia':'Custo · capacidade formal');"
+        },
+        {
+          "linha": 1724,
+          "codigo": "var risco;"
+        },
+        {
+          "linha": 1725,
+          "codigo": "if(Y<32) risco='Missing money';"
+        },
+        {
+          "linha": 1726,
+          "codigo": "else if(Y>72) risco='Erro de projeção';"
+        },
+        {
+          "linha": 1727,
+          "codigo": "else if(X<35&&Hh>55) risco='Coordenação intertemporal';"
+        },
+        {
+          "linha": 1728,
+          "codigo": "else if(X>72) risco='Opacidade metodológica';"
+        },
+        {
+          "linha": 1729,
+          "codigo": "else risco='Custo administrativo';"
+        }
+      ],
+      "formula_nota": "Linhas de cálculo do <script> original, verbatim (classificadas por regex; desenho, saída e veredito separados). Funções de formatação compartilhadas (num, brl, brl2, mi, mmi, clamp) em formatadores_comuns.",
+      "script": {
+        "cabecalho": "/* ---------- INST 06 — mapa de desenho de mercado ---------- */",
+        "linhas": [
+          1708,
+          1762
+        ],
+        "codigo": [
+          {
+            "linha": 1709,
+            "tipo": "estrutura",
+            "codigo": "(function(){"
+          },
+          {
+            "linha": 1710,
+            "tipo": "estrutura",
+            "codigo": "  if(!$id('i6-x')) return;"
+          },
+          {
+            "linha": 1711,
+            "tipo": "geometria",
+            "codigo": "  var W2=720,H2=300,ML=64,MR=24,MT=22,MB=44;"
+          },
+          {
+            "linha": 1712,
+            "tipo": "geometria",
+            "codigo": "  var MW=W2-ML-MR, MH=H2-MT-MB;"
+          },
+          {
+            "linha": 1713,
+            "tipo": "geometria",
+            "codigo": "  var BR={x:85,y:45};"
+          },
+          {
+            "linha": 1714,
+            "tipo": "geometria",
+            "codigo": "  var REF=[{x:20,y:15,n:'A'},{x:25,y:80,n:'B'},{x:55,y:50,n:'C'}];"
+          },
+          {
+            "linha": 1715,
+            "tipo": "geometria",
+            "codigo": "  function px(x){return ML+MW*clamp(x,0,100)/100;}"
+          },
+          {
+            "linha": 1716,
+            "tipo": "geometria",
+            "codigo": "  function py(y){return MT+MH*(1-clamp(y,0,100)/100);}"
+          },
+          {
+            "linha": 1717,
+            "tipo": "estrutura",
+            "codigo": "  function run(){"
+          },
+          {
+            "linha": 1718,
+            "tipo": "calculo",
+            "codigo": "    var X=+$id('i6-x').value, Y=+$id('i6-y').value, Hh=+$id('i6-h').value;"
+          },
+          {
+            "linha": 1719,
+            "tipo": "calculo",
+            "codigo": "    var xId=15+0.75*Hh, yId=70-0.35*Hh;"
+          },
+          {
+            "linha": 1720,
+            "tipo": "calculo",
+            "codigo": "    var coer=clamp(100-0.55*Math.abs(X-xId)-0.45*Math.abs(Y-yId),0,100);"
+          },
+          {
+            "linha": 1721,
+            "tipo": "calculo",
+            "codigo": "    var dist=Math.sqrt(Math.pow(X-BR.x,2)+Math.pow(Y-BR.y,2));"
+          },
+          {
+            "linha": 1722,
+            "tipo": "calculo",
+            "codigo": "    var quad = X<50 ? (Y<50?'Oferta · só energia':'Oferta · capacidade formal')"
+          },
+          {
+            "linha": 1723,
+            "tipo": "calculo",
+            "codigo": "                    : (Y<50?'Custo · só energia':'Custo · capacidade formal');"
+          },
+          {
+            "linha": 1724,
+            "tipo": "calculo",
+            "codigo": "    var risco;"
+          },
+          {
+            "linha": 1725,
+            "tipo": "calculo",
+            "codigo": "    if(Y<32) risco='Missing money';"
+          },
+          {
+            "linha": 1726,
+            "tipo": "calculo",
+            "codigo": "    else if(Y>72) risco='Erro de projeção';"
+          },
+          {
+            "linha": 1727,
+            "tipo": "calculo",
+            "codigo": "    else if(X<35&&Hh>55) risco='Coordenação intertemporal';"
+          },
+          {
+            "linha": 1728,
+            "tipo": "calculo",
+            "codigo": "    else if(X>72) risco='Opacidade metodológica';"
+          },
+          {
+            "linha": 1729,
+            "tipo": "calculo",
+            "codigo": "    else risco='Custo administrativo';"
+          },
+          {
+            "linha": 1731,
+            "tipo": "desenho",
+            "codigo": "    var s='',i;"
+          },
+          {
+            "linha": 1732,
+            "tipo": "desenho",
+            "codigo": "    s+='<rect x=\"'+px(0)+'\" y=\"'+py(100)+'\" width=\"'+(px(50)-px(0)).toFixed(1)+'\" height=\"'+(py(50)-py(100)).toFixed(1)+'\" fill=\"rgba(6,182,212,.04)\"/>';"
+          },
+          {
+            "linha": 1733,
+            "tipo": "desenho",
+            "codigo": "    s+='<rect x=\"'+px(50)+'\" y=\"'+py(50)+'\" width=\"'+(px(100)-px(50)).toFixed(1)+'\" height=\"'+(py(0)-py(50)).toFixed(1)+'\" fill=\"rgba(6,182,212,.04)\"/>';"
+          },
+          {
+            "linha": 1734,
+            "tipo": "desenho",
+            "codigo": "    s+='<line x1=\"'+px(50)+'\" y1=\"'+py(0)+'\" x2=\"'+px(50)+'\" y2=\"'+py(100)+'\" stroke=\"#2E3440\" stroke-width=\"1\" stroke-dasharray=\"4 4\"/>';"
+          },
+          {
+            "linha": 1735,
+            "tipo": "desenho",
+            "codigo": "    s+='<line x1=\"'+px(0)+'\" y1=\"'+py(50)+'\" x2=\"'+px(100)+'\" y2=\"'+py(50)+'\" stroke=\"#2E3440\" stroke-width=\"1\" stroke-dasharray=\"4 4\"/>';"
+          },
+          {
+            "linha": 1736,
+            "tipo": "desenho",
+            "codigo": "    s+='<rect x=\"'+px(0)+'\" y=\"'+py(100)+'\" width=\"'+(px(100)-px(0)).toFixed(1)+'\" height=\"'+(py(0)-py(100)).toFixed(1)+'\" fill=\"none\" stroke=\"#242832\" stroke-width=\"1\"/>';"
+          },
+          {
+            "linha": 1737,
+            "tipo": "desenho",
+            "codigo": "    s+='<text x=\"'+((px(0)+px(100))/2).toFixed(1)+'\" y=\"'+(py(0)+30)+'\" fill=\"#6E7686\" font-size=\"10\" font-family=\"monospace\" text-anchor=\"middle\">revelação de custo · oferta → declaração auditada</text>';"
+          },
+          {
+            "linha": 1738,
+            "tipo": "desenho",
+            "codigo": "    s+='<text x=\"16\" y=\"'+((py(0)+py(100))/2).toFixed(1)+'\" fill=\"#6E7686\" font-size=\"10\" font-family=\"monospace\" text-anchor=\"middle\" transform=\"rotate(-90 16 '+((py(0)+py(100))/2).toFixed(1)+')\">capacidade · só energia → formal</text>';"
+          },
+          {
+            "linha": 1739,
+            "tipo": "desenho",
+            "codigo": "    for(i=0;i<REF.length;i++){"
+          },
+          {
+            "linha": 1740,
+            "tipo": "desenho",
+            "codigo": "      s+='<circle cx=\"'+px(REF[i].x).toFixed(1)+'\" cy=\"'+py(REF[i].y).toFixed(1)+'\" r=\"6\" fill=\"none\" stroke=\"#6E7686\" stroke-width=\"1.4\"/>';"
+          },
+          {
+            "linha": 1741,
+            "tipo": "desenho",
+            "codigo": "      s+='<text x=\"'+px(REF[i].x).toFixed(1)+'\" y=\"'+(py(REF[i].y)+3.5).toFixed(1)+'\" fill=\"#6E7686\" font-size=\"9\" font-family=\"monospace\" text-anchor=\"middle\">'+REF[i].n+'</text>';"
+          },
+          {
+            "linha": 1742,
+            "tipo": "estrutura",
+            "codigo": "    }"
+          },
+          {
+            "linha": 1743,
+            "tipo": "desenho",
+            "codigo": "    s+='<circle cx=\"'+px(BR.x).toFixed(1)+'\" cy=\"'+py(BR.y).toFixed(1)+'\" r=\"7\" fill=\"none\" stroke=\"#06B6D4\" stroke-width=\"2\"/>';"
+          },
+          {
+            "linha": 1744,
+            "tipo": "desenho",
+            "codigo": "    s+='<text x=\"'+px(BR.x).toFixed(1)+'\" y=\"'+(py(BR.y)-13).toFixed(1)+'\" fill=\"#06B6D4\" font-size=\"10\" font-family=\"monospace\" text-anchor=\"middle\">Brasil</text>';"
+          },
+          {
+            "linha": 1745,
+            "tipo": "desenho",
+            "codigo": "    s+='<line x1=\"'+px(BR.x).toFixed(1)+'\" y1=\"'+py(BR.y).toFixed(1)+'\" x2=\"'+px(X).toFixed(1)+'\" y2=\"'+py(Y).toFixed(1)+'\" stroke=\"#F59E0B\" stroke-width=\"1\" stroke-dasharray=\"3 3\" opacity=\".55\"/>';"
+          },
+          {
+            "linha": 1746,
+            "tipo": "desenho",
+            "codigo": "    s+='<circle cx=\"'+px(X).toFixed(1)+'\" cy=\"'+py(Y).toFixed(1)+'\" r=\"7\" fill=\"#F59E0B\" opacity=\".9\"/>';"
+          },
+          {
+            "linha": 1747,
+            "tipo": "desenho",
+            "codigo": "    $id('i6-svg').innerHTML=s;"
+          },
+          {
+            "linha": 1749,
+            "tipo": "saida",
+            "codigo": "    $id('i6-q').textContent=quad;"
+          },
+          {
+            "linha": 1750,
+            "tipo": "saida",
+            "codigo": "    $id('i6-co').innerHTML=coer.toFixed(0)+'<span class=\"u\">/100</span>';"
+          },
+          {
+            "linha": 1751,
+            "tipo": "saida",
+            "codigo": "    $id('i6-d').textContent=dist.toFixed(0);"
+          },
+          {
+            "linha": 1752,
+            "tipo": "saida",
+            "codigo": "    $id('i6-r').textContent=risco;"
+          },
+          {
+            "linha": 1754,
+            "tipo": "veredito",
+            "codigo": "    var v=$id('i6-vd');"
+          },
+          {
+            "linha": 1755,
+            "tipo": "veredito",
+            "codigo": "    if(coer>=80) vd(v,'ok','Configuração coerente com um parque em que o recurso armazenável plurianual pesa '+Hh+'%. Quadrante: '+quad.toLowerCase()+'. O risco que sobra é '+risco.toLowerCase()+' — nenhum desenho elimina risco, apenas escolhe qual carregar. Saber nomear qual você escolheu é o que distingue desenho de improviso.');"
+          },
+          {
+            "linha": 1756,
+            "tipo": "veredito",
+            "codigo": "    else if(coer>=55) vd(v,'att','Coerência de '+coer.toFixed(0)+'/100. A configuração é sustentável, mas há tensão entre o desenho e o parque: com '+Hh+'% de recurso armazenável plurianual, o eixo de revelação de custo tenderia a ficar mais próximo de '+xId.toFixed(0)+' e o de capacidade, de '+yId.toFixed(0)+'. Risco dominante: '+risco.toLowerCase()+'.');"
+          },
+          {
+            "linha": 1757,
+            "tipo": "veredito",
+            "codigo": "    else vd(v,'per','Coerência de '+coer.toFixed(0)+'/100: o desenho e o parque estão desalinhados. '+(X<xId-15?'Revelar custo por oferta voluntária num parque com forte armazenamento plurianual deixa o valor intertemporal da água fora da otimização — nenhum gerador individual o internaliza. ':'')+(Y<yId-15?'E remunerar capacidade apenas pela margem de energia, com demanda inelástica e teto de preço, é a receita conhecida do missing money. ':'')+'Risco dominante: '+risco.toLowerCase()+'.');"
+          },
+          {
+            "linha": 1758,
+            "tipo": "estrutura",
+            "codigo": "  }"
+          },
+          {
+            "linha": 1759,
+            "tipo": "ligacao",
+            "codigo": "  link('i6-x',run); link('i6-y',run); link('i6-h',run);"
+          },
+          {
+            "linha": 1760,
+            "tipo": "ligacao",
+            "codigo": "  run();"
+          },
+          {
+            "linha": 1761,
+            "tipo": "estrutura",
+            "codigo": "})();"
+          }
+        ]
+      },
+      "grafico": {
+        "svg": {
+          "id": "i6-svg",
+          "viewBox": "0 0 720 300",
+          "linha_aprox": 950
+        },
+        "barras": null,
+        "legenda": [
+          {
+            "cor": "#F59E0B",
+            "texto": "Configuração escolhida"
+          },
+          {
+            "cor": "#6E7686",
+            "texto": "Referências genéricas A · B · C"
+          },
+          {
+            "cor": "#06B6D4",
+            "texto": "Posição do Brasil"
+          }
+        ],
+        "rotulos_eixo_x": [],
+        "nota": "Desenho não porta como dado (protocolo §12); legenda e rótulos literais registrados."
+      },
+      "veredito": {
+        "id": "i6-vd",
+        "valor_inicial_markup": "—",
+        "ramos": [
+          {
+            "ordem": 1,
+            "palavra": "if",
+            "condicao": "coer>=80",
+            "classe_css": "ok",
+            "expressao_js": "'Configuração coerente com um parque em que o recurso armazenável plurianual pesa '+Hh+'%. Quadrante: '+quad.toLowerCase()+'. O risco que sobra é '+risco.toLowerCase()+' — nenhum desenho elimina risco, apenas escolhe qual carregar. Saber nomear qual você escolheu é o que distingue desenho de improviso.'",
+            "linha": 1755,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 2,
+            "palavra": "else if",
+            "condicao": "coer>=55",
+            "classe_css": "att",
+            "expressao_js": "'Coerência de '+coer.toFixed(0)+'/100. A configuração é sustentável, mas há tensão entre o desenho e o parque: com '+Hh+'% de recurso armazenável plurianual, o eixo de revelação de custo tenderia a ficar mais próximo de '+xId.toFixed(0)+' e o de capacidade, de '+yId.toFixed(0)+'. Risco dominante: '+risco.toLowerCase()+'.'",
+            "linha": 1756,
+            "coberto_no_teste": true
+          },
+          {
+            "ordem": 3,
+            "palavra": "else",
+            "condicao": null,
+            "classe_css": "per",
+            "expressao_js": "'Coerência de '+coer.toFixed(0)+'/100: o desenho e o parque estão desalinhados. '+(X<xId-15?'Revelar custo por oferta voluntária num parque com forte armazenamento plurianual deixa o valor intertemporal da água fora da otimização — nenhum gerador individual o internaliza. ':'')+(Y<yId-15?'E remunerar capacidade apenas pela margem de energia, com demanda inelástica e teto de preço, é a receita conhecida do missing money. ':'')+'Risco dominante: '+risco.toLowerCase()+'.'",
+            "linha": 1757,
+            "coberto_no_teste": true
+          }
+        ],
+        "nota": "expressao_js é a expressão literal passada a vd(); classe_css ok/att/per é a cor do veredito na fonte (não exibir como semáforo)."
+      },
+      "disclaimer": {
+        "html": "Didático/ilustrativo — não usar para dimensionamento real. Os eixos são índices adimensionais construídos para este módulo; os pontos A, B e C são configurações genéricas de referência, não representações de sistemas reais. A \"coerência com o parque\" é uma heurística que penaliza revelação por oferta quando o peso do recurso armazenável plurianual é alto, e penaliza remuneração puramente de energia quando esse peso é baixo — nada além disso.",
+        "texto": "Didático/ilustrativo — não usar para dimensionamento real. Os eixos são índices adimensionais construídos para este módulo; os pontos A, B e C são configurações genéricas de referência, não representações de sistemas reais. A \"coerência com o parque\" é uma heurística que penaliza revelação por oferta quando o peso do recurso armazenável plurianual é alto, e penaliza remuneração puramente de energia quando esse peso é baixo — nada além disso.",
+        "origem": {
+          "seletor": "div.inst p.disc",
+          "trecho_inicial": "<p class=\"disc\">Didático/ilustrativo — não usar para dimensionamento real. Os eixos são ín",
+          "linha_aprox": 959
+        }
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "A fonte não cita origem externa para constantes nem cenário-padrão; o próprio instrumento se declara \"Didático/ilustrativo — não usar para dimensionamento real\" (disclaimer). Na interface: \"cenário didático; fonte externa não declarada\" (P19).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada na fonte (P6).",
+      "cenario_padrao": {
+        "entradas": {
+          "i6-x": 85,
+          "i6-y": 45,
+          "i6-h": 60
+        },
+        "saidas": {
+          "i6-q": {
+            "html": "Custo · só energia",
+            "texto": "Custo · só energia"
+          },
+          "i6-co": {
+            "html": "84<span class=\"u\">/100</span>",
+            "texto": "84/100"
+          },
+          "i6-d": {
+            "html": "0",
+            "texto": "0"
+          },
+          "i6-r": {
+            "html": "Opacidade metodológica",
+            "texto": "Opacidade metodológica"
+          }
+        },
+        "veredito": {
+          "classe": "ok",
+          "texto": "Configuração coerente com um parque em que o recurso armazenável plurianual pesa 60%. Quadrante: custo · só energia. O risco que sobra é opacidade metodológica — nenhum desenho elimina risco, apenas escolhe qual carregar. Saber nomear qual você escolheu é o que distingue desenho de improviso.",
+          "ramo_linha": 1755
+        },
+        "metodo": "<script> original executado inteiro em DOM simulado (node:vm), run() disparado com os value= do markup — o mesmo que a página faz no carregamento."
+      },
+      "comparacao_codigo": {
+        "status": "divergente",
+        "id_codigo": "m05-inst-06",
+        "kind_codigo": "simulador",
+        "titulo_igual": true,
+        "formula_codigo": null,
+        "nota_igual_disclaimer": true,
+        "campos_divergentes": [],
+        "saidas_codigo": [
+          "i6-q",
+          "i6-co",
+          "i6-d",
+          "i6-r",
+          "i6-vd"
+        ],
+        "saidas_fonte": [
+          "i6-q",
+          "i6-co",
+          "i6-d",
+          "i6-r",
+          "i6-vd"
+        ],
+        "rotulos_saida_iguais": [
+          {
+            "id": "i6-q",
+            "igual": true
+          },
+          {
+            "id": "i6-co",
+            "igual": true
+          },
+          {
+            "id": "i6-d",
+            "igual": true
+          },
+          {
+            "id": "i6-r",
+            "igual": true
+          }
+        ],
+        "saidas_textuais_omitidas_em_valores": [
+          "i6-q",
+          "i6-r"
+        ],
+        "valores_extras_no_codigo": [],
+        "teste": {
+          "casos": 9261,
+          "numerico_como_o_painel_semeia": {
+            "ok": 9261,
+            "falha": 0,
+            "exemplos": []
+          },
+          "numerico_com_ids_da_fonte": {
+            "ok": 9261,
+            "falha": 0,
+            "exemplos": []
+          },
+          "ramo_do_veredito": {
+            "ok": 9261,
+            "falha": 0,
+            "exemplos": []
+          },
+          "ramo_do_veredito_com_ids_da_fonte": {
+            "ok": 9261,
+            "falha": 0,
+            "exemplos": []
+          },
+          "veredito_verbatim": "0/9261",
+          "ramos_fonte_cobertos": "3/3",
+          "vereditos_codigo_distintos_por_ramo": {
+            "1755": 12,
+            "1756": 12,
+            "1757": 10
+          },
+          "metodo": "Para cada entrada da grade: script original (DOM simulado) × INSTRUMENT_CALCULATORS[id] (bundle esbuild). Numérico: cada saída exibida pela fonte é lida de volta (pt-BR, bi/mi/mil) e comparada com valores[id] dentro da meia-unidade do último dígito exibido. Ramo: linha do vd() executado na fonte × ramo do texto do código (classificador por prefixo). Verbatim: texto do veredito idêntico."
+        }
+      }
+    }
+  ],
+  "divergencias": [
+    {
+      "id": "div-m05-inst-01",
+      "tema": "INST·01: id do campo \"Operadores concorrentes\" quebra o cálculo no produto",
+      "tipo": "fonte_x_codigo",
+      "severidade": "alta",
+      "nota": "O campo do código tem id \"i1\" (fonte: range \"i1-n\"), mas a calculadora lê i['i1-n']; o painel semeia por field.id, então N = 0 sempre. Resultado medido na grade (360 casos): numérico como o painel semeia 0 ok / 360 falhas; com os ids da fonte 360 ok / 0 falhas.",
+      "exemplo": {
+        "entrada": {
+          "i1-q": 5,
+          "i1-f": 50,
+          "i1-c": 20,
+          "i1-n": 1
+        },
+        "diferencas": [
+          {
+            "saida": "i1-cm",
+            "fonte": "R$ 1.020/ano",
+            "codigo": 20
+          },
+          {
+            "saida": "i1-tf",
+            "fonte": "R$ 50 mi",
+            "codigo": 0
+          }
+        ]
+      },
+      "decisao": "Registrar (bug do código, não da fonte)."
+    },
+    {
+      "id": "div-m05-inst-02",
+      "tema": "Vereditos parafraseados (não verbatim) nos seis instrumentos",
+      "tipo": "fonte_x_codigo",
+      "severidade": "alta",
+      "nota": "Inst · 01: verbatim 0/360, ramo 27/360; Inst · 02: verbatim 0/1764, ramo 1764/1764; Inst · 03: verbatim 0/1815, ramo 1815/1815; Inst · 04: verbatim 3/768, ramo 768/768; Inst · 05: verbatim 0/972, ramo 0/972; Inst · 06: verbatim 0/9261, ramo 9261/9261. Os textos do código encurtam os ramos e removem a interpolação numérica (R$, %, atrito, opacidade).",
+      "decisao": "Registrar; o texto da fonte é o de instrumentos[].veredito.ramos[].expressao_js."
+    },
+    {
+      "id": "div-m05-inst-03",
+      "tema": "INST·05: veredito único no código",
+      "tipo": "fonte_x_codigo",
+      "severidade": "alta",
+      "nota": "A fonte tem 4 ramos (X<0; participação da remuneração ≥48%, ≥25%, senão); o código devolve sempre o mesmo texto, que não existe na fonte.",
+      "decisao": "Registrar."
+    },
+    {
+      "id": "div-m05-inst-04",
+      "tema": "kind fora do enum e descrição da taxonomia",
+      "tipo": "codigo_x_taxonomia_x_fonte",
+      "nota": "Código: INST·04 kind \"quebra-cabeca\", INST·06 kind \"simulador\" — iguais a docs/alexandria/instrument-taxonomy.md. Mas a taxonomia descreve o Termômetro pelo CÓDIGO (\"8 campos select booleanos (Presente/Ausente), cada um com peso fixo documentado no rótulo\" e \"5 saídas\"); na FONTE são 8 checkboxes sem peso no rótulo (o peso só aparece como \"N pts\" na barra de um sinal marcado) e 4 readouts + veredito.",
+      "decisao": "Registrar para FOUNDRY."
+    },
+    {
+      "id": "div-m05-inst-05",
+      "tema": "Saídas textuais fora de valores",
+      "tipo": "limitacao_contrato",
+      "nota": "i2-b, i4-r, i6-q, i6-r são texto na fonte; o código as omite de valores e as cita no veredito parafraseado (i6-q/i6-r e i4-r) ou nem isso (i2-b só aparece no nome do grau). Protocolo §12.",
+      "decisao": "Registrar."
+    },
+    {
+      "id": "div-m05-inst-06",
+      "tema": "INST·04: sinais como select e sem descrição",
+      "tipo": "fonte_x_codigo",
+      "severidade": "media",
+      "nota": "A fonte usa 8 checkboxes com título (b) e descrição; o código usa 8 selects \"Presente/Ausente\" com rótulo \"título (N pts)\" — o peso vira texto visível (a fonte não mostra peso no sinal; mostra \"N pts\" só na barra) e a descrição d some.",
+      "decisao": "Registrar."
+    },
+    {
+      "id": "div-m05-inst-07",
+      "tema": "Formatação das saídas",
+      "tipo": "fonte_x_codigo",
+      "severidade": "baixa",
+      "nota": "A fonte formata cada saída com unidade embutida (R$ …/ano, R$ … mi, …/100, …/8, \"zero\"); o código devolve número cru com unit null em todos os outputs. i1-pct existe só no código.",
+      "decisao": "Registrar."
+    },
+    {
+      "id": "div-m05-inst-08",
+      "tema": "Constantes sem procedência",
+      "tipo": "lacuna_fonte",
+      "nota": "CRF 10% (INST·01), BC/BK (INST·02), SP R$ 200/MWh e fatores 0,35/0,90/1,6 (INST·03), pesos 22…3 (INST·04 — \"Os pesos são arbitrários\"), posição do Brasil (85,45) e referências A/B/C (INST·06) não têm fonte externa; os disclaimers as declaram ilustrativas.",
+      "decisao": "P19/P20: cenário didático rotulado; nunca benchmark real."
+    }
+  ]
+}

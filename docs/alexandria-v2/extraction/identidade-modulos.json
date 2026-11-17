@@ -1,0 +1,1254 @@
+{
+  "schema": "alexandria-v2/identidade-modulos@1",
+  "camada": "alexandria",
+  "geradoEm": "2026-09-20",
+  "escopo": "Lacuna B4 do bar: com os títulos cobertos, os 17 módulos precisam se distinguir. Uma frase de identidade (≤ 12 palavras), a marca gravada que já existe e os objetos reais de cada módulo, para o Sumário e a carta pararem de imprimir a mesma linha de metadado para todos.",
+  "fontes": {
+    "conteudo": "docs/alexandria-v2/extraction/mNN/{modulo.json,aparato.json,instrumentos.json}",
+    "marcas": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/_indice.json (série r04, variante B — a decidida para papel)",
+    "regras": [
+      "bar.md B4",
+      "sistema-de-conquistas.md §6.3–§6.5",
+      "features-propostas.md F-MD3",
+      "P5",
+      "P8",
+      "P14",
+      "P18",
+      "P25",
+      "S4"
+    ]
+  },
+  "regrasAplicadas": {
+    "P18": "O estado terminal de módulo se chama \"Concluído\". Nunca \"Aprovado\".",
+    "P5": "O quiz é resultado de avaliação, não \"Demonstrado\".",
+    "P14": "Critério oral ou cronometrado é \"atividade recomendada\".",
+    "P25": "Jogos fora desta wave: só a linha \"experiência jogável em desenho\", sem controle e sem destino.",
+    "P8": "Divergência de título e de contagem é reconciliação separada; \"título a confirmar\" não é experiência normal.",
+    "S4": "O que não estiver na fonte se declara ausente; nunca se preenche por plausibilidade."
+  },
+  "marcaDeIdentidade": {
+    "resposta": "A medalha serve de marca de identidade a partir de 48 px CSS (arquivo de 96 px, faixa P). A 24 px ela NÃO serve: o §6.5 do sistema-de-conquistas não publica raster nessa faixa — a 24 px o ativo é um SVG vetorial que desenha só a silhueta de ESTADO (obtida / não obtida / plaqueta). Nessa faixa os 17 módulos colidem entre si por construção, porque nenhum motivo de módulo é desenhado.",
+    "fonteDaRegra": "docs/alexandria-v2/estudos/movimento-e-conquistas/sistema-de-conquistas.md §6.3 e §6.5",
+    "folhaDeSilhuetas24": {
+      "arquivo": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/contato/silhuetas-24-cinza.png",
+      "gerador": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/folha_silhuetas_24.py",
+      "oQueEstaNaFolha": [
+        "obtida — disco cheio · anel · ponto central vazado",
+        "não obtida (obtível hoje) — anel de 1 px tracejado · sem ponto",
+        "sinal de competência (reservado) — retângulo cheio 4:3"
+      ],
+      "conclusao": "A folha separa ESTADOS, não módulos. Conferida: nenhuma das três silhuetas carrega motivo de módulo. Logo, a 24 px o par que colide é qualquer par dos 17 — a colisão é total e é de projeto."
+    },
+    "medidoAgora": {
+      "metrica": "distância euclidiana entre vetores centrados e normalizados do disco em cinza sobre pergaminho #F2E9D6 — a mesma de medalhas/verificar.py, aplicada só aos 17 slugs conclusao-modulo-NN, variante B (a decidida para papel)",
+      "48css_de_96px": {
+        "min": 0.84,
+        "medianaVizinho": 0.957,
+        "parMaisProximo": [
+          "conclusao-modulo-01",
+          "conclusao-modulo-05"
+        ],
+        "seguintes": [
+          [
+            "conclusao-modulo-05",
+            "conclusao-modulo-13",
+            0.862
+          ],
+          [
+            "conclusao-modulo-15",
+            "conclusao-modulo-16",
+            0.886
+          ],
+          [
+            "conclusao-modulo-07",
+            "conclusao-modulo-08",
+            0.942
+          ]
+        ]
+      },
+      "96css_de_192px": {
+        "min": 0.803,
+        "medianaVizinho": 0.92,
+        "parMaisProximo": [
+          "conclusao-modulo-05",
+          "conclusao-modulo-13"
+        ],
+        "seguintes": [
+          [
+            "conclusao-modulo-01",
+            "conclusao-modulo-05",
+            0.847
+          ],
+          [
+            "conclusao-modulo-06",
+            "conclusao-modulo-13",
+            0.855
+          ]
+        ]
+      },
+      "referenciaDaSerie": "o piso da série inteira (74 artes) a 48 CSS na variante B é 0,288 (pratica-previsao-comparada × pratica-primeira-previsao, `verificacao/verificacao-B.json`). O pior par dos 17 módulos, 0,840, está 2,9× acima desse piso: nenhum par de módulo colide a 48.",
+      "sinteticoA24": "forçar o raster de 96 px para 24 px dá min 0,834 (M15 × M16). É medida sintética e fora do caminho de produção — a 24 px o sistema não serve raster (§6.5). Não vale como aceite."
+    },
+    "consequenciaParaOSumario": "Numa linha de sumário a 24 px a marca gravada não distingue módulo. Duas saídas honestas, nenhuma inventa arte: (a) a linha usa a marca a 48 px CSS, onde a distinção está medida; (b) a linha a 24 px usa a silhueta de estado (P18: \"Concluído\", nunca \"Aprovado\") e quem distingue o módulo é a frase de identidade + a fila de glifos dos objetos, como o B4 pede.",
+    "F_MD3": "A estação do globo e a medalha são o mesmo objeto: o disco de latão da estação vira a medalha, e a placa do tímpano sai da mesma carta r04 do globo, com o triângulo da estação na mesma posição relativa da ilha (features-propostas.md, F-MD3). Por isso o mapeamento abaixo é 1:1 e não precisa de arte nova."
+  },
+  "modulos": [
+    {
+      "id": "m01",
+      "numero": 1,
+      "tituloCatalogo": "Física de Energia e Eletricidade",
+      "territorio": {
+        "romano": "I",
+        "nome": "Fundamentos Universais"
+      },
+      "frase": "Uma conta de luz não é uma cobrança por energia.",
+      "frasePalavras": 10,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m01/modulo.json",
+        "campo": "modulo.json → tese.citacao.texto",
+        "blocoNaFonte": "§ 00 · Filosofia do módulo — pull-quote",
+        "linhaAproxNoHtml": 1296,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo01.html",
+        "trecho": "Uma conta de luz não é uma cobrança por energia. É uma fotografia econômica de como uma instalação usa potência, tempo, tensão, corrente, infraestrutura e qualidade elétrica."
+      },
+      "objetos": {
+        "instrumentos": null,
+        "instrumentosNota": "não declarado — o M01 não tem `instrumentos.json`; a extração cobriu só o INST·06 (aula 08) e o LAB·01 (S4)",
+        "laboratorio": true,
+        "laboratorioNota": "§ Lab · LAB·01 \"Comparador de perfil elétrico\" — o único § Lab dos 17 módulos",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 16,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 8,
+        "referencias": 8,
+        "glossarioTermos": 38,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [
+        "Sem `instrumentos.json`: a extração cobriu só o INST·06 (aula 08) e o LAB·01. A contagem de instrumentos do M01 fica **não declarada** (S4) — não é zero.",
+        "§ Lex: a prosa declara \"Vinte e oito termos\"; o markup traz 38 (`aparato.json → glossario.contagem`). Registrado, não reconciliado (P8).",
+        "Três critérios de domínio coexistem na fonte (Drill 6/8, Quiz 8/10, Checklist 16/16) sem precedência declarada (`modulo.json → criterio.nota_p5`).",
+        "Título do hero (\"Física de energia e eletricidade: o módulo que transforma watts em decisão financeira.\") ≠ título do catálogo. Reconciliação separada (P8)."
+      ],
+      "marcaSlug": "conclusao-modulo-01",
+      "marcaConquista": "conclusao.modulo.modulo-01",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-01-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-01-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-01-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-01-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-01-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-01-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-01-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-01"
+    },
+    {
+      "id": "m02",
+      "numero": 2,
+      "tituloCatalogo": "Como Funciona uma Rede Elétrica",
+      "territorio": {
+        "romano": "I",
+        "nome": "Fundamentos Universais"
+      },
+      "frase": "Eletricidade, em escala de rede, não se armazena de forma economicamente significativa.",
+      "frasePalavras": 12,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m02/modulo.json",
+        "campo": "modulo.json → tese.lead.texto",
+        "blocoNaFonte": "§ 00 · lead da tese",
+        "linhaAproxNoHtml": null,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo02.html",
+        "trecho": "Eletricidade, em escala de rede, não se armazena de forma economicamente significativa. Tudo o que parece burocracia no setor […] existe por causa dessa única frase."
+      },
+      "objetos": {
+        "instrumentos": 9,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 18,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 10,
+        "referencias": 16,
+        "glossarioTermos": 65,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [
+        "§ Ex: a prosa declara \"Oito\"; o markup traz 10 (`aparato.json → contagens.exercicios`). Registrado, não reconciliado (P8).",
+        "Título do hero é frase longa ≠ título do catálogo; no catálogo do código o bloco-02 está como `priority: confirmar`, com horas nulas. \"Título a confirmar\" não é experiência normal (P8)."
+      ],
+      "marcaSlug": "conclusao-modulo-02",
+      "marcaConquista": "conclusao.modulo.modulo-02",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-02-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-02-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-02-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-02-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-02-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-02-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-02-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-02"
+    },
+    {
+      "id": "m03",
+      "numero": 3,
+      "tituloCatalogo": "Tecnologias de Geração",
+      "territorio": {
+        "romano": "I",
+        "nome": "Fundamentos Universais"
+      },
+      "frase": "O sistema elétrico não compra fontes — compra atributos.",
+      "frasePalavras": 9,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata-ate-pontuacao",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m03/modulo.json",
+        "campo": "modulo.json → tese.lead.texto",
+        "blocoNaFonte": "§ 00 · lead da tese",
+        "linhaAproxNoHtml": null,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo03.html",
+        "trecho": "O sistema elétrico não compra fontes — compra atributos: energia barata, potência firme, flexibilidade para subir e descer, inércia, localização certa."
+      },
+      "objetos": {
+        "instrumentos": 9,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 18,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 10,
+        "referencias": 17,
+        "glossarioTermos": 63,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [
+        "Título do hero é frase longa ≠ título do catálogo. Reconciliação separada (P8)."
+      ],
+      "marcaSlug": "conclusao-modulo-03",
+      "marcaConquista": "conclusao.modulo.modulo-03",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-03-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-03-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-03-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-03-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-03-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-03-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-03-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-03"
+    },
+    {
+      "id": "m04",
+      "numero": 4,
+      "tituloCatalogo": "Economia de Mercados de Energia",
+      "territorio": {
+        "romano": "I",
+        "nome": "Fundamentos Universais"
+      },
+      "frase": "O mercado elétrico não precifica MWh.",
+      "frasePalavras": 6,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m04/modulo.json",
+        "campo": "modulo.json → tese.blocos[4].paragrafos[0].texto",
+        "blocoNaFonte": "callout \"Ideia central do módulo\"",
+        "linhaAproxNoHtml": 279,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo04.html",
+        "trecho": "O mercado elétrico não precifica MWh. Ele precifica tempo, localização, risco, flexibilidade e confiabilidade, e cobra tudo isso embutido em um número por MWh."
+      },
+      "objetos": {
+        "instrumentos": 7,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 20,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 9,
+        "referencias": 11,
+        "glossarioTermos": 58,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [],
+      "marcaSlug": "conclusao-modulo-04",
+      "marcaConquista": "conclusao.modulo.modulo-04",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-04-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-04-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-04-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-04-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-04-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-04-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-04-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-04"
+    },
+    {
+      "id": "m05",
+      "numero": 5,
+      "tituloCatalogo": "Regulação e Desenho de Mercados",
+      "territorio": {
+        "romano": "I",
+        "nome": "Fundamentos Universais"
+      },
+      "frase": "O desenho do setor elétrico não escolhe entre mercado e Estado.",
+      "frasePalavras": 11,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m05/modulo.json",
+        "campo": "modulo.json → tese.blocos[15].texto",
+        "blocoNaFonte": "box \"Ideia central do módulo\"",
+        "linhaAproxNoHtml": 318,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo05.html",
+        "trecho": "O desenho do setor elétrico não escolhe entre mercado e Estado. Ele coloca competição onde ela funciona, regulação onde ela é inevitável e transparência nos dois […]."
+      },
+      "objetos": {
+        "instrumentos": 6,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 21,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 10,
+        "referencias": 16,
+        "glossarioTermos": 72,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [],
+      "marcaSlug": "conclusao-modulo-05",
+      "marcaConquista": "conclusao.modulo.modulo-05",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-05-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-05-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-05-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-05-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-05-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-05-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-05-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-05"
+    },
+    {
+      "id": "m06",
+      "numero": 6,
+      "tituloCatalogo": "História do Setor Elétrico Brasileiro",
+      "territorio": {
+        "romano": "II",
+        "nome": "Setor Elétrico Brasileiro"
+      },
+      "frase": "Toda estrutura de hoje tem uma data e uma causa.",
+      "frasePalavras": 10,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata-ate-pontuacao",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m06/modulo.json",
+        "campo": "modulo.json → tese.titulo_secao.texto",
+        "blocoNaFonte": "§ 00 · título da tese",
+        "linhaAproxNoHtml": null,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo06.html",
+        "trecho": "Toda estrutura de hoje tem uma data e uma causa"
+      },
+      "objetos": {
+        "instrumentos": 8,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 24,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 10,
+        "referencias": 21,
+        "glossarioTermos": 99,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [],
+      "marcaSlug": "conclusao-modulo-06",
+      "marcaConquista": "conclusao.modulo.modulo-06",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-06-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-06-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-06-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-06-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-06-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-06-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-06-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-06"
+    },
+    {
+      "id": "m07",
+      "numero": 7,
+      "tituloCatalogo": "Estrutura Institucional do Setor Elétrico Brasileiro",
+      "territorio": {
+        "romano": "II",
+        "nome": "Setor Elétrico Brasileiro"
+      },
+      "frase": "O setor elétrico brasileiro não tem um chefe.",
+      "frasePalavras": 8,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata-ate-pontuacao",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m07/modulo.json",
+        "campo": "modulo.json → tese.titulo.texto",
+        "blocoNaFonte": "§ 00 · título da tese",
+        "linhaAproxNoHtml": null,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo07.html",
+        "trecho": "O setor elétrico brasileiro não tem um chefe"
+      },
+      "objetos": {
+        "instrumentos": 10,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 26,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 12,
+        "referencias": 27,
+        "glossarioTermos": 118,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [],
+      "marcaSlug": "conclusao-modulo-07",
+      "marcaConquista": "conclusao.modulo.modulo-07",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-07-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-07-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-07-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-07-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-07-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-07-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-07-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-07"
+    },
+    {
+      "id": "m08",
+      "numero": 8,
+      "tituloCatalogo": "Matriz Elétrica Brasileira em Profundidade",
+      "territorio": {
+        "romano": "II",
+        "nome": "Setor Elétrico Brasileiro"
+      },
+      "frase": "Não existe a matriz elétrica brasileira.",
+      "frasePalavras": 6,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata-ate-pontuacao",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m08/modulo.json",
+        "campo": "modulo.json → tese.blocos[1].texto",
+        "blocoNaFonte": "§ Tese · titulo_secao",
+        "linhaAproxNoHtml": null,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo08.html",
+        "trecho": "Não existe a matriz elétrica brasileira  (no HTML: \"Não existe <em>a</em> matriz elétrica brasileira\")"
+      },
+      "objetos": {
+        "instrumentos": 11,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 26,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 12,
+        "referencias": 28,
+        "glossarioTermos": 124,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [
+        "O § Caso traz `decisao_pedida`: é o \"Exercício de decisão\" que o bar cita em B4. Marco de tipo caso/decisão — não \"jogo\"."
+      ],
+      "marcaSlug": "conclusao-modulo-08",
+      "marcaConquista": "conclusao.modulo.modulo-08",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-08-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-08-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-08-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-08-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-08-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-08-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-08-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-08"
+    },
+    {
+      "id": "m09",
+      "numero": 9,
+      "tituloCatalogo": "Os Mercados ACR e ACL em Profundidade",
+      "territorio": {
+        "romano": "II",
+        "nome": "Setor Elétrico Brasileiro"
+      },
+      "frase": "A comparação entre os dois nunca é uma comparação de preço.",
+      "frasePalavras": 11,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m09/modulo.json",
+        "campo": "modulo.json → tese.blocos[4].paragrafos[0].texto",
+        "blocoNaFonte": "box \"A frase que organiza o módulo inteiro\"",
+        "linhaAproxNoHtml": 463,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo09.html",
+        "trecho": "A comparação entre os dois nunca é uma comparação de preço. É uma comparação entre dois arranjos de alocação de risco."
+      },
+      "objetos": {
+        "instrumentos": 11,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 28,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 14,
+        "referencias": 30,
+        "glossarioTermos": 136,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [],
+      "marcaSlug": "conclusao-modulo-09",
+      "marcaConquista": "conclusao.modulo.modulo-09",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-09-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-09-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-09-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-09-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-09-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-09-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-09-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-09"
+    },
+    {
+      "id": "m10",
+      "numero": 10,
+      "tituloCatalogo": "Tarifas e a Conta de Luz Industrial",
+      "territorio": {
+        "romano": "II",
+        "nome": "Setor Elétrico Brasileiro"
+      },
+      "frase": "A fatura industrial é composta por quatro eixos de controle.",
+      "frasePalavras": 10,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m10/modulo.json",
+        "campo": "modulo.json → tese.blocos[3].paragrafos[0].texto",
+        "blocoNaFonte": "box \"A afirmação que organiza o módulo\"",
+        "linhaAproxNoHtml": 468,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo10.html",
+        "trecho": "A fatura industrial é composta por quatro eixos de controle. O que a empresa controla […]. O que a empresa negocia […]. O que a empresa apenas suporta […]. O que muda sozinho e quando […]."
+      },
+      "objetos": {
+        "instrumentos": 11,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 28,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 14,
+        "referencias": 35,
+        "glossarioTermos": 161,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [],
+      "marcaSlug": "conclusao-modulo-10",
+      "marcaConquista": "conclusao.modulo.modulo-10",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-10-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-10-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-10-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-10-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-10-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-10-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-10-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-10"
+    },
+    {
+      "id": "m11",
+      "numero": 11,
+      "tituloCatalogo": "Geração Distribuída e a Anatomia de uma Proposta Solar",
+      "territorio": {
+        "romano": "II",
+        "nome": "Setor Elétrico Brasileiro"
+      },
+      "frase": "A proposta solar não é um orçamento.",
+      "frasePalavras": 7,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m11/modulo.json",
+        "campo": "modulo.json → tese.blocos[0].texto (lede do § 00)",
+        "blocoNaFonte": "§ 00 · lede da tese",
+        "linhaAproxNoHtml": null,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo11.html",
+        "trecho": "A proposta solar não é um orçamento. Ela é um empilhamento de premissas […]."
+      },
+      "objetos": {
+        "instrumentos": 11,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 28,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 14,
+        "referencias": 32,
+        "glossarioTermos": 150,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [],
+      "marcaSlug": "conclusao-modulo-11",
+      "marcaConquista": "conclusao.modulo.modulo-11",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-11-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-11-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-11-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-11-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-11-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-11-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-11-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-11"
+    },
+    {
+      "id": "m12",
+      "numero": 12,
+      "tituloCatalogo": "Geopolítica Energética do Brasil",
+      "territorio": {
+        "romano": "II",
+        "nome": "Setor Elétrico Brasileiro"
+      },
+      "frase": "O Brasil não escolheu entre ser potência renovável e potência fóssil.",
+      "frasePalavras": 11,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m12/modulo.json",
+        "campo": "modulo.json → tese.frase_organizadora.paragrafos[0].texto",
+        "blocoNaFonte": "box \"A frase que organiza o módulo inteiro\"",
+        "linhaAproxNoHtml": 685,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo12.html",
+        "trecho": "O Brasil não escolheu entre ser potência renovável e potência fóssil. Expandiu as duas ao mesmo tempo, e quem só vê um dos lados não entende nem a oportunidade nem o risco que o resto do mundo enxerga no país."
+      },
+      "objetos": {
+        "instrumentos": 11,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 28,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 14,
+        "referencias": 34,
+        "glossarioTermos": 152,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [],
+      "marcaSlug": "conclusao-modulo-12",
+      "marcaConquista": "conclusao.modulo.modulo-12",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-12-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-12-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-12-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-12-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-12-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-12-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-12-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-12"
+    },
+    {
+      "id": "m13",
+      "numero": 13,
+      "tituloCatalogo": "Análise Financeira de Empresas e Projetos",
+      "territorio": {
+        "romano": "III",
+        "nome": "Especialização Estratégica"
+      },
+      "frase": "Nenhum múltiplo se lê sozinho.",
+      "frasePalavras": 5,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m13/modulo.json",
+        "campo": "modulo.json → voz.roteiro_oral.paragrafos[0].texto (mesma frase em tese.blocos[3].corpo.texto, ali em caixa-alta)",
+        "blocoNaFonte": "§ Tese · div.form + § Voz · roteiro oral",
+        "linhaAproxNoHtml": 639,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo13.html",
+        "trecho": "O ponto central deste bloco cabe em uma frase: nenhum múltiplo se lê sozinho. ‖ NENHUM MÚLTIPLO SE LÊ SOZINHO. EV/EBITDA, dívida líquida sobre EBITDA e dividend yield só significam alguma coisa quando se sabe quem controla a empresa […]."
+      },
+      "objetos": {
+        "instrumentos": 11,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 28,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 14,
+        "referencias": 36,
+        "glossarioTermos": 180,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [],
+      "marcaSlug": "conclusao-modulo-13",
+      "marcaConquista": "conclusao.modulo.modulo-13",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-13-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-13-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-13-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-13-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-13-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-13-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-13-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-13"
+    },
+    {
+      "id": "m14",
+      "numero": 14,
+      "tituloCatalogo": "Biocombustíveis e Bioenergia",
+      "territorio": {
+        "romano": "III",
+        "nome": "Especialização Estratégica"
+      },
+      "frase": "A mesma tonelada vira quatro produtos.",
+      "frasePalavras": 6,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata-ate-pontuacao",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m14/modulo.json",
+        "campo": "modulo.json → tese.blocos[1].texto",
+        "blocoNaFonte": "§ 00 · título da tese",
+        "linhaAproxNoHtml": null,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo14.html",
+        "trecho": "A mesma tonelada vira quatro produtos, e quem escolhe qual não é o operador nacional"
+      },
+      "objetos": {
+        "instrumentos": 10,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 26,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 14,
+        "referencias": 34,
+        "glossarioTermos": 158,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [],
+      "marcaSlug": "conclusao-modulo-14",
+      "marcaConquista": "conclusao.modulo.modulo-14",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-14-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-14-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-14-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-14-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-14-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-14-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-14-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-14"
+    },
+    {
+      "id": "m15",
+      "numero": 15,
+      "tituloCatalogo": "Petróleo, Gás e Petrobras",
+      "territorio": {
+        "romano": "III",
+        "nome": "Especialização Estratégica"
+      },
+      "frase": "Todo número pertence a um regime e a uma camada.",
+      "frasePalavras": 10,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "elisao",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m15/modulo.json",
+        "campo": "modulo.json → tese.blocos[6].paragrafos[0].texto",
+        "blocoNaFonte": "caixa \"A espinha dorsal do Bloco 15\"",
+        "linhaAproxNoHtml": 817,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo15.html",
+        "trecho": "Todo número de petróleo e gás pertence a um regime e a uma camada."
+      },
+      "objetos": {
+        "instrumentos": 10,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 28,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 15,
+        "referencias": 36,
+        "glossarioTermos": 174,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8."
+      },
+      "divergencias": [
+        "A frase de identidade é uma elisão: a fonte diz \"Todo número de petróleo e gás pertence a um regime e a uma camada\" (14 palavras). O corte para 10 palavras é decisão de produto; o título do módulo devolve o contexto na mesma linha do Sumário."
+      ],
+      "marcaSlug": "conclusao-modulo-15",
+      "marcaConquista": "conclusao.modulo.modulo-15",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-15-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-15-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-15-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-15-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-15-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-15-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-15-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-15"
+    },
+    {
+      "id": "m16",
+      "numero": 16,
+      "tituloCatalogo": "Tendências e Disrupções",
+      "territorio": {
+        "romano": "III",
+        "nome": "Especialização Estratégica"
+      },
+      "frase": "Toda tendência tem um estágio e um gargalo.",
+      "frasePalavras": 8,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m16/modulo.json",
+        "campo": "modulo.json → tese.caixas[0].paragrafos[0].texto",
+        "blocoNaFonte": "box \"A afirmação que organiza o módulo\"",
+        "linhaAproxNoHtml": 872,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo16.html",
+        "trecho": "Toda tendência tem um estágio e um gargalo. O estágio decide se o número citado descreve o que existe, o que foi autorizado ou o que foi anunciado. O gargalo decide o que precisaria mudar para que a curva continue […]."
+      },
+      "objetos": {
+        "instrumentos": 11,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 30,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 16,
+        "referencias": 38,
+        "glossarioTermos": 184,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8.",
+        "fichas": 6
+      },
+      "divergencias": [],
+      "marcaSlug": "conclusao-modulo-16",
+      "marcaConquista": "conclusao.modulo.modulo-16",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-16-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-16-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-16-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-16-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-16-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-16-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-16-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-16"
+    },
+    {
+      "id": "m17",
+      "numero": 17,
+      "tituloCatalogo": "Cenário Internacional Comparativo",
+      "territorio": {
+        "romano": "III",
+        "nome": "Especialização Estratégica"
+      },
+      "frase": "Nenhum número de um mercado é comparável ao de outro.",
+      "frasePalavras": 10,
+      "camada": "alexandria",
+      "camadaNota": "Camada Alexandria (produto). O texto é recorte fiel da camada fonte; o recorte, a pontuação final e o uso como identidade são decisão de produto, não da fonte.",
+      "fidelidade": "exata-ate-pontuacao",
+      "origem": {
+        "arquivo": "docs/alexandria-v2/extraction/m17/modulo.json",
+        "campo": "modulo.json → tese.blocos[4].partes[0].texto",
+        "blocoNaFonte": "destaque \"A afirmação que organiza o módulo\"",
+        "linhaAproxNoHtml": 938,
+        "htmlFonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo17.html",
+        "trecho": "Nenhum número de um mercado é comparável ao de outro sem que se declare o que está dentro dele."
+      },
+      "objetos": {
+        "instrumentos": 12,
+        "instrumentosNota": null,
+        "laboratorio": false,
+        "laboratorioNota": "a fonte não tem § Lab (ausência declarada, não preenchida); o instrumento fora de aula é o INST·01 do § MAP",
+        "caso": true,
+        "quiz": 10,
+        "quizNota": "resultado de avaliação, nunca \"Demonstrado\" (P5)",
+        "checklist": 30,
+        "checklistNota": "itens orais ou cronometrados entram como \"atividade recomendada\" (P14)",
+        "exercicios": 18,
+        "referencias": 8,
+        "glossarioTermos": 192,
+        "experienciaJogavel": "em desenho",
+        "experienciaJogavelNota": "P25 + P16 + S4: a peça reserva a linha, sem controle e sem destino. \"Jogo\" só depois de C8.",
+        "fichas": 6
+      },
+      "divergencias": [
+        "§ Ref: a fonte não lista referências individuais. São 8 parágrafos-bloco, cada um agregando várias publicações, sem título nem URL (`aparato.json → referencias.nota_itens`). O 8 é de blocos, não de referências: não é comparável com os demais módulos."
+      ],
+      "marcaSlug": "conclusao-modulo-17",
+      "marcaConquista": "conclusao.modulo.modulo-17",
+      "marcaFamilia": "conclusao",
+      "marcaArquivos": {
+        "96": {
+          "faixa": "P",
+          "usoCss": 48,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-17-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/96/conclusao-modulo-17-cega.webp",
+          "detalhe": "orla da família + motivo simplificado; sem trama fina (§6.5)"
+        },
+        "192": {
+          "faixa": "M",
+          "usoCss": 96,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-17-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/192/conclusao-modulo-17-cega.webp",
+          "detalhe": "orla, tímpano e ponto; trama leve (§6.5)"
+        },
+        "384": {
+          "faixa": "G",
+          "usoCss": 192,
+          "obtida": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-17-obtida.webp",
+          "cega": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp/384/conclusao-modulo-17-cega.webp",
+          "detalhe": "detalhe completo (§6.5)"
+        }
+      },
+      "marcaVarianteOuroSobreNavy": "docs/alexandria-v2/media-lab/movimento-e-conquistas/medalhas/webp-ouro/{96,192,384,768}/conclusao-modulo-17-obtida.webp",
+      "marcaDaPraticaDoMesmoModulo": "pratica-instrumentos-do-modulo-17"
+    }
+  ]
+}

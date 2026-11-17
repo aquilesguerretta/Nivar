@@ -1,0 +1,3535 @@
+{
+  "schema": "alexandria-v2/extraction/modulo@1",
+  "modulo": "M06",
+  "grupo": "modulo",
+  "camada": "fonte",
+  "fonte": {
+    "arquivo": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo06.html",
+    "linhas_total": 2361,
+    "bytes": 279562
+  },
+  "gerado_em": "2026-09-17",
+  "metodo": "Node: parser de pilha sobre o HTML (elementos de primeiro nível de cada section .wrap), linha derivada do índice de caractere; comparação com o código por bundle esbuild (só leitura) de src/lib/data. Nenhum texto de conteúdo digitado.",
+  "convencoes": {
+    "html": "fragmento literal, espaços colapsados, inline preservado",
+    "texto": "sem tags, entidades decodificadas",
+    "linha_aprox": "linha 1-based do início do elemento",
+    "null": "ausência na fonte, sempre com nota",
+    "marcacao_p14": "anotação desta extração"
+  },
+  "identidade": {
+    "id": "m06-identidade",
+    "tipo": "identidade",
+    "kicker": {
+      "texto": "Alexandria · GridAlpha · Módulo 06",
+      "origem": {
+        "seletor": ".hero .kicker",
+        "trecho_inicial": "Alexandria · GridAlpha · Módulo 06",
+        "linha_aprox": 303
+      }
+    },
+    "titulo": {
+      "texto": "História do Setor Elétrico Brasileiro",
+      "origem": {
+        "seletor": ".hero h1",
+        "trecho_inicial": "História do Setor Elétrico Brasileiro",
+        "linha_aprox": 304
+      }
+    },
+    "subtitulo": {
+      "html": "Por que o Brasil escolheu <em>este</em> desenho institucional e não outro — um século e meio de decisões, traumas e correções de rota, cada um deixando uma cicatriz que ainda opera hoje.",
+      "texto": "Por que o Brasil escolheu este desenho institucional e não outro — um século e meio de decisões, traumas e correções de rota, cada um deixando uma cicatriz que ainda opera hoje.",
+      "origem": {
+        "seletor": ".hero p.sub",
+        "trecho_inicial": "Por que o Brasil escolheu este desenho institucional e não outro — um ",
+        "linha_aprox": 305
+      }
+    },
+    "pills": [
+      {
+        "id": "m06-pill-01",
+        "html": "<b>6</b> aulas",
+        "texto": "6 aulas",
+        "origem": {
+          "seletor": ".hero .pill-row > span.pill",
+          "trecho_inicial": "6 aulas",
+          "linha_aprox": 307
+        }
+      },
+      {
+        "id": "m06-pill-02",
+        "html": "<b>8</b> instrumentos",
+        "texto": "8 instrumentos",
+        "origem": {
+          "seletor": ".hero .pill-row > span.pill",
+          "trecho_inicial": "8 instrumentos",
+          "linha_aprox": 308
+        }
+      },
+      {
+        "id": "m06-pill-03",
+        "html": "<b>10</b> exercícios",
+        "texto": "10 exercícios",
+        "origem": {
+          "seletor": ".hero .pill-row > span.pill",
+          "trecho_inicial": "10 exercícios",
+          "linha_aprox": 309
+        }
+      },
+      {
+        "id": "m06-pill-04",
+        "html": "<b>10</b> questões · critério 8/10",
+        "texto": "10 questões · critério 8/10",
+        "origem": {
+          "seletor": ".hero .pill-row > span.pill",
+          "trecho_inicial": "10 questões · critério 8/10",
+          "linha_aprox": 310
+        }
+      },
+      {
+        "id": "m06-pill-05",
+        "html": "<b>36</b> perguntas-relâmpago",
+        "texto": "36 perguntas-relâmpago",
+        "origem": {
+          "seletor": ".hero .pill-row > span.pill",
+          "trecho_inicial": "36 perguntas-relâmpago",
+          "linha_aprox": 311
+        }
+      },
+      {
+        "id": "m06-pill-06",
+        "html": "<b>99</b> termos",
+        "texto": "99 termos",
+        "origem": {
+          "seletor": ".hero .pill-row > span.pill",
+          "trecho_inicial": "99 termos",
+          "linha_aprox": 312
+        }
+      },
+      {
+        "id": "m06-pill-07",
+        "html": "Roteiro oral de <b>10</b> min",
+        "texto": "Roteiro oral de 10 min",
+        "origem": {
+          "seletor": ".hero .pill-row > span.pill",
+          "trecho_inicial": "Roteiro oral de 10 min",
+          "linha_aprox": 313
+        }
+      },
+      {
+        "id": "m06-pill-08",
+        "html": "3–4h de estudo",
+        "texto": "3–4h de estudo",
+        "origem": {
+          "seletor": ".hero .pill-row > span.pill",
+          "trecho_inicial": "3–4h de estudo",
+          "linha_aprox": 314
+        }
+      }
+    ],
+    "pills_nota": "Os 8 pills do hero declaram contagens da própria fonte (aulas, instrumentos, exercícios, questões, perguntas-relâmpago, termos, roteiro oral, horas). Conferidas contra o markup em `contagens.cruzamento`.",
+    "horas": {
+      "texto": "3–4h de estudo",
+      "min": null,
+      "max": null,
+      "nota": "A fonte declara só a string \"3–4h de estudo\" (último pill do hero). Os números não foram convertidos aqui. O código (alexandria-blocks.ts, bloco-06) já traz estimatedHoursMin 3 / estimatedHoursMax 4; o catálogo canônico diz \"3–4 h declaradas\".",
+      "origem": {
+        "seletor": ".hero .pill-row > span.pill",
+        "trecho_inicial": "3–4h de estudo",
+        "linha_aprox": 314
+      }
+    },
+    "eixos": null,
+    "eixos_nota": "A fonte não declara \"eixos\" do módulo. As 16 ocorrências de \"eixo\" são CSS, o eixo do SVG da linha do tempo, \"três eixos\" (objetivos de 2003, Aula 04 §4.1, L749) e a etimologia de AXIA (L975). O organizador declarado do módulo é a \"régua dos seis\" (§00 0.1, L330-337), registrada em `tese` como bloco `formula`, não promovida a eixo.",
+    "rodape": {
+      "linhas": [
+        {
+          "texto": "Alexandria · Módulo 06 — História do Setor Elétrico Brasileiro",
+          "origem": {
+            "seletor": "footer .wrap > div",
+            "trecho_inicial": "Alexandria · Módulo 06 — História do Setor Elétrico Brasileiro",
+            "linha_aprox": 1513
+          }
+        },
+        {
+          "texto": "GridAlpha · material de estudo interno · conteúdo didático, não é recomendação regulatória, jurídica ou de investimento",
+          "origem": {
+            "seletor": "footer .wrap > div",
+            "trecho_inicial": "GridAlpha · material de estudo interno · conteúdo didático, não é reco",
+            "linha_aprox": 1514
+          }
+        },
+        {
+          "texto": "Datas e normas conferidas em fonte primária; valores de privatização, participações acionárias e prazos condicionados a regulamentação exigem verificação na fonte antes de qualquer uso externo",
+          "origem": {
+            "seletor": "footer .wrap > div",
+            "trecho_inicial": "Datas e normas conferidas em fonte primária; valores de privatização, ",
+            "linha_aprox": 1515
+          }
+        }
+      ]
+    },
+    "cabecalho": null,
+    "cabecalho_nota": "Não há cabeçalho textual: o topo da página é só `div.header-progress#prog` (barra de progresso de rolagem, L298).",
+    "catalogo_canonico": {
+      "arquivo": "C:/dev/GridAlpha v2/docs/catalogo-modulos-alexandria.md",
+      "titulo": "História do Setor Elétrico Brasileiro",
+      "escala": "6 aulas · 8 instrumentos · 99 termos · 10 exercícios · 36 perguntas-relâmpago · 24 itens de checklist · roteiro oral de 10 min · 3–4 h declaradas.",
+      "linha_aprox": 539,
+      "titulo_igual_ao_h1": true,
+      "titulo_igual_ao_rodape": true
+    },
+    "codigo": {
+      "bloco": {
+        "id": "bloco-06",
+        "number": 6,
+        "level": 2,
+        "title": "História do Setor Elétrico Brasileiro",
+        "track": "brasil",
+        "illustrationPrefix": "his-",
+        "priority": "alta",
+        "estimatedHoursMin": 3,
+        "estimatedHoursMax": 4
+      },
+      "modulo": {
+        "id": "modulo-06",
+        "trilhaId": "trilha-setor-eletrico-brasileiro",
+        "number": 1,
+        "totalInTrilha": 7,
+        "title": "História do Setor Elétrico Brasileiro",
+        "totalAulas": 6
+      },
+      "titulo_igual_ao_h1": true
+    }
+  },
+  "tese": {
+    "id": "m06-tese",
+    "tipo": "tese",
+    "marcador": {
+      "html": "<b>§00</b> · Tese",
+      "marcador": "§00",
+      "rotulo": "Tese",
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "§00 · Tese",
+        "linha_aprox": 322
+      }
+    },
+    "titulo_secao": {
+      "html": "Toda estrutura de hoje tem uma data e uma causa",
+      "texto": "Toda estrutura de hoje tem uma data e uma causa"
+    },
+    "blocos": [
+      {
+        "id": "m06-tese-b01",
+        "tipo": "lede",
+        "html": "O Módulo 05 respondeu por que existe regulação elétrica em geral. Ficou faltando a pergunta que vem logo depois e que ninguém consegue responder com teoria econômica: por que a regulação <em>brasileira</em> tem exatamente a forma que tem. Por que o despacho é resolvido por um operador central e não por leilão horário. Por que a distribuidora é obrigada a contratar cem por cento da sua carga com anos de antecedência. Por que existe uma câmara só para contabilizar diferenças. Nenhuma dessas respostas está na teoria. Todas estão numa sequência de decisões datadas, quase todas tomadas em resposta a alguma coisa que deu errado antes.",
+        "texto": "O Módulo 05 respondeu por que existe regulação elétrica em geral. Ficou faltando a pergunta que vem logo depois e que ninguém consegue responder com teoria econômica: por que a regulação brasileira tem exatamente a forma que tem. Por que o despacho é resolvido por um operador central e não por leilão horário. Por que a distribuidora é obrigada a contratar cem por cento da sua carga com anos de antecedência. Por que existe uma câmara só para contabilizar diferenças. Nenhuma dessas respostas está na teoria. Todas estão numa sequência de decisões datadas, quase todas tomadas em resposta a alguma coisa que deu errado antes.",
+        "origem": {
+          "seletor": "section#tese .wrap > p.lede",
+          "trecho_inicial": "O Módulo 05 respondeu por que existe regulação elétrica em geral. Fico",
+          "linha_aprox": 324
+        }
+      },
+      {
+        "id": "m06-tese-b02",
+        "tipo": "paragrafo",
+        "html": "A diferença entre o Módulo 05 e este é a diferença entre <strong>lógica e sequência</strong>. Lógica explica por que existe uma classe de instrumento; sequência explica por que este país, e não outro, escolheu esta configuração específica dentro daquela classe. Um analista que só tem a lógica consegue dizer que faz sentido regular monopólio de rede. Um analista que tem a sequência consegue dizer por que a garantia física existe, de quem foi a ideia, contra qual episódio ela foi desenhada, e o que acontece com ela quando o episódio original deixa de ser o risco dominante — que é exatamente a conversa que o setor está tendo agora.",
+        "texto": "A diferença entre o Módulo 05 e este é a diferença entre lógica e sequência. Lógica explica por que existe uma classe de instrumento; sequência explica por que este país, e não outro, escolheu esta configuração específica dentro daquela classe. Um analista que só tem a lógica consegue dizer que faz sentido regular monopólio de rede. Um analista que tem a sequência consegue dizer por que a garantia física existe, de quem foi a ideia, contra qual episódio ela foi desenhada, e o que acontece com ela quando o episódio original deixa de ser o risco dominante — que é exatamente a conversa que o setor está tendo agora.",
+        "origem": {
+          "seletor": "section#tese .wrap > p",
+          "trecho_inicial": "A diferença entre o Módulo 05 e este é a diferença entre lógica e sequ",
+          "linha_aprox": 326
+        }
+      },
+      {
+        "id": "m06-tese-b03",
+        "tipo": "paragrafo",
+        "html": "<span class=\"hl\">Sem história, você confunde trauma resolvido com disfunção presente.</span> Essa é a razão prática de estudar este bloco, e vale a pena enunciá-la sem eufemismo. Muita coisa que parece irracional no setor elétrico brasileiro — a obrigação de lastro, o peso do planejamento público, a desconfiança de arranjos que dependem de resposta rápida de investidor privado — não é irracionalidade. É memória institucional. Alguém já tentou o contrário, e o resultado foi ruim o bastante para virar regra. Quem não sabe qual foi o episódio acha que está diante de burocracia; quem sabe consegue fazer a pergunta útil, que é se o risco que originou a regra ainda é o risco relevante.",
+        "texto": "Sem história, você confunde trauma resolvido com disfunção presente. Essa é a razão prática de estudar este bloco, e vale a pena enunciá-la sem eufemismo. Muita coisa que parece irracional no setor elétrico brasileiro — a obrigação de lastro, o peso do planejamento público, a desconfiança de arranjos que dependem de resposta rápida de investidor privado — não é irracionalidade. É memória institucional. Alguém já tentou o contrário, e o resultado foi ruim o bastante para virar regra. Quem não sabe qual foi o episódio acha que está diante de burocracia; quem sabe consegue fazer a pergunta útil, que é se o risco que originou a regra ainda é o risco relevante.",
+        "origem": {
+          "seletor": "section#tese .wrap > p",
+          "trecho_inicial": "Sem história, você confunde trauma resolvido com disfunção presente. E",
+          "linha_aprox": 328
+        }
+      },
+      {
+        "id": "m06-tese-b04",
+        "tipo": "subtitulo",
+        "numero": "0.1",
+        "titulo": "A régua dos seis",
+        "origem": {
+          "seletor": "section#tese .wrap > h3",
+          "trecho_inicial": "0.1A régua dos seis",
+          "linha_aprox": 330
+        }
+      },
+      {
+        "id": "m06-tese-b05",
+        "tipo": "paragrafo",
+        "html": "Existe uma ferramenta que atravessa este bloco inteiro e que substitui, com vantagem, decorar datas. Diante de <em>qualquer</em> período da história do setor — ou de qualquer arranjo institucional, inclusive o de hoje —, responda sempre as mesmas seis perguntas, nesta ordem:",
+        "texto": "Existe uma ferramenta que atravessa este bloco inteiro e que substitui, com vantagem, decorar datas. Diante de qualquer período da história do setor — ou de qualquer arranjo institucional, inclusive o de hoje —, responda sempre as mesmas seis perguntas, nesta ordem:",
+        "origem": {
+          "seletor": "section#tese .wrap > p",
+          "trecho_inicial": "Existe uma ferramenta que atravessa este bloco inteiro e que substitui",
+          "linha_aprox": 331
+        }
+      },
+      {
+        "id": "m06-tese-b06",
+        "tipo": "formula",
+        "html": "<b>1.</b> Quem é dono do ativo? &nbsp;·&nbsp; <b>2.</b> Quem financia a expansão? &nbsp;·&nbsp; <b>3.</b> Quem planeja?<br> <b>4.</b> Quem opera? &nbsp;·&nbsp; <b>5.</b> Como o preço é definido? &nbsp;·&nbsp; <b>6.</b> Qual crise encerrou o modelo?",
+        "texto": "1. Quem é dono do ativo? · 2. Quem financia a expansão? · 3. Quem planeja? 4. Quem opera? · 5. Como o preço é definido? · 6. Qual crise encerrou o modelo?",
+        "nota_da_formula": {
+          "html": "A régua do Bloco 6. Cada modelo histórico responde as seis de um jeito diferente — e a sexta resposta é sempre a primeira pergunta do modelo seguinte.",
+          "texto": "A régua do Bloco 6. Cada modelo histórico responde as seis de um jeito diferente — e a sexta resposta é sempre a primeira pergunta do modelo seguinte."
+        },
+        "origem": {
+          "seletor": "section#tese .wrap > div.form",
+          "trecho_inicial": "1. Quem é dono do ativo? · 2. Quem financia a expansão? · 3. Quem plan",
+          "linha_aprox": 333
+        }
+      },
+      {
+        "id": "m06-tese-b07",
+        "tipo": "paragrafo",
+        "html": "A régua faz três trabalhos ao mesmo tempo. Primeiro, ela impede a leitura preguiçosa do setor como uma gangorra entre estatal e privado: propriedade é apenas a <em>primeira</em> das seis perguntas, e quase nunca é a que mais importa. Houve períodos de propriedade privada com planejamento público e períodos de propriedade estatal com preço politicamente arbitrado; a combinação é que define o regime, não o rótulo. Segundo, ela força a identificar quem carregava o risco em cada arranjo — porque risco é a variável que explica o comportamento dos agentes, e é sempre a variável esquecida no debate público. Terceiro, ela transforma cada crise numa transição legível, e não num acidente: a crise sempre aparece onde o modelo anterior tinha deixado uma pergunta sem dono.",
+        "texto": "A régua faz três trabalhos ao mesmo tempo. Primeiro, ela impede a leitura preguiçosa do setor como uma gangorra entre estatal e privado: propriedade é apenas a primeira das seis perguntas, e quase nunca é a que mais importa. Houve períodos de propriedade privada com planejamento público e períodos de propriedade estatal com preço politicamente arbitrado; a combinação é que define o regime, não o rótulo. Segundo, ela força a identificar quem carregava o risco em cada arranjo — porque risco é a variável que explica o comportamento dos agentes, e é sempre a variável esquecida no debate público. Terceiro, ela transforma cada crise numa transição legível, e não num acidente: a crise sempre aparece onde o modelo anterior tinha deixado uma pergunta sem dono.",
+        "origem": {
+          "seletor": "section#tese .wrap > p",
+          "trecho_inicial": "A régua faz três trabalhos ao mesmo tempo. Primeiro, ela impede a leit",
+          "linha_aprox": 339
+        }
+      },
+      {
+        "id": "m06-tese-b08",
+        "tipo": "subtitulo",
+        "numero": "0.2",
+        "titulo": "Onde este módulo se encaixa",
+        "origem": {
+          "seletor": "section#tese .wrap > h3",
+          "trecho_inicial": "0.2Onde este módulo se encaixa",
+          "linha_aprox": 341
+        }
+      },
+      {
+        "id": "m06-tese-b09",
+        "tipo": "paragrafo",
+        "html": "O Módulo 02 ensinou a <strong>camada física</strong>: como a rede transporta, por que o despacho precisa ser coordenado, como uma perturbação se propaga. O Módulo 03 ensinou a <strong>camada tecnológica</strong>: o que cada usina é, custa e entrega. O Módulo 04 ensinou a <strong>camada de preço</strong>: como as duas anteriores viram um número em reais por megawatt-hora. O Módulo 05 ensinou a <strong>camada institucional</strong>: a lógica econômica atemporal que justifica agência, operador independente e separação de atividades.",
+        "texto": "O Módulo 02 ensinou a camada física: como a rede transporta, por que o despacho precisa ser coordenado, como uma perturbação se propaga. O Módulo 03 ensinou a camada tecnológica: o que cada usina é, custa e entrega. O Módulo 04 ensinou a camada de preço: como as duas anteriores viram um número em reais por megawatt-hora. O Módulo 05 ensinou a camada institucional: a lógica econômica atemporal que justifica agência, operador independente e separação de atividades.",
+        "origem": {
+          "seletor": "section#tese .wrap > p",
+          "trecho_inicial": "O Módulo 02 ensinou a camada física: como a rede transporta, por que o",
+          "linha_aprox": 342
+        }
+      },
+      {
+        "id": "m06-tese-b10",
+        "tipo": "paragrafo",
+        "html": "Este módulo ensina a <strong>camada cronológica</strong> — a que amarra as outras quatro a datas concretas. Onde o Módulo 05 explicou por que se separa geração de distribuição em qualquer país que tenha rede, este explica que o Brasil fez esse corte em 1998 e 2004, por decisão nomeada, em resposta a um problema nomeado, e parou onde parou por motivos que se pode reconstruir. Nada aqui redefine conceito. Tudo aqui data e causa o que os módulos anteriores já ensinaram como conceito.",
+        "texto": "Este módulo ensina a camada cronológica — a que amarra as outras quatro a datas concretas. Onde o Módulo 05 explicou por que se separa geração de distribuição em qualquer país que tenha rede, este explica que o Brasil fez esse corte em 1998 e 2004, por decisão nomeada, em resposta a um problema nomeado, e parou onde parou por motivos que se pode reconstruir. Nada aqui redefine conceito. Tudo aqui data e causa o que os módulos anteriores já ensinaram como conceito.",
+        "origem": {
+          "seletor": "section#tese .wrap > p",
+          "trecho_inicial": "Este módulo ensina a camada cronológica — a que amarra as outras quatr",
+          "linha_aprox": 344
+        }
+      },
+      {
+        "id": "m06-tese-b11",
+        "tipo": "caixa",
+        "cor_classe": "box cy",
+        "rotulo": "Regra de leitura deste módulo",
+        "paragrafos": [
+          {
+            "html": "Quando aparecer um mecanismo que você já conhece — leilão regulado, garantia física, lastro, contabilização centralizada, mecanismo de realocação —, resista à vontade de reestudá-lo. A pergunta aqui é sempre outra: <strong>contra o que ele foi desenhado, e em que ano</strong>. Se você se pegar reexplicando como o mecanismo funciona, você saiu do Bloco 6 e voltou para o 4 ou para o 5.",
+            "texto": "Quando aparecer um mecanismo que você já conhece — leilão regulado, garantia física, lastro, contabilização centralizada, mecanismo de realocação —, resista à vontade de reestudá-lo. A pergunta aqui é sempre outra: contra o que ele foi desenhado, e em que ano. Se você se pegar reexplicando como o mecanismo funciona, você saiu do Bloco 6 e voltou para o 4 ou para o 5.",
+            "origem": {
+              "seletor": "section#tese .wrap > div.box.cy > p",
+              "trecho_inicial": "Quando aparecer um mecanismo que você já conhece — leilão regulado, ga",
+              "linha_aprox": 348
+            }
+          }
+        ],
+        "origem": {
+          "seletor": "section#tese .wrap > div.box.cy",
+          "trecho_inicial": "Regra de leitura deste módulo Quando aparecer um mecanismo que você já",
+          "linha_aprox": 346
+        }
+      },
+      {
+        "id": "m06-tese-b12",
+        "tipo": "subtitulo",
+        "numero": "0.3",
+        "titulo": "Nenhuma resposta elimina o trauma — ela troca de risco",
+        "origem": {
+          "seletor": "section#tese .wrap > h3",
+          "trecho_inicial": "0.3Nenhuma resposta elimina o trauma — ela troca de risco",
+          "linha_aprox": 351
+        }
+      },
+      {
+        "id": "m06-tese-b13",
+        "tipo": "paragrafo",
+        "html": "Existe um vício analítico que atravessa quase todo comentário histórico sobre o setor: tratar cada reforma como acerto ou erro, como se houvesse uma configuração correta que alguém foi competente ou incompetente o bastante para encontrar. Não é assim que a coisa funciona. Cada arranjo institucional resolve um problema específico e, ao resolvê-lo, cria exposição a outro. Isso não é falha de execução. É a natureza do que se está fazendo.",
+        "texto": "Existe um vício analítico que atravessa quase todo comentário histórico sobre o setor: tratar cada reforma como acerto ou erro, como se houvesse uma configuração correta que alguém foi competente ou incompetente o bastante para encontrar. Não é assim que a coisa funciona. Cada arranjo institucional resolve um problema específico e, ao resolvê-lo, cria exposição a outro. Isso não é falha de execução. É a natureza do que se está fazendo.",
+        "origem": {
+          "seletor": "section#tese .wrap > p",
+          "trecho_inicial": "Existe um vício analítico que atravessa quase todo comentário históric",
+          "linha_aprox": 352
+        }
+      },
+      {
+        "id": "m06-tese-b14",
+        "tipo": "tabela",
+        "cabecalho": [
+          "Resposta institucional",
+          "Risco que ela reduz",
+          "Risco que ela cria em troca"
+        ],
+        "linhas": [
+          {
+            "celulas": [
+              {
+                "html": "Centralizar a outorga na União",
+                "texto": "Centralizar a outorga na União"
+              },
+              {
+                "html": "Descoordenação entre municípios sobre rios que atravessam estados",
+                "texto": "Descoordenação entre municípios sobre rios que atravessam estados"
+              },
+              {
+                "html": "Regra de preço nacional insensível à capacidade local de financiar expansão",
+                "texto": "Regra de preço nacional insensível à capacidade local de financiar expansão"
+              }
+            ],
+            "origem": {
+              "seletor": "section#tese .wrap > div.scroll tr",
+              "trecho_inicial": "Centralizar a outorga na UniãoDescoordenação entre municípios sobre ri",
+              "linha_aprox": 357
+            }
+          },
+          {
+            "celulas": [
+              {
+                "html": "Estado assumir a construção",
+                "texto": "Estado assumir a construção"
+              },
+              {
+                "html": "Ausência de capital privado disposto a projeto de maturação longa",
+                "texto": "Ausência de capital privado disposto a projeto de maturação longa"
+              },
+              {
+                "html": "Tarifa vira instrumento de política macroeconômica e descapitaliza a empresa",
+                "texto": "Tarifa vira instrumento de política macroeconômica e descapitaliza a empresa"
+              }
+            ],
+            "origem": {
+              "seletor": "section#tese .wrap > div.scroll tr",
+              "trecho_inicial": "Estado assumir a construçãoAusência de capital privado disposto a proj",
+              "linha_aprox": 358
+            }
+          },
+          {
+            "celulas": [
+              {
+                "html": "Privatizar e criar agência",
+                "texto": "Privatizar e criar agência"
+              },
+              {
+                "html": "Necessidade de capital público e ausência de disciplina de custo",
+                "texto": "Necessidade de capital público e ausência de disciplina de custo"
+              },
+              {
+                "html": "Fragmentação de responsabilidade sobre quem garante a expansão",
+                "texto": "Fragmentação de responsabilidade sobre quem garante a expansão"
+              }
+            ],
+            "origem": {
+              "seletor": "section#tese .wrap > div.scroll tr",
+              "trecho_inicial": "Privatizar e criar agênciaNecessidade de capital público e ausência de",
+              "linha_aprox": 359
+            }
+          },
+          {
+            "celulas": [
+              {
+                "html": "Obrigar contratação de longo prazo",
+                "texto": "Obrigar contratação de longo prazo"
+              },
+              {
+                "html": "Subinvestimento em capacidade nova",
+                "texto": "Subinvestimento em capacidade nova"
+              },
+              {
+                "html": "Erro de projeção de demanda repassado à tarifa como sobrecontratação",
+                "texto": "Erro de projeção de demanda repassado à tarifa como sobrecontratação"
+              }
+            ],
+            "origem": {
+              "seletor": "section#tese .wrap > div.scroll tr",
+              "trecho_inicial": "Obrigar contratação de longo prazoSubinvestimento em capacidade novaEr",
+              "linha_aprox": 360
+            }
+          },
+          {
+            "celulas": [
+              {
+                "html": "Compartilhar risco hidrológico entre usinas",
+                "texto": "Compartilhar risco hidrológico entre usinas"
+              },
+              {
+                "html": "Exposição individual de um gerador a uma seca localizada",
+                "texto": "Exposição individual de um gerador a uma seca localizada"
+              },
+              {
+                "html": "Fronteira contestável entre risco hidrológico e decisão sistêmica — e daí a judicialização",
+                "texto": "Fronteira contestável entre risco hidrológico e decisão sistêmica — e daí a judicialização"
+              }
+            ],
+            "origem": {
+              "seletor": "section#tese .wrap > div.scroll tr",
+              "trecho_inicial": "Compartilhar risco hidrológico entre usinasExposição individual de um ",
+              "linha_aprox": 361
+            }
+          },
+          {
+            "celulas": [
+              {
+                "html": "Sinalizar custo de geração no mês",
+                "texto": "Sinalizar custo de geração no mês"
+              },
+              {
+                "html": "Acúmulo silencioso de passivo tarifário",
+                "texto": "Acúmulo silencioso de passivo tarifário"
+              },
+              {
+                "html": "Volatilidade mensal da conta para quem não tem como se proteger dela",
+                "texto": "Volatilidade mensal da conta para quem não tem como se proteger dela"
+              }
+            ],
+            "origem": {
+              "seletor": "section#tese .wrap > div.scroll tr",
+              "trecho_inicial": "Sinalizar custo de geração no mêsAcúmulo silencioso de passivo tarifár",
+              "linha_aprox": 362
+            }
+          },
+          {
+            "celulas": [
+              {
+                "html": "Abrir o mercado por classe de consumo",
+                "texto": "Abrir o mercado por classe de consumo"
+              },
+              {
+                "html": "Cativeiro de quem tinha escala para negociar",
+                "texto": "Cativeiro de quem tinha escala para negociar"
+              },
+              {
+                "html": "Erosão da base cativa e transferência de custo fixo para quem ficou",
+                "texto": "Erosão da base cativa e transferência de custo fixo para quem ficou"
+              }
+            ],
+            "origem": {
+              "seletor": "section#tese .wrap > div.scroll tr",
+              "trecho_inicial": "Abrir o mercado por classe de consumoCativeiro de quem tinha escala pa",
+              "linha_aprox": 363
+            }
+          }
+        ],
+        "origem": {
+          "seletor": "section#tese .wrap > div.scroll",
+          "trecho_inicial": "Resposta institucionalRisco que ela reduzRisco que ela cria em troca C",
+          "linha_aprox": 355
+        }
+      },
+      {
+        "id": "m06-tese-b15",
+        "tipo": "paragrafo",
+        "html": "Guardar essa tabela é mais útil que guardar a linha do tempo, porque ela é o que permite ler uma notícia de hoje. Toda proposta de reforma que aparece no noticiário está fazendo exatamente isso: trocando um risco por outro. A pergunta de analista não é se a proposta é boa — é <strong>qual risco ela transfere, de quem para quem</strong>, e se quem vai recebê-lo tem como carregá-lo.",
+        "texto": "Guardar essa tabela é mais útil que guardar a linha do tempo, porque ela é o que permite ler uma notícia de hoje. Toda proposta de reforma que aparece no noticiário está fazendo exatamente isso: trocando um risco por outro. A pergunta de analista não é se a proposta é boa — é qual risco ela transfere, de quem para quem, e se quem vai recebê-lo tem como carregá-lo.",
+        "origem": {
+          "seletor": "section#tese .wrap > p",
+          "trecho_inicial": "Guardar essa tabela é mais útil que guardar a linha do tempo, porque e",
+          "linha_aprox": 367
+        }
+      },
+      {
+        "id": "m06-tese-b16",
+        "tipo": "caixa",
+        "cor_classe": "box gd",
+        "rotulo": "Critério de domínio deste módulo",
+        "paragrafos": [
+          {
+            "html": "Você domina o Bloco 6 quando conta a história do setor elétrico brasileiro em <strong>dez minutos, sem consultar nada</strong>, e conecta cada marco a uma característica regulatória de hoje — por exemplo, por que o operador nacional despacha de forma centralizada é resposta direta ao que se aprendeu em 2001, e por que a obrigação de lastro existe é resposta ao que <em>não</em> existia em 1999. E quando, diante de um decisor cético, defende a independência analítica da GridAlpha não como slogan, mas como leitura de um padrão histórico: o regime de propriedade mudou quatro vezes em cento e cinquenta anos, e a necessidade de análise que não dependa de nenhum deles não mudou nenhuma vez.",
+            "texto": "Você domina o Bloco 6 quando conta a história do setor elétrico brasileiro em dez minutos, sem consultar nada, e conecta cada marco a uma característica regulatória de hoje — por exemplo, por que o operador nacional despacha de forma centralizada é resposta direta ao que se aprendeu em 2001, e por que a obrigação de lastro existe é resposta ao que não existia em 1999. E quando, diante de um decisor cético, defende a independência analítica da GridAlpha não como slogan, mas como leitura de um padrão histórico: o regime de propriedade mudou quatro vezes em cento e cinquenta anos, e a necessidade de análise que não dependa de nenhum deles não mudou nenhuma vez.",
+            "origem": {
+              "seletor": "section#tese .wrap > div.box.gd > p",
+              "trecho_inicial": "Você domina o Bloco 6 quando conta a história do setor elétrico brasil",
+              "linha_aprox": 371
+            }
+          }
+        ],
+        "origem": {
+          "seletor": "section#tese .wrap > div.box.gd",
+          "trecho_inicial": "Critério de domínio deste módulo Você domina o Bloco 6 quando conta a ",
+          "linha_aprox": 369
+        }
+      }
+    ]
+  },
+  "resultado_esperado": {
+    "id": "m06-resultado-esperado",
+    "itens": null,
+    "nota": "A fonte do M06 não tem seção \"Resultado esperado\" nem lista de capacidades (varredura por \"Resultado esperado\": zero). O que mais se aproxima é (a) a caixa \"Critério de domínio deste módulo\" do §00 (L369-372) e (b) as 24 verificações do §Final (L1319-1351, em aparato.json). Nenhuma das duas é promovida a \"capacidade\" aqui.",
+    "candidatos": [
+      {
+        "onde": "§00 .box.gd \"Critério de domínio deste módulo\"",
+        "linha_aprox": 369,
+        "ver": "criterio.itens[m06-crit-01]"
+      },
+      {
+        "onde": "§Final ul.ck (24 li)",
+        "linha_aprox": 1324,
+        "ver": "aparato.json → checklist_final"
+      }
+    ]
+  },
+  "mapa": {
+    "id": "m06-mapa",
+    "tipo": "mapa_do_modulo",
+    "marcador": {
+      "html": "<b>§MAP</b> · Percurso e linha do tempo",
+      "marcador": "§MAP",
+      "rotulo": "Percurso e linha do tempo",
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "§MAP · Percurso e linha do tempo",
+        "linha_aprox": 379
+      }
+    },
+    "titulo_secao": {
+      "html": "Seis aulas, cento e cinquenta anos",
+      "texto": "Seis aulas, cento e cinquenta anos"
+    },
+    "blocos": [
+      {
+        "id": "m06-map-b01",
+        "tipo": "lede",
+        "html": "O agrupamento não segue a cronologia bruta: segue arco narrativo. Cada aula cobre um ciclo completo — um modelo se instala, resolve o problema do anterior, acumula a sua própria tensão e é encerrado por uma crise que já é o começo da aula seguinte. Comece pela linha do tempo abaixo: ela é o mapa do bloco inteiro e vale a pena percorrer os quatorze marcos antes de ler a primeira aula.",
+        "texto": "O agrupamento não segue a cronologia bruta: segue arco narrativo. Cada aula cobre um ciclo completo — um modelo se instala, resolve o problema do anterior, acumula a sua própria tensão e é encerrado por uma crise que já é o começo da aula seguinte. Comece pela linha do tempo abaixo: ela é o mapa do bloco inteiro e vale a pena percorrer os quatorze marcos antes de ler a primeira aula.",
+        "origem": {
+          "seletor": "section#map .wrap > p.lede",
+          "trecho_inicial": "O agrupamento não segue a cronologia bruta: segue arco narrativo. Cada",
+          "linha_aprox": 381
+        }
+      },
+      {
+        "id": "m06-map-b02",
+        "tipo": "instrumento_ref",
+        "id_fonte": "Inst · 01",
+        "titulo": "Linha do tempo · quatorze marcos, de 1879 a 2028",
+        "nota": "Conteúdo completo em instrumentos.json.",
+        "origem": {
+          "seletor": "section#map .wrap > div.inst",
+          "trecho_inicial": "Linha do tempo · quatorze marcos, de 1879 a 2028Inst · 01",
+          "linha_aprox": 383
+        }
+      },
+      {
+        "id": "m06-map-b03",
+        "tipo": "mapa_cards",
+        "cards": [
+          {
+            "href": "#a01",
+            "aula": "Aula 01",
+            "titulo_card": "Antes do Estado",
+            "descricao": "1879–1934. Eletrificação privada, municipal e fragmentada. Light, Amforp e a primeira mão federal: o Código de Águas.",
+            "origem": {
+              "seletor": "section#map .wrap > div.map-grid > a.map-card",
+              "trecho_inicial": "Aula 01Antes do Estado1879–1934. Eletrificação privada, municipal e fr",
+              "linha_aprox": 404
+            }
+          },
+          {
+            "href": "#a02",
+            "aula": "Aula 02",
+            "titulo_card": "O Estado dono de tudo",
+            "descricao": "1934–1988. Da regulação sem capital à estatização plena. Eletrobras, BNDE, Itaipu, Tucuruí — e a crise financeira que encerrou o ciclo.",
+            "origem": {
+              "seletor": "section#map .wrap > div.map-grid > a.map-card",
+              "trecho_inicial": "Aula 02O Estado dono de tudo1934–1988. Da regulação sem capital à esta",
+              "linha_aprox": 405
+            }
+          },
+          {
+            "href": "#a03",
+            "aula": "Aula 03",
+            "titulo_card": "A reforma inacabada e o trauma",
+            "descricao": "1988–2002. Distribuição vendida, geração estatal, expansão sem dono — e o racionamento que virou o marco zero do setor atual.",
+            "origem": {
+              "seletor": "section#map .wrap > div.map-grid > a.map-card",
+              "trecho_inicial": "Aula 03A reforma inacabada e o trauma1988–2002. Distribuição vendida, ",
+              "linha_aprox": 406
+            }
+          },
+          {
+            "href": "#a04",
+            "aula": "Aula 04",
+            "titulo_card": "A reconstrução deliberada",
+            "descricao": "2003–2011. O Novo Modelo: EPE, CCEE, ACR e ACL. Correção de rota, não retorno ao monopólio estatal.",
+            "origem": {
+              "seletor": "section#map .wrap > div.map-grid > a.map-card",
+              "trecho_inicial": "Aula 04A reconstrução deliberada2003–2011. O Novo Modelo: EPE, CCEE, A",
+              "linha_aprox": 407
+            }
+          },
+          {
+            "href": "#a05",
+            "aula": "Aula 05",
+            "titulo_card": "O modelo é testado de novo",
+            "descricao": "2012–2021. MP 579, crise hídrica, GSF e a judicialização que mostrou o que acontece quando o risco não tem dono claro.",
+            "origem": {
+              "seletor": "section#map .wrap > div.map-grid > a.map-card",
+              "trecho_inicial": "Aula 05O modelo é testado de novo2012–2021. MP 579, crise hídrica, GSF",
+              "linha_aprox": 408
+            }
+          },
+          {
+            "href": "#a06",
+            "aula": "Aula 06",
+            "titulo_card": "Onde a história pousa hoje",
+            "descricao": "2022–2028. Capitalização da Eletrobras, AXIA, abertura do Grupo A e o cronograma legal até 2028 — o mercado endereçável nascendo no tempo.",
+            "origem": {
+              "seletor": "section#map .wrap > div.map-grid > a.map-card",
+              "trecho_inicial": "Aula 06Onde a história pousa hoje2022–2028. Capitalização da Eletrobra",
+              "linha_aprox": 409
+            }
+          }
+        ],
+        "origem": {
+          "seletor": "section#map .wrap > div.map-grid",
+          "trecho_inicial": "Aula 01Antes do Estado1879–1934. Eletrificação privada, municipal e fr",
+          "linha_aprox": 403
+        }
+      }
+    ],
+    "perguntas_por_aula": null,
+    "perguntas_nota": "O §MAP do M06 não traz pergunta por aula (diferente do M01). Traz 6 cartões com aula, título curto e descrição de período (`blocos[tipo=mapa_cards]`). Pergunta de abertura por aula, se necessária, é derivação da camada Alexandria (P3/P11), não extração."
+  },
+  "roteiro": [
+    {
+      "id": "m06-roteiro-tese",
+      "tipo": "aparato",
+      "ordem_na_fonte": 1,
+      "section_id": "tese",
+      "marcador": "§00",
+      "rotulo_marcador": "Tese",
+      "titulo": {
+        "html": "Toda estrutura de hoje tem uma data e uma causa",
+        "texto": "Toda estrutura de hoje tem uma data e uma causa"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "§00 · Tese",
+        "linha_aprox": 322
+      }
+    },
+    {
+      "id": "m06-roteiro-map",
+      "tipo": "aparato",
+      "ordem_na_fonte": 2,
+      "section_id": "map",
+      "marcador": "§MAP",
+      "rotulo_marcador": "Percurso e linha do tempo",
+      "titulo": {
+        "html": "Seis aulas, cento e cinquenta anos",
+        "texto": "Seis aulas, cento e cinquenta anos"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "§MAP · Percurso e linha do tempo",
+        "linha_aprox": 379
+      }
+    },
+    {
+      "id": "m06-roteiro-aula-01",
+      "tipo": "aula",
+      "ordem_na_fonte": 3,
+      "section_id": "a01",
+      "marcador": "Aula 01",
+      "rotulo_marcador": "1879–1934",
+      "titulo": {
+        "html": "Antes do Estado",
+        "texto": "Antes do Estado"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "Aula 01 · 1879–1934",
+        "linha_aprox": 417
+      },
+      "aula_id_codigo": "aula-06-01",
+      "lede": {
+        "html": "O setor elétrico brasileiro nasceu privado, urbano, estrangeiro e fragmentado. Quem começa a estudar o setor pelo desenho atual tem a intuição invertida: acha que o Estado sempre esteve lá e que a abertura é a novidade. É o contrário. A presença do Estado é que é a novidade — ela começa em 1934, mais de meio século depois da primeira lâmpada.",
+        "texto": "O setor elétrico brasileiro nasceu privado, urbano, estrangeiro e fragmentado. Quem começa a estudar o setor pelo desenho atual tem a intuição invertida: acha que o Estado sempre esteve lá e que a abertura é a novidade. É o contrário. A presença do Estado é que é a novidade — ela começa em 1934, mais de meio século depois da primeira lâmpada.",
+        "origem": {
+          "seletor": "section#a01 .wrap > p.lede",
+          "trecho_inicial": "O setor elétrico brasileiro nasceu privado, urbano, estrangeiro e frag",
+          "linha_aprox": 419
+        }
+      },
+      "subsecoes": [
+        {
+          "numero": "1.1",
+          "titulo": "Uma tecnologia urbana, não um sistema",
+          "origem": {
+            "seletor": "section#a01 .wrap > h3",
+            "trecho_inicial": "1.1Uma tecnologia urbana, não um sistema",
+            "linha_aprox": 421
+          }
+        },
+        {
+          "numero": "1.2",
+          "titulo": "Quando o capital externo assume a escala",
+          "origem": {
+            "seletor": "section#a01 .wrap > h3",
+            "trecho_inicial": "1.2Quando o capital externo assume a escala",
+            "linha_aprox": 428
+          }
+        },
+        {
+          "numero": "1.3",
+          "titulo": "Três tensões que o arranjo municipal não conseguia resolver",
+          "origem": {
+            "seletor": "section#a01 .wrap > h3",
+            "trecho_inicial": "1.3Três tensões que o arranjo municipal não conseguia resolver",
+            "linha_aprox": 435
+          }
+        },
+        {
+          "numero": "1.4",
+          "titulo": "1934: a União toma o rio",
+          "origem": {
+            "seletor": "section#a01 .wrap > h3",
+            "trecho_inicial": "1.41934: a União toma o rio",
+            "linha_aprox": 442
+          }
+        }
+      ],
+      "instrumentos": [
+        {
+          "id_fonte": "Inst · 02",
+          "titulo": "Simulador · a erosão do custo histórico",
+          "origem": {
+            "seletor": "section#a01 .wrap > div.inst",
+            "trecho_inicial": "Simulador · a erosão do custo históricoInst · 02",
+            "linha_aprox": 451
+          }
+        }
+      ],
+      "tres_niveis": [
+        {
+          "titulo": "Código de Águas de 1934 · três níveis",
+          "origem": {
+            "seletor": "section#a01 .wrap > div.lv",
+            "trecho_inicial": "Código de Águas de 1934 · três níveis",
+            "linha_aprox": 485
+          }
+        }
+      ],
+      "caixas": [
+        {
+          "rotulo": "Onde isso entra no produto",
+          "cor_classe": "box gd",
+          "origem": {
+            "seletor": "section#a01 .wrap > div.box.gd",
+            "trecho_inicial": "Onde isso entra no produto É o caso fundador do padrão que a régua dos",
+            "linha_aprox": 499
+          }
+        }
+      ],
+      "tabelas": [],
+      "contagem_blocos": {
+        "lede": 1,
+        "subtitulo": 4,
+        "paragrafo": 13,
+        "instrumento_ref": 1,
+        "tres_niveis_ref": 1,
+        "caixa": 1
+      }
+    },
+    {
+      "id": "m06-roteiro-aula-02",
+      "tipo": "aula",
+      "ordem_na_fonte": 4,
+      "section_id": "a02",
+      "marcador": "Aula 02",
+      "rotulo_marcador": "1934–1988",
+      "titulo": {
+        "html": "O Estado dono de tudo",
+        "texto": "O Estado dono de tudo"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "Aula 02 · 1934–1988",
+        "linha_aprox": 509
+      },
+      "aula_id_codigo": "aula-06-02",
+      "lede": {
+        "html": "Meio século em que o Brasil construiu o esqueleto físico que ainda usa. Nenhuma das grandes hidrelétricas do país, nenhuma das grandes linhas de transmissão, nenhum dos centros de operação regional é obra do mercado — todos são obra de empresa estatal financiada por imposto, empréstimo compulsório e dívida externa. Entender esse período é entender por que o setor tem a musculatura que tem, e por que ele saiu dos anos 1980 falido.",
+        "texto": "Meio século em que o Brasil construiu o esqueleto físico que ainda usa. Nenhuma das grandes hidrelétricas do país, nenhuma das grandes linhas de transmissão, nenhum dos centros de operação regional é obra do mercado — todos são obra de empresa estatal financiada por imposto, empréstimo compulsório e dívida externa. Entender esse período é entender por que o setor tem a musculatura que tem, e por que ele saiu dos anos 1980 falido.",
+        "origem": {
+          "seletor": "section#a02 .wrap > p.lede",
+          "trecho_inicial": "Meio século em que o Brasil construiu o esqueleto físico que ainda usa",
+          "linha_aprox": 511
+        }
+      },
+      "subsecoes": [
+        {
+          "numero": "2.1",
+          "titulo": "Regular não é o mesmo que construir",
+          "origem": {
+            "seletor": "section#a02 .wrap > h3",
+            "trecho_inicial": "2.1Regular não é o mesmo que construir",
+            "linha_aprox": 513
+          }
+        },
+        {
+          "numero": "2.2",
+          "titulo": "O Estado vira empreendedor",
+          "origem": {
+            "seletor": "section#a02 .wrap > h3",
+            "trecho_inicial": "2.2O Estado vira empreendedor",
+            "linha_aprox": 520
+          }
+        },
+        {
+          "numero": "2.3",
+          "titulo": "O esqueleto físico",
+          "origem": {
+            "seletor": "section#a02 .wrap > h3",
+            "trecho_inicial": "2.3O esqueleto físico",
+            "linha_aprox": 529
+          }
+        },
+        {
+          "numero": "2.4",
+          "titulo": "A crise que encerra o ciclo",
+          "origem": {
+            "seletor": "section#a02 .wrap > h3",
+            "trecho_inicial": "2.4A crise que encerra o ciclo",
+            "linha_aprox": 543
+          }
+        }
+      ],
+      "instrumentos": [
+        {
+          "id_fonte": "Inst · 03",
+          "titulo": "Simulador · como se forma uma dívida intrassetorial",
+          "origem": {
+            "seletor": "section#a02 .wrap > div.inst",
+            "trecho_inicial": "Simulador · como se forma uma dívida intrassetorialInst · 03",
+            "linha_aprox": 556
+          }
+        }
+      ],
+      "tres_niveis": [
+        {
+          "titulo": "Por que o modelo estatal quebrou · três níveis",
+          "origem": {
+            "seletor": "section#a02 .wrap > div.lv",
+            "trecho_inicial": "Por que o modelo estatal quebrou · três níveis",
+            "linha_aprox": 590
+          }
+        }
+      ],
+      "caixas": [
+        {
+          "rotulo": "Ponto que quase todo mundo erra",
+          "cor_classe": "box cy",
+          "origem": {
+            "seletor": "section#a02 .wrap > div.box.cy",
+            "trecho_inicial": "Ponto que quase todo mundo erra A centralização operacional brasileira",
+            "linha_aprox": 538
+          }
+        },
+        {
+          "rotulo": "Onde isso entra no produto",
+          "cor_classe": "box gd",
+          "origem": {
+            "seletor": "section#a02 .wrap > div.box.gd",
+            "trecho_inicial": "Onde isso entra no produto Aqui está a resposta histórica para a pergu",
+            "linha_aprox": 604
+          }
+        }
+      ],
+      "tabelas": [],
+      "contagem_blocos": {
+        "lede": 1,
+        "subtitulo": 4,
+        "paragrafo": 17,
+        "caixa": 2,
+        "instrumento_ref": 1,
+        "tres_niveis_ref": 1
+      }
+    },
+    {
+      "id": "m06-roteiro-aula-03",
+      "tipo": "aula",
+      "ordem_na_fonte": 5,
+      "section_id": "a03",
+      "marcador": "Aula 03",
+      "rotulo_marcador": "1988–2002",
+      "titulo": {
+        "html": "A reforma inacabada e o trauma fundador",
+        "texto": "A reforma inacabada e o trauma fundador"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "Aula 03 · 1988–2002",
+        "linha_aprox": 614
+      },
+      "aula_id_codigo": "aula-06-03",
+      "lede": {
+        "html": "Esta é a aula central do bloco. Tudo que veio antes explica como o Brasil chegou aqui; tudo que veio depois é resposta ao que aconteceu aqui. E o resumo que circula — \"privatizaram e faltou luz\" — é curto demais para ser útil e errado o bastante para custar credibilidade em qualquer conversa técnica. A história real é mais interessante e muito mais instrutiva.",
+        "texto": "Esta é a aula central do bloco. Tudo que veio antes explica como o Brasil chegou aqui; tudo que veio depois é resposta ao que aconteceu aqui. E o resumo que circula — \"privatizaram e faltou luz\" — é curto demais para ser útil e errado o bastante para custar credibilidade em qualquer conversa técnica. A história real é mais interessante e muito mais instrutiva.",
+        "origem": {
+          "seletor": "section#a03 .wrap > p.lede",
+          "trecho_inicial": "Esta é a aula central do bloco. Tudo que veio antes explica como o Bra",
+          "linha_aprox": 616
+        }
+      },
+      "subsecoes": [
+        {
+          "numero": "3.1",
+          "titulo": "Antes de vender, tornar legível",
+          "origem": {
+            "seletor": "section#a03 .wrap > h3",
+            "trecho_inicial": "3.1Antes de vender, tornar legível",
+            "linha_aprox": 618
+          }
+        },
+        {
+          "numero": "3.2",
+          "titulo": "A arquitetura desenhada",
+          "origem": {
+            "seletor": "section#a03 .wrap > h3",
+            "trecho_inicial": "3.2A arquitetura desenhada",
+            "linha_aprox": 625
+          }
+        },
+        {
+          "numero": "3.3",
+          "titulo": "A arquitetura entregue",
+          "origem": {
+            "seletor": "section#a03 .wrap > h3",
+            "trecho_inicial": "3.3A arquitetura entregue",
+            "linha_aprox": 642
+          }
+        },
+        {
+          "numero": "3.4",
+          "titulo": "A assimetria que virou bomba",
+          "origem": {
+            "seletor": "section#a03 .wrap > h3",
+            "trecho_inicial": "3.4A assimetria que virou bomba",
+            "linha_aprox": 654
+          }
+        },
+        {
+          "numero": "3.5",
+          "titulo": "2001: o racionamento",
+          "origem": {
+            "seletor": "section#a03 .wrap > h3",
+            "trecho_inicial": "3.52001: o racionamento",
+            "linha_aprox": 663
+          }
+        },
+        {
+          "numero": "3.6",
+          "titulo": "O que a comissão de investigação achou",
+          "origem": {
+            "seletor": "section#a03 .wrap > h3",
+            "trecho_inicial": "3.6O que a comissão de investigação achou",
+            "linha_aprox": 675
+          }
+        },
+        {
+          "numero": "3.7",
+          "titulo": "A conta e a cicatriz",
+          "origem": {
+            "seletor": "section#a03 .wrap > h3",
+            "trecho_inicial": "3.7A conta e a cicatriz",
+            "linha_aprox": 713
+          }
+        }
+      ],
+      "instrumentos": [
+        {
+          "id_fonte": "Inst · 04",
+          "titulo": "Termômetro do racionamento · balanço de energia num período seco",
+          "origem": {
+            "seletor": "section#a03 .wrap > div.inst",
+            "trecho_inicial": "Termômetro do racionamento · balanço de energia num período secoInst ·",
+            "linha_aprox": 682
+          }
+        }
+      ],
+      "tres_niveis": [
+        {
+          "titulo": "Por que 2001 aconteceu · três níveis",
+          "origem": {
+            "seletor": "section#a03 .wrap > div.lv",
+            "trecho_inicial": "Por que 2001 aconteceu · três níveis",
+            "linha_aprox": 720
+          }
+        }
+      ],
+      "caixas": [
+        {
+          "rotulo": "Números vivos · verificar na fonte antes de uso externo",
+          "cor_classe": "box rd",
+          "origem": {
+            "seletor": "section#a03 .wrap > div.box.rd",
+            "trecho_inicial": "Números vivos · verificar na fonte antes de uso externo O valor de ven",
+            "linha_aprox": 649
+          }
+        },
+        {
+          "rotulo": "Fronteira com o Módulo 02",
+          "cor_classe": "box cy",
+          "origem": {
+            "seletor": "section#a03 .wrap > div.box.cy",
+            "trecho_inicial": "Fronteira com o Módulo 02 A mecânica física de como uma perturbação se",
+            "linha_aprox": 666
+          }
+        },
+        {
+          "rotulo": "Onde isso entra no produto",
+          "cor_classe": "box gd",
+          "origem": {
+            "seletor": "section#a03 .wrap > div.box.gd",
+            "trecho_inicial": "Onde isso entra no produto É o argumento fundador do Brazil Pulse. Tod",
+            "linha_aprox": 734
+          }
+        }
+      ],
+      "tabelas": [
+        {
+          "cabecalho": [
+            "Norma",
+            "O que instituiu",
+            "Pergunta da régua que ela responde"
+          ],
+          "n_linhas": 6,
+          "origem": {
+            "seletor": "section#a03 .wrap > div.scroll",
+            "trecho_inicial": "NormaO que instituiuPergunta da régua que ela responde Lei nº 8.987/19",
+            "linha_aprox": 629
+          }
+        }
+      ],
+      "contagem_blocos": {
+        "lede": 1,
+        "subtitulo": 7,
+        "paragrafo": 21,
+        "tabela": 1,
+        "caixa": 3,
+        "instrumento_ref": 1,
+        "tres_niveis_ref": 1
+      }
+    },
+    {
+      "id": "m06-roteiro-aula-04",
+      "tipo": "aula",
+      "ordem_na_fonte": 6,
+      "section_id": "a04",
+      "marcador": "Aula 04",
+      "rotulo_marcador": "2003–2011",
+      "titulo": {
+        "html": "A reconstrução deliberada",
+        "texto": "A reconstrução deliberada"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "Aula 04 · 2003–2011",
+        "linha_aprox": 744
+      },
+      "aula_id_codigo": "aula-06-04",
+      "lede": {
+        "html": "O Novo Modelo de 2004 é o marco que ainda rege o setor, e é sistematicamente mal contado. Não foi reestatização, não foi fechamento do mercado livre e não foi ruptura com a reforma dos anos 1990. Foi uma <em>reforma da reforma</em>: manteve tudo que a década anterior tinha criado de competitivo e recolocou no lugar exatamente aquilo cuja ausência tinha custado o racionamento — um dono para a pergunta \"quem garante que a expansão aconteça\".",
+        "texto": "O Novo Modelo de 2004 é o marco que ainda rege o setor, e é sistematicamente mal contado. Não foi reestatização, não foi fechamento do mercado livre e não foi ruptura com a reforma dos anos 1990. Foi uma reforma da reforma: manteve tudo que a década anterior tinha criado de competitivo e recolocou no lugar exatamente aquilo cuja ausência tinha custado o racionamento — um dono para a pergunta \"quem garante que a expansão aconteça\".",
+        "origem": {
+          "seletor": "section#a04 .wrap > p.lede",
+          "trecho_inicial": "O Novo Modelo de 2004 é o marco que ainda rege o setor, e é sistematic",
+          "linha_aprox": 746
+        }
+      },
+      "subsecoes": [
+        {
+          "numero": "4.1",
+          "titulo": "Três objetivos, e a ordem entre eles",
+          "origem": {
+            "seletor": "section#a04 .wrap > h3",
+            "trecho_inicial": "4.1Três objetivos, e a ordem entre eles",
+            "linha_aprox": 748
+          }
+        },
+        {
+          "numero": "4.2",
+          "titulo": "Duas leis, uma arquitetura",
+          "origem": {
+            "seletor": "section#a04 .wrap > h3",
+            "trecho_inicial": "4.2Duas leis, uma arquitetura",
+            "linha_aprox": 753
+          }
+        },
+        {
+          "numero": "4.3",
+          "titulo": "O que mudou e o que não mudou",
+          "origem": {
+            "seletor": "section#a04 .wrap > h3",
+            "trecho_inicial": "4.3O que mudou e o que não mudou",
+            "linha_aprox": 774
+          }
+        },
+        {
+          "numero": "4.4",
+          "titulo": "A retomada, e o preço dela",
+          "origem": {
+            "seletor": "section#a04 .wrap > h3",
+            "trecho_inicial": "4.4A retomada, e o preço dela",
+            "linha_aprox": 783
+          }
+        }
+      ],
+      "instrumentos": [
+        {
+          "id_fonte": "Inst · 05",
+          "titulo": "Comparador · três arquiteturas e onde o risco pousa",
+          "origem": {
+            "seletor": "section#a04 .wrap > div.inst",
+            "trecho_inicial": "Comparador · três arquiteturas e onde o risco pousaInst · 05",
+            "linha_aprox": 790
+          }
+        }
+      ],
+      "tres_niveis": [
+        {
+          "titulo": "O Novo Modelo de 2004 · três níveis",
+          "origem": {
+            "seletor": "section#a04 .wrap > div.lv",
+            "trecho_inicial": "O Novo Modelo de 2004 · três níveis",
+            "linha_aprox": 818
+          }
+        }
+      ],
+      "caixas": [
+        {
+          "rotulo": "Fronteira com o Módulo 04",
+          "cor_classe": "box cy",
+          "origem": {
+            "seletor": "section#a04 .wrap > div.box.cy",
+            "trecho_inicial": "Fronteira com o Módulo 04 Como funcionam os leilões A-1 a A-6, como se",
+            "linha_aprox": 769
+          }
+        },
+        {
+          "rotulo": "Onde isso entra no produto",
+          "cor_classe": "box gd",
+          "origem": {
+            "seletor": "section#a04 .wrap > div.box.gd",
+            "trecho_inicial": "Onde isso entra no produto Este é o bloco que alimenta diretamente a A",
+            "linha_aprox": 832
+          }
+        }
+      ],
+      "tabelas": [
+        {
+          "cabecalho": [
+            "Criação de 2004",
+            "Contra qual falha de 2001",
+            "O que ela faz até hoje"
+          ],
+          "n_linhas": 5,
+          "origem": {
+            "seletor": "section#a04 .wrap > div.scroll",
+            "trecho_inicial": "Criação de 2004Contra qual falha de 2001O que ela faz até hoje EPE — E",
+            "linha_aprox": 757
+          }
+        }
+      ],
+      "contagem_blocos": {
+        "lede": 1,
+        "subtitulo": 4,
+        "paragrafo": 11,
+        "tabela": 1,
+        "caixa": 2,
+        "instrumento_ref": 1,
+        "tres_niveis_ref": 1
+      }
+    },
+    {
+      "id": "m06-roteiro-aula-05",
+      "tipo": "aula",
+      "ordem_na_fonte": 7,
+      "section_id": "a05",
+      "marcador": "Aula 05",
+      "rotulo_marcador": "2012–2021",
+      "titulo": {
+        "html": "O modelo é testado de novo",
+        "texto": "O modelo é testado de novo"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "Aula 05 · 2012–2021",
+        "linha_aprox": 842
+      },
+      "aula_id_codigo": "aula-06-05",
+      "lede": {
+        "html": "Uma década que o setor levou para aprender uma frase: <strong>risco mal alocado não desaparece — ele muda de forma</strong>. Vira dívida, vira encargo, vira bandeira na conta, vira liminar. A década de 2010 é o laboratório dessa lei, e é também onde nasce quase toda a agenda regulatória que ainda está aberta hoje.",
+        "texto": "Uma década que o setor levou para aprender uma frase: risco mal alocado não desaparece — ele muda de forma. Vira dívida, vira encargo, vira bandeira na conta, vira liminar. A década de 2010 é o laboratório dessa lei, e é também onde nasce quase toda a agenda regulatória que ainda está aberta hoje.",
+        "origem": {
+          "seletor": "section#a05 .wrap > p.lede",
+          "trecho_inicial": "Uma década que o setor levou para aprender uma frase: risco mal alocad",
+          "linha_aprox": 844
+        }
+      },
+      "subsecoes": [
+        {
+          "numero": "5.1",
+          "titulo": "Uma tentativa de reduzir tarifa pela concessão",
+          "origem": {
+            "seletor": "section#a05 .wrap > h3",
+            "trecho_inicial": "5.1Uma tentativa de reduzir tarifa pela concessão",
+            "linha_aprox": 846
+          }
+        },
+        {
+          "numero": "5.2",
+          "titulo": "A seca encontra a tarifa reduzida",
+          "origem": {
+            "seletor": "section#a05 .wrap > h3",
+            "trecho_inicial": "5.2A seca encontra a tarifa reduzida",
+            "linha_aprox": 853
+          }
+        },
+        {
+          "numero": "5.3",
+          "titulo": "GSF: quando o rateio descobre que é um sistema fechado",
+          "origem": {
+            "seletor": "section#a05 .wrap > h3",
+            "trecho_inicial": "5.3GSF: quando o rateio descobre que é um sistema fechado",
+            "linha_aprox": 860
+          }
+        },
+        {
+          "numero": "5.4",
+          "titulo": "Modernização em degraus",
+          "origem": {
+            "seletor": "section#a05 .wrap > h3",
+            "trecho_inicial": "5.4Modernização em degraus",
+            "linha_aprox": 906
+          }
+        },
+        {
+          "numero": "5.5",
+          "titulo": "Geração distribuída, pandemia e o teste de 2021",
+          "origem": {
+            "seletor": "section#a05 .wrap > h3",
+            "trecho_inicial": "5.5Geração distribuída, pandemia e o teste de 2021",
+            "linha_aprox": 925
+          }
+        }
+      ],
+      "instrumentos": [
+        {
+          "id_fonte": "Inst · 06",
+          "titulo": "Simulador · o efeito de uma liminar num sistema de rateio",
+          "origem": {
+            "seletor": "section#a05 .wrap > div.inst",
+            "trecho_inicial": "Simulador · o efeito de uma liminar num sistema de rateioInst · 06",
+            "linha_aprox": 876
+          }
+        }
+      ],
+      "tres_niveis": [
+        {
+          "titulo": "Por que risco mal alocado vira processo judicial · três níveis",
+          "origem": {
+            "seletor": "section#a05 .wrap > div.lv",
+            "trecho_inicial": "Por que risco mal alocado vira processo judicial · três níveis",
+            "linha_aprox": 934
+          }
+        }
+      ],
+      "caixas": [
+        {
+          "rotulo": "Fronteira com o Bloco 9",
+          "cor_classe": "box cy",
+          "origem": {
+            "seletor": "section#a05 .wrap > div.box.cy",
+            "trecho_inicial": "Fronteira com o Bloco 9 A mecânica completa do mecanismo de realocação",
+            "linha_aprox": 865
+          }
+        },
+        {
+          "rotulo": "Onde isso entra no produto",
+          "cor_classe": "box gd",
+          "origem": {
+            "seletor": "section#a05 .wrap > div.box.gd",
+            "trecho_inicial": "Onde isso entra no produto Esta aula é a defesa mais concreta da tese ",
+            "linha_aprox": 948
+          }
+        }
+      ],
+      "tabelas": [
+        {
+          "cabecalho": [
+            "A partir de",
+            "Carga mínima para migrar",
+            "Norma"
+          ],
+          "n_linhas": 6,
+          "origem": {
+            "seletor": "section#a05 .wrap > div.scroll",
+            "trecho_inicial": "A partir deCarga mínima para migrarNorma 1º de julho de 20192.500 kWPo",
+            "linha_aprox": 912
+          }
+        }
+      ],
+      "contagem_blocos": {
+        "lede": 1,
+        "subtitulo": 5,
+        "paragrafo": 18,
+        "caixa": 2,
+        "instrumento_ref": 1,
+        "tabela": 1,
+        "tres_niveis_ref": 1
+      }
+    },
+    {
+      "id": "m06-roteiro-aula-06",
+      "tipo": "aula",
+      "ordem_na_fonte": 8,
+      "section_id": "a06",
+      "marcador": "Aula 06",
+      "rotulo_marcador": "2022–2028 · síntese",
+      "titulo": {
+        "html": "Onde a história pousa hoje",
+        "texto": "Onde a história pousa hoje"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "Aula 06 · 2022–2028 · síntese",
+        "linha_aprox": 958
+      },
+      "aula_id_codigo": "aula-06-06",
+      "lede": {
+        "html": "Esta aula fecha o arco e faz a única coisa que o resto do bloco não podia fazer: colocar a GridAlpha dentro da história. O que a sequência de cento e cinquenta anos mostra não é que o setor esteja indo para algum lugar definitivo — é que ele nunca foi. E é exatamente daí que sai o argumento de independência, que é histórico antes de ser comercial.",
+        "texto": "Esta aula fecha o arco e faz a única coisa que o resto do bloco não podia fazer: colocar a GridAlpha dentro da história. O que a sequência de cento e cinquenta anos mostra não é que o setor esteja indo para algum lugar definitivo — é que ele nunca foi. E é exatamente daí que sai o argumento de independência, que é histórico antes de ser comercial.",
+        "origem": {
+          "seletor": "section#a06 .wrap > p.lede",
+          "trecho_inicial": "Esta aula fecha o arco e faz a única coisa que o resto do bloco não po",
+          "linha_aprox": 960
+        }
+      },
+      "subsecoes": [
+        {
+          "numero": "6.1",
+          "titulo": "2022: capitalização não é venda",
+          "origem": {
+            "seletor": "section#a06 .wrap > h3",
+            "trecho_inicial": "6.12022: capitalização não é venda",
+            "linha_aprox": 962
+          }
+        },
+        {
+          "numero": "6.2",
+          "titulo": "2025: de Eletrobras a AXIA",
+          "origem": {
+            "seletor": "section#a06 .wrap > h3",
+            "trecho_inicial": "6.22025: de Eletrobras a AXIA",
+            "linha_aprox": 974
+          }
+        },
+        {
+          "numero": "6.3",
+          "titulo": "Janeiro de 2024, e o que vem até 2028",
+          "origem": {
+            "seletor": "section#a06 .wrap > h3",
+            "trecho_inicial": "6.3Janeiro de 2024, e o que vem até 2028",
+            "linha_aprox": 979
+          }
+        },
+        {
+          "numero": "6.4",
+          "titulo": "O padrão que só aparece de longe",
+          "origem": {
+            "seletor": "section#a06 .wrap > h3",
+            "trecho_inicial": "6.4O padrão que só aparece de longe",
+            "linha_aprox": 1030
+          }
+        }
+      ],
+      "instrumentos": [
+        {
+          "id_fonte": "Inst · 07",
+          "titulo": "Linha da abertura · quando cada consumidor passou a poder escolher",
+          "origem": {
+            "seletor": "section#a06 .wrap > div.inst",
+            "trecho_inicial": "Linha da abertura · quando cada consumidor passou a poder escolherInst",
+            "linha_aprox": 991
+          }
+        },
+        {
+          "id_fonte": "Inst · 08",
+          "titulo": "Mapa trauma → cicatriz regulatória",
+          "origem": {
+            "seletor": "section#a06 .wrap > div.inst",
+            "trecho_inicial": "Mapa trauma → cicatriz regulatóriaInst · 08",
+            "linha_aprox": 1037
+          }
+        }
+      ],
+      "tres_niveis": [
+        {
+          "titulo": "Capitalização, privatização e mudança de marca · três níveis",
+          "origem": {
+            "seletor": "section#a06 .wrap > div.lv",
+            "trecho_inicial": "Capitalização, privatização e mudança de marca · três níveis",
+            "linha_aprox": 1053
+          }
+        }
+      ],
+      "caixas": [
+        {
+          "rotulo": "Correção de precisão do currículo · números vivos",
+          "cor_classe": "box rd",
+          "origem": {
+            "seletor": "section#a06 .wrap > div.box.rd",
+            "trecho_inicial": "Correção de precisão do currículo · números vivos O currículo registra",
+            "linha_aprox": 969
+          }
+        },
+        {
+          "rotulo": "Números vivos · verificar na fonte antes de uso externo",
+          "cor_classe": "box rd",
+          "origem": {
+            "seletor": "section#a06 .wrap > div.box.rd",
+            "trecho_inicial": "Números vivos · verificar na fonte antes de uso externo A Lei nº 15.26",
+            "linha_aprox": 986
+          }
+        },
+        {
+          "rotulo": "Onde isso entra no produto",
+          "cor_classe": "box gd",
+          "origem": {
+            "seletor": "section#a06 .wrap > div.box.gd",
+            "trecho_inicial": "Onde isso entra no produto Aqui está o argumento mais forte que a Alex",
+            "linha_aprox": 1067
+          }
+        },
+        {
+          "rotulo": "A frase que fecha o módulo",
+          "cor_classe": "box cy",
+          "origem": {
+            "seletor": "section#a06 .wrap > div.box.cy",
+            "trecho_inicial": "A frase que fecha o módulo O setor elétrico brasileiro não é estatal n",
+            "linha_aprox": 1073
+          }
+        }
+      ],
+      "tabelas": [],
+      "contagem_blocos": {
+        "lede": 1,
+        "subtitulo": 4,
+        "paragrafo": 11,
+        "caixa": 4,
+        "instrumento_ref": 2,
+        "tres_niveis_ref": 1
+      }
+    },
+    {
+      "id": "m06-roteiro-caso",
+      "tipo": "aparato",
+      "ordem_na_fonte": 9,
+      "section_id": "caso",
+      "marcador": "§Caso",
+      "rotulo_marcador": "Operação A — mineração em Minas Gerais · Parte 6",
+      "titulo": {
+        "html": "A planta pela lente da história",
+        "texto": "A planta pela lente da história"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "§Caso · Operação A — mineração em Minas Gerais · Parte 6",
+        "linha_aprox": 1083
+      }
+    },
+    {
+      "id": "m06-roteiro-erros",
+      "tipo": "aparato",
+      "ordem_na_fonte": 10,
+      "section_id": "erros",
+      "marcador": "§Erros",
+      "rotulo_marcador": "Correção imediata",
+      "titulo": {
+        "html": "Dezesseis erros que custam credibilidade",
+        "texto": "Dezesseis erros que custam credibilidade"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "§Erros · Correção imediata",
+        "linha_aprox": 1117
+      }
+    },
+    {
+      "id": "m06-roteiro-ex",
+      "tipo": "aparato",
+      "ordem_na_fonte": 11,
+      "section_id": "ex",
+      "marcador": "§Ex",
+      "rotulo_marcador": "Exercícios com gabarito",
+      "titulo": {
+        "html": "Dez exercícios com gabarito",
+        "texto": "Dez exercícios com gabarito"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "§Ex · Exercícios com gabarito",
+        "linha_aprox": 1153
+      }
+    },
+    {
+      "id": "m06-roteiro-quiz",
+      "tipo": "aparato",
+      "ordem_na_fonte": 12,
+      "section_id": "quiz",
+      "marcador": "§Quiz",
+      "rotulo_marcador": "Verificação interativa de domínio",
+      "titulo": {
+        "html": "Dez perguntas. Resposta imediata.",
+        "texto": "Dez perguntas. Resposta imediata."
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "§Quiz · Verificação interativa de domínio",
+        "linha_aprox": 1212
+      }
+    },
+    {
+      "id": "m06-roteiro-voz",
+      "tipo": "aparato",
+      "ordem_na_fonte": 13,
+      "section_id": "voz",
+      "marcador": "§Voz",
+      "rotulo_marcador": "Domínio oral",
+      "titulo": {
+        "html": "Dez minutos, sem consultar nada.",
+        "texto": "Dez minutos, sem consultar nada."
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "§Voz · Domínio oral",
+        "linha_aprox": 1227
+      }
+    },
+    {
+      "id": "m06-roteiro-final",
+      "tipo": "aparato",
+      "ordem_na_fonte": 14,
+      "section_id": "final",
+      "marcador": "§Final",
+      "rotulo_marcador": "Critério de conclusão",
+      "titulo": {
+        "html": "Você domina o Bloco 6 quando",
+        "texto": "Você domina o Bloco 6 quando"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "§Final · Critério de conclusão",
+        "linha_aprox": 1321
+      }
+    },
+    {
+      "id": "m06-roteiro-lex",
+      "tipo": "aparato",
+      "ordem_na_fonte": 15,
+      "section_id": "lex",
+      "marcador": "§Lex",
+      "rotulo_marcador": "Glossário Alexandria",
+      "titulo": {
+        "html": "Noventa e nove termos",
+        "texto": "Noventa e nove termos"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "§Lex · Glossário Alexandria",
+        "linha_aprox": 1356
+      }
+    },
+    {
+      "id": "m06-roteiro-ref",
+      "tipo": "aparato",
+      "ordem_na_fonte": 16,
+      "section_id": "ref",
+      "marcador": "§Ref",
+      "rotulo_marcador": "Fontes",
+      "titulo": {
+        "html": "Onde verificar cada afirmação",
+        "texto": "Onde verificar cada afirmação"
+      },
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "§Ref · Fontes",
+        "linha_aprox": 1482
+      }
+    }
+  ],
+  "criterio": {
+    "id": "m06-criterio",
+    "nota": "Critérios LITERAIS, cada um com a sua origem. Nenhum prevalece nesta camada (P18). `marcacao_p14` é anotação desta extração.",
+    "itens": [
+      {
+        "id": "m06-crit-01",
+        "onde": "§00 caixa \"Critério de domínio deste módulo\"",
+        "rotulo": "Critério de domínio deste módulo",
+        "html": "Você domina o Bloco 6 quando conta a história do setor elétrico brasileiro em <strong>dez minutos, sem consultar nada</strong>, e conecta cada marco a uma característica regulatória de hoje — por exemplo, por que o operador nacional despacha de forma centralizada é resposta direta ao que se aprendeu em 2001, e por que a obrigação de lastro existe é resposta ao que <em>não</em> existia em 1999. E quando, diante de um decisor cético, defende a independência analítica da GridAlpha não como slogan, mas como leitura de um padrão histórico: o regime de propriedade mudou quatro vezes em cento e cinquenta anos, e a necessidade de análise que não dependa de nenhum deles não mudou nenhuma vez.",
+        "texto": "Você domina o Bloco 6 quando conta a história do setor elétrico brasileiro em dez minutos, sem consultar nada, e conecta cada marco a uma característica regulatória de hoje — por exemplo, por que o operador nacional despacha de forma centralizada é resposta direta ao que se aprendeu em 2001, e por que a obrigação de lastro existe é resposta ao que não existia em 1999. E quando, diante de um decisor cético, defende a independência analítica da GridAlpha não como slogan, mas como leitura de um padrão histórico: o regime de propriedade mudou quatro vezes em cento e cinquenta anos, e a necessidade de análise que não dependa de nenhum deles não mudou nenhuma vez.",
+        "origem": {
+          "seletor": "section#tese .wrap > div.box.gd",
+          "trecho_inicial": "Critério de domínio deste módulo Você domina o Bloco 6 quando conta a ",
+          "linha_aprox": 369
+        },
+        "marcacao_p14": [
+          "oral",
+          "cronometrado (dez minutos)",
+          "sem consulta"
+        ]
+      },
+      {
+        "id": "m06-crit-02",
+        "onde": "hero pill",
+        "html": "<b>10</b> questões · critério 8/10",
+        "texto": "10 questões · critério 8/10",
+        "origem": {
+          "seletor": ".hero .pill-row > span.pill",
+          "trecho_inicial": "10 questões · critério 8/10",
+          "linha_aprox": 310
+        },
+        "marcacao_p14": [
+          "automatizavel (quiz)"
+        ]
+      },
+      {
+        "id": "m06-crit-03",
+        "onde": "§Quiz lede",
+        "html": "Quiz de fluência histórica. Cada resposta tem retorno explicativo com a aula de origem. O critério de domínio do módulo é acertar pelo menos <strong>8 de 10</strong> sem consultar.",
+        "texto": "Quiz de fluência histórica. Cada resposta tem retorno explicativo com a aula de origem. O critério de domínio do módulo é acertar pelo menos 8 de 10 sem consultar.",
+        "origem": {
+          "seletor": "section#quiz p.lede",
+          "trecho_inicial": "Quiz de fluência histórica. Cada resposta tem retorno explicativo com ",
+          "linha_aprox": 1214
+        },
+        "marcacao_p14": [
+          "automatizavel (quiz)",
+          "sem consulta"
+        ],
+        "mensagens_script": [
+          {
+            "condicao_literal": "if(sc>=8)",
+            "classe": "score show pass",
+            "texto": "Critério de domínio atingido. Passe para o §Voz: as trinta e seis perguntas-relâmpago primeiro, os seis ataques de decisor depois, e então o roteiro de dez minutos — gravado, sem consultar. O critério oficial deste bloco é oral, não escrito.",
+            "origem": {
+              "seletor": "script QUIZ q-go click",
+              "trecho_inicial": "Critério de domínio atingido. Passe para o §Voz: as trinta e seis perg",
+              "linha_aprox": 2337
+            }
+          },
+          {
+            "condicao_literal": "else",
+            "classe": "score show fail",
+            "texto": "Abaixo do critério de 8/10. Leia os retornos acima, refaça por inteiro as aulas indicadas e volte. Não avance para o §Voz antes de fechar 8.",
+            "origem": {
+              "seletor": "script QUIZ q-go click",
+              "trecho_inicial": "Abaixo do critério de 8/10. Leia os retornos acima, refaça por inteiro",
+              "linha_aprox": 2340
+            }
+          }
+        ]
+      },
+      {
+        "id": "m06-crit-04",
+        "onde": "§Voz lede",
+        "html": "Este é o único bloco do currículo cujo critério de domínio é ele próprio um exercício oral: contar a história do setor elétrico brasileiro em dez minutos e conectar cada marco a uma característica regulatória de hoje. Por isso a §Voz aqui é maior que nos módulos anteriores, e por isso ela não é opcional. Três ferramentas: trinta e seis perguntas-relâmpago, seis ataques de decisor cético e o roteiro de dez minutos — para gravar, ouvir e refazer de cabeça até sair inteiro.",
+        "texto": "Este é o único bloco do currículo cujo critério de domínio é ele próprio um exercício oral: contar a história do setor elétrico brasileiro em dez minutos e conectar cada marco a uma característica regulatória de hoje. Por isso a §Voz aqui é maior que nos módulos anteriores, e por isso ela não é opcional. Três ferramentas: trinta e seis perguntas-relâmpago, seis ataques de decisor cético e o roteiro de dez minutos — para gravar, ouvir e refazer de cabeça até sair inteiro.",
+        "origem": {
+          "seletor": "section#voz .wrap > p.lede",
+          "trecho_inicial": "Este é o único bloco do currículo cujo critério de domínio é ele própr",
+          "linha_aprox": 1229
+        },
+        "marcacao_p14": [
+          "oral",
+          "cronometrado (dez minutos)"
+        ]
+      },
+      {
+        "id": "m06-crit-05",
+        "onde": "§Voz V.2 (ataques de decisor)",
+        "html": "São as perguntas reais, feitas do jeito que são feitas — inclusive as hostis. Responda em voz alta, cronometrando: cada uma cabe em noventa segundos. As duas últimas são sobre a própria GridAlpha, e você vai ouvi-las mais vezes que todas as outras somadas.",
+        "texto": "São as perguntas reais, feitas do jeito que são feitas — inclusive as hostis. Responda em voz alta, cronometrando: cada uma cabe em noventa segundos. As duas últimas são sobre a própria GridAlpha, e você vai ouvi-las mais vezes que todas as outras somadas.",
+        "origem": {
+          "seletor": "section#voz .wrap > p",
+          "trecho_inicial": "São as perguntas reais, feitas do jeito que são feitas — inclusive as ",
+          "linha_aprox": 1273
+        },
+        "marcacao_p14": [
+          "oral",
+          "cronometrado (noventa segundos por ataque)"
+        ]
+      },
+      {
+        "id": "m06-crit-06",
+        "onde": "§Voz V.3 (roteiro)",
+        "html": "Este é o entregável oral do bloco. Grave em áudio, sem consultar. Cada minuto tem um marco, uma causa e uma cicatriz — e a transição entre minutos é sempre a mesma frase implícita: <em>e foi isso que criou o problema seguinte</em>.",
+        "texto": "Este é o entregável oral do bloco. Grave em áudio, sem consultar. Cada minuto tem um marco, uma causa e uma cicatriz — e a transição entre minutos é sempre a mesma frase implícita: e foi isso que criou o problema seguinte.",
+        "origem": {
+          "seletor": "section#voz .wrap > p",
+          "trecho_inicial": "Este é o entregável oral do bloco. Grave em áudio, sem consultar. Cada",
+          "linha_aprox": 1289
+        },
+        "marcacao_p14": [
+          "oral",
+          "gravado em áudio",
+          "sem consulta"
+        ]
+      },
+      {
+        "id": "m06-crit-07",
+        "onde": "§Voz caixa \"Como treinar\" (teste final)",
+        "html": "Grave os dez minutos em áudio, sem consultar. Ouça procurando quatro coisas: onde você hesitou, onde citou data sem citar causa, onde a transição entre minutos ficou solta — o roteiro precisa soar como uma corrente, não como uma lista —, e onde você opinou em vez de explicar. Este bloco é o mais fácil de todos para escorregar em opinião política, porque cada marco tem leitura ideológica pronta disponível. A gravação denuncia isso melhor que qualquer releitura. Regrave o minuto, não o roteiro inteiro. E quando os dez minutos saírem limpos, faça o teste final: conte a mesma história em três minutos, mantendo quatro traumas e as quatro instituições que nasceram deles. Se sobreviver ao corte, é seu.",
+        "texto": "Grave os dez minutos em áudio, sem consultar. Ouça procurando quatro coisas: onde você hesitou, onde citou data sem citar causa, onde a transição entre minutos ficou solta — o roteiro precisa soar como uma corrente, não como uma lista —, e onde você opinou em vez de explicar. Este bloco é o mais fácil de todos para escorregar em opinião política, porque cada marco tem leitura ideológica pronta disponível. A gravação denuncia isso melhor que qualquer releitura. Regrave o minuto, não o roteiro inteiro. E quando os dez minutos saírem limpos, faça o teste final: conte a mesma história em três minutos, mantendo quatro traumas e as quatro instituições que nasceram deles. Se sobreviver ao corte, é seu.",
+        "origem": {
+          "seletor": "section#voz .wrap > div.box.cy",
+          "trecho_inicial": "Como treinar Grave os dez minutos em áudio, sem consultar. Ouça procur",
+          "linha_aprox": 1311
+        },
+        "marcacao_p14": [
+          "oral",
+          "cronometrado (dez e três minutos)",
+          "gravado em áudio"
+        ]
+      },
+      {
+        "id": "m06-crit-08",
+        "onde": "§Final h2 + lede (24 verificações em aparato.json → checklist_final)",
+        "h2": "Você domina o Bloco 6 quando",
+        "html": "Vinte e quatro verificações. Responda sem travar e sem consultar. Cada uma que falhar aponta uma aula específica — e a aula é para ser refeita inteira, não consultada em diagonal.",
+        "texto": "Vinte e quatro verificações. Responda sem travar e sem consultar. Cada uma que falhar aponta uma aula específica — e a aula é para ser refeita inteira, não consultada em diagonal.",
+        "origem": {
+          "seletor": "section#final p.lede",
+          "trecho_inicial": "Vinte e quatro verificações. Responda sem travar e sem consultar. Cada",
+          "linha_aprox": 1323
+        },
+        "marcacao_p14": [
+          "oral ou livre",
+          "sem consulta"
+        ]
+      }
+    ]
+  },
+  "laboratorios": {
+    "itens": null,
+    "nota": "Não há \"§ Lab\" no M06 (varredura por \"§Lab\"/\"§ Lab\": zero). O único instrumento fora de aula é o Inst · 01 (linha do tempo), no §MAP — registrado em instrumentos.json com `secao: \"§MAP\"`."
+  },
+  "voz": {
+    "id": "m06-voz",
+    "secao_voz": {
+      "marcador": {
+        "html": "<b>§Voz</b> · Domínio oral",
+        "marcador": "§Voz",
+        "rotulo": "Domínio oral",
+        "origem": {
+          "seletor": ".sec-id",
+          "trecho_inicial": "§Voz · Domínio oral",
+          "linha_aprox": 1227
+        }
+      },
+      "titulo": "Dez minutos, sem consultar nada.",
+      "blocos": [
+        {
+          "id": "m06-voz-b01",
+          "tipo": "lede",
+          "html": "Este é o único bloco do currículo cujo critério de domínio é ele próprio um exercício oral: contar a história do setor elétrico brasileiro em dez minutos e conectar cada marco a uma característica regulatória de hoje. Por isso a §Voz aqui é maior que nos módulos anteriores, e por isso ela não é opcional. Três ferramentas: trinta e seis perguntas-relâmpago, seis ataques de decisor cético e o roteiro de dez minutos — para gravar, ouvir e refazer de cabeça até sair inteiro.",
+          "texto": "Este é o único bloco do currículo cujo critério de domínio é ele próprio um exercício oral: contar a história do setor elétrico brasileiro em dez minutos e conectar cada marco a uma característica regulatória de hoje. Por isso a §Voz aqui é maior que nos módulos anteriores, e por isso ela não é opcional. Três ferramentas: trinta e seis perguntas-relâmpago, seis ataques de decisor cético e o roteiro de dez minutos — para gravar, ouvir e refazer de cabeça até sair inteiro.",
+          "origem": {
+            "seletor": "section#voz .wrap > p.lede",
+            "trecho_inicial": "Este é o único bloco do currículo cujo critério de domínio é ele própr",
+            "linha_aprox": 1229
+          }
+        },
+        {
+          "id": "m06-voz-b02",
+          "tipo": "subtitulo",
+          "numero": "V.1",
+          "titulo": "Trinta e seis perguntas sem travar",
+          "origem": {
+            "seletor": "section#voz .wrap > h3",
+            "trecho_inicial": "V.1Trinta e seis perguntas sem travar",
+            "linha_aprox": 1231
+          }
+        },
+        {
+          "id": "m06-voz-b03",
+          "tipo": "paragrafo",
+          "html": "Responda em voz alta, uma atrás da outra, sem consultar. Onde hesitar mais de três segundos, marque: é ali a lacuna real. Neste bloco, atenção especial às perguntas que pedem <em>data</em> — hesitar em data é normal e recuperável; hesitar em <em>causa</em> significa que a aula não foi absorvida.",
+          "texto": "Responda em voz alta, uma atrás da outra, sem consultar. Onde hesitar mais de três segundos, marque: é ali a lacuna real. Neste bloco, atenção especial às perguntas que pedem data — hesitar em data é normal e recuperável; hesitar em causa significa que a aula não foi absorvida.",
+          "origem": {
+            "seletor": "section#voz .wrap > p",
+            "trecho_inicial": "Responda em voz alta, uma atrás da outra, sem consultar. Onde hesitar ",
+            "linha_aprox": 1232
+          }
+        },
+        {
+          "id": "m06-voz-b04",
+          "tipo": "lista",
+          "ordenada": true,
+          "classe": "two-col",
+          "itens": [
+            {
+              "ordem": 1,
+              "html": "Enuncie a régua dos seis, na ordem.",
+              "texto": "Enuncie a régua dos seis, na ordem.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Enuncie a régua dos seis, na ordem.",
+                "linha_aprox": 1234
+              }
+            },
+            {
+              "ordem": 2,
+              "html": "Por que a eletrificação brasileira começou municipal e privada.",
+              "texto": "Por que a eletrificação brasileira começou municipal e privada.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Por que a eletrificação brasileira começou municipal e privada.",
+                "linha_aprox": 1235
+              }
+            },
+            {
+              "ordem": 3,
+              "html": "Cite três marcos entre 1879 e 1889 e diga o que cada um inaugura.",
+              "texto": "Cite três marcos entre 1879 e 1889 e diga o que cada um inaugura.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Cite três marcos entre 1879 e 1889 e diga o que cada um inaugura.",
+                "linha_aprox": 1236
+              }
+            },
+            {
+              "ordem": 4,
+              "html": "Quem eram Light e Amforp, e o que cada uma trouxe de bom e de problemático.",
+              "texto": "Quem eram Light e Amforp, e o que cada uma trouxe de bom e de problemático.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Quem eram Light e Amforp, e o que cada uma trouxe de bom e de problemá",
+                "linha_aprox": 1237
+              }
+            },
+            {
+              "ordem": 5,
+              "html": "Explique a cláusula-ouro e por que ela virou conflito político.",
+              "texto": "Explique a cláusula-ouro e por que ela virou conflito político.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Explique a cláusula-ouro e por que ela virou conflito político.",
+                "linha_aprox": 1238
+              }
+            },
+            {
+              "ordem": 6,
+              "html": "Diga o ano e o número do Código de Águas e as três coisas que ele fez.",
+              "texto": "Diga o ano e o número do Código de Águas e as três coisas que ele fez.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Diga o ano e o número do Código de Águas e as três coisas que ele fez.",
+                "linha_aprox": 1239
+              }
+            },
+            {
+              "ordem": 7,
+              "html": "Por que centralizar a outorga não resolveu a escassez das décadas seguintes.",
+              "texto": "Por que centralizar a outorga não resolveu a escassez das décadas seguintes.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Por que centralizar a outorga não resolveu a escassez das décadas segu",
+                "linha_aprox": 1240
+              }
+            },
+            {
+              "ordem": 8,
+              "html": "Explique por que remuneração pelo custo histórico trava investimento sob inflação.",
+              "texto": "Explique por que remuneração pelo custo histórico trava investimento sob inflação.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Explique por que remuneração pelo custo histórico trava investimento s",
+                "linha_aprox": 1241
+              }
+            },
+            {
+              "ordem": 9,
+              "html": "O que foi o CNAEE e por que ele não bastou.",
+              "texto": "O que foi o CNAEE e por que ele não bastou.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "O que foi o CNAEE e por que ele não bastou.",
+                "linha_aprox": 1242
+              }
+            },
+            {
+              "ordem": 10,
+              "html": "Qual foi o papel da Chesf na mudança de modelo.",
+              "texto": "Qual foi o papel da Chesf na mudança de modelo.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Qual foi o papel da Chesf na mudança de modelo.",
+                "linha_aprox": 1243
+              }
+            },
+            {
+              "ordem": 11,
+              "html": "Por que 1952 é um ano-chave, citando as duas criações.",
+              "texto": "Por que 1952 é um ano-chave, citando as duas criações.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Por que 1952 é um ano-chave, citando as duas criações.",
+                "linha_aprox": 1244
+              }
+            },
+            {
+              "ordem": 12,
+              "html": "Por que a criação da Eletrobras levou sete anos, e diga as duas datas corretas.",
+              "texto": "Por que a criação da Eletrobras levou sete anos, e diga as duas datas corretas.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Por que a criação da Eletrobras levou sete anos, e diga as duas datas ",
+                "linha_aprox": 1245
+              }
+            },
+            {
+              "ordem": 13,
+              "html": "Como o Imposto Único e o empréstimo compulsório financiaram a expansão.",
+              "texto": "Como o Imposto Único e o empréstimo compulsório financiaram a expansão.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Como o Imposto Único e o empréstimo compulsório financiaram a expansão",
+                "linha_aprox": 1246
+              }
+            },
+            {
+              "ordem": 14,
+              "html": "O que foram os estudos Canambra e o que eles mudaram no planejamento.",
+              "texto": "O que foram os estudos Canambra e o que eles mudaram no planejamento.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "O que foram os estudos Canambra e o que eles mudaram no planejamento.",
+                "linha_aprox": 1247
+              }
+            },
+            {
+              "ordem": 15,
+              "html": "Em que anos os ativos da Amforp e da Light passaram ao Estado.",
+              "texto": "Em que anos os ativos da Amforp e da Light passaram ao Estado.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Em que anos os ativos da Amforp e da Light passaram ao Estado.",
+                "linha_aprox": 1248
+              }
+            },
+            {
+              "ordem": 16,
+              "html": "Qual a relação entre GCOI e o operador nacional de hoje.",
+              "texto": "Qual a relação entre GCOI e o operador nacional de hoje.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Qual a relação entre GCOI e o operador nacional de hoje.",
+                "linha_aprox": 1249
+              }
+            },
+            {
+              "ordem": 17,
+              "html": "Por que Itaipu não pode ser descrita como uma usina estatal brasileira.",
+              "texto": "Por que Itaipu não pode ser descrita como uma usina estatal brasileira.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Por que Itaipu não pode ser descrita como uma usina estatal brasileira",
+                "linha_aprox": 1250
+              }
+            },
+            {
+              "ordem": 18,
+              "html": "Nomeie os quatro vetores da crise financeira dos anos 1980.",
+              "texto": "Nomeie os quatro vetores da crise financeira dos anos 1980.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Nomeie os quatro vetores da crise financeira dos anos 1980.",
+                "linha_aprox": 1251
+              }
+            },
+            {
+              "ordem": 19,
+              "html": "Explique o que é dívida intrassetorial e por que ela tornava as empresas ilegíveis.",
+              "texto": "Explique o que é dívida intrassetorial e por que ela tornava as empresas ilegíveis.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Explique o que é dívida intrassetorial e por que ela tornava as empres",
+                "linha_aprox": 1252
+              }
+            },
+            {
+              "ordem": 20,
+              "html": "O que a Lei nº 8.631/1993 extinguiu, e por que isso vinha antes de qualquer venda.",
+              "texto": "O que a Lei nº 8.631/1993 extinguiu, e por que isso vinha antes de qualquer venda.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "O que a Lei nº 8.631/1993 extinguiu, e por que isso vinha antes de qua",
+                "linha_aprox": 1253
+              }
+            },
+            {
+              "ordem": 21,
+              "html": "Diga qual lei criou a ANEEL, qual criou o ONS e o MAE, e em que anos.",
+              "texto": "Diga qual lei criou a ANEEL, qual criou o ONS e o MAE, e em que anos.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Diga qual lei criou a ANEEL, qual criou o ONS e o MAE, e em que anos.",
+                "linha_aprox": 1254
+              }
+            },
+            {
+              "ordem": 22,
+              "html": "Descreva a privatização da Light em 1996: data, local, preço de arremate e consórcio.",
+              "texto": "Descreva a privatização da Light em 1996: data, local, preço de arremate e consórcio.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Descreva a privatização da Light em 1996: data, local, preço de arrema",
+                "linha_aprox": 1255
+              }
+            },
+            {
+              "ordem": 23,
+              "html": "Por que a privatização se concentrou em distribuição, e qual assimetria isso criou.",
+              "texto": "Por que a privatização se concentrou em distribuição, e qual assimetria isso criou.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Por que a privatização se concentrou em distribuição, e qual assimetri",
+                "linha_aprox": 1256
+              }
+            },
+            {
+              "ordem": 24,
+              "html": "Explique por que o Programa Prioritário de Termeletricidade não entregou.",
+              "texto": "Explique por que o Programa Prioritário de Termeletricidade não entregou.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Explique por que o Programa Prioritário de Termeletricidade não entreg",
+                "linha_aprox": 1257
+              }
+            },
+            {
+              "ordem": 25,
+              "html": "Diferencie racionamento de blecaute e diga por que a diferença é prática.",
+              "texto": "Diferencie racionamento de blecaute e diga por que a diferença é prática.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Diferencie racionamento de blecaute e diga por que a diferença é práti",
+                "linha_aprox": 1258
+              }
+            },
+            {
+              "ordem": 26,
+              "html": "Dê a cronologia de 2001: quando o comando muda, quando começa e quando termina.",
+              "texto": "Dê a cronologia de 2001: quando o comando muda, quando começa e quando termina.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Dê a cronologia de 2001: quando o comando muda, quando começa e quando",
+                "linha_aprox": 1259
+              }
+            },
+            {
+              "ordem": 27,
+              "html": "O que a comissão de análise de 2001 concluiu sobre conhecimento prévio do risco.",
+              "texto": "O que a comissão de análise de 2001 concluiu sobre conhecimento prévio do risco.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "O que a comissão de análise de 2001 concluiu sobre conhecimento prévio",
+                "linha_aprox": 1260
+              }
+            },
+            {
+              "ordem": 28,
+              "html": "Nomeie os cinco fatores do racionamento, e diga qual é gatilho e quais são causa.",
+              "texto": "Nomeie os cinco fatores do racionamento, e diga qual é gatilho e quais são causa.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Nomeie os cinco fatores do racionamento, e diga qual é gatilho e quais",
+                "linha_aprox": 1261
+              }
+            },
+            {
+              "ordem": 29,
+              "html": "Enumere as quatro instituições criadas em 2004 e a falha que cada uma endereça.",
+              "texto": "Enumere as quatro instituições criadas em 2004 e a falha que cada uma endereça.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Enumere as quatro instituições criadas em 2004 e a falha que cada uma ",
+                "linha_aprox": 1262
+              }
+            },
+            {
+              "ordem": 30,
+              "html": "Por que a obrigação de cobertura contratual é mais robusta que \"planejar melhor\".",
+              "texto": "Por que a obrigação de cobertura contratual é mais robusta que \"planejar melhor\".",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Por que a obrigação de cobertura contratual é mais robusta que \"planej",
+                "linha_aprox": 1263
+              }
+            },
+            {
+              "ordem": 31,
+              "html": "Qual era a lógica da MP 579 e qual foi o problema de execução.",
+              "texto": "Qual era a lógica da MP 579 e qual foi o problema de execução.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Qual era a lógica da MP 579 e qual foi o problema de execução.",
+                "linha_aprox": 1264
+              }
+            },
+            {
+              "ordem": 32,
+              "html": "Explique por que uma liminar de um gerador respinga em todos os credores.",
+              "texto": "Explique por que uma liminar de um gerador respinga em todos os credores.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Explique por que uma liminar de um gerador respinga em todos os credor",
+                "linha_aprox": 1265
+              }
+            },
+            {
+              "ordem": 33,
+              "html": "Recite a escada de abertura de 2019 a 2024, com carga e norma.",
+              "texto": "Recite a escada de abertura de 2019 a 2024, com carga e norma.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Recite a escada de abertura de 2019 a 2024, com carga e norma.",
+                "linha_aprox": 1266
+              }
+            },
+            {
+              "ordem": 34,
+              "html": "Diga o que a Lei nº 15.269/2025 estabeleceu sobre baixa tensão, com os dois prazos.",
+              "texto": "Diga o que a Lei nº 15.269/2025 estabeleceu sobre baixa tensão, com os dois prazos.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Diga o que a Lei nº 15.269/2025 estabeleceu sobre baixa tensão, com os",
+                "linha_aprox": 1267
+              }
+            },
+            {
+              "ordem": 35,
+              "html": "Diferencie capitalização de venda direta e diga o que produz a ausência de controle.",
+              "texto": "Diferencie capitalização de venda direta e diga o que produz a ausência de controle.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Diferencie capitalização de venda direta e diga o que produz a ausênci",
+                "linha_aprox": 1268
+              }
+            },
+            {
+              "ordem": 36,
+              "html": "Conte a trajetória de propriedade da Light em quatro etapas e diga o que ela prova.",
+              "texto": "Conte a trajetória de propriedade da Light em quatro etapas e diga o que ela prova.",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.two-col > li",
+                "trecho_inicial": "Conte a trajetória de propriedade da Light em quatro etapas e diga o q",
+                "linha_aprox": 1269
+              }
+            }
+          ],
+          "origem": {
+            "seletor": "section#voz .wrap > ol.two-col",
+            "trecho_inicial": "Enuncie a régua dos seis, na ordem. Por que a eletrificação brasileira",
+            "linha_aprox": 1233
+          }
+        },
+        {
+          "id": "m06-voz-b05",
+          "tipo": "subtitulo",
+          "numero": "V.2",
+          "titulo": "Seis ataques de decisor cético",
+          "origem": {
+            "seletor": "section#voz .wrap > h3",
+            "trecho_inicial": "V.2Seis ataques de decisor cético",
+            "linha_aprox": 1272
+          }
+        },
+        {
+          "id": "m06-voz-b06",
+          "tipo": "paragrafo",
+          "html": "São as perguntas reais, feitas do jeito que são feitas — inclusive as hostis. Responda em voz alta, cronometrando: cada uma cabe em noventa segundos. As duas últimas são sobre a própria GridAlpha, e você vai ouvi-las mais vezes que todas as outras somadas.",
+          "texto": "São as perguntas reais, feitas do jeito que são feitas — inclusive as hostis. Responda em voz alta, cronometrando: cada uma cabe em noventa segundos. As duas últimas são sobre a própria GridAlpha, e você vai ouvi-las mais vezes que todas as outras somadas.",
+          "origem": {
+            "seletor": "section#voz .wrap > p",
+            "trecho_inicial": "São as perguntas reais, feitas do jeito que são feitas — inclusive as ",
+            "linha_aprox": 1273
+          }
+        },
+        {
+          "id": "m06-voz-b07",
+          "tipo": "lista",
+          "ordenada": true,
+          "classe": "num-list",
+          "itens": [
+            {
+              "ordem": 1,
+              "html": "<b>Investidor estrangeiro de infraestrutura.</b> \"Se o modelo dos anos 1990 era inacabado e quebrou em 2001, o que garante que o modelo de 2004 não quebra do mesmo jeito daqui a vinte anos? Vocês estão me pedindo para comprometer capital de trinta anos num país que trocou de arquitetura setorial três vezes em trinta.\"",
+              "texto": "Investidor estrangeiro de infraestrutura. \"Se o modelo dos anos 1990 era inacabado e quebrou em 2001, o que garante que o modelo de 2004 não quebra do mesmo jeito daqui a vinte anos? Vocês estão me pedindo para comprometer capital de trinta anos num país que trocou de arquitetura setorial três vezes em trinta.\"",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.num-list > li",
+                "trecho_inicial": "Investidor estrangeiro de infraestrutura. \"Se o modelo dos anos 1990 e",
+                "linha_aprox": 1275
+              }
+            },
+            {
+              "ordem": 2,
+              "html": "<b>Jornalista de economia.</b> \"A privatização da Eletrobras em 2022 não é repetição exata do erro dos anos 1990 — vender ativo estratégico e descobrir o problema dez anos depois? Me dê uma razão técnica, não uma opinião política.\"",
+              "texto": "Jornalista de economia. \"A privatização da Eletrobras em 2022 não é repetição exata do erro dos anos 1990 — vender ativo estratégico e descobrir o problema dez anos depois? Me dê uma razão técnica, não uma opinião política.\"",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.num-list > li",
+                "trecho_inicial": "Jornalista de economia. \"A privatização da Eletrobras em 2022 não é re",
+                "linha_aprox": 1276
+              }
+            },
+            {
+              "ordem": 3,
+              "html": "<b>Profissional júnior de trading.</b> \"Por que o Brasil confia tanto num operador central decidindo o despacho? Em outros lugares o mercado resolve isso sozinho e ninguém morreu.\"",
+              "texto": "Profissional júnior de trading. \"Por que o Brasil confia tanto num operador central decidindo o despacho? Em outros lugares o mercado resolve isso sozinho e ninguém morreu.\"",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.num-list > li",
+                "trecho_inicial": "Profissional júnior de trading. \"Por que o Brasil confia tanto num ope",
+                "linha_aprox": 1277
+              }
+            },
+            {
+              "ordem": 4,
+              "html": "<b>Diretor jurídico de gerador.</b> \"Você fala de 'risco mal alocado' com muita facilidade. O contrato dizia claramente que o risco hidrológico era nosso. Por que a judicialização do GSF não é simplesmente agente grande tentando rasgar contrato que ficou ruim?\"",
+              "texto": "Diretor jurídico de gerador. \"Você fala de 'risco mal alocado' com muita facilidade. O contrato dizia claramente que o risco hidrológico era nosso. Por que a judicialização do GSF não é simplesmente agente grande tentando rasgar contrato que ficou ruim?\"",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.num-list > li",
+                "trecho_inicial": "Diretor jurídico de gerador. \"Você fala de 'risco mal alocado' com mui",
+                "linha_aprox": 1278
+              }
+            },
+            {
+              "ordem": 5,
+              "html": "<b>Conselheiro de fundo.</b> \"A história que você contou é de ciclos de vinte a trinta anos entre abertura e crise. Pela sua própria narrativa, a GridAlpha está apostando numa janela que pode fechar. Por que isso não é um risco fatal do negócio?\"",
+              "texto": "Conselheiro de fundo. \"A história que você contou é de ciclos de vinte a trinta anos entre abertura e crise. Pela sua própria narrativa, a GridAlpha está apostando numa janela que pode fechar. Por que isso não é um risco fatal do negócio?\"",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.num-list > li",
+                "trecho_inicial": "Conselheiro de fundo. \"A história que você contou é de ciclos de vinte",
+                "linha_aprox": 1279
+              }
+            },
+            {
+              "ordem": 6,
+              "html": "<b>Executivo de comercializadora.</b> \"Independência é um argumento bonito para quem não tem escala. Nós temos cem clientes e um time de análise maior que o seu. O que exatamente você enxerga que nós não enxergamos?\"",
+              "texto": "Executivo de comercializadora. \"Independência é um argumento bonito para quem não tem escala. Nós temos cem clientes e um time de análise maior que o seu. O que exatamente você enxerga que nós não enxergamos?\"",
+              "origem": {
+                "seletor": "section#voz .wrap > ol.num-list > li",
+                "trecho_inicial": "Executivo de comercializadora. \"Independência é um argumento bonito pa",
+                "linha_aprox": 1280
+              }
+            }
+          ],
+          "origem": {
+            "seletor": "section#voz .wrap > ol.num-list",
+            "trecho_inicial": "Investidor estrangeiro de infraestrutura. \"Se o modelo dos anos 1990 e",
+            "linha_aprox": 1274
+          }
+        },
+        {
+          "id": "m06-voz-b08",
+          "tipo": "caixa",
+          "cor_classe": "box cy",
+          "rotulo": "Como responder ao ataque 5, que é o mais difícil",
+          "paragrafos": [
+            {
+              "html": "Não negue a premissa — ela está certa, e negá-la destrói credibilidade. Vire-a: a história mostra que os ciclos <em>se alternam</em>, e não que um deles vence. Em cada ciclo, o que muda é quem é dono e quem carrega risco; o que não muda é que alguém precisa decidir com informação em que possa confiar. Uma comercializadora depende do ciclo de abertura; uma consultoria vinculada depende do produto da controladora; uma estatal depende de política de governo. Uma camada analítica que não vende energia atravessa a virada — e, se a janela se fechar parcialmente, ela ganha relevância em vez de perder, porque ambiente mais regulado significa mais regra para interpretar, não menos.",
+              "texto": "Não negue a premissa — ela está certa, e negá-la destrói credibilidade. Vire-a: a história mostra que os ciclos se alternam, e não que um deles vence. Em cada ciclo, o que muda é quem é dono e quem carrega risco; o que não muda é que alguém precisa decidir com informação em que possa confiar. Uma comercializadora depende do ciclo de abertura; uma consultoria vinculada depende do produto da controladora; uma estatal depende de política de governo. Uma camada analítica que não vende energia atravessa a virada — e, se a janela se fechar parcialmente, ela ganha relevância em vez de perder, porque ambiente mais regulado significa mais regra para interpretar, não menos.",
+              "origem": {
+                "seletor": "section#voz .wrap > div.box.cy > p",
+                "trecho_inicial": "Não negue a premissa — ela está certa, e negá-la destrói credibilidade",
+                "linha_aprox": 1285
+              }
+            }
+          ],
+          "origem": {
+            "seletor": "section#voz .wrap > div.box.cy",
+            "trecho_inicial": "Como responder ao ataque 5, que é o mais difícil Não negue a premissa ",
+            "linha_aprox": 1283
+          }
+        },
+        {
+          "id": "m06-voz-b09",
+          "tipo": "subtitulo",
+          "numero": "V.3",
+          "titulo": "Roteiro de dez minutos",
+          "origem": {
+            "seletor": "section#voz .wrap > h3",
+            "trecho_inicial": "V.3Roteiro de dez minutos",
+            "linha_aprox": 1288
+          }
+        },
+        {
+          "id": "m06-voz-b10",
+          "tipo": "paragrafo",
+          "html": "Este é o entregável oral do bloco. Grave em áudio, sem consultar. Cada minuto tem um marco, uma causa e uma cicatriz — e a transição entre minutos é sempre a mesma frase implícita: <em>e foi isso que criou o problema seguinte</em>.",
+          "texto": "Este é o entregável oral do bloco. Grave em áudio, sem consultar. Cada minuto tem um marco, uma causa e uma cicatriz — e a transição entre minutos é sempre a mesma frase implícita: e foi isso que criou o problema seguinte.",
+          "origem": {
+            "seletor": "section#voz .wrap > p",
+            "trecho_inicial": "Este é o entregável oral do bloco. Grave em áudio, sem consultar. Cada",
+            "linha_aprox": 1289
+          }
+        },
+        {
+          "id": "m06-voz-b11",
+          "tipo": "paragrafo",
+          "html": "<strong>Minuto 1 — o começo privado.</strong> A eletricidade chega ao Brasil em 1879, com seis lâmpadas na estação da Estrada de Ferro D. Pedro II, no Rio. Em 1883 Campos inaugura o primeiro serviço público de iluminação e Diamantina aplica hidreletricidade à mineração; em 1889 Marmelos Zero, em Juiz de Fora, marca a hidrelétrica para serviço público. Tudo pequeno, tudo local, tudo privado — cada usina resolvendo o problema de quem a pagou. Na virada do século, o capital estrangeiro assume a escala: a Light se organiza em São Paulo em 1899 e no Rio em 1904, com capital canadense, e a partir dos anos 1920 a Amforp compra empresas do interior. Por volta de 1930, essas duas dominam o suprimento das grandes cidades. Elas trouxeram capital, engenharia e velocidade num país sem mercado de capitais — e trouxeram junto uma assimetria de poder que nenhuma prefeitura tinha condição de arbitrar.",
+          "texto": "Minuto 1 — o começo privado. A eletricidade chega ao Brasil em 1879, com seis lâmpadas na estação da Estrada de Ferro D. Pedro II, no Rio. Em 1883 Campos inaugura o primeiro serviço público de iluminação e Diamantina aplica hidreletricidade à mineração; em 1889 Marmelos Zero, em Juiz de Fora, marca a hidrelétrica para serviço público. Tudo pequeno, tudo local, tudo privado — cada usina resolvendo o problema de quem a pagou. Na virada do século, o capital estrangeiro assume a escala: a Light se organiza em São Paulo em 1899 e no Rio em 1904, com capital canadense, e a partir dos anos 1920 a Amforp compra empresas do interior. Por volta de 1930, essas duas dominam o suprimento das grandes cidades. Elas trouxeram capital, engenharia e velocidade num país sem mercado de capitais — e trouxeram junto uma assimetria de poder que nenhuma prefeitura tinha condição de arbitrar.",
+          "origem": {
+            "seletor": "section#voz .wrap > p",
+            "trecho_inicial": "Minuto 1 — o começo privado. A eletricidade chega ao Brasil em 1879, c",
+            "linha_aprox": 1291
+          }
+        },
+        {
+          "id": "m06-voz-b12",
+          "tipo": "paragrafo",
+          "html": "<strong>Minuto 2 — 1934, a União toma o rio.</strong> Três coisas quebram o arranjo municipal. A prefeitura não tem como auditar uma companhia continental. A cláusula-ouro faz a tarifa subir sempre que a moeda cai, e ela é proibida em 1933. E, sobretudo, um rio não respeita divisa de município: quando a eletricidade vira insumo de industrialização, decidir sobre uma cascata inteira passa a ser decisão nacional. Daí o Código de Águas, o Decreto 24.643, de julho de 1934, que faz três coisas ainda vigentes: separa o potencial hidráulico da propriedade do solo, concentra na União o poder de conceder e fiscalizar, e fixa remuneração pelo custo histórico do investimento. As duas primeiras permanecem inteiras — é delas que descende a ideia de que rio, rede e segurança de suprimento são assunto federal. A terceira gera a primeira cicatriz.",
+          "texto": "Minuto 2 — 1934, a União toma o rio. Três coisas quebram o arranjo municipal. A prefeitura não tem como auditar uma companhia continental. A cláusula-ouro faz a tarifa subir sempre que a moeda cai, e ela é proibida em 1933. E, sobretudo, um rio não respeita divisa de município: quando a eletricidade vira insumo de industrialização, decidir sobre uma cascata inteira passa a ser decisão nacional. Daí o Código de Águas, o Decreto 24.643, de julho de 1934, que faz três coisas ainda vigentes: separa o potencial hidráulico da propriedade do solo, concentra na União o poder de conceder e fiscalizar, e fixa remuneração pelo custo histórico do investimento. As duas primeiras permanecem inteiras — é delas que descende a ideia de que rio, rede e segurança de suprimento são assunto federal. A terceira gera a primeira cicatriz.",
+          "origem": {
+            "seletor": "section#voz .wrap > p",
+            "trecho_inicial": "Minuto 2 — 1934, a União toma o rio. Três coisas quebram o arranjo mun",
+            "linha_aprox": 1293
+          }
+        },
+        {
+          "id": "m06-voz-b13",
+          "tipo": "paragrafo",
+          "html": "<strong>Minuto 3 — regular não é construir.</strong> Remunerar pelo custo histórico é impecável em moeda estável e destrutivo sob inflação com equipamento importado: a receita fica presa ao valor nominal de um investimento antigo enquanto o custo de repor o ativo sobe. Some a guerra, que fecha o acesso a equipamento, e a urbanização, que acelera o consumo. O resultado aparece nos racionamentos dos anos 1940 e início dos 1950. O Brasil descobre que ter competência jurídica sobre um recurso não é o mesmo que ter capital para explorá-lo. A resposta não foi mudar a regra de preço — foi trocar de dono. Em 1945 nasce a Chesf; em 1952, o BNDE e a Cemig; em 1957, Furnas. E em 1961 a lei autoriza a Eletrobras, instalada em junho de 1962, com base financeira ancorada no Imposto Único e no empréstimo compulsório. É a primeira vez que a conta de luz carrega política pública embutida. Nunca mais deixou de carregar.",
+          "texto": "Minuto 3 — regular não é construir. Remunerar pelo custo histórico é impecável em moeda estável e destrutivo sob inflação com equipamento importado: a receita fica presa ao valor nominal de um investimento antigo enquanto o custo de repor o ativo sobe. Some a guerra, que fecha o acesso a equipamento, e a urbanização, que acelera o consumo. O resultado aparece nos racionamentos dos anos 1940 e início dos 1950. O Brasil descobre que ter competência jurídica sobre um recurso não é o mesmo que ter capital para explorá-lo. A resposta não foi mudar a regra de preço — foi trocar de dono. Em 1945 nasce a Chesf; em 1952, o BNDE e a Cemig; em 1957, Furnas. E em 1961 a lei autoriza a Eletrobras, instalada em junho de 1962, com base financeira ancorada no Imposto Único e no empréstimo compulsório. É a primeira vez que a conta de luz carrega política pública embutida. Nunca mais deixou de carregar.",
+          "origem": {
+            "seletor": "section#voz .wrap > p",
+            "trecho_inicial": "Minuto 3 — regular não é construir. Remunerar pelo custo histórico é i",
+            "linha_aprox": 1295
+          }
+        },
+        {
+          "id": "m06-voz-b14",
+          "tipo": "paragrafo",
+          "html": "<strong>Minuto 4 — o esqueleto físico.</strong> Com dono, financiador e planejador definidos, o país constrói o sistema que ainda usa. Os estudos Canambra, de 1963, transformam usinas isoladas em sistema planejado. A nacionalização se completa em duas etapas: Amforp em 1964, Light em 1979. Em 1973 acontecem três coisas estruturais: nasce o GCOI, para coordenar a operação interligada — antecessor direto do operador de hoje —, nasce a Eletronorte, e é assinado o Tratado de Itaipu, que cria uma entidade binacional, não uma usina brasileira. Itaipu e Tucuruí entram em operação em 1984. Guarde este ponto, porque é o mais errado de todos: a operação centralizada brasileira não nasceu em 2001. Ela foi construída aqui, nos anos 1960 e 1970, porque hidrelétrica em cascata exige coordenação intertemporal — usar a água hoje muda o que o sistema pode fazer amanhã.",
+          "texto": "Minuto 4 — o esqueleto físico. Com dono, financiador e planejador definidos, o país constrói o sistema que ainda usa. Os estudos Canambra, de 1963, transformam usinas isoladas em sistema planejado. A nacionalização se completa em duas etapas: Amforp em 1964, Light em 1979. Em 1973 acontecem três coisas estruturais: nasce o GCOI, para coordenar a operação interligada — antecessor direto do operador de hoje —, nasce a Eletronorte, e é assinado o Tratado de Itaipu, que cria uma entidade binacional, não uma usina brasileira. Itaipu e Tucuruí entram em operação em 1984. Guarde este ponto, porque é o mais errado de todos: a operação centralizada brasileira não nasceu em 2001. Ela foi construída aqui, nos anos 1960 e 1970, porque hidrelétrica em cascata exige coordenação intertemporal — usar a água hoje muda o que o sistema pode fazer amanhã.",
+          "origem": {
+            "seletor": "section#voz .wrap > p",
+            "trecho_inicial": "Minuto 4 — o esqueleto físico. Com dono, financiador e planejador defi",
+            "linha_aprox": 1297
+          }
+        },
+        {
+          "id": "m06-voz-b15",
+          "tipo": "paragrafo",
+          "html": "<strong>Minuto 5 — a quebra financeira.</strong> O modelo estatal não quebra por engenharia; quebra por quatro coisas somadas. A tarifa administrada vira âncora anti-inflacionária e é comprimida. A dívida externa das grandes obras se torna impagável após o choque de juros. A remuneração garantida elimina o incentivo a controlar custo, e a equalização tarifária elimina a comparação entre empresas — perdem-se as duas fontes de disciplina de uma vez. E como todas as empresas eram do mesmo dono, deixar de pagar umas às outras não produzia falência: produzia saldo contábil. O setor entra nos anos 1990 com infraestrutura impressionante, empresas descapitalizadas e um fluxo financeiro que ninguém conseguia ler.",
+          "texto": "Minuto 5 — a quebra financeira. O modelo estatal não quebra por engenharia; quebra por quatro coisas somadas. A tarifa administrada vira âncora anti-inflacionária e é comprimida. A dívida externa das grandes obras se torna impagável após o choque de juros. A remuneração garantida elimina o incentivo a controlar custo, e a equalização tarifária elimina a comparação entre empresas — perdem-se as duas fontes de disciplina de uma vez. E como todas as empresas eram do mesmo dono, deixar de pagar umas às outras não produzia falência: produzia saldo contábil. O setor entra nos anos 1990 com infraestrutura impressionante, empresas descapitalizadas e um fluxo financeiro que ninguém conseguia ler.",
+          "origem": {
+            "seletor": "section#voz .wrap > p",
+            "trecho_inicial": "Minuto 5 — a quebra financeira. O modelo estatal não quebra por engenh",
+            "linha_aprox": 1299
+          }
+        },
+        {
+          "id": "m06-voz-b16",
+          "tipo": "paragrafo",
+          "html": "<strong>Minuto 6 — a reforma e o buraco que ela deixou.</strong> A reforma começa antes da privatização: a Lei 8.631, de 1993, extingue remuneração garantida e equalização e faz o encontro de contas — sem isso, nenhuma empresa tinha balanço avaliável. Depois vem a arquitetura: leis de concessão e de outorga em 1995, com produtor independente e consumidor livre; a ANEEL em 1996, operando a partir de 1997; o projeto de desverticalização; e a lei de 1998 criando o ONS, que sucede o GCOI, e o MAE. A Light é leiloada em maio de 1996, no preço mínimo, para um consórcio com EDF, AES, Houston Industries e CSN; a Eletropaulo Metropolitana em abril de 1998. Mas a privatização foi de distribuição — a geração continuou majoritariamente estatal. E aí está o buraco: no modelo antigo, expandir era obrigação legal de empresa pública; no modelo novo, seria decisão de investidor respondendo a preço. Na transição, a obrigação sumiu e o preço ainda não funcionava.",
+          "texto": "Minuto 6 — a reforma e o buraco que ela deixou. A reforma começa antes da privatização: a Lei 8.631, de 1993, extingue remuneração garantida e equalização e faz o encontro de contas — sem isso, nenhuma empresa tinha balanço avaliável. Depois vem a arquitetura: leis de concessão e de outorga em 1995, com produtor independente e consumidor livre; a ANEEL em 1996, operando a partir de 1997; o projeto de desverticalização; e a lei de 1998 criando o ONS, que sucede o GCOI, e o MAE. A Light é leiloada em maio de 1996, no preço mínimo, para um consórcio com EDF, AES, Houston Industries e CSN; a Eletropaulo Metropolitana em abril de 1998. Mas a privatização foi de distribuição — a geração continuou majoritariamente estatal. E aí está o buraco: no modelo antigo, expandir era obrigação legal de empresa pública; no modelo novo, seria decisão de investidor respondendo a preço. Na transição, a obrigação sumiu e o preço ainda não funcionava.",
+          "origem": {
+            "seletor": "section#voz .wrap > p",
+            "trecho_inicial": "Minuto 6 — a reforma e o buraco que ela deixou. A reforma começa antes",
+            "linha_aprox": 1301
+          }
+        },
+        {
+          "id": "m06-voz-b17",
+          "tipo": "paragrafo",
+          "html": "<strong>Minuto 7 — 2001.</strong> A hidrologia adversa encontra um sistema sem margem. O governo cria a Câmara de Gestão da Crise em maio de 2001 — o comando sai do ministério e vai para a Casa Civil, o que por si só é um diagnóstico — e impõe redução compulsória de consumo de junho de 2001 a fevereiro de 2002, com meta média em torno de vinte por cento, bônus para quem economizasse e sobretarifa para quem excedesse. Não foi apagão: apagão é falha involuntária de rede; isto foi racionamento, política planejada de gestão de demanda. E o dado que fecha a análise: a comissão de investigação presidida por Jérson Kelman concluiu que ministério, agência, operador e Eletrobras sabiam desde meados de 1999 que o risco de déficit era muito elevado, e que houve orientação para não divulgar as avaliações. O problema não foi falta de informação. Foi informação que não virou decisão.",
+          "texto": "Minuto 7 — 2001. A hidrologia adversa encontra um sistema sem margem. O governo cria a Câmara de Gestão da Crise em maio de 2001 — o comando sai do ministério e vai para a Casa Civil, o que por si só é um diagnóstico — e impõe redução compulsória de consumo de junho de 2001 a fevereiro de 2002, com meta média em torno de vinte por cento, bônus para quem economizasse e sobretarifa para quem excedesse. Não foi apagão: apagão é falha involuntária de rede; isto foi racionamento, política planejada de gestão de demanda. E o dado que fecha a análise: a comissão de investigação presidida por Jérson Kelman concluiu que ministério, agência, operador e Eletrobras sabiam desde meados de 1999 que o risco de déficit era muito elevado, e que houve orientação para não divulgar as avaliações. O problema não foi falta de informação. Foi informação que não virou decisão.",
+          "origem": {
+            "seletor": "section#voz .wrap > p",
+            "trecho_inicial": "Minuto 7 — 2001. A hidrologia adversa encontra um sistema sem margem. ",
+            "linha_aprox": 1303
+          }
+        },
+        {
+          "id": "m06-voz-b18",
+          "tipo": "paragrafo",
+          "html": "<strong>Minuto 8 — 2004, a reconstrução.</strong> A resposta não foi reestatizar. Foi manter tudo que a reforma tinha de competitivo e recolocar um dono na pergunta que ficou órfã. As leis de março de 2004 criam a EPE, que devolve o planejamento a uma instituição dedicada; a CCEE, que substitui o MAE com governança própria; o CMSE, que monitora continuamente a segurança de suprimento; e formalizam os dois ambientes de contratação, o regulado e o livre. A peça decisiva, porém, é menos comentada: a obrigação de a distribuidora estar contratada para a totalidade da carga, com antecedência e com lastro físico. Isso tira a segurança de suprimento da dependência de alguém avaliar corretamente o risco e decidir divulgá-lo — foi exatamente essa a falha de 1999. O custo dessa arquitetura é complexidade, e é ela que a agenda regulatória tenta arrumar desde 2017.",
+          "texto": "Minuto 8 — 2004, a reconstrução. A resposta não foi reestatizar. Foi manter tudo que a reforma tinha de competitivo e recolocar um dono na pergunta que ficou órfã. As leis de março de 2004 criam a EPE, que devolve o planejamento a uma instituição dedicada; a CCEE, que substitui o MAE com governança própria; o CMSE, que monitora continuamente a segurança de suprimento; e formalizam os dois ambientes de contratação, o regulado e o livre. A peça decisiva, porém, é menos comentada: a obrigação de a distribuidora estar contratada para a totalidade da carga, com antecedência e com lastro físico. Isso tira a segurança de suprimento da dependência de alguém avaliar corretamente o risco e decidir divulgá-lo — foi exatamente essa a falha de 1999. O custo dessa arquitetura é complexidade, e é ela que a agenda regulatória tenta arrumar desde 2017.",
+          "origem": {
+            "seletor": "section#voz .wrap > p",
+            "trecho_inicial": "Minuto 8 — 2004, a reconstrução. A resposta não foi reestatizar. Foi m",
+            "linha_aprox": 1305
+          }
+        },
+        {
+          "id": "m06-voz-b19",
+          "tipo": "paragrafo",
+          "html": "<strong>Minuto 9 — a década do teste.</strong> Em 2012, a MP 579 tenta reduzir tarifa antecipando a renovação de concessões com receita menor — lógica defensável, transição problemática, com indenizações em disputa e efeito sobre a capacidade de investimento bem na virada da hidrologia. Vem a seca de 2013 a 2015, o despacho térmico prolongado, a Conta-ACR em 2014 e as bandeiras tarifárias em 2015. E vem o GSF: geradores hidrelétricos alegam que parte do déficit vinha de decisão sistêmica, não de hidrologia, e obtêm liminares. Como a liquidação é rateio puro — o que entra é o que sai —, cada liminar transfere o prejuízo para os credores, que também passam a litigar. Foram cerca de dez anos e três leis sucessivas para desmontar o passivo. A lição é a frase que resume a década: risco mal alocado não desaparece, ele vira dívida, encargo, bandeira ou processo. E em 2021, com hidrologia comparável à de 2001, o país passou sem racionamento — a melhor medida disponível do que foi aprendido.",
+          "texto": "Minuto 9 — a década do teste. Em 2012, a MP 579 tenta reduzir tarifa antecipando a renovação de concessões com receita menor — lógica defensável, transição problemática, com indenizações em disputa e efeito sobre a capacidade de investimento bem na virada da hidrologia. Vem a seca de 2013 a 2015, o despacho térmico prolongado, a Conta-ACR em 2014 e as bandeiras tarifárias em 2015. E vem o GSF: geradores hidrelétricos alegam que parte do déficit vinha de decisão sistêmica, não de hidrologia, e obtêm liminares. Como a liquidação é rateio puro — o que entra é o que sai —, cada liminar transfere o prejuízo para os credores, que também passam a litigar. Foram cerca de dez anos e três leis sucessivas para desmontar o passivo. A lição é a frase que resume a década: risco mal alocado não desaparece, ele vira dívida, encargo, bandeira ou processo. E em 2021, com hidrologia comparável à de 2001, o país passou sem racionamento — a melhor medida disponível do que foi aprendido.",
+          "origem": {
+            "seletor": "section#voz .wrap > p",
+            "trecho_inicial": "Minuto 9 — a década do teste. Em 2012, a MP 579 tenta reduzir tarifa a",
+            "linha_aprox": 1307
+          }
+        },
+        {
+          "id": "m06-voz-b20",
+          "tipo": "paragrafo",
+          "html": "<strong>Minuto 10 — onde estamos, e para onde o cronograma aponta.</strong> Em 2022 a Eletrobras é desestatizada por capitalização, não por venda: a companhia emite ações, a União é diluída de cerca de 72% para cerca de 40% do capital votante, e o limite legal de dez por cento de voto por acionista produz uma companhia sem controlador. Em outubro de 2025 ela adota a marca AXIA Energia — mudança de marca, não sucessão: concessões, contratos e passivos continuam com a mesma pessoa jurídica. Em paralelo, a abertura do mercado desceu degrau por degrau desde 2019 e, em 1º de janeiro de 2024, alcançou todo o Grupo A sem exigência de carga mínima. E a Lei 15.269, de novembro de 2025, deu pela primeira vez cronograma legal à baixa tensão: até novembro de 2027 para comércio e indústria, até novembro de 2028 para todos. Fechando: a Light foi canadense, virou estatal em 1979, foi privatizada em 1996 e entrou em recuperação judicial em 2023. Quatro regimes de propriedade numa empresa só, em cento e vinte anos. Nenhum deles foi definitivo, e não há razão para achar que o atual será. O que atravessa todos é a necessidade de decidir com informação confiável — e é exatamente por isso que uma camada analítica independente, que não vende energia e não recebe comissão, tem valor que não depende de qual ciclo está em vigor.",
+          "texto": "Minuto 10 — onde estamos, e para onde o cronograma aponta. Em 2022 a Eletrobras é desestatizada por capitalização, não por venda: a companhia emite ações, a União é diluída de cerca de 72% para cerca de 40% do capital votante, e o limite legal de dez por cento de voto por acionista produz uma companhia sem controlador. Em outubro de 2025 ela adota a marca AXIA Energia — mudança de marca, não sucessão: concessões, contratos e passivos continuam com a mesma pessoa jurídica. Em paralelo, a abertura do mercado desceu degrau por degrau desde 2019 e, em 1º de janeiro de 2024, alcançou todo o Grupo A sem exigência de carga mínima. E a Lei 15.269, de novembro de 2025, deu pela primeira vez cronograma legal à baixa tensão: até novembro de 2027 para comércio e indústria, até novembro de 2028 para todos. Fechando: a Light foi canadense, virou estatal em 1979, foi privatizada em 1996 e entrou em recuperação judicial em 2023. Quatro regimes de propriedade numa empresa só, em cento e vinte anos. Nenhum deles foi definitivo, e não há razão para achar que o atual será. O que atravessa todos é a necessidade de decidir com informação confiável — e é exatamente por isso que uma camada analítica independente, que não vende energia e não recebe comissão, tem valor que não depende de qual ciclo está em vigor.",
+          "origem": {
+            "seletor": "section#voz .wrap > p",
+            "trecho_inicial": "Minuto 10 — onde estamos, e para onde o cronograma aponta. Em 2022 a E",
+            "linha_aprox": 1309
+          }
+        },
+        {
+          "id": "m06-voz-b21",
+          "tipo": "caixa",
+          "cor_classe": "box cy",
+          "rotulo": "Como treinar",
+          "paragrafos": [
+            {
+              "html": "Grave os dez minutos em áudio, sem consultar. Ouça procurando quatro coisas: onde você hesitou, onde citou data sem citar causa, onde a transição entre minutos ficou solta — o roteiro precisa soar como uma corrente, não como uma lista —, e onde você opinou em vez de explicar. Este bloco é o mais fácil de todos para escorregar em opinião política, porque cada marco tem leitura ideológica pronta disponível. A gravação denuncia isso melhor que qualquer releitura. Regrave o minuto, não o roteiro inteiro. E quando os dez minutos saírem limpos, faça o teste final: conte a mesma história em três minutos, mantendo quatro traumas e as quatro instituições que nasceram deles. Se sobreviver ao corte, é seu.",
+              "texto": "Grave os dez minutos em áudio, sem consultar. Ouça procurando quatro coisas: onde você hesitou, onde citou data sem citar causa, onde a transição entre minutos ficou solta — o roteiro precisa soar como uma corrente, não como uma lista —, e onde você opinou em vez de explicar. Este bloco é o mais fácil de todos para escorregar em opinião política, porque cada marco tem leitura ideológica pronta disponível. A gravação denuncia isso melhor que qualquer releitura. Regrave o minuto, não o roteiro inteiro. E quando os dez minutos saírem limpos, faça o teste final: conte a mesma história em três minutos, mantendo quatro traumas e as quatro instituições que nasceram deles. Se sobreviver ao corte, é seu.",
+              "origem": {
+                "seletor": "section#voz .wrap > div.box.cy > p",
+                "trecho_inicial": "Grave os dez minutos em áudio, sem consultar. Ouça procurando quatro c",
+                "linha_aprox": 1313
+              }
+            }
+          ],
+          "origem": {
+            "seletor": "section#voz .wrap > div.box.cy",
+            "trecho_inicial": "Como treinar Grave os dez minutos em áudio, sem consultar. Ouça procur",
+            "linha_aprox": 1311
+          }
+        }
+      ]
+    },
+    "principios": [
+      {
+        "id": "m06-principio-01",
+        "rotulo": "Regra de leitura deste módulo",
+        "html": "Quando aparecer um mecanismo que você já conhece — leilão regulado, garantia física, lastro, contabilização centralizada, mecanismo de realocação —, resista à vontade de reestudá-lo. A pergunta aqui é sempre outra: <strong>contra o que ele foi desenhado, e em que ano</strong>. Se você se pegar reexplicando como o mecanismo funciona, você saiu do Bloco 6 e voltou para o 4 ou para o 5.",
+        "texto": "Quando aparecer um mecanismo que você já conhece — leilão regulado, garantia física, lastro, contabilização centralizada, mecanismo de realocação —, resista à vontade de reestudá-lo. A pergunta aqui é sempre outra: contra o que ele foi desenhado, e em que ano. Se você se pegar reexplicando como o mecanismo funciona, você saiu do Bloco 6 e voltou para o 4 ou para o 5.",
+        "origem": {
+          "seletor": "section#tese .wrap > div.box.cy",
+          "trecho_inicial": "Regra de leitura deste módulo Quando aparecer um mecanismo que você já",
+          "linha_aprox": 346
+        }
+      },
+      {
+        "id": "m06-principio-02",
+        "rotulo": null,
+        "rotulo_desta_extracao": "Hierarquia das fontes (§Ref lede)",
+        "html": "Este bloco é histórico-institucional, e a hierarquia das fontes é rígida: norma antes de acervo histórico, acervo histórico antes de imprensa, imprensa nunca sozinha. Atenção especial a valores de privatização e composições acionárias — fontes legítimas divergem entre si, e a divergência é de moeda e de perímetro, não de fato.",
+        "texto": "Este bloco é histórico-institucional, e a hierarquia das fontes é rígida: norma antes de acervo histórico, acervo histórico antes de imprensa, imprensa nunca sozinha. Atenção especial a valores de privatização e composições acionárias — fontes legítimas divergem entre si, e a divergência é de moeda e de perímetro, não de fato.",
+        "origem": {
+          "seletor": "section#ref p.lede",
+          "trecho_inicial": "Este bloco é histórico-institucional, e a hierarquia das fontes é rígi",
+          "linha_aprox": 1484
+        }
+      },
+      {
+        "id": "m06-principio-03",
+        "rotulo": null,
+        "rotulo_desta_extracao": "Antes do gabarito (§Ex lede)",
+        "html": "Escreva ou fale a resposta inteira antes de abrir o gabarito. Ler a resposta pronta produz sensação de domínio e nenhum domínio — e neste bloco, em que tudo parece familiar depois de lido, o efeito é especialmente traiçoeiro.",
+        "texto": "Escreva ou fale a resposta inteira antes de abrir o gabarito. Ler a resposta pronta produz sensação de domínio e nenhum domínio — e neste bloco, em que tudo parece familiar depois de lido, o efeito é especialmente traiçoeiro.",
+        "origem": {
+          "seletor": "section#ex p.lede",
+          "trecho_inicial": "Escreva ou fale a resposta inteira antes de abrir o gabarito. Ler a re",
+          "linha_aprox": 1155
+        }
+      },
+      {
+        "id": "m06-principio-04",
+        "rotulo": null,
+        "rotulo_desta_extracao": "Rodapé (aviso do material)",
+        "linhas": [
+          {
+            "texto": "GridAlpha · material de estudo interno · conteúdo didático, não é recomendação regulatória, jurídica ou de investimento",
+            "origem": {
+              "seletor": "footer .wrap > div",
+              "trecho_inicial": "GridAlpha · material de estudo interno · conteúdo didático, não é reco",
+              "linha_aprox": 1514
+            }
+          },
+          {
+            "texto": "Datas e normas conferidas em fonte primária; valores de privatização, participações acionárias e prazos condicionados a regulamentação exigem verificação na fonte antes de qualquer uso externo",
+            "origem": {
+              "seletor": "footer .wrap > div",
+              "trecho_inicial": "Datas e normas conferidas em fonte primária; valores de privatização, ",
+              "linha_aprox": 1515
+            }
+          }
+        ],
+        "origem": {
+          "seletor": "footer .wrap > div",
+          "trecho_inicial": "GridAlpha · material de estudo interno · conteúdo didático, não é reco",
+          "linha_aprox": 1514
+        }
+      }
+    ],
+    "principios_nota": "A fonte só rotula o principio-01 (tag da caixa). `rotulo_desta_extracao` é anotação; os textos são literais.",
+    "caixas_numeros_vivos": [
+      {
+        "aula": "Aula 03",
+        "rotulo": "Números vivos · verificar na fonte antes de uso externo",
+        "origem": {
+          "seletor": "section#a03 .wrap > div.box.rd",
+          "trecho_inicial": "Números vivos · verificar na fonte antes de uso externo O valor de ven",
+          "linha_aprox": 649
+        }
+      },
+      {
+        "aula": "Aula 06",
+        "rotulo": "Correção de precisão do currículo · números vivos",
+        "origem": {
+          "seletor": "section#a06 .wrap > div.box.rd",
+          "trecho_inicial": "Correção de precisão do currículo · números vivos O currículo registra",
+          "linha_aprox": 969
+        }
+      },
+      {
+        "aula": "Aula 06",
+        "rotulo": "Números vivos · verificar na fonte antes de uso externo",
+        "origem": {
+          "seletor": "section#a06 .wrap > div.box.rd",
+          "trecho_inicial": "Números vivos · verificar na fonte antes de uso externo A Lei nº 15.26",
+          "linha_aprox": 986
+        }
+      }
+    ]
+  },
+  "erros_comuns": {
+    "id": "m06-erros",
+    "marcador": {
+      "html": "<b>§Erros</b> · Correção imediata",
+      "marcador": "§Erros",
+      "rotulo": "Correção imediata",
+      "origem": {
+        "seletor": ".sec-id",
+        "trecho_inicial": "§Erros · Correção imediata",
+        "linha_aprox": 1117
+      }
+    },
+    "titulo": "Dezesseis erros que custam credibilidade",
+    "lede": {
+      "id": "m06-erros-b01",
+      "tipo": "lede",
+      "html": "História setorial é o terreno onde mais se erra com confiança, porque quase todo mundo tem uma versão pronta. Cada linha abaixo é um erro que já ouvi ser dito em sala, em mesa e em entrevista — e a correção que o desmonta em uma frase.",
+      "texto": "História setorial é o terreno onde mais se erra com confiança, porque quase todo mundo tem uma versão pronta. Cada linha abaixo é um erro que já ouvi ser dito em sala, em mesa e em entrevista — e a correção que o desmonta em uma frase.",
+      "origem": {
+        "seletor": "section#erros .wrap > p.lede",
+        "trecho_inicial": "História setorial é o terreno onde mais se erra com confiança, porque ",
+        "linha_aprox": 1119
+      }
+    },
+    "cabecalho": [
+      "O que se diz",
+      "Correção"
+    ],
+    "itens": [
+      {
+        "id": "m06-erro-01",
+        "o_que_se_diz": "\"O setor elétrico brasileiro começou estatal.\"",
+        "correcao": "Começou privado, municipal e majoritariamente estrangeiro. A liderança estatal só se consolida a partir dos anos 1940 e 1950, e a nacionalização só se completa em 1979.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"O setor elétrico brasileiro começou estatal.\"Começou privado, municip",
+          "linha_aprox": 1124
+        }
+      },
+      {
+        "id": "m06-erro-02",
+        "o_que_se_diz": "\"O Código de Águas estatizou o setor.\"",
+        "correcao": "Ele federalizou a outorga e a fiscalização e desvinculou o potencial hidráulico do solo. Propriedade estatal dominante veio décadas depois, por outro caminho.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"O Código de Águas estatizou o setor.\"Ele federalizou a outorga e a fi",
+          "linha_aprox": 1125
+        }
+      },
+      {
+        "id": "m06-erro-03",
+        "o_que_se_diz": "\"A Eletrobras foi criada em 1962 por decreto do regime militar.\"",
+        "correcao": "A lei que autorizou sua criação é de 1961 e a proposta original é de 1954, no governo Vargas. A instalação em junho de 1962 antecede o regime militar.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"A Eletrobras foi criada em 1962 por decreto do regime militar.\"A lei ",
+          "linha_aprox": 1126
+        }
+      },
+      {
+        "id": "m06-erro-04",
+        "o_que_se_diz": "\"Itaipu é uma usina estatal brasileira.\"",
+        "correcao": "É entidade binacional criada por tratado entre Brasil e Paraguai, com regime jurídico próprio. Não é uma empresa brasileira comum.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"Itaipu é uma usina estatal brasileira.\"É entidade binacional criada p",
+          "linha_aprox": 1127
+        }
+      },
+      {
+        "id": "m06-erro-05",
+        "o_que_se_diz": "\"O despacho centralizado é herança de 2001.\"",
+        "correcao": "A coordenação centralizada da operação foi construída nos anos 1960 e 1970 e institucionalizada no GCOI em 1973. O trauma de 2001 reforçou a cultura; não a criou.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"O despacho centralizado é herança de 2001.\"A coordenação centralizada",
+          "linha_aprox": 1128
+        }
+      },
+      {
+        "id": "m06-erro-06",
+        "o_que_se_diz": "\"A crise dos anos 1980 foi ineficiência de estatal.\"",
+        "correcao": "Foi a soma de tarifa usada como âncora anti-inflacionária, dívida externa após o choque de juros, remuneração garantida e equalização tarifária. Eficiência é uma parte, não a explicação.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"A crise dos anos 1980 foi ineficiência de estatal.\"Foi a soma de tari",
+          "linha_aprox": 1129
+        }
+      },
+      {
+        "id": "m06-erro-07",
+        "o_que_se_diz": "\"Privatização e liberalização são a mesma coisa.\"",
+        "correcao": "Privatização muda propriedade; liberalização abre competição e liberdade de contratação. O Brasil fez as duas em ritmos diferentes e ainda tem empresa estatal em mercado aberto.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"Privatização e liberalização são a mesma coisa.\"Privatização muda pro",
+          "linha_aprox": 1130
+        }
+      },
+      {
+        "id": "m06-erro-08",
+        "o_que_se_diz": "\"O ONS privatizou o despacho.\"",
+        "correcao": "O ONS é entidade de direito privado sem fins lucrativos, autorizada e regulada, exercendo função pública de coordenação. Sucedeu o GCOI numa atribuição que já era centralizada.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"O ONS privatizou o despacho.\"O ONS é entidade de direito privado sem ",
+          "linha_aprox": 1131
+        }
+      },
+      {
+        "id": "m06-erro-09",
+        "o_que_se_diz": "\"O apagão de 2001 foi falta de chuva.\"",
+        "correcao": "A hidrologia foi o gatilho. A causa inclui expansão atrasada, margem firme insuficiente, responsabilidades fragmentadas na transição e risco conhecido desde 1999 que não virou decisão.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"O apagão de 2001 foi falta de chuva.\"A hidrologia foi o gatilho. A ca",
+          "linha_aprox": 1132
+        }
+      },
+      {
+        "id": "m06-erro-10",
+        "o_que_se_diz": "\"O racionamento de 2001 foi um blecaute nacional.\"",
+        "correcao": "Foi programa compulsório e planejado de redução de consumo, com meta, bônus e sobretarifa. Blecaute é interrupção involuntária — categoria diferente.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"O racionamento de 2001 foi um blecaute nacional.\"Foi programa compuls",
+          "linha_aprox": 1133
+        }
+      },
+      {
+        "id": "m06-erro-11",
+        "o_que_se_diz": "\"A privatização dos anos 1990 causou o apagão.\"",
+        "correcao": "A geração continuava majoritariamente estatal em 2001. O problema foi a transição: obrigação estatal de expandir removida antes que o mecanismo privado funcionasse.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"A privatização dos anos 1990 causou o apagão.\"A geração continuava ma",
+          "linha_aprox": 1134
+        }
+      },
+      {
+        "id": "m06-erro-12",
+        "o_que_se_diz": "\"O modelo de 2004 acabou com o mercado livre.\"",
+        "correcao": "Ele formalizou a coexistência de ACR e ACL. O mercado livre não foi fechado — foi organizado, e cresceu continuamente desde então.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"O modelo de 2004 acabou com o mercado livre.\"Ele formalizou a coexist",
+          "linha_aprox": 1135
+        }
+      },
+      {
+        "id": "m06-erro-13",
+        "o_que_se_diz": "\"A MP 579 simplesmente devolveu lucro indevido ao consumidor.\"",
+        "correcao": "A lógica de capturar renda de ativo amortizado é defensável. O problema foi a transição: mudança abrupta de fluxo de caixa, indenizações em disputa e efeito sobre capacidade de investimento.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"A MP 579 simplesmente devolveu lucro indevido ao consumidor.\"A lógica",
+          "linha_aprox": 1136
+        }
+      },
+      {
+        "id": "m06-erro-14",
+        "o_que_se_diz": "\"GSF é só falta de chuva.\"",
+        "correcao": "É a relação entre geração do conjunto, garantia física e operação centralizada. A judicialização nasceu justamente porque parte do déficit decorria de decisão sistêmica, não de hidrologia.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"GSF é só falta de chuva.\"É a relação entre geração do conjunto, garan",
+          "linha_aprox": 1137
+        }
+      },
+      {
+        "id": "m06-erro-15",
+        "o_que_se_diz": "\"Bandeira tarifária é imposto.\"",
+        "correcao": "É componente tarifário administrado pela agência para sinalizar mensalmente o custo de geração. Não é tributo e não vai para o Tesouro.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"Bandeira tarifária é imposto.\"É componente tarifário administrado pel",
+          "linha_aprox": 1138
+        }
+      },
+      {
+        "id": "m06-erro-16",
+        "o_que_se_diz": "\"Desde 2024 qualquer consumidor pode escolher fornecedor.\"",
+        "correcao": "Desde janeiro de 2024 vale para todo o Grupo A. A baixa tensão tem cronograma legal próprio, com prazos em 2027 e 2028, condicionado a regulamentação.",
+        "origem": {
+          "seletor": "section#erros .wrap > div.scroll tr",
+          "trecho_inicial": "\"Desde 2024 qualquer consumidor pode escolher fornecedor.\"Desde janeir",
+          "linha_aprox": 1139
+        }
+      }
+    ],
+    "caixa_final": {
+      "id": "m06-erros-b03",
+      "tipo": "caixa",
+      "cor_classe": "box rd",
+      "rotulo": "O erro que engloba todos os outros",
+      "paragrafos": [
+        {
+          "html": "Tratar a história do setor como disputa entre estatal e privado. É a leitura mais comum, a mais confortável politicamente e a que menos explica. Em nenhum dos cinco regimes que este bloco descreve a propriedade sozinha determinou o resultado — o que determinou foi a combinação entre quem financiava, quem planejava, quem operava, como o preço era formado e <strong>quem carregava o risco de a expansão não acontecer</strong>. Quem discute o setor pela propriedade está discutindo a variável menos informativa das seis.",
+          "texto": "Tratar a história do setor como disputa entre estatal e privado. É a leitura mais comum, a mais confortável politicamente e a que menos explica. Em nenhum dos cinco regimes que este bloco descreve a propriedade sozinha determinou o resultado — o que determinou foi a combinação entre quem financiava, quem planejava, quem operava, como o preço era formado e quem carregava o risco de a expansão não acontecer. Quem discute o setor pela propriedade está discutindo a variável menos informativa das seis.",
+          "origem": {
+            "seletor": "section#erros .wrap > div.box.rd > p",
+            "trecho_inicial": "Tratar a história do setor como disputa entre estatal e privado. É a l",
+            "linha_aprox": 1145
+          }
+        }
+      ],
+      "origem": {
+        "seletor": "section#erros .wrap > div.box.rd",
+        "trecho_inicial": "O erro que engloba todos os outros Tratar a história do setor como dis",
+        "linha_aprox": 1143
+      }
+    },
+    "nas_aulas": [
+      {
+        "aula": "Aula 02",
+        "rotulo": "Ponto que quase todo mundo erra",
+        "cor_classe": "box cy",
+        "origem": {
+          "seletor": "section#a02 .wrap > div.box.cy",
+          "trecho_inicial": "Ponto que quase todo mundo erra A centralização operacional brasileira",
+          "linha_aprox": 538
+        }
+      }
+    ]
+  },
+  "tradutor": {
+    "secao": null,
+    "nota": "Não há seção \"Tradutor\" no M06. O análogo são os 6 blocos \"três níveis\" (Criança de 12 anos / Executivo / Especialista), um por aula, listados abaixo só como ponteiro (o texto pertence ao grupo de aula).",
+    "tres_niveis": [
+      {
+        "aula": "Aula 01",
+        "titulo": "Código de Águas de 1934 · três níveis",
+        "origem": {
+          "seletor": "section#a01 .wrap > div.lv",
+          "trecho_inicial": "Código de Águas de 1934 · três níveis",
+          "linha_aprox": 485
+        }
+      },
+      {
+        "aula": "Aula 02",
+        "titulo": "Por que o modelo estatal quebrou · três níveis",
+        "origem": {
+          "seletor": "section#a02 .wrap > div.lv",
+          "trecho_inicial": "Por que o modelo estatal quebrou · três níveis",
+          "linha_aprox": 590
+        }
+      },
+      {
+        "aula": "Aula 03",
+        "titulo": "Por que 2001 aconteceu · três níveis",
+        "origem": {
+          "seletor": "section#a03 .wrap > div.lv",
+          "trecho_inicial": "Por que 2001 aconteceu · três níveis",
+          "linha_aprox": 720
+        }
+      },
+      {
+        "aula": "Aula 04",
+        "titulo": "O Novo Modelo de 2004 · três níveis",
+        "origem": {
+          "seletor": "section#a04 .wrap > div.lv",
+          "trecho_inicial": "O Novo Modelo de 2004 · três níveis",
+          "linha_aprox": 818
+        }
+      },
+      {
+        "aula": "Aula 05",
+        "titulo": "Por que risco mal alocado vira processo judicial · três níveis",
+        "origem": {
+          "seletor": "section#a05 .wrap > div.lv",
+          "trecho_inicial": "Por que risco mal alocado vira processo judicial · três níveis",
+          "linha_aprox": 934
+        }
+      },
+      {
+        "aula": "Aula 06",
+        "titulo": "Capitalização, privatização e mudança de marca · três níveis",
+        "origem": {
+          "seletor": "section#a06 .wrap > div.lv",
+          "trecho_inicial": "Capitalização, privatização e mudança de marca · três níveis",
+          "linha_aprox": 1053
+        }
+      }
+    ]
+  },
+  "onde_entra_no_produto": {
+    "nota": "Caixas \"Onde isso entra no produto\" (P7: fora da interface). Citam GridAlpha, Regulatory Radar, Brazil Pulse e Alexandria como produtos (P24). Só ponteiros.",
+    "itens": [
+      {
+        "aula": "Aula 01",
+        "origem": {
+          "seletor": "section#a01 .wrap > div.box.gd",
+          "trecho_inicial": "Onde isso entra no produto É o caso fundador do padrão que a régua dos",
+          "linha_aprox": 499
+        }
+      },
+      {
+        "aula": "Aula 02",
+        "origem": {
+          "seletor": "section#a02 .wrap > div.box.gd",
+          "trecho_inicial": "Onde isso entra no produto Aqui está a resposta histórica para a pergu",
+          "linha_aprox": 604
+        }
+      },
+      {
+        "aula": "Aula 03",
+        "origem": {
+          "seletor": "section#a03 .wrap > div.box.gd",
+          "trecho_inicial": "Onde isso entra no produto É o argumento fundador do Brazil Pulse. Tod",
+          "linha_aprox": 734
+        }
+      },
+      {
+        "aula": "Aula 04",
+        "origem": {
+          "seletor": "section#a04 .wrap > div.box.gd",
+          "trecho_inicial": "Onde isso entra no produto Este é o bloco que alimenta diretamente a A",
+          "linha_aprox": 832
+        }
+      },
+      {
+        "aula": "Aula 05",
+        "origem": {
+          "seletor": "section#a05 .wrap > div.box.gd",
+          "trecho_inicial": "Onde isso entra no produto Esta aula é a defesa mais concreta da tese ",
+          "linha_aprox": 948
+        }
+      },
+      {
+        "aula": "Aula 06",
+        "origem": {
+          "seletor": "section#a06 .wrap > div.box.gd",
+          "trecho_inicial": "Onde isso entra no produto Aqui está o argumento mais forte que a Alex",
+          "linha_aprox": 1067
+        }
+      }
+    ]
+  },
+  "comparacao_codigo": {
+    "aulas": [
+      {
+        "aula": "Aula 01",
+        "aula_id_codigo": "aula-06-01",
+        "titulo_fonte": "Antes do Estado",
+        "titulo_codigo": "Antes do Estado",
+        "titulo_igual": true,
+        "subtitulo_fonte": "1879–1934",
+        "subtitulo_codigo": "1879–1934",
+        "subtitulo_igual": true,
+        "lead_igual": true,
+        "lead_diferenca": null,
+        "subsecoes_fonte": 4,
+        "subsecoes_codigo": 4,
+        "subsecoes_iguais": true,
+        "instrumentos_fonte": [
+          "Inst · 02"
+        ],
+        "instrumentos_codigo": [
+          "m06-inst-02"
+        ],
+        "totalInModule": 6,
+        "track": "brasil",
+        "activities_codigo": 0,
+        "illustrations_codigo": [
+          "his-01-usina-seculo-xix.png",
+          "his-02-documento-codigo-aguas.png"
+        ],
+        "video_codigo": null
+      },
+      {
+        "aula": "Aula 02",
+        "aula_id_codigo": "aula-06-02",
+        "titulo_fonte": "O Estado dono de tudo",
+        "titulo_codigo": "O Estado dono de tudo",
+        "titulo_igual": true,
+        "subtitulo_fonte": "1934–1988",
+        "subtitulo_codigo": "1934–1988",
+        "subtitulo_igual": true,
+        "lead_igual": true,
+        "lead_diferenca": null,
+        "subsecoes_fonte": 4,
+        "subsecoes_codigo": 4,
+        "subsecoes_iguais": true,
+        "instrumentos_fonte": [
+          "Inst · 03"
+        ],
+        "instrumentos_codigo": [
+          "m06-inst-03"
+        ],
+        "totalInModule": 6,
+        "track": "brasil",
+        "activities_codigo": 0,
+        "illustrations_codigo": [
+          "his-03-barragem-construcao.png"
+        ],
+        "video_codigo": null
+      },
+      {
+        "aula": "Aula 03",
+        "aula_id_codigo": "aula-06-03",
+        "titulo_fonte": "A reforma inacabada e o trauma fundador",
+        "titulo_codigo": "A reforma inacabada e o trauma fundador",
+        "titulo_igual": true,
+        "subtitulo_fonte": "1988–2002",
+        "subtitulo_codigo": "1988–2002",
+        "subtitulo_igual": true,
+        "lead_igual": true,
+        "lead_diferenca": null,
+        "subsecoes_fonte": 7,
+        "subsecoes_codigo": 7,
+        "subsecoes_iguais": true,
+        "instrumentos_fonte": [
+          "Inst · 04"
+        ],
+        "instrumentos_codigo": [
+          "m06-inst-04"
+        ],
+        "totalInModule": 6,
+        "track": "brasil",
+        "activities_codigo": 0,
+        "illustrations_codigo": [
+          "his-04-jornal-apagao-2001.png",
+          "his-05-lampada-apagada.png",
+          "his-09-leilao-privatizacao.png"
+        ],
+        "video_codigo": null
+      },
+      {
+        "aula": "Aula 04",
+        "aula_id_codigo": "aula-06-04",
+        "titulo_fonte": "A reconstrução deliberada",
+        "titulo_codigo": "A reconstrução deliberada",
+        "titulo_igual": true,
+        "subtitulo_fonte": "2003–2011",
+        "subtitulo_codigo": "2003–2011",
+        "subtitulo_igual": true,
+        "lead_igual": false,
+        "lead_diferenca": {
+          "codigo": "oi uma reforma da reforma : manteve tudo que a déc",
+          "fonte": "oi uma reforma da reforma: manteve tudo que a déca"
+        },
+        "subsecoes_fonte": 4,
+        "subsecoes_codigo": 4,
+        "subsecoes_iguais": true,
+        "instrumentos_fonte": [
+          "Inst · 05"
+        ],
+        "instrumentos_codigo": [
+          "m06-inst-05"
+        ],
+        "totalInModule": 6,
+        "track": "brasil",
+        "activities_codigo": 0,
+        "illustrations_codigo": [
+          "his-06-documento-novo-modelo.png"
+        ],
+        "video_codigo": null
+      },
+      {
+        "aula": "Aula 05",
+        "aula_id_codigo": "aula-06-05",
+        "titulo_fonte": "O modelo é testado de novo",
+        "titulo_codigo": "O modelo é testado de novo",
+        "titulo_igual": true,
+        "subtitulo_fonte": "2012–2021",
+        "subtitulo_codigo": "2012–2021",
+        "subtitulo_igual": true,
+        "lead_igual": false,
+        "lead_diferenca": {
+          "codigo": "arece — ele muda de forma . Vira dívida, vira enca",
+          "fonte": "arece — ele muda de forma. Vira dívida, vira encar"
+        },
+        "subsecoes_fonte": 5,
+        "subsecoes_codigo": 5,
+        "subsecoes_iguais": true,
+        "instrumentos_fonte": [
+          "Inst · 06"
+        ],
+        "instrumentos_codigo": [
+          "m06-inst-06"
+        ],
+        "totalInModule": 6,
+        "track": "brasil",
+        "activities_codigo": 0,
+        "illustrations_codigo": [
+          "his-07-reservatorio-seco.png",
+          "his-08-martelo-juiz.png"
+        ],
+        "video_codigo": null
+      },
+      {
+        "aula": "Aula 06",
+        "aula_id_codigo": "aula-06-06",
+        "titulo_fonte": "Onde a história pousa hoje",
+        "titulo_codigo": "Onde a história pousa hoje",
+        "titulo_igual": true,
+        "subtitulo_fonte": "2022–2028 · síntese",
+        "subtitulo_codigo": "2022–2028 · síntese",
+        "subtitulo_igual": true,
+        "lead_igual": true,
+        "lead_diferenca": null,
+        "subsecoes_fonte": 4,
+        "subsecoes_codigo": 4,
+        "subsecoes_iguais": true,
+        "instrumentos_fonte": [
+          "Inst · 07",
+          "Inst · 08"
+        ],
+        "instrumentos_codigo": [
+          "m06-inst-07",
+          "m06-inst-08"
+        ],
+        "totalInModule": 6,
+        "track": "brasil",
+        "activities_codigo": 0,
+        "illustrations_codigo": [
+          "his-10-porta-industrial-2024.png"
+        ],
+        "video_codigo": null
+      }
+    ],
+    "cartoes_map_x_h2": [
+      {
+        "aula": "Aula 01",
+        "titulo_card": "Antes do Estado",
+        "h2": "Antes do Estado",
+        "igual": true,
+        "periodo_no_card": "1879–1934",
+        "periodo_sec_id": "1879–1934"
+      },
+      {
+        "aula": "Aula 02",
+        "titulo_card": "O Estado dono de tudo",
+        "h2": "O Estado dono de tudo",
+        "igual": true,
+        "periodo_no_card": "1934–1988",
+        "periodo_sec_id": "1934–1988"
+      },
+      {
+        "aula": "Aula 03",
+        "titulo_card": "A reforma inacabada e o trauma",
+        "h2": "A reforma inacabada e o trauma fundador",
+        "igual": false,
+        "periodo_no_card": "1988–2002",
+        "periodo_sec_id": "1988–2002"
+      },
+      {
+        "aula": "Aula 04",
+        "titulo_card": "A reconstrução deliberada",
+        "h2": "A reconstrução deliberada",
+        "igual": true,
+        "periodo_no_card": "2003–2011",
+        "periodo_sec_id": "2003–2011"
+      },
+      {
+        "aula": "Aula 05",
+        "titulo_card": "O modelo é testado de novo",
+        "h2": "O modelo é testado de novo",
+        "igual": true,
+        "periodo_no_card": "2012–2021",
+        "periodo_sec_id": "2012–2021"
+      },
+      {
+        "aula": "Aula 06",
+        "titulo_card": "Onde a história pousa hoje",
+        "h2": "Onde a história pousa hoje",
+        "igual": true,
+        "periodo_no_card": "2022–2028",
+        "periodo_sec_id": "2022–2028 · síntese"
+      }
+    ]
+  },
+  "contagens": {
+    "secoes_no_roteiro": 16,
+    "aulas": 6,
+    "aparatos": 10,
+    "subsecoes_por_aula": {
+      "Aula 01": 4,
+      "Aula 02": 4,
+      "Aula 03": 7,
+      "Aula 04": 4,
+      "Aula 05": 5,
+      "Aula 06": 4
+    },
+    "instrumentos_markup": 8,
+    "criterios_literais": 8,
+    "erros_comuns": 16,
+    "perguntas_relampago": 36,
+    "ataques_decisor": 6,
+    "minutos_roteiro": 10,
+    "tres_niveis": 6,
+    "caixas_onde_entra_no_produto": 6,
+    "map_cards": 6,
+    "pills": 8,
+    "cruzamento": [
+      {
+        "sinal": "aulas",
+        "prosa": "Seis aulas, cento e cinquenta anos (§MAP h2, L380)",
+        "pill": "6 aulas",
+        "markup": "6 sec-id \"Aula NN\"",
+        "subsecoes": "numeração 1.x…6.x presente",
+        "codigo": "6 MODULO_06_AULAS; totalAulas 6; totalInModule 6",
+        "concordam": true
+      },
+      {
+        "sinal": "instrumentos",
+        "pill": "8 instrumentos",
+        "markup": "8 div.inst",
+        "codigo": "7 de aula + 1 de módulo",
+        "concordam": true
+      },
+      {
+        "sinal": "exercícios",
+        "prosa": "Dez exercícios com gabarito (§Ex h2)",
+        "pill": "10 exercícios",
+        "markup": "10 details",
+        "codigo": "10 soltos",
+        "concordam": true
+      },
+      {
+        "sinal": "questões do quiz",
+        "prosa": "Dez perguntas. (§Quiz h2)",
+        "pill": "10 questões · critério 8/10",
+        "markup": "10 objetos {q:} no script",
+        "codigo": "não portado",
+        "concordam": true
+      },
+      {
+        "sinal": "perguntas-relâmpago",
+        "prosa": "Trinta e seis perguntas sem travar (V.1)",
+        "pill": "36 perguntas-relâmpago",
+        "markup": "36 li",
+        "concordam": true
+      },
+      {
+        "sinal": "termos",
+        "prosa": "Noventa e nove termos (§Lex h2)",
+        "pill": "99 termos",
+        "markup": "99 span.term",
+        "codigo": "99 gl-m06-*",
+        "concordam": true
+      },
+      {
+        "sinal": "verificações do §Final",
+        "prosa": "Vinte e quatro verificações (§Final lede)",
+        "markup": "24 li",
+        "concordam": true
+      },
+      {
+        "sinal": "erros",
+        "prosa": "Dezesseis erros (§Erros h2)",
+        "markup": "16 linhas",
+        "concordam": true
+      },
+      {
+        "sinal": "marcos da linha do tempo",
+        "prosa": "quatorze marcos (Inst · 01 título; §MAP lede)",
+        "markup": "array M do script (ver instrumentos.json)",
+        "codigo": "14 M06_INST01_MARCOS",
+        "concordam": true
+      }
+    ]
+  },
+  "cobertura_por_token": {
+    "tese_00": {
+      "tokens_fonte": 1246,
+      "tokens_cobertos": 1246,
+      "cobertura": 100,
+      "amostra_faltas": []
+    },
+    "map": {
+      "tokens_fonte": 83,
+      "tokens_cobertos": 83,
+      "cobertura": 100,
+      "amostra_faltas": []
+    },
+    "erros": {
+      "tokens_fonte": 669,
+      "tokens_cobertos": 669,
+      "cobertura": 100,
+      "amostra_faltas": []
+    },
+    "voz": {
+      "tokens_fonte": 2734,
+      "tokens_cobertos": 2734,
+      "cobertura": 100,
+      "amostra_faltas": []
+    },
+    "nota": "Denominador sem o markup de instrumento, de três níveis e dos cartões (protocolo §5), que estão em outros campos. As aulas não entram aqui: o roteiro só indexa as aulas (o texto integral é do grupo de aula)."
+  },
+  "divergencias": [
+    {
+      "id": "m06-div-01",
+      "tipo": "fonte×fonte",
+      "tema": "Título do cartão da Aula 03 no §MAP × h2 da aula",
+      "leitura_a": {
+        "onde": "§MAP a.map-card L406",
+        "texto": "A reforma inacabada e o trauma"
+      },
+      "leitura_b": {
+        "onde": "Aula 03 h2 L615",
+        "texto": "A reforma inacabada e o trauma fundador"
+      },
+      "nota": "O cartão encurta o título. As outras cinco coincidem.",
+      "decisao": "não escolhida (P5); o código usa o h2"
+    },
+    {
+      "id": "m06-div-02",
+      "tipo": "fonte×fonte",
+      "tema": "Critério de domínio em formas diferentes",
+      "leitura_a": {
+        "onde": "§00 caixa L371 e §Voz lede L1229",
+        "texto": "contar a história em dez minutos, sem consultar (critério oral declarado como \"o critério\")"
+      },
+      "leitura_b": {
+        "onde": "pill L310, §Quiz lede L1214 e script L2335-2340",
+        "texto": "acertar pelo menos 8 de 10 sem consultar (\"O critério de domínio do módulo\")"
+      },
+      "leitura_c": {
+        "onde": "§Final h2/lede L1322-1323",
+        "texto": "\"Você domina o Bloco 6 quando\" + 24 verificações"
+      },
+      "nota": "A própria mensagem de aprovação do quiz diz \"O critério oficial deste bloco é oral, não escrito\", enquanto o lede do quiz chama 8/10 de \"critério de domínio do módulo\". Diferente do M01, aqui o script do quiz e a prosa concordam no limiar 8 (sc>=8).",
+      "decisao": "não escolhida (P18)"
+    },
+    {
+      "id": "m06-div-03",
+      "tipo": "fonte×decisão",
+      "tema": "\"Parte 6\" do caso",
+      "leitura_a": {
+        "onde": "§Caso sec-id L1083",
+        "texto": "Operação A — mineração em Minas Gerais · Parte 6"
+      },
+      "leitura_b": {
+        "onde": "decisões P17",
+        "texto": "\"Não existe Parte 1\" — título \"Caso — Operação A\""
+      },
+      "nota": "No M06 a fonte numera literalmente a parte (\"Parte 6\") e o lede fala das \"cinco partes anteriores\" (física, tecnologia, preço, regulação), que vivem em outros módulos. Registro literal; a aplicação de P17 é da camada de produto.",
+      "decisao": "registrada"
+    },
+    {
+      "id": "m06-div-04",
+      "tipo": "fonte×fonte",
+      "tema": "Caso diz \"cinco partes anteriores\" e enumera quatro lentes",
+      "leitura_a": {
+        "onde": "§Caso lede L1085",
+        "texto": "As cinco partes anteriores olharam a Operação A pela física, pela tecnologia, pelo preço e pela regulação."
+      },
+      "leitura_b": {
+        "onde": "mesma frase",
+        "texto": "quatro lentes enumeradas para cinco partes"
+      },
+      "nota": "Não há como reconciliar só com este arquivo.",
+      "decisao": "não escolhida"
+    },
+    {
+      "id": "m06-div-05",
+      "tipo": "fonte×fonte",
+      "tema": "Vocabulário \"Bloco 6\" × \"Módulo 06\"",
+      "leitura_a": {
+        "onde": "kicker L303, rodapé L1513, lede §00 L324",
+        "texto": "Módulo 06 / Módulo 05 / Módulo 02…"
+      },
+      "leitura_b": {
+        "onde": "L336, L348, L371, L668, L834, L866, L867, L1322, L1454, L1505",
+        "texto": "Bloco 6 / Bloco 7 / Bloco 9"
+      },
+      "nota": "A fonte usa os dois nomes para a mesma unidade. \"Bloco 9\" (mecânica do MRE/GSF, L866) e \"Bloco 7 em diante\" (fonte de dado corrente, L1505) são referências cruzadas cuja correspondência com o catálogo atual (M07 Estrutura Institucional; M09 ACR e ACL) não é declarada.",
+      "decisao": "registrada"
+    },
+    {
+      "id": "m06-div-06",
+      "tipo": "fonte×catálogo",
+      "tema": "Trilha",
+      "leitura_a": {
+        "onde": "fonte",
+        "texto": "Alexandria · GridAlpha · Módulo 06"
+      },
+      "leitura_b": {
+        "onde": "catálogo L539",
+        "texto": "Trilha · Setor Elétrico Brasileiro — atribuída"
+      },
+      "nota": "A fonte não declara trilha; o catálogo e o código (trilha-setor-eletrico-brasileiro, track \"brasil\") atribuem.",
+      "decisao": "registrada"
+    },
+    {
+      "id": "m06-div-07",
+      "tipo": "fonte×produto (P24)",
+      "tema": "Marca GridAlpha em texto voltado ao learner",
+      "leitura_a": {
+        "onde": "13 ocorrências (kicker, rodapé, caixas \"Onde isso entra no produto\", §00 critério, lede A06, 6.3, V.2 ataque 5/6, §Final item 24, INST 01/08 no script)",
+        "texto": "GridAlpha"
+      },
+      "leitura_b": {
+        "onde": "decisões P24",
+        "texto": "Alexandria (produto) / NIVAR (empresa)"
+      },
+      "nota": "Mantido literal. Inclui o critério de domínio (§00) e o item 24 do §Final, que pedem defender \"a independência analítica da GridAlpha\".",
+      "decisao": "registrada; aplicação na camada de produto"
+    },
+    {
+      "id": "m06-div-08",
+      "tipo": "fonte×fonte",
+      "tema": "Rótulo das eras no §MAP × sec-id das aulas",
+      "leitura_a": {
+        "onde": "§MAP cartões",
+        "texto": "1879–1934 | 1934–1988 | 1988–2002 | 2003–2011 | 2012–2021 | 2022–2028"
+      },
+      "leitura_b": {
+        "onde": "sec-id",
+        "texto": "1879–1934 | 1934–1988 | 1988–2002 | 2003–2011 | 2012–2021 | 2022–2028 · síntese"
+      },
+      "nota": "Concordam nos anos; a Aula 06 acrescenta \"· síntese\" no sec-id.",
+      "decisao": "sem conflito material"
+    },
+    {
+      "id": "m06-div-09",
+      "tipo": "fonte×código",
+      "tema": "Horas",
+      "leitura_a": {
+        "onde": "pill L314",
+        "texto": "3–4h de estudo"
+      },
+      "leitura_b": {
+        "onde": "alexandria-blocks.ts",
+        "texto": "estimatedHoursMin 3 / estimatedHoursMax 4"
+      },
+      "nota": "Compatíveis; a conversão em números é do código.",
+      "decisao": "sem conflito"
+    },
+    {
+      "id": "m06-div-10",
+      "tipo": "código×catálogo",
+      "tema": "Estado de extração declarado no catálogo",
+      "leitura_a": {
+        "onde": "catálogo \"Estado da extração\"",
+        "texto": "| 06 | 8 | 8 | completo |"
+      },
+      "leitura_b": {
+        "onde": "código",
+        "texto": "quiz, caso, §Voz, §Erros, §Final e §Ref não estão em src/lib/data; INST 05 e INST 07 portados parcialmente (ver instrumentos.json)"
+      },
+      "nota": "\"completo\" vale para a contagem de instrumentos, não para a mecânica nem para o aparato.",
+      "decisao": "registrada"
+    },
+    {
+      "id": "m06-div-11",
+      "tipo": "código×fonte",
+      "tema": "Exercícios sem enunciado próprio no código",
+      "leitura_a": {
+        "onde": "§Ex (10 details)",
+        "texto": "Pergunta e Gabarito em dois <p> separados"
+      },
+      "leitura_b": {
+        "onde": "MODULO_06_EXERCICIOS_SOLTOS",
+        "texto": "prompt: \"\" e config.gabarito = \"Pergunta. … Gabarito. …\" concatenados; points: 1 sem origem"
+      },
+      "nota": "Detalhe em aparato.json → exercicios.comparacao_codigo.",
+      "decisao": "registrada"
+    },
+    {
+      "id": "m06-div-13",
+      "tipo": "código×fonte",
+      "tema": "Lead das Aulas 04 e 05 com espaço inserido onde havia tag inline",
+      "leitura_a": {
+        "onde": "lede A04 L746 / A05 L844",
+        "texto": "Aula 04: …oi uma reforma da reforma: manteve tudo que a déca… | Aula 05: …arece — ele muda de forma. Vira dívida, vira encar…"
+      },
+      "leitura_b": {
+        "onde": "MODULO_06_LEAD",
+        "texto": "Aula 04: …oi uma reforma da reforma : manteve tudo que a déc… | Aula 05: …arece — ele muda de forma . Vira dívida, vira enca…"
+      },
+      "nota": "O código removeu <em>/<strong> e deixou um espaço antes da pontuação (\"reforma da reforma : manteve\"; \"muda de forma . Vira\"). Só espaço; nenhuma palavra muda.",
+      "decisao": "registrada (baixa)"
+    },
+    {
+      "id": "m06-div-12",
+      "tipo": "código×taxonomia",
+      "tema": "Inst · 01 \"nunca materializado\"",
+      "leitura_a": {
+        "onde": "docs/alexandria/instrument-taxonomy.md",
+        "texto": "Linha do tempo, nunca materializado como Instrument"
+      },
+      "leitura_b": {
+        "onde": "alexandria-modulo-06-content.ts",
+        "texto": "MODULO_06_INSTRUMENTOS[0] = m06-inst-01 (Wave 38), kind explorador"
+      },
+      "nota": "A taxonomia está desatualizada; também diz que o INST 07 tem \"4 saídas\", e o código tem zero.",
+      "decisao": "pendência FOUNDRY"
+    }
+  ],
+  "lacunas": [
+    "Resultado esperado/capacidades: ausente na fonte (null).",
+    "Eixos do módulo: ausentes (null); a régua dos seis é o organizador declarado.",
+    "Perguntas por aula no §MAP: ausentes (null).",
+    "§ Lab: ausente (null).",
+    "Tradutor: ausente como seção; 6 blocos \"três níveis\" como análogo.",
+    "Horas min/max numéricas: não declaradas (só a string \"3–4h de estudo\").",
+    "Duração, dificuldade e vídeo por aula: não declarados (zero <video>/<iframe>/youtube/.mp4). Zero <img> no HTML: as ilustrações \"his-*\" do código não vêm deste arquivo.",
+    "Vínculo aula ↔ critério/verificação: a lede do §Final diz que \"cada uma que falhar aponta uma aula específica\", mas nenhum item declara a aula."
+  ]
+}

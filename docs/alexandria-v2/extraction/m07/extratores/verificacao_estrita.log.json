@@ -1,0 +1,2165 @@
+{
+  "data": "2026-09-17T08:15:40.347Z",
+  "report": {
+    "modulo.json": {
+      "strings_conferidas": 751,
+      "nao_encontradas": 12,
+      "por_caminho": {
+        "mapa.cartoes.aula_codigo": {
+          "n": 7,
+          "exemplo": "aula-07-01"
+        },
+        "voz.codigo_atual": {
+          "n": 1,
+          "exemplo": "Não extraído: nenhum item do § Voz em src/lib/data."
+        },
+        "principios.aviso_do_ref": {
+          "n": 1,
+          "exemplo": "ver aparato.json › referencias.aviso_final (\"Números vivos · leia antes de citar qualquer coisa deste módulo\")"
+        },
+        "principios.linguagem_do_caso": {
+          "n": 1,
+          "exemplo": "ver aparato.json › caso › C.3 callout \"Linguagem — trava 4\""
+        },
+        "erros_comuns.secao_de_modulo": {
+          "n": 1,
+          "exemplo": "section#erros (§Erros · Correção imediata)"
+        },
+        "erros_comuns.codigo_atual": {
+          "n": 1,
+          "exemplo": "Não extraído: a tabela do § Erros não está em src/lib/data."
+        }
+      }
+    },
+    "aparato.json": {
+      "strings_conferidas": 1309,
+      "nao_encontradas": 59,
+      "por_caminho": {
+        "caso.vinculos.aulas_declaradas": {
+          "n": 1,
+          "exemplo": "aula-07-05"
+        },
+        "caso.codigo_atual": {
+          "n": 1,
+          "exemplo": "Não extraído: nenhum arquivo em src/ contém o texto do § Caso do M07 (grep \"A planta pela lente institucional\" / \"Operação A\" em src/lib/dat"
+        },
+        "avaliacao.mecanica_fonte.tentativas": {
+          "n": 1,
+          "exemplo": "Todas as questões são respondidas e corrigidas de uma vez pelo botão \"Corrigir\"; \"Refazer\" limpa marcações e placar. Sem persistência."
+        },
+        "avaliacao.mecanica_fonte.marcacao": {
+          "n": 1,
+          "exemplo": "Na correção, a alternativa certa recebe a classe \"opt right\" e a marcada errada \"opt wrong\" (verde/vermelho no CSS da fonte). Questão sem re"
+        },
+        "avaliacao.perguntas.rotulo_renderizado": {
+          "n": 10,
+          "exemplo": "Questão 1 de 10"
+        },
+        "avaliacao.perguntas.vinculos_declarados_na_explicacao.aulas": {
+          "n": 12,
+          "exemplo": "aula-07-01"
+        },
+        "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos": {
+          "n": 13,
+          "exemplo": "m07-inst-02"
+        },
+        "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos_citados_no_restante": {
+          "n": 1,
+          "exemplo": "m07-inst-04"
+        },
+        "avaliacao.faixas_de_placar_script.intervalo": {
+          "n": 2,
+          "exemplo": "8–10"
+        },
+        "avaliacao.placar_simulado.placar_renderizado": {
+          "n": 11,
+          "exemplo": "0 / 10"
+        },
+        "avaliacao.codigo_atual": {
+          "n": 1,
+          "exemplo": "Não extraído: o quiz do M07 não existe em src/lib/data (nenhum literal \"Dez questões · critério 8/10\" nem os enunciados)."
+        },
+        "checklist_final.codigo_atual": {
+          "n": 1,
+          "exemplo": "Não extraído (nenhum item do § Final em src/lib/data; alexandria-badges.ts não tem entrada do M07)."
+        },
+        "referencias.sem_url": {
+          "n": 3,
+          "exemplo": "m07-ref-08"
+        },
+        "referencias.codigo_atual": {
+          "n": 1,
+          "exemplo": "Não extraído: BibliotecaView.tsx só traz o § Ref do M01; nenhum item do § Ref do M07 está em src/."
+        }
+      }
+    },
+    "instrumentos.json": {
+      "strings_conferidas": 2559,
+      "nao_encontradas": 255,
+      "por_caminho": {
+        "instrumentos.escopo": {
+          "n": 1,
+          "exemplo": "modulo"
+        },
+        "instrumentos.posicao_no_texto.secao": {
+          "n": 10,
+          "exemplo": "section#map (§MAP · Percurso e mapa institucional)"
+        },
+        "instrumentos.script.bloco": {
+          "n": 10,
+          "exemplo": "/* INST 01 — … */"
+        },
+        "instrumentos.mecanica": {
+          "n": 10,
+          "exemplo": "grafo de dois fluxos alternáveis (seletor de 3 botões) + seleção de órgão por chip que abre ficha (panel); sem cálculo"
+        },
+        "instrumentos.saidas.formula": {
+          "n": 3,
+          "exemplo": "draw(): arestas AUT (cor #F59E0B) se flow ∈ {aut, amb}; arestas DAD (cor #06B6D4) se flow ∈ {dad, amb}; rótulos das arestas só quando flow ≠"
+        },
+        "instrumentos.cenario_padrao.painel_html": {
+          "n": 8,
+          "exemplo": "<div class=\"yr\">Assessoramento · política</div><div class=\"ti\">Conselho Nacional de Política Energética</div><div class=\"bd2\">Órgão de asses"
+        },
+        "instrumentos.entradas.opcoes.rotulo": {
+          "n": 51,
+          "exemplo": "Legislativo · Lei ordinária"
+        },
+        "instrumentos.itens.painel_renderizado_html": {
+          "n": 68,
+          "exemplo": "<div class=\"yr\">Legislativo</div><div class=\"ti\">Lei ordinária</div><div class=\"bd2\">Ato do Congresso Nacional, sancionado pela Presidência."
+        },
+        "instrumentos.cenario_padrao.saidas_html.i4-tot": {
+          "n": 1,
+          "exemplo": "450<span class=\"u\">dias</span>"
+        },
+        "instrumentos.cenario_padrao.saidas_html.i4-jan": {
+          "n": 1,
+          "exemplo": "90<span class=\"u\">dias</span>"
+        },
+        "instrumentos.cenario_padrao.saidas_html.i4-avi": {
+          "n": 1,
+          "exemplo": "90<span class=\"u\">dias</span>"
+        },
+        "instrumentos.cenario_padrao.saidas_texto.i4-tot": {
+          "n": 1,
+          "exemplo": "450dias"
+        },
+        "instrumentos.cenario_padrao.saidas_texto.i4-jan": {
+          "n": 1,
+          "exemplo": "90dias"
+        },
+        "instrumentos.cenario_padrao.saidas_texto.i4-avi": {
+          "n": 1,
+          "exemplo": "90dias"
+        },
+        "instrumentos.cenario_padrao.veredito_classe": {
+          "n": 2,
+          "exemplo": "verdict att"
+        },
+        "instrumentos.cenario_padrao.veredito_html": {
+          "n": 2,
+          "exemplo": "<b>Aberto, mas exige monitoramento ativo.</b> A janela de influência é de 90 dias num ciclo de 450 dias — cerca de 20%. Quem monitora apenas"
+        },
+        "instrumentos.itens.kicker_renderizado": {
+          "n": 17,
+          "exemplo": "Horizonte 01 · Plurianual e anual"
+        },
+        "instrumentos.cenario_padrao.saidas_html.i6-tot": {
+          "n": 1,
+          "exemplo": "35<span class=\"u\">dias</span>"
+        },
+        "instrumentos.cenario_padrao.saidas_html.i6-jan": {
+          "n": 1,
+          "exemplo": "5<span class=\"u\">dias</span>"
+        },
+        "instrumentos.cenario_padrao.saidas_html.i6-fol": {
+          "n": 1,
+          "exemplo": "11<span class=\"u\">dias</span>"
+        },
+        "instrumentos.cenario_padrao.saidas_texto.i6-tot": {
+          "n": 1,
+          "exemplo": "35dias"
+        },
+        "instrumentos.cenario_padrao.saidas_texto.i6-jan": {
+          "n": 1,
+          "exemplo": "5dias"
+        },
+        "instrumentos.cenario_padrao.saidas_texto.i6-fol": {
+          "n": 1,
+          "exemplo": "11dias"
+        },
+        "instrumentos.itens.cartoes_renderizados_html": {
+          "n": 24,
+          "exemplo": "<div class=\"ocard\"><span class=\"ok2\">Órgão emissor</span>Agência reguladora.</div><div class=\"ocard gd2\"><span class=\"ok2\">Instrumento juríd"
+        },
+        "instrumentos.camada_fixa.texto_concatenado": {
+          "n": 1,
+          "exemplo": "Programa mensal da operação no início do mês, com revisões semanais; programação diária todos os dias; contabilização e liquidação do mês an"
+        },
+        "instrumentos.itens.ciclo_anual.rotulo_renderizado": {
+          "n": 36,
+          "exemplo": "Ciclo anual · 1"
+        }
+      }
+    }
+  },
+  "falhas": [
+    {
+      "arquivo": "modulo.json",
+      "path": "mapa.cartoes[0].aula_codigo",
+      "gen": "mapa.cartoes.aula_codigo",
+      "valor": "aula-07-01"
+    },
+    {
+      "arquivo": "modulo.json",
+      "path": "mapa.cartoes[1].aula_codigo",
+      "gen": "mapa.cartoes.aula_codigo",
+      "valor": "aula-07-02"
+    },
+    {
+      "arquivo": "modulo.json",
+      "path": "mapa.cartoes[2].aula_codigo",
+      "gen": "mapa.cartoes.aula_codigo",
+      "valor": "aula-07-03"
+    },
+    {
+      "arquivo": "modulo.json",
+      "path": "mapa.cartoes[3].aula_codigo",
+      "gen": "mapa.cartoes.aula_codigo",
+      "valor": "aula-07-04"
+    },
+    {
+      "arquivo": "modulo.json",
+      "path": "mapa.cartoes[4].aula_codigo",
+      "gen": "mapa.cartoes.aula_codigo",
+      "valor": "aula-07-05"
+    },
+    {
+      "arquivo": "modulo.json",
+      "path": "mapa.cartoes[5].aula_codigo",
+      "gen": "mapa.cartoes.aula_codigo",
+      "valor": "aula-07-06"
+    },
+    {
+      "arquivo": "modulo.json",
+      "path": "mapa.cartoes[6].aula_codigo",
+      "gen": "mapa.cartoes.aula_codigo",
+      "valor": "aula-07-07"
+    },
+    {
+      "arquivo": "modulo.json",
+      "path": "voz.codigo_atual",
+      "gen": "voz.codigo_atual",
+      "valor": "Não extraído: nenhum item do § Voz em src/lib/data."
+    },
+    {
+      "arquivo": "modulo.json",
+      "path": "principios.aviso_do_ref",
+      "gen": "principios.aviso_do_ref",
+      "valor": "ver aparato.json › referencias.aviso_final (\"Números vivos · leia antes de citar qualquer coisa deste módulo\")"
+    },
+    {
+      "arquivo": "modulo.json",
+      "path": "principios.linguagem_do_caso",
+      "gen": "principios.linguagem_do_caso",
+      "valor": "ver aparato.json › caso › C.3 callout \"Linguagem — trava 4\""
+    },
+    {
+      "arquivo": "modulo.json",
+      "path": "erros_comuns.secao_de_modulo",
+      "gen": "erros_comuns.secao_de_modulo",
+      "valor": "section#erros (§Erros · Correção imediata)"
+    },
+    {
+      "arquivo": "modulo.json",
+      "path": "erros_comuns.codigo_atual",
+      "gen": "erros_comuns.codigo_atual",
+      "valor": "Não extraído: a tabela do § Erros não está em src/lib/data."
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "caso.vinculos.aulas_declaradas[0]",
+      "gen": "caso.vinculos.aulas_declaradas",
+      "valor": "aula-07-05"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "caso.codigo_atual",
+      "gen": "caso.codigo_atual",
+      "valor": "Não extraído: nenhum arquivo em src/ contém o texto do § Caso do M07 (grep \"A planta pela lente institucional\" / \"Operação A\" em src/lib/dat"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.mecanica_fonte.tentativas",
+      "gen": "avaliacao.mecanica_fonte.tentativas",
+      "valor": "Todas as questões são respondidas e corrigidas de uma vez pelo botão \"Corrigir\"; \"Refazer\" limpa marcações e placar. Sem persistência."
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.mecanica_fonte.marcacao",
+      "gen": "avaliacao.mecanica_fonte.marcacao",
+      "valor": "Na correção, a alternativa certa recebe a classe \"opt right\" e a marcada errada \"opt wrong\" (verde/vermelho no CSS da fonte). Questão sem re"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[0].rotulo_renderizado",
+      "gen": "avaliacao.perguntas.rotulo_renderizado",
+      "valor": "Questão 1 de 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[0].vinculos_declarados_na_explicacao.aulas[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.aulas",
+      "valor": "aula-07-01"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[0].vinculos_declarados_na_explicacao.instrumentos[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos",
+      "valor": "m07-inst-02"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[0].vinculos_declarados_na_explicacao.instrumentos_citados_no_restante[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos_citados_no_restante",
+      "valor": "m07-inst-04"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[1].rotulo_renderizado",
+      "gen": "avaliacao.perguntas.rotulo_renderizado",
+      "valor": "Questão 2 de 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[1].vinculos_declarados_na_explicacao.aulas[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.aulas",
+      "valor": "aula-07-05"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[1].vinculos_declarados_na_explicacao.instrumentos[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos",
+      "valor": "m07-inst-08"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[2].rotulo_renderizado",
+      "gen": "avaliacao.perguntas.rotulo_renderizado",
+      "valor": "Questão 3 de 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[2].vinculos_declarados_na_explicacao.aulas[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.aulas",
+      "valor": "aula-07-04"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[2].vinculos_declarados_na_explicacao.instrumentos[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos",
+      "valor": "m07-inst-01"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[3].rotulo_renderizado",
+      "gen": "avaliacao.perguntas.rotulo_renderizado",
+      "valor": "Questão 4 de 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[3].vinculos_declarados_na_explicacao.aulas[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.aulas",
+      "valor": "aula-07-02"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[3].vinculos_declarados_na_explicacao.instrumentos[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos",
+      "valor": "m07-inst-03"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[4].rotulo_renderizado",
+      "gen": "avaliacao.perguntas.rotulo_renderizado",
+      "valor": "Questão 5 de 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[4].vinculos_declarados_na_explicacao.aulas[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.aulas",
+      "valor": "aula-07-04"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[4].vinculos_declarados_na_explicacao.aulas[1]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.aulas",
+      "valor": "aula-07-05"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[4].vinculos_declarados_na_explicacao.instrumentos[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos",
+      "valor": "m07-inst-05"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[4].vinculos_declarados_na_explicacao.instrumentos[1]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos",
+      "valor": "m07-inst-08"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[5].rotulo_renderizado",
+      "gen": "avaliacao.perguntas.rotulo_renderizado",
+      "valor": "Questão 6 de 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[5].vinculos_declarados_na_explicacao.aulas[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.aulas",
+      "valor": "aula-07-03"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[5].vinculos_declarados_na_explicacao.instrumentos[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos",
+      "valor": "m07-inst-04"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[5].vinculos_declarados_na_explicacao.instrumentos[1]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos",
+      "valor": "m07-inst-08"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[6].rotulo_renderizado",
+      "gen": "avaliacao.perguntas.rotulo_renderizado",
+      "valor": "Questão 7 de 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[6].vinculos_declarados_na_explicacao.aulas[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.aulas",
+      "valor": "aula-07-06"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[6].vinculos_declarados_na_explicacao.instrumentos[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos",
+      "valor": "m07-inst-08"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[7].rotulo_renderizado",
+      "gen": "avaliacao.perguntas.rotulo_renderizado",
+      "valor": "Questão 8 de 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[7].vinculos_declarados_na_explicacao.aulas[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.aulas",
+      "valor": "aula-07-04"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[7].vinculos_declarados_na_explicacao.aulas[1]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.aulas",
+      "valor": "aula-07-05"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[7].vinculos_declarados_na_explicacao.instrumentos[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos",
+      "valor": "m07-inst-02"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[7].vinculos_declarados_na_explicacao.instrumentos[1]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos",
+      "valor": "m07-inst-08"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[8].rotulo_renderizado",
+      "gen": "avaliacao.perguntas.rotulo_renderizado",
+      "valor": "Questão 9 de 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[8].vinculos_declarados_na_explicacao.aulas[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.aulas",
+      "valor": "aula-07-06"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[8].vinculos_declarados_na_explicacao.instrumentos[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos",
+      "valor": "m07-inst-07"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[9].rotulo_renderizado",
+      "gen": "avaliacao.perguntas.rotulo_renderizado",
+      "valor": "Questão 10 de 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[9].vinculos_declarados_na_explicacao.aulas[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.aulas",
+      "valor": "aula-07-03"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.perguntas[9].vinculos_declarados_na_explicacao.instrumentos[0]",
+      "gen": "avaliacao.perguntas.vinculos_declarados_na_explicacao.instrumentos",
+      "valor": "m07-inst-02"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.faixas_de_placar_script[0].intervalo",
+      "gen": "avaliacao.faixas_de_placar_script.intervalo",
+      "valor": "8–10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.faixas_de_placar_script[1].intervalo",
+      "gen": "avaliacao.faixas_de_placar_script.intervalo",
+      "valor": "0–7"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.placar_simulado[0].placar_renderizado",
+      "gen": "avaliacao.placar_simulado.placar_renderizado",
+      "valor": "0 / 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.placar_simulado[1].placar_renderizado",
+      "gen": "avaliacao.placar_simulado.placar_renderizado",
+      "valor": "1 / 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.placar_simulado[2].placar_renderizado",
+      "gen": "avaliacao.placar_simulado.placar_renderizado",
+      "valor": "2 / 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.placar_simulado[3].placar_renderizado",
+      "gen": "avaliacao.placar_simulado.placar_renderizado",
+      "valor": "3 / 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.placar_simulado[4].placar_renderizado",
+      "gen": "avaliacao.placar_simulado.placar_renderizado",
+      "valor": "4 / 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.placar_simulado[5].placar_renderizado",
+      "gen": "avaliacao.placar_simulado.placar_renderizado",
+      "valor": "5 / 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.placar_simulado[6].placar_renderizado",
+      "gen": "avaliacao.placar_simulado.placar_renderizado",
+      "valor": "6 / 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.placar_simulado[7].placar_renderizado",
+      "gen": "avaliacao.placar_simulado.placar_renderizado",
+      "valor": "7 / 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.placar_simulado[8].placar_renderizado",
+      "gen": "avaliacao.placar_simulado.placar_renderizado",
+      "valor": "8 / 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.placar_simulado[9].placar_renderizado",
+      "gen": "avaliacao.placar_simulado.placar_renderizado",
+      "valor": "9 / 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.placar_simulado[10].placar_renderizado",
+      "gen": "avaliacao.placar_simulado.placar_renderizado",
+      "valor": "10 / 10"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "avaliacao.codigo_atual",
+      "gen": "avaliacao.codigo_atual",
+      "valor": "Não extraído: o quiz do M07 não existe em src/lib/data (nenhum literal \"Dez questões · critério 8/10\" nem os enunciados)."
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "checklist_final.codigo_atual",
+      "gen": "checklist_final.codigo_atual",
+      "valor": "Não extraído (nenhum item do § Final em src/lib/data; alexandria-badges.ts não tem entrada do M07)."
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "referencias.sem_url[0]",
+      "gen": "referencias.sem_url",
+      "valor": "m07-ref-08"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "referencias.sem_url[1]",
+      "gen": "referencias.sem_url",
+      "valor": "m07-ref-13"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "referencias.sem_url[2]",
+      "gen": "referencias.sem_url",
+      "valor": "m07-ref-27"
+    },
+    {
+      "arquivo": "aparato.json",
+      "path": "referencias.codigo_atual",
+      "gen": "referencias.codigo_atual",
+      "valor": "Não extraído: BibliotecaView.tsx só traz o § Ref do M01; nenhum item do § Ref do M07 está em src/."
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[0].escopo",
+      "gen": "instrumentos.escopo",
+      "valor": "modulo"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[0].posicao_no_texto.secao",
+      "gen": "instrumentos.posicao_no_texto.secao",
+      "valor": "section#map (§MAP · Percurso e mapa institucional)"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[0].script.bloco",
+      "gen": "instrumentos.script.bloco",
+      "valor": "/* INST 01 — … */"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[0].mecanica",
+      "gen": "instrumentos.mecanica",
+      "valor": "grafo de dois fluxos alternáveis (seletor de 3 botões) + seleção de órgão por chip que abre ficha (panel); sem cálculo"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[0].saidas[0].formula",
+      "gen": "instrumentos.saidas.formula",
+      "valor": "draw(): arestas AUT (cor #F59E0B) se flow ∈ {aut, amb}; arestas DAD (cor #06B6D4) se flow ∈ {dad, amb}; rótulos das arestas só quando flow ≠"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[0].saidas[2].formula",
+      "gen": "instrumentos.saidas.formula",
+      "valor": "pan.innerHTML=panel(d.k,d.t,d.b,d.r,d.l) — o fluxo NÃO altera a ficha (show() ignora flow)"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[0].cenario_padrao.painel_html",
+      "gen": "instrumentos.cenario_padrao.painel_html",
+      "valor": "<div class=\"yr\">Assessoramento · política</div><div class=\"ti\">Conselho Nacional de Política Energética</div><div class=\"bd2\">Órgão de asses"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].posicao_no_texto.secao",
+      "gen": "instrumentos.posicao_no_texto.secao",
+      "valor": "section#a01 (Aula 01 · Política · MME e CNPE)"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].script.bloco",
+      "gen": "instrumentos.script.bloco",
+      "valor": "/* INST 02 — … */"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].mecanica",
+      "gen": "instrumentos.mecanica",
+      "valor": "seleção única revela ficha do instrumento jurídico (explorador na forma; a fonte o chama \"Comparador\")"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].entradas[0].opcoes[0].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Legislativo · Lei ordinária"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].entradas[0].opcoes[1].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Executivo · urgência · Medida provisória"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].entradas[0].opcoes[2].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Executivo · regulamento · Decreto"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].entradas[0].opcoes[3].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Conselho · política · Resolução do conselho de política"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].entradas[0].opcoes[4].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Ministério · política · Portaria ministerial"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].entradas[0].opcoes[5].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Agência · norma · Resolução normativa"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].entradas[0].opcoes[6].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Agência · caso concreto · Resolução homologatória"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].entradas[0].opcoes[7].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Agência · outorga · Resolução autorizativa"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].entradas[0].opcoes[8].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Agência · execução · Despacho"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].entradas[0].opcoes[9].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Operador · técnico · Procedimento de rede"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].entradas[0].opcoes[10].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Câmara · comercial · Regras e procedimentos de comercialização"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].cenario_padrao.painel_html",
+      "gen": "instrumentos.cenario_padrao.painel_html",
+      "valor": "<div class=\"yr\">Legislativo</div><div class=\"ti\">Lei ordinária</div><div class=\"bd2\">Ato do Congresso Nacional, sancionado pela Presidência."
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].itens[0].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Legislativo</div><div class=\"ti\">Lei ordinária</div><div class=\"bd2\">Ato do Congresso Nacional, sancionado pela Presidência."
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].itens[1].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Executivo · urgência</div><div class=\"ti\">Medida provisória</div><div class=\"bd2\">Ato da Presidência com força de lei, subme"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].itens[2].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Executivo · regulamento</div><div class=\"ti\">Decreto</div><div class=\"bd2\">Ato da Presidência que regulamenta lei ou dispõe "
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].itens[3].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Conselho · política</div><div class=\"ti\">Resolução do conselho de política</div><div class=\"bd2\">Deliberação do colegiado de"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].itens[4].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Ministério · política</div><div class=\"ti\">Portaria ministerial</div><div class=\"bd2\">Ato do ministério que implementa polít"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].itens[5].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Agência · norma</div><div class=\"ti\">Resolução normativa</div><div class=\"bd2\">Ato normativo geral e abstrato da agência reg"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].itens[6].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Agência · caso concreto</div><div class=\"ti\">Resolução homologatória</div><div class=\"bd2\">Ato da agência que homologa resul"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].itens[7].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Agência · outorga</div><div class=\"ti\">Resolução autorizativa</div><div class=\"bd2\">Ato da agência que autoriza — implantaçã"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].itens[8].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Agência · execução</div><div class=\"ti\">Despacho</div><div class=\"bd2\">Ato de execução da agência — decide requerimento, dá "
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].itens[9].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Operador · técnico</div><div class=\"ti\">Procedimento de rede</div><div class=\"bd2\">Conjunto de documentos técnicos que disci"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[1].itens[10].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Câmara · comercial</div><div class=\"ti\">Regras e procedimentos de comercialização</div><div class=\"bd2\">Corpo de regras que "
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].posicao_no_texto.secao",
+      "gen": "instrumentos.posicao_no_texto.secao",
+      "valor": "section#a02 (Aula 02 · Planejamento · EPE)"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].script.bloco",
+      "gen": "instrumentos.script.bloco",
+      "valor": "/* INST 03 — … */"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].mecanica",
+      "gen": "instrumentos.mecanica",
+      "valor": "seleção única (pergunta) revela ficha do documento"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].entradas[0].opcoes[0].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Pergunta 01 · Quanta demanda o país projeta para os próximos dez anos?"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].entradas[0].opcoes[1].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Pergunta 02 · Quanto o país consumiu por fonte e por setor no ano passado?"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].entradas[0].opcoes[2].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Pergunta 03 · Que futuro de longo prazo o Estado considera plausível?"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].entradas[0].opcoes[3].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Pergunta 04 · Quais projetos estão habilitados para o próximo certame?"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].entradas[0].opcoes[4].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Pergunta 05 · Qual é a expansão indicada da transmissão?"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].entradas[0].opcoes[5].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Pergunta 06 · Quanto o Estado considera que custa cada fonte?"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].entradas[0].opcoes[6].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Pergunta 07 · Que hipóteses de transição energética o governo está estudando?"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].cenario_padrao.painel_html",
+      "gen": "instrumentos.cenario_padrao.painel_html",
+      "valor": "<div class=\"yr\">Pergunta 01</div><div class=\"ti\">Quanta demanda o país projeta para os próximos dez anos?</div><div class=\"bd2\">Projeção dec"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].itens[0].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Pergunta 01</div><div class=\"ti\">Quanta demanda o país projeta para os próximos dez anos?</div><div class=\"bd2\">Projeção dec"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].itens[1].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Pergunta 02</div><div class=\"ti\">Quanto o país consumiu por fonte e por setor no ano passado?</div><div class=\"bd2\">Contabil"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].itens[2].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Pergunta 03</div><div class=\"ti\">Que futuro de longo prazo o Estado considera plausível?</div><div class=\"bd2\">Estudo de hor"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].itens[3].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Pergunta 04</div><div class=\"ti\">Quais projetos estão habilitados para o próximo certame?</div><div class=\"bd2\">Cadastrament"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].itens[4].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Pergunta 05</div><div class=\"ti\">Qual é a expansão indicada da transmissão?</div><div class=\"bd2\">Estudos de planejamento da"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].itens[5].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Pergunta 06</div><div class=\"ti\">Quanto o Estado considera que custa cada fonte?</div><div class=\"bd2\">Premissas de custo de"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[2].itens[6].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Pergunta 07</div><div class=\"ti\">Que hipóteses de transição energética o governo está estudando?</div><div class=\"bd2\">Estud"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[3].posicao_no_texto.secao",
+      "gen": "instrumentos.posicao_no_texto.secao",
+      "valor": "section#a03 (Aula 03 · Regulação · ANEEL por dentro)"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[3].script.bloco",
+      "gen": "instrumentos.script.bloco",
+      "valor": "/* INST 04 — … */"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[3].mecanica",
+      "gen": "instrumentos.mecanica",
+      "valor": "campos de prazo (range+number) → soma e razões → readouts + regime (texto) + veredito por ramo"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[3].cenario_padrao.saidas_html.i4-tot",
+      "gen": "instrumentos.cenario_padrao.saidas_html.i4-tot",
+      "valor": "450<span class=\"u\">dias</span>"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[3].cenario_padrao.saidas_html.i4-jan",
+      "gen": "instrumentos.cenario_padrao.saidas_html.i4-jan",
+      "valor": "90<span class=\"u\">dias</span>"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[3].cenario_padrao.saidas_html.i4-avi",
+      "gen": "instrumentos.cenario_padrao.saidas_html.i4-avi",
+      "valor": "90<span class=\"u\">dias</span>"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[3].cenario_padrao.saidas_texto.i4-tot",
+      "gen": "instrumentos.cenario_padrao.saidas_texto.i4-tot",
+      "valor": "450dias"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[3].cenario_padrao.saidas_texto.i4-jan",
+      "gen": "instrumentos.cenario_padrao.saidas_texto.i4-jan",
+      "valor": "90dias"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[3].cenario_padrao.saidas_texto.i4-avi",
+      "gen": "instrumentos.cenario_padrao.saidas_texto.i4-avi",
+      "valor": "90dias"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[3].cenario_padrao.veredito_classe",
+      "gen": "instrumentos.cenario_padrao.veredito_classe",
+      "valor": "verdict att"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[3].cenario_padrao.veredito_html",
+      "gen": "instrumentos.cenario_padrao.veredito_html",
+      "valor": "<b>Aberto, mas exige monitoramento ativo.</b> A janela de influência é de 90 dias num ciclo de 450 dias — cerca de 20%. Quem monitora apenas"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].posicao_no_texto.secao",
+      "gen": "instrumentos.posicao_no_texto.secao",
+      "valor": "section#a04 (Aula 04 · Operação · ONS)"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].script.bloco",
+      "gen": "instrumentos.script.bloco",
+      "valor": "/* INST 05 — … */"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].mecanica",
+      "gen": "instrumentos.mecanica",
+      "valor": "seleção única (horizonte, por chip) revela ficha do produto operativo"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].cenario_padrao.painel_html",
+      "gen": "instrumentos.cenario_padrao.painel_html",
+      "valor": "<div class=\"yr\">Horizonte 01 · Plurianual e anual</div><div class=\"ti\">Planejamento da operação energética</div><div class=\"bd2\">Horizonte d"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].itens[0].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Horizonte 01 · Plurianual e anual"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].itens[0].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Horizonte 01 · Plurianual e anual</div><div class=\"ti\">Planejamento da operação energética</div><div class=\"bd2\">Horizonte d"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].itens[1].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Horizonte 02 · Mensal"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].itens[1].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Horizonte 02 · Mensal</div><div class=\"ti\">Programa mensal da operação</div><div class=\"bd2\">O produto de referência do mês."
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].itens[2].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Horizonte 03 · Semanal"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].itens[2].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Horizonte 03 · Semanal</div><div class=\"ti\">Revisão semanal do programa</div><div class=\"bd2\">Ajuste do programa mensal à in"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].itens[3].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Horizonte 04 · Diário"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].itens[3].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Horizonte 04 · Diário</div><div class=\"ti\">Programação diária da operação</div><div class=\"bd2\">Detalhamento do dia seguinte"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].itens[4].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Horizonte 05 · Tempo real e pós-operação"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[4].itens[4].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Horizonte 05 · Tempo real e pós-operação</div><div class=\"ti\">Supervisão, controle e consolidação</div><div class=\"bd2\">Supe"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[5].posicao_no_texto.secao",
+      "gen": "instrumentos.posicao_no_texto.secao",
+      "valor": "section#a05 (Aula 05 · Liquidação · CCEE)"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[5].script.bloco",
+      "gen": "instrumentos.script.bloco",
+      "valor": "/* INST 06 — … */"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[5].mecanica",
+      "gen": "instrumentos.mecanica",
+      "valor": "campos de prazo (range+number) → soma e razões → readouts + regime (texto) + veredito por ramo"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[5].cenario_padrao.saidas_html.i6-tot",
+      "gen": "instrumentos.cenario_padrao.saidas_html.i6-tot",
+      "valor": "35<span class=\"u\">dias</span>"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[5].cenario_padrao.saidas_html.i6-jan",
+      "gen": "instrumentos.cenario_padrao.saidas_html.i6-jan",
+      "valor": "5<span class=\"u\">dias</span>"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[5].cenario_padrao.saidas_html.i6-fol",
+      "gen": "instrumentos.cenario_padrao.saidas_html.i6-fol",
+      "valor": "11<span class=\"u\">dias</span>"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[5].cenario_padrao.saidas_texto.i6-tot",
+      "gen": "instrumentos.cenario_padrao.saidas_texto.i6-tot",
+      "valor": "35dias"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[5].cenario_padrao.saidas_texto.i6-jan",
+      "gen": "instrumentos.cenario_padrao.saidas_texto.i6-jan",
+      "valor": "5dias"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[5].cenario_padrao.saidas_texto.i6-fol",
+      "gen": "instrumentos.cenario_padrao.saidas_texto.i6-fol",
+      "valor": "11dias"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[5].cenario_padrao.veredito_classe",
+      "gen": "instrumentos.cenario_padrao.veredito_classe",
+      "valor": "verdict ok"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[5].cenario_padrao.veredito_html",
+      "gen": "instrumentos.cenario_padrao.veredito_html",
+      "valor": "<b>Ciclo equilibrado.</b> Janela de contestação de 5 dias, folga de 11 dias entre a prévia e o aporte, e 35 dias do fim do consumo à liquida"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].posicao_no_texto.secao",
+      "gen": "instrumentos.posicao_no_texto.secao",
+      "valor": "section#a06 (Aula 06 · Monitoramento e periferia)"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].script.bloco",
+      "gen": "instrumentos.script.bloco",
+      "valor": "/* INST 07 — … */"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].mecanica",
+      "gen": "instrumentos.mecanica",
+      "valor": "seleção única (sintoma) revela ficha do travamento"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].entradas[0].opcoes[0].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Sintoma 01 · A obra está pronta e a usina não pode operar comercialmente"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].entradas[0].opcoes[1].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Sintoma 02 · O licenciamento ambiental não sai"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].entradas[0].opcoes[2].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Sintoma 03 · A conexão à rede não tem prazo definido"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].entradas[0].opcoes[3].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Sintoma 04 · A outorga saiu, mas o cronograma não é mais viável"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].entradas[0].opcoes[4].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Sintoma 05 · A conta de energia da planta subiu e a distribuidora diz que é tarifa"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].entradas[0].opcoes[5].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Sintoma 06 · O contrato de energia foi assinado e o fornecedor não entrega"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].entradas[0].opcoes[6].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Sintoma 07 · A migração para o mercado livre está travada"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].entradas[0].opcoes[7].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Sintoma 08 · O uso da água do reservatório conflita com outro usuário"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].entradas[0].opcoes[8].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Sintoma 09 · A usina está pronta e a geração é limitada por escoamento"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].cenario_padrao.painel_html",
+      "gen": "instrumentos.cenario_padrao.painel_html",
+      "valor": "<div class=\"yr\">Sintoma 01</div><div class=\"ti\">A obra está pronta e a usina não pode operar comercialmente</div><div class=\"bd2\">O empreend"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].itens[0].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Sintoma 01</div><div class=\"ti\">A obra está pronta e a usina não pode operar comercialmente</div><div class=\"bd2\">O empreend"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].itens[1].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Sintoma 02</div><div class=\"ti\">O licenciamento ambiental não sai</div><div class=\"bd2\">O processo ambiental não avança e o "
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].itens[2].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Sintoma 03</div><div class=\"ti\">A conexão à rede não tem prazo definido</div><div class=\"bd2\">O acesso ao sistema de distrib"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].itens[3].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Sintoma 04</div><div class=\"ti\">A outorga saiu, mas o cronograma não é mais viável</div><div class=\"bd2\">O título existe, os"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].itens[4].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Sintoma 05</div><div class=\"ti\">A conta de energia da planta subiu e a distribuidora diz que é tarifa</div><div class=\"bd2\">"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].itens[5].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Sintoma 06</div><div class=\"ti\">O contrato de energia foi assinado e o fornecedor não entrega</div><div class=\"bd2\">Existe c"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].itens[6].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Sintoma 07</div><div class=\"ti\">A migração para o mercado livre está travada</div><div class=\"bd2\">A decisão de migrar foi t"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].itens[7].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Sintoma 08</div><div class=\"ti\">O uso da água do reservatório conflita com outro usuário</div><div class=\"bd2\">A operação do"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[6].itens[8].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Sintoma 09</div><div class=\"ti\">A usina está pronta e a geração é limitada por escoamento</div><div class=\"bd2\">A capacidade"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].posicao_no_texto.secao",
+      "gen": "instrumentos.posicao_no_texto.secao",
+      "valor": "section#a07 (Aula 07 · Síntese · onde a frase não se sustenta)"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].script.bloco",
+      "gen": "instrumentos.script.bloco",
+      "valor": "/* INST 08 — … */"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].mecanica",
+      "gen": "instrumentos.mecanica",
+      "valor": "seleção única (tipo de decisão) revela painel + seis cartões de roteamento"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].entradas[0].opcoes[0].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Decisão 01 · Reajuste tarifário anual de distribuidora"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].entradas[0].opcoes[1].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Decisão 02 · Revisão tarifária periódica"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].entradas[0].opcoes[2].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Decisão 03 · Formação do preço de curto prazo"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].entradas[0].opcoes[3].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Decisão 04 · Despacho de térmica fora da ordem de mérito"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].entradas[0].opcoes[4].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Decisão 05 · Aprovação de novo procedimento de rede"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].entradas[0].opcoes[5].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Decisão 06 · Diretriz para leilão de energia nova"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].entradas[0].opcoes[6].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Decisão 07 · Outorga de autorização para central geradora"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].entradas[0].opcoes[7].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Decisão 08 · Alteração de regra de comercialização"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].entradas[0].opcoes[8].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Decisão 09 · Acionamento de bandeira tarifária"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].entradas[0].opcoes[9].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Decisão 10 · Recomendação de ação preventiva de suprimento"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].entradas[0].opcoes[10].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Decisão 11 · Aprovação de ato de concentração no setor"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].entradas[0].opcoes[11].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Decisão 12 · Contratação de expansão da transmissão"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].cenario_padrao.painel_html",
+      "gen": "instrumentos.cenario_padrao.painel_html",
+      "valor": "<div class=\"yr\">Decisão 01</div><div class=\"ti\">Reajuste tarifário anual de distribuidora</div><div class=\"bd2\">Atualização anual das tarifa"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[0].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Decisão 01</div><div class=\"ti\">Reajuste tarifário anual de distribuidora</div><div class=\"bd2\">Atualização anual das tarifa"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[0].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão emissor</span>Agência reguladora.</div><div class=\"ocard gd2\"><span class=\"ok2\">Instrumento juríd"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[1].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Decisão 02</div><div class=\"ti\">Revisão tarifária periódica</div><div class=\"bd2\">Recomposição estrutural da tarifa em ciclo"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[1].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão emissor</span>Agência reguladora.</div><div class=\"ocard gd2\"><span class=\"ok2\">Instrumento juríd"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[2].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Decisão 03</div><div class=\"ti\">Formação do preço de curto prazo</div><div class=\"bd2\">Apuração e divulgação do preço usado "
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[2].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão emissor</span>Câmara de comercialização apura e divulga; a agência aprova a metodologia e os limi"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[3].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Decisão 04</div><div class=\"ti\">Despacho de térmica fora da ordem de mérito</div><div class=\"bd2\">Acionamento de usina terme"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[3].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão emissor</span>Operador do sistema.</div><div class=\"ocard gd2\"><span class=\"ok2\">Instrumento jurí"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[4].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Decisão 05</div><div class=\"ti\">Aprovação de novo procedimento de rede</div><div class=\"bd2\">Alteração ou criação de módulo "
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[4].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão emissor</span>Proposto pelo operador do sistema; aprovado pela agência reguladora.</div><div clas"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[5].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Decisão 06</div><div class=\"ti\">Diretriz para leilão de energia nova</div><div class=\"bd2\">Definição de produto, prazo de su"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[5].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão emissor</span>Ministério de Minas e Energia — em alguns casos precedido de deliberação do conselh"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[6].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Decisão 07</div><div class=\"ti\">Outorga de autorização para central geradora</div><div class=\"bd2\">Concessão do título que p"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[6].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão emissor</span>Agência reguladora, por delegação do poder concedente; hipóteses de concessão segue"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[7].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Decisão 08</div><div class=\"ti\">Alteração de regra de comercialização</div><div class=\"bd2\">Mudança na metodologia de apuraç"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[7].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão emissor</span>Aplicada pela câmara de comercialização; aprovada pela agência reguladora.</div><di"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[8].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Decisão 09</div><div class=\"ti\">Acionamento de bandeira tarifária</div><div class=\"bd2\">Sinalização, na fatura do consumidor"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[8].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão emissor</span>Agência reguladora.</div><div class=\"ocard gd2\"><span class=\"ok2\">Instrumento juríd"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[9].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Decisão 10</div><div class=\"ti\">Recomendação de ação preventiva de suprimento</div><div class=\"bd2\">Manifestação sobre a con"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[9].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão emissor</span>Comitê de monitoramento do setor elétrico, presidido pelo ministério.</div><div cla"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[10].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Decisão 11</div><div class=\"ti\">Aprovação de ato de concentração no setor</div><div class=\"bd2\">Análise concorrencial de fus"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[10].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão emissor</span>Autoridade de defesa da concorrência, no rito da legislação concorrencial. Aspectos"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[11].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Decisão 12</div><div class=\"ti\">Contratação de expansão da transmissão</div><div class=\"bd2\">Contratação de novas instalaçõe"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[7].itens[11].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão emissor</span>Diretrizes do ministério; certame conduzido pela agência reguladora; indicação técn"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].posicao_no_texto.secao",
+      "gen": "instrumentos.posicao_no_texto.secao",
+      "valor": "section#a07 (Aula 07 · Síntese · onde a frase não se sustenta)"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].script.bloco",
+      "gen": "instrumentos.script.bloco",
+      "valor": "/* INST 09 — … */"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].mecanica",
+      "gen": "instrumentos.mecanica",
+      "valor": "seleção única (dado) revela painel + seis cartões de localização"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].entradas[0].opcoes[0].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Dado 01 · Carga de energia por subsistema"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].entradas[0].opcoes[1].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Dado 02 · Geração por fonte, com resolução horária"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].entradas[0].opcoes[2].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Dado 03 · Armazenamento dos reservatórios"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].entradas[0].opcoes[3].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Dado 04 · Intercâmbio entre subsistemas"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].entradas[0].opcoes[4].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Dado 05 · Preço de curto prazo"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].entradas[0].opcoes[5].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Dado 06 · Contabilização e dados de mercado"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].entradas[0].opcoes[6].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Dado 07 · Migração para o ambiente livre"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].entradas[0].opcoes[7].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Dado 08 · Tarifas homologadas de distribuidoras"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].entradas[0].opcoes[8].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Dado 09 · Cadastro de usinas e capacidade instalada"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].entradas[0].opcoes[9].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Dado 10 · Balanço energético nacional"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].entradas[0].opcoes[10].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Dado 11 · Projeção decenal de demanda e expansão"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].entradas[0].opcoes[11].rotulo",
+      "gen": "instrumentos.entradas.opcoes.rotulo",
+      "valor": "Dado 12 · Resultados de leilão"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].cenario_padrao.painel_html",
+      "gen": "instrumentos.cenario_padrao.painel_html",
+      "valor": "<div class=\"yr\">Dado 01</div><div class=\"ti\">Carga de energia por subsistema</div><div class=\"bd2\">Demanda atendida pelo sistema interligado"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[0].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Dado 01</div><div class=\"ti\">Carga de energia por subsistema</div><div class=\"bd2\">Demanda atendida pelo sistema interligado"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[0].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão que publica</span>Operador do sistema.</div><div class=\"ocard gd2\"><span class=\"ok2\">Portal e cam"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[1].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Dado 02</div><div class=\"ti\">Geração por fonte, com resolução horária</div><div class=\"bd2\">Produção verificada por fonte de"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[1].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão que publica</span>Operador do sistema.</div><div class=\"ocard gd2\"><span class=\"ok2\">Portal e cam"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[2].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Dado 03</div><div class=\"ti\">Armazenamento dos reservatórios</div><div class=\"bd2\">Nível de armazenamento e energia armazena"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[2].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão que publica</span>Operador do sistema.</div><div class=\"ocard gd2\"><span class=\"ok2\">Portal e cam"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[3].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Dado 04</div><div class=\"ti\">Intercâmbio entre subsistemas</div><div class=\"bd2\">Fluxos de energia entre os subsistemas do s"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[3].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão que publica</span>Operador do sistema.</div><div class=\"ocard gd2\"><span class=\"ok2\">Portal e cam"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[4].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Dado 05</div><div class=\"ti\">Preço de curto prazo</div><div class=\"bd2\">Preço usado na valoração das diferenças entre o cont"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[4].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão que publica</span>Câmara de comercialização.</div><div class=\"ocard gd2\"><span class=\"ok2\">Portal"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[5].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Dado 06</div><div class=\"ti\">Contabilização e dados de mercado</div><div class=\"bd2\">Resultados de contabilização, consumo p"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[5].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão que publica</span>Câmara de comercialização.</div><div class=\"ocard gd2\"><span class=\"ok2\">Portal"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[6].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Dado 07</div><div class=\"ti\">Migração para o ambiente livre</div><div class=\"bd2\">Quantidade e perfil de consumidores que mi"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[6].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão que publica</span>Câmara de comercialização, com marco regulatório definido pela agência e por no"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[7].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Dado 08</div><div class=\"ti\">Tarifas homologadas de distribuidoras</div><div class=\"bd2\">Tarifas vigentes por concessionária"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[7].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão que publica</span>Agência reguladora.</div><div class=\"ocard gd2\"><span class=\"ok2\">Portal e cami"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[8].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Dado 09</div><div class=\"ti\">Cadastro de usinas e capacidade instalada</div><div class=\"bd2\">Relação de empreendimentos de g"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[8].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão que publica</span>Agência reguladora.</div><div class=\"ocard gd2\"><span class=\"ok2\">Portal e cami"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[9].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Dado 10</div><div class=\"ti\">Balanço energético nacional</div><div class=\"bd2\">Contabilidade energética completa do país, po"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[9].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão que publica</span>Empresa de planejamento.</div><div class=\"ocard gd2\"><span class=\"ok2\">Portal e"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[10].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Dado 11</div><div class=\"ti\">Projeção decenal de demanda e expansão</div><div class=\"bd2\">Projeções de carga, de consumo e d"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[10].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão que publica</span>Empresa de planejamento, com aprovação por portaria do ministério.</div><div cl"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[11].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Dado 12</div><div class=\"ti\">Resultados de leilão</div><div class=\"bd2\">Preços, volumes, empreendimentos vencedores e condiç"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[8].itens[11].cartoes_renderizados_html",
+      "gen": "instrumentos.itens.cartoes_renderizados_html",
+      "valor": "<div class=\"ocard\"><span class=\"ok2\">Órgão que publica</span>Agência reguladora conduz e divulga o resultado; a câmara de comercialização re"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].posicao_no_texto.secao",
+      "gen": "instrumentos.posicao_no_texto.secao",
+      "valor": "section#a07 (Aula 07 · Síntese · onde a frase não se sustenta)"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].script.bloco",
+      "gen": "instrumentos.script.bloco",
+      "valor": "/* INST 10 — … */"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].mecanica",
+      "gen": "instrumentos.mecanica",
+      "valor": "seleção de mês (12 botões) revela eventos de ciclo anual + ação do mês, sobre uma camada fixa comum a todos os meses"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].saidas[0].formula",
+      "gen": "instrumentos.saidas.formula",
+      "valor": "p.innerHTML=panel('Mês '+(k+1)+' de 12',d.n, <texto fixo>, rows, FIXO, 'Camada fixa'); rows = ['Ciclo anual · '+(x+1), d.a[x]] … + ['O que f"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].camada_fixa.texto_concatenado",
+      "gen": "instrumentos.camada_fixa.texto_concatenado",
+      "valor": "Programa mensal da operação no início do mês, com revisões semanais; programação diária todos os dias; contabilização e liquidação do mês an"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].cenario_padrao.painel_html",
+      "gen": "instrumentos.cenario_padrao.painel_html",
+      "valor": "<div class=\"yr\">Mês 1 de 12</div><div class=\"ti\">Janeiro</div><div class=\"bd2\">O painel separa duas camadas. A de baixo é a cadência fixa, q"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[0].ciclo_anual[0].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 1"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[0].ciclo_anual[1].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 2"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[0].ciclo_anual[2].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 3"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[0].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Mês 1 de 12"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[0].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Mês 1 de 12</div><div class=\"ti\">Janeiro</div><div class=\"bd2\">O painel separa duas camadas. A de baixo é a cadência fixa, q"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[1].ciclo_anual[0].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 1"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[1].ciclo_anual[1].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 2"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[1].ciclo_anual[2].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 3"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[1].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Mês 2 de 12"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[1].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Mês 2 de 12</div><div class=\"ti\">Fevereiro</div><div class=\"bd2\">O painel separa duas camadas. A de baixo é a cadência fixa,"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[2].ciclo_anual[0].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 1"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[2].ciclo_anual[1].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 2"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[2].ciclo_anual[2].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 3"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[2].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Mês 3 de 12"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[2].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Mês 3 de 12</div><div class=\"ti\">Março</div><div class=\"bd2\">O painel separa duas camadas. A de baixo é a cadência fixa, que"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[3].ciclo_anual[0].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 1"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[3].ciclo_anual[1].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 2"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[3].ciclo_anual[2].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 3"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[3].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Mês 4 de 12"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[3].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Mês 4 de 12</div><div class=\"ti\">Abril</div><div class=\"bd2\">O painel separa duas camadas. A de baixo é a cadência fixa, que"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[4].ciclo_anual[0].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 1"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[4].ciclo_anual[1].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 2"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[4].ciclo_anual[2].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 3"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[4].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Mês 5 de 12"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[4].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Mês 5 de 12</div><div class=\"ti\">Maio</div><div class=\"bd2\">O painel separa duas camadas. A de baixo é a cadência fixa, que "
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[5].ciclo_anual[0].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 1"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[5].ciclo_anual[1].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 2"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[5].ciclo_anual[2].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 3"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[5].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Mês 6 de 12"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[5].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Mês 6 de 12</div><div class=\"ti\">Junho</div><div class=\"bd2\">O painel separa duas camadas. A de baixo é a cadência fixa, que"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[6].ciclo_anual[0].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 1"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[6].ciclo_anual[1].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 2"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[6].ciclo_anual[2].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 3"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[6].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Mês 7 de 12"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[6].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Mês 7 de 12</div><div class=\"ti\">Julho</div><div class=\"bd2\">O painel separa duas camadas. A de baixo é a cadência fixa, que"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[7].ciclo_anual[0].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 1"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[7].ciclo_anual[1].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 2"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[7].ciclo_anual[2].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 3"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[7].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Mês 8 de 12"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[7].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Mês 8 de 12</div><div class=\"ti\">Agosto</div><div class=\"bd2\">O painel separa duas camadas. A de baixo é a cadência fixa, qu"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[8].ciclo_anual[0].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 1"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[8].ciclo_anual[1].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 2"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[8].ciclo_anual[2].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 3"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[8].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Mês 9 de 12"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[8].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Mês 9 de 12</div><div class=\"ti\">Setembro</div><div class=\"bd2\">O painel separa duas camadas. A de baixo é a cadência fixa, "
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[9].ciclo_anual[0].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 1"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[9].ciclo_anual[1].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 2"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[9].ciclo_anual[2].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 3"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[9].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Mês 10 de 12"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[9].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Mês 10 de 12</div><div class=\"ti\">Outubro</div><div class=\"bd2\">O painel separa duas camadas. A de baixo é a cadência fixa, "
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[10].ciclo_anual[0].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 1"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[10].ciclo_anual[1].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 2"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[10].ciclo_anual[2].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 3"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[10].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Mês 11 de 12"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[10].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Mês 11 de 12</div><div class=\"ti\">Novembro</div><div class=\"bd2\">O painel separa duas camadas. A de baixo é a cadência fixa,"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[11].ciclo_anual[0].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 1"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[11].ciclo_anual[1].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 2"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[11].ciclo_anual[2].rotulo_renderizado",
+      "gen": "instrumentos.itens.ciclo_anual.rotulo_renderizado",
+      "valor": "Ciclo anual · 3"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[11].kicker_renderizado",
+      "gen": "instrumentos.itens.kicker_renderizado",
+      "valor": "Mês 12 de 12"
+    },
+    {
+      "arquivo": "instrumentos.json",
+      "path": "instrumentos[9].itens[11].painel_renderizado_html",
+      "gen": "instrumentos.itens.painel_renderizado_html",
+      "valor": "<div class=\"yr\">Mês 12 de 12</div><div class=\"ti\">Dezembro</div><div class=\"bd2\">O painel separa duas camadas. A de baixo é a cadência fixa,"
+    }
+  ]
+}

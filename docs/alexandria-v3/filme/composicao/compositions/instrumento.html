@@ -1,0 +1,44 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" /></head>
+<body>
+  <template>
+    <style>
+      #root { position: absolute; inset: 0; }
+    </style>
+    <div id="root" data-composition-id="instrumento" data-width="1920" data-height="1080">
+      <div id="in-cena" class="fundo">
+        <div class="coluna">
+          <p id="in-cap" class="mono cap">03 · O instrumento</p>
+          <span id="in-fio" class="cap-fio"></span>
+          <h2 id="in-man" class="serif manchete">Você mexe no número. <em>A aula responde.</em></h2>
+          <p id="in-apoio" class="apoio">O instrumento da própria aula faz a conta da fórmula da aula.</p>
+        </div>
+        <p id="in-nota" class="nota-folha">Tela real · INST·06 · Fator de capacidade</p>
+        <div id="in-folha" class="folha">
+          <div id="in-jan" class="janela">
+            <video id="in-v" src="assets/regua.mp4" muted playsinline data-start="0.4" data-duration="12.8" data-track-index="0"></video>
+          </div>
+        </div>
+        <p class="selo tela">Tela real · conta de demonstração · previsão de exemplo</p>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power2.out", S = "sine.inOut";
+      const W = 1160, H = 900;
+      const q = (cx, cy, s) => ({ x: W / 2 - cx * s, y: H / 2 - cy * s, scale: s, transformOrigin: "0% 0%" });
+      tl.fromTo("#in-cena", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: S }, 0);
+      tl.fromTo("#in-cap", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.5);
+      tl.fromTo("#in-fio", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 0.6);
+      tl.fromTo("#in-man", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.2, ease: E }, 0.9);
+      tl.fromTo("#in-apoio", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.0, ease: E }, 2.2);
+      tl.fromTo("#in-nota", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 1.0);
+      tl.fromTo("#in-folha", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.0, ease: "power3.out" }, 0.3);
+      // o instrumento inteiro; enquanto a régua anda, a câmera se aproxima da caixa que enche
+      tl.fromTo("#in-jan", q(760, 560, 0.86), { ...q(760, 560, 0.86), duration: 1.6 }, 0.4);
+      tl.to("#in-jan", { ...q(730, 520, 0.95), duration: 7.0, ease: "power1.inOut" }, 2.0);
+      tl.to("#in-jan", { ...q(760, 560, 0.86), duration: 2.4, ease: "power2.inOut" }, 9.6);
+      window.__timelines["instrumento"] = tl;
+    </script>
+  </template>
+</body></html>

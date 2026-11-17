@@ -25,6 +25,7 @@
 
 import type { Rule, Finding, SourceFile } from '../types.js';
 import { isLineSuppressed } from '../walker.js';
+import { isAlexandriaFile } from './_alexandria.js';
 
 const RULE_ID = 'no-box-shadow-on-cards';
 
@@ -39,6 +40,11 @@ const ALLOWED_DIRS = [
 
 function isAllowedPath(relPath: string): boolean {
   const norm = relPath.replace(/\\/g, '/');
+  // The Alexandria v2 scope is governed by `alexandria-materialidade`,
+  // whose S2 clause is strictly wider than this rule (every element,
+  // not only cards / clip-text) and blocks at P0. Deferring here keeps
+  // one line from being reported twice at two severities.
+  if (isAlexandriaFile(norm)) return true;
   return ALLOWED_DIRS.some((dir) => norm.includes(dir));
 }
 

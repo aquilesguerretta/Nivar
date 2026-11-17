@@ -1,0 +1,243 @@
+<!--meta {
+"arquetipo":"PRANCHA","titulo_pagina":"M01·A08 · 100 MW solar ≠ 100 MW térmica · Alexandria",
+"trilha":"I · Fundamentos Universais","mod_cod":"M01","modulo":"Física de Energia e Eletricidade",
+"aula_n":"08","aula_total":"09","aula_curto":"100 MW solar ≠ 100 MW térmica.",
+"sumario":["Abertura · previsão do fator de capacidade","8.1 Capacidade instalada vs. geração efetiva","8.2 O fator de capacidade · INST·06","8.3 FCaps típicos por fonte","Por que isso importa para o Brasil","Exercício Ex·06","Registro da aula"],
+"creditos":[
+"<b>Marco da Usina Térmica Igarapé (MG), 2014.</b> Paulo JC Nogueira · CC BY-SA 3.0 · Wikimedia Commons · recorte da Alexandria sob a mesma licença.",
+"<b>Duas usinas, dia e noite.</b> Ilustração gerada para a Alexandria (Higgsfield · GPT Image 2.5), 2026 · explicação, não documento · usinas fictícias.",
+"<b>Angra dos Reis (RJ), 2008.</b> Rodrigo Soldon · CC BY 2.0 · Wikimedia Commons.",
+"<b>Candiota (RS), 2023.</b> Donnapel · CC BY-SA 4.0 · Wikimedia Commons.",
+"<b>Itaipu, rio Paraná, 2011.</b> International Hydropower Association · CC BY 2.0 · Wikimedia Commons.",
+"<b>Paracuru (CE), 2015.</b> Guilherme Almeida da Silva · CC BY-SA 4.0 · Wikimedia Commons.",
+"<b>UFV flutuante Araucária (SP), 2024.</b> Governo do Estado de São Paulo · CC BY 2.0 · Wikimedia Commons.",
+"<b>Camaçari (BA), 2010.</b> Fotos Gov/Ba · CC BY 2.0 · Wikimedia Commons.",
+"<b>Sobradinho (BA), seca de 2015.</b> Marcello Casal Jr/Agência Brasil · CC BY 3.0 BR · Wikimedia Commons."
+]} -->
+
+<section class="ab" aria-labelledby="titulo">
+  <div>
+    <p class="eyebrow">M01<span class="dsk"> · Física de Energia e Eletricidade</span> · Aula 08 de 09</p>
+    <h1 id="titulo">100 MW solar ≠ 100 MW térmica.</h1>
+    <p class="sub">Capacidade instalada e fator de capacidade</p>
+    <span class="apar">Pergunta da aula<em>Alexandria</em></span>
+    <p class="pergunta">Duas usinas têm 100 MW cada — uma solar, uma térmica. Por que elas não entregam a mesma energia num ano?</p>
+    <p class="obj"><b>Objetivo</b>Calcular o fator de capacidade de uma usina a partir de potência, energia e horas, e dizer por que a mesma potência instalada entrega energias diferentes conforme a fonte.</p>
+    <p class="lede">Comparar fontes de geração apenas por capacidade instalada é o erro de leitor casual da matriz elétrica. Para análise séria, o que importa é o fator de capacidade — quanto a usina efetivamente entrega ao longo do tempo.</p>
+  </div>
+  <div class="ab-dir">
+    <div class="ato" data-ato>
+      <div class="ato-h"><span class="apar">Ato 1 de 3 · previsão<em>Alexandria</em></span>
+        <span class="estado so-ini">{{g:vazio}}vazio</span><span class="estado so-reg-f">{{g:percorrida}}registrado</span></div>
+      <p class="enun">Uma usina solar gerou isto em um ano. Qual foi o fator de capacidade (FCap)?</p>
+      <dl class="cen">
+        <div><dt>Capacidade</dt><dd>100 <small>MW</small></dd></div>
+        <div><dt>Geração</dt><dd>220.000 <small>MWh</small></dd></div>
+        <div><dt>Período</dt><dd>8.760 <small>h</small></dd></div>
+      </dl>
+      <p class="nota-cen">Cenário didático presente no módulo; fonte externa dos valores não declarada.</p>
+      <div class="so-ini">
+        <label class="campo" style="display:block"><span style="display:block;font-size:14px;font-weight:600;margin-bottom:6px">Sua previsão de FCap</span>
+          <span class="inp pre"><input inputmode="decimal" placeholder="ex.: 40" aria-label="Sua previsão de FCap, em porcentagem"><span>%</span></span></label>
+        <button class="btn-pri" type="button" data-registrar><span>Registrar previsão · <b>fator de capacidade</b></span>{{seta}}</button>
+      </div>
+      <div class="so-reg">
+        <div class="inp" style="background:var(--creme)"><input value="30,0" readonly aria-label="Previsão registrada"><span>%</span></div>
+        <p class="aviso-reg" style="font-style:normal;color:var(--tinta)">Previsão registrada. A calculadora da seção 8.2 mostra o calculado ao lado dela.</p>
+        <a class="btn-sec" href="#inst06" style="margin-top:8px">Ir à comparação · INST·06</a>
+      </div>
+    </div>
+    {{rota:9:8:M01}}
+    <div class="recup">
+      <div class="recup-h"><span class="apar">Recuperação<em>Alexandria</em></span><span class="orig">De M01·A01</span></div>
+      <p>“Essa usina gerou 100 MW no mês.” O que está errado nessa frase?</p>
+      <div class="linha"><span class="inp"><input placeholder="Sua correção, em uma linha" aria-label="Sua correção"></span><button class="btn-sec" type="button">Registrar</button></div>
+    </div>
+  </div>
+</section>
+
+<div class="corpo">
+  <!-- Correção 2026-09-17: 8.1 corre inteira na coluna de leitura; as duas figuras empilham na coluna lateral
+       (a figura não empurra mais o segundo parágrafo). -->
+  <div class="fila fila-pilha">
+    <div class="l">
+      <p class="lead mob">Comparar fontes de geração apenas por capacidade instalada é o erro de leitor casual da matriz elétrica. Para análise séria, o que importa é o fator de capacidade — quanto a usina efetivamente entrega ao longo do tempo.</p>
+      <div class="sec"><span class="n">8.1</span><h2>Capacidade instalada vs. geração efetiva</h2></div>
+      <p><strong>Capacidade instalada</strong> é o tamanho nominal da usina ou equipamento de geração — o máximo teórico que ela pode produzir se operasse em potência plena, 24 horas por dia, 365 dias por ano. Uma usina solar de 100 MW tem capacidade instalada de 100 MW.</p>
+      <p>Isso não significa que ela gera 100 MW o tempo todo. A solar não gera à noite. A eólica depende do vento. A hidrelétrica depende de chuva e reservatório. A térmica depende de combustível disponível e despacho do sistema. <strong>Geração efetiva</strong> é o que a usina realmente produziu em um período, medido em MWh.</p>
+      <div class="sec"><span class="n">8.2</span><h2>O fator de capacidade</h2></div>
+      <div class="formula"><div class="eyebrow" style="margin-bottom:4px">Fórmula</div>
+        <div class="eq">FCap <i>=</i> Geração real <i>÷</i> (Capacidade instalada <i>×</i> horas do período)</div></div>
+      <p>Uma usina de 100 MW tem geração máxima teórica em um ano de 100 × 8.760 = 876.000 MWh. Se ela gerou efetivamente 220.000 MWh, o FCap foi de <span class="velado">{{g:velado}} velado até a sua previsão</span><span class="revel">25,1%</span>. Use a calculadora abaixo:</p>
+    </div>
+    <div class="m pilha">
+    <figure class="fig">
+      <img src="{{img:aulas/m01/m01-a08-01-placa-potencia-instalada-web.jpg|900}}" alt="Marco de concreto com letras em relevo: Usina Térmica Igarapé, potência instalada 131.000 kW, início de operação em 31/07/1978.">
+      <figcaption><span class="classe">Documental</span>Marco da Usina Térmica Igarapé (MG), fotografado em 2014: “Potência instalada: 131.000 kW”. A capacidade instalada é um número fixo de placa; mede o tamanho da usina, não a energia que ela gerou.
+        <span class="cred">Paulo JC Nogueira · CC BY-SA 3.0 · Wikimedia Commons · recorte</span></figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="{{img:aulas/m01/m01-a08-02-solar-e-termica-dia-e-noite-web.jpg|900}}" alt="Gravura em quatro quadros: uma usina solar e uma térmica, cada uma ao meio-dia e à noite. À noite, os painéis estão escuros e a térmica continua soltando vapor.">
+      <figcaption><span class="classe ger">Explicação · ilustração gerada</span>Duas usinas com a mesma capacidade no papel. Ao meio-dia, as duas podem produzir. À noite, a solar para, e a térmica continua gerando se estiver despachada e tiver combustível.
+        <span class="cred">Gerada para a Alexandria, 2026 · não é documento · usinas fictícias</span></figcaption>
+    </figure>
+    </div>
+  </div>
+
+  <section class="palco prancha" id="inst06" data-palco aria-labelledby="inst06-t">
+    <div class="palco-h"><span class="num">INST·06</span><h3 id="inst06-t">Calculadora · Fator de capacidade de uma usina</h3><span class="k">prever → calcular → comparar</span></div>
+    <div class="palco-b">
+      <div class="perg"><span class="apar">Pergunta<em>Alexandria</em></span><p>Que fração da caixa teórica a usina encheu com energia?</p></div>
+      <dl class="pvc">
+        <div><dt>Sua previsão</dt><dd class="vaz so-ini">{{g:vazio}} ainda não registrada</dd><dd class="so-reg">30,0 <small>%</small></dd></div>
+        <div><dt>Calculado</dt><dd class="vaz so-ini">{{g:velado}} aparece depois do registro</dd><dd class="so-reg">25,1 <small>%</small></dd></div>
+        <div><dt>Comparação · mesmo cenário</dt><dd class="vaz so-ini">100 MW · 220.000 MWh · 8.760 h</dd><dd class="vaz so-reg" style="color:var(--tinta)">Sua previsão ficou <b>4,9 pontos acima</b> do calculado. Mova os controles: os dois números continuam aqui.</dd></div>
+      </dl>
+      <div class="pr-grade">
+        <div class="ctrl">
+          <div class="c"><label>Capacidade instalada <span>MW</span></label>
+            <div class="num-step"><button type="button" aria-label="Menos 10 MW">−</button><input value="100" data-passo="10" aria-label="Capacidade instalada, MW"><button type="button" aria-label="Mais 10 MW">+</button></div></div>
+          <div class="c"><label>Geração no período <span>MWh</span></label>
+            <div class="num-step"><button type="button" aria-label="Menos 1.000 MWh">−</button><input value="220.000" data-passo="1000" aria-label="Geração no período, MWh"><button type="button" aria-label="Mais 1.000 MWh">+</button></div>
+            <input type="range" min="0" max="876000" step="1000" value="220000" aria-label="Geração no período, de zero ao teto da caixa">
+            <small class="dica">O deslizador vai de zero ao teto da caixa (capacidade × horas).</small></div>
+          <div class="c"><label>Horas do período <span>h</span></label>
+            <div class="num-step"><button type="button" aria-label="Menos 24 h">−</button><input value="8.760" data-passo="24" aria-label="Horas do período"><button type="button" aria-label="Mais 24 h">+</button></div></div>
+        </div>
+        <figure class="fig caixa">
+          <p class="fig-t">Só uma fração do teto vira energia</p>
+          <p class="fig-s">Caixa teórica: potência (MW) × tempo (h). Área = energia (MWh).</p>
+          <svg class="svgfig dsk-only" viewBox="0 0 600 300" role="img" aria-label="Caixa teórica de 100 megawatts por 8.760 horas, igual a 876.000 megawatts-hora. Depois do registro, a área preenchida mostra 220.000 megawatts-hora, 25,1 por cento, e uma linha tracejada marca a previsão de 30 por cento.">
+            <defs><pattern id="hc" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M-2 2l4-4M0 8l8-8M6 10l4-4" stroke="#E4D8BE" stroke-width="1"/></pattern></defs>
+            <rect x="70" y="36" width="500" height="210" fill="url(#hc)" stroke="#2A2620" stroke-width="1.5"/>
+            <text x="320" y="26" text-anchor="middle" font-size="14" fill="#2A2620">Teto teórico · 100 MW × 8.760 h = <tspan font-weight="600">876.000 MWh</tspan></text>
+            <line x1="62" y1="36" x2="70" y2="36" stroke="#2A2620"/><text x="56" y="40" text-anchor="end" font-size="12.5" fill="#5C5346">100</text>
+            <line x1="62" y1="246" x2="70" y2="246" stroke="#2A2620"/><text x="56" y="250" text-anchor="end" font-size="12.5" fill="#5C5346">0</text>
+            <text x="18" y="141" font-size="12.5" fill="#5C5346" transform="rotate(-90 18 141)" text-anchor="middle">potência · MW</text>
+            <text x="70" y="266" font-size="12.5" fill="#5C5346">0 h</text>
+            <text x="570" y="266" text-anchor="end" font-size="12.5" fill="#5C5346">8.760 h</text>
+            <text x="320" y="290" text-anchor="middle" font-size="12.5" fill="#5C5346">tempo · 1 ano</text>
+            <g class="so-ini">
+              <rect x="210" y="118" width="220" height="44" fill="#FBF6EA" stroke="#CFC1A4"/>
+              <text x="320" y="137" text-anchor="middle" font-size="13.5" font-style="italic" fill="#5C5346">A caixa enche depois</text>
+              <text x="320" y="154" text-anchor="middle" font-size="13.5" font-style="italic" fill="#5C5346">da sua previsão.</text>
+            </g>
+            <g class="so-reg">
+              <rect x="70.75" y="193.3" width="498.5" height="52" fill="#0D2340"/>
+              <text x="86" y="224" font-size="14" fill="#F2E9D6">220.000 MWh entregues · <tspan font-weight="600">25,1%</tspan> da caixa</text>
+              <line x1="70" y1="183" x2="570" y2="183" stroke="#2A2620" stroke-width="1.6" stroke-dasharray="7 5"/>
+              <text x="566" y="176" text-anchor="end" font-size="13.5" fill="#2A2620">sua previsão · 30,0%</text>
+            </g>
+          </svg>
+<svg class="svgfig mob-only" viewBox="0 0 340 300" role="img" aria-label="Caixa teórica de 876.000 megawatts-hora; depois do registro, 25,1 por cento preenchidos e a previsão de 30 por cento tracejada.">
+            <rect x="40" y="46" width="290" height="200" fill="#FBF6EA" stroke="#2A2620" stroke-width="1.5"/>
+            <text x="40" y="18" font-size="14" fill="#2A2620">Teto: 100 MW × 8.760 h</text>
+            <text x="40" y="36" font-size="14" font-weight="600" fill="#2A2620">= 876.000 MWh</text>
+            <text x="34" y="51" text-anchor="end" font-size="13" fill="#5C5346">100</text>
+            <text x="34" y="250" text-anchor="end" font-size="13" fill="#5C5346">0</text>
+            <text x="40" y="268" font-size="13" fill="#5C5346">0 h</text>
+            <text x="330" y="268" text-anchor="end" font-size="13" fill="#5C5346">8.760 h</text>
+            <text x="185" y="292" text-anchor="middle" font-size="13" fill="#5C5346">MW × tempo (1 ano)</text>
+            <g class="so-ini"><text x="185" y="142" text-anchor="middle" font-size="14" font-style="italic" fill="#5C5346">A caixa enche depois</text><text x="185" y="162" text-anchor="middle" font-size="14" font-style="italic" fill="#5C5346">da sua previsão.</text></g>
+            <g class="so-reg"><rect x="40.75" y="195.8" width="288.5" height="49.5" fill="#0D2340"/>
+              <text x="52" y="226" font-size="14" fill="#F2E9D6">entregue · <tspan font-weight="600">25,1%</tspan></text>
+              <line x1="40" y1="186" x2="330" y2="186" stroke="#2A2620" stroke-width="1.6" stroke-dasharray="7 5"/>
+              <text x="326" y="179" text-anchor="end" font-size="14" fill="#2A2620">sua previsão · 30,0%</text></g>
+          </svg>
+          <p class="esq"><span class="selo">esquemático</span> Preenchimento uniforme: a caixa mostra a razão, não o perfil hora a hora da geração.</p>
+        </figure>
+      </div>
+      <dl class="saidas" style="grid-template-columns:1.2fr 1fr 1fr">
+        <div><dt>Fator de capacidade (FCap)</dt><dd><span class="so-ini" style="font-size:14px;font-style:italic;color:var(--suave)">velado até o registro</span><span class="so-reg-i">25,1 %</span></dd></div>
+        <div><dt>Teto teórico (capacidade × horas)</dt><dd>876.000 MWh</dd></div>
+        <div><dt>Geração no período</dt><dd>220.000 MWh</dd></div>
+      </dl>
+      <div class="leitura-inst so-reg"><span class="t">Leitura do instrumento · faixa de 25% a 40%</span>Faixa típica de eólica em regiões de vento moderado ou solar fotovoltaica com tracker em Nordeste BR.</div>
+      <details class="fonte"><summary><span class="k">Fonte</span><span>Cenário didático presente no módulo; fonte externa dos valores não declarada. Leituras por faixa: faixas do módulo · verificação pendente.</span><u>Ficha</u></summary>
+        <div class="ficha"><dl><dt>Origem</dt><dd>Módulo 01, Aula 08, seção 8.2, e calculadora INST·06</dd><dt>Procedência externa</dt><dd>não declarada</dd><dt>Faixas de leitura</dt><dd>do módulo; conflitam com as da figura 8.3 · verificação pendente</dd></dl></div></details>
+      <div class="meta-x">
+        <div><span class="apar">Ato 2 de 3 · meta<em>Alexandria</em></span>
+          <p>Mova a geração até a usina cair na faixa da <b>hidrelétrica (BR · média)</b> da figura 8.3. Depois diga que fonte essa faixa descreve.</p></div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px"><span class="estado">{{g:vazio}}ainda não tentada</span><button class="btn-sec" type="button">Começar a meta</button></div>
+      </div>
+      <p class="pratic so-reg-f">{{g:pratica}}<span><b>Praticado nesta aula:</b> previsão registrada e comparada. O registro no fim da página já mostra.</span></p>
+    </div>
+  </section>
+
+  <div class="fila">
+    <div class="l">
+      <div class="sec"><span class="n">8.3</span><h2>FCaps típicos por fonte</h2></div>
+      <p>Cada tecnologia tem um fator de capacidade característico, determinado pela física da fonte primária, pela tecnologia de geração e pelo padrão de despacho no sistema:</p>
+    </div>
+  </div>
+
+  <figure class="fig faixas" aria-labelledby="fx-t">
+    <p class="fig-t" id="fx-t">A mesma potência instalada entrega frações muito diferentes do teto</p>
+    <p class="fig-s">Fator de capacidade típico por fonte, em % do ano. Barras = faixa. <span class="so-ini">Sua usina entra na régua depois da previsão.</span><span class="so-reg-i">Linha tracejada = a sua usina do INST·06 (25,1%).</span></p>
+    <div class="fx">
+      <div class="fx-l"><span></span><span></span><span class="fx-ax"><i style="left:0">0</i><i style="left:25%">25</i><i style="left:50%">50</i><i style="left:75%">75</i><i style="left:100%">100%</i></span><span></span></div>
+      <div class="fx-l"><img src="{{img:aulas/m01/m01-a08-03a-ficha-nuclear-web.jpg|160}}" alt=""><span>Nuclear</span><span class="fx-t"><b style="left:85%;width:10%"></b><u></u></span><span class="fx-v">~85–95%</span></div>
+      <div class="fx-l"><img src="{{img:aulas/m01/m01-a08-03b-ficha-carvao-web.jpg|160}}" alt=""><span>Carvão (base load)</span><span class="fx-t"><b style="left:55%;width:20%"></b><u></u></span><span class="fx-v">~55–75%</span></div>
+      <div class="fx-l"><span class="sem lac" title="Sem foto de licença aberta verificada · lacuna de curadoria"><b>CCGT</b><i>sem foto</i></span><span>Gás natural CCGT</span><span class="fx-t"><b style="left:40%;width:20%"></b><u></u></span><span class="fx-v">~40–60%</span></div>
+      <div class="fx-l"><img src="{{img:aulas/m01/m01-a08-03c-ficha-hidro-web.jpg|160}}" alt=""><span>Hidrelétrica (BR · média)</span><span class="fx-t"><b style="left:45%;width:10%"></b><u></u></span><span class="fx-v">~45–55%</span></div>
+      <div class="fx-l"><img src="{{img:aulas/m01/m01-a08-03d-ficha-eolica-web.jpg|160}}" alt=""><span>Eólica onshore (NE BR)</span><span class="fx-t"><b style="left:40%;width:15%"></b><u></u></span><span class="fx-v">~40–55%</span></div>
+      <div class="fx-l arg"><img src="{{img:aulas/m01/m01-a08-03e-ficha-solar-web.jpg|160}}" alt=""><span>Solar fotovoltaica (BR)</span><span class="fx-t"><b style="left:20%;width:8%"></b><u><em class="so-reg-i">sua usina · 25,1%</em></u></span><span class="fx-v">~20–28%</span></div>
+      <div class="fx-l"><img src="{{img:aulas/m01/m01-a08-03f-ficha-termica-motores-web.jpg|160}}" alt=""><span>Térmica a óleo (peaker)</span><span class="fx-t"><b style="left:5%;width:10%"></b><u></u></span><span class="fx-v">~5–15%</span></div>
+    </div>
+    <p class="fx-fotos"><span class="classe">Documental</span>Fotos: Angra dos Reis (RJ), Candiota (RS), Itaipu, Paracuru (CE), UFV Araucária (SP) e grupos motor-gerador em Camaçari (BA). Cada foto mostra a tecnologia da linha; a faixa não é o fator de capacidade da usina fotografada. <b>Gás natural CCGT</b>: nenhuma foto com licença aberta verificada até agora; a ficha fica tipográfica até a curadoria encontrar uma (não geramos imagem para tema documental). Créditos no rodapé.</p>
+    <details class="fonte"><summary><span class="k">Fonte</span><span><span class="selo pend">Faixas do módulo · verificação pendente</span> Procedência externa das faixas não declarada; conferir em fonte primária antes de uso externo.</span><u>Ficha</u></summary>
+      <div class="ficha"><dl><dt>Origem</dt><dd>Módulo 01, Aula 08, figura da seção 8.3</dd><dt>Estado</dt><dd>faixas conflitam com as leituras da calculadora (solar corta em 25%; carvão e gás em outras faixas) · verificação pendente</dd></dl></div></details>
+  </figure>
+
+  <div class="fila">
+    <div class="l">
+      <div class="nota ouro"><div class="t">Por que isso importa para o Brasil</div>
+        <p>A matriz brasileira é dominada por hidrelétricas com fator de capacidade médio em torno de 50%, fortemente dependente de regime hidrológico anual. Quando você lê "a matriz brasileira é 60% hidro", essa é a participação por <strong>capacidade instalada</strong>. Em <strong>geração efetiva</strong>, a participação flutua ano a ano com chuvas, despacho térmico complementar e estado dos reservatórios. Confundir capacidade com geração — esse é o erro que separa estudante de analista nas conversas sobre matriz elétrica.</p>
+        <details class="fonte" style="margin-top:12px"><summary><span class="k">Fonte</span><span>“~50%” e “60% hidro”: procedência externa não declarada.</span><u>Ficha</u></summary><div class="ficha">Texto do Módulo 01, Aula 08. Números sem referência no módulo; verificar em fonte primária (ONS, EPE) antes de citar.</div></details>
+      </div>
+    </div>
+    <figure class="fig m">
+      <img src="{{img:aulas/m01/m01-a08-04-sobradinho-seca-web.jpg|900}}" alt="Barragem de terra e reservatório de Sobradinho com margens expostas, vistos de um morro com cactos em primeiro plano.">
+      <figcaption><span class="classe">Documental</span>Barragem e reservatório de Sobradinho (BA), com nível baixo na seca de 2015. A capacidade instalada da usina não muda com a seca; a água disponível para gerar, sim.
+        <span class="cred">Marcello Casal Jr/Agência Brasil · CC BY 3.0 BR · Wikimedia Commons</span></figcaption>
+    </figure>
+  </div>
+
+  <section class="ex" aria-labelledby="ex06">
+    <div class="ex-h"><span class="apar">Ato 3 de 3 · exercício<em>tarefa da Alexandria sobre o exercício do curso</em></span><span class="estado so-ini">{{g:vazio}}vazio</span><span class="estado so-reg-f">{{g:pratica}}registrado → comparação</span></div>
+    <h2 id="ex06"><span class="curso">Ex · 06 · Aula 08<em>texto do curso</em></span></h2>
+    <p class="ex-e">Uma usina solar de <b>50 MW</b> gerou <b>131.400 MWh</b> em um ano (8.760 horas). Calcule o fator de capacidade. É um número razoável para solar no Brasil?</p>
+    <div class="ex-g">
+      <div><label class="rot">FCap calculado</label><span class="inp"><input inputmode="decimal" aria-label="FCap calculado, em porcentagem" value="" placeholder="seu cálculo" class="ph-s"><span>%</span></span></div>
+      <div><span class="rot">É razoável para solar no Brasil?</span>
+        <div class="opcoes c3" data-grupo><button class="op">Sim</button><button class="op">Não</button><button class="op">Não é possível concluir</button></div></div>
+    </div>
+    <p class="so-ini" style="margin:4px 0 0;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><button class="btn-sec" type="button" data-registrar>Registrar resposta · Ex·06</button><span class="aviso-reg" style="margin:0">A resposta de referência aparece depois do seu registro.</span></p>
+    <div class="comp so-reg-g">
+      <div><h4>Sua resposta</h4><p class="tab">30 % · sim</p><p style="color:var(--suave)">“50 × 8.760 = 438.000; 131.400 ÷ 438.000.”</p></div>
+      <div><h4>Referência · texto do curso</h4><p>Geração máxima teórica: 50 × 8.760 = 438.000 MWh. FC: 131.400 ÷ 438.000 = 0,30 = 30%. <b>Interpretação:</b> 30% é um pouco acima da média típica brasileira (~20–28%) — sugere usina bem localizada (Nordeste ou regiões de alta irradiação) e/ou tecnologia mais moderna com tracker solar. Para comparação: hidrelétrica brasileira média opera em torno de 50% de FC; nuclear opera 85–95%; térmica peaker pode ficar abaixo de 15%.</p>
+        <p><span class="selo pend">Faixas do módulo · verificação pendente</span></p>
+        <h4 style="margin-top:10px">Critério</h4><p style="color:var(--suave)">Não declarado para este exercício. Autoavalie a interpretação.</p></div>
+    </div>
+    <div class="autoav so-reg-f" data-grupo><span>Sua interpretação:</span><button class="op">atende</button><button class="op sel">atende em parte</button><button class="op">não atende</button><button class="btn-link" type="button">Tentar de novo</button></div>
+  </section>
+
+  <section class="registro" aria-labelledby="reg-t">
+    <div class="registro-h"><h2 id="reg-t">Registro da aula</h2><button class="btn-link so-ini" type="button">Registrar leitura sem prática</button></div>
+    <dl class="eixos">
+      <div><dt>Percorrido</dt><dd>{{g:leitura}}em leitura</dd></div>
+      <div><dt>Praticado</dt><dd class="so-ini">{{g:vazio}}ainda sem prática · 0 de 3 atos</dd><dd class="so-reg-f">{{g:pratica}}com prática · 2 de 3 atos</dd></div>
+      <div><dt>Serve a</dt><dd class="sa"><span><b>Capacidade 02 do módulo</b> · Ler kW, kWh, MW, MWh, kVA e kVAr sem confundir unidade nem grandeza</span><span style="color:var(--suave);font-size:14px">Item 13 do checklist · capacidade instalada vs. fator de capacidade por fonte</span></dd></div>
+    </dl>
+    <p class="demo"><span>Demonstrado: ainda não avaliado.</span><span>Avaliação do Módulo 01: depois da Revisão, com o critério mostrado antes.</span></p>
+  </section>
+  <nav class="proximo" aria-label="Próximo passo">
+    <div class="prox-a">
+      <small class="so-ini">Próximo passo · o ato desta aula ainda está pendente</small>
+      <small class="so-reg">Próximo passo</small>
+      <a class="btn-pri so-ini-f" href="#titulo"><span>Fazer o ato desta aula · <b>prever o FCap</b></span>{{seta}}</a>
+      <a class="btn-pri so-reg-f" href="#"><span>Próxima · <b>M01·A09</b> — Energia ruim pode custar mais do que energia cara.</span>{{seta}}</a>
+    </div>
+    <div class="prox-b"><a class="btn-link so-ini" href="#">Próxima · M01·A09 — Energia ruim pode custar mais do que energia cara.</a><a class="btn-link" href="#">Voltar à rota do Módulo 01</a></div>
+  </nav>
+</div>

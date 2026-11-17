@@ -1,0 +1,369 @@
+/* Atlas da Alexandria v3 — "A rede": idade da frota (linha do tempo) e quem é dono.
+   Dono: tempo-e-donos. Mesmos tokens de alexandria-v3.css: papel, tinta, fio de 1 px,
+   raio zero, nenhuma sombra; óxido só no que está escolhido (cursor do ano, dono destacado). */
+
+/* ── idade da frota ─────────────────────────────────────────────── */
+
+/* o ano ao lado do título, em algarismo: o herói numérico é o de "Nesta tela" */
+.alx3 .atl-tf-ano {
+  margin-left: 6px;
+  font-size: 15px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-tf-soma .atl-num {
+  color: var(--tinta);
+}
+
+.alx3 .atl-tf-grafico {
+  margin-top: 6px;
+}
+
+/* o período inteiro, por baixo do que já entrara no ano escolhido */
+.alx3 .atl-tf-fantasma {
+  opacity: 0.2;
+}
+
+.alx3 .atl-tf-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  margin: 4px 0 6px;
+  padding: 0;
+  list-style: none;
+  font-family: var(--f-interface);
+  font-size: 12px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-tf-legenda li {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.alx3 .atl-tf-amostra {
+  display: inline-block;
+  flex: none;
+  width: 9px;
+  height: 9px;
+}
+
+.alx3 .atl-tf-semano {
+  margin-top: 6px;
+}
+
+/* a regra do ano, visível sob o gráfico (leva 4, 6.1): texto de apoio, não nota de rodapé */
+.alx3 .atl-tf-regra {
+  margin-top: 4px;
+  color: var(--tinta-suave);
+}
+
+/* o que o leitor de tela ouve (a soma do ano, depois de o ano parar) */
+.alx3 .atl-tf-falado {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ── a régua compacta do ano (colada ao número grande do painel de "A rede") ── */
+
+.alx3 .atl-rac {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin: 2px 0 4px;
+}
+
+.alx3 .atl-rac-ponta {
+  flex: none;
+  font-family: var(--f-dado);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--tinta-fraca);
+}
+
+/* o trilho guarda o polegar inteiro: o fio de base fica 8 px acima do pé, e o polegar (que
+   desce 6 px abaixo do fio) nunca sai do trilho nem pisa na frase da regra (arremate, item 1) */
+.alx3 .atl-rac-trilho {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 36px;
+}
+
+/* o histograma é o fundo do trilho: o que entrou em cada ano, cheio até o ano escolhido */
+.alx3 .atl-rac-histo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  width: 100%;
+  height: 24px;
+  pointer-events: none;
+}
+
+.alx3 .atl-rac-feito {
+  fill: var(--tinta);
+  opacity: 0.5;
+}
+
+.alx3 .atl-rac-falta {
+  fill: var(--tinta-suave);
+  opacity: 0.2;
+}
+
+/* a régua ocupa o trilho até o fio de base; a regra do estreito (44 px de altura) não vale aqui,
+   o alvo de 44 px é o da linha inteira (.atl-rac) */
+.alx3 .atl-rac .atl-rac-trilho .atl-regua {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 8px;
+  left: 0;
+  height: auto;
+  margin: 0;
+}
+
+/* no estreito, a régua mantém os 44 px de alvo do dedo acima do fio */
+.alx3 .atl-estreito .atl-rac-trilho {
+  height: 52px;
+}
+
+/* na compacta as marcas dão lugar ao histograma; fica só o fio de base */
+.alx3 .atl-rac .atl-regua-marca {
+  display: none;
+}
+
+.alx3 .atl-rac-tocar {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--fio-forte);
+  border-radius: 0;
+  font-family: var(--f-interface);
+  font-size: 13px;
+  line-height: 1;
+  color: var(--tinta);
+  cursor: pointer;
+}
+
+.alx3 .atl-rac-tocar:hover {
+  border-color: var(--tinta);
+}
+
+.alx3 .atl-rac-tocar[aria-pressed='true'] {
+  border-color: var(--tinta);
+}
+
+/* ── quem é dono ────────────────────────────────────────────────── */
+
+.alx3 .atl-donos-busca {
+  display: grid;
+  gap: 2px;
+  margin: 10px 0 6px;
+}
+
+.alx3 .atl-donos-busca-rotulo {
+  font-family: var(--f-interface);
+  font-size: 12px;
+  color: var(--tinta-fraca);
+}
+
+/* campo de texto da casa: só o fio de baixo, nada de caixa */
+.alx3 .atl-donos-busca input {
+  width: 100%;
+  min-height: 32px;
+  padding: 4px 0;
+  border: 0;
+  border-bottom: 1px solid var(--fio-forte);
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--f-interface);
+  font-size: 14px;
+  color: var(--tinta);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.alx3 .atl-donos-busca input::placeholder {
+  color: var(--tinta-fraca);
+}
+
+.alx3 .atl-donos-busca input:focus-visible {
+  border-bottom-color: var(--tinta);
+}
+
+.alx3 .atl-donos-lista {
+  margin: 4px 0 6px;
+  padding: 0;
+  list-style: none;
+}
+
+/* uma linha por dono: posição, nome com a contagem embaixo, a soma; a barra de escala
+   corre rente ao pé, fina, na tinta (a cor das fontes fica para as usinas) */
+.alx3 .atl-dono {
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 7px 0 9px;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: 13.5px;
+  line-height: 1.3;
+  color: var(--tinta);
+  text-align: left;
+  cursor: pointer;
+}
+
+.alx3 .atl-dono:hover {
+  background: var(--papel-hover);
+}
+
+.alx3 .atl-dono-pos {
+  color: var(--tinta-fraca);
+  text-align: right;
+}
+
+.alx3 .atl-dono-nome {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.alx3 .atl-dono-sub {
+  display: block;
+  margin-top: 1px;
+  font-size: 12px;
+  color: var(--tinta-fraca);
+}
+
+.alx3 .atl-dono-kw {
+  white-space: nowrap;
+}
+
+.alx3 .atl-dono-barra {
+  position: absolute;
+  left: 30px;
+  bottom: 3px;
+  max-width: calc(100% - 30px);
+  height: 2px;
+  background: var(--tinta-suave);
+  opacity: 0.45;
+}
+
+/* escolhido: o fio da esquerda e a barra viram óxido ("este está destacado no mapa") */
+.alx3 .atl-dono[aria-pressed='true'] {
+  border-left: 2px solid var(--oxido);
+  padding-left: 6px;
+  margin-left: -8px;
+  width: calc(100% + 8px);
+}
+
+.alx3 .atl-dono[aria-pressed='true'] .atl-dono-barra {
+  background: var(--oxido);
+  opacity: 0.9;
+}
+
+.alx3 .atl-dono-usinas {
+  margin: 0 0 10px 30px;
+}
+
+.alx3 .atl-dono-soma {
+  margin: 2px 0 4px;
+  font-family: var(--f-interface);
+  font-size: 12.5px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-dono-usinas ul {
+  margin: 0 0 4px;
+  padding: 0;
+  list-style: none;
+}
+
+.alx3 .atl-dono-usinas li button {
+  display: grid;
+  grid-template-columns: 9px minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 7px;
+  width: 100%;
+  min-height: 30px;
+  padding: 4px 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--tinta);
+  text-align: left;
+  cursor: pointer;
+}
+
+.alx3 .atl-dono-usinas li button:hover .atl-dono-usina-nome {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.alx3 .atl-dono-usina-nome {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.alx3 .atl-dono-usina-kw {
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* a conta da parte, sob o nome: "39,5% de 1,5 GW" */
+.alx3 .atl-dono-usina-parte {
+  display: block;
+  font-size: 12px;
+  color: var(--tinta-fraca);
+}
+
+.alx3 .atl-donos-mais {
+  min-height: 32px;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: var(--f-interface);
+  font-size: 13px;
+  color: var(--tinta-suave);
+  cursor: pointer;
+}
+
+/* no estreito, a linha da usina quebra: a conta da fração desce para baixo do nome */
+@media (max-width: 520px) {
+  .alx3 .atl-dono-usinas {
+    margin-left: 0;
+  }
+}
+
+.alx3 .atl-rac-bloco {
+  width: 100%;
+}
+
+/* a regra sob o trilho: uma linha (duas no estreito), 12 px, tinta suave, número em mono */
+.alx3 .atl-rac-regra {
+  margin: 0 0 4px;
+  font-family: var(--f-interface);
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--tinta-suave);
+}

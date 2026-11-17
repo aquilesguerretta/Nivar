@@ -1,0 +1,611 @@
+{
+  "schema": "alexandria-v2/estudo-representacao-aula@1",
+  "modulo": "m06",
+  "modulo_id_codigo": "modulo-06",
+  "titulo_modulo": "História do Setor Elétrico Brasileiro",
+  "trilha_codigo": "brasil (catálogo; a fonte não declara trilha, ver extraction/m06 div-06)",
+  "gerado_em": "2026-09-17",
+  "camada": "alexandria",
+  "autor": "Claude (subagente de leitura, estudo de representação)",
+  "status": "proposta para o Design Loop da Peça C; nada aqui é texto de fonte, salvo quando marcado 'fonte'",
+  "convencoes": {
+    "bloco_indice": "Índice 0-based no array MODULO_06_CORPO[aulaId]. 'após N' = o instrumento entra depois do bloco N.",
+    "camada_fonte": "Texto ou número literal de alexandria_modulo06.html (SÓ LEITURA), com linha aproximada.",
+    "camada_alexandria": "Pergunta, previsão, ato, objetivo, visualização ou vínculo criado pelo produto (P3, P11, P19). Revisável; nunca rotulado como fonte.",
+    "calculos": "Todos os valores 'resposta_calculada' foram recalculados em 2026-09-17 com as fórmulas do <script> da fonte (INST 02–07), no cenário-padrão da fonte. São cenário didático ('Didático/ilustrativo' na própria fonte), nunca dado real.",
+    "faixas_de_veredito": "Os limiares 90/65/35% (Inst·02), 8/20/40% (Inst·04), 95/80% (Inst·06) são faixas dos vereditos literais da fonte. Usá-los como meta de ato é legítimo; não são tolerância (P6)."
+  },
+  "fontes_lidas": [
+    "docs/alexandria-v2/bar.md (§0, §4 inteiro, S1–S7, §7, §8, §9, §11)",
+    "docs/alexandria-v2/decisoes/2026-09-16-ambiguidades-de-conteudo.md (P17–P25)",
+    "src/lib/data/alexandria-modulo-06-content.ts (CORPO, LEAD, AULAS, INSTRUMENTOS, TRAUMA_CICATRIZ, INST01_MARCOS, EXERCICIOS_SOLTOS)",
+    "src/lib/data/alexandria-instrument-calculators.ts (m06-inst-02 a 08)",
+    "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo06.html (§00, §MAP, Aulas 01–06, §Caso, §Erros, §Ex, §Quiz, §Voz, §Final, §Ref e <script> dos INST 02–08)",
+    "docs/alexandria-v2/extraction/m06/modulo.json (divergências e lacunas; extração em andamento, só modulo.json existia)",
+    "docs/alexandria-v2/media-lab/aulas/m06/ (sem plano.json; 3 originais em curadoria) e media-lab/fontes-reais/CATALOGO.md",
+    "public/alexandria/gravuras/his-01…his-11.png (inspecionadas visualmente)"
+  ],
+  "leitura_do_modulo": {
+    "tese_fonte": "Toda estrutura de hoje tem uma data e uma causa (§00, L323). Sem história, confunde-se trauma resolvido com disfunção presente (L328).",
+    "organizador_fonte": "A régua dos seis (§00 0.1, L330-337): 1 dono · 2 financiador da expansão · 3 planejador · 4 operador · 5 formação de preço · 6 crise que encerra o modelo. 'A sexta resposta é sempre a primeira pergunta do modelo seguinte.' As aulas usam a régua sem redefini-la (2.1, 2.2 'pergunta dois', 2.4 'pergunta seis', 3.2 tabela, 3.4, Inst·05, ex-03).",
+    "segundo_organizador_fonte": "Nenhuma resposta elimina o trauma, ela troca de risco (§00 0.3, tabela L355-364; Inst·08; ex-10).",
+    "natureza_dominante": "História institucional causal. Não é 'decorar datas': cada aula é um ciclo (modelo se instala → resolve o anterior → acumula tensão → crise). Isso pede layouts de tempo e de causa, não coluna única com instrumento no fim.",
+    "consequencia_para_o_layout": "As seis aulas compartilham um esqueleto (faixa do tempo do bloco + régua dos seis + cadeia trauma→cicatriz) e variam o palco: A01 cartografia e curva; A02 obra e colapso; A03 dossiê de caso; A04 mesa de comparação de arquiteturas; A05 sistema fechado; A06 síntese e consulta. Nenhuma é 'leitura + calculadora + gabarito'.",
+    "aparato_da_fonte_util_para_atos": {
+      "erros_comuns": "§Erros (L1117-1150): 16 pares 'o que se diz × correção', literais. Mapeáveis por tema às aulas (mapeamento é camada Alexandria): A01 → 1, 2; A02 → 3, 4, 5, 6; A03 → 7, 8, 9, 10, 11; A04 → 12; A05 → 13, 14, 15; A06 → 16. É o melhor material do módulo para o ato 'identificar o erro'.",
+      "quiz": "§Quiz: 10 questões com a aula de origem declarada no retorno (script): A01 ×3, A02 ×2, A03 ×2, A04 ×1, A05 ×1 (+Inst·06), A05/A06 ×1 (+Inst·07). A origem declarada permite usar cada questão como recuperação na aula seguinte sem inventar vínculo.",
+      "exercicios": "§Ex: 10 discursivos com gabarito, sem vínculo declarado com aula (MODULO_06_EXERCICIOS_SOLTOS; P9 → Revisão). O tema aponta a aula, mas o vínculo aqui proposto é camada Alexandria e precisa de revisão antes de ser usado dentro da aula.",
+      "voz": "§Voz: 36 perguntas-relâmpago, 6 ataques de decisor cético, roteiro de 10 minutos (minuto 1–2 ≈ A01; 3 ≈ A01/A02; 4–5 ≈ A02; 6–7 ≈ A03; 8 ≈ A04; 9 ≈ A05; 10 ≈ A06). Critério oral → P14: 'atividade recomendada', nunca evidência automatizada.",
+      "final": "§Final: 24 verificações; a lede diz que cada uma aponta uma aula, mas nenhum item declara qual (lacuna registrada na extração).",
+      "caso": "§Caso Operação A · Parte 6 (lente da história). P17: sem 'Parte'. C.3 usa o Inst·07 sobre a carga da planta, que o arquivo não declara."
+    },
+    "constatacoes_transversais": [
+      "A porta para o código perdeu justamente os controles que carregam o argumento: Inst·05 perdeu o seletor de regime e a grade da régua (só o regime estatal é calculável); Inst·07 perdeu os seletores Grupo A/B e convencional/incentivada (a padaria do ex-09 e toda a baixa tensão ficam inalcançáveis).",
+      "Nenhum dos 7 instrumentos de aula desenha no código a figura que a fonte desenha (Inst·02 curva, Inst·03 barras empilhadas + linha, Inst·04 trajetórias, Inst·05 barras, Inst·06 barras, Inst·07 escada). Pior que a M02·A04: aqui a fonte já tinha a figura.",
+      "Saídas: a fonte tem 24 readouts nos 7 instrumentos de aula; o código porta 16, não 18 como diz o comentário do arquivo. Além das 6 listadas, caíram i2-a5 ('Anos até cair a 50%') e i4-ms ('Meses até o limite').",
+      "As figuras da fonte usam vermelho/verde (#EF4444/#10B981) como estado: tudo precisa ser redesenhado com tokens (S2 zero semáforo).",
+      "Quatro frases de destaque (span.hl) viraram '</b>' solto no código: A03 bloco 25, A05 blocos 3 e 13, A06 bloco 16. São as frases-âncora das aulas.",
+      "P24: 'GridAlpha' aparece em texto voltado ao learner (lede da A06, parágrafo 6.3, cicatriz do item 11 do Inst·08, legado do marco 14 do Inst·01) e no critério do módulo (§00 e §Final item 24).",
+      "P7: as seis caixas 'Onde isso entra no produto' ficam fora; mas a A06 inteira é construída como argumento de independência comercial. A aula precisa de um fecho pedagógico que não dependa desse argumento (ver aula-06-06).",
+      "As gravuras his-* são geradas e decorativas; nenhuma passa no teste de remoção (M7) e duas reprovam de saída (his-04 tem texto gerado 'NATIONAL NEWS' e simula jornal real de 2001; his-08 é martelo de juiz, objeto que o Judiciário brasileiro não usa). Há documental real aprovado em fontes-reais para A01, A02, A04 e A06."
+    ]
+  },
+  "aulas": [
+    {
+      "aulaId": "aula-06-01",
+      "numero": 1,
+      "titulo": "Antes do Estado",
+      "subtitulo": "1879–1934",
+      "extensao": { "blocos": 19, "palavras_aprox": 1625, "subsecoes": ["1.1 Uma tecnologia urbana, não um sistema", "1.2 Quando o capital externo assume a escala", "1.3 Três tensões que o arranjo municipal não conseguia resolver", "1.4 1934: a União toma o rio"] },
+      "o_que_ensina": "A escala quebra o arranjo municipal por três tensões (informacional, monetária, territorial), e o Código de Águas de 1934 responde com três decisões. As duas primeiras (potencial hidráulico separado do solo; poder concedente na União) ficam até hoje. A terceira, remunerar pelo custo histórico, sob inflação e equipamento importado corrói a cobertura do custo de reposição e seca o capital de expansão.",
+      "natureza": ["história/narrativa", "mecanismo econômico-regulatório (cálculo composto)", "leitura de norma (três decisões de um decreto)"],
+      "melhor_representacao": {
+        "arquetipo": "Carta de época + coluna editorial, com prancha dividida no 1.4",
+        "composicao": [
+          "Abertura sobre cartografia documental: o mapa das linhas da Rio de Janeiro Tramway, Light & Power (1906) como palco da pergunta. Ele mostra a tese de 1.2 (bonde e luz na mesma infraestrutura) e a escala urbana e privada.",
+          "1.1–1.2 em coluna editorial, com a faixa do tempo do bloco marcando 1879, 1883, 1889, 1899, 1904 e 1905 (marcos 1–2 do Inst·01).",
+          "1.3 como tríade: três colunas curtas (informacional · monetária · territorial). A territorial ganha um esquema explicativo: um rio atravessando três municípios, com a cascata que nenhum deles pode decidir sozinho.",
+          "1.4 como anatomia de norma: as três decisões do Decreto nº 24.643/1934 numeradas. A terceira é marcada como 'primeira cicatriz' e abre direto a prancha dividida do Inst·02 (prosa à esquerda, curva viva à direita).",
+          "Três níveis (Código de Águas) em disclosure logo após o instrumento, antes do registro."
+        ],
+        "por_que": "A aula inverte uma intuição ('o Estado sempre esteve lá') e a primeira evidência disso é geográfica e documental: uma empresa estrangeira desenhando a cidade. O mecanismo que importa (erosão composta) só se entende vendo a forma da curva, e a própria fonte diz: 'O ponto não é o número — é a forma da curva'. Coluna única com o instrumento no fim perderia as duas coisas."
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "objetivo": "Explicar por que uma regra que conteve a tarifa em 1934 acabou travando a expansão, sem nenhuma proibição explícita.",
+        "pergunta": "Se a tarifa ficou presa ao valor pago pelo ativo lá atrás, quanto dela ainda cobre o custo de repor esse ativo 15 anos depois?",
+        "previsao": {
+          "util": true,
+          "enunciado": "Concessionária remunerada sobre o custo histórico. Inflação de 12% a.a., 60% do equipamento importado, câmbio 4 p.p. acima da inflação. Após 15 anos, a receita reconhecida cobre quanto do custo de reposição do mesmo ativo? (%)",
+          "valores_do_cenario": { "investimento_indice": 100, "inflacao_aa_pct": 12, "anos": 15, "parcela_importada_pct": 60, "cambio_acima_pp": 4 },
+          "resposta_calculada": { "cobertura_pct": 12.9, "custo_reposicao_indice": 775, "anos_ate_50pct": 6, "poder_de_compra_receita": 1.8 },
+          "origem_do_calculo": "fórmula do INST 02 da fonte (fator = (1−m)(1+i)^n + m(1+i+c)^n; cobertura = 1/fator), cenário-padrão da fonte",
+          "regra_de_entrada": "Alexandria: aceitar arredondamento ao inteiro; comparar por faixa de veredito da fonte (≥90 · 65–90 · 35–65 · <35). Não é tolerância da fonte.",
+          "por_que_ensina": "O erro previsível é linear (esperar algo entre 50% e 70%). A composição com câmbio derruba a cobertura para 12,9%, e ela já cruza 50% no 6º ano. O tamanho do erro é a lição.",
+          "rotulo_visivel": "Cenário didático presente no módulo; não representa nenhuma concessionária histórica."
+        }
+      },
+      "ato_autentico_C9": {
+        "principal": { "tipo": "prever", "enunciado": "A previsão acima, registrada antes de o instrumento mostrar a curva.", "exercita": "erosão composta da remuneração pelo custo histórico" },
+        "secundarios": [
+          { "tipo": "manipular até meta", "camada": "alexandria", "enunciado": "Com 60% importado, encontre as condições em que o regime volta a ser 'impecável' (cobertura ≥ 90% em 15 anos, a faixa do veredito da fonte).", "descoberta_calculada": "Mesmo com inflação zero, câmbio de 4 p.p. deixa a cobertura em 67,5%; só com câmbio ≤ 1 p.p. (91,2%) a faixa é alcançada. A lição é que a parcela importada, e não só a inflação, decide." },
+          { "tipo": "identificar o erro", "camada": "fonte (§Erros 1 e 2), vínculo alexandria", "enunciado": "'O setor elétrico brasileiro começou estatal.' / 'O Código de Águas estatizou o setor.' O learner corrige antes de ver a correção literal." }
+        ]
+      },
+      "visualizacao_C6": [
+        { "trabalho": "mostrar a forma composta da erosão", "relacao": "cobertura (%) × anos desde o investimento (0–30), com o ano escolhido marcado e o limiar de 50% como fio tracejado", "unidade": "% do custo de reposição; anos", "existe_no_codigo": false, "fonte_desenha": true, "promessa_nao_desenhada": "A intro do Inst·02 promete 'a forma da curva e a velocidade com que ela desce'; o código só mostra 3 números." },
+        { "trabalho": "tornar visível a tensão territorial", "relacao": "rio em cascata cruzando divisas municipais; quem decide cada trecho", "unidade": "esquema sem escala", "existe_no_codigo": false, "fonte_desenha": false, "classe": "explicação (ilustração sintética claramente esquemática)" },
+        { "trabalho": "situar a aula no bloco", "relacao": "faixa 1879–1934 no eixo 1879–2028, com os marcos 1–3 do Inst·01", "unidade": "anos", "existe_no_codigo": "dado sim (M06_INST01_MARCOS); faixa não" }
+      ],
+      "instrumento_C5": {
+        "id": "m06-inst-02",
+        "titulo_fonte": "Simulador · a erosão do custo histórico",
+        "bloco_indice_fonte": "após 16 (último parágrafo de 1.4, que termina em 'O instrumento abaixo mostra a mecânica dessa erosão.')",
+        "bloco_indice_proposto": "após 16 (já é o ponto que invoca)",
+        "com_previsao": true,
+        "lacunas_de_porta": [
+          "sem figura (a fonte desenha polyline 0–30 anos + limiar 50% + marcador)",
+          "readout 'Anos até cair a 50%' (i2-a5) caiu; é texto ('6 anos' / '> 60 anos') e só aparece no veredito",
+          "a nota metodológica da fonte (taxa fixa de 10% a.a.; ignora depreciação, reavaliação etc.) está com note:null; ela precisa ficar visível junto ao bloco (S4)",
+          "cores da fonte: limiar em #EF4444 → token"
+        ]
+      },
+      "checagem_C7": {
+        "itens": [
+          "Quiz Q1–Q3 (origem declarada 'Aula 01', a Q3 também 'Inst·02'), com retorno literal da fonte só depois da resposta",
+          "Correções do §Erros 1 e 2 reveladas só depois da tentativa"
+        ],
+        "forma": "resposta × referência × o que acrescenta; autoavaliação em 3 níveis quando for texto; sem cor de certo/errado"
+      },
+      "recuperacao_e_proximo_passo_C10": {
+        "recuperacao": "Primeira aula do módulo: recuperação vem do M05 (assimetria de informação, que a própria 1.3 cita). Vínculo camada Alexandria, depende de extração do M05.",
+        "proximo_passo": "Atende → 'Próxima · M06·A02 — O Estado dono de tudo', com a ponte da fonte: 'regular não é construir'. Não atende na previsão → 'Rever 1.4 e refazer a curva'. Atividade recomendada (P14): minutos 1–2 do roteiro oral.",
+        "serve_a": "Critério oral do módulo e §Final itens 3–8 (vínculo inferido, revisável)"
+      },
+      "midia_M": {
+        "plano_curadoria": "media-lab/aulas/m06 sem plano.json em 2026-09-17; 2 originais já baixados para esta aula",
+        "usar": [
+          { "asset": "m06-a01-mapa-bondes-rio-1906 (Library of Congress; 'Rio de Janeiro Tramway, Light & Power Co. · Tramway and R.R. lines in Rio', carimbo de 1908)", "onde": "abertura e 1.2", "classe": "documental", "trabalho": "prova visual de que a escala urbana era privada, estrangeira e integrada ao bonde", "pendencia": "licença e ficha ainda não registradas em media-provenance" },
+          { "asset": "m06-a01-mapa-brazilian-traction (Brazilian Traction… 'South Eastern Brazil'; coleção João Baptista de Campos Aguirra)", "onde": "fim de 1.2 (a escala da holding)", "classe": "documental", "pendencia": "licença do acervo não verificada; data do mapa não lida" },
+          { "asset": "t2-02-marmelos-turbina-1909 ou m01a08-hist-marmelos-1903 (domínio público, CATALOGO.md)", "onde": "1.1 (Marmelos Zero, 1889)", "classe": "documental", "cuidado": "a foto é de 1903/1909, não de 1889; a legenda diz o ano da foto" },
+          { "asset": "t2-03-parnaiba-light-gaensly (domínio público)", "onde": "1.2 (a Light em São Paulo)", "classe": "documental" }
+        ],
+        "rejeitar": [
+          { "asset": "his-01-usina-seculo-xix.png", "motivo": "gerada, genérica; teste de remoção falha se houver Marmelos real; nunca legendar como usina real" },
+          { "asset": "his-02-documento-codigo-aguas.png", "motivo": "livro gerado com emblema tipo brasão, que parece o próprio Código de Águas (imagem enganosa, S2 brasão)" }
+        ],
+        "lacuna": "fac-símile real do Decreto nº 24.643/1934 (texto oficial é público; imagem de página não curada)"
+      },
+      "mobile_390": "Pergunta + ação 'Prever a cobertura' no 1º viewport (o mapa vem depois, ≈25% da altura, recortado na zona central com as linhas da Light). Tríade 1.3 vira três disclosures. Prancha do Inst·02 empilha: pergunta → campo de previsão → controles (5 sliders com número e unidade) → curva em largura total (eixo x com 4 ticks) → saídas em grade 2×2 → veredito → nota metodológica. O quadro previsto × calculado fica fixo no topo da prancha enquanto se rola pelos controles.",
+      "lacunas_fonte": [
+        "Taxa de remuneração de 10% a.a. é premissa do modelo (disc), não dado histórico",
+        "Dado de participação de Light/Amforp 'parcela dominante' por volta de 1930 sem número; não inventar percentual"
+      ],
+      "dependencias_s9": ["Registro de tentativas (previsão persistida)", "Desenho das formas prometidas (curva do Inst·02)", "Créditos de imagem (colofão)", "Glossário ligado: cláusula-ouro, custo histórico, poder concedente"],
+      "qa_editorial": ["Nenhuma frase 'hl' nesta aula; a candidata a frase-âncora é 'O que quebra o arranjo não é ideologia — é escala.' (fonte, 1.1)"],
+      "alem_do_conceito": "A previsão registrada reaparece como ponto na própria curva (previsto × calculado no mesmo eixo), e não só como dois números.",
+      "nota_ambicao": "Abrir a Alexandria-Brasil com um documento de 1906 em que se vê a cidade desenhada por uma empresa canadense é o tipo de evidência que desmonta a intuição sem precisar de um parágrafo. Se a curva de erosão for tocável (arrastar o ano e ver o ponto descer), a frase da fonte 'chega um ponto em que expandir deixa de fazer sentido' vira algo que o learner viu acontecer."
+    },
+    {
+      "aulaId": "aula-06-02",
+      "numero": 2,
+      "titulo": "O Estado dono de tudo",
+      "subtitulo": "1934–1988",
+      "extensao": { "blocos": 24, "palavras_aprox": 1944, "subsecoes": ["2.1 Regular não é o mesmo que construir", "2.2 O Estado vira empreendedor", "2.3 O esqueleto físico", "2.4 A crise que encerra o ciclo"] },
+      "o_que_ensina": "Competência jurídica sem capital não constrói usina. O Estado vira dono, financiador e planejador, com a conta de luz passando a carregar política pública, e ergue o esqueleto físico e a coordenação centralizada (GCOI, 1973). O modelo quebra por quatro vetores somados (tarifa-âncora, dívida externa, remuneração garantida + equalização, dívida intrassetorial), e o resultado é um setor cujo fluxo financeiro ninguém consegue ler.",
+      "natureza": ["história/narrativa (construção)", "mecanismo financeiro (formação de passivo)", "aplicação de ferramenta analítica (régua dos seis)"],
+      "melhor_representacao": {
+        "arquetipo": "Linha do tempo de obra em ascensão + laboratório do colapso (dois movimentos)",
+        "composicao": [
+          "2.1 abre com a régua dos seis como ato: seis casas vazias para 1934–1945, preenchidas pelo learner antes do parágrafo 3 (que traz a resposta literal).",
+          "2.2–2.3 como linha do tempo horizontal de construção (1945 Chesf · 1952 BNDE e Cemig · 1954/1961/1962 Eletrobras · 1957 Furnas · 1963 Canambra · 1964 Amforp · 1973 GCOI, Eletronorte e Itaipu · 1975/1976 obras · 1979 Light · 1984 primeiras unidades), com fotografias documentais de obra ancoradas nos anos. A dupla 1961/1962 aparece como dois pontos ligados ('medem coisas diferentes').",
+          "Nota 'Ponto que quase todo mundo erra' convertida em ato 'identificar o erro' no ponto do GCOI.",
+          "2.4 como prancha dividida: os quatro vetores numerados à esquerda (prosa), o Inst·03 à direita com barras empilhadas por ano (autofinanciamento · dívida contratada · conta não paga) e a linha do passivo acumulado."
+        ],
+        "por_que": "A aula tem duas metades de sinal oposto: meio século de construção que ainda está de pé e uma quebra financeira invisível no balanço. A linha do tempo com obra real dá a escala da primeira; a prancha dá a mecânica da segunda. A régua dos seis aparece aqui aplicada pela primeira vez e merece ser um ato, não uma lista."
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "objetivo": "Explicar como um setor que construiu Itaipu e Tucuruí chegou a 1988 sem conseguir dizer quem devia quanto a quem.",
+        "pergunta": "Se a empresa é obrigada a expandir e não controla a própria tarifa, para onde vai a diferença?",
+        "previsao": {
+          "util": true,
+          "enunciado": "Estatal obrigada a investir 100 por ano, com tarifa em 72% do custo do serviço, 45% da dívida em moeda estrangeira e câmbio 9 p.p. acima da inflação. Depois de 8 anos, o passivo acumulado (dívida + conta não paga) vale quantas vezes o investimento anual?",
+          "valores_do_cenario": { "investimento_indice": 100, "tarifa_pct_custo": 72, "divida_externa_pct": 45, "cambio_acima_pp": 9, "anos": 8 },
+          "resposta_calculada": { "passivo_sobre_investimento": 5.5, "autofinanciamento_pct": 40, "divida_financeira_indice": 468, "divida_intrassetorial_indice": 83, "conta_nao_paga_por_ano": 10.4 },
+          "origem_do_calculo": "fórmula do INST 03 da fonte, cenário-padrão",
+          "regra_de_entrada": "Alexandria: uma casa decimal; faixas '< 2×', '2–4×', '> 4×' para retorno.",
+          "por_que_ensina": "A conta não paga por ano parece pequena (10 de 100). O acúmulo com câmbio multiplica o passivo, e a parte intrassetorial some do balanço de todos. A previsão erra para baixo exatamente como o setor errou."
+        }
+      },
+      "ato_autentico_C9": {
+        "principal": { "tipo": "manipular até meta", "camada": "alexandria", "enunciado": "No cenário acima, encontre a menor tarifa (% do custo do serviço) em que nada vira conta não paga dentro do setor.", "resposta_calculada": "91% (autofinanciamento de 55% × tarifa precisa cobrir o que excede o teto de 50% de captação). Com 91–99%, o veredito da fonte ainda aponta 'antessala do problema' (dívida financeira crescendo); só ≥ 100% é 'a única configuração que se sustenta'.", "exercita": "tarifa comprimida + obrigação de expandir = passivo" },
+        "secundarios": [
+          { "tipo": "classificar/preencher", "camada": "alexandria (régua) sobre texto da fonte", "enunciado": "Régua dos seis para 1934–1945, antes do parágrafo 2.1-3, que a responde literalmente (dono: privado, concentrado, estrangeiro; financiador: o mesmo, sem incentivo; planejador: ninguém, em escala de bacia; operador: cada empresa; preço: custo histórico federal; crise: a escassez)." },
+          { "tipo": "identificar o erro", "camada": "fonte (§Erros 3–6), vínculo alexandria", "enunciado": "'O despacho centralizado é herança de 2001.' / 'Itaipu é uma usina estatal brasileira.' / 'A Eletrobras foi criada em 1962 por decreto do regime militar.' / 'A crise dos anos 1980 foi ineficiência de estatal.'" },
+          { "tipo": "ordenar", "camada": "fonte (ex-01, parcial)", "enunciado": "Ordenar Código de Águas, Eletrobras, GCOI (os três que já apareceram até aqui); a ordem completa de ex-01 fica para a A04." }
+        ]
+      },
+      "visualizacao_C6": [
+        { "trabalho": "mostrar como o déficit anual se reparte e acumula", "relacao": "barras empilhadas por ano (autofinanciamento · dívida contratada · conta não paga) + linha do passivo acumulado (escala própria)", "unidade": "índice (investimento anual = 100); anos 1…Y", "existe_no_codigo": false, "fonte_desenha": true, "nota": "A fonte usa duas escalas no mesmo gráfico (linha reescalada por kAc) sem eixo secundário. Redesenhar com eixo explícito ou em dois painéis alinhados." },
+        { "trabalho": "dar escala temporal à construção", "relacao": "eventos 1939–1988 num eixo, com obra real ancorada", "unidade": "anos", "existe_no_codigo": false }
+      ],
+      "instrumento_C5": {
+        "id": "m06-inst-03",
+        "titulo_fonte": "Simulador · como se forma uma dívida intrassetorial",
+        "bloco_indice_fonte": "após 21 (parágrafo da Constituição de 1988, fim de 2.4), antes dos três níveis",
+        "bloco_indice_proposto": "após 20 (parágrafo 'Quarta… dívida intrassetorial'), que é onde o mecanismo é nomeado; o parágrafo de 1988 passa a fechar a prancha como leitura do resultado",
+        "com_previsao": true,
+        "lacunas_de_porta": ["sem figura", "nota metodológica da fonte (teto de 55% de autofinanciamento, teto de 50% de captação) ausente (note:null)", "cores #3B82F6/#06B6D4/#EF4444/#F59E0B → tokens; 'conta não paga' em vermelho é semáforo"]
+      },
+      "checagem_C7": { "itens": ["Quiz Q4 (GCOI) e Q5 (dívida intrassetorial), origem declarada 'Aula 02'", "Correções §Erros 3–6 após tentativa", "Régua 1934–1945: comparação lado a lado com o parágrafo da fonte"] },
+      "recuperacao_e_proximo_passo_C10": {
+        "recuperacao": "Antes de 2.1: repetir a previsão da A01 ('cobertura após 15 anos?') sem mostrar a resposta antiga; é a ponte causal ('a regra de preço secou o capital → o Estado entra').",
+        "proximo_passo": "Atende → 'Próxima · M06·A03 — A reforma inacabada e o trauma fundador' (a fonte: 'a pergunta seis estava respondida'). Não atende na meta → 'Rever 2.4'. Atividade recomendada: minutos 3–5 do roteiro oral.",
+        "serve_a": "§Final itens 8–14 (inferido)"
+      },
+      "midia_M": {
+        "plano_curadoria": "sem plano.json para m06",
+        "usar": [
+          { "asset": "t2-04-paulo-afonso-iii-1966 (Arquivo Nacional, domínio público)", "onde": "2.2 (Chesf)", "classe": "documental", "cuidado": "Paulo Afonso III (1966), não a Paulo Afonso original de 1955; a legenda diz isso" },
+          { "asset": "t2-05-henry-borden-1966", "onde": "2.3 (engenharia da Light antes da nacionalização, 1979)", "classe": "documental" },
+          { "asset": "t2-07-urubupunga-1970 / t2-08-jupia-1970", "onde": "2.3 (escala do rio Paraná antes de Itaipu)", "classe": "documental" },
+          { "asset": "bse-itaipu-aerea (CC BY 2.0)", "onde": "2.3 no ponto 'entidade binacional'", "classe": "documental", "cuidado": "foto atual; legenda sem sugerir 1984" }
+        ],
+        "rejeitar": [{ "asset": "his-03-barragem-construcao.png", "motivo": "gerada com aparência de obra real; o tema é documental e há acervo real (CATALOGO: 'não gerar')" }],
+        "lacuna": "Foto real de sala do GCOI/anos 1970: não curada"
+      },
+      "mobile_390": "Pergunta + régua (6 casas em lista vertical, cada uma um campo curto) no 1º viewport ou logo abaixo. A linha do tempo vira vertical, com anos à esquerda e fotos em miniatura clicáveis. Inst·03 empilhado: meta ('encontre a tarifa mínima…') fixa no topo → controles → gráfico com no máximo 8 barras (Y ≤ 12: barras finas, rótulos 'a1…a12' a cada 2) → saídas 2×2.",
+      "lacunas_fonte": [
+        "'dez a doze por cento ao ano' (remuneração garantida) é 'ordem de grandeza usualmente citada', sem fonte no §Ref; exibir como tal, nunca como número firme",
+        "Premissas 55%/50% do Inst·03 são do modelo, não do período"
+      ],
+      "dependencias_s9": ["Registro de tentativas", "Desenho das formas (barras + linha)", "Créditos de imagem"],
+      "qa_editorial": ["'Guarde essa trajetória — ela volta na Aula 06' é referência interna válida (aula do mesmo módulo)"],
+      "alem_do_conceito": "A régua dos seis preenchida aqui fica guardada e reaparece na A03 e na A04 como coluna de comparação: o learner vê a própria régua de 1934 ao lado da de 1996.",
+      "nota_ambicao": "Fazer o learner sentir o contraste: a linha do tempo sobe em concreto (fotos de 1966–1970) enquanto a prancha mostra o passivo subindo por baixo, invisível. Mesma década, duas curvas."
+    },
+    {
+      "aulaId": "aula-06-03",
+      "numero": 3,
+      "titulo": "A reforma inacabada e o trauma fundador",
+      "subtitulo": "1988–2002",
+      "extensao": { "blocos": 33, "palavras_aprox": 2688, "subsecoes": ["3.1 Antes de vender, tornar legível", "3.2 A arquitetura desenhada", "3.3 A arquitetura entregue", "3.4 A assimetria que virou bomba", "3.5 2001: o racionamento", "3.6 O que a comissão de investigação achou", "3.7 A conta e a cicatriz"] },
+      "o_que_ensina": "2001 é uma cadeia, não um culpado: a reforma tirou a obrigação estatal de expandir antes de o sinal privado funcionar (distribuição privada, geração estatal, 'expansão sem dono'), a margem firme se esgotou e a hidrologia foi só o gatilho. O risco era conhecido desde 1999 e não virou decisão. Racionamento não é apagão.",
+      "natureza": ["caso/decisão (diagnóstico causal)", "sistema (balanço de energia)", "mercado/regulação (desenho × entrega)", "história/narrativa"],
+      "melhor_representacao": {
+        "arquetipo": "Dossiê de caso em dois cadernos: 'o desenho e a entrega' (3.1–3.4) e 'o racionamento' (3.5–3.7)",
+        "composicao": [
+          "Caderno 1, mesa de comparação: a tabela de normas 1995–1998 (fonte) vira uma mesa em que cada norma se liga à pergunta da régua que ela responde (a coluna já existe na fonte). Ao lado, 'desenhado × entregue': distribuição vendida, geração estatal. 3.4 fecha com a régua 1996–2000 como ato (é o ex-03 da fonte).",
+          "Ficha de divergência de números vivos (Light 1996: R$ 2,2 bi × US$ 2,26 bi) em vez de caixa de aviso.",
+          "Caderno 2, dossiê: cronologia apertada (mai/2001 GCE → 16 mai 1ª resolução → jun/2001–fev/2002 programa → 2002 Acordo Geral → abr/2002 Lei 10.438), a distinção racionamento × apagão como ato de classificação, o achado da comissão em destaque tipográfico (a frase 'hl' da fonte) e a cadeia gatilho → margem → causas.",
+          "Termômetro (Inst·04) como laboratório no fim de 3.6, onde a cadeia foi enunciada: previsão, depois comparação 'margem × reservatório'.",
+          "3.7 fecha com o padrão 'choque → mecanismo financeiro coletivo → tarifa' como semente da A05."
+        ],
+        "por_que": "É a aula central, a mais longa do módulo (≈2.700 palavras, 7 subseções): sem cadernos e atos intermediários ela estoura o limite de trecho sem ato (C4). O conteúdo é literalmente uma investigação (comissão, responsabilidades, cronologia), e o formato de dossiê obriga a separar gatilho de causa, que é o mecanismo central."
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "objetivo": "Separar o gatilho (seca) da causa (margem ausente e informação que não virou decisão) no racionamento de 2001.",
+        "pergunta": "'Privatizaram e faltou luz' (a fonte cita a frase na lede): o que está certo e o que está errado nela?",
+        "previsao": {
+          "util": true,
+          "enunciado": "Sistema com armazenamento a 32% do máximo, afluência a 72% da média, margem de capacidade firme não hidráulica de 3% da carga e 7 meses até o período úmido. Que corte de consumo evita furar o limite operacional? (%)",
+          "valores_do_cenario": { "armazenamento_pct": 32, "afluencia_pct_media": 72, "margem_firme_pct_carga": 3, "meses_ate_umido": 7 },
+          "resposta_calculada": { "corte_pct": 21.4, "queda_mensal_sem_corte_pp": 4.33, "meses_ate_limite": 3.9, "nivel_final_sem_corte_pct": 2 },
+          "origem_do_calculo": "fórmula do INST 04 da fonte (base de 11 p.p./mês, limite operacional de 15%, folga de 5 p.p.), cenário-padrão",
+          "regra_de_entrada": "Alexandria: inteiro; retorno por faixa de veredito da fonte (0 · ≤8 · 8–20 · 20–40 · >40).",
+          "por_que_ensina": "Quem acredita em 'falta de chuva' tende a prever corte pequeno para uma afluência de 72%. O resultado cai na faixa em que o programa 'redesenha a produção industrial'.",
+          "cuidado": "A fonte diz 'Foi aproximadamente aqui que 2001 pousou' para a faixa 8–20%, e o texto cita meta média em torno de 20%. O instrumento 'não representa nenhum subsistema real' (disc). A interface nunca pode dizer que 21,4% 'é' 2001."
+        }
+      },
+      "ato_autentico_C9": {
+        "principal": { "tipo": "comparar", "camada": "alexandria", "enunciado": "Mesma seca (afluência 72%, 7 meses). O que tira o sistema do programa compulsório (corte ≤ 8%, faixa da fonte): ter construído margem firme ou chegar com o reservatório mais cheio? Teste e decida.", "resposta_calculada": "Com margem de 3%, o reservatório precisaria começar em 44%. Com margem ≥ 8%, basta 36%. Só com margem, com o reservatório a 32%, o corte não desce de 12,4%. Margem firme 'vale' ~8 pontos de reservatório, e nenhuma das duas sozinha resolve.", "exercita": "margem × gatilho: por que a causa é a expansão que não aconteceu anos antes" },
+        "secundarios": [
+          { "tipo": "classificar", "camada": "fonte (texto 3.5, §Erros 10, ex-04)", "enunciado": "Racionamento ou apagão? Cartões com atributos da fonte (involuntário × planejado; segundos/horas × meses; falha de rede × balanço que não fecha; indenização × recomposição tarifária)." },
+          { "tipo": "responder exercício da fonte", "camada": "fonte (ex-03), vínculo alexandria sujeito a P9", "enunciado": "Régua dos seis para 1996–2000 e por que a resposta da pergunta dois torna o racionamento previsível. Gabarito só depois da tentativa." },
+          { "tipo": "identificar o erro", "camada": "fonte (§Erros 7–11)", "enunciado": "'O ONS privatizou o despacho.' / 'O apagão de 2001 foi falta de chuva.' / 'A privatização dos anos 1990 causou o apagão.'" },
+          { "tipo": "ordenar", "camada": "fonte", "enunciado": "Cadeia de 3.6: gatilho → margem → cinco fatores (expansão atrasada, capacidade firme insuficiente, transição fragmentada, sinal de preço que não induziu resposta, comunicação de risco que não virou ação). §Voz pede 'diga qual é gatilho e quais são causa'." }
+        ]
+      },
+      "visualizacao_C6": [
+        { "trabalho": "mostrar o esgotamento e o efeito do corte", "relacao": "armazenamento (%) × meses (hoje…mT): trajetória sem corte, trajetória com o corte calculado, limite operacional de 15%", "unidade": "% do armazenamento máximo; meses", "existe_no_codigo": false, "fonte_desenha": true },
+        { "trabalho": "cumprir a forma prometida pelo nome 'Termômetro'", "relacao": "medidor vertical do corte necessário (0 → >40%), com as faixas do veredito da fonte (8 · 20 · 40) marcadas por fio e palavra, não por cor", "unidade": "% do consumo", "existe_no_codigo": false, "fonte_desenha": false, "promessa_nao_desenhada": "O título promete um termômetro; nem a fonte nem o código desenham um. C5 exige." },
+        { "trabalho": "desenho × entrega da reforma", "relacao": "matriz segmento (G, T, D, C) × propriedade em 2000 × quem garante a expansão", "unidade": "categórica", "existe_no_codigo": false },
+        { "trabalho": "cronologia de 2001–2002", "relacao": "faixa mensal mai/2001–abr/2002 com o programa como barra", "unidade": "meses", "existe_no_codigo": false }
+      ],
+      "instrumento_C5": {
+        "id": "m06-inst-04",
+        "titulo_fonte": "Termômetro do racionamento · balanço de energia num período seco",
+        "bloco_indice_fonte": "após 26 (último parágrafo de 3.6, a cadeia), antes de 3.7",
+        "bloco_indice_proposto": "após 26 (mantido: é onde as quatro variáveis foram argumentadas)",
+        "com_previsao": true,
+        "lacunas_de_porta": [
+          "sem figura",
+          "readouts i4-ms ('Meses até o limite') e i4-nf ('Nível final sem corte') caíram por serem texto",
+          "nota metodológica (reservatório equivalente único, 11 p.p./mês, limite de 15%, folga de 5 p.p.; sem rede, sazonalidade, intercâmbio ou incerteza) ausente",
+          "quirk do modelo: margem firme acima de 8% da carga não muda nada (extra = max(0, 8−M)×0,25), mas o controle vai até 30; a faixa 8–30 é inerte e precisa ser declarada ou limitada (§6 'controle inerte')",
+          "trajetória sem corte em #EF4444 → token"
+        ]
+      },
+      "checagem_C7": { "itens": ["Quiz Q6 (assimetria) e Q7 (comissão), origem 'Aula 03'", "ex-03 e ex-04 (discursivos) com autoavaliação em 3 níveis e 'o que acrescenta'", "§Erros 7–11"] },
+      "recuperacao_e_proximo_passo_C10": {
+        "recuperacao": "Antes do caderno 1: 'Por que a reforma começou por um encontro de contas?' (Quiz Q5, origem A02), sem mostrar o retorno antigo antes da nova tentativa.",
+        "proximo_passo": "Atende → 'Próxima · M06·A04 — A reconstrução deliberada' ('a resposta de 2004 endereça precisamente esse componente'). Não atende na comparação → 'Rever 3.6 e refazer o Termômetro'. Atividade recomendada: minutos 6–7 do roteiro oral; ataques 1 e 3 do decisor cético.",
+        "serve_a": "§Final itens 15–20 (inferido)"
+      },
+      "midia_M": {
+        "plano_curadoria": "sem plano.json",
+        "usar": [
+          { "asset": "bse-sobradinho-tomada (CC BY 3.0 BR)", "onde": "ao lado do Termômetro, como 'o reservatório como estoque'", "classe": "documental", "cuidado": "não é foto de 2001 nem de reservatório baixo; legenda funcional, sem data sugerida" }
+        ],
+        "rejeitar": [
+          { "asset": "his-04-jornal-apagao-2001.png", "motivo": "texto gerado dentro da imagem ('NATIONAL NEWS', em inglês) e simulação de jornal real de um evento real (M2, M4, M7); além disso diz 'apagão', que a aula corrige" },
+          { "asset": "his-05-lampada-apagada.png", "motivo": "clichê decorativo; reforça 'apagão'; falha no teste de remoção" },
+          { "asset": "his-09-leilao-privatizacao.png", "motivo": "cena gerada com aparência de evento real (leilão de 1996 na Bolsa do Rio) e emblema inventado" }
+        ],
+        "lacuna": "Imagem documental do racionamento (campanha oficial de 2001, capa real, foto de agência pública) e da Bolsa do Rio em 21/05/1996: não curadas; buscar em acervo público (Agência Brasil, Arquivo Nacional) antes de qualquer geração"
+      },
+      "mobile_390": "Pergunta ('privatizaram e faltou luz: o que está certo?') + 'Começar pelo caderno 1' no 1º viewport. Os cadernos viram duas seções com índice fixo compacto ('Desenho e entrega · Racionamento'). A mesa de normas vira lista de cartões (norma → o que instituiu → pergunta da régua), com a pergunta da régua escondida até o learner ligar. O Termômetro empilha: medidor horizontal no topo (a 390 o termômetro deita) → 4 controles → trajetórias → saídas 2×2. Cartões racionamento/apagão por toque (sem arrastar).",
+      "lacunas_fonte": [
+        "PIB de 4,4% (2000) para 1,3% (2001) sem referência no §Ref",
+        "'O consumo de 2000 só foi reencontrado em 2004' sem referência no §Ref",
+        "Valor da Light em 1996: duas leituras declaradas pela fonte (R$ 2,2 bi acadêmico × US$ 2,26 bi registros da época); nenhuma é escolhida (P20 por analogia)",
+        "'a imprensa da época noticiou que o próprio governo teve de comprar ações': sem veículo nomeado",
+        "Relatório Kelman: citado no §Ref, mas sem URL/localização precisa no arquivo lido"
+      ],
+      "dependencias_s9": ["Registro de tentativas (previsão, classificação, discursivo)", "Desenho das formas (trajetória + medidor)", "Biblioteca com ficha do Relatório Kelman e da MP 2.198-5/2001", "Glossário: racionamento, apagão/blecaute, GCE, MAE, PPT, garantia física"],
+      "qa_editorial": [
+        "Bloco 25: '</b>' solto; a fonte tinha destaque (span.hl) em 'O problema não foi ausência de informação. Foi informação que existia e não virou decisão.' Restaurar como frase-âncora",
+        "Nota 'Fronteira com o Módulo 02' está correta (mesmo catálogo). Manter como fio de fronteira, não como caixa de aviso"
+      ],
+      "alem_do_conceito": "O Termômetro não termina num número: termina numa decisão comparativa (margem × reservatório) cujo resultado reaparece na A04 como argumento para a obrigação de lastro.",
+      "nota_ambicao": "A aula pode ser a peça mais forte da Trilha II se ler como investigação: o learner monta a cadeia de 2001 com as próprias mãos (gatilho separado das causas) antes de ler a conclusão da comissão, e só então encontra a frase 'informação que existia e não virou decisão'."
+    },
+    {
+      "aulaId": "aula-06-04",
+      "numero": 4,
+      "titulo": "A reconstrução deliberada",
+      "subtitulo": "2003–2011",
+      "extensao": { "blocos": 19, "palavras_aprox": 1601, "subsecoes": ["4.1 Três objetivos, e a ordem entre eles", "4.2 Duas leis, uma arquitetura", "4.3 O que mudou e o que não mudou", "4.4 A retomada, e o preço dela"] },
+      "o_que_ensina": "O Novo Modelo de 2004 é uma reforma da reforma: mantém o que era competitivo e põe um dono na expansão, convertendo segurança de suprimento em obrigação contratual distribuída (cobertura integral com antecedência e lastro), que não depende da decisão discricionária de ninguém. O preço é complexidade e um risco novo: sobrecontratação repassada à tarifa.",
+      "natureza": ["sistema/arquitetura institucional", "comparação de arquiteturas (regimes)", "mercado/regulação (alocação de risco)"],
+      "melhor_representacao": {
+        "arquetipo": "Mesa de comparação de arquiteturas com instrumento vivo",
+        "composicao": [
+          "4.1 como três eixos (segurança · modicidade · universalização), com a mudança de ordem antes/depois de 2001.",
+          "4.2: a tabela 'Criação de 2004 × falha de 2001 × o que faz hoje' vira ato de ligação: cinco criações e cinco falhas embaralhadas. A terceira coluna (o que faz hoje) só aparece depois da ligação.",
+          "Frase-âncora da fonte: 'tirar a segurança de suprimento da dependência de uma decisão discricionária'.",
+          "4.3 'mudou × não mudou' como classificação em duas colunas, com itens literais da fonte.",
+          "Inst·05 no fim de 4.3, onde a prosa o invoca: grade da régua dos seis (+ risco e modo de falha) nos três regimes lado a lado, e abaixo o trade-off faltar × sobrar por horizonte.",
+          "4.4 retomada (2005, Madeira, Belo Monte, 2009 eólica) como faixa curta de tempo, fechando com o preço: complexidade."
+        ],
+        "por_que": "O conteúdo é comparação de arquiteturas: 'o que mudou e o que não mudou' e 'onde o risco pousa' em três regimes. A forma natural é uma mesa em que as linhas são as seis perguntas e as colunas são os regimes, o que só funciona se o seletor de regime, perdido na porta, voltar."
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "objetivo": "Mostrar como 2004 impede estruturalmente a repetição de 1999 sem depender de alguém avaliar certo o risco, e que risco novo isso compra.",
+        "pergunta": "Depois de 2001, dava para 'planejar melhor'. Por que a resposta foi outra?",
+        "previsao": {
+          "util": true,
+          "enunciado": "O comparador da fonte calcula, em cada arquitetura, o horizonte de contratação obrigatória com menor atrito (risco de faltar + risco de sobrar). Em qual dos três regimes esse horizonte é o mais longo: estatal (1962–1993), transição (1995–2003) ou híbrido (2004–)?",
+          "tipo": "conceitual (P19 prefere)",
+          "resposta_calculada": { "estatal_melhor_horizonte_anos": 4, "transicao_melhor_horizonte_anos": 6, "hibrido_melhor_horizonte_anos": 3, "atrito_minimo": { "estatal": 27.5, "transicao": 15.9, "hibrido": 45.7 } },
+          "origem_do_calculo": "funções falta/sobra do INST 05 da fonte, F0/S0 por regime (45/28, 88/12, 58/58)",
+          "por_que_ensina": "A transição, sem nenhuma outra proteção contra subinvestimento, é a que mais precisa de antecedência. Isso explica a obrigação de 2004. O ótimo se desloca com o regime, que é a frase do veredito da fonte.",
+          "rotulo_visivel": "Índices de risco relativos, sem unidade (fonte: 'não são medições de nenhum sistema real')",
+          "bloqueio": "Hoje o código só calcula o regime estatal (M06_REG[0]); a previsão depende de portar o seletor de regime"
+        }
+      },
+      "ato_autentico_C9": {
+        "principal": { "tipo": "classificar (ligar)", "camada": "fonte (tabela 4.2) como gabarito; ato alexandria", "enunciado": "Ligue cada criação de 2004 (EPE, CCEE, CMSE, ACR/ACL formalizados, obrigação de cobertura e lastro) à falha de 2001 que ela endereça.", "exercita": "cada peça do modelo como resposta a um trauma específico", "nota": "§Voz e §Final pedem exatamente isso ('Enumere as quatro instituições criadas em 2004 e a falha que cada uma endereça')." },
+        "secundarios": [
+          { "tipo": "manipular até meta", "camada": "alexandria", "enunciado": "No regime híbrido, leve o horizonte ao ponto de menor atrito e explique por que passar dele também custa ('sobra também é custo')." },
+          { "tipo": "classificar", "camada": "fonte (4.3)", "enunciado": "Mudou / não mudou: propriedade das distribuidoras vendidas; mercado livre; ANEEL; ONS centralizado; competição em geração; planejamento com instituição própria; expansão puxada por contrato; distribuidoras restritas à distribuição; câmara de contabilização." },
+          { "tipo": "identificar o erro", "camada": "fonte (§Erros 12)", "enunciado": "'O modelo de 2004 acabou com o mercado livre.'" },
+          { "tipo": "responder exercício da fonte", "camada": "fonte (ex-01), vínculo alexandria", "enunciado": "Ordem institucional completa (Código de Águas → Eletrobras → GCOI → ANEEL → ONS e MAE → EPE e CCEE) e o padrão de pares de 1998/2004." }
+        ]
+      },
+      "visualizacao_C6": [
+        { "trabalho": "comparar arquiteturas pela régua", "relacao": "grade 7 linhas (dono, financiador, planejador, operador, preço, quem carrega o risco de expansão, modo de falha) × 3 regimes + 'horizonte efetivo no período'", "unidade": "texto da fonte (REG[].r, REG[].h)", "existe_no_codigo": false, "fonte_desenha": "sim, um regime por vez (seg + gcmp)", "proposta": "os três lado a lado a 1440, com a coluna escolhida em ênfase" },
+        { "trabalho": "mostrar o trade-off da antecedência", "relacao": "risco de faltar e de sobrar × horizonte (0–6 anos), curvas cruzando, com o mínimo do atrito marcado; um conjunto por regime", "unidade": "índice relativo sem unidade; anos", "existe_no_codigo": false, "fonte_desenha": "só barras do horizonte atual", "promessa_nao_desenhada": "O nome 'Comparador · três arquiteturas' promete comparar três; o código calcula uma." }
+      ],
+      "instrumento_C5": {
+        "id": "m06-inst-05",
+        "titulo_fonte": "Comparador · três arquiteturas e onde o risco pousa",
+        "bloco_indice_fonte": "após 16 (fim de 4.4), antes dos três níveis",
+        "bloco_indice_proposto": "após 12 (fim de 4.3, cujo último parágrafo termina em 'o instrumento abaixo mostra qual'); a fonte colocou depois de 4.4, e C5 manda ficar no ponto que invoca",
+        "com_previsao": true,
+        "lacunas_de_porta": ["seletor de regime ausente (só estatal calculado)", "grade da régua (i5-grid) ausente", "readout 'Horizonte de menor atrito' (texto) ausente", "barras ausentes; faltar em #EF4444 → token", "nota metodológica ausente"]
+      },
+      "checagem_C7": { "itens": ["Quiz Q8 (o que 2004 mudou), origem 'Aula 04'", "Ligação 4.2 conferida contra a tabela literal só depois de todas as ligações feitas", "§Erros 12"] },
+      "recuperacao_e_proximo_passo_C10": {
+        "recuperacao": "Antes de 4.2: refazer a decisão comparativa do Termômetro (A03), 'margem ou reservatório?', sem mostrar o registro anterior. A obrigação de lastro é a resposta institucional a essa decisão.",
+        "proximo_passo": "Atende → 'Próxima · M06·A05 — O modelo é testado de novo'. Não atende na ligação → 'Rever 4.2'. Atividade recomendada: minuto 8 do roteiro oral.",
+        "serve_a": "§Final item 21 (inferido)"
+      },
+      "midia_M": {
+        "plano_curadoria": "sem plano.json",
+        "usar": [
+          { "asset": "bse-belomonte-casa-forca (CC BY 2.0)", "onde": "4.4 (retomada da grande hidrelétrica com contrato regulado)", "classe": "documental" },
+          { "asset": "bse-eolica-paracuru (CC BY-SA 4.0)", "onde": "4.4 (2009, primeiro leilão eólico)", "classe": "documental", "cuidado": "Paracuru não é necessariamente projeto do leilão de 2009; legenda descreve só a fonte" }
+        ],
+        "rejeitar": [{ "asset": "his-06-documento-novo-modelo.png", "motivo": "documento oficial gerado, com brasão e assinaturas inventados (imagem enganosa)" }],
+        "lacuna": "Página real das Leis 10.847/10.848 (Diário Oficial, domínio público) para anatomia de norma: não curada"
+      },
+      "mobile_390": "Pergunta + ato de ligação no 1º viewport ('Ligar as cinco criações às falhas'), com ligação por toque (escolher a criação, depois a falha) e sem arrastar. Grade da régua a 390: um regime por vez em segmentos com rótulo, e a linha em comparação mostra os outros dois recolhidos. Trade-off: gráfico em largura total com 7 ticks (0–6 anos).",
+      "lacunas_fonte": [
+        "Luz para Todos: 'milhões de domicílios' sem número e sem referência",
+        "Índices F0/S0 do comparador são construção didática (disc)",
+        "'Bloco 7' (nota do produto, oculta por P7) sem correspondência declarada no catálogo (div-05)"
+      ],
+      "dependencias_s9": ["Portar seletor de regime + grade (Inst·05)", "Desenho das formas", "Registro de tentativas (ligação e classificação)", "Glossário: ACR, ACL, lastro, garantia física, EPE, CCEE, CMSE"],
+      "qa_editorial": ["Lead no código com espaço antes de ':' ('reforma da reforma : manteve'), div-13; o <em> sumiu", "Nota 'Fronteira com o Módulo 04' consistente com o catálogo"],
+      "alem_do_conceito": "Os três regimes aparecem ao mesmo tempo, e a régua que o learner preencheu na A02 e na A03 vira a coluna 'sua leitura' ao lado da grade da fonte.",
+      "nota_ambicao": "Fazer da grade da régua o objeto mais memorável do módulo: sete perguntas, três colunas, e a coluna do meio visivelmente vazia na linha 'quem carrega o risco de expansão' ('Ninguém, com clareza'). É a imagem de 2001 sem uma foto sequer."
+    },
+    {
+      "aulaId": "aula-06-05",
+      "numero": 5,
+      "titulo": "O modelo é testado de novo",
+      "subtitulo": "2012–2021",
+      "extensao": { "blocos": 27, "palavras_aprox": 2210, "subsecoes": ["5.1 Uma tentativa de reduzir tarifa pela concessão", "5.2 A seca encontra a tarifa reduzida", "5.3 GSF: quando o rateio descobre que é um sistema fechado", "5.4 Modernização em degraus", "5.5 Geração distribuída, pandemia e o teste de 2021"] },
+      "o_que_ensina": "Risco mal alocado não desaparece, muda de forma (dívida, encargo, bandeira, liminar). O caso mais instrutivo é o GSF: com a fronteira do risco contestável, liminares individuais num sistema de rateio sem fundo próprio viram inadimplência sistêmica. A mesma assinatura institucional (choque → socorro financeiro coletivo → tarifa) se repete em 2001, 2014 e 2020, e 2021 mostra aprendizado: seca severa sem racionamento.",
+      "natureza": ["mercado/regulação (alocação de risco)", "sistema fechado (mecanismo de liquidação)", "caso (GSF)", "comparação de casos (padrão)"],
+      "melhor_representacao": {
+        "arquetipo": "Laboratório de sistema fechado + comparação de episódios",
+        "composicao": [
+          "Faixa do tempo 2012–2021 com as formas que o risco tomou marcadas por glifo e palavra (MP 579 → Conta-ACR → revisão extraordinária → bandeiras → liminares → portarias → Conta-Covid → escassez hídrica).",
+          "5.1–5.2 editoriais, com a frase-âncora da fonte (bloco 3) e 'bandeira não é imposto' como ato rápido.",
+          "5.3 como laboratório: esquema do rateio (o que entra = o que sai) ao lado do Inst·06, e depois as três camadas legislativas (2015 · 2020 · 2025) como escada curta.",
+          "5.4: a escada de abertura (tabela da fonte) como gráfico de degraus, que antecipa o Inst·07 da A06.",
+          "5.5: tríptico 'mesma assinatura' (Acordo Geral 2001 · Conta-ACR 2014 · Conta-Covid 2020) como ato de comparação, fechado por 2021 × 2001."
+        ],
+        "por_que": "O mecanismo central é contraintuitivo e sistêmico (proteção individual racional → dano coletivo). Ele precisa de um palco em que o dinheiro que falta visivelmente sai do bolso de outro. O segundo mecanismo, o padrão repetido, se aprende comparando episódios lado a lado, não em sequência de parágrafos."
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "objetivo": "Explicar por que uma liminar que protege um único gerador reduz o que todos os credores recebem, e por que a saída foi legislativa.",
+        "pergunta": "Numa liquidação em que o que entra é o que sai, quem paga a parte que um juiz dispensou de pagar?",
+        "previsao": {
+          "util": true,
+          "enunciado": "Ciclo com R$ 1.500 mi a liquidar, 35% do devido protegido por liminar, garantias de 8% do devido, 120 credores. Que fração do que lhes é devido os credores recebem neste ciclo? (%)",
+          "valores_do_cenario": { "valor_ciclo_rs_mi": 1500, "protegido_pct": 35, "garantias_pct": 8, "credores": 120 },
+          "resposta_calculada": { "recebimento_pct": 73.0, "falta_ciclo_rs_mi": 405, "perda_media_por_credor_rs_mi": 3.4, "retido_3_ciclos_rs_mi": 1616, "protegido_ciclo2_pct": 43.1, "protegido_ciclo3_pct": 53.6 },
+          "origem_do_calculo": "fórmula do INST 06 da fonte (realimentação de 30% do corte, teto de 85%), cenário-padrão",
+          "regra_de_entrada": "Alexandria: inteiro; retorno por faixa do veredito da fonte (100 · ≥95 · 80–95 · <80).",
+          "por_que_ensina": "Dois erros previsíveis: 65% (esquecer as garantias) ou 'recebem tudo, o protegido é que perde'. E o contágio (35 → 43 → 54%) é o que a intuição não vê.",
+          "rotulo_visivel": "Cenário didático; não reproduz as regras da câmara de comercialização (disc da fonte). Nunca comparar com os 'oito a nove bilhões' do texto."
+        }
+      },
+      "ato_autentico_C9": {
+        "principal": { "tipo": "prever", "enunciado": "A previsão acima, com o previsto × calculado visível enquanto o learner mexe.", "exercita": "rateio como sistema fechado" },
+        "secundarios": [
+          { "tipo": "manipular até meta", "camada": "alexandria", "enunciado": "Com garantias de 8%, qual a maior parcela protegida que ainda deixa o recebimento ≥ 95% (faixa 'corte pequeno' da fonte)?", "resposta_calculada": "13%. Até 28% o recebimento fica ≥ 80%." },
+          { "tipo": "comparar casos", "camada": "fonte (5.5, 3.7, tabela do Inst·08)", "enunciado": "Acordo Geral (2001), Conta-ACR (2014), Conta-Covid (2020): o que os três têm em comum e o que cada choque tinha de diferente?", "referencia_fonte": "'Três choques diferentes, uma assinatura institucional idêntica — antecipar recursos coletivamente para preservar liquidez e diferir o impacto tarifário.'" },
+          { "tipo": "identificar o erro", "camada": "fonte (§Erros 13, 14, 15)", "enunciado": "'Bandeira tarifária é imposto.' / 'GSF é só falta de chuva.' / 'A MP 579 simplesmente devolveu lucro indevido ao consumidor.'" },
+          { "tipo": "decidir com justificativa", "camada": "alexandria, ancorada no 3 níveis executivo", "enunciado": "Você redige a cláusula de risco hidrológico de um contrato. O que precisa dizer além de 'quem carrega'? (referência da fonte: 'o que exatamente conta como aquele risco e quem decide isso')" }
+        ]
+      },
+      "visualizacao_C6": [
+        { "trabalho": "tornar visível que a falta sai do bolso dos credores e se realimenta", "relacao": "barras: protegido · garantias · falta no ciclo 1, 2 e 3 (fração do valor do ciclo); ou fluxo arrecadação → distribuição com a fatia faltante rateada", "unidade": "% do valor do ciclo; R$ mi", "existe_no_codigo": false, "fonte_desenha": "barras, com garantias em verde e protegido em vermelho (semáforo)" },
+        { "trabalho": "escada de abertura", "relacao": "carga mínima (kW, escala log) × data, degraus 2019–2024 da tabela da fonte", "unidade": "kW; ano", "existe_no_codigo": "tabela sim; gráfico não" },
+        { "trabalho": "formas do risco na década", "relacao": "faixa 2012–2021 com os eventos tipados (dívida · encargo · bandeira · liminar)", "unidade": "anos", "existe_no_codigo": false }
+      ],
+      "instrumento_C5": {
+        "id": "m06-inst-06",
+        "titulo_fonte": "Simulador · o efeito de uma liminar num sistema de rateio",
+        "bloco_indice_fonte": "após 14 (parágrafo do leilão de passivos, fim de 5.3), antes de 5.4",
+        "bloco_indice_proposto": "após 13 (parágrafo 'a liquidação… é um sistema de rateio, não um caixa com fundo próprio'), que é onde o mecanismo nasce; o bloco 14 (as três camadas legislativas) vira o desfecho da prancha",
+        "com_previsao": true,
+        "lacunas_de_porta": ["sem barras", "nota metodológica ausente (credores homogêneos, realimentação linear de 30%, teto de 85%)", "cores semafóricas da fonte → tokens"]
+      },
+      "checagem_C7": { "itens": ["Quiz Q9 (liminar, origem 'Aula 05 e Inst·06')", "ex-05 (MP 579) e ex-06 (rateio): vínculo proposto, sujeito a P9; tentativa → referência → o que acrescenta", "§Erros 13–15"] },
+      "recuperacao_e_proximo_passo_C10": {
+        "recuperacao": "Antes de 5.2: 'Que risco novo a obrigação de 2004 criou?' (A04; cicatriz do item 5 do Inst·08), sem revelar o registro anterior.",
+        "proximo_passo": "Atende → 'Próxima · M06·A06 — Onde a história pousa hoje'. Não atende na previsão → 'Rever 5.3'. Atividade recomendada: minuto 9 do roteiro oral; ataque 4 (diretor jurídico de gerador).",
+        "serve_a": "§Final itens 22–23 (inferido)"
+      },
+      "midia_M": {
+        "plano_curadoria": "sem plano.json",
+        "usar": [],
+        "rejeitar": [
+          { "asset": "his-07-reservatorio-seco.png", "motivo": "paisagem gerada de seca com aparência documental; se usada, só como explicação com aviso (P10) e sem lugar; melhor não usar, a aula não é sobre hidrologia" },
+          { "asset": "his-08-martelo-juiz.png", "motivo": "clichê importado (tribunais brasileiros não usam martelo); decorativo; falha no teste de remoção" }
+        ],
+        "lacuna": "Nenhuma imagem faz trabalho aqui além das visualizações programáticas. Recomendação: sem fotografia nesta aula."
+      },
+      "mobile_390": "Pergunta + campo de previsão no 1º viewport. Esquema do rateio em coluna (arrecadação → protegido → garantias → falta → credores). Barras horizontais em largura total, rótulo acima de cada barra. Tríptico dos episódios vira três cartões em sequência com as mesmas quatro linhas (choque · instrumento · quem antecipa · onde o custo aparece), e só as células do learner ficam editáveis.",
+      "lacunas_fonte": [
+        "'oito a nove bilhões de reais' retidos: 'chegou a ser citada', e o §Ref marca como número vivo com ordens de grandeza distintas; exibir como ordem de grandeza citada, com a nota",
+        "'dezenas de geradores' obtêm liminares: sem número",
+        "MP de 2025 que incluiu o leilão de passivos: número da MP não informado na aula",
+        "Resolução normativa de 2012 (GD): número não informado (REN 482 não é citada; não completar)"
+      ],
+      "dependencias_s9": ["Registro de tentativas", "Desenho das formas", "Glossário: GSF, MRE, garantia física, bandeira tarifária, Conta-ACR, Conta-Covid, liminar", "Referência cruzada 'Bloco 9' reconciliada com o catálogo (P8, div-05)"],
+      "qa_editorial": [
+        "Bloco 3: '</b>' solto; havia destaque em 'Redução estrutural de tarifa precisa ser compatível com investimento, risco e contrato…'",
+        "Bloco 13: '</b>' solto; destaque em 'a liquidação na câmara de comercialização é um sistema de rateio, não um caixa com fundo próprio'",
+        "Nota 'Fronteira com o Bloco 9' fala de 'Bloco 9'; o catálogo atual não confirma que é o M09 (div-05). Não exibir o número antes da reconciliação; usar rótulo semântico ('o módulo de mecanismos de comercialização')",
+        "Lead com espaço antes de '.' ('muda de forma . Vira'), div-13"
+      ],
+      "alem_do_conceito": "O contágio entre ciclos é jogado, não lido: o learner vê a própria meta falhar no ciclo 2 porque a parcela protegida cresceu por conta do corte que ele mesmo aceitou no ciclo 1.",
+      "nota_ambicao": "Uma década inteira resumida numa ideia que o learner consegue demonstrar com três números. Se o tríptico 2001/2014/2020 for bem desenhado, ele vira a 'assinatura institucional brasileira' que o learner reconhece na próxima manchete."
+    },
+    {
+      "aulaId": "aula-06-06",
+      "numero": 6,
+      "titulo": "Onde a história pousa hoje",
+      "subtitulo": "2022–2028 · síntese",
+      "extensao": { "blocos": 20, "palavras_aprox": 1892, "subsecoes": ["6.1 2022: capitalização não é venda", "6.2 2025: de Eletrobras a AXIA", "6.3 Janeiro de 2024, e o que vem até 2028", "6.4 O padrão que só aparece de longe"] },
+      "o_que_ensina": "Três eventos que se confundem são categorias diferentes: mudança de controle (capitalização de 2022 com limite de 10% de voto → sem controlador), mudança de marca (AXIA 2025, sem sucessão) e mudança de regra (abertura do Grupo A em 2024; Lei nº 15.269/2025 com prazos condicionados). De longe, o setor é híbrido porque cada crise acrescentou uma camada sem remover a de baixo, e o regime de propriedade virou quatro vezes.",
+      "natureza": ["síntese", "mercado/regulação (elegibilidade)", "leitura de estrutura societária", "história (biografia institucional)"],
+      "melhor_representacao": {
+        "arquetipo": "Prancha de síntese em três movimentos: separar · localizar · reconstruir",
+        "composicao": [
+          "Separar (6.1–6.2): classificador de eventos em três colunas (controle · marca · regra), com cartões literais da fonte (capitalização com emissão primária; limite de 10% de voto; ação de classe especial; troca de nome e códigos; continuidade de concessões e passivos; Lei 15.269). A ficha 'números vivos' (72% → ~40%; ~30% do currículo) aparece como ficha de divergência, não como caixa.",
+          "Localizar (6.3): Inst·07 como escada (1995–2028) em que o learner põe a própria unidade (carga, grupo, origem da energia). Os degraus de 2027/2028 são desenhados como prazo legal condicionado, com traço diferente do vigente.",
+          "Reconstruir (6.4): biografia institucional da Light (1904 → 1979 → 1996 → anos 2000 → 2023) como faixa de regimes, e em seguida o Inst·08 como recuperação: para cada pressão, o learner escreve a cadeia (problema → resposta → cicatriz → risco novo) antes de abrir os quatro quadros.",
+          "Fecho: 'a frase que fecha o módulo' (fonte) em destaque, seguida da ponte para Revisão → Avaliação do módulo e do lugar 'experiência jogável em desenho' (P25)."
+        ],
+        "por_que": "Uma síntese não deve ser mais uma leitura: é o momento de recuperar o módulo inteiro. A fonte já diz que o Mapa trauma → cicatriz é 'o mapa que você precisa conseguir reconstruir de cabeça', e isso pede recuperação ativa, não navegação. A primeira metade é um problema de categorização (três eventos confundidos), então pede um classificador."
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "objetivo": "Separar mudança de controle, de marca e de regra, e ler o setor de hoje como camadas acumuladas por crises.",
+        "pergunta": "A Eletrobras virou AXIA e 'foi privatizada'. O que mudou de fato: o dono, o nome ou a regra?",
+        "previsao": {
+          "util": true,
+          "enunciado": "Unidade industrial em média tensão com 700 kW de demanda contratada, energia convencional. Em que ano ela passou a poder escolher o fornecedor?",
+          "valores_do_cenario": { "carga_kW": 700, "grupo": "A", "origem": "convencional" },
+          "resposta_calculada": { "ano": 2023, "norma": "Portaria MME nº 465/2019 (limiar de 500 kW a partir de 1º/01/2023)", "antes": "2022: limiar de 1.000 kW" },
+          "origem_do_calculo": "funções thr/elig do INST 07 da fonte; bate com o gabarito literal do ex-09",
+          "regra_de_entrada": "ano exato",
+          "por_que_ensina": "O erro comum é '2024' (confundir a abertura total do Grupo A com a elegibilidade dessa unidade), o mesmo erro do §Erros 16 no sentido inverso.",
+          "extensao": "Segunda previsão, a padaria em baixa tensão, depende do seletor de grupo que a porta perdeu. Resposta da fonte: não elegível hoje; prazo legal até nov/2027 para comércio e indústria em baixa tensão, condicionado a regulamentação."
+        }
+      },
+      "ato_autentico_C9": {
+        "principal": { "tipo": "responder de memória antes da referência (recuperação)", "camada": "fonte (Inst·08 + ex-10), forma alexandria", "enunciado": "Escolha três das onze pressões e escreva a cadeia completa (problema revelado → resposta institucional → cicatriz que opera hoje → risco novo). Só depois os quatro quadros da fonte abrem para comparação.", "exercita": "o mecanismo de síntese do módulo: nenhuma resposta eliminou risco, todas trocaram risco" },
+        "secundarios": [
+          { "tipo": "classificar", "camada": "fonte (6.1–6.2, 3 níveis executivo, ex-08)", "enunciado": "Controle, marca ou regra? Cartões com os fatos de 2022–2025." },
+          { "tipo": "localizar", "camada": "alexandria sobre Inst·07", "enunciado": "Prever o ano da unidade de 700 kW e depois mover a própria carga na escada." },
+          { "tipo": "identificar o erro", "camada": "fonte (§Erros 16; ex-08)", "enunciado": "'Desde 2024 qualquer consumidor pode escolher fornecedor.' / 'A AXIA é uma empresa nova, sem o passivo da Eletrobras.'" },
+          { "tipo": "ordenar", "camada": "fonte (6.4)", "enunciado": "Trajetória da Light em ordem: capital canadense → Estado (1979) → privatização (1996) → trocas de controlador → recuperação judicial (maio 2023)." }
+        ]
+      },
+      "visualizacao_C6": [
+        { "trabalho": "escada de elegibilidade com a unidade do learner", "relacao": "carga mínima exigida (kW, log 100–4.000) × ano (1995–2028); faixa 'sem exigência de carga'; linha da carga da unidade; marcador do ano; degraus 2027/2028 como prazo legal (traço distinto)", "unidade": "kW; ano", "existe_no_codigo": false, "fonte_desenha": "sim, com verde/vermelho para elegível/não elegível (semáforo)", "promessa_nao_desenhada": "'Linha da abertura' promete uma linha no tempo; o código não desenha nada e não tem nenhuma saída (0 de 4)." },
+        { "trabalho": "cadeia trauma → cicatriz", "relacao": "11 pressões em ordem temporal × 4 quadros encadeados", "unidade": "texto da fonte", "existe_no_codigo": "como select + veredito concatenado (perde a forma de mapa)", "promessa_nao_desenhada": "'Mapa' promete disposição espacial/temporal das onze pressões; hoje é um select." },
+        { "trabalho": "biografia institucional", "relacao": "faixa 1904–2023 com regimes de propriedade da Light (e, em paralelo, Eletrobras 1962–2025)", "unidade": "anos; categorias de regime", "existe_no_codigo": false }
+      ],
+      "instrumento_C5": [
+        {
+          "id": "m06-inst-07",
+          "titulo_fonte": "Linha da abertura · quando cada consumidor passou a poder escolher",
+          "bloco_indice_fonte": "após 12 (nota 'Números vivos' da Lei 15.269), antes de 6.4",
+          "bloco_indice_proposto": "após 11 (parágrafo da Lei 15.269), com a nota de números vivos como ficha junto ao instrumento (a ressalva precisa estar visível na mesma tela que os degraus de 2027/2028)",
+          "com_previsao": true,
+          "lacunas_de_porta": ["seletores Grupo A/B e convencional/incentivada ausentes (ramos da fonte inalcançáveis)", "zero saídas (as 4 da fonte são texto: situação, limiar, norma, elegível a partir de)", "sem escada desenhada", "nota metodológica ausente (patamar anterior a 2019 simplificado; 2027/2028 são prazos)"]
+        },
+        {
+          "id": "m06-inst-08",
+          "titulo_fonte": "Mapa trauma → cicatriz regulatória",
+          "bloco_indice_fonte": "após 16 (fim de 6.4, 'Nenhuma foi.'), antes dos três níveis",
+          "bloco_indice_proposto": "após 16 (mantido), em modo recuperação",
+          "com_previsao": "não (usa 'responder de memória antes da referência')",
+          "lacunas_de_porta": ["grade de 11 chips virou select", "4 quadros viraram um veredito de texto corrido", "disc da fonte ('atribuição de causa é parcialmente interpretativa… use como estrutura de raciocínio, não como sentença') ausente e necessário"]
+        }
+      ],
+      "checagem_C7": { "itens": ["Quiz Q10 (abertura, origem 'Aulas 05 e 06 e Inst·07')", "ex-07, ex-08, ex-09, ex-10: vínculo proposto (P9), tentativa antes do gabarito", "Cadeias do Inst·08 comparadas lado a lado com os quatro quadros; autoavaliação em 3 níveis"] },
+      "recuperacao_e_proximo_passo_C10": {
+        "recuperacao": "É a aula-recuperação do módulo. O Inst·08 em modo memória cobre A01–A05. A inversão da A01 (§Erros 1, 'o setor começou estatal'; Quiz Q1) volta no ordenamento da biografia da Light, sem mostrar a resposta anterior antes.",
+        "proximo_passo": "Última aula → 'Revisão do módulo' (10 exercícios, §Erros, 36 perguntas) → 'Avaliação do módulo' com o critério da fonte mostrado antes (P5/P18: resultado de avaliação, nunca Demonstrado). Não atende nas cadeias → 'Rever a aula de origem da pressão escolhida' (cada item do Inst·08 tem período, que aponta a aula). Atividade recomendada (P14): roteiro oral completo de 10 minutos. Caso — Operação A (lente da história) como aplicação. Linha 'experiência jogável em desenho' no módulo (P25).",
+        "serve_a": "Critério oral do módulo (§00) e §Final itens 1, 2, 23, 24 (inferido; item 24 com ressalva P7/P24)"
+      },
+      "midia_M": {
+        "plano_curadoria": "sem plano.json; 1 original já baixado para esta aula",
+        "usar": [
+          { "asset": "m06-a06-light-sede-ims ('City of Rio de Janeiro · Main Office Building Rua Marechal Floriano', álbum; acervo IMS pelo nome do arquivo)", "onde": "6.4 (biografia da Light)", "classe": "documental", "pendencia": "licença do Instituto Moreira Salles NÃO verificada; o IMS em geral não usa licença livre. Sem licença aceita (M6), não entra" }
+        ],
+        "rejeitar": [
+          { "asset": "his-10-porta-industrial-2024.png", "motivo": "metáfora gerada (porta de cofre) sem trabalho cognitivo" },
+          { "asset": "his-11-placa-institucional-vazia.png", "motivo": "decorativa (placa em branco para o rebranding); teste de remoção falha" }
+        ],
+        "lacuna": "Nenhuma imagem de 2022–2025 é necessária; a escada e a biografia programáticas fazem o trabalho."
+      },
+      "mobile_390": "Pergunta ('dono, nome ou regra?') + classificador no 1º viewport, com cartões e três botões de destino por cartão (sem arrastar). Escada em largura total, eixo com 1995 · 2010 · 2019 · 2024 · 2028; seletores de grupo e origem como segmentos rotulados ≥ 44px. Inst·08 como lista vertical das 11 pressões; ao abrir uma, os 4 campos de escrita vêm primeiro, e os 4 quadros da fonte aparecem abaixo depois do registro. Biografia da Light como faixa vertical.",
+      "lacunas_fonte": [
+        "'cerca de 165 mil empresas' aptas em 2024: 'estimativas de associação setorial', sem associação nomeada e fora do §Ref",
+        "R$ 33,7 bi, R$ 42/ação, 72% → ~40%: o §Ref aponta 'documentos da oferta' sem link específico; percentual é número vivo (consultar RI na data de uso)",
+        "Vetos da Lei 15.269/2025 e regulamentação: estado desconhecido na data da fonte; tratar 2027/2028 sempre como prazo condicionado",
+        "Light 'sucessivas trocas de controlador ao longo dos anos 2000': sem nomes nem datas; não completar",
+        "Veredito do Inst·07 para 2027 cita 'milhões de pequenos comércios e centenas de milhares de pequenas indústrias' por 'estimativas de associação setorial', sem fonte"
+      ],
+      "dependencias_s9": ["Portar seletores do Inst·07 e as 4 saídas textuais (contrato de ResultadoInstrumento só aceita número)", "Desenho das formas (escada, mapa)", "Registro de tentativas (texto das cadeias)", "Avaliação do módulo (quiz extraído) e Revisão com exercícios", "Biblioteca: Lei 14.182/2021, Portaria Normativa 50/2022, Lei 15.269/2025, RI da companhia"],
+      "qa_editorial": [
+        "P24: a lede ('colocar a GridAlpha dentro da história'), o parágrafo 1 de 6.3 ('para a GridAlpha') e a cicatriz do item 11 do Inst·08 ('vale mais para a GridAlpha') são texto voltado ao learner. Precisam de troca editorial registrada, e a troca não pode ser só de marca: o argumento é comercial",
+        "P7 × critério da fonte: o §00 e o §Final item 24 pedem 'defender a independência analítica da GridAlpha'. Decisão do Founder: o fecho pedagógico desta aula deve ser o padrão histórico (camadas e ciclos), sem o argumento de produto, ou o argumento vira atividade recomendada fora da aula?",
+        "Bloco 16: '</b>' solto; havia destaque em 'O regime de propriedade do setor elétrico brasileiro mudou de direção quatro vezes em cento e cinquenta anos, e não há nada na história que sugira que parou.'",
+        "'AXIA… do grego axia, valor, e do latim axis, eixo': etimologia apresentada pela companhia; não é mitologia nem lema, mas não deve virar ornamento (S2)"
+      ],
+      "alem_do_conceito": "A recuperação do módulo acontece dentro da aula: o learner reconstrói cadeias de aulas anteriores antes de ver a referência, e cada cadeia que não atende aponta a aula de origem pelo período.",
+      "nota_ambicao": "Terminar a Trilha II-módulo 1 com o learner escrevendo, de memória, a cadeia de 2001 e a de 2015, e vendo a própria unidade entrar na escada do mercado livre. É uma síntese que produz uma leitura de hoje, não um resumo do que foi lido."
+    }
+  ],
+  "divergencias_codigo_fonte_relevantes_ao_desenho": [
+    { "id": "m06-est-01", "onde": "INSTRUMENTOS_MODULO_06 m06-inst-05 / calculators M06_REG[0]", "fato": "Seletor de regime e grade da régua não portados; só o regime estatal é calculado.", "efeito": "O Comparador não compara; a previsão conceitual da A04 fica impossível." },
+    { "id": "m06-est-02", "onde": "m06-inst-07", "fato": "Seletores Grupo A/B e convencional/incentivada não portados; zero saídas.", "efeito": "Baixa tensão (padaria do ex-09, prazos 2027/2028) e consumidor especial inalcançáveis." },
+    { "id": "m06-est-03", "onde": "cabeçalho do content.ts ('Dezoito entram')", "fato": "Entraram 16 saídas; i2-a5 e i4-ms também caíram.", "efeito": "Contagem declarada errada; dois números que o veredito cita não aparecem como saída." },
+    { "id": "m06-est-04", "onde": "todos os instrumentos de aula", "fato": "Fonte desenha SVG (curva, barras, trajetórias, escada); código não desenha nenhum.", "efeito": "§9 'Desenho das formas prometidas' cobre os 7." },
+    { "id": "m06-est-05", "onde": "MODULO_06_CORPO blocos A03-25, A05-3, A05-13, A06-16", "fato": "span.hl virou '</b>' solto.", "efeito": "Perdem-se as frases-âncora; HTML inválido." },
+    { "id": "m06-est-06", "onde": "note: null em 7 instrumentos", "fato": "As notas metodológicas 'Didático/ilustrativo' da fonte não foram portadas.", "efeito": "S4: número de modelo sem a declaração de que é cenário." },
+    { "id": "m06-est-07", "onde": "m06-inst-04, campo i4-m-n", "fato": "Acima de 8% o campo não altera o cálculo (fonte e código).", "efeito": "Faixa 8–30 do controle inerte; declarar na nota ou limitar a faixa (decisão de conteúdo, não de implementação)." },
+    { "id": "m06-est-08", "onde": "MODULO_06_AULAS[].illustrations", "fato": "his-* são geradas, sem proveniência em media-provenance; his-04 contém texto gerado.", "efeito": "M6/M7: não podem ir ao build como estão." }
+  ],
+  "features_propostas": {
+    "arquivo": "docs/alexandria-v2/estudos/features-propostas-aulas.md, seção 'Do estudo do M06'",
+    "novas": ["F-M06-1 Ficha de divergência entre fontes legítimas", "F-M06-2 Cadeia de quatro elos em modo recuperação", "F-M06-3 Escada de elegibilidade com a unidade do learner", "F-M06-4 Biografia institucional", "F-M06-5 Comparador de regimes lado a lado", "F-M06-6 Medidor com faixas de veredito da fonte", "F-M06-7 Varredura de faixa inerte (QA)", "F-M06-8 Restauração de frases-âncora (QA)"],
+    "reusadas": ["F-M05-1 régua persistente (régua dos seis)", "F-M12-2 régua viva (faixa do tempo do bloco)", "F-M12-5 classificação pós-tentativa", "F-M12-7 / F-M14-5 banco de erros comuns", "F-M12-1 selo datado", "F-M05-4 saídas textuais nomeadas", "F-M05-5 três níveis restaurados"]
+  }
+}

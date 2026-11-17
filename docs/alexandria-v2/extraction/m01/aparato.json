@@ -1,0 +1,2859 @@
+{
+  "schema": "alexandria-v2/extraction/aparato@1",
+  "modulo": "M01",
+  "grupo": "aparato",
+  "fonte": {
+    "arquivo": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo01.html",
+    "linhas_total": 3213,
+    "bytes": 175794
+  },
+  "gerado_em": "2026-09-17",
+  "metodo": "Extração programática (node, regex escopada por section .aula-marker; quiz lido avaliando o literal `const questions = [...]` do <script>). Nenhum texto digitado à mão. Campos `html` preservam o inline da fonte com espaços colapsados; campos `texto` têm tags removidas e entidades decodificadas.",
+  "convencoes": {
+    "linha_aprox": "linha 1-based no HTML-fonte, do início do elemento",
+    "null": "ausência na fonte; cada null tem nota ao lado"
+  },
+  "caso": {
+    "id": "m01-caso-operacao-a",
+    "tipo": "caso",
+    "marcador": "§ Caso",
+    "rotulo_marcador": "Aplicação prática",
+    "titulo": {
+      "html": "Operação A — leitura de uma <em>fatura industrial</em>.",
+      "texto": "Operação A — leitura de uma fatura industrial."
+    },
+    "parte": null,
+    "nota_parte": "A fonte do M01 não divide o caso em partes: não há \"Parte 1\", \"Parte 2\" nem qualquer numeração de parte no markup ou na prosa (varredura por /parte ?[0-9I]/i: zero ocorrências). O caso inteiro está numa única section. O rótulo \"Parte 1\" do brief não existe na fonte; o conteúdo abaixo é o caso completo.",
+    "lead": {
+      "html": "Considere uma operação fictícia que reúne traços comuns de muitos clientes potenciais do Grupo A4 no Brasil. Vamos diagnosticar com a disciplina que a Alexandria exige.",
+      "texto": "Considere uma operação fictícia que reúne traços comuns de muitos clientes potenciais do Grupo A4 no Brasil. Vamos diagnosticar com a disciplina que a Alexandria exige.",
+      "origem": {
+        "seletor": "section.aula(§ Caso) p.lead",
+        "trecho_inicial": "Considere uma operação fictícia que reúne traços comuns de m",
+        "linha_aprox": 2184
+      }
+    },
+    "etiqueta": {
+      "texto": "Operação A · Caso de referência",
+      "origem": {
+        "seletor": ".case-study .case-header .case-tag",
+        "trecho_inicial": "Operação A · Caso de referência",
+        "linha_aprox": 2188
+      }
+    },
+    "subtitulo": {
+      "texto": "Mineração de médio porte · Minas Gerais · Grupo A4 (13,8 kV)",
+      "origem": {
+        "seletor": ".case-study .case-header h3",
+        "trecho_inicial": "Mineração de médio porte · Minas Gerais · Grupo A4 (13,8 kV)",
+        "linha_aprox": 2189
+      }
+    },
+    "aviso_ficcao": {
+      "texto": "Cliente fictício consolidado de traços comuns. Não representa cliente real. Linguagem segura aplicada conforme Trava 3 do War Room.",
+      "origem": {
+        "seletor": ".case-study .case-body > p (primeiro)",
+        "trecho_inicial": "Cliente fictício consolidado de traços comuns. Não represent",
+        "linha_aprox": 2191
+      }
+    },
+    "dados": [
+      {
+        "id": "m01-caso-a-dado-01",
+        "tipo": "dado-do-caso",
+        "rotulo": "Consumo mensal",
+        "valor": "72.000 kWh",
+        "marcado_como_alerta_na_fonte": false,
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-data-cell",
+          "trecho_inicial": "Consumo mensal",
+          "linha_aprox": 2195
+        }
+      },
+      {
+        "id": "m01-caso-a-dado-02",
+        "tipo": "dado-do-caso",
+        "rotulo": "Demanda contratada",
+        "valor": "500 kW",
+        "marcado_como_alerta_na_fonte": false,
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-data-cell",
+          "trecho_inicial": "Demanda contratada",
+          "linha_aprox": 2199
+        }
+      },
+      {
+        "id": "m01-caso-a-dado-03",
+        "tipo": "dado-do-caso",
+        "rotulo": "Demanda máxima",
+        "valor": "400 kW",
+        "marcado_como_alerta_na_fonte": false,
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-data-cell",
+          "trecho_inicial": "Demanda máxima",
+          "linha_aprox": 2203
+        }
+      },
+      {
+        "id": "m01-caso-a-dado-04",
+        "tipo": "dado-do-caso",
+        "rotulo": "Fator de potência",
+        "valor": "0,88",
+        "marcado_como_alerta_na_fonte": true,
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-data-cell",
+          "trecho_inicial": "Fator de potência",
+          "linha_aprox": 2207
+        }
+      },
+      {
+        "id": "m01-caso-a-dado-05",
+        "tipo": "dado-do-caso",
+        "rotulo": "Tensão",
+        "valor": "13,8 kV (A4)",
+        "marcado_como_alerta_na_fonte": false,
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-data-cell",
+          "trecho_inicial": "Tensão",
+          "linha_aprox": 2211
+        }
+      },
+      {
+        "id": "m01-caso-a-dado-06",
+        "tipo": "dado-do-caso",
+        "rotulo": "Cargas",
+        "valor": "Britadores, bombas, compressores, motores",
+        "marcado_como_alerta_na_fonte": false,
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-data-cell",
+          "trecho_inicial": "Cargas",
+          "linha_aprox": 2215
+        }
+      }
+    ],
+    "cabecalhos_internos": [
+      {
+        "texto": "Leitura estruturada",
+        "linha_aprox": 2221
+      },
+      {
+        "texto": "O que pedir ao cliente antes de prosseguir",
+        "linha_aprox": 2236
+      }
+    ],
+    "leitura_estruturada": [
+      {
+        "id": "m01-caso-a-leitura-01",
+        "tipo": "leitura-estruturada",
+        "dimensao": "Consumo",
+        "html": "<strong>Consumo</strong> — 72.000 kWh é o volume mensal. Sozinho, esse número não diz se a conta está bem gerida. Diz apenas que há volume relevante para análise.",
+        "texto": "Consumo — 72.000 kWh é o volume mensal. Sozinho, esse número não diz se a conta está bem gerida. Diz apenas que há volume relevante para análise.",
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-body > p (após h4 \"Leitura estruturada\")",
+          "trecho_inicial": "Consumo — 72.000 kWh é o volume mensal. Sozinho, esse número",
+          "linha_aprox": 2223
+        }
+      },
+      {
+        "id": "m01-caso-a-leitura-02",
+        "tipo": "leitura-estruturada",
+        "dimensao": "Demanda",
+        "html": "<strong>Demanda</strong> — demanda máxima medida de 400 kW contra 500 kW contratados sugere possível folga de 100 kW. Mas não se recomenda redução de demanda contratada com um único mês de dados. <strong>É preciso olhar 12 meses, entender sazonalidade da operação de mineração (estação seca/chuvosa, ciclos de manutenção, expansão planejada) e quantificar risco de ultrapassagem.</strong> Demanda média de 100 kW (72.000 ÷ 720 h) contra máxima de 400 kW dá fator de carga de 0,25 — perfil concentrado com picos relevantes.",
+        "texto": "Demanda — demanda máxima medida de 400 kW contra 500 kW contratados sugere possível folga de 100 kW. Mas não se recomenda redução de demanda contratada com um único mês de dados. É preciso olhar 12 meses, entender sazonalidade da operação de mineração (estação seca/chuvosa, ciclos de manutenção, expansão planejada) e quantificar risco de ultrapassagem. Demanda média de 100 kW (72.000 ÷ 720 h) contra máxima de 400 kW dá fator de carga de 0,25 — perfil concentrado com picos relevantes.",
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-body > p (após h4 \"Leitura estruturada\")",
+          "trecho_inicial": "Demanda — demanda máxima medida de 400 kW contra 500 kW cont",
+          "linha_aprox": 2225
+        }
+      },
+      {
+        "id": "m01-caso-a-leitura-03",
+        "tipo": "leitura-estruturada",
+        "dimensao": "Fator de potência 0,88",
+        "html": "<strong>Fator de potência 0,88</strong> — alerta. Está abaixo da referência prática de 0,92 para o Grupo A. Pode haver cobrança por excedente reativo. Motores e transformadores tornam plausível a causa, mas não provam. <strong>É preciso verificar fatura completa, presença de harmônicos (britadores e drives geram), perfil de carga e idealmente medições dedicadas antes de prescrever solução.</strong>",
+        "texto": "Fator de potência 0,88 — alerta. Está abaixo da referência prática de 0,92 para o Grupo A. Pode haver cobrança por excedente reativo. Motores e transformadores tornam plausível a causa, mas não provam. É preciso verificar fatura completa, presença de harmônicos (britadores e drives geram), perfil de carga e idealmente medições dedicadas antes de prescrever solução.",
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-body > p (após h4 \"Leitura estruturada\")",
+          "trecho_inicial": "Fator de potência 0,88 — alerta. Está abaixo da referência p",
+          "linha_aprox": 2227
+        }
+      },
+      {
+        "id": "m01-caso-a-leitura-04",
+        "tipo": "leitura-estruturada",
+        "dimensao": "Perfil operacional",
+        "html": "<strong>Perfil operacional</strong> — fator de carga de 0,25 e cargas concentradas (britadores, compressores) sugerem padrão de partidas simultâneas e/ou operação em janelas específicas do dia. Possíveis frentes: sequenciamento de partidas, deslocamento de operação para fora-ponta, automação de demanda, ou — em horizonte mais longo — armazenamento atrás-do-medidor.",
+        "texto": "Perfil operacional — fator de carga de 0,25 e cargas concentradas (britadores, compressores) sugerem padrão de partidas simultâneas e/ou operação em janelas específicas do dia. Possíveis frentes: sequenciamento de partidas, deslocamento de operação para fora-ponta, automação de demanda, ou — em horizonte mais longo — armazenamento atrás-do-medidor.",
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-body > p (após h4 \"Leitura estruturada\")",
+          "trecho_inicial": "Perfil operacional — fator de carga de 0,25 e cargas concent",
+          "linha_aprox": 2229
+        }
+      }
+    ],
+    "linguagem_recomendada": {
+      "id": "m01-caso-a-linguagem",
+      "tipo": "callout",
+      "rotulo": "Linguagem GridAlpha para esse caso",
+      "html": "\"A primeira leitura indica três frentes de análise: <strong>adequação da demanda contratada, possível custo por fator de potência abaixo do padrão de referência, e concentração operacional de carga</strong>. Nenhuma economia deve ser prometida antes de validar doze meses de faturas e entender o perfil real da operação. O objetivo é separar o que é custo estrutural inevitável do que é custo gerenciável — e mensurar oportunidade só na segunda categoria.\"",
+      "texto": "\"A primeira leitura indica três frentes de análise: adequação da demanda contratada, possível custo por fator de potência abaixo do padrão de referência, e concentração operacional de carga. Nenhuma economia deve ser prometida antes de validar doze meses de faturas e entender o perfil real da operação. O objetivo é separar o que é custo estrutural inevitável do que é custo gerenciável — e mensurar oportunidade só na segunda categoria.\"",
+      "origem": {
+        "seletor": ".case-body .callout.gold",
+        "trecho_inicial": "Linguagem GridAlpha para esse caso",
+        "linha_aprox": 2231
+      }
+    },
+    "o_que_pedir_ao_cliente": [
+      {
+        "id": "m01-caso-a-pedido-01",
+        "tipo": "dado-a-pedir-ao-cliente",
+        "texto": "Últimas 12 faturas completas, frente e verso;",
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-body > ul > li",
+          "trecho_inicial": "Últimas 12 faturas completas, frente e verso;",
+          "linha_aprox": 2238
+        }
+      },
+      {
+        "id": "m01-caso-a-pedido-02",
+        "tipo": "dado-a-pedir-ao-cliente",
+        "texto": "Memorial de leitura ou registros de demanda da medição;",
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-body > ul > li",
+          "trecho_inicial": "Memorial de leitura ou registros de demanda da medição;",
+          "linha_aprox": 2239
+        }
+      },
+      {
+        "id": "m01-caso-a-pedido-03",
+        "tipo": "dado-a-pedir-ao-cliente",
+        "texto": "Demanda contratada, demanda medida e histórico de ultrapassagem;",
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-body > ul > li",
+          "trecho_inicial": "Demanda contratada, demanda medida e histórico de ultrapassa",
+          "linha_aprox": 2240
+        }
+      },
+      {
+        "id": "m01-caso-a-pedido-04",
+        "tipo": "dado-a-pedir-ao-cliente",
+        "texto": "Cobranças de energia reativa ou demanda reativa excedente;",
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-body > ul > li",
+          "trecho_inicial": "Cobranças de energia reativa ou demanda reativa excedente;",
+          "linha_aprox": 2241
+        }
+      },
+      {
+        "id": "m01-caso-a-pedido-05",
+        "tipo": "dado-a-pedir-ao-cliente",
+        "texto": "Modalidade tarifária (verde, azul, branca) e tensão de fornecimento;",
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-body > ul > li",
+          "trecho_inicial": "Modalidade tarifária (verde, azul, branca) e tensão de forne",
+          "linha_aprox": 2242
+        }
+      },
+      {
+        "id": "m01-caso-a-pedido-06",
+        "tipo": "dado-a-pedir-ao-cliente",
+        "texto": "Lista das maiores cargas — motores, britadores, compressores, com potências e horários de operação;",
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-body > ul > li",
+          "trecho_inicial": "Lista das maiores cargas — motores, britadores, compressores",
+          "linha_aprox": 2243
+        }
+      },
+      {
+        "id": "m01-caso-a-pedido-07",
+        "tipo": "dado-a-pedir-ao-cliente",
+        "texto": "Eventos de parada, queima de equipamento, queda de tensão, sazonalidade;",
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-body > ul > li",
+          "trecho_inicial": "Eventos de parada, queima de equipamento, queda de tensão, s",
+          "linha_aprox": 2244
+        }
+      },
+      {
+        "id": "m01-caso-a-pedido-08",
+        "tipo": "dado-a-pedir-ao-cliente",
+        "texto": "Planos de expansão e investimentos previstos.",
+        "origem": {
+          "seletor": "section.aula(§ Caso) .case-body > ul > li",
+          "trecho_inicial": "Planos de expansão e investimentos previstos.",
+          "linha_aprox": 2245
+        }
+      }
+    ],
+    "perguntas": null,
+    "nota_perguntas": "A fonte não formula perguntas ao learner dentro do caso. Os únicos enunciados são os cabeçalhos h4 \"Leitura estruturada\" e \"O que pedir ao cliente antes de prosseguir\"; ambos já vêm resolvidos pela própria fonte (leitura feita, lista dada). Nada foi convertido em pergunta.",
+    "decisao_pedida": null,
+    "nota_decisao": "A fonte não pede decisão ao learner. O caso termina na lista de dados a pedir; a \"decisão\" implícita (não prometer economia antes de 12 faturas) é dita pela fonte como conclusão, no callout \"Linguagem GridAlpha para esse caso\", e não como escolha a registrar. Relevante para bar C8 (\"o caso termina em decisão\"): a decisão, se existir no v2, terá de ser derivada (P3/P11) e revisada — não está no HTML.",
+    "vinculos": {
+      "aulas_declaradas": [],
+      "nota": "O caso não aponta aula por tag. Conceitos usados (demanda, fator de carga, fator de potência 0,92, Grupo A4) pertencem às Aulas 05, 06 e 07 por conteúdo, mas a fonte não declara o vínculo — não inferido aqui.",
+      "termos_citados_que_existem_no_glossario_m01": null,
+      "instrumento": null
+    },
+    "origem": {
+      "seletor": "section.aula > .aula-marker \"§ Caso\"",
+      "trecho_inicial": "Operação A — leitura de uma fatura industrial.",
+      "linha_aprox": 2179
+    },
+    "codigo_atual": "Não extraído. Nenhum arquivo em src/lib/data contém \"Operação A\" (grep). Dependência bar §9 \"Caso ... só no HTML\"."
+  },
+  "avaliacao": {
+    "id": "m01-quiz",
+    "tipo": "avaliacao-do-modulo",
+    "marcador": "§ Quiz",
+    "rotulo_marcador": "Verificação interativa de domínio",
+    "titulo": {
+      "html": "Dez perguntas. Resposta <em>imediata</em>.",
+      "texto": "Dez perguntas. Resposta imediata."
+    },
+    "introducao": {
+      "html": "Quiz de fluência. Cada resposta tem feedback explicativo. O critério de domínio do módulo é acertar pelo menos <strong>8 de 10</strong> sem consultar.",
+      "texto": "Quiz de fluência. Cada resposta tem feedback explicativo. O critério de domínio do módulo é acertar pelo menos 8 de 10 sem consultar.",
+      "origem": {
+        "seletor": "section.aula(§ Quiz) > p",
+        "trecho_inicial": "Quiz de fluência. Cada resposta tem feedback explicativo. O ",
+        "linha_aprox": 2473
+      }
+    },
+    "mecanica_fonte": "Uma tentativa por questão (a questão trava após o primeiro clique); a alternativa correta é destacada e o feedback aparece imediatamente; o placar só aparece quando as 10 foram respondidas. Sem reinício, sem persistência (nada em localStorage). Cor verde/vermelho marca acerto/erro (conflita com bar S2/C7 — registro, não decisão).",
+    "total_questoes": 10,
+    "criterio_literal_prosa": {
+      "texto": "O critério de domínio do módulo é acertar pelo menos 8 de 10 sem consultar.",
+      "origem": {
+        "seletor": "section.aula(§ Quiz) > p > strong",
+        "trecho_inicial": "8 de 10",
+        "linha_aprox": 2473
+      }
+    },
+    "faixas_de_placar_script": {
+      "faixas": [
+        {
+          "condicao": "correct >= 9",
+          "minimo": 9,
+          "mensagem": "Domínio sólido. Pronto para o Módulo 02.",
+          "intervalo": "9–10"
+        },
+        {
+          "condicao": "correct >= 7",
+          "minimo": 7,
+          "mensagem": "Bom. Revise os pontos errados, depois avance para o próximo módulo.",
+          "intervalo": "7–8"
+        },
+        {
+          "condicao": "correct >= 5",
+          "minimo": 5,
+          "mensagem": "Domínio parcial. Volte às aulas onde errou antes de avançar.",
+          "intervalo": "5–6"
+        },
+        {
+          "condicao": "else (correct <= 4)",
+          "minimo": 0,
+          "mensagem": "Refaça o estudo. O critério de domínio é 8/10 — sem atalho.",
+          "intervalo": "0–4"
+        }
+      ],
+      "origem": {
+        "seletor": "<script> QUIZ: if (correct >= 9) ... else",
+        "trecho_inicial": "if (correct >= 9) scoreMsg.textContent = 'Domínio sólido...",
+        "linha_aprox": 3199
+      },
+      "nota_intervalo": "`intervalo`, `minimo` e `condicao` descrevem a lógica do if/else; não são texto exibido. Só `mensagem` é verbatim."
+    },
+    "rotulos_de_interface_fonte": {
+      "rotulo_placar": {
+        "texto": "Pontuação final",
+        "origem": {
+          "seletor": "#quiz-score .quiz-score-label",
+          "trecho_inicial": "Pontuação final",
+          "linha_aprox": 2479
+        }
+      },
+      "total_placar": {
+        "texto": "/10",
+        "origem": {
+          "seletor": "#quiz-score .quiz-score-value .total",
+          "trecho_inicial": "/10",
+          "linha_aprox": 2480
+        }
+      },
+      "rotulo_questao_template": {
+        "texto": "Pergunta ${String(idx + 1).padStart(2, '0')} / 10",
+        "origem": {
+          "seletor": "<script> QUIZ .quiz-q-num (template)",
+          "trecho_inicial": "<div class=\"quiz-q-num\">Pergunta",
+          "linha_aprox": 3164
+        }
+      },
+      "nota": "Acrescentado na verificação. `perguntas[].rotulo_fonte` é o resultado renderizado deste template, e não um literal do arquivo."
+    },
+    "perguntas": [
+      {
+        "id": "m01-quiz-q01",
+        "tipo": "questao-multipla-escolha",
+        "rotulo_fonte": "Pergunta 01 / 10",
+        "enunciado": "Um motor de 20 kW opera por 4 horas. Qual o consumo?",
+        "alternativas": [
+          {
+            "letra": "A",
+            "indice": 0,
+            "texto": "20 kW"
+          },
+          {
+            "letra": "B",
+            "indice": 1,
+            "texto": "80 kW"
+          },
+          {
+            "letra": "C",
+            "indice": 2,
+            "texto": "80 kWh"
+          },
+          {
+            "letra": "D",
+            "indice": 3,
+            "texto": "5 kWh"
+          }
+        ],
+        "gabarito": {
+          "indice": 2,
+          "letra": "C",
+          "texto": "80 kWh"
+        },
+        "explicacao": "Consumo = potência × tempo = 20 kW × 4 h = 80 kWh. kW mede potência (taxa); kWh mede energia (acumulado). Esse é o teste mais básico de fluência kW vs kWh.",
+        "nota_explicacao": "A fonte mostra o mesmo feedback para acerto e erro (fb.textContent = q.feedback), depois de travar as alternativas.",
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa questão a aula."
+        },
+        "origem": {
+          "seletor": "<script> const questions[0]",
+          "trecho_inicial": "Um motor de 20 kW opera por 4 horas. Qual o consumo?",
+          "linha_aprox": 3078
+        }
+      },
+      {
+        "id": "m01-quiz-q02",
+        "tipo": "questao-multipla-escolha",
+        "rotulo_fonte": "Pergunta 02 / 10",
+        "enunciado": "Em corrente contínua aproximada, qual a relação entre tensão, corrente e potência?",
+        "alternativas": [
+          {
+            "letra": "A",
+            "indice": 0,
+            "texto": "P = V + I"
+          },
+          {
+            "letra": "B",
+            "indice": 1,
+            "texto": "P = V × I"
+          },
+          {
+            "letra": "C",
+            "indice": 2,
+            "texto": "P = V ÷ I"
+          },
+          {
+            "letra": "D",
+            "indice": 3,
+            "texto": "P = V²"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "P = V × I"
+        },
+        "explicacao": "P = V × I. Tensão (V) × Corrente (I) = Potência (W). É a equação fundamental que liga as três grandezas básicas da eletricidade. Em AC com cargas indutivas, há o fator de potência multiplicando — mas a estrutura base é essa.",
+        "nota_explicacao": "A fonte mostra o mesmo feedback para acerto e erro (fb.textContent = q.feedback), depois de travar as alternativas.",
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa questão a aula."
+        },
+        "origem": {
+          "seletor": "<script> const questions[1]",
+          "trecho_inicial": "Em corrente contínua aproximada, qual a relação entre tensão",
+          "linha_aprox": 3084
+        }
+      },
+      {
+        "id": "m01-quiz-q03",
+        "tipo": "questao-multipla-escolha",
+        "rotulo_fonte": "Pergunta 03 / 10",
+        "enunciado": "Se a corrente em um cabo triplica, o que acontece com as perdas resistivas?",
+        "alternativas": [
+          {
+            "letra": "A",
+            "indice": 0,
+            "texto": "Triplicam"
+          },
+          {
+            "letra": "B",
+            "indice": 1,
+            "texto": "Quadruplicam"
+          },
+          {
+            "letra": "C",
+            "indice": 2,
+            "texto": "Aumentam 6 vezes"
+          },
+          {
+            "letra": "D",
+            "indice": 3,
+            "texto": "Aumentam 9 vezes"
+          }
+        ],
+        "gabarito": {
+          "indice": 3,
+          "letra": "D",
+          "texto": "Aumentam 9 vezes"
+        },
+        "explicacao": "P_perdas = I² × R. Se I triplica (×3), I² = 9, então as perdas aumentam 9 vezes. Esse crescimento quadrático é a razão por que transmissão de energia usa alta tensão — assim a corrente fica baixa para a mesma potência, e as perdas caem drasticamente.",
+        "nota_explicacao": "A fonte mostra o mesmo feedback para acerto e erro (fb.textContent = q.feedback), depois de travar as alternativas.",
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa questão a aula."
+        },
+        "origem": {
+          "seletor": "<script> const questions[2]",
+          "trecho_inicial": "Se a corrente em um cabo triplica, o que acontece com as per",
+          "linha_aprox": 3090
+        }
+      },
+      {
+        "id": "m01-quiz-q04",
+        "tipo": "questao-multipla-escolha",
+        "rotulo_fonte": "Pergunta 04 / 10",
+        "enunciado": "Por que uma fábrica paga demanda além de consumo?",
+        "alternativas": [
+          {
+            "letra": "A",
+            "indice": 0,
+            "texto": "É um truque tarifário para aumentar receita da distribuidora"
+          },
+          {
+            "letra": "B",
+            "indice": 1,
+            "texto": "Porque a rede precisa ser dimensionada para o pico de potência, não para o consumo médio"
+          },
+          {
+            "letra": "C",
+            "indice": 2,
+            "texto": "Porque é exigência legal sem justificativa técnica"
+          },
+          {
+            "letra": "D",
+            "indice": 3,
+            "texto": "Para compensar perdas técnicas da rede"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "Porque a rede precisa ser dimensionada para o pico de potência, não para o consumo médio"
+        },
+        "explicacao": "A distribuidora dimensiona transformadores, cabos e proteção para o pior momento simultâneo de demanda. Essa infraestrutura tem custo fixo: existe e custa mesmo se a fábrica usa pouco. Demanda é a cobrança por essa capacidade reservada — é tradução econômica de uma realidade física, não cobrança esotérica.",
+        "nota_explicacao": "A fonte mostra o mesmo feedback para acerto e erro (fb.textContent = q.feedback), depois de travar as alternativas.",
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa questão a aula."
+        },
+        "origem": {
+          "seletor": "<script> const questions[3]",
+          "trecho_inicial": "Por que uma fábrica paga demanda além de consumo?",
+          "linha_aprox": 3096
+        }
+      },
+      {
+        "id": "m01-quiz-q05",
+        "tipo": "questao-multipla-escolha",
+        "rotulo_fonte": "Pergunta 05 / 10",
+        "enunciado": "Uma instalação tem demanda média de 200 kW e demanda máxima de 500 kW. Qual o fator de carga?",
+        "alternativas": [
+          {
+            "letra": "A",
+            "indice": 0,
+            "texto": "0,40"
+          },
+          {
+            "letra": "B",
+            "indice": 1,
+            "texto": "0,60"
+          },
+          {
+            "letra": "C",
+            "indice": 2,
+            "texto": "2,50"
+          },
+          {
+            "letra": "D",
+            "indice": 3,
+            "texto": "0,25"
+          }
+        ],
+        "gabarito": {
+          "indice": 0,
+          "letra": "A",
+          "texto": "0,40"
+        },
+        "explicacao": "FC = Demanda média ÷ Demanda máxima = 200 ÷ 500 = 0,40 (40%). Esse FC indica operação com sazonalidade moderada — possível oportunidade de gestão de carga, mas exige 12 meses de histórico para decisão.",
+        "nota_explicacao": "A fonte mostra o mesmo feedback para acerto e erro (fb.textContent = q.feedback), depois de travar as alternativas.",
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa questão a aula."
+        },
+        "origem": {
+          "seletor": "<script> const questions[4]",
+          "trecho_inicial": "Uma instalação tem demanda média de 200 kW e demanda máxima ",
+          "linha_aprox": 3107
+        }
+      },
+      {
+        "id": "m01-quiz-q06",
+        "tipo": "questao-multipla-escolha",
+        "rotulo_fonte": "Pergunta 06 / 10",
+        "enunciado": "No Brasil, fator de potência mínimo de referência regulatória para Grupo A é:",
+        "alternativas": [
+          {
+            "letra": "A",
+            "indice": 0,
+            "texto": "0,85"
+          },
+          {
+            "letra": "B",
+            "indice": 1,
+            "texto": "0,90"
+          },
+          {
+            "letra": "C",
+            "indice": 2,
+            "texto": "0,92"
+          },
+          {
+            "letra": "D",
+            "indice": 3,
+            "texto": "0,95"
+          }
+        ],
+        "gabarito": {
+          "indice": 2,
+          "letra": "C",
+          "texto": "0,92"
+        },
+        "explicacao": "0,92, indutivo ou capacitivo. Abaixo desse valor, pode haver cobrança regulatória sobre o excedente reativo. Mas atenção: detalhes operacionais dependem da modalidade tarifária e regras vigentes (atualmente REN ANEEL 1.000/2021).",
+        "nota_explicacao": "A fonte mostra o mesmo feedback para acerto e erro (fb.textContent = q.feedback), depois de travar as alternativas.",
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa questão a aula."
+        },
+        "origem": {
+          "seletor": "<script> const questions[5]",
+          "trecho_inicial": "No Brasil, fator de potência mínimo de referência regulatóri",
+          "linha_aprox": 3113
+        }
+      },
+      {
+        "id": "m01-quiz-q07",
+        "tipo": "questao-multipla-escolha",
+        "rotulo_fonte": "Pergunta 07 / 10",
+        "enunciado": "Qual a relação correta entre as três potências em um triângulo de potência?",
+        "alternativas": [
+          {
+            "letra": "A",
+            "indice": 0,
+            "texto": "kVA = kW + kVAr"
+          },
+          {
+            "letra": "B",
+            "indice": 1,
+            "texto": "kVA² = kW² + kVAr²"
+          },
+          {
+            "letra": "C",
+            "indice": 2,
+            "texto": "kW = kVA × kVAr"
+          },
+          {
+            "letra": "D",
+            "indice": 3,
+            "texto": "kVAr = kVA × kW"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "kVA² = kW² + kVAr²"
+        },
+        "explicacao": "kVA² = kW² + kVAr² (Pitágoras — triângulo retângulo). Equivalente: kVA = √(kW² + kVAr²). E o fator de potência é cos φ = kW ÷ kVA. Memorize esse triângulo — é o coração técnico do módulo.",
+        "nota_explicacao": "A fonte mostra o mesmo feedback para acerto e erro (fb.textContent = q.feedback), depois de travar as alternativas.",
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa questão a aula."
+        },
+        "origem": {
+          "seletor": "<script> const questions[6]",
+          "trecho_inicial": "Qual a relação correta entre as três potências em um triângu",
+          "linha_aprox": 3119
+        }
+      },
+      {
+        "id": "m01-quiz-q08",
+        "tipo": "questao-multipla-escolha",
+        "rotulo_fonte": "Pergunta 08 / 10",
+        "enunciado": "Uma usina solar de 50 MW gerou 100.000 MWh em um ano (8.760 h). Qual o fator de capacidade?",
+        "alternativas": [
+          {
+            "letra": "A",
+            "indice": 0,
+            "texto": "12,3%"
+          },
+          {
+            "letra": "B",
+            "indice": 1,
+            "texto": "22,8%"
+          },
+          {
+            "letra": "C",
+            "indice": 2,
+            "texto": "50,0%"
+          },
+          {
+            "letra": "D",
+            "indice": 3,
+            "texto": "11,4%"
+          }
+        ],
+        "gabarito": {
+          "indice": 1,
+          "letra": "B",
+          "texto": "22,8%"
+        },
+        "explicacao": "FC = 100.000 ÷ (50 × 8.760) = 100.000 ÷ 438.000 = 22,8%. Está dentro da faixa típica de solar fotovoltaica em latitudes brasileiras (~20–28%). Para comparação: hidro BR ~50%, nuclear 85–95%.",
+        "nota_explicacao": "A fonte mostra o mesmo feedback para acerto e erro (fb.textContent = q.feedback), depois de travar as alternativas.",
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa questão a aula."
+        },
+        "origem": {
+          "seletor": "<script> const questions[7]",
+          "trecho_inicial": "Uma usina solar de 50 MW gerou 100.000 MWh em um ano (8.760 ",
+          "linha_aprox": 3130
+        }
+      },
+      {
+        "id": "m01-quiz-q09",
+        "tipo": "questao-multipla-escolha",
+        "rotulo_fonte": "Pergunta 09 / 10",
+        "enunciado": "Qual subgrupo tarifário concentra a maioria do mercado livre potencial industrial no Brasil?",
+        "alternativas": [
+          {
+            "letra": "A",
+            "indice": 0,
+            "texto": "A1"
+          },
+          {
+            "letra": "B",
+            "indice": 1,
+            "texto": "A2"
+          },
+          {
+            "letra": "C",
+            "indice": 2,
+            "texto": "A4"
+          },
+          {
+            "letra": "D",
+            "indice": 3,
+            "texto": "Grupo B"
+          }
+        ],
+        "gabarito": {
+          "indice": 2,
+          "letra": "C",
+          "texto": "A4"
+        },
+        "explicacao": "Grupo A4 (2,3 a 25 kV). Grande volume de consumidores industriais médios, complexidade tarifária suficiente para gerar diagnóstico relevante, e ainda não atendidos por consultorias premium que se concentram em A1/A2. É o terreno mais fértil para a GridAlpha no Brasil.",
+        "nota_explicacao": "A fonte mostra o mesmo feedback para acerto e erro (fb.textContent = q.feedback), depois de travar as alternativas.",
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa questão a aula."
+        },
+        "origem": {
+          "seletor": "<script> const questions[8]",
+          "trecho_inicial": "Qual subgrupo tarifário concentra a maioria do mercado livre",
+          "linha_aprox": 3136
+        }
+      },
+      {
+        "id": "m01-quiz-q10",
+        "tipo": "questao-multipla-escolha",
+        "rotulo_fonte": "Pergunta 10 / 10",
+        "enunciado": "Um cliente diz: 'Minha conta de luz está cara, quero mercado livre.' Qual a primeira atitude correta?",
+        "alternativas": [
+          {
+            "letra": "A",
+            "indice": 0,
+            "texto": "Calcular imediatamente a economia potencial em ACL"
+          },
+          {
+            "letra": "B",
+            "indice": 1,
+            "texto": "Apresentar comercializadoras parceiras"
+          },
+          {
+            "letra": "C",
+            "indice": 2,
+            "texto": "Pedir 12 faturas e diagnosticar a estrutura atual de custo antes de propor migração"
+          },
+          {
+            "letra": "D",
+            "indice": 3,
+            "texto": "Recomendar banco de capacitores"
+          }
+        ],
+        "gabarito": {
+          "indice": 2,
+          "letra": "C",
+          "texto": "Pedir 12 faturas e diagnosticar a estrutura atual de custo antes de propor migração"
+        },
+        "explicacao": "Mercado livre pode ser relevante, mas só após diagnóstico estruturado da fatura atual. Pedir 12 faturas, contrato de demanda, tensão de fornecimento, perfil operacional. Eliminar oportunidades estruturais (demanda mal dimensionada, FP baixo, modalidade tarifária inadequada) antes de propor migração. Promessa de economia sem diagnóstico fere a Trava 4 do War Room.",
+        "nota_explicacao": "A fonte mostra o mesmo feedback para acerto e erro (fb.textContent = q.feedback), depois de travar as alternativas.",
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa questão a aula."
+        },
+        "origem": {
+          "seletor": "<script> const questions[9]",
+          "trecho_inicial": "Um cliente diz: 'Minha conta de luz está cara, quero mercado",
+          "linha_aprox": 3142
+        }
+      }
+    ],
+    "codigo_atual": "Não extraído. Nenhum arquivo em src/lib/data contém o quiz do M01 (grep \"quiz\"). bar §9: \"Avaliação do módulo (quiz) — Só no HTML; critério do M01 contraditório (P5)\"."
+  },
+  "checklist_final": {
+    "id": "m01-checklist-final",
+    "tipo": "checklist-final",
+    "marcador": "§ Final",
+    "rotulo_marcador": "Checklist de domínio",
+    "titulo": {
+      "html": "O critério de <em>conclusão</em>.",
+      "texto": "O critério de conclusão."
+    },
+    "introducao": {
+      "html": "Você só passa neste módulo se conseguir, sem consultar nenhum material, fazer todas as ações abaixo. Marque ao longo do estudo. Quando todas estiverem marcadas, você está pronto para o Módulo 02 — A Rede Elétrica.",
+      "texto": "Você só passa neste módulo se conseguir, sem consultar nenhum material, fazer todas as ações abaixo. Marque ao longo do estudo. Quando todas estiverem marcadas, você está pronto para o Módulo 02 — A Rede Elétrica.",
+      "origem": {
+        "seletor": "section.aula(§ Final) > p",
+        "trecho_inicial": "Você só passa neste módulo se conseguir, sem consultar nenhu",
+        "linha_aprox": 2492
+      }
+    },
+    "mecanica_fonte": "Clique alterna a classe .checked no item (script \"CHECKLIST: toggle on click\"). Sem persistência, sem contagem, sem gatilho ao completar.",
+    "total_itens": 16,
+    "itens": [
+      {
+        "id": "m01-checklist-01",
+        "tipo": "item-de-checklist",
+        "html": "Explicar kW vs kWh em 30 segundos, com exemplo numérico.",
+        "texto": "Explicar kW vs kWh em 30 segundos, com exemplo numérico.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Explicar kW vs kWh em 30 segundos, com exemplo numérico.",
+          "linha_aprox": 2497
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-02",
+        "tipo": "item-de-checklist",
+        "html": "Dar um exemplo de Energia = Potência × Tempo, com unidades corretas.",
+        "texto": "Dar um exemplo de Energia = Potência × Tempo, com unidades corretas.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Dar um exemplo de Energia = Potência × Tempo, com unidades c",
+          "linha_aprox": 2498
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-03",
+        "tipo": "item-de-checklist",
+        "html": "Explicar por que demanda existe na conta industrial.",
+        "texto": "Explicar por que demanda existe na conta industrial.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Explicar por que demanda existe na conta industrial.",
+          "linha_aprox": 2499
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-04",
+        "tipo": "item-de-checklist",
+        "html": "Calcular demanda média a partir de kWh mensal e horas do período.",
+        "texto": "Calcular demanda média a partir de kWh mensal e horas do período.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Calcular demanda média a partir de kWh mensal e horas do per",
+          "linha_aprox": 2500
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-05",
+        "tipo": "item-de-checklist",
+        "html": "Calcular fator de carga e interpretar o que ele significa operacionalmente.",
+        "texto": "Calcular fator de carga e interpretar o que ele significa operacionalmente.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Calcular fator de carga e interpretar o que ele significa op",
+          "linha_aprox": 2501
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-06",
+        "tipo": "item-de-checklist",
+        "html": "Explicar a Lei de Ohm e por que perdas crescem com I².",
+        "texto": "Explicar a Lei de Ohm e por que perdas crescem com I².",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Explicar a Lei de Ohm e por que perdas crescem com I².",
+          "linha_aprox": 2502
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-07",
+        "tipo": "item-de-checklist",
+        "html": "Justificar fisicamente por que transmissão usa alta tensão.",
+        "texto": "Justificar fisicamente por que transmissão usa alta tensão.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Justificar fisicamente por que transmissão usa alta tensão.",
+          "linha_aprox": 2503
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-08",
+        "tipo": "item-de-checklist",
+        "html": "Explicar AC vs DC sem virar história longa de Tesla vs Edison.",
+        "texto": "Explicar AC vs DC sem virar história longa de Tesla vs Edison.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Explicar AC vs DC sem virar história longa de Tesla vs Ediso",
+          "linha_aprox": 2504
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-09",
+        "tipo": "item-de-checklist",
+        "html": "Explicar frequência como evidência física do equilíbrio geração-consumo.",
+        "texto": "Explicar frequência como evidência física do equilíbrio geração-consumo.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Explicar frequência como evidência física do equilíbrio gera",
+          "linha_aprox": 2505
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-10",
+        "tipo": "item-de-checklist",
+        "html": "Desenhar o triângulo kW, kVAr, kVA e identificar cada lado.",
+        "texto": "Desenhar o triângulo kW, kVAr, kVA e identificar cada lado.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Desenhar o triângulo kW, kVAr, kVA e identificar cada lado.",
+          "linha_aprox": 2506
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-11",
+        "tipo": "item-de-checklist",
+        "html": "Calcular fator de potência e explicar por que abaixo de 0,92 pode virar cobrança.",
+        "texto": "Calcular fator de potência e explicar por que abaixo de 0,92 pode virar cobrança.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Calcular fator de potência e explicar por que abaixo de 0,92",
+          "linha_aprox": 2507
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-12",
+        "tipo": "item-de-checklist",
+        "html": "Listar três fenômenos de qualidade de energia e sua consequência industrial.",
+        "texto": "Listar três fenômenos de qualidade de energia e sua consequência industrial.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Listar três fenômenos de qualidade de energia e sua consequê",
+          "linha_aprox": 2508
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-13",
+        "tipo": "item-de-checklist",
+        "html": "Diferenciar capacidade instalada e fator de capacidade por fonte.",
+        "texto": "Diferenciar capacidade instalada e fator de capacidade por fonte.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Diferenciar capacidade instalada e fator de capacidade por f",
+          "linha_aprox": 2509
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-14",
+        "tipo": "item-de-checklist",
+        "html": "Identificar Grupo A4 e por que ele é o terreno prioritário da GridAlpha no Brasil.",
+        "texto": "Identificar Grupo A4 e por que ele é o terreno prioritário da GridAlpha no Brasil.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Identificar Grupo A4 e por que ele é o terreno prioritário d",
+          "linha_aprox": 2510
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-15",
+        "tipo": "item-de-checklist",
+        "html": "Listar exatamente quais dados pedir antes de recomendar economia.",
+        "texto": "Listar exatamente quais dados pedir antes de recomendar economia.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Listar exatamente quais dados pedir antes de recomendar econ",
+          "linha_aprox": 2511
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      },
+      {
+        "id": "m01-checklist-16",
+        "tipo": "item-de-checklist",
+        "html": "Saber em que situação <strong>não</strong> recomendar redução de demanda contratada.",
+        "texto": "Saber em que situação não recomendar redução de demanda contratada.",
+        "origem": {
+          "seletor": "#checklist .checklist-item .text",
+          "trecho_inicial": "Saber em que situação não recomendar redução de demanda cont",
+          "linha_aprox": 2512
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não associa item a aula."
+        }
+      }
+    ],
+    "itens_orais_ou_cronometrados_P14": [
+      {
+        "id": "m01-checklist-01",
+        "motivo": "contém critério cronometrado literal (\"em 30 segundos\")"
+      }
+    ],
+    "nota_P14": "Todos os 16 itens são desempenho verbal/manual declarado pelo learner (\"sem consultar nenhum material\"); nenhum é verificável automaticamente. Só o item 01 tem tempo explícito. Classificação oral/não oral dos demais fica para revisão — não decidida aqui.",
+    "codigo_atual": "Não extraído (grep \"checklist\" em src/lib/data só acha a palavra dentro de um parágrafo da Aula 09 sobre a triagem PQA — outra coisa)."
+  },
+  "exercicios": {
+    "id": "m01-drill",
+    "tipo": "bloco-de-exercicios",
+    "marcador": "§ Drill",
+    "rotulo_marcador": "Exercícios com gabarito",
+    "titulo": {
+      "html": "Resolva. Depois <em>verifique</em>.",
+      "texto": "Resolva. Depois verifique."
+    },
+    "introducao": {
+      "html": "Resolva cada exercício mentalmente ou no papel antes de revelar a resposta. Os exercícios alcançam todas as nove aulas. O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+      "texto": "Resolva cada exercício mentalmente ou no papel antes de revelar a resposta. Os exercícios alcançam todas as nove aulas. O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+      "origem": {
+        "seletor": "section.aula(§ Drill) > p",
+        "trecho_inicial": "Resolva cada exercício mentalmente ou no papel antes de reve",
+        "linha_aprox": 2387
+      }
+    },
+    "rotulo_botao_gabarito": {
+      "texto": "Revelar gabarito",
+      "origem": {
+        "seletor": "section.aula(§ Drill) .exercise button.exercise-toggle (×8)",
+        "trecho_inicial": "Revelar gabarito",
+        "linha_aprox": 2394
+      },
+      "nota": "Acrescentado na verificação. É o mesmo rótulo nos 8 exercícios (L2394, 2403, 2412, 2421, 2430, 2439, 2448, 2459), e o clique chama toggleAns(this)."
+    },
+    "criterio_literal_prosa": "O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+    "total_na_fonte": 8,
+    "aulas_cobertas_por_tag": [
+      "aula-01-01",
+      "aula-01-02",
+      "aula-01-04",
+      "aula-01-05",
+      "aula-01-07",
+      "aula-01-08"
+    ],
+    "soltos_P9": [
+      {
+        "id": "m01-ex-08",
+        "tipo": "exercicio-com-gabarito",
+        "tag": "Ex · 08 · Síntese · Diagnóstico inicial",
+        "solto_P9": true,
+        "aula_declarada": null,
+        "enunciado": {
+          "html": "Um cliente em Minas Gerais te diz: <i>\"Minha conta de luz está cara, quero migrar para o mercado livre.\"</i> Responda em até oito linhas: por que você não começa imediatamente falando de mercado livre? Quais fundamentos do módulo você checa primeiro? Que dados pede?",
+          "texto": "Um cliente em Minas Gerais te diz: \"Minha conta de luz está cara, quero migrar para o mercado livre.\" Responda em até oito linhas: por que você não começa imediatamente falando de mercado livre? Quais fundamentos do módulo você checa primeiro? Que dados pede?"
+        },
+        "gabarito": {
+          "paragrafos_html": [
+            "\"Mercado livre pode ser relevante, mas primeiro precisamos entender a estrutura atual de custo da sua fatura. Antes de qualquer migração, eu checaria: consumo em kWh, demanda contratada e medida em kW, fator de carga, fator de potência, modalidade tarifária, distribuição ponta/fora-ponta e existência de cobranças de reativo. Pediria 12 faturas completas, contrato de demanda, tensão de fornecimento, horários de operação e lista das maiores cargas. <b>Sem isso, estaríamos propondo uma solução antes de diagnosticar o problema</b> — e mercado livre só faz sentido depois de eliminadas as oportunidades estruturais no contrato atual.\""
+          ],
+          "texto": "\"Mercado livre pode ser relevante, mas primeiro precisamos entender a estrutura atual de custo da sua fatura. Antes de qualquer migração, eu checaria: consumo em kWh, demanda contratada e medida em kW, fator de carga, fator de potência, modalidade tarifária, distribuição ponta/fora-ponta e existência de cobranças de reativo. Pediria 12 faturas completas, contrato de demanda, tensão de fornecimento, horários de operação e lista das maiores cargas. Sem isso, estaríamos propondo uma solução antes de diagnosticar o problema — e mercado livre só faz sentido depois de eliminadas as oportunidades estruturais no contrato atual.\""
+        },
+        "origem": {
+          "seletor": "section.aula(§ Drill) .exercise .exercise-tag",
+          "trecho_inicial": "Ex · 08 · Síntese · Diagnóstico inicial",
+          "linha_aprox": 2456
+        }
+      }
+    ],
+    "vinculados_a_aula_indice": [
+      {
+        "id": "m01-ex-01",
+        "tag": "Ex · 01 · Aula 01",
+        "aula_declarada": "aula-01-01",
+        "origem": {
+          "seletor": "section.aula(§ Drill) .exercise .exercise-tag",
+          "trecho_inicial": "Ex · 01 · Aula 01",
+          "linha_aprox": 2391
+        }
+      },
+      {
+        "id": "m01-ex-02",
+        "tag": "Ex · 02 · Aula 02",
+        "aula_declarada": "aula-01-02",
+        "origem": {
+          "seletor": "section.aula(§ Drill) .exercise .exercise-tag",
+          "trecho_inicial": "Ex · 02 · Aula 02",
+          "linha_aprox": 2400
+        }
+      },
+      {
+        "id": "m01-ex-03",
+        "tag": "Ex · 03 · Aula 04",
+        "aula_declarada": "aula-01-04",
+        "origem": {
+          "seletor": "section.aula(§ Drill) .exercise .exercise-tag",
+          "trecho_inicial": "Ex · 03 · Aula 04",
+          "linha_aprox": 2409
+        }
+      },
+      {
+        "id": "m01-ex-04",
+        "tag": "Ex · 04 · Aula 05",
+        "aula_declarada": "aula-01-05",
+        "origem": {
+          "seletor": "section.aula(§ Drill) .exercise .exercise-tag",
+          "trecho_inicial": "Ex · 04 · Aula 05",
+          "linha_aprox": 2418
+        }
+      },
+      {
+        "id": "m01-ex-05",
+        "tag": "Ex · 05 · Aula 07",
+        "aula_declarada": "aula-01-07",
+        "origem": {
+          "seletor": "section.aula(§ Drill) .exercise .exercise-tag",
+          "trecho_inicial": "Ex · 05 · Aula 07",
+          "linha_aprox": 2427
+        }
+      },
+      {
+        "id": "m01-ex-06",
+        "tag": "Ex · 06 · Aula 08",
+        "aula_declarada": "aula-01-08",
+        "origem": {
+          "seletor": "section.aula(§ Drill) .exercise .exercise-tag",
+          "trecho_inicial": "Ex · 06 · Aula 08",
+          "linha_aprox": 2436
+        }
+      },
+      {
+        "id": "m01-ex-07",
+        "tag": "Ex · 07 · 3 níveis · Aula 05",
+        "aula_declarada": "aula-01-05",
+        "origem": {
+          "seletor": "section.aula(§ Drill) .exercise .exercise-tag",
+          "trecho_inicial": "Ex · 07 · 3 níveis · Aula 05",
+          "linha_aprox": 2445
+        }
+      }
+    ],
+    "nota_vinculados": "Os 7 exercícios com tag de aula pertencem ao grupo de aulas (não a este). Aqui ficam só como índice, para contagem e para o critério \"seis dos oito\". Texto completo deles já está em src/lib/data/alexandria-modulo-01-content.ts (activities das aulas).",
+    "codigo_atual": "Ex·08 extraído como MODULO_01_SINTESE (id \"ex-08\", kind \"discursiva\"), fora de aula — coerente com P9. Os 7 com tag estão nas activities das aulas 01, 02, 04, 05 (×2), 07, 08."
+  },
+  "referencias": {
+    "id": "m01-referencias",
+    "tipo": "bloco-de-referencias",
+    "marcador": "§ Ref",
+    "rotulo_marcador": "Referências regulatórias e fontes primárias",
+    "titulo": {
+      "html": "A linguagem <em>defensável</em>.",
+      "texto": "A linguagem defensável."
+    },
+    "introducao": {
+      "html": "Toda afirmação regulatória deste módulo pode ser rastreada às fontes primárias abaixo. Antes de transformar qualquer ponto em recomendação financeira para cliente, valide a regra exata vigente — a regulação se atualiza, e a Alexandria não promete eternidade.",
+      "texto": "Toda afirmação regulatória deste módulo pode ser rastreada às fontes primárias abaixo. Antes de transformar qualquer ponto em recomendação financeira para cliente, valide a regra exata vigente — a regulação se atualiza, e a Alexandria não promete eternidade.",
+      "origem": {
+        "seletor": "section.aula(§ Ref) > p",
+        "trecho_inicial": "Toda afirmação regulatória deste módulo pode ser rastreada à",
+        "linha_aprox": 2689
+      }
+    },
+    "total": 8,
+    "itens": [
+      {
+        "id": "m01-ref-01",
+        "tipo": "referencia",
+        "html": "<b>ANEEL</b> · Resolução Normativa nº 1.000/2021. Regras de prestação do serviço público de distribuição de energia elétrica. Em vigor desde 3 de janeiro de 2022; substituiu a REN 414/2010. <em>www.aneel.gov.br</em>",
+        "texto": "ANEEL · Resolução Normativa nº 1.000/2021. Regras de prestação do serviço público de distribuição de energia elétrica. Em vigor desde 3 de janeiro de 2022; substituiu a REN 414/2010. www.aneel.gov.br",
+        "instituicao": "ANEEL",
+        "descricao_verbatim": "Resolução Normativa nº 1.000/2021. Regras de prestação do serviço público de distribuição de energia elétrica. Em vigor desde 3 de janeiro de 2022; substituiu a REN 414/2010.",
+        "dominio_citado": "www.aneel.gov.br",
+        "url": null,
+        "tipo_fonte": null,
+        "data": {
+          "texto": "3 de janeiro de 2022",
+          "sentido": "data de entrada em vigor citada na descrição (não é data de acesso nem de publicação da referência)"
+        },
+        "origem": {
+          "seletor": "section.aula(§ Ref) ul.ref-list > li",
+          "trecho_inicial": "ANEEL · Resolução Normativa nº 1.000/2021. Regras de prestaç",
+          "linha_aprox": 2693
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte declara as referências no nível do módulo; nenhuma aponta aula."
+        },
+        "nota_campos": "url: a fonte só escreve domínio em <em> (texto, sem <a href>, sem protocolo) — url fica null; dominio_citado é literal. tipo_fonte: a fonte não tipifica as referências — null (o cabeçalho da seção chama o conjunto de \"Referências regulatórias e fontes primárias\", sem distinguir item a item)."
+      },
+      {
+        "id": "m01-ref-02",
+        "tipo": "referencia",
+        "html": "<b>ANEEL</b> · PRODIST — Procedimentos de Distribuição. Conjunto modular de normas técnicas. <b>Módulo 8</b>: Qualidade do Fornecimento de Energia Elétrica. <em>www.aneel.gov.br/prodist</em>",
+        "texto": "ANEEL · PRODIST — Procedimentos de Distribuição. Conjunto modular de normas técnicas. Módulo 8: Qualidade do Fornecimento de Energia Elétrica. www.aneel.gov.br/prodist",
+        "instituicao": "ANEEL",
+        "descricao_verbatim": "PRODIST — Procedimentos de Distribuição. Conjunto modular de normas técnicas. Módulo 8: Qualidade do Fornecimento de Energia Elétrica.",
+        "dominio_citado": "www.aneel.gov.br/prodist",
+        "url": null,
+        "tipo_fonte": null,
+        "data": null,
+        "origem": {
+          "seletor": "section.aula(§ Ref) ul.ref-list > li",
+          "trecho_inicial": "ANEEL · PRODIST — Procedimentos de Distribuição. Conjunto mo",
+          "linha_aprox": 2694
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte declara as referências no nível do módulo; nenhuma aponta aula."
+        },
+        "nota_campos": "url: a fonte só escreve domínio em <em> (texto, sem <a href>, sem protocolo) — url fica null; dominio_citado é literal. tipo_fonte: a fonte não tipifica as referências — null (o cabeçalho da seção chama o conjunto de \"Referências regulatórias e fontes primárias\", sem distinguir item a item)."
+      },
+      {
+        "id": "m01-ref-03",
+        "tipo": "referencia",
+        "html": "<b>ANEEL</b> · Qualidade do Fornecimento de Energia Elétrica. Página institucional com indicadores de continuidade (DEC, FEC, DIC, FIC, DMIC, DICRI) e conformidade de tensão (DRP, DRC). <em>www.aneel.gov.br</em>",
+        "texto": "ANEEL · Qualidade do Fornecimento de Energia Elétrica. Página institucional com indicadores de continuidade (DEC, FEC, DIC, FIC, DMIC, DICRI) e conformidade de tensão (DRP, DRC). www.aneel.gov.br",
+        "instituicao": "ANEEL",
+        "descricao_verbatim": "Qualidade do Fornecimento de Energia Elétrica. Página institucional com indicadores de continuidade (DEC, FEC, DIC, FIC, DMIC, DICRI) e conformidade de tensão (DRP, DRC).",
+        "dominio_citado": "www.aneel.gov.br",
+        "url": null,
+        "tipo_fonte": null,
+        "data": null,
+        "origem": {
+          "seletor": "section.aula(§ Ref) ul.ref-list > li",
+          "trecho_inicial": "ANEEL · Qualidade do Fornecimento de Energia Elétrica. Págin",
+          "linha_aprox": 2695
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte declara as referências no nível do módulo; nenhuma aponta aula."
+        },
+        "nota_campos": "url: a fonte só escreve domínio em <em> (texto, sem <a href>, sem protocolo) — url fica null; dominio_citado é literal. tipo_fonte: a fonte não tipifica as referências — null (o cabeçalho da seção chama o conjunto de \"Referências regulatórias e fontes primárias\", sem distinguir item a item)."
+      },
+      {
+        "id": "m01-ref-04",
+        "tipo": "referencia",
+        "html": "<b>ONS</b> · Operador Nacional do Sistema Elétrico. Procedimentos de Rede. Dados operativos do SIN. <em>www.ons.org.br</em>",
+        "texto": "ONS · Operador Nacional do Sistema Elétrico. Procedimentos de Rede. Dados operativos do SIN. www.ons.org.br",
+        "instituicao": "ONS",
+        "descricao_verbatim": "Operador Nacional do Sistema Elétrico. Procedimentos de Rede. Dados operativos do SIN.",
+        "dominio_citado": "www.ons.org.br",
+        "url": null,
+        "tipo_fonte": null,
+        "data": null,
+        "origem": {
+          "seletor": "section.aula(§ Ref) ul.ref-list > li",
+          "trecho_inicial": "ONS · Operador Nacional do Sistema Elétrico. Procedimentos d",
+          "linha_aprox": 2696
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte declara as referências no nível do módulo; nenhuma aponta aula."
+        },
+        "nota_campos": "url: a fonte só escreve domínio em <em> (texto, sem <a href>, sem protocolo) — url fica null; dominio_citado é literal. tipo_fonte: a fonte não tipifica as referências — null (o cabeçalho da seção chama o conjunto de \"Referências regulatórias e fontes primárias\", sem distinguir item a item)."
+      },
+      {
+        "id": "m01-ref-05",
+        "tipo": "referencia",
+        "html": "<b>CCEE</b> · Câmara de Comercialização de Energia Elétrica. Regras de Comercialização. PLD histórico. <em>www.ccee.org.br</em>",
+        "texto": "CCEE · Câmara de Comercialização de Energia Elétrica. Regras de Comercialização. PLD histórico. www.ccee.org.br",
+        "instituicao": "CCEE",
+        "descricao_verbatim": "Câmara de Comercialização de Energia Elétrica. Regras de Comercialização. PLD histórico.",
+        "dominio_citado": "www.ccee.org.br",
+        "url": null,
+        "tipo_fonte": null,
+        "data": null,
+        "origem": {
+          "seletor": "section.aula(§ Ref) ul.ref-list > li",
+          "trecho_inicial": "CCEE · Câmara de Comercialização de Energia Elétrica. Regras",
+          "linha_aprox": 2697
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte declara as referências no nível do módulo; nenhuma aponta aula."
+        },
+        "nota_campos": "url: a fonte só escreve domínio em <em> (texto, sem <a href>, sem protocolo) — url fica null; dominio_citado é literal. tipo_fonte: a fonte não tipifica as referências — null (o cabeçalho da seção chama o conjunto de \"Referências regulatórias e fontes primárias\", sem distinguir item a item)."
+      },
+      {
+        "id": "m01-ref-06",
+        "tipo": "referencia",
+        "html": "<b>EPE</b> · Empresa de Pesquisa Energética. Anuário Estatístico de Energia Elétrica. Plano Decenal de Expansão de Energia. <em>www.epe.gov.br</em>",
+        "texto": "EPE · Empresa de Pesquisa Energética. Anuário Estatístico de Energia Elétrica. Plano Decenal de Expansão de Energia. www.epe.gov.br",
+        "instituicao": "EPE",
+        "descricao_verbatim": "Empresa de Pesquisa Energética. Anuário Estatístico de Energia Elétrica. Plano Decenal de Expansão de Energia.",
+        "dominio_citado": "www.epe.gov.br",
+        "url": null,
+        "tipo_fonte": null,
+        "data": null,
+        "origem": {
+          "seletor": "section.aula(§ Ref) ul.ref-list > li",
+          "trecho_inicial": "EPE · Empresa de Pesquisa Energética. Anuário Estatístico de",
+          "linha_aprox": 2698
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte declara as referências no nível do módulo; nenhuma aponta aula."
+        },
+        "nota_campos": "url: a fonte só escreve domínio em <em> (texto, sem <a href>, sem protocolo) — url fica null; dominio_citado é literal. tipo_fonte: a fonte não tipifica as referências — null (o cabeçalho da seção chama o conjunto de \"Referências regulatórias e fontes primárias\", sem distinguir item a item)."
+      },
+      {
+        "id": "m01-ref-07",
+        "tipo": "referencia",
+        "html": "<b>MME</b> · Ministério de Minas e Energia. Política energética nacional, leilões, marcos regulatórios. <em>www.gov.br/mme</em>",
+        "texto": "MME · Ministério de Minas e Energia. Política energética nacional, leilões, marcos regulatórios. www.gov.br/mme",
+        "instituicao": "MME",
+        "descricao_verbatim": "Ministério de Minas e Energia. Política energética nacional, leilões, marcos regulatórios.",
+        "dominio_citado": "www.gov.br/mme",
+        "url": null,
+        "tipo_fonte": null,
+        "data": null,
+        "origem": {
+          "seletor": "section.aula(§ Ref) ul.ref-list > li",
+          "trecho_inicial": "MME · Ministério de Minas e Energia. Política energética nac",
+          "linha_aprox": 2699
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte declara as referências no nível do módulo; nenhuma aponta aula."
+        },
+        "nota_campos": "url: a fonte só escreve domínio em <em> (texto, sem <a href>, sem protocolo) — url fica null; dominio_citado é literal. tipo_fonte: a fonte não tipifica as referências — null (o cabeçalho da seção chama o conjunto de \"Referências regulatórias e fontes primárias\", sem distinguir item a item)."
+      },
+      {
+        "id": "m01-ref-08",
+        "tipo": "referencia",
+        "html": "<b>Practical Engineering</b> · canal técnico no YouTube com vídeos didáticos sobre rede elétrica, transmissão, fator de potência. Material complementar de excelência.",
+        "texto": "Practical Engineering · canal técnico no YouTube com vídeos didáticos sobre rede elétrica, transmissão, fator de potência. Material complementar de excelência.",
+        "instituicao": "Practical Engineering",
+        "descricao_verbatim": "canal técnico no YouTube com vídeos didáticos sobre rede elétrica, transmissão, fator de potência. Material complementar de excelência.",
+        "dominio_citado": null,
+        "url": null,
+        "tipo_fonte": null,
+        "data": null,
+        "origem": {
+          "seletor": "section.aula(§ Ref) ul.ref-list > li",
+          "trecho_inicial": "Practical Engineering · canal técnico no YouTube com vídeos ",
+          "linha_aprox": 2700
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte declara as referências no nível do módulo; nenhuma aponta aula."
+        },
+        "nota_campos": "url: a fonte só escreve domínio em <em> (texto, sem <a href>, sem protocolo) — url fica null; dominio_citado é literal. tipo_fonte: a fonte não tipifica as referências — null (o cabeçalho da seção chama o conjunto de \"Referências regulatórias e fontes primárias\", sem distinguir item a item)."
+      }
+    ],
+    "padrao_editorial": {
+      "rotulo": "Padrão editorial Alexandria",
+      "html": "Ao converter este módulo em artigo público da Alexandria Library: <strong>(1)</strong> remover toda referência a cliente real; <strong>(2)</strong> manter \"Operação A\" como caso hipotético; <strong>(3)</strong> usar sempre \"oportunidade a validar\" ao invés de promessa de economia; <strong>(4)</strong> citar fontes primárias ANEEL/PRODIST quando houver afirmação regulatória; <strong>(5)</strong> fechar com call-to-action leve, nunca venda agressiva.",
+      "texto": "Ao converter este módulo em artigo público da Alexandria Library: (1) remover toda referência a cliente real; (2) manter \"Operação A\" como caso hipotético; (3) usar sempre \"oportunidade a validar\" ao invés de promessa de economia; (4) citar fontes primárias ANEEL/PRODIST quando houver afirmação regulatória; (5) fechar com call-to-action leve, nunca venda agressiva.",
+      "origem": {
+        "seletor": "section.aula(§ Ref) .callout.gold",
+        "trecho_inicial": "Padrão editorial Alexandria",
+        "linha_aprox": 2703
+      }
+    },
+    "colofao_modulo": {
+      "texto": "Alexandria Library · GridAlpha Brasil\nMódulo 01 · Física de Energia e Eletricidade\nCobaia Zero · v1.0 · Maio de 2026",
+      "html": "<b>Alexandria Library</b> · GridAlpha Brasil<br> Módulo 01 · Física de Energia e Eletricidade<br> Cobaia Zero · v1.0 · Maio de 2026",
+      "origem": {
+        "seletor": "footer.alex-footer .footer-mono",
+        "trecho_inicial": "Alexandria Library · GridAlpha Brasil",
+        "linha_aprox": 2714
+      },
+      "nota": "Única data de versão do módulo na fonte (\"Maio de 2026\"). Não é data de verificação das referências.",
+      "nota_verificacao": "Verificação 2026-09-16: o texto anterior usava ' | ' como separador, caractere inexistente na fonte; os <br> agora viram quebra de linha em `texto` e ficam literais em `html`."
+    },
+    "codigo_atual": "As 8 estão hardcoded, com o mesmo texto, em src/pages/alexandria/BibliotecaView.tsx (BIBLIOGRAFIA_MODULO_01, L97-150), com \"titulo\" e \"descricao\" separados por julgamento do extrator anterior; e 4 delas repetidas em FONTES (ONS, ANEEL, CCEE, EPE) com \"publica\" parafraseado no caso da ANEEL. Não estão em src/lib/data."
+  },
+  "glossario": {
+    "id": "m01-glossario",
+    "tipo": "glossario-do-modulo",
+    "marcador": "§ Lex",
+    "rotulo_marcador": "Glossário expansível",
+    "titulo": {
+      "html": "Glossário <em>Alexandria</em>.",
+      "texto": "Glossário Alexandria."
+    },
+    "introducao": {
+      "html": "Vinte e oito termos. Cada um é um dos vocábulos que aparecem em conversa real com diretor de energia, gerente de utilidades ou regulador. Clique para expandir.",
+      "texto": "Vinte e oito termos. Cada um é um dos vocábulos que aparecem em conversa real com diretor de energia, gerente de utilidades ou regulador. Clique para expandir.",
+      "origem": {
+        "seletor": "section.aula(§ Lex) > p",
+        "trecho_inicial": "Vinte e oito termos. Cada um é um dos vocábulos que aparecem",
+        "linha_aprox": 2523
+      }
+    },
+    "contagem": {
+      "prosa_declara": "Vinte e oito termos",
+      "markup_details_glossary_item": 38,
+      "extraidos_com_term_unit_content": 38,
+      "codigo_bloco_m01": 38,
+      "identicos": 38,
+      "divergentes": 0,
+      "ausentes_no_codigo": 0,
+      "so_no_codigo": []
+    },
+    "ordem_fonte_alfabetica": false,
+    "termos": [
+      {
+        "id": "m01-lex-01",
+        "tipo": "termo-de-glossario",
+        "termo": "Ampere (A)",
+        "etiqueta": "Corrente",
+        "definicao_html": "Unidade de medida de corrente elétrica — o fluxo de carga que atravessa um condutor por segundo. Analogia hidráulica: vazão de água. Em instalações industriais, cargas grandes (motores, britadores, fornos) puxam alta corrente especialmente quando operam em tensões mais baixas.",
+        "definicao_texto": "Unidade de medida de corrente elétrica — o fluxo de carga que atravessa um condutor por segundo. Analogia hidráulica: vazão de água. Em instalações industriais, cargas grandes (motores, britadores, fornos) puxam alta corrente especialmente quando operam em tensões mais baixas.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Ampere (A)",
+          "linha_aprox": 2527
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-ampere-a",
+          "aulaIds_codigo": [
+            "aula-01-02"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-02",
+        "tipo": "termo-de-glossario",
+        "termo": "Banco de capacitores",
+        "etiqueta": "Solução · FP",
+        "definicao_html": "Conjunto de capacitores instalado próximo à carga industrial para fornecer localmente a potência reativa exigida por equipamentos indutivos. Eleva o fator de potência medido e reduz cobrança regulatória de excedente reativo. Exige diagnóstico técnico antes da especificação — compensação excessiva cria FP capacitivo, também problemático.",
+        "definicao_texto": "Conjunto de capacitores instalado próximo à carga industrial para fornecer localmente a potência reativa exigida por equipamentos indutivos. Eleva o fator de potência medido e reduz cobrança regulatória de excedente reativo. Exige diagnóstico técnico antes da especificação — compensação excessiva cria FP capacitivo, também problemático.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Banco de capacitores",
+          "linha_aprox": 2531
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-banco-de-capacitores",
+          "aulaIds_codigo": [
+            "aula-01-07"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-03",
+        "tipo": "termo-de-glossario",
+        "termo": "CCEE",
+        "etiqueta": "Instituição",
+        "definicao_html": "Câmara de Comercialização de Energia Elétrica. Pessoa jurídica de direito privado, sob autorização da ANEEL, responsável pela contabilização e liquidação de operações de compra e venda de energia, e pela apuração do PLD (Preço de Liquidação das Diferenças). Atua nos ambientes ACR e ACL.",
+        "definicao_texto": "Câmara de Comercialização de Energia Elétrica. Pessoa jurídica de direito privado, sob autorização da ANEEL, responsável pela contabilização e liquidação de operações de compra e venda de energia, e pela apuração do PLD (Preço de Liquidação das Diferenças). Atua nos ambientes ACR e ACL.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "CCEE",
+          "linha_aprox": 2535
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-ccee",
+          "aulaIds_codigo": []
+        }
+      },
+      {
+        "id": "m01-lex-04",
+        "tipo": "termo-de-glossario",
+        "termo": "Corrente alternada (AC)",
+        "etiqueta": "Forma de onda",
+        "definicao_html": "Corrente elétrica cujo sentido alterna periodicamente. No Brasil, a frequência da rede pública é de 60 Hz — sessenta ciclos por segundo. Base de toda a rede pública de transmissão e distribuição moderna, porque permite elevação e redução de tensão por transformadores.",
+        "definicao_texto": "Corrente elétrica cujo sentido alterna periodicamente. No Brasil, a frequência da rede pública é de 60 Hz — sessenta ciclos por segundo. Base de toda a rede pública de transmissão e distribuição moderna, porque permite elevação e redução de tensão por transformadores.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Corrente alternada (AC)",
+          "linha_aprox": 2539
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-corrente-alternada-ac",
+          "aulaIds_codigo": [
+            "aula-01-02",
+            "aula-01-03",
+            "aula-01-06"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-05",
+        "tipo": "termo-de-glossario",
+        "termo": "Corrente contínua (DC)",
+        "etiqueta": "Forma de onda",
+        "definicao_html": "Corrente elétrica com fluxo em direção principal constante. Usada em baterias, painéis solares antes do inversor, eletrônica embarcada e transmissão HVDC de longa distância. Retoma relevância com a expansão de solar, BESS e tecnologias correlatas.",
+        "definicao_texto": "Corrente elétrica com fluxo em direção principal constante. Usada em baterias, painéis solares antes do inversor, eletrônica embarcada e transmissão HVDC de longa distância. Retoma relevância com a expansão de solar, BESS e tecnologias correlatas.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Corrente contínua (DC)",
+          "linha_aprox": 2543
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-corrente-continua-dc",
+          "aulaIds_codigo": [
+            "aula-01-02",
+            "aula-01-03"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-06",
+        "tipo": "termo-de-glossario",
+        "termo": "CUSD",
+        "etiqueta": "Contrato",
+        "definicao_html": "Contrato de Uso do Sistema de Distribuição. Documento entre consumidor do Grupo A e distribuidora que formaliza demanda contratada, tensão de fornecimento, modalidade tarifária e demais condições de uso da rede. Fonte primária ao analisar qualquer cliente industrial.",
+        "definicao_texto": "Contrato de Uso do Sistema de Distribuição. Documento entre consumidor do Grupo A e distribuidora que formaliza demanda contratada, tensão de fornecimento, modalidade tarifária e demais condições de uso da rede. Fonte primária ao analisar qualquer cliente industrial.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "CUSD",
+          "linha_aprox": 2547
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-cusd",
+          "aulaIds_codigo": []
+        }
+      },
+      {
+        "id": "m01-lex-07",
+        "tipo": "termo-de-glossario",
+        "termo": "DEC / FEC",
+        "etiqueta": "Continuidade · coletivos",
+        "definicao_html": "<b>DEC</b> — Duração Equivalente de interrupção por unidade Consumidora. Tempo médio de interrupção por consumidor no período (horas/ano). <b>FEC</b> — Frequência Equivalente de interrupção por unidade Consumidora. Número médio de interrupções por consumidor no período. São indicadores coletivos que avaliam a qualidade do serviço de toda a distribuidora.",
+        "definicao_texto": "DEC — Duração Equivalente de interrupção por unidade Consumidora. Tempo médio de interrupção por consumidor no período (horas/ano). FEC — Frequência Equivalente de interrupção por unidade Consumidora. Número médio de interrupções por consumidor no período. São indicadores coletivos que avaliam a qualidade do serviço de toda a distribuidora.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "DEC / FEC",
+          "linha_aprox": 2551
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-dec-fec",
+          "aulaIds_codigo": [
+            "aula-01-09"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-08",
+        "tipo": "termo-de-glossario",
+        "termo": "Demanda",
+        "etiqueta": "kW",
+        "definicao_html": "Potência ativa exigida ou requerida por uma unidade consumidora em determinado intervalo de medição (tipicamente 15 minutos integralizados). Distinta do consumo (kWh), reflete a capacidade instantânea exigida da rede.",
+        "definicao_texto": "Potência ativa exigida ou requerida por uma unidade consumidora em determinado intervalo de medição (tipicamente 15 minutos integralizados). Distinta do consumo (kWh), reflete a capacidade instantânea exigida da rede.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Demanda",
+          "linha_aprox": 2555
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-demanda",
+          "aulaIds_codigo": [
+            "aula-01-01",
+            "aula-01-05",
+            "aula-01-06"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-09",
+        "tipo": "termo-de-glossario",
+        "termo": "Demanda contratada",
+        "etiqueta": "kW",
+        "definicao_html": "Capacidade em kW reservada contratualmente pelo consumidor do Grupo A junto à distribuidora. Cobrada integralmente todo mês, mesmo se não usada. Dimensionamento exige histórico de 12 meses, sazonalidade e planos de expansão.",
+        "definicao_texto": "Capacidade em kW reservada contratualmente pelo consumidor do Grupo A junto à distribuidora. Cobrada integralmente todo mês, mesmo se não usada. Dimensionamento exige histórico de 12 meses, sazonalidade e planos de expansão.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Demanda contratada",
+          "linha_aprox": 2559
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-demanda-contratada",
+          "aulaIds_codigo": [
+            "aula-01-05"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-10",
+        "tipo": "termo-de-glossario",
+        "termo": "DIC / FIC / DMIC / DICRI",
+        "etiqueta": "Continuidade · individuais",
+        "definicao_html": "Indicadores individuais de continuidade — medem interrupções daquela unidade consumidora específica. <b>DIC</b>: duração total de interrupção. <b>FIC</b>: número de interrupções. <b>DMIC</b>: maior interrupção contínua. <b>DICRI</b>: DIC em dia crítico. Têm limites regulatórios cuja violação pode gerar compensação à unidade consumidora.",
+        "definicao_texto": "Indicadores individuais de continuidade — medem interrupções daquela unidade consumidora específica. DIC: duração total de interrupção. FIC: número de interrupções. DMIC: maior interrupção contínua. DICRI: DIC em dia crítico. Têm limites regulatórios cuja violação pode gerar compensação à unidade consumidora.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "DIC / FIC / DMIC / DICRI",
+          "linha_aprox": 2563
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-dic-fic-dmic-dicri",
+          "aulaIds_codigo": [
+            "aula-01-09"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-11",
+        "tipo": "termo-de-glossario",
+        "termo": "Eficiência",
+        "etiqueta": "Razão",
+        "definicao_html": "Razão entre energia útil entregue e energia de entrada. Nenhum sistema real é 100% eficiente — parte da energia vira calor, vibração, ruído, perdas magnéticas e mecânicas. Em instalações industriais, eficiência de equipamento velho é uma das primeiras frentes legítimas de redução de custo.",
+        "definicao_texto": "Razão entre energia útil entregue e energia de entrada. Nenhum sistema real é 100% eficiente — parte da energia vira calor, vibração, ruído, perdas magnéticas e mecânicas. Em instalações industriais, eficiência de equipamento velho é uma das primeiras frentes legítimas de redução de custo.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Eficiência",
+          "linha_aprox": 2567
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-eficiencia",
+          "aulaIds_codigo": [
+            "aula-01-09"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-12",
+        "tipo": "termo-de-glossario",
+        "termo": "Energia",
+        "etiqueta": "kWh, MWh",
+        "definicao_html": "Capacidade de realizar trabalho ou produzir transformação. Em eletricidade, energia é potência integrada no tempo (kWh = kW × h). É a grandeza cobrada como \"consumo\" na fatura.",
+        "definicao_texto": "Capacidade de realizar trabalho ou produzir transformação. Em eletricidade, energia é potência integrada no tempo (kWh = kW × h). É a grandeza cobrada como \"consumo\" na fatura.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Energia",
+          "linha_aprox": 2571
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-energia",
+          "aulaIds_codigo": [
+            "aula-01-01",
+            "aula-01-03",
+            "aula-01-04",
+            "aula-01-05",
+            "aula-01-07",
+            "aula-01-09"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-13",
+        "tipo": "termo-de-glossario",
+        "termo": "Fator de capacidade (FC)",
+        "etiqueta": "Geração",
+        "definicao_html": "Razão entre a geração efetiva e a geração máxima teórica de uma usina, no período. Mede quanto da capacidade instalada foi efetivamente convertida em energia. Difere drasticamente por tecnologia: nuclear 85–95%, hidro BR ~50%, solar fotovoltaica BR ~25%, térmica peaker &lt;15%.",
+        "definicao_texto": "Razão entre a geração efetiva e a geração máxima teórica de uma usina, no período. Mede quanto da capacidade instalada foi efetivamente convertida em energia. Difere drasticamente por tecnologia: nuclear 85–95%, hidro BR ~50%, solar fotovoltaica BR ~25%, térmica peaker <15%.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Fator de capacidade (FC)",
+          "linha_aprox": 2575
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-fator-de-capacidade-fc",
+          "aulaIds_codigo": [
+            "aula-01-08"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-14",
+        "tipo": "termo-de-glossario",
+        "termo": "Fator de carga (FC)",
+        "etiqueta": "Razão",
+        "definicao_html": "Razão entre demanda média e demanda máxima de uma unidade consumidora. Mede quão bem a instalação aproveita a capacidade reservada. Operação contínua: 0,70–0,90. Operação concentrada com picos: 0,15–0,40. FC baixo não é necessariamente erro — pode refletir processo produtivo legítimo.",
+        "definicao_texto": "Razão entre demanda média e demanda máxima de uma unidade consumidora. Mede quão bem a instalação aproveita a capacidade reservada. Operação contínua: 0,70–0,90. Operação concentrada com picos: 0,15–0,40. FC baixo não é necessariamente erro — pode refletir processo produtivo legítimo.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Fator de carga (FC)",
+          "linha_aprox": 2579
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-fator-de-carga-fc",
+          "aulaIds_codigo": [
+            "aula-01-05"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-15",
+        "tipo": "termo-de-glossario",
+        "termo": "Fator de potência (FP)",
+        "etiqueta": "cos φ",
+        "definicao_html": "Razão entre potência ativa (kW) e potência aparente (kVA). Em regime senoidal, equivale ao cosseno do ângulo de defasagem entre tensão e corrente. Referência prática regulatória brasileira para Grupo A: mínimo 0,92, indutivo ou capacitivo. Abaixo desse valor pode haver cobrança por excedente reativo.",
+        "definicao_texto": "Razão entre potência ativa (kW) e potência aparente (kVA). Em regime senoidal, equivale ao cosseno do ângulo de defasagem entre tensão e corrente. Referência prática regulatória brasileira para Grupo A: mínimo 0,92, indutivo ou capacitivo. Abaixo desse valor pode haver cobrança por excedente reativo.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Fator de potência (FP)",
+          "linha_aprox": 2583
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-fator-de-potencia-fp",
+          "aulaIds_codigo": [
+            "aula-01-02",
+            "aula-01-07"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-16",
+        "tipo": "termo-de-glossario",
+        "termo": "Frequência",
+        "etiqueta": "Hz",
+        "definicao_html": "Número de ciclos por segundo de uma corrente alternada. No Brasil, 60 Hz. Funciona como termômetro físico do equilíbrio em tempo real entre geração e consumo — desvios indicam descasamento e disparam ações operacionais do ONS.",
+        "definicao_texto": "Número de ciclos por segundo de uma corrente alternada. No Brasil, 60 Hz. Funciona como termômetro físico do equilíbrio em tempo real entre geração e consumo — desvios indicam descasamento e disparam ações operacionais do ONS.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Frequência",
+          "linha_aprox": 2587
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-frequencia",
+          "aulaIds_codigo": [
+            "aula-01-03",
+            "aula-01-09"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-17",
+        "tipo": "termo-de-glossario",
+        "termo": "Grupo A",
+        "etiqueta": "Classificação",
+        "definicao_html": "Classe de consumidores atendidos em alta ou média tensão (≥ 2,3 kV) — indústrias, grandes comércios. Subdivide-se em A1, A2, A3, A3a, A4 e AS por nível de tensão. Estrutura tarifária binômia (consumo + demanda). Todo o universo industrial relevante da GridAlpha está aqui.",
+        "definicao_texto": "Classe de consumidores atendidos em alta ou média tensão (≥ 2,3 kV) — indústrias, grandes comércios. Subdivide-se em A1, A2, A3, A3a, A4 e AS por nível de tensão. Estrutura tarifária binômia (consumo + demanda). Todo o universo industrial relevante da GridAlpha está aqui.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Grupo A",
+          "linha_aprox": 2591
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-grupo-a",
+          "aulaIds_codigo": [
+            "aula-01-06",
+            "aula-01-07"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-18",
+        "tipo": "termo-de-glossario",
+        "termo": "Grupo B",
+        "etiqueta": "Classificação",
+        "definicao_html": "Classe de consumidores atendidos em baixa tensão (&lt; 2,3 kV) — residências, pequenos comércios, pequenas propriedades rurais. Estrutura tarifária monômia (essencialmente kWh × tarifa).",
+        "definicao_texto": "Classe de consumidores atendidos em baixa tensão (< 2,3 kV) — residências, pequenos comércios, pequenas propriedades rurais. Estrutura tarifária monômia (essencialmente kWh × tarifa).",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Grupo B",
+          "linha_aprox": 2595
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-grupo-b",
+          "aulaIds_codigo": [
+            "aula-01-06"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-19",
+        "tipo": "termo-de-glossario",
+        "termo": "Harmônicos",
+        "etiqueta": "Qualidade",
+        "definicao_html": "Distorções na forma de onda elétrica em múltiplos da frequência fundamental. Comuns em cargas não lineares — drives de velocidade variável, inversores, fontes eletrônicas, máquinas de solda. Causam aquecimento, disparo de proteções, redução de vida útil. Tratamento técnico envolve filtros passivos ou ativos.",
+        "definicao_texto": "Distorções na forma de onda elétrica em múltiplos da frequência fundamental. Comuns em cargas não lineares — drives de velocidade variável, inversores, fontes eletrônicas, máquinas de solda. Causam aquecimento, disparo de proteções, redução de vida útil. Tratamento técnico envolve filtros passivos ou ativos.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Harmônicos",
+          "linha_aprox": 2599
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-harmonicos",
+          "aulaIds_codigo": [
+            "aula-01-07",
+            "aula-01-09"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-20",
+        "tipo": "termo-de-glossario",
+        "termo": "kVA",
+        "etiqueta": "Potência aparente",
+        "definicao_html": "Quilovolt-ampere. Unidade de potência aparente — combinação vetorial de potência ativa (kW) e reativa (kVAr). É o \"tamanho elétrico total\" que a rede precisa entregar à instalação. Dimensiona transformadores e cabos.",
+        "definicao_texto": "Quilovolt-ampere. Unidade de potência aparente — combinação vetorial de potência ativa (kW) e reativa (kVAr). É o \"tamanho elétrico total\" que a rede precisa entregar à instalação. Dimensiona transformadores e cabos.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "kVA",
+          "linha_aprox": 2603
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-kva",
+          "aulaIds_codigo": [
+            "aula-01-02",
+            "aula-01-07"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-21",
+        "tipo": "termo-de-glossario",
+        "termo": "kVAr",
+        "etiqueta": "Potência reativa",
+        "definicao_html": "Quilovolt-ampere reativo. Unidade de potência reativa — circula entre rede e equipamentos para sustentar campos magnéticos e elétricos sem realizar trabalho útil no eixo da máquina. Necessária para motores e transformadores, mas excessiva degrada o fator de potência.",
+        "definicao_texto": "Quilovolt-ampere reativo. Unidade de potência reativa — circula entre rede e equipamentos para sustentar campos magnéticos e elétricos sem realizar trabalho útil no eixo da máquina. Necessária para motores e transformadores, mas excessiva degrada o fator de potência.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "kVAr",
+          "linha_aprox": 2607
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-kvar",
+          "aulaIds_codigo": [
+            "aula-01-02",
+            "aula-01-07"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-22",
+        "tipo": "termo-de-glossario",
+        "termo": "kW",
+        "etiqueta": "Potência ativa",
+        "definicao_html": "Quilowatt. Unidade de potência ativa — a parcela da potência elétrica que realiza trabalho útil (gira eixo, esquenta forno, aciona esteira). 1 kW = 1.000 W. Não confundir com kWh, que é energia.",
+        "definicao_texto": "Quilowatt. Unidade de potência ativa — a parcela da potência elétrica que realiza trabalho útil (gira eixo, esquenta forno, aciona esteira). 1 kW = 1.000 W. Não confundir com kWh, que é energia.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "kW",
+          "linha_aprox": 2611
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-kw",
+          "aulaIds_codigo": [
+            "aula-01-01",
+            "aula-01-02",
+            "aula-01-05",
+            "aula-01-06",
+            "aula-01-07"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-23",
+        "tipo": "termo-de-glossario",
+        "termo": "kWh",
+        "etiqueta": "Energia",
+        "definicao_html": "Quilowatt-hora. Unidade de energia equivalente a um quilowatt durante uma hora. É a grandeza que aparece como \"consumo\" em qualquer fatura elétrica. kWh = kW × h.",
+        "definicao_texto": "Quilowatt-hora. Unidade de energia equivalente a um quilowatt durante uma hora. É a grandeza que aparece como \"consumo\" em qualquer fatura elétrica. kWh = kW × h.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "kWh",
+          "linha_aprox": 2615
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-kwh",
+          "aulaIds_codigo": [
+            "aula-01-01",
+            "aula-01-06"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-24",
+        "tipo": "termo-de-glossario",
+        "termo": "Lei de Ohm",
+        "etiqueta": "V = I × R",
+        "definicao_html": "Relação fundamental entre tensão (V), corrente (I) e resistência (R) em um circuito elétrico. Junto com P = I² × R (perdas resistivas) e P = V × I (potência em DC), forma o tripé de qualquer cálculo elétrico de instalação.",
+        "definicao_texto": "Relação fundamental entre tensão (V), corrente (I) e resistência (R) em um circuito elétrico. Junto com P = I² × R (perdas resistivas) e P = V × I (potência em DC), forma o tripé de qualquer cálculo elétrico de instalação.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Lei de Ohm",
+          "linha_aprox": 2619
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-lei-de-ohm",
+          "aulaIds_codigo": [
+            "aula-01-02"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-25",
+        "tipo": "termo-de-glossario",
+        "termo": "Modalidade tarifária",
+        "etiqueta": "Tarifa",
+        "definicao_html": "Forma de estruturação tarifária aplicável ao consumidor. Para Grupo A: <b>Verde</b> (demanda única, mas tarifa de energia diferenciada por horário), <b>Azul</b> (demanda diferenciada por horário ponta/fora-ponta), e <b>Branca</b> (apenas Grupo B em casos específicos). A escolha tem impacto direto na fatura e exige análise do perfil operacional.",
+        "definicao_texto": "Forma de estruturação tarifária aplicável ao consumidor. Para Grupo A: Verde (demanda única, mas tarifa de energia diferenciada por horário), Azul (demanda diferenciada por horário ponta/fora-ponta), e Branca (apenas Grupo B em casos específicos). A escolha tem impacto direto na fatura e exige análise do perfil operacional.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Modalidade tarifária",
+          "linha_aprox": 2623
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-modalidade-tarifaria",
+          "aulaIds_codigo": [
+            "aula-01-05"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-26",
+        "tipo": "termo-de-glossario",
+        "termo": "ONS",
+        "etiqueta": "Operador",
+        "definicao_html": "Operador Nacional do Sistema Elétrico. Pessoa jurídica de direito privado responsável pela coordenação e controle da operação das instalações de geração e transmissão de energia elétrica no Sistema Interligado Nacional (SIN). É quem mantém o batimento de 60 Hz da rede em tempo real.",
+        "definicao_texto": "Operador Nacional do Sistema Elétrico. Pessoa jurídica de direito privado responsável pela coordenação e controle da operação das instalações de geração e transmissão de energia elétrica no Sistema Interligado Nacional (SIN). É quem mantém o batimento de 60 Hz da rede em tempo real.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "ONS",
+          "linha_aprox": 2627
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-ons",
+          "aulaIds_codigo": [
+            "aula-01-03"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-27",
+        "tipo": "termo-de-glossario",
+        "termo": "Perdas técnicas",
+        "etiqueta": "Físicas",
+        "definicao_html": "Perdas físicas no sistema elétrico — aquecimento de cabos, perdas em transformadores, perdas magnéticas, perdas mecânicas, perdas de conversão. Reconhecidas pela ANEEL nos processos de revisão tarifária e embutidas na componente fio da TUSD.",
+        "definicao_texto": "Perdas físicas no sistema elétrico — aquecimento de cabos, perdas em transformadores, perdas magnéticas, perdas mecânicas, perdas de conversão. Reconhecidas pela ANEEL nos processos de revisão tarifária e embutidas na componente fio da TUSD.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Perdas técnicas",
+          "linha_aprox": 2631
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-perdas-tecnicas",
+          "aulaIds_codigo": [
+            "aula-01-02",
+            "aula-01-04"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-28",
+        "tipo": "termo-de-glossario",
+        "termo": "Perdas não técnicas",
+        "etiqueta": "Comerciais",
+        "definicao_html": "Perdas comerciais e operacionais — furto de energia, fraude no medidor, ligações clandestinas, erro de medição, inadimplência, problemas cadastrais. Afetam tarifas via ressarcimento parcial reconhecido em revisão. Concentram-se especialmente em centros urbanos do Norte e Nordeste.",
+        "definicao_texto": "Perdas comerciais e operacionais — furto de energia, fraude no medidor, ligações clandestinas, erro de medição, inadimplência, problemas cadastrais. Afetam tarifas via ressarcimento parcial reconhecido em revisão. Concentram-se especialmente em centros urbanos do Norte e Nordeste.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Perdas não técnicas",
+          "linha_aprox": 2635
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-perdas-nao-tecnicas",
+          "aulaIds_codigo": [
+            "aula-01-04"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-29",
+        "tipo": "termo-de-glossario",
+        "termo": "PLD",
+        "etiqueta": "Preço · CCEE",
+        "definicao_html": "Preço de Liquidação das Diferenças. Preço de curto prazo da energia, apurado pela CCEE com base no Custo Marginal de Operação (CMO) calculado pelos modelos de despacho. Usado para liquidação financeira de diferenças entre energia contratada e energia medida. Tema-chave dos próximos módulos.",
+        "definicao_texto": "Preço de Liquidação das Diferenças. Preço de curto prazo da energia, apurado pela CCEE com base no Custo Marginal de Operação (CMO) calculado pelos modelos de despacho. Usado para liquidação financeira de diferenças entre energia contratada e energia medida. Tema-chave dos próximos módulos.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "PLD",
+          "linha_aprox": 2639
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-pld",
+          "aulaIds_codigo": []
+        }
+      },
+      {
+        "id": "m01-lex-30",
+        "tipo": "termo-de-glossario",
+        "termo": "Potência",
+        "etiqueta": "W, kW, MW",
+        "definicao_html": "Taxa instantânea de uso, geração ou transformação de energia. Unidade SI é o watt (W). Difere de energia: potência mede velocidade; energia mede volume acumulado.",
+        "definicao_texto": "Taxa instantânea de uso, geração ou transformação de energia. Unidade SI é o watt (W). Difere de energia: potência mede velocidade; energia mede volume acumulado.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Potência",
+          "linha_aprox": 2643
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-potencia",
+          "aulaIds_codigo": [
+            "aula-01-01",
+            "aula-01-02",
+            "aula-01-04",
+            "aula-01-07",
+            "aula-01-08"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-31",
+        "tipo": "termo-de-glossario",
+        "termo": "PRODIST",
+        "etiqueta": "Procedimentos · ANEEL",
+        "definicao_html": "Procedimentos de Distribuição de Energia Elétrica no Sistema Elétrico Nacional. Conjunto de documentos normativos que regulam tecnicamente o setor de distribuição. O <b>Módulo 8</b> trata especificamente de Qualidade do Fornecimento (continuidade, tensão, fator de potência, harmônicos).",
+        "definicao_texto": "Procedimentos de Distribuição de Energia Elétrica no Sistema Elétrico Nacional. Conjunto de documentos normativos que regulam tecnicamente o setor de distribuição. O Módulo 8 trata especificamente de Qualidade do Fornecimento (continuidade, tensão, fator de potência, harmônicos).",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "PRODIST",
+          "linha_aprox": 2647
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-prodist",
+          "aulaIds_codigo": [
+            "aula-01-07",
+            "aula-01-09"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-32",
+        "tipo": "termo-de-glossario",
+        "termo": "REN ANEEL 1.000/2021",
+        "etiqueta": "Norma",
+        "definicao_html": "Resolução Normativa ANEEL nº 1.000, de 7 de dezembro de 2021. Estabelece as regras de prestação do serviço público de distribuição de energia elétrica. Em vigor desde 3 de janeiro de 2022, substituiu a REN 414/2010. É a base regulatória atual para a relação distribuidora–consumidor.",
+        "definicao_texto": "Resolução Normativa ANEEL nº 1.000, de 7 de dezembro de 2021. Estabelece as regras de prestação do serviço público de distribuição de energia elétrica. Em vigor desde 3 de janeiro de 2022, substituiu a REN 414/2010. É a base regulatória atual para a relação distribuidora–consumidor.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "REN ANEEL 1.000/2021",
+          "linha_aprox": 2651
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-ren-aneel-1-000-2021",
+          "aulaIds_codigo": [
+            "aula-01-05",
+            "aula-01-07"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-33",
+        "tipo": "termo-de-glossario",
+        "termo": "Tensão",
+        "etiqueta": "V, kV",
+        "definicao_html": "Diferença de potencial elétrico entre dois pontos de um circuito. Analogia hidráulica: pressão da água. Unidade SI é o volt (V). Define grupo tarifário no Brasil: Grupo B (baixa tensão, &lt; 2,3 kV) ou Grupo A (média/alta tensão, ≥ 2,3 kV).",
+        "definicao_texto": "Diferença de potencial elétrico entre dois pontos de um circuito. Analogia hidráulica: pressão da água. Unidade SI é o volt (V). Define grupo tarifário no Brasil: Grupo B (baixa tensão, < 2,3 kV) ou Grupo A (média/alta tensão, ≥ 2,3 kV).",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Tensão",
+          "linha_aprox": 2655
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-tensao",
+          "aulaIds_codigo": [
+            "aula-01-01",
+            "aula-01-02",
+            "aula-01-03",
+            "aula-01-04",
+            "aula-01-05",
+            "aula-01-06",
+            "aula-01-07",
+            "aula-01-09"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-34",
+        "tipo": "termo-de-glossario",
+        "termo": "Trifásico",
+        "etiqueta": "Sistema",
+        "definicao_html": "Sistema de fornecimento em corrente alternada com três fases defasadas em 120°. Padrão industrial. Permite maior potência, maior eficiência em motores, e melhor equilíbrio de carga. Praticamente todo consumidor relevante do Grupo A é atendido em trifásico.",
+        "definicao_texto": "Sistema de fornecimento em corrente alternada com três fases defasadas em 120°. Padrão industrial. Permite maior potência, maior eficiência em motores, e melhor equilíbrio de carga. Praticamente todo consumidor relevante do Grupo A é atendido em trifásico.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Trifásico",
+          "linha_aprox": 2659
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-trifasico",
+          "aulaIds_codigo": [
+            "aula-01-02",
+            "aula-01-06",
+            "aula-01-09"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-35",
+        "tipo": "termo-de-glossario",
+        "termo": "TUSD",
+        "etiqueta": "Tarifa",
+        "definicao_html": "Tarifa de Uso do Sistema de Distribuição. Componente tarifária que remunera o uso da infraestrutura de distribuição. Subdivide-se em TUSD-fio (rede física e perdas) e TUSD-demanda (capacidade reservada). Separada da TE (Tarifa de Energia) que remunera a energia em si.",
+        "definicao_texto": "Tarifa de Uso do Sistema de Distribuição. Componente tarifária que remunera o uso da infraestrutura de distribuição. Subdivide-se em TUSD-fio (rede física e perdas) e TUSD-demanda (capacidade reservada). Separada da TE (Tarifa de Energia) que remunera a energia em si.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "TUSD",
+          "linha_aprox": 2663
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-tusd",
+          "aulaIds_codigo": [
+            "aula-01-04"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-36",
+        "tipo": "termo-de-glossario",
+        "termo": "UFER",
+        "etiqueta": "Cobrança · reativo",
+        "definicao_html": "Unidade de Faturamento de Energia Reativa. Cobrança histórica aplicada ao consumidor do Grupo A quando o fator de potência opera abaixo do limite regulatório (referência 0,92). Hoje regulada no contexto da REN ANEEL 1.000/2021 e normativos complementares. Aparece em linha específica da fatura.",
+        "definicao_texto": "Unidade de Faturamento de Energia Reativa. Cobrança histórica aplicada ao consumidor do Grupo A quando o fator de potência opera abaixo do limite regulatório (referência 0,92). Hoje regulada no contexto da REN ANEEL 1.000/2021 e normativos complementares. Aparece em linha específica da fatura.",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "UFER",
+          "linha_aprox": 2667
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-ufer",
+          "aulaIds_codigo": [
+            "aula-01-07"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-37",
+        "tipo": "termo-de-glossario",
+        "termo": "Volt (V)",
+        "etiqueta": "Tensão",
+        "definicao_html": "Unidade de medida de tensão elétrica. 1 V = 1 J/C (joule por coulomb). Em escala industrial, valores típicos no Brasil: 127/220 V (BT), 13,8 kV (A4), 69 kV (A3), 138 kV (A2), 230 kV+ (A1).",
+        "definicao_texto": "Unidade de medida de tensão elétrica. 1 V = 1 J/C (joule por coulomb). Em escala industrial, valores típicos no Brasil: 127/220 V (BT), 13,8 kV (A4), 69 kV (A3), 138 kV (A2), 230 kV+ (A1).",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Volt (V)",
+          "linha_aprox": 2671
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-volt-v",
+          "aulaIds_codigo": [
+            "aula-01-02"
+          ]
+        }
+      },
+      {
+        "id": "m01-lex-38",
+        "tipo": "termo-de-glossario",
+        "termo": "Watt (W)",
+        "etiqueta": "Potência",
+        "definicao_html": "Unidade SI de potência. 1 W = 1 J/s (joule por segundo). Em circuitos DC: W = V × A. Em escala industrial usa-se kW (1.000 W) ou MW (1.000.000 W).",
+        "definicao_texto": "Unidade SI de potência. 1 W = 1 J/s (joule por segundo). Em circuitos DC: W = V × A. Em escala industrial usa-se kW (1.000 W) ou MW (1.000.000 W).",
+        "origem": {
+          "seletor": "section.aula(§ Lex) details.glossary-item",
+          "trecho_inicial": "Watt (W)",
+          "linha_aprox": 2675
+        },
+        "vinculos": {
+          "aulas_declaradas": [],
+          "nota": "A fonte não liga termo a aula. aulaIds do código foram inferidos pela Wave 8 (varredura + leitura), não declarados pela fonte."
+        },
+        "comparacao_codigo": {
+          "status": "identico",
+          "campos": {
+            "term": true,
+            "unit": true,
+            "definition": true
+          },
+          "id_codigo": "gl-watt-w",
+          "aulaIds_codigo": [
+            "aula-01-01",
+            "aula-01-02"
+          ]
+        }
+      }
+    ],
+    "codigo_atual": "src/lib/data/alexandria-glossario.ts, bloco \"MÓDULO 01 (Wave 8) — 38 verbetes\", ids gl-<slug> sem prefixo de módulo (os M02+ usam gl-mNN-)."
+  },
+  "divergencias": [
+    {
+      "id": "div-m01-criterio-P5",
+      "tema": "Critério de domínio/conclusão do módulo — contradição citada em bar P5 e §9",
+      "leituras": [
+        {
+          "onde": "§ Drill > p (L2387)",
+          "literal": "O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+          "sentido": "domínio = ≥ 6 de 8 exercícios sem consulta"
+        },
+        {
+          "onde": "§ Quiz > p (L2473)",
+          "literal": "O critério de domínio do módulo é acertar pelo menos 8 de 10 sem consultar.",
+          "sentido": "domínio = ≥ 8 de 10 no quiz"
+        },
+        {
+          "onde": "<script> QUIZ (L3199)",
+          "literal": "[9–10] Domínio sólido. Pronto para o Módulo 02. / [7–8] Bom. Revise os pontos errados, depois avance para o próximo módulo. / [5–6] Domínio parcial. Volte às aulas onde errou antes de avançar. / [0–4] Refaça o estudo. O critério de domínio é 8/10 — sem atalho.",
+          "sentido": "só 9–10 recebe \"Pronto para o Módulo 02\"; 7–8 (inclui 7, abaixo do 8/10 da prosa) recebe \"avance para o próximo módulo\"; 8 não recebe \"pronto\"; o 8/10 só é repetido na faixa 0–4"
+        },
+        {
+          "onde": "§ Final > p (L2492)",
+          "literal": "Você só passa neste módulo se conseguir, sem consultar nenhum material, fazer todas as ações abaixo. Marque ao longo do estudo. Quando todas estiverem marcadas, você está pronto para o Módulo 02 — A Rede Elétrica.",
+          "sentido": "passar = 16 de 16 ações do checklist, sem consulta"
+        }
+      ],
+      "leitura_de_contexto": {
+        "onde": "§ 00 > h4 \"Resultado esperado\" (L1301)",
+        "literal": "Você consegue, sem consultar nenhum material: [7 itens]",
+        "sentido": "resultado esperado = 7 capacidades (não é limiar numérico)"
+      },
+      "decisao": "Nenhuma. P5: preservar o critério literal até a reconciliação. As quatro formulações estão guardadas verbatim; nenhuma foi escolhida como \"o\" critério."
+    },
+    {
+      "id": "div-m01-quiz-faixa-7-8",
+      "tema": "Dentro do próprio script do quiz",
+      "leituras": [
+        {
+          "literal": "else if (correct >= 7) ... \"Bom. Revise os pontos errados, depois avance para o próximo módulo.\"",
+          "sentido": "7 acertos autoriza avançar"
+        },
+        {
+          "literal": "else ... \"Refaça o estudo. O critério de domínio é 8/10 — sem atalho.\"",
+          "sentido": "o critério é 8"
+        }
+      ],
+      "decisao": "Nenhuma. Registrado."
+    },
+    {
+      "id": "div-m01-drill-alcance",
+      "tema": "Alcance declarado dos exercícios × tags",
+      "leituras": [
+        {
+          "onde": "§ Drill > p",
+          "literal": "Os exercícios alcançam todas as nove aulas.",
+          "sentido": "as 9 aulas têm exercício"
+        },
+        {
+          "onde": ".exercise-tag (×8)",
+          "literal": "Ex · 01 · Aula 01 | Ex · 02 · Aula 02 | Ex · 03 · Aula 04 | Ex · 04 · Aula 05 | Ex · 05 · Aula 07 | Ex · 06 · Aula 08 | Ex · 07 · 3 níveis · Aula 05 | Ex · 08 · Síntese · Diagnóstico inicial",
+          "sentido": "tags cobrem só aula-01-01, aula-01-02, aula-01-04, aula-01-05, aula-01-07, aula-01-08; Aulas 03, 06 e 09 sem exercício com tag; Aula 05 com dois"
+        }
+      ],
+      "decisao": "Markup vence para vínculo (protocolo §5); a prosa fica registrada. Ex·08 é solto (P9) e não aponta aula nenhuma."
+    },
+    {
+      "id": "div-m01-glossario-contagem",
+      "tema": "Contagem do glossário (já registrada no protocolo §5 e no cabeçalho de alexandria-glossario.ts)",
+      "leituras": [
+        {
+          "onde": "§ Lex > p",
+          "literal": "Vinte e oito termos.",
+          "sentido": "28"
+        },
+        {
+          "onde": "details.glossary-item",
+          "literal": "38 elementos",
+          "sentido": "38"
+        }
+      ],
+      "decisao": "Markup vence (38). Prosa preservada."
+    },
+    {
+      "id": "div-m01-trava-war-room",
+      "tema": "Numeração da \"Trava\" de linguagem segura",
+      "leituras": [
+        {
+          "onde": "§ 00 .callout-label (L1314)",
+          "literal": "Linguagem segura · Trava 4 do War Room"
+        },
+        {
+          "onde": "Aula 05 (L1823) e quiz Q10 feedback (L3150)",
+          "literal": "fere a Trava 4 do War Room"
+        },
+        {
+          "onde": "§ Caso .case-body > p (L2192)",
+          "literal": "Linguagem segura aplicada conforme Trava 3 do War Room."
+        }
+      ],
+      "decisao": "Nenhuma. Duas leituras: (a) o caso cita uma trava diferente (3 = ficção/anonimização?) — a fonte não define as travas; (b) erro de numeração no caso. Não resolvido. Observação: \"War Room\" e \"Trava N\" são vocabulário interno GridAlpha visível ao learner (relevante para preflight \"texto interno visível\")."
+    },
+    {
+      "id": "div-m01-quiz-q05-faixa-fc",
+      "tema": "Q05: FC = 0,40 cai na fronteira de duas faixas da tabela da Aula 05",
+      "leituras": [
+        {
+          "onde": "quiz Q05 feedback",
+          "literal": "Esse FC indica operação com sazonalidade moderada",
+          "sentido": "0,40 ∈ faixa \"0,40 – 0,70\""
+        },
+        {
+          "onde": "Aula 05, tabela de FC (alexandria-modulo-01-content.ts L262, fonte L1814–1815)",
+          "literal": "0,15 – 0,40 | Picos altos, operação concentrada, partidas simultâneas",
+          "sentido": "0,40 também ∈ faixa \"0,15 – 0,40\""
+        }
+      ],
+      "decisao": "Nenhuma. Fronteira fechada nos dois lados na fonte. Nota: o script do INST·04 usa limiares próprios (ver grupo de instrumentos); não comparado aqui."
+    },
+    {
+      "id": "div-m01-glossario-sigla-FC",
+      "tema": "Mesma sigla para dois termos distintos",
+      "leituras": [
+        {
+          "literal": "Fator de capacidade (FC)"
+        },
+        {
+          "literal": "Fator de carga (FC)"
+        }
+      ],
+      "decisao": "Não é contradição da fonte, mas ambiguidade real: busca/âncora por \"FC\" no v2 não pode resolver sozinha. Registrado."
+    },
+    {
+      "id": "div-m01-glossario-ordem",
+      "tema": "Ordem alfabética do § Lex",
+      "leituras": [
+        {
+          "literal": "\"Perdas técnicas\" antes de \"Perdas não técnicas\"",
+          "sentido": "única quebra da ordem alfabética (pt-BR) nos 38"
+        }
+      ],
+      "decisao": "Ordem da fonte preservada no JSON."
+    },
+    {
+      "id": "div-m01-biblioteca-codigo",
+      "tema": "Referências no código × fonte (insumo da Biblioteca)",
+      "leituras": [
+        {
+          "onde": "fonte § Ref item 8",
+          "literal": "Practical Engineering · canal técnico no YouTube com vídeos didáticos sobre rede elétrica, transmissão, fator de potência. Material complementar de excelência."
+        },
+        {
+          "onde": "BibliotecaView.tsx BIBLIOGRAFIA_MODULO_01[7]",
+          "literal": "titulo: 'Canal técnico no YouTube' / descricao: 'Vídeos didáticos sobre rede elétrica, transmissão, fator de potência. Material complementar de excelência.'",
+          "sentido": "título e descrição recortados e recapitalizados pelo extrator anterior (\"com vídeos didáticos\" → \"Vídeos didáticos\")"
+        },
+        {
+          "onde": "BibliotecaView.tsx FONTES[ANEEL].publica",
+          "literal": "'Resolução Normativa nº 1.000/2021, PRODIST e os indicadores de qualidade do fornecimento.'",
+          "sentido": "síntese dos itens 1-3, não literal da fonte"
+        },
+        {
+          "onde": "BibliotecaView.tsx FONTES",
+          "literal": "nome por extenso de ANEEL (\"Agência Nacional de Energia Elétrica\")",
+          "sentido": "a fonte do M01 nunca expande \"ANEEL\" no § Ref; a expansão vem de fora do § Ref"
+        }
+      ],
+      "decisao": "Nenhuma. O JSON guarda o <li> inteiro verbatim + instituição (<b>) + domínio (<em>); título/descrição não foram separados porque a fonte não os separa (itens 1-3 têm \"Título. Descrição.\"; itens 4-7 têm nome da instituição por extenso na posição de título; item 8 é frase corrida)."
+    },
+    {
+      "id": "div-m01-ex07-paragrafos",
+      "tema": "Ex·07 no código (fora do escopo deste grupo — só observado)",
+      "leituras": [
+        {
+          "onde": "fonte .exercise-answer",
+          "literal": "três <p> (12 anos / CFO / Especialista)"
+        },
+        {
+          "onde": "alexandria-modulo-01-content.ts L468 config.gabarito",
+          "literal": "os três parágrafos concatenados com espaço, sem <p>"
+        }
+      ],
+      "decisao": "Sem perda de texto; perda de estrutura. Para o grupo de aulas."
+    }
+  ],
+  "contexto_criterios": {
+    "nota": "Não é aparato a extrair; está aqui só para dar as quatro formulações de critério de conclusão lado a lado (divergência P5). O \"Resultado esperado\" completo pertence ao grupo do módulo/hero.",
+    "resultado_esperado_7_itens": [
+      {
+        "id": "m01-resultado-01",
+        "texto": "Explicar a diferença entre energia e potência em 30 segundos.",
+        "linha_aprox": 1304
+      },
+      {
+        "id": "m01-resultado-02",
+        "texto": "Ler kW, kWh, MW, MWh, kVA e kVAr sem confundir unidade nem grandeza.",
+        "linha_aprox": 1305
+      },
+      {
+        "id": "m01-resultado-03",
+        "texto": "Explicar por que uma fábrica paga demanda além de consumo.",
+        "linha_aprox": 1306
+      },
+      {
+        "id": "m01-resultado-04",
+        "texto": "Calcular fator de carga e interpretar se a instalação usa bem a capacidade que paga.",
+        "linha_aprox": 1307
+      },
+      {
+        "id": "m01-resultado-05",
+        "texto": "Desenhar o triângulo de potência e explicar por que fator de potência baixo vira cobrança regulatória.",
+        "linha_aprox": 1308
+      },
+      {
+        "id": "m01-resultado-06",
+        "texto": "Conectar tensão, corrente, perdas e qualidade ao desenho tarifário brasileiro.",
+        "linha_aprox": 1309
+      },
+      {
+        "id": "m01-resultado-07",
+        "texto": "Identificar quais informações pedir antes de recomendar qualquer economia.",
+        "linha_aprox": 1310
+      }
+    ]
+  }
+}

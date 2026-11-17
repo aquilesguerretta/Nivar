@@ -1,0 +1,4029 @@
+{
+  "schema": "alexandria-v2/extraction/instrumentos@1",
+  "modulo": "M06",
+  "grupo": "instrumentos",
+  "camada": "fonte",
+  "fonte": {
+    "arquivo": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo06.html",
+    "linhas_total": 2361,
+    "bytes": 279562
+  },
+  "gerado_em": "2026-09-17",
+  "metodo": "Markup por parser de pilha; script por linha literal; cenário-padrão e prova de porte executando o <script> original em DOM simulado (vm) e comparando, entrada a entrada, com INSTRUMENT_CALCULATORS do bundle esbuild do código (só leitura). O harness só troca `vd(v,` por `__vd(<linha>,v,` para registrar o ramo; a fonte não é alterada. Nenhum texto de conteúdo digitado.",
+  "convencoes": {
+    "linha": "linha 1-based do HTML-fonte",
+    "status": "portado = cálculo/veredito equivalentes no espaço testado; divergente = diferença material; não portado = ausente",
+    "kind_taxonomia": "ver docs/alexandria/instrument-taxonomy.md"
+  },
+  "script_linhas": [
+    1519,
+    2359
+  ],
+  "helpers_globais": [
+    {
+      "linha": 1523,
+      "codigo": "function num(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}"
+    },
+    {
+      "linha": 1524,
+      "codigo": "function pct(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d===undefined?1:d,maximumFractionDigits:d===undefined?1:d})+'%';}"
+    },
+    {
+      "linha": 1525,
+      "codigo": "function mmi(v){"
+    },
+    {
+      "linha": 1526,
+      "codigo": "if(Math.abs(v)>=1000) return 'R$ '+(v/1000).toLocaleString('pt-BR',{maximumFractionDigits:2})+' bi';"
+    },
+    {
+      "linha": 1527,
+      "codigo": "return 'R$ '+v.toLocaleString('pt-BR',{maximumFractionDigits:0})+' mi';"
+    },
+    {
+      "linha": 1528,
+      "codigo": "}"
+    },
+    {
+      "linha": 1529,
+      "codigo": "function clamp(v,a,b){return v<a?a:(v>b?b:v);}"
+    },
+    {
+      "linha": 1530,
+      "codigo": "function vd(el,cls,txt){if(!el)return;el.className='verdict '+cls;el.textContent=txt;}"
+    },
+    {
+      "linha": 1531,
+      "codigo": "function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}"
+    }
+  ],
+  "link_numero_range": {
+    "linhas": [
+      1549,
+      1560
+    ],
+    "descricao_literal": [
+      "function link(id,cb){",
+      "var r=$id(id), n=$id(id+'-n');",
+      "if(!r) return null;",
+      "r.addEventListener('input',function(){ if(n) n.value=r.value; cb(); });",
+      "if(n) n.addEventListener('change',function(){",
+      "var v=parseFloat(n.value);",
+      "if(isNaN(v)) v=parseFloat(r.value);",
+      "v=clamp(v,parseFloat(r.min),parseFloat(r.max));",
+      "n.value=v; r.value=v; cb();",
+      "});",
+      "return r;",
+      "}"
+    ],
+    "nota": "O campo number só propaga no evento change e é limitado à faixa do range; o script lê sempre o range."
+  },
+  "instrumentos": [
+    {
+      "id": "m06-inst-01",
+      "n": 1,
+      "id_fonte": "Inst · 01",
+      "titulo": "Linha do tempo · quatorze marcos, de 1879 a 2028",
+      "secao": "§MAP",
+      "aula": null,
+      "aula_id_codigo": null,
+      "de_modulo": true,
+      "linhas_markup": [
+        383,
+        401
+      ],
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não declara pergunta própria; `intro` é instrução de uso. Pergunta de previsão seria camada Alexandria (P3/P11/P19).",
+      "intro": {
+        "html": "Clique em qualquer marco — no eixo ou nas etiquetas — para ver o que aconteceu e, principalmente, qual característica do setor <em>de hoje</em> nasceu ali. Percorra na ordem pelo menos uma vez: a sequência é o conteúdo, não a lista.",
+        "texto": "Clique em qualquer marco — no eixo ou nas etiquetas — para ver o que aconteceu e, principalmente, qual característica do setor de hoje nasceu ali. Percorra na ordem pelo menos uma vez: a sequência é o conteúdo, não a lista.",
+        "origem": {
+          "seletor": ".inst-intro",
+          "trecho_inicial": "Clique em qualquer marco — no eixo ou nas etiquetas — para ver o que a",
+          "linha_aprox": 386
+        }
+      },
+      "entradas": [],
+      "controles_segmentados": [],
+      "saidas": [],
+      "painel": {
+        "campos": [
+          "t1-yr",
+          "t1-ti",
+          "t1-bd",
+          "t1-lg"
+        ],
+        "rotulo_legado": "Cicatriz que ainda opera hoje",
+        "botoes": [
+          {
+            "id": "t1-prev",
+            "texto": "◄ Marco anterior"
+          },
+          {
+            "id": "t1-next",
+            "texto": "Próximo marco ►"
+          }
+        ],
+        "origem": {
+          "seletor": ".tl-panel",
+          "trecho_inicial": "— — — Cicatriz que ainda opera hoje— ◄ Marco anterior Próximo marco ►",
+          "linha_aprox": 389
+        }
+      },
+      "cadeia": [],
+      "script": {
+        "bloco_linhas": [
+          1592,
+          1692
+        ],
+        "constantes": [
+          {
+            "linha": 1641,
+            "codigo": "var ERA=[{a:0,b:2,c:'#F59E0B'},{a:2,b:7,c:'#3B82F6'},{a:7,b:11,c:'#EF4444'},{a:11,b:13,c:'#06B6D4'}];"
+          },
+          {
+            "linha": 1642,
+            "codigo": "var cur=0, N=M.length;"
+          }
+        ],
+        "funcoes_auxiliares": [],
+        "formula_exata_script": [],
+        "formatadores": [
+          {
+            "linha": 1523,
+            "codigo": "function num(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}"
+          },
+          {
+            "linha": 1524,
+            "codigo": "function pct(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d===undefined?1:d,maximumFractionDigits:d===undefined?1:d})+'%';}"
+          },
+          {
+            "linha": 1525,
+            "codigo": "function mmi(v){"
+          },
+          {
+            "linha": 1526,
+            "codigo": "if(Math.abs(v)>=1000) return 'R$ '+(v/1000).toLocaleString('pt-BR',{maximumFractionDigits:2})+' bi';"
+          },
+          {
+            "linha": 1527,
+            "codigo": "return 'R$ '+v.toLocaleString('pt-BR',{maximumFractionDigits:0})+' mi';"
+          }
+        ]
+      },
+      "textos_leitura": {
+        "veredito_id": null,
+        "ramos": [],
+        "nota": "expressao_literal é o JS da fonte; texto_template é o mesmo texto com as expressões entre chaves (conversão mecânica). A classe (ok/att/per) é a cor do veredito na fonte."
+      },
+      "grafico": {
+        "elementos": [
+          {
+            "elemento": "svg#t1-svg",
+            "viewBox": "0 0 760 168",
+            "linha_aprox": 387
+          },
+          {
+            "elemento": "div.tl-chips#t1-chips",
+            "viewBox": null,
+            "linha_aprox": 388
+          }
+        ],
+        "legenda": [],
+        "nota": "Desenho não porta (protocolo §12); o conteúdo textual está nas saídas e no veredito."
+      },
+      "cenario_padrao": {
+        "entradas": {},
+        "controles": {},
+        "saidas": {},
+        "veredito": null,
+        "nota": "Lido do script original executado em DOM simulado no carregamento (sem interação). O texto inicial \"—\" do markup é sobrescrito na carga.",
+        "painel": {
+          "t1-yr": "1879–1889",
+          "t1-ti": "A eletricidade chega, e chega local",
+          "t1-bd": "Seis lâmpadas de arco na estação da Estrada de Ferro D. Pedro II, no Rio, em 1879. Em 1883, o primeiro serviço público de iluminação em Campos e a aplicação hidrelétrica à mineração em Diamantina. Em 1889, Marmelos Zero, em Juiz de Fora. Instalações pontuais, cada uma amarrada a um serviço urbano ou a uma atividade produtiva específica — nenhuma delas parte de um sistema.",
+          "t1-lg": "A eletrificação brasileira nasceu privada e municipal. Toda vez que alguém disser que o setor \"começou estatal\", este é o marco que desmonta a frase."
+        }
+      },
+      "fonte_dos_numeros": {
+        "disc": {
+          "html": "Didático/ilustrativo. As datas dos marcos legais correspondem à norma de origem indicada em §Ref; onde a norma foi editada num ano e a instituição instalada em outro, o painel diz explicitamente os dois. Marcos futuros — os prazos de 2027 e 2028 — são obrigações de cronograma legal, não eventos ocorridos, e dependem de regulamentação complementar.",
+          "texto": "Didático/ilustrativo. As datas dos marcos legais correspondem à norma de origem indicada em §Ref; onde a norma foi editada num ano e a instituição instalada em outro, o painel diz explicitamente os dois. Marcos futuros — os prazos de 2027 e 2028 — são obrigações de cronograma legal, não eventos ocorridos, e dependem de regulamentação complementar.",
+          "origem": {
+            "seletor": "p.disc",
+            "trecho_inicial": "Didático/ilustrativo. As datas dos marcos legais correspondem à norma ",
+            "linha_aprox": 399
+          }
+        },
+        "fonte_externa_declarada": "Datas dos marcos legais: \"norma de origem indicada em §Ref\" (disc)",
+        "nota": "A fonte aponta normas, não dados numéricos medidos."
+      },
+      "tolerancias": null,
+      "tolerancias_nota": "A fonte não declara tolerância nem resposta esperada.",
+      "invocacao": {
+        "ponto_no_texto": {
+          "tipo": "lede",
+          "trecho_final": "meço da aula seguinte. Comece pela linha do tempo abaixo: ela é o mapa do bloco inteiro e vale a pena percorrer os quatorze marcos antes de ler a primeira aula.",
+          "origem": {
+            "seletor": "elemento imediatamente anterior ao div.inst",
+            "trecho_inicial": "O agrupamento não segue a cronologia bruta: segue arco narrativo. Cada",
+            "linha_aprox": 381
+          }
+        },
+        "mencoes": [
+          {
+            "linha": 381,
+            "trecho": "linha do tempo abaixo",
+            "contexto": "r uma crise que já é o começo da aula seguinte. Comece pela linha do tempo abaixo: ela é o mapa do bloco inteiro e vale "
+          }
+        ]
+      },
+      "dados_script": {
+        "marcos": [
+          {
+            "ordem": 1,
+            "ano": "1879–1889",
+            "titulo": "A eletricidade chega, e chega local",
+            "corpo": "Seis lâmpadas de arco na estação da Estrada de Ferro D. Pedro II, no Rio, em 1879. Em 1883, o primeiro serviço público de iluminação em Campos e a aplicação hidrelétrica à mineração em Diamantina. Em 1889, Marmelos Zero, em Juiz de Fora. Instalações pontuais, cada uma amarrada a um serviço urbano ou a uma atividade produtiva específica — nenhuma delas parte de um sistema.",
+            "cicatriz": "A eletrificação brasileira nasceu privada e municipal. Toda vez que alguém disser que o setor \"começou estatal\", este é o marco que desmonta a frase."
+          },
+          {
+            "ordem": 2,
+            "ano": "1899–1930",
+            "titulo": "O capital externo assume a escala",
+            "corpo": "A São Paulo Tramway, Light and Power organiza-se em 1899 e a congênere do Rio em 1904, com capital canadense e domicílio em Toronto, sob a holding Brazilian Traction. A partir dos anos 1920, a Amforp compra concessionárias do interior. Por volta de 1930, as duas dominam o suprimento das grandes cidades — trazendo capital, engenharia e velocidade, e criando uma assimetria de poder que nenhuma prefeitura conseguia arbitrar.",
+            "cicatriz": "A distribuidora do Rio de hoje descende diretamente dessa empresa, e a assimetria de informação entre regulador e regulado que o Módulo 05 descreve como conceito aparece aqui na sua primeira forma brasileira."
+          },
+          {
+            "ordem": 3,
+            "ano": "1934",
+            "titulo": "Código de Águas: a União toma o rio",
+            "corpo": "Decreto nº 24.643, de 10 de julho de 1934. Separa o potencial hidráulico da propriedade do solo, concentra na União o poder de conceder e fiscalizar, e substitui a proteção cambial das concessionárias — a cláusula-ouro, proibida em 1933 — por remuneração sobre o custo histórico do investimento.",
+            "cicatriz": "Rio, rede e segurança de suprimento são assunto federal. É a continuidade mais profunda de todo o bloco: atravessou estatização, privatização e reabertura sem jamais ser revertida."
+          },
+          {
+            "ordem": 4,
+            "ano": "1939–1957",
+            "titulo": "Regular não é construir",
+            "corpo": "CNAEE em 1939. A guerra fecha o acesso a equipamento importado enquanto a demanda urbana acelera, e o resultado são racionamentos nos anos 1940 e início dos 1950. A resposta é o Estado assumir a construção: Chesf em 1945, BNDE e Cemig em 1952, Furnas em 1957.",
+            "cicatriz": "A primeira demonstração brasileira de que sistema elétrico não responde a decreto, responde a obra concluída. A mesma lição volta em 2001."
+          },
+          {
+            "ordem": 5,
+            "ano": "1961–1962",
+            "titulo": "Eletrobras",
+            "corpo": "Proposta enviada por Vargas em 1954, sete anos de disputa no Congresso, Lei nº 3.890-A em abril de 1961 autorizando a criação, e instalação efetiva em junho de 1962. No ano seguinte, o Imposto Único sobre Energia Elétrica e o empréstimo compulsório dão à holding a base financeira que faltava.",
+            "cicatriz": "É aqui que a conta de luz brasileira passa a carregar política pública embutida — e nunca mais deixou de carregar. Toda discussão atual sobre encargos tem origem neste desenho."
+          },
+          {
+            "ordem": 6,
+            "ano": "1964–1979",
+            "titulo": "A nacionalização se completa",
+            "corpo": "Os ativos da Amforp são adquiridos pelo Estado brasileiro em 1964; os da Light, em 1979. A empresa que trouxe o capital canadense para o Rio em 1904 passa ao controle estatal setenta e cinco anos depois.",
+            "cicatriz": "Primeira virada completa de regime de propriedade numa mesma empresa. Ela ainda daria mais duas voltas — privatização em 1996 e recuperação judicial em 2023."
+          },
+          {
+            "ordem": 7,
+            "ano": "1973–1984",
+            "titulo": "O esqueleto físico e a coordenação central",
+            "corpo": "Em 1973 nascem o GCOI, para coordenar a operação interligada, e a Eletronorte, e é assinado o Tratado de Itaipu, que cria uma entidade binacional. As obras de Itaipu começam em 1975 e as de Tucuruí em 1976; as primeiras unidades de ambas entram em operação em 1984.",
+            "cicatriz": "O despacho centralizado brasileiro nasce aqui, não em 2001 — porque hidrelétrica em cascata exige coordenação intertemporal. Confundir as duas datas é erro de trinta anos."
+          },
+          {
+            "ordem": 8,
+            "ano": "Anos 1980",
+            "titulo": "A quebra financeira do modelo estatal",
+            "corpo": "Quatro vetores simultâneos: tarifa administrada usada como âncora anti-inflacionária, dívida externa impagável após o choque de juros, remuneração garantida que elimina o incentivo a controlar custo, e equalização tarifária que elimina a comparação entre empresas. Como todas pertenciam ao mesmo dono, deixar de pagar umas às outras virou saldo contábil: a dívida intrassetorial.",
+            "cicatriz": "É a razão pela qual a reforma dos anos 1990 começou por um encontro de contas, e não por uma venda. Empresa cujo fluxo financeiro ninguém consegue ler não pode ser avaliada nem recapitalizada."
+          },
+          {
+            "ordem": 9,
+            "ano": "1993–1998",
+            "titulo": "A arquitetura da reforma",
+            "corpo": "Lei nº 8.631/1993 extingue remuneração garantida e equalização e faz o encontro de contas. Leis de concessão e de outorga em 1995 criam produtor independente e consumidor livre. A ANEEL é instituída em 1996 e opera a partir de 1997. A lei de 1998 cria o ONS, sucedendo o GCOI, e o MAE.",
+            "cicatriz": "A separação entre regulação, operação e comércio que estrutura o setor até hoje. O ONS não privatizou o despacho: sucedeu um comitê numa função que já era centralizada."
+          },
+          {
+            "ordem": 10,
+            "ano": "1996–2000",
+            "titulo": "As privatizações, e a assimetria que elas deixaram",
+            "corpo": "A Light é leiloada em 21 de maio de 1996, no preço mínimo, para um consórcio com EDF, AES, Houston Industries e CSN. A Eletropaulo Metropolitana em 15 de abril de 1998, com a mesma constelação de nomes; a AES consolida o controle em 2001. Dezenas de distribuidoras estaduais seguem entre 1997 e 2000 — mas a geração permanece majoritariamente estatal.",
+            "cicatriz": "A assimetria distribuição privada / geração estatal deixou a pergunta \"quem garante a expansão\" sem dono. É o buraco por onde 2001 entrou."
+          },
+          {
+            "ordem": 11,
+            "ano": "2001",
+            "titulo": "O racionamento",
+            "corpo": "Câmara de Gestão da Crise criada em maio de 2001 sob a Casa Civil; programa compulsório de redução de consumo de junho de 2001 a fevereiro de 2002, meta média em torno de vinte por cento, com bônus e sobretarifa. A comissão de análise presidida por Jérson Kelman concluiu que ministério, agência, operador e Eletrobras conheciam o risco elevado de déficit desde meados de 1999, e que houve orientação para não divulgar as avaliações.",
+            "cicatriz": "Segurança de suprimento vira objetivo explícito do setor. E a lição institucional não foi \"planejar melhor\" — foi tirar a segurança de suprimento da dependência de uma decisão discricionária."
+          },
+          {
+            "ordem": 12,
+            "ano": "2004",
+            "titulo": "O Novo Modelo",
+            "corpo": "Leis nº 10.847 e nº 10.848, ambas de março de 2004. Criam a EPE, que devolve o planejamento a uma instituição dedicada; a CCEE, que substitui o MAE; o CMSE, que monitora continuamente a segurança de suprimento; formalizam ACR e ACL; e — a peça decisiva — obrigam a distribuidora a estar contratada para a totalidade da carga, com antecedência e lastro.",
+            "cicatriz": "É o marco que ainda rege o setor. Não foi reestatização: manteve propriedade privada, competição em geração e mercado livre, e recolocou um dono na pergunta que tinha ficado órfã em 1998."
+          },
+          {
+            "ordem": 13,
+            "ano": "2012–2021",
+            "titulo": "A década do teste",
+            "corpo": "MP 579 em 2012 tenta reduzir tarifa antecipando renovação de concessões. Vem a crise hídrica de 2013 a 2015, com Conta-ACR e bandeiras tarifárias. O GSF gera liminares a partir de 2015 e uma década de judicialização resolvida em três camadas legislativas. A abertura do mercado desce em degraus por portaria, de 2.500 kW em 2019 a 500 kW em 2023. Em 2021, hidrologia severa — e nenhum racionamento.",
+            "cicatriz": "Risco mal alocado não desaparece: vira dívida, encargo, bandeira ou processo. E a ausência de racionamento em 2021 é a melhor medida disponível do que foi aprendido desde 2001."
+          },
+          {
+            "ordem": 14,
+            "ano": "2022–2028",
+            "titulo": "Onde a história pousa — e para onde aponta",
+            "corpo": "Capitalização da Eletrobras em junho de 2022, com a União diluída de cerca de 72% para cerca de 40% do capital votante e limite legal de dez por cento de voto por acionista. Marca AXIA Energia adotada em outubro de 2025. Abertura de todo o Grupo A em 1º de janeiro de 2024, sem exigência de carga mínima. E a Lei nº 15.269/2025 dá cronograma legal à baixa tensão: até novembro de 2027 para indústria e comércio, até novembro de 2028 para todos.",
+            "cicatriz": "O mercado endereçável de qualquer produto independente de inteligência energética no Brasil nasce em 2024 e multiplica em 2027 e 2028 — condicionado a regulamentação. É este o ponto do ciclo em que a GridAlpha entra."
+          }
+        ],
+        "linhas": [
+          1597,
+          1640
+        ],
+        "eras": {
+          "linha": 1641,
+          "codigo": "var ERA=[{a:0,b:2,c:'#F59E0B'},{a:2,b:7,c:'#3B82F6'},{a:7,b:11,c:'#EF4444'},{a:11,b:13,c:'#06B6D4'}];"
+        },
+        "chaves": {
+          "y": "ano (rótulo do chip e t1-yr)",
+          "t": "t1-ti",
+          "b": "t1-bd",
+          "l": "t1-lg \"Cicatriz que ainda opera hoje\""
+        },
+        "eixo_svg": {
+          "linha": 1658,
+          "codigo": "s+='<text x=\"40\" y=\"150\" fill=\"#6E7686\" font-size=\"9\" font-family=\"monospace\">eixo sequencial · a distância entre marcos não é proporcional ao tempo</text>';"
+        }
+      },
+      "comparacao_codigo": {
+        "id_codigo": "m06-inst-01",
+        "existe_objeto": true,
+        "existe_calculadora": true,
+        "kind_codigo": "explorador",
+        "titulo_codigo": "Linha do tempo · quatorze marcos",
+        "titulo_igual": false,
+        "formula_codigo": null,
+        "note_codigo": "Os quatorze marcos que organizam o bloco, do primeiro serviço elétrico de 1879 ao ciclo que se fecha em 2028. Escolha um marco para ler o que aconteceu e o que dele ficou.",
+        "campos": [],
+        "campos_so_no_codigo": [
+          {
+            "id": "m06-i1-sel",
+            "label": "Marco",
+            "kind": "select",
+            "opcoes": 14
+          }
+        ],
+        "saidas": [],
+        "prova": {
+          "metodo": "script original (14 marcos, espaço inteiro) × calculadora",
+          "casos": 14,
+          "falhas_veredito": 0,
+          "falhas_numericas": 0,
+          "falhas_painel": 0,
+          "rotulo_codigo": "\"<b>O que ficou</b> —\"",
+          "rotulo_fonte": "\"Cicatriz que ainda opera hoje\"",
+          "navegacao_fonte": "chips + botões \"◄ Marco anterior\" / \"Próximo marco ►\" + SVG",
+          "navegacao_codigo": "select \"Marco\"",
+          "exemplos_de_falha": []
+        },
+        "status": "divergente",
+        "status_nota": "Portado com diferença material (ver motivos).",
+        "motivos": [
+          "título difere: código \"Linha do tempo · quatorze marcos\" × fonte \"Linha do tempo · quatorze marcos, de 1879 a 2028\"",
+          "note do código não é texto da fonte (paráfrase)",
+          "inst-intro e p.disc da fonte não estão no objeto (note/formula null ou outro texto); varredura de src/: zero",
+          "rótulo do legado trocado (\"O que ficou\" × \"Cicatriz que ainda opera hoje\"); campo \"Marco\" e note são do código"
+        ]
+      }
+    },
+    {
+      "id": "m06-inst-02",
+      "n": 2,
+      "id_fonte": "Inst · 02",
+      "titulo": "Simulador · a erosão do custo histórico",
+      "secao": "Aula 01",
+      "aula": "Aula 01",
+      "aula_id_codigo": "aula-06-01",
+      "de_modulo": false,
+      "linhas_markup": [
+        451,
+        483
+      ],
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não declara pergunta própria; `intro` é instrução de uso. Pergunta de previsão seria camada Alexandria (P3/P11/P19).",
+      "intro": {
+        "html": "Uma concessionária investiu, foi remunerada por uma taxa fixa sobre o valor histórico daquele investimento, e agora precisa decidir se expande. Ajuste inflação, tempo e parcela importada do equipamento e observe a cobertura: quanto a receita reconhecida representa do que seria necessário para remunerar o mesmo ativo a preço de reposição. O ponto não é o número — é a forma da curva e a velocidade com que ela desce.",
+        "texto": "Uma concessionária investiu, foi remunerada por uma taxa fixa sobre o valor histórico daquele investimento, e agora precisa decidir se expande. Ajuste inflação, tempo e parcela importada do equipamento e observe a cobertura: quanto a receita reconhecida representa do que seria necessário para remunerar o mesmo ativo a preço de reposição. O ponto não é o número — é a forma da curva e a velocidade com que ela desce.",
+        "origem": {
+          "seletor": ".inst-intro",
+          "trecho_inicial": "Uma concessionária investiu, foi remunerada por uma taxa fixa sobre o ",
+          "linha_aprox": 454
+        }
+      },
+      "entradas": [
+        {
+          "id": "i2-h-n",
+          "id_range": "i2-h",
+          "tipo": "number+range",
+          "rotulo": "Investimento original reconhecido",
+          "unidade": "índice",
+          "padrao": 100,
+          "min": 20,
+          "max": 500,
+          "step": 5,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i2-h",
+          "origem": {
+            "seletor": "input#i2-h-n",
+            "trecho_inicial": "Investimento original reconhecido índice",
+            "linha_aprox": 456
+          }
+        },
+        {
+          "id": "i2-i-n",
+          "id_range": "i2-i",
+          "tipo": "number+range",
+          "rotulo": "Inflação média anual",
+          "unidade": "% a.a.",
+          "padrao": 12,
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i2-i",
+          "origem": {
+            "seletor": "input#i2-i-n",
+            "trecho_inicial": "Inflação média anual % a.a.",
+            "linha_aprox": 459
+          }
+        },
+        {
+          "id": "i2-n-n",
+          "id_range": "i2-n",
+          "tipo": "number+range",
+          "rotulo": "Anos desde o investimento",
+          "unidade": "anos",
+          "padrao": 15,
+          "min": 1,
+          "max": 30,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i2-n",
+          "origem": {
+            "seletor": "input#i2-n-n",
+            "trecho_inicial": "Anos desde o investimento anos",
+            "linha_aprox": 462
+          }
+        },
+        {
+          "id": "i2-m-n",
+          "id_range": "i2-m",
+          "tipo": "number+range",
+          "rotulo": "Parcela importada do equipamento",
+          "unidade": "%",
+          "padrao": 60,
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i2-m",
+          "origem": {
+            "seletor": "input#i2-m-n",
+            "trecho_inicial": "Parcela importada do equipamento %",
+            "linha_aprox": 465
+          }
+        },
+        {
+          "id": "i2-c-n",
+          "id_range": "i2-c",
+          "tipo": "number+range",
+          "rotulo": "Câmbio acima da inflação",
+          "unidade": "p.p. a.a.",
+          "padrao": 4,
+          "min": 0,
+          "max": 15,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i2-c",
+          "origem": {
+            "seletor": "input#i2-c-n",
+            "trecho_inicial": "Câmbio acima da inflação p.p. a.a.",
+            "linha_aprox": 468
+          }
+        }
+      ],
+      "controles_segmentados": [],
+      "saidas": [
+        {
+          "id": "i2-cb",
+          "rotulo": "Cobertura",
+          "classe": "n gold",
+          "origem": {
+            "seletor": ".readout #i2-cb",
+            "trecho_inicial": "Cobertura",
+            "linha_aprox": 475
+          },
+          "atribuicao_script": {
+            "linha": 1734,
+            "codigo": "$id('i2-cb').textContent=pct(cb*100);",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i2-rp",
+          "rotulo": "Custo de reposição",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i2-rp",
+            "trecho_inicial": "Custo de reposição",
+            "linha_aprox": 476
+          },
+          "atribuicao_script": {
+            "linha": 1735,
+            "codigo": "$id('i2-rp').innerHTML=num(rep,0)+'<span class=\"u\">índice</span>';",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i2-pc",
+          "rotulo": "Poder de compra da receita",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i2-pc",
+            "trecho_inicial": "Poder de compra da receita",
+            "linha_aprox": 477
+          },
+          "atribuicao_script": {
+            "linha": 1736,
+            "codigo": "$id('i2-pc').innerHTML=num(pc,1)+'<span class=\"u\">a.a. real</span>';",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i2-a5",
+          "rotulo": "Anos até cair a 50%",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i2-a5",
+            "trecho_inicial": "Anos até cair a 50%",
+            "linha_aprox": 478
+          },
+          "atribuicao_script": {
+            "linha": 1737,
+            "codigo": "$id('i2-a5').textContent=a5;",
+            "papel": "atribuicao_de_saida"
+          }
+        }
+      ],
+      "painel": null,
+      "cadeia": [],
+      "script": {
+        "bloco_linhas": [
+          1694,
+          1748
+        ],
+        "constantes": [
+          {
+            "linha": 1698,
+            "codigo": "var R=0.10, NMAX=30;"
+          }
+        ],
+        "funcoes_auxiliares": [
+          {
+            "nome": "fator",
+            "linhas": [
+              {
+                "linha": 1699,
+                "codigo": "function fator(n,i,m,c){"
+              },
+              {
+                "linha": 1700,
+                "codigo": "var mm=m/100;"
+              },
+              {
+                "linha": 1701,
+                "codigo": "return (1-mm)*Math.pow(1+i/100,n) + mm*Math.pow(1+(i+c)/100,n);"
+              },
+              {
+                "linha": 1702,
+                "codigo": "}"
+              }
+            ]
+          },
+          {
+            "nome": "cob",
+            "linhas": [
+              {
+                "linha": 1703,
+                "codigo": "function cob(n,i,m,c){ return 1/fator(n,i,m,c); }"
+              }
+            ]
+          }
+        ],
+        "formula_exata_script": [
+          {
+            "linha": 1705,
+            "codigo": "var Hh=+$id('i2-h').value, I=+$id('i2-i').value, N=+$id('i2-n').value,"
+          },
+          {
+            "linha": 1706,
+            "codigo": "Mm=+$id('i2-m').value, C=+$id('i2-c').value;"
+          },
+          {
+            "linha": 1707,
+            "codigo": "var f=fator(N,I,Mm,C), cb=1/f;"
+          },
+          {
+            "linha": 1708,
+            "codigo": "var rep=Hh*f;"
+          },
+          {
+            "linha": 1709,
+            "codigo": "var pc=(R*Hh)/Math.pow(1+I/100,N);"
+          },
+          {
+            "linha": 1711,
+            "codigo": "var a5='—',k;"
+          },
+          {
+            "linha": 1712,
+            "codigo": "for(k=1;k<=60;k++){ if(cob(k,I,Mm,C)<0.5){ a5=k+' anos'; break; } }"
+          },
+          {
+            "linha": 1713,
+            "codigo": "if(a5==='—') a5='> 60 anos';"
+          }
+        ],
+        "formatadores": [
+          {
+            "linha": 1523,
+            "codigo": "function num(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}"
+          },
+          {
+            "linha": 1524,
+            "codigo": "function pct(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d===undefined?1:d,maximumFractionDigits:d===undefined?1:d})+'%';}"
+          },
+          {
+            "linha": 1525,
+            "codigo": "function mmi(v){"
+          },
+          {
+            "linha": 1526,
+            "codigo": "if(Math.abs(v)>=1000) return 'R$ '+(v/1000).toLocaleString('pt-BR',{maximumFractionDigits:2})+' bi';"
+          },
+          {
+            "linha": 1527,
+            "codigo": "return 'R$ '+v.toLocaleString('pt-BR',{maximumFractionDigits:0})+' mi';"
+          }
+        ]
+      },
+      "textos_leitura": {
+        "veredito_id": "i2-vd",
+        "ramos": [
+          {
+            "linha": 1740,
+            "dentro_de": null,
+            "condicao_literal": "if(cb>=0.90)",
+            "classe": "ok",
+            "expressao_literal": "'Cobertura de '+pct(cb*100)+'. Nesta combinação, remunerar pelo custo histórico ainda sustenta a reposição do ativo: a diferença entre valor nominal reconhecido e custo de repor é pequena o bastante para não travar decisão de investimento. É por isso que o regime é impecável em moeda estável — e por isso ele não pareceu problemático quando foi desenhado.'",
+            "texto_template": "Cobertura de {pct(cb*100)}. Nesta combinação, remunerar pelo custo histórico ainda sustenta a reposição do ativo: a diferença entre valor nominal reconhecido e custo de repor é pequena o bastante para não travar decisão de investimento. É por isso que o regime é impecável em moeda estável — e por isso ele não pareceu problemático quando foi desenhado."
+          },
+          {
+            "linha": 1741,
+            "dentro_de": null,
+            "condicao_literal": "else if(cb>=0.65)",
+            "classe": "att",
+            "expressao_literal": "'Cobertura de '+pct(cb*100)+' após '+N+' anos. A erosão já é perceptível e começa a aparecer como adiamento de expansão, não como recusa explícita. Repare que a queda é composta: cada ano adicional custa mais que o anterior, e ela cruza os 50% em '+a5+'.'",
+            "texto_template": "Cobertura de {pct(cb*100)} após {N} anos. A erosão já é perceptível e começa a aparecer como adiamento de expansão, não como recusa explícita. Repare que a queda é composta: cada ano adicional custa mais que o anterior, e ela cruza os 50% em {a5}."
+          },
+          {
+            "linha": 1742,
+            "dentro_de": null,
+            "condicao_literal": "else if(cb>=0.35)",
+            "classe": "per",
+            "expressao_literal": "'Cobertura de '+pct(cb*100)+'. A receita reconhecida remunera menos de dois terços do que seria necessário para repor o mesmo ativo. Neste território, expandir deixa de fazer sentido econômico para quem já está na concessão, e o capital novo simplesmente não aparece — sem que nenhuma regra tenha proibido nada. É exatamente o mecanismo que secou o investimento privado entre 1934 e os anos 1940.'",
+            "texto_template": "Cobertura de {pct(cb*100)}. A receita reconhecida remunera menos de dois terços do que seria necessário para repor o mesmo ativo. Neste território, expandir deixa de fazer sentido econômico para quem já está na concessão, e o capital novo simplesmente não aparece — sem que nenhuma regra tenha proibido nada. É exatamente o mecanismo que secou o investimento privado entre 1934 e os anos 1940."
+          },
+          {
+            "linha": 1743,
+            "dentro_de": null,
+            "condicao_literal": "else",
+            "classe": "per",
+            "expressao_literal": "'Cobertura de '+pct(cb*100)+': o regime deixou de ser regulação de preço e virou expropriação econômica de fato, ainda que não de direito. Com '+Mm+'% do equipamento importado e câmbio '+C+' pontos acima da inflação, o custo de reposição multiplicou por '+num(f,1)+' enquanto a receita ficou nominalmente parada. Nenhum operador expande nessas condições, e a escassez resultante aparece com o atraso típico de uma obra — cinco a dez anos depois da decisão que a causou.'",
+            "texto_template": "Cobertura de {pct(cb*100)}: o regime deixou de ser regulação de preço e virou expropriação econômica de fato, ainda que não de direito. Com {Mm}% do equipamento importado e câmbio {C} pontos acima da inflação, o custo de reposição multiplicou por {num(f,1)} enquanto a receita ficou nominalmente parada. Nenhum operador expande nessas condições, e a escassez resultante aparece com o atraso típico de uma obra — cinco a dez anos depois da decisão que a causou."
+          }
+        ],
+        "nota": "expressao_literal é o JS da fonte; texto_template é o mesmo texto com as expressões entre chaves (conversão mecânica). A classe (ok/att/per) é a cor do veredito na fonte."
+      },
+      "grafico": {
+        "elementos": [
+          {
+            "elemento": "svg#i2-svg",
+            "viewBox": "0 0 720 260",
+            "linha_aprox": 472
+          }
+        ],
+        "legenda": [
+          {
+            "texto": "Cobertura da receita reconhecida",
+            "cor": "#06B6D4"
+          },
+          {
+            "texto": "Ano escolhido",
+            "cor": "#F59E0B"
+          },
+          {
+            "texto": "Limiar de 50%",
+            "cor": "#EF4444"
+          }
+        ],
+        "nota": "Desenho não porta (protocolo §12); o conteúdo textual está nas saídas e no veredito."
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i2-h-n": 100,
+          "i2-i-n": 12,
+          "i2-n-n": 15,
+          "i2-m-n": 60,
+          "i2-c-n": 4
+        },
+        "controles": {},
+        "saidas": {
+          "i2-cb": {
+            "rotulo": "Cobertura",
+            "exibido_html": null,
+            "exibido_texto": "12,9%"
+          },
+          "i2-rp": {
+            "rotulo": "Custo de reposição",
+            "exibido_html": "775<span class=\"u\">índice</span>",
+            "exibido_texto": "775índice"
+          },
+          "i2-pc": {
+            "rotulo": "Poder de compra da receita",
+            "exibido_html": "1,8<span class=\"u\">a.a. real</span>",
+            "exibido_texto": "1,8a.a. real"
+          },
+          "i2-a5": {
+            "rotulo": "Anos até cair a 50%",
+            "exibido_html": null,
+            "exibido_texto": "6 anos"
+          }
+        },
+        "veredito": {
+          "classe": "verdict per",
+          "texto": "Cobertura de 12,9%: o regime deixou de ser regulação de preço e virou expropriação econômica de fato, ainda que não de direito. Com 60% do equipamento importado e câmbio 4 pontos acima da inflação, o custo de reposição multiplicou por 7,7 enquanto a receita ficou nominalmente parada. Nenhum operador expande nessas condições, e a escassez resultante aparece com o atraso típico de uma obra — cinco a dez anos depois da decisão que a causou."
+        },
+        "nota": "Lido do script original executado em DOM simulado no carregamento (sem interação). O texto inicial \"—\" do markup é sobrescrito na carga."
+      },
+      "fonte_dos_numeros": {
+        "disc": {
+          "html": "Didático/ilustrativo — não é reconstituição contábil de nenhuma concessionária histórica. O modelo aplica uma taxa de remuneração fixa de 10% ao ano sobre o valor histórico, corrige o custo de reposição pela inflação na parcela nacional e por inflação mais desvalorização na parcela importada, e ignora depreciação, reavaliação de ativos, reinvestimento e a existência de outras receitas. Os regimes tarifários reais do período tinham mais componentes que estes cinco.",
+          "texto": "Didático/ilustrativo — não é reconstituição contábil de nenhuma concessionária histórica. O modelo aplica uma taxa de remuneração fixa de 10% ao ano sobre o valor histórico, corrige o custo de reposição pela inflação na parcela nacional e por inflação mais desvalorização na parcela importada, e ignora depreciação, reavaliação de ativos, reinvestimento e a existência de outras receitas. Os regimes tarifários reais do período tinham mais componentes que estes cinco.",
+          "origem": {
+            "seletor": "p.disc",
+            "trecho_inicial": "Didático/ilustrativo — não é reconstituição contábil de nenhuma conces",
+            "linha_aprox": 481
+          }
+        },
+        "fonte_externa_declarada": null,
+        "nota": "Cenário didático; o disc declara os parâmetros do modelo e nega representar caso real. Fonte externa dos valores não declarada (P19)."
+      },
+      "tolerancias": null,
+      "tolerancias_nota": "A fonte não declara tolerância nem resposta esperada.",
+      "invocacao": {
+        "ponto_no_texto": {
+          "tipo": "p",
+          "trecho_final": "erteza política e a guerra que veio em seguida, secou o apetite de capital privado para expansão acelerada. O instrumento abaixo mostra a mecânica dessa erosão.",
+          "origem": {
+            "seletor": "elemento imediatamente anterior ao div.inst",
+            "trecho_inicial": "Remunerar pelo custo histórico é impecável em moeda estável. Em ambien",
+            "linha_aprox": 449
+          }
+        },
+        "mencoes": [
+          {
+            "linha": 449,
+            "trecho": "instrumento abaixo",
+            "contexto": "cou o apetite de capital privado para expansão acelerada. O instrumento abaixo mostra a mecânica dessa erosão."
+          },
+          {
+            "linha": 2267,
+            "trecho": "Inst·02",
+            "contexto": "feedback do quiz: a:1,f:'Aula 01 e Inst·02. O regime é impecável em moeda estável e destrutivo sob"
+          }
+        ]
+      },
+      "comparacao_codigo": {
+        "id_codigo": "m06-inst-02",
+        "existe_objeto": true,
+        "existe_calculadora": true,
+        "kind_codigo": "simulador",
+        "titulo_codigo": "Simulador · a erosão do custo histórico",
+        "titulo_igual": true,
+        "formula_codigo": null,
+        "note_codigo": null,
+        "campos": [
+          {
+            "id": "i2-h-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i2-i-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i2-n-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i2-m-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i2-c-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          }
+        ],
+        "campos_so_no_codigo": [],
+        "saidas": [
+          {
+            "id": "i2-cb",
+            "rotulo_fonte": "Cobertura",
+            "status": "portada",
+            "unit_codigo": null
+          },
+          {
+            "id": "i2-rp",
+            "rotulo_fonte": "Custo de reposição",
+            "status": "portada",
+            "unit_codigo": null
+          },
+          {
+            "id": "i2-pc",
+            "rotulo_fonte": "Poder de compra da receita",
+            "status": "portada",
+            "unit_codigo": null
+          },
+          {
+            "id": "i2-a5",
+            "rotulo_fonte": "Anos até cair a 50%",
+            "status": "não portada"
+          }
+        ],
+        "prova": {
+          "metodo": "script original em DOM simulado × calculadora do bundle, mesmas entradas",
+          "casos": 3003,
+          "falhas_veredito": 0,
+          "falhas_numericas": 0,
+          "ramos_disparados_na_fonte": [
+            1740,
+            1741,
+            1742,
+            1743
+          ],
+          "ramos_nao_exercitados": [],
+          "exemplos_de_falha": []
+        },
+        "status": "portado",
+        "status_nota": "Cálculo e veredito equivalentes à fonte no espaço testado; diferenças só de apresentação (ver motivos).",
+        "motivos": [
+          "inst-intro e p.disc da fonte não estão no objeto (note/formula null ou outro texto); varredura de src/: zero",
+          "saída(s) sem valor no código: i2-a5 (texto na fonte ou não portada)"
+        ]
+      }
+    },
+    {
+      "id": "m06-inst-03",
+      "n": 3,
+      "id_fonte": "Inst · 03",
+      "titulo": "Simulador · como se forma uma dívida intrassetorial",
+      "secao": "Aula 02",
+      "aula": "Aula 02",
+      "aula_id_codigo": "aula-06-02",
+      "de_modulo": false,
+      "linhas_markup": [
+        556,
+        588
+      ],
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não declara pergunta própria; `intro` é instrução de uso. Pergunta de previsão seria camada Alexandria (P3/P11/P19).",
+      "intro": {
+        "html": "Uma empresa estatal tem obrigação legal de expandir e não controla a própria tarifa. Ajuste o nível da tarifa em relação ao custo do serviço, o peso da dívida externa e a desvalorização cambial, e observe como o déficit anual se divide entre dívida financeira contratada e conta simplesmente não paga — que é a definição operacional do buraco que o setor levou para 1993.",
+        "texto": "Uma empresa estatal tem obrigação legal de expandir e não controla a própria tarifa. Ajuste o nível da tarifa em relação ao custo do serviço, o peso da dívida externa e a desvalorização cambial, e observe como o déficit anual se divide entre dívida financeira contratada e conta simplesmente não paga — que é a definição operacional do buraco que o setor levou para 1993.",
+        "origem": {
+          "seletor": ".inst-intro",
+          "trecho_inicial": "Uma empresa estatal tem obrigação legal de expandir e não controla a p",
+          "linha_aprox": 559
+        }
+      },
+      "entradas": [
+        {
+          "id": "i3-i-n",
+          "id_range": "i3-i",
+          "tipo": "number+range",
+          "rotulo": "Investimento anual exigido",
+          "unidade": "índice",
+          "padrao": 100,
+          "min": 20,
+          "max": 300,
+          "step": 5,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i3-i",
+          "origem": {
+            "seletor": "input#i3-i-n",
+            "trecho_inicial": "Investimento anual exigido índice",
+            "linha_aprox": 561
+          }
+        },
+        {
+          "id": "i3-t-n",
+          "id_range": "i3-t",
+          "tipo": "number+range",
+          "rotulo": "Tarifa em relação ao custo do serviço",
+          "unidade": "%",
+          "padrao": 72,
+          "min": 35,
+          "max": 130,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i3-t",
+          "origem": {
+            "seletor": "input#i3-t-n",
+            "trecho_inicial": "Tarifa em relação ao custo do serviço %",
+            "linha_aprox": 564
+          }
+        },
+        {
+          "id": "i3-s-n",
+          "id_range": "i3-s",
+          "tipo": "number+range",
+          "rotulo": "Participação da dívida externa",
+          "unidade": "%",
+          "padrao": 45,
+          "min": 0,
+          "max": 90,
+          "step": 5,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i3-s",
+          "origem": {
+            "seletor": "input#i3-s-n",
+            "trecho_inicial": "Participação da dívida externa %",
+            "linha_aprox": 567
+          }
+        },
+        {
+          "id": "i3-c-n",
+          "id_range": "i3-c",
+          "tipo": "number+range",
+          "rotulo": "Câmbio acima da inflação",
+          "unidade": "p.p. a.a.",
+          "padrao": 9,
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i3-c",
+          "origem": {
+            "seletor": "input#i3-c-n",
+            "trecho_inicial": "Câmbio acima da inflação p.p. a.a.",
+            "linha_aprox": 570
+          }
+        },
+        {
+          "id": "i3-y-n",
+          "id_range": "i3-y",
+          "tipo": "number+range",
+          "rotulo": "Anos de regime",
+          "unidade": "anos",
+          "padrao": 8,
+          "min": 3,
+          "max": 12,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i3-y",
+          "origem": {
+            "seletor": "input#i3-y-n",
+            "trecho_inicial": "Anos de regime anos",
+            "linha_aprox": 573
+          }
+        }
+      ],
+      "controles_segmentados": [],
+      "saidas": [
+        {
+          "id": "i3-af",
+          "rotulo": "Autofinanciamento",
+          "classe": "n gold",
+          "origem": {
+            "seletor": ".readout #i3-af",
+            "trecho_inicial": "Autofinanciamento",
+            "linha_aprox": 580
+          },
+          "atribuicao_script": {
+            "linha": 1798,
+            "codigo": "$id('i3-af').textContent=pct(autofin/I*100,0);",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i3-df",
+          "rotulo": "Dívida financeira",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i3-df",
+            "trecho_inicial": "Dívida financeira",
+            "linha_aprox": 581
+          },
+          "atribuicao_script": {
+            "linha": 1799,
+            "codigo": "$id('i3-df').innerHTML=num(df,0)+'<span class=\"u\">índice</span>';",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i3-di",
+          "rotulo": "Dívida intrassetorial",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i3-di",
+            "trecho_inicial": "Dívida intrassetorial",
+            "linha_aprox": 582
+          },
+          "atribuicao_script": {
+            "linha": 1800,
+            "codigo": "$id('i3-di').innerHTML=num(di,0)+'<span class=\"u\">índice</span>';",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i3-rt",
+          "rotulo": "Passivo / investimento anual",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i3-rt",
+            "trecho_inicial": "Passivo / investimento anual",
+            "linha_aprox": 583
+          },
+          "atribuicao_script": {
+            "linha": 1801,
+            "codigo": "$id('i3-rt').innerHTML=num((df+di)/I,1)+'<span class=\"u\">× o ano</span>';",
+            "papel": "atribuicao_de_saida"
+          }
+        }
+      ],
+      "painel": null,
+      "cadeia": [],
+      "script": {
+        "bloco_linhas": [
+          1750,
+          1812
+        ],
+        "constantes": [],
+        "funcoes_auxiliares": [],
+        "formula_exata_script": [
+          {
+            "linha": 1755,
+            "codigo": "var I=+$id('i3-i').value, T=+$id('i3-t').value, S=+$id('i3-s').value,"
+          },
+          {
+            "linha": 1756,
+            "codigo": "C=+$id('i3-c').value, Y=+$id('i3-y').value;"
+          },
+          {
+            "linha": 1757,
+            "codigo": "var autofin=Math.min(I, I*0.55*(T/100));"
+          },
+          {
+            "linha": 1758,
+            "codigo": "var need=Math.max(0,I-autofin);"
+          },
+          {
+            "linha": 1759,
+            "codigo": "var teto=I*0.50;"
+          },
+          {
+            "linha": 1760,
+            "codigo": "var captado=Math.min(need,teto);"
+          },
+          {
+            "linha": 1761,
+            "codigo": "var naopago=Math.max(0,need-captado);"
+          },
+          {
+            "linha": 1762,
+            "codigo": "var s=S/100, g=C/100;"
+          },
+          {
+            "linha": 1764,
+            "codigo": "var df=0, di=0, serie=[], t;"
+          },
+          {
+            "linha": 1765,
+            "codigo": "for(t=1;t<=Y;t++){"
+          },
+          {
+            "linha": 1766,
+            "codigo": "df+=captado*( s*Math.pow(1+g,Y-t) + (1-s) );"
+          },
+          {
+            "linha": 1767,
+            "codigo": "di+=naopago;"
+          },
+          {
+            "linha": 1768,
+            "codigo": "var dfp=0,k;"
+          },
+          {
+            "linha": 1769,
+            "codigo": "for(k=1;k<=t;k++){ dfp+=captado*( s*Math.pow(1+g,t-k) + (1-s) ); }"
+          },
+          {
+            "linha": 1770,
+            "codigo": "serie.push({af:autofin,cp:captado,np:naopago,ac:dfp+naopago*t});"
+          },
+          {
+            "linha": 1771,
+            "codigo": "}"
+          },
+          {
+            "linha": 1772,
+            "codigo": "var maxBar=autofin+captado+naopago;"
+          },
+          {
+            "linha": 1773,
+            "codigo": "var maxAc=serie.length?serie[serie.length-1].ac:1;"
+          },
+          {
+            "linha": 1774,
+            "codigo": "var yMax=niceMax(maxBar*1.2);"
+          },
+          {
+            "linha": 1775,
+            "codigo": "var kAc=maxAc>0?(yMax*0.92/maxAc):1;"
+          }
+        ],
+        "formatadores": [
+          {
+            "linha": 1523,
+            "codigo": "function num(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}"
+          },
+          {
+            "linha": 1524,
+            "codigo": "function pct(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d===undefined?1:d,maximumFractionDigits:d===undefined?1:d})+'%';}"
+          },
+          {
+            "linha": 1525,
+            "codigo": "function mmi(v){"
+          },
+          {
+            "linha": 1526,
+            "codigo": "if(Math.abs(v)>=1000) return 'R$ '+(v/1000).toLocaleString('pt-BR',{maximumFractionDigits:2})+' bi';"
+          },
+          {
+            "linha": 1527,
+            "codigo": "return 'R$ '+v.toLocaleString('pt-BR',{maximumFractionDigits:0})+' mi';"
+          }
+        ]
+      },
+      "textos_leitura": {
+        "veredito_id": "i3-vd",
+        "ramos": [
+          {
+            "linha": 1804,
+            "dentro_de": null,
+            "condicao_literal": "if(naopago<=0.001 && T>=100)",
+            "classe": "ok",
+            "expressao_literal": "'A tarifa cobre integralmente o custo do serviço e a empresa autofinancia '+pct(autofin/I*100,0)+' do investimento exigido; o restante é captado dentro do teto de endividamento e nada vira conta não paga. É a única configuração do modelo estatal que se sustenta no tempo — e é exatamente a configuração que a política macroeconômica dos anos 1980 tornou impossível.'",
+            "texto_template": "A tarifa cobre integralmente o custo do serviço e a empresa autofinancia {pct(autofin/I*100,0)} do investimento exigido; o restante é captado dentro do teto de endividamento e nada vira conta não paga. É a única configuração do modelo estatal que se sustenta no tempo — e é exatamente a configuração que a política macroeconômica dos anos 1980 tornou impossível."
+          },
+          {
+            "linha": 1805,
+            "dentro_de": null,
+            "condicao_literal": "else if(naopago<=0.001)",
+            "classe": "att",
+            "expressao_literal": "'Sem inadimplência dentro do setor, mas com passivo financeiro acumulado de '+num(df,0)+' — '+num(df/I,1)+' vezes o investimento anual. Com câmbio '+C+' pontos acima da inflação e '+S+'% do funding em moeda estrangeira, o serviço dessa dívida cresce mais rápido que a receita, ainda que hoje o caixa feche. É a antessala do problema, não a ausência dele.'",
+            "texto_template": "Sem inadimplência dentro do setor, mas com passivo financeiro acumulado de {num(df,0)} — {num(df/I,1)} vezes o investimento anual. Com câmbio {C} pontos acima da inflação e {S}% do funding em moeda estrangeira, o serviço dessa dívida cresce mais rápido que a receita, ainda que hoje o caixa feche. É a antessala do problema, não a ausência dele."
+          },
+          {
+            "linha": 1806,
+            "dentro_de": null,
+            "condicao_literal": "else if(di/I<=2)",
+            "classe": "per",
+            "expressao_literal": "'A tarifa em '+T+'% do custo do serviço deixa '+num(naopago,0)+' por ano sem funding, e em '+Y+' anos isso vira '+num(di,0)+' de obrigações não honradas dentro do próprio setor — além de '+num(df,0)+' de dívida financeira. Como todas as empresas pertencem ao mesmo dono, isso não produz falência: produz saldo contábil. O sintoma não aparece no balanço, aparece na obra que não começa.'",
+            "texto_template": "A tarifa em {T}% do custo do serviço deixa {num(naopago,0)} por ano sem funding, e em {Y} anos isso vira {num(di,0)} de obrigações não honradas dentro do próprio setor — além de {num(df,0)} de dívida financeira. Como todas as empresas pertencem ao mesmo dono, isso não produz falência: produz saldo contábil. O sintoma não aparece no balanço, aparece na obra que não começa."
+          },
+          {
+            "linha": 1807,
+            "dentro_de": null,
+            "condicao_literal": "else",
+            "classe": "per",
+            "expressao_literal": "'Passivo total de '+num(df+di,0)+', ou '+num((df+di)/I,1)+' vezes o investimento anual, dos quais '+num(di,0)+' são conta simplesmente não paga entre empresas. Nesta faixa o fluxo financeiro do setor deixa de ser legível: ninguém consegue dizer com precisão quem deve quanto a quem, e nenhuma empresa pode ser avaliada — nem para venda, nem para recapitalização pública. É o estado em que o setor chegou a 1993, e é por isso que a reforma começou por um encontro de contas.'",
+            "texto_template": "Passivo total de {num(df+di,0)}, ou {num((df+di)/I,1)} vezes o investimento anual, dos quais {num(di,0)} são conta simplesmente não paga entre empresas. Nesta faixa o fluxo financeiro do setor deixa de ser legível: ninguém consegue dizer com precisão quem deve quanto a quem, e nenhuma empresa pode ser avaliada — nem para venda, nem para recapitalização pública. É o estado em que o setor chegou a 1993, e é por isso que a reforma começou por um encontro de contas."
+          }
+        ],
+        "nota": "expressao_literal é o JS da fonte; texto_template é o mesmo texto com as expressões entre chaves (conversão mecânica). A classe (ok/att/per) é a cor do veredito na fonte."
+      },
+      "grafico": {
+        "elementos": [
+          {
+            "elemento": "svg#i3-svg",
+            "viewBox": "0 0 720 260",
+            "linha_aprox": 577
+          }
+        ],
+        "legenda": [
+          {
+            "texto": "Autofinanciamento pela tarifa",
+            "cor": "#3B82F6"
+          },
+          {
+            "texto": "Dívida contratada",
+            "cor": "#06B6D4"
+          },
+          {
+            "texto": "Conta não paga",
+            "cor": "#EF4444"
+          },
+          {
+            "texto": "Passivo total acumulado",
+            "cor": "#F59E0B"
+          }
+        ],
+        "nota": "Desenho não porta (protocolo §12); o conteúdo textual está nas saídas e no veredito."
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i3-i-n": 100,
+          "i3-t-n": 72,
+          "i3-s-n": 45,
+          "i3-c-n": 9,
+          "i3-y-n": 8
+        },
+        "controles": {},
+        "saidas": {
+          "i3-af": {
+            "rotulo": "Autofinanciamento",
+            "exibido_html": null,
+            "exibido_texto": "40%"
+          },
+          "i3-df": {
+            "rotulo": "Dívida financeira",
+            "exibido_html": "468<span class=\"u\">índice</span>",
+            "exibido_texto": "468índice"
+          },
+          "i3-di": {
+            "rotulo": "Dívida intrassetorial",
+            "exibido_html": "83<span class=\"u\">índice</span>",
+            "exibido_texto": "83índice"
+          },
+          "i3-rt": {
+            "rotulo": "Passivo / investimento anual",
+            "exibido_html": "5,5<span class=\"u\">× o ano</span>",
+            "exibido_texto": "5,5× o ano"
+          }
+        },
+        "veredito": {
+          "classe": "verdict per",
+          "texto": "A tarifa em 72% do custo do serviço deixa 10 por ano sem funding, e em 8 anos isso vira 83 de obrigações não honradas dentro do próprio setor — além de 468 de dívida financeira. Como todas as empresas pertencem ao mesmo dono, isso não produz falência: produz saldo contábil. O sintoma não aparece no balanço, aparece na obra que não começa."
+        },
+        "nota": "Lido do script original executado em DOM simulado no carregamento (sem interação). O texto inicial \"—\" do markup é sobrescrito na carga."
+      },
+      "fonte_dos_numeros": {
+        "disc": {
+          "html": "Didático/ilustrativo — não reproduz a contabilidade de nenhuma empresa do período. O modelo supõe que a tarifa financia até 55% do investimento quando cobre integralmente o custo do serviço, que a captação anual de dívida tem teto de 50% do investimento, e que tudo o que excede esses dois limites vira obrigação não honrada dentro do setor. Não trata reinvestimento, receitas não tarifárias, transferências fiscais nem renegociação de dívida.",
+          "texto": "Didático/ilustrativo — não reproduz a contabilidade de nenhuma empresa do período. O modelo supõe que a tarifa financia até 55% do investimento quando cobre integralmente o custo do serviço, que a captação anual de dívida tem teto de 50% do investimento, e que tudo o que excede esses dois limites vira obrigação não honrada dentro do setor. Não trata reinvestimento, receitas não tarifárias, transferências fiscais nem renegociação de dívida.",
+          "origem": {
+            "seletor": "p.disc",
+            "trecho_inicial": "Didático/ilustrativo — não reproduz a contabilidade de nenhuma empresa",
+            "linha_aprox": 586
+          }
+        },
+        "fonte_externa_declarada": null,
+        "nota": "Cenário didático; o disc declara os parâmetros do modelo e nega representar caso real. Fonte externa dos valores não declarada (P19)."
+      },
+      "tolerancias": null,
+      "tolerancias_nota": "A fonte não declara tolerância nem resposta esperada.",
+      "invocacao": {
+        "ponto_no_texto": {
+          "tipo": "p",
+          "trecho_final": " descapitalizadas, com necessidade de investimento e sem fonte para financiá-lo. A pergunta seis da régua estava respondida. Faltava escolher o modelo seguinte.",
+          "origem": {
+            "seletor": "elemento imediatamente anterior ao div.inst",
+            "trecho_inicial": "A Constituição de 1988 reforça competências públicas, proteção ambient",
+            "linha_aprox": 554
+          }
+        },
+        "mencoes": []
+      },
+      "comparacao_codigo": {
+        "id_codigo": "m06-inst-03",
+        "existe_objeto": true,
+        "existe_calculadora": true,
+        "kind_codigo": "simulador",
+        "titulo_codigo": "Simulador · como se forma uma dívida intrassetorial",
+        "titulo_igual": true,
+        "formula_codigo": null,
+        "note_codigo": null,
+        "campos": [
+          {
+            "id": "i3-i-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i3-t-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i3-s-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i3-c-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i3-y-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          }
+        ],
+        "campos_so_no_codigo": [],
+        "saidas": [
+          {
+            "id": "i3-af",
+            "rotulo_fonte": "Autofinanciamento",
+            "status": "portada",
+            "unit_codigo": null
+          },
+          {
+            "id": "i3-df",
+            "rotulo_fonte": "Dívida financeira",
+            "status": "portada",
+            "unit_codigo": null
+          },
+          {
+            "id": "i3-di",
+            "rotulo_fonte": "Dívida intrassetorial",
+            "status": "portada",
+            "unit_codigo": null
+          },
+          {
+            "id": "i3-rt",
+            "rotulo_fonte": "Passivo / investimento anual",
+            "status": "portada",
+            "unit_codigo": null
+          }
+        ],
+        "prova": {
+          "metodo": "script original em DOM simulado × calculadora do bundle, mesmas entradas",
+          "casos": 3003,
+          "falhas_veredito": 0,
+          "falhas_numericas": 0,
+          "ramos_disparados_na_fonte": [
+            1804,
+            1805,
+            1806,
+            1807
+          ],
+          "ramos_nao_exercitados": [],
+          "exemplos_de_falha": []
+        },
+        "status": "portado",
+        "status_nota": "Cálculo e veredito equivalentes à fonte no espaço testado; diferenças só de apresentação (ver motivos).",
+        "motivos": [
+          "inst-intro e p.disc da fonte não estão no objeto (note/formula null ou outro texto); varredura de src/: zero"
+        ]
+      }
+    },
+    {
+      "id": "m06-inst-04",
+      "n": 4,
+      "id_fonte": "Inst · 04",
+      "titulo": "Termômetro do racionamento · balanço de energia num período seco",
+      "secao": "Aula 03",
+      "aula": "Aula 03",
+      "aula_id_codigo": "aula-06-03",
+      "de_modulo": false,
+      "linhas_markup": [
+        682,
+        711
+      ],
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não declara pergunta própria; `intro` é instrução de uso. Pergunta de previsão seria camada Alexandria (P3/P11/P19).",
+      "intro": {
+        "html": "Quatro variáveis decidem se um sistema hidrotérmico atravessa um período seco ou entra em racionamento: quanta água estava guardada, quanta chegou, quanta capacidade firme não hidráulica existe para poupar reservatório, e quanto tempo falta até a próxima cheia. Ajuste as quatro e veja qual profundidade de corte de consumo seria necessária para chegar ao fim do período seco com o reservatório acima do limite operacional.",
+        "texto": "Quatro variáveis decidem se um sistema hidrotérmico atravessa um período seco ou entra em racionamento: quanta água estava guardada, quanta chegou, quanta capacidade firme não hidráulica existe para poupar reservatório, e quanto tempo falta até a próxima cheia. Ajuste as quatro e veja qual profundidade de corte de consumo seria necessária para chegar ao fim do período seco com o reservatório acima do limite operacional.",
+        "origem": {
+          "seletor": ".inst-intro",
+          "trecho_inicial": "Quatro variáveis decidem se um sistema hidrotérmico atravessa um perío",
+          "linha_aprox": 685
+        }
+      },
+      "entradas": [
+        {
+          "id": "i4-e-n",
+          "id_range": "i4-e",
+          "tipo": "number+range",
+          "rotulo": "Armazenamento inicial",
+          "unidade": "% do máximo",
+          "padrao": 32,
+          "min": 5,
+          "max": 100,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i4-e",
+          "origem": {
+            "seletor": "input#i4-e-n",
+            "trecho_inicial": "Armazenamento inicial % do máximo",
+            "linha_aprox": 687
+          }
+        },
+        {
+          "id": "i4-a-n",
+          "id_range": "i4-a",
+          "tipo": "number+range",
+          "rotulo": "Afluência no período seco",
+          "unidade": "% da média",
+          "padrao": 72,
+          "min": 30,
+          "max": 140,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i4-a",
+          "origem": {
+            "seletor": "input#i4-a-n",
+            "trecho_inicial": "Afluência no período seco % da média",
+            "linha_aprox": 690
+          }
+        },
+        {
+          "id": "i4-m-n",
+          "id_range": "i4-m",
+          "tipo": "number+range",
+          "rotulo": "Margem de capacidade firme não hidráulica",
+          "unidade": "% da carga",
+          "padrao": 3,
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i4-m",
+          "origem": {
+            "seletor": "input#i4-m-n",
+            "trecho_inicial": "Margem de capacidade firme não hidráulica % da carga",
+            "linha_aprox": 693
+          }
+        },
+        {
+          "id": "i4-t-n",
+          "id_range": "i4-t",
+          "tipo": "number+range",
+          "rotulo": "Meses até o período úmido",
+          "unidade": "meses",
+          "padrao": 7,
+          "min": 1,
+          "max": 12,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i4-t",
+          "origem": {
+            "seletor": "input#i4-t-n",
+            "trecho_inicial": "Meses até o período úmido meses",
+            "linha_aprox": 696
+          }
+        }
+      ],
+      "controles_segmentados": [],
+      "saidas": [
+        {
+          "id": "i4-ct",
+          "rotulo": "Corte necessário",
+          "classe": "n gold",
+          "origem": {
+            "seletor": ".readout #i4-ct",
+            "trecho_inicial": "Corte necessário",
+            "linha_aprox": 703
+          },
+          "atribuicao_script": {
+            "linha": 1857,
+            "codigo": "$id('i4-ct').textContent=pct(r*100,1);",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i4-ms",
+          "rotulo": "Meses até o limite",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i4-ms",
+            "trecho_inicial": "Meses até o limite",
+            "linha_aprox": 704
+          },
+          "atribuicao_script": {
+            "linha": 1858,
+            "codigo": "$id('i4-ms').textContent=ms;",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i4-nf",
+          "rotulo": "Nível final sem corte",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i4-nf",
+            "trecho_inicial": "Nível final sem corte",
+            "linha_aprox": 705
+          },
+          "atribuicao_script": {
+            "linha": 1859,
+            "codigo": "$id('i4-nf').textContent=(fim<0?'esgotado':pct(fim,0));",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i4-qm",
+          "rotulo": "Queda mensal sem corte",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i4-qm",
+            "trecho_inicial": "Queda mensal sem corte",
+            "linha_aprox": 706
+          },
+          "atribuicao_script": {
+            "linha": 1860,
+            "codigo": "$id('i4-qm').innerHTML=(d<=0?('+'+num(-d,2)):num(d,2))+'<span class=\"u\">'+(d<=0?'p.p./mês · recompõe':'p.p./mês')+'</span>';",
+            "papel": "atribuicao_de_saida"
+          }
+        }
+      ],
+      "painel": null,
+      "cadeia": [],
+      "script": {
+        "bloco_linhas": [
+          1814,
+          1872
+        ],
+        "constantes": [
+          {
+            "linha": 1818,
+            "codigo": "var BASE=11, FLOOR=15, RES=5;"
+          }
+        ],
+        "funcoes_auxiliares": [],
+        "formula_exata_script": [
+          {
+            "linha": 1820,
+            "codigo": "var E=+$id('i4-e').value, A=+$id('i4-a').value, Mg=+$id('i4-m').value, T=+$id('i4-t').value;"
+          },
+          {
+            "linha": 1821,
+            "codigo": "var extra=Math.max(0,(8-Mg))*0.25;"
+          },
+          {
+            "linha": 1822,
+            "codigo": "var bruto=BASE+extra;"
+          },
+          {
+            "linha": 1823,
+            "codigo": "var aporte=BASE*(A/100);"
+          },
+          {
+            "linha": 1824,
+            "codigo": "var d=bruto-aporte;"
+          },
+          {
+            "linha": 1825,
+            "codigo": "var usable=Math.max(0,E-(FLOOR+RES));"
+          },
+          {
+            "linha": 1826,
+            "codigo": "var permitido=usable/T;"
+          },
+          {
+            "linha": 1827,
+            "codigo": "var r=clamp(1-((permitido+aporte)/bruto),0,1);"
+          },
+          {
+            "linha": 1828,
+            "codigo": "var dr=bruto*(1-r)-aporte;"
+          },
+          {
+            "linha": 1830,
+            "codigo": "var ms;"
+          },
+          {
+            "linha": 1831,
+            "codigo": "if(d<=0.0001) ms='não atinge';"
+          },
+          {
+            "linha": 1832,
+            "codigo": "else if(E<=FLOOR) ms='já abaixo';"
+          },
+          {
+            "linha": 1833,
+            "codigo": "else ms=num((E-FLOOR)/d,1)+' meses';"
+          },
+          {
+            "linha": 1834,
+            "codigo": "var fim=E-d*T;"
+          }
+        ],
+        "formatadores": [
+          {
+            "linha": 1523,
+            "codigo": "function num(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}"
+          },
+          {
+            "linha": 1524,
+            "codigo": "function pct(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d===undefined?1:d,maximumFractionDigits:d===undefined?1:d})+'%';}"
+          },
+          {
+            "linha": 1525,
+            "codigo": "function mmi(v){"
+          },
+          {
+            "linha": 1526,
+            "codigo": "if(Math.abs(v)>=1000) return 'R$ '+(v/1000).toLocaleString('pt-BR',{maximumFractionDigits:2})+' bi';"
+          },
+          {
+            "linha": 1527,
+            "codigo": "return 'R$ '+v.toLocaleString('pt-BR',{maximumFractionDigits:0})+' mi';"
+          }
+        ]
+      },
+      "textos_leitura": {
+        "veredito_id": "i4-vd",
+        "ramos": [
+          {
+            "linha": 1863,
+            "dentro_de": null,
+            "condicao_literal": "if(r<=0.0005)",
+            "classe": "ok",
+            "expressao_literal": "'Nenhum corte necessário. Com afluência em '+A+'% da média e '+Mg+'% de margem firme, o sistema atravessa os '+T+' meses e ainda encerra o período seco com folga sobre o limite operacional. Repare que a margem firme faz parte do resultado: ela é o que permite poupar reservatório sem tocar na demanda.'",
+            "texto_template": "Nenhum corte necessário. Com afluência em {A}% da média e {Mg}% de margem firme, o sistema atravessa os {T} meses e ainda encerra o período seco com folga sobre o limite operacional. Repare que a margem firme faz parte do resultado: ela é o que permite poupar reservatório sem tocar na demanda."
+          },
+          {
+            "linha": 1864,
+            "dentro_de": null,
+            "condicao_literal": "else if(r<=0.08)",
+            "classe": "att",
+            "expressao_literal": "'Corte de '+pct(r*100,1)+'. É a faixa em que resposta voluntária, campanha de eficiência e ajuste de contrato ainda dão conta — sem programa compulsório. Mas note quanto disso depende da margem firme: com '+Mg+'% de capacidade não hidráulica, quase todo o esforço de poupar reservatório está sendo pedido ao consumidor em vez de ser feito pelo parque gerador.'",
+            "texto_template": "Corte de {pct(r*100,1)}. É a faixa em que resposta voluntária, campanha de eficiência e ajuste de contrato ainda dão conta — sem programa compulsório. Mas note quanto disso depende da margem firme: com {Mg}% de capacidade não hidráulica, quase todo o esforço de poupar reservatório está sendo pedido ao consumidor em vez de ser feito pelo parque gerador."
+          },
+          {
+            "linha": 1865,
+            "dentro_de": null,
+            "condicao_literal": "else if(r<=0.20)",
+            "classe": "per",
+            "expressao_literal": "'Corte de '+pct(r*100,1)+' — território de programa compulsório com meta, bônus e sobretarifa. Foi aproximadamente aqui que 2001 pousou. O que essa configuração revela não é seca: é margem. Com armazenamento em '+E+'% e apenas '+Mg+'% de capacidade firme não hidráulica, uma afluência de '+A+'% da média já basta para exigir corte, e uma afluência assim está dentro do universo que qualquer planejamento deveria comportar.'",
+            "texto_template": "Corte de {pct(r*100,1)} — território de programa compulsório com meta, bônus e sobretarifa. Foi aproximadamente aqui que 2001 pousou. O que essa configuração revela não é seca: é margem. Com armazenamento em {E}% e apenas {Mg}% de capacidade firme não hidráulica, uma afluência de {A}% da média já basta para exigir corte, e uma afluência assim está dentro do universo que qualquer planejamento deveria comportar."
+          },
+          {
+            "linha": 1866,
+            "dentro_de": null,
+            "condicao_literal": "else if(r<=0.40)",
+            "classe": "per",
+            "expressao_literal": "'Corte de '+pct(r*100,1)+'. Nesta profundidade o programa deixa de ser gestão de demanda e passa a redesenhar a produção industrial do país: turnos, contratos de fornecimento, cadeia produtiva inteira. O impacto macroeconômico é da ordem de pontos de PIB, e a distribuição é desigual — quem tem flexibilidade se ajusta, quem não tem, para.'",
+            "texto_template": "Corte de {pct(r*100,1)}. Nesta profundidade o programa deixa de ser gestão de demanda e passa a redesenhar a produção industrial do país: turnos, contratos de fornecimento, cadeia produtiva inteira. O impacto macroeconômico é da ordem de pontos de PIB, e a distribuição é desigual — quem tem flexibilidade se ajusta, quem não tem, para."
+          },
+          {
+            "linha": 1867,
+            "dentro_de": null,
+            "condicao_literal": "else",
+            "classe": "per",
+            "expressao_literal": "'Corte de '+pct(r*100,1)+': acima de quarenta por cento, redução voluntária ou tarifada não entrega, e o sistema passa a depender de interrupção programada — que é outra coisa, com outro custo e outra consequência jurídica. Neste ponto o diagnóstico já não é sobre o período seco em curso, e sim sobre uma decisão de expansão que deixou de ser tomada anos antes.'",
+            "texto_template": "Corte de {pct(r*100,1)}: acima de quarenta por cento, redução voluntária ou tarifada não entrega, e o sistema passa a depender de interrupção programada — que é outra coisa, com outro custo e outra consequência jurídica. Neste ponto o diagnóstico já não é sobre o período seco em curso, e sim sobre uma decisão de expansão que deixou de ser tomada anos antes."
+          }
+        ],
+        "nota": "expressao_literal é o JS da fonte; texto_template é o mesmo texto com as expressões entre chaves (conversão mecânica). A classe (ok/att/per) é a cor do veredito na fonte."
+      },
+      "grafico": {
+        "elementos": [
+          {
+            "elemento": "svg#i4-svg",
+            "viewBox": "0 0 720 260",
+            "linha_aprox": 700
+          }
+        ],
+        "legenda": [
+          {
+            "texto": "Trajetória sem corte",
+            "cor": "#EF4444"
+          },
+          {
+            "texto": "Trajetória com o corte calculado",
+            "cor": "#06B6D4"
+          },
+          {
+            "texto": "Limite operacional",
+            "cor": "#F59E0B"
+          }
+        ],
+        "nota": "Desenho não porta (protocolo §12); o conteúdo textual está nas saídas e no veredito."
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i4-e-n": 32,
+          "i4-a-n": 72,
+          "i4-m-n": 3,
+          "i4-t-n": 7
+        },
+        "controles": {},
+        "saidas": {
+          "i4-ct": {
+            "rotulo": "Corte necessário",
+            "exibido_html": null,
+            "exibido_texto": "21,4%"
+          },
+          "i4-ms": {
+            "rotulo": "Meses até o limite",
+            "exibido_html": null,
+            "exibido_texto": "3,9 meses"
+          },
+          "i4-nf": {
+            "rotulo": "Nível final sem corte",
+            "exibido_html": null,
+            "exibido_texto": "2%"
+          },
+          "i4-qm": {
+            "rotulo": "Queda mensal sem corte",
+            "exibido_html": "4,33<span class=\"u\">p.p./mês</span>",
+            "exibido_texto": "4,33p.p./mês"
+          }
+        },
+        "veredito": {
+          "classe": "verdict per",
+          "texto": "Corte de 21,4%. Nesta profundidade o programa deixa de ser gestão de demanda e passa a redesenhar a produção industrial do país: turnos, contratos de fornecimento, cadeia produtiva inteira. O impacto macroeconômico é da ordem de pontos de PIB, e a distribuição é desigual — quem tem flexibilidade se ajusta, quem não tem, para."
+        },
+        "nota": "Lido do script original executado em DOM simulado no carregamento (sem interação). O texto inicial \"—\" do markup é sobrescrito na carga."
+      },
+      "fonte_dos_numeros": {
+        "disc": {
+          "html": "Didático/ilustrativo — não é modelo de operação, não substitui estudo energético e não representa nenhum subsistema real. O modelo trata o armazenamento como um único reservatório equivalente, supõe consumo de 11 pontos percentuais de armazenamento por mês em condição média, converte margem firme faltante em consumo adicional de reservatório, adota limite operacional de 15% e exige encerrar o período seco com 5 pontos de folga. Não há restrição de rede, sazonalidade intramensal, intercâmbio entre subsistemas nem incerteza de afluência — todos determinantes num estudo real.",
+          "texto": "Didático/ilustrativo — não é modelo de operação, não substitui estudo energético e não representa nenhum subsistema real. O modelo trata o armazenamento como um único reservatório equivalente, supõe consumo de 11 pontos percentuais de armazenamento por mês em condição média, converte margem firme faltante em consumo adicional de reservatório, adota limite operacional de 15% e exige encerrar o período seco com 5 pontos de folga. Não há restrição de rede, sazonalidade intramensal, intercâmbio entre subsistemas nem incerteza de afluência — todos determinantes num estudo real.",
+          "origem": {
+            "seletor": "p.disc",
+            "trecho_inicial": "Didático/ilustrativo — não é modelo de operação, não substitui estudo ",
+            "linha_aprox": 709
+          }
+        },
+        "fonte_externa_declarada": null,
+        "nota": "Cenário didático; o disc declara os parâmetros do modelo e nega representar caso real. Fonte externa dos valores não declarada (P19)."
+      },
+      "tolerancias": null,
+      "tolerancias_nota": "A fonte não declara tolerância nem resposta esperada.",
+      "invocacao": {
+        "ponto_no_texto": {
+          "tipo": "p",
+          "trecho_final": " privatização também não fecha: a geração continuava majoritariamente estatal, e o subinvestimento vinha da década anterior. Atribuir tudo à chuva é pior ainda.",
+          "origem": {
+            "seletor": "elemento imediatamente anterior ao div.inst",
+            "trecho_inicial": "A causa do racionamento, portanto, é uma cadeia, não um culpado. Hidro",
+            "linha_aprox": 680
+          }
+        },
+        "mencoes": [
+          {
+            "linha": 736,
+            "trecho": "instrumento acima",
+            "contexto": "nto é análise. A distinção nasceu literalmente em 2001, e o instrumento acima é o esqueleto do raciocínio."
+          }
+        ]
+      },
+      "comparacao_codigo": {
+        "id_codigo": "m06-inst-04",
+        "existe_objeto": true,
+        "existe_calculadora": true,
+        "kind_codigo": "simulador",
+        "titulo_codigo": "Termômetro do racionamento · balanço de energia num período seco",
+        "titulo_igual": true,
+        "formula_codigo": null,
+        "note_codigo": null,
+        "campos": [
+          {
+            "id": "i4-e-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i4-a-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i4-m-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i4-t-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          }
+        ],
+        "campos_so_no_codigo": [],
+        "saidas": [
+          {
+            "id": "i4-ct",
+            "rotulo_fonte": "Corte necessário",
+            "status": "portada",
+            "unit_codigo": null
+          },
+          {
+            "id": "i4-ms",
+            "rotulo_fonte": "Meses até o limite",
+            "status": "não portada"
+          },
+          {
+            "id": "i4-nf",
+            "rotulo_fonte": "Nível final sem corte",
+            "status": "não portada"
+          },
+          {
+            "id": "i4-qm",
+            "rotulo_fonte": "Queda mensal sem corte",
+            "status": "portada",
+            "unit_codigo": null
+          }
+        ],
+        "prova": {
+          "metodo": "script original em DOM simulado × calculadora do bundle, mesmas entradas",
+          "casos": 3003,
+          "falhas_veredito": 0,
+          "falhas_numericas": 0,
+          "ramos_disparados_na_fonte": [
+            1863,
+            1864,
+            1865,
+            1866,
+            1867
+          ],
+          "ramos_nao_exercitados": [],
+          "exemplos_de_falha": []
+        },
+        "status": "portado",
+        "status_nota": "Cálculo e veredito equivalentes à fonte no espaço testado; diferenças só de apresentação (ver motivos).",
+        "motivos": [
+          "inst-intro e p.disc da fonte não estão no objeto (note/formula null ou outro texto); varredura de src/: zero",
+          "saída(s) sem valor no código: i4-ms, i4-nf (texto na fonte ou não portada)",
+          "i4-qm: a fonte exibe \"+x p.p./mês · recompõe\" quando d≤0; o código devolve d negativo sem o rótulo"
+        ]
+      }
+    },
+    {
+      "id": "m06-inst-05",
+      "n": 5,
+      "id_fonte": "Inst · 05",
+      "titulo": "Comparador · três arquiteturas e onde o risco pousa",
+      "secao": "Aula 04",
+      "aula": "Aula 04",
+      "aula_id_codigo": "aula-06-04",
+      "de_modulo": false,
+      "linhas_markup": [
+        790,
+        816
+      ],
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não declara pergunta própria; `intro` é instrução de uso. Pergunta de previsão seria camada Alexandria (P3/P11/P19).",
+      "intro": {
+        "html": "Escolha um dos três regimes históricos e veja como ele responde as seis perguntas da régua. Depois mova o horizonte de contratação obrigatória e observe o trade-off central de todo desenho de expansão: quanto mais longe você obriga a contratar, menor o risco de faltar e maior o risco de sobrar — e sobra também é custo, pago pelo mesmo consumidor.",
+        "texto": "Escolha um dos três regimes históricos e veja como ele responde as seis perguntas da régua. Depois mova o horizonte de contratação obrigatória e observe o trade-off central de todo desenho de expansão: quanto mais longe você obriga a contratar, menor o risco de faltar e maior o risco de sobrar — e sobra também é custo, pago pelo mesmo consumidor.",
+        "origem": {
+          "seletor": ".inst-intro",
+          "trecho_inicial": "Escolha um dos três regimes históricos e veja como ele responde as sei",
+          "linha_aprox": 793
+        }
+      },
+      "entradas": [
+        {
+          "id": "i5-h-n",
+          "id_range": "i5-h",
+          "tipo": "number+range",
+          "rotulo": "Horizonte de contratação obrigatória",
+          "unidade": "anos",
+          "padrao": 0,
+          "min": 0,
+          "max": 6,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i5-h",
+          "origem": {
+            "seletor": "input#i5-h-n",
+            "trecho_inicial": "Horizonte de contratação obrigatória anos",
+            "linha_aprox": 802
+          }
+        }
+      ],
+      "controles_segmentados": [
+        {
+          "id": "i5-seg",
+          "tipo": "segmentado (botões)",
+          "rotulo": "Regime histórico",
+          "opcoes": [
+            {
+              "valor": "0",
+              "texto": "1962–1993 · estatal",
+              "padrao": true
+            },
+            {
+              "valor": "1",
+              "texto": "1995–2003 · transição",
+              "padrao": false
+            },
+            {
+              "valor": "2",
+              "texto": "2004– · híbrido",
+              "padrao": false
+            }
+          ],
+          "origem": {
+            "seletor": "div.seg#i5-seg",
+            "trecho_inicial": "1962–1993 · estatal 1995–2003 · transição 2004– · híbrido",
+            "linha_aprox": 795
+          }
+        }
+      ],
+      "saidas": [
+        {
+          "id": "i5-rf",
+          "rotulo": "Risco de faltar",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i5-rf",
+            "trecho_inicial": "Risco de faltar",
+            "linha_aprox": 808
+          },
+          "atribuicao_script": {
+            "linha": 1922,
+            "codigo": "$id('i5-rf').textContent=num(f,0);",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i5-rs",
+          "rotulo": "Risco de sobrar",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i5-rs",
+            "trecho_inicial": "Risco de sobrar",
+            "linha_aprox": 809
+          },
+          "atribuicao_script": {
+            "linha": 1923,
+            "codigo": "$id('i5-rs').textContent=num(s,0);",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i5-rt",
+          "rotulo": "Atrito total",
+          "classe": "n gold",
+          "origem": {
+            "seletor": ".readout #i5-rt",
+            "trecho_inicial": "Atrito total",
+            "linha_aprox": 810
+          },
+          "atribuicao_script": {
+            "linha": 1924,
+            "codigo": "$id('i5-rt').textContent=num(t,0);",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i5-rb",
+          "rotulo": "Horizonte de menor atrito",
+          "classe": "n sm",
+          "origem": {
+            "seletor": ".readout #i5-rb",
+            "trecho_inicial": "Horizonte de menor atrito",
+            "linha_aprox": 811
+          },
+          "atribuicao_script": {
+            "linha": 1925,
+            "codigo": "$id('i5-rb').textContent=best+' ano'+(best===1?'':'s');",
+            "papel": "atribuicao_de_saida"
+          }
+        }
+      ],
+      "painel": null,
+      "cadeia": [],
+      "script": {
+        "bloco_linhas": [
+          1874,
+          1946
+        ],
+        "constantes": [
+          {
+            "linha": 1890,
+            "codigo": "var KEYS=['Quem é dono','Quem financia a expansão','Quem planeja','Quem opera','Como o preço é definido','Quem carrega o risco de expansão','Modo de falha característico'];"
+          },
+          {
+            "linha": 1891,
+            "codigo": "var cur=0;"
+          }
+        ],
+        "funcoes_auxiliares": [
+          {
+            "nome": "falta",
+            "linhas": [
+              {
+                "linha": 1893,
+                "codigo": "function falta(F0,h){ return F0*Math.pow(Math.max(0,1-h/7),1.6); }"
+              }
+            ]
+          },
+          {
+            "nome": "sobra",
+            "linhas": [
+              {
+                "linha": 1894,
+                "codigo": "function sobra(S0,h){ return S0*Math.pow(clamp(h/6,0,1),1.4); }"
+              }
+            ]
+          },
+          {
+            "nome": "grid",
+            "linhas": [
+              {
+                "linha": 1896,
+                "codigo": "function grid(){"
+              },
+              {
+                "linha": 1897,
+                "codigo": "var h='',i,R=REG[cur];"
+              },
+              {
+                "linha": 1898,
+                "codigo": "for(i=0;i<KEYS.length;i++){"
+              },
+              {
+                "linha": 1899,
+                "codigo": "h+='<div class=\"gk\">'+KEYS[i]+'</div><div class=\"gv\">'+esc(R.r[i])+'</div>';"
+              },
+              {
+                "linha": 1900,
+                "codigo": "}"
+              },
+              {
+                "linha": 1901,
+                "codigo": "h+='<div class=\"gk\">Horizonte efetivo no período</div><div class=\"gv\"><b>'+esc(R.h)+'</b></div>';"
+              },
+              {
+                "linha": 1902,
+                "codigo": "$id('i5-grid').innerHTML=h;"
+              },
+              {
+                "linha": 1903,
+                "codigo": "}"
+              }
+            ]
+          },
+          {
+            "nome": "bar",
+            "linhas": [
+              {
+                "linha": 1904,
+                "codigo": "function bar(lb,val,mx,col,txt){"
+              },
+              {
+                "linha": 1905,
+                "codigo": "return '<div class=\"bar-row\"><div class=\"lb\">'+lb+'</div><div class=\"bar-track\">'+"
+              },
+              {
+                "linha": 1906,
+                "codigo": "'<div class=\"bar-fill\" style=\"width:'+clamp(val/mx*100,0,100).toFixed(1)+'%;background:'+col+';opacity:.85\"></div></div>'+"
+              },
+              {
+                "linha": 1907,
+                "codigo": "'<div class=\"vl\">'+txt+'</div></div>';"
+              },
+              {
+                "linha": 1908,
+                "codigo": "}"
+              }
+            ]
+          }
+        ],
+        "formula_exata_script": [
+          {
+            "linha": 1910,
+            "codigo": "var Hh=+$id('i5-h').value, R=REG[cur];"
+          },
+          {
+            "linha": 1911,
+            "codigo": "var f=falta(R.F0,Hh), s=sobra(R.S0,Hh), t=f+s;"
+          },
+          {
+            "linha": 1912,
+            "codigo": "var best=0,bt=1e9,k;"
+          },
+          {
+            "linha": 1913,
+            "codigo": "for(k=0;k<=6;k++){ var tt=falta(R.F0,k)+sobra(R.S0,k); if(tt<bt-1e-9){bt=tt;best=k;} }"
+          },
+          {
+            "linha": 1914,
+            "codigo": "var mx=Math.max(R.F0,R.S0,t,bt)*1.05;"
+          }
+        ],
+        "formatadores": [
+          {
+            "linha": 1523,
+            "codigo": "function num(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}"
+          },
+          {
+            "linha": 1524,
+            "codigo": "function pct(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d===undefined?1:d,maximumFractionDigits:d===undefined?1:d})+'%';}"
+          },
+          {
+            "linha": 1525,
+            "codigo": "function mmi(v){"
+          },
+          {
+            "linha": 1526,
+            "codigo": "if(Math.abs(v)>=1000) return 'R$ '+(v/1000).toLocaleString('pt-BR',{maximumFractionDigits:2})+' bi';"
+          },
+          {
+            "linha": 1527,
+            "codigo": "return 'R$ '+v.toLocaleString('pt-BR',{maximumFractionDigits:0})+' mi';"
+          }
+        ]
+      },
+      "textos_leitura": {
+        "veredito_id": "i5-vd",
+        "ramos": [
+          {
+            "linha": 1929,
+            "dentro_de": null,
+            "condicao_literal": "if(Hh===best)",
+            "classe": "ok",
+            "expressao_literal": "pre+'Horizonte de '+Hh+' ano(s) é o ponto de menor atrito para esta arquitetura: risco de faltar em '+num(f,0)+' e de sobrar em '+num(s,0)+'. Repare que o ótimo se desloca com o regime — o mesmo horizonte que é prudente numa arquitetura é caro demais em outra, porque o que muda é quanto o resto do desenho já protege contra subinvestimento.'",
+            "texto_template": "{pre}Horizonte de {Hh} ano(s) é o ponto de menor atrito para esta arquitetura: risco de faltar em {num(f,0)} e de sobrar em {num(s,0)}. Repare que o ótimo se desloca com o regime — o mesmo horizonte que é prudente numa arquitetura é caro demais em outra, porque o que muda é quanto o resto do desenho já protege contra subinvestimento."
+          },
+          {
+            "linha": 1930,
+            "dentro_de": null,
+            "condicao_literal": "else if(Hh<best)",
+            "classe": "att",
+            "expressao_literal": "pre+'Horizonte de '+Hh+' ano(s) contra '+best+' de menor atrito. Você está aceitando risco de faltar em '+num(f,0)+' para economizar risco de sobrar. Numa arquitetura em que o financiamento da expansão depende de contrato longo, encurtar o horizonte não reduz custo — apenas transfere a incerteza para o investidor, que a devolve no preço do leilão ou simplesmente não aparece.'",
+            "texto_template": "{pre}Horizonte de {Hh} ano(s) contra {best} de menor atrito. Você está aceitando risco de faltar em {num(f,0)} para economizar risco de sobrar. Numa arquitetura em que o financiamento da expansão depende de contrato longo, encurtar o horizonte não reduz custo — apenas transfere a incerteza para o investidor, que a devolve no preço do leilão ou simplesmente não aparece."
+          },
+          {
+            "linha": 1931,
+            "dentro_de": null,
+            "condicao_literal": "else",
+            "classe": "per",
+            "expressao_literal": "pre+'Horizonte de '+Hh+' ano(s), acima dos '+best+' de menor atrito. O risco de faltar já está em '+num(f,0)+', baixo, e o de sobrar em '+num(s,0)+' — e sobra também é custo, pago pelo mesmo consumidor que a antecedência deveria proteger. É o trade-off que a arquitetura de 2004 assumiu conscientemente ao trocar risco de racionamento por risco de sobrecontratação.'",
+            "texto_template": "{pre}Horizonte de {Hh} ano(s), acima dos {best} de menor atrito. O risco de faltar já está em {num(f,0)}, baixo, e o de sobrar em {num(s,0)} — e sobra também é custo, pago pelo mesmo consumidor que a antecedência deveria proteger. É o trade-off que a arquitetura de 2004 assumiu conscientemente ao trocar risco de racionamento por risco de sobrecontratação."
+          }
+        ],
+        "nota": "expressao_literal é o JS da fonte; texto_template é o mesmo texto com as expressões entre chaves (conversão mecânica). A classe (ok/att/per) é a cor do veredito na fonte."
+      },
+      "grafico": {
+        "elementos": [
+          {
+            "elemento": "div.gcmp#i5-grid",
+            "viewBox": null,
+            "linha_aprox": 800
+          },
+          {
+            "elemento": "div.bars#i5-bars",
+            "viewBox": null,
+            "linha_aprox": 806
+          }
+        ],
+        "legenda": [],
+        "nota": "Desenho não porta (protocolo §12); o conteúdo textual está nas saídas e no veredito."
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i5-h-n": 0
+        },
+        "controles": {
+          "i5-seg": "1962–1993 · estatal"
+        },
+        "saidas": {
+          "i5-rf": {
+            "rotulo": "Risco de faltar",
+            "exibido_html": null,
+            "exibido_texto": "45"
+          },
+          "i5-rs": {
+            "rotulo": "Risco de sobrar",
+            "exibido_html": null,
+            "exibido_texto": "0"
+          },
+          "i5-rt": {
+            "rotulo": "Atrito total",
+            "exibido_html": null,
+            "exibido_texto": "45"
+          },
+          "i5-rb": {
+            "rotulo": "Horizonte de menor atrito",
+            "exibido_html": null,
+            "exibido_texto": "4 anos"
+          }
+        },
+        "veredito": {
+          "classe": "verdict att",
+          "texto": "Regime 1962–1993 · estatal integrado. Horizonte de 0 ano(s) contra 4 de menor atrito. Você está aceitando risco de faltar em 45 para economizar risco de sobrar. Numa arquitetura em que o financiamento da expansão depende de contrato longo, encurtar o horizonte não reduz custo — apenas transfere a incerteza para o investidor, que a devolve no preço do leilão ou simplesmente não aparece."
+        },
+        "nota": "Lido do script original executado em DOM simulado no carregamento (sem interação). O texto inicial \"—\" do markup é sobrescrito na carga.",
+        "grade": "Quem é dono | União e estados, por empresas públicas verticalizadas | Quem financia a expansão | Imposto Único, empréstimo compulsório, BNDE e dívida externa | Quem planeja | Eletrobras e grupos coordenadores, de forma determinativa | Quem opera | Comitês entre empresas do mesmo grupo — GCOI a partir de 1973 | Como o preço é definido | Custo do serviço com remuneração garantida e equalização nacional | Quem carrega o risco de expansão | O Estado, por obrigação legal de expandir | Modo de falha característico | Descapitalização da empresa obrigada a expandir, e dívida intrassetorial | Horizonte efetivo no período | obrigação legal, não contrato |"
+      },
+      "fonte_dos_numeros": {
+        "disc": {
+          "html": "Didático/ilustrativo — os índices de risco são escalas relativas sem unidade, construídas para tornar visível o trade-off, e não medições de nenhum sistema real. Regimes históricos são caracterizações de arquitetura, não descrições exaustivas: em todos os três períodos coexistiram arranjos de propriedade e contratação diferentes dos dominantes.",
+          "texto": "Didático/ilustrativo — os índices de risco são escalas relativas sem unidade, construídas para tornar visível o trade-off, e não medições de nenhum sistema real. Regimes históricos são caracterizações de arquitetura, não descrições exaustivas: em todos os três períodos coexistiram arranjos de propriedade e contratação diferentes dos dominantes.",
+          "origem": {
+            "seletor": "p.disc",
+            "trecho_inicial": "Didático/ilustrativo — os índices de risco são escalas relativas sem u",
+            "linha_aprox": 814
+          }
+        },
+        "fonte_externa_declarada": null,
+        "nota": "Cenário didático; o disc declara os parâmetros do modelo e nega representar caso real. Fonte externa dos valores não declarada (P19)."
+      },
+      "tolerancias": null,
+      "tolerancias_nota": "A fonte não declara tolerância nem resposta esperada.",
+      "invocacao": {
+        "ponto_no_texto": {
+          "tipo": "p",
+          "trecho_final": "alizado sem que ninguém consiga rastrear por quê. Boa parte da agenda regulatória de 2017 em diante — e da lei de 2025 — é tentativa de arrumar exatamente isso.",
+          "origem": {
+            "seletor": "elemento imediatamente anterior ao div.inst",
+            "trecho_inicial": "O preço dessa arquitetura é complexidade, e é preciso dizê-lo sem eufe",
+            "linha_aprox": 788
+          }
+        },
+        "mencoes": [
+          {
+            "linha": 781,
+            "trecho": "instrumento abaixo",
+            "contexto": "terior. Também é uma alocação que compra um risco novo, e o instrumento abaixo mostra qual."
+          }
+        ]
+      },
+      "dados_script": {
+        "regimes": [
+          {
+            "indice": 0,
+            "nome": "1962–1993 · estatal integrado",
+            "F0": 45,
+            "S0": 28,
+            "respostas": {
+              "Quem é dono": "União e estados, por empresas públicas verticalizadas",
+              "Quem financia a expansão": "Imposto Único, empréstimo compulsório, BNDE e dívida externa",
+              "Quem planeja": "Eletrobras e grupos coordenadores, de forma determinativa",
+              "Quem opera": "Comitês entre empresas do mesmo grupo — GCOI a partir de 1973",
+              "Como o preço é definido": "Custo do serviço com remuneração garantida e equalização nacional",
+              "Quem carrega o risco de expansão": "O Estado, por obrigação legal de expandir",
+              "Modo de falha característico": "Descapitalização da empresa obrigada a expandir, e dívida intrassetorial"
+            },
+            "horizonte_efetivo": "obrigação legal, não contrato"
+          },
+          {
+            "indice": 1,
+            "nome": "1995–2003 · reforma em transição",
+            "F0": 88,
+            "S0": 12,
+            "respostas": {
+              "Quem é dono": "Distribuição majoritariamente privada, geração majoritariamente estatal",
+              "Quem financia a expansão": "Indefinido — sem obrigação estatal e sem contrato longo bancável",
+              "Quem planeja": "Em transição, sem instituição dedicada após o desmonte do determinativo",
+              "Quem opera": "ONS a partir de 1998, sucedendo o GCOI",
+              "Como o preço é definido": "Tarifa por concessão mais preço de curto prazo no MAE, em implantação",
+              "Quem carrega o risco de expansão": "Ninguém, com clareza",
+              "Modo de falha característico": "Erosão silenciosa de margem até a primeira hidrologia adversa"
+            },
+            "horizonte_efetivo": "próximo de zero"
+          },
+          {
+            "indice": 2,
+            "nome": "2004– · híbrido",
+            "F0": 58,
+            "S0": 58,
+            "respostas": {
+              "Quem é dono": "Misto e diverso — privado, estatal e, desde 2022, capital pulverizado",
+              "Quem financia a expansão": "Contrato de longo prazo bancável, leilão regulado e financiamento privado",
+              "Quem planeja": "EPE, com planejamento indicativo estruturado",
+              "Quem opera": "ONS, de forma centralizada, com CMSE monitorando segurança",
+              "Como o preço é definido": "Leilão no ambiente regulado, bilateral no livre, diferenças liquidadas na CCEE",
+              "Quem carrega o risco de expansão": "Distribuído por contrato: distribuidora, gerador e consumidor final",
+              "Modo de falha característico": "Erro de projeção de demanda virando sobrecontratação repassada à tarifa"
+            },
+            "horizonte_efetivo": "da ordem de 3 a 5 anos"
+          }
+        ],
+        "linhas": [
+          1879,
+          1889
+        ],
+        "chaves": [
+          "Quem é dono",
+          "Quem financia a expansão",
+          "Quem planeja",
+          "Quem opera",
+          "Como o preço é definido",
+          "Quem carrega o risco de expansão",
+          "Modo de falha característico"
+        ],
+        "rotulo_extra": "Horizonte efetivo no período"
+      },
+      "comparacao_codigo": {
+        "id_codigo": "m06-inst-05",
+        "existe_objeto": true,
+        "existe_calculadora": true,
+        "kind_codigo": "comparador",
+        "titulo_codigo": "Comparador · três arquiteturas e onde o risco pousa",
+        "titulo_igual": true,
+        "formula_codigo": null,
+        "note_codigo": null,
+        "campos": [
+          {
+            "id": "i5-h-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          }
+        ],
+        "campos_so_no_codigo": [],
+        "saidas": [
+          {
+            "id": "i5-rf",
+            "rotulo_fonte": "Risco de faltar",
+            "status": "portada",
+            "unit_codigo": null
+          },
+          {
+            "id": "i5-rs",
+            "rotulo_fonte": "Risco de sobrar",
+            "status": "portada",
+            "unit_codigo": null
+          },
+          {
+            "id": "i5-rt",
+            "rotulo_fonte": "Atrito total",
+            "status": "portada",
+            "unit_codigo": null
+          },
+          {
+            "id": "i5-rb",
+            "rotulo_fonte": "Horizonte de menor atrito",
+            "status": "não portada"
+          }
+        ],
+        "prova": {
+          "metodo": "script original (3 regimes × 7 horizontes, espaço inteiro) × calculadora (só regime 0)",
+          "casos": 21,
+          "casos_comparaveis": 7,
+          "falhas_veredito": 0,
+          "falhas_numericas": 0,
+          "ramos_disparados_na_fonte": [
+            1929,
+            1930,
+            1931
+          ],
+          "ramos_fonte_nao_alcancaveis": [],
+          "regimes_nao_alcancaveis_na_porta": [
+            "1995–2003 · reforma em transição",
+            "2004– · híbrido"
+          ],
+          "saidas_regimes_1_2": "os 14 cenários dos regimes 1 e 2 (vereditos com \"Regime …\" diferente, F0/S0 diferentes, grade de 8 linhas) não existem no código",
+          "exemplos_de_falha": []
+        },
+        "status": "divergente",
+        "status_nota": "Portado com diferença material (ver motivos).",
+        "motivos": [
+          "inst-intro e p.disc da fonte não estão no objeto (note/formula null ou outro texto); varredura de src/: zero",
+          "controle(s) segmentado(s) da fonte sem campo no código: i5-seg",
+          "saída(s) sem valor no código: i5-rb (texto na fonte ou não portada)",
+          "seletor de regime (3 botões) e grade das seis perguntas da régua (7 linhas + horizonte efetivo) não portados; o código fixa o regime 0"
+        ]
+      }
+    },
+    {
+      "id": "m06-inst-06",
+      "n": 6,
+      "id_fonte": "Inst · 06",
+      "titulo": "Simulador · o efeito de uma liminar num sistema de rateio",
+      "secao": "Aula 05",
+      "aula": "Aula 05",
+      "aula_id_codigo": "aula-06-05",
+      "de_modulo": false,
+      "linhas_markup": [
+        876,
+        904
+      ],
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não declara pergunta própria; `intro` é instrução de uso. Pergunta de previsão seria camada Alexandria (P3/P11/P19).",
+      "intro": {
+        "html": "A liquidação do mercado de curto prazo distribui exatamente o que arrecada. Ajuste quanto do valor devido está protegido por decisão judicial e observe duas coisas: quanto cada credor deixa de receber no ciclo, e como o padrão se realimenta nos ciclos seguintes quando quem levou o corte busca a mesma proteção.",
+        "texto": "A liquidação do mercado de curto prazo distribui exatamente o que arrecada. Ajuste quanto do valor devido está protegido por decisão judicial e observe duas coisas: quanto cada credor deixa de receber no ciclo, e como o padrão se realimenta nos ciclos seguintes quando quem levou o corte busca a mesma proteção.",
+        "origem": {
+          "seletor": ".inst-intro",
+          "trecho_inicial": "A liquidação do mercado de curto prazo distribui exatamente o que arre",
+          "linha_aprox": 879
+        }
+      },
+      "entradas": [
+        {
+          "id": "i6-d-n",
+          "id_range": "i6-d",
+          "tipo": "number+range",
+          "rotulo": "Valor a liquidar no ciclo",
+          "unidade": "R$ mi",
+          "padrao": 1500,
+          "min": 200,
+          "max": 6000,
+          "step": 50,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i6-d",
+          "origem": {
+            "seletor": "input#i6-d-n",
+            "trecho_inicial": "Valor a liquidar no ciclo R$ mi",
+            "linha_aprox": 881
+          }
+        },
+        {
+          "id": "i6-p-n",
+          "id_range": "i6-p",
+          "tipo": "number+range",
+          "rotulo": "Parcela do devido protegida por liminar",
+          "unidade": "%",
+          "padrao": 35,
+          "min": 0,
+          "max": 80,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i6-p",
+          "origem": {
+            "seletor": "input#i6-p-n",
+            "trecho_inicial": "Parcela do devido protegida por liminar %",
+            "linha_aprox": 884
+          }
+        },
+        {
+          "id": "i6-g-n",
+          "id_range": "i6-g",
+          "tipo": "number+range",
+          "rotulo": "Garantias e reservas disponíveis",
+          "unidade": "% do devido",
+          "padrao": 8,
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i6-g",
+          "origem": {
+            "seletor": "input#i6-g-n",
+            "trecho_inicial": "Garantias e reservas disponíveis % do devido",
+            "linha_aprox": 887
+          }
+        },
+        {
+          "id": "i6-n-n",
+          "id_range": "i6-n",
+          "tipo": "number+range",
+          "rotulo": "Agentes credores no rateio",
+          "unidade": "agentes",
+          "padrao": 120,
+          "min": 10,
+          "max": 600,
+          "step": 5,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i6-n",
+          "origem": {
+            "seletor": "input#i6-n-n",
+            "trecho_inicial": "Agentes credores no rateio agentes",
+            "linha_aprox": 890
+          }
+        }
+      ],
+      "controles_segmentados": [],
+      "saidas": [
+        {
+          "id": "i6-tx",
+          "rotulo": "Taxa de recebimento",
+          "classe": "n gold",
+          "origem": {
+            "seletor": ".readout #i6-tx",
+            "trecho_inicial": "Taxa de recebimento",
+            "linha_aprox": 896
+          },
+          "atribuicao_script": {
+            "linha": 1975,
+            "codigo": "$id('i6-tx').textContent=pct(tx*100,1);",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i6-fa",
+          "rotulo": "Falta no ciclo",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i6-fa",
+            "trecho_inicial": "Falta no ciclo",
+            "linha_aprox": 897
+          },
+          "atribuicao_script": {
+            "linha": 1976,
+            "codigo": "$id('i6-fa').textContent=mmi(f1);",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i6-pm",
+          "rotulo": "Perda média por credor",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i6-pm",
+            "trecho_inicial": "Perda média por credor",
+            "linha_aprox": 898
+          },
+          "atribuicao_script": {
+            "linha": 1977,
+            "codigo": "$id('i6-pm').textContent=mmi(perda);",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i6-ac",
+          "rotulo": "Retido em 3 ciclos",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i6-ac",
+            "trecho_inicial": "Retido em 3 ciclos",
+            "linha_aprox": 899
+          },
+          "atribuicao_script": {
+            "linha": 1978,
+            "codigo": "$id('i6-ac').textContent=mmi(acum);",
+            "papel": "atribuicao_de_saida"
+          }
+        }
+      ],
+      "painel": null,
+      "cadeia": [],
+      "script": {
+        "bloco_linhas": [
+          1948,
+          1989
+        ],
+        "constantes": [],
+        "funcoes_auxiliares": [
+          {
+            "nome": "bar",
+            "linhas": [
+              {
+                "linha": 1952,
+                "codigo": "function bar(lb,val,mx,col,txt){"
+              },
+              {
+                "linha": 1953,
+                "codigo": "return '<div class=\"bar-row\"><div class=\"lb\">'+lb+'</div><div class=\"bar-track\">'+"
+              },
+              {
+                "linha": 1954,
+                "codigo": "'<div class=\"bar-fill\" style=\"width:'+clamp(val/mx*100,0,100).toFixed(1)+'%;background:'+col+';opacity:.85\"></div></div>'+"
+              },
+              {
+                "linha": 1955,
+                "codigo": "'<div class=\"vl\">'+txt+'</div></div>';"
+              },
+              {
+                "linha": 1956,
+                "codigo": "}"
+              }
+            ]
+          }
+        ],
+        "formula_exata_script": [
+          {
+            "linha": 1958,
+            "codigo": "var D=+$id('i6-d').value, P=+$id('i6-p').value, G=+$id('i6-g').value, N=+$id('i6-n').value;"
+          },
+          {
+            "linha": 1959,
+            "codigo": "var gar=D*G/100;"
+          },
+          {
+            "linha": 1960,
+            "codigo": "var p1=P, f1=Math.max(0,D*p1/100-gar);"
+          },
+          {
+            "linha": 1961,
+            "codigo": "var p2=Math.min(85,p1+30*(f1/D)), f2=Math.max(0,D*p2/100-gar);"
+          },
+          {
+            "linha": 1962,
+            "codigo": "var p3=Math.min(85,p2+30*(f2/D)), f3=Math.max(0,D*p3/100-gar);"
+          },
+          {
+            "linha": 1963,
+            "codigo": "var acum=f1+f2+f3;"
+          },
+          {
+            "linha": 1964,
+            "codigo": "var tx=(D-f1)/D;"
+          },
+          {
+            "linha": 1965,
+            "codigo": "var perda=f1/N;"
+          }
+        ],
+        "formatadores": [
+          {
+            "linha": 1523,
+            "codigo": "function num(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}"
+          },
+          {
+            "linha": 1524,
+            "codigo": "function pct(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d===undefined?1:d,maximumFractionDigits:d===undefined?1:d})+'%';}"
+          },
+          {
+            "linha": 1525,
+            "codigo": "function mmi(v){"
+          },
+          {
+            "linha": 1526,
+            "codigo": "if(Math.abs(v)>=1000) return 'R$ '+(v/1000).toLocaleString('pt-BR',{maximumFractionDigits:2})+' bi';"
+          },
+          {
+            "linha": 1527,
+            "codigo": "return 'R$ '+v.toLocaleString('pt-BR',{maximumFractionDigits:0})+' mi';"
+          }
+        ]
+      },
+      "textos_leitura": {
+        "veredito_id": "i6-vd",
+        "ramos": [
+          {
+            "linha": 1981,
+            "dentro_de": null,
+            "condicao_literal": "if(f1<=0.001)",
+            "classe": "ok",
+            "expressao_literal": "'Nenhuma falta no ciclo: as garantias disponíveis, em '+pct(G,0)+' do devido, cobrem integralmente a parcela protegida por decisão judicial. Os credores recebem cem por cento. É esta a configuração em que o rateio funciona como projetado — e note quanto ela depende de a proteção judicial ser pequena em relação às garantias, e não do mérito da disputa.'",
+            "texto_template": "Nenhuma falta no ciclo: as garantias disponíveis, em {pct(G,0)} do devido, cobrem integralmente a parcela protegida por decisão judicial. Os credores recebem cem por cento. É esta a configuração em que o rateio funciona como projetado — e note quanto ela depende de a proteção judicial ser pequena em relação às garantias, e não do mérito da disputa."
+          },
+          {
+            "linha": 1982,
+            "dentro_de": null,
+            "condicao_literal": "else if(tx>=0.95)",
+            "classe": "att",
+            "expressao_literal": "'Recebimento de '+pct(tx*100,1)+'. O corte é pequeno, mas o mecanismo já está operando: '+mmi(f1)+' que alguém devia entram no caixa como zero e saem do bolso de quem não tinha nada a ver com a disputa. Em três ciclos, mantido o padrão de contágio, o acumulado chega a '+mmi(acum)+'.'",
+            "texto_template": "Recebimento de {pct(tx*100,1)}. O corte é pequeno, mas o mecanismo já está operando: {mmi(f1)} que alguém devia entram no caixa como zero e saem do bolso de quem não tinha nada a ver com a disputa. Em três ciclos, mantido o padrão de contágio, o acumulado chega a {mmi(acum)}."
+          },
+          {
+            "linha": 1983,
+            "dentro_de": null,
+            "condicao_literal": "else if(tx>=0.80)",
+            "classe": "per",
+            "expressao_literal": "'Recebimento de '+pct(tx*100,1)+', com '+mmi(perda)+' de perda média por credor no ciclo. A partir daqui a decisão racional de cada agente prejudicado é buscar a própria proteção judicial — e é exatamente por isso que a parcela protegida sobe para '+pct(p2,0)+' no ciclo seguinte e '+pct(p3,0)+' no terceiro. A liquidação deixa de ser contabilidade e vira disputa.'",
+            "texto_template": "Recebimento de {pct(tx*100,1)}, com {mmi(perda)} de perda média por credor no ciclo. A partir daqui a decisão racional de cada agente prejudicado é buscar a própria proteção judicial — e é exatamente por isso que a parcela protegida sobe para {pct(p2,0)} no ciclo seguinte e {pct(p3,0)} no terceiro. A liquidação deixa de ser contabilidade e vira disputa."
+          },
+          {
+            "linha": 1984,
+            "dentro_de": null,
+            "condicao_literal": "else",
+            "classe": "per",
+            "expressao_literal": "'Recebimento de '+pct(tx*100,1)+': o sistema de rateio está quebrado como mecanismo de liquidação. Com '+mmi(acum)+' retidos em três ciclos, o preço de curto prazo deixa de ser um sinal econômico e passa a ser uma pretensão contábil. Nenhuma decisão judicial individual criou isso — cada uma delas foi razoável no seu próprio processo. O resultado agregado é que a arquitetura de liquidação não tem fundo garantidor dimensionado para absorver proteção judicial em escala, e a solução, historicamente, teve de ser legislativa.'",
+            "texto_template": "Recebimento de {pct(tx*100,1)}: o sistema de rateio está quebrado como mecanismo de liquidação. Com {mmi(acum)} retidos em três ciclos, o preço de curto prazo deixa de ser um sinal econômico e passa a ser uma pretensão contábil. Nenhuma decisão judicial individual criou isso — cada uma delas foi razoável no seu próprio processo. O resultado agregado é que a arquitetura de liquidação não tem fundo garantidor dimensionado para absorver proteção judicial em escala, e a solução, historicamente, teve de ser legislativa."
+          }
+        ],
+        "nota": "expressao_literal é o JS da fonte; texto_template é o mesmo texto com as expressões entre chaves (conversão mecânica). A classe (ok/att/per) é a cor do veredito na fonte."
+      },
+      "grafico": {
+        "elementos": [
+          {
+            "elemento": "div.bars#i6-bars",
+            "viewBox": null,
+            "linha_aprox": 894
+          }
+        ],
+        "legenda": [],
+        "nota": "Desenho não porta (protocolo §12); o conteúdo textual está nas saídas e no veredito."
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i6-d-n": 1500,
+          "i6-p-n": 35,
+          "i6-g-n": 8,
+          "i6-n-n": 120
+        },
+        "controles": {},
+        "saidas": {
+          "i6-tx": {
+            "rotulo": "Taxa de recebimento",
+            "exibido_html": null,
+            "exibido_texto": "73,0%"
+          },
+          "i6-fa": {
+            "rotulo": "Falta no ciclo",
+            "exibido_html": null,
+            "exibido_texto": "R$ 405 mi"
+          },
+          "i6-pm": {
+            "rotulo": "Perda média por credor",
+            "exibido_html": null,
+            "exibido_texto": "R$ 3 mi"
+          },
+          "i6-ac": {
+            "rotulo": "Retido em 3 ciclos",
+            "exibido_html": null,
+            "exibido_texto": "R$ 1,62 bi"
+          }
+        },
+        "veredito": {
+          "classe": "verdict per",
+          "texto": "Recebimento de 73,0%: o sistema de rateio está quebrado como mecanismo de liquidação. Com R$ 1,62 bi retidos em três ciclos, o preço de curto prazo deixa de ser um sinal econômico e passa a ser uma pretensão contábil. Nenhuma decisão judicial individual criou isso — cada uma delas foi razoável no seu próprio processo. O resultado agregado é que a arquitetura de liquidação não tem fundo garantidor dimensionado para absorver proteção judicial em escala, e a solução, historicamente, teve de ser legislativa."
+        },
+        "nota": "Lido do script original executado em DOM simulado no carregamento (sem interação). O texto inicial \"—\" do markup é sobrescrito na carga."
+      },
+      "fonte_dos_numeros": {
+        "disc": {
+          "html": "Didático/ilustrativo — não reproduz as regras de contabilização, garantia financeira ou tratamento de inadimplência da câmara de comercialização, que são consideravelmente mais detalhadas. O modelo supõe credores homogêneos, rateio proporcional, garantias aplicadas integralmente à falta e realimentação linear: a cada ciclo, a parcela protegida cresce em trinta por cento do corte sofrido no ciclo anterior, limitada a 85%. Serve para mostrar a mecânica de um sistema fechado, não para estimar valores.",
+          "texto": "Didático/ilustrativo — não reproduz as regras de contabilização, garantia financeira ou tratamento de inadimplência da câmara de comercialização, que são consideravelmente mais detalhadas. O modelo supõe credores homogêneos, rateio proporcional, garantias aplicadas integralmente à falta e realimentação linear: a cada ciclo, a parcela protegida cresce em trinta por cento do corte sofrido no ciclo anterior, limitada a 85%. Serve para mostrar a mecânica de um sistema fechado, não para estimar valores.",
+          "origem": {
+            "seletor": "p.disc",
+            "trecho_inicial": "Didático/ilustrativo — não reproduz as regras de contabilização, garan",
+            "linha_aprox": 902
+          }
+        },
+        "fonte_externa_declarada": null,
+        "nota": "Cenário didático; o disc declara os parâmetros do modelo e nega representar caso real. Fonte externa dos valores não declarada (P19)."
+      },
+      "tolerancias": null,
+      "tolerancias_nota": "A fonte não declara tolerância nem resposta esperada.",
+      "invocacao": {
+        "ponto_no_texto": {
+          "tipo": "p",
+          "trecho_final": "dicialmente retidos em títulos negociáveis liquidáveis contra extensão de outorga. Dez anos depois do primeiro liminar, o passivo ainda estava sendo desmontado.",
+          "origem": {
+            "seletor": "elemento imediatamente anterior ao div.inst",
+            "trecho_inicial": "A ordem de grandeza retida por essa via chegou a ser citada em torno d",
+            "linha_aprox": 874
+          }
+        },
+        "mencoes": [
+          {
+            "linha": 2303,
+            "trecho": "Inst·06",
+            "contexto": "feedback do quiz: a:1,f:'Aula 05 e Inst·06. É a propriedade da arquitetura que o setor descobriu n"
+          }
+        ]
+      },
+      "comparacao_codigo": {
+        "id_codigo": "m06-inst-06",
+        "existe_objeto": true,
+        "existe_calculadora": true,
+        "kind_codigo": "simulador",
+        "titulo_codigo": "Simulador · o efeito de uma liminar num sistema de rateio",
+        "titulo_igual": true,
+        "formula_codigo": null,
+        "note_codigo": null,
+        "campos": [
+          {
+            "id": "i6-d-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i6-p-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i6-g-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i6-n-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          }
+        ],
+        "campos_so_no_codigo": [],
+        "saidas": [
+          {
+            "id": "i6-tx",
+            "rotulo_fonte": "Taxa de recebimento",
+            "status": "portada",
+            "unit_codigo": null
+          },
+          {
+            "id": "i6-fa",
+            "rotulo_fonte": "Falta no ciclo",
+            "status": "portada",
+            "unit_codigo": null
+          },
+          {
+            "id": "i6-pm",
+            "rotulo_fonte": "Perda média por credor",
+            "status": "portada",
+            "unit_codigo": null
+          },
+          {
+            "id": "i6-ac",
+            "rotulo_fonte": "Retido em 3 ciclos",
+            "status": "portada",
+            "unit_codigo": null
+          }
+        ],
+        "prova": {
+          "metodo": "script original em DOM simulado × calculadora do bundle, mesmas entradas",
+          "casos": 3003,
+          "falhas_veredito": 0,
+          "falhas_numericas": 0,
+          "ramos_disparados_na_fonte": [
+            1981,
+            1982,
+            1983,
+            1984
+          ],
+          "ramos_nao_exercitados": [],
+          "exemplos_de_falha": []
+        },
+        "status": "portado",
+        "status_nota": "Cálculo e veredito equivalentes à fonte no espaço testado; diferenças só de apresentação (ver motivos).",
+        "motivos": [
+          "inst-intro e p.disc da fonte não estão no objeto (note/formula null ou outro texto); varredura de src/: zero"
+        ]
+      }
+    },
+    {
+      "id": "m06-inst-07",
+      "n": 7,
+      "id_fonte": "Inst · 07",
+      "titulo": "Linha da abertura · quando cada consumidor passou a poder escolher",
+      "secao": "Aula 06",
+      "aula": "Aula 06",
+      "aula_id_codigo": "aula-06-06",
+      "de_modulo": false,
+      "linhas_markup": [
+        991,
+        1028
+      ],
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não declara pergunta própria; `intro` é instrução de uso. Pergunta de previsão seria camada Alexandria (P3/P11/P19).",
+      "intro": {
+        "html": "A escada descendente abaixo é a história da elegibilidade ao mercado livre. Escolha um ano, informe a carga da unidade e o grupo tarifário, e veja se aquela unidade poderia migrar — e sob qual norma. Deslize o ano de 1995 até 2028 mantendo a mesma carga: você está vendo o mercado endereçável de qualquer produto de inteligência energética brasileiro nascer, degrau por degrau.",
+        "texto": "A escada descendente abaixo é a história da elegibilidade ao mercado livre. Escolha um ano, informe a carga da unidade e o grupo tarifário, e veja se aquela unidade poderia migrar — e sob qual norma. Deslize o ano de 1995 até 2028 mantendo a mesma carga: você está vendo o mercado endereçável de qualquer produto de inteligência energética brasileiro nascer, degrau por degrau.",
+        "origem": {
+          "seletor": ".inst-intro",
+          "trecho_inicial": "A escada descendente abaixo é a história da elegibilidade ao mercado l",
+          "linha_aprox": 994
+        }
+      },
+      "entradas": [
+        {
+          "id": "i7-y-n",
+          "id_range": "i7-y",
+          "tipo": "number+range",
+          "rotulo": "Ano",
+          "unidade": "ano",
+          "padrao": 2024,
+          "min": 1995,
+          "max": 2028,
+          "step": 1,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i7-y",
+          "origem": {
+            "seletor": "input#i7-y-n",
+            "trecho_inicial": "Ano ano",
+            "linha_aprox": 996
+          }
+        },
+        {
+          "id": "i7-k-n",
+          "id_range": "i7-k",
+          "tipo": "number+range",
+          "rotulo": "Carga da unidade",
+          "unidade": "kW",
+          "padrao": 800,
+          "min": 5,
+          "max": 5000,
+          "step": 5,
+          "faixa_igual_no_range": true,
+          "lido_pelo_script": "i7-k",
+          "origem": {
+            "seletor": "input#i7-k-n",
+            "trecho_inicial": "Carga da unidade kW",
+            "linha_aprox": 999
+          }
+        }
+      ],
+      "controles_segmentados": [
+        {
+          "id": "i7-seg-g",
+          "tipo": "segmentado (botões)",
+          "rotulo": "Grupo tarifário da unidade",
+          "opcoes": [
+            {
+              "valor": "0",
+              "texto": "Grupo A · média/alta tensão",
+              "padrao": true
+            },
+            {
+              "valor": "1",
+              "texto": "Grupo B · baixa tensão",
+              "padrao": false
+            }
+          ],
+          "origem": {
+            "seletor": "div.seg#i7-seg-g",
+            "trecho_inicial": "Grupo A · média/alta tensão Grupo B · baixa tensão",
+            "linha_aprox": 1005
+          }
+        },
+        {
+          "id": "i7-seg-f",
+          "tipo": "segmentado (botões)",
+          "rotulo": "Origem da energia pretendida",
+          "opcoes": [
+            {
+              "valor": "0",
+              "texto": "Convencional",
+              "padrao": true
+            },
+            {
+              "valor": "1",
+              "texto": "Fonte incentivada",
+              "padrao": false
+            }
+          ],
+          "origem": {
+            "seletor": "div.seg#i7-seg-f",
+            "trecho_inicial": "Convencional Fonte incentivada",
+            "linha_aprox": 1012
+          }
+        }
+      ],
+      "saidas": [
+        {
+          "id": "i7-st",
+          "rotulo": "Situação",
+          "classe": "n sm",
+          "origem": {
+            "seletor": ".readout #i7-st",
+            "trecho_inicial": "Situação",
+            "linha_aprox": 1020
+          },
+          "atribuicao_script": {
+            "linha": 2097,
+            "codigo": "$id('i7-st').textContent=ok?'Elegível':'Não elegível';",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i7-lm",
+          "rotulo": "Limiar no ano",
+          "classe": "n",
+          "origem": {
+            "seletor": ".readout #i7-lm",
+            "trecho_inicial": "Limiar no ano",
+            "linha_aprox": 1021
+          },
+          "atribuicao_script": {
+            "linha": 2098,
+            "codigo": "$id('i7-lm').innerHTML=(t<0?'—':(t===0?'sem limite':(num(t,0)+'<span class=\"u\">kW</span>')));",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i7-nm",
+          "rotulo": "Norma habilitante",
+          "classe": "n sm",
+          "origem": {
+            "seletor": ".readout #i7-nm",
+            "trecho_inicial": "Norma habilitante",
+            "linha_aprox": 1022
+          },
+          "atribuicao_script": {
+            "linha": 2099,
+            "codigo": "$id('i7-nm').textContent=norma(Yr,grupo,fonte);",
+            "papel": "atribuicao_de_saida"
+          }
+        },
+        {
+          "id": "i7-el",
+          "rotulo": "Elegível a partir de",
+          "classe": "n sm",
+          "origem": {
+            "seletor": ".readout #i7-el",
+            "trecho_inicial": "Elegível a partir de",
+            "linha_aprox": 1023
+          },
+          "atribuicao_script": {
+            "linha": 2100,
+            "codigo": "$id('i7-el').textContent=first;",
+            "papel": "atribuicao_de_saida"
+          }
+        }
+      ],
+      "painel": null,
+      "cadeia": [],
+      "script": {
+        "bloco_linhas": [
+          1991,
+          2138
+        ],
+        "constantes": [
+          {
+            "linha": 1995,
+            "codigo": "var grupo=0, fonte=0;"
+          },
+          {
+            "linha": 1996,
+            "codigo": "var Y0=1995, Y1=2028;"
+          }
+        ],
+        "funcoes_auxiliares": [
+          {
+            "nome": "thr",
+            "linhas": [
+              {
+                "linha": 1998,
+                "codigo": "function thr(year,g,inc){"
+              },
+              {
+                "linha": 1999,
+                "codigo": "if(g===1){"
+              },
+              {
+                "linha": 2000,
+                "codigo": "if(year>=2028) return 0;"
+              },
+              {
+                "linha": 2001,
+                "codigo": "if(year>=2027) return 0;"
+              },
+              {
+                "linha": 2002,
+                "codigo": "return -1;"
+              },
+              {
+                "linha": 2003,
+                "codigo": "}"
+              },
+              {
+                "linha": 2004,
+                "codigo": "if(inc===1){"
+              },
+              {
+                "linha": 2005,
+                "codigo": "if(year>=2024) return 0;"
+              },
+              {
+                "linha": 2006,
+                "codigo": "if(year>=1998) return 500;"
+              },
+              {
+                "linha": 2007,
+                "codigo": "return -1;"
+              },
+              {
+                "linha": 2008,
+                "codigo": "}"
+              },
+              {
+                "linha": 2009,
+                "codigo": "if(year>=2024) return 0;"
+              },
+              {
+                "linha": 2010,
+                "codigo": "if(year>=2023) return 500;"
+              },
+              {
+                "linha": 2011,
+                "codigo": "if(year>=2022) return 1000;"
+              },
+              {
+                "linha": 2012,
+                "codigo": "if(year>=2021) return 1500;"
+              },
+              {
+                "linha": 2013,
+                "codigo": "if(year>=2020) return 2000;"
+              },
+              {
+                "linha": 2014,
+                "codigo": "if(year>=2019) return 2500;"
+              },
+              {
+                "linha": 2015,
+                "codigo": "if(year>=1996) return 3000;"
+              },
+              {
+                "linha": 2016,
+                "codigo": "return -1;"
+              },
+              {
+                "linha": 2017,
+                "codigo": "}"
+              }
+            ]
+          },
+          {
+            "nome": "norma",
+            "linhas": [
+              {
+                "linha": 2018,
+                "codigo": "function norma(year,g,inc){"
+              },
+              {
+                "linha": 2019,
+                "codigo": "if(g===1){"
+              },
+              {
+                "linha": 2020,
+                "codigo": "if(year>=2028) return 'Lei 15.269/2025 · prazo';"
+              },
+              {
+                "linha": 2021,
+                "codigo": "if(year>=2027) return 'Lei 15.269/2025 · prazo';"
+              },
+              {
+                "linha": 2022,
+                "codigo": "if(year>=2025) return 'Lei 15.269/2025 · aguarda prazo';"
+              },
+              {
+                "linha": 2023,
+                "codigo": "return 'sem previsão à época';"
+              },
+              {
+                "linha": 2024,
+                "codigo": "}"
+              },
+              {
+                "linha": 2025,
+                "codigo": "if(year>=2024) return 'Port. Norm. 50/2022';"
+              },
+              {
+                "linha": 2026,
+                "codigo": "if(inc===1) return (year>=1998?'regime de incentivadas':'sem previsão à época');"
+              },
+              {
+                "linha": 2027,
+                "codigo": "if(year>=2021) return 'Portaria MME 465/2019';"
+              },
+              {
+                "linha": 2028,
+                "codigo": "if(year>=2019) return 'Portaria MME 514/2018';"
+              },
+              {
+                "linha": 2029,
+                "codigo": "if(year>=1996) return 'Lei 9.074/1995';"
+              },
+              {
+                "linha": 2030,
+                "codigo": "return 'sem previsão à época';"
+              },
+              {
+                "linha": 2031,
+                "codigo": "}"
+              }
+            ]
+          },
+          {
+            "nome": "elig",
+            "linhas": [
+              {
+                "linha": 2032,
+                "codigo": "function elig(year,kW,g,inc){"
+              },
+              {
+                "linha": 2033,
+                "codigo": "if(g===1) return year>=2027;"
+              },
+              {
+                "linha": 2034,
+                "codigo": "var t=thr(year,g,inc);"
+              },
+              {
+                "linha": 2035,
+                "codigo": "if(t<0) return false;"
+              },
+              {
+                "linha": 2036,
+                "codigo": "return kW>=t;"
+              },
+              {
+                "linha": 2037,
+                "codigo": "}"
+              }
+            ]
+          },
+          {
+            "nome": "yk",
+            "linhas": [
+              {
+                "linha": 2038,
+                "codigo": "function yk(v){"
+              },
+              {
+                "linha": 2039,
+                "codigo": "var bandTop=PT+PH*0.86;"
+              },
+              {
+                "linha": 2040,
+                "codigo": "if(v<=0) return PT+PH*0.94;"
+              },
+              {
+                "linha": 2041,
+                "codigo": "var lo=Math.log(100), hi=Math.log(4000);"
+              },
+              {
+                "linha": 2042,
+                "codigo": "var r=(Math.log(clamp(v,100,4000))-lo)/(hi-lo);"
+              },
+              {
+                "linha": 2043,
+                "codigo": "return PT+(bandTop-PT)*(1-r);"
+              },
+              {
+                "linha": 2044,
+                "codigo": "}"
+              }
+            ]
+          },
+          {
+            "nome": "xy",
+            "linhas": [
+              {
+                "linha": 2045,
+                "codigo": "function xy(year){ return PL+PW*((year-Y0)/(Y1-Y0)); }"
+              }
+            ]
+          }
+        ],
+        "formula_exata_script": [
+          {
+            "linha": 2048,
+            "codigo": "var Yr=+$id('i7-y').value, K=+$id('i7-k').value;"
+          },
+          {
+            "linha": 2049,
+            "codigo": "var t=thr(Yr,grupo,fonte);"
+          },
+          {
+            "linha": 2050,
+            "codigo": "var ok=elig(Yr,K,grupo,fonte);"
+          },
+          {
+            "linha": 2052,
+            "codigo": "var first='—',k;"
+          },
+          {
+            "linha": 2053,
+            "codigo": "for(k=Y0;k<=Y1;k++){ if(elig(k,K,grupo,fonte)){ first=(k>=2027&&grupo===1)?(k+' · prazo legal'):String(k); break; } }"
+          }
+        ],
+        "formatadores": [
+          {
+            "linha": 1523,
+            "codigo": "function num(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}"
+          },
+          {
+            "linha": 1524,
+            "codigo": "function pct(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d===undefined?1:d,maximumFractionDigits:d===undefined?1:d})+'%';}"
+          },
+          {
+            "linha": 1525,
+            "codigo": "function mmi(v){"
+          },
+          {
+            "linha": 1526,
+            "codigo": "if(Math.abs(v)>=1000) return 'R$ '+(v/1000).toLocaleString('pt-BR',{maximumFractionDigits:2})+' bi';"
+          },
+          {
+            "linha": 1527,
+            "codigo": "return 'R$ '+v.toLocaleString('pt-BR',{maximumFractionDigits:0})+' mi';"
+          }
+        ]
+      },
+      "textos_leitura": {
+        "veredito_id": "i7-vd",
+        "ramos": [
+          {
+            "linha": 2106,
+            "dentro_de": {
+              "linha": 2105,
+              "codigo": "if(grupo===1){"
+            },
+            "condicao_literal": "if(Yr>=2028)",
+            "classe": "ok",
+            "expressao_literal": "'Em '+Yr+', pelo cronograma da Lei nº 15.269/2025, todos os consumidores de baixa tensão — incluindo residenciais e rurais — têm direito de escolher fornecedor. É o ponto final de uma escada que começou em 1995 e levou mais de trinta anos. Lembre da ressalva: prazo legal condicionado a regulamentação e a pré-requisitos operacionais, não elegibilidade automática.'",
+            "texto_template": "Em {Yr}, pelo cronograma da Lei nº 15.269/2025, todos os consumidores de baixa tensão — incluindo residenciais e rurais — têm direito de escolher fornecedor. É o ponto final de uma escada que começou em 1995 e levou mais de trinta anos. Lembre da ressalva: prazo legal condicionado a regulamentação e a pré-requisitos operacionais, não elegibilidade automática."
+          },
+          {
+            "linha": 2107,
+            "dentro_de": {
+              "linha": 2105,
+              "codigo": "if(grupo===1){"
+            },
+            "condicao_literal": "else if(Yr>=2027)",
+            "classe": "ok",
+            "expressao_literal": "'Em '+Yr+', o cronograma da Lei nº 15.269/2025 alcança consumidores industriais e comerciais de baixa tensão. Estimativas de associação setorial falam em milhões de pequenos comércios e centenas de milhares de pequenas indústrias entrando na faixa elegível — uma ordem de grandeza dezenas de vezes maior que a abertura de 2024. Prazo legal, condicionado a regulamentação.'",
+            "texto_template": "Em {Yr}, o cronograma da Lei nº 15.269/2025 alcança consumidores industriais e comerciais de baixa tensão. Estimativas de associação setorial falam em milhões de pequenos comércios e centenas de milhares de pequenas indústrias entrando na faixa elegível — uma ordem de grandeza dezenas de vezes maior que a abertura de 2024. Prazo legal, condicionado a regulamentação."
+          },
+          {
+            "linha": 2108,
+            "dentro_de": {
+              "linha": 2105,
+              "codigo": "if(grupo===1){"
+            },
+            "condicao_literal": "else",
+            "classe": "per",
+            "expressao_literal": "'Em '+Yr+', unidade de baixa tensão não tem elegibilidade ao mercado livre, independentemente da carga: a abertura da baixa tensão só ganhou cronograma legal com a Lei nº 15.269/2025, com prazos em novembro de 2027 e novembro de 2028. Antes disso, a única via para esse consumidor era a geração distribuída — que é outra coisa, e vive de outro conjunto de regras.'",
+            "texto_template": "Em {Yr}, unidade de baixa tensão não tem elegibilidade ao mercado livre, independentemente da carga: a abertura da baixa tensão só ganhou cronograma legal com a Lei nº 15.269/2025, com prazos em novembro de 2027 e novembro de 2028. Antes disso, a única via para esse consumidor era a geração distribuída — que é outra coisa, e vive de outro conjunto de regras."
+          },
+          {
+            "linha": 2110,
+            "dentro_de": {
+              "linha": 2109,
+              "codigo": "}else if(t<0){"
+            },
+            "condicao_literal": null,
+            "condicao_nota": "sem condição própria na linha; a condição é o bloco em dentro_de",
+            "classe": "per",
+            "expressao_literal": "'Em '+Yr+' não existia figura de consumidor livre para '+ftxt+'. A elegibilidade nasce com a Lei nº 9.074/1995 e passa a valer, na prática, a partir de 1996 — e mesmo então com requisitos combinados de carga e tensão. Antes disso, todo consumidor era cativo da concessionária da sua área, sem exceção.'",
+            "texto_template": "Em {Yr} não existia figura de consumidor livre para {ftxt}. A elegibilidade nasce com a Lei nº 9.074/1995 e passa a valer, na prática, a partir de 1996 — e mesmo então com requisitos combinados de carga e tensão. Antes disso, todo consumidor era cativo da concessionária da sua área, sem exceção."
+          },
+          {
+            "linha": 2113,
+            "dentro_de": {
+              "linha": 2111,
+              "codigo": "}else if(ok){"
+            },
+            "condicao_literal": "if(t===0)",
+            "classe": "ok",
+            "expressao_literal": "'Elegível em '+Yr+', e sem depender da carga: desde 1º de janeiro de 2024 todo consumidor do '+gtxt+' pode contratar '+ftxt+' de qualquer fornecedor autorizado, sem exigência de carga mínima. Estimativas de associação setorial apontam cerca de 165 mil empresas que se tornaram aptas nesse momento — é este o marco que cria o mercado endereçável de um produto independente de inteligência energética no Brasil.'",
+            "texto_template": "Elegível em {Yr}, e sem depender da carga: desde 1º de janeiro de 2024 todo consumidor do {gtxt} pode contratar {ftxt} de qualquer fornecedor autorizado, sem exigência de carga mínima. Estimativas de associação setorial apontam cerca de 165 mil empresas que se tornaram aptas nesse momento — é este o marco que cria o mercado endereçável de um produto independente de inteligência energética no Brasil."
+          },
+          {
+            "linha": 2114,
+            "dentro_de": {
+              "linha": 2111,
+              "codigo": "}else if(ok){"
+            },
+            "condicao_literal": "else",
+            "classe": "ok",
+            "expressao_literal": "'Elegível em '+Yr+': com '+num(K,0)+' kW, a unidade está '+num(folga,1)+' vez(es) acima do limiar de '+num(t,0)+' kW vigente pela '+norma(Yr,grupo,fonte)+'. Vale a pergunta que o §Caso faz: se ela é elegível há anos e não migrou, isso foi decisão consciente ou omissão herdada? A resposta muda completamente o diagnóstico.'",
+            "texto_template": "Elegível em {Yr}: com {num(K,0)} kW, a unidade está {num(folga,1)} vez(es) acima do limiar de {num(t,0)} kW vigente pela {norma(Yr,grupo,fonte)}. Vale a pergunta que o §Caso faz: se ela é elegível há anos e não migrou, isso foi decisão consciente ou omissão herdada? A resposta muda completamente o diagnóstico."
+          },
+          {
+            "linha": 2116,
+            "dentro_de": {
+              "linha": 2115,
+              "codigo": "}else{"
+            },
+            "condicao_literal": null,
+            "condicao_nota": "sem condição própria na linha; a condição é o bloco em dentro_de",
+            "classe": "att",
+            "expressao_literal": "'Não elegível em '+Yr+': o limiar vigente é de '+num(t,0)+' kW pela '+norma(Yr,grupo,fonte)+', e a unidade tem '+num(K,0)+' kW. Faltam '+num(t-K,0)+' kW. Deslize o ano para a direita e observe em que degrau a escada desce abaixo da carga — essa data é o momento exato em que esta unidade entrou no mercado endereçável, e '+(first==='—'?'ela não é alcançada dentro do horizonte legal conhecido para este perfil.':('ela é '+first+'.'))",
+            "texto_template": "Não elegível em {Yr}: o limiar vigente é de {num(t,0)} kW pela {norma(Yr,grupo,fonte)}, e a unidade tem {num(K,0)} kW. Faltam {num(t-K,0)} kW. Deslize o ano para a direita e observe em que degrau a escada desce abaixo da carga — essa data é o momento exato em que esta unidade entrou no mercado endereçável, e {(first==='—'?'ela não é alcançada dentro do horizonte legal conhecido para este perfil.':('ela é '+first+'.'))}"
+          }
+        ],
+        "nota": "expressao_literal é o JS da fonte; texto_template é o mesmo texto com as expressões entre chaves (conversão mecânica). A classe (ok/att/per) é a cor do veredito na fonte."
+      },
+      "grafico": {
+        "elementos": [
+          {
+            "elemento": "svg#i7-svg",
+            "viewBox": "0 0 720 260",
+            "linha_aprox": 1017
+          }
+        ],
+        "legenda": [
+          {
+            "texto": "Carga mínima exigida",
+            "cor": "#06B6D4"
+          },
+          {
+            "texto": "Carga da unidade",
+            "cor": "#F59E0B"
+          },
+          {
+            "texto": "Faixa sem exigência de carga",
+            "cor": "#10B981"
+          }
+        ],
+        "nota": "Desenho não porta (protocolo §12); o conteúdo textual está nas saídas e no veredito."
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i7-y-n": 2024,
+          "i7-k-n": 800
+        },
+        "controles": {
+          "i7-seg-g": "Grupo A · média/alta tensão",
+          "i7-seg-f": "Convencional"
+        },
+        "saidas": {
+          "i7-st": {
+            "rotulo": "Situação",
+            "exibido_html": null,
+            "exibido_texto": "Elegível"
+          },
+          "i7-lm": {
+            "rotulo": "Limiar no ano",
+            "exibido_html": "sem limite",
+            "exibido_texto": "sem limite"
+          },
+          "i7-nm": {
+            "rotulo": "Norma habilitante",
+            "exibido_html": null,
+            "exibido_texto": "Port. Norm. 50/2022"
+          },
+          "i7-el": {
+            "rotulo": "Elegível a partir de",
+            "exibido_html": null,
+            "exibido_texto": "2023"
+          }
+        },
+        "veredito": {
+          "classe": "verdict ok",
+          "texto": "Elegível em 2024, e sem depender da carga: desde 1º de janeiro de 2024 todo consumidor do Grupo A pode contratar energia convencional de qualquer fornecedor autorizado, sem exigência de carga mínima. Estimativas de associação setorial apontam cerca de 165 mil empresas que se tornaram aptas nesse momento — é este o marco que cria o mercado endereçável de um produto independente de inteligência energética no Brasil."
+        },
+        "nota": "Lido do script original executado em DOM simulado no carregamento (sem interação). O texto inicial \"—\" do markup é sobrescrito na carga."
+      },
+      "fonte_dos_numeros": {
+        "disc": {
+          "html": "Didático/ilustrativo. A escada até 2023 reproduz os limites de carga das Portarias MME nº 514/2018 e nº 465/2019; o patamar sem limite de carga para o Grupo A decorre da Portaria Normativa nº 50/GM/MME de 2022; os degraus de 2027 e 2028 são <strong>prazos legais da Lei nº 15.269/2025</strong>, condicionados a regulamentação — não elegibilidade já vigente. O patamar anterior a 2019 está simplificado: o regime original da Lei nº 9.074/1995 combinava requisitos distintos de carga e tensão para consumidores existentes e novos, e o consumidor especial de fontes incentivadas tinha faixa própria. Verifique o enquadramento concreto na norma vigente antes de qualquer uso comercial.",
+          "texto": "Didático/ilustrativo. A escada até 2023 reproduz os limites de carga das Portarias MME nº 514/2018 e nº 465/2019; o patamar sem limite de carga para o Grupo A decorre da Portaria Normativa nº 50/GM/MME de 2022; os degraus de 2027 e 2028 são prazos legais da Lei nº 15.269/2025, condicionados a regulamentação — não elegibilidade já vigente. O patamar anterior a 2019 está simplificado: o regime original da Lei nº 9.074/1995 combinava requisitos distintos de carga e tensão para consumidores existentes e novos, e o consumidor especial de fontes incentivadas tinha faixa própria. Verifique o enquadramento concreto na norma vigente antes de qualquer uso comercial.",
+          "origem": {
+            "seletor": "p.disc",
+            "trecho_inicial": "Didático/ilustrativo. A escada até 2023 reproduz os limites de carga d",
+            "linha_aprox": 1026
+          }
+        },
+        "fonte_externa_declarada": "Portarias MME nº 514/2018 e nº 465/2019; Portaria Normativa nº 50/GM/MME/2022; Lei nº 15.269/2025; Lei nº 9.074/1995 (citadas no disc)",
+        "nota": "A fonte aponta normas, não dados numéricos medidos."
+      },
+      "tolerancias": null,
+      "tolerancias_nota": "A fonte não declara tolerância nem resposta esperada.",
+      "invocacao": {
+        "ponto_no_texto": {
+          "tipo": "box rd",
+          "trecho_final": " Antes de qualquer material externo ou proposta comercial que dependa das datas de 2027 e 2028, verifique o estado da regulamentação e dos vetos na data de uso.",
+          "origem": {
+            "seletor": "elemento imediatamente anterior ao div.inst",
+            "trecho_inicial": "Números vivos · verificar na fonte antes de uso externo A Lei nº 15.26",
+            "linha_aprox": 986
+          }
+        },
+        "mencoes": [
+          {
+            "linha": 1098,
+            "trecho": "instrumento da Aula 06",
+            "contexto": "Use a escada da Aula 05 e o instrumento da Aula 06 diretamente sobre a carga da planta. ",
+            "ambiguo": true,
+            "nota": "A Aula 06 tem dois instrumentos (07 e 08); a fonte não diz qual. O contexto (limiar de elegibilidade) sugere o 07."
+          },
+          {
+            "linha": 2309,
+            "trecho": "Inst·07",
+            "contexto": "feedback do quiz: a:1,f:'Aulas 05 e 06 e Inst·07. A escada desceu por portaria de 2.500 kW em 2019"
+          }
+        ]
+      },
+      "comparacao_codigo": {
+        "id_codigo": "m06-inst-07",
+        "existe_objeto": true,
+        "existe_calculadora": true,
+        "kind_codigo": "simulador",
+        "titulo_codigo": "Linha da abertura · quando cada consumidor passou a poder escolher",
+        "titulo_igual": true,
+        "formula_codigo": null,
+        "note_codigo": null,
+        "campos": [
+          {
+            "id": "i7-y-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          },
+          {
+            "id": "i7-k-n",
+            "status": "igual",
+            "kind_codigo": "range"
+          }
+        ],
+        "campos_so_no_codigo": [],
+        "saidas": [
+          {
+            "id": "i7-st",
+            "rotulo_fonte": "Situação",
+            "status": "não portada"
+          },
+          {
+            "id": "i7-lm",
+            "rotulo_fonte": "Limiar no ano",
+            "status": "não portada"
+          },
+          {
+            "id": "i7-nm",
+            "rotulo_fonte": "Norma habilitante",
+            "status": "não portada"
+          },
+          {
+            "id": "i7-el",
+            "rotulo_fonte": "Elegível a partir de",
+            "status": "não portada"
+          }
+        ],
+        "prova": {
+          "metodo": "script original (grupo×fonte × 34 anos × cargas; espaço inteiro de carga no ramo padrão) × calculadora (só grupo A + convencional)",
+          "casos": 34000,
+          "falhas_veredito": 0,
+          "falhas_numericas": 0,
+          "ramos_disparados_na_fonte": [
+            2110,
+            2113,
+            2114,
+            2116
+          ],
+          "ramos_fonte_nao_alcancaveis": [
+            2106,
+            2107,
+            2108
+          ],
+          "exemplos_de_falha": []
+        },
+        "status": "divergente",
+        "status_nota": "Portado com diferença material (ver motivos).",
+        "motivos": [
+          "inst-intro e p.disc da fonte não estão no objeto (note/formula null ou outro texto); varredura de src/: zero",
+          "controle(s) segmentado(s) da fonte sem campo no código: i7-seg-g, i7-seg-f",
+          "saída(s) sem valor no código: i7-st, i7-lm, i7-nm, i7-el (texto na fonte ou não portada)",
+          "ramos da fonte inalcançáveis pela porta: linhas 2106, 2107, 2108",
+          "Grupo B (baixa tensão) e fonte incentivada: toggles não portados; thr/norma do código só têm o ramo padrão; \"· prazo legal\" do ano de elegibilidade não existe no código"
+        ]
+      }
+    },
+    {
+      "id": "m06-inst-08",
+      "n": 8,
+      "id_fonte": "Inst · 08",
+      "titulo": "Mapa trauma → cicatriz regulatória",
+      "secao": "Aula 06",
+      "aula": "Aula 06",
+      "aula_id_codigo": "aula-06-06",
+      "de_modulo": false,
+      "linhas_markup": [
+        1037,
+        1051
+      ],
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não declara pergunta própria; `intro` é instrução de uso. Pergunta de previsão seria camada Alexandria (P3/P11/P19).",
+      "intro": {
+        "html": "Onze pressões históricas, e a cadeia completa de cada uma: o que ela revelou, o que o país fez em resposta, o que dessa resposta continua operando hoje — e qual risco novo a resposta trouxe junto. Clique em qualquer uma. Percorra as onze na ordem pelo menos uma vez: é este o mapa que você precisa conseguir reconstruir de cabeça no teste de dez minutos.",
+        "texto": "Onze pressões históricas, e a cadeia completa de cada uma: o que ela revelou, o que o país fez em resposta, o que dessa resposta continua operando hoje — e qual risco novo a resposta trouxe junto. Clique em qualquer uma. Percorra as onze na ordem pelo menos uma vez: é este o mapa que você precisa conseguir reconstruir de cabeça no teste de dez minutos.",
+        "origem": {
+          "seletor": ".inst-intro",
+          "trecho_inicial": "Onze pressões históricas, e a cadeia completa de cada uma: o que ela r",
+          "linha_aprox": 1040
+        }
+      },
+      "entradas": [],
+      "controles_segmentados": [],
+      "saidas": [],
+      "painel": null,
+      "cadeia": [
+        {
+          "id": "i8-p",
+          "rotulo": "Problema revelado",
+          "origem": {
+            "seletor": ".chain .cbox.c1",
+            "trecho_inicial": "Problema revelado",
+            "linha_aprox": 1043
+          }
+        },
+        {
+          "id": "i8-r",
+          "rotulo": "Resposta institucional",
+          "origem": {
+            "seletor": ".chain .cbox.c2",
+            "trecho_inicial": "Resposta institucional",
+            "linha_aprox": 1044
+          }
+        },
+        {
+          "id": "i8-c",
+          "rotulo": "Cicatriz que opera hoje",
+          "origem": {
+            "seletor": ".chain .cbox.c3",
+            "trecho_inicial": "Cicatriz que opera hoje",
+            "linha_aprox": 1045
+          }
+        },
+        {
+          "id": "i8-n",
+          "rotulo": "Risco novo em troca",
+          "origem": {
+            "seletor": ".chain .cbox.c4",
+            "trecho_inicial": "Risco novo em troca",
+            "linha_aprox": 1046
+          }
+        }
+      ],
+      "script": {
+        "bloco_linhas": [
+          2140,
+          2227
+        ],
+        "constantes": [
+          {
+            "linha": 2202,
+            "codigo": "var cur=0;"
+          }
+        ],
+        "funcoes_auxiliares": [],
+        "formula_exata_script": [],
+        "formatadores": [
+          {
+            "linha": 1523,
+            "codigo": "function num(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}"
+          },
+          {
+            "linha": 1524,
+            "codigo": "function pct(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d===undefined?1:d,maximumFractionDigits:d===undefined?1:d})+'%';}"
+          },
+          {
+            "linha": 1525,
+            "codigo": "function mmi(v){"
+          },
+          {
+            "linha": 1526,
+            "codigo": "if(Math.abs(v)>=1000) return 'R$ '+(v/1000).toLocaleString('pt-BR',{maximumFractionDigits:2})+' bi';"
+          },
+          {
+            "linha": 1527,
+            "codigo": "return 'R$ '+v.toLocaleString('pt-BR',{maximumFractionDigits:0})+' mi';"
+          }
+        ]
+      },
+      "textos_leitura": {
+        "veredito_id": "i8-vd",
+        "ramos": [
+          {
+            "linha": 2222,
+            "dentro_de": {
+              "linha": 2214,
+              "codigo": "function sel(i){"
+            },
+            "condicao_literal": "if(cur===T.length-1)",
+            "classe": "att",
+            "expressao_literal": "'Marco '+(cur+1)+' de '+T.length+'. Este é o único da lista cuja cicatriz ainda não terminou de se formar — e é exatamente por isso que ele é o mais valioso comercialmente. Todos os outros dez você usa para explicar por que o setor é como é; este você usa para explicar por que existe uma janela agora.'",
+            "texto_template": "Marco {(cur+1)} de {T.length}. Este é o único da lista cuja cicatriz ainda não terminou de se formar — e é exatamente por isso que ele é o mais valioso comercialmente. Todos os outros dez você usa para explicar por que o setor é como é; este você usa para explicar por que existe uma janela agora."
+          },
+          {
+            "linha": 2223,
+            "dentro_de": {
+              "linha": 2214,
+              "codigo": "function sel(i){"
+            },
+            "condicao_literal": "else",
+            "classe": "ok",
+            "expressao_literal": "'Marco '+(cur+1)+' de '+T.length+'. Percorra os quatro quadros na ordem e repare que o quarto nunca é vazio: nenhuma resposta institucional deste bloco eliminou um risco — todas trocaram um risco por outro, mais administrável. Saber nomear o risco novo é o que separa quem entende o setor de quem decorou a linha do tempo.'",
+            "texto_template": "Marco {(cur+1)} de {T.length}. Percorra os quatro quadros na ordem e repare que o quarto nunca é vazio: nenhuma resposta institucional deste bloco eliminou um risco — todas trocaram um risco por outro, mais administrável. Saber nomear o risco novo é o que separa quem entende o setor de quem decorou a linha do tempo."
+          }
+        ],
+        "nota": "expressao_literal é o JS da fonte; texto_template é o mesmo texto com as expressões entre chaves (conversão mecânica). A classe (ok/att/per) é a cor do veredito na fonte."
+      },
+      "grafico": {
+        "elementos": [
+          {
+            "elemento": "div.tr-grid#i8-grid",
+            "viewBox": null,
+            "linha_aprox": 1041
+          }
+        ],
+        "legenda": [],
+        "nota": "Desenho não porta (protocolo §12); o conteúdo textual está nas saídas e no veredito."
+      },
+      "cenario_padrao": {
+        "entradas": {},
+        "controles": {},
+        "saidas": {},
+        "veredito": {
+          "classe": "verdict ok",
+          "texto": "Marco 1 de 11. Percorra os quatro quadros na ordem e repare que o quarto nunca é vazio: nenhuma resposta institucional deste bloco eliminou um risco — todas trocaram um risco por outro, mais administrável. Saber nomear o risco novo é o que separa quem entende o setor de quem decorou a linha do tempo."
+        },
+        "nota": "Lido do script original executado em DOM simulado no carregamento (sem interação). O texto inicial \"—\" do markup é sobrescrito na carga.",
+        "cadeia": {
+          "Problema revelado": "Prefeitura sem corpo técnico nem poder de auditoria negociando tarifa com companhia que operava em vários países, e rios que atravessavam divisas municipais sem que ninguém tivesse competência sobre a bacia inteira.",
+          "Resposta institucional": "Código de Águas de 1934: federalização do poder concedente, desvinculação do potencial hidráulico em relação ao solo e controle técnico, contábil e financeiro das concessionárias.",
+          "Cicatriz que opera hoje": "Outorga e planejamento de aproveitamentos hidrelétricos permanecem federais. Rio, rede e segurança de suprimento são assunto da União — em todos os ciclos, sem exceção.",
+          "Risco novo em troca": "Uma regra nacional de remuneração pelo custo histórico, insensível à capacidade local de financiar expansão sob inflação e câmbio."
+        }
+      },
+      "fonte_dos_numeros": {
+        "disc": {
+          "html": "Didático/ilustrativo. A atribuição de causa em história setorial é sempre parcialmente interpretativa: os fatos institucionais — norma, data, criação de órgão — são verificáveis, mas a ligação entre um evento e uma característica atual envolve leitura. Onde há disputa relevante de interpretação, o painel diz. Use como estrutura de raciocínio, não como sentença.",
+          "texto": "Didático/ilustrativo. A atribuição de causa em história setorial é sempre parcialmente interpretativa: os fatos institucionais — norma, data, criação de órgão — são verificáveis, mas a ligação entre um evento e uma característica atual envolve leitura. Onde há disputa relevante de interpretação, o painel diz. Use como estrutura de raciocínio, não como sentença.",
+          "origem": {
+            "seletor": "p.disc",
+            "trecho_inicial": "Didático/ilustrativo. A atribuição de causa em história setorial é sem",
+            "linha_aprox": 1049
+          }
+        },
+        "fonte_externa_declarada": null,
+        "nota": "Cenário didático; o disc declara os parâmetros do modelo e nega representar caso real. Fonte externa dos valores não declarada (P19)."
+      },
+      "tolerancias": null,
+      "tolerancias_nota": "A fonte não declara tolerância nem resposta esperada.",
+      "invocacao": {
+        "ponto_no_texto": {
+          "tipo": "p",
+          "trecho_final": "na história que sugira que parou. Cada virada foi lida, no momento em que aconteceu, como o fim do ciclo anterior e o começo do arranjo definitivo. Nenhuma foi.",
+          "origem": {
+            "seletor": "elemento imediatamente anterior ao div.inst",
+            "trecho_inicial": "O regime de propriedade do setor elétrico brasileiro mudou de direção ",
+            "linha_aprox": 1035
+          }
+        },
+        "mencoes": [
+          {
+            "linha": 1098,
+            "trecho": "instrumento da Aula 06",
+            "contexto": "Use a escada da Aula 05 e o instrumento da Aula 06 diretamente sobre a carga da planta. ",
+            "ambiguo": true,
+            "nota": "A Aula 06 tem dois instrumentos (07 e 08); a fonte não diz qual. O contexto (limiar de elegibilidade) sugere o 07."
+          }
+        ]
+      },
+      "dados_script": {
+        "pressoes": [
+          {
+            "ordem": 1,
+            "periodo": "1900–1930",
+            "titulo": "Concessão municipal diante de empresa continental",
+            "problema": "Prefeitura sem corpo técnico nem poder de auditoria negociando tarifa com companhia que operava em vários países, e rios que atravessavam divisas municipais sem que ninguém tivesse competência sobre a bacia inteira.",
+            "resposta": "Código de Águas de 1934: federalização do poder concedente, desvinculação do potencial hidráulico em relação ao solo e controle técnico, contábil e financeiro das concessionárias.",
+            "cicatriz": "Outorga e planejamento de aproveitamentos hidrelétricos permanecem federais. Rio, rede e segurança de suprimento são assunto da União — em todos os ciclos, sem exceção.",
+            "risco_novo": "Uma regra nacional de remuneração pelo custo histórico, insensível à capacidade local de financiar expansão sob inflação e câmbio."
+          },
+          {
+            "ordem": 2,
+            "periodo": "1940–1955",
+            "titulo": "Escassez sem capital para construir",
+            "problema": "A União tinha competência jurídica sobre o recurso e nenhuma capacidade de mobilizar capital para explorá-lo. Guerra, equipamento importado inacessível e demanda urbana acelerando produziram racionamentos.",
+            "resposta": "O Estado assume a construção: Chesf em 1945, BNDE e Cemig em 1952, Furnas em 1957 e a Eletrobras autorizada em 1961, com base financeira em imposto único e empréstimo compulsório.",
+            "cicatriz": "O Estado permanece planejador e financiador de última instância da expansão elétrica, mesmo com o setor majoritariamente privado — e a conta de luz continua carregando política pública embutida.",
+            "risco_novo": "Tarifa e investimento passam a depender de decisão política, o que abriu caminho para o uso da tarifa como instrumento macroeconômico duas décadas depois."
+          },
+          {
+            "ordem": 3,
+            "periodo": "Anos 1980",
+            "titulo": "Tarifa como âncora e dívida externa",
+            "problema": "Obrigação legal de expandir com preço definido por conveniência anti-inflacionária, dívida externa impagável após o choque de juros, remuneração garantida anulando o incentivo a custo e equalização apagando a comparação entre empresas.",
+            "resposta": "Lei nº 8.631/1993: extinção da remuneração garantida e da equalização, encontro de contas e tarifa por concessão. Em seguida, agência reguladora, desverticalização e privatização de distribuidoras.",
+            "cicatriz": "Tarifa individualizada por concessão, com lógica de equilíbrio econômico-financeiro contratual e revisão periódica — a arquitetura tarifária que o Módulo 05 descreveu como conceito.",
+            "risco_novo": "As diferenças regionais de custo, antes ocultas pela equalização, tornam-se visíveis na conta — e geram pressão política recorrente por novos mecanismos de compensação."
+          },
+          {
+            "ordem": 4,
+            "periodo": "1996–2000",
+            "titulo": "Reforma sem dono da expansão",
+            "problema": "Distribuição vendida, geração majoritariamente estatal, obrigação estatal de expandir removida e mecanismo privado de expansão ainda não funcional — sem preço confiável, sem contrato longo bancável e com regras em disputa.",
+            "resposta": "Criação do ONS e do MAE em 1998 e do arcabouço de livre acesso; e, depois do racionamento, a reconstrução completa de 2004.",
+            "cicatriz": "Separação institucional entre quem regula, quem opera e quem contabiliza — e a convicção, hoje quase consensual no setor, de que transição institucional precisa ser sequenciada, não simultânea.",
+            "risco_novo": "Complexidade institucional crescente: mais órgãos, mais interfaces e mais custo de coordenação entre eles."
+          },
+          {
+            "ordem": 5,
+            "periodo": "2001",
+            "titulo": "Racionamento",
+            "problema": "Margem de capacidade firme insuficiente encontrando hidrologia adversa, com risco de déficit conhecido desde 1999 que não se converteu em decisão nem em divulgação.",
+            "resposta": "Novo Modelo de 2004: EPE para planejar, CCEE para contabilizar, CMSE para monitorar continuamente, dois ambientes de contratação e — a peça decisiva — obrigação de cobertura contratual integral com antecedência e lastro.",
+            "cicatriz": "Toda a arquitetura de contratação de longo prazo do ambiente regulado, o planejamento indicativo estruturado e a cultura de que segurança de suprimento não pode depender de decisão discricionária.",
+            "risco_novo": "Erro de projeção de demanda deixa de virar racionamento e passa a virar sobrecontratação repassada à tarifa. O risco não sumiu — trocou de forma e de pagador."
+          },
+          {
+            "ordem": 6,
+            "periodo": "2012–2013",
+            "titulo": "Redução tarifária por prorrogação antecipada",
+            "problema": "Ativos amortizados remunerados como novos, e a renda de concessão em disputa. A resposta escolhida foi capturá-la para o consumidor por prorrogação antecipada com receita menor e regime de cotas.",
+            "resposta": "MP 579 e Lei nº 12.783/2013, com adesão voluntária e indenização por ativos não amortizados.",
+            "cicatriz": "O regime de cotas para parte das hidrelétricas e o debate permanente sobre renovação de outorga, valor de indenização e custo de capital em concessões maduras.",
+            "risco_novo": "Mudança abrupta de fluxo de caixa afetando capacidade de investimento e valor de mercado das companhias atingidas, bem na virada da hidrologia. É a demonstração de que redução de tarifa sem compatibilidade com investimento apenas adia a conta."
+          },
+          {
+            "ordem": 7,
+            "periodo": "2014–2015",
+            "titulo": "Crise hídrica e custo térmico",
+            "problema": "Despacho térmico prolongado elevando o custo de geração exatamente quando parte das tarifas havia sido comprimida, com distribuidoras contratualmente expostas à diferença.",
+            "resposta": "Conta-ACR em 2014, revisão tarifária extraordinária em 2015 e aplicação efetiva das bandeiras tarifárias.",
+            "cicatriz": "As bandeiras tarifárias, que aproximam o momento do custo do momento do pagamento e impedem a formação silenciosa de passivo — a doença crônica do setor desde os anos 1980.",
+            "risco_novo": "Volatilidade mensal na conta de quem não tem instrumento para se proteger dela, e um mecanismo tarifário que o debate público confunde sistematicamente com tributo."
+          },
+          {
+            "ordem": 8,
+            "periodo": "2015–2025",
+            "titulo": "GSF e judicialização",
+            "problema": "Fronteira contestável entre risco hidrológico contratualmente alocado ao gerador e efeito de decisões sistêmicas — despacho por segurança, atraso de transmissão, deslocamento por outras fontes.",
+            "resposta": "Três camadas legislativas sucessivas: repactuação por prêmio de risco em 2015, repactuação por extensão de outorga condicionada à renúncia em 2020 e conversão dos passivos em títulos negociáveis liquidáveis por leilão a partir de 2025.",
+            "cicatriz": "Atenção redobrada, em qualquer contrato de energia, à definição precisa do que conta como cada risco e de quem decide isso — e a consciência de que a liquidação é rateio, não caixa com fundo próprio.",
+            "risco_novo": "Um precedente de renegociação retroativa de alocação contratual, que altera a expectativa dos agentes sobre a estabilidade de qualquer alocação futura."
+          },
+          {
+            "ordem": 9,
+            "periodo": "2020",
+            "titulo": "Pandemia e queda de receita",
+            "problema": "Colapso do consumo comercial e industrial com custos fixos e obrigações contratuais intactos, pressionando o caixa das distribuidoras.",
+            "resposta": "Conta-Covid: antecipação coletiva de recursos para preservar liquidez e diferir o impacto tarifário.",
+            "cicatriz": "A confirmação de uma assinatura institucional brasileira: choque sistêmico gera mecanismo financeiro coletivo, com custo diferido para a tarifa. Foi assim em 2001, em 2014 e em 2020.",
+            "risco_novo": "Normalização do socorro financeiro como resposta padrão, com acúmulo de componentes financeiros na tarifa que o consumidor não consegue rastrear."
+          },
+          {
+            "ordem": 10,
+            "periodo": "2021",
+            "titulo": "Escassez severa sem racionamento",
+            "problema": "Uma das piores hidrologias em décadas testando o modelo de 2004 — desta vez com parque térmico maior, transmissão mais robusta e obrigação de contratação em vigor.",
+            "resposta": "Câmara de regras excepcionais para gestão hidroenergética, intensificação térmica e de importação, e bandeira específica de escassez hídrica de setembro de 2021 a abril de 2022.",
+            "cicatriz": "A demonstração empírica de que a arquitetura de 2004 funciona: choque comparável ao de 2001, e nenhum corte compulsório de consumo. É o melhor argumento disponível contra a leitura de que o setor não aprendeu nada.",
+            "risco_novo": "A descoberta de que energia anual não é potência nem flexibilidade — e a agenda ainda aberta de reserva de capacidade e armazenamento que chega à lei de 2025."
+          },
+          {
+            "ordem": 11,
+            "periodo": "2024–2028",
+            "titulo": "Erosão da base cativa",
+            "problema": "Cada consumidor que migra deixa de dividir custos fixos que continuam existindo, e a parcela é redistribuída entre os que ficam. Abrir rápido demais não é liberalizar — é transferir custo sem dizer.",
+            "resposta": "Abertura escalonada por portaria de 2019 a 2024, abertura integral do Grupo A em janeiro de 2024 e cronograma legal para a baixa tensão na Lei nº 15.269/2025, com supridor de última instância, produto padrão e fim do desconto de fio para novas migrações.",
+            "cicatriz": "Ainda em formação — esta é a única linha do mapa cuja cicatriz está sendo escrita agora, e é por isso que ela vale mais para a GridAlpha que todas as outras somadas.",
+            "risco_novo": "Assimetria de informação e risco de contraparte transferidos para consumidores sem estrutura de gestão de risco. Um mercado de massa exige proteção ao consumidor que o mercado de grandes cargas nunca precisou ter."
+          }
+        ],
+        "linhas": [
+          2145,
+          2201
+        ]
+      },
+      "comparacao_codigo": {
+        "id_codigo": "m06-inst-08",
+        "existe_objeto": true,
+        "existe_calculadora": true,
+        "kind_codigo": "explorador",
+        "titulo_codigo": "Mapa trauma → cicatriz regulatória",
+        "titulo_igual": true,
+        "formula_codigo": null,
+        "note_codigo": null,
+        "campos": [],
+        "campos_so_no_codigo": [
+          {
+            "id": "i8-sel",
+            "label": "Pressão histórica",
+            "kind": "select",
+            "opcoes": 11
+          }
+        ],
+        "saidas": [],
+        "prova": {
+          "metodo": "script original (11 seleções, espaço inteiro) × calculadora",
+          "casos": 11,
+          "falhas_veredito": 0,
+          "falhas_numericas": 0,
+          "falhas_cadeia": 0,
+          "ramos_fonte_nao_alcancaveis": [],
+          "apresentacao": "código junta período·título e os 4 quadros num único veredito com rótulos \"Problema revelado:\" etc. (rótulos literais dos .ck2)"
+        },
+        "status": "portado",
+        "status_nota": "Cálculo e veredito equivalentes à fonte no espaço testado; diferenças só de apresentação (ver motivos).",
+        "motivos": [
+          "inst-intro e p.disc da fonte não estão no objeto (note/formula null ou outro texto); varredura de src/: zero",
+          "campo \"Pressão histórica\" é rótulo do código (a fonte usa grade de chips sem rótulo)"
+        ]
+      }
+    }
+  ],
+  "residuos_do_original": [
+    {
+      "instrumento": "Inst · 04",
+      "linha": 1859,
+      "descricao": "\"Nível final sem corte\" não é limitado a 100%: com armazenamento 100, afluência 140, margem 30 e 12 meses o readout mostra \"153%\" (o gráfico limita a 100).",
+      "exibido": {
+        "nf": "153%",
+        "qm": "+4,40<span class=\"u\">p.p./mês · recompõe</span>",
+        "ms": "não atinge"
+      }
+    },
+    {
+      "instrumento": "Inst · 04",
+      "linha": 1831,
+      "descricao": "\"Meses até o limite\" testa d≤0 antes de E≤15: com armazenamento 10 (abaixo do limite) e balanço positivo mostra \"não atinge\", não \"já abaixo\".",
+      "exibido": {
+        "ms": "não atinge"
+      }
+    },
+    {
+      "instrumento": "Inst · 04",
+      "linha": 1821,
+      "descricao": "Os parâmetros 8 (% de margem de referência) e 0,25 (p.p. por ponto faltante) não estão no disc, que só diz \"converte margem firme faltante em consumo adicional de reservatório\"."
+    },
+    {
+      "instrumento": "Inst · 05",
+      "linha": 1879,
+      "descricao": "F0/S0 por regime e os expoentes 1,6 e 1,4 (horizontes 7 e 6) não aparecem no disc, que declara \"escalas relativas sem unidade\"."
+    },
+    {
+      "instrumento": "Inst · 07",
+      "linha": 2033,
+      "descricao": "Grupo B: qualquer unidade de baixa tensão aparece \"Elegível\" em 2027 (status \"Elegível\"), mas o veredito de 2027 e a prosa (6.3) restringem 2027 a consumidores industriais e comerciais. O instrumento não tem controle de classe de consumo.",
+      "exibido": {
+        "st": "Elegível",
+        "vd": "Em 2027, o cronograma da Lei nº 15.269/2025 alcança consumidores industriais e comerciais de baixa tensão. Est"
+      }
+    },
+    {
+      "instrumento": "Inst · 07",
+      "linha": 2015,
+      "descricao": "Patamar de 3.000 kW de 1996 a 2018 e 500 kW para incentivada desde 1998: o disc diz que o regime anterior a 2019 \"está simplificado\", sem citar esses números."
+    },
+    {
+      "instrumento": "Inst · 02",
+      "linha": 1712,
+      "descricao": "\"Anos até cair a 50%\" procura até 60 anos, enquanto o gráfico vai até 30 (NMAX) e o campo \"Anos desde o investimento\" até 30."
+    }
+  ],
+  "kind_taxonomia": {
+    "Inst · 01": "explorador",
+    "Inst · 02": "simulador",
+    "Inst · 03": "simulador",
+    "Inst · 04": "simulador",
+    "Inst · 05": "comparador",
+    "Inst · 06": "simulador",
+    "Inst · 07": "simulador",
+    "Inst · 08": "explorador"
+  },
+  "contagens": {
+    "instrumentos": 8,
+    "de_aula": 7,
+    "de_modulo": 1,
+    "por_aula": {
+      "§MAP": 1,
+      "Aula 01": 1,
+      "Aula 02": 1,
+      "Aula 03": 1,
+      "Aula 04": 1,
+      "Aula 05": 1,
+      "Aula 06": 2
+    },
+    "entradas": {
+      "Inst · 01": 0,
+      "Inst · 02": 5,
+      "Inst · 03": 5,
+      "Inst · 04": 4,
+      "Inst · 05": 2,
+      "Inst · 06": 4,
+      "Inst · 07": 4,
+      "Inst · 08": 0
+    },
+    "saidas": {
+      "Inst · 01": 0,
+      "Inst · 02": 4,
+      "Inst · 03": 4,
+      "Inst · 04": 4,
+      "Inst · 05": 4,
+      "Inst · 06": 4,
+      "Inst · 07": 4,
+      "Inst · 08": 0
+    },
+    "ramos_de_leitura": {
+      "Inst · 01": 0,
+      "Inst · 02": 4,
+      "Inst · 03": 4,
+      "Inst · 04": 5,
+      "Inst · 05": 3,
+      "Inst · 06": 4,
+      "Inst · 07": 7,
+      "Inst · 08": 2
+    },
+    "status": {
+      "Inst · 01": "divergente",
+      "Inst · 02": "portado",
+      "Inst · 03": "portado",
+      "Inst · 04": "portado",
+      "Inst · 05": "divergente",
+      "Inst · 06": "portado",
+      "Inst · 07": "divergente",
+      "Inst · 08": "portado"
+    },
+    "marcos_inst01": 14,
+    "pressoes_inst08": 11,
+    "regimes_inst05": 3
+  }
+}

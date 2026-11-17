@@ -1,0 +1,688 @@
+{
+  "meta": {
+    "modulo": "M03",
+    "moduleId": "modulo-03",
+    "titulo_fonte": "Tecnologias de geração: o cardápio completo, de Itaipu ao telhado — e por que o sistema não compra fontes, compra atributos.",
+    "data": "2026-09-17",
+    "autor": "estudo de representação por aula (agente de leitura). Tudo o que não está marcado camada 'fonte' é camada 'alexandria', revisável (P3/P11).",
+    "lido": [
+      "docs/alexandria-v2/bar.md §0, §0.1, S1–S7, §4 (Regra-mãe, C1–C10), §7 (M1–M7), §9, §11 (P1–P25)",
+      "docs/alexandria-v2/decisoes/2026-09-16-ambiguidades-de-conteudo.md (duas camadas, P17–P24; P25 no bar)",
+      "src/lib/data/alexandria-modulo-03-content.ts inteiro (INSTRUMENTOS_MODULO_03, MODULO_03_LEAD, MODULO_03_CORPO com 89 blocos, MODULO_03_EXERCICIOS_SOLTOS, MODULO_03_AULAS)",
+      "src/lib/data/alexandria-instrument-calculators.ts, trechos m03-inst-01…09",
+      "src/components/alexandria/viewer/InstrumentPanel.tsx (só o 'inst-05' do M01 desenha figura: `ehDiagrama = instrumento.id === 'inst-05'`)",
+      "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo03.html (só leitura; 3.584 linhas): §00 L1371, §MAP L1428, Aulas 01–10 L1463–L2171, §Caso L2172, §Erros L2245, §Ex L2274, §Quiz L2375 (dados no script L3409), §Voz L2394, §Final L2459, §Lex L2492, script dos instrumentos L2834–L3360",
+      "docs/alexandria-v2/media-lab/aulas/ESTILO.md e media-lab/fontes-reais/CATALOGO.md",
+      "docs/alexandria-v2/extraction/m01/README.md (contradições de FC do M01, para P20)"
+    ],
+    "nao_existia_na_leitura": [
+      "docs/alexandria-v2/extraction/m03/: só a pasta extratores/ (lib.mjs, m03_modulo.mjs); nenhum modulo.json nem aula-NN.json. Este estudo lê direto do content.ts e do HTML-fonte.",
+      "docs/alexandria-v2/media-lab/aulas/m03/plano.json: não existe. A curadoria está em andamento (_work/cs.py busca no Wikimedia Commons; blender/ e originais/ vazios). A mídia abaixo é provisória e aponta o CATALOGO.md e as gravuras ger-* já em public/."
+    ],
+    "convencoes": {
+      "bloco_indice": "Índice 0-based em MODULO_03_CORPO[aulaId]. 'após N' = o elemento entra entre o bloco N e o N+1. O lead (MODULO_03_LEAD) vem antes do bloco 0.",
+      "camada": "'fonte' = literal do HTML, com linha; 'alexandria' = desenho pedagógico deste estudo, nunca atribuído à fonte.",
+      "numeros_modelo": "Números marcados 'modelo' foram obtidos rodando o script literal do instrumento (mesma aritmética de alexandria-instrument-calculators.ts). São saídas de cenário didático, não fatos. Regras de aceitação de resposta são regra de entrada da Alexandria (P19), nunca tolerância da fonte (P6).",
+      "fcap": "Na exibição, 'FC' do M03 vira FCap (P21): o módulo só usa fator de capacidade, mas o M01·A05 usa FC para fator de carga."
+    }
+  },
+  "achados_transversais": [
+    {
+      "id": "T1",
+      "tipo": "perda de extração",
+      "o_que": "O explicador em três níveis (div.three-levels: 'Criança de 12 anos · Executivo não-técnico · Especialista de setor') existe em 5 aulas e não entrou no content.ts. Temas: A01 fator de capacidade (L1556), A02 despachabilidade (L1634), A05 complementaridade (L1797), A06 CVU (L1888), A10 LCOE (L2149).",
+      "consequencia": "C4 pede três níveis de explicação no ponto de uso; a fonte já os tem. Mesmo achado do M05 (F-M05-5).",
+      "acao": "Reextrair como bloco próprio (kind novo) com a posição da fonte. O de A05 (complementaridade) está deslocado do tema da aula: propor que apareça na A04 (4.1, 'o calendário') ou na A10 (INST·09); decisão editorial registrada."
+    },
+    {
+      "id": "T2",
+      "tipo": "forma prometida não desenhada (C5, §9)",
+      "o_que": "A fonte desenha 5 dos 9 instrumentos: INST·01 (barras da matriz por lente, div.dispatch-stack), INST·03 (curva de EAR em 12 meses com faixa 'zona de térmica pesada', svg), INST·05 (carga, solar, eólica e resíduo em 24 h, svg), INST·06 (pilha de CVU com a marginal marcada, dispatch-stack), INST·09 (barras mensais empilhadas com 'piso do portfólio', svg). No app, nenhum dos nove desenha. O INST·01 é o caso extremo: o calculador devolve só a chave da lente ('cap'/'ene'); as participações não foram portadas ('vivem no HTML'), então o instrumento hoje não mostra a matriz.",
+      "acao": "Portar as séries didáticas do INST·01 (L2841–L2858) como dado com camada fonte e desenhar as 5 formas. INST·02, 04, 07 e 08 não têm figura na fonte; este estudo propõe figuras da camada Alexandria para eles (ver cada aula)."
+    },
+    {
+      "id": "T3",
+      "tipo": "CONTENT QA — instrumento",
+      "o_que": "INST·03: a nota da fonte diz 'Ajuste a ENA para ~75% e veja o desenho de 2021; para ~60%, o fantasma de 2001'. O modelo literal, com a EAR inicial padrão (60%), dá em ENA 75% um déficit acumulado de 0,050000000000000266, que passa do corte `deficit > 0.05` por erro de ponto flutuante: o veredito vira 'racionamento / desenho de 2001'. O ramo '2021' (mínimo < 12%) só aparece em ENA 80% (mínimo 9,6% em novembro).",
+      "acao": "Registrar no content QA; não corrigir em silêncio. Enquanto não houver revisão, nenhuma tarefa da Alexandria usa ENA 75% como cenário."
+    },
+    {
+      "id": "T4",
+      "tipo": "CONTENT QA — instrumento",
+      "o_que": "INST·05: dentro das faixas dos controles (solar 0–80 GW, eólica 0–28 GW), o 'Excedente didático' máximo é 0,8 GWh/dia (80 GW + 28 GW). O ramo 'Sobra estrutural' (excedente > 1) é inalcançável, e a saída fica em 0 em quase todo o espaço. O verbete do verdict cita 'o retrato do limite 3' que nunca aparece.",
+      "acao": "Content QA. Tarefas deste estudo não pedem para 'encontrar o excedente'."
+    },
+    {
+      "id": "T5",
+      "tipo": "CONTENT QA — números e datas",
+      "o_que": [
+        "A08: 'Angra 3 iniciada em 1984' e '39 anos de canteiro' não fecham (1984 + 39 = 2023; em 2026 seriam 42). Pode ser contagem de tempo efetivo de obra ou data diferente; a fonte não explica.",
+        "A08 e A09: números e estado datados 'jun/2026' com linguagem de presente ('agora', 'na semana anterior ao Summit', 'em andamento agora'). Em 2026-09-17 o cadastro EPE (15/jun–31/jul/2026) já passou e os certames de 2 e 4/dez ainda não aconteceram. A interface precisa datar ('em jun/2026') e marcar reverificação (ver F-M12-1).",
+        "P20: a tabela de FCap da A01 (hidro reservatório ~50–55%, eólica NE ~40–55%, solar com tracker ~25–30%, nuclear ~85–90%) precisa ser confrontada com as faixas do M01·A08 (script × figura cf-chart já em conflito no M01). O INST·08 usa presets pontuais (solar 27, eólica 45, gás 45, hidro 50, nuclear 88). Nenhuma faixa vira verdade transversal.",
+        "A04: 'o termo profissional é fonte variável (prefira a \"intermitente\", …)' é ambíguo (L1730). Leitura provável: 'prefira-o a \"intermitente\"'. Correção só na camada editorial, com registro."
+      ]
+    },
+    {
+      "id": "T6",
+      "tipo": "exclusões e linguagem",
+      "o_que": [
+        "P7: todos os callouts gold 'Onde isso entra no produto' (1 por aula, 10 no total) ficam fora da interface. Eles citam Brazil Pulse, Conta de Luz Express, 'GridAlpha Simulate' e a Operação A.",
+        "P24: 'GridAlpha' aparece 11 vezes no HTML (hero 'Produtos GridAlpha', assinatura '— Alexandria Library · GridAlpha', 'Linguagem GridAlpha para esse caso', callouts). Nada disso vai ao learner.",
+        "S4: 'a fatura da Operação A' (A02, bloco 7) é prosa de aula que remete ao caso; manter como ponte para 'Caso — Operação A' (P17), sem o código '§ Caso' (A05, nota gold, já excluída).",
+        "P17: o §Caso do M03 se chama 'Parte 3' na fonte ('Operação A · Caso de referência · Parte 3'). Na interface: 'Caso — Operação A', com Desafio de decisão da camada Alexandria ao final (três candidaturas: solar própria, contrato por fonte, bateria × diesel), só com os fatos do caso.",
+        "P18: o §Final ('Você só passa… quiz fechar em 8/10') e o §Quiz ('critério de domínio… 8 de 10') ficam como registro legado. Nenhum limiar governa progresso; texto de estado usa 'Concluído'.",
+        "P22: o §Lex diz 'Sessenta e três termos'; a contagem exibida vem da coleção.",
+        "P14: o §Voz (30 perguntas-relâmpago e roteiro de 5 minutos) e o critério de domínio oral viram 'atividade recomendada'.",
+        "P25: a experiência jogável do M03 aparece só como linha 'experiência jogável em desenho'. Nenhum ato abaixo é jogo."
+      ]
+    },
+    {
+      "id": "T7",
+      "tipo": "aparato mapeável para recuperação e checagem (camada alexandria, mapeamento revisável)",
+      "quiz_por_aula": {"Q1": "aula-03-01", "Q2": "aula-03-03 (reservatório × fio)", "Q3": "aula-03-02", "Q4": "aula-03-04", "Q5": "aula-03-05", "Q6": "aula-03-06", "Q7": "aula-03-06 (take-or-pay)", "Q8": "aula-03-08", "Q9": "aula-03-09", "Q10": "aula-03-10"},
+      "erros_por_aula": {"mito 1 (menor LCOE = melhor)": "aula-03-10", "mito 2 (país hidrelétrico)": "aula-03-01", "mito 3 (solar e eólica caras)": "aula-03-04 e aula-03-05", "mito 4 (térmica é atraso)": "aula-03-06", "mito 5 (GW instalados = energia)": "aula-03-01", "mito 6 (bateria substitui usinas)": "aula-03-09", "mito 7 (nuclear inviável por perigo)": "aula-03-08", "mito 8 (fio d'água malfeita)": "aula-03-03"},
+      "voz_por_aula": {"1–6": "A01", "7": "A02/A03", "8–9": "A02", "10–12": "A03", "13–15": "A04", "16–18": "A05", "19–23": "A06", "24–25": "A07", "26": "A08", "27–28": "A09", "29–30": "A10"},
+      "final_por_aula": {"1–3": "A01", "4–5": "A02", "6": "A03", "7": "A04", "8–9": "A05", "10–11": "A06", "12": "A07", "13": "A08", "14–15": "A09", "16–17": "A10", "18": "Caso"},
+      "regra": "C10 tira da avaliação a questão já usada. A recuperação usa os mitos do §Erros (F-M12-7) e as perguntas do §Voz, não o quiz."
+    },
+    {
+      "id": "T8",
+      "tipo": "aulas sem ato portado",
+      "o_que": "A03 e A07 não têm exercício. A04, A07 e A08 não têm instrumento. A07 não tem nenhum dos dois, nem quiz, nem mito: é a aula mais exposta ao gate C9. O Ex·03 ('Aulas 02–03') foi posto só na A02, mas depende do conceito de fio d'água que a A03 ensina.",
+      "acao": "Ex·03 vira checagem da A03 (a tag 'Aulas 02–03' fica visível). Na A02, a checagem passa a ser o ato do INST·03. O ato da A07 é desenhado abaixo, derivado da tabela e da síntese da própria aula."
+    },
+    {
+      "id": "T9",
+      "tipo": "arco do módulo",
+      "o_que": "O módulo tem um fio numérico que atravessa as aulas: o FCap (A01) reaparece como denominador do LCOE (A10); o '200 TWh' da EAR (A02) é o termo de comparação da A09 ('cinco ordens de grandeza'); a rampa do INST·05 (A05) é a janela do INST·07 (A09); a Âmbar liga a A06 à A08; a complementaridade da A04 e da A07 fecha no INST·09 (A10).",
+      "acao": "Representar como costura visível: um mesmo glifo ou forma para cada conceito recorrente (retângulo de energia MW × h; faixa de 12 meses; curva de 24 h) e recuperação que retoma a pergunta da aula de origem antes da nova."
+    }
+  ],
+  "aulas": [
+    {
+      "aulaId": "aula-03-01",
+      "titulo": "Capacidade, energia e o fator que liga as duas.",
+      "subtitulo": "A matriz em três lentes",
+      "pergunta_da_fonte": {"camada": "fonte", "origem": "§MAP L1428+", "texto": "Quanto o Brasil tem de quê — e por que MW instalado não é MWh entregue?"},
+      "o_que_ensina": "Capacidade (MW), energia (MWh) e fator de capacidade são três medidas diferentes, ligadas por FCap = energia ÷ (potência × 8.760 h). Por isso a participação de uma fonte na energia difere da participação na capacidade: a solar tem ~1/4 da capacidade e ~1/10 da energia. A MMGD aparece como redução de carga, não como geração.",
+      "natureza": ["conceito quantitativo", "cálculo", "leitura de dado agregado (matriz)"],
+      "inventario": {
+        "blocos": 10,
+        "instrumentos": ["m03-inst-01 (Explorador · A matriz nas duas lentes)", "m03-inst-02 (Calculadora · FC × energia anual)"],
+        "exercicios": ["ex-01 (UFV 200 MW, FC 28% → GWh; potência nuclear equivalente)", "ex-02 (manchete dos 25%)"],
+        "tres_niveis_fonte": "fator de capacidade (L1556), não portado",
+        "gravuras_atuais": []
+      },
+      "representacao": {
+        "arquetipo": "Prancha de duas lentes: a mesma matriz em barras que trocam de lente, com a calculadora no fluxo logo depois.",
+        "composicao": "Abertura com a previsão → fórmula (bloco 0) → prosa 1–2 → PRANCHA 1 (INST·01 a 70% da largura: seis barras horizontais, alternância Capacidade | Energia, barra-fantasma com a previsão do learner) → nota de números vivos rebaixada a metadado com fonte → 1.1 usina invisível → tabela de FCap como referência consultável → bloco 8 → PRANCHA 2 (INST·02 com o retângulo de energia) → três níveis → registro.",
+        "por_que": "O mecanismo é uma mudança de lente sobre o mesmo objeto. Só uma figura que troca a lente sem trocar o objeto mostra que a diferença entre as duas fotos é o FCap. A prosa é curta e argumenta em números, então a prancha pode dominar sem esmagar a leitura."
+      },
+      "abertura": {
+        "pergunta": {"camada": "alexandria", "texto": "A solar já é cerca de um quarto da capacidade instalada do Brasil. Que fatia da energia gerada ela entrega?"},
+        "objetivo": {"camada": "alexandria", "texto": "Converter capacidade em energia com o fator de capacidade e explicar por que as duas fotos da matriz diferem."},
+        "previsao": {
+          "util": true,
+          "pergunta": "Solar (UFV + MMGD): 25% da capacidade. Participação na energia gerada, em %?",
+          "cenario": "Participações didáticas do INST·01 (L2841–L2858, camada fonte, 'ordem de grandeza'): capacidade 25,0%; energia 10,0%.",
+          "resposta_modelo": "10% (INST·01, lente Energia). A prosa diz 'casa dos 10%' (ONS/EPE).",
+          "por_que_ensina": "O erro típico ('25%', o erro nº 5 do §Erros) é exatamente o mecanismo da aula. O registro fica como barra-fantasma quando o learner troca a lente.",
+          "regra_entrada": "Número inteiro de 0 a 100. Sem 'certo/errado': o quadro mostra previsto × valor do cenário e a distância."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever + estimar",
+        "descricao": "1) Prever a fatia de energia da solar (acima). 2) Estimar com a regra da própria fonte (feedback do Q1, L3413+): participação em energia ≈ participação em capacidade × (FCap da fonte ÷ FCap médio do parque). Com FCap solar ~27% e parque ~50%: 25 × 27/50 ≈ 13,5%, na ordem de grandeza dos ~10%.",
+        "por_que_exercita": "Obriga a usar o FCap como ponte entre as duas lentes, que é o mecanismo central.",
+        "camada": "alexandria (tarefa) sobre regra da fonte (feedback Q1)",
+        "atos_secundarios": ["ex-01 no INST·02: calcular a energia de 200 MW a 28% (490 GWh) e a potência nuclear equivalente (~64 MW), com o instrumento só depois da tentativa", "ex-02: corrigir a manchete em três frases (responder exercício da fonte)"]
+      },
+      "visualizacao": [
+        {"trabalho": "mostrar que a mesma matriz tem duas fotos", "relacao": "participação por fonte, capacidade × energia", "eixos": "barras horizontais, 6 fontes (hidráulica, solar, eólica, fósseis, biomassa, nuclear); valor em %", "unidade": "% do total", "existe_no_codigo": false, "forma_prometida_nao_desenhada": true, "nota": "São 6 categorias contra a heurística de ≤4 (S2). Quebra justificada: rótulo direto e só 3 séries com ênfase (hidráulica, solar, nuclear), as que a prosa cita."},
+        {"trabalho": "tornar a fórmula visível: energia é área", "relacao": "E = P × 8.760 h × FCap", "eixos": "largura = 8.760 h; altura = MW; área preenchida = FCap", "unidade": "MW, h, GWh", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "Camada Alexandria. O INST·02 da fonte só tem readouts. Mesma geometria da A09 (MW × h) e do M01·A01/A08 (F-M03-3)."},
+        {"trabalho": "situar a usina invisível", "relacao": "MMGD como redução de carga (carga bruta − geração atrás do medidor = carga vista pelo ONS)", "eixos": "esquema de 24 h sem escala numérica", "unidade": "sem escala", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "A fonte não dá curva numérica; o esquema reutiliza a curva líquida do M02·A04 e é rotulado 'esquema'."}
+      ],
+      "instrumentos": [
+        {"id": "m03-inst-01", "bloco_indice_fonte": "após 2 (L1477 → L1479)", "bloco_indice_proposto": "após 2", "invocacao": "bloco 2 termina em 'Use o instrumento e veja a matriz mudar de cara conforme a lente:'", "previsao": true, "papel": "primeiro ato"},
+        {"id": "m03-inst-02", "bloco_indice_fonte": "após 8 (L1524 → L1526)", "bloco_indice_proposto": "após 8", "invocacao": "a nota do instrumento propõe 100 MW solar (FC 27) × nuclear (FC 88): 237 → 771 GWh/ano (modelo)", "previsao": true, "papel": "ex-01 como tarefa: previsão registrada, depois calculado"}
+      ],
+      "checagem": "ex-01 e ex-02 com campo de resposta; gabarito da fonte (Ex·01 L2281, Ex·02 L2290) só depois do registro, em resposta × referência × o que acrescenta. Autoavaliação em três níveis (C7). O ex-01 tem resultado numérico; aceitação por arredondamento é regra de entrada da Alexandria.",
+      "recuperacao": {
+        "antes": "Retomar a previsão do M01·A08 ('100 MW solar ≠ 100 MW térmica') como pergunta, antes de mostrar a resposta antiga (Além do conceito, Peça C).",
+        "proximo_passo": "Por resultado (C10). Demais casos: 'Próxima · M03·A02 — A bateria que veio antes do lítio'. Ponte de conteúdo: o bloco 8 anuncia a A10 ('LCOE do gás refém do próprio despacho'), guardar como pergunta aberta que a A10 retoma."
+      },
+      "midia": [
+        {"onde": "após bloco 4 (1.1 A usina invisível)", "o_que": "telhado solar residencial ou industrial, classe documental (buscar no Commons) ou ger-21 (gravura, explicação)", "trabalho": "dar corpo à geração atrás do medidor, que o operador não vê", "status": "pendente de plano.json"},
+        {"onde": "não usar", "o_que": "foto de usina no topo", "trabalho": "nenhum; a aula é de medida, a prancha já carrega"}
+      ],
+      "mobile_390": "A pergunta e o campo de previsão cabem no 1º viewport. INST·01 vira lista de 6 linhas em largura total, com controle segmentado 'Capacidade | Energia' fixo sobre a lista enquanto ela está na tela; a barra-fantasma continua. Retângulo de energia do INST·02 com a largura total e controles embaixo. Tabela de FCap em lista de definição (fonte → faixa → o que governa).",
+      "lacunas_e_dependencias": {
+        "fonte": ["215,9 GW, 84,6%, ~40 GW MMGD e +9,1 GW (ANEEL/SIGA, RALIE, ABSOLAR) são números vivos: exibir com fonte e data (S4)", "participações do INST·01 são 'didáticas'; a fonte externa nomeia só as instituições, sem data", "consumo nacional ~550 TWh/ano do INST·02 é 'número vivo' (EPE/ONS)", "P20 para a tabela de FCap"],
+        "s9": ["desenho das formas prometidas", "registro de previsão e tentativa", "extração dos três níveis", "portar as séries do INST·01"],
+        "p21": "'FC' vira FCap na exibição; a fórmula da fonte também."
+      },
+      "nota_ambicao": "A troca de lente como acontecimento: as seis barras deslizam de capacidade para energia no mesmo quadro (movimento de consequência, S6), cada uma deixando escrito o próprio multiplicador (FCap da fonte ÷ média). A barra-fantasma do learner fica parada onde ele apostou. É a aula que ensina a desconfiar de manchete, e a figura faz isso sem texto."
+    },
+    {
+      "aulaId": "aula-03-02",
+      "titulo": "A bateria que veio antes do lítio.",
+      "subtitulo": "Hidrelétrica com reservatório",
+      "pergunta_da_fonte": {"camada": "fonte", "origem": "§MAP", "texto": "Por que o Brasil construiu as maiores baterias do mundo antes da primeira célula de lítio?"},
+      "o_que_ensina": "O reservatório estoca a fonte primária (água em altura) em escala de meses. Isso transforma a hidrelétrica em fonte despachável: ela escolhe quando gerar. A EAR mede esse estoque, que enche na cheia (dez–abr), esvazia na seca (mai–nov) e, quando cai fora de época, antecipa térmica cara, PLD e bandeira.",
+      "natureza": ["sistema físico-operacional", "história (era dos gigantes)", "ativo e custo de oportunidade"],
+      "inventario": {"blocos": 11, "instrumentos": ["m03-inst-03 (Simulador · A bateria do Brasil, EAR ao longo do ano)"], "exercicios": ["ex-03 (tag 'Aulas 02–03'; proposta: mover a checagem para a A03, T8)"], "tres_niveis_fonte": "despachabilidade (L1634), não portado", "gravuras_atuais": []},
+      "representacao": {
+        "arquetipo": "Laboratório guiado de estoque: o ano hidrológico como palco, com a curva de EAR prevista pelo learner antes da simulada.",
+        "composicao": "Abertura com previsão de mês crítico → bloco 0 (a restrição do M02 e a 'bateria') → 2.1 âncoras com foto documental → bloco 3 (EAR, 200 TWh) → 2.2 → blocos 5–6 → PRANCHA (INST·03: faixa de 12 meses com cheia e seca marcadas, curva de EAR, faixa 'zona de térmica pesada', ponto do mínimo) → bloco 7 como cadeia causal desenhada (EAR ↓ → térmica → PLD/bandeira → fatura) → 2.3 Balbina → três níveis → registro.",
+        "por_que": "O mecanismo é de estoque integrado no tempo. O erro que ensina é pensar que o pior mês é o de menor afluência (agosto) quando o estoque só bate o fundo no fim da seca (outubro/novembro). Isso só se vê numa curva de 12 meses que o learner desenha antes."
+      },
+      "abertura": {
+        "pergunta": {"camada": "alexandria", "texto": "Se a chuva do ano vier na média, em que mês a 'bateria do Brasil' chega ao ponto mais baixo?"},
+        "objetivo": {"camada": "alexandria", "texto": "Explicar como o reservatório torna a hidro despachável e ler a curva de EAR como indicador antecedente de térmica e preço."},
+        "previsao": {
+          "util": true,
+          "pergunta": "Cenário do simulador: ENA 100% da média, EAR em 1º de janeiro de 60%. Marque o mês do menor estoque (e, se quiser, trace a curva).",
+          "cenario": "INST·03, modelo didático de balanço mensal (camada fonte: SHAPE L2815, cheia dez–abr, seca mai–nov).",
+          "resposta_modelo": "Outubro, mínimo de 52% (modelo). Em ENA 90%, mínimo de 30,8% em novembro; em 85%, 20,2% em novembro; em 80%, 9,6% em novembro.",
+          "por_que_ensina": "A afluência mínima do SHAPE é agosto (0,5); o estoque continua caindo enquanto a afluência < geração, até outubro. A previsão separa fluxo de estoque.",
+          "regra_entrada": "Mês (seleção) e, opcionalmente, traço livre (F-M03-1). Sem tolerância; o quadro mostra previsto × simulado."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever + manipular até uma meta",
+        "descricao": "Depois da previsão: 'Com EAR inicial de 60%, encontre a menor ENA (passo de 5) em que o estoque nunca entra na zona de térmica pesada (abaixo de 30%).' Resposta do modelo: 90% (mínimo 30,8%). Em 85% o mínimo cai a 20,2% e aparecem 3 meses na zona.",
+        "por_que_exercita": "Faz o learner operar o estoque contra a hidrologia, o mesmo raciocínio da cadeia EAR → térmica → preço do bloco 7.",
+        "camada": "alexandria (meta) sobre modelo da fonte",
+        "evitar": "Não usar ENA 75% como cenário (T3)."
+      },
+      "visualizacao": [
+        {"trabalho": "ver o estoque encher e esvaziar", "relacao": "EAR(%) mês a mês sob ENA e EAR inicial", "eixos": "x = jan…dez; y = EAR % da capacidade (0–100); faixa horizontal em 30% 'zona de térmica pesada'; faixa de fundo com cheia/seca", "unidade": "%", "existe_no_codigo": false, "forma_prometida_nao_desenhada": true, "nota": "O título promete 'EAR ao longo do ano' e a fonte desenha a curva (L2958–L2978). Os pontos por mês já são calculados no calculador, mas não são devolvidos (só min, mês e contagem)."},
+        {"trabalho": "cadeia causal do bloco 7", "relacao": "EAR caindo fora de época → térmica cara → PLD e bandeira sobem → fatura piora ~3 meses depois", "eixos": "diagrama de 4 nós em linha", "unidade": "sem escala", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "Camada Alexandria, texto literal nos nós."},
+        {"trabalho": "potência = vazão × queda", "relacao": "proporcionalidade (lead)", "eixos": "corte de barragem com duas grandezas rotuladas por HTML", "unidade": "sem valores", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "A fonte não dá fórmula com constantes; acrescentar ρ·g·Q·H·η seria conteúdo novo e exigiria revisão (P3)."}
+      ],
+      "instrumentos": [
+        {"id": "m03-inst-03", "bloco_indice_fonte": "após 6 (L1596 → L1598)", "bloco_indice_proposto": "após 6", "invocacao": "o bloco 7 começa com 'O instrumento ensina a leitura que o mercado inteiro faz todo dia' e vira a leitura depois da prancha", "previsao": true, "papel": "primeiro ato"}
+      ],
+      "checagem": "Previsão × simulado no mesmo cenário, visível enquanto o learner explora (C5). A meta tem resposta de modelo exata, revelada depois da tentativa registrada. O ex-03 passa para a A03.",
+      "recuperacao": {
+        "antes": "Pergunta do M02·A05 (valor da água na ordem de mérito), já que o 2.2 diz 'agora olhe do lado do ativo'. Opcional: M02·A08 (inércia), citado no bloco 6.",
+        "proximo_passo": "'Próxima · M03·A03 — A hidrelétrica que não escolhe quando gerar.' Guardar o '200 TWh' como pergunta que a A09 retoma."
+      },
+      "midia": [
+        {"onde": "após bloco 2 (2.1 âncoras)", "o_que": "bse-itaipu-aerea ou m01a08-hidro-itaipu-aerea (documental, CC BY 2.0)", "trabalho": "escala do maior ativo citado; a legenda é factual e não repete números vivos sem fonte"},
+        {"onde": "após bloco 3 (EAR)", "o_que": "m01a08-hidro-sobradinho-seca-barragem (Agência Brasil, CC BY 3.0 BR) ou bse-sat-sobradinho-iss", "trabalho": "mostrar o estoque como objeto físico que baixa; Sobradinho é citado no bloco 2"},
+        {"onde": "após bloco 9 (Balbina)", "o_que": "satélite de Balbina (lacuna registrada no CATALOGO, linha 66)", "trabalho": "área alagada × potência, sem número que a fonte não dá"},
+        {"onde": "junto ao lead", "o_que": "ger-01 (barragem) ou ger-05 (casa de força em corte), gravuras já em public/ e hoje não ligadas à aula", "trabalho": "vazão e queda como as duas grandezas da potência", "nota": "sem registro v2 de proveniência (M6); só com revisão"}
+      ],
+      "mobile_390": "Pergunta + seletor de mês no 1º viewport. A curva ocupa a largura total, com o eixo de meses em iniciais e a faixa cheia/seca como fundo. Controles (ENA, EAR inicial) embaixo, com o quadro previsto × simulado fixo sobre a curva enquanto ela está na tela. A cadeia causal vira pilha vertical de 4 nós.",
+      "lacunas_e_dependencias": {
+        "fonte": ["200 TWh (ONS, 'ordem de grandeza viva')", "Itaipu 8–10% do consumo (vivo)", "Tucuruí ~8,5 GW", "Balbina sem números na fonte: não acrescentar", "EAR inicial padrão de 60% não é dado real: rotular cenário"],
+        "content_qa": ["T3 (ENA 75%)"],
+        "s9": ["desenho da curva", "calculador devolver a série mensal", "registro de previsão", "três níveis"]
+      },
+      "nota_ambicao": "O learner desenha o ano que imagina e o modelo desenha o ano que acontece; o vão entre as duas curvas em agosto–outubro é a aula. Depois, apertar a chuva de 5 em 5 até achar o ponto em que o país começa a queimar térmica vira intuição de operador, com a frase da fonte: 'não é o NEWAVE — é a intuição do NEWAVE'."
+    },
+    {
+      "aulaId": "aula-03-03",
+      "titulo": "A hidrelétrica que não escolhe quando gerar.",
+      "subtitulo": "Fio d'água",
+      "pergunta_da_fonte": {"camada": "fonte", "origem": "§MAP", "texto": "Por que o país parou de construir reservatórios — e o que essa escolha custou em firmeza?"},
+      "o_que_ensina": "A usina a fio d'água tem a mesma conversão da hidro com reservatório, mas sem estoque: gera o que o rio manda. Belo Monte mostra a diferença entre MW e MWh (11,2 GW de placa, 4–5 GW médios). Somado ao país inteiro, isso trouxe energia média sem estoque novo, e a regularização migrou para reservatórios antigos, térmicas e baterias.",
+      "natureza": ["comparação de tecnologias", "caso (Belo Monte)", "consequência sistêmica e decisão histórica"],
+      "inventario": {"blocos": 7, "instrumentos": ["m03-inst-04 (Comparador · Reservatório × fio d'água sob a mesma seca)"], "exercicios": [], "exercicio_vinculado_proposto": "ex-03 ('Aulas 02–03')", "tres_niveis_fonte": null, "gravuras_atuais": ["ger-06-usina-fio-dagua.png", "ger-07-pch-rio-encaixado.png"]},
+      "representacao": {
+        "arquetipo": "Mesa de comparação sob a mesma chuva, aberta por um dossiê curto de Belo Monte.",
+        "composicao": "Abertura com estimativa de Belo Monte → 3.1 com par de satélite (Xingu 2000 × 2017) e ficha de três números com fonte → bloco 2 (a pergunta de adulto) → 3.2 → bloco 4 → MESA (INST·04: duas colunas gêmeas sob um único hidrograma; à esquerda a fio d'água acompanha o rio até o teto da turbina; à direita o reservatório entrega reta enquanto o estoque desce) → bloco 5 (PCH, CGH, UHR) como classificação → checagem ex-03 → registro.",
+        "por_que": "A aula é um contraste de atributo com a mesma física. Duas colunas lado a lado sob a mesma entrada isolam a única variável que muda, o estoque. Belo Monte dá o caso real que ancora o conceito sem precisar de simulação."
+      },
+      "abertura": {
+        "pergunta": {"camada": "alexandria", "texto": "Belo Monte tem cerca de 11,2 GW instalados e gera, em média, 4 a 5 GW. Qual é o seu fator de capacidade?"},
+        "objetivo": {"camada": "alexandria", "texto": "Distinguir energia média de energia firme e explicar o que o Brasil trocou ao construir hidrelétricas sem reservatório."},
+        "previsao": {
+          "util": true,
+          "pergunta": "Estimativa acima (em %). Depois, no comparador: com ENA na média, a quanto da capacidade cai a fio d'água no pior mês?",
+          "cenario": "Números de Belo Monte: bloco 1 (fonte, 'ONS — vivo'). Comparador: INST·04, usinas didáticas (L2994).",
+          "resposta_modelo": "Belo Monte: 4,5 ÷ 11,2 ≈ 40% (derivado; a fonte diz 'em torno de 40%'). INST·04 em ENA 100%: pior mês da fio d'água 31% da capacidade, FCap anual 63%, reservatório com entrega firme de 100% do alvo e estoque final 55% (modelo).",
+          "regra_entrada": "Estimativa aceita qualquer valor entre 4/11,2 e 5/11,2 (36–45%) como leitura correta da faixa da fonte. É regra de entrada da Alexandria, derivada da própria faixa 4–5 GW, não tolerância factual."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "estimar + comparar casos",
+        "descricao": "Estimar o FCap de Belo Monte (acima). Depois, no comparador, levar a ENA a 70% e comparar: a fio d'água cai a 22% no pior mês (FCap 44%), e o reservatório também falha, com entrega firme de 49% e estoque zerado (modelo). O learner escreve em uma frase o produto que cada usina entrega.",
+        "por_que_exercita": "Separa energia média de energia firme, o mecanismo central, e mostra que o estoque tem limite.",
+        "camada": "alexandria"
+      },
+      "visualizacao": [
+        {"trabalho": "mesma chuva, dois produtos", "relacao": "geração mensal da fio d'água = min(teto, afluência); geração do reservatório = alvo enquanto houver estoque", "eixos": "x = jan…dez; y = geração relativa; segunda série: estoque %", "unidade": "fração da capacidade / % do estoque", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "A fonte não desenha o INST·04 (só readouts). Figura da camada Alexandria com dados do próprio modelo. O calculador precisa devolver as séries."},
+        {"trabalho": "MW × MWh de Belo Monte", "relacao": "11,2 GW de placa × 4–5 GW médios", "eixos": "duas barras na mesma escala, a média como faixa", "unidade": "GW", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "Com fonte e 'vivo' junto (S4)."}
+      ],
+      "instrumentos": [
+        {"id": "m03-inst-04", "bloco_indice_fonte": "após 4 (L1670 → L1672)", "bloco_indice_proposto": "após 4", "invocacao": "o bloco 4 fecha com 'Quando você ouvir \"o Brasil ficou mais térmico apesar de mais renovável\", a raiz está aqui.'", "previsao": true, "papel": "segundo ato (o primeiro é a estimativa)"}
+      ],
+      "checagem": "ex-03 (L2299), tag 'Ex · 03 · Aulas 02–03' visível, com resposta antes do gabarito. Atos extras: classificar PCH (até 30 MW), CGH (até 5 MW) e UHR pelos critérios do bloco 5; 'identificar o erro' com o mito 8 do §Erros ('Fio d'água é hidrelétrica malfeita').",
+      "recuperacao": {
+        "antes": "Repetir a pergunta da A02 (mês crítico da EAR) antes da nova, porque a A03 é o contraste dela.",
+        "proximo_passo": "'Próxima · M03·A04 — O vento de classe mundial do Nordeste.' A UHR fica como pergunta aberta para a A09 ('ela volta como personagem')."
+      },
+      "midia": [
+        {"onde": "após bloco 1 (Belo Monte)", "o_que": "par m01a08-sat-xingu-2000 × m01a08-sat-xingu-2017 (satélite) e/ou m01a08-hidro-belo-monte-xingu (documental, CC BY-SA 4.0)", "trabalho": "menos área alagada é uma escolha visível; o par antes/depois é a prova"},
+        {"onde": "após bloco 5", "o_que": "ger-07 (PCH em rio encaixado) e ger-06 (usina a fio d'água), gravuras já ligadas", "trabalho": "explicação de arranjo sem estoque", "nota": "sem proveniência v2 (M6); revisar classe"},
+        {"onde": "opcional, localizar", "o_que": "marcadores no Atlas: Xingu (PA), Madeira (Jirau e Santo Antônio)", "trabalho": "ato 'localizar no mapa' se o Atlas tiver a camada"}
+      ],
+      "mobile_390": "Pergunta + campo de estimativa no 1º viewport. O par de satélite vira comparador de arraste (antes/depois) em largura total. A mesa gêmea vira duas figuras empilhadas com o mesmo eixo x, e o controle de ENA fixo entre elas; o quadro com os 4 readouts fica em grade 2×2.",
+      "lacunas_e_dependencias": {
+        "fonte": ["Belo Monte 11,2 GW, 4–5 GW médios, ~40%, 'terceira maior capacidade hidrelétrica do mundo': vivos, verificar", "vale do Xingu ~10–20% (ex-03, ONS vivo)", "a fonte não dá série de EAR máxima × carga: a frase 'a bateria ficou proporcionalmente menor' não ganha gráfico numérico"],
+        "s9": ["séries do INST·04", "registro de estimativa", "camada de usinas no Atlas (opcional)"]
+      },
+      "nota_ambicao": "Duas usinas de mesma placa vivendo o mesmo ano, lado a lado, com um só controle de chuva. O learner vê a fio d'água 'respirar' com o rio e o reservatório segurar a linha até o estoque acabar. A frase da fonte fecha o quadro: 'toda a energia, nenhuma escolha'."
+    },
+    {
+      "aulaId": "aula-03-04",
+      "titulo": "O vento de classe mundial do Nordeste.",
+      "subtitulo": "Eólica",
+      "pergunta_da_fonte": {"camada": "fonte", "origem": "§MAP", "texto": "O que faz do vento do Nordeste um ativo de classe mundial — e o que ele não entrega?"},
+      "o_que_ensina": "A potência do vento cresce com o cubo da velocidade (P ∝ ρ·A·v³), e a curva de potência da turbina recorta esse cubo entre cut-in (~3 m/s), nominal (~12 m/s) e cut-out (~25 m/s). O Nordeste vale duas vezes: vento forte e estável (FCap 40–55%) e sazonalidade complementar à seca dos reservatórios. Os limites são variabilidade, falta de inércia síncrona e distância da carga.",
+      "natureza": ["conceito físico", "geografia", "comparação de atributos (limites)"],
+      "inventario": {"blocos": 10, "instrumentos": [], "exercicios": ["ex-04 (8 × 10 m/s)"], "tres_niveis_fonte": null, "gravuras_atuais": ["ger-14-aerogerador-onshore.png", "ger-17-aerogerador-offshore.png"]},
+      "representacao": {
+        "arquetipo": "Laboratório guiado da curva de potência, seguido de mapa e calendário como palco.",
+        "composicao": "Abertura com previsão do cubo (ex-04) → fórmula (bloco 0) → LAB (curva de potência desenhada com os três marcos da fonte e um cursor de velocidade; ao lado, o disco de área varrida enchendo proporcional a v³) → bloco 1 como legenda da curva → 4.1 com PALCO (mapa do NE com BA, RN, CE, PI e foto documental) → bloco 4 com faixa de 12 meses (vento × afluência) → 4.2 limites como lista de três 'não entrega' → offshore com gravura → registro.",
+        "por_que": "Aula sem instrumento cujo mecanismo é uma lei de potência. A curva desenhada substitui o instrumento que falta, e o erro da previsão linear (25% a mais de vento = 25% a mais de energia) é o que o cubo corrige. A segunda metade é geográfica e sazonal, e pede mapa e calendário, não prosa."
+      },
+      "abertura": {
+        "pergunta": {"camada": "alexandria", "texto": "Um sítio tem vento 25% mais rápido que outro. Quanta energia a mais o vento dele carrega?"},
+        "objetivo": {"camada": "alexandria", "texto": "Usar o cubo da velocidade para comparar sítios e explicar por que o vento do Nordeste é um ativo, e o que ele não entrega."},
+        "previsao": {
+          "util": true,
+          "pergunta": "Sítio A: 8 m/s. Sítio B: 10 m/s. Quantas vezes mais energia por área o B oferece? (ex-04, ignorando a curva de potência)",
+          "cenario": "ex-04 (L2308) e Q4 do quiz (mesma ideia; o Q4 fica na avaliação).",
+          "resposta_modelo": "(10/8)³ = 1,25³ ≈ 1,95, praticamente o dobro (gabarito da fonte).",
+          "regra_entrada": "Aceitar 1,9 a 2,0 como arredondamento técnico (regra de entrada da Alexandria, P19). O erro linear (1,25) e o quadrático (1,56) aparecem como leituras nomeadas no quadro, sem cor."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever + manipular",
+        "descricao": "Prever a razão (acima), registrar e então mover o cursor de velocidade na curva: de 8 para 10 m/s a potência disponível quase dobra; acima de ~12 m/s a turbina satura na nominal; acima de ~25 m/s desliga. O learner responde em que trecho da curva o cubo 'vale' (entre cut-in e nominal).",
+        "por_que_exercita": "O cubo e o recorte da curva são o mecanismo; o gabarito da fonte já faz essa ressalva ('na turbina real, a curva satura').",
+        "camada": "alexandria sobre exercício e prosa da fonte",
+        "atos_secundarios": ["localizar no mapa os quatro estados citados (BA, RN, CE, PI)", "encaixe sazonal: marcar os meses em que o vento do NE sopra mais forte (2º semestre) sobre a faixa de afluência", "identificar o termo: 'intermitente' × 'variável' (bloco 6)"]
+      },
+      "visualizacao": [
+        {"trabalho": "a curva de potência recorta o cubo", "relacao": "P(v): zero abaixo de ~3 m/s; ∝ v³ até ~12 m/s; constante até ~25 m/s; zero acima", "eixos": "x = velocidade do vento (m/s, 0–30); y = potência relativa (% da nominal)", "unidade": "m/s; % da nominal", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "Figura da camada Alexandria com os três marcos literais do bloco 1. A forma entre cut-in e nominal é ilustrativa (rotular 'forma ilustrativa; marcos da fonte'), porque a fonte não dá uma curva de fabricante."},
+        {"trabalho": "a razão do cubo", "relacao": "8³ = 512 × 10³ = 1.000", "eixos": "duas áreas proporcionais", "unidade": "índice", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false},
+        {"trabalho": "quando a chuva vai embora, o vento chega", "relacao": "perfil mensal da eólica NE × afluência", "eixos": "faixa de 12 meses, índice 100 = média", "unidade": "índice", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "Reusar os perfis didáticos do INST·09 (L3302–L3303, camada fonte, 'didáticos') com o rótulo deles (F-M03-4)."}
+      ],
+      "instrumentos": [],
+      "instrumento_proposto": "Nenhum instrumento novo de cálculo. A curva de potência com cursor é figura manipulável da camada Alexandria. Opcional: prévia do INST·09 só com Hidro + Eólica ligadas (razão fraco/forte 32% → 52%, modelo), rotulada como prévia da A10.",
+      "checagem": "ex-04 com campo numérico e gabarito depois. Mito 3 do §Erros ('Solar e eólica são caras') como 'identificar o erro'.",
+      "recuperacao": {
+        "antes": "M02·A08 (inércia e o apagão de 2023) e M02·A10 (curtailment), os dois citados no bloco 6. Mostrar a pergunta antes de qualquer resposta.",
+        "proximo_passo": "'Próxima · M03·A05 — A fonte que quebrou a curva de custos.' Guardar a complementaridade como pergunta que a A07 e a A10 retomam."
+      },
+      "midia": [
+        {"onde": "após bloco 3 (qualidade do vento NE)", "o_que": "m01a08-eolica-paracuru-dunas, bse-eolica-icarai, t3-06-eolica-cutia-rn ou t3-07-eolica-mel2-dunas (documental)", "trabalho": "o sítio costeiro que a prosa descreve"},
+        {"onde": "junto ao bloco 1 (pitch)", "o_que": "ger-15 (nacele em corte) ou ger-16 (pá), hoje não ligadas", "trabalho": "onde o ângulo das pás é controlado", "nota": "sem proveniência v2"},
+        {"onde": "após bloco 7 (offshore)", "o_que": "ger-17 (offshore, já ligada)", "trabalho": "o horizonte; legenda: 'ilustração; sem parque offshore citado em operação no Brasil pela aula'", "nota": "cuidado com M7: a imagem não pode sugerir presente"}
+      ],
+      "mobile_390": "Pergunta + campo no 1º viewport. Curva de potência em largura total com o cursor como slider embaixo (alvo ≥ 44 px), e o valor atual em texto. O mapa vira recorte do NE com os quatro estados em lista tocável. A faixa de 12 meses rola na horizontal dentro do próprio contêiner, nunca a página.",
+      "lacunas_e_dependencias": {
+        "fonte": ["33–35 GW, FCap 40–55%, CAPEX R$ 5–6 mi/MW (vivos)", "FCap europeu 25–30% (verificar)", "Lei 15.097/2025 e vetos: 'verificar status antes de citar'", "quem paga o curtailment: 'questão aberta'", "curva de potência sem dado de fabricante"],
+        "content_qa": ["redação ambígua de 'prefira a \"intermitente\"' (T5)", "P20 para FCap eólico"],
+        "s9": ["figura manipulável", "camada de estados no Atlas", "registro de previsão"]
+      },
+      "nota_ambicao": "O cubo sentido na mão: cada m/s a mais enche o disco das pás de forma desproporcional, e a curva mostra onde a engenharia corta o excesso. Depois o mapa e o calendário dizem por que esse cubo mora no Nordeste e sopra na seca."
+    },
+    {
+      "aulaId": "aula-03-05",
+      "titulo": "A fonte que quebrou a curva de custos — e endureceu o relógio.",
+      "subtitulo": "Solar — UFV e MMGD",
+      "pergunta_da_fonte": {"camada": "fonte", "origem": "§MAP", "texto": "O que acontece quando a fonte mais barata do leilão é também a mais rígida do relógio?"},
+      "o_que_ensina": "A mesma física tem duas economias: a UFV compete no atacado; a MMGD compete contra a tarifa cheia de varejo (Lei 14.300/2022, Fio B gradual). O perfil diário rígido (6h–18h, pico ao meio-dia) cria a barriga do meio-dia, a canibalização e a rampa do fim da tarde.",
+      "natureza": ["mercado e regulação (duas réguas)", "sistema (perfil diário)"],
+      "inventario": {"blocos": 7, "instrumentos": ["m03-inst-05 (Simulador · O dia do sistema)"], "exercicios": ["ex-05 (telhado × UFV)"], "tres_niveis_fonte": "complementaridade (L1797), deslocado do tema; ver T1", "gravuras_atuais": ["ger-18-modulo-fotovoltaico.png", "ger-20-usina-solar-centralizada.png", "ger-21-telhado-solar-residencial.png"]},
+      "representacao": {
+        "arquetipo": "Díptico: 'duas réguas' (mesa de comparação UFV × MMGD) + 'o dia do sistema' (curva de 24 h como palco com instrumento vivo).",
+        "composicao": "Abertura com previsão da rampa → bloco 0 (curva de aprendizado, número vivo com fonte) → 5.1 como MESA de duas colunas (UFV | MMGD: escala, onde gera, contra que preço compete, marco legal), com o par de gravuras usina × telhado no topo das colunas → ato de classificação → 5.2 → PALCO (INST·05: carga, solar, eólica e resíduo em 24 h; marcas na barriga e na rampa) → registro.",
+        "por_que": "A aula tem dois mecanismos de natureza diferente. Um é de régua econômica e se aprende comparando; o outro é de perfil no tempo e se aprende vendo a curva. Um layout único daria peso errado a um deles."
+      },
+      "abertura": {
+        "pergunta": {"camada": "alexandria", "texto": "Se o país passar de 35 para 60 GW de solar, a rampa do fim da tarde fica mais leve ou mais pesada?"},
+        "objetivo": {"camada": "alexandria", "texto": "Separar UFV de MMGD pela régua econômica e explicar a barriga do meio-dia e a rampa do fim da tarde como efeitos do mesmo perfil."},
+        "previsao": {
+          "util": true,
+          "pergunta": "Cenário: eólica gerando 12 GW médios. Com 35 GW solares a rampa do pôr do sol é +12,5 GW/h. Com 60 GW solares, ela vai a quanto? (direção e valor)",
+          "cenario": "INST·05, carga didática ~70–100 GW (L3038), solar de dia claro.",
+          "resposta_modelo": "+17,5 GW/h (modelo). Com 0 GW solar: +5,4; com 80 GW: +21,6. O resíduo mínimo ao meio-dia cai de 47 GW (35 GW solar) para 28 GW (60 GW).",
+          "por_que_ensina": "A intuição 'mais solar alivia o sistema' falha exatamente na hora da rampa.",
+          "regra_entrada": "Direção (mais leve / igual / mais pesada) obrigatória; valor opcional. Sem tolerância; o quadro mostra previsto × simulado."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "classificar + prever",
+        "descricao": "Classificar três situações pela régua econômica que se aplica (atacado ou tarifa cheia de varejo): um telhado de fábrica com compensação (SCEE); uma UFV de centenas de MW vendendo em leilão; uma UFV vendendo em contrato no mercado livre. Depois, a previsão da rampa no INST·05.",
+        "por_que_exercita": "As duas réguas são o mecanismo econômico; a rampa é o mecanismo físico. As situações vêm literalmente dos blocos 2–3.",
+        "camada": "alexandria sobre prosa da fonte",
+        "atos_secundarios": ["ex-05 (discursiva) como checagem"]
+      },
+      "visualizacao": [
+        {"trabalho": "o dia do sistema", "relacao": "resíduo = carga − solar − eólica, hora a hora", "eixos": "x = 0–24 h; y = GW (0–105); quatro séries com rótulo direto; marca no resíduo mínimo e na maior subida entre 16h e 21h", "unidade": "GW; GW/h", "existe_no_codigo": false, "forma_prometida_nao_desenhada": true, "nota": "A fonte desenha (L3062–L3085). Mesmo componente que a captura M02·A04 exige (curva líquida). 4 séries: dentro da heurística."},
+        {"trabalho": "duas réguas", "relacao": "atacado × tarifa cheia (energia + fio + encargos + tributos)", "eixos": "mesa de duas colunas; opcional: barra empilhada da tarifa só com os nomes dos componentes, sem valores", "unidade": "sem valores (a fonte diz 'múltiplas vezes', sem número)", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false}
+      ],
+      "instrumentos": [
+        {"id": "m03-inst-05", "bloco_indice_fonte": "após 5 (L1764 → L1766)", "bloco_indice_proposto": "após 5", "invocacao": "bloco 5 termina em 'Use o instrumento — agora com as duas variáveis juntas:'", "previsao": true, "papel": "segundo ato"}
+      ],
+      "checagem": "ex-05 com resposta escrita antes do gabarito (L2317). Mito 3 do §Erros como 'identificar o erro'.",
+      "recuperacao": {
+        "antes": "M02·A04 (curva líquida), citada literalmente no bloco 5; e a 'usina invisível' da A01.",
+        "proximo_passo": "'Próxima · M03·A06 — A flexibilidade que se paga.' A rampa medida aqui vira a janela da bateria na A09 (F-M03-6)."
+      },
+      "midia": [
+        {"onde": "cabeçalho das colunas da mesa (5.1)", "o_que": "ger-20 (usina centralizada) × ger-21 (telhado), já ligadas", "trabalho": "mesma célula, escalas opostas", "nota": "sem proveniência v2"},
+        {"onde": "alternativa documental", "o_que": "bse-solar-flutuante-araucaria ou m01a08-solar-araucaria-flutuante; vista aérea de UFV brasileira é lacuna do CATALOGO (linha 56)", "trabalho": "escala real de UFV"},
+        {"onde": "evitar", "o_que": "ger-18 e ger-19 (módulo e célula)", "trabalho": "o princípio fotovoltaico está no lead e não é o mecanismo da aula; só entram se a aula ganhar um parágrafo de conversão"}
+      ],
+      "mobile_390": "Pergunta com escolha de direção no 1º viewport. A mesa vira duas fichas empilhadas (UFV, MMGD) com as mesmas quatro linhas, alinhadas por rótulo. A curva de 24 h em largura total, com legenda direta no fim das linhas; sliders embaixo; readouts em linha de três.",
+      "lacunas_e_dependencias": {
+        "fonte": ["queda de ~90% do módulo (IRENA/Lazard, vivo)", "R$ 150–220/MWh em leilão (vivo)", "piso do PLD ~R$ 60 (ANEEL recalcula; o INST·06 usa 61)", "Lei 14.300: 'compensação integral preservada por prazo longo' sem data na fonte, não completar"],
+        "content_qa": ["T4 (excedente inalcançável)", "três níveis de complementaridade fora do lugar (T1)"],
+        "s9": ["desenho da curva", "registro de classificação e previsão"]
+      },
+      "nota_ambicao": "Uma mesma curva de 24 h que afunda ao meio-dia e empina às 18h enquanto o learner acrescenta sol, com a aposta dele desenhada por cima. É a imagem que a manchete de 'recorde solar' nunca mostra."
+    },
+    {
+      "aulaId": "aula-03-06",
+      "titulo": "A flexibilidade que se paga — e o sistema paga.",
+      "subtitulo": "Térmicas a gás",
+      "pergunta_da_fonte": {"camada": "fonte", "origem": "§MAP", "texto": "Por que a usina mais cara de rodar pode ser a mais valiosa de ter?"},
+      "o_que_ensina": "CVU ≈ preço do combustível × heat rate + O&M variável: a térmica converte preço de combustível em preço de energia e, quando está na margem, em CMO. Ciclo simples (35–40%) parte rápido; ciclo combinado (55–60%) é mais eficiente. Flexibilidade é atributo do conjunto máquina + contrato + combustível: um take-or-pay tira a térmica da ordem de mérito e o sobrecusto vira ESS.",
+      "natureza": ["cálculo (CVU, ordem de mérito)", "mercado (preço marginal)", "contrato e regulação"],
+      "inventario": {"blocos": 10, "instrumentos": ["m03-inst-06 (Simulador · A pilha de CVU)"], "exercicios": ["ex-06 (pilha de 92 GW com take-or-pay)"], "tres_niveis_fonte": "CVU (L1888), não portado", "gravuras_atuais": ["ger-08-termica-ciclo-combinado.png", "ger-09-turbina-gas-corte.png", "ger-13-terminal-gnl.png"]},
+      "representacao": {
+        "arquetipo": "Pilha de mérito como palco: curva de oferta em degraus com a linha de demanda, e o seletor de gás como 'conversor'.",
+        "composicao": "Abertura com o ex-06 como primeiro ato (pilha em papel) → 6.1 com gravura da turbina em corte → fórmula do CVU (bloco 3) → bloco 4 → PALCO (INST·06: degraus ordenados por CVU; demanda como linha vertical; degrau marginal com contorno e nome; CMO lido no eixo y) → 6.2 take-or-pay com o degrau 'amarrado' fora da ordem e a área de sobrecusto rotulada ESS → bloco 7 → nota de números vivos → três níveis → registro.",
+        "por_que": "O mecanismo é posicional: quem está na margem define o preço, e mudar o preço do combustível muda a altura dos degraus, não a física. A curva de oferta em degraus é a forma canônica e mostra isso de uma vez. O título do instrumento promete 'pilha'."
+      },
+      "abertura": {
+        "pergunta": {"camada": "alexandria", "texto": "Com demanda de 92 GW, quem fica na margem da pilha e qual é o custo marginal?"},
+        "objetivo": {"camada": "alexandria", "texto": "Encontrar a fonte marginal numa pilha de CVU, explicar a térmica como conversor de preço de combustível e mostrar onde o take-or-pay cobra."},
+        "previsao": {
+          "util": true,
+          "pergunta": "ex-06 (pilha da fonte, L2326): fonte marginal e CMO para 92 GW. Depois, no INST·06: com demanda de 105 GW e valor da água R$ 150, o gás passa de 'Médio' para 'Alto'. O CMO vai de R$ 180 para quanto?",
+          "cenario": "ex-06: pilha literal. INST·06: capacidades e CVUs 'ilustrativos em ordem de grandeza' (L3106–L3118).",
+          "resposta_modelo": "ex-06: GN ciclo combinado, CMO R$ 250/MWh (gabarito da fonte). INST·06 a 105 GW: R$ 180 → R$ 324/MWh, a mesma usina marginal (GN ciclo combinado) com CVU × 1,8 (modelo).",
+          "por_que_ensina": "A segunda previsão isola o 'conversor': a pilha física é igual, o preço muda.",
+          "regra_entrada": "Seleção da fonte marginal + valor em R$/MWh. Resposta exata do modelo; sem tolerância."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "responder exercício da fonte + manipular até uma meta",
+        "descricao": "Resolver o ex-06 empilhando (45 + 2 + 40 = 87; faltam 5 do GN combinado). Depois, no INST·06 (valor da água R$ 150, gás médio), subir a demanda até o GN ciclo combinado virar marginal: acontece a partir de 100 GW (49 must-run + 42 hidro + 8 biomassa = 99). Por fim, trocar o gás para 'Alto' e ler o novo CMO.",
+        "por_que_exercita": "Ordem de mérito + conversor de preço é o mecanismo central; as duas tarefas o exercitam com números da fonte.",
+        "camada": "fonte (ex-06) + alexandria (meta)",
+        "atos_secundarios": ["estimar: com o mesmo gás, quantas vezes mais combustível por MWh queima o ciclo simples que o combinado? Com as eficiências do bloco 1 (35–40% × 55–60%): ≈ 1,5× (derivado; heat rate é o inverso da eficiência, bloco 3)"]
+      },
+      "visualizacao": [
+        {"trabalho": "quem define o preço", "relacao": "oferta acumulada ordenada por CVU × demanda", "eixos": "x = GW acumulados; y = R$/MWh; degraus com rótulo direto; linha vertical da demanda; linha horizontal do CMO; piso R$ 61", "unidade": "GW; R$/MWh", "existe_no_codigo": false, "forma_prometida_nao_desenhada": true, "nota": "A fonte desenha barras por usina com a marginal marcada (L3160–L3169); a curva de oferta é a forma mais forte para o mesmo dado. 11 degraus: agrupar por família no rótulo (renováveis must-run, hidro, térmicas) para ficar em ≤4 cores."},
+        {"trabalho": "take-or-pay", "relacao": "4 GW de GN simples forçados na base; área (R$ 450 − R$ 250) × 4 GW = sobrecusto fora do preço", "eixos": "mesma curva, degrau deslocado", "unidade": "R$/MWh", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "Com os números do ex-06, camada Alexandria."}
+      ],
+      "instrumentos": [
+        {"id": "m03-inst-06", "bloco_indice_fonte": "após 7 (L1842 → L1844)", "bloco_indice_proposto": "após 4", "invocacao": "o bloco 4 é onde a prosa afirma 'a térmica é um conversor de preço de combustível', e a nota do instrumento manda 'suba o preço do gás e veja o \"conversor de preço\" em ação'", "justificativa_da_mudanca": "C5 pede o instrumento no ponto que o invoca. Na fonte ele vem depois do parágrafo institucional (Novo Mercado de Gás), sem relação com a tarefa. A mudança é de posição, com registro; o texto não muda.", "previsao": true, "papel": "segundo ato"}
+      ],
+      "checagem": "ex-06 com resposta registrada antes do gabarito. Mito 4 do §Erros ('Térmica é atraso na transição') como 'identificar o erro'.",
+      "recuperacao": {
+        "antes": "M02·A05 (ordem de mérito, valor da água) e o ESS do Módulo 02 (a prosa diz 'o ESS que você conheceu no Módulo 02'; o termo aparece no corpo de M02·A05, M02·A06 e M02·A10 — escolher a origem na revisão).",
+        "proximo_passo": "'Próxima · M03·A07 — O resto do parque térmico.' A Âmbar fica como fio para a A08 (mesma compradora)."
+      },
+      "midia": [
+        {"onde": "após bloco 1 (ciclos)", "o_que": "ger-09 (turbina a gás em corte), já ligada; ger-08 (ciclo combinado)", "trabalho": "onde o calor de exaustão vira segunda turbina", "nota": "sem proveniência v2; checar geometria (M2)"},
+        {"onde": "após bloco 4 (GNL)", "o_que": "ger-13 (terminal de GNL), já ligada", "trabalho": "o combustível que chega indexado ao mercado global"},
+        {"onde": "alternativa documental", "o_que": "térmica a gás de ciclo combinado brasileira: lacuna do CATALOGO (linha 58)", "trabalho": "—"}
+      ],
+      "mobile_390": "O ex-06 no 1º viewport como tabela compacta de 6 linhas com campo de resposta. A curva de oferta em largura total; os três controles embaixo (demanda e valor da água como sliders, gás como controle segmentado de 3 opções); fonte marginal e CMO em linha fixa sobre a curva. Rótulos dos degraus pequenos viram legenda por família.",
+      "lacunas_e_dependencias": {
+        "fonte": ["faixas de CVU (R$ 150–300, 300–600, >1.000) são 'ordens de grandeza pedagógicas'", "2021: CVUs > R$ 1.000 e bandeira R$ 14,20/100 kWh 'histórico documentado, pode citar com data'", "compra do parque térmico pela Âmbar em 2024 (vivo)", "a fonte não dá preço de gás nem heat rate numérico: nenhum exercício de CVU com números inventados"],
+        "s9": ["desenho da pilha", "saída do calculador com a lista despachada", "registro de tentativas", "três níveis"]
+      },
+      "nota_ambicao": "O seletor de gás como um mostrador de câmbio: ao girá-lo, os degraus térmicos sobem e a linha de preço salta, sem que nenhuma usina mude de lugar. Depois, o degrau amarrado pelo take-or-pay aparece fora da fila, com a conta que ninguém vê no preço."
+    },
+    {
+      "aulaId": "aula-03-07",
+      "titulo": "O resto do parque térmico: o que cada um ainda resolve.",
+      "subtitulo": "Carvão, óleo e biomassa",
+      "pergunta_da_fonte": {"camada": "fonte", "origem": "§MAP", "texto": "O que o resto do parque térmico ainda resolve — e quem paga o diesel da Amazônia?"},
+      "o_que_ensina": "'Térmica' não é uma categoria, são três contratos diferentes com a realidade: o carvão paga dívida histórica regional (saída programada, transição justa); o óleo/diesel paga o custo de existir longe do fio (sistemas isolados, CCC, paradoxo amazônico); a biomassa paga em renovável a conta da estiagem (safra abr–nov = estação seca).",
+      "natureza": ["comparação de tecnologias", "geografia e política regional", "sazonalidade"],
+      "inventario": {"blocos": 9, "instrumentos": [], "exercicios": [], "quiz": "nenhuma questão", "erros": "nenhum mito", "tres_niveis_fonte": null, "gravuras_atuais": ["ger-22-cogeracao-bagaco.png"]},
+      "representacao": {
+        "arquetipo": "Três fichas num mapa: o território como palco, com uma faixa de calendário para a biomassa.",
+        "composicao": "Abertura com o ato de pareamento → PALCO (mapa do Brasil com três lugares da prosa: polo carvoeiro RS/SC com Candiota; Amazônia com sistemas isolados 'fora do mapa do SIN'; Centro-Sul da cana) → três fichas (7.1, 7.2, 7.3), cada uma aberta a partir do seu lugar, com a linha da tabela (bloco 6) no topo → na ficha da biomassa, FAIXA de 12 meses com a safra sobre a afluência → bloco 7 como fecho → registro.",
+        "por_que": "A aula não tem instrumento nem exercício, e seu argumento é geográfico e institucional: cada tecnologia se explica por onde está e por quem paga. O mapa é a forma mais honesta e dá o ato ('localizar') sem inventar cálculo."
+      },
+      "abertura": {
+        "pergunta": {"camada": "alexandria", "texto": "Carvão, diesel e bagaço são todos térmicos. Por que cada um ainda existe no sistema, e quem paga por ele?"},
+        "objetivo": {"camada": "alexandria", "texto": "Explicar o papel real de carvão, óleo/diesel e biomassa e localizar onde cada um atua."},
+        "previsao": {
+          "util": true,
+          "pergunta": "A safra de cana do Centro-Sul cobre quais meses? Marque-os na faixa do ano, onde já estão desenhadas a cheia e a seca dos reservatórios.",
+          "cenario": "Bloco 5 (fonte): safra 'de abril a novembro'; cheia dez–abr e seca mai–nov (nota do INST·03, L1623).",
+          "resposta_modelo": "Abril a novembro, quase exatamente a estação seca (fonte).",
+          "regra_entrada": "Seleção de meses; o quadro mostra a sobreposição com a faixa da fonte, sem nota."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "classificar (parear) + localizar no mapa",
+        "descricao": "Parear cada tecnologia com a frase de síntese da própria aula (bloco 7): 'paga dívida histórica regional' / 'paga o custo de existir longe do fio' / 'paga em renovável a conta da estiagem', e pôr cada uma no seu lugar do mapa. A justificativa pede um fato da ficha (ex.: CCC, ao lado da mina, safra).",
+        "por_que_exercita": "O mecanismo central é que o papel de cada térmica é definido por contrato, lugar e calendário, não pela tecnologia de combustão.",
+        "camada": "alexandria sobre síntese literal da fonte",
+        "atos_secundarios": ["ordenar por CVU com a tabela (carvão R$ 200–350 < óleo/diesel R$ 1.000–2.000; biomassa 'moderado, sazonal', sem número: a tarefa aceita 'não é possível ordenar com precisão' como resposta válida, C5)"]
+      },
+      "visualizacao": [
+        {"trabalho": "onde cada térmica resolve algo", "relacao": "três localizações e o alcance do SIN", "eixos": "mapa do Brasil (Natural Earth), marcação por região, sem pontos de usina não citados", "unidade": "—", "existe_no_codigo": "parcial (Atlas Mundial existe; camada por aula não)", "forma_prometida_nao_desenhada": false, "nota": "Só os lugares que a prosa nomeia: Candiota; SC/RS; Amazônia (sistemas isolados); Centro-Sul."},
+        {"trabalho": "quando a água some, a cana chega", "relacao": "safra × estação seca", "eixos": "faixa de 12 meses", "unidade": "meses", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "Mesma faixa da A02 e da A04 (F-M03-7). O perfil mensal da biomassa do INST·09 pode entrar como curva rotulada 'didática'."},
+        {"trabalho": "a escada de CVU", "relacao": "faixas de CVU por tecnologia", "eixos": "barras de intervalo em R$/MWh; biomassa como 'não declarado' (S4)", "unidade": "R$/MWh", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false}
+      ],
+      "instrumentos": [],
+      "instrumento_proposto": "Nenhum cálculo novo. Opcional: o INST·06 com a pilha 'congelada' para mostrar onde o carvão (R$ 280), o óleo/diesel (R$ 950) e a biomassa (R$ 160) caem na ordem de mérito do módulo (F-M03-4), rotulado como cenário ilustrativo.",
+      "checagem": "Sem exercício da fonte. A referência do pareamento é o próprio bloco 7, mostrado só depois do registro. Voz 24–25 como atividade recomendada (P14).",
+      "recuperacao": {
+        "antes": "A04: 'Qual foi a primeira complementaridade sazonal?' (o bloco 5 diz 'a primeira foi o vento do NE'). Opcional: a CCC do Módulo 02.",
+        "proximo_passo": "'Próxima · M03·A08 — Angra 3.' 'Serve a': a lista 'ao final você consegue' do §00 não tem item para a A07; usar o item 12 do §Final (registro legado de conteúdo, não critério de aprovação, P18) ou 'ainda não disponível'."
+      },
+      "midia": [
+        {"onde": "ficha do carvão (bloco 1)", "o_que": "m01a08-termica-candiota (documental, CC BY-SA 4.0)", "trabalho": "Candiota é nomeada na prosa"},
+        {"onde": "ficha do óleo/diesel (bloco 3)", "o_que": "sistema isolado amazônico: diesel por barcaça ou usina de localidade (buscar no Commons; documental com crédito)", "trabalho": "dar corpo ao 'paradoxo amazônico'", "status": "lacuna de catálogo"},
+        {"onde": "ficha da biomassa (bloco 5)", "o_que": "ger-22 (cogeração a bagaço), já ligada; ou foto documental de usina sucroenergética", "trabalho": "vapor de processo + eletricidade"}
+      ],
+      "mobile_390": "Pergunta + ato de pareamento (três botões por tecnologia) no 1º viewport. O mapa vira localizador pequeno no topo de cada ficha, e as fichas ficam empilhadas. A faixa de 12 meses aparece só na ficha da biomassa, em largura total.",
+      "lacunas_e_dependencias": {
+        "fonte": ["~2–3 GW de carvão, ~15–17 GW de biomassa, CVUs (vivos)", "'aposentadoria marcada em lei e em política energética': a fonte não nomeia a lei, não completar", "'centenas de localidades' sem número", "CVU da biomassa sem número"],
+        "s9": ["camada de lugares por aula no Atlas", "registro de pareamento", "foto documental de sistema isolado"]
+      },
+      "nota_ambicao": "A aula mais 'fina' do módulo em aparato pode ser a mais memorável em forma: um mapa onde três térmicas ocupam três Brasis (a mina do Sul, o rio da Amazônia, o canavial do Centro-Sul) e um calendário em que a safra encaixa na seca. A síntese da fonte ('três contratos diferentes com a realidade') vira o ato."
+    },
+    {
+      "aulaId": "aula-03-08",
+      "titulo": "Angra 3, ou: uma aula de custo de capital em concreto armado.",
+      "subtitulo": "Nuclear",
+      "pergunta_da_fonte": {"camada": "fonte", "origem": "§MAP", "texto": "O que 39 anos de Angra 3 ensinam sobre custo de capital?"},
+      "o_que_ensina": "Em ativo de CAPEX dominante, o inimigo é o prazo: juros capitalizam, cada ano de atraso compõe sobre bilhões, e uma usina competitiva em 6 anos fica inviável em 40. Angra 3 é o caso (concluir ~R$ 24 bi × abandonar até R$ 26 bi × ~R$ 1 bi/ano parada; tarifa de referência R$ 778–817/MWh contra solar ~R$ 170), com o contraponto do valor sistêmico real de 2 GW firmes.",
+      "natureza": ["caso e decisão", "história", "finanças de ativo"],
+      "inventario": {"blocos": 8, "instrumentos": [], "exercicios": ["ex-07 (defender a tese em quatro frases)"], "tres_niveis_fonte": null, "gravuras_atuais": ["ger-11-reator-pwr-corte.png"]},
+      "representacao": {
+        "arquetipo": "Dossiê de caso com decisão, com linha do tempo só de eventos datados na fonte.",
+        "composicao": "Abertura com o dilema → 8.1 'o parque real' com ficha de Angra 1 e 2 e foto documental → FICHA DE DOSSIÊ de Angra 3 (quatro números vivos com fonte e data 'jun/2026', barra comparando tarifa de referência × solar na mesma escala) → linha do tempo (1984 início; 1985 Angra 1; 2001 Angra 2; fim de 2025 venda da fatia; decisão do CNPE pendente) → nota de números vivos como selo datado → 8.2 → bloco 6 (contraponto) → DECISÃO (ato) → checagem ex-07 → registro.",
+        "por_que": "A aula é um caso aberto com números e uma decisão pendente. O dossiê com decisão faz o learner usar os números em vez de decorá-los. A linha do tempo mostra o 'tempo que compõe' sem inventar série de custos."
+      },
+      "abertura": {
+        "pergunta": {"camada": "alexandria", "texto": "Concluir, abandonar ou continuar esperando: o que os números de Angra 3 dizem sobre essa decisão?"},
+        "objetivo": {"camada": "alexandria", "texto": "Tratar Angra 3 como decisão de custo de capital e prazo, usando os números da aula com a ressalva de verificação."},
+        "previsao": {
+          "util": true,
+          "pergunta": "A diferença entre abandonar (até R$ 26 bi) e concluir (~R$ 24 bi) equivale a quantos anos de usina parada, a ~R$ 1 bi por ano?",
+          "cenario": "Números do bloco 2 (fonte; 'imprensa setorial/Eletronuclear, dez/2025–fev/2026 — vivos').",
+          "resposta_modelo": "Cerca de 2 anos (derivado: 26 − 24 = 2; 2 ÷ 1). Como 'até R$ 26 bi' é teto, o resultado é um limite superior.",
+          "por_que_ensina": "Mostra que a indecisão tem preço na mesma ordem de grandeza da diferença entre as opções: o prazo como variável econômica.",
+          "regra_entrada": "Número de anos; resultado exato do cálculo derivado, com o rótulo 'teto'."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "decidir com justificativa",
+        "descricao": "Desafio de decisão (camada Alexandria, padrão do P17, só com fatos da aula): o learner escolhe concluir, abandonar ou manter a indefinição; explicita a decisão; cita pelo menos dois números da aula; declara uma premissa; nomeia um trade-off (ex.: firmeza e suporte de tensão × tarifa); opcionalmente diz o que o faria mudar. Depois vê as consequências em duas dimensões que a aula nomeia: custo para o sistema e valor sistêmico (firmeza, diversidade, tensão), sem escore único (C8).",
+        "por_que_exercita": "O mecanismo é a leitura de capital e prazo; decidir obriga a usar os números como argumento.",
+        "camada": "alexandria",
+        "nota": "Não existe resposta 'certa' na fonte: a decisão do CNPE está 'ainda pendente'. O debrief mostra o critério da fonte (capital e prazo, não física), não um veredito."
+      },
+      "visualizacao": [
+        {"trabalho": "o custo do tempo", "relacao": "custo por ano parado como bloco empilhável contra a diferença entre as opções", "eixos": "blocos de R$ 1 bi; duas barras (R$ 24 bi, até R$ 26 bi)", "unidade": "R$ bilhões", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "Sem série histórica de custos (a fonte não dá)."},
+        {"trabalho": "a planilha condenada", "relacao": "tarifa de referência R$ 778–817/MWh × solar nova ~R$ 170/MWh", "eixos": "barras na mesma escala, a de Angra como intervalo", "unidade": "R$/MWh", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false},
+        {"trabalho": "linha do tempo", "relacao": "eventos datados na fonte", "eixos": "anos 1984–2026", "unidade": "ano", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "As paralisações (incluindo a da Lava Jato) aparecem como trecho sem data, porque a fonte não as data."}
+      ],
+      "instrumentos": [],
+      "instrumento_proposto": "Prévia do INST·08 (LCOE) com o preset Nuclear e só o WACC liberado (F-M03-4), após o bloco 5 ('nenhuma física salva a planilha'). Modelo: LCOE R$ 482/MWh em WACC 10%, R$ 521 em 11%, R$ 637 em 14%, com ~81% do custo em capital (~86% em 14%). Rotular 'preset didático da A10; não é Angra 3'.",
+      "checagem": "ex-07 (discursiva) com resposta antes do gabarito (L2335). Mito 7 do §Erros ('Nuclear é inviável porque é perigosa') como 'identificar o erro'.",
+      "recuperacao": {
+        "antes": "A01 (FCap nuclear 85–90%) e A06 (quem comprou o parque térmico da antiga Eletrobras? a mesma compradora reaparece aqui).",
+        "proximo_passo": "'Próxima · M03·A09 — A bateria desloca energia.' O WACC vira pergunta aberta que a A10 responde."
+      },
+      "midia": [
+        {"onde": "após bloco 1", "o_que": "bse-angra-usinas ou m01a08-nuclear-angra (documental, CC BY-SA 4.0)", "trabalho": "o parque real nomeado na prosa"},
+        {"onde": "junto ao lead", "o_que": "ger-11 (reator PWR em corte), já ligado; ger-12 (contenção)", "trabalho": "'tecnicamente uma térmica': fissão aquece água, vapor gira turbina", "nota": "sem proveniência v2"},
+        {"onde": "evitar", "o_que": "imagem gerada do canteiro de Angra 3", "trabalho": "nomearia instalação real com imagem gerada (M4 proíbe)"}
+      ],
+      "mobile_390": "A pergunta do dilema e o acesso à ficha no 1º viewport. A ficha vira lista de quatro números com fonte embaixo de cada um. A linha do tempo fica vertical. A decisão é um formulário em etapas (escolha → números → premissa → trade-off), com uma etapa por tela e o progresso das etapas visível.",
+      "lacunas_e_dependencias": {
+        "fonte": ["todos os números de Angra 3 e a situação societária (AXIA, Âmbar, ENBPar, R$ 535 mi, 68% / 35,3%) estavam 'em aberto na última verificação (jun/2026)'", "Angra 1 e 2 ~2 GW, ~1% da capacidade e ~2–3% da energia (vivo)", "CF art. 21 e 177 (verificar redação)", "SMRs: 'horizonte distante', sem números"],
+        "content_qa": ["1984 × '39 anos de canteiro' (T5)", "linguagem de presente datada em jun/2026 (T5)"],
+        "s9": ["registro de decisão com justificativa", "selo de número vivo com data (F-M12-1)", "preset de instrumento por aula (F-M03-4)"]
+      },
+      "nota_ambicao": "Transformar o assunto mais polarizado do módulo numa mesa de decisão fria: blocos de um bilhão empilhando a cada ano de espera, ao lado das duas contas que o CNPE ainda não fechou. O learner sai sabendo narrar o caso em três minutos, que é o que a própria aula promete."
+    },
+    {
+      "aulaId": "aula-03-09",
+      "titulo": "A bateria desloca energia. Quem gera é o resto.",
+      "subtitulo": "Armazenamento",
+      "pergunta_da_fonte": {"camada": "fonte", "origem": "§MAP", "texto": "Bateria gera energia ou desloca energia — e o que o leilão de 2026 está comprando de verdade?"},
+      "o_que_ensina": "Bateria não gera: desloca energia no tempo e perde parte no ciclo (85–90% de eficiência no lítio). É definida por potência (MW, o cano) e energia (MWh, o tanque); a duração define a vocação. O LRCAP 2026 – Armazenamento compra potência. Reservatório (200 TWh, estações) e bateria (GWh, horas) são estoques de fusos diferentes, a cinco ordens de grandeza.",
+      "natureza": ["conceito (MW × MWh)", "cálculo", "mercado e regulação (leilão)", "escala"],
+      "inventario": {"blocos": 9, "instrumentos": ["m03-inst-07 (Dimensionador · MW, MWh e o preço da viagem no tempo)"], "exercicios": ["ex-08 (100 MW / 400 MWh, 88%)"], "tres_niveis_fonte": null, "gravuras_atuais": ["ger-24-celula-litio-corte.png"]},
+      "representacao": {
+        "arquetipo": "Prancha dividida 'cano × tanque' com instrumento vivo, seguida de ficha anotada do leilão e régua de escala logarítmica.",
+        "composicao": "Abertura com a previsão do ex-08 → 9.1 com a figura cano × tanque → PRANCHA (INST·07: largura = MW, altura = horas, área = MWh; fluxo de um ciclo: energia que entra → que sai → perdida) → faixas de vocação (<1 h, 2–4 h, >4 h) → 9.2 como FICHA DE DOCUMENTO anotada (Portaria 136/2026: certames, prazo, suprimento, cadastro, produto = MW), datada 'jun/2026' → bloco 4 → 9.3 com RÉGUA LOG (200 TWh × poucos GWh) → registro.",
+        "por_que": "O mecanismo é a separação entre duas dimensões. Uma figura em que largura e altura são as duas grandezas deixa a confusão MW/MWh visível. O leilão é leitura de documento com uma pergunta ('compra MW ou MWh?'), e a escala só é legível em log."
+      },
+      "abertura": {
+        "pergunta": {"camada": "alexandria", "texto": "Uma bateria de 100 MW / 400 MWh faz um ciclo por dia com 88% de eficiência. Quanta energia ela perde por dia?"},
+        "objetivo": {"camada": "alexandria", "texto": "Separar potência de energia numa bateria, quantificar a perda do ciclo e dizer o que o leilão de 2026 compra."},
+        "previsao": {
+          "util": true,
+          "pergunta": "Perda diária, em MWh (ex-08). O cenário é o mesmo do padrão do INST·07 (100 MW, 4 h, 88%).",
+          "cenario": "ex-08 (L2344) e valores-padrão do INST·07 (content.ts linhas 165–167).",
+          "resposta_modelo": "Entrega 400 MWh/dia, consome ≈ 455 MWh, perde ≈ 55 MWh/dia (gabarito da fonte; o INST·07 mostra 'Perdido no caminho / dia: 55 MWh').",
+          "por_que_ensina": "O erro comum é 12% de 400 (48) em vez de 400/0,88 − 400 (≈55): a eficiência se aplica na carga, como diz a nota do instrumento.",
+          "regra_entrada": "Aceitar 54–55 MWh como arredondamento (regra de entrada da Alexandria). 48 MWh aparece como leitura nomeada ('eficiência aplicada na saída'), sem cor."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever + classificar",
+        "descricao": "Prever a perda (acima) e ver previsto × calculado no INST·07. Depois classificar três baterias pela duração (0,5 h, 3 h, 6 h) nas vocações do bloco 1 e responder se o LRCAP 2026 paga pelo cano ou pelo tanque, com a frase da ficha como evidência.",
+        "por_que_exercita": "MW × MWh e a perda do ciclo são o mecanismo; a classificação por duração aplica a razão entre os dois.",
+        "camada": "alexandria sobre exercício e prosa da fonte",
+        "atos_secundarios": ["ex-08 parte 2 (por que o leilão pagaria mesmo com spread zero)", "ordens de grandeza: quantas vezes 200 TWh cabe em 2 GWh? (10^5; derivado da frase 'cinco ordens')"]
+      },
+      "visualizacao": [
+        {"trabalho": "cano × tanque", "relacao": "E (MWh) = P (MW) × duração (h)", "eixos": "largura = MW (10–500); altura = h (0,5–6); área preenchida = MWh; faixas de vocação na altura", "unidade": "MW, h, MWh", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "O INST·07 não tem figura na fonte; o título promete a relação MW × MWh. Mesma geometria do retângulo de energia da A01 (F-M03-3)."},
+        {"trabalho": "o pedágio do ciclo", "relacao": "entra E/η → sai E → perde E/η − E", "eixos": "fluxo de três barras", "unidade": "MWh/dia", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false},
+        {"trabalho": "fusos diferentes", "relacao": "200 TWh × poucos GWh", "eixos": "régua logarítmica em Wh com divisões por ordem de grandeza", "unidade": "Wh (log)", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "A fonte não dá o GWh exato da maior bateria: marcar como 'ordem de GWh', não como valor (F-M12-4)."}
+      ],
+      "instrumentos": [
+        {"id": "m03-inst-07", "bloco_indice_fonte": "após 1 (L1992 → L1994)", "bloco_indice_proposto": "após 1", "invocacao": "o bloco 1 define potência, energia e duração e cita a janela do INST·05", "previsao": true, "papel": "primeiro ato"}
+      ],
+      "checagem": "ex-08 completo com resposta antes do gabarito. Mito 6 do §Erros ('Bateria vai substituir as usinas') como 'identificar o erro'.",
+      "recuperacao": {
+        "antes": "M01·A01 ('Energia é volume. Potência é velocidade.'), a mesma distinção em outra escala; e a A02 ('quanto a EAR máxima do SIN guarda, em ordem de grandeza?'), que a aula promete retomar.",
+        "proximo_passo": "'Próxima · M03·A10 — A planilha que ordena custos.' Opcional: 'dimensione uma bateria para a rampa que você mediu na A05' (F-M03-6), como prática, não como avaliação."
+      },
+      "midia": [
+        {"onde": "após bloco 1", "o_que": "ger-24 (célula de lítio em corte), já ligada", "trabalho": "o tanque eletroquímico; só fica se a figura cano × tanque não bastar (teste de remoção, M7)", "nota": "sem proveniência v2"},
+        {"onde": "9.2", "o_que": "contêineres de BESS em foto documental genérica (Commons), sem nomear instalação brasileira que a aula não cite", "trabalho": "escala física de um sistema de baterias", "status": "lacuna de catálogo"},
+        {"onde": "9.3", "o_que": "reaproveitar a foto de reservatório da A02", "trabalho": "o outro estoque, na mesma régua"}
+      ],
+      "mobile_390": "Pergunta + campo no 1º viewport. O retângulo cano × tanque em largura total, com os três sliders embaixo e o fluxo de perda numa linha de três números. A ficha do leilão vira lista de definição com a data de verificação no topo. Régua log vertical.",
+      "lacunas_e_dependencias": {
+        "fonte": ["Portaria 136/2026, certames 2 e 4/dez, 15 anos, suprimento 1º/ago/2028, cadastro 15/jun–31/jul/2026: 'verificado em jun/2026', reverificar", "LRCAP de março/2026 com ~19 GW (vivo)", "queda de 80–90% no custo de bateria (BNEF/Lazard, vivo)", "a fonte não diz o tamanho da maior bateria do mundo em GWh"],
+        "content_qa": ["linguagem de presente ('agora', 'na semana anterior ao Summit', 'em andamento agora') numa data já passada (T5)"],
+        "s9": ["figura do INST·07", "registro de previsão e classificação", "selo datado"]
+      },
+      "nota_ambicao": "Um retângulo que o learner estica na largura (MW) e na altura (horas), vendo a área (MWh) e o pedágio de calor mudarem, e ao lado uma régua em que o reservatório da A02 e a bateria desta aula só cabem juntos em escala logarítmica. A frase da fonte fecha: 'cada tecnologia de estoque tem seu fuso horário'."
+    },
+    {
+      "aulaId": "aula-03-10",
+      "titulo": "A planilha que ordena custos não é a planilha que decide o sistema.",
+      "subtitulo": "LCOE, valor de sistema e portfólio",
+      "pergunta_da_fonte": {"camada": "fonte", "origem": "§MAP", "texto": "Por que a planilha que ordena os custos não é a planilha que decide o despacho?"},
+      "o_que_ensina": "LCOE ≈ (CAPEX anualizado pelo CRF + O&M fixo) ÷ energia anual + custo variável. O FCap é o denominador e o WACC governa o numerador. O número tem quatro limites (atributos, circularidade do FCap térmico, valor temporal, custo de integração), e a régua certa é o custo do sistema com e sem a peça. A síntese é o portfólio: fontes complementares elevam o piso do ano.",
+      "natureza": ["cálculo", "crítica de métrica", "síntese de portfólio"],
+      "inventario": {"blocos": 8, "instrumentos": ["m03-inst-08 (Comparador · LCOE por tecnologia — e seus limites)", "m03-inst-09 (Quebra-cabeça · O encaixe sazonal das fontes)"], "exercicios": ["ex-09 (LCOE didático de UFV)"], "exercicio_solto": "ex-10 (três níveis, Síntese) → Revisão do módulo (P9)", "tres_niveis_fonte": "LCOE (L2149), não portado", "gravuras_atuais": []},
+      "representacao": {
+        "arquetipo": "Duas partes: bancada de cálculo com teste de estresse (LCOE) e mesa de encaixe (portfólio de 12 meses).",
+        "composicao": "Abertura com o ex-09 → fórmula (bloco 0) → bloco 1 → BANCADA (INST·08: curva LCOE × FCap com o ponto atual, barra decomposta capital / O&M+variável, controles FCap e WACC, seleção de tecnologia) → 10.1 como mesa dos quatro limites, com um 'gatilho' no instrumento para os limites 1 e 2 → bloco 4 → 10.2 → MESA DE ENCAIXE (INST·09: barras mensais empilhadas, piso do portfólio, fontes ligadas na ordem histórica) → três níveis → registro → Revisão → Avaliação.",
+        "por_que": "A primeira metade é cálculo e desconfiança do cálculo: pede bancada com curva, porque a forma hiperbólica do LCOE em função do FCap é o limite 2 desenhado. A segunda é síntese: o encaixe só aparece empilhando meses. É a última aula, então o fim leva à Revisão e à Avaliação (C10)."
+      },
+      "abertura": {
+        "pergunta": {"camada": "alexandria", "texto": "A mesma usina a gás passa a rodar um terço das horas. O custo do MWh dela muda?"},
+        "objetivo": {"camada": "alexandria", "texto": "Calcular um LCOE didático, explicar por que ele não decide sozinho e mostrar como fontes complementares elevam o piso do ano."},
+        "previsao": {
+          "util": true,
+          "pergunta": "INST·08, Gás CC, WACC 10%: a R$ 406/MWh com FCap 45%. Com FCap 15%, o LCOE vai a quanto?",
+          "cenario": "Presets 'didáticos em ordem de grandeza' (L3218–L3224). A nota da fonte manda fazer exatamente este teste.",
+          "resposta_modelo": "≈ R$ 719/MWh (+77%, 'quase dobra' na fonte) (modelo).",
+          "por_que_ensina": "É o limite 2 (circularidade do FCap térmico) antes de ele ser nomeado na tabela.",
+          "regra_entrada": "Valor em R$/MWh; o quadro mostra previsto × calculado e a razão."
+        },
+        "previsao_2": {
+          "pergunta": "INST·09: só com a hidro ligada, o mês mais fraco entrega que % do mais forte? E com as quatro fontes?",
+          "resposta_modelo": "Só hidro: 32% (vale em agosto). Hidro + eólica: 52%. + solar: 58%. + biomassa: 67% (vale em julho) (modelo).",
+          "regra_entrada": "Valor em %; previsto × calculado."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "responder exercício da fonte + identificar o erro (classificar por limite) + manipular até uma meta",
+        "descricao": "1) ex-09: calcular o LCOE (R$ 435/kW·ano ÷ 2,365 MWh/kW ≈ R$ 184/MWh), conferido no INST·08 com o preset Solar (184, modelo). 2) Classificar afirmações em um dos quatro limites: frases do §Erros (mito 1) e dos gabaritos ex-05, ex-09. 3) INST·09: ligar fontes até a razão mês fraco/forte passar de 55% (resposta do modelo: hidro + eólica + solar, 58%).",
+        "por_que_exercita": "Calcular e desconfiar do cálculo é o mecanismo; o encaixe é a régua de sistema aplicada.",
+        "camada": "fonte (ex-09, limites) + alexandria (classificação e meta)"
+      },
+      "visualizacao": [
+        {"trabalho": "o denominador manda", "relacao": "LCOE(FCap) = CAPEX·CRF/(8,76·FCap) + O&M/(8,76·FCap) + variável", "eixos": "x = FCap (10–92%); y = R$/MWh; ponto atual; curvas das tecnologias em cinza com a selecionada em destaque", "unidade": "%; R$/MWh", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false, "nota": "O INST·08 não tem figura na fonte. Camada Alexandria com a fórmula literal do script."},
+        {"trabalho": "de onde vem o custo", "relacao": "parcela de capital × O&M + variável", "eixos": "barra empilhada 100%", "unidade": "R$/MWh e %", "existe_no_codigo": false, "forma_prometida_nao_desenhada": false},
+        {"trabalho": "o encaixe é o produto", "relacao": "soma mensal ponderada dos perfis ligados; piso = mês mínimo", "eixos": "x = jan…dez; y = índice ponderado (0–115); barras empilhadas por fonte; linha do piso", "unidade": "índice", "existe_no_codigo": false, "forma_prometida_nao_desenhada": true, "nota": "A fonte desenha (L3336–L3355). 4 fontes: dentro da heurística."}
+      ],
+      "instrumentos": [
+        {"id": "m03-inst-08", "bloco_indice_fonte": "após 1 (L2065 → L2067)", "bloco_indice_proposto": "após 1", "invocacao": "bloco 1 termina em 'Manipule as duas no instrumento:'", "previsao": true, "papel": "confere o ex-09 e faz o teste do limite 2"},
+        {"id": "m03-inst-09", "bloco_indice_fonte": "após 6 (L2123 → L2125)", "bloco_indice_proposto": "após 6", "invocacao": "bloco 6 termina em 'o instrumento final mostra o porquê em doze meses:'", "previsao": true, "papel": "síntese do módulo"}
+      ],
+      "checagem": "ex-09 com resposta registrada antes do gabarito. Classificação por limite com a tabela 10.1 como referência depois do registro. ex-10 (três níveis) vai para a Revisão, com o exercício oral como atividade recomendada (P14).",
+      "recuperacao": {
+        "antes": "A01, bloco 8: 'o FC de uma térmica é o diário de quantas vezes o sistema precisou dela'. A pergunta da A01 volta antes do limite 2. Opcional: A04 e A07 (as duas complementaridades) antes do INST·09.",
+        "proximo_passo": "Última aula: 'Revisão do módulo → Avaliação'. A avaliação mostra o critério antes (C10), sem limiar de aprovação (P18). Depois, 'Caso — Operação A' com Desafio de decisão (P17) e a linha 'experiência jogável em desenho' (P25)."
+      },
+      "midia": [
+        {"onde": "nenhuma imagem", "o_que": "—", "trabalho": "aula de cálculo e síntese; as figuras programáticas fazem o trabalho (ESTILO: 'uma aula de cálculo pode não precisar de nenhuma')"},
+        {"onde": "evitar", "o_que": "ilustração do 'time' com jogadores", "trabalho": "a metáfora é da prosa; desenhá-la vira decoração (C6) e arrisca kitsch"}
+      ],
+      "mobile_390": "O ex-09 como enunciado compacto + campo no 1º viewport. Bancada: curva em largura total, barra decomposta embaixo, seleção de tecnologia em controle segmentado rolável dentro do contêiner, sliders embaixo. A tabela dos limites vira quatro fichas numeradas. Mesa de encaixe: barras de 12 meses em largura total com as iniciais dos meses e as quatro chaves como botões grandes.",
+      "lacunas_e_dependencias": {
+        "fonte": ["presets de CAPEX, O&M, vida e variável inspirados em EPE/Lazard (vivos)", "perfis mensais do INST·09 'didáticos', inspirados em ONS/UNICA/ABEEólica", "a síntese do 'time' dá papéis em prosa, não notas por atributo: nenhuma matriz de atributos × fontes com valores inventados"],
+        "content_qa": ["P20: FCap dos presets × faixas da A01 × M01·A08"],
+        "s9": ["figuras do INST·08 e INST·09", "calculador do INST·09 devolver a série mensal", "registro de tentativas", "avaliação extraída do script (L3409)", "três níveis"]
+      },
+      "nota_ambicao": "Um teste de estresse em que o learner faz o LCOE 'mentir' com as próprias mãos (arrastar o FCap do gás e ver o custo quase dobrar sem mudar a usina) e depois um encaixe em que ligar a eólica, o sol e a cana levanta o chão do ano 'sem ninguém construir uma usina a mais', nas palavras da fonte. A pergunta do §00 ('não existe melhor fonte') fecha como algo que ele viu, não leu."
+    }
+  ],
+  "modulo_alem_das_aulas": {
+    "caso": "§Caso L2172: 'Caso — Operação A' (sem 'Parte 3', P17). Mineração fictícia, A4 13,8 kV, 500 kW. Três candidaturas (solar própria em três caminhos; contrato por fonte no ACL; diesel × bateria) e uma lista do que pedir ao cliente. Desafio de decisão da camada Alexandria ao final: qual candidatura estudar primeiro e que dado pedir antes, com evidências do caso, premissas e trade-off. A seção 'Linguagem GridAlpha para esse caso' vira 'formulação de referência' sem a marca (P24).",
+    "revisao": "ex-10 (Síntese) + mitos do §Erros como banco de 'identificar o erro' (F-M12-7) + perguntas do §Voz como atividade recomendada (P14).",
+    "avaliacao": "10 questões com feedback (script L3409). Sem limiar de aprovação (P18); o '8 de 10' fica como registro legado.",
+    "experiencia_jogavel": "Linha 'experiência jogável em desenho' (P25). A pilha de mérito, o encaixe sazonal e o dia do sistema são candidatos naturais para o game-design pass futuro; nada disso é projetado aqui."
+  },
+  "features_registradas": ["F-M03-1", "F-M03-2", "F-M03-3", "F-M03-4", "F-M03-5", "F-M03-6", "F-M03-7", "F-M03-8"]
+}

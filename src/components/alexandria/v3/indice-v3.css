@@ -1,0 +1,673 @@
+/* Alexandria v3 — O Índice (trilhas e módulos). */
+
+.alx3 .ind {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+}
+
+/* ── coluna fixa ─────────────────────────────────────────── */
+
+.alx3 .ind-lado {
+  position: sticky;
+  top: 65px;
+  align-self: start;
+  max-height: calc(100vh - 65px);
+  overflow-y: auto;
+  padding: 36px 28px 40px 32px;
+  border-right: 1px solid var(--fio);
+  scrollbar-width: thin;
+}
+
+.alx3 .ind-rotulo {
+  margin: 0 0 18px;
+}
+
+.alx3 .ind-trilhas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.alx3 .ind-trilha {
+  border-top: 1px solid var(--fio);
+}
+
+.alx3 .ind-trilha:last-child {
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .ind-trilha-link {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  align-items: baseline;
+  padding: 12px 0;
+  text-decoration: none;
+  color: var(--tinta-suave);
+  transition: color var(--t-hover);
+}
+
+.alx3 .ind-trilha-link:hover,
+.alx3 .ind-trilha[data-ativa='true'] .ind-trilha-link {
+  color: var(--tinta);
+}
+
+.alx3 .ind-romano {
+  font-family: var(--f-leitura);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.alx3 .ind-trilha[data-ativa='true'] .ind-romano {
+  color: var(--oxido);
+}
+
+.alx3 .ind-trilha-nome {
+  font-family: var(--f-leitura);
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.alx3 .ind-modulos {
+  list-style: none;
+  margin: 0 0 12px 34px;
+  padding: 0;
+  display: none;
+}
+
+.alx3 .ind-trilha[data-ativa='true'] .ind-modulos {
+  display: block;
+}
+
+.alx3 .ind-modulo-link {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 4px;
+  padding: 4px 0;
+  font-size: 15px;
+  line-height: 1.35;
+  text-decoration: none;
+  color: var(--tinta-suave);
+  transition: color var(--t-hover);
+}
+
+.alx3 .ind-modulo-link .v-dado {
+  font-size: 13px;
+}
+
+.alx3 .ind-modulo-link:hover {
+  color: var(--tinta);
+}
+
+/* seu percurso: por trilha, em palavras e numa linha de traços */
+
+.alx3 .percurso {
+  margin-top: 28px;
+}
+
+.alx3 .percurso-lista {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.alx3 .percurso-rotulo {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 15px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .percurso-romano {
+  font-family: var(--f-leitura);
+  font-size: 17.5px;
+  color: var(--tinta);
+  min-width: 22px;
+}
+
+.alx3 .percurso-tracos {
+  display: flex;
+  gap: 2px;
+  margin: 6px 0 0 32px;
+  height: 12px;
+  align-items: flex-end;
+}
+
+.alx3 .percurso-traco {
+  flex: 1;
+  max-width: 4px;
+  height: 6px;
+  background: var(--fio-forte);
+  transition: height var(--t-revelar), background var(--t-revelar);
+}
+
+.alx3 .percurso-traco[data-feita='true'] {
+  height: 12px;
+  background: var(--tinta);
+}
+
+.alx3 .ind-legenda {
+  margin: 24px 0 0;
+  display: grid;
+  gap: 6px;
+  font-size: 15px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .ind-legenda div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alx3 .ind-legenda dt,
+.alx3 .ind-legenda dd {
+  margin: 0;
+  display: flex;
+}
+
+.alx3 .ind-visitante {
+  margin: 24px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+/* ── corpo ───────────────────────────────────────────────── */
+
+.alx3 .ind-corpo {
+  padding: 48px 56px 120px;
+  min-width: 0;
+}
+
+.alx3 .ind-abertura {
+  margin-bottom: 44px;
+}
+
+.alx3 .ind-titulo {
+  margin: 10px 0 0;
+  max-width: 17ch;
+  font-size: clamp(39px, 4.75vw, 65px);
+}
+
+.alx3 .ind-titulo em {
+  font-style: italic;
+}
+
+.alx3 .trilha {
+  margin-bottom: 72px;
+  scroll-margin-top: 80px;
+}
+
+.alx3 .trilha-capa {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  border: 1px solid var(--fio);
+  background: var(--papel-fundo);
+}
+
+.alx3 .trilha-capa > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 40%;
+}
+
+.alx3[data-modo='noturno'] .trilha-capa img {
+  /* positiva e escurecida: inverter vira negativo fantasma */
+  filter: brightness(0.8) contrast(1.06) saturate(0.85);
+}
+
+.alx3 .trilha-bloco {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: grid;
+  gap: 6px;
+  padding: 22px 30px 24px;
+  background: #15213b;
+  color: #f2ecdf;
+  max-width: 60%;
+}
+
+.alx3 .trilha-bloco .v-dado {
+  color: #c9bfa8;
+}
+
+.alx3 .trilha-nome {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: clamp(28px, 2.8vw, 41px);
+  font-weight: 450;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
+}
+
+.alx3 .trilha-legenda {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  font-size: 13px;
+  color: #3d4252;
+  background: rgba(242, 236, 223, 0.86);
+  padding: 3px 6px;
+}
+
+/* módulos */
+
+.alx3 .modulos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.alx3 .modulo {
+  border-bottom: 1px solid var(--fio);
+  scroll-margin-top: 80px;
+}
+
+.alx3 .modulo-cabeca {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto 28px;
+  gap: 0 24px;
+  padding: 28px 18px 26px 12px;
+  transition: background var(--t-hover);
+}
+
+.alx3 .modulo-cabeca:hover {
+  background: var(--papel-hover);
+}
+
+.alx3 .modulo-codigo {
+  font-size: 15px;
+  color: var(--tinta);
+  padding-top: 4px;
+}
+
+.alx3 .modulo-titulo {
+  margin: 0;
+  font-family: var(--f-interface);
+  font-size: 18.5px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.alx3 .modulo-botao {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* o botão do título cobre a linha inteira: a área de clique é o módulo */
+.alx3 .modulo-botao::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.alx3 .modulo-botao:focus-visible {
+  outline: none;
+}
+
+.alx3 .modulo-botao:focus-visible::after {
+  outline: 2px solid var(--oxido);
+  outline-offset: -2px;
+}
+
+.alx3 .modulo-tese {
+  margin: 8px 0 16px;
+  max-width: 34ch;
+  font-family: var(--f-leitura);
+  font-style: italic;
+  font-size: clamp(24px, 2.25vw, 32.5px);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+}
+
+.alx3 .modulo-marcas {
+  display: flex;
+  gap: 8px;
+}
+
+.alx3 .marca {
+  display: block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid var(--fio-forte);
+}
+
+.alx3 .marca-percorrida {
+  background: var(--tinta);
+  border-color: var(--tinta);
+}
+
+.alx3 .marca-leitura {
+  border-color: var(--tinta);
+  position: relative;
+}
+
+.alx3 .marca-leitura::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: var(--tinta);
+}
+
+.alx3 .marca-aqui {
+  border: 2px solid var(--oxido);
+}
+
+.alx3 .modulo-meta {
+  align-self: start;
+  padding-top: 5px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.alx3 .modulo-sinal {
+  position: relative;
+  align-self: start;
+  margin-top: 6px;
+  width: 14px;
+  height: 14px;
+}
+
+.alx3 .modulo-sinal::before,
+.alx3 .modulo-sinal::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 14px;
+  height: 1px;
+  background: var(--tinta);
+  transition: transform var(--t-abrir);
+}
+
+.alx3 .modulo-sinal::after {
+  transform: rotate(90deg);
+}
+
+.alx3 .modulo[data-aberto='true'] .modulo-sinal::after {
+  transform: rotate(0deg);
+}
+
+/* gaveta */
+
+.alx3 .modulo-gaveta {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--t-abrir);
+}
+
+.alx3 .modulo[data-aberto='true'] .modulo-gaveta {
+  grid-template-rows: 1fr;
+}
+
+.alx3 .gaveta-dentro {
+  overflow: hidden;
+}
+
+.alx3 .aulas {
+  list-style: none;
+  margin: 0 0 22px 88px;
+  padding: 0;
+  border-top: 1px solid var(--fio);
+}
+
+.alx3 .aula {
+  border-bottom: 1px solid var(--fio);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 420ms cubic-bezier(0.19, 1, 0.22, 1), transform 420ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* as aulas entram uma a uma quando o módulo abre */
+.alx3 .modulo[data-aberto='true'] .aula {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i, 0) * 45ms + 120ms);
+}
+
+/* a tese desliza meio passo quando a linha do módulo está sob o cursor */
+.alx3 .modulo-tese {
+  transition: transform var(--t-abrir);
+}
+
+.alx3 .modulo-cabeca:hover .modulo-tese {
+  transform: translateX(6px);
+}
+
+/* a gravura da trilha assenta ao entrar; o bloco do título desliza junto */
+.alx3 .trilha-capa.revelar {
+  transform: none;
+}
+
+.alx3 .trilha-capa img {
+  transform: scale(1.07);
+  transition: transform 1600ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.alx3 .trilha-capa.visivel img {
+  transform: none;
+}
+
+.alx3 .trilha-capa .trilha-bloco {
+  transform: translateX(-24px);
+  opacity: 0;
+  transition: transform 900ms cubic-bezier(0.19, 1, 0.22, 1) 200ms, opacity 900ms cubic-bezier(0.19, 1, 0.22, 1) 200ms;
+}
+
+.alx3 .trilha-capa.visivel .trilha-bloco {
+  transform: none;
+  opacity: 1;
+}
+
+.alx3 .aula:last-child {
+  border-bottom: 0;
+}
+
+.alx3 .aula-link {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 120px;
+  gap: 0 18px;
+  padding: 16px 18px 16px 0;
+  text-decoration: none;
+  color: var(--tinta);
+  transition: background var(--t-hover);
+}
+
+.alx3 .aula-link:hover {
+  background: var(--papel-hover);
+}
+
+.alx3 .aula[data-aqui] .aula-link {
+  border-left: 2px solid var(--oxido);
+  padding-left: 10px;
+  margin-left: -12px;
+}
+
+.alx3 .aula-num {
+  padding-top: 4px;
+}
+
+.alx3 .aula-texto {
+  display: grid;
+  gap: 4px;
+}
+
+.alx3 .aula-titulo {
+  font-family: var(--f-leitura);
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.alx3 .aula-tema {
+  font-size: 13px;
+}
+
+.alx3 .aula-sinopse {
+  font-size: 16.5px;
+  line-height: 1.45;
+  color: var(--tinta-suave);
+  max-width: 64ch;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.alx3 .aula-estado {
+  padding-top: 5px;
+  text-align: right;
+  font-size: 13px;
+}
+
+.alx3 .aula[data-aqui] .aula-estado {
+  color: var(--oxido);
+}
+
+/* ── tablet e celular ────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .alx3 .ind {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+  .alx3 .ind-corpo {
+    padding: 40px 32px 96px;
+  }
+  .alx3 .modulo-cabeca {
+    grid-template-columns: 52px minmax(0, 1fr) 24px;
+  }
+  .alx3 .modulo-meta {
+    grid-column: 2;
+    grid-row: 2;
+    padding-top: 14px;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 860px) {
+  .alx3 .ind {
+    display: block;
+  }
+  .alx3 .ind-lado {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    max-height: none;
+    overflow: visible;
+    padding: 0 16px;
+    border-right: 0;
+    border-bottom: 1px solid var(--fio);
+    background: var(--papel);
+  }
+  .alx3 .ind-rotulo,
+  .alx3 .percurso,
+  .alx3 .ind-legenda,
+  .alx3 .ind-visitante,
+  .alx3 .ind-modulos {
+    display: none !important;
+  }
+  .alx3 .ind-trilhas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .alx3 .ind-trilha,
+  .alx3 .ind-trilha:last-child {
+    border: 0;
+  }
+  .alx3 .ind-trilha-link {
+    display: flex;
+    justify-content: center;
+    min-height: 48px;
+    align-items: center;
+    padding: 0;
+  }
+  .alx3 .ind-trilha[data-ativa='true'] .ind-trilha-link {
+    border-bottom: 2px solid var(--oxido);
+  }
+  .alx3 .ind-trilha-nome {
+    display: none;
+  }
+  .alx3 .ind-corpo {
+    padding: 28px 16px 80px;
+  }
+  .alx3 .trilha-capa {
+    aspect-ratio: 4 / 3;
+  }
+  .alx3 .trilha-bloco {
+    max-width: 88%;
+    padding: 14px 18px 16px;
+  }
+  .alx3 .trilha-legenda {
+    top: 8px;
+    bottom: auto;
+  }
+  .alx3 .modulo-cabeca {
+    grid-template-columns: minmax(0, 1fr) 20px;
+    padding: 22px 4px 22px 0;
+  }
+  .alx3 .modulo-codigo {
+    grid-column: 1;
+    padding: 0 0 6px;
+  }
+  .alx3 .modulo-corpo {
+    grid-column: 1;
+  }
+  .alx3 .modulo-meta {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .alx3 .modulo-sinal {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .alx3 .aulas {
+    margin-left: 0;
+  }
+  .alx3 .aula-link {
+    grid-template-columns: 28px minmax(0, 1fr);
+    min-height: 44px;
+  }
+  .alx3 .aula-estado {
+    grid-column: 2;
+    text-align: left;
+    padding-top: 8px;
+  }
+}
+
+/* atalhos de consulta do módulo: glossário e biblioteca filtrados */
+.alx3 .gaveta-consulta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin: 18px 0 6px;
+  font-size: 14px;
+}
+
+.alx3 .gaveta-consulta a {
+  color: var(--tinta-suave);
+  text-decoration: underline;
+  text-decoration-color: var(--ouro);
+  text-underline-offset: 4px;
+}
+
+.alx3 .gaveta-consulta a:hover {
+  color: var(--oxido);
+}

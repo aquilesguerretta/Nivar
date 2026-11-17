@@ -279,7 +279,7 @@ export function BibliotecaView() {
             }}
           >
             Ainda não existe. O campo <code>references</code> está vazio nas nove
-            aulas extraídas do Módulo 01 — o § Ref da fonte é do módulo inteiro,
+            aulas extraídas do Módulo 01 — a estante do módulo é do módulo inteiro,
             não de cada aula. Quando uma aula trouxer documento próprio, ele
             aparece aqui ancorado nela.
           </p>

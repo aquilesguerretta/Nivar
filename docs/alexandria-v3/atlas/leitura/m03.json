@@ -1,0 +1,989 @@
+{
+  "modulo": "modulo-03",
+  "titulo_modulo": "Tecnologias de Geração",
+  "arquivos_fonte": [
+    "src/lib/data/alexandria-modulo-03-content.ts",
+    "docs/alexandria-v2/extraction/m03/aparato.md"
+  ],
+  "aulas": [
+    {
+      "numero": 1,
+      "chave": "aula-03-01",
+      "titulo": "Capacidade, energia e o fator que liga as duas."
+    },
+    {
+      "numero": 2,
+      "chave": "aula-03-02",
+      "titulo": "A bateria que veio antes do lítio."
+    },
+    {
+      "numero": 3,
+      "chave": "aula-03-03",
+      "titulo": "A hidrelétrica que não escolhe quando gerar."
+    },
+    {
+      "numero": 4,
+      "chave": "aula-03-04",
+      "titulo": "O vento de classe mundial do Nordeste."
+    },
+    {
+      "numero": 5,
+      "chave": "aula-03-05",
+      "titulo": "A fonte que quebrou a curva de custos — e endureceu o relógio."
+    },
+    {
+      "numero": 6,
+      "chave": "aula-03-06",
+      "titulo": "A flexibilidade que se paga — e o sistema paga."
+    },
+    {
+      "numero": 7,
+      "chave": "aula-03-07",
+      "titulo": "O resto do parque térmico: o que cada um ainda resolve."
+    },
+    {
+      "numero": 8,
+      "chave": "aula-03-08",
+      "titulo": "Angra 3, ou: uma aula de custo de capital em concreto armado."
+    },
+    {
+      "numero": 9,
+      "chave": "aula-03-09",
+      "titulo": "A bateria desloca energia. Quem gera é o resto."
+    },
+    {
+      "numero": 10,
+      "chave": "aula-03-10",
+      "titulo": "A planilha que ordena custos não é a planilha que decide o sistema."
+    }
+  ],
+  "mencoes": [
+    {
+      "aula": 1,
+      "tipo": "outro",
+      "nome": "Parque gerador brasileiro (potência centralizada e MMGD)",
+      "trecho": "Capacidade total (215,9 GW centralizados em 1º/jan/2026 — ANEEL/SIGA), MMGD (~40 GW — ANEEL/ABSOLAR), participação renovável (84,6% — SIGA) e a expansão projetada para 2026 (+9,1 GW, puxada por 4,6 GW de solar — ANEEL/RALIE) são números que <strong>mudam todo mês</strong>.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 237,
+      "contexto": "A aula abre com o tamanho do parque gerador brasileiro e separa capacidade instalada de energia gerada.",
+      "ganho_no_mapa": "Ver todas as usinas por fonte de uma vez mostra onde estão os 215,9 GW e por que capacidade no mapa não é o mesmo que energia entregue.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 1,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (eólica — ventos alísios)",
+      "trecho": "Alísios — entre os melhores ventos do planeta",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 241,
+      "contexto": "Na tabela de fatores de capacidade típicos, a linha da eólica é a única ancorada numa região: o Nordeste, com FC de ~40–55%.",
+      "ganho_no_mapa": "Localizar os parques eólicos no Nordeste explica de onde vem o fator de capacidade alto da eólica brasileira.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "UHE Itaipu",
+      "trecho": "<strong>Itaipu</strong> — 14 GW binacionais no Paraná, vinte unidades geradoras, historicamente responsável por algo na casa de 8–10% do consumo elétrico brasileiro (Itaipu Binacional — número vivo, varia com a hidrologia).",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 248,
+      "contexto": "Itaipu é a primeira âncora da era das grandes hidrelétricas: 14 GW binacionais e 8–10% do consumo brasileiro.",
+      "ganho_no_mapa": "Ver Itaipu no rio Paraná dá escala aos 14 GW binacionais e mostra onde fica a usina que sozinha atende quase um décimo do consumo.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "rio_bacia",
+      "nome": "Rio Paraná",
+      "trecho": "<strong>Itaipu</strong> — 14 GW binacionais no Paraná, vinte unidades geradoras",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 248,
+      "contexto": "A aula localiza Itaipu pelo rio em que ela está: o Paraná.",
+      "ganho_no_mapa": "Traçar o rio Paraná mostra a bacia que sustenta a maior usina do sistema.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "UHE Tucuruí",
+      "trecho": "<strong>Tucuruí</strong> — ~8,5 GW no Tocantins, a maior usina 100% brasileira.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 248,
+      "contexto": "Tucuruí é citada como a maior usina 100% brasileira, com ~8,5 GW no rio Tocantins.",
+      "ganho_no_mapa": "Ver Tucuruí no Tocantins mostra onde fica o segundo gigante da aula e a distância entre ele e Itaipu.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "rio_bacia",
+      "nome": "Rio Tocantins",
+      "trecho": "<strong>Tucuruí</strong> — ~8,5 GW no Tocantins, a maior usina 100% brasileira.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 248,
+      "contexto": "A aula localiza Tucuruí pelo rio Tocantins, que reaparece na lista dos reservatórios de regularização.",
+      "ganho_no_mapa": "Traçar o Tocantins mostra um rio que carrega tanto um gigante de potência quanto reservatórios de regularização.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "reservatorio",
+      "nome": "UHE Furnas",
+      "trecho": "<strong>Furnas, Três Marias, Sobradinho, Serra da Mesa</strong> — os grandes reservatórios de regularização do Sudeste, do São Francisco e do Tocantins.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 248,
+      "contexto": "A aula lista os grandes reservatórios de regularização plurianual do Sudeste, do São Francisco e do Tocantins.",
+      "ganho_no_mapa": "Localizar Furnas mostra um dos grandes estoques de regularização citados pela aula e a bacia a que pertence.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "reservatorio",
+      "nome": "UHE Três Marias",
+      "trecho": "<strong>Furnas, Três Marias, Sobradinho, Serra da Mesa</strong> — os grandes reservatórios de regularização do Sudeste, do São Francisco e do Tocantins.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 248,
+      "contexto": "A aula lista os grandes reservatórios de regularização plurianual do Sudeste, do São Francisco e do Tocantins.",
+      "ganho_no_mapa": "Localizar Três Marias mostra um dos grandes estoques de regularização citados pela aula e a bacia a que pertence.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "reservatorio",
+      "nome": "UHE Sobradinho",
+      "trecho": "<strong>Furnas, Três Marias, Sobradinho, Serra da Mesa</strong> — os grandes reservatórios de regularização do Sudeste, do São Francisco e do Tocantins.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 248,
+      "contexto": "A aula lista os grandes reservatórios de regularização plurianual do Sudeste, do São Francisco e do Tocantins.",
+      "ganho_no_mapa": "Localizar Sobradinho mostra um dos grandes estoques de regularização citados pela aula e a bacia a que pertence.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "reservatorio",
+      "nome": "UHE Serra da Mesa",
+      "trecho": "<strong>Furnas, Três Marias, Sobradinho, Serra da Mesa</strong> — os grandes reservatórios de regularização do Sudeste, do São Francisco e do Tocantins.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 248,
+      "contexto": "A aula lista os grandes reservatórios de regularização plurianual do Sudeste, do São Francisco e do Tocantins.",
+      "ganho_no_mapa": "Localizar Serra da Mesa mostra um dos grandes estoques de regularização citados pela aula e a bacia a que pertence.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "rio_bacia",
+      "nome": "Rio São Francisco",
+      "trecho": "<strong>Furnas, Três Marias, Sobradinho, Serra da Mesa</strong> — os grandes reservatórios de regularização do Sudeste, do São Francisco e do Tocantins.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 248,
+      "contexto": "A aula lista os grandes reservatórios de regularização plurianual do Sudeste, do São Francisco e do Tocantins.",
+      "ganho_no_mapa": "Traçar o São Francisco mostra a bacia cujos reservatórios guardam água de anos úmidos para atravessar anos secos.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "reservatorio",
+      "nome": "Reservatórios do SIN (a \"bateria do Brasil\")",
+      "trecho": "<strong>os reservatórios são a bateria do Brasil</strong> — uma bateria continental, construída em concreto entre os anos 1960 e 1990, décadas antes da primeira célula de lítio comercial.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 246,
+      "contexto": "A aula define os reservatórios como a \"bateria do Brasil\": estoque de chuva em escala continental, construído entre os anos 1960 e 1990.",
+      "ganho_no_mapa": "Ver todos os grandes reservatórios juntos torna concreta a ideia de uma bateria continental espalhada pelas bacias.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "submercado",
+      "nome": "Subsistemas do SIN (EAR por subsistema)",
+      "trecho": "A medida dessa bateria tem nome técnico: <strong>EAR — Energia Armazenada</strong>, publicada diariamente pelo ONS por subsistema.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 249,
+      "contexto": "A EAR (Energia Armazenada), medida do estoque dos reservatórios, é publicada pelo ONS por subsistema.",
+      "ganho_no_mapa": "Um mapa dos subsistemas com o nível de EAR de cada um mostra que a \"bateria\" não é uma só: cada região tem o seu estoque.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "reservatorio",
+      "nome": "UHE Balbina",
+      "trecho": "O trauma formativo tem nome: <strong>Balbina</strong> (AM, anos 1980) — área gigante alagada para potência pífia, o anti-exemplo citado até hoje.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 255,
+      "contexto": "Balbina (AM) é o anti-exemplo socioambiental da aula: área gigante alagada para potência pífia.",
+      "ganho_no_mapa": "Ver o tamanho do lago de Balbina no Amazonas diante da potência da usina mostra o custo territorial que fez o país parar de construir reservatórios.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "evento",
+      "nome": "Crise hídrica de 2021",
+      "trecho": "Ajuste a ENA para ~75% e veja o desenho de 2021; para ~60%, o fantasma de 2001.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 105,
+      "contexto": "A nota do simulador de EAR aponta dois anos de referência para a escassez hídrica: 2021 (ENA ~75%) e 2001 (ENA ~60%).",
+      "ganho_no_mapa": "Uma vista dos reservatórios com o estoque de 2021 mostraria onde a seca apertou a \"bateria\" do sistema.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "evento",
+      "nome": "Escassez hídrica de 2001 (\"o fantasma de 2001\")",
+      "trecho": "Ajuste a ENA para ~75% e veja o desenho de 2021; para ~60%, o fantasma de 2001.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 105,
+      "contexto": "A nota do simulador de EAR aponta dois anos de referência para a escassez hídrica; a fonte só alude a 2001 como \"fantasma\", sem nomear o racionamento.",
+      "ganho_no_mapa": "Uma vista dos reservatórios com o estoque de 2001 mostraria o esvaziamento que a aula chama de \"fantasma de 2001\".",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "rio_bacia",
+      "nome": "Rio Xingu",
+      "trecho": "A fio d'água gera o que a vazão de setembro permitir — tipicamente uma fração pequena da capacidade (no Xingu, o vale chega a ~10–20% — ONS, vivo).",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 411,
+      "contexto": "O gabarito do exercício 03 (Aulas 02–03) usa o Xingu para dimensionar o vale de geração de uma fio d'água num setembro seco.",
+      "ganho_no_mapa": "Localizar o Xingu mostra o rio cuja vazão de seca derruba a geração de uma fio d'água a 10–20% da capacidade.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "usina",
+      "nome": "UHE Belo Monte",
+      "trecho": "<strong>Belo Monte</strong> (Xingu, PA) é a âncora obrigatória: ~11,2 GW instalados — terceira maior capacidade hidrelétrica do mundo — desenhada a fio d'água para reduzir a área alagada do projeto original.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 260,
+      "contexto": "Belo Monte é o caso central da hidrelétrica a fio d'água: ~11,2 GW instalados, desenhada para alagar menos.",
+      "ganho_no_mapa": "Ver Belo Monte no Xingu, no Pará, mostra uma usina gigante sem grande lago de regularização e onde ela fica em relação ao resto do sistema.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "rio_bacia",
+      "nome": "Rio Xingu",
+      "trecho": "a geração média fica na casa de 4–5 GW médios, fator de capacidade em torno de 40% (ONS — vivo), porque o Xingu tem uma das sazonalidades mais brutais do planeta — caudaloso na cheia amazônica, magro na seca.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 260,
+      "contexto": "A sazonalidade do Xingu explica por que Belo Monte gera em média 4–5 GW tendo 11,2 GW instalados.",
+      "ganho_no_mapa": "Ver o Xingu dentro da bacia amazônica ajuda a entender a cheia e a seca que governam a geração da usina.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "usina",
+      "nome": "UHE Jirau",
+      "trecho": "<strong>Madeira</strong> (Jirau e Santo Antônio, ~7 GW somados) conta história parecida em outro rio.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 260,
+      "contexto": "A aula cita as usinas do Madeira (Jirau e Santo Antônio, ~7 GW somados) como caso parecido ao de Belo Monte em outro rio.",
+      "ganho_no_mapa": "Ver Jirau no rio Madeira mostra o segundo conjunto de grandes usinas a fio d'água do país e onde ele fica em relação a Belo Monte.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "usina",
+      "nome": "UHE Santo Antônio",
+      "trecho": "<strong>Madeira</strong> (Jirau e Santo Antônio, ~7 GW somados) conta história parecida em outro rio.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 260,
+      "contexto": "A aula cita as usinas do Madeira (Jirau e Santo Antônio, ~7 GW somados) como caso parecido ao de Belo Monte em outro rio.",
+      "ganho_no_mapa": "Ver Santo Antônio no rio Madeira, ao lado de Jirau, mostra que as duas usinas dividem o mesmo rio e a mesma sazonalidade.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "rio_bacia",
+      "nome": "Rio Madeira",
+      "trecho": "<strong>Madeira</strong> (Jirau e Santo Antônio, ~7 GW somados) conta história parecida em outro rio.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 260,
+      "contexto": "A aula cita as usinas do Madeira (Jirau e Santo Antônio, ~7 GW somados) como caso parecido ao de Belo Monte em outro rio.",
+      "ganho_no_mapa": "Traçar o Madeira mostra o \"outro rio\" em que a história do fio d'água se repete.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "mercado_estrangeiro",
+      "nome": "Europa (usinas reversíveis)",
+      "trecho": "padrão na Europa e na China, ainda sem projeto de grande porte operando no Brasil (EPE estuda — vivo).",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 264,
+      "contexto": "A usina reversível é apresentada como padrão na Europa e na China, ainda sem projeto de grande porte operando no Brasil.",
+      "ganho_no_mapa": "No globo, destacar a Europa mostra onde a \"bateria hidráulica\" já é padrão, em contraste com o Brasil.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 3,
+      "tipo": "pais",
+      "nome": "China (usinas reversíveis)",
+      "trecho": "padrão na Europa e na China, ainda sem projeto de grande porte operando no Brasil (EPE estuda — vivo).",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 264,
+      "contexto": "A usina reversível é apresentada como padrão na Europa e na China, ainda sem projeto de grande porte operando no Brasil.",
+      "ganho_no_mapa": "No globo, destacar a China mostra onde a \"bateria hidráulica\" já é padrão, em contraste com o Brasil.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 4,
+      "tipo": "estado_regiao",
+      "nome": "Litoral do Nordeste",
+      "trecho": "Esse cubo explica quase tudo da indústria — por que a localização exata do parque (micrositing) vale fortunas, por que torres ficaram mais altas (vento mais rápido e estável em altura), por que pás ficaram gigantes (mais área varrida), e por que o litoral do Nordeste brasileiro virou um dos endereços eólicos mais cobiçados do planeta.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 222,
+      "contexto": "O lead liga a física do cubo da velocidade do vento ao valor do litoral do Nordeste como endereço eólico.",
+      "ganho_no_mapa": "Ver os parques eólicos alinhados no litoral do Nordeste mostra onde o vento forte transforma localização em energia.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "estado_regiao",
+      "nome": "Bahia (BA)",
+      "trecho": "Os ventos alísios do litoral e dos planaltos do NE (BA, RN, CE, PI) são fortes, <em>estáveis e unidirecionais</em> — o oposto do vento turbulento europeu.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 271,
+      "contexto": "A aula localiza os ventos alísios no litoral e nos planaltos do Nordeste e nomeia quatro estados: BA, RN, CE e PI.",
+      "ganho_no_mapa": "Destacar a Bahia com seus parques eólicos mostra um dos quatro estados onde os alísios sustentam fatores de capacidade de 40–55%.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "estado_regiao",
+      "nome": "Rio Grande do Norte (RN)",
+      "trecho": "Os ventos alísios do litoral e dos planaltos do NE (BA, RN, CE, PI) são fortes, <em>estáveis e unidirecionais</em> — o oposto do vento turbulento europeu.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 271,
+      "contexto": "A aula localiza os ventos alísios no litoral e nos planaltos do Nordeste e nomeia quatro estados: BA, RN, CE e PI.",
+      "ganho_no_mapa": "Destacar o Rio Grande do Norte com seus parques eólicos mostra um dos quatro estados onde os alísios sustentam fatores de capacidade de 40–55%.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "estado_regiao",
+      "nome": "Ceará (CE)",
+      "trecho": "Os ventos alísios do litoral e dos planaltos do NE (BA, RN, CE, PI) são fortes, <em>estáveis e unidirecionais</em> — o oposto do vento turbulento europeu.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 271,
+      "contexto": "A aula localiza os ventos alísios no litoral e nos planaltos do Nordeste e nomeia quatro estados: BA, RN, CE e PI.",
+      "ganho_no_mapa": "Destacar o Ceará com seus parques eólicos mostra um dos quatro estados onde os alísios sustentam fatores de capacidade de 40–55%.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "estado_regiao",
+      "nome": "Piauí (PI)",
+      "trecho": "Os ventos alísios do litoral e dos planaltos do NE (BA, RN, CE, PI) são fortes, <em>estáveis e unidirecionais</em> — o oposto do vento turbulento europeu.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 271,
+      "contexto": "A aula localiza os ventos alísios no litoral e nos planaltos do Nordeste e nomeia quatro estados: BA, RN, CE e PI.",
+      "ganho_no_mapa": "Destacar o Piauí com seus parques eólicos mostra um dos quatro estados onde os alísios sustentam fatores de capacidade de 40–55%.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (parque eólico concentrado)",
+      "trecho": "O parque brasileiro soma capacidade na casa de <strong>33–35 GW</strong> (ABEEólica/SIGA — vivo), esmagadoramente concentrada no NE.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 271,
+      "contexto": "A aula afirma que os 33–35 GW eólicos do país estão esmagadoramente concentrados no Nordeste.",
+      "ganho_no_mapa": "A camada de usinas eólicas mostra de imediato a concentração no Nordeste e o vazio relativo no resto do país.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "mercado_estrangeiro",
+      "nome": "Europa (onshore) e Mar do Norte (offshore)",
+      "trecho": "Resultado: fatores de capacidade de 40–55% nos bons sítios (ABEEólica/ONS — vivo), contra 25–30% típicos do onshore europeu. Em FC, o Nordeste onshore compete com o <em>offshore</em> do Mar do Norte — sem precisar molhar o pé.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 271,
+      "contexto": "O fator de capacidade do Nordeste onshore é comparado ao onshore europeu e ao offshore do Mar do Norte.",
+      "ganho_no_mapa": "No globo, colocar o Nordeste ao lado da Europa e do Mar do Norte dá a referência internacional do que é \"vento de classe mundial\".",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste × Sudeste (complementaridade vento–reservatórios)",
+      "trecho": "O vento do NE sopra mais forte no segundo semestre — exatamente a estação seca dos reservatórios do Sudeste.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 272,
+      "contexto": "O vento do Nordeste sopra mais forte no segundo semestre, exatamente a estação seca dos reservatórios do Sudeste.",
+      "ganho_no_mapa": "Ver eólicas do Nordeste e reservatórios do Sudeste na mesma vista mostra que a complementaridade sazonal é também uma distância a vencer com transmissão.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "evento",
+      "nome": "Apagão de 2023",
+      "trecho": "<strong>Sem inércia síncrona</strong> — conecta-se por inversores; relembre o papel disso na anatomia do apagão de 2023 (Módulo 02, Aula 08).",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 274,
+      "contexto": "A falta de inércia síncrona das eólicas, conectadas por inversores, é ligada à anatomia do apagão de 2023 estudada no Módulo 02.",
+      "ganho_no_mapa": "Uma vista do evento de 2023 mostraria onde estava a geração por inversores quando a perturbação se propagou.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "intercambio",
+      "nome": "Escoamento Norte/Nordeste → Sudeste (gargalo e curtailment)",
+      "trecho": "<strong>Localização concentrada longe da carga</strong> — o melhor vento está a milhares de quilômetros do consumo do Sudeste, e o gargalo de escoamento Norte/Nordeste transformou parte dessa energia em <em>curtailment</em> (Módulo 02, Aula 10): vento de classe mundial, cortado por falta de fio.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 274,
+      "contexto": "O melhor vento está a milhares de quilômetros do consumo do Sudeste, e o gargalo de escoamento Norte/Nordeste virou curtailment.",
+      "ganho_no_mapa": "Ver as linhas que ligam o Norte/Nordeste ao Sudeste mostra o \"fio\" que falta entre o vento e a carga.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "outro",
+      "nome": "Costa brasileira (potencial eólico offshore)",
+      "trecho": "O marco legal saiu — Lei 15.097/2025 — e o potencial técnico da costa brasileira é medido em centenas de GW (EPE).",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 275,
+      "contexto": "O offshore é tratado como horizonte: marco legal aprovado e potencial técnico de centenas de GW na costa brasileira.",
+      "ganho_no_mapa": "Ver a costa sem nenhuma usina offshore, ao lado do onshore do Nordeste, mostra que esse potencial ainda é horizonte e não presente.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 5,
+      "tipo": "pais",
+      "nome": "China (manufatura fotovoltaica)",
+      "trecho": "o custo do módulo fotovoltaico caiu na ordem de <strong>90% em pouco mais de uma década</strong> (IRENA/Lazard — vivo), puxado por escala de manufatura concentrada na China.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 280,
+      "contexto": "A queda de ~90% no custo do módulo fotovoltaico é atribuída à escala de manufatura concentrada na China.",
+      "ganho_no_mapa": "No globo, destacar a China mostra de onde vem a manufatura que barateou a solar instalada no Brasil.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (solar centralizada)",
+      "trecho": "<strong>UFV</strong> — Usina Fotovoltaica centralizada: dezenas a centenas de MW, concentrada no NE e Centro-Oeste (irradiação alta, terra barata), com rastreadores de eixo (trackers) levando o FC a 25–30%.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 282,
+      "contexto": "A solar centralizada (UFV) se concentra no Nordeste e no Centro-Oeste, onde a irradiação é alta e a terra é barata.",
+      "ganho_no_mapa": "A camada de usinas solares mostra os polos de UFV no Nordeste e a distância deles até os grandes centros de consumo.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "estado_regiao",
+      "nome": "Centro-Oeste (solar centralizada)",
+      "trecho": "<strong>UFV</strong> — Usina Fotovoltaica centralizada: dezenas a centenas de MW, concentrada no NE e Centro-Oeste (irradiação alta, terra barata), com rastreadores de eixo (trackers) levando o FC a 25–30%.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 282,
+      "contexto": "A solar centralizada (UFV) se concentra no Nordeste e no Centro-Oeste, onde a irradiação é alta e a terra é barata.",
+      "ganho_no_mapa": "A camada de usinas solares mostra os polos de UFV no Centro-Oeste, onde a terra é barata e a irradiação é alta.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (perfil eólico com reforço noturno)",
+      "trecho": "Carga didática típica do SIN (~70–100 GW), solar em perfil de dia claro, eólica com leve reforço noturno (perfil NE).",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 139,
+      "contexto": "O simulador do dia do sistema usa um perfil eólico com leve reforço noturno, identificado como perfil do Nordeste.",
+      "ganho_no_mapa": "Associar o perfil ao Nordeste lembra que o vento que cobre a noite vem de uma região específica do mapa.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "pais",
+      "nome": "Bolívia (gás importado)",
+      "trecho": "O Brasil importa parte do gás (Bolívia, GNL spot), e o GNL chega indexado ao humor do mercado global",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 293,
+      "contexto": "A térmica converte preço de combustível em preço de energia, e parte do gás que ela queima é importada da Bolívia.",
+      "ganho_no_mapa": "Ver a Bolívia e a entrada do gás no território mostra a dependência externa de parte do parque térmico.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 6,
+      "tipo": "gnl",
+      "nome": "GNL importado (mercado spot global)",
+      "trecho": "O Brasil importa parte do gás (Bolívia, GNL spot), e o GNL chega indexado ao humor do mercado global",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 293,
+      "contexto": "O GNL importado no mercado spot chega indexado ao preço global do gás.",
+      "ganho_no_mapa": "Ver os pontos de chegada de GNL na costa mostra por onde o preço global do gás entra no sistema elétrico brasileiro.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 6,
+      "tipo": "evento",
+      "nome": "Crise hídrica de 2021",
+      "trecho": "foi ele que, em 2021, empurrou CVUs acima de <strong>R$ 1.000/MWh</strong> para dentro do despacho, mês após mês, durante a crise hídrica.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 293,
+      "contexto": "Na crise hídrica de 2021, o GNL caro empurrou CVUs acima de R$ 1.000/MWh para dentro do despacho, mês após mês.",
+      "ganho_no_mapa": "Uma vista de 2021 com reservatórios baixos e térmicas a gás despachadas mostraria a cadeia seca → térmica → preço.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "submercado",
+      "nome": "Subsistema com térmica inflexível e vento cortado",
+      "trecho": "criam térmicas que rodam <em>mesmo quando o sistema não precisa</em> — às vezes ao lado de vento sendo cortado no mesmo subsistema.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 295,
+      "contexto": "Térmicas contratualmente inflexíveis rodam mesmo sem necessidade, às vezes ao lado de vento cortado no mesmo subsistema (a fonte não nomeia qual).",
+      "ganho_no_mapa": "Ver térmicas e eólicas dentro do mesmo subsistema mostra como inflexibilidade e curtailment podem coexistir no mesmo pedaço de rede.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "gasoduto",
+      "nome": "Malha de gasodutos",
+      "trecho": "a malha de gasodutos continua limitada a uma fração do território — térmica a gás só nasce onde o gás chega (ou onde o GNL atraca).",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 296,
+      "contexto": "A malha de gasodutos cobre só uma fração do território, o que limita onde uma térmica a gás pode nascer.",
+      "ganho_no_mapa": "Sobrepor gasodutos e térmicas a gás mostra que as usinas seguem o traçado do gás.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 6,
+      "tipo": "gnl",
+      "nome": "Terminais de GNL (onde o GNL atraca)",
+      "trecho": "a malha de gasodutos continua limitada a uma fração do território — térmica a gás só nasce onde o gás chega (ou onde o GNL atraca).",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 296,
+      "contexto": "Fora da malha de gasodutos, a térmica a gás só nasce onde o GNL atraca.",
+      "ganho_no_mapa": "Marcar os terminais de GNL na costa mostra a segunda forma de uma térmica a gás existir longe dos gasodutos.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "usina",
+      "nome": "UTE Candiota",
+      "trecho": "O carvão brasileiro é pequeno (~2–3 GW, SIGA — vivo) e geograficamente concentrado: <strong>Candiota</strong> e o polo de Santa Catarina/Rio Grande do Sul, queimando carvão nacional de baixo poder calorífico, ao lado da mina.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 302,
+      "contexto": "O carvão brasileiro é pequeno e geograficamente concentrado em Candiota e no polo de SC/RS, com a usina ao lado da mina.",
+      "ganho_no_mapa": "Ver Candiota no mapa mostra que o carvão brasileiro é uma questão regional, com a usina colada à mina.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "estado_regiao",
+      "nome": "Polo carbonífero de Santa Catarina/Rio Grande do Sul",
+      "trecho": "O carvão brasileiro é pequeno (~2–3 GW, SIGA — vivo) e geograficamente concentrado: <strong>Candiota</strong> e o polo de Santa Catarina/Rio Grande do Sul, queimando carvão nacional de baixo poder calorífico, ao lado da mina.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 302,
+      "contexto": "O carvão brasileiro é pequeno e geograficamente concentrado em Candiota e no polo de SC/RS, com a usina ao lado da mina.",
+      "ganho_no_mapa": "Destacar o polo carbonífero de Santa Catarina e Rio Grande do Sul mostra onde a \"transição justa\" tem endereço.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "sistema_isolado",
+      "nome": "Sistemas isolados da Amazônia",
+      "trecho": "Mas o papel estrutural deles está fora do mapa do SIN: os <strong>sistemas isolados</strong> da Amazônia, centenas de localidades onde a energia chega de barcaça, em tambor de diesel, rio acima.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 304,
+      "contexto": "Óleo e diesel sustentam os sistemas isolados da Amazônia, centenas de localidades fora do SIN, com sobrecusto socializado pela CCC.",
+      "ganho_no_mapa": "Ver as localidades isoladas da Amazônia fora da malha de transmissão mostra literalmente o que é estar \"fora do mapa do SIN\".",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "biocombustivel",
+      "nome": "Centro-Sul canavieiro (biomassa de bagaço)",
+      "trecho": "a safra do Centro-Sul vai de <strong>abril a novembro</strong> — precisamente a estação seca dos reservatórios.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 306,
+      "contexto": "A biomassa de bagaço segue a safra de cana do Centro-Sul, de abril a novembro — a estação seca dos reservatórios.",
+      "ganho_no_mapa": "Ver as usinas de biomassa concentradas no Centro-Sul canavieiro mostra onde nasce a energia que chega quando a água some.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (vento — a primeira complementaridade)",
+      "trecho": "É a segunda complementaridade sazonal de presente geofísico (a primeira foi o vento do NE, Aula 04).",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 306,
+      "contexto": "A aula lembra que a primeira complementaridade sazonal foi o vento do Nordeste, vista na Aula 04.",
+      "ganho_no_mapa": "Ver vento no Nordeste e cana no Centro-Sul na mesma vista mostra as duas complementaridades em regiões diferentes.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "usina",
+      "nome": "Angra 1",
+      "trecho": "O Brasil opera <strong>Angra 1</strong> (640 MW, em operação desde 1985) e <strong>Angra 2</strong> (1.350 MW, desde 2001)",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 313,
+      "contexto": "O parque nuclear em operação são dois reatores: Angra 1 (640 MW, desde 1985) e Angra 2 (1.350 MW, desde 2001).",
+      "ganho_no_mapa": "Marcar Angra 1 dá endereço ao primeiro reator do país e mostra a posição dele em relação à carga do Sudeste.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "usina",
+      "nome": "Angra 2",
+      "trecho": "O Brasil opera <strong>Angra 1</strong> (640 MW, em operação desde 1985) e <strong>Angra 2</strong> (1.350 MW, desde 2001)",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 313,
+      "contexto": "O parque nuclear em operação são dois reatores: Angra 1 (640 MW, desde 1985) e Angra 2 (1.350 MW, desde 2001).",
+      "ganho_no_mapa": "Marcar Angra 2 ao lado de Angra 1 mostra que os ~2 GW nucleares do país estão num único sítio.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "estado_regiao",
+      "nome": "Sudeste (maior centro de carga)",
+      "trecho": "juntas, ~2 GW, na casa de 1% da capacidade e ~2–3% da energia do país (Eletronuclear/ONS — vivo), ancorando tensão e base no Sudeste, coladas no maior centro de carga.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 313,
+      "contexto": "As duas usinas ancoram tensão e base no Sudeste, coladas no maior centro de carga do país.",
+      "ganho_no_mapa": "Uma vista de Angra com a rede e os grandes centros de consumo do Sudeste mostra o valor de gerar ao lado da carga.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "usina",
+      "nome": "Angra 3",
+      "trecho": "E há <strong>Angra 3</strong>: iniciada em <strong>1984</strong>, paralisada, retomada, paralisada de novo (Lava Jato), hoje com obra civil substancialmente avançada e <strong>39 anos de canteiro</strong>.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 314,
+      "contexto": "Angra 3, iniciada em 1984 e ainda em obra, é o caso de estudo do que o tempo faz com capital parado.",
+      "ganho_no_mapa": "Marcar Angra 3 no mapa, junto às usinas em operação, dá endereço ao canteiro de 39 anos.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "pais",
+      "nome": "França",
+      "trecho": "França e Coreia constroem reatores em série e diluem aprendizado; o Brasil construiu um a cada vinte anos e pagou a curva de aprendizado inteira, três vezes.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 317,
+      "contexto": "França e Coreia são citadas como países que constroem reatores em série e diluem o aprendizado, ao contrário do Brasil.",
+      "ganho_no_mapa": "No globo, destacar a França mostra onde a nuclear é construída em série, em contraste com o um-a-cada-vinte-anos brasileiro.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "pais",
+      "nome": "Coreia",
+      "trecho": "França e Coreia constroem reatores em série e diluem aprendizado; o Brasil construiu um a cada vinte anos e pagou a curva de aprendizado inteira, três vezes.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 317,
+      "contexto": "França e Coreia são citadas como países que constroem reatores em série e diluem o aprendizado, ao contrário do Brasil.",
+      "ganho_no_mapa": "No globo, destacar a Coreia mostra onde a nuclear é construída em série, em contraste com o um-a-cada-vinte-anos brasileiro.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 9,
+      "tipo": "reservatorio",
+      "nome": "Reservatórios do SIN (~200 TWh armazenáveis)",
+      "trecho": "A capacidade de armazenamento dos reservatórios do SIN está na casa de <strong>200 TWh</strong> de energia equivalente (ONS — ordem viva).",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 328,
+      "contexto": "A aula compara os ~200 TWh guardados nos reservatórios do SIN com os poucos GWh de um grande complexo de baterias.",
+      "ganho_no_mapa": "Ver os reservatórios do SIN como \"a bateria que já existia\" dá escala territorial às cinco ordens de grandeza de diferença.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 10,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (vento que venceu leilões)",
+      "trecho": "<strong>O denominador é o fator de capacidade</strong>: a mesma usina entregando o dobro de energia tem metade do custo unitário de capital — é por isso que o vento do NE e o tracker solar venceram leilões.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 334,
+      "contexto": "O fator de capacidade é o denominador do LCOE — por isso o vento do Nordeste e o tracker solar venceram leilões.",
+      "ganho_no_mapa": "Relembrar onde fica o vento do Nordeste liga a competitividade em leilão a um recurso que tem endereço.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 10,
+      "tipo": "usina",
+      "nome": "Angra 3",
+      "trecho": "<strong>O WACC governa o numerador</strong>: em ativos de capital pesado, cada ponto de custo de capital pesa mais que qualquer otimização de engenharia — é a matemática que condenou Angra 3 e que faz a mesma usina solar ter LCOEs diferentes em países diferentes.",
+      "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+      "linha": 334,
+      "contexto": "O WACC governa o numerador do LCOE em ativos de capital pesado — a matemática que condenou Angra 3.",
+      "ganho_no_mapa": "Marcar Angra 3 dá um exemplo localizado de usina em que o custo de capital, e não a física, decide o LCOE.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Minas Gerais (caso Operação A — mineração, Grupo A4)",
+      "trecho": "Mineração de médio porte · Minas Gerais · Grupo A4 (13,8 kV)",
+      "arquivo": "docs/alexandria-v2/extraction/m03/aparato.md",
+      "linha": 43,
+      "contexto": "O caso de referência do módulo (Operação A) é uma mineração de médio porte em Minas Gerais, atendida em 13,8 kV; o trecho vem do documento de extração, que cita o subtítulo literal da fonte.",
+      "ganho_no_mapa": "Situar a planta do caso em Minas Gerais permite relacionar as propostas de solar, contrato por fonte e bateria ao território onde ela está.",
+      "relevancia": "baixa"
+    }
+  ],
+  "vistas_sugeridas": [
+    {
+      "aula": 1,
+      "titulo": "O parque gerador numa só vista",
+      "o_que_mostra": "Brasil inteiro, todas as usinas coloridas por fonte; destaque para a concentração da eólica no Nordeste e alternância entre a lente de capacidade (MW) e a de energia (MWh).",
+      "nomes": [
+        "Parque gerador brasileiro (potência centralizada e MMGD)",
+        "Nordeste (eólica — ventos alísios)"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "usinas_termica",
+        "usinas_nuclear",
+        "usinas_eolica",
+        "usinas_solar",
+        "usinas_biomassa"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "As âncoras da era dos gigantes",
+      "o_que_mostra": "Câmera do rio Paraná ao rio Tocantins; Itaipu e Tucuruí em destaque, com os dois rios traçados e a potência de cada usina como rótulo.",
+      "nomes": [
+        "UHE Itaipu",
+        "Rio Paraná",
+        "UHE Tucuruí",
+        "Rio Tocantins"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "reservatorios_bacias"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "A bateria do Brasil: os reservatórios de regularização",
+      "o_que_mostra": "Sudeste, São Francisco e Tocantins; lagos de Furnas, Três Marias, Sobradinho e Serra da Mesa destacados sobre os subsistemas, com a EAR de cada subsistema como leitura.",
+      "nomes": [
+        "UHE Furnas",
+        "UHE Três Marias",
+        "UHE Sobradinho",
+        "UHE Serra da Mesa",
+        "Rio São Francisco",
+        "Reservatórios do SIN (a \"bateria do Brasil\")",
+        "Subsistemas do SIN (EAR por subsistema)"
+      ],
+      "camadas": [
+        "reservatorios_bacias",
+        "usinas_hidro",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "Balbina: o preço do gigante",
+      "o_que_mostra": "Amazonas; o lago de Balbina com a área alagada em destaque diante da potência da usina — o anti-exemplo que explica por que o país parou de construir reservatórios.",
+      "nomes": [
+        "UHE Balbina"
+      ],
+      "camadas": [
+        "reservatorios_bacias",
+        "usinas_hidro"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "Belo Monte e o Xingu",
+      "o_que_mostra": "Pará, curso do Xingu; Belo Monte em destaque como usina a fio d'água de ~11,2 GW sem grande lago, com a sazonalidade do rio como legenda.",
+      "nomes": [
+        "UHE Belo Monte",
+        "Rio Xingu"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "reservatorios_bacias"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "Fio d'água em dois rios: Xingu e Madeira",
+      "o_que_mostra": "Câmera aberta reunindo Belo Monte, no Xingu, e Jirau e Santo Antônio, no Madeira; usinas grandes sem reservatório de regularização.",
+      "nomes": [
+        "UHE Belo Monte",
+        "UHE Jirau",
+        "UHE Santo Antônio",
+        "Rio Madeira",
+        "Rio Xingu"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "reservatorios_bacias"
+      ]
+    },
+    {
+      "aula": 4,
+      "titulo": "Os alísios do Nordeste",
+      "o_que_mostra": "Nordeste, do litoral aos planaltos; parques eólicos de BA, RN, CE e PI destacados, mostrando a concentração dos 33–35 GW na região.",
+      "nomes": [
+        "Litoral do Nordeste",
+        "Bahia (BA)",
+        "Rio Grande do Norte (RN)",
+        "Ceará (CE)",
+        "Piauí (PI)",
+        "Nordeste (parque eólico concentrado)"
+      ],
+      "camadas": [
+        "usinas_eolica"
+      ]
+    },
+    {
+      "aula": 4,
+      "titulo": "Vento longe da carga: o gargalo de escoamento",
+      "o_que_mostra": "Do Nordeste ao Sudeste; eólicas, linhas de escoamento Norte/Nordeste → Sudeste e limites de submercado, com o gargalo e o curtailment em destaque.",
+      "nomes": [
+        "Escoamento Norte/Nordeste → Sudeste (gargalo e curtailment)",
+        "Nordeste (parque eólico concentrado)"
+      ],
+      "camadas": [
+        "usinas_eolica",
+        "linhas",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 4,
+      "titulo": "Quando a chuva vai embora, o vento chega",
+      "o_que_mostra": "Eólicas do Nordeste e reservatórios do Sudeste na mesma vista, alternando primeiro e segundo semestre para mostrar a complementaridade sazonal.",
+      "nomes": [
+        "Nordeste × Sudeste (complementaridade vento–reservatórios)"
+      ],
+      "camadas": [
+        "usinas_eolica",
+        "reservatorios_bacias",
+        "usinas_hidro"
+      ]
+    },
+    {
+      "aula": 4,
+      "titulo": "Nordeste e Mar do Norte",
+      "o_que_mostra": "Globo girando do Nordeste brasileiro à Europa e ao Mar do Norte, comparando o fator de capacidade do onshore nordestino com o onshore e o offshore europeus.",
+      "nomes": [
+        "Europa (onshore) e Mar do Norte (offshore)"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "usinas_eolica"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "Onde a solar centralizada se instalou",
+      "o_que_mostra": "Nordeste e Centro-Oeste; usinas fotovoltaicas centralizadas destacadas, com irradiação alta e terra barata como chave de leitura.",
+      "nomes": [
+        "Nordeste (solar centralizada)",
+        "Centro-Oeste (solar centralizada)"
+      ],
+      "camadas": [
+        "usinas_solar"
+      ]
+    },
+    {
+      "aula": 6,
+      "titulo": "Térmica a gás só nasce onde o gás chega",
+      "o_que_mostra": "Malha de gasodutos, terminais de GNL e térmicas a gás sobrepostos; o destaque é a fração do território que o gás alcança.",
+      "nomes": [
+        "Malha de gasodutos",
+        "Terminais de GNL (onde o GNL atraca)"
+      ],
+      "camadas": [
+        "gasodutos",
+        "usinas_termica",
+        "outra: terminais de GNL"
+      ]
+    },
+    {
+      "aula": 6,
+      "titulo": "De onde vem o gás",
+      "o_que_mostra": "Câmera abrindo da Bolívia à costa brasileira; a origem boliviana do gás e os pontos de chegada do GNL spot.",
+      "nomes": [
+        "Bolívia (gás importado)",
+        "GNL importado (mercado spot global)"
+      ],
+      "camadas": [
+        "gasodutos",
+        "mundo_paises",
+        "outra: terminais de GNL"
+      ]
+    },
+    {
+      "aula": 7,
+      "titulo": "O carvão do Sul",
+      "o_que_mostra": "Santa Catarina e Rio Grande do Sul; Candiota e o polo carbonífero em destaque, com as usinas ao lado das minas.",
+      "nomes": [
+        "UTE Candiota",
+        "Polo carbonífero de Santa Catarina/Rio Grande do Sul"
+      ],
+      "camadas": [
+        "usinas_termica"
+      ]
+    },
+    {
+      "aula": 7,
+      "titulo": "Fora do mapa do SIN: os sistemas isolados",
+      "o_que_mostra": "Amazônia; localidades de sistemas isolados a diesel contrastadas com a malha de transmissão do SIN.",
+      "nomes": [
+        "Sistemas isolados da Amazônia"
+      ],
+      "camadas": [
+        "linhas",
+        "usinas_termica",
+        "outra: sistemas isolados"
+      ]
+    },
+    {
+      "aula": 7,
+      "titulo": "Quando a água some, a cana chega",
+      "o_que_mostra": "Centro-Sul; usinas de biomassa de bagaço sobre os reservatórios, alternando safra (abril a novembro) e entressafra.",
+      "nomes": [
+        "Centro-Sul canavieiro (biomassa de bagaço)"
+      ],
+      "camadas": [
+        "usinas_biomassa",
+        "reservatorios_bacias"
+      ]
+    },
+    {
+      "aula": 8,
+      "titulo": "Angra: dois reatores colados na carga",
+      "o_que_mostra": "Sudeste; Angra 1, Angra 2 e o canteiro de Angra 3, com a rede de transmissão e o maior centro de carga do país ao redor.",
+      "nomes": [
+        "Angra 1",
+        "Angra 2",
+        "Angra 3",
+        "Sudeste (maior centro de carga)"
+      ],
+      "camadas": [
+        "usinas_nuclear",
+        "linhas",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 8,
+      "titulo": "Quem constrói reatores em série",
+      "o_que_mostra": "Globo com França e Coreia em destaque, contrastadas com o Brasil, que construiu um reator a cada vinte anos.",
+      "nomes": [
+        "França",
+        "Coreia"
+      ],
+      "camadas": [
+        "mundo_paises"
+      ]
+    },
+    {
+      "aula": 9,
+      "titulo": "A bateria que já existia",
+      "o_que_mostra": "Brasil; todos os reservatórios do SIN em destaque, com a capacidade de ~200 TWh como legenda frente aos poucos GWh de uma grande bateria.",
+      "nomes": [
+        "Reservatórios do SIN (~200 TWh armazenáveis)"
+      ],
+      "camadas": [
+        "reservatorios_bacias",
+        "usinas_hidro",
+        "submercados"
+      ]
+    }
+  ]
+}

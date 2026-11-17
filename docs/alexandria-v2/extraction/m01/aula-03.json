@@ -1,0 +1,1669 @@
+{
+  "meta": {
+    "grupo": "aula03",
+    "modulo": "M01",
+    "aula": "M01·A03",
+    "fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo01.html",
+    "fonte_somente_leitura": true,
+    "fonte_total_linhas": 3212,
+    "aula_linhas": {
+      "inicio": 1582,
+      "fim": 1646,
+      "section": [
+        1585,
+        1646
+      ],
+      "nota": "comentário de abertura L1582–1584; section.aula L1585–1646. A faixa do brief (L1585–1650 / L1651–1728) inclui o comentário de abertura da aula seguinte."
+    },
+    "extraido_em": "2026-11-14",
+    "metodo": "Extração programática: o gerador percorre a section linha a linha com um walker que lança erro em qualquer linha não classificada (nada é descartado em silêncio). Campos `html` guardam o innerHTML literal; campos `texto` guardam o mesmo conteúdo sem tags (tags → \"\", entidades decodificadas), de modo que <sub>/<sup>/<span> adjacentes colam ao texto vizinho. O script do instrumento foi executado contra um DOM mínimo para medir saídas. Nenhuma prosa foi digitada à mão; as notas editoriais estão em `*_nota`, `nota`, `argumento`, `decisao` e são conferidas pelo verificador apenas quanto às citações literais.",
+    "protocolo": "docs/alexandria/extraction-protocol.md",
+    "taxonomia": "docs/alexandria/instrument-taxonomy.md",
+    "contrato": "docs/alexandria-v2/bar.md (§4 Peça C, §9, P3, P5, P6, P8, P9, P11, P14)",
+    "extratores": "docs/alexandria-v2/extraction/m01/extratores/gen-aulas-03-04.mjs (+ editorial-aulas-03-04.mjs), verify-aulas-03-04.mjs",
+    "convencoes": {
+      "ausencia": "null + campo *_nota explicando o que foi medido",
+      "ids": "m01-a03-bNN-<tipo> para blocos (ordem da fonte); m01-a03-fig-NN; m01-inst-03; m01-ex-03",
+      "vinculos": "só quando a fonte declara (tag, posição dentro da section, remissão textual literal); correspondência textual é marcada como tal",
+      "campos_medidos": "chaves que começam por `medido` ou `derivado` são medidas do extrator, não literais da fonte, e o verificador as ignora"
+    }
+  },
+  "aula": {
+    "id": "m01-a03",
+    "numero": 3,
+    "marcador": {
+      "num": "Aula 03",
+      "nome": "Corrente alternada e frequência",
+      "origem": {
+        "seletor": "div.aula-marker",
+        "trecho_inicial": "Aula 03 Corrente alternada e frequência",
+        "linha_aprox": 1587
+      }
+    },
+    "comentario_de_abertura": {
+      "texto": "<!-- AULA 03: AC vs DC + Frequência -->",
+      "origem": {
+        "seletor": "comentário HTML antes da section",
+        "trecho_inicial": "AULA 03: AC vs DC + Frequência",
+        "linha_aprox": 1583
+      },
+      "nota": "Comentário HTML antes da section (não renderizado). Registrado porque difere do marcador/§ MAP."
+    },
+    "titulo_h2_html": "A rede tem um <em>batimento cardíaco</em>. Ele se chama 60 Hz.",
+    "titulo_h2_texto": "A rede tem um batimento cardíaco. Ele se chama 60 Hz.",
+    "titulo_h2_origem": {
+      "seletor": "h2.aula-title",
+      "trecho_inicial": "A rede tem um batimento cardíaco. Ele se chama 60 Hz.",
+      "linha_aprox": 1588
+    },
+    "pergunta_mapa": {
+      "numero": "03",
+      "tema": "Corrente alternada e frequência",
+      "pergunta_html": "Por que a rede oscila 60 vezes por segundo, e por que isso importa?",
+      "pergunta_texto": "Por que a rede oscila 60 vezes por segundo, e por que isso importa?",
+      "origem": {
+        "seletor": "§ MAP table > tbody > tr(03)",
+        "trecho_inicial": "Por que a rede oscila 60 vezes por segundo, e por que isso i",
+        "linha_aprox": 1341
+      },
+      "nota": "Única pergunta que a fonte declara para esta aula. Vive na tabela do § MAP, não na aula."
+    },
+    "duracao_min": null,
+    "dificuldade": null,
+    "video": null,
+    "ausencias_nota": "Sem duração, dificuldade, vídeo, <img>, instrumento, exercício com tag ou \"Vale lembrar\" dentro da section. Medido na section L1585–1646; o arquivo inteiro não tem <img>, <video> nem <iframe>."
+  },
+  "blocos": [
+    {
+      "id": "m01-a03-b01-lead",
+      "tipo": "lead",
+      "html": "A rede elétrica brasileira oscila sessenta vezes por segundo. Esse ritmo não é arbitrário — é a evidência física de que oferta e demanda estão em equilíbrio em tempo real. Entender frequência é entender por que existe o ONS.",
+      "texto": "A rede elétrica brasileira oscila sessenta vezes por segundo. Esse ritmo não é arbitrário — é a evidência física de que oferta e demanda estão em equilíbrio em tempo real. Entender frequência é entender por que existe o ONS.",
+      "origem": {
+        "seletor": "section.aula(Aula 03) > .container > p.lead",
+        "trecho_inicial": "A rede elétrica brasileira oscila sessenta vezes por segundo",
+        "linha_aprox": 1590
+      }
+    },
+    {
+      "id": "m01-a03-b02-titulo",
+      "tipo": "titulo",
+      "numero": "3.1",
+      "texto": "DC: o fluxo constante",
+      "html": "<span class=\"num\">3.1</span>DC: o fluxo constante",
+      "origem": {
+        "seletor": "h3 > span.num(3.1)",
+        "trecho_inicial": "DC: o fluxo constante",
+        "linha_aprox": 1592
+      }
+    },
+    {
+      "id": "m01-a03-b03-paragrafo",
+      "tipo": "paragrafo",
+      "html": "<strong>Corrente contínua (DC)</strong> tem fluxo em uma direção principal constante. É o que existe dentro de baterias, pilhas, painéis solares antes do inversor e na maioria da eletrônica interna de equipamentos. Polaridade fixa: positivo e negativo. Sinal \"reto\" no osciloscópio.",
+      "texto": "Corrente contínua (DC) tem fluxo em uma direção principal constante. É o que existe dentro de baterias, pilhas, painéis solares antes do inversor e na maioria da eletrônica interna de equipamentos. Polaridade fixa: positivo e negativo. Sinal \"reto\" no osciloscópio.",
+      "origem": {
+        "seletor": "h3(3.1) ~ p (1º p da aula)",
+        "trecho_inicial": "Corrente contínua (DC) tem fluxo em uma direção principal co",
+        "linha_aprox": 1593
+      }
+    },
+    {
+      "id": "m01-a03-b04-titulo",
+      "tipo": "titulo",
+      "numero": "3.2",
+      "texto": "AC: o fluxo que oscila",
+      "html": "<span class=\"num\">3.2</span>AC: o fluxo que oscila",
+      "origem": {
+        "seletor": "h3 > span.num(3.2)",
+        "trecho_inicial": "AC: o fluxo que oscila",
+        "linha_aprox": 1595
+      }
+    },
+    {
+      "id": "m01-a03-b05-paragrafo",
+      "tipo": "paragrafo",
+      "html": "<strong>Corrente alternada (AC)</strong> tem fluxo cujo sentido alterna periodicamente. No Brasil, a alternância ocorre <strong>60 vezes por segundo</strong> — frequência de <span class=\"hl\">60 Hz</span>. Sinal senoidal no osciloscópio.",
+      "texto": "Corrente alternada (AC) tem fluxo cujo sentido alterna periodicamente. No Brasil, a alternância ocorre 60 vezes por segundo — frequência de 60 Hz. Sinal senoidal no osciloscópio.",
+      "origem": {
+        "seletor": "h3(3.2) ~ p (2º p da aula)",
+        "trecho_inicial": "Corrente alternada (AC) tem fluxo cujo sentido alterna perio",
+        "linha_aprox": 1596
+      }
+    },
+    {
+      "id": "m01-a03-b06-figura",
+      "tipo": "figura",
+      "ref": "m01-a03-fig-01",
+      "texto": null,
+      "origem": {
+        "seletor": "div.ac-dc-vis",
+        "trecho_inicial": "Direct Current",
+        "linha_aprox": 1599,
+        "linha_fim_aprox": 1619
+      },
+      "vinculos": {
+        "figura": "m01-a03-fig-01"
+      },
+      "nota": "Especificação completa em figuras[0].",
+      "comentario_fonte": {
+        "texto": "<!-- AC vs DC visualization -->",
+        "linha": 1598
+      }
+    },
+    {
+      "id": "m01-a03-b07-titulo",
+      "tipo": "titulo",
+      "numero": "3.3",
+      "texto": "Por que AC venceu historicamente",
+      "html": "<span class=\"num\">3.3</span>Por que AC venceu historicamente",
+      "origem": {
+        "seletor": "h3 > span.num(3.3)",
+        "trecho_inicial": "Por que AC venceu historicamente",
+        "linha_aprox": 1621
+      }
+    },
+    {
+      "id": "m01-a03-b08-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Na chamada Guerra das Correntes do final do século XIX (Westinghouse/Tesla pela AC vs. Edison pela DC), a corrente alternada venceu por uma razão técnica decisiva: <strong>com AC é simples elevar e reduzir tensão usando transformadores</strong>. Em DC, o equivalente é tecnologicamente muito mais caro e complexo.",
+      "texto": "Na chamada Guerra das Correntes do final do século XIX (Westinghouse/Tesla pela AC vs. Edison pela DC), a corrente alternada venceu por uma razão técnica decisiva: com AC é simples elevar e reduzir tensão usando transformadores. Em DC, o equivalente é tecnologicamente muito mais caro e complexo.",
+      "origem": {
+        "seletor": "h3(3.3) ~ p (3º p da aula)",
+        "trecho_inicial": "Na chamada Guerra das Correntes do final do século XIX (West",
+        "linha_aprox": 1622
+      }
+    },
+    {
+      "id": "m01-a03-b09-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Essa habilidade de mudar de tensão é o que torna possível transmitir energia em alta tensão por centenas de quilômetros e depois entregá-la em baixa tensão para a casa do consumidor. <strong>Sem transformadores, a rede elétrica moderna não existiria nesta escala.</strong>",
+      "texto": "Essa habilidade de mudar de tensão é o que torna possível transmitir energia em alta tensão por centenas de quilômetros e depois entregá-la em baixa tensão para a casa do consumidor. Sem transformadores, a rede elétrica moderna não existiria nesta escala.",
+      "origem": {
+        "seletor": "h3(3.3) ~ p (4º p da aula)",
+        "trecho_inicial": "Essa habilidade de mudar de tensão é o que torna possível tr",
+        "linha_aprox": 1624
+      }
+    },
+    {
+      "id": "m01-a03-b10-paragrafo",
+      "tipo": "paragrafo",
+      "html": "DC volta com força hoje em aplicações específicas: solar fotovoltaica, armazenamento em baterias, eletrônica embarcada, e transmissão HVDC em interligações de longa distância (como o sistema de transmissão de Belo Monte para o Sudeste, que usa elos de corrente contínua).",
+      "texto": "DC volta com força hoje em aplicações específicas: solar fotovoltaica, armazenamento em baterias, eletrônica embarcada, e transmissão HVDC em interligações de longa distância (como o sistema de transmissão de Belo Monte para o Sudeste, que usa elos de corrente contínua).",
+      "origem": {
+        "seletor": "h3(3.3) ~ p (5º p da aula)",
+        "trecho_inicial": "DC volta com força hoje em aplicações específicas: solar fot",
+        "linha_aprox": 1626
+      }
+    },
+    {
+      "id": "m01-a03-b11-titulo",
+      "tipo": "titulo",
+      "numero": "3.4",
+      "texto": "Frequência: o termômetro do equilíbrio",
+      "html": "<span class=\"num\">3.4</span>Frequência: o termômetro do equilíbrio",
+      "origem": {
+        "seletor": "h3 > span.num(3.4)",
+        "trecho_inicial": "Frequência: o termômetro do equilíbrio",
+        "linha_aprox": 1628
+      }
+    },
+    {
+      "id": "m01-a03-b12-paragrafo",
+      "tipo": "paragrafo",
+      "html": "A regra física que governa todo sistema interligado em corrente alternada é simples e absoluta:",
+      "texto": "A regra física que governa todo sistema interligado em corrente alternada é simples e absoluta:",
+      "origem": {
+        "seletor": "h3(3.4) ~ p (6º p da aula)",
+        "trecho_inicial": "A regra física que governa todo sistema interligado em corre",
+        "linha_aprox": 1629
+      }
+    },
+    {
+      "id": "m01-a03-b13-formula",
+      "tipo": "formula",
+      "eq_html": "Geração <span class=\"op\">≈</span> Consumo, em <em>tempo real</em>",
+      "eq_texto": "Geração ≈ Consumo, em tempo real",
+      "desc": "Desequilíbrio se manifesta como desvio de frequência",
+      "desc_html": "Desequilíbrio se manifesta como desvio de frequência",
+      "eq_texto_nota": "eq_texto é o eq_html sem tags: <sub>/<sup> colam ao texto vizinho (\"Pperdas\", \"I2\"). A forma fiel é eq_html.",
+      "origem": {
+        "seletor": "div.formula > div.eq + div.desc",
+        "trecho_inicial": "Geração ≈ Consumo, em tempo real",
+        "linha_aprox": 1631,
+        "linha_fim_aprox": 1634
+      },
+      "desc_origem": {
+        "seletor": "div.formula > div.desc",
+        "trecho_inicial": "Desequilíbrio se manifesta como desvio de frequência",
+        "linha_aprox": 1633
+      }
+    },
+    {
+      "id": "m01-a03-b14-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Se o consumo aumenta e a geração não acompanha, a frequência da rede <strong>cai</strong>. Se a geração supera o consumo, a frequência <strong>sobe</strong>. Não há buffer físico: a eletricidade que entra na rede precisa ser consumida no mesmo instante. Por isso a frequência funciona como o batimento cardíaco do sistema — qualquer descompasso é imediatamente visível, e operadores como o <strong>ONS (Operador Nacional do Sistema Elétrico)</strong> existem para manter esse batimento dentro de faixas seguras.",
+      "texto": "Se o consumo aumenta e a geração não acompanha, a frequência da rede cai. Se a geração supera o consumo, a frequência sobe. Não há buffer físico: a eletricidade que entra na rede precisa ser consumida no mesmo instante. Por isso a frequência funciona como o batimento cardíaco do sistema — qualquer descompasso é imediatamente visível, e operadores como o ONS (Operador Nacional do Sistema Elétrico) existem para manter esse batimento dentro de faixas seguras.",
+      "origem": {
+        "seletor": "h3(3.4) ~ p (7º p da aula)",
+        "trecho_inicial": "Se o consumo aumenta e a geração não acompanha, a frequência",
+        "linha_aprox": 1636
+      }
+    },
+    {
+      "id": "m01-a03-b15-destaque",
+      "tipo": "destaque",
+      "tom": "gold",
+      "classe_literal": "callout gold",
+      "rotulo": "Conexão com o Bloco 02 (próximo módulo)",
+      "rotulo_texto": "Conexão com o Bloco 02 (próximo módulo)",
+      "html": "O ONS não \"organiza energia\" como quem organiza planilha. Coordena um sistema físico que precisa equilibrar oferta e demanda 86.400 vezes por dia — uma vez por segundo, todos os segundos. Quando estudarmos despacho, reservas operacionais e CMO no próximo módulo, a frequência será o sinal que justifica cada decisão.",
+      "texto": "O ONS não \"organiza energia\" como quem organiza planilha. Coordena um sistema físico que precisa equilibrar oferta e demanda 86.400 vezes por dia — uma vez por segundo, todos os segundos. Quando estudarmos despacho, reservas operacionais e CMO no próximo módulo, a frequência será o sinal que justifica cada decisão.",
+      "origem": {
+        "seletor": "div.callout.gold",
+        "trecho_inicial": "Conexão com o Bloco 02 (próximo módulo)",
+        "linha_aprox": 1638,
+        "linha_fim_aprox": 1641
+      },
+      "corpo_origem": {
+        "seletor": "div.callout > p",
+        "trecho_inicial": "O ONS não \"organiza energia\" como quem organiza planilha. Co",
+        "linha_aprox": 1640
+      },
+      "nota": "Um callout = rótulo (div.callout-label) + um parágrafo. Tom declarado pela classe: \"gold\". A expressão \"Vale lembrar\" não é usada."
+    },
+    {
+      "id": "m01-a03-b16-titulo",
+      "tipo": "titulo",
+      "numero": "3.5",
+      "texto": "Por que isso afeta o consumidor industrial",
+      "html": "<span class=\"num\">3.5</span>Por que isso afeta o consumidor industrial",
+      "origem": {
+        "seletor": "h3 > span.num(3.5)",
+        "trecho_inicial": "Por que isso afeta o consumidor industrial",
+        "linha_aprox": 1643
+      }
+    },
+    {
+      "id": "m01-a03-b17-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Quedas ou desvios relevantes de frequência afetam diretamente equipamentos sensíveis: motores síncronos perdem sincronismo, drives de velocidade variável desarmam por proteção, sistemas de controle de processo travam. Mesmo que o consumidor final raramente veja a frequência na fatura, ela está por trás de toda a confiabilidade do fornecimento. Quando estudarmos qualidade de energia na Aula 09, voltaremos a este ponto.",
+      "texto": "Quedas ou desvios relevantes de frequência afetam diretamente equipamentos sensíveis: motores síncronos perdem sincronismo, drives de velocidade variável desarmam por proteção, sistemas de controle de processo travam. Mesmo que o consumidor final raramente veja a frequência na fatura, ela está por trás de toda a confiabilidade do fornecimento. Quando estudarmos qualidade de energia na Aula 09, voltaremos a este ponto.",
+      "origem": {
+        "seletor": "h3(3.5) ~ p (8º p da aula)",
+        "trecho_inicial": "Quedas ou desvios relevantes de frequência afetam diretament",
+        "linha_aprox": 1644
+      }
+    }
+  ],
+  "figuras": [
+    {
+      "id": "m01-a03-fig-01",
+      "tipo": "duas_senoides_svg_dc_x_ac",
+      "seletor": "div.ac-dc-vis",
+      "celulas": [
+        {
+          "h5": "Direct Current",
+          "label": "Constante · usada em baterias, solar pré-inversor, eletrônica",
+          "svg": {
+            "viewBox": "0 0 300 80",
+            "preserveAspectRatio": "none",
+            "texto_dentro_do_svg": false,
+            "elementos": [
+              {
+                "elemento": "line",
+                "atributos": {
+                  "x1": "0",
+                  "y1": "40",
+                  "x2": "300",
+                  "y2": "40",
+                  "stroke": "#06B6D4",
+                  "stroke-width": "2"
+                },
+                "html": "<line x1=\"0\" y1=\"40\" x2=\"300\" y2=\"40\" stroke=\"#06B6D4\" stroke-width=\"2\"/>",
+                "origem": {
+                  "seletor": "svg > line",
+                  "trecho_inicial": "<line",
+                  "linha_aprox": 1605
+                }
+              },
+              {
+                "elemento": "line",
+                "atributos": {
+                  "x1": "0",
+                  "y1": "20",
+                  "x2": "300",
+                  "y2": "20",
+                  "stroke": "#2A2E38",
+                  "stroke-width": "1",
+                  "stroke-dasharray": "2 4"
+                },
+                "html": "<line x1=\"0\" y1=\"20\" x2=\"300\" y2=\"20\" stroke=\"#2A2E38\" stroke-width=\"1\" stroke-dasharray=\"2 4\"/>",
+                "origem": {
+                  "seletor": "svg > line",
+                  "trecho_inicial": "<line",
+                  "linha_aprox": 1606
+                }
+              },
+              {
+                "elemento": "line",
+                "atributos": {
+                  "x1": "0",
+                  "y1": "60",
+                  "x2": "300",
+                  "y2": "60",
+                  "stroke": "#2A2E38",
+                  "stroke-width": "1",
+                  "stroke-dasharray": "2 4"
+                },
+                "html": "<line x1=\"0\" y1=\"60\" x2=\"300\" y2=\"60\" stroke=\"#2A2E38\" stroke-width=\"1\" stroke-dasharray=\"2 4\"/>",
+                "origem": {
+                  "seletor": "svg > line",
+                  "trecho_inicial": "<line",
+                  "linha_aprox": 1607
+                }
+              }
+            ]
+          },
+          "medido_do_desenho": null,
+          "origem": {
+            "seletor": "div.ac-dc-vis > div.ac-dc-grid > div.ac-dc-cell",
+            "trecho_inicial": "Direct Current",
+            "linha_aprox": 1601,
+            "linha_fim_aprox": 1609
+          }
+        },
+        {
+          "h5": "Alternating Current — 60 Hz",
+          "label": "Oscilante · padrão da rede pública brasileira",
+          "svg": {
+            "viewBox": "0 0 300 80",
+            "preserveAspectRatio": "none",
+            "texto_dentro_do_svg": false,
+            "elementos": [
+              {
+                "elemento": "path",
+                "atributos": {
+                  "id": "ac-wave",
+                  "d": "M 0 40 Q 18.75 0 37.5 40 T 75 40 T 112.5 40 T 150 40 T 187.5 40 T 225 40 T 262.5 40 T 300 40",
+                  "stroke": "#F59E0B",
+                  "stroke-width": "2",
+                  "fill": "none"
+                },
+                "html": "<path id=\"ac-wave\" d=\"M 0 40 Q 18.75 0 37.5 40 T 75 40 T 112.5 40 T 150 40 T 187.5 40 T 225 40 T 262.5 40 T 300 40\" stroke=\"#F59E0B\" stroke-width=\"2\" fill=\"none\"/>",
+                "origem": {
+                  "seletor": "svg > path",
+                  "trecho_inicial": "<path",
+                  "linha_aprox": 1614
+                }
+              },
+              {
+                "elemento": "line",
+                "atributos": {
+                  "x1": "0",
+                  "y1": "40",
+                  "x2": "300",
+                  "y2": "40",
+                  "stroke": "#2A2E38",
+                  "stroke-width": "1",
+                  "stroke-dasharray": "2 4"
+                },
+                "html": "<line x1=\"0\" y1=\"40\" x2=\"300\" y2=\"40\" stroke=\"#2A2E38\" stroke-width=\"1\" stroke-dasharray=\"2 4\"/>",
+                "origem": {
+                  "seletor": "svg > line",
+                  "trecho_inicial": "<line",
+                  "linha_aprox": 1615
+                }
+              }
+            ]
+          },
+          "medido_do_desenho": {
+            "comandos_do_path_d": "MQTTTTTTT",
+            "semiondas_desenhadas": 8,
+            "ondas_completas_desenhadas": 4,
+            "largura_viewbox": 300
+          },
+          "origem": {
+            "seletor": "div.ac-dc-vis > div.ac-dc-grid > div.ac-dc-cell",
+            "trecho_inicial": "Alternating Current — 60 Hz",
+            "linha_aprox": 1610,
+            "linha_fim_aprox": 1617
+          }
+        }
+      ],
+      "titulo": null,
+      "titulo_nota": "A figura não tem título próprio; o h3 anterior é \"AC: o fluxo que oscila\" (3.2) e o parágrafo imediatamente anterior descreve o sinal senoidal.",
+      "unidade": null,
+      "unidade_nota": "Sem eixos, escala, unidade nem legenda numérica: o svg não tem <text> (medido). Os rótulos estão fora do svg, em h5 e div.label.",
+      "fonte_citada": null,
+      "fonte_citada_nota": "Nenhuma fonte, nota ou p.srcnote acompanha a figura.",
+      "idioma_nota": "Os dois h5 estão em inglês (\"Direct Current\", \"Alternating Current — 60 Hz\") numa aula em pt-BR cujo texto usa \"Corrente contínua (DC)\" e \"Corrente alternada (AC)\". Preservado literal; não traduzido.",
+      "medido_nota": "medido_do_desenho conta comandos Q/T do atributo d: é medida do desenho, não afirmação da fonte. A fonte não declara escala de tempo nem que o nº de ondas desenhadas represente 60 Hz.",
+      "cores_nota": "DC #06B6D4, AC #F59E0B, tracejados #2A2E38 (atributos stroke, literais). As cores não carregam significado declarado pela fonte.",
+      "origem": {
+        "seletor": "div.ac-dc-vis",
+        "trecho_inicial": "Direct Current",
+        "linha_aprox": 1599,
+        "linha_fim_aprox": 1619
+      }
+    }
+  ],
+  "tabelas": [],
+  "tabelas_nota": "Nenhum <table> dentro da section da Aula 03 (medido). A única tabela que menciona a aula é a do § MAP (L1341), registrada em aula.pergunta_mapa.",
+  "listas": [],
+  "destaques": [
+    "m01-a03-b15-destaque"
+  ],
+  "vale_lembrar": null,
+  "vale_lembrar_nota": "A expressão \"Vale lembrar\" não ocorre no HTML do M01 (medido por busca no arquivo inteiro). O único destaque desta aula é o callout (ver destaques).",
+  "paragrafos_que_terminam_em_dois_pontos": [
+    {
+      "bloco": "m01-a03-b12-paragrafo",
+      "termina_em": "alternada é simples e absoluta:",
+      "linha": 1629,
+      "proximo_bloco_na_fonte": {
+        "id": "m01-a03-b13-formula",
+        "tipo": "formula"
+      }
+    }
+  ],
+  "paragrafos_que_terminam_em_dois_pontos_nota": "Medido: parágrafos cujo texto termina em \":\" e o bloco que a fonte coloca em seguida. Onde o porte perdeu o bloco seguinte, o parágrafo termina no vazio.",
+  "termos_lexico": {
+    "vinculo_declarado_pela_fonte": false,
+    "nota": "O glossário da fonte (§ Lex) não declara aula por termo. Abaixo: verbetes cujo nome-base (sem parênteses) ocorre como palavra no texto da section. Correspondência textual, não posse — ler ocorrencias_contexto antes de ligar (§2 do protocolo). `siglas_nao_casadas` lista verbetes cuja sigla entre parênteses aparece no texto mas cujo nome-base não.",
+    "total_verbetes_fonte": 38,
+    "candidatos": [
+      {
+        "termo": "Corrente alternada (AC)",
+        "unidade_rotulo": "Forma de onda",
+        "definicao_html": "Corrente elétrica cujo sentido alterna periodicamente. No Brasil, a frequência da rede pública é de 60 Hz — sessenta ciclos por segundo. Base de toda a rede pública de transmissão e distribuição moderna, porque permite elevação e redução de tensão por transformadores.",
+        "ocorrencias_contexto": [
+          "Aula 03Corrente alternada e frequência A rede tem um batimento ca",
+          "osciloscópio. 3.2AC: o fluxo que oscila Corrente alternada (AC) tem fluxo cujo sentido alterna per",
+          "se/Tesla pela AC vs. Edison pela DC), a corrente alternada venceu por uma razão técnica decisiva: ",
+          "que governa todo sistema interligado em corrente alternada é simples e absoluta: Geração ≈ Consumo"
+        ],
+        "n_ocorrencias": 4,
+        "n_ocorrencias_como_palavra": 4,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Corrente alternada (AC)",
+          "linha_aprox": 2540
+        }
+      },
+      {
+        "termo": "Corrente contínua (DC)",
+        "unidade_rotulo": "Forma de onda",
+        "definicao_html": "Corrente elétrica com fluxo em direção principal constante. Usada em baterias, painéis solares antes do inversor, eletrônica embarcada e transmissão HVDC de longa distância. Retoma relevância com a expansão de solar, BESS e tecnologias correlatas.",
+        "ocorrencias_contexto": [
+          " existe o ONS. 3.1DC: o fluxo constante Corrente contínua (DC) tem fluxo em uma direção principal",
+          "o Monte para o Sudeste, que usa elos de corrente contínua). 3.4Frequência: o termômetro do equilí"
+        ],
+        "n_ocorrencias": 2,
+        "n_ocorrencias_como_palavra": 2,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Corrente contínua (DC)",
+          "linha_aprox": 2544
+        }
+      },
+      {
+        "termo": "Demanda",
+        "unidade_rotulo": "kW",
+        "definicao_html": "Potência ativa exigida ou requerida por uma unidade consumidora em determinado intervalo de medição (tipicamente 15 minutos integralizados). Distinta do consumo (kWh), reflete a capacidade instantânea exigida da rede.",
+        "ocorrencias_contexto": [
+          " — é a evidência física de que oferta e demanda estão em equilíbrio em tempo real. Ente",
+          " físico que precisa equilibrar oferta e demanda 86.400 vezes por dia — uma vez por segu"
+        ],
+        "n_ocorrencias": 2,
+        "n_ocorrencias_como_palavra": 2,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Demanda",
+          "linha_aprox": 2556
+        }
+      },
+      {
+        "termo": "Energia",
+        "unidade_rotulo": "kWh, MWh",
+        "definicao_html": "Capacidade de realizar trabalho ou produzir transformação. Em eletricidade, energia é potência integrada no tempo (kWh = kW × h). É a grandeza cobrada como \"consumo\" na fatura.",
+        "ocorrencias_contexto": [
+          "ensão é o que torna possível transmitir energia em alta tensão por centenas de quilômet",
+          "02 (próximo módulo) O ONS não \"organiza energia\" como quem organiza planilha. Coordena ",
+          "cimento. Quando estudarmos qualidade de energia na Aula 09, voltaremos a este ponto."
+        ],
+        "n_ocorrencias": 3,
+        "n_ocorrencias_como_palavra": 3,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Energia",
+          "linha_aprox": 2572
+        }
+      },
+      {
+        "termo": "Frequência",
+        "unidade_rotulo": "Hz",
+        "definicao_html": "Número de ciclos por segundo de uma corrente alternada. No Brasil, 60 Hz. Funciona como termômetro físico do equilíbrio em tempo real entre geração e consumo — desvios indicam descasamento e disparam ações operacionais do ONS.",
+        "ocorrencias_contexto": [
+          "Aula 03Corrente alternada e frequência A rede tem um batimento cardíaco. Ele s",
+          "o em equilíbrio em tempo real. Entender frequência é entender por que existe o ONS. 3.1DC:",
+          "ternância ocorre 60 vezes por segundo — frequência de 60 Hz. Sinal senoidal no osciloscópi",
+          " que usa elos de corrente contínua). 3.4Frequência: o termômetro do equilíbrio A regra fís",
+          "sequilíbrio se manifesta como desvio de frequência Se o consumo aumenta e a geração não ac",
+          "mo aumenta e a geração não acompanha, a frequência da rede cai. Se a geração supera o cons",
+          "e cai. Se a geração supera o consumo, a frequência sobe. Não há buffer físico: a eletricid",
+          "consumida no mesmo instante. Por isso a frequência funciona como o batimento cardíaco do s",
+          "operacionais e CMO no próximo módulo, a frequência será o sinal que justifica cada decisão",
+          "ustrial Quedas ou desvios relevantes de frequência afetam diretamente equipamentos sensíve",
+          "que o consumidor final raramente veja a frequência na fatura, ela está por trás de toda a "
+        ],
+        "n_ocorrencias": 11,
+        "n_ocorrencias_como_palavra": 11,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Frequência",
+          "linha_aprox": 2588
+        }
+      },
+      {
+        "termo": "ONS",
+        "unidade_rotulo": "Operador",
+        "definicao_html": "Operador Nacional do Sistema Elétrico. Pessoa jurídica de direito privado responsável pela coordenação e controle da operação das instalações de geração e transmissão de energia elétrica no Sistema Interligado Nacional (SIN). É quem mantém o batimento de 60 Hz da rede em tempo real.",
+        "ocorrencias_contexto": [
+          " frequência é entender por que existe o ONS. 3.1DC: o fluxo constante Corrente cont",
+          "r por que existe o ONS. 3.1DC: o fluxo constante Corrente contínua (DC) tem fluxo e",
+          "DC) tem fluxo em uma direção principal constante. É o que existe dentro de baterias",
+          "noidal no osciloscópio. Direct Current Constante · usada em baterias, solar pré-inv",
+          "regá-la em baixa tensão para a casa do consumidor. Sem transformadores, a rede elét",
+          "ernada é simples e absoluta: Geração ≈ Consumo, em tempo real Desequilíbrio se mani",
+          "nifesta como desvio de frequência Se o consumo aumenta e a geração não acompanha, a",
+          "cia da rede cai. Se a geração supera o consumo, a frequência sobe. Não há buffer fí",
+          "ricidade que entra na rede precisa ser consumida no mesmo instante. Por isso a freq",
+          "diatamente visível, e operadores como o ONS (Operador Nacional do Sistema Elétrico)",
+          "nexão com o Bloco 02 (próximo módulo) O ONS não \"organiza energia\" como quem organi",
+          " cada decisão. 3.5Por que isso afeta o consumidor industrial Quedas ou desvios rele"
+        ],
+        "n_ocorrencias": 13,
+        "n_ocorrencias_como_palavra": 3,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "ONS",
+          "linha_aprox": 2628
+        }
+      },
+      {
+        "termo": "Tensão",
+        "unidade_rotulo": "V, kV",
+        "definicao_html": "Diferença de potencial elétrico entre dois pontos de um circuito. Analogia hidráulica: pressão da água. Unidade SI é o volt (V). Define grupo tarifário no Brasil: Grupo B (baixa tensão, &lt; 2,3 kV) ou Grupo A (média/alta tensão, ≥ 2,3 kV).",
+        "ocorrencias_contexto": [
+          "siva: com AC é simples elevar e reduzir tensão usando transformadores. Em DC, o equiva",
+          "e complexo. Essa habilidade de mudar de tensão é o que torna possível transmitir energ",
+          "rna possível transmitir energia em alta tensão por centenas de quilômetros e depois en",
+          "uilômetros e depois entregá-la em baixa tensão para a casa do consumidor. Sem transfor"
+        ],
+        "n_ocorrencias": 4,
+        "n_ocorrencias_como_palavra": 4,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Tensão",
+          "linha_aprox": 2656
+        }
+      }
+    ],
+    "siglas_nao_casadas": [],
+    "leitura_do_contexto": [
+      {
+        "termo": "Corrente alternada (AC)",
+        "leitura": "Conceito do verbete. Definido em 3.2; \"a corrente alternada venceu\" em 3.3 e o marcador \"Corrente alternada e frequência\". Ligação plausível, não declarada."
+      },
+      {
+        "termo": "Corrente contínua (DC)",
+        "leitura": "Conceito do verbete. Definido em 3.1; \"elos de corrente contínua\" em 3.3. Ligação plausível, não declarada."
+      },
+      {
+        "termo": "Frequência",
+        "leitura": "Conceito do verbete, assunto da aula (título, 3.4, 3.5). Ligação plausível, não declarada."
+      },
+      {
+        "termo": "ONS",
+        "leitura": "Conceito do verbete, citado no lead, em 3.4 e no callout. n_ocorrencias conta o trecho \"ons\" dentro de \"Conexão\", \"consumo\" etc.; use n_ocorrencias_como_palavra."
+      },
+      {
+        "termo": "Tensão",
+        "leitura": "Sentido do verbete em 3.3 (\"elevar e reduzir tensão usando transformadores\"). Não é o assunto da aula; ligação fraca."
+      },
+      {
+        "termo": "Energia",
+        "leitura": "Ocorrências em sentido genérico ou composto (\"transmitir energia\", \"organiza energia\", \"qualidade de energia\" — este último é o tema de outra aula). Não é o assunto declarado; não mapear."
+      },
+      {
+        "termo": "Demanda",
+        "leitura": "Ocorrência em \"oferta e demanda\" (sentido econômico), diferente do verbete (potência exigida em kW). Não mapear."
+      }
+    ]
+  },
+  "instrumentos": [],
+  "invocacoes_no_texto": [],
+  "exercicios": [],
+  "exercicios_nota": "Nenhum exercício do § Drill tem a tag \"Aula 03\" (as 8 tags estão em exercicios_verificacao) e nenhum enunciado ou gabarito cita a Aula 03 em prosa. A A03 é uma das três aulas do M01 sem exercício (junto da A06 e da A09); ver DIV-05 de aula-08.json sobre \"todas as nove aulas\".",
+  "exercicios_verificacao": {
+    "tags_do_drill_verbatim": [
+      "Ex · 01 · Aula 01",
+      "Ex · 02 · Aula 02",
+      "Ex · 03 · Aula 04",
+      "Ex · 04 · Aula 05",
+      "Ex · 05 · Aula 07",
+      "Ex · 06 · Aula 08",
+      "Ex · 07 · 3 níveis · Aula 05",
+      "Ex · 08 · Síntese · Diagnóstico inicial"
+    ],
+    "referencias_em_prosa_a_esta_aula_dentro_dos_exercicios": [],
+    "nota": "Varridos enunciado e gabarito dos 8 exercícios (§4 do protocolo). Vínculo de posse = tag \"… · Aula NN\"."
+  },
+  "relacionados_nao_vinculados": [
+    {
+      "id": "m01-quiz-q02",
+      "tipo": "questao_quiz_multipla_escolha",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Sem tag de aula no array `questions`. Tema coincide; posse NÃO declarada — pertence à avaliação do módulo (§ Quiz). Listado só para rastreio.",
+      "posicao_no_quiz": 2,
+      "total_questoes_no_array": 10,
+      "enunciado": "Em corrente contínua aproximada, qual a relação entre tensão, corrente e potência?",
+      "opcoes": [
+        "P = V + I",
+        "P = V × I",
+        "P = V ÷ I",
+        "P = V²"
+      ],
+      "indice_correto": 1,
+      "opcao_correta": "P = V × I",
+      "feedback": "P = V × I. Tensão (V) × Corrente (I) = Potência (W). É a equação fundamental que liga as três grandezas básicas da eletricidade. Em AC com cargas indutivas, há o fator de potência multiplicando — mas a estrutura base é essa.",
+      "origem": {
+        "seletor": "script: const questions = [...]",
+        "trecho_inicial": "Em corrente contínua aproximada, qual a relação entre tensão",
+        "linha_aprox": 3084
+      }
+    },
+    {
+      "id": "m01-checklist-08",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática.",
+      "texto": "Explicar AC vs DC sem virar história longa de Tesla vs Edison.",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Explicar AC vs DC sem virar história longa de Tesla vs Ediso",
+        "linha_aprox": 2504
+      }
+    },
+    {
+      "id": "m01-checklist-09",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática.",
+      "texto": "Explicar frequência como evidência física do equilíbrio geração-consumo.",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Explicar frequência como evidência física do equilíbrio gera",
+        "linha_aprox": 2505
+      }
+    }
+  ],
+  "ocorrencias_fora_da_secao": {
+    "nota": "Varredura por padrão no arquivo inteiro, fora da section. Serve ao \"não falta item\": cada ocorrência cai no § MAP, no § Final, no § Lex, no § Drill, no § Quiz, no § Map (Tradutor), no § 00 ou nas aulas vizinhas — ver ed.ocorrencias_leitura. O verificador confere a linha.",
+    "padroes": {
+      "frequencia": "frequ[eê]ncia",
+      "hz": "60 ?Hz",
+      "ac_dc": "corrente alternada|corrente cont[ií]nua|\\bAC\\b|\\bDC\\b",
+      "transformador": "transformador",
+      "ons": "\\bONS\\b",
+      "hvdc": "HVDC|Belo Monte",
+      "guerra": "Tesla|Edison|Westinghouse",
+      "batimento": "batimento",
+      "segundo": "86\\.400|por segundo"
+    },
+    "itens": [
+      {
+        "padrao": "frequencia",
+        "linha_aprox": 1341,
+        "secao": "§ MAP",
+        "trecho": "03Corrente alternada e frequênciaPor que a rede oscila 60 vezes por segundo, e por que isso importa?"
+      },
+      {
+        "padrao": "frequencia",
+        "linha_aprox": 2114,
+        "secao": "Aula 09",
+        "trecho": "Qualidade do serviço (continuidade)Frequência e duração de interrupçõesDEC, FEC (coletivos) · DIC, FIC, DMIC, DICRI (individuais)"
+      },
+      {
+        "padrao": "frequencia",
+        "linha_aprox": 2127,
+        "secao": "Aula 09",
+        "trecho": "FECFrequência Equivalente de interrupção por unidade ConsumidoraNúmero médio de interrupções por consumidor no ano"
+      },
+      {
+        "padrao": "frequencia",
+        "linha_aprox": 2129,
+        "secao": "Aula 09",
+        "trecho": "FICFrequência de Interrupção individualNúmero de interrupções naquela unidade no período"
+      },
+      {
+        "padrao": "frequencia",
+        "linha_aprox": 2505,
+        "secao": "§ Final",
+        "trecho": "Explicar frequência como evidência física do equilíbrio geração-consumo."
+      },
+      {
+        "padrao": "frequencia",
+        "linha_aprox": 2541,
+        "secao": "§ Lex",
+        "trecho": "Corrente elétrica cujo sentido alterna periodicamente. No Brasil, a frequência da rede pública é de 60 Hz — sessenta ciclos por segundo. Bas"
+      },
+      {
+        "padrao": "frequencia",
+        "linha_aprox": 2553,
+        "secao": "§ Lex",
+        "trecho": "DEC — Duração Equivalente de interrupção por unidade Consumidora. Tempo médio de interrupção por consumidor no período (horas/ano). FEC — Fr"
+      },
+      {
+        "padrao": "frequencia",
+        "linha_aprox": 2588,
+        "secao": "§ Lex",
+        "trecho": "FrequênciaHz"
+      },
+      {
+        "padrao": "frequencia",
+        "linha_aprox": 2601,
+        "secao": "§ Lex",
+        "trecho": "Distorções na forma de onda elétrica em múltiplos da frequência fundamental. Comuns em cargas não lineares — drives de velocidade variável, "
+      },
+      {
+        "padrao": "hz",
+        "linha_aprox": 2541,
+        "secao": "§ Lex",
+        "trecho": "Corrente elétrica cujo sentido alterna periodicamente. No Brasil, a frequência da rede pública é de 60 Hz — sessenta ciclos por segundo. Bas"
+      },
+      {
+        "padrao": "hz",
+        "linha_aprox": 2589,
+        "secao": "§ Lex",
+        "trecho": "Número de ciclos por segundo de uma corrente alternada. No Brasil, 60 Hz. Funciona como termômetro físico do equilíbrio em tempo real entre "
+      },
+      {
+        "padrao": "hz",
+        "linha_aprox": 2629,
+        "secao": "§ Lex",
+        "trecho": "Operador Nacional do Sistema Elétrico. Pessoa jurídica de direito privado responsável pela coordenação e controle da operação das instalaçõe"
+      },
+      {
+        "padrao": "ac_dc",
+        "linha_aprox": 891,
+        "secao": "antes do § 00",
+        "trecho": "/* Visual: AC wave */"
+      },
+      {
+        "padrao": "ac_dc",
+        "linha_aprox": 1515,
+        "secao": "Aula 02",
+        "trecho": "Watt (W) mede potência. Em corrente contínua (e como aproximação inicial em corrente alternada), a relação é direta:"
+      },
+      {
+        "padrao": "ac_dc",
+        "linha_aprox": 1565,
+        "secao": "Aula 02",
+        "trecho": "Em corrente alternada (que é o padrão da rede pública), a história é mais sutil. Nem toda potência que circula entre rede e instalação se co"
+      },
+      {
+        "padrao": "ac_dc",
+        "linha_aprox": 1880,
+        "secao": "Aula 06",
+        "trecho": "Além do nível de tensão, o número de fases do fornecimento importa. Em corrente alternada, fases são a forma de organizar a entrega:"
+      },
+      {
+        "padrao": "ac_dc",
+        "linha_aprox": 2504,
+        "secao": "§ Final",
+        "trecho": "Explicar AC vs DC sem virar história longa de Tesla vs Edison."
+      },
+      {
+        "padrao": "ac_dc",
+        "linha_aprox": 2540,
+        "secao": "§ Lex",
+        "trecho": "Corrente alternada (AC)Forma de onda"
+      },
+      {
+        "padrao": "ac_dc",
+        "linha_aprox": 2544,
+        "secao": "§ Lex",
+        "trecho": "Corrente contínua (DC)Forma de onda"
+      },
+      {
+        "padrao": "ac_dc",
+        "linha_aprox": 2589,
+        "secao": "§ Lex",
+        "trecho": "Número de ciclos por segundo de uma corrente alternada. No Brasil, 60 Hz. Funciona como termômetro físico do equilíbrio em tempo real entre "
+      },
+      {
+        "padrao": "ac_dc",
+        "linha_aprox": 2621,
+        "secao": "§ Lex",
+        "trecho": "Relação fundamental entre tensão (V), corrente (I) e resistência (R) em um circuito elétrico. Junto com P = I² × R (perdas resistivas) e P ="
+      },
+      {
+        "padrao": "ac_dc",
+        "linha_aprox": 2661,
+        "secao": "§ Lex",
+        "trecho": "Sistema de fornecimento em corrente alternada com três fases defasadas em 120°. Padrão industrial. Permite maior potência, maior eficiência "
+      },
+      {
+        "padrao": "ac_dc",
+        "linha_aprox": 2677,
+        "secao": "§ Lex",
+        "trecho": "Unidade SI de potência. 1 W = 1 J/s (joule por segundo). Em circuitos DC: W = V × A. Em escala industrial usa-se kW (1.000 W) ou MW (1.000.0"
+      },
+      {
+        "padrao": "ac_dc",
+        "linha_aprox": 3084,
+        "secao": "script",
+        "trecho": "q: \"Em corrente contínua aproximada, qual a relação entre tensão, corrente e potência?\","
+      },
+      {
+        "padrao": "ac_dc",
+        "linha_aprox": 3087,
+        "secao": "script",
+        "trecho": "feedback: \"P = V × I. Tensão (V) × Corrente (I) = Potência (W). É a equação fundamental que liga as três grandezas básicas da eletricidade. "
+      },
+      {
+        "padrao": "transformador",
+        "linha_aprox": 1565,
+        "secao": "Aula 02",
+        "trecho": "Em corrente alternada (que é o padrão da rede pública), a história é mais sutil. Nem toda potência que circula entre rede e instalação se co"
+      },
+      {
+        "padrao": "transformador",
+        "linha_aprox": 1572,
+        "secao": "Aula 02",
+        "trecho": "Potência reativakVArSustenta campos magnéticos em motores e transformadores"
+      },
+      {
+        "padrao": "transformador",
+        "linha_aprox": 1716,
+        "secao": "Aula 04",
+        "trecho": "TécnicasFísicas — aquecimento de cabos, perdas em transformadores, perdas magnéticas, perdas mecânicasReconhecidas pela ANEEL nos processos "
+      },
+      {
+        "padrao": "transformador",
+        "linha_aprox": 1739,
+        "secao": "Aula 05",
+        "trecho": "Na rede elétrica, a lógica é idêntica. A distribuidora precisa ter transformadores, cabos, subestações e proteção dimensionados para o pior "
+      },
+      {
+        "padrao": "transformador",
+        "linha_aprox": 1910,
+        "secao": "Aula 07",
+        "trecho": "Em equipamentos indutivos — motores, transformadores, compressores, fornos a arco, bobinas de solda — algo diferente acontece. Esses equipam"
+      },
+      {
+        "padrao": "transformador",
+        "linha_aprox": 1984,
+        "secao": "Aula 07",
+        "trecho": "Quando uma instalação industrial opera com FP baixo, ela força a distribuidora a entregar mais kVA para produzir o mesmo kW útil. Isso ocupa"
+      },
+      {
+        "padrao": "transformador",
+        "linha_aprox": 2143,
+        "secao": "Aula 09",
+        "trecho": "HarmônicosDistorções na forma de onda elétrica, comuns em cargas não lineares (drives, inversores, fontes eletrônicas)Aquecimento de motores"
+      },
+      {
+        "padrao": "transformador",
+        "linha_aprox": 2227,
+        "secao": "§ Caso",
+        "trecho": "Fator de potência 0,88 — alerta. Está abaixo da referência prática de 0,92 para o Grupo A. Pode haver cobrança por excedente reativo. Motore"
+      },
+      {
+        "padrao": "transformador",
+        "linha_aprox": 2541,
+        "secao": "§ Lex",
+        "trecho": "Corrente elétrica cujo sentido alterna periodicamente. No Brasil, a frequência da rede pública é de 60 Hz — sessenta ciclos por segundo. Bas"
+      },
+      {
+        "padrao": "transformador",
+        "linha_aprox": 2605,
+        "secao": "§ Lex",
+        "trecho": "Quilovolt-ampere. Unidade de potência aparente — combinação vetorial de potência ativa (kW) e reativa (kVAr). É o \"tamanho elétrico total\" q"
+      },
+      {
+        "padrao": "transformador",
+        "linha_aprox": 2609,
+        "secao": "§ Lex",
+        "trecho": "Quilovolt-ampere reativo. Unidade de potência reativa — circula entre rede e equipamentos para sustentar campos magnéticos e elétricos sem r"
+      },
+      {
+        "padrao": "transformador",
+        "linha_aprox": 2633,
+        "secao": "§ Lex",
+        "trecho": "Perdas físicas no sistema elétrico — aquecimento de cabos, perdas em transformadores, perdas magnéticas, perdas mecânicas, perdas de convers"
+      },
+      {
+        "padrao": "transformador",
+        "linha_aprox": 3104,
+        "secao": "script",
+        "trecho": "feedback: \"A distribuidora dimensiona transformadores, cabos e proteção para o pior momento simultâneo de demanda. Essa infraestrutura tem c"
+      },
+      {
+        "padrao": "ons",
+        "linha_aprox": 2589,
+        "secao": "§ Lex",
+        "trecho": "Número de ciclos por segundo de uma corrente alternada. No Brasil, 60 Hz. Funciona como termômetro físico do equilíbrio em tempo real entre "
+      },
+      {
+        "padrao": "ons",
+        "linha_aprox": 2628,
+        "secao": "§ Lex",
+        "trecho": "ONSOperador"
+      },
+      {
+        "padrao": "ons",
+        "linha_aprox": 2696,
+        "secao": "§ Ref",
+        "trecho": "ONS · Operador Nacional do Sistema Elétrico. Procedimentos de Rede. Dados operativos do SIN. www.ons.org.br"
+      },
+      {
+        "padrao": "hvdc",
+        "linha_aprox": 2545,
+        "secao": "§ Lex",
+        "trecho": "Corrente elétrica com fluxo em direção principal constante. Usada em baterias, painéis solares antes do inversor, eletrônica embarcada e tra"
+      },
+      {
+        "padrao": "guerra",
+        "linha_aprox": 2504,
+        "secao": "§ Final",
+        "trecho": "Explicar AC vs DC sem virar história longa de Tesla vs Edison."
+      },
+      {
+        "padrao": "batimento",
+        "linha_aprox": 2629,
+        "secao": "§ Lex",
+        "trecho": "Operador Nacional do Sistema Elétrico. Pessoa jurídica de direito privado responsável pela coordenação e controle da operação das instalaçõe"
+      },
+      {
+        "padrao": "segundo",
+        "linha_aprox": 1341,
+        "secao": "§ MAP",
+        "trecho": "03Corrente alternada e frequênciaPor que a rede oscila 60 vezes por segundo, e por que isso importa?"
+      },
+      {
+        "padrao": "segundo",
+        "linha_aprox": 1512,
+        "secao": "Aula 02",
+        "trecho": "Ampere (A) mede corrente elétrica: o fluxo de carga elétrica passando pelo condutor por segundo. Se tensão é pressão, corrente é vazão. Carg"
+      },
+      {
+        "padrao": "segundo",
+        "linha_aprox": 2529,
+        "secao": "§ Lex",
+        "trecho": "Unidade de medida de corrente elétrica — o fluxo de carga que atravessa um condutor por segundo. Analogia hidráulica: vazão de água. Em inst"
+      },
+      {
+        "padrao": "segundo",
+        "linha_aprox": 2541,
+        "secao": "§ Lex",
+        "trecho": "Corrente elétrica cujo sentido alterna periodicamente. No Brasil, a frequência da rede pública é de 60 Hz — sessenta ciclos por segundo. Bas"
+      },
+      {
+        "padrao": "segundo",
+        "linha_aprox": 2589,
+        "secao": "§ Lex",
+        "trecho": "Número de ciclos por segundo de uma corrente alternada. No Brasil, 60 Hz. Funciona como termômetro físico do equilíbrio em tempo real entre "
+      },
+      {
+        "padrao": "segundo",
+        "linha_aprox": 2677,
+        "secao": "§ Lex",
+        "trecho": "Unidade SI de potência. 1 W = 1 J/s (joule por segundo). Em circuitos DC: W = V × A. Em escala industrial usa-se kW (1.000 W) ou MW (1.000.0"
+      }
+    ],
+    "leitura": [
+      {
+        "secao": "§ MAP",
+        "linhas": [
+          1341
+        ],
+        "leitura": "Linha da aula na tabela do § MAP: registrada em aula.pergunta_mapa."
+      },
+      {
+        "secao": "Aula 09",
+        "linhas": [
+          2114,
+          2127,
+          2129,
+          2143
+        ],
+        "leitura": "Menção em outra aula; não pertence a esta aula."
+      },
+      {
+        "secao": "§ Final",
+        "linhas": [
+          2504,
+          2505
+        ],
+        "leitura": "Item do checklist final: registrado em relacionados_nao_vinculados."
+      },
+      {
+        "secao": "§ Lex",
+        "linhas": [
+          2529,
+          2540,
+          2541,
+          2544,
+          2545,
+          2553,
+          2588,
+          2589,
+          2601,
+          2605,
+          2609,
+          2621,
+          2628,
+          2629,
+          2633,
+          2661,
+          2677
+        ],
+        "leitura": "Verbete do léxico: ver termos_lexico (as ocorrências de outro sentido estão explicadas em leitura_do_contexto)."
+      },
+      {
+        "secao": "antes do § 00",
+        "linhas": [
+          891
+        ],
+        "leitura": "CSS do componente da figura (comentário \"Visual: AC wave\"): apresentação, não conteúdo."
+      },
+      {
+        "secao": "Aula 02",
+        "linhas": [
+          1512,
+          1515,
+          1565,
+          1572
+        ],
+        "leitura": "Menção em outra aula; não pertence a esta aula."
+      },
+      {
+        "secao": "Aula 06",
+        "linhas": [
+          1880
+        ],
+        "leitura": "Menção em outra aula; não pertence a esta aula."
+      },
+      {
+        "secao": "script",
+        "linhas": [
+          3084,
+          3087,
+          3104
+        ],
+        "leitura": "Linha do <script>: quiz (relacionado) ou script do instrumento (camada de script da aula, ver instrumentos[0].script)."
+      },
+      {
+        "secao": "Aula 04",
+        "linhas": [
+          1716
+        ],
+        "leitura": "Menção em outra aula; não pertence a esta aula."
+      },
+      {
+        "secao": "Aula 05",
+        "linhas": [
+          1739
+        ],
+        "leitura": "Menção em outra aula; não pertence a esta aula."
+      },
+      {
+        "secao": "Aula 07",
+        "linhas": [
+          1910,
+          1984
+        ],
+        "leitura": "Menção em outra aula; não pertence a esta aula."
+      },
+      {
+        "secao": "§ Caso",
+        "linhas": [
+          2227
+        ],
+        "leitura": "Caso Operação A (aparato): menção ao tema fora da aula, sem vínculo declarado."
+      },
+      {
+        "secao": "§ Ref",
+        "linhas": [
+          2696
+        ],
+        "leitura": "Referência do § Ref (item de fonte primária), sem vínculo de aula."
+      }
+    ]
+  },
+  "cobertura_texto_por_token": {
+    "tokens_fonte_sem_instrumento": 525,
+    "tokens_casados": 525,
+    "pct": 100,
+    "tokens_nao_casados": [],
+    "nota": "Denominador = texto da section (L1586–1645) sem comentários HTML. Medida por palavra, com tags trocadas por espaço dos dois lados (por isso não há o artefato de colagem de spans que a A08 teve). 100% prova que nenhuma palavra do texto ficou fora dos blocos; ordem e marcação são provadas à parte (campo html verbatim e conferência por linha no verificador)."
+  },
+  "divergencias": [
+    {
+      "id": "DIV-01",
+      "tipo": "terminologia_interna_sem_definicao",
+      "o_que": "O mesmo \"60\" é chamado de oscilação, alternância e ciclo, sem que a fonte defina os termos.",
+      "leitura_a": {
+        "texto": "No Brasil, a alternância ocorre 60 vezes por segundo — frequência de 60 Hz.",
+        "origem": {
+          "seletor": "linha citada",
+          "trecho_inicial": "No Brasil, a alternância ocorre 60 vezes por segundo — frequ",
+          "linha_aprox": 1596
+        },
+        "complemento": {
+          "texto": "oscila sessenta vezes por segundo",
+          "origem": {
+            "seletor": "linha citada",
+            "trecho_inicial": "oscila sessenta vezes por segundo",
+            "linha_aprox": 1590
+          }
+        }
+      },
+      "leitura_b": {
+        "texto": "No Brasil, a frequência da rede pública é de 60 Hz — sessenta ciclos por segundo.",
+        "origem": {
+          "seletor": "linha citada",
+          "trecho_inicial": "No Brasil, a frequência da rede pública é de 60 Hz — sessent",
+          "linha_aprox": 2541
+        },
+        "complemento": {
+          "texto": "Número de ciclos por segundo de uma corrente alternada.",
+          "origem": {
+            "seletor": "linha citada",
+            "trecho_inicial": "Número de ciclos por segundo de uma corrente alternada.",
+            "linha_aprox": 2589
+          }
+        }
+      },
+      "argumento": "A aula (lead e 3.2) fala em \"oscila\" e em \"alternância\" 60 vezes por segundo; o léxico fala em \"ciclos\" por segundo. A fonte não define \"alternância\", \"oscilação\" nem \"ciclo\" e não diz quantas inversões de sentido há por ciclo. Não é contradição demonstrada pela fonte; fica registrada porque o learner lê os três termos como sinônimos sem a fonte autorizar.",
+      "medido_do_desenho": "O path da figura (L1614) tem 8 semiondas (4 ondas completas) no quadro de 300 unidades; a fonte não relaciona esse número com 60 Hz (ver figuras[0].celulas[1].medido_do_desenho).",
+      "decisao": "não escolhida — termos preservados como na fonte."
+    },
+    {
+      "id": "DIV-02",
+      "tipo": "duas_cadencias_sem_relacao_declarada",
+      "o_que": "A aula cita duas cadências para o equilíbrio entre oferta e demanda: sessenta por segundo e uma por segundo.",
+      "leitura_a": {
+        "texto": "A rede elétrica brasileira oscila sessenta vezes por segundo. Esse ritmo não é arbitrário — é a evidência física de que oferta e demanda estão em equilíbrio em tempo real.",
+        "origem": {
+          "seletor": "linha citada",
+          "trecho_inicial": "A rede elétrica brasileira oscila sessenta vezes por segundo",
+          "linha_aprox": 1590
+        }
+      },
+      "leitura_b": {
+        "texto": "Coordena um sistema físico que precisa equilibrar oferta e demanda 86.400 vezes por dia — uma vez por segundo, todos os segundos.",
+        "origem": {
+          "seletor": "linha citada",
+          "trecho_inicial": "Coordena um sistema físico que precisa equilibrar oferta e d",
+          "linha_aprox": 1640
+        }
+      },
+      "argumento": "No lead, o ritmo de sessenta por segundo é a \"evidência física\" do equilíbrio; no callout, o ONS equilibra oferta e demanda \"uma vez por segundo\". A fonte não diz se são a mesma coisa nem como se relacionam. Não é contradição demonstrada; é uma lacuna que um leitor atento vai notar.",
+      "decisao": "não escolhida — as duas formulações coexistem na fonte."
+    },
+    {
+      "id": "DIV-03",
+      "tipo": "promessa_de_retorno_sem_correspondente_encontrado",
+      "o_que": "A 3.5 promete voltar ao tema da frequência na Aula 09.",
+      "leitura_a": {
+        "texto": "Quando estudarmos qualidade de energia na Aula 09, voltaremos a este ponto.",
+        "origem": {
+          "seletor": "linha citada",
+          "trecho_inicial": "Quando estudarmos qualidade de energia na Aula 09, voltaremo",
+          "linha_aprox": 1644
+        }
+      },
+      "leitura_b": {
+        "texto": "Frequência e duração de interrupções | Frequência Equivalente de interrupção por unidade Consumidora | Frequência de Interrupção individual",
+        "origem": {
+          "seletor": "section.aula(Aula 09) — ocorrências de \"frequência\"",
+          "trecho_inicial": "Frequência e duração de interrupções",
+          "linha_aprox": 2114,
+          "linha_fim_aprox": 2129
+        },
+        "medido": {
+          "linhas_de_a09_com_frequencia_ou_Hz": [
+            2114,
+            2127,
+            2129
+          ],
+          "faixa_da_a09": [
+            2100,
+            2174
+          ]
+        }
+      },
+      "argumento": "Busca por \"frequência\" e \"Hz\" dentro da Aula 09 (L2100–2174) acha só 3 linhas (L2114, L2127, L2129), todas no sentido de contagem de interrupções (frequência e duração de interrupções; FEC; FIC), e nenhuma com \"Hz\". Busca adicional na A09 por \"síncron\", \"sincronismo\", \"desarm\" e \"equilíbrio\": 0 ocorrências (\"drives\" ocorre 1x, em Harmônicos, L2143, sem relação declarada com frequência). Retomada com outras palavras não foi procurada.",
+      "decisao": "não escolhida — a promessa fica registrada; o fio de retorno é decisão da camada Alexandria, não da extração."
+    },
+    {
+      "id": "DIV-04",
+      "tipo": "rotulo_bloco_x_modulo",
+      "o_que": "O callout chama o que vem depois de \"Bloco 02\"; o resto do arquivo chama de \"Módulo 02\".",
+      "leitura_a": {
+        "texto": "Conexão com o Bloco 02 (próximo módulo)",
+        "origem": {
+          "seletor": "linha citada",
+          "trecho_inicial": "Conexão com o Bloco 02 (próximo módulo)",
+          "linha_aprox": 1639
+        }
+      },
+      "leitura_b": {
+        "texto": "Pronto para o Módulo 02.",
+        "origem": {
+          "seletor": "linha citada",
+          "trecho_inicial": "Pronto para o Módulo 02.",
+          "linha_aprox": 3199
+        },
+        "complemento": {
+          "texto": "02 · A Rede Elétrica",
+          "origem": {
+            "seletor": "linha citada",
+            "trecho_inicial": "02 · A Rede Elétrica",
+            "linha_aprox": 1276
+          }
+        }
+      },
+      "argumento": "\"Bloco\" aparece uma única vez no arquivo (medido, L1639); o hero-meta (L1276) e o script do quiz (L3199) usam \"02 · A Rede Elétrica\" e \"Módulo 02\". O rótulo do callout é literal e o corpo dele diz \"próximo módulo\". O nome canônico do módulo seguinte é decisão de catálogo (P8/P24).",
+      "decisao": "não escolhida — rótulo literal preservado."
+    }
+  ],
+  "comparacao_codigo": {
+    "arquivos": [
+      "src/lib/data/alexandria-modulo-01-content.ts (MODULO_01_LEAD 'aula-01-03'; MODULO_01_CORPO 'aula-01-03'; MODULO_01_AULAS id 'aula-01-03'; lead l.165; corpo l.218–235; aula l.393–412)",
+      "src/lib/data/alexandria-glossario.ts (aulaIds)",
+      "src/components/alexandria/viewer/AulaViewer.tsx l.123–127 (ApostilaPanel primeiro, depois aula.instruments.map) e ApostilaPanel.tsx l.81–95 (formula renderiza eq e, se houver, desc), l.124 (kind lista existe) e InstrumentPanel.tsx l.705 (fmt das saídas) — lidos só para entender o efeito das divergências; não são fonte"
+    ],
+    "verificacoes_programaticas": {
+      "por_bloco": [
+        {
+          "bloco": "m01-a03-b01-lead",
+          "tipo": "lead",
+          "estado": "verbatim"
+        },
+        {
+          "bloco": "m01-a03-b02-titulo",
+          "tipo": "titulo",
+          "estado": "verbatim"
+        },
+        {
+          "bloco": "m01-a03-b03-paragrafo",
+          "tipo": "paragrafo",
+          "estado": "verbatim"
+        },
+        {
+          "bloco": "m01-a03-b04-titulo",
+          "tipo": "titulo",
+          "estado": "verbatim"
+        },
+        {
+          "bloco": "m01-a03-b05-paragrafo",
+          "tipo": "paragrafo",
+          "estado": "diverge",
+          "so_na_fonte": [
+            "<span>×1"
+          ],
+          "so_no_ts": []
+        },
+        {
+          "bloco": "m01-a03-b06-figura",
+          "tipo": "figura",
+          "estado": "ausente"
+        },
+        {
+          "bloco": "m01-a03-b07-titulo",
+          "tipo": "titulo",
+          "estado": "verbatim"
+        },
+        {
+          "bloco": "m01-a03-b08-paragrafo",
+          "tipo": "paragrafo",
+          "estado": "verbatim"
+        },
+        {
+          "bloco": "m01-a03-b09-paragrafo",
+          "tipo": "paragrafo",
+          "estado": "verbatim"
+        },
+        {
+          "bloco": "m01-a03-b10-paragrafo",
+          "tipo": "paragrafo",
+          "estado": "verbatim"
+        },
+        {
+          "bloco": "m01-a03-b11-titulo",
+          "tipo": "titulo",
+          "estado": "verbatim"
+        },
+        {
+          "bloco": "m01-a03-b12-paragrafo",
+          "tipo": "paragrafo",
+          "estado": "verbatim"
+        },
+        {
+          "bloco": "m01-a03-b13-formula",
+          "tipo": "formula",
+          "estado": "diverge",
+          "eq_ts": "Geração ≈ Consumo, em tempo real",
+          "eq_fonte_texto": "Geração ≈ Consumo, em tempo real",
+          "eq_igual": true,
+          "desc_ts": null,
+          "desc_fonte": "Desequilíbrio se manifesta como desvio de frequência"
+        },
+        {
+          "bloco": "m01-a03-b14-paragrafo",
+          "tipo": "paragrafo",
+          "estado": "verbatim"
+        },
+        {
+          "bloco": "m01-a03-b15-destaque",
+          "tipo": "destaque",
+          "estado": "diverge",
+          "rotulo_no_ts_em": "html",
+          "ts_label": null,
+          "ts_html": "Conexão com o Bloco 02 (próximo módulo)",
+          "ts_tom": "gold",
+          "tom_fonte": "gold",
+          "corpo_como_paragrafo_solto": true,
+          "corpo_verbatim": true
+        },
+        {
+          "bloco": "m01-a03-b16-titulo",
+          "tipo": "titulo",
+          "estado": "verbatim"
+        },
+        {
+          "bloco": "m01-a03-b17-paragrafo",
+          "tipo": "paragrafo",
+          "estado": "verbatim"
+        }
+      ],
+      "blocos_ts_sem_par_na_fonte": [],
+      "contagem_ts_por_kind": {
+        "titulo": 5,
+        "paragrafo": 9,
+        "formula": 1,
+        "nota": 1
+      },
+      "span_fechando_sem_abrir_no_corpo": 1,
+      "ts_total_blocos": 16,
+      "ts_titulo": "A rede tem um batimento cardíaco. Ele se chama 60 Hz.",
+      "ts_subtitulo": "Corrente alternada e frequência",
+      "ts_lead_presente": true,
+      "ts_illustrations": [
+        "fis-01-dinamo-cc.png",
+        "fis-02-alternador-ca.png",
+        "fis-06-medidor-frequencia.png"
+      ],
+      "ts_activities": [],
+      "ts_instruments_ref": "",
+      "ts_aulaIds_glossario": [
+        {
+          "id": "gl-corrente-alternada-ac",
+          "term": "Corrente alternada (AC)",
+          "aulaIds": [
+            "aula-01-02",
+            "aula-01-03",
+            "aula-01-06"
+          ]
+        },
+        {
+          "id": "gl-corrente-continua-dc",
+          "term": "Corrente contínua (DC)",
+          "aulaIds": [
+            "aula-01-02",
+            "aula-01-03"
+          ]
+        },
+        {
+          "id": "gl-energia",
+          "term": "Energia",
+          "aulaIds": [
+            "aula-01-01",
+            "aula-01-03",
+            "aula-01-04",
+            "aula-01-05",
+            "aula-01-07",
+            "aula-01-09"
+          ]
+        },
+        {
+          "id": "gl-frequencia",
+          "term": "Frequência",
+          "aulaIds": [
+            "aula-01-03",
+            "aula-01-09"
+          ]
+        },
+        {
+          "id": "gl-ons",
+          "term": "ONS",
+          "aulaIds": [
+            "aula-01-03"
+          ]
+        },
+        {
+          "id": "gl-tensao",
+          "term": "Tensão",
+          "aulaIds": [
+            "aula-01-01",
+            "aula-01-02",
+            "aula-01-03",
+            "aula-01-04",
+            "aula-01-05",
+            "aula-01-06",
+            "aula-01-07",
+            "aula-01-09"
+          ]
+        }
+      ],
+      "ts_inst": null,
+      "ts_calc": null
+    },
+    "conforme": [
+      "Lead (p.lead) verbatim em MODULO_01_LEAD[\"aula-01-03\"].",
+      "Os 5 títulos 3.1–3.5 conferem (número e texto).",
+      "Os parágrafos de 3.1, 3.3 (×3), 3.4 (×2) e 3.5, e o corpo do callout, estão verbatim (7 de 8 parágrafos; o de 3.2 diverge em COD-02).",
+      "A eq da fórmula de 3.4 confere.",
+      "Título da aula = texto do h2 sem <em> (conferido: igual); subtítulo = marcador (conferido: igual).",
+      "activities: [] e instruments: [] — coerente com a fonte (zero exercício com tag, zero instrumento).",
+      "durationMinutes/difficulty/video = null, coerente com a fonte."
+    ],
+    "divergencias": [
+      {
+        "id": "COD-01",
+        "gravidade": "alta",
+        "onde": "MODULO_01_CORPO['aula-01-03']",
+        "o_que": "A figura DC × AC (div.ac-dc-vis: duas células, cada uma com h5, rótulo e svg) não existe no corpo portado. Nenhum bloco a representa: nem os 2 títulos em inglês, nem os 2 rótulos, nem a senoide e a reta. Perda silenciosa (§5, §12).",
+        "fonte": "L1598–1619",
+        "evidencia": {
+          "figura": {
+            "bloco": "m01-a03-b06-figura",
+            "tipo": "figura",
+            "estado": "ausente"
+          }
+        }
+      },
+      {
+        "id": "COD-02",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO['aula-01-03'] bloco de 3.2",
+        "o_que": "O parágrafo de 3.2 não é verbatim: o <span class=\"hl\"> que envolve \"60 Hz\" foi removido e o </span> de fechamento ficou (\"frequência de 60 Hz</span>.\"). Fecha-se tag sem abertura: 1 no corpo da aula.",
+        "fonte": "L1596",
+        "evidencia": {
+          "dif_tags": {
+            "so_na_fonte": [
+              "<span>×1"
+            ],
+            "so_no_ts": []
+          },
+          "span_fechando_sem_abrir": 1
+        }
+      },
+      {
+        "id": "COD-03",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO['aula-01-03'] fórmula de 3.4",
+        "o_que": "A fórmula foi portada com desc: null. A fonte tem div.desc: \"Desequilíbrio se manifesta como desvio de frequência\" (a frase que diz como o desequilíbrio se manifesta). A eq confere (\"Geração ≈ Consumo, em tempo real\").",
+        "fonte": "L1631–1634",
+        "evidencia": {
+          "eq_igual": true,
+          "desc_ts": null,
+          "desc_fonte": "Desequilíbrio se manifesta como desvio de frequência"
+        }
+      },
+      {
+        "id": "COD-04",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO['aula-01-03'] callout de 3.4",
+        "o_que": "O callout gold foi portado como nota { label: null, html: \"Conexão com o Bloco 02 (próximo módulo)\" } seguida de parágrafo solto com o corpo. Na fonte o texto é o RÓTULO (div.callout-label) e o parágrafo é o CORPO do mesmo callout. O corpo está verbatim; a hierarquia rótulo/corpo ficou partida (mesmo padrão de COD-08 da aula-08).",
+        "fonte": "L1638–1641",
+        "evidencia": {
+          "tom_ts": "gold",
+          "tom_fonte": "gold",
+          "rotulo_no_ts_em": "html",
+          "corpo_verbatim": true
+        }
+      },
+      {
+        "id": "COD-05",
+        "gravidade": "baixa",
+        "onde": "MODULO_01_AULAS aula-01-03 .illustrations",
+        "o_que": "illustrations lista 3 arquivos (fis-01-dinamo-cc.png, fis-02-alternador-ca.png, fis-06-medidor-frequencia.png); a fonte não tem nenhum <img> (medido no arquivo inteiro), então essas gravuras não têm contraparte no HTML. Origem a confirmar fora desta extração.",
+        "fonte": "arquivo inteiro (0 <img>)",
+        "evidencia": {
+          "ts_illustrations": [
+            "fis-01-dinamo-cc.png",
+            "fis-02-alternador-ca.png",
+            "fis-06-medidor-frequencia.png"
+          ]
+        }
+      },
+      {
+        "id": "COD-06",
+        "gravidade": "baixa",
+        "onde": "alexandria-glossario.ts aulaIds",
+        "o_que": "aulaIds inclui \"aula-01-03\" em 6 verbetes (Corrente alternada (AC); Corrente contínua (DC); Energia; Frequência; ONS; Tensão). A fonte não declara aula por termo; a ligação é derivação do código. \"Energia\" casa só por sentido genérico (ver leitura_do_contexto).",
+        "fonte": "L2540–2640",
+        "evidencia": {
+          "verbetes": [
+            {
+              "id": "gl-corrente-alternada-ac",
+              "term": "Corrente alternada (AC)",
+              "aulaIds": [
+                "aula-01-02",
+                "aula-01-03",
+                "aula-01-06"
+              ]
+            },
+            {
+              "id": "gl-corrente-continua-dc",
+              "term": "Corrente contínua (DC)",
+              "aulaIds": [
+                "aula-01-02",
+                "aula-01-03"
+              ]
+            },
+            {
+              "id": "gl-energia",
+              "term": "Energia",
+              "aulaIds": [
+                "aula-01-01",
+                "aula-01-03",
+                "aula-01-04",
+                "aula-01-05",
+                "aula-01-07",
+                "aula-01-09"
+              ]
+            },
+            {
+              "id": "gl-frequencia",
+              "term": "Frequência",
+              "aulaIds": [
+                "aula-01-03",
+                "aula-01-09"
+              ]
+            },
+            {
+              "id": "gl-ons",
+              "term": "ONS",
+              "aulaIds": [
+                "aula-01-03"
+              ]
+            },
+            {
+              "id": "gl-tensao",
+              "term": "Tensão",
+              "aulaIds": [
+                "aula-01-01",
+                "aula-01-02",
+                "aula-01-03",
+                "aula-01-04",
+                "aula-01-05",
+                "aula-01-06",
+                "aula-01-07",
+                "aula-01-09"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "COD-07",
+        "gravidade": "informativa",
+        "onde": "ids",
+        "o_que": "Código usa \"aula-01-03\"; esta extração usa \"m01-a03\" (id estável com prefixo de módulo). Mapeamento 1:1.",
+        "fonte": null
+      }
+    ]
+  },
+  "contagens": {
+    "blocos": 17,
+    "blocos_por_tipo": {
+      "lead": 1,
+      "titulo": 5,
+      "paragrafo": 8,
+      "figura": 1,
+      "formula": 1,
+      "destaque": 1
+    },
+    "secoes_numeradas": [
+      "3.1",
+      "3.2",
+      "3.3",
+      "3.4",
+      "3.5"
+    ],
+    "figuras": 1,
+    "tabelas": 0,
+    "listas": 0,
+    "destaques": 1,
+    "formulas": 1,
+    "formulas_com_desc": 1,
+    "vale_lembrar": 0,
+    "instrumentos": 0,
+    "entradas_instrumento": 0,
+    "saidas_numericas_instrumento": 0,
+    "invocacoes_no_texto": 0,
+    "exercicios_vinculados": 0,
+    "relacionados_nao_vinculados": 3,
+    "termos_lexico_candidatos": 7,
+    "verbetes_lexico_modulo": 38,
+    "divergencias_fonte": 4,
+    "divergencias_codigo": 7
+  }
+}

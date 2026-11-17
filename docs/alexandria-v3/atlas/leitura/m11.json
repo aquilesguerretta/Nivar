@@ -1,0 +1,302 @@
+{
+  "modulo": "modulo-11",
+  "titulo_modulo": "Geração Distribuída e a Anatomia de uma Proposta Solar",
+  "arquivos_fonte": [
+    "src/lib/data/alexandria-modulo-11-content.ts",
+    "docs/alexandria-v2/extraction/m11/aparato.json"
+  ],
+  "aulas": [
+    {
+      "numero": 1,
+      "chave": "aula-11-01",
+      "titulo": "A aula que impede toda promessa de retorno prematura"
+    },
+    {
+      "numero": 2,
+      "chave": "aula-11-02",
+      "titulo": "De 2012 a 2025: seis instrumentos, duas pendências e duas fronteiras"
+    },
+    {
+      "numero": 3,
+      "chave": "aula-11-03",
+      "titulo": "Dois limiares, quatro modalidades, e o que a proposta precisa provar"
+    },
+    {
+      "numero": 4,
+      "chave": "aula-11-04",
+      "titulo": "GD I, GD II, GD III — e o ano em que a regra ainda não existe"
+    },
+    {
+      "numero": 5,
+      "chave": "aula-11-05",
+      "titulo": "Irradiância, geração estimada, degradação e certificação"
+    },
+    {
+      "numero": 6,
+      "chave": "aula-11-06",
+      "titulo": "Trajetória tarifária, operação e manutenção, e o crédito que expira"
+    },
+    {
+      "numero": 7,
+      "chave": "aula-11-07",
+      "titulo": "O que fica sem resposta se o equipamento falhar — e como se perde o regime"
+    },
+    {
+      "numero": 8,
+      "chave": "aula-11-08",
+      "titulo": "Trinta minutos, duas trilhas, três vereditos"
+    }
+  ],
+  "mencoes": [
+    {
+      "aula": 1,
+      "tipo": "outro",
+      "nome": "Irradiação solar da localidade",
+      "trecho": "<b>Primeiro — Eixo 1.</b> Confirme a premissa física. Geração estimada contra irradiância publicada da localidade, potência do equipamento contra registro de conformidade, degradação assumida contra o termo de garantia do próprio módulo cotado.",
+      "arquivo": "src/lib/data/alexandria-modulo-11-content.ts",
+      "linha": 86,
+      "contexto": "A aula fixa a ordem de precedência dos quatro eixos e põe em primeiro lugar a conferência da geração estimada contra a irradiância publicada do local da instalação.",
+      "ganho_no_mapa": "Ver a irradiação como camada sobre o território mostra que a premissa física é um dado do lugar, consultável antes de qualquer conta financeira.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 3,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "A identidade de titularidade e a mesma distribuidora são as duas travas. Grupo econômico com CNPJs distintos não satisfaz a primeira; unidades em áreas de concessão diferentes não satisfazem a segunda.",
+      "arquivo": "src/lib/data/alexandria-modulo-11-content.ts",
+      "linha": 136,
+      "contexto": "No autoconsumo remoto, a unidade com geração e as que recebem o excedente precisam ter o mesmo titular e ser todas atendidas pela mesma distribuidora.",
+      "ganho_no_mapa": "Com os polígonos de concessão desenhados, o aluno vê de imediato que duas unidades do mesmo titular em concessões vizinhas não podem trocar crédito.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "outro",
+      "nome": "Propriedades contíguas (empreendimento com múltiplas unidades consumidoras)",
+      "trecho": "Conjunto de unidades consumidoras <b>em uma mesma propriedade ou em propriedades contíguas</b>, sem separação por vias públicas, passagem aérea ou subterrânea ou por propriedades de terceiros não integrantes",
+      "arquivo": "src/lib/data/alexandria-modulo-11-content.ts",
+      "linha": 140,
+      "contexto": "A modalidade de empreendimento com múltiplas unidades consumidoras exige contiguidade física dos imóveis, sem via pública nem propriedade de terceiro entre eles.",
+      "ganho_no_mapa": "Em escala de quadra, o mapa mostra o critério que a proposta costuma afirmar sem demonstrar: uma rua entre dois lotes já quebra o enquadramento.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 5,
+      "tipo": "outro",
+      "nome": "Atlas Brasileiro de Energia Solar — grade de irradiação",
+      "trecho": "Ela cobre <b>mais de setenta e dois mil pontos</b> do território nacional, com espaçamento de aproximadamente dez quilômetros, e disponibiliza irradiação global horizontal, direta normal, no plano inclinado, difusa e radiação fotossinteticamente ativa.",
+      "arquivo": "src/lib/data/alexandria-modulo-11-content.ts",
+      "linha": 168,
+      "contexto": "A aula apresenta a base nacional de irradiância como referência primária para conferir a geração estimada de qualquer proposta solar.",
+      "ganho_no_mapa": "A grade de cerca de dez quilômetros sobre o país inteiro faz o aluno enxergar a irradiação como superfície contínua que muda de um ponto a outro, e não como um número nacional.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "outro",
+      "nome": "Estações de medição em superfície (validação do atlas solar)",
+      "trecho": "A base foi produzida a partir de mais de dezessete anos de imagens de satélite, de 1999 a 2015, processadas pelo modelo de transferência radiativa desenvolvido no próprio instituto, e validadas contra mais de quinhentas estações de medição em superfície.",
+      "arquivo": "src/lib/data/alexandria-modulo-11-content.ts",
+      "linha": 168,
+      "contexto": "A aula explica como a base de irradiância foi construída: satélite processado por modelo e validado contra estações em solo.",
+      "ganho_no_mapa": "Ver as estações de superfície espalhadas pelo território mostra onde o modelo foi conferido contra medição real e por que a própria fonte chama o dado de indicativo.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 5,
+      "tipo": "outro",
+      "nome": "Consulta de irradiação por coordenada",
+      "trecho": "A consulta por ponto pode ser feita diretamente na base do instituto, ou pela ferramenta de consulta mantida pelo <b>centro de referência para energia solar e eólica</b> vinculado ao centro de pesquisas do setor elétrico, que foi atualizada com essa mesma base e permite obter a irradiação diária média mensal para qualquer coordenada do país.",
+      "arquivo": "src/lib/data/alexandria-modulo-11-content.ts",
+      "linha": 169,
+      "contexto": "A aula indica as duas formas públicas de obter a irradiação de um ponto específico do território.",
+      "ganho_no_mapa": "Tocar um ponto do mapa e receber a irradiação daquela coordenada reproduz, na tela, o gesto de verificação que a aula ensina.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "Primeira: <b>a trajetória tarifária é específica da concessionária</b>, e não nacional. O Módulo 10 já estabeleceu isso para o nível da tarifa; vale igualmente para a sua variação. Cada distribuidora tem o seu ciclo de reajuste anual e a sua revisão periódica, com atos homologatórios próprios, e o histórico de variação de uma área de concessão não descreve o de outra.",
+      "arquivo": "src/lib/data/alexandria-modulo-11-content.ts",
+      "linha": 196,
+      "contexto": "A aula estabelece que a trajetória de reajuste tarifário é específica de cada concessionária, não nacional, e que a premissa da proposta deve ser ancorada na série daquela área.",
+      "ganho_no_mapa": "O país recortado em áreas de concessão mostra que a premissa tarifária de uma proposta pertence a um polígono, e que o número do vizinho não serve.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 7,
+      "tipo": "outro",
+      "nome": "Irradiação do município da instalação",
+      "trecho": "Consultar a irradiação do município exato da instalação e reconstruir a ordem de grandeza da geração pela potência declarada.",
+      "arquivo": "src/lib/data/alexandria-modulo-11-content.ts",
+      "linha": 443,
+      "contexto": "No primeiro sinal de alerta (geração estimada exagerada), o instrumento manda o comprador conferir sozinho a irradiação do município da instalação.",
+      "ganho_no_mapa": "Localizar o município no mapa de irradiação transforma o sinal de alerta em uma checagem de dois toques.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 7,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "A taxa de crescimento tarifário assumida se afasta materialmente da série homologada da concessionária que atende a unidade, ou não está declarada e vem embutida no resultado.",
+      "arquivo": "src/lib/data/alexandria-modulo-11-content.ts",
+      "linha": 446,
+      "contexto": "No quarto sinal de alerta (trajetória tarifária irrealista), a referência é a série homologada da concessionária que atende a unidade.",
+      "ganho_no_mapa": "Identificar no mapa qual distribuidora atende o ponto da instalação é o primeiro passo para buscar a série de reajustes correta.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "outro",
+      "nome": "Irradiação do município da instalação",
+      "trecho": "Usar irradiação da capital do estado ou da sede da empresa. Irradiância varia por município, e a diferença entre dois municípios da mesma região pode explicar sozinha o desvio que se está tentando investigar.",
+      "arquivo": "src/lib/data/alexandria-modulo-11-content.ts",
+      "linha": 461,
+      "contexto": "No passo 03 da avaliação cronometrada, o instrumento nomeia o erro típico: conferir a geração com a irradiação de outro lugar.",
+      "ganho_no_mapa": "Com a capital e o município da instalação lado a lado na camada de irradiação, o aluno vê a diferença que o passo manda não ignorar.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "Verificar qual das quatro modalidades a proposta declara e se a titularidade descrita cabe nela: mesma unidade, mesmo titular em unidades distintas na mesma distribuidora, associação civil de consumidores, ou unidades em propriedade contígua.",
+      "arquivo": "src/lib/data/alexandria-modulo-11-content.ts",
+      "linha": 462,
+      "contexto": "No passo 04, a modalidade declarada é confrontada com o arranjo real de titularidade e de localização das unidades.",
+      "ganho_no_mapa": "Plotar as unidades do cliente sobre as áreas de concessão responde em segundos se o arranjo cabe na modalidade declarada.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "outro",
+      "nome": "Irradiação solar da localidade",
+      "trecho": "A base nacional de irradiação do instituto de pesquisas espaciais, para a localidade específica, ou a ferramenta de consulta por ponto do centro de referência em energia solar e eólica.",
+      "arquivo": "src/lib/data/alexandria-modulo-11-content.ts",
+      "linha": 393,
+      "contexto": "No instrumento de abertura do módulo (mapa da proposta), a lente \"fonte independente\" aponta a base nacional de irradiação como referência da geração estimada.",
+      "ganho_no_mapa": "A camada de irradiação torna visível que a fonte independente é uma consulta por lugar, disponível a qualquer comprador.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "Os atos homologatórios de reajuste tarifário anual da distribuidora que atende a unidade, publicados pela agência reguladora. Série pública, por área de concessão.",
+      "arquivo": "src/lib/data/alexandria-modulo-11-content.ts",
+      "linha": 399,
+      "contexto": "No mesmo instrumento, a fonte independente da trajetória tarifária é a série de reajustes da distribuidora que atende a unidade.",
+      "ganho_no_mapa": "As áreas de concessão no mapa mostram a que polígono pertence a série de reajustes que ancora a premissa.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Minas Gerais (Operação A — mineração)",
+      "trecho": "Uma proposta solar chega à mineração em Minas Gerais",
+      "arquivo": "docs/alexandria-v2/extraction/m11/aparato.json",
+      "linha": 61,
+      "contexto": "O caso transversal do módulo aplica o método a uma operação de mineração anonimizada em Minas Gerais que recebe uma proposta de geração solar.",
+      "ganho_no_mapa": "Destacar o estado dá ao caso um lugar, e deixa evidente que dentro dele a irradiação e a distribuidora ainda variam.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Submercado Sudeste/Centro-Oeste",
+      "trecho": "As dez partes anteriores construíram o perfil: <b>Operação A — mineração em Minas Gerais</b>, carga razoavelmente plana, operação em turnos, submercado Sudeste/Centro-Oeste, fator de carga elevado, pouca flexibilidade natural, enquadramento tarifário provavelmente adequado conforme o diagnóstico da Parte 10, e o bombeamento identificado como uma das poucas cargas com flexibilidade real.",
+      "arquivo": "docs/alexandria-v2/extraction/m11/aparato.json",
+      "linha": 72,
+      "contexto": "O lede do caso recapitula o perfil da Operação A, incluindo o submercado em que ela está.",
+      "ganho_no_mapa": "Ver o contorno do submercado em torno de Minas Gerais situa a operação na divisão elétrica do país que os módulos anteriores usaram.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "cidade",
+      "nome": "Município da Operação A (não declarado pela fonte)",
+      "trecho": "<b>A irradiância específica do terreno.</b> Sabe-se o submercado; não se sabe o município, e o Módulo 10 já ensinou por que o recorte importa. A irradiação de referência precisa vir da base nacional para as coordenadas específicas, e entra como entrada editável de qualquer verificação — nunca como constante.",
+      "arquivo": "docs/alexandria-v2/extraction/m11/aparato.json",
+      "linha": 330,
+      "contexto": "Na lista do que falta para concluir o caso, o primeiro dado é a irradiância do terreno, que depende do município e das coordenadas que o caso não informa.",
+      "ganho_no_mapa": "O mapa mostra que saber o submercado não basta: a irradiação muda dentro do estado, e sem a coordenada a verificação não fecha.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "outro",
+      "nome": "Geração distribuída por unidade federativa e município (painel de dados)",
+      "trecho": "Painel de Dados de Micro e Minigeração Distribuída, da Empresa de Pesquisa Energética. Consolida dados da agência reguladora e estudos próprios, com capacidade instalada, unidades federativas e municípios, potência típica, investimentos, geração de eletricidade, retorno financeiro e projeções, e permite download das bases.",
+      "arquivo": "docs/alexandria-v2/extraction/m11/aparato.json",
+      "linha": 2383,
+      "contexto": "Entre as referências do módulo está o painel público que consolida a geração distribuída instalada por unidade federativa e município.",
+      "ganho_no_mapa": "Uma camada de geração distribuída por município mostraria onde o objeto do módulo de fato se concentra no território.",
+      "relevancia": "media"
+    }
+  ],
+  "vistas_sugeridas": [
+    {
+      "aula": 3,
+      "titulo": "A mesma distribuidora, no mapa",
+      "o_que_mostra": "Brasil com os polígonos das áreas de concessão das distribuidoras. Ao tocar uma área, o perímetro fica destacado: autoconsumo remoto e geração compartilhada só alocam excedente dentro dele. A aula não nomeia distribuidora; o que entra é o recorte.",
+      "nomes": [
+        "Áreas de concessão das distribuidoras"
+      ],
+      "camadas": [
+        "outra: áreas de concessão das distribuidoras"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "O sol medido ponto a ponto",
+      "o_que_mostra": "Brasil inteiro com a irradiação da base nacional em grade de cerca de dez quilômetros e, por cima, as estações de superfície usadas na validação. Tocar um ponto devolve a irradiação média diária da coordenada, que é a entrada da conta de geração estimada.",
+      "nomes": [
+        "Atlas Brasileiro de Energia Solar — grade de irradiação",
+        "Consulta de irradiação por coordenada",
+        "Estações de medição em superfície (validação do atlas solar)"
+      ],
+      "camadas": [
+        "outra: irradiação solar (Atlas Brasileiro de Energia Solar, 2ª edição)",
+        "outra: estações de medição de irradiação em superfície"
+      ]
+    },
+    {
+      "aula": 6,
+      "titulo": "Cada concessão, uma série de reajustes",
+      "o_que_mostra": "Áreas de concessão das distribuidoras em tom neutro; ao tocar uma, a vista identifica a concessionária cuja série de reajustes homologados deve ancorar a premissa. A aula não traz valores de reajuste; a série viria de dado externo da agência reguladora.",
+      "nomes": [
+        "Áreas de concessão das distribuidoras"
+      ],
+      "camadas": [
+        "outra: áreas de concessão das distribuidoras"
+      ]
+    },
+    {
+      "aula": 8,
+      "titulo": "O município exato, não a capital",
+      "o_que_mostra": "Aproximação em um estado com a irradiação por município. A capital e dois municípios da mesma região ficam lado a lado, para mostrar o desvio que o passo 03 manda não ignorar. Serve também ao primeiro sinal de alerta da Aula 07.",
+      "nomes": [
+        "Irradiação do município da instalação"
+      ],
+      "camadas": [
+        "outra: irradiação solar por município (Atlas Brasileiro de Energia Solar, 2ª edição)"
+      ]
+    },
+    {
+      "aula": 0,
+      "titulo": "Operação A: o que o mapa sabe e o que não sabe",
+      "o_que_mostra": "Minas Gerais destacada dentro do submercado Sudeste/Centro-Oeste, com a irradiação ao fundo. Sem ponto exato: a fonte mantém o município não declarado, e a vista ensina justamente que a irradiância depende de uma coordenada que o caso ainda não tem.",
+      "nomes": [
+        "Minas Gerais (Operação A — mineração)",
+        "Submercado Sudeste/Centro-Oeste",
+        "Município da Operação A (não declarado pela fonte)"
+      ],
+      "camadas": [
+        "submercados",
+        "outra: irradiação solar (Atlas Brasileiro de Energia Solar, 2ª edição)"
+      ]
+    }
+  ]
+}

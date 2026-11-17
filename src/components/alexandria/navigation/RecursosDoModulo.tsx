@@ -102,7 +102,7 @@ export function RecursosDoModulo({ moduloId }: { moduloId: string }) {
           paddingTop: AS.md,
         }}
       >
-        Material que a fonte declara no nível do módulo, não de uma aula —
+        Material do nível do módulo, não de uma aula —
         exercícios de síntese e instrumentos de aparato. É parte do critério
         de conclusão tanto quanto as aulas acima.
       </span>

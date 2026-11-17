@@ -1,0 +1,300 @@
+{
+  "modulo": "modulo-05",
+  "titulo_modulo": "Regulação e Desenho de Mercados",
+  "arquivos_fonte": [
+    "src/lib/data/alexandria-modulo-05-content.ts"
+  ],
+  "aulas": [
+    {
+      "numero": 1,
+      "chave": "aula-05-01",
+      "titulo": "Por que regulado"
+    },
+    {
+      "numero": 2,
+      "chave": "aula-05-02",
+      "titulo": "Unbundling"
+    },
+    {
+      "numero": 3,
+      "chave": "aula-05-03",
+      "titulo": "Pool e bilateral"
+    },
+    {
+      "numero": 4,
+      "chave": "aula-05-04",
+      "titulo": "Captura regulatória"
+    },
+    {
+      "numero": 5,
+      "chave": "aula-05-05",
+      "titulo": "Revisão tarifária"
+    },
+    {
+      "numero": 6,
+      "chave": "aula-05-06",
+      "titulo": "Desenho de mercado comparado"
+    }
+  ],
+  "mencoes": [
+    {
+      "aula": 1,
+      "tipo": "linha",
+      "nome": "Rede de transmissão brasileira (expansão planejada e leiloada)",
+      "trecho": "a expansão da transmissão brasileira é decidida por planejamento centralizado e adjudicada por leilão competitivo, e as duas coisas são compatíveis.",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 220,
+      "contexto": "A rede de transmissão é o exemplo de \"competir pelo mercado\": o planejamento define o que construir e o leilão define quem constrói (a fonte não nomeia linha alguma).",
+      "ganho_no_mapa": "Ver a malha de transmissão inteira mostra o sistema único que ninguém duplicaria e que é leiloado trecho a trecho.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "linha",
+      "nome": "Corredores de transmissão (monopólio natural por corredor)",
+      "trecho": "Monopólio natural por corredor, com forte exigência de coordenação sistêmica",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 241,
+      "contexto": "Na tabela dos quatro segmentos, a transmissão é monopólio natural por corredor (genérico, sem corredor nomeado).",
+      "ganho_no_mapa": "Ver os corredores de transmissão no mapa mostra por que cada um é um monopólio: não há segunda linha concorrente ao lado.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 2,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão de distribuição (concessão territorial)",
+      "trecho": "Concessão territorial, receita regulada por incentivo, metas de qualidade e perda",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 241,
+      "contexto": "Na tabela dos quatro segmentos, a distribuição é monopólio natural local regulado por concessão territorial (genérico, sem distribuidora nomeada).",
+      "ganho_no_mapa": "Ver o país repartido em áreas de concessão mostra que cada distribuidora é monopolista dentro de um território delimitado.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "outro",
+      "nome": "Região ilhada por congestionamento (poder de mercado local)",
+      "trecho": "Geração pode exercer poder de mercado local quando há congestionamento e um único gerador consegue atender a região ilhada.",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 242,
+      "contexto": "A geração, embora competitiva, pode exercer poder de mercado local quando o congestionamento ilha uma região (genérico, sem região nomeada).",
+      "ganho_no_mapa": "Ver uma área que depende de poucas linhas para receber energia mostra como o congestionamento cria um mercado local cativo.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 3,
+      "tipo": "outro",
+      "nome": "Eólica distante × térmica próxima (contrato não define trajetória física)",
+      "trecho": "Se uma fábrica compra dez megawatts médios de uma usina eólica distante e o operador manda uma térmica próxima gerar, <strong>o contrato não foi descumprido</strong>: ele nunca foi uma promessa de trajetória física.",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 262,
+      "contexto": "O contrato bilateral não determina de onde vêm os elétrons: a fábrica compra de uma eólica distante e o operador pode mandar gerar uma térmica próxima (genérico, sem lugar nomeado).",
+      "ganho_no_mapa": "Ver a fábrica, a eólica distante e a térmica próxima ligadas pela mesma rede mostra que o contrato é sobre dinheiro, não sobre o caminho do elétron.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "intercambio",
+      "nome": "Intercâmbios entre subsistemas (definidos pelo operador)",
+      "trecho": "O operador nacional coordena e controla a geração e a transmissão no sistema interligado, programa o despacho, define intercâmbios entre subsistemas e determina intervenções.",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 266,
+      "contexto": "A operação é centralizada: o operador nacional programa o despacho e define os intercâmbios entre subsistemas.",
+      "ganho_no_mapa": "Ver as interligações entre subsistemas mostra o que o operador decide fisicamente, independentemente dos contratos.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "submercado",
+      "nome": "Submercados (liquidação por hora e por submercado)",
+      "trecho": "a diferença entre contratado e medido é valorada no mercado de curto prazo pelo preço de liquidação das diferenças, por hora e por submercado.",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 268,
+      "contexto": "A contabilização é centralizada: a diferença entre contratado e medido é valorada ao PLD, por hora e por submercado.",
+      "ganho_no_mapa": "Ver os submercados lembra que a liquidação de qualquer contrato tem um componente de localização.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 3,
+      "tipo": "reservatorio",
+      "nome": "Reservatórios plurianuais (fisiografia do sistema brasileiro)",
+      "trecho": "Num parque predominantemente hídrico com reservatórios plurianuais, o custo de gerar hoje é uma função do futuro — e essa função só pode ser calculada olhando o sistema como um todo. O desenho brasileiro é uma consequência da fisiografia, não uma preferência política herdada.",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 269,
+      "contexto": "A aula conclui que o desenho brasileiro (operação central, despacho por custo) é consequência da fisiografia: um parque hídrico com reservatórios plurianuais.",
+      "ganho_no_mapa": "Ver os grandes reservatórios e bacias do país mostra a geografia que, segundo a aula, impõe o desenho do mercado.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "cidade",
+      "nome": "Brasília",
+      "trecho": "O lado concentrado tem incentivo racional para financiar equipe jurídica, consultoria econômica, participação em toda consulta pública e presença permanente em Brasília.",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 277,
+      "contexto": "Na lógica da ação coletiva, o lado concentrado financia presença permanente em Brasília; o lado difuso não se organiza.",
+      "ganho_no_mapa": "Marcar Brasília dá endereço ao centro de decisão regulatória de que a aula fala (menção incidental).",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 5,
+      "tipo": "distribuidora",
+      "nome": "Área de concessão de distribuição (monopólio territorial)",
+      "trecho": "A distribuidora atende uma área de concessão sem concorrente.",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 301,
+      "contexto": "A revisão tarifária disciplina um monopólio territorial: a distribuidora atende uma área de concessão sem concorrente (genérico, sem distribuidora nomeada).",
+      "ganho_no_mapa": "Ver as áreas de concessão no mapa mostra a quem a planta industrial está presa pela rede, mesmo no mercado livre.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "distribuidora",
+      "nome": "Área de concessão — dispersão geográfica na empresa de referência",
+      "trecho": "uma construção regulatória de quanto custaria operar aquela concessão de forma eficiente, dadas características objetivas como número de consumidores, extensão de rede, dispersão geográfica e mercado atendido.",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 303,
+      "contexto": "A empresa de referência estima o custo eficiente de cada concessão a partir de características objetivas, entre elas extensão de rede e dispersão geográfica.",
+      "ganho_no_mapa": "Comparar no mapa uma concessão compacta e uma dispersa mostra por que o custo eficiente reconhecido não pode ser o mesmo para as duas.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "reservatorio",
+      "nome": "Reservatórios plurianuais (otimização do uso da água)",
+      "trecho": "Um sistema com reservatórios plurianuais precisa de alguém que otimize o uso da água ao longo do tempo, porque nenhum agente individual internaliza esse valor.",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 336,
+      "contexto": "O Brasil fica perto do extremo de despacho por custo porque um sistema com reservatórios plurianuais precisa de alguém que otimize a água ao longo do tempo.",
+      "ganho_no_mapa": "Ver os reservatórios plurianuais no mapa dá corpo à razão física da posição do Brasil no eixo de revelação de custo.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "linha",
+      "nome": "Rede de transmissão (onde a rede vai crescer)",
+      "trecho": "<strong>a expansão da transmissão é planejada centralmente e adjudicada por leilão</strong>. Isso importa porque desloca para o planejador a decisão de onde a rede vai crescer",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 338,
+      "contexto": "A expansão da transmissão é planejada centralmente: é o planejador, e não um sinal locacional de preço, quem decide onde a rede vai crescer.",
+      "ganho_no_mapa": "Ver a malha existente ajuda a entender que o traçado da rede é uma decisão de planejamento, com risco de erro de projeção.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Sudeste (fábrica e térmicas despachadas — exercício 03)",
+      "trecho": "Uma fábrica no Sudeste compra 10 MW médios de uma eólica no Nordeste. No mês seguinte, o operador despacha térmicas no Sudeste e restringe geração eólica no Nordeste.",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 372,
+      "contexto": "O exercício 03 (solto, sem aula) põe uma fábrica no Sudeste comprando de uma eólica no Nordeste e pergunta se o contrato foi descumprido quando o operador despacha térmicas no Sudeste e restringe a eólica.",
+      "ganho_no_mapa": "Destacar o Sudeste como o lado da fábrica e das térmicas despachadas mostra onde a carga do exercício é de fato atendida.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Nordeste (eólica contratada e restringida — exercício 03)",
+      "trecho": "Uma fábrica no Sudeste compra 10 MW médios de uma eólica no Nordeste. No mês seguinte, o operador despacha térmicas no Sudeste e restringe geração eólica no Nordeste.",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 372,
+      "contexto": "O exercício 03 (solto, sem aula) põe uma fábrica no Sudeste comprando de uma eólica no Nordeste e pergunta se o contrato foi descumprido quando o operador despacha térmicas no Sudeste e restringe a eólica.",
+      "ganho_no_mapa": "Destacar o Nordeste como o lado da eólica contratada e restringida mostra a distância entre o contrato e o fluxo físico.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "intercambio",
+      "nome": "Diferença de preço entre submercados e restrição de geração (exercício 03)",
+      "trecho": "Restrição de geração e diferença de preço entre submercados são riscos contratuais concretos",
+      "arquivo": "src/lib/data/alexandria-modulo-05-content.ts",
+      "linha": 374,
+      "contexto": "O gabarito do exercício 03 lembra que restrição de geração e diferença de preço entre submercados são riscos contratuais reais, alocados por cláusula.",
+      "ganho_no_mapa": "Ver a interligação Nordeste–Sudeste entre a eólica e a fábrica mostra onde nascem o corte e a diferença de preço.",
+      "relevancia": "media"
+    }
+  ],
+  "vistas_sugeridas": [
+    {
+      "aula": 1,
+      "titulo": "A rede que ninguém duplica",
+      "o_que_mostra": "Brasil inteiro com a malha de transmissão e as subestações; chave de leitura: um sistema único, planejado centralmente e leiloado trecho a trecho.",
+      "nomes": [
+        "Rede de transmissão brasileira (expansão planejada e leiloada)"
+      ],
+      "camadas": [
+        "linhas",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "Corredor e território: os dois monopólios naturais",
+      "o_que_mostra": "Malha de transmissão (monopólio por corredor) sobre as áreas de concessão das distribuidoras (monopólio territorial).",
+      "nomes": [
+        "Corredores de transmissão (monopólio natural por corredor)",
+        "Áreas de concessão de distribuição (concessão territorial)"
+      ],
+      "camadas": [
+        "linhas",
+        "outra: áreas de concessão de distribuidoras"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "O elétron não segue o contrato",
+      "o_que_mostra": "Uma fábrica, uma eólica distante e uma térmica próxima ligadas pela mesma rede, com os intercâmbios entre subsistemas em destaque; o contrato liga fábrica e eólica, o despacho liga fábrica e térmica.",
+      "nomes": [
+        "Eólica distante × térmica próxima (contrato não define trajetória física)",
+        "Intercâmbios entre subsistemas (definidos pelo operador)",
+        "Submercados (liquidação por hora e por submercado)"
+      ],
+      "camadas": [
+        "linhas",
+        "submercados",
+        "usinas_eolica",
+        "usinas_termica"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "Um desenho imposto pela fisiografia",
+      "o_que_mostra": "Grandes reservatórios e bacias do país; chave de leitura: é o estoque plurianual de água que exige operação central e despacho por custo.",
+      "nomes": [
+        "Reservatórios plurianuais (fisiografia do sistema brasileiro)"
+      ],
+      "camadas": [
+        "reservatorios_bacias",
+        "usinas_hidro"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "Cada distribuidora, um território",
+      "o_que_mostra": "País repartido em áreas de concessão de distribuição; contraste entre uma concessão compacta e uma dispersa para ler a empresa de referência.",
+      "nomes": [
+        "Área de concessão de distribuição (monopólio territorial)",
+        "Área de concessão — dispersão geográfica na empresa de referência"
+      ],
+      "camadas": [
+        "outra: áreas de concessão de distribuidoras"
+      ]
+    },
+    {
+      "aula": 0,
+      "titulo": "Exercício 03: fábrica no Sudeste, eólica no Nordeste",
+      "o_que_mostra": "Nordeste e Sudeste na mesma vista; eólica contratada no Nordeste, fábrica e térmicas no Sudeste e a interligação entre os dois submercados.",
+      "nomes": [
+        "Sudeste (fábrica e térmicas despachadas — exercício 03)",
+        "Nordeste (eólica contratada e restringida — exercício 03)",
+        "Diferença de preço entre submercados e restrição de geração (exercício 03)"
+      ],
+      "camadas": [
+        "submercados",
+        "linhas",
+        "usinas_eolica",
+        "usinas_termica"
+      ]
+    }
+  ]
+}

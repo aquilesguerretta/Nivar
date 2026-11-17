@@ -1,0 +1,628 @@
+/* Alexandria v3 — revisão espaçada (faixa da Home e tela /alexandria/revisao).
+ *
+ * Só tokens de alexandria-v3.css. Raio zero (só o círculo pleno da marca de
+ * escolha), nenhuma sombra, profundidade por fio de 1 px, nenhum semáforo:
+ * estado se lê por FORMA (ficha cheia × vazada, glifo cheio × vazado) e por
+ * palavra. Movimento contido: a ficha enche, o item sobe uma vez ao entrar;
+ * com prefers-reduced-motion, o bloco global de alexandria-v3.css zera tudo
+ * e as regras abaixo deixam o estado final sem animação.
+ */
+
+/* ── fichas do dia ───────────────────────────────────────── */
+
+.alx3 .rv-fichas {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.alx3 .rv-ficha {
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--tinta);
+  background: transparent;
+  transition: background 320ms cubic-bezier(0.19, 1, 0.22, 1), transform 320ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.alx3 .rv-ficha[data-feita] {
+  background: var(--tinta);
+}
+
+/* "você está aqui": o óxido é o da casa para isso, em fio, nunca em fundo */
+.alx3 .rv-ficha[data-atual] {
+  border-color: var(--oxido);
+  transform: translateY(-2px);
+}
+
+/* ── botão e links ───────────────────────────────────────── */
+
+.alx3 .rv-botao {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 26px;
+  font-family: var(--f-interface);
+  font-size: 16.5px;
+  font-weight: 500;
+  color: var(--sobre-tinta);
+  background: var(--tinta);
+  border: 0;
+  border-radius: 0;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.alx3 .rv-botao::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--oxido);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 420ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.alx3 .rv-botao:hover::after,
+.alx3 .rv-botao:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.alx3 .rv-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 16.5px;
+  color: var(--tinta);
+  text-decoration: underline;
+  text-decoration-color: var(--ouro);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color var(--t-hover);
+}
+
+.alx3 .rv-link:hover {
+  text-decoration-color: var(--oxido);
+}
+
+.alx3 .rv-link-seta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  font-size: 16.5px;
+  color: var(--tinta);
+  text-decoration: none;
+  border-bottom: 1px solid var(--fio-forte);
+  justify-self: start;
+}
+
+.alx3 .rv-link-seta::after {
+  content: '→';
+  transition: transform var(--t-hover);
+}
+
+.alx3 .rv-link-seta:hover::after {
+  transform: translateX(5px);
+}
+
+/* ── faixa da Home ───────────────────────────────────────── */
+
+@keyframes rv-entra {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.alx3 .rv-faixa {
+  display: grid;
+  /* as mesmas colunas da .mesa-grade logo abaixo: o fio vertical continua */
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  border-bottom: 1px solid var(--fio);
+  animation: rv-entra var(--t-revelar) both;
+}
+
+.alx3 .rv-faixa-conta {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: 36px 56px 40px 0;
+  border-right: 1px solid var(--fio);
+}
+
+.alx3 .rv-faixa-conta .rv-botao {
+  justify-self: start;
+  margin-top: 6px;
+}
+
+.alx3 .rv-faixa-numero {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.alx3 .rv-faixa-n {
+  font-family: var(--f-leitura);
+  font-size: clamp(60.5px, 6.5vw, 95px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-variant-numeric: lining-nums;
+}
+
+.alx3 .rv-faixa-n-rotulo {
+  font-family: var(--f-leitura);
+  font-size: 26px;
+  font-style: italic;
+  color: var(--tinta-suave);
+}
+
+.alx3 .rv-faixa-nota {
+  margin: 0;
+  max-width: 44ch;
+  font-size: 16.5px;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+.alx3 .rv-faixa-lista {
+  list-style: none;
+  margin: 0;
+  padding: 24px 0 24px 40px;
+  display: grid;
+  align-content: start;
+}
+
+.alx3 .rv-faixa-item {
+  display: grid;
+  gap: 4px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--fio);
+  animation: rv-entra var(--t-revelar) both;
+  animation-delay: calc(var(--i, 0) * 60ms + 120ms);
+}
+
+.alx3 .rv-faixa-item:last-child,
+.alx3 .rv-faixa-resto {
+  border-bottom: 0;
+}
+
+.alx3 .rv-faixa-linha {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2px 16px;
+}
+
+.alx3 .rv-faixa-item[data-so-celular] {
+  display: none;
+}
+
+.alx3 .rv-faixa-aula {
+  font-family: var(--f-leitura);
+  font-size: 21px;
+  line-height: 1.3;
+}
+
+.alx3 .rv-faixa-atraso {
+  font-family: var(--f-dado);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--tinta-fraca);
+  white-space: nowrap;
+}
+
+
+/* ── nota da coluna lateral (nada vencido) ───────────────── */
+
+.alx3 .rv-nota {
+  animation: rv-entra var(--t-revelar) both;
+}
+
+/* ── tela de revisão ─────────────────────────────────────── */
+
+.alx3 .rv-espera {
+  min-height: 70vh;
+}
+
+.alx3 .rv {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 56px 64px 120px;
+  display: grid;
+  gap: 36px;
+}
+
+.alx3 .rv-cabeca {
+  display: grid;
+  gap: 12px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .rv-titulo {
+  margin: 0;
+  font-size: clamp(43px, 4.75vw, 69px);
+}
+
+.alx3 .rv-titulo em {
+  font-style: italic;
+}
+
+.alx3 .rv-andamento {
+  margin: 4px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+}
+
+.alx3 .rv-aparato {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--tinta-fraca);
+}
+
+.alx3 .rv-vazio-frase {
+  margin: 0;
+  max-width: 34ch;
+  font-family: var(--f-leitura);
+  font-size: clamp(26px, 2.6vw, 34.5px);
+  line-height: 1.3;
+}
+
+.alx3 .rv-rotulo {
+  display: block;
+  font-family: var(--f-dado);
+  font-size: 13.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+.alx3 .rv-item {
+  display: grid;
+  gap: 20px;
+  padding-left: 24px;
+  border-left: 1px solid var(--ouro);
+  animation: rv-entra 420ms cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.alx3 .rv-item:focus {
+  outline: none;
+}
+
+.alx3 .rv-item:focus-visible {
+  outline: 2px solid var(--oxido);
+  outline-offset: 6px;
+}
+
+.alx3 .rv-item-origem {
+  display: grid;
+  gap: 4px;
+}
+
+.alx3 .rv-item-meta {
+  color: var(--tinta-fraca);
+  letter-spacing: 0.04em;
+}
+
+.alx3 .rv-enunciado {
+  margin: 0;
+  max-width: 36em;
+  font-family: var(--f-leitura);
+  font-size: clamp(21.5px, 1.95vw, 25px);
+  line-height: 1.5;
+}
+
+.alx3 .rv-pauta {
+  width: 100%;
+  max-width: 720px;
+  resize: vertical;
+  font-family: var(--f-leitura);
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--tinta);
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--fio-forte);
+  border-bottom: 1px solid var(--fio-forte);
+  border-radius: 0;
+  padding: 10px 2px;
+}
+
+.alx3 .rv-pauta::placeholder {
+  color: var(--tinta-fraca);
+  font-style: italic;
+}
+
+.alx3 .rv-pauta:focus {
+  outline: none;
+  border-bottom-color: var(--oxido);
+}
+
+.alx3 .rv-escolhas {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.alx3 .rv-escolhas-linha {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+}
+
+.alx3 .rv-escolha {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 44px;
+  padding: 9px 4px;
+  font-family: var(--f-leitura);
+  font-size: 20px;
+  line-height: 1.35;
+  text-align: left;
+  color: var(--tinta);
+  background: none;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.alx3 .rv-marca {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-top: 5px;
+  border: 1.5px solid var(--tinta);
+  background: transparent;
+  border-radius: 50%;
+  transition: background var(--t-hover);
+}
+
+.alx3 .rv-marca[data-marcada] {
+  background: var(--tinta);
+  outline: 3px solid var(--papel);
+  outline-offset: -5px;
+}
+
+.alx3 .rv-acao-linha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+}
+
+.alx3 .rv-aviso {
+  font-size: 16px;
+  color: var(--tinta);
+  border-left: 2px solid var(--oxido);
+  padding-left: 10px;
+}
+
+.alx3 .rv-comparacao {
+  display: grid;
+  gap: 22px;
+  animation: rv-entra 420ms cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.alx3 .rv-lado-a-lado {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.alx3 .rv-lado-a-lado > div {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding-right: 22px;
+}
+
+.alx3 .rv-lado-a-lado > div + div {
+  padding-left: 24px;
+  border-left: 1px solid var(--fio-forte);
+}
+
+.alx3 .rv-resposta,
+.alx3 .rv-referencia {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 19px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.alx3 .rv-resposta {
+  white-space: pre-wrap;
+}
+
+.alx3 .rv-autoavaliacao {
+  display: grid;
+  gap: 6px;
+}
+
+.alx3 .rv-estado {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16.5px;
+}
+
+.alx3 .rv-glifo {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  flex: none;
+  border: 1.5px solid var(--tinta);
+}
+
+.alx3 .rv-glifo[data-forma='cheio'] {
+  background: var(--tinta);
+}
+
+.alx3 .rv-volta {
+  display: grid;
+  gap: 16px;
+  padding-top: 18px;
+  border-top: 1px solid var(--fio);
+  animation: rv-entra var(--t-revelar) both;
+}
+
+.alx3 .rv-volta-frase {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+}
+
+.alx3 .rv-volta-quando {
+  font-family: var(--f-leitura);
+  font-size: clamp(28px, 2.8vw, 36.5px);
+  font-style: italic;
+  line-height: 1.15;
+}
+
+/* ── fim da revisão ──────────────────────────────────────── */
+
+.alx3 .rv-fim {
+  display: grid;
+  gap: 22px;
+  animation: rv-entra var(--t-revelar) both;
+}
+
+.alx3 .rv-fim:focus {
+  outline: none;
+}
+
+.alx3 .rv-fim-titulo {
+  margin: 0;
+  font-size: clamp(36.5px, 3.65vw, 52px);
+}
+
+.alx3 .rv-fim-titulo em {
+  font-style: italic;
+}
+
+.alx3 .rv-fim-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  border-top: 1px solid var(--fio);
+}
+
+.alx3 .rv-fim-lista li {
+  display: grid;
+  grid-template-columns: 13em minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .rv-fim-aula {
+  font-family: var(--f-leitura);
+  font-size: 20px;
+}
+
+.alx3 .rv-fim-volta {
+  font-family: var(--f-dado);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--tinta-suave);
+}
+
+.alx3 .rv-fim-proximo {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 24px;
+}
+
+/* ── celular ─────────────────────────────────────────────── */
+
+@media (max-width: 860px) {
+  .alx3 .rv-faixa {
+    grid-template-columns: 1fr;
+  }
+  .alx3 .rv-faixa-conta {
+    padding: 28px 0 24px;
+    border-right: 0;
+    border-bottom: 1px solid var(--fio);
+  }
+  .alx3 .rv-faixa-conta .rv-botao {
+    justify-self: stretch;
+  }
+  .alx3 .rv-faixa-lista {
+    padding: 8px 0 16px;
+  }
+  .alx3 .rv-faixa-item[data-so-largo] {
+    display: none;
+  }
+  .alx3 .rv-faixa-item[data-so-celular] {
+    display: grid;
+  }
+  .alx3 .rv {
+    padding: 32px 16px 80px;
+    gap: 28px;
+  }
+  .alx3 .rv-item {
+    padding-left: 14px;
+  }
+  .alx3 .rv-lado-a-lado {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  .alx3 .rv-lado-a-lado > div {
+    padding-right: 0;
+  }
+  .alx3 .rv-lado-a-lado > div + div {
+    padding: 18px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--fio-forte);
+  }
+  .alx3 .rv-escolhas-linha {
+    flex-direction: column;
+  }
+  .alx3 .rv-fim-lista li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+  .alx3 .rv-botao {
+    width: 100%;
+  }
+  .alx3 .rv-acao-linha .rv-link {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alx3 .rv-faixa,
+  .alx3 .rv-faixa-item,
+  .alx3 .rv-nota,
+  .alx3 .rv-item,
+  .alx3 .rv-comparacao,
+  .alx3 .rv-volta,
+  .alx3 .rv-fim {
+    animation: none;
+  }
+  .alx3 .rv-ficha[data-atual] {
+    transform: none;
+  }
+}

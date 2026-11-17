@@ -1,0 +1,881 @@
+{
+  "modulo": "modulo-15",
+  "titulo_modulo": "Petróleo, Gás e Petrobras",
+  "trilha": "Trilha 3 · Especialização Estratégica (track 'brasil', nível 3)",
+  "estudo": {
+    "data": "2026-09-17",
+    "autor": "leitura de aula (agente), camada alexandria para tudo que não é citação",
+    "fontes_lidas": [
+      "src/lib/data/alexandria-modulo-15-content.ts (MODULO_15_LEAD, MODULO_15_CORPO, MODULO_15_AULAS, MODULO_15_INSTRUMENTOS, MODULO_15_EXERCICIOS_SOLTOS)",
+      "src/lib/data/alexandria-instrument-calculators.ts (m15-inst-01 a m15-inst-10, portados)",
+      "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo15.html (só leitura: seções tese, map, a01–a09, caso, erros, ex, quiz, voz, final, lex, ref e o script dos instrumentos)",
+      "docs/alexandria-v2/bar.md (§0, §4, S1–S7, §7, §9)",
+      "docs/alexandria-v2/decisoes/2026-09-16-ambiguidades-de-conteudo.md (P17–P24)",
+      "docs/alexandria-v2/media-lab/aulas/m15/_trabalho (curadoria em andamento: sem plano.json)"
+    ],
+    "extracao_verificada": "docs/alexandria-v2/extraction/m15 contém só extratores/lib.mjs; nenhum README/aparato/modulo.json ainda. Este estudo leu o HTML-fonte diretamente.",
+    "convencao_bloco_indice": "Índice 0-based em MODULO_15_CORPO[aulaId]. 'inserir_apos: N' = o instrumento/ato entra logo depois do bloco N."
+  },
+  "leitura_transversal": {
+    "espinha_do_modulo": "A fonte organiza o módulo em três lentes (tese §00.2): Lente 01 Regime (A01–A03), Lente 02 Camada e precificação (A04–A07), Lente 03 Acoplamento elétrico (A08), e Síntese (A09). As aulas trazem o rótulo de lente no cabeçalho do HTML ('Aula 01 · Lente de Regime'), que o código não carrega.",
+    "cadeia_de_nove_elos": "§MAP da fonte desenha a cadeia em 9 elos (reservatório, campo, escoamento, processamento, transporte, regaseificação, refino, distribuição, consumo/termelétrica). As seis 'Fichas de elo' espalhadas pelas aulas (campo concessão, campo partilha, refinaria elo 7, gasoduto elo 5, terminal elo 6, termelétrica elo 9) são a mesma ficha com 'campos idênticos'. É a cartografia natural do módulo: toda aula pode se localizar nela.",
+    "ato_embutido_na_fonte": "Toda Ficha de elo termina em 'O que este número não diz. Preencha.' seguido de um início de lista com reticências e de um lembrete de retorno ('Volte a esta ficha depois da Aula 04'; 'Compare com a lacuna que você escreveu na ficha do campo produtor'; 'Este campo mudou de conteúdo em 2 de julho de 2026. Por quê?'). A fonte pede a escrita mas não tem campo. A referência existe no próprio HTML: o campo 'nao' de cada elo no script do INST·01 (§MAP). É tentativa → referência com origem na fonte, e recuperação espaçada que a própria fonte encomenda.",
+    "padroes_de_representacao_do_modulo": [
+      "Ficha de elo (ficha de campos idênticos com lacuna a preencher): A01 (×2), A05, A07 (×2), A08",
+      "Confronto em duas colunas sem vencedor (div.par/mot da fonte): A03 (nota de neutralidade), A04 (política de preços), A09 (pré-sal e clima)",
+      "Tabela de estado de política datada ('Estado em 04/08/2026'): A04, A07",
+      "Números vivos com data de consulta 04/08/2026: A02, A04, A06, A08, A09",
+      "Explicação em três níveis (Criança · Executivo · Especialista, em abas lv-tabs na fonte): A01, A02, A06, A08"
+    ],
+    "exercicios_da_fonte": "15 exercícios soltos (§Ex), sem vínculo declarado a aula (a varredura do extrator deu zero). Pela família: Família 1 regime (ex-01..04) conversa com A01; Família 2 camada (ex-05..08) com A04/A06 (ex-08 também com A03); Família 3 grandeza (ex-09..12) com A02 e A06 (ex-12); Família 4 acoplamento (ex-13..15) com A08. Pela P9 eles ficam na Revisão; qualquer vínculo por aula abaixo é SUGESTÃO da camada alexandria, a revisar, e não vínculo da fonte.",
+    "quiz_da_fonte": "10 questões no §Quiz ('critério de oito acertos'), só no HTML (§9). Pela P18 o 8/10 é registro legado: nunca 'Aprovado'. Se o quiz virar avaliação, as perguntas usadas como previsão ou recuperação nas aulas precisam sair dela (C10: questão já usada sai da avaliação). Colisões previsíveis: quiz q2 × A02, q3 × A06, q5 × A04, q6 × A07, q7/q8/q9 × A08, q10 × A09.",
+    "blocos_fora_da_interface": "Cada aula termina com a nota 'Onde isso entra no produto', que cita produtos com a marca GridAlpha (Research, Energy Brief, Regulatory Radar, Brasil Terminal). Pela P7 e pela P24 esses blocos ficam fora da interface do learner. As aulas perdem só essa nota e nada do mecanismo.",
+    "linguagem_de_marca": "A fonte chama a Petrobras de 'a companhia estatal' em várias aulas e a nomeia em A04, A05 e A09 (régua de nomeação §Final: Petrobras em verde). Manter literal.",
+    "glosas_de_desambiguacao": "A tese §00.3 traz três glosas obrigatórias (bacia, reserva, concessão) que colidem com sentidos de módulos anteriores. Pela C4, elas devem aparecer no ponto de uso: 'concessão' em A01 e 'reserva' em A02. Hoje estão só na tese, fora das aulas.",
+    "estrutura_perdida_na_extracao": "Os quatro 'dc' (cartões de dado) da fonte não foram extraídos: dois em A02 (Petróleo 1P 17,488 bi bbl; 3P 28,877 bi bbl) e dois em A03 (Royalties nov/2025 R$ 4,38 bi, 546 municípios; PE 1T2026 R$ 9,43 bi, 21 municípios). A prosa do código depende deles ('Entre as duas está o 2P…'; 'Quinhentos e quarenta e seis contra vinte e um…') e hoje fica sem referente."
+  },
+  "aulas": [
+    {
+      "aulaId": "aula-15-01",
+      "titulo": "Três regimes, um subsolo",
+      "subtitulo": "quem é dono da molécula",
+      "lente_fonte": "Aula 01 · Lente de Regime",
+      "ensina": "O regime contratual (concessão, partilha, cessão onerosa) não muda a geologia nem o volume. Muda quem é titular da molécula, o que o Estado recebe e em que forma, e quanto do barril vira receita de quem produziu. Por isso volume soma entre regimes e receita não.",
+      "natureza": ["mercado/regulação", "comparação de regimes", "sistema (titularidade ao longo da cadeia)"],
+      "representacao": {
+        "arquetipo": "Mesa de comparação em três colunas (concessão × partilha × cessão onerosa) com linhas fixas, seguida de duas Fichas de elo lado a lado ('campos idênticos') que mostram o mesmo campo físico sob dois titulares.",
+        "porque": "O mecanismo é uma diferença estrutural entre três objetos que parecem iguais fisicamente. A fonte já escreve cada regime em paralelo: lei, o que se disputa, quem corre risco, o que o Estado recebe. As duas fichas foram escritas para serem lidas juntas: 'Fisicamente idêntico ao anterior'. Uma coluna editorial pura esconde o paralelismo, e um palco de mapa não carrega titularidade.",
+        "sequencia": [
+          "Abertura com a pergunta e o ato (dois campos vizinhos)",
+          "01.1–01.3 em coluna editorial, com a mesa de três regimes crescendo linha a linha à medida que cada regime é lido (ou fixa depois de 01.3)",
+          "Nota 'consequência prática' (gás da União, CNPE 30/07/2026) como marginália datada",
+          "01.4 individualização: figura do reservatório atravessando a linha do bloco",
+          "INST·02 como prancha com o ato de previsão por dimensão",
+          "Fichas de elo 01 e 02 lado a lado, com a lacuna 'o que este número não diz' como campo",
+          "Três níveis em disclosure no fluxo",
+          "Registro"
+        ]
+      },
+      "abertura": {
+        "pergunta_camada_alexandria": "Dois campos vizinhos produzem 100 mil bbl/d cada. Dá para somar a receita de quem os produziu?",
+        "objetivo_camada_alexandria": "Distinguir os três regimes pela titularidade da molécula e dizer o que falta saber antes de somar receita.",
+        "previsao": {
+          "util": true,
+          "forma": "Escolha registrada: 'somo: 200 mil bbl/d × preço' · 'somo o volume, não a receita' · 'não sei sem o regime'. O valor é o erro, e a fonte nomeia esse erro como 'a origem de metade das leituras erradas deste tema' (lead).",
+          "numeros_da_fonte": "100 mil bbl/d por campo (ex-01 da fonte); 254 de 272 áreas em concessão, 7 em cessão onerosa (jun/2026, prosa). As 11 de partilha aparecem no ex-02 e no enunciado e02 do INST·10.",
+          "referencia": "Gabarito do m15-ex-01 (fonte), mostrado só depois do registro e na Revisão, conforme a P9."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever + classificar",
+        "descricao": "Antes de abrir cada dimensão do INST·02, o learner diz, para o regime escolhido, quem é titular da molécula (concessionário / União / cessionária até o teto). Depois lê a resposta e a 'ressalva de comparabilidade'. Ato de fechamento: preencher a lacuna da Ficha de elo 02 ('não diz o percentual de excedente ofertado, não diz o estágio de recuperação de custo, não diz…').",
+        "referencia_fonte": "Textos R[regime][dimensão] do script do INST·02; campo 'nao' do elo 'campo' no INST·01 (§MAP).",
+        "camada": "alexandria (forma do ato); fonte (referências)"
+      },
+      "visualizacao": [
+        {
+          "o_que": "Mesa de titularidade: 3 regimes × 4 dimensões (titularidade, o que o Estado recebe, como se disputa, quem corre risco)",
+          "relacao": "mesmo volume físico, titulares diferentes",
+          "eixos_unidade": "categórico, sem unidade",
+          "existe_no_codigo": false,
+          "nota": "O INST·02 mostra uma célula por vez (select × select). A mesa inteira é a visão de conjunto que falta."
+        },
+        {
+          "o_que": "Divisão do barril na partilha: produção → custo em óleo → excedente em óleo → fatia da União × fatia do contratado",
+          "relacao": "fluxo físico de uma unidade de produção (diagrama de Sankey em barra única)",
+          "eixos_unidade": "proporção qualitativa, SEM percentuais: a fonte não dá percentual típico de custo em óleo nem de excedente ('varia por contrato', §Erros)",
+          "existe_no_codigo": false
+        },
+        {
+          "o_que": "Individualização da produção: reservatório único atravessando a linha de dois blocos (ou de bloco contratado e área da União representada pela PPSA)",
+          "relacao": "a jazida ignora o contrato; o AIP reparte por participação no volume recuperável",
+          "eixos_unidade": "corte esquemático, classe explicação",
+          "existe_no_codigo": false
+        }
+      ],
+      "instrumento": {
+        "id": "m15-inst-02",
+        "titulo": "Comparador de regimes",
+        "posicao_fonte": { "inserir_apos": 12, "entre": "01.4 (individualização) e 01.5 (Ficha de elo 01)" },
+        "posicao_proposta": { "inserir_apos": 12, "nota": "Manter. Os três regimes já foram lidos e as fichas vêm depois, como aplicação." },
+        "previsao": "sim, por dimensão (qualitativa)",
+        "cenario_padrao": "Concessão × Titularidade da molécula",
+        "saida": "Duas fichas de texto (regime · lei; resposta da dimensão) e a 'Ressalva de comparabilidade'. Não tem número nem figura.",
+        "observacoes": [
+          "A classe de veredito da fonte é sempre 'att' (atenção): não é certo/errado, e isso casa com a S2.",
+          "A resposta aparece assim que o seletor muda. Para virar ato, a resposta precisa ficar recolhida até o learner registrar a previsão da célula.",
+          "Promessa de forma: o nome 'Comparador' promete comparação, e hoje só se vê um regime por vez. Proposta: modo 'lado a lado' com duas colunas escolhidas."
+        ]
+      },
+      "checagem": "Previsão por célula → resposta da fonte → autoavaliação em três níveis (C7). Ficha 02: resposta escrita → referência do §MAP → 'o que acrescenta'. Sem cor de acerto.",
+      "recuperacao": "A fonte encomenda o retorno: 'Volte a esta ficha depois da Aula 04' (Ficha de elo 01). A recuperação vive em A04, e não aqui. Na abertura de A01, cabe uma recuperação leve do M14 ou do M08 (grandezas distintas: potência ≠ energia), com a origem visível. Qual item exato depende da reconciliação curricular.",
+      "proximo_passo": "Próxima · A02 — Recurso, reserva e produção. Se 'não atende' na previsão de titularidade: 'Rever 01.2 Partilha'.",
+      "exercicios_relacionados_sugestao": ["m15-ex-01", "m15-ex-02", "m15-ex-03", "m15-ex-04"],
+      "midia": {
+        "onde_ajuda": "01.4: um corte explicativo (desenho programático, classe explicação) do reservatório atravessando o limite de blocos vale mais que foto. Foto documental de plataforma só se a legenda não nomear campo, regime ou operador que a imagem não prove.",
+        "curadoria": "media-lab/aulas/m15 sem plano.json; _trabalho/prev não tem candidato para esta aula.",
+        "classe": "explicação (diagrama programático)"
+      },
+      "mobile_390": "A mesa 3×4 vira três cartões empilhados por regime, com as quatro linhas na mesma ordem e a dimensão ativa realçada por fio. As duas fichas de elo vão de lado a lado para empilhadas, com o rótulo 'mesmo campo físico' entre elas. O INST·02 usa dois grupos de segmentos quebrando linha (3 + 4 botões ≥ 44px).",
+      "lacunas_fonte": [
+        "A fonte não informa percentual de excedente em óleo típico nem limite de custo em óleo: a figura da partilha fica sem números.",
+        "Nota 'consequência prática': datas e volumes de leilão da PPSA (≈75 mi bbl em 2025, >100 mi previstos em 2026) sem referência bibliográfica no bloco. O §Ref tem 10 kB de referências, e o mapeamento por número não foi verificado aqui.",
+        "O número de áreas em partilha (11) não está na prosa da aula, só em ex-02 e INST·10 (e02). As três parcelas (254 + 7 + 11 = 272) fecham."
+      ],
+      "dependencias_s9": ["Registro de tentativas (previsão por célula, texto da ficha)", "Glossário completo (concessão, partilha, PPSA, AIP) com a glosa 03 da tese no ponto de uso", "Exercícios de M10–M17 renderizados (Revisão)"],
+      "qa_conteudo": ["Nota final 'Onde isso entra no produto' cita GridAlpha Research: fora da interface (P7/P24)."],
+      "ambicao": "Uma prancha em que o mesmo campo desenhado uma vez recebe, ao trocar o regime, outro titular pintado sobre a mesma geometria: o learner vê que a engenharia não se mexe e a receita sim. Fecha com a ficha escrita pelo learner, que volta a ele em A04 com a pergunta 'o que você acrescentaria agora?'."
+    },
+    {
+      "aulaId": "aula-15-02",
+      "titulo": "Recurso, reserva e produção",
+      "subtitulo": "três grandezas, e a maior é sempre a citada",
+      "lente_fonte": "Aula 02 · Lente de Regime",
+      "ensina": "Recurso, reserva e produção são grandezas separadas por condições (comercialidade, construção) e não por taxa de conversão. A reserva ainda depende do critério de certeza (1P/2P/3P) e da data de referência: 17,488 e 28,877 bilhões de barris são o mesmo país, na mesma data, e ambos corretos.",
+      "natureza": ["conceito (grandeza e critério)", "cálculo (R/P, IRR)", "leitura de número publicado"],
+      "representacao": {
+        "arquetipo": "Prancha dividida com instrumento vivo: régua horizontal de três barras (1P · 2P · 3P) sobre a mesma jazida, ao lado de uma escada de distância do caixa (recurso → reserva → produção).",
+        "porque": "A aula inteira é uma questão de escala entre números corretos. A fonte já tem o gesto certo: dois cartões de dado (1P × 3P) e o INST·03, que 'devolve a mesma jazida sob os três critérios lado a lado' com barras (gs-bars). A figura carrega o argumento sozinha: 65% de diferença, ambos certos.",
+        "sequencia": [
+          "Abertura com previsão numérica (29 bi = quantos anos?)",
+          "02.1 tabela das três grandezas como escada com condições nos degraus",
+          "02.2 critério de certeza + os dois cartões de dado restaurados (1P, 3P) + prosa do 2P e do gás",
+          "Números vivos (declaradas × certificadas)",
+          "02.3 fórmulas R/P e IRR",
+          "INST·03 com a previsão reaparecendo como previsto × calculado",
+          "Teste de trinta segundos como ato de fechamento",
+          "Registro"
+        ]
+      },
+      "abertura": {
+        "pergunta_camada_alexandria": "'O Brasil tem quase 29 bilhões de barris de reserva e produz cerca de 1,38 bilhão por ano.' Quantos anos isso dura, e o que a pergunta esconde?",
+        "objetivo_camada_alexandria": "Citar qualquer número de reserva com critério de certeza, data de referência e quem declarou, e ler R/P como indicador estático.",
+        "previsao": {
+          "util": true,
+          "forma": "Registrar um número de anos. Depois o instrumento mostra R/P sob 3P (≈20,9) e sob 1P (≈12,7) e diz que nenhum dos dois é prazo de esgotamento.",
+          "numeros_da_fonte": "1P 17,488 bi bbl; 3P 28,877 bi bbl; 2P 24,265 bi bbl (data de referência 31/12/2025, Boletim Anual ANP 10/04/2026); produção 2025 'próxima de 1,38 bilhão de barris'; R/P ≈ 12,7 anos (prosa, 02.3).",
+          "resposta_derivada": "28,877 ÷ 1,38 ≈ 20,9 anos (é o enunciado e07 do INST·10: '21 anos de produção garantida'); 17,488 ÷ 1,38 ≈ 12,7 anos.",
+          "regra_entrada": "Arredondamento técnico normal, como regra de entrada da Alexandria (P19). Nenhuma tolerância da fonte."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever → comparar; identificar o que falta",
+        "descricao": "Previsão de anos na abertura. No INST·03, trocar 'Critério citado pela fonte' de 1P para 3P e depois para 'Não declarado' e ver o instrumento recusar a leitura. Ato de fechamento (teste de trinta segundos): diante da frase '29 bilhões de barris', marcar as três perguntas que faltam (critério, data, quem declarou) numa lista com distratores.",
+        "referencia_fonte": "Nota 'O teste de trinta segundos'; veredito do INST·03 (recusa por data e por critério); m15-ex-10 na Revisão.",
+        "camada": "alexandria (forma); fonte (referência)"
+      },
+      "visualizacao": [
+        {
+          "o_que": "Régua 1P · 2P · 3P da mesma jazida",
+          "relacao": "o mesmo subsolo sob três critérios; amplitude de 65%",
+          "eixos_unidade": "barras horizontais, bi bbl, rótulo direto na ponta, fonte ANP abaixo",
+          "existe_no_codigo": false,
+          "promessa_nao_desenhada": "INST·03 'Régua de grandeza' e a nota 'lado a lado': a fonte desenha as barras (gs-bars) e o port só devolve números e veredito."
+        },
+        {
+          "o_que": "Escada recurso → reserva → produção",
+          "relacao": "distância ao caixa; cada degrau é um conjunto de condições reversíveis",
+          "eixos_unidade": "diagrama ordinal, sem unidade comum (bi bbl × bbl/d)",
+          "existe_no_codigo": false,
+          "nota": "Hoje é tabela (02.1). A tabela serve de legenda da escada."
+        },
+        {
+          "o_que": "Taxas de crescimento caindo com o critério (1P +3,84%, 2P +3,19%, 3P +1,48%)",
+          "relacao": "as adições do ano foram sobretudo de volume provado (maturidade de carteira)",
+          "eixos_unidade": "slope ou três pontos, %",
+          "existe_no_codigo": false,
+          "nota": "Figura pequena e opcional. Só entra se couber na prancha sem competir com a régua."
+        }
+      ],
+      "instrumento": {
+        "id": "m15-inst-03",
+        "titulo": "Régua de grandeza de subsolo",
+        "posicao_fonte": { "inserir_apos": 13, "entre": "nota 'Reserva contra recurso, em três níveis' e 'O teste de trinta segundos'" },
+        "posicao_proposta": { "inserir_apos": 12, "nota": "Logo depois das duas fórmulas (R/P, IRR) que o instrumento calcula. Os três níveis descem para depois dele, como explicação após a manipulação." },
+        "previsao": "sim (anos de R/P)",
+        "cenario_padrao": "1P 17,488; 2P/1P 1,387; 3P/1P 1,651; produção 1,38; adições 2,023; data declarada; critério 1P",
+        "saida_padrao_calculada": "1P 17,488 · 2P ≈24,256 · 3P ≈28,873 · amplitude +65,1% · R/P ≈12,7 anos · IRR ≈146,6% · veredito 'Dois sinais favoráveis, e nenhuma conclusão sobre o futuro'",
+        "observacoes": [
+          "IRR calculado a partir dos padrões (2,023 ÷ 1,38 = 146,6%) difere do 147,03% publicado na prosa porque a produção é 'próxima de 1,38'. Declarar como arredondamento do cenário, sem 'corrigir' nenhum dos dois.",
+          "2P e 3P reconstruídos por razão (24,256; 28,873) diferem levemente dos publicados (24,265; 28,877). A nota de fonte já diz 'razões calculadas a partir dos volumes publicados'.",
+          "O quadro previsto × calculado precisa ficar visível enquanto o learner troca o critério (C5)."
+        ]
+      },
+      "checagem": "Previsto × calculado no mesmo cenário (critério 3P e 1P). Lista das três perguntas: a referência só aparece depois da marcação.",
+      "recuperacao": "O lead invoca a mesma confusão no M08 (capacidade instalada ≠ energia gerada) e no M14 (potência, energia gerada, energia exportada). Recuperação na abertura: repetir uma pergunta do M08 sobre capacidade × energia antes de mostrar a resposta antiga, com a origem visível. O item exato depende do que o M08 tiver extraído.",
+      "proximo_passo": "Próxima · A03 — A parcela do Estado. Se 'não atende' no teste de trinta segundos: 'Rever 02.2 Grau de certeza'.",
+      "exercicios_relacionados_sugestao": ["m15-ex-09", "m15-ex-10", "m15-ex-11"],
+      "midia": {
+        "onde_ajuda": "Nenhuma foto ajuda: reserva não se fotografa. A régua programática é a imagem da aula. Um corte esquemático de reservatório (rocha porosa, classe explicação) pode ancorar 'recurso' se não sugerir volume real.",
+        "curadoria": "sem plano.json; sem candidato em _trabalho/prev",
+        "classe": "visualização programática"
+      },
+      "mobile_390": "A régua de três barras cabe inteira a 390 (rótulo acima da barra, valor na ponta). Os controles do INST·03 viram dois grupos, 'cenário' (5 ranges) e 'o que a fonte declarou' (2 segmentos), com o segundo grupo acima porque é o que ensina. A escada vira lista vertical com as condições entre os degraus.",
+      "lacunas_fonte": [
+        "Os dois cartões de dado da fonte (1P 17,488 'alta de 3,84%'; 3P 28,877 'alta de 1,48%', '65% maior') não estão em MODULO_15_CORPO. A prosa do bloco 6 começa 'Entre as duas está o 2P' sem referente. Falha de extração a corrigir antes do render.",
+        "Amplitude 'típica de 60% a 70%' entre 1P e 3P (três níveis, Especialista) sem fonte citada: tratar como afirmação da fonte, não como benchmark (P20)."
+      ],
+      "dependencias_s9": ["Registro de tentativas (previsão numérica)", "Desenho das formas prometidas (barras do INST·03)", "Extração dos cartões dc", "Glossário com a glosa 02 'reserva' da tese no ponto de uso"],
+      "qa_conteudo": ["Nota 'Onde isso entra no produto' (Energy Brief): fora da interface (P7)."],
+      "ambicao": "O learner escreve '21 anos'. A régua se desenha com a barra do 3P e as palavras 'correto, sob 3P'. A barra do 1P encolhe a conta para 12,7, e uma terceira leitura risca a palavra 'dura': R/P congela o denominador. Três números certos e uma conclusão errada, tudo na mesma figura."
+    },
+    {
+      "aulaId": "aula-15-03",
+      "titulo": "A parcela do Estado",
+      "subtitulo": "royalty não é participação especial, e nenhum dos dois é imposto",
+      "lente_fonte": "Aula 03 · Lente de Regime",
+      "ensina": "O Estado recebe por sete fluxos com bases, periodicidades e beneficiários diferentes. Royalty incide sobre o valor da produção, é mensal e chega a centenas de entes. Participação especial incide sobre a receita líquida trimestral, só existe onde há rentabilidade e se concentra em poucos entes. A receita fiscal depende ao mesmo tempo de volume, preço de referência e câmbio.",
+      "natureza": ["mercado/regulação (fiscal)", "cálculo (sensibilidade)", "controvérsia federativa (dois lados)"],
+      "representacao": {
+        "arquetipo": "Coluna editorial com tabela-anatomia dos sete fluxos, dois cartões de dado em contraste (546 × 21) e uma prancha de sensibilidade (volume × preço × câmbio). O confronto federativo vem como duas colunas simétricas.",
+        "porque": "O mecanismo tem duas metades: taxonomia (sete fluxos, dois desenhos de beneficiário) e sensibilidade (três variáveis independentes). A taxonomia pede tabela anotada. A sensibilidade pede manipulação. A neutralidade é gate editorial da fonte ('não escolhe entre eles') e pede simetria visual.",
+        "sequencia": [
+          "Abertura com previsão (preço −20%, câmbio +20%)",
+          "03.1 tabela de sete fluxos com o par royalty × PE destacado por fio",
+          "03.2 cartões 546 × 21 restaurados e a prosa que os interpreta",
+          "03.3 repartição + duas colunas de neutralidade",
+          "03.4 prosa das três variáveis",
+          "INST·04 com o ato de manipulação",
+          "Registro"
+        ]
+      },
+      "abertura": {
+        "pergunta_camada_alexandria": "Num campo de 180 mil bbl/d, o preço de referência cai 20% e o câmbio sobe 20% no mesmo ano. O royalty cai 20%, fica igual ou muda pouco?",
+        "objetivo_camada_alexandria": "Separar royalty de participação especial pela base de cálculo e ler receita fiscal como função de volume, preço e câmbio ao mesmo tempo.",
+        "previsao": {
+          "util": true,
+          "forma": "Escolha registrada (cai ≈20% · fica igual · cai pouco) e, opcionalmente, um percentual.",
+          "numeros_da_fonte": "Fórmula da prosa 03.4: volume produzido × preço de referência × alíquota, com efeito cambial. Cenário do INST·04: 180 mil bbl/d (didático), US$ 80,61 e R$ 5,26 (médias do 1T2026 segundo a nota do instrumento), alíquota 10%.",
+          "resposta_derivada": "0,8 × 1,2 = 0,96: royalty cai cerca de 4%. No modelo simplificado do instrumento a PE também cai cerca de 4%, porque a base é proporcional à receita.",
+          "camada": "alexandria (cenário construído sobre a fórmula da fonte)"
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever → manipular até a meta; classificar",
+        "descricao": "Depois da previsão, mover preço e câmbio no INST·04 até reproduzir o cenário e ver royalty e PE separados. Ato de taxonomia: classificar quatro situações curtas (paga mesmo sem lucro · só existe com rentabilidade · recebido em molécula · pago uma vez na contratação) no fluxo certo da tabela 03.1.",
+        "referencia_fonte": "Tabela 03.1; parágrafo 03.1 ('compensações financeiras, não tributos'); veredito do INST·04.",
+        "camada": "alexandria (situações escritas a partir da tabela, sem fato novo)"
+      },
+      "visualizacao": [
+        {
+          "o_que": "Royalty × Participação especial em barras (bi R$/ano) no cenário do instrumento",
+          "relacao": "dois fluxos com bases distintas reagem a deduções e alíquota de modo diferente",
+          "eixos_unidade": "barras, bi R$",
+          "existe_no_codigo": false,
+          "promessa_nao_desenhada": "A fonte desenha barras 'Royalty' e 'Part. especial' (bar-row). O port devolve só números."
+        },
+        {
+          "o_que": "Dispersão × concentração: 546 municípios (royalty, parcela de partilha, nov/2025) × 21 municípios (PE, 1T2026)",
+          "relacao": "o desenho do fluxo decide quantos entes recebem",
+          "eixos_unidade": "contagem de entes, dois cartões com valor em R$ (4,38 bi; 9,43 bi)",
+          "existe_no_codigo": false,
+          "nota": "Cartões dc não extraídos."
+        },
+        {
+          "o_que": "Sensibilidade: três variáveis independentes",
+          "relacao": "receita = volume × preço × câmbio × alíquota",
+          "eixos_unidade": "leque de três pequenas linhas ou barras de variação, %",
+          "existe_no_codigo": false
+        }
+      ],
+      "instrumento": {
+        "id": "m15-inst-04",
+        "titulo": "Calculadora de parcela do Estado",
+        "posicao_fonte": { "inserir_apos": 10, "entre": "03.4 (três variáveis) e 'Onde isso entra no produto'" },
+        "posicao_proposta": { "inserir_apos": 10, "nota": "Manter: é exatamente o ponto da prosa que o invoca." },
+        "previsao": "sim",
+        "cenario_padrao": "180 mil bbl/d; US$ 80,61; R$ 5,26; royalty 10%; deduções 45%; PE 25%; campo terrestre",
+        "saida_padrao_calculada": "receita bruta ≈ R$ 27,9 bi; royalty ≈ 2,79 bi; PE ≈ 3,13 bi; parcela do Estado ≈ 21,3%; estados ≈ 2,37 bi; municípios ≈ 0,59 bi",
+        "observacoes": [
+          "A nota do instrumento avisa: 'Modelo didático simplificado, não regime legal' (PE progressiva por faixa, regra própria de deduções). Mostrar junto das saídas.",
+          "O seletor 'Desenho de repartição' tem os mesmos percentuais (50/40/10) nas três opções. Ele muda só a nota, nenhum número. Isso é um controle que parece mudar o resultado e não muda (S4). Ou a opção vira texto, ou o instrumento declara que os números não mudam.",
+          "O instrumento aplica 50/40/10 à soma royalty + PE. A prosa 03.3 atribui 50/40/10 à participação especial (art. 50). A repartição do royalty não está descrita na aula."
+        ]
+      },
+      "checagem": "Previsto × calculado. Classificação dos quatro casos, com a referência da tabela só depois do registro.",
+      "recuperacao": "A01: 'O que o Estado recebe sob partilha que não recebe sob concessão?' (hidrocarboneto em espécie). A resposta anterior do learner só aparece depois da nova tentativa.",
+      "proximo_passo": "Próxima · A04 — 'Preço do petróleo' não é um preço. Se 'não atende' na classificação: 'Rever 03.1 Sete fluxos'.",
+      "exercicios_relacionados_sugestao": ["m15-ex-08"],
+      "midia": {
+        "onde_ajuda": "Nenhuma foto. Um mapa de municípios beneficiários (546 × 21) seria a figura forte, mas a fonte não lista os municípios: fica fora até existir dado verificado (ANP).",
+        "curadoria": "sem plano.json",
+        "classe": "visualização programática"
+      },
+      "mobile_390": "A tabela de sete fluxos (5 colunas) vira sete cartões com base, periodicidade, quem recebe e norma, em ordem fixa, com royalty e PE primeiro e lado a lado em miniatura. As duas colunas de neutralidade empilham com o mesmo peso tipográfico e rótulo 'lado A / lado B' sem hierarquia. O INST·04 põe preço e câmbio no topo dos controles.",
+      "lacunas_fonte": [
+        "Cartões dc (R$ 4,38 bi royalties nov/2025, 546 municípios; R$ 9,43 bi PE 1T2026, 21 municípios, R$ 3,77 bi aos estados, R$ 943 mi aos municípios) ausentes do código. A prosa 'Quinhentos e quarenta e seis contra vinte e um' fica sem referente.",
+        "03.3 anuncia 'quatro desenhos distintos' e descreve três (terrestre; marítimo pós-12/2012; marítimo pré-2012 no polígono 'com desenho próprio'). O quarto não é descrito, e o instrumento também tem só três.",
+        "Tabela de faixas da PE progressiva: a fonte não traz. O instrumento usa 25% fixo, rotulado didático."
+      ],
+      "dependencias_s9": ["Extração dos cartões dc", "Desenho das barras do INST·04", "Registro de tentativas"],
+      "qa_conteudo": [
+        "Repartição 50/40/10 aplicada à soma royalty + PE no instrumento × atribuída só à PE na prosa: CONTENT QA.",
+        "Seletor de repartição sem efeito numérico.",
+        "Nota final GridAlpha Research: fora da interface."
+      ],
+      "ambicao": "O learner aposta '−20%', move dois controles e vê o royalty andar só 4%. Logo abaixo, dois cartões contam 546 cidades contra 21 para o mesmo Estado, e a aula fecha com as duas colunas federativas que não declaram vencedor."
+    },
+    {
+      "aulaId": "aula-15-04",
+      "titulo": "\"Preço do petróleo\" não é um preço",
+      "subtitulo": "seis camadas entre o reservatório e a bomba",
+      "lente_fonte": "Aula 04 · Lente de Camada",
+      "ensina": "Entre a referência internacional e a bomba há seis camadas, cada uma formada por uma lógica (mercado, contrato, norma, estratégia comercial, tributo, margem local), e desde 2026 há uma camada de sinal negativo, a subvenção. Um reajuste numa camada pode ser neutralizado por outra: R$ 0,48 menos R$ 0,44 dá quatro centavos.",
+      "natureza": ["cálculo (composição)", "mercado/regulação (estado de política datado)", "controvérsia (dois lados)"],
+      "representacao": {
+        "arquetipo": "Cascata de camadas (gráfico em cascata da referência à bomba) como palco da aula, seguida de um registro de estado de política datado e de um confronto em duas colunas.",
+        "porque": "O mecanismo é aditivo e ordenado. Uma cascata desenha exatamente 'camada 5 = camada 4 + … − subvenção'. O caso de 28/05/2026 é uma cascata de duas barras que se anulam. A tabela de atos com 'Estado em 04/08/2026' é o objeto perecível da aula e pede tratamento de registro datado, e não de prosa.",
+        "sequencia": [
+          "Abertura com previsão (R$ 0,48 → bomba?)",
+          "04.1 seis camadas como escada vertical com a lógica de cada uma (mercado, norma…)",
+          "Consequência operacional (R$ 0,48 − R$ 0,44)",
+          "INST·05 aqui (proposta)",
+          "04.2 subvenção + registro de estado de política com 'verificado em'",
+          "04.3 estratégia comercial + duas colunas + 'o que este módulo não faz'",
+          "Retorno à Ficha de elo 01 (encomendado pela fonte)",
+          "Registro"
+        ]
+      },
+      "abertura": {
+        "pergunta_camada_alexandria": "Em 28/05/2026 a Petrobras anunciou R$ 0,48/L a mais na gasolina A vendida às distribuidoras. Quanto isso sobe para a distribuidora?",
+        "objetivo_camada_alexandria": "Nomear as seis camadas, dizer em qual delas um preço citado se formou e verificar quais outras camadas se moveram na mesma janela.",
+        "previsao": {
+          "util": true,
+          "forma": "Número em R$/L, ou 'não dá para saber pelo anúncio'.",
+          "numeros_da_fonte": "R$ 0,48/L de ajuste e R$ 0,44/L de desconto da subvenção federal, no mesmo comunicado; movimento líquido de quatro centavos (nota 'consequência operacional').",
+          "resposta_derivada": "+R$ 0,04/L para a distribuidora; o efeito na bomba não se sabe pelo anúncio (m15-ex-06).",
+          "colisao": "Quiz q5 usa o mesmo caso. Se o quiz virar avaliação, a questão sai dela ou a previsão muda de caso."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever → manipular; localizar a camada",
+        "descricao": "No INST·05, entrar com +0,48 na camada 4 e a subvenção, e ver o preço final quase não mudar. Ato de localização: dadas quatro cifras curtas ('cotação do tipo de óleo X no ponto Y', 'preço usado pela ANP para royalty', 'preço de venda à distribuidora por polo', 'preço do posto'), pôr cada uma na camada 1–6.",
+        "referencia_fonte": "Lista 04.1 (camadas com a lógica de cada uma); nota da consequência operacional; m15-ex-06/08 na Revisão.",
+        "camada": "alexandria (forma e cifras sem valor numérico novo)"
+      },
+      "visualizacao": [
+        {
+          "o_que": "Cascata do preço de combustível: produtor + mistura + federais + estadual + distribuição/revenda − subvenção = preço final",
+          "relacao": "composição aditiva com um termo negativo",
+          "eixos_unidade": "R$/litro, barras em cascata, até 5 categorias com cor e as demais neutras (S2)",
+          "existe_no_codigo": false,
+          "promessa_nao_desenhada": "'Decompositor': a fonte desenha a barra empilhada (cb-bar) com legenda; o port devolve só números."
+        },
+        {
+          "o_que": "Registro de estado de política (4 atos × estado × data)",
+          "relacao": "o mesmo instrumento em estados diferentes; perecibilidade",
+          "eixos_unidade": "tabela-registro com carimbo 'verificado em 04/08/2026'",
+          "existe_no_codigo": "parcial (tabela genérica)"
+        }
+      ],
+      "instrumento": {
+        "id": "m15-inst-05",
+        "titulo": "Decompositor de preço de combustível",
+        "posicao_fonte": { "inserir_apos": 13, "entre": "'O que este módulo não faz' e 'Onde isso entra no produto' (fim da aula)" },
+        "posicao_proposta": { "inserir_apos": 2, "nota": "A prosa que invoca o decompositor é 04.1 e a consequência operacional. Na fonte o instrumento fica depois do debate de política de preços, a ~10 blocos do mecanismo. Isso é instrumento como apêndice (Regra-mãe 1)." },
+        "previsao": "sim",
+        "cenario_padrao": "camada 4 R$ 3,10; mistura 0,62; federais 0,42; estadual 1,47; distribuição/revenda 0,98; subvenção 0 (valores de ordem de grandeza para gasolina C, rotulados didáticos pela fonte)",
+        "saida_padrao_calculada": "preço final ≈ R$ 6,59/L; produtor ≈ 47,0%; carga tributária ≈ 28,7%; mistura ≈ 9,4%; distribuição e revenda ≈ 14,9%",
+        "observacoes": [
+          "O instrumento limita a subvenção ao valor dos tributos federais (sub = min(subvenção, federais)), coerente com o teto descrito em 04.2. Com o padrão de federais R$ 0,42, uma subvenção de R$ 0,44 é cortada para R$ 0,42: o caso de 28/05 reproduzido no instrumento dá +R$ 0,06, e não +R$ 0,04. A previsão precisa usar o caso da prosa como referência e declarar a diferença, ou subir os federais do cenário. Nenhum número real pode ser inventado para fechar a conta.",
+          "O veredito 'se recusa a atribuir a variação a uma única camada sem que você tenha mexido em uma só': ele pede um estado anterior. O port recebe só o estado atual, então o instrumento precisa guardar o cenário de partida."
+        ]
+      },
+      "checagem": "Previsto × calculado. Localização das quatro cifras com a referência da lista 04.1 depois do registro.",
+      "recuperacao": "Encomendada pela fonte: reabrir a Ficha de elo 01 (A01) com 'O que este número não diz' e pedir uma nova lacuna (preço realizado ≠ preço de referência fiscal) antes de mostrar o que o learner escreveu em A01. Recuperação do M14: os quatro estados de política ('Módulo 14 fixou'), com a origem visível.",
+      "proximo_passo": "Próxima · A05 — Refino. Se 'não atende' na localização: 'Rever 04.1 As seis camadas'.",
+      "exercicios_relacionados_sugestao": ["m15-ex-06", "m15-ex-08"],
+      "midia": {
+        "onde_ajuda": "Nenhuma foto necessária. Foto de bomba de posto é ilustrativa e não ensina camada: se entrar, entra como atmosfera, sem marca identificável.",
+        "curadoria": "sem plano.json",
+        "classe": "visualização programática"
+      },
+      "mobile_390": "A cascata vira vertical, de cima (camada 4) para baixo (bomba), com valor e % na ponta de cada degrau. O registro de estado vira cartões por ato, com o estado em destaque tipográfico (sem cor de semáforo) e a data sempre visível. As duas colunas empilham com o mesmo peso.",
+      "lacunas_fonte": [
+        "Valores do decompositor rotulados 'ordem de grandeza para gasolina C', sem estado nem polo: manter o rótulo de cenário didático (padrão P19).",
+        "A tabela 04.2 cita a MP nº 1.363/2026 (subvenção do diesel rodoviário) só dentro da linha da MP 1.380, sem linha própria. A fonte não descreve o seu estado.",
+        "'Nenhum item da tabela sobrevive necessariamente a noventa dias' com verificação em 04/08/2026: em 17/09/2026 os estados podem ter mudado. O render precisa mostrar a data de verificação, e o conteúdo precisa de reverificação (content QA) antes de publicar."
+      ],
+      "dependencias_s9": ["Desenho da cascata", "Registro de tentativas", "Estado salvo do instrumento (cenário de partida)", "Reverificação de números vivos"],
+      "qa_conteudo": [
+        "Teto da subvenção no instrumento × caso de 28/05 (0,44 > 0,42 federais do cenário).",
+        "Nota final 'Regulatory Radar': fora da interface (P7)."
+      ],
+      "ambicao": "A cascata começa com o anúncio de +0,48 pintado em terracota. O learner arrasta a subvenção e a barra negativa come quase toda a subida. Abaixo, o carimbo 'verificado em 04/08/2026' lembra que a camada mais nova é também a mais perecível."
+    },
+    {
+      "aulaId": "aula-15-05",
+      "titulo": "Refino",
+      "subtitulo": "por que o país exporta petróleo e importa derivado ao mesmo tempo",
+      "lente_fonte": "Aula 05 · Lente de Camada",
+      "ensina": "O que sai de uma refinaria é limitado pela qualidade do cru, pela configuração da planta e pela disponibilidade operacional. Autossuficiência em cru não implica autossuficiência em derivado: o déficit de diesel tem quatro causas possíveis (capacidade, utilização, rendimento/configuração, perfil da demanda), e 'falta refinaria' é só uma delas.",
+      "natureza": ["sistema (capacidade × produto)", "cálculo (carga, rendimento, descompasso)", "leitura de plano de investimento"],
+      "representacao": {
+        "arquetipo": "Laboratório guiado de diagnóstico: um balanço de barras (capacidade → carga → diesel → demanda) em que o learner encontra a causa dominante do déficit, entre as quatro possíveis.",
+        "porque": "A pergunta da aula é causal e tem um erro popular nomeado ('porque falta refinaria'). O INST·06 já tem veredito que separa utilização, rendimento e combinação. A aula ganha se o learner diagnosticar antes do veredito. Uma coluna editorial pura deixaria o paradoxo como frase de efeito.",
+        "sequencia": [
+          "Abertura: a pergunta popular e a escolha de causa (previsão)",
+          "05.1 três restrições + regra do paradoxo",
+          "05.2 números 2025 (86,4%) e PN 2026–2030, com a nota de leitura de plano",
+          "05.3 margem como spread (fórmula)",
+          "INST·06: diagnóstico",
+          "Ficha de elo 03 com a lacuna comparada à da Ficha 01",
+          "Registro"
+        ]
+      },
+      "abertura": {
+        "pergunta_camada_alexandria": "Se o Brasil produz tanto petróleo, por que importa diesel? Escolha a causa que você daria.",
+        "objetivo_camada_alexandria": "Separar as quatro causas de um déficit de derivado e dizer qual domina num cenário dado.",
+        "previsao": {
+          "util": true,
+          "forma": "Duas etapas: (1) escolher a causa que daria (falta capacidade · parque parado · rendimento da configuração · demanda); (2) no cenário do instrumento, prever se rodar a 100% zera o déficit de diesel.",
+          "numeros_da_fonte": "Fator de utilização 86,4% (anuário ANP 2025); capacidade de processamento ≈1,8 milhão bpd e participação do diesel ≈40% (PN 2026–2030). O instrumento usa rendimento 40% e demanda 900 mil bpd, rotulados 'valores didáticos editáveis'.",
+          "resposta_derivada": "A 86,4%: carga ≈1.555, diesel ≈622, déficit ≈278 mil bpd. A 100%: diesel ≈720 < 900, então não zera. Veredito do instrumento: 'a causa dominante é rendimento' (seria preciso 50% da carga total)."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever → diagnosticar (decidir com justificativa)",
+        "descricao": "Depois da previsão, o learner manipula uma entrada por vez (utilização → 100%; rendimento → meta; demanda) e registra qual alavanca zeraria o déficit sozinha. Fecha escolhendo a causa dominante antes de ler o veredito.",
+        "referencia_fonte": "Veredito do INST·06 (quatro ramos); nota 'A regra que resolve o paradoxo'.",
+        "camada": "alexandria (forma); fonte (referência)"
+      },
+      "visualizacao": [
+        {
+          "o_que": "Balanço capacidade → carga processada → diesel produzido × demanda",
+          "relacao": "capacidade ociosa não é produto; o rendimento limita o diesel",
+          "eixos_unidade": "barras horizontais alinhadas, mil bpd, marca vertical da demanda",
+          "existe_no_codigo": false,
+          "promessa_nao_desenhada": "'Régua de refino · capacidade contra produto' promete a régua. O port não desenha (a fonte também não tinha barras neste instrumento; a régua seria nova, camada alexandria)."
+        },
+        {
+          "o_que": "Margem de refino como spread",
+          "relacao": "valor da cesta − custo do cru; a margem pode subir com o cru caindo",
+          "eixos_unidade": "duas linhas e a faixa entre elas, US$/bbl, esquemático e sem série real",
+          "existe_no_codigo": false,
+          "nota": "A fonte não dá série de margem: a figura é esquemática, sem números."
+        }
+      ],
+      "instrumento": {
+        "id": "m15-inst-06",
+        "titulo": "Régua de refino · capacidade contra produto",
+        "posicao_fonte": { "inserir_apos": 9, "entre": "05.3 fórmula da margem e 05.4 Ficha de elo 03" },
+        "posicao_proposta": { "inserir_apos": 6, "nota": "O instrumento fala de capacidade, utilização e rendimento (05.1–05.2), não de margem. Subir para depois da nota do plano de investimento aproxima o instrumento da prosa que o invoca. A margem (05.3) vem depois, como segundo mecanismo." },
+        "previsao": "sim",
+        "cenario_padrao": "capacidade 1.800 mil bpd; utilização 86,4%; rendimento diesel 40%; demanda 900 mil bpd",
+        "saida_padrao_calculada": "carga ≈1.555; diesel ≈622; descompasso ≈−278; ociosa ≈245; diesel a 100% = 720; rendimento necessário = 50,0%",
+        "observacoes": [
+          "O veredito da fonte não recomenda nada ('não recomenda construir, ampliar nem importar'). Preservar essa frase junto do veredito."
+        ]
+      },
+      "checagem": "Previsão de causa × veredito; previsão '100% zera?' × calculado. Ficha 03: lacuna escrita → referência do §MAP (elo 'refino': 'não diz o rendimento por produto nem a disponibilidade real').",
+      "recuperacao": "A fonte encomenda: 'Compare com a lacuna que você escreveu na ficha do campo produtor. São da mesma família?' A lacuna de A01 volta aqui, antes de mostrar a resposta antiga. A Ficha 03 também invoca o M08 ('capacidade instalada e carga processada… terceira repetição do erro').",
+      "proximo_passo": "Próxima · A06 — Gás natural. Se 'não atende' no diagnóstico: 'Rever 05.1'.",
+      "exercicios_relacionados_sugestao": [],
+      "midia": {
+        "onde_ajuda": "Uma foto documental de refinaria brasileira ancora 'configuração da planta' (unidades de conversão visíveis), com crédito e sem afirmar capacidade que a foto não prova.",
+        "curadoria": "_trabalho/prev tem candidatos pelo nome (reduc.jpg, replan.jpg, rnest.jpg), com licença e metadados pendentes (sem plano.json). Escolher UMA e só com legenda documental verificada (M4/M6).",
+        "classe": "documental"
+      },
+      "mobile_390": "O balanço vira quatro barras empilhadas com a marca de demanda desenhada em cada uma. Os controles ficam logo abaixo da figura, com a utilização primeiro. O veredito vem depois do registro da causa. A Ficha 03 fica colapsada até o ato.",
+      "lacunas_fonte": [
+        "'2,2 milhões de bpd de derivados a 86,4% da capacidade' (parque nacional, ANP) e '1,8 milhão de bpd de capacidade' (plano da Petrobras) têm escopos diferentes: 1.800 × 86,4% ≈ 1.555, não 2.200. O instrumento combina capacidade da companhia com utilização do parque nacional. Registrar como CONTENT QA — AUTHORITATIVE VERIFICATION REQUIRED (padrão P20) e rotular o cenário como didático.",
+        "Demanda nacional de diesel: a fonte não dá número (900 é didático)."
+      ],
+      "dependencias_s9": ["Régua do INST·06 (forma nova)", "Registro de tentativas", "Créditos de imagem (colofão)"],
+      "qa_conteudo": ["Escopo capacidade (Petrobras) × utilização (parque nacional).", "Nota final GridAlpha Research: fora da interface."],
+      "ambicao": "O learner aposta em 'falta refinaria', leva a utilização a 100% e vê o diesel parar em 720 enquanto a demanda fica em 900. Só mexendo no rendimento a barra alcança a marca. A frase-paradoxo vira um achado do próprio learner."
+    },
+    {
+      "aulaId": "aula-15-06",
+      "titulo": "Gás natural",
+      "subtitulo": "o preço quase nunca é preço de mercado",
+      "lente_fonte": "Aula 06 · Lente de Camada",
+      "ensina": "Produção bruta de gás não é oferta: reinjeção, consumo e queima vêm antes. Gás se compra por dois contratos separados (molécula e transporte), com retirada mínima e indexação defasada. Por isso o custo efetivo do comprador responde à fórmula do contrato, não à cotação do dia, e não existe 'o preço do gás'.",
+      "natureza": ["conceito físico (balanço)", "cálculo (take-or-pay, custo efetivo)", "mercado (contrato × spot)", "leitura de fonte com posição"],
+      "representacao": {
+        "arquetipo": "Prancha em dois tempos: (1) balanço físico em Sankey (bruto → destinos → mercado); (2) régua de contrato em que previsto × calculado mostra o custo efetivo acima do nominal.",
+        "porque": "Há dois mecanismos, um físico e um contratual, e cada um tem a sua figura. O primeiro é um número que engana ('97% de aproveitamento' e 'menos de 30% chega ao mercado'); só um fluxo proporcional mostra as duas verdades juntas. O segundo é aritmético (retirada mínima sobre volume retirado) e pede manipulação.",
+        "sequencia": [
+          "Abertura com previsão (217,35 → mercado?)",
+          "06.1 fórmula + Sankey + tabela de destinos (com a pergunta de auditoria como ato curto)",
+          "06.2 dois contratos + seis camadas de preço",
+          "06.3 retirada mínima e indexação",
+          "INST·07 com segunda previsão (custo efetivo)",
+          "Fonte com posição (nota) + três níveis",
+          "Registro"
+        ]
+      },
+      "abertura": {
+        "pergunta_camada_alexandria": "Em junho de 2026 o Brasil produziu 217,35 milhões de m³/d de gás, com aproveitamento de 97%. Quanto chegou ao mercado?",
+        "objetivo_camada_alexandria": "Separar produção bruta de gás disponibilizado e explicar por que o custo efetivo de um comprador de gás não é o preço do dia.",
+        "previsao": {
+          "util": true,
+          "forma": "Número em milhões de m³/d (ou % do bruto).",
+          "numeros_da_fonte": "217,35 produzidos; 64,36 disponibilizados; queima 6,63 (+12,9% sobre maio); aproveitamento 97% (Boletim Mensal ANP jun/2026, divulgado 03/08/2026).",
+          "resposta_derivada": "64,36 milhões de m³/d, ≈29,6% do bruto.",
+          "colisao": "Quiz q3 e m15-ex-12 usam o mesmo caso."
+        },
+        "segunda_previsao": {
+          "forma": "No INST·07: 'Contrato a US$ 8,50/MMBtu com retirada mínima de 80%; você retirou 65%. Quanto custou cada MMBtu consumido?'",
+          "numeros": "Cenário do instrumento, rotulado didático pela fonte.",
+          "resposta_derivada": "8,50 × 80/65 ≈ US$ 10,46 (+23,1%)."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever → manipular; classificar",
+        "descricao": "Duas previsões registradas (oferta; custo efetivo). Ato curto de auditoria: para 'reinjeção alta neste mês', escolher entre decisão de reservatório · gestão de CO₂ · gargalo de escoamento · 'o número não distingue'. A resposta certa, pela fonte, é que o motivo não está no número.",
+        "referencia_fonte": "Parágrafo de 06.1 ('Distinguir os dois casos exige olhar o motivo, e o motivo não está no número'); tabela de destinos; veredito do INST·07.",
+        "camada": "alexandria (forma)"
+      },
+      "visualizacao": [
+        {
+          "o_que": "Sankey do gás: bruto 217,35 → disponibilizado 64,36 · queima 6,63 · reinjeção + consumo (restante)",
+          "relacao": "aproveitamento 97% e oferta <30% são simultâneos",
+          "eixos_unidade": "milhões de m³/d, fonte ANP abaixo",
+          "existe_no_codigo": false,
+          "nota": "A fonte não separa reinjeção de consumo e dá só três números. O fluxo restante (≈146,4) deve aparecer como 'reinjeção + consumo nas unidades + demais', sem inventar a divisão."
+        },
+        {
+          "o_que": "Régua de contrato: referência do dia × custo nominal × custo efetivo consumido",
+          "relacao": "retirada mínima encarece a unidade consumida; o contrato não acompanha o spot",
+          "eixos_unidade": "três barras, US$/MMBtu",
+          "existe_no_codigo": false,
+          "promessa_nao_desenhada": "A fonte desenha gc-bars; o port devolve só números."
+        },
+        {
+          "o_que": "Indexação defasada: choque internacional chega com atraso e amortecido",
+          "relacao": "série esquemática spot × índice contratual deslocado e achatado",
+          "eixos_unidade": "tempo × preço, SEM valores (a fonte não dá fatores nem defasagens)",
+          "existe_no_codigo": false
+        }
+      ],
+      "instrumento": {
+        "id": "m15-inst-07",
+        "titulo": "Régua de contrato de gás",
+        "posicao_fonte": { "inserir_apos": 11, "entre": "06.3 (indexação) e a nota 'Fonte com posição'" },
+        "posicao_proposta": { "inserir_apos": 11, "nota": "Manter." },
+        "previsao": "sim",
+        "cenario_padrao": "molécula 8,50; transporte 1,60; distribuição e tributos 3,20; retirada mínima 80%; retirado 65%; referência do dia 6,00; camada 'molécula'",
+        "saida_padrao_calculada": "nominal 8,50; faturado 80%; efetivo ≈10,46; sobrecusto ≈1,96; distância da referência +41,7%; veredito 'retirada abaixo do mínimo — custo efetivo 23,1% acima do nominal'",
+        "observacoes": [
+          "Trocar a camada (molécula · city gate · industrial) muda o nominal: o instrumento também treina a Lente 02. Um segundo ato possível é pedir a camada em que 'US$ 11,32' foi citado (nota Fonte com posição).",
+          "A nota do instrumento indica a fonte primária (boletim de comercialização da ANP, Res. 52/2011, três categorias que não se comparam)."
+        ]
+      },
+      "checagem": "Duas comparações previsto × calculado; classificação da reinjeção com a referência depois.",
+      "recuperacao": "A04: 'Em qual camada se formou um preço citado sem camada?' A resposta antiga aparece depois da nova tentativa. Aqui a pergunta é reaplicada às seis camadas do gás.",
+      "proximo_passo": "Próxima · A07 — GNL e o Novo Mercado de Gás. Se 'não atende' no custo efetivo: 'Rever 06.3 Retirada mínima'.",
+      "exercicios_relacionados_sugestao": ["m15-ex-05", "m15-ex-07", "m15-ex-12"],
+      "midia": {
+        "onde_ajuda": "Queima em flare de plataforma (documental) ancora 'queima'. Só com crédito e sem nomear unidade não provada. É opcional: o Sankey carrega a aula.",
+        "curadoria": "sem plano.json; sem candidato específico em _trabalho/prev",
+        "classe": "documental (opcional) + visualização programática"
+      },
+      "mobile_390": "O Sankey fica vertical (bruto no topo, destinos embaixo) com rótulos diretos e as três cifras da fonte em algarismos tabulares. A régua de contrato mostra três barras e o quadro previsto × calculado fixo acima dos controles. As seis camadas de preço viram lista numerada.",
+      "lacunas_fonte": [
+        "A divisão entre reinjeção, consumo nas unidades e perdas em jun/2026 não é dada: o Sankey não pode separar esses fluxos.",
+        "US$ 11,32/MMBtu (2025) é de 'entidade de competitividade empresarial' sem nome na aula. A própria fonte exige 'nome da entidade e data' para citar. Sem o nome, o número não entra como dado (S4).",
+        "Fatores e defasagens típicos de indexação: não declarados."
+      ],
+      "dependencias_s9": ["Desenho do Sankey e da régua", "Registro de tentativas", "Biblioteca com ficha de fonte com posição"],
+      "qa_conteudo": ["Nota final (GridAlpha Brasil Terminal): fora da interface."],
+      "ambicao": "Uma única figura em que 97% e 29,6% ficam lado a lado e ambos são verdade. Depois o learner descobre que pagou US$ 10,46 por um gás 'de 8,50', num dia em que o mercado marcava 6."
+    },
+    {
+      "aulaId": "aula-15-07",
+      "titulo": "GNL e o Novo Mercado de Gás",
+      "subtitulo": "o que a reforma abriu e o que ainda depende de norma",
+      "lente_fonte": "Aula 07 · Lente de Camada",
+      "ensina": "O GNL vende opcionalidade (molécula nova em semanas), e o seu preço só se compara depois de somar liquefação, frete, regaseificação e transporte. A Lei nº 14.134/2021 redesenhou o transporte e declarou o acesso de terceiros, mas a efetividade depende de norma, dispositivo por dispositivo. Em 04/08/2026 havia estados diferentes para cada tipo de infraestrutura.",
+      "natureza": ["mercado/regulação (estado de política por dispositivo)", "comparação de modelos de suprimento", "vocabulário operacional", "linha do tempo normativa"],
+      "representacao": {
+        "arquetipo": "Linha do tempo normativa com trilhas por dispositivo (lei 2021 → decretos → Res. ANP 1.003/2026 → consulta pública → prazos), acompanhada de mesa de comparação dos quatro modelos de GNL.",
+        "porque": "O mecanismo central é temporal e granular: 'quem leu a lei' e 'quem leu a resolução' concluem coisas diferentes, e a diferença é uma distância no tempo por dispositivo. Uma timeline de trilhas mostra os cinco anos entre o princípio e a primeira norma, o prazo de maio/2026 vencido e os 90 dias correndo.",
+        "sequencia": [
+          "Abertura: pergunta de estado (acesso a terceiros regulamentado?)",
+          "07.1 GNL: prosa + mesa dos quatro modelos",
+          "07.2 marco (quatro redesenhos)",
+          "07.3 linha do tempo por dispositivo + tabela de estados como legenda",
+          "Ato de classificação",
+          "07.4 vocabulário (termos ligados ao glossário)",
+          "INST·08",
+          "Fichas de elo 04 e 05",
+          "Registro"
+        ]
+      },
+      "abertura": {
+        "pergunta_camada_alexandria": "Em 4 de agosto de 2026, o acesso de terceiros a gasodutos de escoamento, unidades de processamento e terminais de GNL já estava regulamentado?",
+        "objetivo_camada_alexandria": "Classificar cada dispositivo do Novo Mercado de Gás no seu estado de política, com data, e somar as parcelas do GNL antes de comparar preços.",
+        "previsao": {
+          "util": true,
+          "forma": "Para cada um dos três tipos de infraestrutura: 'regulamentado' · 'em consulta' · 'sem ato'. É classificação registrada antes da tabela 07.3.",
+          "numeros_da_fonte": "Res. ANP nº 1.003/2026 (aprovada 26/06, publicada 02/07/2026) só para terminais de GNL; consulta pública de 45 dias decidida em 10/07/2026 para escoamento e processamento; previsão interna de maio/2026 vencida; norma de solução de conflitos estendida a dez/2026.",
+          "resposta_derivada": "GNL: em vigor (com 90 dias para os códigos); escoamento e processamento: sem norma vigente, consulta pública aberta.",
+          "colisao": "Quiz q6 trata do mesmo tema."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "classificar/ordenar",
+        "descricao": "Arrastar os cinco dispositivos da tabela 07.3 para os estados de política e pôr na linha do tempo três marcos (lei 2021, Res. 1.003 em 02/07/2026, consulta de 10/07/2026). Ato secundário: na mesa de GNL, escolher o modelo adequado para 'pico por hidrologia desfavorável' (carga pontual, segundo a coluna 'uso adequado').",
+        "referencia_fonte": "Tabela 07.3; nota 'O quarto estado'; tabela de modelos de GNL (07.1).",
+        "camada": "alexandria (forma)"
+      },
+      "visualizacao": [
+        {
+          "o_que": "Linha do tempo por dispositivo (2021 → dez/2026)",
+          "relacao": "princípio legal × ato de implementação; prazos vencidos e correndo",
+          "eixos_unidade": "tempo (meses), trilhas por dispositivo, marcas datadas",
+          "existe_no_codigo": false
+        },
+        {
+          "o_que": "Empilhamento do preço de GNL: origem + liquefação + frete + regaseificação + transporte até o city gate",
+          "relacao": "o preço na origem não se compara com o city gate sem as parcelas",
+          "eixos_unidade": "barras empilhadas SEM valores (a fonte não dá parcelas numéricas)",
+          "existe_no_codigo": false,
+          "nota": "Figura esquemática (classe explicação), sem números."
+        }
+      ],
+      "instrumento": {
+        "id": "m15-inst-08",
+        "titulo": "Classificador de elo",
+        "posicao_fonte": { "inserir_apos": 10, "entre": "07.4 vocabulário e 07.5 Ficha de elo 04" },
+        "posicao_proposta": { "inserir_apos": 10, "nota": "Manter. O instrumento não exercita o mecanismo central de A07 (estado de política); ele exercita a atribuição grandeza × elo, que serve à cadeia inteira. Por isso o ato autêntico desta aula é a classificação de estados, e o INST·08 fica como prática da cadeia. Faz sentido também como segunda porta do INST·01 na página do módulo." },
+        "previsao": "sim, qualitativa: 'esta grandeza se aplica a este elo?' antes do veredito",
+        "cenario_padrao": "Produção de petróleo × Campo (aplica-se)",
+        "saida": "Aplica-se / não se aplica; regime; órgão; 'o que o número não diz'; se não se aplica, 'onde a grandeza mora'. 6 × 5 = 30 combinações escritas na fonte.",
+        "observacoes": [
+          "O instrumento mostra o veredito imediatamente. Para virar ato, o learner registra 'aplica / não aplica' antes.",
+          "Nota da fonte: 'A dimensão de grandeza tem dois seletores por espaço de tela…' descreve o layout do HTML antigo e não deve ir à interface."
+        ]
+      },
+      "checagem": "Classificação dos estados → tabela 07.3 como referência → autoavaliação. Fichas 04/05: lacuna → referência do §MAP (elos 'transporte' e 'gnl').",
+      "recuperacao": "A06: 'Molécula e transporte são quantos contratos?' A Ficha 05 traz a pergunta da fonte 'Este campo mudou de conteúdo em 2 de julho de 2026. Por quê?', que é uma recuperação dentro da própria aula (resposta: Res. ANP 1.003/2026).",
+      "proximo_passo": "Próxima · A08 — Do contrato de gás ao preço da eletricidade. Se 'não atende' nos estados: 'Rever 07.3'.",
+      "exercicios_relacionados_sugestao": [],
+      "midia": {
+        "onde_ajuda": "Uma foto documental de unidade flutuante de regaseificação (FSRU) ou de terminal ancora 'opcionalidade importada' e o parágrafo sobre FSRU encurtar a implantação.",
+        "curadoria": "_trabalho/prev tem candidatos pelo nome (golar.jpg, sepetiba.jpg), sem plano.json. A legenda só nomeia navio ou terminal se a origem documental provar (M4).",
+        "classe": "documental"
+      },
+      "mobile_390": "A timeline fica vertical (tempo para baixo), com uma trilha por vez em disclosure e o estado atual em palavra e silhueta. A mesa de GNL (4 modelos × 3 colunas) vira quatro cartões. O vocabulário vira lista de termos com ligação ao glossário.",
+      "lacunas_fonte": [
+        "Nomes dos 'quatro estados de política' não coincidem com os do M14·A04 (teto legal autorizado · em vigor · meta de trajetória · prazo legal vencido e não implementado). A07 usa 'em vigor', 'anunciado com data futura', 'autorização legal sem ato de implementação', 'prazo vencido e implementação parcial'. CONTENT QA: fixar um vocabulário único antes de usar os estados como categorias de um ato.",
+        "Parcelas numéricas do GNL (liquefação, frete, regaseificação): não dadas.",
+        "Relatório do órgão de controle externo (março/2026) sem nome nem referência na aula.",
+        "Estados verificados em 04/08/2026: o prazo de 90 dias contado de 02/07 vence por volta de 30/09/2026, e a consulta de 45 dias, se aberta perto de 10/07, já terminou em 17/09/2026. O estado precisa de reverificação antes de publicar."
+      ],
+      "dependencias_s9": ["Timeline (componente)", "Glossário (carregador, entrada e saída, firme, interruptível, infraestrutura essencial)", "Registro de tentativas", "Créditos de imagem", "Reverificação de números vivos"],
+      "qa_conteudo": ["Vocabulário de estados M14 × M15.", "Nota final (Regulatory Radar): fora da interface."],
+      "ambicao": "O learner põe 'regulamentado' nos três tipos de infraestrutura. A timeline se desenha e mostra uma trilha preenchida (GNL, 02/07/2026) e duas ainda tracejadas. A frase da fonte, 'as duas leituras são verdadeiras e incompatíveis na conclusão prática', aparece exatamente entre a lei e a resolução."
+    },
+    {
+      "aulaId": "aula-15-08",
+      "titulo": "Do contrato de gás ao preço da eletricidade",
+      "subtitulo": "e por que a térmica despacha sem sinal econômico",
+      "lente_fonte": "Aula 08 · Lente de Acoplamento Elétrico",
+      "ensina": "O custo de combustível de uma térmica é preço do gás entregue × câmbio × consumo específico. Com O&M, forma o CVU que entra na ordem de despacho. Mas uma térmica gera por cinco motivos e só um (mérito) carrega sinal econômico. A linha divisória é a inflexibilidade declarada, que costuma nascer da retirada mínima do contrato de gás e que o leilão de reserva de capacidade de 2026 usou como critério de exclusão.",
+      "natureza": ["cálculo (CVU, eficiência)", "sistema (ordem de despacho)", "mercado/regulação (leilão de capacidade)", "classificação de causas"],
+      "representacao": {
+        "arquetipo": "Prancha dividida com instrumento vivo: à esquerda a cadeia causal (gás entregue → CVU → ordem de mérito → preço de curto prazo), à direita um eixo de despacho com a usina marcada e a faixa inflexível sombreada. Os cinco motivos vêm como cartões classificáveis.",
+        "porque": "É a aula-gancho do módulo (fonte: 'a aula que justifica o módulo'). Ela tem um cálculo com números da fonte, um eixo prometido pelo instrumento ('CVU baixo · despacha primeiro / CVU alto · despacha por último') e uma taxonomia de cinco causas com um critério de separação. Isso pede ver a posição da usina mudar enquanto o gás, o câmbio e a inflexibilidade mudam.",
+        "sequencia": [
+          "Abertura: previsão do CVU com os números da prosa",
+          "08.1 fórmula + exemplo aritmético + eficiência (ligação ao M01)",
+          "INST·09 (proposta: aqui, para o cálculo) com previsto × calculado",
+          "08.2 cinco motivos como cartões + 'a pergunta que separa' + ato de classificação",
+          "Segunda passada no INST·09: inflexibilidade (previsão 'gera?')",
+          "08.3 leilão de capacidade (critérios de inelegibilidade) + números vivos",
+          "Três níveis",
+          "Ficha de elo 06 (termelétrica, elo 9)",
+          "Ponte para o Caso — Operação A",
+          "Registro"
+        ]
+      },
+      "abertura": {
+        "pergunta_camada_alexandria": "Gás entregue a US$ 9,00/MMBtu, câmbio R$ 5,40, consumo específico 7,1 MMBtu/MWh e R$ 58/MWh de O&M e demais componentes: qual é o CVU simplificado?",
+        "objetivo_camada_alexandria": "Montar o CVU a partir do gás entregue e dizer se um despacho observado carrega sinal econômico.",
+        "previsao": {
+          "util": true,
+          "forma": "Número em R$/MWh.",
+          "numeros_da_fonte": "Exemplo aritmético da prosa 08.1: custo de combustível ≈ R$ 345/MWh; CVU ≈ R$ 403/MWh. Os mesmos números são o cenário padrão do INST·09.",
+          "resposta_derivada": "9,00 × 5,40 × 7,1 = 345,06; + 58 = 403,06 R$/MWh.",
+          "regra_entrada": "Arredondamento técnico normal (regra da Alexandria, P19).",
+          "colisao": "Quiz q7 e m15-ex-14 usam outro cenário (10 × 5,50 × 7,2): manter os dois cenários separados."
+        },
+        "segunda_previsao": {
+          "forma": "'Com CVU ≈ R$ 403 e custo marginal de operação R$ 330, com 40% de inflexibilidade declarada, a usina gera? Quanto dessa geração tem sinal econômico?'",
+          "numeros": "CMO 330 e inflexibilidade 40% são padrões do instrumento (cenário didático; a fonte não os apresenta como valor real).",
+          "resposta_derivada": "Gera 40% da capacidade, sem sinal econômico (fora do mérito por ≈R$ 73/MWh). O gás precisaria cair para ≈US$ 7,09/MMBtu para a usina entrar no mérito."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever → calcular; classificar; identificar o erro",
+        "descricao": "Duas previsões no INST·09. Classificação: quatro situações curtas escritas a partir dos cinco cartões (ex.: 'comandada a elevar a geração por restrição da rede'; 'continua ligada porque desligar e religar custa mais') → motivo 1–5. Identificar o erro: 'As térmicas a gás estão despachando, logo o gás está barato' (enunciado e10 do INST·10).",
+        "referencia_fonte": "Cinco cartões de 08.2; 'A pergunta que separa os cinco casos'; veredito do INST·09; m15-ex-13 na Revisão.",
+        "camada": "alexandria (forma e situações sem fato novo)"
+      },
+      "visualizacao": [
+        {
+          "o_que": "Eixo de despacho: CVU da usina × custo marginal, com bandas 'ordem de mérito' e 'fora do mérito'",
+          "relacao": "a posição relativa ao CMO decide o despacho econômico",
+          "eixos_unidade": "R$/MWh, marca da usina móvel",
+          "existe_no_codigo": false,
+          "promessa_nao_desenhada": "A fonte desenha ac-track (bandas + marca) e tem a saída 'Posição vs. custo marginal'. O port embute essa saída no texto do veredito e não desenha o eixo; MODULO_15_AULAS também não lista 'ac-po' em outputs."
+        },
+        {
+          "o_que": "Faixa de geração: inflexível (0–40%) × resposta a mérito (acima)",
+          "relacao": "a geração até o patamar inflexível não carrega sinal; na contabilidade é receita fixa × variável",
+          "eixos_unidade": "% da capacidade, barra única com duas zonas",
+          "existe_no_codigo": false
+        },
+        {
+          "o_que": "Cadeia causal gás → CVU → ordem → preço de curto prazo",
+          "relacao": "o acoplamento (Lente 03), com o elo omitido pelo currículo (contrato)",
+          "eixos_unidade": "diagrama de quatro nós",
+          "existe_no_codigo": false
+        }
+      ],
+      "instrumento": {
+        "id": "m15-inst-09",
+        "titulo": "Simulador de acoplamento gás → despacho",
+        "posicao_fonte": { "inserir_apos": 17, "entre": "três níveis (CVU) e 08.4 Ficha de elo 06" },
+        "posicao_proposta": { "inserir_apos": 4, "nota": "Primeira aparição logo depois do exemplo aritmético (08.1), com a previsão do CVU. A inflexibilidade volta como segundo estágio do mesmo instrumento depois do bloco 12 ('a pergunta que separa os cinco casos'). Na fonte o instrumento fica depois de 17 blocos, e isso é apêndice (Regra-mãe 1)." },
+        "previsao": "sim (duas)",
+        "cenario_padrao": "gás 9,00; câmbio 5,40; consumo 7,10; O&M 58; CMO 330; inflexibilidade 40%",
+        "saida_padrao_calculada": "combustível ≈ R$ 345; CVU ≈ R$ 403; eficiência ≈ 48,1%; posição: fora do mérito (+73); geração sem sinal 40%; gás de equilíbrio ≈ US$ 7,09; veredito 'A usina vai gerar sem sinal econômico algum'",
+        "observacoes": [
+          "A prosa dá 48,8% para 7,0 MMBtu/MWh; o padrão 7,1 dá 48,1%. Os dois estão certos, mas o learner verá dois números. A figura deve mostrar a qual consumo específico cada um se refere.",
+          "A nota da fonte ('Modelo didático… o eixo representa apenas a dimensão de custo') fica junto da figura."
+        ]
+      },
+      "checagem": "Previsto × calculado (CVU; gera/não gera e % sem sinal). Classificação dos motivos com a referência depois. Identificar o erro com a 'forma corrigida' do INST·10 só depois do registro.",
+      "recuperacao": "A fonte liga à física do M01 ('a mesma física do Módulo 01, reaparecendo com uma etiqueta de preço'): recuperar a pergunta de eficiência ou rendimento térmico do M01 antes de mostrar a resposta antiga. Também A06 (retirada mínima): 'por que um comprador com take-or-pay prefere gerar?'",
+      "proximo_passo": "Próxima · A09 — Ler um número ponta a ponta. Alternativa marcada: Caso — Operação A (§Caso, parte 15 da fonte, que aplica esta lente à exposição ao preço de curto prazo). Se 'não atende' na classificação: 'Rever 08.2'.",
+      "aplicacao_decisao": "O §Caso da fonte ('A cadeia fóssil que a operação não possui precifica a eletricidade que ela compra') traz três perguntas de diagnóstico. Pela P17 o título é 'Caso — Operação A', sem 'Parte', e um Desafio de decisão da camada Alexandria pode ser acrescentado usando só fatos do caso. Esse é o C8 natural da Lente 03, e mora na página do módulo com ligação a partir daqui.",
+      "exercicios_relacionados_sugestao": ["m15-ex-13", "m15-ex-14", "m15-ex-15"],
+      "midia": {
+        "onde_ajuda": "Foto documental de termelétrica a gás de ciclo combinado ancora 'consumo específico' e 'ciclo combinado'. É opcional; a prancha causal é a imagem principal.",
+        "curadoria": "sem plano.json; sem candidato em _trabalho/prev",
+        "classe": "visualização programática (+ documental opcional)"
+      },
+      "mobile_390": "O eixo de despacho fica horizontal a toda a largura, com a marca da usina e o valor, acima dos controles (gás, câmbio, consumo; depois CMO, inflexibilidade). O quadro previsto × calculado fica fixo abaixo do eixo. Os cinco cartões viram lista com o tipo (econômico, contratual, sistêmico, técnico, comitê) como etiqueta de texto. A cadeia causal fica vertical.",
+      "lacunas_fonte": [
+        "CMO 330 e inflexibilidade 40% são padrões sem fonte: cenário didático (P19).",
+        "'Autorização de março de 2026 diante de condições hidrológicas desfavoráveis na região Sul' e 'nove usinas… R$ 44 bilhões até 2031' são números vivos datados em 04/08/2026: reverificar.",
+        "Portarias do MME de outubro/2025 (leilão de reserva de capacidade 2026) sem número na aula."
+      ],
+      "dependencias_s9": ["Desenho do eixo de despacho (forma prometida)", "Saída 'Posição vs. custo marginal' como saída própria", "Registro de tentativas", "Extração do §Caso e do Desafio de decisão (P17)", "Glossário (CVU, CMO, inflexibilidade, unit commitment, constrained-on/off)"],
+      "qa_conteudo": ["Nota final longa com 'GridAlpha Brasil Terminal': fora da interface (P7/P24).", "P21 não se aplica (sem FC), mas 'eficiência' e 'consumo específico' devem ter glossário próprio."],
+      "ambicao": "O learner calcula 403 e vê a marca da usina cair além do custo marginal, 'fora do mérito'. Mesmo assim a barra de geração acende 40%, sombreada e com a legenda 'sem sinal econômico'. A frase ingênua 'a térmica ligou, o gás está barato' é desmontada pela própria figura."
+    },
+    {
+      "aulaId": "aula-15-09",
+      "titulo": "Ler um número ponta a ponta, e o dilema apresentado pelos dois lados",
+      "subtitulo": "",
+      "lente_fonte": "Aula 09 · Síntese",
+      "ensina": "Um protocolo de oito passos aplica as três lentes em sequência a qualquer número de óleo e gás: objeto e base, regime, grandeza, camada, fluxos ao Estado, acoplamento, interessados, conclusão condicional. A aula aplica o mesmo protocolo a dois objetos contestados (a estatal listada; o pré-sal e o clima; a margem equatorial) e devolve a estrutura da decisão, sem veredito.",
+      "natureza": ["síntese", "caso/decisão sob incerteza", "controvérsia (dois lados)", "leitura de documento corporativo"],
+      "representacao": {
+        "arquetipo": "Dossiê de caso com protocolo: o protocolo de oito passos como checklist operável à esquerda, aplicado a enunciados (INST·10). Depois vem o confronto em duas colunas que medem coisas diferentes e uma escada de sete estados (indicação para estudo → primeiro óleo) para a margem equatorial.",
+        "porque": "É a aula de transferência. O ato natural é identificar o defeito em enunciados verdadeiros e insuficientes, e a fonte já tem doze deles com diagnóstico. A controvérsia exige simetria visual e um ato que não seja escolher lado: nomear o que cada coluna mede. A margem equatorial é uma sequência ordinal ('sete estados diferentes') que a imprensa comprime, e a escada é a figura dela.",
+        "sequencia": [
+          "Abertura: enunciado e07 (29 bi → 21 anos) com previsão do defeito",
+          "09.1 protocolo em oito passos (checklist com rótulo de lente)",
+          "INST·10 com triagem antes do diagnóstico",
+          "09.2 estatal listada: quatro categorias (obrigação, estratégia, expectativa, especulação) + tabela de dimensões",
+          "09.3 fatos verificáveis do PN 2026–2030 + duas colunas + 'como responder sem escolher lado'",
+          "Ato: o que cada coluna mede",
+          "09.4 margem equatorial: escada de sete estados + tabela de argumentos",
+          "Ponte para o M16 como pergunta aberta",
+          "Registro e Revisão → Avaliação"
+        ]
+      },
+      "abertura": {
+        "pergunta_camada_alexandria": "'O Brasil tem 28,877 bilhões de barris de reserva e produz 1,38 bilhão por ano; portanto tem 21 anos de produção garantida.' A frase não tem erro factual. O que ela omite?",
+        "objetivo_camada_alexandria": "Aplicar as três lentes em sequência a um enunciado e devolver uma conclusão condicional (funciona se, quebra se, falta confirmar).",
+        "previsao": {
+          "util": true,
+          "forma": "Escolha do defeito dominante entre as quatro categorias do instrumento (regime · camada · grandeza · acoplamento), registrada antes do diagnóstico.",
+          "numeros_da_fonte": "Enunciado e07 do INST·10 e sua forma corrigida (17,488 bi 1P em 31/12/2025, R/P ≈12,7).",
+          "resposta_derivada": "Grandeza confundida (critério não declarado e R/P lido como prazo).",
+          "colisao": "Quiz q2 é parecido."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "identificar o erro; classificar; comparar",
+        "descricao": "No INST·10, para cada enunciado: registrar o defeito dominante e escrever 'a pergunta que você faz'. Só depois aparecem 'o que exatamente falta', 'a pergunta' e 'a forma corrigida' da fonte. Ato de controvérsia: ligar cada coluna ao que ela mede ('custo e emissão por barril produzido, com demanda dada' × 'emissão acumulada do sistema, questionando a demanda'). Ato de ordem: ordenar os sete estados da margem equatorial e marcar onde estavam os 86 blocos em 04/08/2026 ('indicação para estudo', fora do 6º ciclo).",
+        "referencia_fonte": "Script do INST·10 (12 enunciados: en, d, falta, p, c); nota 'Como responder sem escolher lado'; prosa 09.4.",
+        "camada": "alexandria (forma); fonte (referências)"
+      },
+      "visualizacao": [
+        {
+          "o_que": "Escada dos sete estados: indicação para estudo → oferta em leilão → contrato → licença de perfuração → descoberta → comercialidade → primeiro óleo",
+          "relacao": "cada degrau com evidência própria; a imprensa comprime todos em um",
+          "eixos_unidade": "ordinal, com a marca 'estado em 04/08/2026' dos 86 blocos (36 Foz do Amazonas, 25 Pará-Maranhão, 25 Barreirinhas)",
+          "existe_no_codigo": false
+        },
+        {
+          "o_que": "Composição do PN 2026–2030: US$ 109 bi = 91 implantação + 18 avaliação; E&P implantação 69,2 (≈62% pré-sal); transição 13 (≈12%), dos quais ≈3,1 baixo carbono",
+          "relacao": "anúncio não é desembolso; onde o capital está",
+          "eixos_unidade": "barras aninhadas, US$ bi, até 4 categorias, fonte PN aprovado em 27/11/2025",
+          "existe_no_codigo": false
+        },
+        {
+          "o_que": "Protocolo de oito passos com o rótulo de lente de cada passo",
+          "relacao": "ordem de aplicação das três lentes",
+          "eixos_unidade": "lista ordenada operável (checklist)",
+          "existe_no_codigo": "parcial (lista com HTML quebrado, ver QA)"
+        }
+      ],
+      "instrumento": {
+        "id": "m15-inst-10",
+        "titulo": "Verificador de regime e de camada · instrumento assinatura",
+        "posicao_fonte": { "inserir_apos": 1, "entre": "09.1 protocolo e 09.2 estatal listada" },
+        "posicao_proposta": { "inserir_apos": 1, "nota": "Manter: aplica o protocolo imediatamente." },
+        "previsao": "sim (defeito dominante por enunciado)",
+        "cenario_padrao": "filtro 'Todos'; enunciado e01 'Receita por participação'",
+        "saida": "Cartão com enunciado, defeito dominante, o que falta, a pergunta, a forma corrigida.",
+        "observacoes": [
+          "GATE C7: o port revela 'Defeito dominante' e 'Forma corrigida' assim que o enunciado é escolhido. A fonte pede 'Identifique o defeito dominante, e compare com o diagnóstico', então a referência só pode aparecer depois do registro.",
+          "O rótulo do seletor mostra o nome do defeito ('Despacho vira preço de gás', 'Reserva vira anos'), e isso entrega a resposta. Na triagem, o seletor deve mostrar só o número do enunciado ou o texto 'en'.",
+          "O filtro por tipo de defeito também entrega a categoria: usar só depois da primeira passada ('treinar uma categoria por vez', fonte)."
+        ]
+      },
+      "checagem": "Por enunciado: defeito registrado + pergunta escrita → diagnóstico da fonte (o que falta / pergunta / forma corrigida) → autoavaliação em três níveis → nova tentativa com outro enunciado da mesma família. Não atende → 'a revisar' ligado à aula da lente (e01–e03 → A01; e04–e06 → A04/A06; e07–e09 → A02/A06; e10–e12 → A08).",
+      "recuperacao": "A aula é a recuperação do módulo: cada enunciado reabre uma aula anterior com a origem visível. A resposta anterior do learner (previsões de A02, A04, A06, A08) só aparece depois da nova tentativa.",
+      "proximo_passo": "Última aula: Revisão (15 exercícios da fonte) → Avaliação do módulo (quiz de 10, critério legado 8/10 mostrado antes e nunca como 'Aprovado', P18). Ponte da fonte para o M16: 'e se a demanda não for dada?'.",
+      "exercicios_relacionados_sugestao": ["todos (Revisão)"],
+      "midia": {
+        "onde_ajuda": "Imagem de satélite da foz do Amazonas (documental, domínio público/NASA ou INPE conforme ficha) ancora 'nova fronteira exploratória' em 09.4 sem sugerir descoberta. Legenda sem nomear blocos, poços ou descobertas que a imagem não prova.",
+        "curadoria": "_trabalho/prev tem modis.jpg e inpe.jpg (foz do Amazonas vista de satélite, lidos neste estudo), sem plano.json e com licença a confirmar (M6).",
+        "classe": "documental"
+      },
+      "mobile_390": "O protocolo vira passos numerados em disclosure. O INST·10 mostra um enunciado por tela (seletor em lista rolável, sem nome do defeito), com as quatro categorias como botões ≥ 44px e o diagnóstico abaixo só depois do registro. As duas colunas empilham com rótulos 'leitura A / leitura B' e o mesmo peso. A escada de sete estados fica vertical, com a marca dos 86 blocos.",
+      "lacunas_fonte": [
+        "Enunciados do INST·10 usam dados (5,842 milhões de boe/d em jun/2026; 11 áreas em partilha) que não estão na prosa das aulas. Estão na fonte (script) e precisam da mesma ficha de fonte (Boletim ANP jun/2026).",
+        "Quatro 'mandatos' e 'ambição de ~31% da oferta primária até 2050': números vivos da companhia, verificados em 04/08/2026.",
+        "Tabela de argumentos (09.4) sem fontes de quem sustenta cada argumento. A régua de nomeação (§Final) exige descrever por estrutura."
+      ],
+      "dependencias_s9": ["Registro de tentativas (texto da pergunta)", "Estado 'a revisar' persistido", "Avaliação do módulo extraída (quiz)", "Exercícios de M10–M17 renderizados", "Escada ordinal (componente)"],
+      "qa_conteudo": [
+        "MODULO_15_CORPO['aula-15-09'][1] tem HTML quebrado: cada item traz '</span>' órfão e rótulo duplicado ('<b>Fixe o objeto e a base 30 segundos.</b> <i>(30 segundos)</i> </span>'). Corrigir na extração antes do render.",
+        "Subtítulo vazio em MODULO_15_AULAS: o título da fonte já traz as duas metades. Avaliar subtítulo derivado do título (P24), sem inventar.",
+        "Nota 'Herança direta do Bloco 13' usa 'Bloco' (vocabulário legado de módulo): reconciliar para 'Módulo 13' na camada editorial.",
+        "Notas 'Onde isso entra no produto' (Energy Brief, GridAlpha Research): fora da interface."
+      ],
+      "ambicao": "O learner recebe doze frases verdadeiras e aprende a ouvir o que falta nelas. A aula fecha sem veredito sobre o pré-sal e com uma habilidade verificável: devolver 'compatível com o quê, medido em qual grandeza, sob qual cenário, em qual horizonte'. A escada dos sete estados deixa a margem equatorial no degrau em que ela realmente estava."
+    }
+  ],
+  "resumo_arquetipos": {
+    "aula-15-01": "mesa de comparação de regimes + fichas de elo gêmeas",
+    "aula-15-02": "prancha com régua viva (1P/2P/3P) + escada de grandezas",
+    "aula-15-03": "coluna editorial com anatomia de fluxos + prancha de sensibilidade + colunas simétricas",
+    "aula-15-04": "cascata de camadas + registro de estado de política datado",
+    "aula-15-05": "laboratório guiado de diagnóstico (capacidade × produto)",
+    "aula-15-06": "prancha em dois tempos: Sankey físico + régua de contrato",
+    "aula-15-07": "linha do tempo normativa por dispositivo + mesa de modelos de GNL",
+    "aula-15-08": "prancha dividida: cadeia causal + eixo de despacho vivo + cartões de motivo",
+    "aula-15-09": "dossiê com protocolo + triagem de enunciados + escada de sete estados"
+  },
+  "features_registradas": "docs/alexandria-v2/estudos/features-propostas-aulas.md (seção M15)"
+}

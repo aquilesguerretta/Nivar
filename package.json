@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test:games": "node --experimental-strip-types --test tests/alexandria-games/modulo-08-engine.test.ts tests/alexandria-games/modulo-08-fatos.test.ts",
-    "test:stabilization": "node --experimental-strip-types --test tests/production-stabilization/browser-api.test.ts"
+    "test:stabilization": "node --experimental-strip-types --test tests/production-stabilization/browser-api.test.ts",
+    "test:progresso": "node --experimental-strip-types --test tests/alexandria-progresso/regras.test.ts tests/alexandria-progresso/conquistas.test.ts tests/alexandria-progresso/revisao-agenda.test.ts tests/alexandria-progresso/perfil.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",
@@ -36,7 +37,6 @@
     "radix-ui": "^1.4.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-globe.gl": "^2.38.0",
     "react-map-gl": "^7.1.7",
     "react-router-dom": "^6.30.3",
     "recharts": "^3.8.1",

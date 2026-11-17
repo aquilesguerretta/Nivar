@@ -1,0 +1,270 @@
+/* Alexandria v3 — Biblioteca: uma estante por módulo.
+   Busca e filtros reaproveitam as peças do glossário (glo-busca, glo-opcao). */
+
+.alx3 .bib {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 120px;
+}
+
+/* ── abertura ────────────────────────────────────────────── */
+
+.alx3 .bib-abertura {
+  padding: 48px 0 36px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  column-gap: 56px;
+  align-items: end;
+}
+
+.alx3 .bib-abertura > .v-dado {
+  grid-column: 1 / -1;
+  margin: 0 0 12px;
+}
+
+.alx3 .bib-titulo {
+  margin: 0;
+  font-size: clamp(39px, 4.55vw, 62.5px);
+  max-width: 16ch;
+}
+
+.alx3 .bib-cobertura {
+  margin: 0 0 14px;
+  font-family: var(--f-leitura);
+  font-size: 21px;
+  line-height: 1.5;
+  color: var(--tinta);
+}
+
+.alx3 .bib-legenda {
+  margin: 0;
+  padding-left: 14px;
+  border-left: 1px solid var(--ouro);
+  font-family: var(--f-interface);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--tinta-suave);
+}
+
+/* ── ferramentas ─────────────────────────────────────────── */
+
+.alx3 .bib-ferramentas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  padding: 20px 0;
+  border-top: 1px solid var(--fio-forte);
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .bib-ferramentas .glo-filtros {
+  align-items: flex-start;
+}
+
+.alx3 .bib-ferramentas .glo-segmento-rotulo {
+  min-width: 108px;
+}
+
+.alx3 .glo-opcao:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.alx3 .bib-opcao-n {
+  color: var(--tinta-fraca);
+  font-size: 0.86em;
+}
+
+.alx3 .bib-contagem {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 18px 0 8px;
+  font-size: 14px;
+  color: var(--tinta-fraca);
+}
+
+.alx3 .bib-limpar {
+  font: inherit;
+  color: var(--oxido);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.alx3 .bib-vazio {
+  margin: 40px 0;
+  font-family: var(--f-leitura);
+  font-style: italic;
+  font-size: 21px;
+  color: var(--tinta-suave);
+}
+
+/* ── estantes ────────────────────────────────────────────── */
+
+.alx3 .bib-estante {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  column-gap: 56px;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .bib-estante-cabeca {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-content: start;
+  gap: 0 12px;
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+
+.alx3 .bib-estante-codigo {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--oxido);
+}
+
+.alx3 .bib-estante-titulo {
+  margin: 0 0 6px;
+  font-family: var(--f-leitura);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.alx3 .bib-estante-titulo a {
+  color: var(--tinta);
+  text-decoration: none;
+  background-image: linear-gradient(var(--ouro), var(--ouro));
+  background-size: 0 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--t-hover);
+}
+
+.alx3 .bib-estante-titulo a:hover {
+  background-size: 100% 1px;
+}
+
+.alx3 .bib-estante-meta {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: var(--tinta-fraca);
+}
+
+.alx3 .bib-estante-nota {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 17.5px;
+  line-height: 1.55;
+  color: var(--tinta-suave);
+}
+
+.alx3 .bib-estante-nota em {
+  color: var(--tinta);
+}
+
+/* ── fichas ──────────────────────────────────────────────── */
+
+.alx3 .bib-fichas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+  gap: 0 32px;
+}
+
+.alx3 .bib-ficha {
+  padding: 18px 0 20px;
+  border-top: 1px solid var(--fio);
+}
+
+.alx3 .bib-natureza {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: var(--tinta-fraca);
+}
+
+.alx3 .bib-secundaria {
+  color: var(--oxido);
+}
+
+.alx3 .bib-ficha-titulo {
+  margin: 0 0 6px;
+  font-family: var(--f-leitura);
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--tinta);
+  overflow-wrap: anywhere;
+}
+
+.alx3 .bib-ficha-desc {
+  margin: 0 0 10px;
+  font-family: var(--f-interface);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--tinta-suave);
+  overflow-wrap: anywhere;
+}
+
+.alx3 .bib-ficha-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+  margin: 0;
+  font-family: var(--f-dado);
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+  color: var(--tinta-fraca);
+}
+
+.alx3 .bib-ficha-meta > * {
+  overflow-wrap: anywhere;
+}
+
+.alx3 .bib-link {
+  color: var(--tinta);
+  text-decoration: underline;
+  text-decoration-color: var(--ouro);
+  text-underline-offset: 3px;
+}
+
+.alx3 .bib-link:hover {
+  color: var(--oxido);
+}
+
+/* ── telas estreitas ─────────────────────────────────────── */
+
+@media (max-width: 1000px) {
+  .alx3 .bib-abertura {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 18px;
+  }
+  .alx3 .bib-estante {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 12px;
+  }
+  .alx3 .bib-estante-cabeca {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .alx3 .bib {
+    padding: 0 16px 80px;
+  }
+  .alx3 .bib-ferramentas .glo-segmento-rotulo {
+    min-width: 0;
+    width: 100%;
+  }
+  .alx3 .bib-estante-titulo {
+    font-size: 24px;
+  }
+}

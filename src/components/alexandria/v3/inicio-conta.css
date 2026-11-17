@@ -1,0 +1,403 @@
+/* Alexandria v3 — Início de quem tem conta. Herda o esqueleto de home-v3.css
+   (.home, .heroi, .numeros, .secao-cabeca, .faixa-gravura, .fecho). */
+
+.alx3 .ic-heroi {
+  min-height: calc(100vh - 65px);
+}
+
+.alx3 .ic-titulo {
+  font-size: clamp(52px, 5.4vw, 96px);
+}
+
+.alx3 .ic-continuar {
+  display: grid;
+  gap: 8px;
+  padding: 18px 0 4px 20px;
+  border-left: 2px solid var(--oxido);
+  max-width: 34em;
+}
+
+.alx3 .ic-continuar .v-dado {
+  margin: 0;
+  font-size: 13px;
+}
+
+.alx3 .ic-continuar-titulo {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: clamp(26px, 2.3vw, 34px);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+}
+
+.alx3 .ic-continuar-motivo {
+  margin: 0;
+  font-family: var(--f-interface);
+  font-size: 17px;
+  color: var(--tinta-suave);
+}
+
+/* cartão do jogador sobre a gravura */
+
+.alx3 .ic-figura {
+  min-height: 420px;
+}
+
+.alx3 .ic-jogador {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 52px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  max-width: 560px;
+  padding: 16px 20px;
+  background: color-mix(in srgb, var(--papel) 94%, transparent);
+  border: 1px solid var(--fio-forte);
+}
+
+.alx3 .ic-jogador-texto {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.alx3 .ic-jogador-linha {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  margin: 0;
+  font-family: var(--f-interface);
+  font-size: 16px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .ic-jogador-linha strong {
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+.alx3 .ic-raio {
+  color: var(--oxido);
+  display: inline-flex;
+}
+
+.alx3 .ic-raio .jg-icone {
+  width: 20px;
+  height: 20px;
+}
+
+.alx3 .ic-ponto {
+  margin: 0 6px;
+  color: var(--tinta-fraca);
+}
+
+/* trilhas no pé do herói, com a barra do progresso */
+
+.alx3 .ic-trilhas .heroi-trilha {
+  grid-template-rows: auto auto auto;
+  row-gap: 2px;
+}
+
+.alx3 .ic-trilhas .heroi-trilha[data-aqui] {
+  background: var(--papel-fundo);
+}
+
+.alx3 .ic-trilhas .heroi-trilha[data-aqui] .heroi-trilha-nome::after {
+  content: ' · você está aqui';
+  font-family: var(--f-dado);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--oxido);
+  white-space: nowrap;
+}
+
+.alx3 .ic-trilha-barra {
+  grid-column: 2;
+  display: block;
+  height: 6px;
+  margin-top: 10px;
+  border: 1px solid var(--fio-forte);
+  overflow: hidden;
+}
+
+.alx3 .ic-trilha-barra > span {
+  display: block;
+  height: 100%;
+  background: var(--ouro);
+  transform-origin: left;
+  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* o caminho */
+
+.alx3 .ic-linha {
+  padding: 8px var(--margem) 8px;
+}
+
+.alx3 .ic-linha .jg-estacao-disco {
+  width: 56px;
+  height: 56px;
+}
+
+.alx3 .ic-linha .jg-estacao::after {
+  top: 27px;
+  left: calc(50% + 26px);
+  right: calc(-50% + 26px);
+}
+
+.alx3 .ic-linha .jg-estacao-codigo {
+  font-size: 14px;
+}
+
+.alx3 .ic-proximas-rotulo {
+  margin: 56px var(--margem) 14px;
+  font-size: 13px;
+}
+
+.alx3 .ic-proximas {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--margem) 88px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.alx3 .ic-proxima-link {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  gap: 8px;
+  height: 100%;
+  min-height: 200px;
+  padding: 20px 20px 18px;
+  border: 1px solid var(--fio-forte);
+  text-decoration: none;
+  color: var(--tinta);
+  transition: transform var(--t-hover), border-color var(--t-hover), background var(--t-hover);
+}
+
+.alx3 .ic-proxima-link:hover {
+  transform: translateY(-4px);
+  border-color: var(--tinta);
+}
+
+.alx3 .ic-proxima[data-primeira] .ic-proxima-link {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--sobre-tinta);
+}
+
+.alx3 .ic-proxima-onde {
+  font-size: 13px;
+  color: var(--oxido);
+}
+
+.alx3 .ic-proxima[data-primeira] .ic-proxima-onde {
+  color: var(--ouro);
+}
+
+.alx3 .ic-proxima-titulo {
+  font-family: var(--f-leitura);
+  font-size: 23px;
+  line-height: 1.22;
+}
+
+.alx3 .ic-proxima-tema {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.alx3 .ic-proxima-acao {
+  font-family: var(--f-interface);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.alx3 .ic-proxima-acao::after {
+  content: ' →';
+  transition: margin var(--t-hover);
+}
+
+.alx3 .ic-proxima-link:hover .ic-proxima-acao::after {
+  margin-left: 6px;
+}
+
+/* medalhas */
+
+.alx3 .ic-medalhas {
+  border-top: 1px solid var(--fio);
+}
+
+.alx3 .ic-medalhas-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--margem);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.alx3 .ic-medalha {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 24px 12px;
+}
+
+.alx3 .ic-medalha .medalha {
+  width: 112px;
+  height: 112px;
+  max-width: none;
+  margin-bottom: 8px;
+  transition: transform 500ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.alx3 .ic-medalha:hover .medalha {
+  transform: rotate(-8deg) scale(1.06);
+}
+
+.alx3 .ic-medalha-familia {
+  font-size: 12px;
+  color: var(--tinta-fraca);
+}
+
+.alx3 .ic-medalha-nome {
+  font-family: var(--f-leitura);
+  font-size: 21px;
+  line-height: 1.25;
+}
+
+.alx3 .ic-medalha-data {
+  font-size: 12.5px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .ic-medalhas-mais {
+  margin: 0;
+  padding: 12px var(--margem) 88px;
+}
+
+
+/* registro */
+
+.alx3 .ic-registro {
+  border-top: 1px solid var(--fio);
+  padding: 40px var(--margem) 56px;
+  display: grid;
+  gap: 18px;
+}
+
+.alx3 .ic-registro-linhas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+}
+
+.alx3 .ic-registro-linhas div {
+  padding: 4px 24px 4px 0;
+}
+
+.alx3 .ic-registro-linhas div + div {
+  padding-left: 24px;
+  border-left: 1px solid var(--fio);
+}
+
+.alx3 .ic-registro-linhas dt {
+  font-family: var(--f-interface);
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.alx3 .ic-registro-linhas dd {
+  margin: 4px 0 0;
+  font-family: var(--f-interface);
+  font-size: 16px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .ic-tese {
+  font-style: italic;
+  max-width: 24ch;
+}
+
+/* ── telas estreitas ─────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .alx3 .ic-proximas,
+  .alx3 .ic-medalhas-lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .alx3 .heroi.ic-heroi .ic-figura {
+    min-height: 0;
+    aspect-ratio: auto;
+    display: grid;
+  }
+  .alx3 .ic-figura img {
+    aspect-ratio: 4 / 3;
+    height: auto;
+  }
+  .alx3 .ic-jogador {
+    position: static;
+    max-width: none;
+    border-left: 0;
+    border-right: 0;
+    background: var(--papel);
+  }
+  .alx3 .ic-figura .legenda-gravura {
+    top: 8px;
+    bottom: auto;
+  }
+  .alx3 .ic-registro-linhas {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .alx3 .ic-registro-linhas div + div {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .alx3 .ic-proximas-rotulo {
+    margin-top: 32px;
+  }
+  .alx3 .ic-proximas {
+    padding-bottom: 56px;
+  }
+}
+
+@media (max-width: 600px) {
+  .alx3 .ic-proximas,
+  .alx3 .ic-medalhas-lista {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .alx3 .ic-medalhas-lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .alx3 .ic-medalha .medalha {
+    width: 84px;
+    height: 84px;
+  }
+}
+
+/* `.sobe` (home-v3.css) é inline-block; aqui os blocos que sobem são grades */
+.alx3 .ic-jogador.sobe,
+.alx3 .ic-continuar.sobe {
+  display: grid;
+}
+
+.alx3 .ic-jogador .jg-emblema-rotulo {
+  font-size: 8px;
+}
+
+.alx3 .ic-proxima[data-primeira] .ic-proxima-tema {
+  color: var(--ouro);
+  opacity: 1;
+}

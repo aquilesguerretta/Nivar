@@ -1,0 +1,1375 @@
+{
+  "meta": {
+    "grupo": "aula06",
+    "modulo": "M01",
+    "aula": "M01·A06",
+    "fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo01.html",
+    "fonte_somente_leitura": true,
+    "fonte_total_linhas": 3212,
+    "aula_linhas": {
+      "inicio": 1828,
+      "fim": 1895,
+      "nota": "comentário de abertura 1828-1830; section.aula 1831-1895"
+    },
+    "extraido_em": "2026-11-14",
+    "metodo": "Extração programática (script node sobre fatias do HTML por linha + regex ancorado; nenhuma prosa digitada). `html` guarda o innerHTML literal; `texto` é o mesmo conteúdo com tags removidas e entidades decodificadas.",
+    "gerador": "docs/alexandria-v2/extraction/m01/extratores/gen-aula06.mjs",
+    "verificador": "docs/alexandria-v2/extraction/m01/extratores/verify-aula06.mjs",
+    "protocolo": "docs/alexandria/extraction-protocol.md",
+    "taxonomia": "docs/alexandria/instrument-taxonomy.md",
+    "convencoes": {
+      "ausencia": "null + campo *_nota explicando o que foi medido",
+      "ids": "m01-a06-bNN-<tipo> para blocos (ordem da fonte)",
+      "vinculos": "só quando a fonte declara (tag, posição dentro da section, remissão textual literal); correspondência textual é marcada como tal",
+      "conflitos_pendentes": "QA-M01-A06 (DIV-01): pendente de decisão do Founder; as duas leituras ficam literais, nada é escolhido"
+    }
+  },
+  "aula": {
+    "id": "m01-a06",
+    "numero": 6,
+    "marcador": {
+      "num": "Aula 06",
+      "nome": "Tensão como categoria econômica",
+      "origem": {
+        "seletor": "div.aula-marker",
+        "trecho_inicial": "Aula 06 Tensão como categoria econômica",
+        "linha_aprox": 1833
+      }
+    },
+    "titulo_h2_html": "A tensão de fornecimento <em>define</em> a tarifa que você paga.",
+    "titulo_h2_texto": "A tensão de fornecimento define a tarifa que você paga.",
+    "titulo_h2_origem": {
+      "seletor": "h2.aula-title",
+      "trecho_inicial": "A tensão de fornecimento define a tarifa que você paga.",
+      "linha_aprox": 1834
+    },
+    "pergunta_mapa": {
+      "numero": "06",
+      "tema": "Tensão como categoria econômica",
+      "pergunta_html": "Por que sua tensão de fornecimento define seu grupo tarifário?",
+      "pergunta_texto": "Por que sua tensão de fornecimento define seu grupo tarifário?",
+      "origem": {
+        "seletor": "§ MAP table > tbody > tr(06)",
+        "trecho_inicial": "Por que sua tensão de fornecimento define seu grupo tarifári",
+        "linha_aprox": 1344
+      },
+      "nota": "Única pergunta que a fonte declara para esta aula. Vive na tabela do § MAP, não na aula."
+    },
+    "duracao_min": null,
+    "dificuldade": null,
+    "video": null,
+    "ausencias_nota": "Sem duração, dificuldade, vídeo, <img>, figura, fórmula, callout, instrumento ou \"Vale lembrar\" dentro da section (ver varredura_de_ausencia)."
+  },
+  "blocos": [
+    {
+      "id": "m01-a06-b01-lead",
+      "tipo": "lead",
+      "html": "No Brasil, tensão não é apenas um parâmetro técnico. É o eixo central de classificação tarifária. Saber em que nível de tensão um cliente é atendido é saber, imediatamente, qual estrutura de fatura ele recebe.",
+      "texto": "No Brasil, tensão não é apenas um parâmetro técnico. É o eixo central de classificação tarifária. Saber em que nível de tensão um cliente é atendido é saber, imediatamente, qual estrutura de fatura ele recebe.",
+      "origem": {
+        "seletor": "section.aula(Aula 06) > .container > p.lead",
+        "trecho_inicial": "No Brasil, tensão não é apenas um parâmetro técnico. É o eix",
+        "linha_aprox": 1836
+      }
+    },
+    {
+      "id": "m01-a06-b02-titulo",
+      "tipo": "titulo",
+      "numero": "6.1",
+      "texto": "Grupo A e Grupo B — a divisão fundamental",
+      "html": "<span class=\"num\">6.1</span>Grupo A e Grupo B — a divisão fundamental",
+      "origem": {
+        "seletor": "h3 > span.num(6.1)",
+        "trecho_inicial": "6.1Grupo A e Grupo B — a divisão fundamental",
+        "linha_aprox": 1838
+      }
+    },
+    {
+      "id": "m01-a06-b03-paragrafo",
+      "tipo": "paragrafo",
+      "html": "A regulação brasileira divide consumidores em dois grandes grupos, com base na tensão de fornecimento:",
+      "texto": "A regulação brasileira divide consumidores em dois grandes grupos, com base na tensão de fornecimento:",
+      "origem": {
+        "seletor": "h3(6.1) ~ p:nth-of-type(1)",
+        "trecho_inicial": "A regulação brasileira divide consumidores em dois grandes g",
+        "linha_aprox": 1839
+      }
+    },
+    {
+      "id": "m01-a06-b04-tabela",
+      "tipo": "tabela",
+      "cabecalho": [
+        {
+          "html": "Grupo",
+          "texto": "Grupo"
+        },
+        {
+          "html": "Tensão de fornecimento",
+          "texto": "Tensão de fornecimento"
+        },
+        {
+          "html": "Quem é",
+          "texto": "Quem é"
+        }
+      ],
+      "linhas": [
+        {
+          "celulas": [
+            {
+              "html": "<b>Grupo B</b>",
+              "texto": "Grupo B",
+              "classe": null
+            },
+            {
+              "html": "Baixa tensão (&lt; 2,3 kV)",
+              "texto": "Baixa tensão (< 2,3 kV)",
+              "classe": null
+            },
+            {
+              "html": "Residências, pequenos comércios, pequenas propriedades rurais",
+              "texto": "Residências, pequenos comércios, pequenas propriedades rurais",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Grupo B",
+            "linha_aprox": 1845
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>Grupo A</b>",
+              "texto": "Grupo A",
+              "classe": null
+            },
+            {
+              "html": "Alta e média tensão (≥ 2,3 kV)",
+              "texto": "Alta e média tensão (≥ 2,3 kV)",
+              "classe": null
+            },
+            {
+              "html": "Indústrias, grandes comércios, grandes consumidores",
+              "texto": "Indústrias, grandes comércios, grandes consumidores",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Grupo A",
+            "linha_aprox": 1846
+          }
+        }
+      ],
+      "n_colunas": 3,
+      "n_linhas_dados": 2,
+      "texto": "Grupo Tensão de fornecimento Quem é Grupo B Baixa tensão (< 2,3 kV) Residências, pequenos comércios, pequenas propriedades rurais Grupo A Alta e média tensão (≥ 2,3 kV) Indústrias, grandes comércios, grandes consumidores",
+      "origem": {
+        "seletor": "h3(6.1) ~ div.table-wrap > table",
+        "trecho_inicial": "Grupo Tensão de fornecimento Quem é Grupo B Baixa tensão (< ",
+        "linha_aprox": 1843
+      },
+      "linha_tabela": 1842,
+      "nota": "Cabeçalho em <thead><th>; dados em <tbody><td>. `classe` guarda o class do td quando existe."
+    },
+    {
+      "id": "m01-a06-b05-paragrafo",
+      "tipo": "paragrafo",
+      "html": "A diferença entre os grupos não é cosmética. Grupo B paga uma tarifa simples (essencialmente: kWh × tarifa). Grupo A paga uma estrutura tarifária binômia: <strong>uma componente para consumo (kWh)</strong> e <strong>outra para demanda (kW)</strong>. Toda a complexidade analítica da Alexandria nasce aí.",
+      "texto": "A diferença entre os grupos não é cosmética. Grupo B paga uma tarifa simples (essencialmente: kWh × tarifa). Grupo A paga uma estrutura tarifária binômia: uma componente para consumo (kWh) e outra para demanda (kW). Toda a complexidade analítica da Alexandria nasce aí.",
+      "origem": {
+        "seletor": "h3(6.1) ~ p:nth-of-type(2)",
+        "trecho_inicial": "A diferença entre os grupos não é cosmética. Grupo B paga um",
+        "linha_aprox": 1851
+      }
+    },
+    {
+      "id": "m01-a06-b06-titulo",
+      "tipo": "titulo",
+      "numero": "6.2",
+      "texto": "Os subgrupos do Grupo A",
+      "html": "<span class=\"num\">6.2</span>Os subgrupos do Grupo A",
+      "origem": {
+        "seletor": "h3 > span.num(6.2)",
+        "trecho_inicial": "6.2Os subgrupos do Grupo A",
+        "linha_aprox": 1853
+      }
+    },
+    {
+      "id": "m01-a06-b07-tabela",
+      "tipo": "tabela",
+      "cabecalho": [
+        {
+          "html": "Subgrupo",
+          "texto": "Subgrupo"
+        },
+        {
+          "html": "Tensão",
+          "texto": "Tensão"
+        },
+        {
+          "html": "Perfil típico",
+          "texto": "Perfil típico"
+        }
+      ],
+      "linhas": [
+        {
+          "celulas": [
+            {
+              "html": "<b>A1</b>",
+              "texto": "A1",
+              "classe": null
+            },
+            {
+              "html": "≥ 230 kV",
+              "texto": "≥ 230 kV",
+              "classe": null
+            },
+            {
+              "html": "Indústrias eletrointensivas (alumínio, siderurgia, eletroquímica)",
+              "texto": "Indústrias eletrointensivas (alumínio, siderurgia, eletroquímica)",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "A1",
+            "linha_aprox": 1858
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>A2</b>",
+              "texto": "A2",
+              "classe": null
+            },
+            {
+              "html": "88 a 138 kV",
+              "texto": "88 a 138 kV",
+              "classe": null
+            },
+            {
+              "html": "Grandes indústrias e parques industriais",
+              "texto": "Grandes indústrias e parques industriais",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "A2",
+            "linha_aprox": 1859
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>A3</b>",
+              "texto": "A3",
+              "classe": null
+            },
+            {
+              "html": "69 kV",
+              "texto": "69 kV",
+              "classe": null
+            },
+            {
+              "html": "Indústrias de grande porte",
+              "texto": "Indústrias de grande porte",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "A3",
+            "linha_aprox": 1860
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>A3a</b>",
+              "texto": "A3a",
+              "classe": null
+            },
+            {
+              "html": "30 a 44 kV",
+              "texto": "30 a 44 kV",
+              "classe": null
+            },
+            {
+              "html": "Indústrias médias e grandes",
+              "texto": "Indústrias médias e grandes",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "A3a",
+            "linha_aprox": 1861
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>A4</b>",
+              "texto": "A4",
+              "classe": null
+            },
+            {
+              "html": "2,3 a 25 kV",
+              "texto": "2,3 a 25 kV",
+              "classe": null
+            },
+            {
+              "html": "Indústrias médias e grandes comércios — <strong>onde concentra a maioria do mercado livre potencial</strong>",
+              "texto": "Indústrias médias e grandes comércios — onde concentra a maioria do mercado livre potencial",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "A4",
+            "linha_aprox": 1862
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>AS</b>",
+              "texto": "AS",
+              "classe": null
+            },
+            {
+              "html": "&lt; 2,3 kV (subterrâneo)",
+              "texto": "< 2,3 kV (subterrâneo)",
+              "classe": null
+            },
+            {
+              "html": "Centros urbanos com rede subterrânea",
+              "texto": "Centros urbanos com rede subterrânea",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "AS",
+            "linha_aprox": 1863
+          }
+        }
+      ],
+      "n_colunas": 3,
+      "n_linhas_dados": 6,
+      "texto": "Subgrupo Tensão Perfil típico A1 ≥ 230 kV Indústrias eletrointensivas (alumínio, siderurgia, eletroquímica) A2 88 a 138 kV Grandes indústrias e parques industriais A3 69 kV Indústrias de grande porte A3a 30 a 44 kV Indústrias médias e grandes A4 2,3 a 25 kV Indústrias médias e grandes comércios — onde concentra a maioria do mercado livre potencial AS < 2,3 kV (subterrâneo) Centros urbanos com rede subterrânea",
+      "origem": {
+        "seletor": "h3(6.2) ~ div.table-wrap > table",
+        "trecho_inicial": "Subgrupo Tensão Perfil típico A1 ≥ 230 kV Indústrias eletroi",
+        "linha_aprox": 1856
+      },
+      "linha_tabela": 1855,
+      "nota": "Cabeçalho em <thead><th>; dados em <tbody><td>. `classe` guarda o class do td quando existe."
+    },
+    {
+      "id": "m01-a06-b08-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Para fins de prospecção da GridAlpha no Brasil, o <strong>Grupo A4 é o terreno mais fértil</strong>: grande volume de consumidores, complexidade tarifária suficiente para gerar diagnóstico relevante, e ainda não atendido por consultorias premium que se concentram em A1/A2. Quando você falar com diretor de energia de mineradora média em Minas Gerais, A4 é provavelmente o subgrupo dele.",
+      "texto": "Para fins de prospecção da GridAlpha no Brasil, o Grupo A4 é o terreno mais fértil: grande volume de consumidores, complexidade tarifária suficiente para gerar diagnóstico relevante, e ainda não atendido por consultorias premium que se concentram em A1/A2. Quando você falar com diretor de energia de mineradora média em Minas Gerais, A4 é provavelmente o subgrupo dele.",
+      "origem": {
+        "seletor": "h3(6.2) ~ p",
+        "trecho_inicial": "Para fins de prospecção da GridAlpha no Brasil, o Grupo A4 é",
+        "linha_aprox": 1868
+      }
+    },
+    {
+      "id": "m01-a06-b09-titulo",
+      "tipo": "titulo",
+      "numero": "6.3",
+      "texto": "Por que tensão maior implica tarifa menor (em geral)",
+      "html": "<span class=\"num\">6.3</span>Por que tensão maior implica tarifa menor (em geral)",
+      "origem": {
+        "seletor": "h3 > span.num(6.3)",
+        "trecho_inicial": "6.3Por que tensão maior implica tarifa menor (em geral)",
+        "linha_aprox": 1870
+      }
+    },
+    {
+      "id": "m01-a06-b10-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Quanto mais alta a tensão de fornecimento, mais próximo o consumidor está fisicamente da geração e da transmissão troncal, e menos camadas de rede ele atravessa. Logo:",
+      "texto": "Quanto mais alta a tensão de fornecimento, mais próximo o consumidor está fisicamente da geração e da transmissão troncal, e menos camadas de rede ele atravessa. Logo:",
+      "origem": {
+        "seletor": "h3(6.3) ~ p:nth-of-type(1) (termina em \"Logo:\" e introduz a lista)",
+        "trecho_inicial": "Quanto mais alta a tensão de fornecimento, mais próximo o co",
+        "linha_aprox": 1871
+      }
+    },
+    {
+      "id": "m01-a06-b11-lista",
+      "tipo": "lista",
+      "ordenada": false,
+      "itens": [
+        {
+          "html": "Menos perdas técnicas embutidas na sua tarifa;",
+          "texto": "Menos perdas técnicas embutidas na sua tarifa;",
+          "estilo_inline": "margin-bottom: 10px;",
+          "origem": {
+            "seletor": "ul > li",
+            "trecho_inicial": "Menos perdas técnicas embutidas na sua tarifa;",
+            "linha_aprox": 1873
+          }
+        },
+        {
+          "html": "Menos uso de ativos de distribuição de baixa tensão;",
+          "texto": "Menos uso de ativos de distribuição de baixa tensão;",
+          "estilo_inline": "margin-bottom: 10px;",
+          "origem": {
+            "seletor": "ul > li",
+            "trecho_inicial": "Menos uso de ativos de distribuição de baixa tensão;",
+            "linha_aprox": 1874
+          }
+        },
+        {
+          "html": "Menor componente de TUSD comparada à TE.",
+          "texto": "Menor componente de TUSD comparada à TE.",
+          "estilo_inline": "margin-bottom: 10px;",
+          "origem": {
+            "seletor": "ul > li",
+            "trecho_inicial": "Menor componente de TUSD comparada à TE.",
+            "linha_aprox": 1875
+          }
+        }
+      ],
+      "ul_estilo_inline": "margin: 16px 0 24px 24px; color: var(--text-secondary);",
+      "texto": "Menos perdas técnicas embutidas na sua tarifa; Menos uso de ativos de distribuição de baixa tensão; Menor componente de TUSD comparada à TE.",
+      "origem": {
+        "seletor": "h3(6.3) ~ ul",
+        "trecho_inicial": "Menos perdas técnicas embutidas na sua tarifa; Menos uso de ",
+        "linha_aprox": 1872
+      },
+      "nota": "Lista não ordenada (<ul>) com 3 <li>. O parágrafo imediatamente anterior termina em \"Logo:\" (L1871)."
+    },
+    {
+      "id": "m01-a06-b12-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Um cliente A1 (em 230 kV) paga, em geral, tarifa total menor que um A4 (em 13,8 kV) para o mesmo kWh — exatamente porque o A1 está usando muito menos infraestrutura de rede.",
+      "texto": "Um cliente A1 (em 230 kV) paga, em geral, tarifa total menor que um A4 (em 13,8 kV) para o mesmo kWh — exatamente porque o A1 está usando muito menos infraestrutura de rede.",
+      "origem": {
+        "seletor": "h3(6.3) ~ p:nth-of-type(2)",
+        "trecho_inicial": "Um cliente A1 (em 230 kV) paga, em geral, tarifa total menor",
+        "linha_aprox": 1877
+      }
+    },
+    {
+      "id": "m01-a06-b13-titulo",
+      "tipo": "titulo",
+      "numero": "6.4",
+      "texto": "Monofásico, bifásico e trifásico",
+      "html": "<span class=\"num\">6.4</span>Monofásico, bifásico e trifásico",
+      "origem": {
+        "seletor": "h3 > span.num(6.4)",
+        "trecho_inicial": "6.4Monofásico, bifásico e trifásico",
+        "linha_aprox": 1879
+      }
+    },
+    {
+      "id": "m01-a06-b14-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Além do nível de tensão, o número de fases do fornecimento importa. Em corrente alternada, fases são a forma de organizar a entrega:",
+      "texto": "Além do nível de tensão, o número de fases do fornecimento importa. Em corrente alternada, fases são a forma de organizar a entrega:",
+      "origem": {
+        "seletor": "h3(6.4) ~ p:nth-of-type(1)",
+        "trecho_inicial": "Além do nível de tensão, o número de fases do fornecimento i",
+        "linha_aprox": 1880
+      }
+    },
+    {
+      "id": "m01-a06-b15-tabela",
+      "tipo": "tabela",
+      "cabecalho": [
+        {
+          "html": "Sistema",
+          "texto": "Sistema"
+        },
+        {
+          "html": "Onde aparece",
+          "texto": "Onde aparece"
+        },
+        {
+          "html": "Limitação típica",
+          "texto": "Limitação típica"
+        }
+      ],
+      "linhas": [
+        {
+          "celulas": [
+            {
+              "html": "<b>Monofásico</b>",
+              "texto": "Monofásico",
+              "classe": null
+            },
+            {
+              "html": "Residências simples, pequenos comércios",
+              "texto": "Residências simples, pequenos comércios",
+              "classe": null
+            },
+            {
+              "html": "Cargas pequenas (≤ ~10 kW), sem motores grandes",
+              "texto": "Cargas pequenas (≤ ~10 kW), sem motores grandes",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Monofásico",
+            "linha_aprox": 1886
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>Bifásico</b>",
+              "texto": "Bifásico",
+              "classe": null
+            },
+            {
+              "html": "Residências e comércios com carga acima do monofásico, dependendo da distribuidora",
+              "texto": "Residências e comércios com carga acima do monofásico, dependendo da distribuidora",
+              "classe": null
+            },
+            {
+              "html": "Limites regionais variam",
+              "texto": "Limites regionais variam",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Bifásico",
+            "linha_aprox": 1887
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>Trifásico</b>",
+              "texto": "Trifásico",
+              "classe": null
+            },
+            {
+              "html": "Padrão industrial; comércios médios e grandes; motores trifásicos",
+              "texto": "Padrão industrial; comércios médios e grandes; motores trifásicos",
+              "classe": null
+            },
+            {
+              "html": "Padrão acima de ~15 kW",
+              "texto": "Padrão acima de ~15 kW",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Trifásico",
+            "linha_aprox": 1888
+          }
+        }
+      ],
+      "n_colunas": 3,
+      "n_linhas_dados": 3,
+      "texto": "Sistema Onde aparece Limitação típica Monofásico Residências simples, pequenos comércios Cargas pequenas (≤ ~10 kW), sem motores grandes Bifásico Residências e comércios com carga acima do monofásico, dependendo da distribuidora Limites regionais variam Trifásico Padrão industrial; comércios médios e grandes; motores trifásicos Padrão acima de ~15 kW",
+      "origem": {
+        "seletor": "h3(6.4) ~ div.table-wrap > table",
+        "trecho_inicial": "Sistema Onde aparece Limitação típica Monofásico Residências",
+        "linha_aprox": 1884
+      },
+      "linha_tabela": 1883,
+      "nota": "Cabeçalho em <thead><th>; dados em <tbody><td>. `classe` guarda o class do td quando existe."
+    },
+    {
+      "id": "m01-a06-b16-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Motores trifásicos são mais eficientes, mais estáveis e mais adequados para cargas industriais. Praticamente toda a operação industrial relevante no Brasil — mineração, manufatura, agroindústria, data center, refrigeração comercial — opera em fornecimento trifásico.",
+      "texto": "Motores trifásicos são mais eficientes, mais estáveis e mais adequados para cargas industriais. Praticamente toda a operação industrial relevante no Brasil — mineração, manufatura, agroindústria, data center, refrigeração comercial — opera em fornecimento trifásico.",
+      "origem": {
+        "seletor": "h3(6.4) ~ p:nth-of-type(2)",
+        "trecho_inicial": "Motores trifásicos são mais eficientes, mais estáveis e mais",
+        "linha_aprox": 1893
+      }
+    }
+  ],
+  "figuras": [],
+  "figuras_nota": "Nenhuma figura na section da Aula 06 (varredura_de_ausencia.figura_ou_imagem_na_section).",
+  "tabelas": [
+    "m01-a06-b04-tabela",
+    "m01-a06-b07-tabela",
+    "m01-a06-b15-tabela"
+  ],
+  "listas": [
+    "m01-a06-b11-lista"
+  ],
+  "formulas": [],
+  "formulas_nota": "Nenhum div.formula na section da Aula 06.",
+  "destaques": [],
+  "destaques_nota": "Nenhum div.callout na section da Aula 06.",
+  "vale_lembrar": null,
+  "vale_lembrar_nota": "A expressão \"Vale lembrar\" não ocorre no HTML do M01.",
+  "varredura_de_ausencia": {
+    "nota": "Varreduras por regex nas linhas indicadas; resultado = linhas que casam.",
+    "instrumento_na_section": {
+      "regex": "/class=\"instrument\"|INSTRUMENT|id=\"i0\\d-|calculadora|abaixo/i",
+      "linhas": []
+    },
+    "callout_na_section": {
+      "regex": "/class=\"callout/",
+      "linhas": []
+    },
+    "formula_na_section": {
+      "regex": "/class=\"formula\"/",
+      "linhas": []
+    },
+    "figura_ou_imagem_na_section": {
+      "regex": "/<img|<svg|<canvas|<figure|<picture|cf-chart/i",
+      "linhas": []
+    },
+    "video_na_section": {
+      "regex": "/<video|<iframe|youtube|vimeo|\\.mp4/i",
+      "linhas": []
+    },
+    "vale_lembrar_no_arquivo": {
+      "regex": "/vale lembrar/i",
+      "linhas": []
+    },
+    "listas_na_section": {
+      "regex": "/<ul|<ol|<li/i",
+      "linhas": [
+        1872,
+        1873,
+        1874,
+        1875
+      ]
+    },
+    "marca_gridalpha_na_section": {
+      "regex": "/GridAlpha/",
+      "linhas": [
+        1868
+      ]
+    },
+    "referencias_a_aula_06_fora_da_section": {
+      "regex": "/Aula 0?6\\b|aula 0?6\\b|A06/",
+      "linhas": []
+    },
+    "script_que_toca_a_section": {
+      "regex": "/getElementById\\(.i06|i06-|tensao|tensão/ (só dentro de <script>)",
+      "nota": "Nenhum instrumento na aula; não há script com prefixo de instrumento associado a ela."
+    }
+  },
+  "termos_lexico": {
+    "vinculo_declarado_pela_fonte": false,
+    "nota": "O glossário da fonte (§ Lex) não declara aula por termo. Abaixo: verbetes cujo nome-base (sem parênteses) ocorre como palavra no texto da section. Correspondência textual, não posse; ler ocorrencias_contexto antes de ligar (§2 do protocolo).",
+    "total_verbetes_fonte": 38,
+    "candidatos": [
+      {
+        "termo": "Corrente alternada (AC)",
+        "unidade_rotulo": "Forma de onda",
+        "definicao_html": "Corrente elétrica cujo sentido alterna periodicamente. No Brasil, a frequência da rede pública é de 60 Hz — sessenta ciclos por segundo. Base de toda a rede pública de transmissão e distribuição moderna, porque permite elevação e redução de tensão por transformadores.",
+        "ocorrencias_contexto": [
+          "ro de fases do fornecimento importa. Em corrente alternada, fases são a forma de organizar a entre"
+        ],
+        "n_ocorrencias": 1,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Corrente alternada (AC)",
+          "linha_aprox": 2540
+        }
+      },
+      {
+        "termo": "Demanda",
+        "unidade_rotulo": "kW",
+        "definicao_html": "Potência ativa exigida ou requerida por uma unidade consumidora em determinado intervalo de medição (tipicamente 15 minutos integralizados). Distinta do consumo (kWh), reflete a capacidade instantânea exigida da rede.",
+        "ocorrencias_contexto": [
+          "ponente para consumo (kWh) e outra para demanda (kW) . Toda a complexidade analítica da"
+        ],
+        "n_ocorrencias": 1,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Demanda",
+          "linha_aprox": 2556
+        }
+      },
+      {
+        "termo": "Energia",
+        "unidade_rotulo": "kWh, MWh",
+        "definicao_html": "Capacidade de realizar trabalho ou produzir transformação. Em eletricidade, energia é potência integrada no tempo (kWh = kW × h). É a grandeza cobrada como \"consumo\" na fatura.",
+        "ocorrencias_contexto": [
+          "A1/A2. Quando você falar com diretor de energia de mineradora média em Minas Gerais, A4"
+        ],
+        "n_ocorrencias": 1,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Energia",
+          "linha_aprox": 2572
+        }
+      },
+      {
+        "termo": "Grupo A",
+        "unidade_rotulo": "Classificação",
+        "definicao_html": "Classe de consumidores atendidos em alta ou média tensão (≥ 2,3 kV) — indústrias, grandes comércios. Subdivide-se em A1, A2, A3, A3a, A4 e AS por nível de tensão. Estrutura tarifária binômia (consumo + demanda). Todo o universo industrial relevante da GridAlpha está aqui.",
+        "ocorrencias_contexto": [
+          "ual estrutura de fatura ele recebe. 6.1 Grupo A e Grupo B — a divisão fundamental A reg",
+          "comércios, pequenas propriedades rurais Grupo A Alta e média tensão (≥ 2,3 kV) Indústri",
+          "simples (essencialmente: kWh × tarifa). Grupo A paga uma estrutura tarifária binômia: u",
+          "lexandria nasce aí. 6.2 Os subgrupos do Grupo A Subgrupo Tensão Perfil típico A1 ≥ 230 ",
+          "de prospecção da GridAlpha no Brasil, o Grupo A4 é o terreno mais fértil : grande volum"
+        ],
+        "n_ocorrencias": 5,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Grupo A",
+          "linha_aprox": 2592
+        }
+      },
+      {
+        "termo": "Grupo B",
+        "unidade_rotulo": "Classificação",
+        "definicao_html": "Classe de consumidores atendidos em baixa tensão (&lt; 2,3 kV) — residências, pequenos comércios, pequenas propriedades rurais. Estrutura tarifária monômia (essencialmente kWh × tarifa).",
+        "ocorrencias_contexto": [
+          "ura de fatura ele recebe. 6.1 Grupo A e Grupo B — a divisão fundamental A regulação bra",
+          "to: Grupo Tensão de fornecimento Quem é Grupo B Baixa tensão (< 2,3 kV) Residências, pe",
+          "erença entre os grupos não é cosmética. Grupo B paga uma tarifa simples (essencialmente"
+        ],
+        "n_ocorrencias": 3,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Grupo B",
+          "linha_aprox": 2596
+        }
+      },
+      {
+        "termo": "kW",
+        "unidade_rotulo": "Potência ativa",
+        "definicao_html": "Quilowatt. Unidade de potência ativa — a parcela da potência elétrica que realiza trabalho útil (gira eixo, esquenta forno, aciona esteira). 1 kW = 1.000 W. Não confundir com kWh, que é energia.",
+        "ocorrencias_contexto": [
+          "aga uma tarifa simples (essencialmente: kWh × tarifa). Grupo A paga uma estrutura ",
+          "a binômia: uma componente para consumo (kWh) e outra para demanda (kW) . Toda a co",
+          "ara consumo (kWh) e outra para demanda (kW) . Toda a complexidade analítica da Ale",
+          "nor que um A4 (em 13,8 kV) para o mesmo kWh — exatamente porque o A1 está usando m",
+          "quenos comércios Cargas pequenas (≤ ~10 kW), sem motores grandes Bifásico Residênc",
+          " motores trifásicos Padrão acima de ~15 kW Motores trifásicos são mais eficientes,"
+        ],
+        "n_ocorrencias": 6,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "kW",
+          "linha_aprox": 2612
+        }
+      },
+      {
+        "termo": "kWh",
+        "unidade_rotulo": "Energia",
+        "definicao_html": "Quilowatt-hora. Unidade de energia equivalente a um quilowatt durante uma hora. É a grandeza que aparece como \"consumo\" em qualquer fatura elétrica. kWh = kW × h.",
+        "ocorrencias_contexto": [
+          "aga uma tarifa simples (essencialmente: kWh × tarifa). Grupo A paga uma estrutura t",
+          "a binômia: uma componente para consumo (kWh) e outra para demanda (kW) . Toda a com",
+          "nor que um A4 (em 13,8 kV) para o mesmo kWh — exatamente porque o A1 está usando mu"
+        ],
+        "n_ocorrencias": 3,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "kWh",
+          "linha_aprox": 2616
+        }
+      },
+      {
+        "termo": "Perdas técnicas",
+        "unidade_rotulo": "Físicas",
+        "definicao_html": "Perdas físicas no sistema elétrico — aquecimento de cabos, perdas em transformadores, perdas magnéticas, perdas mecânicas, perdas de conversão. Reconhecidas pela ANEEL nos processos de revisão tarifária e embutidas na componente fio da TUSD.",
+        "ocorrencias_contexto": [
+          "adas de rede ele atravessa. Logo: Menos perdas técnicas embutidas na sua tarifa; Menos uso de a"
+        ],
+        "n_ocorrencias": 1,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Perdas técnicas",
+          "linha_aprox": 2632
+        }
+      },
+      {
+        "termo": "Tensão",
+        "unidade_rotulo": "V, kV",
+        "definicao_html": "Diferença de potencial elétrico entre dois pontos de um circuito. Analogia hidráulica: pressão da água. Unidade SI é o volt (V). Define grupo tarifário no Brasil: Grupo B (baixa tensão, &lt; 2,3 kV) ou Grupo A (média/alta tensão, ≥ 2,3 kV).",
+        "ocorrencias_contexto": [
+          "Aula 06 Tensão como categoria econômica A tensão de fo",
+          "la 06 Tensão como categoria econômica A tensão de fornecimento define a tarifa que voc",
+          "fine a tarifa que você paga. No Brasil, tensão não é apenas um parâmetro técnico. É o ",
+          "icação tarifária. Saber em que nível de tensão um cliente é atendido é saber, imediata",
+          "res em dois grandes grupos, com base na tensão de fornecimento: Grupo Tensão de fornec",
+          "m base na tensão de fornecimento: Grupo Tensão de fornecimento Quem é Grupo B Baixa te",
+          "ão de fornecimento Quem é Grupo B Baixa tensão (< 2,3 kV) Residências, pequenos comérc",
+          "ropriedades rurais Grupo A Alta e média tensão (≥ 2,3 kV) Indústrias, grandes comércio",
+          "í. 6.2 Os subgrupos do Grupo A Subgrupo Tensão Perfil típico A1 ≥ 230 kV Indústrias el",
+          "vavelmente o subgrupo dele. 6.3 Por que tensão maior implica tarifa menor (em geral) Q",
+          "ifa menor (em geral) Quanto mais alta a tensão de fornecimento, mais próximo o consumi",
+          " uso de ativos de distribuição de baixa tensão; Menor componente de TUSD comparada à T"
+        ],
+        "n_ocorrencias": 13,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Tensão",
+          "linha_aprox": 2656
+        }
+      },
+      {
+        "termo": "Trifásico",
+        "unidade_rotulo": "Sistema",
+        "definicao_html": "Sistema de fornecimento em corrente alternada com três fases defasadas em 120°. Padrão industrial. Permite maior potência, maior eficiência em motores, e melhor equilíbrio de carga. Praticamente todo consumidor relevante do Grupo A é atendido em trifásico.",
+        "ocorrencias_contexto": [
+          "ura de rede. 6.4 Monofásico, bifásico e trifásico Além do nível de tensão, o número de fa",
+          " distribuidora Limites regionais variam Trifásico Padrão industrial; comércios médios e g",
+          "al; comércios médios e grandes; motores trifásicos Padrão acima de ~15 kW Motores trifási",
+          "ifásicos Padrão acima de ~15 kW Motores trifásicos são mais eficientes, mais estáveis e m",
+          "ração comercial — opera em fornecimento trifásico."
+        ],
+        "n_ocorrencias": 5,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Trifásico",
+          "linha_aprox": 2660
+        }
+      },
+      {
+        "termo": "TUSD",
+        "unidade_rotulo": "Tarifa",
+        "definicao_html": "Tarifa de Uso do Sistema de Distribuição. Componente tarifária que remunera o uso da infraestrutura de distribuição. Subdivide-se em TUSD-fio (rede física e perdas) e TUSD-demanda (capacidade reservada). Separada da TE (Tarifa de Energia) que remunera a energia em si.",
+        "ocorrencias_contexto": [
+          "ão de baixa tensão; Menor componente de TUSD comparada à TE. Um cliente A1 (em 230 k"
+        ],
+        "n_ocorrencias": 1,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "TUSD",
+          "linha_aprox": 2664
+        }
+      }
+    ]
+  },
+  "instrumentos": [],
+  "instrumentos_nota": "A Aula 06 não tem instrumento: nenhum div.instrument, nenhum id i0N- e nenhum script associado dentro da section (varredura_de_ausencia.instrumento_na_section).",
+  "invocacoes_no_texto": [],
+  "exercicios": [],
+  "exercicios_nota": "Nenhum exercício do § Drill tem tag \"Aula 06\". Medido nas 8 tags (ver divergencias DIV-04). Menções ao tema da aula (Grupo A/B, A4, tensão de fornecimento, fases) em exercícios de OUTRAS aulas estão em mencoes_em_exercicios_de_outras_aulas e não são posse (§4 do protocolo).",
+  "mencoes_em_exercicios_de_outras_aulas": {
+    "nota": "Varredura (regex) dos blocos de cada exercício por termos do tema da A06. Referência em prosa não é tag de posse.",
+    "regex": "tensão de fornecimento|Grupo A\\b|Grupo B\\b|\\bA4\\b|subgrupo|trifásic|monofásic|bifásic|Aula 0?6\\b",
+    "ocorrencias": [
+      {
+        "exercicio_tag": "Ex · 05 · Aula 07",
+        "campo": "enunciado",
+        "linha": 2429,
+        "trecho": "o fator de potência? Está dentro do esperado para Grupo A? Qual cuidado antes de recomendar solução?"
+      },
+      {
+        "exercicio_tag": "Ex · 05 · Aula 07",
+        "campo": "gabarito",
+        "linha": 2432,
+        "trecho": "0. Está abaixo da referência prática de 0,92 para Grupo A — alerta. Pode haver cobrança por excedente reati"
+      },
+      {
+        "exercicio_tag": "Ex · 07 · 3 níveis · Aula 05",
+        "campo": "gabarito",
+        "linha": 2452,
+        "trecho": " em kW, contratado para faturamento de unidade do Grupo A junto à distribuidora, comparado à demanda medida"
+      },
+      {
+        "exercicio_tag": "Ex · 08 · Síntese · Diagnóstico inicial",
+        "campo": "gabarito",
+        "linha": 2461,
+        "trecho": "ediria 12 faturas completas, contrato de demanda, tensão de fornecimento, horários de operação e lista das maiores cargas."
+      }
+    ]
+  },
+  "relacionados_nao_vinculados": [
+    {
+      "id": "m01-quiz-subgrupo-a4",
+      "tipo": "questao_quiz_multipla_escolha",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Sem tag de aula no array `questions`. Tema = subgrupo A4 (6.2); posse NÃO declarada. O feedback traz \"Grupo A4 (2,3 a 25 kV)\" e \"GridAlpha\". Listado só para rastreio.",
+      "posicao_no_quiz": 9,
+      "total_questoes_no_array": 10,
+      "enunciado": "Qual subgrupo tarifário concentra a maioria do mercado livre potencial industrial no Brasil?",
+      "opcoes": [
+        "A1",
+        "A2",
+        "A4",
+        "Grupo B"
+      ],
+      "indice_correto": 2,
+      "opcao_correta": "A4",
+      "feedback": "Grupo A4 (2,3 a 25 kV). Grande volume de consumidores industriais médios, complexidade tarifária suficiente para gerar diagnóstico relevante, e ainda não atendidos por consultorias premium que se concentram em A1/A2. É o terreno mais fértil para a GridAlpha no Brasil.",
+      "origem": {
+        "seletor": "script: const questions = [...]",
+        "trecho_inicial": "Qual subgrupo tarifário concentra a maioria do mercado livre",
+        "linha_aprox": 3136
+      }
+    },
+    {
+      "id": "m01-checklist-a06-01",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática (Grupo A4). Cita a marca GridAlpha.",
+      "texto": "Identificar Grupo A4 e por que ele é o terreno prioritário da GridAlpha no Brasil.",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Identificar Grupo A4 e por que ele é o terreno prioritário d",
+        "linha_aprox": 2510
+      }
+    }
+  ],
+  "cobertura_texto_por_token": {
+    "tokens_fonte": 486,
+    "tokens_casados": 486,
+    "pct": 100,
+    "tokens_nao_casados": [],
+    "instrumento_fora_do_denominador": false,
+    "nota": "Denominador = texto da section (L1833–L1893); a aula não tem instrumento. Tags viram espaço antes de tokenizar. Cada token da fonte consome um token extraído."
+  },
+  "divergencias": [
+    {
+      "id": "DIV-01",
+      "codigo_qa": "QA-M01-A06",
+      "tipo": "fonte_contraditoria_interna",
+      "status": "PENDENTE DE DECISÃO DO FOUNDER",
+      "o_que": "A subseção 6.1 diz que o Grupo A começa em 2,3 kV (≥ 2,3 kV) e que o Grupo B é \"< 2,3 kV\"; a 6.2, sob o título \"Os subgrupos do Grupo A\", lista o subgrupo AS com tensão \"< 2,3 kV (subterrâneo)\". Um subgrupo do Grupo A com tensão abaixo do limite inferior do Grupo A.",
+      "leitura_a": {
+        "quem": "Subseção 6.1 — tabela Grupo A × Grupo B",
+        "texto": "Alta e média tensão (≥ 2,3 kV)",
+        "linha_da_tabela": {
+          "celulas": [
+            "Grupo A",
+            "Alta e média tensão (≥ 2,3 kV)",
+            "Indústrias, grandes comércios, grandes consumidores"
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Grupo A",
+            "linha_aprox": 1846
+          }
+        },
+        "par_do_grupo_b": {
+          "texto": "Baixa tensão (< 2,3 kV)",
+          "linha_da_tabela": {
+            "celulas": [
+              "Grupo B",
+              "Baixa tensão (< 2,3 kV)",
+              "Residências, pequenos comércios, pequenas propriedades rurais"
+            ],
+            "origem": {
+              "seletor": "tbody > tr",
+              "trecho_inicial": "Grupo B",
+              "linha_aprox": 1845
+            }
+          }
+        },
+        "origem": {
+          "seletor": "h3(6.1) ~ table > tbody > tr(Grupo A) > td:nth-of-type(2)",
+          "trecho_inicial": "Alta e média tensão (≥ 2,3 kV)",
+          "linha_aprox": 1846
+        }
+      },
+      "leitura_b": {
+        "quem": "Subseção 6.2 — tabela dos subgrupos do Grupo A",
+        "texto": "< 2,3 kV (subterrâneo)",
+        "linha_da_tabela": {
+          "celulas": [
+            "AS",
+            "< 2,3 kV (subterrâneo)",
+            "Centros urbanos com rede subterrânea"
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "AS",
+            "linha_aprox": 1863
+          }
+        },
+        "titulo_da_secao": {
+          "texto": "Os subgrupos do Grupo A",
+          "origem": {
+            "seletor": "h3 > span.num(6.2)",
+            "trecho_inicial": "6.2Os subgrupos do Grupo A",
+            "linha_aprox": 1853
+          }
+        },
+        "origem": {
+          "seletor": "h3(6.2) ~ table > tbody > tr(AS) > td:nth-of-type(2)",
+          "trecho_inicial": "< 2,3 kV (subterrâneo)",
+          "linha_aprox": 1863
+        }
+      },
+      "leitura_c_lexico": {
+        "quem": "Léxico do módulo repete as duas formas",
+        "grupo_a": {
+          "texto": "Classe de consumidores atendidos em alta ou média tensão (≥ 2,3 kV) — indústrias, grandes comércios. Subdivide-se em A1, A2, A3, A3a, A4 e AS por nível de tensão. Estrutura tarifária binômia (consumo + demanda). Todo o universo industrial relevante da GridAlpha está aqui.",
+          "origem": {
+            "seletor": "§ Lex Grupo A",
+            "trecho_inicial": "Grupo A",
+            "linha_aprox": 2593
+          }
+        },
+        "grupo_b": {
+          "texto": "Classe de consumidores atendidos em baixa tensão (< 2,3 kV) — residências, pequenos comércios, pequenas propriedades rurais. Estrutura tarifária monômia (essencialmente kWh × tarifa).",
+          "origem": {
+            "seletor": "§ Lex Grupo B",
+            "trecho_inicial": "Grupo B",
+            "linha_aprox": 2597
+          }
+        },
+        "tensao": {
+          "texto": "Diferença de potencial elétrico entre dois pontos de um circuito. Analogia hidráulica: pressão da água. Unidade SI é o volt (V). Define grupo tarifário no Brasil: Grupo B (baixa tensão, < 2,3 kV) ou Grupo A (média/alta tensão, ≥ 2,3 kV).",
+          "origem": {
+            "seletor": "§ Lex Tensão",
+            "trecho_inicial": "Tensão",
+            "linha_aprox": 2657
+          }
+        }
+      },
+      "decisao": "NÃO ESCOLHIDA. Marcado como pendente de decisão do Founder (QA-M01-A06). Esta extração não corrige a faixa, não promove nenhuma das duas leituras e não propõe número: decidir exige conhecimento normativo externo que a fonte única não traz."
+    },
+    {
+      "id": "DIV-02",
+      "tipo": "observacao_derivada_por_aritmetica",
+      "o_que": "Intervalos de tensão sem subgrupo na tabela 6.2. Os limites declarados deixam vazios entre os subgrupos; a fonte não declara esses vazios nem diz se \"69 kV\" (A3) é um ponto ou uma faixa.",
+      "faixas_tabela_6_2": [
+        {
+          "subgrupo": "A1",
+          "tensao": "≥ 230 kV",
+          "linha": 1858
+        },
+        {
+          "subgrupo": "A2",
+          "tensao": "88 a 138 kV",
+          "linha": 1859
+        },
+        {
+          "subgrupo": "A3",
+          "tensao": "69 kV",
+          "linha": 1860
+        },
+        {
+          "subgrupo": "A3a",
+          "tensao": "30 a 44 kV",
+          "linha": 1861
+        },
+        {
+          "subgrupo": "A4",
+          "tensao": "2,3 a 25 kV",
+          "linha": 1862
+        },
+        {
+          "subgrupo": "AS",
+          "tensao": "< 2,3 kV (subterrâneo)",
+          "linha": 1863
+        }
+      ],
+      "vazios_entre_subgrupos_declarados": [
+        {
+          "entre": "A4 (25 kV) e A3a (30 kV)",
+          "intervalo_kv": [
+            25,
+            30
+          ]
+        },
+        {
+          "entre": "A3a (44 kV) e A3 (69 kV)",
+          "intervalo_kv": [
+            44,
+            69
+          ]
+        },
+        {
+          "entre": "A3 (69 kV) e A2 (88 kV)",
+          "intervalo_kv": [
+            69,
+            88
+          ]
+        },
+        {
+          "entre": "A2 (138 kV) e A1 (230 kV)",
+          "intervalo_kv": [
+            138,
+            230
+          ]
+        }
+      ],
+      "derivado": true,
+      "derivado_nota": "Aritmética sobre os limites das células (A4 2,3–25; A3a 30–44; A3 69; A2 88–138; A1 ≥ 230). Não é afirmação da fonte. Nenhum vazio foi preenchido.",
+      "leitura_a": {
+        "partes": [
+          "Subgrupo",
+          "Tensão",
+          "Perfil típico"
+        ],
+        "origem": {
+          "seletor": "h3(6.2) ~ table > thead",
+          "linha_aprox": 1856,
+          "trecho_inicial": "SubgrupoTensãoPerfil típico"
+        },
+        "nota": "cabeçalho da tabela 6.2, que declara só os limites listados"
+      },
+      "leitura_b": {
+        "texto": "Unidade de medida de tensão elétrica. 1 V = 1 J/C (joule por coulomb). Em escala industrial, valores típicos no Brasil: 127/220 V (BT), 13,8 kV (A4), 69 kV (A3), 138 kV (A2), 230 kV+ (A1).",
+        "origem": {
+          "seletor": "§ Lex Volt (V)",
+          "trecho_inicial": "Volt (V)",
+          "linha_aprox": 2673
+        },
+        "nota": "o léxico dá valores típicos pontuais (13,8 kV A4; 69 kV A3; 138 kV A2; 230 kV+ A1), compatíveis com a tabela, sem cobrir os vazios"
+      },
+      "decisao": "não resolvida — registrada como lacuna. A fonte declara ausência por omissão; a camada de produto deve exibir \"não declarado\" nesses intervalos, nunca um subgrupo."
+    },
+    {
+      "id": "DIV-03",
+      "tipo": "observacao_editorial_marca",
+      "o_que": "A fonte nomeia a marca GridAlpha dentro desta aula (6.2) e em dois itens fora dela que citam o subgrupo A4; o produto hoje é NIVAR (P24).",
+      "leitura_a": {
+        "texto": "Para fins de prospecção da GridAlpha no Brasil",
+        "origem": {
+          "seletor": "h3(6.2) ~ p",
+          "linha_aprox": 1868,
+          "trecho_inicial": "Para fins de prospecção da GridAlpha no Brasil, o Grupo A4 é"
+        }
+      },
+      "leitura_b": {
+        "texto": null,
+        "nota": "Outra leitura não está na fonte: a camada de produto usa NIVAR (empresa) / Alexandria (produto) por decisão P24, fora desta extração.",
+        "origem": null
+      },
+      "ocorrencias_fora_da_aula": {
+        "checklist": 2510,
+        "quiz": 3136
+      },
+      "decisao": "não escolhida — texto da fonte mantido literal; o código já trocou a marca (COD-03)."
+    },
+    {
+      "id": "DIV-04",
+      "tipo": "prosa_x_markup_modulo",
+      "o_que": "O § Drill diz que os exercícios alcançam \"todas as nove aulas\"; nenhum exercício tem tag \"Aula 06\".",
+      "leitura_a": {
+        "texto": "Os exercícios alcançam todas as nove aulas.",
+        "origem": {
+          "seletor": "§ Drill > p",
+          "linha_aprox": 2389,
+          "trecho_inicial": "Resolva cada exercício mentalmente ou no papel antes de reve"
+        }
+      },
+      "leitura_b": {
+        "partes": [
+          "Ex · 01 · Aula 01",
+          "Ex · 02 · Aula 02",
+          "Ex · 03 · Aula 04",
+          "Ex · 04 · Aula 05",
+          "Ex · 05 · Aula 07",
+          "Ex · 06 · Aula 08",
+          "Ex · 07 · 3 níveis · Aula 05",
+          "Ex · 08 · Síntese · Diagnóstico inicial"
+        ],
+        "origem": {
+          "seletor": "span.exercise-tag (8 ocorrências)",
+          "trecho_inicial": "Ex · 01 · Aula 01",
+          "linha_aprox": 2392,
+          "linha_fim_aprox": 2457
+        },
+        "argumento": "Nenhuma das 8 tags contém \"Aula 06\"."
+      },
+      "decisao": "não escolhida — markup vence para posse (§5); prosa registrada. A06 fica sem exercício vinculado."
+    }
+  ],
+  "comparacao_codigo": {
+    "arquivos": [
+      "src/lib/data/alexandria-modulo-01-content.ts (MODULO_01_LEAD aula-01-06 l.168; MODULO_01_CORPO aula-01-06 l.266; MODULO_01_AULAS aula-01-06 l.475)",
+      "src/lib/data/alexandria-glossario.ts (aulaIds)"
+    ],
+    "verificacoes_programaticas": {
+      "lead_verbatim": true,
+      "titulos_com_numero_e_texto": true,
+      "paragrafos_verbatim": [
+        {
+          "linha": 1839,
+          "verbatim": true
+        },
+        {
+          "linha": 1851,
+          "verbatim": true
+        },
+        {
+          "linha": 1868,
+          "verbatim": false
+        },
+        {
+          "linha": 1871,
+          "verbatim": true
+        },
+        {
+          "linha": 1877,
+          "verbatim": true
+        },
+        {
+          "linha": 1880,
+          "verbatim": true
+        },
+        {
+          "linha": 1893,
+          "verbatim": true
+        }
+      ],
+      "tabelas_celulas_verbatim": [
+        {
+          "linha": 1842,
+          "todas_as_celulas": true
+        },
+        {
+          "linha": 1855,
+          "todas_as_celulas": true
+        },
+        {
+          "linha": 1883,
+          "todas_as_celulas": true
+        }
+      ],
+      "celula_AS_verbatim": true,
+      "celula_grupo_A_verbatim": true,
+      "celulas_com_classe_na_fonte": 0,
+      "listas_no_corpo_codigo": 0,
+      "listas_na_fonte": 1,
+      "itens_da_lista_no_codigo": [
+        {
+          "item": "Menos perdas técnicas embutidas na sua tarifa;",
+          "presente": false
+        },
+        {
+          "item": "Menos uso de ativos de distribuição de baixa tensão;",
+          "presente": false
+        },
+        {
+          "item": "Menor componente de TUSD comparada à TE.",
+          "presente": false
+        }
+      ],
+      "paragrafo_logo_termina_sem_continuacao": true,
+      "span_orfao_no_corpo": 0,
+      "span_abre_no_corpo": 0,
+      "marca_na_fonte_no_paragrafo_6_2": "prospecção da GridAlpha",
+      "marca_no_codigo_no_paragrafo_6_2": "prospecção da NIVAR",
+      "paragrafo_prospeccao_verbatim_literal": false,
+      "paragrafo_prospeccao_verbatim_exceto_marca": true,
+      "titulo_aula_igual_h2_sem_em": true,
+      "subtitulo_igual_marcador": true,
+      "activities_vazio": true,
+      "instruments_vazio": true,
+      "duracao_dificuldade_video_null": true,
+      "glossario_aulaIds_com_a06": [
+        "Corrente alternada (AC)",
+        "Demanda",
+        "Grupo A",
+        "Grupo B",
+        "kW",
+        "kWh",
+        "Tensão",
+        "Trifásico"
+      ]
+    },
+    "conforme": [
+      "Lead e todos os parágrafos corridos verbatim no corpo, exceto o de 6.2 (marca; COD-03).",
+      "Títulos 6.1–6.4 com número e texto corretos.",
+      "Tabelas 6.1, 6.2 e 6.4: todas as células verbatim (cabeçalho = primeira linha, igual à fonte; `&lt;` decodificado para \"<\"). Inclui a célula \"Alta e média tensão (≥ 2,3 kV)\" e a linha AS \"< 2,3 kV (subterrâneo)\": o conflito QA-M01-A06 está PRESERVADO no código, nas duas leituras.",
+      "Nenhum `</span>` órfão no corpo de aula-01-06 (0 aberturas, 0 fechamentos).",
+      "activities = [] e instruments = [], coerente com a fonte (a aula não tem exercício com tag nem instrumento).",
+      "durationMinutes / difficulty / video = null, coerente com a fonte."
+    ],
+    "divergencias": [
+      {
+        "id": "COD-01",
+        "gravidade": "alta",
+        "onde": "MODULO_01_CORPO[\"aula-01-06\"] (entre o parágrafo \"Logo:\" e o parágrafo do cliente A1)",
+        "o_que": "A lista <ul> de 6.3 (3 <li>: \"Menos perdas técnicas embutidas na sua tarifa;\", \"Menos uso de ativos de distribuição de baixa tensão;\", \"Menor componente de TUSD comparada à TE.\") não foi portada: 0 blocos kind 'lista' no corpo da aula, contra 1 na fonte. O parágrafo anterior termina em \"Logo:\" e o seguinte começa em \"Um cliente A1…\", sem as 3 razões entre eles. Os 3 itens não aparecem no corpo do código.",
+        "fonte": "linhas 1872-1876"
+      },
+      {
+        "id": "COD-02",
+        "gravidade": "baixa",
+        "onde": "tipo AulaBloco / MODULO_01_CORPO",
+        "o_que": "A lista da fonte carrega style inline no <ul> (\"margin: 16px 0 24px 24px; color: var(--text-secondary);\") e em cada <li> (\"margin-bottom: 10px;\"). Ao portar, o estilo de apresentação não precisa ir junto (o tipo 'lista' guarda só itens[] em HTML); registrado como contexto para quem for portar a lista.",
+        "fonte": "linhas 1872-1875"
+      },
+      {
+        "id": "COD-03",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-06\"] parágrafo de 6.2 (prospecção)",
+        "o_que": "Não verbatim: a fonte diz \"prospecção da GridAlpha\" e o código diz \"prospecção da NIVAR\". Troca editorial de marca já feita no código (pendência R8 / P24 / Q03 do inventário); a camada fonte preserva \"GridAlpha\".",
+        "fonte": "linha 1868"
+      },
+      {
+        "id": "COD-04",
+        "gravidade": "informativa",
+        "onde": "MODULO_01_CORPO[\"aula-01-06\"] tabelas 6.1 / 6.2",
+        "o_que": "QA-M01-A06 preservado: o código porta as duas leituras (Grupo A \"≥ 2,3 kV\" na tabela 6.1 e subgrupo AS \"< 2,3 kV (subterrâneo)\" na 6.2), sem resolver. A decisão continua pendente do Founder; esta extração não escolhe leitura.",
+        "fonte": "linhas 1846 e 1863"
+      },
+      {
+        "id": "COD-05",
+        "gravidade": "baixa",
+        "onde": "alexandria-glossario.ts aulaIds",
+        "o_que": "Termos com \"aula-01-06\" em aulaIds: Corrente alternada (AC), Demanda, Grupo A, Grupo B, kW, kWh, Tensão, Trifásico. A fonte não declara aula por termo; é derivação do código. Ver termos_lexico.candidatos para as correspondências textuais medidas.",
+        "fonte": "linhas 2520-2690 (§ Lex)"
+      },
+      {
+        "id": "COD-06",
+        "gravidade": "informativa",
+        "onde": "MODULO_01_CORPO[\"aula-01-06\"] tabelas",
+        "o_que": "Nenhuma célula das 3 tabelas da A06 tem class na fonte (0 células com classe); nada a portar além do html.",
+        "fonte": "linhas 1843-1888"
+      },
+      {
+        "id": "COD-07",
+        "gravidade": "informativa",
+        "onde": "ids",
+        "o_que": "Código usa \"aula-01-06\"; esta extração usa \"m01-a06\". A aula não tem instrumento nem exercício vinculado, então não há ids de instrumento/exercício a mapear.",
+        "fonte": null
+      }
+    ]
+  },
+  "contagens": {
+    "blocos": 16,
+    "blocos_por_tipo": {
+      "lead": 1,
+      "titulo": 4,
+      "paragrafo": 7,
+      "tabela": 3,
+      "lista": 1
+    },
+    "secoes_numeradas": [
+      "6.1",
+      "6.2",
+      "6.3",
+      "6.4"
+    ],
+    "figuras": 0,
+    "tabelas": 3,
+    "linhas_de_dados_por_tabela": [
+      2,
+      6,
+      3
+    ],
+    "formulas": 0,
+    "listas": 1,
+    "itens_de_lista": 3,
+    "destaques": 0,
+    "vale_lembrar": 0,
+    "instrumentos": 0,
+    "invocacoes_no_texto": 0,
+    "exercicios_vinculados": 0,
+    "relacionados_nao_vinculados": 2,
+    "termos_lexico_candidatos": 11,
+    "verbetes_lexico_modulo": 38,
+    "divergencias_fonte": 4,
+    "divergencias_codigo": 7
+  }
+}

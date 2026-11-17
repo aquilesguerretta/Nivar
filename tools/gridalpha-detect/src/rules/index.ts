@@ -6,6 +6,10 @@
 //   1. Create ./<rule-id>.ts exporting `default` as a Rule.
 //   2. Import it here and push onto ALL_RULES.
 //   3. Add the rule id + severity to the README's rule table.
+//
+// The `alexandria-*` family is scoped to src/**/alexandria* (see
+// ./_alexandria.ts). It encodes the Alexandria v2 bar, not the
+// GridAlpha terminal antipatterns, and never fires outside that scope.
 
 import type { Rule } from '../types.js';
 
@@ -24,6 +28,12 @@ import noPillChipDefault from './no-pill-chip-default.js';
 import noBoxShadowOnCards from './no-box-shadow-on-cards.js';
 import equalWeightGrid from './equal-weight-grid.js';
 import noEaseOutBounce from './no-easeOutBounce.js';
+// Alexandria r09 (bar.md S2/S4/P24 — escopo src/**/alexandria*)
+import alexandriaNoInternalVocabulary from './alexandria-no-internal-vocabulary.js';
+import alexandriaMaterialidade from './alexandria-materialidade.js';
+import alexandriaNoNativeRange from './alexandria-no-native-range.js';
+import alexandriaNoFormCircle from './alexandria-no-form-circle.js';
+import alexandriaNoDefaultControlBox from './alexandria-no-default-control-box.js';
 
 export const ALL_RULES: Rule[] = [
   noTailwindOnLayout,
@@ -36,6 +46,11 @@ export const ALL_RULES: Rule[] = [
   noBoxShadowOnCards,
   equalWeightGrid,
   noEaseOutBounce,
+  alexandriaNoInternalVocabulary,
+  alexandriaMaterialidade,
+  alexandriaNoNativeRange,
+  alexandriaNoFormCircle,
+  alexandriaNoDefaultControlBox,
 ];
 
 export function findRule(id: string): Rule | undefined {

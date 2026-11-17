@@ -87,7 +87,7 @@ export function GlossarioView() {
             Correção mínima de cópia, fora da posse declarada da Fase B
             (que era só o arquivo de dados), pela mesma razão da Wave 15:
             não há como entregar a fase sem ela. */}
-        <span style={{ ...AT.rotulo, color: A.terracota }}>§ Lex · Módulos 01-08</span>
+        <span style={{ ...AT.rotulo, color: A.terracota }}>Módulos 01-08</span>
         <h1 style={{ ...AT.h1, color: A.tintaSobreCreme, margin: 0 }}>
           Glossário Alexandria
         </h1>

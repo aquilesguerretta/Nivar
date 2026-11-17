@@ -1,0 +1,58 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" /></head>
+<body>
+  <template>
+    <style>
+      #root { position: absolute; inset: 0; }
+      #fe-veu { position: absolute; left: 0; right: 0; bottom: 0; height: 620px;
+        background: linear-gradient(0deg, rgba(242,236,223,0.92) 0%, rgba(242,236,223,0.7) 50%, rgba(242,236,223,0) 100%); }
+      #fe-grupo { position: absolute; left: 140px; bottom: 120px; width: 1300px; color: var(--tinta); }
+      #fe-olho { color: var(--tinta); }
+      .fe-tr { margin-top: 18px; display: flex; align-items: baseline; gap: 28px; }
+      .fe-tr .n { width: 64px; font-family: var(--mono); font-size: 24px; font-weight: 500; color: var(--ouro-texto); letter-spacing: 0.08em; }
+      .fe-tr .nome { font-family: var(--serif); font-size: 64px; font-weight: 420; letter-spacing: -0.01em; line-height: 1.08; }
+      #fe-fim { position: absolute; inset: 0; background: var(--papel); color: var(--tinta); }
+      #fe-fim-g { position: absolute; left: 0; right: 0; top: 380px; display: flex; flex-direction: column; align-items: center; }
+      #fe-fim-fio { display: block; width: 72px; height: 1px; background: var(--ouro); }
+      #fe-fim-tit { margin-top: 30px; font-size: 150px; font-weight: 380; letter-spacing: -0.015em; line-height: 1; }
+      #fe-fim-num { margin-top: 34px; }
+      #fe-fim-classe { position: absolute; left: 0; right: 0; bottom: 70px; text-align: center; font-size: 15px; color: var(--tinta-suave); }
+    </style>
+    <!-- Segundo trecho possível para o Fundador: depois desta cena (ver index.html). -->
+    <div id="root" data-composition-id="fecho" data-width="1920" data-height="1080">
+      <div id="fe-cena" class="fundo">
+        <video id="fe-v" class="plano" src="assets/v7.mp4" muted playsinline data-start="0" data-duration="7.4" data-track-index="0"></video>
+        <div id="fe-veu"></div>
+        <div id="fe-grupo">
+          <p id="fe-olho" class="mono">Três trilhas</p>
+          <div class="fe-tr" id="fe-tr1"><span class="n">I</span><span class="nome">Fundamentos Universais</span></div>
+          <div class="fe-tr" id="fe-tr2"><span class="n">II</span><span class="nome">Setor Elétrico Brasileiro</span></div>
+          <div class="fe-tr" id="fe-tr3"><span class="n">III</span><span class="nome">Especialização Estratégica</span></div>
+        </div>
+        <div id="fe-selo" class="selo">GRAVURA GERADA</div>
+      </div>
+      <div id="fe-fim">
+        <div id="fe-fim-g">
+          <span id="fe-fim-fio"></span>
+          <h2 id="fe-fim-tit" class="serif">Alexandria</h2>
+          <p id="fe-fim-num" class="mono">17 módulos · 3 trilhas · 141 aulas · 165 instrumentos</p>
+        </div>
+        <p id="fe-fim-classe" class="mono">Telas reais da plataforma · gravuras geradas · textos do próprio currículo</p>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power2.out", S = "sine.inOut";
+      tl.fromTo("#fe-cena", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: S }, 0);
+      tl.fromTo("#fe-veu", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: S }, 0);
+      tl.fromTo("#fe-olho", { opacity: 0 }, { opacity: 1, duration: 0.9, ease: E }, 1.0);
+      tl.fromTo(["#fe-tr1", "#fe-tr2", "#fe-tr3"], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.1, ease: E, stagger: 0.8 }, 1.5);
+      tl.fromTo("#fe-fim", { opacity: 0 }, { opacity: 1, duration: 1.1, ease: S }, 6.6);
+      tl.fromTo("#fe-fim-fio", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: E }, 7.2);
+      tl.fromTo("#fe-fim-tit", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.2, ease: E }, 7.3);
+      tl.fromTo("#fe-fim-num", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: E }, 7.9);
+      tl.fromTo("#fe-fim-classe", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: E }, 8.3);
+      window.__timelines["fecho"] = tl;
+    </script>
+  </template>
+</body></html>

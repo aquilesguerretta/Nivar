@@ -1,0 +1,496 @@
+{
+  "modulo": "modulo-10",
+  "titulo_modulo": "Tarifas e a Conta de Luz Industrial",
+  "arquivos_fonte": [
+    "src/lib/data/alexandria-modulo-10-content.ts",
+    "docs/alexandria-v2/extraction/m10/aparato.json"
+  ],
+  "aulas": [
+    {
+      "numero": 1,
+      "chave": "aula-10-01",
+      "titulo": "Os quatro eixos de controle"
+    },
+    {
+      "numero": 2,
+      "chave": "aula-10-02",
+      "titulo": "Grupos, subgrupos e modalidades"
+    },
+    {
+      "numero": 3,
+      "chave": "aula-10-03",
+      "titulo": "Demanda contratada: o custo de errar para cada lado"
+    },
+    {
+      "numero": 4,
+      "chave": "aula-10-04",
+      "titulo": "Como a mesma energia custa diferente conforme a hora"
+    },
+    {
+      "numero": 5,
+      "chave": "aula-10-05",
+      "titulo": "Fator de potência e excedente reativo"
+    },
+    {
+      "numero": 6,
+      "chave": "aula-10-06",
+      "titulo": "Encargos setoriais, um a um"
+    },
+    {
+      "numero": 7,
+      "chave": "aula-10-07",
+      "titulo": "Tributos e a transição em curso"
+    },
+    {
+      "numero": 8,
+      "chave": "aula-10-08",
+      "titulo": "O ciclo que produz o número"
+    },
+    {
+      "numero": 9,
+      "chave": "aula-10-09",
+      "titulo": "A ordem de leitura em cinco minutos"
+    }
+  ],
+  "mencoes": [
+    {
+      "aula": 1,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "Duas plantas do mesmo grupo empresarial, em estados diferentes, atravessam reajustes em meses diferentes; comparar as duas sem declarar isso é comparar bases distintas.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 131,
+      "contexto": "No Eixo 4 (o tempo), a aula mostra que o reajuste anual tem data própria por concessionária, então duas plantas em estados diferentes vivem calendários tarifários diferentes.",
+      "ganho_no_mapa": "Ver o país recortado em áreas de concessão deixa claro que cada planta está dentro de um polígono com distribuidora, tarifa homologada e aniversário tarifário próprios.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 1,
+      "tipo": "submercado",
+      "nome": "Submercado de entrega (ambiente livre)",
+      "trecho": "no ambiente livre, o preço da energia passa a ser objeto de contrato bilateral, com volume, prazo, indexação, submercado de entrega e flexibilidade — e o uso do fio permanece devido de qualquer forma.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 122,
+      "contexto": "No Eixo 2 (o que a empresa negocia), o submercado de entrega aparece como um dos atributos do contrato bilateral de energia no ambiente livre.",
+      "ganho_no_mapa": "Ver os quatro submercados sobre o território mostra que o contrato livre tem um lugar de entrega, enquanto o uso do fio continua preso à distribuidora local.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 1,
+      "tipo": "outro",
+      "nome": "Sistema Interligado Nacional (SIN)",
+      "trecho": "O adicional de bandeira é fixado pela agência e acionado mensalmente conforme as condições de geração do sistema.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 125,
+      "contexto": "No Eixo 3 (o que a empresa apenas suporta), a bandeira é apresentada como adicional acionado mês a mês pelas condições de geração do sistema, sem relação com a planta.",
+      "ganho_no_mapa": "Ver o parque gerador do sistema interligado ajuda a entender que o gatilho da bandeira está longe da fábrica: nas condições de geração do sistema inteiro.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 2,
+      "tipo": "outro",
+      "nome": "Rede por nível de tensão de conexão",
+      "trecho": "Grupo e subgrupo são determinados pela tensão de conexão e pelo arranjo de atendimento, com efeito sobre as componentes de fio da tarifa de uso e, desde 2026, sobre o rateio da quota do encargo de desenvolvimento energético por faixa de tensão.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 149,
+      "contexto": "A aula ensina que grupo e subgrupo decorrem da tensão em que a unidade se conecta (a tabela da mesma aula lista A1 em 230 kV ou mais, A2 de 88 a 138 kV, A3 em 69 kV, A4 de 2,3 a 25 kV); não é um lugar nomeado, é uma classe de rede.",
+      "ganho_no_mapa": "Ver as linhas coloridas por classe de tensão mostra em que malha cada subgrupo se conecta e por que A1 reúne as grandes cargas ligadas à rede de mais alta tensão.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 2,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "Isso é tendência, não regra: as relações entre tarifas variam por concessionária e por processo tarifário, e uma planta que compensa numa área de concessão pode não compensar em outra com o mesmo perfil de carga.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 152,
+      "contexto": "Na escolha entre Azul e Verde, a aula avisa que a relação entre as tarifas muda de concessionária para concessionária, então a mesma planta pode ter resposta diferente em outra área.",
+      "ganho_no_mapa": "Ver as áreas de concessão lado a lado mostra que a conta Azul contra Verde tem de ser refeita a cada polígono, mesmo com perfil de carga idêntico.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "A tarifa é entrada editável em unidades monetárias genéricas por quilowatt, porque tarifa homologada é por distribuidora e por processo tarifário — não existe valor nacional.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 1306,
+      "contexto": "Na nota do simulador de ultrapassagem (instrumento da aula), a tarifa de demanda entra como campo editável porque é homologada por distribuidora; o corpo da aula em si não tem geografia.",
+      "ganho_no_mapa": "Ver que cada área de concessão tem tarifa de demanda própria explica por que o instrumento não traz um valor pronto.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 4,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "E o intervalo exato varia por área de concessão: uma planta em uma área pode ter ponta das dezoito às vinte e uma, e outra, a duzentos quilômetros, das dezessete e trinta às vinte e trinta.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 197,
+      "contexto": "A aula corrige a ideia de um horário de ponta nacional: são três horas definidas por área de concessão, e duas plantas a duzentos quilômetros podem ter janelas diferentes.",
+      "ganho_no_mapa": "Ver duas áreas de concessão vizinhas com janelas de ponta diferentes torna visível que a hora cara da energia muda ao cruzar a divisa entre distribuidoras.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "O posto de ponta é o <b>período composto por três horas diárias consecutivas</b>, definidas pela distribuidora considerando a curva de carga do seu sistema elétrico, aprovadas pela agência reguladora para toda a área de concessão ou permissão",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 196,
+      "contexto": "A definição normativa do posto de ponta: uma única janela de três horas, derivada da curva de carga do sistema da distribuidora e válida para toda a área de concessão ou permissão.",
+      "ganho_no_mapa": "Ver o polígono inteiro de uma concessão com uma só janela mostra que a ponta é do sistema da distribuidora, não da cidade nem da planta.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "outro",
+      "nome": "Rede por nível de tensão de conexão",
+      "trecho": "A partir de 1º de janeiro de 2026, o custo por megawatt-hora pago por quem é atendido em tensão <b>igual ou superior a 69 kV</b> passou a ser cinquenta por cento daquele pago por quem é atendido em tensão inferior a 2,3 kV; e o pago por quem é atendido em tensão <b>igual ou superior a 2,3 kV e inferior a 69 kV</b> passou a ser oitenta por cento.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 238,
+      "contexto": "A aula explica o rateio da quota do encargo de desenvolvimento energético por nível de tensão desde 2026, com fronteiras em 69 kV e 2,3 kV; é classe de rede, não lugar nomeado.",
+      "ganho_no_mapa": "Ver a malha separada em 69 kV ou mais e abaixo de 69 kV mostra de que lado da fronteira de rateio fica uma planta conforme a rede em que se conecta.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "estado_regiao",
+      "nome": "Regiões com modicidade tarifária custeada pelo encargo (não nomeadas na fonte)",
+      "trecho": "Porque <b>o custeio é pelo encargo de desenvolvimento energético</b>, que é rateado entre os demais consumidores, e porque a mesma lei destinou recursos arrecadados a finalidades de modicidade tarifária em regiões específicas.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 244,
+      "contexto": "Ao ligar a tarifa social à fatura industrial, a aula registra que a mesma lei destinou recursos a modicidade tarifária em regiões específicas, sem dizer quais.",
+      "ganho_no_mapa": "Um mapa só ajudaria se as regiões beneficiadas fossem identificadas na lei; a fonte não as nomeia, então hoje não há o que desenhar.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "<b>Qual é o recorte?</b> — o valor é da concessionária específica, da região, ou média nacional.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 249,
+      "contexto": "Entre as quatro perguntas de controle sobre qualquer número de encargo, a aula pede o recorte geográfico do valor: concessionária, região ou média nacional.",
+      "ganho_no_mapa": "Ver os três recortes sobrepostos (concessão, região, país) mostra que o mesmo encargo citado sem recorte pode se referir a territórios diferentes.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "cidade",
+      "nome": "Municípios (contribuição de iluminação pública)",
+      "trecho": "Duas plantas da mesma empresa em municípios vizinhos podem ter regras completamente distintas, e essa é uma das explicações estruturais para diferença de custo unitário entre unidades.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 687,
+      "contexto": "No explorador de encargos (instrumento da aula), a contribuição de iluminação pública aparece como item de regra municipal, diferente até entre municípios vizinhos.",
+      "ganho_no_mapa": "Ver a malha municipal sob duas plantas próximas mostra que uma linha da fatura muda ao cruzar o limite do município.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 7,
+      "tipo": "estado_regiao",
+      "nome": "Unidades da federação (imposto estadual)",
+      "trecho": "O <b>imposto estadual</b> tem alíquota, base e tratamento definidos em legislação de cada unidade da federação, sujeitos a jurisprudência vinculante que trataremos adiante.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 254,
+      "contexto": "A aula separa os três tributos da fatura por ente: o imposto estadual tem alíquota, base e tratamento definidos pela legislação de cada unidade da federação.",
+      "ganho_no_mapa": "Ver as divisas estaduais como fronteiras de regra tributária explica por que duas plantas iguais em estados diferentes pagam imposto diferente sobre a mesma energia.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 7,
+      "tipo": "cidade",
+      "nome": "Municípios (contribuição de iluminação pública)",
+      "trecho": "A <b>contribuição municipal para custeio da iluminação pública</b> é instituída por lei municipal, tem regra de cálculo local, e não remunera consumo da planta: financia a iluminação pública do município.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 254,
+      "contexto": "O terceiro tributo da fatura é municipal: a contribuição de iluminação pública tem regra de cálculo local e financia a iluminação do município, não o consumo da planta.",
+      "ganho_no_mapa": "Ver o limite municipal em torno da planta mostra o território cuja iluminação pública aquela linha da fatura financia.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 7,
+      "tipo": "evento",
+      "nome": "ADI 7.195/DF — onze estados e o Distrito Federal",
+      "trecho": "Governadores de onze estados e do Distrito Federal questionaram a constitucionalidade da alteração.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 261,
+      "contexto": "Na cronologia da controvérsia sobre a base do imposto estadual, a aula registra a ação de 2023 em que governadores de onze estados e do Distrito Federal contestaram a lei complementar de 2022.",
+      "ganho_no_mapa": "Um mapa dos estados autores mostraria o alcance federativo da disputa, mas a aula não diz quais são os onze; a lista teria de vir da fonte primária.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "Duas plantas do mesmo grupo em estados diferentes atravessam reajustes em meses diferentes — e é por isso que comparar o custo unitário das duas, sem declarar o aniversário de cada uma, compara bases distintas.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 276,
+      "contexto": "O primeiro dos quatro relógios: o reajuste anual ocorre no aniversário tarifário de cada concessionária, então plantas em estados diferentes são reajustadas em meses diferentes.",
+      "ganho_no_mapa": "Ver as áreas de concessão coloridas pelo mês do reajuste transforma o aniversário tarifário num calendário espalhado pelo território.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 8,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "É nela que a definição dos postos tarifários da área de concessão é aprovada — o que significa que o intervalo de ponta pode mudar de um ciclo para outro.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 277,
+      "contexto": "O segundo relógio: na revisão periódica a própria janela de ponta da área de concessão é reaprovada e pode mudar de um ciclo para o outro.",
+      "ganho_no_mapa": "Ver a janela de ponta como atributo do polígono da concessão mostra que ela muda para todas as plantas daquela área de uma vez, na data da revisão.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "outro",
+      "nome": "Sistema Interligado Nacional (SIN)",
+      "trecho": "E a <b>bandeira tarifária</b> é a camada de curtíssimo prazo: acionada mensalmente conforme as condições de geração avaliadas pelo operador do sistema, ela antecipa um custo que, antes de sua criação, chegava ao consumidor com defasagem, diluído no reajuste do ano seguinte.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 278,
+      "contexto": "A bandeira é a camada mensal do ciclo: acionada conforme as condições de geração avaliadas pelo operador do sistema, antecipa um custo que antes chegava só no reajuste seguinte.",
+      "ganho_no_mapa": "Ver o parque gerador do sistema interligado (hidrelétricas, reservatórios, térmicas) dá corpo às condições de geração que mudam a cor da bandeira; a aula não nomeia usina alguma.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 8,
+      "tipo": "evento",
+      "nome": "Bandeira amarela de maio a agosto de 2026",
+      "trecho": "A bandeira acionada para agosto de 2026, anunciada em 31 de julho de 2026, era <b>amarela</b> — quarto mês consecutivo nessa cor, após acionamento em maio de 2026 e quatro meses iniciais de verde.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 288,
+      "contexto": "Na caixa de números vivos, a aula registra a sequência de 2026: quatro meses de verde e, de maio a agosto, bandeira amarela.",
+      "ganho_no_mapa": "Uma linha do tempo sobre o mapa do sistema interligado mostraria a mesma cor valendo ao mesmo tempo para todo o ambiente regulado; o evento é nacional, sem lugar específico.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "estado_regiao",
+      "nome": "Unidades da federação (imposto estadual)",
+      "trecho": "Seu desvio maior está no bloco de tributos. É o bloco cuja composição mais varia entre estados e municípios, e o que está em transição de regime em 2026.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 802,
+      "contexto": "No reconstrutor de fatura (instrumento da aula), o diagnóstico de viés avisa que o bloco de tributos é o que mais varia entre estados e municípios.",
+      "ganho_no_mapa": "Ver estados e municípios como camadas de regra tributária explica por que a composição da fatura de uma planta não serve de régua para outra.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "A composição real varia enormemente por concessionária, subgrupo, modalidade, fator de carga e estado — não existe composição típica nacional",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 1673,
+      "contexto": "Na nota do reconstrutor de fatura (instrumento da aula), a composição da fatura é dita variável por concessionária e por estado, sem padrão nacional.",
+      "ganho_no_mapa": "Ver concessões e estados sobrepostos mostra quantas combinações de tarifa e tributo existem no país, e por que não há fatura típica nacional.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Minas Gerais",
+      "trecho": "Uma operação de mineração de porte médio em Minas Gerais, com carga plana e turnos contínuos, está com alta probabilidade no <b>grupo A</b>, e a faixa de tensão mais provável para uma unidade desse porte é a do subgrupo de média tensão.",
+      "arquivo": "docs/alexandria-v2/extraction/m10/aparato.json",
+      "linha": 115,
+      "contexto": "O estudo de caso do módulo (Operação A) lê a fatura de uma mineração de porte médio em Minas Gerais e parte do enquadramento provável da unidade.",
+      "ganho_no_mapa": "Ver Minas Gerais com sua rede por tensão e suas áreas de concessão situa o caso; a fonte não nomeia município nem distribuidora, então não há ponto a marcar.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Submercado Sudeste/Centro-Oeste",
+      "trecho": "Carga razoavelmente plana, operação em turnos, submercado Sudeste/Centro-Oeste, fator de carga elevado, pouca flexibilidade natural de processo.",
+      "arquivo": "docs/alexandria-v2/extraction/m10/aparato.json",
+      "linha": 90,
+      "contexto": "A abertura do estudo de caso resume o perfil da Operação A construído nos módulos anteriores, incluindo o submercado em que ela está.",
+      "ganho_no_mapa": "Ver o submercado Sudeste/Centro-Oeste realçado mostra em que região de preço a Operação A está, dado que volta quando a pergunta é mudar de ambiente de contratação.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "Não existe valor nacional: o mesmo componente tem valor diferente em cada área de concessão, e muda na data de aniversário tarifário de cada uma.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 349,
+      "contexto": "No mapa da fatura (Inst · 01, fora de aula), a lente do valor unitário diz que a tarifa de energia de ponta é homologada por concessionária e muda no aniversário de cada uma.",
+      "ganho_no_mapa": "Ver cada área de concessão com o seu valor e a sua data faz o aluno enxergar que a mesma linha da fatura tem tantos preços quantas concessões existem.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "outro",
+      "nome": "Sistema Interligado Nacional (SIN)",
+      "trecho": "Fixado pela agência reguladora, atualizado ao final do período úmido para o ciclo seguinte, e uniforme nacionalmente dentro do sistema interligado. É a única linha da fatura com valor unitário nacional.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 413,
+      "contexto": "No mapa da fatura (Inst · 01), o adicional de bandeira é apontado como a única linha com valor unitário nacional, uniforme dentro do sistema interligado.",
+      "ganho_no_mapa": "Ver o contorno do sistema interligado mostra o território em que vale um único valor de bandeira, em contraste com as tarifas que mudam a cada concessão.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Unidades da federação (imposto estadual)",
+      "trecho": "Alíquota fixada em legislação da unidade federativa, sujeita à tese vinculante sobre essencialidade quando adotada a técnica da seletividade. Varia de estado para estado, o que explica diferenças entre plantas do mesmo grupo empresarial.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 437,
+      "contexto": "No mapa da fatura (Inst · 01), a linha do imposto estadual tem alíquota fixada pela unidade federativa e por isso varia de estado para estado.",
+      "ganho_no_mapa": "Ver as divisas estaduais como fronteiras de alíquota explica a diferença de custo entre plantas do mesmo grupo em estados diferentes.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "cidade",
+      "nome": "Municípios (contribuição de iluminação pública)",
+      "trecho": "Ciclo legislativo municipal, independente de qualquer calendário setorial. Duas plantas da mesma empresa em municípios vizinhos podem ter regras completamente distintas.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 447,
+      "contexto": "No mapa da fatura (Inst · 01), a contribuição de iluminação pública segue o ciclo legislativo de cada município, sem relação com o calendário do setor.",
+      "ganho_no_mapa": "Ver dois municípios vizinhos como unidades de regra distintas mostra a menor escala geográfica em que a fatura muda.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "O posto de ponta é definido por área de concessão e aprovado no processo de revisão tarifária da distribuidora local. Duas unidades do mesmo grupo em concessões diferentes podem ter janelas diferentes, e a janela pode ter mudado no último ciclo de revisão.",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 1829,
+      "contexto": "O gabarito do exercício 02 corrige a equipe que copiou o horário de ponta da filial de outro estado: a janela é da área de concessão da distribuidora local.",
+      "ganho_no_mapa": "Ver a matriz e a filial em áreas de concessão diferentes mostra por que a janela de uma não vale para a outra.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "Há pelo menos cinco explicações estruturais antes de qualquer suspeita de erro: concessionárias diferentes com tarifas homologadas próprias; datas de aniversário tarifário diferentes, de modo que uma já reajustou e a outra não",
+      "arquivo": "src/lib/data/alexandria-modulo-10-content.ts",
+      "linha": 1906,
+      "contexto": "O gabarito do exercício 13 lista as razões estruturais para duas plantas do mesmo grupo pagarem valores unitários diferentes, começando por concessionária e aniversário tarifário.",
+      "ganho_no_mapa": "Ver as duas plantas em concessões (e estados) diferentes transforma a suspeita de erro em diferença de endereço regulatório.",
+      "relevancia": "media"
+    }
+  ],
+  "vistas_sugeridas": [
+    {
+      "aula": 1,
+      "titulo": "Cada concessão, uma tarifa",
+      "o_que_mostra": "Brasil inteiro com os polígonos das áreas de concessão das distribuidoras, cada um rotulado pela distribuidora. Destaque para duas áreas em estados diferentes: valor unitário e data de reajuste pertencem ao polígono, não à empresa. A aula não traz valores; o que entra é o recorte.",
+      "nomes": [
+        "Áreas de concessão das distribuidoras"
+      ],
+      "camadas": [
+        "outra: áreas de concessão das distribuidoras"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "A rede por tensão: onde cada subgrupo se conecta",
+      "o_que_mostra": "Um estado em zoom com linhas coloridas por classe de tensão (230 kV ou mais, 88 a 138 kV, 69 kV) e subestações, lidas como A1, A2 e A3 da tabela da aula. A média tensão do A4 (2,3 a 25 kV) provavelmente não existe no Atlas e deve ser declarada ausente.",
+      "nomes": [
+        "Rede por nível de tensão de conexão"
+      ],
+      "camadas": [
+        "linhas",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 4,
+      "titulo": "A ponta muda na divisa da concessão",
+      "o_que_mostra": "Zoom numa divisa entre duas áreas de concessão vizinhas, com a janela de ponta homologada de cada distribuidora no rótulo e duas plantas a cerca de duzentos quilômetros, uma em cada área. As janelas vêm do ato homologatório de cada distribuidora; a aula não nomeia nenhuma.",
+      "nomes": [
+        "Áreas de concessão das distribuidoras"
+      ],
+      "camadas": [
+        "outra: áreas de concessão das distribuidoras"
+      ]
+    },
+    {
+      "aula": 6,
+      "titulo": "O limiar de 69 kV no rateio do encargo",
+      "o_que_mostra": "Linhas e subestações filtradas em duas classes, 69 kV ou mais e abaixo de 69 kV, para mostrar a fronteira de tensão que desde 2026 separa as faixas de rateio da quota do encargo de desenvolvimento energético. Mesma base da vista de tensão da Aula 02, com outro corte.",
+      "nomes": [
+        "Rede por nível de tensão de conexão"
+      ],
+      "camadas": [
+        "linhas",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 7,
+      "titulo": "Três entes, três recortes",
+      "o_que_mostra": "Brasil com as divisas das unidades da federação (quem legisla o imposto estadual) e, em zoom, a malha municipal (quem institui a contribuição de iluminação pública). Sem valores: a aula não traz alíquota por estado nem diz quais são os onze estados da ação de 2023.",
+      "nomes": [
+        "Unidades da federação (imposto estadual)",
+        "Municípios (contribuição de iluminação pública)",
+        "ADI 7.195/DF — onze estados e o Distrito Federal"
+      ],
+      "camadas": [
+        "outra: unidades da federação",
+        "outra: municípios"
+      ]
+    },
+    {
+      "aula": 8,
+      "titulo": "O calendário dos aniversários tarifários",
+      "o_que_mostra": "Brasil com as áreas de concessão coloridas pelo mês do reajuste anual de cada distribuidora (calendário de processos tarifários da ANEEL, a buscar na fonte primária). Duas plantas em estados diferentes mostram por que comparar custo unitário exige declarar o aniversário de cada uma.",
+      "nomes": [
+        "Áreas de concessão das distribuidoras"
+      ],
+      "camadas": [
+        "outra: áreas de concessão das distribuidoras"
+      ]
+    },
+    {
+      "aula": 8,
+      "titulo": "O que a bandeira enxerga",
+      "o_que_mostra": "Brasil no recorte do sistema interligado, com hidrelétricas, reservatórios e térmicas ligados: o parque cujas condições de geração o operador avalia todo mês para definir a cor. Vista de contexto; a aula não nomeia usina nem reservatório.",
+      "nomes": [
+        "Sistema Interligado Nacional (SIN)",
+        "Bandeira amarela de maio a agosto de 2026"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "usinas_termica",
+        "reservatorios_bacias",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 0,
+      "titulo": "Operação A: Minas Gerais no Sudeste/Centro-Oeste",
+      "o_que_mostra": "Câmera em Minas Gerais com o submercado Sudeste/Centro-Oeste realçado, linhas por tensão e subestações do estado e as áreas de concessão que o cobrem. A fonte não nomeia município nem distribuidora da Operação A, então nenhum ponto é marcado.",
+      "nomes": [
+        "Minas Gerais",
+        "Submercado Sudeste/Centro-Oeste"
+      ],
+      "camadas": [
+        "submercados",
+        "linhas",
+        "subestacoes",
+        "outra: áreas de concessão das distribuidoras"
+      ]
+    },
+    {
+      "aula": 0,
+      "titulo": "O que é nacional e o que tem endereço",
+      "o_que_mostra": "Quatro recortes do mesmo território, alternáveis: sistema interligado (adicional de bandeira, único valor nacional), unidades da federação (imposto estadual), municípios (iluminação pública) e áreas de concessão (tarifas homologadas). Acompanha o mapa da fatura (Inst · 01): quem define cada linha.",
+      "nomes": [
+        "Sistema Interligado Nacional (SIN)",
+        "Unidades da federação (imposto estadual)",
+        "Municípios (contribuição de iluminação pública)",
+        "Áreas de concessão das distribuidoras"
+      ],
+      "camadas": [
+        "outra: contorno do sistema interligado e dos sistemas isolados",
+        "outra: unidades da federação",
+        "outra: municípios",
+        "outra: áreas de concessão das distribuidoras"
+      ]
+    }
+  ]
+}

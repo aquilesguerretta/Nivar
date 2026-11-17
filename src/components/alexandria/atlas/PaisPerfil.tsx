@@ -1,23 +1,22 @@
-// PaisPerfil — o perfil de país do Atlas Mundial (Wave 27).
+// PaisPerfil — o perfil de país do capítulo "O mundo" do Atlas.
 //
-// Painel HTML com fundo próprio, montado SOBRE a lateral direita da
-// prancha — o globo continua sendo globo ao lado, nunca substituído.
-// Todo texto é HTML: Cinzel e Lora de verdade, selecionável, legível
-// por leitor de tela. Nada renderizado dentro da cena 3D.
+// Mora na mesma moldura da ficha do ativo (.atl-ficha): mesma posição ao
+// lado dos controles do mapa, mesma largura, mesmo cabeçalho e o mesmo botão
+// "Fechar"; no celular vira a mesma folha inferior. Cor e tipografia vêm das
+// classes de atlas-v3.css (tokens da casa v3), nada fixo no componente.
 //
 // Cada número carrega a fonte citada, vinda do fieldSources que o
-// backend entrega (chaves snake_case do OWID, rastreáveis ao codebook)
-// — o mesmo padrão de "números vivos com fonte nomeada" que rege a
-// Alexandria inteira. A unidade exibida também vem do codebook quando
-// o perfil completo carrega; nada de unidade inventada.
+// servidor entrega (chaves snake_case do OWID, rastreáveis ao codebook).
+// A unidade exibida também vem do codebook quando o perfil completo
+// carrega; nada de unidade inventada.
 //
-// País desenhado sem perfil no backend abre em estado de ausência
-// honesta: nome + explicação + retorno. Nenhum número inventado.
+// País desenhado sem perfil no servidor abre em estado de ausência
+// honesta: nome + explicação. Nenhum número inventado.
 
 import { useEffect, useState } from 'react';
-import { A, A2, AF, AT, AE, AS, AR } from '../../../design/alexandria-tokens';
 import {
   buscarPerfilPais,
+  carregarMundo,
   CAMPOS_MATRIZ,
   FONTE_CAMPO,
   fmtNum,
@@ -30,14 +29,10 @@ import {
 interface PaisPerfilProps {
   nome: string;
   isoA3: string | null;
-  /** null = país sem perfil no backend — painel de ausência honesta. */
+  /** null = país sem perfil no servidor — painel de ausência honesta. */
   resumo: PaisResumo | null;
   aoVoltar: () => void;
-  /** No modo imersivo a barra de busca ocupa o mesmo canto superior
-   *  direito. Sem este recuo o perfil cobre a busca inteira (medido:
-   *  x 1068–1428 sobre x 1208–1428, os dois em z-index auto), e quem
-   *  monta depois vence — o usuário ficava sem conseguir buscar outro
-   *  país com um perfil aberto. */
+  /** Herdado do globo antigo; a moldura da ficha já se posiciona sozinha. Ignorado. */
   recuarDoTopo?: boolean;
 }
 
@@ -52,85 +47,67 @@ function nomesDasFontes(citacao: string): string {
     .join(' · ');
 }
 
-function Rotulinho({ texto }: { texto: string }) {
-  return (
-    <span style={{ ...AT.rotulo, fontSize: '8px', letterSpacing: '0.13em', color: A2.tintaMetadado }}>
-      {texto}
-    </span>
-  );
-}
-
 function FonteLinha({ fonte }: { fonte: FonteCampo | undefined }) {
   if (!fonte) return null;
-  return (
-    <span style={{ ...AT.dado, fontSize: '9px', color: A2.tintaMetadado }}>
-      Fonte: {nomesDasFontes(fonte.sourceCitation)}
-    </span>
-  );
+  return <p className="atl-pais-fonte">Fonte: {nomesDasFontes(fonte.sourceCitation)}</p>;
 }
 
-function BarraMatriz({
-  rotulo,
-  pct,
-  fonte,
-}: {
-  rotulo: string;
-  pct: number | null;
-  fonte: FonteCampo | undefined;
-}) {
+/** Unidades do codebook do OWID (em inglês) com o rótulo em português. É tradução
+ *  de rótulo, não dado novo: unidade que não está na tabela aparece como a fonte escreve. */
+const UNIDADE_PT: Record<string, string> = {
+  'grams of co₂ equivalents per kilowatt-hour': 'gCO₂eq/kWh',
+  'grams of co2 equivalents per kilowatt-hour': 'gCO₂eq/kWh',
+  'kilowatt-hours per person': 'kWh por pessoa',
+  'kilowatt-hours': 'kWh',
+  'terawatt-hours': 'TWh',
+  '%': '%',
+  'people': 'pessoas',
+  'persons': 'pessoas',
+};
+
+function unidadePt(u: string | undefined | null, padrao: string): string {
+  if (!u) return padrao;
+  // "kilowatt-hours per person (kWh)" → chave sem a sigla entre parênteses
+  const chave = u.replace(/\s*\([^)]*\)\s*$/, '').trim().toLowerCase();
+  return UNIDADE_PT[chave] ?? u;
+}
+
+function BarraMatriz({ rotulo, pct, fonte }: { rotulo: string; pct: number | null; fonte: FonteCampo | undefined }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-        <span style={{ ...AT.dado, fontSize: '12px', color: A.tintaSobreCreme }}>{rotulo}</span>
-        <span style={{ ...AT.dado, fontSize: '12px', color: pct === null ? A2.tintaMetadado : A.tintaSobreCreme }}>
-          {pct === null ? 'sem dado' : fmtPct(pct)}
+    <li className="atl-pais-barra">
+      <span className="atl-pais-barra-rotulo">{rotulo}</span>
+      <span className={`atl-pais-barra-valor${pct === null ? ' atl-ausente' : ''}`}>{pct === null ? 'sem dado' : fmtPct(pct)}</span>
+      <span className="atl-pais-trilho" aria-hidden="true">
+        {pct !== null && <span className="atl-pais-preenchimento" style={{ width: `${Math.max(0, Math.min(100, pct))}%` }} />}
+      </span>
+      {fonte && (
+        <span className="atl-pais-barra-fonte">
+          <FonteLinha fonte={fonte} />
         </span>
-      </div>
-      <div style={{ height: '6px', background: A2.fioClaroSobreCreme, borderRadius: AR.none }}>
-        {pct !== null && (
-          <div
-            style={{
-              height: '100%',
-              width: `${Math.max(0, Math.min(100, pct))}%`,
-              background: A.navy,
-              borderRadius: AR.none,
-            }}
-          />
-        )}
-      </div>
-      <FonteLinha fonte={fonte} />
-    </div>
+      )}
+    </li>
   );
 }
 
-function Indicador({
-  rotulo,
-  valor,
-  fonte,
-}: {
-  rotulo: string;
-  valor: string;
-  fonte: FonteCampo | undefined;
-}) {
+function Indicador({ rotulo, valor, fonte }: { rotulo: string; valor: string; fonte: FonteCampo | undefined }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-      <Rotulinho texto={rotulo} />
-      <span style={{ ...AT.dado, fontSize: '15px', color: A.tintaSobreCreme }}>{valor}</span>
-      <FonteLinha fonte={fonte} />
+    <div className="atl-ficha-linha">
+      <dt>{rotulo}</dt>
+      {/* a citação de cada número fica em "Fonte de cada número", no pé da ficha; aqui, só o
+          aviso de que ela diverge da fonte comum */}
+      <dd>
+        {valor === '—' ? <span className="atl-ausente">sem dado</span> : valor}
+        {fonte && <p className="atl-pais-fonte">fonte própria, citada no pé da ficha</p>}
+      </dd>
     </div>
   );
 }
 
-export function PaisPerfil({ nome, isoA3, resumo, aoVoltar, recuarDoTopo = false }: PaisPerfilProps) {
+export function PaisPerfil({ nome, isoA3, resumo, aoVoltar }: PaisPerfilProps) {
   const [perfil, setPerfil] = useState<PerfilCompleto | null>(null);
   const [falhaFontes, setFalhaFontes] = useState(false);
-  const [visivel, setVisivel] = useState(false);
-
-  // entrada por fade na escala do sistema
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setVisivel(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
+  /** quantos países a base de perfis tem, lido da mesma lista que o mapa usa */
+  const [naBase, setNaBase] = useState<number | null>(null);
 
   // perfil completo (com fieldSources) só existe para país com dado
   useEffect(() => {
@@ -144,14 +121,26 @@ export function PaisPerfil({ nome, isoA3, resumo, aoVoltar, recuarDoTopo = false
     return () => controle.abort();
   }, [isoA3, resumo]);
 
+  // a contagem vem de quem a mede (carregarMundo tem cache de módulo: não refaz a busca)
+  useEffect(() => {
+    if (resumo !== null) return;
+    let vivo = true;
+    carregarMundo()
+      .then((m) => {
+        if (vivo) setNaBase(m.porIso.size);
+      })
+      .catch(() => undefined);
+    return () => {
+      vivo = false;
+    };
+  }, [resumo]);
+
   const fontes = perfil?.fieldSources;
   const fonteDe = (chave: string): FonteCampo | undefined => fontes?.[chave];
 
-  // ── Consolidação de citação (Wave 28) — computada em RUNTIME, nunca
-  // presumida: os 7 campos da matriz só perdem a linha individual se a
-  // citação for byte-idêntica em todos (medido no dado real: matriz +
-  // geração total + renovável compartilham a mesma; carbono, per
-  // capita e população divergem e mantêm a própria linha). ───────────
+  // ── Consolidação de citação — computada em RUNTIME, nunca presumida:
+  // os 7 campos da matriz só perdem a linha individual se a citação for
+  // byte-idêntica em todos. ───────────
   const citacaoComum: string | null = (() => {
     if (!fontes) return null;
     const citacoes = CAMPOS_MATRIZ.map((c) => fontes[c.fonteCampo]?.sourceCitation);
@@ -177,204 +166,93 @@ export function PaisPerfil({ nome, isoA3, resumo, aoVoltar, recuarDoTopo = false
       [FONTE_CAMPO.electricityGenerationTwh, 'geração total'],
       [FONTE_CAMPO.population, 'população'],
     ];
-    return [
-      'matriz de geração',
-      ...extras.filter(([k]) => fontes[k]?.sourceCitation === citacaoComum).map(([, r]) => r),
-    ];
+    return ['matriz de geração', ...extras.filter(([k]) => fontes[k]?.sourceCitation === citacaoComum).map(([, r]) => r)];
   })();
 
   return (
-    <aside
-      aria-label={`Perfil energético: ${nome}`}
-      style={{
-        position: 'absolute',
-        // recuo: ver `recuarDoTopo` — no imersivo a busca ocupa este canto
-        top: recuarDoTopo ? '52px' : AS.md,
-        right: AS.md,
-        bottom: AS.md,
-        width: 'min(360px, calc(100% - 96px))',
-        background: A2.cremeSuperficie,
-        border: `1px solid ${A.fioSobreCreme}`,
-        borderRadius: AR.none,
-        display: 'flex',
-        flexDirection: 'column',
-        opacity: visivel ? 1 : 0,
-        transition: `opacity ${AE.hover} ${AE.easing}`,
-      }}
-    >
-      {/* cabeçalho fixo: retorno + identidade */}
-      <div
-        style={{
-          padding: `${AS.md} ${AS.lg}`,
-          borderBottom: `1px solid ${A.fioSobreCreme}`,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: AS.sm,
-        }}
-      >
-        <button
-          type="button"
-          onClick={aoVoltar}
-          style={{
-            alignSelf: 'flex-start',
-            background: 'none',
-            border: `1px solid ${A2.fioColunaSobreCreme}`,
-            borderRadius: AR.none,
-            padding: `${AS.xs} ${AS.md}`,
-            cursor: 'pointer',
-            ...AT.rotulo,
-            fontSize: '9px',
-            color: A.tintaSobreCreme,
-          }}
-        >
-          ← Voltar ao globo
+    <aside className="atl-ficha atl-pais" aria-label={`Perfil energético: ${nome}`}>
+      <header className="atl-ficha-cabeca">
+        <p className="v-dado atl-ficha-sobre">
+          País · {isoA3 ?? 'sem código ISO'}
+          {resumo ? ` · ano de referência ${resumo.year} · Our World in Data` : ''}
+        </p>
+        <h2 className="atl-ficha-titulo">{nome}</h2>
+        <button type="button" className="atl-ficha-fechar" onClick={aoVoltar} aria-label="Fechar a ficha">
+          Fechar
         </button>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          <span
-            style={{
-              fontFamily: AF.display,
-              fontSize: '18px',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: A.tintaSobreCreme,
-            }}
-          >
-            {nome}
-          </span>
-          <span style={{ ...AT.dado, fontSize: '10px', color: A2.tintaMetadado }}>
-            {isoA3 ?? 'sem código ISO'}
-            {resumo ? ` · ano de referência ${resumo.year} · Our World in Data` : ''}
-          </span>
-        </div>
-      </div>
+      </header>
 
-      {/* corpo com scroll próprio */}
-      <div
-        style={{
-          flex: 1,
-          minHeight: 0,
-          overflowY: 'auto',
-          padding: `${AS.lg} ${AS.lg}`,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: AS.lg,
-        }}
-      >
+      <div className="atl-ficha-corpo">
         {resumo === null ? (
-          <p style={{ ...AT.corpo, fontSize: '13px', color: A.tintaSuave, margin: 0 }}>
-            Este território está desenhado no globo porque a fronteira é
-            real — Natural Earth 1:110m — mas não tem perfil energético:
-            o conjunto do backend cobre os 188 Estados-membros e
-            observadores da ONU, e nenhum número será inventado para
-            quem está fora dele.
+          <p className="atl-nota atl-ausencia">
+            Este território está desenhado no mapa porque a fronteira é real (Natural Earth, 1:110 milhões), mas não tem perfil energético:{' '}
+            {naBase != null
+              ? `a base de perfis do Our World in Data usada aqui tem ${fmtNum(naBase)} países, e este não está entre eles.`
+              : 'ele não está na base de perfis do Our World in Data usada aqui.'}{' '}
+            Nenhum número é preenchido para quem fica fora dela.
           </p>
         ) : (
           <>
-            <section style={{ display: 'flex', flexDirection: 'column', gap: AS.md }}>
-              <Rotulinho texto="Matriz de geração elétrica" />
-              {CAMPOS_MATRIZ.map((campo) => (
-                <BarraMatriz
-                  key={campo.chave}
-                  rotulo={campo.rotulo}
-                  pct={resumo.fuelMix[campo.chave]}
-                  fonte={citacaoComum !== null ? undefined : fonteDe(campo.fonteCampo)}
-                />
-              ))}
+            <section className="atl-pais-secao" aria-label="Matriz de geração elétrica">
+              <h3 className="atl-pais-secao-titulo">Matriz de geração elétrica</h3>
+              <ul className="atl-pais-matriz">
+                {CAMPOS_MATRIZ.map((campo) => (
+                  <BarraMatriz
+                    key={campo.chave}
+                    rotulo={campo.rotulo}
+                    pct={resumo.fuelMix[campo.chave]}
+                    fonte={citacaoComum !== null ? undefined : fonteDe(campo.fonteCampo)}
+                  />
+                ))}
+              </ul>
             </section>
 
-            <section
-              style={{
-                borderTop: `1px solid ${A2.fioClaroSobreCreme}`,
-                paddingTop: AS.md,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: AS.md,
-              }}
-            >
+            <dl className="atl-ficha-dados">
+              <Indicador rotulo="Renovável na eletricidade" valor={fmtPct(resumo.renewablesShareElecPct)} fonte={fonteSeDiverge(FONTE_CAMPO.renewablesShareElecPct)} />
               <Indicador
-                rotulo="Renovável na eletricidade"
-                valor={fmtPct(resumo.renewablesShareElecPct)}
-                fonte={fonteSeDiverge(FONTE_CAMPO.renewablesShareElecPct)}
-              />
-              <Indicador
-                rotulo="Intensidade de carbono da eletricidade"
+                rotulo="Intensidade de carbono"
                 valor={
                   resumo.carbonIntensityElecGco2PerKwh === null
                     ? '—'
-                    : `${fmtNum(resumo.carbonIntensityElecGco2PerKwh, 1)} ${fonteDe(FONTE_CAMPO.carbonIntensityElecGco2PerKwh)?.unit ?? 'gCO₂eq/kWh'}`
+                    : `${fmtNum(resumo.carbonIntensityElecGco2PerKwh, 1)} ${unidadePt(fonteDe(FONTE_CAMPO.carbonIntensityElecGco2PerKwh)?.unit, 'gCO₂eq/kWh')}`
                 }
                 fonte={fonteSeDiverge(FONTE_CAMPO.carbonIntensityElecGco2PerKwh)}
               />
               <Indicador
-                rotulo="Consumo de energia primária per capita"
-                valor={
-                  resumo.energyPerCapitaKwh === null
-                    ? '—'
-                    : `${fmtNum(resumo.energyPerCapitaKwh, 0)} ${fonteDe(FONTE_CAMPO.energyPerCapitaKwh)?.unit ?? 'kWh'}`
-                }
+                rotulo="Energia primária per capita"
+                valor={resumo.energyPerCapitaKwh === null ? '—' : `${fmtNum(resumo.energyPerCapitaKwh, 0)} ${unidadePt(fonteDe(FONTE_CAMPO.energyPerCapitaKwh)?.unit, 'kWh')}`}
                 fonte={fonteSeDiverge(FONTE_CAMPO.energyPerCapitaKwh)}
               />
               <Indicador
                 rotulo="Geração elétrica total"
-                valor={
-                  resumo.electricityGenerationTwh === null
-                    ? '—'
-                    : `${fmtNum(resumo.electricityGenerationTwh, 1)} ${fonteDe(FONTE_CAMPO.electricityGenerationTwh)?.unit ?? 'TWh'}`
-                }
+                valor={resumo.electricityGenerationTwh === null ? '—' : `${fmtNum(resumo.electricityGenerationTwh, 1)} ${unidadePt(fonteDe(FONTE_CAMPO.electricityGenerationTwh)?.unit, 'TWh')}`}
                 fonte={fonteSeDiverge(FONTE_CAMPO.electricityGenerationTwh)}
               />
-              <Indicador
-                rotulo="População"
-                valor={fmtNum(resumo.population)}
-                fonte={fonteSeDiverge(FONTE_CAMPO.population)}
-              />
-            </section>
+              <Indicador rotulo="População" valor={fmtNum(resumo.population)} fonte={fonteSeDiverge(FONTE_CAMPO.population)} />
+            </dl>
 
             {citacaoComum !== null && (
-              <span
-                style={{
-                  ...AT.dado,
-                  fontSize: '9px',
-                  color: A2.tintaMetadado,
-                  borderTop: `1px solid ${A2.fioClaroSobreCreme}`,
-                  paddingTop: AS.sm,
-                }}
-              >
-                Fonte de {rotulosCobertos.join(', ')}:{' '}
-                {nomesDasFontes(citacaoComum)}.
-              </span>
+              <p className="atl-pais-fonte">
+                Fonte de {rotulosCobertos.join(', ')}: {nomesDasFontes(citacaoComum)}.
+              </p>
             )}
 
             {falhaFontes && (
-              <span style={{ ...AT.dado, fontSize: '10px', fontStyle: 'italic', color: A2.tintaMetadado }}>
-                As citações de fonte por campo não carregaram agora — os
-                valores acima vêm da lista já carregada; recarregue para
-                as citações.
-              </span>
+              <p className="atl-nota atl-ausencia">
+                As citações de fonte por campo não carregaram agora. Os valores acima vêm da lista já carregada; recarregue a página para ver as citações.
+              </p>
             )}
 
             {fontes && (
-              <details style={{ borderTop: `1px solid ${A2.fioClaroSobreCreme}`, paddingTop: AS.md }}>
-                <summary
-                  style={{
-                    ...AT.rotulo,
-                    fontSize: '9px',
-                    color: A.terracota,
-                    cursor: 'pointer',
-                    listStyle: 'none',
-                  }}
-                >
-                  Fontes completas, campo a campo →
-                </summary>
-                <dl style={{ margin: `${AS.sm} 0 0`, display: 'flex', flexDirection: 'column', gap: AS.sm }}>
+              <details className="atl-pais-fontes">
+                <summary>Fonte de cada número, campo a campo</summary>
+                <dl>
                   {Object.entries(fontes).map(([campo, fonte]) => (
                     <div key={campo}>
-                      <dt style={{ ...AT.dado, fontSize: '10px', color: A.tintaSobreCreme }}>
+                      <dt className="v-dado">
                         {campo} {fonte.unit ? `(${fonte.unit})` : ''}
                       </dt>
-                      <dd style={{ ...AT.dado, fontSize: '9px', color: A2.tintaMetadado, margin: 0, overflowWrap: 'anywhere' }}>
-                        {fonte.sourceCitation}
-                      </dd>
+                      <dd>{fonte.sourceCitation}</dd>
                     </div>
                   ))}
                 </dl>

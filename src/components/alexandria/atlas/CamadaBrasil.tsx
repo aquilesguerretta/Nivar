@@ -16,14 +16,16 @@
 // exatamente o que o Atlas inteiro existe para não fazer.
 //
 // ── RORAIMA ──────────────────────────────────────────────────────────
-// Aparece no contorno do Brasil e NÃO recebe submercado. Não é
-// esquecimento: a definição CCEE documentada não a atribui a nenhum
-// dos quatro, e o `ufsIbge` do GeoJSON confirma — o código 14 não
-// consta em nenhuma das quatro listas. Mesma decisão que o ARCHITECT
-// registrou no Portal BR, pela mesma razão.
+// Está no Norte. Roraima entrou no Norte em setembro de 2025, pela
+// linha de 500 kV Manaus – Boa Vista (entrada em operação em 16/09/2025
+// no cadastro do ONS). Os números do Norte incluem Roraima desde então,
+// sem separar o estado. A camada lê o arquivo PRÓPRIO do Atlas
+// (URL_DOS_SUBMERCADOS, construído por construir.mjs a partir dos dois
+// arquivos do IBGE do Portal BR, que continuam sem Roraima e não mudam).
 
 import { useEffect, useState } from 'react';
 import type { Feature, Geometry } from 'geojson';
+import { URL_DOS_SUBMERCADOS } from '@/lib/alexandria/atlas/dados';
 
 /** Contexto por submercado — TEXTO LITERAL da tabela do Módulo 08.
  *  Nenhuma frase redigida aqui; nenhum número em lugar nenhum. */
@@ -80,7 +82,7 @@ let cache: Promise<FeatureSubmercado[]> | null = null;
  *  nunca gerada, nunca aproximada. */
 export function carregarSubmercados(): Promise<FeatureSubmercado[]> {
   if (!cache) {
-    cache = fetch('/br/submercados.geojson')
+    cache = fetch(URL_DOS_SUBMERCADOS)
       .then((r) => {
         if (!r.ok) throw new Error(`submercados.geojson respondeu ${r.status}`);
         return r.json() as Promise<RespostaGeo>;

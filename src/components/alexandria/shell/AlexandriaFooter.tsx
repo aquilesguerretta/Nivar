@@ -279,7 +279,7 @@ export function AlexandriaFooter() {
           color: ${A2.tintaSobreNavySuave};
           text-decoration: none;
           border-bottom: 1px solid transparent;
-          border-radius: ${AR.none};
+          border-radius: 0;
           transition: color ${AE.estado} ${AE.easing},
                       border-color ${AE.estado} ${AE.easing};
         }
@@ -536,7 +536,7 @@ export function AlexandriaFooter() {
               verticalAlign: 'baseline',
             }}
           />
-          Alexandria · GridAlpha · {ano}
+          Alexandria · NIVAR · {ano}
         </span>
       </div>
     </footer>

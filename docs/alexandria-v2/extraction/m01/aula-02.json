@@ -1,0 +1,2157 @@
+{
+  "meta": {
+    "grupo": "aula02",
+    "modulo": "M01",
+    "aula": "M01·A02",
+    "fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo01.html",
+    "fonte_somente_leitura": true,
+    "fonte_total_linhas": 3212,
+    "aula_linhas": {
+      "inicio": 1482,
+      "fim": 1580,
+      "nota": "comentário de abertura 1482; section.aula 1484–1580"
+    },
+    "extraido_em": "2026-11-14",
+    "metodo": "Extração programática estrita (script node sobre fatias do HTML por linha; o percorredor lança erro em qualquer linha que não reconhece; nenhuma prosa digitada). Campos `html` guardam o innerHTML literal; campos `texto` são o mesmo conteúdo com tags removidas e entidades decodificadas.",
+    "protocolo": "docs/alexandria/extraction-protocol.md",
+    "taxonomia": "docs/alexandria/instrument-taxonomy.md",
+    "convencoes": {
+      "ausencia": "null + campo *_nota explicando o que foi medido",
+      "ids": "m01-a02-bNN-<tipo> para blocos (ordem da fonte); m01-inst-02; m01-ex-02",
+      "vinculos": "só quando a fonte declara (tag, posição dentro da section, remissão textual literal); correspondência textual é marcada como tal",
+      "comentario": "Campos de prosa nossa são só `nota`, `*_nota`, `o_que`, `argumento`, `decisao`, `onde` e a lista comparacao_codigo; todo o resto é verbatim e verificado por substring contra o HTML."
+    }
+  },
+  "aula": {
+    "id": "m01-a02",
+    "numero": 2,
+    "marcador": {
+      "num": "Aula 02",
+      "nome": "As sete unidades essenciais",
+      "origem": {
+        "seletor": "div.aula-marker",
+        "trecho_inicial": "Aula 02 As sete unidades essenciais",
+        "linha_aprox": 1486
+      }
+    },
+    "titulo_h2_html": "Sete símbolos. Toda a <em>linguagem</em>.",
+    "titulo_h2_texto": "Sete símbolos. Toda a linguagem.",
+    "titulo_h2_origem": {
+      "seletor": "h2.aula-title",
+      "trecho_inicial": "Sete símbolos. Toda a linguagem.",
+      "linha_aprox": 1487
+    },
+    "pergunta_mapa": {
+      "numero": "02",
+      "tema": "As sete unidades essenciais",
+      "pergunta_html": "O que volt, ampere, watt, kVA e kVAr realmente medem?",
+      "pergunta_texto": "O que volt, ampere, watt, kVA e kVAr realmente medem?",
+      "origem": {
+        "seletor": "§ MAP table > tbody > tr(02)",
+        "trecho_inicial": "O que volt, ampere, watt, kVA e kVAr realmente medem?",
+        "linha_aprox": 1340
+      },
+      "nota": "Única pergunta que a fonte declara para esta aula. Vive na tabela do § MAP, não na aula."
+    },
+    "duracao_min": null,
+    "dificuldade": null,
+    "video": null,
+    "ausencias_nota": "Sem duração, dificuldade, vídeo, <img>, <svg>, lista (<ul>/<ol>), referência por aula ou \"Vale lembrar\" dentro da section. Medido na fatia 1484–1580: {\"ul_ol\":0,\"img\":0,\"svg\":0,\"video\":0,\"canvas\":0,\"entidades\":0,\"vale_lembrar\":0}."
+  },
+  "blocos": [
+    {
+      "id": "m01-a02-b01-lead",
+      "tipo": "lead",
+      "html": "V, A, W, kW, kWh, kVA, kVAr. Quem domina essas sete unidades e a relação entre elas consegue ler qualquer fatura industrial brasileira sem precisar perguntar o que cada linha significa.",
+      "texto": "V, A, W, kW, kWh, kVA, kVAr. Quem domina essas sete unidades e a relação entre elas consegue ler qualquer fatura industrial brasileira sem precisar perguntar o que cada linha significa.",
+      "origem": {
+        "seletor": "section.aula(Aula 02) > .container > p.lead",
+        "trecho_inicial": "V, A, W, kW, kWh, kVA, kVAr. Quem domina essas sete unidades",
+        "linha_aprox": 1489
+      }
+    },
+    {
+      "id": "m01-a02-b02-titulo",
+      "tipo": "titulo",
+      "numero": "2.1",
+      "texto": "Volt — a \"pressão\" do circuito",
+      "html": "<span class=\"num\">2.1</span>Volt — a \"pressão\" do circuito",
+      "origem": {
+        "seletor": "h3 > span.num(2.1)",
+        "trecho_inicial": "2.1Volt — a \"pressão\" do circuito",
+        "linha_aprox": 1491
+      }
+    },
+    {
+      "id": "m01-a02-b03-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Volt (V) mede <strong>tensão elétrica</strong>: a diferença de potencial que empurra a corrente pelo condutor. Na analogia da torneira, tensão é a pressão da água. Um valor de tensão maior empurra carga por circuitos com mais resistência.",
+      "texto": "Volt (V) mede tensão elétrica: a diferença de potencial que empurra a corrente pelo condutor. Na analogia da torneira, tensão é a pressão da água. Um valor de tensão maior empurra carga por circuitos com mais resistência.",
+      "marcacao_inline": {
+        "strong": [
+          "tensão elétrica"
+        ]
+      },
+      "origem": {
+        "seletor": "h3(2.1) ~ p:nth-of-type(1)",
+        "trecho_inicial": "Volt (V) mede tensão elétrica: a diferença de potencial que ",
+        "linha_aprox": 1492
+      }
+    },
+    {
+      "id": "m01-a02-b04-paragrafo",
+      "tipo": "paragrafo",
+      "html": "No Brasil, você verá tensões em escalas muito diferentes ao longo da cadeia elétrica:",
+      "texto": "No Brasil, você verá tensões em escalas muito diferentes ao longo da cadeia elétrica:",
+      "origem": {
+        "seletor": "h3(2.1) ~ p:nth-of-type(2)",
+        "trecho_inicial": "No Brasil, você verá tensões em escalas muito diferentes ao ",
+        "linha_aprox": 1494
+      }
+    },
+    {
+      "id": "m01-a02-b05-tabela",
+      "tipo": "tabela",
+      "cabecalho": [
+        {
+          "html": "Tensão",
+          "texto": "Tensão"
+        },
+        {
+          "html": "Onde aparece",
+          "texto": "Onde aparece"
+        },
+        {
+          "html": "Quem consome",
+          "texto": "Quem consome"
+        }
+      ],
+      "linhas": [
+        {
+          "celulas": [
+            {
+              "html": "127 / 220 V",
+              "texto": "127 / 220 V",
+              "td_classe": "mono"
+            },
+            {
+              "html": "Baixa tensão residencial e comercial",
+              "texto": "Baixa tensão residencial e comercial"
+            },
+            {
+              "html": "Casas, lojas, pequenos comércios",
+              "texto": "Casas, lojas, pequenos comércios"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(1)",
+            "trecho_inicial": "127 / 220 V",
+            "linha_aprox": 1500
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "220 / 380 / 440 V",
+              "texto": "220 / 380 / 440 V",
+              "td_classe": "mono"
+            },
+            {
+              "html": "Baixa tensão trifásica",
+              "texto": "Baixa tensão trifásica"
+            },
+            {
+              "html": "Pequenas indústrias e cargas comerciais",
+              "texto": "Pequenas indústrias e cargas comerciais"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(2)",
+            "trecho_inicial": "220 / 380 / 440 V",
+            "linha_aprox": 1501
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "13,8 kV",
+              "texto": "13,8 kV",
+              "td_classe": "mono"
+            },
+            {
+              "html": "Distribuição em média tensão",
+              "texto": "Distribuição em média tensão"
+            },
+            {
+              "html": "Grandes comércios e indústrias médias <b>(Grupo A4)</b>",
+              "texto": "Grandes comércios e indústrias médias (Grupo A4)"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(3)",
+            "trecho_inicial": "13,8 kV",
+            "linha_aprox": 1502
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "23 / 34,5 kV",
+              "texto": "23 / 34,5 kV",
+              "td_classe": "mono"
+            },
+            {
+              "html": "Distribuição média tensão expandida",
+              "texto": "Distribuição média tensão expandida"
+            },
+            {
+              "html": "Indústrias maiores <b>(A4 / A3a)</b>",
+              "texto": "Indústrias maiores (A4 / A3a)"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(4)",
+            "trecho_inicial": "23 / 34,5 kV",
+            "linha_aprox": 1503
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "69 kV",
+              "texto": "69 kV",
+              "td_classe": "mono"
+            },
+            {
+              "html": "Subtransmissão",
+              "texto": "Subtransmissão"
+            },
+            {
+              "html": "Grandes consumidores industriais <b>(A3)</b>",
+              "texto": "Grandes consumidores industriais (A3)"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(5)",
+            "trecho_inicial": "69 kV",
+            "linha_aprox": 1504
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "88 / 138 kV",
+              "texto": "88 / 138 kV",
+              "td_classe": "mono"
+            },
+            {
+              "html": "Subtransmissão de alta capacidade",
+              "texto": "Subtransmissão de alta capacidade"
+            },
+            {
+              "html": "Indústrias muito grandes <b>(A2)</b>",
+              "texto": "Indústrias muito grandes (A2)"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(6)",
+            "trecho_inicial": "88 / 138 kV",
+            "linha_aprox": 1505
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "230 kV +",
+              "texto": "230 kV +",
+              "td_classe": "mono"
+            },
+            {
+              "html": "Transmissão de alta tensão",
+              "texto": "Transmissão de alta tensão"
+            },
+            {
+              "html": "Indústrias eletrointensivas <b>(A1)</b>",
+              "texto": "Indústrias eletrointensivas (A1)"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(7)",
+            "trecho_inicial": "230 kV +",
+            "linha_aprox": 1506
+          }
+        }
+      ],
+      "n_colunas": 3,
+      "n_linhas_dados": 7,
+      "origem": {
+        "seletor": "h3(2.1) ~ div.table-wrap > table",
+        "trecho_inicial": "",
+        "linha_aprox": 1496,
+        "linha_fim_aprox": 1509
+      }
+    },
+    {
+      "id": "m01-a02-b06-titulo",
+      "tipo": "titulo",
+      "numero": "2.2",
+      "texto": "Ampere — o fluxo de carga",
+      "html": "<span class=\"num\">2.2</span>Ampere — o fluxo de carga",
+      "origem": {
+        "seletor": "h3 > span.num(2.2)",
+        "trecho_inicial": "2.2Ampere — o fluxo de carga",
+        "linha_aprox": 1511
+      }
+    },
+    {
+      "id": "m01-a02-b07-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Ampere (A) mede <strong>corrente elétrica</strong>: o fluxo de carga elétrica passando pelo condutor por segundo. Se tensão é pressão, corrente é vazão. Cargas grandes — motores industriais, britadores, fornos — puxam mais corrente, especialmente em tensões mais baixas.",
+      "texto": "Ampere (A) mede corrente elétrica: o fluxo de carga elétrica passando pelo condutor por segundo. Se tensão é pressão, corrente é vazão. Cargas grandes — motores industriais, britadores, fornos — puxam mais corrente, especialmente em tensões mais baixas.",
+      "marcacao_inline": {
+        "strong": [
+          "corrente elétrica"
+        ]
+      },
+      "origem": {
+        "seletor": "h3(2.2) ~ p:nth-of-type(1)",
+        "trecho_inicial": "Ampere (A) mede corrente elétrica: o fluxo de carga elétrica",
+        "linha_aprox": 1512
+      }
+    },
+    {
+      "id": "m01-a02-b08-titulo",
+      "tipo": "titulo",
+      "numero": "2.3",
+      "texto": "Watt — a potência ativa",
+      "html": "<span class=\"num\">2.3</span>Watt — a potência ativa",
+      "origem": {
+        "seletor": "h3 > span.num(2.3)",
+        "trecho_inicial": "2.3Watt — a potência ativa",
+        "linha_aprox": 1514
+      }
+    },
+    {
+      "id": "m01-a02-b09-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Watt (W) mede <strong>potência</strong>. Em corrente contínua (e como aproximação inicial em corrente alternada), a relação é direta:",
+      "texto": "Watt (W) mede potência. Em corrente contínua (e como aproximação inicial em corrente alternada), a relação é direta:",
+      "marcacao_inline": {
+        "strong": [
+          "potência"
+        ]
+      },
+      "origem": {
+        "seletor": "h3(2.3) ~ p:nth-of-type(1)",
+        "trecho_inicial": "Watt (W) mede potência. Em corrente contínua (e como aproxim",
+        "linha_aprox": 1515
+      }
+    },
+    {
+      "id": "m01-a02-b10-formula",
+      "tipo": "formula",
+      "eq_html": "P (W) <span class=\"op\">=</span> V (volts) <span class=\"op\">×</span> I (amperes)",
+      "eq_texto": "P (W) = V (volts) × I (amperes)",
+      "desc_html": "Cadeia: V × A → W → kW → kWh × tarifa = custo",
+      "desc_texto": "Cadeia: V × A → W → kW → kWh × tarifa = custo",
+      "origem": {
+        "seletor": "h3(2.3) ~ div.formula > div.eq",
+        "trecho_inicial": "P (W) = V (volts) × I (amperes)",
+        "linha_aprox": 1517,
+        "linha_fim_aprox": 1520
+      },
+      "nota": "div.desc presente na fonte (o porte antigo gravou desc = null)."
+    },
+    {
+      "id": "m01-a02-b11-titulo",
+      "tipo": "titulo",
+      "numero": "2.4",
+      "texto": "Lei de Ohm — a relação fundamental",
+      "html": "<span class=\"num\">2.4</span>Lei de Ohm — a relação fundamental",
+      "origem": {
+        "seletor": "h3 > span.num(2.4)",
+        "trecho_inicial": "2.4Lei de Ohm — a relação fundamental",
+        "linha_aprox": 1522
+      }
+    },
+    {
+      "id": "m01-a02-b12-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Em qualquer circuito elétrico, três grandezas se relacionam de forma rígida: tensão, corrente e <strong>resistência</strong> (R, medida em ohms, Ω). A Lei de Ohm é uma das peças mais elementares de toda a engenharia elétrica:",
+      "texto": "Em qualquer circuito elétrico, três grandezas se relacionam de forma rígida: tensão, corrente e resistência (R, medida em ohms, Ω). A Lei de Ohm é uma das peças mais elementares de toda a engenharia elétrica:",
+      "marcacao_inline": {
+        "strong": [
+          "resistência"
+        ]
+      },
+      "origem": {
+        "seletor": "h3(2.4) ~ p:nth-of-type(1)",
+        "trecho_inicial": "Em qualquer circuito elétrico, três grandezas se relacionam ",
+        "linha_aprox": 1523
+      }
+    },
+    {
+      "id": "m01-a02-b13-formula",
+      "tipo": "formula",
+      "eq_html": "V <span class=\"op\">=</span> I <span class=\"op\">×</span> R",
+      "eq_texto": "V = I × R",
+      "desc_html": "Tensão · Corrente · Resistência",
+      "desc_texto": "Tensão · Corrente · Resistência",
+      "origem": {
+        "seletor": "h3(2.4) ~ div.formula > div.eq",
+        "trecho_inicial": "V = I × R",
+        "linha_aprox": 1525,
+        "linha_fim_aprox": 1528
+      },
+      "nota": "div.desc presente na fonte (o porte antigo gravou desc = null)."
+    },
+    {
+      "id": "m01-a02-b14-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Resistência é a oposição que o material oferece à passagem de carga. Todo cabo, conexão, motor e equipamento tem resistência. <strong>Resistência não é maldade física — é consequência da matéria.</strong> Mas, como veremos na Aula 04, resistência multiplicada por corrente ao quadrado é exatamente onde nascem as perdas técnicas do sistema elétrico.",
+      "texto": "Resistência é a oposição que o material oferece à passagem de carga. Todo cabo, conexão, motor e equipamento tem resistência. Resistência não é maldade física — é consequência da matéria. Mas, como veremos na Aula 04, resistência multiplicada por corrente ao quadrado é exatamente onde nascem as perdas técnicas do sistema elétrico.",
+      "marcacao_inline": {
+        "strong": [
+          "Resistência não é maldade física — é consequência da matéria."
+        ]
+      },
+      "origem": {
+        "seletor": "h3(2.4) ~ p:nth-of-type(2)",
+        "trecho_inicial": "Resistência é a oposição que o material oferece à passagem d",
+        "linha_aprox": 1530
+      }
+    },
+    {
+      "id": "m01-a02-b15-instrumento",
+      "tipo": "instrumento",
+      "ref": "m01-inst-02",
+      "texto": "Calculadora · Lei de Ohm",
+      "origem": {
+        "seletor": "div.instrument (comentário na linha 1532)",
+        "trecho_inicial": "Calculadora · Lei de Ohm",
+        "linha_aprox": 1532,
+        "linha_fim_aprox": 1562
+      },
+      "vinculos": {
+        "instrumento": "m01-inst-02"
+      },
+      "nota": "Posição literal na fonte: depois do bloco anterior e antes do bloco seguinte da sequência. Especificação completa em instrumentos[0]. Linhas 1533–1562."
+    },
+    {
+      "id": "m01-a02-b16-titulo",
+      "tipo": "titulo",
+      "numero": "2.5",
+      "texto": "kVA e kVAr — quando a rede vê mais do que trabalho útil",
+      "html": "<span class=\"num\">2.5</span>kVA e kVAr — quando a rede vê mais do que trabalho útil",
+      "origem": {
+        "seletor": "h3 > span.num(2.5)",
+        "trecho_inicial": "2.5kVA e kVAr — quando a rede vê mais do que trabalho útil",
+        "linha_aprox": 1564
+      }
+    },
+    {
+      "id": "m01-a02-b17-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Em corrente alternada (que é o padrão da rede pública), a história é mais sutil. Nem toda potência que circula entre rede e instalação se converte em trabalho útil. Em equipamentos indutivos — motores, transformadores, compressores — parte da potência <strong>oscila</strong> para sustentar campos eletromagnéticos sem realizar trabalho mecânico no eixo da máquina.",
+      "texto": "Em corrente alternada (que é o padrão da rede pública), a história é mais sutil. Nem toda potência que circula entre rede e instalação se converte em trabalho útil. Em equipamentos indutivos — motores, transformadores, compressores — parte da potência oscila para sustentar campos eletromagnéticos sem realizar trabalho mecânico no eixo da máquina.",
+      "marcacao_inline": {
+        "strong": [
+          "oscila"
+        ]
+      },
+      "origem": {
+        "seletor": "h3(2.5) ~ p:nth-of-type(1)",
+        "trecho_inicial": "Em corrente alternada (que é o padrão da rede pública), a hi",
+        "linha_aprox": 1565
+      }
+    },
+    {
+      "id": "m01-a02-b18-tabela",
+      "tipo": "tabela",
+      "cabecalho": [
+        {
+          "html": "Grandeza",
+          "texto": "Grandeza"
+        },
+        {
+          "html": "Unidade",
+          "texto": "Unidade"
+        },
+        {
+          "html": "Função",
+          "texto": "Função"
+        }
+      ],
+      "linhas": [
+        {
+          "celulas": [
+            {
+              "html": "<b>Potência ativa</b>",
+              "texto": "Potência ativa"
+            },
+            {
+              "html": "kW",
+              "texto": "kW",
+              "td_classe": "mono"
+            },
+            {
+              "html": "Realiza trabalho útil (gira eixo, esquenta forno, aciona esteira)",
+              "texto": "Realiza trabalho útil (gira eixo, esquenta forno, aciona esteira)"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(1)",
+            "trecho_inicial": "Potência ativa",
+            "linha_aprox": 1571
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>Potência reativa</b>",
+              "texto": "Potência reativa"
+            },
+            {
+              "html": "kVAr",
+              "texto": "kVAr",
+              "td_classe": "mono"
+            },
+            {
+              "html": "Sustenta campos magnéticos em motores e transformadores",
+              "texto": "Sustenta campos magnéticos em motores e transformadores"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(2)",
+            "trecho_inicial": "Potência reativa",
+            "linha_aprox": 1572
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>Potência aparente</b>",
+              "texto": "Potência aparente"
+            },
+            {
+              "html": "kVA",
+              "texto": "kVA",
+              "td_classe": "mono"
+            },
+            {
+              "html": "Total que a rede precisa entregar (combinação vetorial de ativa e reativa)",
+              "texto": "Total que a rede precisa entregar (combinação vetorial de ativa e reativa)"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(3)",
+            "trecho_inicial": "Potência aparente",
+            "linha_aprox": 1573
+          }
+        }
+      ],
+      "n_colunas": 3,
+      "n_linhas_dados": 3,
+      "origem": {
+        "seletor": "h3(2.5) ~ div.table-wrap > table",
+        "trecho_inicial": "",
+        "linha_aprox": 1567,
+        "linha_fim_aprox": 1576
+      }
+    },
+    {
+      "id": "m01-a02-b19-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Essas três grandezas formam um <strong>triângulo retângulo</strong>: kW e kVAr são os catetos, kVA é a hipotenusa. Veremos isso em profundidade na Aula 07, onde toda a lógica do fator de potência fica explícita. Por enquanto, basta fixar: kW é o que vira produção; kVAr ocupa a rede sem virar produção; kVA é o que a rede precisa dimensionar.",
+      "texto": "Essas três grandezas formam um triângulo retângulo: kW e kVAr são os catetos, kVA é a hipotenusa. Veremos isso em profundidade na Aula 07, onde toda a lógica do fator de potência fica explícita. Por enquanto, basta fixar: kW é o que vira produção; kVAr ocupa a rede sem virar produção; kVA é o que a rede precisa dimensionar.",
+      "marcacao_inline": {
+        "strong": [
+          "triângulo retângulo"
+        ]
+      },
+      "origem": {
+        "seletor": "h3(2.5) ~ p:nth-of-type(2)",
+        "trecho_inicial": "Essas três grandezas formam um triângulo retângulo: kW e kVA",
+        "linha_aprox": 1578
+      }
+    }
+  ],
+  "figuras": [],
+  "figuras_nota": "Nenhuma figura na section: 0 <img>, 0 <svg>, 0 <canvas>. As tabelas ficam em blocos de tipo \"tabela\".",
+  "tabelas": [
+    "m01-a02-b05-tabela",
+    "m01-a02-b18-tabela"
+  ],
+  "destaques": [],
+  "tres_niveis": [],
+  "listas": [],
+  "listas_nota": "Nenhuma <ul>/<ol> na section (medido: 0).",
+  "vale_lembrar": null,
+  "vale_lembrar_nota": "A expressão \"Vale lembrar\" não ocorre dentro da section (medido); os destaques da aula são os div.callout.",
+  "termos_lexico": {
+    "vinculo_declarado_pela_fonte": false,
+    "nota": "O glossário da fonte (§ Lex) não declara aula por termo. Abaixo: verbetes cujo nome-base (sem parênteses) ocorre como palavra no texto da section (incluindo o instrumento). Correspondência textual, não posse — ler ocorrencias_contexto antes de ligar (§2 do protocolo).",
+    "total_verbetes_fonte": 38,
+    "candidatos": [
+      {
+        "termo": "Ampere (A)",
+        "unidade_rotulo": "Corrente",
+        "definicao_html": "Unidade de medida de corrente elétrica — o fluxo de carga que atravessa um condutor por segundo. Analogia hidráulica: vazão de água. Em instalações industriais, cargas grandes (motores, britadores, fornos) puxam alta corrente especialmente quando operam em tensões mais baixas.",
+        "n_ocorrencias": 2,
+        "ocorrencias_contexto": [
+          "ão Indústrias eletrointensivas (A1) 2.2 Ampere — o fluxo de carga Ampere (A) mede corr",
+          "ivas (A1) 2.2 Ampere — o fluxo de carga Ampere (A) mede corrente elétrica : o fluxo de"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Ampere (A)",
+          "linha_aprox": 2528
+        },
+        "leitura_nota": "conceito central: título 2.2 e primeiro parágrafo."
+      },
+      {
+        "termo": "Corrente alternada (AC)",
+        "unidade_rotulo": "Forma de onda",
+        "definicao_html": "Corrente elétrica cujo sentido alterna periodicamente. No Brasil, a frequência da rede pública é de 60 Hz — sessenta ciclos por segundo. Base de toda a rede pública de transmissão e distribuição moderna, porque permite elevação e redução de tensão por transformadores.",
+        "n_ocorrencias": 2,
+        "ocorrencias_contexto": [
+          "contínua (e como aproximação inicial em corrente alternada), a relação é direta: P (W) = V (volts)",
+          " a rede vê mais do que trabalho útil Em corrente alternada (que é o padrão da rede pública), a his"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Corrente alternada (AC)",
+          "linha_aprox": 2540
+        },
+        "leitura_nota": "menção em 2.3 (\"como aproximação inicial em corrente alternada\") e em 2.5 (\"Em corrente alternada (que é o padrão da rede pública)\"); a A02 não define o verbete."
+      },
+      {
+        "termo": "Corrente contínua (DC)",
+        "unidade_rotulo": "Forma de onda",
+        "definicao_html": "Corrente elétrica com fluxo em direção principal constante. Usada em baterias, painéis solares antes do inversor, eletrônica embarcada e transmissão HVDC de longa distância. Retoma relevância com a expansão de solar, BESS e tecnologias correlatas.",
+        "n_ocorrencias": 1,
+        "ocorrencias_contexto": [
+          "ência ativa Watt (W) mede potência . Em corrente contínua (e como aproximação inicial em corrente"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Corrente contínua (DC)",
+          "linha_aprox": 2544
+        },
+        "leitura_nota": "menção em 2.3 (\"Em corrente contínua\"); a A02 não define o verbete."
+      },
+      {
+        "termo": "Fator de potência (FP)",
+        "unidade_rotulo": "cos φ",
+        "definicao_html": "Razão entre potência ativa (kW) e potência aparente (kVA). Em regime senoidal, equivale ao cosseno do ângulo de defasagem entre tensão e corrente. Referência prática regulatória brasileira para Grupo A: mínimo 0,92, indutivo ou capacitivo. Abaixo desse valor pode haver cobrança por excedente reativo.",
+        "n_ocorrencias": 1,
+        "ocorrencias_contexto": [
+          "idade na Aula 07, onde toda a lógica do fator de potência fica explícita. Por enquanto, basta fix"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Fator de potência (FP)",
+          "linha_aprox": 2584
+        },
+        "leitura_nota": "menção em 2.5, que remete à Aula 07 (\"onde toda a lógica do fator de potência fica explícita\")."
+      },
+      {
+        "termo": "Grupo A",
+        "unidade_rotulo": "Classificação",
+        "definicao_html": "Classe de consumidores atendidos em alta ou média tensão (≥ 2,3 kV) — indústrias, grandes comércios. Subdivide-se em A1, A2, A3, A3a, A4 e AS por nível de tensão. Estrutura tarifária binômia (consumo + demanda). Todo o universo industrial relevante da GridAlpha está aqui.",
+        "n_ocorrencias": 1,
+        "ocorrencias_contexto": [
+          " Grandes comércios e indústrias médias (Grupo A4) 23 / 34,5 kV Distribuição média tensã"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Grupo A",
+          "linha_aprox": 2592
+        },
+        "leitura_nota": "FALSO POSITIVO: o texto é \"(Grupo A4)\" na tabela 2.1 (subgrupo A4); o casamento por palavra pega \"Grupo A\" antes do dígito. Não é o verbete Grupo A."
+      },
+      {
+        "termo": "kVA",
+        "unidade_rotulo": "Potência aparente",
+        "definicao_html": "Quilovolt-ampere. Unidade de potência aparente — combinação vetorial de potência ativa (kW) e reativa (kVAr). É o \"tamanho elétrico total\" que a rede precisa entregar à instalação. Dimensiona transformadores e cabos.",
+        "n_ocorrencias": 5,
+        "ocorrencias_contexto": [
+          "s. Toda a linguagem . V, A, W, kW, kWh, kVA, kVAr. Quem domina essas sete unidades ",
+          " espinha física da fatura elétrica. 2.5 kVA e kVAr — quando a rede vê mais do que t",
+          "res e transformadores Potência aparente kVA Total que a rede precisa entregar (comb",
+          "o retângulo : kW e kVAr são os catetos, kVA é a hipotenusa. Veremos isso em profund",
+          "; kVAr ocupa a rede sem virar produção; kVA é o que a rede precisa dimensionar."
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "kVA",
+          "linha_aprox": 2604
+        },
+        "leitura_nota": "conceito central: título 2.5, tabela 2.5 e fechamento."
+      },
+      {
+        "termo": "kVAr",
+        "unidade_rotulo": "Potência reativa",
+        "definicao_html": "Quilovolt-ampere reativo. Unidade de potência reativa — circula entre rede e equipamentos para sustentar campos magnéticos e elétricos sem realizar trabalho útil no eixo da máquina. Necessária para motores e transformadores, mas excessiva degrada o fator de potência.",
+        "n_ocorrencias": 5,
+        "ocorrencias_contexto": [
+          "da a linguagem . V, A, W, kW, kWh, kVA, kVAr. Quem domina essas sete unidades e a re",
+          "ha física da fatura elétrica. 2.5 kVA e kVAr — quando a rede vê mais do que trabalho",
+          "forno, aciona esteira) Potência reativa kVAr Sustenta campos magnéticos em motores e",
+          "as formam um triângulo retângulo : kW e kVAr são os catetos, kVA é a hipotenusa. Ver",
+          " basta fixar: kW é o que vira produção; kVAr ocupa a rede sem virar produção; kVA é "
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "kVAr",
+          "linha_aprox": 2608
+        },
+        "leitura_nota": "conceito central: título 2.5, tabela 2.5 e fechamento."
+      },
+      {
+        "termo": "kW",
+        "unidade_rotulo": "Potência ativa",
+        "definicao_html": "Quilowatt. Unidade de potência ativa — a parcela da potência elétrica que realiza trabalho útil (gira eixo, esquenta forno, aciona esteira). 1 kW = 1.000 W. Não confundir com kWh, que é energia.",
+        "n_ocorrencias": 7,
+        "ocorrencias_contexto": [
+          "e símbolos. Toda a linguagem . V, A, W, kW, kWh, kVA, kVAr. Quem domina essas sete",
+          "olts) × I (amperes) Cadeia: V × A → W → kW → kWh × tarifa = custo 2.4 Lei de Ohm —",
+          ", a potência aproximada é 2.200 W = 2,2 kW . Ligando por 5 horas: 11 kWh . Essa ca",
+          "horas: 11 kWh . Essa cadeia V × A → W → kW → kWh × tarifa = R$ é a espinha física ",
+          " Grandeza Unidade Função Potência ativa kW Realiza trabalho útil (gira eixo, esque",
+          "andezas formam um triângulo retângulo : kW e kVAr são os catetos, kVA é a hipotenu",
+          "a explícita. Por enquanto, basta fixar: kW é o que vira produção; kVAr ocupa a red"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "kW",
+          "linha_aprox": 2612
+        },
+        "leitura_nota": "unidade da cadeia (desc da 2.3), da tabela 2.5, da nota do instrumento e do lead; sem subseção própria."
+      },
+      {
+        "termo": "kWh",
+        "unidade_rotulo": "Energia",
+        "definicao_html": "Quilowatt-hora. Unidade de energia equivalente a um quilowatt durante uma hora. É a grandeza que aparece como \"consumo\" em qualquer fatura elétrica. kWh = kW × h.",
+        "n_ocorrencias": 4,
+        "ocorrencias_contexto": [
+          "mbolos. Toda a linguagem . V, A, W, kW, kWh, kVA, kVAr. Quem domina essas sete unid",
+          " × I (amperes) Cadeia: V × A → W → kW → kWh × tarifa = custo 2.4 Lei de Ohm — a rel",
+          "00 W = 2,2 kW . Ligando por 5 horas: 11 kWh . Essa cadeia V × A → W → kW → kWh × ta",
+          ": 11 kWh . Essa cadeia V × A → W → kW → kWh × tarifa = R$ é a espinha física da fat"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "kWh",
+          "linha_aprox": 2616
+        },
+        "leitura_nota": "unidade da cadeia (desc da 2.3), da nota do instrumento e do lead; sem subseção própria na A02."
+      },
+      {
+        "termo": "Lei de Ohm",
+        "unidade_rotulo": "V = I × R",
+        "definicao_html": "Relação fundamental entre tensão (V), corrente (I) e resistência (R) em um circuito elétrico. Junto com P = I² × R (perdas resistivas) e P = V × I (potência em DC), forma o tripé de qualquer cálculo elétrico de instalação.",
+        "n_ocorrencias": 3,
+        "ocorrencias_contexto": [
+          "× A → W → kW → kWh × tarifa = custo 2.4 Lei de Ohm — a relação fundamental Em qualquer cir",
+          "e resistência (R, medida em ohms, Ω). A Lei de Ohm é uma das peças mais elementares de tod",
+          "icas do sistema elétrico. Calculadora · Lei de Ohm INST · 02 Preencha dois campos. O terce"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Lei de Ohm",
+          "linha_aprox": 2620
+        },
+        "leitura_nota": "conceito central: título 2.4, título do instrumento."
+      },
+      {
+        "termo": "Perdas técnicas",
+        "unidade_rotulo": "Físicas",
+        "definicao_html": "Perdas físicas no sistema elétrico — aquecimento de cabos, perdas em transformadores, perdas magnéticas, perdas mecânicas, perdas de conversão. Reconhecidas pela ANEEL nos processos de revisão tarifária e embutidas na componente fio da TUSD.",
+        "n_ocorrencias": 1,
+        "ocorrencias_contexto": [
+          "ao quadrado é exatamente onde nascem as perdas técnicas do sistema elétrico. Calculadora · Lei "
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Perdas técnicas",
+          "linha_aprox": 2632
+        },
+        "leitura_nota": "menção prospectiva em 2.4 (\"onde nascem as perdas técnicas do sistema elétrico\", remetendo à Aula 04); a A02 não define o verbete."
+      },
+      {
+        "termo": "Potência",
+        "unidade_rotulo": "W, kW, MW",
+        "definicao_html": "Taxa instantânea de uso, geração ou transformação de energia. Unidade SI é o watt (W). Difere de energia: potência mede velocidade; energia mede volume acumulado.",
+        "n_ocorrencias": 9,
+        "ocorrencias_contexto": [
+          "te em tensões mais baixas. 2.3 Watt — a potência ativa Watt (W) mede potência . Em corre",
+          "3 Watt — a potência ativa Watt (W) mede potência . Em corrente contínua (e como aproxima",
+          "rdando 2 valores... Em 220 V × 10 A , a potência aproximada é 2.200 W = 2,2 kW . Ligando",
+          "ica), a história é mais sutil. Nem toda potência que circula entre rede e instalação se ",
+          "ransformadores, compressores — parte da potência oscila para sustentar campos eletromagn",
+          "ixo da máquina. Grandeza Unidade Função Potência ativa kW Realiza trabalho útil (gira ei",
+          "a eixo, esquenta forno, aciona esteira) Potência reativa kVAr Sustenta campos magnéticos",
+          "magnéticos em motores e transformadores Potência aparente kVA Total que a rede precisa e",
+          "Aula 07, onde toda a lógica do fator de potência fica explícita. Por enquanto, basta fix"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Potência",
+          "linha_aprox": 2644
+        },
+        "leitura_nota": "conceito central: título 2.3 (\"a potência ativa\"), tabela 2.5 e fechamento."
+      },
+      {
+        "termo": "Tensão",
+        "unidade_rotulo": "V, kV",
+        "definicao_html": "Diferença de potencial elétrico entre dois pontos de um circuito. Analogia hidráulica: pressão da água. Unidade SI é o volt (V). Define grupo tarifário no Brasil: Grupo B (baixa tensão, &lt; 2,3 kV) ou Grupo A (média/alta tensão, ≥ 2,3 kV).",
+        "n_ocorrencias": 13,
+        "ocorrencias_contexto": [
+          "— a \"pressão\" do circuito Volt (V) mede tensão elétrica : a diferença de potencial que",
+          "pelo condutor. Na analogia da torneira, tensão é a pressão da água. Um valor de tensão",
+          "tensão é a pressão da água. Um valor de tensão maior empurra carga por circuitos com m",
+          "diferentes ao longo da cadeia elétrica: Tensão Onde aparece Quem consome 127 / 220 V B",
+          " aparece Quem consome 127 / 220 V Baixa tensão residencial e comercial Casas, lojas, p",
+          "uenos comércios 220 / 380 / 440 V Baixa tensão trifásica Pequenas indústrias e cargas ",
+          "omerciais 13,8 kV Distribuição em média tensão Grandes comércios e indústrias médias (",
+          "upo A4) 23 / 34,5 kV Distribuição média tensão expandida Indústrias maiores (A4 / A3a)",
+          "andes (A2) 230 kV + Transmissão de alta tensão Indústrias eletrointensivas (A1) 2.2 Am",
+          " passando pelo condutor por segundo. Se tensão é pressão, corrente é vazão. Cargas gra",
+          "randezas se relacionam de forma rígida: tensão, corrente e resistência (R, medida em o",
+          "e toda a engenharia elétrica: V = I × R Tensão · Corrente · Resistência Resistência é "
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Tensão",
+          "linha_aprox": 2656
+        },
+        "leitura_nota": "conceito central: título 2.1 e 2.4, tabela 2.1 (cabeçalho \"Tensão\")."
+      },
+      {
+        "termo": "Volt (V)",
+        "unidade_rotulo": "Tensão",
+        "definicao_html": "Unidade de medida de tensão elétrica. 1 V = 1 J/C (joule por coulomb). Em escala industrial, valores típicos no Brasil: 127/220 V (BT), 13,8 kV (A4), 69 kV (A3), 138 kV (A2), 230 kV+ (A1).",
+        "n_ocorrencias": 2,
+        "ocorrencias_contexto": [
+          "rguntar o que cada linha significa. 2.1 Volt — a \"pressão\" do circuito Volt (V) mede",
+          "ica. 2.1 Volt — a \"pressão\" do circuito Volt (V) mede tensão elétrica : a diferença "
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Volt (V)",
+          "linha_aprox": 2672
+        },
+        "leitura_nota": "conceito central: título 2.1 e primeiro parágrafo. O nome-base \"Volt\" também casa o título \"Volt — a pressão do circuito\"."
+      },
+      {
+        "termo": "Watt (W)",
+        "unidade_rotulo": "Potência",
+        "definicao_html": "Unidade SI de potência. 1 W = 1 J/s (joule por segundo). Em circuitos DC: W = V × A. Em escala industrial usa-se kW (1.000 W) ou MW (1.000.000 W).",
+        "n_ocorrencias": 2,
+        "ocorrencias_contexto": [
+          "pecialmente em tensões mais baixas. 2.3 Watt — a potência ativa Watt (W) mede potênc",
+          "ais baixas. 2.3 Watt — a potência ativa Watt (W) mede potência . Em corrente contínu"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Watt (W)",
+          "linha_aprox": 2676
+        },
+        "leitura_nota": "conceito central: título 2.3 e primeiro parágrafo."
+      }
+    ],
+    "comparacao_com_inventario": {
+      "fonte_da_lista": "docs/alexandria-v2/m01/aulas.md, seção 5 de cada aula (derivação nossa, não do HTML)",
+      "inventario": [
+        "Volt (V)",
+        "Ampere (A)",
+        "Watt (W)",
+        "kW",
+        "kWh",
+        "kVA",
+        "kVAr",
+        "Lei de Ohm",
+        "Potência",
+        "Tensão"
+      ],
+      "inventario_sem_correspondencia_textual": [],
+      "candidatos_fora_do_inventario": [
+        "Corrente alternada (AC)",
+        "Corrente contínua (DC)",
+        "Fator de potência (FP)",
+        "Grupo A",
+        "Perdas técnicas"
+      ]
+    }
+  },
+  "instrumentos": [
+    {
+      "id": "m01-inst-02",
+      "id_fonte": "INST · 02",
+      "kind_taxonomia": "calculadora",
+      "kind_nota": "Taxonomia: a fonte chama de \"Calculadora\", mas a mecânica é de resolvedor: 3 campos, o usuário preenche dois e o script calcula o terceiro; a saída é texto de status, não número. Confirmado pela marcação e pelo script; o kind final é decisão da FOUNDRY.",
+      "titulo": "Calculadora · Lei de Ohm",
+      "pergunta": null,
+      "pergunta_nota": "A prancha não tem pergunta própria. A instrução \"Preencha dois campos. O terceiro é calculado.\" (campo `instrucao`) diz o que fazer, e a fonte não a formula como pergunta. A pergunta do § MAP (L1340) está fora do instrumento. Qualquer pergunta de previsão seria DERIVADA (P3/P11).",
+      "instrucao": {
+        "html": "Preencha dois campos. O terceiro é calculado.",
+        "texto": "Preencha dois campos. O terceiro é calculado.",
+        "estilo_inline": "font-family: var(--font-mono); font-size: 12px; color: var(--text-tertiary); margin-bottom: 18px;",
+        "origem": {
+          "seletor": "div.instrument-body > p",
+          "trecho_inicial": "Preencha dois campos. O terceiro é calculado.",
+          "linha_aprox": 1539
+        }
+      },
+      "vinculos": {
+        "aula": "m01-a02",
+        "exercicio_relacionado": null,
+        "termo": null
+      },
+      "vinculos_nota": "O vínculo aula↔instrumento é por posição (div.instrument está dentro da section da aula). O vínculo com termos do léxico e com o exercício não é declarado pela fonte.",
+      "entradas": [
+        {
+          "id": "i02-v",
+          "rotulo": "Tensão",
+          "unidade": "V",
+          "tipo_input": "number",
+          "padrao": null,
+          "padrao_nota": "Sem atributo value: campo nasce vazio.",
+          "placeholder": "ex: 220",
+          "min": null,
+          "max": null,
+          "max_nota": "Sem atributo max na fonte.",
+          "step": "any",
+          "atributos_literais": {
+            "type": "number",
+            "id": "i02-v",
+            "placeholder": "ex: 220",
+            "step": "any"
+          },
+          "origem": {
+            "seletor": "input#i02-v",
+            "trecho_inicial": "Tensão V",
+            "linha_aprox": 1543
+          }
+        },
+        {
+          "id": "i02-i",
+          "rotulo": "Corrente",
+          "unidade": "A",
+          "tipo_input": "number",
+          "padrao": null,
+          "padrao_nota": "Sem atributo value: campo nasce vazio.",
+          "placeholder": "ex: 10",
+          "min": null,
+          "max": null,
+          "max_nota": "Sem atributo max na fonte.",
+          "step": "any",
+          "atributos_literais": {
+            "type": "number",
+            "id": "i02-i",
+            "placeholder": "ex: 10",
+            "step": "any"
+          },
+          "origem": {
+            "seletor": "input#i02-i",
+            "trecho_inicial": "Corrente A",
+            "linha_aprox": 1547
+          }
+        },
+        {
+          "id": "i02-r",
+          "rotulo": "Resistência",
+          "unidade": "Ω",
+          "tipo_input": "number",
+          "padrao": null,
+          "padrao_nota": "Sem atributo value: campo nasce vazio.",
+          "placeholder": "calculado",
+          "min": null,
+          "max": null,
+          "max_nota": "Sem atributo max na fonte.",
+          "step": "any",
+          "atributos_literais": {
+            "type": "number",
+            "id": "i02-r",
+            "placeholder": "calculado",
+            "step": "any"
+          },
+          "origem": {
+            "seletor": "input#i02-r",
+            "trecho_inicial": "Resistência Ω",
+            "linha_aprox": 1551
+          }
+        }
+      ],
+      "saidas": [
+        {
+          "id": "i02-status",
+          "rotulo": "Status",
+          "valor_inicial_marcacao": "Aguardando 2 valores...",
+          "unidade": null,
+          "estilo_inline": "style=\"font-size: 18px;\"",
+          "origem": {
+            "seletor": "div.instrument-output > span#i02-status",
+            "trecho_inicial": "Status",
+            "linha_aprox": 1555,
+            "linha_fim_aprox": 1556
+          },
+          "formula_exata_script": [
+            "status.textContent = 'Aguardando 2 valores...';",
+            "V.value = (vI * vR).toFixed(2);",
+            "status.textContent = 'V = I × R = ' + V.value + ' V';",
+            "I.value = (vV / vR).toFixed(2);",
+            "status.textContent = 'I = V ÷ R = ' + I.value + ' A';",
+            "R.value = (vV / vI).toFixed(3);",
+            "status.textContent = 'R = V ÷ I = ' + R.value + ' Ω';",
+            "if (diff < 0.01) status.textContent = 'Coerente: ' + vV.toFixed(0) + ' V';",
+            "else status.textContent = 'Inconsistente — limpe um campo';",
+            "V.addEventListener('input', () => { if (V.value === '') { R.value = ''; status.textContent = 'Aguardando 2 valores...'; } else calc(); });",
+            "I.addEventListener('input', () => { if (I.value === '') { R.value = ''; status.textContent = 'Aguardando 2 valores...'; } else calc(); });"
+          ],
+          "formula_exibida_na_aula": [
+            "P (W) = V (volts) × I (amperes)",
+            "V = I × R"
+          ],
+          "formula_exibida_na_aula_nota": "Está na prosa, FORA do div.instrument."
+        }
+      ],
+      "texto_nota_estatica": {
+        "id": null,
+        "html": "Em <b>220 V × 10 A</b>, a potência aproximada é <span class=\"hl\">2.200 W = 2,2 kW</span>. Ligando por 5 horas: <span class=\"hl\">11 kWh</span>. Essa cadeia <i>V × A → W → kW → kWh × tarifa = R$</i> é a espinha física da fatura elétrica.",
+        "texto": "Em 220 V × 10 A, a potência aproximada é 2.200 W = 2,2 kW. Ligando por 5 horas: 11 kWh. Essa cadeia V × A → W → kW → kWh × tarifa = R$ é a espinha física da fatura elétrica.",
+        "marcacao_inline": {
+          "hl": [
+            "2.200 W = 2,2 kW",
+            "11 kWh"
+          ],
+          "b": [
+            "220 V × 10 A"
+          ],
+          "i": [
+            "V × A → W → kW → kWh × tarifa = R$"
+          ]
+        },
+        "origem": {
+          "seletor": "div.instrument-note",
+          "trecho_inicial": "Em 220 V × 10 A, a potência aproximada é 2.200 W = 2,2 kW. L",
+          "linha_aprox": 1559
+        },
+        "nota": "Nota estática: nenhum script escreve nela (diferente do INST·06, cujo texto de leitura é sobrescrito por calc())."
+      },
+      "script": {
+        "origem": {
+          "seletor": "script: bloco \"INSTRUMENT 02: Ohm's Law calculator\"",
+          "trecho_inicial": "INSTRUMENT 02: Ohm's Law calculator (fill any 2 of 3)",
+          "linha_aprox": 2752,
+          "linha_fim_aprox": 2792
+        },
+        "linhas": [
+          {
+            "n": 2752,
+            "texto": "/* ============================================================"
+          },
+          {
+            "n": 2753,
+            "texto": "   INSTRUMENT 02: Ohm's Law calculator (fill any 2 of 3)"
+          },
+          {
+            "n": 2754,
+            "texto": "   ============================================================ */"
+          },
+          {
+            "n": 2755,
+            "texto": "(function() {"
+          },
+          {
+            "n": 2756,
+            "texto": "  const V = document.getElementById('i02-v');"
+          },
+          {
+            "n": 2757,
+            "texto": "  const I = document.getElementById('i02-i');"
+          },
+          {
+            "n": 2758,
+            "texto": "  const R = document.getElementById('i02-r');"
+          },
+          {
+            "n": 2759,
+            "texto": "  const status = document.getElementById('i02-status');"
+          },
+          {
+            "n": 2760,
+            "texto": ""
+          },
+          {
+            "n": 2761,
+            "texto": "  function calc(changed) {"
+          },
+          {
+            "n": 2762,
+            "texto": "    const vV = parseFloat(V.value);"
+          },
+          {
+            "n": 2763,
+            "texto": "    const vI = parseFloat(I.value);"
+          },
+          {
+            "n": 2764,
+            "texto": "    const vR = parseFloat(R.value);"
+          },
+          {
+            "n": 2765,
+            "texto": "    const filled = [vV, vI, vR].filter(x => !isNaN(x) && x > 0).length;"
+          },
+          {
+            "n": 2766,
+            "texto": ""
+          },
+          {
+            "n": 2767,
+            "texto": "    if (filled < 2) {"
+          },
+          {
+            "n": 2768,
+            "texto": "      status.textContent = 'Aguardando 2 valores...';"
+          },
+          {
+            "n": 2769,
+            "texto": "      return;"
+          },
+          {
+            "n": 2770,
+            "texto": "    }"
+          },
+          {
+            "n": 2771,
+            "texto": ""
+          },
+          {
+            "n": 2772,
+            "texto": "    if (changed === 'V' || (!isNaN(vI) && !isNaN(vR) && isNaN(vV))) {"
+          },
+          {
+            "n": 2773,
+            "texto": "      V.value = (vI * vR).toFixed(2);"
+          },
+          {
+            "n": 2774,
+            "texto": "      status.textContent = 'V = I × R = ' + V.value + ' V';"
+          },
+          {
+            "n": 2775,
+            "texto": "    } else if (changed === 'I' || (!isNaN(vV) && !isNaN(vR) && isNaN(vI))) {"
+          },
+          {
+            "n": 2776,
+            "texto": "      I.value = (vV / vR).toFixed(2);"
+          },
+          {
+            "n": 2777,
+            "texto": "      status.textContent = 'I = V ÷ R = ' + I.value + ' A';"
+          },
+          {
+            "n": 2778,
+            "texto": "    } else if (changed === 'R' || (!isNaN(vV) && !isNaN(vI) && isNaN(vR))) {"
+          },
+          {
+            "n": 2779,
+            "texto": "      R.value = (vV / vI).toFixed(3);"
+          },
+          {
+            "n": 2780,
+            "texto": "      status.textContent = 'R = V ÷ I = ' + R.value + ' Ω';"
+          },
+          {
+            "n": 2781,
+            "texto": "    } else {"
+          },
+          {
+            "n": 2782,
+            "texto": "      const expectedV = vI * vR;"
+          },
+          {
+            "n": 2783,
+            "texto": "      const diff = Math.abs(expectedV - vV) / vV;"
+          },
+          {
+            "n": 2784,
+            "texto": "      if (diff < 0.01) status.textContent = 'Coerente: ' + vV.toFixed(0) + ' V';"
+          },
+          {
+            "n": 2785,
+            "texto": "      else status.textContent = 'Inconsistente — limpe um campo';"
+          },
+          {
+            "n": 2786,
+            "texto": "    }"
+          },
+          {
+            "n": 2787,
+            "texto": "  }"
+          },
+          {
+            "n": 2788,
+            "texto": ""
+          },
+          {
+            "n": 2789,
+            "texto": "  V.addEventListener('input', () => { if (V.value === '') { R.value = ''; status.textContent = 'Aguardando 2 valores...'; } else calc(); });"
+          },
+          {
+            "n": 2790,
+            "texto": "  I.addEventListener('input', () => { if (I.value === '') { R.value = ''; status.textContent = 'Aguardando 2 valores...'; } else calc(); });"
+          },
+          {
+            "n": 2791,
+            "texto": "  R.addEventListener('input', () => calc('R'));"
+          },
+          {
+            "n": 2792,
+            "texto": "})();"
+          }
+        ],
+        "nota": "Linhas verbatim, uma por item, do comentário de abertura até `})();`."
+      },
+      "execucao_do_script_fonte": {
+        "metodo": "O código das linhas do script foi executado com `new Function` sobre um `document` simulado (getElementById devolve objetos com value/textContent/addEventListener). Os estados abaixo são saída real do script, não leitura.",
+        "resultados": [
+          {
+            "nome": "carga",
+            "passos": [],
+            "estados": [
+              {
+                "apos": "carga (sem eventos; o texto vem da marcação, o script não chama calc() no carregamento)",
+                "V": "",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              }
+            ]
+          },
+          {
+            "nome": "só V preenchido",
+            "passos": [
+              {
+                "campo": "i02-v",
+                "valor": "220"
+              }
+            ],
+            "estados": [
+              {
+                "apos": "carga (sem eventos; o texto vem da marcação, o script não chama calc() no carregamento)",
+                "V": "",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "V = \"220\"",
+                "V": "220",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              }
+            ]
+          },
+          {
+            "nome": "V e I → calcula R",
+            "passos": [
+              {
+                "campo": "i02-v",
+                "valor": "220"
+              },
+              {
+                "campo": "i02-i",
+                "valor": "10"
+              }
+            ],
+            "estados": [
+              {
+                "apos": "carga (sem eventos; o texto vem da marcação, o script não chama calc() no carregamento)",
+                "V": "",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "V = \"220\"",
+                "V": "220",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "I = \"10\"",
+                "V": "220",
+                "I": "10",
+                "R": "22.000",
+                "status": "R = V ÷ I = 22.000 Ω"
+              }
+            ]
+          },
+          {
+            "nome": "V e R → calcula I",
+            "passos": [
+              {
+                "campo": "i02-v",
+                "valor": "220"
+              },
+              {
+                "campo": "i02-r",
+                "valor": "22"
+              }
+            ],
+            "estados": [
+              {
+                "apos": "carga (sem eventos; o texto vem da marcação, o script não chama calc() no carregamento)",
+                "V": "",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "V = \"220\"",
+                "V": "220",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "R = \"22\"",
+                "V": "220",
+                "I": "10.00",
+                "R": "22",
+                "status": "I = V ÷ R = 10.00 A"
+              }
+            ]
+          },
+          {
+            "nome": "I e R → calcula V",
+            "passos": [
+              {
+                "campo": "i02-i",
+                "valor": "10"
+              },
+              {
+                "campo": "i02-r",
+                "valor": "22"
+              }
+            ],
+            "estados": [
+              {
+                "apos": "carga (sem eventos; o texto vem da marcação, o script não chama calc() no carregamento)",
+                "V": "",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "I = \"10\"",
+                "V": "",
+                "I": "10",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "R = \"22\"",
+                "V": "220.00",
+                "I": "10",
+                "R": "22",
+                "status": "V = I × R = 220.00 V"
+              }
+            ]
+          },
+          {
+            "nome": "V e I (R calculado = 22,000), depois V = 110 → coerência",
+            "passos": [
+              {
+                "campo": "i02-v",
+                "valor": "220"
+              },
+              {
+                "campo": "i02-i",
+                "valor": "10"
+              },
+              {
+                "campo": "i02-v",
+                "valor": "110"
+              }
+            ],
+            "estados": [
+              {
+                "apos": "carga (sem eventos; o texto vem da marcação, o script não chama calc() no carregamento)",
+                "V": "",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "V = \"220\"",
+                "V": "220",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "I = \"10\"",
+                "V": "220",
+                "I": "10",
+                "R": "22.000",
+                "status": "R = V ÷ I = 22.000 Ω"
+              },
+              {
+                "apos": "V = \"110\"",
+                "V": "110",
+                "I": "10",
+                "R": "22.000",
+                "status": "Inconsistente — limpe um campo"
+              }
+            ]
+          },
+          {
+            "nome": "I e R (V calculado = 220,00), depois V redigitado = 220 → coerente",
+            "passos": [
+              {
+                "campo": "i02-i",
+                "valor": "10"
+              },
+              {
+                "campo": "i02-r",
+                "valor": "22"
+              },
+              {
+                "campo": "i02-v",
+                "valor": "220"
+              }
+            ],
+            "estados": [
+              {
+                "apos": "carga (sem eventos; o texto vem da marcação, o script não chama calc() no carregamento)",
+                "V": "",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "I = \"10\"",
+                "V": "",
+                "I": "10",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "R = \"22\"",
+                "V": "220.00",
+                "I": "10",
+                "R": "22",
+                "status": "V = I × R = 220.00 V"
+              },
+              {
+                "apos": "V = \"220\"",
+                "V": "220",
+                "I": "10",
+                "R": "22",
+                "status": "Coerente: 220 V"
+              }
+            ]
+          },
+          {
+            "nome": "V e I (R calculado), depois R editado = 25 (os três preenchidos, handler de R)",
+            "passos": [
+              {
+                "campo": "i02-v",
+                "valor": "220"
+              },
+              {
+                "campo": "i02-i",
+                "valor": "10"
+              },
+              {
+                "campo": "i02-r",
+                "valor": "25"
+              }
+            ],
+            "estados": [
+              {
+                "apos": "carga (sem eventos; o texto vem da marcação, o script não chama calc() no carregamento)",
+                "V": "",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "V = \"220\"",
+                "V": "220",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "I = \"10\"",
+                "V": "220",
+                "I": "10",
+                "R": "22.000",
+                "status": "R = V ÷ I = 22.000 Ω"
+              },
+              {
+                "apos": "R = \"25\"",
+                "V": "220",
+                "I": "10",
+                "R": "22.000",
+                "status": "R = V ÷ I = 22.000 Ω"
+              }
+            ]
+          },
+          {
+            "nome": "V e I (R calculado), depois V esvaziado",
+            "passos": [
+              {
+                "campo": "i02-v",
+                "valor": "220"
+              },
+              {
+                "campo": "i02-i",
+                "valor": "10"
+              },
+              {
+                "campo": "i02-v",
+                "valor": ""
+              }
+            ],
+            "estados": [
+              {
+                "apos": "carga (sem eventos; o texto vem da marcação, o script não chama calc() no carregamento)",
+                "V": "",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "V = \"220\"",
+                "V": "220",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "I = \"10\"",
+                "V": "220",
+                "I": "10",
+                "R": "22.000",
+                "status": "R = V ÷ I = 22.000 Ω"
+              },
+              {
+                "apos": "V = \"\"",
+                "V": "",
+                "I": "10",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              }
+            ]
+          },
+          {
+            "nome": "V e I (R calculado), depois I esvaziado",
+            "passos": [
+              {
+                "campo": "i02-v",
+                "valor": "220"
+              },
+              {
+                "campo": "i02-i",
+                "valor": "10"
+              },
+              {
+                "campo": "i02-i",
+                "valor": ""
+              }
+            ],
+            "estados": [
+              {
+                "apos": "carga (sem eventos; o texto vem da marcação, o script não chama calc() no carregamento)",
+                "V": "",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "V = \"220\"",
+                "V": "220",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "I = \"10\"",
+                "V": "220",
+                "I": "10",
+                "R": "22.000",
+                "status": "R = V ÷ I = 22.000 Ω"
+              },
+              {
+                "apos": "I = \"\"",
+                "V": "220",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              }
+            ]
+          },
+          {
+            "nome": "I e R (V calculado = 220,00), depois V = 0",
+            "passos": [
+              {
+                "campo": "i02-i",
+                "valor": "10"
+              },
+              {
+                "campo": "i02-r",
+                "valor": "22"
+              },
+              {
+                "campo": "i02-v",
+                "valor": "0"
+              }
+            ],
+            "estados": [
+              {
+                "apos": "carga (sem eventos; o texto vem da marcação, o script não chama calc() no carregamento)",
+                "V": "",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "I = \"10\"",
+                "V": "",
+                "I": "10",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "R = \"22\"",
+                "V": "220.00",
+                "I": "10",
+                "R": "22",
+                "status": "V = I × R = 220.00 V"
+              },
+              {
+                "apos": "V = \"0\"",
+                "V": "0",
+                "I": "10",
+                "R": "22",
+                "status": "Inconsistente — limpe um campo"
+              }
+            ]
+          },
+          {
+            "nome": "V e I (R calculado), depois R esvaziado (o handler de R reescreve R = V ÷ I)",
+            "passos": [
+              {
+                "campo": "i02-v",
+                "valor": "220"
+              },
+              {
+                "campo": "i02-i",
+                "valor": "10"
+              },
+              {
+                "campo": "i02-r",
+                "valor": ""
+              }
+            ],
+            "estados": [
+              {
+                "apos": "carga (sem eventos; o texto vem da marcação, o script não chama calc() no carregamento)",
+                "V": "",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "V = \"220\"",
+                "V": "220",
+                "I": "",
+                "R": "",
+                "status": "Aguardando 2 valores..."
+              },
+              {
+                "apos": "I = \"10\"",
+                "V": "220",
+                "I": "10",
+                "R": "22.000",
+                "status": "R = V ÷ I = 22.000 Ω"
+              },
+              {
+                "apos": "R = \"\"",
+                "V": "220",
+                "I": "10",
+                "R": "22.000",
+                "status": "R = V ÷ I = 22.000 Ω"
+              }
+            ]
+          }
+        ]
+      },
+      "residuos_do_script": [
+        "O script NÃO chama calc() no carregamento: o texto \"Aguardando 2 valores...\" vem da marcação, e não de um primeiro cálculo.",
+        "`filled` conta só valores > 0, mas os ramos testam `!isNaN(...)`. Com V = 0 digitado, `filled` não conta o V, mas o ramo \"V ausente\" também não dispara (V = 0 não é NaN): cai na checagem de coerência (divisão por zero → \"Inconsistente — limpe um campo\").",
+        "Os handlers de V e de I chamam `calc()` sem argumento; o de R chama `calc('R')`. Por isso, editar R com V e I preenchidos recalcula e SOBRESCREVE R (R = V ÷ I), em vez de checar coerência. O ramo `changed === 'V'` nunca é alcançado (ninguém chama calc('V')).",
+        "Esvaziar V ou I zera o campo R e volta o status para \"Aguardando 2 valores...\". Esvaziar R com V e I preenchidos não esvazia nada: o handler de R chama calc('R'), que reescreve R = V ÷ I (o campo volta a 22.000 no cenário).",
+        "O campo calculado vira valor do input: o campo \"calculado\" deixa de estar vazio, e uma edição posterior de V ou I cai na checagem de coerência contra o valor antigo (cenário \"V = 110\").",
+        "Formatos: V e I com `toFixed(2)`, R com `toFixed(3)`, coerência com `toFixed(0)`; tolerância de coerência 1% (`diff < 0.01`)."
+      ],
+      "residuos_do_script_nota": "Resíduos do original, sinalizados e não corrigidos (§10).",
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "A fonte não cita procedência para os exemplos da nota (220 V × 10 A, 5 h) nem para os placeholders (ex: 220, ex: 10).",
+      "tolerancias": {
+        "coerencia_relativa": 0.01,
+        "descricao": "Único limiar do script: `diff < 0.01` na checagem de coerência quando os três campos estão preenchidos.",
+        "origem": {
+          "seletor": "script calc()",
+          "trecho_inicial": "if (diff < 0.01) status.textContent",
+          "linha_aprox": 2784
+        }
+      },
+      "tolerancias_nota": "Fora a coerência de 1%, nenhuma tolerância declarada (P6); o instrumento não tem previsão, gabarito nem correção.",
+      "figura_prometida": null,
+      "figura_prometida_nota": "O título (\"Calculadora · …\") não promete forma desenhada.",
+      "origem": {
+        "seletor": "section.aula(Aula 02) div.instrument",
+        "trecho_inicial": "Calculadora · Lei de Ohm INST · 02",
+        "linha_aprox": 1533,
+        "linha_fim_aprox": 1562
+      },
+      "linha_fim_aprox": 1562
+    }
+  ],
+  "invocacoes_no_texto": [],
+  "invocacoes_no_texto_nota": "Nenhum parágrafo da aula invoca o instrumento (\"abaixo\", \"pratique\", \"use a calculadora\"); a posição é só por adjacência (instrumento logo depois do parágrafo da linha anterior).",
+  "remissoes_a_outras_aulas": [
+    {
+      "texto": "Mas, como veremos na Aula 04, resistência multiplicada por corrente ao quadrado é exatamente onde nascem as perdas técnicas do sistema elétrico.",
+      "aula_citada": "04",
+      "bloco": "m01-a02-b14-paragrafo",
+      "origem": {
+        "seletor": "prosa da aula",
+        "trecho_inicial": "Mas, como veremos na Aula 04, resistência multiplicada por corrente ao quadrado é exatamente onde nascem as perdas técnicas do sistema elétrico.",
+        "linha_aprox": 1530
+      }
+    },
+    {
+      "texto": "Veremos isso em profundidade na Aula 07, onde toda a lógica do fator de potência fica explícita.",
+      "aula_citada": "07",
+      "bloco": "m01-a02-b19-paragrafo",
+      "origem": {
+        "seletor": "prosa da aula",
+        "trecho_inicial": "Veremos isso em profundidade na Aula 07, onde toda a lógica do fator de potência fica explícita.",
+        "linha_aprox": 1578
+      }
+    }
+  ],
+  "exercicios": [
+    {
+      "id": "m01-ex-02",
+      "tipo": "discursiva_com_gabarito",
+      "tag_fonte": "Ex · 02 · Aula 02",
+      "vinculo_declarado": {
+        "aula": "m01-a02",
+        "como": "span.exercise-tag \"Ex · 02 · Aula 02\" (tag de posse, §4 do protocolo)"
+      },
+      "enunciado_html": "Um equipamento opera em <b>220 V</b> e puxa <b>20 A</b>. Qual a potência aproximada em kW? Se ficar ligado 6 horas, qual o consumo?",
+      "enunciado_texto": "Um equipamento opera em 220 V e puxa 20 A. Qual a potência aproximada em kW? Se ficar ligado 6 horas, qual o consumo?",
+      "rotulo_botao_gabarito": "Revelar gabarito",
+      "resposta_referencia_html": "Potência: <span class=\"calc\">220 × 20 = 4.400 W = 4,4 kW</span>. Consumo em 6 horas: <span class=\"calc\">4,4 × 6 = 26,4 kWh</span>. Observe a cadeia completa: V × A → W → kW → kWh.",
+      "resposta_referencia_texto": "Potência: 220 × 20 = 4.400 W = 4,4 kW. Consumo em 6 horas: 4,4 × 6 = 26,4 kWh. Observe a cadeia completa: V × A → W → kW → kWh.",
+      "calculos_em_destaque": [
+        "220 × 20 = 4.400 W = 4,4 kW",
+        "4,4 × 6 = 26,4 kWh"
+      ],
+      "criterio": null,
+      "criterio_nota": "Sem critério por exercício na fonte. O único critério declarado é de nível do § Drill (todos os exercícios), citado em criterio_modulo_drill.",
+      "criterio_modulo_drill": {
+        "texto": "Resolva cada exercício mentalmente ou no papel antes de revelar a resposta. Os exercícios alcançam todas as nove aulas. O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+        "origem": {
+          "seletor": "§ Drill > p",
+          "trecho_inicial": "Resolva cada exercício mentalmente ou no papel antes de reve",
+          "linha_aprox": 2389
+        }
+      },
+      "mecanica_fonte": "button.exercise-toggle \"Revelar gabarito\" (onclick toggleAns, L2984–2993) alterna a visibilidade da resposta; a resposta está no DOM desde a carga. Sem tentativa registrada antes da referência.",
+      "vinculos": {
+        "aula": "m01-a02",
+        "instrumento": null,
+        "instrumento_nota": "Não declarado pela fonte.",
+        "termo": null
+      },
+      "origem": {
+        "seletor": "§ Drill > div.exercise:nth-of-type(2)",
+        "trecho_inicial": "Ex · 02 · Aula 02 Um equipamento opera em 220 V e puxa 20 A. Qual a potência a",
+        "linha_aprox": 2400,
+        "linha_fim_aprox": 2407
+      },
+      "linha_fim_aprox": 2407
+    }
+  ],
+  "relacionados_nao_vinculados": [
+    {
+      "id": "m01-quiz-q02",
+      "tipo": "questao_quiz_multipla_escolha",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Sem tag de aula no array `questions` do script. Tema coincide; posse NÃO declarada (pertence à avaliação do módulo). Listado só para rastreio.",
+      "enunciado": "Em corrente contínua aproximada, qual a relação entre tensão, corrente e potência?",
+      "opcoes": [
+        "P = V + I",
+        "P = V × I",
+        "P = V ÷ I",
+        "P = V²"
+      ],
+      "indice_correto": 1,
+      "opcao_correta": "P = V × I",
+      "feedback": "P = V × I. Tensão (V) × Corrente (I) = Potência (W). É a equação fundamental que liga as três grandezas básicas da eletricidade. Em AC com cargas indutivas, há o fator de potência multiplicando — mas a estrutura base é essa.",
+      "origem": {
+        "seletor": "script: const questions = [...]",
+        "trecho_inicial": "Em corrente contínua aproximada, qual a relação entre tensão",
+        "linha_aprox": 3084
+      }
+    },
+    {
+      "id": "m01-checklist-06",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática.",
+      "texto": "Explicar a Lei de Ohm e por que perdas crescem com I².",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Explicar a Lei de Ohm e por que perdas crescem com I².",
+        "linha_aprox": 2502
+      }
+    }
+  ],
+  "mencoes_externas_a_esta_aula": {
+    "total": 1,
+    "itens": [
+      {
+        "linha": 2401,
+        "trecho": "Ex · 02 · Aula 02"
+      }
+    ],
+    "nota": "Varredura do arquivo inteiro por \"Aula 0N\" fora da section da aula (tags de exercício, tabela § MAP, etc.). A tag do exercício vinculado é a linha do § Drill; as demais são só rastreio."
+  },
+  "cobertura_texto_por_token": {
+    "tokens_fonte_sem_instrumento": 527,
+    "tokens_extraidos": 527,
+    "tokens_casados": 527,
+    "pct": 100,
+    "tokens_nao_casados": [],
+    "sequencia_identica_em_ordem": true,
+    "nota": "Denominador = texto da section sem o div.instrument (e sem o comentário que o precede), §5; tags viram espaço para o medidor não colar spans vizinhos. A sequência de tokens extraída é comparada com a da fonte em ordem. Instrumento medido à parte em cobertura_instrumento."
+  },
+  "cobertura_instrumento": {
+    "tokens_fonte": 60,
+    "tokens_extraidos": 60,
+    "sequencia_identica_em_ordem": true,
+    "nota": "Texto visível da marcação do div.instrument (título, id, instrução, rótulos, unidades, saída, nota) contra os campos do instrumento, em ordem."
+  },
+  "divergencias": [
+    {
+      "id": "DIV-01",
+      "tipo": "contagem_de_unidades_lead_x_mapa_x_corpo",
+      "o_que": "A lista de unidades do lead, a do § MAP e as unidades que os títulos 2.1–2.5 nomeiam não coincidem.",
+      "leituras": [
+        {
+          "rotulo": "marcador da aula",
+          "texto": "As sete unidades essenciais",
+          "origem": {
+            "seletor": "div.aula-marker",
+            "trecho_inicial": "As sete unidades essenciais",
+            "linha_aprox": 1486
+          }
+        },
+        {
+          "rotulo": "lead (7 símbolos)",
+          "texto": "V, A, W, kW, kWh, kVA, kVAr. Quem domina essas sete unidades e a relação entre elas consegue ler qualquer fatura industrial brasileira sem precisar perguntar o que cada linha significa.",
+          "origem": {
+            "seletor": "p.lead",
+            "trecho_inicial": "V, A, W, kW, kWh, kVA, kVAr. Quem domina essas sete unidades",
+            "linha_aprox": 1489
+          }
+        },
+        {
+          "rotulo": "§ MAP (5 unidades)",
+          "texto": "O que volt, ampere, watt, kVA e kVAr realmente medem?",
+          "origem": {
+            "seletor": "§ MAP > tr(02) > td:nth-child(3)",
+            "trecho_inicial": "O que volt, ampere, watt, kVA e kVAr realmente medem?",
+            "linha_aprox": 1340
+          }
+        },
+        {
+          "rotulo": "títulos 2.1, 2.2, 2.3, 2.4, 2.5",
+          "texto": "Volt — a \"pressão\" do circuito | Ampere — o fluxo de carga | Watt — a potência ativa | Lei de Ohm — a relação fundamental | kVA e kVAr — quando a rede vê mais do que trabalho útil",
+          "origem": {
+            "seletor": "h3 da aula",
+            "trecho_inicial": "Volt — a \"pressão\" do circuito",
+            "linha_aprox": 1491
+          }
+        }
+      ],
+      "argumento": "O lead lista V, A, W, kW, kWh, kVA, kVAr. O § MAP lista volt, ampere, watt, kVA e kVAr. Os títulos nomeiam Volt, Ampere, Watt, Lei de Ohm e kVA/kVAr: a Lei de Ohm introduz o ohm (Ω), que não está na lista de sete, e kW e kWh não têm subseção própria na A02 (kW aparece na tabela 2.5 e kWh na cadeia da fórmula 2.3).",
+      "decisao": "não escolhida — preservar as três contagens."
+    },
+    {
+      "id": "DIV-02",
+      "tipo": "fim_da_cadeia_custo_x_R$",
+      "o_que": "A cadeia de conversão termina em \"custo\" na fórmula 2.3 e em \"R$\" na nota do INST·02.",
+      "leituras": [
+        {
+          "rotulo": "div.formula.desc (2.3)",
+          "texto": "Cadeia: V × A → W → kW → kWh × tarifa = custo",
+          "origem": {
+            "seletor": "h3(2.3) ~ div.formula > div.desc",
+            "trecho_inicial": "Cadeia: V × A → W → kW → kWh × tarifa = custo",
+            "linha_aprox": 1519
+          }
+        },
+        {
+          "rotulo": "div.instrument-note (INST·02)",
+          "texto": "Em 220 V × 10 A, a potência aproximada é 2.200 W = 2,2 kW. Ligando por 5 horas: 11 kWh. Essa cadeia V × A → W → kW → kWh × tarifa = R$ é a espinha física da fatura elétrica.",
+          "origem": {
+            "seletor": "div.instrument-note",
+            "trecho_inicial": "Em 220 V × 10 A, a potência aproximada é 2.200 W = 2,2 kW. L",
+            "linha_aprox": 1559
+          }
+        }
+      ],
+      "argumento": "Mesma sequência V × A → W → kW → kWh × tarifa; o último termo é \"custo\" numa e \"R$\" na outra.",
+      "decisao": "não escolhida — informativa."
+    },
+    {
+      "id": "DIV-03",
+      "tipo": "analogia_hidraulica_contraditoria_entre_aulas",
+      "o_que": "Na A02 a corrente é a vazão; a tabela 1.2 da A01 dá à vazão o papel da potência.",
+      "leituras": [
+        {
+          "rotulo": "A02, 2.2",
+          "texto": "Ampere (A) mede corrente elétrica: o fluxo de carga elétrica passando pelo condutor por segundo. Se tensão é pressão, corrente é vazão. Cargas grandes — motores industriais, britadores, fornos — puxam mais corrente, especialmente em tensões mais baixas.",
+          "origem": {
+            "seletor": "h3(2.2) ~ p",
+            "trecho_inicial": "Ampere (A) mede corrente elétrica: o fluxo de carga elétrica",
+            "linha_aprox": 1512
+          }
+        },
+        {
+          "rotulo": "A01, tabela 1.2",
+          "texto": "Vazão da torneira (L/s) | Potência (kW) | Quanto fluxo neste instante",
+          "origem": {
+            "seletor": "tabela 1.2 > tr",
+            "trecho_inicial": "Vazão da torneira (L/s)Potência (kW)Quanto fluxo neste insta",
+            "linha_aprox": 1386
+          }
+        }
+      ],
+      "argumento": "Mesma contradição registrada como DIV-01 em aula-01.md; repetida aqui porque a A02 é o lado que diz \"corrente é vazão\".",
+      "decisao": "não escolhida — ver aula-01.md DIV-01."
+    }
+  ],
+  "comparacao_codigo": {
+    "arquivos": [
+      "src/lib/data/alexandria-modulo-01-content.ts (MODULO_01_CORPO aula-01-02; INSTRUMENTOS_MODULO_01 inst-02; MODULO_01_AULAS aula-01-02; MODULO_01_LEAD aula-01-02)",
+      "src/lib/data/alexandria-instrument-calculators.ts (inst-02)",
+      "src/components/alexandria/viewer/AulaViewer.tsx L125 e src/lib/types/alexandria.ts L271 (lidos para entender o efeito das divergências; não são fonte)"
+    ],
+    "verificacoes_programaticas": {
+      "n_blocos_codigo": 17,
+      "n_blocos_fonte_sem_instrumento": 18,
+      "paragrafos_verbatim": 8,
+      "paragrafos_texto_igual_marcacao_diferente": 0,
+      "paragrafos_ausentes": 0,
+      "titulos_ausentes": [],
+      "formulas": [
+        {
+          "numero_bloco": "m01-a02-b10-formula",
+          "eq_texto": "P (W) = V (volts) × I (amperes)",
+          "no_codigo": true,
+          "eq_igual": true,
+          "desc_fonte": "Cadeia: V × A → W → kW → kWh × tarifa = custo",
+          "desc_codigo": null
+        },
+        {
+          "numero_bloco": "m01-a02-b13-formula",
+          "eq_texto": "V = I × R",
+          "no_codigo": true,
+          "eq_igual": true,
+          "desc_fonte": "Tensão · Corrente · Resistência",
+          "desc_codigo": null
+        }
+      ],
+      "tabelas": [
+        {
+          "bloco": "m01-a02-b05-tabela",
+          "no_codigo": true,
+          "celulas": 21,
+          "verbatim": 21,
+          "so_difere_por_atributo_class": 0,
+          "divergentes": 0
+        },
+        {
+          "bloco": "m01-a02-b18-tabela",
+          "no_codigo": true,
+          "celulas": 9,
+          "verbatim": 9,
+          "so_difere_por_atributo_class": 0,
+          "divergentes": 0
+        }
+      ],
+      "destaques": [],
+      "tres_niveis": [],
+      "span_fechamento_orfao_no_corpo": 0,
+      "lead_verbatim": true,
+      "ex_enunciado_verbatim": true,
+      "ex_gabarito_verbatim": true,
+      "inst_titulo_verbatim": true,
+      "inst_nota_verbatim": false
+    },
+    "conforme": [
+      "Lead verbatim em MODULO_01_LEAD[\"aula-01-02\"].",
+      "Títulos 2.1–2.5 com número e texto corretos.",
+      "Cabeçalhos das tabelas 2.1 e 2.5 verbatim.",
+      "Ex·02: tag, enunciado e gabarito verbatim; vinculado à aula pela tag.",
+      "INST·02: título, ids e rótulos dos 3 campos, unidades; saída \"Status\"; textos dos 4 estados e fórmulas toFixed (2/2/3/0) iguais às do script.",
+      "durationMinutes/difficulty/video = null, coerente com a fonte."
+    ],
+    "divergencias": [
+      {
+        "id": "COD-01",
+        "gravidade": "alta",
+        "onde": "MODULO_01_CORPO[\"aula-01-02\"] fórmulas 2.3 e 2.4",
+        "o_que": "As 2 fórmulas têm div.desc na fonte e desc = null no código (2 descrições perdidas): \"P (W) = V (volts) × I (amperes)\" → \"Cadeia: V × A → W → kW → kWh × tarifa = custo\"; \"V = I × R\" → \"Tensão · Corrente · Resistência\". A desc da 2.3 é a única ocorrência literal da cadeia V × A → W → kW → kWh × tarifa = custo na apostila (a outra está na nota do INST·02, com \"R$\"). O eq das duas fórmulas é igual ao da fonte.",
+        "fonte": "linhas 1517–1520 e 1525–1528"
+      },
+      {
+        "id": "COD-02",
+        "gravidade": "alta",
+        "onde": "INSTRUMENTOS_MODULO_01 inst-02",
+        "o_que": "A instrução do instrumento, \"Preencha dois campos. O terceiro é calculado.\" (p dentro de div.instrument-body), não existe no código: o tipo Instrument não tem campo para ela e a nota é só o texto de div.instrument-note. É a única frase da prancha que diz o que fazer.",
+        "fonte": "linha 1539"
+      },
+      {
+        "id": "COD-03",
+        "gravidade": "média",
+        "onde": "INSTRUMENTOS_MODULO_01 inst-02 .note",
+        "o_que": "Nota não verbatim: os 2 <span class=\"hl\"> (2.200 W = 2,2 kW; 11 kWh) foram removidos e os 2 </span> de fechamento ficaram (\"…2.200 W = 2,2 kW</span>. Ligando por 5 horas: 11 kWh</span>.\"). Texto sem tags igual ao da fonte.",
+        "fonte": "linha 1559"
+      },
+      {
+        "id": "COD-04",
+        "gravidade": "média",
+        "onde": "INSTRUMENTOS_MODULO_01 inst-02 .fields",
+        "o_que": "Os 3 campos nascem com defaultValue: '' e sem os atributos da fonte: placeholder \"ex: 220\", \"ex: 10\" e \"calculado\", e step=\"any\". O tipo InstrumentField (src/lib/types/alexandria.ts:271) não tem campo `placeholder`, e `step` do tipo é number, sem \"any\". Mudança de tipo compartilhado: é da FOUNDRY, não foi tocada.",
+        "fonte": "linhas 1543, 1547, 1551"
+      },
+      {
+        "id": "COD-05",
+        "gravidade": "alta",
+        "onde": "AulaViewer.tsx + MODULO_01_AULAS aula-01-02",
+        "o_que": "Instrumento sem posição no fluxo (AulaViewer.tsx L125, depois da apostila inteira). Na fonte ele fica entre o parágrafo 2.4 (\"Resistência é a oposição… perdas técnicas do sistema elétrico.\") e o h3 2.5. A fonte não tem frase de invocação (\"abaixo\", \"pratique\"): a posição é só por adjacência. Viola bar C5 e a Regra-mãe 1.",
+        "fonte": "linhas 1532–1562"
+      },
+      {
+        "id": "COD-06",
+        "gravidade": "média",
+        "onde": "INSTRUMENTOS_MODULO_01 inst-02 .formula",
+        "o_que": "formula = \"V = I × R\" não existe dentro do instrumento. Vem do div.formula da 2.4 e do campo de unidade do verbete \"Lei de Ohm\" no léxico (ambos fora do instrumento). O título é só \"Calculadora · Lei de Ohm\".",
+        "fonte": "linhas 1526, 1535"
+      },
+      {
+        "id": "COD-07",
+        "gravidade": "média",
+        "onde": "alexandria-instrument-calculators.ts inst-02 (L1683–1712)",
+        "o_que": "A porta é uma função pura que ignora o argumento `changed` do original (o handler de R chama calc('R'); os de V e I chamam calc()). Pela leitura, 2 casos medidos no script-fonte (cenários da camada de execução) saem diferentes: (a) R editado com V e I preenchidos — o original recalcula R = V ÷ I e mostra \"R = V ÷ I = …\"; a porta mostra \"Coerente: …\" ou \"Inconsistente — limpe um campo\"; (b) V = 0 digitado com I e R preenchidos — o original cai na checagem de coerência (divisão por zero → \"Inconsistente\"); a porta trata V = 0 como ausente e calcula V = I × R. Deduzido da leitura do .ts; o TS não foi executado nesta extração.",
+        "fonte": "linhas 2761–2791 (script)"
+      },
+      {
+        "id": "COD-08",
+        "gravidade": "baixa",
+        "onde": "alexandria-instrument-calculators.ts inst-02",
+        "o_que": "Os handlers de V e I que esvaziam R quando o campo é esvaziado não foram portados. O próprio código já sinaliza isso (comentário nas L1676–1682). Registrado por fidelidade.",
+        "fonte": "linhas 2789–2790"
+      },
+      {
+        "id": "COD-09",
+        "gravidade": "informativa",
+        "onde": "MODULO_01_CORPO[\"aula-01-02\"] tabelas",
+        "o_que": "As 2 tabelas (2.1 e 2.5) têm 30 células de dados e 30 são verbatim (0 só diferem por class e 0 de outra forma); os cabeçalhos são verbatim. 10 células carregam <td class=\"mono\"> na fonte (colunas \"Tensão\" da 2.1 e \"Unidade\" da 2.5); o tipo de tabela do código guarda a célula como string de conteúdo, então a classe de apresentação não é representável. Conteúdo sem perda.",
+        "fonte": "linhas 1496–1509 e 1567–1576"
+      },
+      {
+        "id": "COD-10",
+        "gravidade": "baixa",
+        "onde": "MODULO_01_AULAS aula-01-02 activities[0].points",
+        "o_que": "`points: 1` não tem origem na fonte. O enunciado, o gabarito e a tag do Ex·02 são verbatim.",
+        "fonte": "linhas 2400–2407"
+      },
+      {
+        "id": "COD-11",
+        "gravidade": "baixa",
+        "onde": "MODULO_01_AULAS aula-01-02 illustrations",
+        "o_que": "`illustrations: ['fis-04-triangulo-potencia.png']` mapeia uma gravura que a fonte não tem: o HTML não tem nenhum <img> na A02. O vínculo é decisão editorial do código (o triângulo é o assunto do parágrafo final, 2.5), não declarado pela fonte.",
+        "fonte": "linhas 1578"
+      },
+      {
+        "id": "COD-12",
+        "gravidade": "informativa",
+        "onde": "ids",
+        "o_que": "Código usa \"inst-02\", \"ex-02\", \"aula-01-02\"; esta extração usa \"m01-inst-02\", \"m01-ex-02\", \"m01-a02\". Mapeamento 1:1.",
+        "fonte": null
+      }
+    ]
+  },
+  "contagens": {
+    "blocos": 19,
+    "blocos_por_tipo": {
+      "lead": 1,
+      "titulo": 5,
+      "paragrafo": 8,
+      "tabela": 2,
+      "formula": 2,
+      "instrumento": 1
+    },
+    "secoes_numeradas": [
+      "2.1",
+      "2.2",
+      "2.3",
+      "2.4",
+      "2.5"
+    ],
+    "tabelas": 2,
+    "linhas_de_dados_por_tabela": [
+      7,
+      3
+    ],
+    "celulas_de_tabela": 30,
+    "destaques": 0,
+    "paragrafos_de_destaque": 0,
+    "paineis_tres_niveis": 0,
+    "formulas": 2,
+    "formulas_com_desc": 2,
+    "figuras": 0,
+    "listas": 0,
+    "vale_lembrar": 0,
+    "instrumentos": 1,
+    "entradas_instrumento": 3,
+    "saidas_instrumento": 1,
+    "linhas_de_script": 41,
+    "cenarios_de_execucao": 12,
+    "invocacoes_no_texto": 0,
+    "remissoes_a_outras_aulas": 2,
+    "exercicios_vinculados": 1,
+    "relacionados_nao_vinculados": 2,
+    "termos_lexico_candidatos": 15,
+    "verbetes_lexico_modulo": 38,
+    "divergencias_fonte": 3,
+    "divergencias_codigo": 12
+  }
+}

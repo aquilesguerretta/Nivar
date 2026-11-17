@@ -1,0 +1,2120 @@
+{
+  "meta": {
+    "grupo": "aula07",
+    "modulo": "M01",
+    "aula": "M01·A07",
+    "fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo01.html",
+    "fonte_somente_leitura": true,
+    "fonte_total_linhas": 3212,
+    "aula_linhas": {
+      "inicio": 1898,
+      "fim": 2001,
+      "nota": "comentário de abertura 1898; section.aula 1900-2001"
+    },
+    "extraido_em": "2026-11-14",
+    "metodo": "Extração programática (script node que caminha as linhas da section e lança erro diante de qualquer linha não reconhecida; nenhuma prosa digitada). Campos `html` guardam o innerHTML literal; campos `texto` são o mesmo conteúdo com tags removidas e entidades decodificadas.",
+    "protocolo": "docs/alexandria/extraction-protocol.md",
+    "taxonomia": "docs/alexandria/instrument-taxonomy.md",
+    "contrato": "docs/alexandria-v2/bar.md (§4 Peça C, §9, P3, P5, P6, P8, P9, P11, P14)",
+    "convencoes": {
+      "ausencia": "null + campo *_nota explicando o que foi medido",
+      "ids": "m01-a07-bNN-<tipo> para blocos (ordem da fonte); m01-inst-05; m01-ex-05; m01-a07-fig-01; m01-quiz-q06/q07",
+      "vinculos": "só quando a fonte declara (tag, posição dentro da section, remissão textual literal); correspondência textual é marcada como tal",
+      "derivados": "chaves `derivado` / `estado_pre_script` / `*_nota` / `argumento` / `decisao` são comentário do extrator, fora da prova literal"
+    }
+  },
+  "aula": {
+    "id": "m01-a07",
+    "numero": 7,
+    "marcador": {
+      "num": "Aula 07",
+      "nome": "Triângulo de potência e fator de potência",
+      "origem": {
+        "seletor": "div.aula-marker",
+        "trecho_inicial": "Aula 07 Triângulo de potência e fator de potência",
+        "linha_aprox": 1902
+      }
+    },
+    "titulo_h2_html": "Existe energia que ocupa a rede e <em>não vira produção</em>.",
+    "titulo_h2_texto": "Existe energia que ocupa a rede e não vira produção.",
+    "titulo_h2_origem": {
+      "seletor": "h2.aula-title",
+      "trecho_inicial": "Existe energia que ocupa a rede e não vira produção.",
+      "linha_aprox": 1903
+    },
+    "pergunta_mapa": {
+      "numero": "07",
+      "tema": "Triângulo de potência e fator de potência",
+      "pergunta_html": "Por que existe energia que ocupa a rede mas não vira produção?",
+      "pergunta_texto": "Por que existe energia que ocupa a rede mas não vira produção?",
+      "origem": {
+        "seletor": "§ MAP table > tbody > tr(07)",
+        "trecho_inicial": "Por que existe energia que ocupa a rede mas não vira produçã",
+        "linha_aprox": 1345
+      },
+      "nota": "Única pergunta que a fonte declara para esta aula. Vive na tabela do § MAP, não na aula."
+    },
+    "duracao_min": null,
+    "dificuldade": null,
+    "video": null,
+    "ausencias_nota": "Sem duração, dificuldade, vídeo, <img>, referência por aula ou \"Vale lembrar\" dentro da section. Medido na fatia 1900-2001: <img> = 0, <video>/<iframe> = 0, \"Vale lembrar\" = 0."
+  },
+  "blocos": [
+    {
+      "id": "m01-a07-b01-lead",
+      "tipo": "lead",
+      "html": "Esta aula é o coração técnico do módulo. Fator de potência é, simultaneamente, um conceito físico, um indicador de eficiência elétrica e uma linha real de cobrança em fatura industrial. Quem domina os três aspectos lê qualquer fatura do Grupo A sem hesitar.",
+      "texto": "Esta aula é o coração técnico do módulo. Fator de potência é, simultaneamente, um conceito físico, um indicador de eficiência elétrica e uma linha real de cobrança em fatura industrial. Quem domina os três aspectos lê qualquer fatura do Grupo A sem hesitar.",
+      "origem": {
+        "seletor": "section.aula(Aula 07) > .container > p.lead",
+        "trecho_inicial": "Esta aula é o coração técnico do módulo. Fator de potência é",
+        "linha_aprox": 1905
+      }
+    },
+    {
+      "id": "m01-a07-b02-titulo",
+      "tipo": "titulo",
+      "numero": "7.1",
+      "texto": "Por que existe potência reativa",
+      "html": "<span class=\"num\">7.1</span>Por que existe potência reativa",
+      "origem": {
+        "seletor": "h3 > span.num(7.1)",
+        "trecho_inicial": "7.1Por que existe potência reativa",
+        "linha_aprox": 1907
+      }
+    },
+    {
+      "id": "m01-a07-b03-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Em equipamentos puramente resistivos — uma resistência de chuveiro, uma lâmpada incandescente — a corrente está perfeitamente em fase com a tensão. Toda a potência elétrica entregue vira trabalho útil (calor, luz). Toda potência aparente é potência ativa.",
+      "texto": "Em equipamentos puramente resistivos — uma resistência de chuveiro, uma lâmpada incandescente — a corrente está perfeitamente em fase com a tensão. Toda a potência elétrica entregue vira trabalho útil (calor, luz). Toda potência aparente é potência ativa.",
+      "origem": {
+        "seletor": "p (após h3 7.1)",
+        "trecho_inicial": "Em equipamentos puramente resistivos — uma resistência de ch",
+        "linha_aprox": 1908
+      }
+    },
+    {
+      "id": "m01-a07-b04-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Em equipamentos <strong>indutivos</strong> — motores, transformadores, compressores, fornos a arco, bobinas de solda — algo diferente acontece. Esses equipamentos precisam de <strong>campos magnéticos</strong> para funcionar. A criação e sustentação desses campos exige que a corrente fique levemente \"atrasada\" em relação à tensão. Quando isso acontece, parte da potência que circula entre a rede e a instalação não realiza trabalho útil no eixo da máquina — apenas oscila entre rede e equipamento, sustentando o campo magnético.",
+      "texto": "Em equipamentos indutivos — motores, transformadores, compressores, fornos a arco, bobinas de solda — algo diferente acontece. Esses equipamentos precisam de campos magnéticos para funcionar. A criação e sustentação desses campos exige que a corrente fique levemente \"atrasada\" em relação à tensão. Quando isso acontece, parte da potência que circula entre a rede e a instalação não realiza trabalho útil no eixo da máquina — apenas oscila entre rede e equipamento, sustentando o campo magnético.",
+      "origem": {
+        "seletor": "p (após h3 7.1)",
+        "trecho_inicial": "Em equipamentos indutivos — motores, transformadores, compre",
+        "linha_aprox": 1910
+      }
+    },
+    {
+      "id": "m01-a07-b05-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Essa parcela é a <strong>potência reativa (kVAr)</strong>. Ela é necessária para a operação, mas <strong>não vira produção</strong>.",
+      "texto": "Essa parcela é a potência reativa (kVAr). Ela é necessária para a operação, mas não vira produção.",
+      "origem": {
+        "seletor": "p (após h3 7.1)",
+        "trecho_inicial": "Essa parcela é a potência reativa (kVAr). Ela é necessária p",
+        "linha_aprox": 1912
+      }
+    },
+    {
+      "id": "m01-a07-b06-titulo",
+      "tipo": "titulo",
+      "numero": "7.2",
+      "texto": "O triângulo de potência",
+      "html": "<span class=\"num\">7.2</span>O triângulo de potência",
+      "origem": {
+        "seletor": "h3 > span.num(7.2)",
+        "trecho_inicial": "7.2O triângulo de potência",
+        "linha_aprox": 1914
+      }
+    },
+    {
+      "id": "m01-a07-b07-paragrafo",
+      "tipo": "paragrafo",
+      "html": "As três potências formam um triângulo retângulo:",
+      "texto": "As três potências formam um triângulo retângulo:",
+      "origem": {
+        "seletor": "p (após h3 7.2)",
+        "trecho_inicial": "As três potências formam um triângulo retângulo:",
+        "linha_aprox": 1915
+      }
+    },
+    {
+      "id": "m01-a07-b08-figura",
+      "tipo": "figura",
+      "ref": "m01-a07-fig-01",
+      "texto": null,
+      "origem": {
+        "seletor": "div.triangle-vis",
+        "trecho_inicial": "",
+        "linha_aprox": 1917
+      },
+      "vinculos": {
+        "figura": "m01-a07-fig-01"
+      },
+      "nota": "Especificação completa em figuras[0]. A figura vem ANTES do div.instrument (fica entre o parágrafo de 7.2 e o INST·05) e FORA dele.",
+      "linha_fim_aprox": 1948
+    },
+    {
+      "id": "m01-a07-b09-instrumento",
+      "tipo": "instrumento",
+      "ref": "m01-inst-05",
+      "texto": "Controles · Triângulo de potência",
+      "origem": {
+        "seletor": "div.instrument (comentário <!-- INSTRUMENT 05: Triangle controls --> na linha 1950)",
+        "trecho_inicial": "Controles · Triângulo de potência",
+        "linha_aprox": 1951
+      },
+      "vinculos": {
+        "instrumento": "m01-inst-05"
+      },
+      "nota": "Posição literal na fonte: depois da figura div.triangle-vis (linhas 1917-1948) e antes do h3 7.3 (linha 1975). Especificação completa em instrumentos[0].",
+      "linha_fim_aprox": 1973
+    },
+    {
+      "id": "m01-a07-b10-titulo",
+      "tipo": "titulo",
+      "numero": "7.3",
+      "texto": "A fórmula do fator de potência",
+      "html": "<span class=\"num\">7.3</span>A fórmula do fator de potência",
+      "origem": {
+        "seletor": "h3 > span.num(7.3)",
+        "trecho_inicial": "7.3A fórmula do fator de potência",
+        "linha_aprox": 1975
+      }
+    },
+    {
+      "id": "m01-a07-b11-formula",
+      "tipo": "formula",
+      "eq_html": "FP <span class=\"op\">=</span> kW <span class=\"op\">÷</span> kVA <span class=\"op\">=</span> cos φ",
+      "eq_texto": "FP = kW ÷ kVA = cos φ",
+      "desc": "φ é o ângulo entre tensão e corrente em regime senoidal",
+      "desc_html": "φ é o ângulo entre tensão e corrente em regime senoidal",
+      "desc_origem": {
+        "seletor": "div.formula > div.desc",
+        "trecho_inicial": "φ é o ângulo entre tensão e corrente em regime senoidal",
+        "linha_aprox": 1978
+      },
+      "origem": {
+        "seletor": "div.formula > div.eq",
+        "trecho_inicial": "FP = kW ÷ kVA = cos φ",
+        "linha_aprox": 1976
+      },
+      "linha_fim_aprox": 1979
+    },
+    {
+      "id": "m01-a07-b12-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Um FP de <strong>1,00</strong> significa que toda a potência aparente está virando potência ativa — instalação puramente resistiva, sem reativo. Um FP de <strong>0,85</strong> significa que apenas 85% da potência aparente vira trabalho útil; os outros 15% são reativos circulando pela rede. FP baixo é ineficiência elétrica visível para a rede.",
+      "texto": "Um FP de 1,00 significa que toda a potência aparente está virando potência ativa — instalação puramente resistiva, sem reativo. Um FP de 0,85 significa que apenas 85% da potência aparente vira trabalho útil; os outros 15% são reativos circulando pela rede. FP baixo é ineficiência elétrica visível para a rede.",
+      "origem": {
+        "seletor": "p (após h3 7.3)",
+        "trecho_inicial": "Um FP de 1,00 significa que toda a potência aparente está vi",
+        "linha_aprox": 1981
+      }
+    },
+    {
+      "id": "m01-a07-b13-titulo",
+      "tipo": "titulo",
+      "numero": "7.4",
+      "texto": "Por que isso vira cobrança regulatória",
+      "html": "<span class=\"num\">7.4</span>Por que isso vira cobrança regulatória",
+      "origem": {
+        "seletor": "h3 > span.num(7.4)",
+        "trecho_inicial": "7.4Por que isso vira cobrança regulatória",
+        "linha_aprox": 1983
+      }
+    },
+    {
+      "id": "m01-a07-b14-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Quando uma instalação industrial opera com FP baixo, ela força a distribuidora a entregar mais kVA para produzir o mesmo kW útil. Isso ocupa capacidade de transformadores, cabos e proteção, além de aumentar perdas — externalidades que afetam todos os outros clientes daquela rede.",
+      "texto": "Quando uma instalação industrial opera com FP baixo, ela força a distribuidora a entregar mais kVA para produzir o mesmo kW útil. Isso ocupa capacidade de transformadores, cabos e proteção, além de aumentar perdas — externalidades que afetam todos os outros clientes daquela rede.",
+      "origem": {
+        "seletor": "p (após h3 7.4)",
+        "trecho_inicial": "Quando uma instalação industrial opera com FP baixo, ela for",
+        "linha_aprox": 1984
+      }
+    },
+    {
+      "id": "m01-a07-b15-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Para combater isso, a regulação brasileira estabelece um <strong>fator de potência mínimo de referência de 0,92</strong> para unidades do Grupo A, tanto no comportamento indutivo quanto no capacitivo. Quando o consumidor opera abaixo desse limite, pode haver cobrança adicional sobre o excedente reativo — historicamente conhecida como <strong>UFER (Unidade de Faturamento de Energia Reativa)</strong>, hoje regulada no contexto da Resolução Normativa ANEEL nº 1.000/2021 e suas regulamentações complementares.",
+      "texto": "Para combater isso, a regulação brasileira estabelece um fator de potência mínimo de referência de 0,92 para unidades do Grupo A, tanto no comportamento indutivo quanto no capacitivo. Quando o consumidor opera abaixo desse limite, pode haver cobrança adicional sobre o excedente reativo — historicamente conhecida como UFER (Unidade de Faturamento de Energia Reativa), hoje regulada no contexto da Resolução Normativa ANEEL nº 1.000/2021 e suas regulamentações complementares.",
+      "origem": {
+        "seletor": "p (após h3 7.4)",
+        "trecho_inicial": "Para combater isso, a regulação brasileira estabelece um fat",
+        "linha_aprox": 1986
+      }
+    },
+    {
+      "id": "m01-a07-b16-destaque",
+      "tipo": "destaque",
+      "tom": "neutro",
+      "classe_fonte": "callout",
+      "rotulo": "Referência regulatória",
+      "rotulo_html": "Referência regulatória",
+      "html": "A base regulatória atual da prestação do serviço público de distribuição é a <strong>Resolução Normativa ANEEL nº 1.000/2021</strong>, em vigor desde janeiro de 2022. Os fenômenos de qualidade do produto — incluindo fator de potência, harmônicos, variações de tensão, desequilíbrios e flutuações — são tratados no <strong>Módulo 8 do PRODIST</strong> (Qualidade do Fornecimento). Antes de qualquer recomendação financeira específica, validar a regra exata aplicável ao contrato.",
+      "texto": "A base regulatória atual da prestação do serviço público de distribuição é a Resolução Normativa ANEEL nº 1.000/2021, em vigor desde janeiro de 2022. Os fenômenos de qualidade do produto — incluindo fator de potência, harmônicos, variações de tensão, desequilíbrios e flutuações — são tratados no Módulo 8 do PRODIST (Qualidade do Fornecimento). Antes de qualquer recomendação financeira específica, validar a regra exata aplicável ao contrato.",
+      "corpo_origem": {
+        "seletor": "div.callout > p",
+        "trecho_inicial": "A base regulatória atual da prestação do serviço público de ",
+        "linha_aprox": 1990
+      },
+      "origem": {
+        "seletor": "div.callout",
+        "trecho_inicial": "A base regulatória atual da prestação do serviço público de ",
+        "linha_aprox": 1988
+      },
+      "linha_fim_aprox": 1991
+    },
+    {
+      "id": "m01-a07-b17-titulo",
+      "tipo": "titulo",
+      "numero": "7.5",
+      "texto": "A solução clássica: banco de capacitores",
+      "html": "<span class=\"num\">7.5</span>A solução clássica: banco de capacitores",
+      "origem": {
+        "seletor": "h3 > span.num(7.5)",
+        "trecho_inicial": "7.5A solução clássica: banco de capacitores",
+        "linha_aprox": 1993
+      }
+    },
+    {
+      "id": "m01-a07-b18-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Equipamentos indutivos exigem reativo. Capacitores fornecem reativo. A solução clássica para FP indutivo baixo é instalar um <strong>banco de capacitores</strong> próximo à carga, que fornece localmente a potência reativa necessária — reduzindo o reativo puxado da rede e elevando o FP medido.",
+      "texto": "Equipamentos indutivos exigem reativo. Capacitores fornecem reativo. A solução clássica para FP indutivo baixo é instalar um banco de capacitores próximo à carga, que fornece localmente a potência reativa necessária — reduzindo o reativo puxado da rede e elevando o FP medido.",
+      "origem": {
+        "seletor": "p (após h3 7.5)",
+        "trecho_inicial": "Equipamentos indutivos exigem reativo. Capacitores fornecem ",
+        "linha_aprox": 1994
+      }
+    },
+    {
+      "id": "m01-a07-b19-destaque",
+      "tipo": "destaque",
+      "tom": "red",
+      "classe_fonte": "callout red",
+      "rotulo": "Cuidado · diagnóstico antes de solução",
+      "rotulo_html": "Cuidado · diagnóstico antes de solução",
+      "html": "Banco de capacitores é uma solução comum, mas <strong>não é diagnóstico</strong>. Antes de recomendar, é preciso entender: causa exata do reativo, recorrência, presença de harmônicos (que podem amplificar problemas em sistemas com capacitores), perfil de carga, sazonalidade. Compensação excessiva pode criar FP capacitivo, que também é problemático. <strong>A linguagem GridAlpha correta é: \"seu perfil indica possível custo por reativo; precisamos identificar causa, recorrência e melhor correção técnica\"</strong> — nunca \"instale banco de capacitores\".",
+      "texto": "Banco de capacitores é uma solução comum, mas não é diagnóstico. Antes de recomendar, é preciso entender: causa exata do reativo, recorrência, presença de harmônicos (que podem amplificar problemas em sistemas com capacitores), perfil de carga, sazonalidade. Compensação excessiva pode criar FP capacitivo, que também é problemático. A linguagem GridAlpha correta é: \"seu perfil indica possível custo por reativo; precisamos identificar causa, recorrência e melhor correção técnica\" — nunca \"instale banco de capacitores\".",
+      "corpo_origem": {
+        "seletor": "div.callout > p",
+        "trecho_inicial": "Banco de capacitores é uma solução comum, mas não é diagnóst",
+        "linha_aprox": 1998
+      },
+      "origem": {
+        "seletor": "div.callout.red",
+        "trecho_inicial": "Banco de capacitores é uma solução comum, mas não é diagnóst",
+        "linha_aprox": 1996
+      },
+      "linha_fim_aprox": 1999
+    }
+  ],
+  "figuras": [
+    {
+      "id": "m01-a07-fig-01",
+      "tipo": "triangulo_svg_dinamico_com_leituras",
+      "seletor": "div.triangle-vis",
+      "titulo": null,
+      "titulo_nota": "A figura não tem título próprio. O h3 7.2 é \"O triângulo de potência\" (linha 1914) e o parágrafo que a introduz termina em dois-pontos (linha 1915).",
+      "viewBox": "0 0 320 280",
+      "elementos_svg": [
+        {
+          "elemento": "path",
+          "atributos": {
+            "d": "M 0 0 L 8 4 L 0 8 Z",
+            "fill": "#06B6D4"
+          },
+          "texto": null,
+          "linha_literal": "<path d=\"M 0 0 L 8 4 L 0 8 Z\" fill=\"#06B6D4\"/>",
+          "origem": {
+            "seletor": "svg > path",
+            "trecho_inicial": "<path d=\"M 0 0 L 8 4 L 0 8 Z\" fill=\"#06B6D4\"/>",
+            "linha_aprox": 1922
+          }
+        },
+        {
+          "elemento": "line",
+          "atributos": {
+            "x1": "40",
+            "y1": "240",
+            "x2": "280",
+            "y2": "240",
+            "stroke": "#2A2E38",
+            "stroke-width": "1"
+          },
+          "texto": null,
+          "linha_literal": "<line x1=\"40\" y1=\"240\" x2=\"280\" y2=\"240\" stroke=\"#2A2E38\" stroke-width=\"1\"/>",
+          "origem": {
+            "seletor": "svg > line",
+            "trecho_inicial": "<line x1=\"40\" y1=\"240\" x2=\"280\" y2=\"240\" stroke=\"#2A2E38\" st",
+            "linha_aprox": 1926
+          }
+        },
+        {
+          "elemento": "line",
+          "atributos": {
+            "x1": "40",
+            "y1": "240",
+            "x2": "40",
+            "y2": "40",
+            "stroke": "#2A2E38",
+            "stroke-width": "1"
+          },
+          "texto": null,
+          "linha_literal": "<line x1=\"40\" y1=\"240\" x2=\"40\" y2=\"40\" stroke=\"#2A2E38\" stroke-width=\"1\"/>",
+          "origem": {
+            "seletor": "svg > line",
+            "trecho_inicial": "<line x1=\"40\" y1=\"240\" x2=\"40\" y2=\"40\" stroke=\"#2A2E38\" stro",
+            "linha_aprox": 1927
+          }
+        },
+        {
+          "elemento": "line",
+          "atributos": {
+            "id": "tri-kw",
+            "x1": "40",
+            "y1": "240",
+            "x2": "240",
+            "y2": "240",
+            "stroke": "#06B6D4",
+            "stroke-width": "3"
+          },
+          "texto": null,
+          "linha_literal": "<line id=\"tri-kw\" x1=\"40\" y1=\"240\" x2=\"240\" y2=\"240\" stroke=\"#06B6D4\" stroke-width=\"3\"/>",
+          "origem": {
+            "seletor": "svg > line#tri-kw",
+            "trecho_inicial": "<line id=\"tri-kw\" x1=\"40\" y1=\"240\" x2=\"240\" y2=\"240\" stroke=",
+            "linha_aprox": 1929
+          }
+        },
+        {
+          "elemento": "line",
+          "atributos": {
+            "id": "tri-kvar",
+            "x1": "240",
+            "y1": "240",
+            "x2": "240",
+            "y2": "120",
+            "stroke": "#F59E0B",
+            "stroke-width": "3"
+          },
+          "texto": null,
+          "linha_literal": "<line id=\"tri-kvar\" x1=\"240\" y1=\"240\" x2=\"240\" y2=\"120\" stroke=\"#F59E0B\" stroke-width=\"3\"/>",
+          "origem": {
+            "seletor": "svg > line#tri-kvar",
+            "trecho_inicial": "<line id=\"tri-kvar\" x1=\"240\" y1=\"240\" x2=\"240\" y2=\"120\" stro",
+            "linha_aprox": 1930
+          }
+        },
+        {
+          "elemento": "line",
+          "atributos": {
+            "id": "tri-kva",
+            "x1": "40",
+            "y1": "240",
+            "x2": "240",
+            "y2": "120",
+            "stroke": "#E8EAED",
+            "stroke-width": "2"
+          },
+          "texto": null,
+          "linha_literal": "<line id=\"tri-kva\" x1=\"40\" y1=\"240\" x2=\"240\" y2=\"120\" stroke=\"#E8EAED\" stroke-width=\"2\"/>",
+          "origem": {
+            "seletor": "svg > line#tri-kva",
+            "trecho_inicial": "<line id=\"tri-kva\" x1=\"40\" y1=\"240\" x2=\"240\" y2=\"120\" stroke",
+            "linha_aprox": 1931
+          }
+        },
+        {
+          "elemento": "path",
+          "atributos": {
+            "id": "tri-angle",
+            "d": "M 80 240 A 40 40 0 0 0 70 215",
+            "stroke": "#A78BFA",
+            "stroke-width": "1.5",
+            "fill": "none"
+          },
+          "texto": null,
+          "linha_literal": "<path id=\"tri-angle\" d=\"M 80 240 A 40 40 0 0 0 70 215\" stroke=\"#A78BFA\" stroke-width=\"1.5\" fill=\"none\"/>",
+          "origem": {
+            "seletor": "svg > path#tri-angle",
+            "trecho_inicial": "<path id=\"tri-angle\" d=\"M 80 240 A 40 40 0 0 0 70 215\" strok",
+            "linha_aprox": 1933
+          }
+        },
+        {
+          "elemento": "text",
+          "atributos": {
+            "id": "tri-label-kw",
+            "x": "140",
+            "y": "258",
+            "text-anchor": "middle",
+            "font-family": "JetBrains Mono",
+            "font-size": "11",
+            "fill": "#06B6D4"
+          },
+          "texto": "kW",
+          "linha_literal": "<text id=\"tri-label-kw\" x=\"140\" y=\"258\" text-anchor=\"middle\" font-family=\"JetBrains Mono\" font-size=\"11\" fill=\"#06B6D4\">kW</text>",
+          "origem": {
+            "seletor": "svg > text#tri-label-kw",
+            "trecho_inicial": "kW",
+            "linha_aprox": 1935
+          }
+        },
+        {
+          "elemento": "text",
+          "atributos": {
+            "id": "tri-label-kvar",
+            "x": "252",
+            "y": "184",
+            "font-family": "JetBrains Mono",
+            "font-size": "11",
+            "fill": "#F59E0B"
+          },
+          "texto": "kVAr",
+          "linha_literal": "<text id=\"tri-label-kvar\" x=\"252\" y=\"184\" font-family=\"JetBrains Mono\" font-size=\"11\" fill=\"#F59E0B\">kVAr</text>",
+          "origem": {
+            "seletor": "svg > text#tri-label-kvar",
+            "trecho_inicial": "kVAr",
+            "linha_aprox": 1936
+          }
+        },
+        {
+          "elemento": "text",
+          "atributos": {
+            "id": "tri-label-kva",
+            "x": "120",
+            "y": "170",
+            "text-anchor": "middle",
+            "font-family": "JetBrains Mono",
+            "font-size": "11",
+            "fill": "#E8EAED",
+            "transform": "rotate(-31 120 170)"
+          },
+          "texto": "kVA",
+          "linha_literal": "<text id=\"tri-label-kva\" x=\"120\" y=\"170\" text-anchor=\"middle\" font-family=\"JetBrains Mono\" font-size=\"11\" fill=\"#E8EAED\" transform=\"rotate(-31 120 170)\">kVA</text>",
+          "origem": {
+            "seletor": "svg > text#tri-label-kva",
+            "trecho_inicial": "kVA",
+            "linha_aprox": 1937
+          }
+        },
+        {
+          "elemento": "text",
+          "atributos": {
+            "x": "90",
+            "y": "232",
+            "font-family": "JetBrains Mono",
+            "font-size": "10",
+            "fill": "#A78BFA"
+          },
+          "texto": "φ",
+          "linha_literal": "<text x=\"90\" y=\"232\" font-family=\"JetBrains Mono\" font-size=\"10\" fill=\"#A78BFA\">φ</text>",
+          "origem": {
+            "seletor": "svg > text",
+            "trecho_inicial": "φ",
+            "linha_aprox": 1938
+          }
+        }
+      ],
+      "leituras": [
+        {
+          "rotulo": "Pot. ativa",
+          "id_valor": "tri-kw-val",
+          "valor_inicial_marcacao": "800",
+          "sufixo_unidade": "kW",
+          "classe_cor_marcacao": "cyan",
+          "id_container": null,
+          "linha_literal": "<div class=\"readout\"><span class=\"readout-label\">Pot. ativa</span><span class=\"readout-value cyan\"><span id=\"tri-kw-val\">800</span> kW</span></div>",
+          "origem": {
+            "seletor": "div.readout > span#tri-kw-val",
+            "trecho_inicial": "Pot. ativa",
+            "linha_aprox": 1942
+          }
+        },
+        {
+          "rotulo": "Pot. reativa",
+          "id_valor": "tri-kvar-val",
+          "valor_inicial_marcacao": "480",
+          "sufixo_unidade": "kVAr",
+          "classe_cor_marcacao": "gold",
+          "id_container": null,
+          "linha_literal": "<div class=\"readout\"><span class=\"readout-label\">Pot. reativa</span><span class=\"readout-value gold\"><span id=\"tri-kvar-val\">480</span> kVAr</span></div>",
+          "origem": {
+            "seletor": "div.readout > span#tri-kvar-val",
+            "trecho_inicial": "Pot. reativa",
+            "linha_aprox": 1943
+          }
+        },
+        {
+          "rotulo": "Pot. aparente",
+          "id_valor": "tri-kva-val",
+          "valor_inicial_marcacao": "933",
+          "sufixo_unidade": "kVA",
+          "classe_cor_marcacao": null,
+          "id_container": null,
+          "linha_literal": "<div class=\"readout\"><span class=\"readout-label\">Pot. aparente</span><span class=\"readout-value\"><span id=\"tri-kva-val\">933</span> kVA</span></div>",
+          "origem": {
+            "seletor": "div.readout > span#tri-kva-val",
+            "trecho_inicial": "Pot. aparente",
+            "linha_aprox": 1944
+          }
+        },
+        {
+          "rotulo": "Fator de potência",
+          "id_valor": "tri-fp-val",
+          "valor_inicial_marcacao": "0,86",
+          "sufixo_unidade": null,
+          "classe_cor_marcacao": null,
+          "id_container": "tri-fp-readout",
+          "linha_literal": "<div class=\"readout\"><span class=\"readout-label\">Fator de potência</span><span class=\"readout-value\" id=\"tri-fp-readout\"><span id=\"tri-fp-val\">0,86</span></span></div>",
+          "origem": {
+            "seletor": "div.readout > span#tri-fp-val",
+            "trecho_inicial": "Fator de potência",
+            "linha_aprox": 1945
+          }
+        },
+        {
+          "rotulo": "Ângulo φ",
+          "id_valor": "tri-angle-val",
+          "valor_inicial_marcacao": "31,0",
+          "sufixo_unidade": "°",
+          "classe_cor_marcacao": null,
+          "id_container": null,
+          "linha_literal": "<div class=\"readout\"><span class=\"readout-label\">Ângulo φ</span><span class=\"readout-value\"><span id=\"tri-angle-val\">31,0</span>°</span></div>",
+          "origem": {
+            "seletor": "div.readout > span#tri-angle-val",
+            "trecho_inicial": "Ângulo φ",
+            "linha_aprox": 1946
+          }
+        }
+      ],
+      "leituras_nota": "As 5 leituras (div.triangle-readouts) são irmãs do SVG dentro de div.triangle-vis, FORA do div.instrument. O script do INST·05 as escreve a cada entrada (ver instrumentos[0].script). Valores iniciais da marcação = cenário-padrão calculado (ver instrumentos[0].cenario_padrao).",
+      "unidade": null,
+      "unidade_nota": "Cada leitura traz a própria unidade (kW, kVAr, kVA, °); FP é adimensional. Não há eixo numerado no SVG: só os rótulos kW, kVAr, kVA e φ.",
+      "fonte_citada": null,
+      "fonte_citada_nota": "Nenhuma fonte, legenda ou p.srcnote acompanha a figura.",
+      "origem": {
+        "seletor": "div.triangle-vis",
+        "trecho_inicial": "<div class=\"triangle-vis\">",
+        "linha_aprox": 1917
+      },
+      "linha_fim_aprox": 1948
+    }
+  ],
+  "tabelas": [],
+  "tabelas_nota": "Nenhum <table> dentro da section da Aula 07 (medido: 0). A única tabela que menciona a aula é a do § MAP (linha 1345), em aula.pergunta_mapa.",
+  "listas": [],
+  "listas_nota": "Nenhum <ul>/<ol> dentro da section da Aula 07 (medido: 0).",
+  "destaques": [
+    "m01-a07-b16-destaque",
+    "m01-a07-b19-destaque"
+  ],
+  "vale_lembrar": null,
+  "vale_lembrar_nota": "A expressão \"Vale lembrar\" não ocorre no HTML do M01. Os destaques da aula são 2 callouts (um neutro, um red).",
+  "termos_lexico": {
+    "vinculo_declarado_pela_fonte": false,
+    "nota": "O glossário da fonte (§ Lex, linhas ~2520-2690) não declara aula por termo. Abaixo: verbetes cujo nome-base, variante por \"/\" ou abreviação entre parênteses ocorre como palavra no texto da section (incluindo figura e instrumento). Correspondência textual, não posse — ler ocorrencias_contexto antes de ligar (§2 do protocolo).",
+    "total_verbetes_fonte": 38,
+    "candidatos": [
+      {
+        "termo": "Banco de capacitores",
+        "unidade_rotulo": "Solução · FP",
+        "definicao_html": "Conjunto de capacitores instalado próximo à carga industrial para fornecer localmente a potência reativa exigida por equipamentos indutivos. Eleva o fator de potência medido e reduz cobrança regulatória de excedente reativo. Exige diagnóstico técnico antes da especificação — compensação excessiva cria FP capacitivo, também problemático.",
+        "achados": [
+          {
+            "variante": "Banco de capacitores",
+            "n_ocorrencias": 5,
+            "ocorrencias_contexto": [
+              "tência subir. Esse é o efeito esperado de um banco de capacitores bem dimensionado: menos kVAr → mais FP → men",
+              "licável ao contrato. 7.5 A solução clássica: banco de capacitores Equipamentos indutivos exigem reativo. Capac",
+              "lássica para FP indutivo baixo é instalar um banco de capacitores próximo à carga, que fornece localmente a po",
+              "dido. Cuidado · diagnóstico antes de solução Banco de capacitores é uma solução comum, mas não é diagnóstico .",
+              " e melhor correção técnica\" — nunca \"instale banco de capacitores\"."
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Banco de capacitores",
+          "linha_aprox": 2532
+        }
+      },
+      {
+        "termo": "Eficiência",
+        "unidade_rotulo": "Razão",
+        "definicao_html": "Razão entre energia útil entregue e energia de entrada. Nenhum sistema real é 100% eficiente — parte da energia vira calor, vibração, ruído, perdas magnéticas e mecânicas. Em instalações industriais, eficiência de equipamento velho é uma das primeiras frentes legítimas de redução de custo.",
+        "achados": [
+          {
+            "variante": "Eficiência",
+            "n_ocorrencias": 1,
+            "ocorrencias_contexto": [
+              "eamente, um conceito físico, um indicador de eficiência elétrica e uma linha real de cobrança em fat"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Eficiência",
+          "linha_aprox": 2568
+        }
+      },
+      {
+        "termo": "Energia",
+        "unidade_rotulo": "kWh, MWh",
+        "definicao_html": "Capacidade de realizar trabalho ou produzir transformação. Em eletricidade, energia é potência integrada no tempo (kWh = kW × h). É a grandeza cobrada como \"consumo\" na fatura.",
+        "achados": [
+          {
+            "variante": "Energia",
+            "n_ocorrencias": 2,
+            "ocorrencias_contexto": [
+              "ngulo de potência e fator de potência Existe energia que ocupa a rede e não vira produção . Esta ",
+              "nhecida como UFER (Unidade de Faturamento de Energia Reativa) , hoje regulada no contexto da Reso"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Energia",
+          "linha_aprox": 2572
+        }
+      },
+      {
+        "termo": "Fator de potência (FP)",
+        "unidade_rotulo": "cos φ",
+        "definicao_html": "Razão entre potência ativa (kW) e potência aparente (kVA). Em regime senoidal, equivale ao cosseno do ângulo de defasagem entre tensão e corrente. Referência prática regulatória brasileira para Grupo A: mínimo 0,92, indutivo ou capacitivo. Abaixo desse valor pode haver cobrança por excedente reativo.",
+        "achados": [
+          {
+            "variante": "Fator de potência",
+            "n_ocorrencias": 7,
+            "ocorrencias_contexto": [
+              "Aula 07 Triângulo de potência e fator de potência Existe energia que ocupa a rede e não vira p",
+              "o . Esta aula é o coração técnico do módulo. Fator de potência é, simultaneamente, um conceito físico, um i",
+              " Pot. reativa 480 kVAr Pot. aparente 933 kVA Fator de potência 0,86 Ângulo φ 31,0 ° Controles · Triângulo d",
+              "tiva kVAr Reduza a potência reativa e veja o fator de potência subir. Esse é o efeito esperado de um banco ",
+              "menos kVA exigido da rede . 7.3 A fórmula do fator de potência FP = kW ÷ kVA = cos φ φ é o ângulo entre ten",
+              "r isso, a regulação brasileira estabelece um fator de potência mínimo de referência de 0,92 para unidades d",
+              "enômenos de qualidade do produto — incluindo fator de potência, harmônicos, variações de tensão, desequilíb"
+            ]
+          },
+          {
+            "variante": "FP",
+            "n_ocorrencias": 9,
+            "ocorrencias_contexto": [
+              "acitores bem dimensionado: menos kVAr → mais FP → menos cobrança regulatória → menos kVA exi",
+              "da rede . 7.3 A fórmula do fator de potência FP = kW ÷ kVA = cos φ φ é o ângulo entre tensão",
+              "ntre tensão e corrente em regime senoidal Um FP de 1,00 significa que toda a potência aparen",
+              "talação puramente resistiva, sem reativo. Um FP de 0,85 significa que apenas 85% da potência",
+              "utros 15% são reativos circulando pela rede. FP baixo é ineficiência elétrica visível para a",
+              "a Quando uma instalação industrial opera com FP baixo, ela força a distribuidora a entregar ",
+              "es fornecem reativo. A solução clássica para FP indutivo baixo é instalar um banco de capaci",
+              "uzindo o reativo puxado da rede e elevando o FP medido. Cuidado · diagnóstico antes de soluç",
+              "zonalidade. Compensação excessiva pode criar FP capacitivo, que também é problemático. A lin"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Fator de potência (FP)",
+          "linha_aprox": 2584
+        }
+      },
+      {
+        "termo": "Grupo A",
+        "unidade_rotulo": "Classificação",
+        "definicao_html": "Classe de consumidores atendidos em alta ou média tensão (≥ 2,3 kV) — indústrias, grandes comércios. Subdivide-se em A1, A2, A3, A3a, A4 e AS por nível de tensão. Estrutura tarifária binômia (consumo + demanda). Todo o universo industrial relevante da GridAlpha está aqui.",
+        "achados": [
+          {
+            "variante": "Grupo A",
+            "n_ocorrencias": 2,
+            "ocorrencias_contexto": [
+              "omina os três aspectos lê qualquer fatura do Grupo A sem hesitar. 7.1 Por que existe potência rea",
+              "ínimo de referência de 0,92 para unidades do Grupo A, tanto no comportamento indutivo quanto no c"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Grupo A",
+          "linha_aprox": 2592
+        }
+      },
+      {
+        "termo": "Harmônicos",
+        "unidade_rotulo": "Qualidade",
+        "definicao_html": "Distorções na forma de onda elétrica em múltiplos da frequência fundamental. Comuns em cargas não lineares — drives de velocidade variável, inversores, fontes eletrônicas, máquinas de solda. Causam aquecimento, disparo de proteções, redução de vida útil. Tratamento técnico envolve filtros passivos ou ativos.",
+        "achados": [
+          {
+            "variante": "Harmônicos",
+            "n_ocorrencias": 2,
+            "ocorrencias_contexto": [
+              "de do produto — incluindo fator de potência, harmônicos, variações de tensão, desequilíbrios e flutu",
+              "a exata do reativo, recorrência, presença de harmônicos (que podem amplificar problemas em sistemas "
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Harmônicos",
+          "linha_aprox": 2600
+        }
+      },
+      {
+        "termo": "kVA",
+        "unidade_rotulo": "Potência aparente",
+        "definicao_html": "Quilovolt-ampere. Unidade de potência aparente — combinação vetorial de potência ativa (kW) e reativa (kVAr). É o \"tamanho elétrico total\" que a rede precisa entregar à instalação. Dimensiona transformadores e cabos.",
+        "achados": [
+          {
+            "variante": "kVA",
+            "n_ocorrencias": 5,
+            "ocorrencias_contexto": [
+              "ncias formam um triângulo retângulo: kW kVAr kVA φ Pot. ativa 800 kW Pot. reativa 480 kVAr Po",
+              "0 kW Pot. reativa 480 kVAr Pot. aparente 933 kVA Fator de potência 0,86 Ângulo φ 31,0 ° Contr",
+              "mais FP → menos cobrança regulatória → menos kVA exigido da rede . 7.3 A fórmula do fator de ",
+              "7.3 A fórmula do fator de potência FP = kW ÷ kVA = cos φ φ é o ângulo entre tensão e corrente",
+              "o, ela força a distribuidora a entregar mais kVA para produzir o mesmo kW útil. Isso ocupa ca"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "kVA",
+          "linha_aprox": 2604
+        }
+      },
+      {
+        "termo": "kVAr",
+        "unidade_rotulo": "Potência reativa",
+        "definicao_html": "Quilovolt-ampere reativo. Unidade de potência reativa — circula entre rede e equipamentos para sustentar campos magnéticos e elétricos sem realizar trabalho útil no eixo da máquina. Necessária para motores e transformadores, mas excessiva degrada o fator de potência.",
+        "achados": [
+          {
+            "variante": "kVAr",
+            "n_ocorrencias": 5,
+            "ocorrencias_contexto": [
+              "agnético. Essa parcela é a potência reativa (kVAr) . Ela é necessária para a operação, mas não",
+              " potências formam um triângulo retângulo: kW kVAr kVA φ Pot. ativa 800 kW Pot. reativa 480 kVA",
+              "VAr kVA φ Pot. ativa 800 kW Pot. reativa 480 kVAr Pot. aparente 933 kVA Fator de potência 0,86",
+              "INST · 05 Potência ativa kW Potência reativa kVAr Reduza a potência reativa e veja o fator de ",
+              "banco de capacitores bem dimensionado: menos kVAr → mais FP → menos cobrança regulatória → men"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "kVAr",
+          "linha_aprox": 2608
+        }
+      },
+      {
+        "termo": "kW",
+        "unidade_rotulo": "Potência ativa",
+        "definicao_html": "Quilowatt. Unidade de potência ativa — a parcela da potência elétrica que realiza trabalho útil (gira eixo, esquenta forno, aciona esteira). 1 kW = 1.000 W. Não confundir com kWh, que é energia.",
+        "achados": [
+          {
+            "variante": "kW",
+            "n_ocorrencias": 5,
+            "ocorrencias_contexto": [
+              "rês potências formam um triângulo retângulo: kW kVAr kVA φ Pot. ativa 800 kW Pot. reativa 48",
+              "gulo retângulo: kW kVAr kVA φ Pot. ativa 800 kW Pot. reativa 480 kVAr Pot. aparente 933 kVA ",
+              "iângulo de potência INST · 05 Potência ativa kW Potência reativa kVAr Reduza a potência reat",
+              "de . 7.3 A fórmula do fator de potência FP = kW ÷ kVA = cos φ φ é o ângulo entre tensão e co",
+              "ra a entregar mais kVA para produzir o mesmo kW útil. Isso ocupa capacidade de transformador"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "kW",
+          "linha_aprox": 2612
+        }
+      },
+      {
+        "termo": "Potência",
+        "unidade_rotulo": "W, kW, MW",
+        "definicao_html": "Taxa instantânea de uso, geração ou transformação de energia. Unidade SI é o watt (W). Difere de energia: potência mede velocidade; energia mede volume acumulado.",
+        "achados": [
+          {
+            "variante": "Potência",
+            "n_ocorrencias": 23,
+            "ocorrencias_contexto": [
+              "Aula 07 Triângulo de potência e fator de potência Existe energia que ocupa",
+              "Aula 07 Triângulo de potência e fator de potência Existe energia que ocupa a rede e não vira p",
+              "aula é o coração técnico do módulo. Fator de potência é, simultaneamente, um conceito físico, um i",
+              "a do Grupo A sem hesitar. 7.1 Por que existe potência reativa Em equipamentos puramente resistivos",
+              "á perfeitamente em fase com a tensão. Toda a potência elétrica entregue vira trabalho útil (calor,",
+              "tregue vira trabalho útil (calor, luz). Toda potência aparente é potência ativa. Em equipamentos i",
+              " útil (calor, luz). Toda potência aparente é potência ativa. Em equipamentos indutivos — motores, ",
+              "ção à tensão. Quando isso acontece, parte da potência que circula entre a rede e a instalação não ",
+              "tentando o campo magnético. Essa parcela é a potência reativa (kVAr) . Ela é necessária para a ope",
+              ", mas não vira produção . 7.2 O triângulo de potência As três potências formam um triângulo retâng",
+              "tiva 480 kVAr Pot. aparente 933 kVA Fator de potência 0,86 Ângulo φ 31,0 ° Controles · Triângulo d",
+              ",86 Ângulo φ 31,0 ° Controles · Triângulo de potência INST · 05 Potência ativa kW Potência reativa"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Potência",
+          "linha_aprox": 2644
+        }
+      },
+      {
+        "termo": "PRODIST",
+        "unidade_rotulo": "Procedimentos · ANEEL",
+        "definicao_html": "Procedimentos de Distribuição de Energia Elétrica no Sistema Elétrico Nacional. Conjunto de documentos normativos que regulam tecnicamente o setor de distribuição. O <b>Módulo 8</b> trata especificamente de Qualidade do Fornecimento (continuidade, tensão, fator de potência, harmônicos).",
+        "achados": [
+          {
+            "variante": "PRODIST",
+            "n_ocorrencias": 1,
+            "ocorrencias_contexto": [
+              "s e flutuações — são tratados no Módulo 8 do PRODIST (Qualidade do Fornecimento). Antes de qualqu"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "PRODIST",
+          "linha_aprox": 2648
+        }
+      },
+      {
+        "termo": "REN ANEEL 1.000/2021",
+        "unidade_rotulo": "Norma",
+        "definicao_html": "Resolução Normativa ANEEL nº 1.000, de 7 de dezembro de 2021. Estabelece as regras de prestação do serviço público de distribuição de energia elétrica. Em vigor desde 3 de janeiro de 2022, substituiu a REN 414/2010. É a base regulatória atual para a relação distribuidora–consumidor.",
+        "achados": [
+          {
+            "variante": "1.000/2021",
+            "n_ocorrencias": 2,
+            "ocorrencias_contexto": [
+              " no contexto da Resolução Normativa ANEEL nº 1.000/2021 e suas regulamentações complementares. Refer",
+              "istribuição é a Resolução Normativa ANEEL nº 1.000/2021 , em vigor desde janeiro de 2022. Os fenômen"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "REN ANEEL 1.000/2021",
+          "linha_aprox": 2652
+        }
+      },
+      {
+        "termo": "Tensão",
+        "unidade_rotulo": "V, kV",
+        "definicao_html": "Diferença de potencial elétrico entre dois pontos de um circuito. Analogia hidráulica: pressão da água. Unidade SI é o volt (V). Define grupo tarifário no Brasil: Grupo B (baixa tensão, &lt; 2,3 kV) ou Grupo A (média/alta tensão, ≥ 2,3 kV).",
+        "achados": [
+          {
+            "variante": "Tensão",
+            "n_ocorrencias": 4,
+            "ocorrencias_contexto": [
+              " a corrente está perfeitamente em fase com a tensão. Toda a potência elétrica entregue vira trab",
+              "ente fique levemente \"atrasada\" em relação à tensão. Quando isso acontece, parte da potência que",
+              "cia FP = kW ÷ kVA = cos φ φ é o ângulo entre tensão e corrente em regime senoidal Um FP de 1,00 ",
+              " fator de potência, harmônicos, variações de tensão, desequilíbrios e flutuações — são tratados "
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Tensão",
+          "linha_aprox": 2656
+        }
+      },
+      {
+        "termo": "UFER",
+        "unidade_rotulo": "Cobrança · reativo",
+        "definicao_html": "Unidade de Faturamento de Energia Reativa. Cobrança histórica aplicada ao consumidor do Grupo A quando o fator de potência opera abaixo do limite regulatório (referência 0,92). Hoje regulada no contexto da REN ANEEL 1.000/2021 e normativos complementares. Aparece em linha específica da fatura.",
+        "achados": [
+          {
+            "variante": "UFER",
+            "n_ocorrencias": 1,
+            "ocorrencias_contexto": [
+              "ente reativo — historicamente conhecida como UFER (Unidade de Faturamento de Energia Reativa) "
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "UFER",
+          "linha_aprox": 2668
+        }
+      }
+    ]
+  },
+  "instrumentos": [
+    {
+      "id": "m01-inst-05",
+      "id_fonte": "INST · 05",
+      "kind_taxonomia": "controles",
+      "kind_nota": "O código usa kind \"controles\" (alexandria-modulo-01-content.ts inst-05). Marcação: 2 campos (cada um número + deslizador gêmeos), ZERO saída dentro do div.instrument e nota estática; as 5 leituras e o desenho vivem na figura triangle-vis (irmã, fora do instrumento) e são escritas pelo script.",
+      "titulo": "Controles · Triângulo de potência",
+      "pergunta": null,
+      "pergunta_nota": "A prancha não tem pergunta própria. A pergunta que a fonte declara para a aula está fora do instrumento: § MAP, linha 1345 (aula.pergunta_mapa). O texto do instrument-note (\"Reduza a potência reativa e veja o fator de potência subir…\") é instrução, não pergunta. Qualquer pergunta de previsão seria DERIVADA (P3/P11).",
+      "vinculos": {
+        "aula": "m01-a07",
+        "exercicio_relacionado": null,
+        "termo": null
+      },
+      "vinculos_nota": "Vínculo aula↔instrumento por posição (o div.instrument está dentro da section da Aula 07). O Ex·05 usa o mesmo vocabulário (kW, kVA, FP) mas a fonte não o liga ao instrumento.",
+      "entradas": [
+        {
+          "id": "i05-kw",
+          "rotulo": "Potência ativa",
+          "unidade": "kW",
+          "numero": {
+            "tipo_input": "number",
+            "id": "i05-kw",
+            "padrao": 800,
+            "min": 0,
+            "max": null,
+            "max_nota": "Sem atributo max no input numérico.",
+            "step": 50,
+            "linha_literal": "<input type=\"number\" id=\"i05-kw\" value=\"800\" min=\"0\" step=\"50\">"
+          },
+          "deslizador": {
+            "tipo_input": "range",
+            "id": "i05-kw-range",
+            "min": 100,
+            "max": 1500,
+            "padrao": 800,
+            "step": 10,
+            "linha_literal": "<div class=\"field-slider\"><input type=\"range\" id=\"i05-kw-range\" min=\"100\" max=\"1500\" value=\"800\" step=\"10\"></div>"
+          },
+          "gemeos": true,
+          "gemeos_nota": "Campo numérico e deslizador gêmeos, sincronizados pelo script (syncInputRange, linhas 2925-2930), com min/step diferentes (Q07 do DECIDIR): kW número min 0 step 50 × deslizador 100–1500 step 10; kVAr número min 0 step 20 × deslizador 0–1200 step 10.",
+          "origem": {
+            "seletor": "input#i05-kw",
+            "trecho_inicial": "Potência ativa kW",
+            "linha_aprox": 1960
+          }
+        },
+        {
+          "id": "i05-kvar",
+          "rotulo": "Potência reativa",
+          "unidade": "kVAr",
+          "numero": {
+            "tipo_input": "number",
+            "id": "i05-kvar",
+            "padrao": 480,
+            "min": 0,
+            "max": null,
+            "max_nota": "Sem atributo max no input numérico.",
+            "step": 20,
+            "linha_literal": "<input type=\"number\" id=\"i05-kvar\" value=\"480\" min=\"0\" step=\"20\">"
+          },
+          "deslizador": {
+            "tipo_input": "range",
+            "id": "i05-kvar-range",
+            "min": 0,
+            "max": 1200,
+            "padrao": 480,
+            "step": 10,
+            "linha_literal": "<div class=\"field-slider\"><input type=\"range\" id=\"i05-kvar-range\" min=\"0\" max=\"1200\" value=\"480\" step=\"10\"></div>"
+          },
+          "gemeos": true,
+          "gemeos_nota": "Campo numérico e deslizador gêmeos, sincronizados pelo script (syncInputRange, linhas 2925-2930), com min/step diferentes (Q07 do DECIDIR): kW número min 0 step 50 × deslizador 100–1500 step 10; kVAr número min 0 step 20 × deslizador 0–1200 step 10.",
+          "origem": {
+            "seletor": "input#i05-kvar",
+            "trecho_inicial": "Potência reativa kVAr",
+            "linha_aprox": 1965
+          }
+        }
+      ],
+      "saidas": [],
+      "saidas_nota": "Nenhuma saída DENTRO do div.instrument (sem div.instrument-output). As 5 leituras estão em figuras[0].leituras (div.triangle-readouts, fora do instrumento).",
+      "leituras_externas_ref": "m01-a07-fig-01",
+      "texto_leitura": {
+        "tipo": "estatico",
+        "seletor": "div.instrument-note",
+        "html": "Reduza a potência reativa e veja o fator de potência subir. Esse é o efeito esperado de um banco de capacitores bem dimensionado: <b>menos kVAr → mais FP → menos cobrança regulatória → menos kVA exigido da rede</b>.",
+        "texto": "Reduza a potência reativa e veja o fator de potência subir. Esse é o efeito esperado de um banco de capacitores bem dimensionado: menos kVAr → mais FP → menos cobrança regulatória → menos kVA exigido da rede.",
+        "origem": {
+          "seletor": "div.instrument-note",
+          "trecho_inicial": "Reduza a potência reativa e veja o fator de potência subir. ",
+          "linha_aprox": 1970
+        },
+        "nota": "Ao contrário do INST·06, o div.instrument-note do INST·05 não tem id nem é sobrescrito por script: é texto estático."
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i05-kw": 800,
+          "i05-kvar": 480
+        },
+        "origem": "atributos value dos inputs (linhas 1960, 1961, 1965, 1966)",
+        "leituras_calculadas_pelo_script": {
+          "tri-kw-val": "800",
+          "tri-kvar-val": "480",
+          "tri-kva-val": "933",
+          "tri-fp-val": "0,86",
+          "tri-angle-val": "31,0"
+        },
+        "fp_bruto": 0.8574929257125442,
+        "kva_bruto": 932.9523031752481,
+        "angulo_bruto_graus": 30.96375653207352,
+        "ramo_semaforo_ativo": "else if (fp >= 0.85)",
+        "nota": "Executada a mesma lógica das linhas 2883-2923 com 800 / 480. As 5 leituras calculadas coincidem com as da marcação (linhas 1942-1946): 800 kW, 480 kVAr, 933 kVA, 0,86, 31,0°."
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "A fonte não cita procedência para o cenário-padrão (800 kW / 480 kVAr) nem para os limiares 0,92 / 0,85 do script. O 0,92 é repetido na prosa de 7.4 como \"fator de potência mínimo de referência\" da regulação; o 0,85 só aparece no script (semáforo) e no exemplo de 7.3.",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada (P6). O instrumento não tem previsão, meta nem correção.",
+      "figura_prometida": null,
+      "figura_prometida_nota": "O título (\"Controles · …\") não promete figura, mas o instrumento comanda a figura triangle-vis (ids tri-*), que vive FORA dele.",
+      "origem": {
+        "seletor": "section.aula(Aula 07) div.instrument",
+        "trecho_inicial": "Controles · Triângulo de potência INST · 05",
+        "linha_aprox": 1951
+      },
+      "linha_inicio_markup": 1950,
+      "linha_fim_aprox": 1973,
+      "script": {
+        "origem": {
+          "seletor": "script: IIFE \"INSTRUMENT 05: Power Triangle (dynamic SVG)\"",
+          "trecho_inicial": "INSTRUMENT 05: Power Triangle",
+          "linha_aprox": 2855
+        },
+        "linha_inicio": 2858,
+        "linha_fim": 2932,
+        "linhas_literais": [
+          {
+            "linha": 2858,
+            "texto": "(function() {"
+          },
+          {
+            "linha": 2859,
+            "texto": "const kwIn = document.getElementById('i05-kw');"
+          },
+          {
+            "linha": 2860,
+            "texto": "const kvarIn = document.getElementById('i05-kvar');"
+          },
+          {
+            "linha": 2861,
+            "texto": "const kwRange = document.getElementById('i05-kw-range');"
+          },
+          {
+            "linha": 2862,
+            "texto": "const kvarRange = document.getElementById('i05-kvar-range');"
+          },
+          {
+            "linha": 2864,
+            "texto": "const triKw = document.getElementById('tri-kw');"
+          },
+          {
+            "linha": 2865,
+            "texto": "const triKvar = document.getElementById('tri-kvar');"
+          },
+          {
+            "linha": 2866,
+            "texto": "const triKva = document.getElementById('tri-kva');"
+          },
+          {
+            "linha": 2867,
+            "texto": "const triAngle = document.getElementById('tri-angle');"
+          },
+          {
+            "linha": 2868,
+            "texto": "const triLabelKva = document.getElementById('tri-label-kva');"
+          },
+          {
+            "linha": 2870,
+            "texto": "const kwVal = document.getElementById('tri-kw-val');"
+          },
+          {
+            "linha": 2871,
+            "texto": "const kvarVal = document.getElementById('tri-kvar-val');"
+          },
+          {
+            "linha": 2872,
+            "texto": "const kvaVal = document.getElementById('tri-kva-val');"
+          },
+          {
+            "linha": 2873,
+            "texto": "const fpVal = document.getElementById('tri-fp-val');"
+          },
+          {
+            "linha": 2874,
+            "texto": "const angleVal = document.getElementById('tri-angle-val');"
+          },
+          {
+            "linha": 2875,
+            "texto": "const fpReadout = document.getElementById('tri-fp-readout');"
+          },
+          {
+            "linha": 2877,
+            "texto": "const ORIG_X = 40, ORIG_Y = 240;"
+          },
+          {
+            "linha": 2878,
+            "texto": "const MAX_LEN = 200;"
+          },
+          {
+            "linha": 2879,
+            "texto": "const MAX_KW = 1500;"
+          },
+          {
+            "linha": 2880,
+            "texto": "const MAX_KVAR = 1200;"
+          },
+          {
+            "linha": 2882,
+            "texto": "function render() {"
+          },
+          {
+            "linha": 2883,
+            "texto": "const kw = parseFloat(kwIn.value) || 0;"
+          },
+          {
+            "linha": 2884,
+            "texto": "const kvar = parseFloat(kvarIn.value) || 0;"
+          },
+          {
+            "linha": 2885,
+            "texto": "const kva = Math.sqrt(kw * kw + kvar * kvar);"
+          },
+          {
+            "linha": 2886,
+            "texto": "const fp = kva > 0 ? kw / kva : 1;"
+          },
+          {
+            "linha": 2887,
+            "texto": "const angleRad = Math.atan2(kvar, kw);"
+          },
+          {
+            "linha": 2888,
+            "texto": "const angleDeg = angleRad * 180 / Math.PI;"
+          },
+          {
+            "linha": 2890,
+            "texto": "const kwPx = (kw / MAX_KW) * MAX_LEN;"
+          },
+          {
+            "linha": 2891,
+            "texto": "const kvarPx = (kvar / MAX_KVAR) * (MAX_LEN * 0.85);"
+          },
+          {
+            "linha": 2893,
+            "texto": "const endX = ORIG_X + kwPx;"
+          },
+          {
+            "linha": 2894,
+            "texto": "const endY = ORIG_Y - kvarPx;"
+          },
+          {
+            "linha": 2896,
+            "texto": "triKw.setAttribute('x2', endX);"
+          },
+          {
+            "linha": 2897,
+            "texto": "triKvar.setAttribute('x1', endX);"
+          },
+          {
+            "linha": 2898,
+            "texto": "triKvar.setAttribute('x2', endX);"
+          },
+          {
+            "linha": 2899,
+            "texto": "triKvar.setAttribute('y2', endY);"
+          },
+          {
+            "linha": 2900,
+            "texto": "triKva.setAttribute('x2', endX);"
+          },
+          {
+            "linha": 2901,
+            "texto": "triKva.setAttribute('y2', endY);"
+          },
+          {
+            "linha": 2903,
+            "texto": "const arcRadius = 30;"
+          },
+          {
+            "linha": 2904,
+            "texto": "const arcEndX = ORIG_X + arcRadius * Math.cos(-angleRad);"
+          },
+          {
+            "linha": 2905,
+            "texto": "const arcEndY = ORIG_Y + arcRadius * Math.sin(-angleRad);"
+          },
+          {
+            "linha": 2906,
+            "texto": "triAngle.setAttribute('d', `M ${ORIG_X + arcRadius} ${ORIG_Y} A ${arcRadius} ${arcRadius} 0 0 0 ${arcEndX.toFixed(2)} ${arcEndY.toFixed(2)}`);"
+          },
+          {
+            "linha": 2908,
+            "texto": "const midX = (ORIG_X + endX) / 2 - 10;"
+          },
+          {
+            "linha": 2909,
+            "texto": "const midY = (ORIG_Y + endY) / 2 - 8;"
+          },
+          {
+            "linha": 2910,
+            "texto": "triLabelKva.setAttribute('x', midX);"
+          },
+          {
+            "linha": 2911,
+            "texto": "triLabelKva.setAttribute('y', midY);"
+          },
+          {
+            "linha": 2912,
+            "texto": "triLabelKva.setAttribute('transform', `rotate(${(-angleDeg).toFixed(1)} ${midX} ${midY})`);"
+          },
+          {
+            "linha": 2914,
+            "texto": "kwVal.textContent = Math.round(kw).toLocaleString('pt-BR');"
+          },
+          {
+            "linha": 2915,
+            "texto": "kvarVal.textContent = Math.round(kvar).toLocaleString('pt-BR');"
+          },
+          {
+            "linha": 2916,
+            "texto": "kvaVal.textContent = Math.round(kva).toLocaleString('pt-BR');"
+          },
+          {
+            "linha": 2917,
+            "texto": "fpVal.textContent = fp.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });"
+          },
+          {
+            "linha": 2918,
+            "texto": "angleVal.textContent = angleDeg.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });"
+          },
+          {
+            "linha": 2920,
+            "texto": "if (fp >= 0.92) { fpReadout.classList.add('green'); fpReadout.classList.remove('gold', 'red'); }"
+          },
+          {
+            "linha": 2921,
+            "texto": "else if (fp >= 0.85) { fpReadout.classList.add('gold'); fpReadout.classList.remove('green', 'red'); }"
+          },
+          {
+            "linha": 2922,
+            "texto": "else { fpReadout.classList.add('red'); fpReadout.classList.remove('green', 'gold'); }"
+          },
+          {
+            "linha": 2923,
+            "texto": "}"
+          },
+          {
+            "linha": 2925,
+            "texto": "function syncInputRange(input, range) {"
+          },
+          {
+            "linha": 2926,
+            "texto": "input.addEventListener('input', () => { range.value = input.value; render(); });"
+          },
+          {
+            "linha": 2927,
+            "texto": "range.addEventListener('input', () => { input.value = range.value; render(); });"
+          },
+          {
+            "linha": 2928,
+            "texto": "}"
+          },
+          {
+            "linha": 2929,
+            "texto": "syncInputRange(kwIn, kwRange);"
+          },
+          {
+            "linha": 2930,
+            "texto": "syncInputRange(kvarIn, kvarRange);"
+          },
+          {
+            "linha": 2931,
+            "texto": "render();"
+          },
+          {
+            "linha": 2932,
+            "texto": "})();"
+          }
+        ],
+        "ids_dom_lidos": [
+          "i05-kw",
+          "i05-kvar",
+          "i05-kw-range",
+          "i05-kvar-range",
+          "tri-kw",
+          "tri-kvar",
+          "tri-kva",
+          "tri-angle",
+          "tri-label-kva",
+          "tri-kw-val",
+          "tri-kvar-val",
+          "tri-kva-val",
+          "tri-fp-val",
+          "tri-angle-val",
+          "tri-fp-readout"
+        ],
+        "constantes": {
+          "MAX_LEN": 200,
+          "MAX_KW": 1500,
+          "MAX_KVAR": 1200
+        },
+        "entradas_leitura": {
+          "kw": "const kw = parseFloat(kwIn.value) || 0;",
+          "kvar": "const kvar = parseFloat(kvarIn.value) || 0;",
+          "nota": "Resíduo do original, sinalizado e não corrigido (§10): `parseFloat(...) || 0` — campo vazio ou não numérico vira 0; sem teto (o campo numérico não tem max)."
+        },
+        "calculo": [
+          "const kva = Math.sqrt(kw * kw + kvar * kvar);",
+          "const fp = kva > 0 ? kw / kva : 1;",
+          "const angleRad = Math.atan2(kvar, kw);",
+          "const angleDeg = angleRad * 180 / Math.PI;"
+        ],
+        "geometria": {
+          "kwPx": "const kwPx = (kw / MAX_KW) * MAX_LEN;",
+          "kvarPx": "const kvarPx = (kvar / MAX_KVAR) * (MAX_LEN * 0.85);",
+          "nota": "Os dois eixos usam escalas diferentes: kW em MAX_LEN (200 px) para 1500 kW; kVAr em 0,85 × MAX_LEN (170 px) para 1200 kVAr."
+        },
+        "arco_angulo": [
+          "const arcRadius = 30;",
+          "const arcEndX = ORIG_X + arcRadius * Math.cos(-angleRad);",
+          "const arcEndY = ORIG_Y + arcRadius * Math.sin(-angleRad);",
+          "triAngle.setAttribute('d', `M ${ORIG_X + arcRadius} ${ORIG_Y} A ${arcRadius} ${arcRadius} 0 0 0 ${arcEndX.toFixed(2)} ${arcEndY.toFixed(2)}`);"
+        ],
+        "formatacao_leituras": {
+          "tri-kw-val": "kwVal.textContent = Math.round(kw).toLocaleString('pt-BR');",
+          "tri-kvar-val": "kvarVal.textContent = Math.round(kvar).toLocaleString('pt-BR');",
+          "tri-kva-val": "kvaVal.textContent = Math.round(kva).toLocaleString('pt-BR');",
+          "tri-fp-val": "fpVal.textContent = fp.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });",
+          "tri-angle-val": "angleVal.textContent = angleDeg.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });"
+        },
+        "formatacao_descricao": "kW, kVAr e kVA: Math.round + pt-BR (0 casa). FP: exatamente 2 casas. Ângulo: exatamente 1 casa. A leitura de FP é arredondada a 2 casas; o ramo do semáforo usa o valor NÃO arredondado.",
+        "semaforo_fp": {
+          "ramos": [
+            {
+              "condicao_literal": "if (fp >= 0.92)",
+              "limiar_fp": 0.92,
+              "classe_adicionada": "green",
+              "linha_literal": "if (fp >= 0.92) { fpReadout.classList.add('green'); fpReadout.classList.remove('gold', 'red'); }",
+              "origem": {
+                "seletor": "script render() > classList FP",
+                "trecho_inicial": "if (fp >= 0.92)",
+                "linha_aprox": 2920
+              }
+            },
+            {
+              "condicao_literal": "else if (fp >= 0.85)",
+              "limiar_fp": 0.85,
+              "classe_adicionada": "gold",
+              "linha_literal": "else if (fp >= 0.85) { fpReadout.classList.add('gold'); fpReadout.classList.remove('green', 'red'); }",
+              "origem": {
+                "seletor": "script render() > classList FP",
+                "trecho_inicial": "else if (fp >= 0.85)",
+                "linha_aprox": 2921
+              }
+            },
+            {
+              "condicao_literal": "else",
+              "limiar_fp": null,
+              "classe_adicionada": "red",
+              "linha_literal": "else { fpReadout.classList.add('red'); fpReadout.classList.remove('green', 'gold'); }",
+              "origem": {
+                "seletor": "script render() > classList FP",
+                "trecho_inicial": "else",
+                "linha_aprox": 2922
+              }
+            }
+          ],
+          "nota": "O original pinta o readout do FP com classe green / gold / red (CSS: .readout-value.green / .gold / .red), com limiares 0,92 e 0,85. É semáforo de cor na fonte; a fonte não tem texto de veredito nesses ramos."
+        },
+        "sincronia_input_range": [
+          "function syncInputRange(input, range) {",
+          "input.addEventListener('input', () => { range.value = input.value; render(); });",
+          "range.addEventListener('input', () => { input.value = range.value; render(); });",
+          "}"
+        ],
+        "chamada_inicial": "render();",
+        "chamada_inicial_nota": "render() roda no carregamento: o SVG e as leituras da marcação são sobrescritos pelo script antes da primeira interação."
+      }
+    }
+  ],
+  "invocacoes_no_texto": [
+    {
+      "id": "m01-a07-inv-01",
+      "alvo": "m01-a07-fig-01",
+      "tipo": "invocacao_da_figura",
+      "texto": "As três potências formam um triângulo retângulo:",
+      "bloco": "m01-a07-b07-paragrafo",
+      "origem": {
+        "seletor": "h3(7.2) ~ p",
+        "trecho_inicial": "As três potências formam",
+        "linha_aprox": 1915
+      },
+      "posicao_figura": "imediatamente depois deste parágrafo (linhas 1917-1948), seguida do INST·05 (linhas 1950-1973) e do h3 7.3"
+    },
+    {
+      "id": "m01-a07-inv-02",
+      "alvo": "m01-inst-05",
+      "tipo": "instrucao_do_instrumento",
+      "texto": "Reduza a potência reativa e veja o fator de potência subir.",
+      "bloco": null,
+      "origem": {
+        "seletor": "div.instrument-note",
+        "trecho_inicial": "Reduza a potência reativa",
+        "linha_aprox": 1970
+      },
+      "posicao_instrumento": "A prosa da aula NÃO invoca o instrumento por nome (\"abaixo\", \"use\"): o parágrafo de 7.2 termina em dois-pontos e o div.triangle-vis + div.instrument seguem. A instrução está dentro do próprio instrumento."
+    }
+  ],
+  "remissoes_de_outras_partes": [
+    {
+      "texto": "Veremos isso em profundidade na Aula 07, onde toda a lógica do fator de potência fica explícita.",
+      "origem": {
+        "seletor": "prosa de outra seção",
+        "trecho_inicial": "Veremos isso em profundidade na Aula 07, onde toda a lógica ",
+        "linha_aprox": 1578
+      }
+    }
+  ],
+  "exercicios": [
+    {
+      "id": "m01-ex-05",
+      "tipo": "discursiva_com_gabarito",
+      "tag_fonte": "Ex · 05 · Aula 07",
+      "vinculo_declarado": {
+        "aula_id": "m01-a07",
+        "como": "span.exercise-tag \"… · Aula 07\" (tag de posse, §4 do protocolo)"
+      },
+      "enunciado_html": "Uma instalação industrial usa <b>900 kW de potência ativa</b> e exige <b>1.000 kVA</b> de potência aparente. Qual o fator de potência? Está dentro do esperado para Grupo A? Qual cuidado antes de recomendar solução?",
+      "enunciado_texto": "Uma instalação industrial usa 900 kW de potência ativa e exige 1.000 kVA de potência aparente. Qual o fator de potência? Está dentro do esperado para Grupo A? Qual cuidado antes de recomendar solução?",
+      "resposta_referencia_html": "FP: <span class=\"calc\">900 ÷ 1.000 = 0,90</span>. Está <b>abaixo da referência prática de 0,92</b> para Grupo A — alerta. Pode haver cobrança por excedente reativo. <b>Cuidado essencial:</b> não recomendar banco de capacitores automaticamente. Antes: verificar causa exata (cargas indutivas? harmônicos?), recorrência, perfil ao longo do dia, presença de cargas não lineares. Compensação excessiva pode criar FP capacitivo, que também é problemático. Solução correta exige diagnóstico técnico estruturado.",
+      "resposta_referencia_texto": "FP: 900 ÷ 1.000 = 0,90. Está abaixo da referência prática de 0,92 para Grupo A — alerta. Pode haver cobrança por excedente reativo. Cuidado essencial: não recomendar banco de capacitores automaticamente. Antes: verificar causa exata (cargas indutivas? harmônicos?), recorrência, perfil ao longo do dia, presença de cargas não lineares. Compensação excessiva pode criar FP capacitivo, que também é problemático. Solução correta exige diagnóstico técnico estruturado.",
+      "criterio": null,
+      "criterio_nota": "Sem critério por exercício na fonte. O único critério declarado é de nível do § Drill, citado em criterio_modulo_drill.",
+      "criterio_modulo_drill": {
+        "texto": "Resolva cada exercício mentalmente ou no papel antes de revelar a resposta. Os exercícios alcançam todas as nove aulas. O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+        "origem": {
+          "seletor": "§ Drill > p",
+          "trecho_inicial": "Resolva cada exercício mentalmente ou no papel antes de reve",
+          "linha_aprox": 2389
+        }
+      },
+      "mecanica_fonte": "button.exercise-toggle \"Revelar gabarito\" (onclick toggleAns) — referência revelável sem tentativa registrada (ver bar C7).",
+      "vinculos": {
+        "aula": "m01-a07",
+        "instrumento": null,
+        "instrumento_nota": "Não declarado. O exercício usa as mesmas grandezas do INST·05 (kW, kVA, FP) com outro cenário (900 kW, 1.000 kVA), mas a fonte não liga um ao outro.",
+        "termo": null
+      },
+      "origem": {
+        "seletor": "§ Drill > div.exercise:nth-of-type(5)",
+        "trecho_inicial": "Ex · 05 · Aula 07 Uma instalação industrial usa 900 kW de potência ativa e exi",
+        "linha_aprox": 2427
+      },
+      "linha_fim_aprox": 2434
+    }
+  ],
+  "exercicios_varredura": {
+    "tags_com_Aula_07": [
+      "Ex · 05 · Aula 07"
+    ],
+    "campos_varridos": "tag, enunciado e gabarito de todos os div.exercise (protocolo §4)"
+  },
+  "relacionados_nao_vinculados": [
+    {
+      "id": "m01-quiz-q06",
+      "tipo": "questao_quiz_multipla_escolha",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Sem tag de aula no array `questions`. Tema coincide com a Aula 07; posse NÃO declarada — pertence à avaliação do módulo (§ Quiz). Listado só para rastreio.",
+      "posicao_no_quiz": 6,
+      "total_questoes_no_array": 10,
+      "enunciado": "No Brasil, fator de potência mínimo de referência regulatória para Grupo A é:",
+      "opcoes": [
+        "0,85",
+        "0,90",
+        "0,92",
+        "0,95"
+      ],
+      "indice_correto": 2,
+      "opcao_correta": "0,92",
+      "feedback": "0,92, indutivo ou capacitivo. Abaixo desse valor, pode haver cobrança regulatória sobre o excedente reativo. Mas atenção: detalhes operacionais dependem da modalidade tarifária e regras vigentes (atualmente REN ANEEL 1.000/2021).",
+      "origem": {
+        "seletor": "script: const questions = [...]",
+        "trecho_inicial": "No Brasil, fator de potência mínimo de referência regulatóri",
+        "linha_aprox": 3113
+      }
+    },
+    {
+      "id": "m01-quiz-q07",
+      "tipo": "questao_quiz_multipla_escolha",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Sem tag de aula no array `questions`. Tema coincide com a Aula 07; posse NÃO declarada — pertence à avaliação do módulo (§ Quiz). Listado só para rastreio.",
+      "posicao_no_quiz": 7,
+      "total_questoes_no_array": 10,
+      "enunciado": "Qual a relação correta entre as três potências em um triângulo de potência?",
+      "opcoes": [
+        "kVA = kW + kVAr",
+        "kVA² = kW² + kVAr²",
+        "kW = kVA × kVAr",
+        "kVAr = kVA × kW"
+      ],
+      "indice_correto": 1,
+      "opcao_correta": "kVA² = kW² + kVAr²",
+      "feedback": "kVA² = kW² + kVAr² (Pitágoras — triângulo retângulo). Equivalente: kVA = √(kW² + kVAr²). E o fator de potência é cos φ = kW ÷ kVA. Memorize esse triângulo — é o coração técnico do módulo.",
+      "origem": {
+        "seletor": "script: const questions = [...]",
+        "trecho_inicial": "Qual a relação correta entre as três potências em um triângu",
+        "linha_aprox": 3119
+      }
+    },
+    {
+      "id": "m01-checklist-triangulo",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática.",
+      "texto": "Desenhar o triângulo kW, kVAr, kVA e identificar cada lado.",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Desenhar o triângulo kW, kVAr, kVA e identificar cada lado.",
+        "linha_aprox": 2506
+      }
+    },
+    {
+      "id": "m01-checklist-fp",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática.",
+      "texto": "Calcular fator de potência e explicar por que abaixo de 0,92 pode virar cobrança.",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Calcular fator de potência e explicar por que abaixo de 0,92",
+        "linha_aprox": 2507
+      }
+    }
+  ],
+  "criterio_quiz_fonte": {
+    "texto": "Quiz de fluência. Cada resposta tem feedback explicativo. O critério de domínio do módulo é acertar pelo menos <strong>8 de 10</strong> sem consultar.",
+    "origem": {
+      "seletor": "§ Quiz > p",
+      "trecho_inicial": "Quiz de fluência. Cada resposta tem feedback explicativo. O ",
+      "linha_aprox": 2474
+    }
+  },
+  "cobertura_texto_por_token": {
+    "tokens_fonte_sem_instrumento": 623,
+    "tokens_casados": 623,
+    "pct": 100,
+    "tokens_nao_casados": [],
+    "faixa_denominador": {
+      "de": 1900,
+      "ate": 2001,
+      "excluido": {
+        "de": 1950,
+        "ate": 1973,
+        "o_que": "comentário + div.instrument (INST·05)"
+      }
+    },
+    "nota": "Denominador = texto da section (1900-2001) sem o comentário e o div.instrument do INST·05, §5; tokens por palavra com baixa (cada palavra da fonte consome uma do extraído). Tags viram espaço nos dois lados, o que elimina o artefato de spans vizinhos colados visto na A08."
+  },
+  "divergencias": [
+    {
+      "id": "DIV-01",
+      "tipo": "fonte_contraditoria_interna",
+      "qa": "QA-M01-A07",
+      "status": "PENDENTE DE DECISÃO DO FOUNDER",
+      "o_que": "A frase de 7.3 sobre FP 0,85 e \"15% reativos\" contra o triângulo e a fórmula da própria aula.",
+      "leitura_a": {
+        "texto": "Um FP de 0,85 significa que apenas 85% da potência aparente vira trabalho útil; os outros 15% são reativos circulando pela rede.",
+        "origem": {
+          "seletor": "h3(7.3) ~ p",
+          "trecho_inicial": "Um FP de 0,85 significa",
+          "linha_aprox": 1981
+        },
+        "argumento": "Verbatim da fonte, linha 1981: diz que 85% da potência aparente vira trabalho útil e que \"os outros 15%\" são reativos."
+      },
+      "leitura_b": {
+        "texto": "Pot. ativa 800 kW Pot. reativa 480 kVAr Pot. aparente 933 kVA Fator de potência 0,86 Ângulo φ 31,0 ° | FP = kW ÷ kVA = cos φ",
+        "origem": {
+          "seletor": "div.triangle-readouts + div.formula > div.eq",
+          "trecho_inicial": "Pot. ativa",
+          "linha_aprox": 1942,
+          "linha_fim_aprox": 1977
+        },
+        "argumento": "Leituras da marcação (linhas 1942-1946) e fórmula (linha 1977), todas da própria Aula 07. No cenário-padrão da fonte, kVAr = 480 e kVA = 933: o reativo NÃO é 14% da aparente. A relação kVA² = kW² + kVAr² é a da A02 (L1578, \"kW e kVAr são os catetos, kVA é a hipotenusa\") e do quiz Q07 (L3122)."
+      },
+      "derivado": {
+        "rotulo": "DERIVADO (aritmética simples sobre os números da própria aula; NÃO está na fonte e NÃO substitui a frase)",
+        "kvar_sobre_kva_no_cenario_padrao": 0.5144957554275266,
+        "kvar_sobre_kva_com_fp_0_85": 0.526782687642637,
+        "kvar_para_100_kva_com_fp_0_85": 52.678268764263706,
+        "kw_para_100_kva_com_fp_0_85": 85,
+        "complemento_de_0_85": 0.15000000000000002
+      },
+      "decisao": "não escolhida — pendente de decisão do Founder (DECIDIR.md QA-M01-A07 [C]). Não há frase substituta nesta extração; a frase fica tal como está na fonte."
+    },
+    {
+      "id": "DIV-02",
+      "tipo": "fonte_limiar_sem_procedencia",
+      "o_que": "O script do INST·05 usa dois limiares de FP (0,92 e 0,85); a prosa só nomeia o 0,92 como referência.",
+      "leitura_a": {
+        "texto": "a regulação brasileira estabelece um fator de potência mínimo de referência de 0,92 para unidades do Grupo A, tanto no comportamento indutivo quanto no capacitivo.",
+        "origem": {
+          "seletor": "h3(7.4) ~ p:nth-of-type(2)",
+          "trecho_inicial": "Para combater isso",
+          "linha_aprox": 1986
+        }
+      },
+      "leitura_b": {
+        "texto": "if (fp >= 0.92) { fpReadout.classList.add('green'); fpReadout.classList.remove('gold', 'red'); } | else if (fp >= 0.85) { fpReadout.classList.add('gold'); fpReadout.classList.remove('green', 'red'); } | else { fpReadout.classList.add('red'); fpReadout.classList.remove('green', 'gold'); }",
+        "origem": {
+          "seletor": "script render()",
+          "trecho_inicial": "if (fp >= 0.92)",
+          "linha_aprox": 2920,
+          "linha_fim_aprox": 2922
+        },
+        "argumento": "O limiar 0,85 do ramo \"gold\" não é nomeado na prosa de 7.4 (só aparece como exemplo em 7.3). Nenhum texto de veredito acompanha as cores."
+      },
+      "decisao": "não escolhida — a fonte não declara procedência do 0,85 como limiar."
+    },
+    {
+      "id": "DIV-03",
+      "tipo": "fonte_formulacao_variavel",
+      "o_que": "O 0,92 é chamado de \"mínimo de referência\" da regulação em 7.4 e de \"referência prática\" no gabarito do Ex·05.",
+      "leitura_a": {
+        "texto": "a regulação brasileira estabelece um fator de potência mínimo de referência de 0,92 para unidades do Grupo A",
+        "origem": {
+          "seletor": "h3(7.4) ~ p",
+          "trecho_inicial": "Para combater isso",
+          "linha_aprox": 1986
+        }
+      },
+      "leitura_b": {
+        "texto": "Está abaixo da referência prática de 0,92 para Grupo A",
+        "origem": {
+          "seletor": "§ Drill Ex · 05 > .exercise-answer",
+          "trecho_inicial": "FP: 900 ÷ 1.000",
+          "linha_aprox": 2432
+        },
+        "argumento": "O quiz Q06 (L3113) diz \"mínimo de referência regulatória\"; o léxico usa \"Referência prática regulatória brasileira\" (L2584-2585)."
+      },
+      "decisao": "não escolhida — mesmo valor, três formulações do estatuto."
+    },
+    {
+      "id": "DIV-04",
+      "tipo": "fonte_campos_gemeos_divergentes",
+      "o_que": "Faixas do campo numérico e do deslizador gêmeos do INST·05 (Q07 do DECIDIR).",
+      "leitura_a": {
+        "texto": "<input type=\"number\" id=\"i05-kw\" value=\"800\" min=\"0\" step=\"50\"> | <input type=\"number\" id=\"i05-kvar\" value=\"480\" min=\"0\" step=\"20\">",
+        "origem": {
+          "seletor": "input[type=number]",
+          "trecho_inicial": "<input type=\"number\"",
+          "linha_aprox": 1960,
+          "linha_fim_aprox": 1965
+        }
+      },
+      "leitura_b": {
+        "texto": "<div class=\"field-slider\"><input type=\"range\" id=\"i05-kw-range\" min=\"100\" max=\"1500\" value=\"800\" step=\"10\"></div> | <div class=\"field-slider\"><input type=\"range\" id=\"i05-kvar-range\" min=\"0\" max=\"1200\" value=\"480\" step=\"10\"></div>",
+        "origem": {
+          "seletor": "input[type=range]",
+          "trecho_inicial": "<input type=\"range\"",
+          "linha_aprox": 1961,
+          "linha_fim_aprox": 1966
+        },
+        "argumento": "syncInputRange copia input.value → range.value e vice-versa (linhas 2925-2930); um valor digitado abaixo do min do deslizador (kW < 100) é clampado pelo range, mas render() lê o valor do campo numérico."
+      },
+      "decisao": "não escolhida — as duas faixas coexistem na fonte."
+    },
+    {
+      "id": "DIV-05",
+      "tipo": "fonte_geometria_x_leitura",
+      "o_que": "O desenho do triângulo e a leitura de φ usam escalas diferentes nos dois eixos.",
+      "leitura_a": {
+        "texto": "const kwPx = (kw / MAX_KW) * MAX_LEN; | const kvarPx = (kvar / MAX_KVAR) * (MAX_LEN * 0.85);",
+        "origem": {
+          "seletor": "script render()",
+          "trecho_inicial": "const kwPx",
+          "linha_aprox": 2890,
+          "linha_fim_aprox": 2891
+        },
+        "argumento": "kW: 200 px para 1500 kW; kVAr: 170 px (0,85 × 200) para 1200 kVAr."
+      },
+      "leitura_b": {
+        "texto": "const angleRad = Math.atan2(kvar, kw); | angleVal.textContent = angleDeg.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });",
+        "origem": {
+          "seletor": "script render()",
+          "trecho_inicial": "const angleRad",
+          "linha_aprox": 2887,
+          "linha_fim_aprox": 2918
+        },
+        "argumento": "O ângulo exibido é atan2(kVAr, kW) sobre os valores, não sobre os pixels."
+      },
+      "derivado": {
+        "rotulo": "DERIVADO (execução da lógica do script no cenário-padrão; NÃO está na fonte)",
+        "angulo_lido_graus": 30.96375653207352,
+        "angulo_desenhado_graus": 32.517510615045516,
+        "kwPx": 106.66666666666667,
+        "kvarPx": 68
+      },
+      "estado_pre_script": {
+        "rotulo": "Geometria estática da marcação (antes de render() rodar no carregamento)",
+        "tri_kw": {
+          "id": "tri-kw",
+          "x1": "40",
+          "y1": "240",
+          "x2": "240",
+          "y2": "240",
+          "stroke": "#06B6D4",
+          "stroke-width": "3"
+        },
+        "tri_kvar": {
+          "id": "tri-kvar",
+          "x1": "240",
+          "y1": "240",
+          "x2": "240",
+          "y2": "120",
+          "stroke": "#F59E0B",
+          "stroke-width": "3"
+        },
+        "tri_kva": {
+          "id": "tri-kva",
+          "x1": "40",
+          "y1": "240",
+          "x2": "240",
+          "y2": "120",
+          "stroke": "#E8EAED",
+          "stroke-width": "2"
+        }
+      },
+      "decisao": "não escolhida — registrado para quem desenhar a figura (C6); a fonte não declara qual escala vale."
+    }
+  ],
+  "comparacao_codigo": {
+    "arquivos": [
+      "src/lib/data/alexandria-modulo-01-content.ts (INSTRUMENTOS_MODULO_01 inst-05 ~l.101-114; MODULO_01_LEAD aula-01-07 ~l.169; MODULO_01_CORPO aula-01-07 ~l.282-301; MODULO_01_AULAS aula-01-07 ~l.496-521)",
+      "src/lib/data/alexandria-instrument-calculators.ts (inst-05 ~l.1751-1770)",
+      "src/lib/data/alexandria-glossario.ts (aulaIds)",
+      "src/components/alexandria/viewer/InstrumentPanel.tsx ~l.216-222 (ehDiagrama; lido só para entender o efeito das divergências; não é fonte)"
+    ],
+    "verificacoes_programaticas": {
+      "por_bloco": [
+        {
+          "bloco": "m01-a07-b01-lead",
+          "tipo": "lead",
+          "linha": 1905,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b02-titulo",
+          "tipo": "titulo",
+          "linha": 1907,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b03-paragrafo",
+          "tipo": "paragrafo",
+          "linha": 1908,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b04-paragrafo",
+          "tipo": "paragrafo",
+          "linha": 1910,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b05-paragrafo",
+          "tipo": "paragrafo",
+          "linha": 1912,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b06-titulo",
+          "tipo": "titulo",
+          "linha": 1914,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b07-paragrafo",
+          "tipo": "paragrafo",
+          "linha": 1915,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b08-figura",
+          "tipo": "figura",
+          "linha": 1917,
+          "verbatim_no_codigo": false
+        },
+        {
+          "bloco": "m01-a07-b09-instrumento",
+          "tipo": "instrumento",
+          "linha": 1951,
+          "verbatim_no_codigo": null
+        },
+        {
+          "bloco": "m01-a07-b10-titulo",
+          "tipo": "titulo",
+          "linha": 1975,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b11-formula",
+          "tipo": "formula",
+          "linha": 1976,
+          "eq_texto_no_codigo": true,
+          "desc_no_codigo": false,
+          "verbatim_no_codigo": false
+        },
+        {
+          "bloco": "m01-a07-b12-paragrafo",
+          "tipo": "paragrafo",
+          "linha": 1981,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b13-titulo",
+          "tipo": "titulo",
+          "linha": 1983,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b14-paragrafo",
+          "tipo": "paragrafo",
+          "linha": 1984,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b15-paragrafo",
+          "tipo": "paragrafo",
+          "linha": 1986,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b16-destaque",
+          "tipo": "destaque",
+          "linha": 1988,
+          "rotulo_no_codigo_como_nota": true,
+          "corpo_no_codigo": true,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b17-titulo",
+          "tipo": "titulo",
+          "linha": 1993,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b18-paragrafo",
+          "tipo": "paragrafo",
+          "linha": 1994,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a07-b19-destaque",
+          "tipo": "destaque",
+          "linha": 1996,
+          "rotulo_no_codigo_como_nota": true,
+          "corpo_no_codigo": false,
+          "verbatim_no_codigo": false
+        }
+      ],
+      "lead_verbatim": true,
+      "span_orfao_no_corpo": 0,
+      "span_na_fonte_da_aula": 28,
+      "ex_enunciado_verbatim": true,
+      "ex_gabarito_verbatim": true,
+      "ex_tag_verbatim": true,
+      "inst_titulo_verbatim": true,
+      "inst_nota_verbatim": true,
+      "inst_campos": [
+        {
+          "id": "i05-kw",
+          "linha_codigo": "{ id: \"i05-kw\", label: \"Potência ativa\", unit: \"kW\", kind: \"range\", defaultValue: 800, min: 100, max: 1500, step: 10 }"
+        },
+        {
+          "id": "i05-kvar",
+          "linha_codigo": "{ id: \"i05-kvar\", label: \"Potência reativa\", unit: \"kVAr\", kind: \"range\", defaultValue: 480, min: 0, max: 1200, step: 10 }"
+        }
+      ],
+      "inst_outputs_vazio": true,
+      "calc_inst05": "'inst-05': (i) => {\r\n    const kw = n(i['i05-kw']);\r\n    const kvar = n(i['i05-kvar']);\r\n    const kva = Math.sqrt(kw * kw + kvar * kvar);\r\n    const fp = kva > 0 ? kw / kva : 1;\r\n    const grausTotais = (Math.atan2(kvar, kw) * 180) / Math.PI;\r\n    return {\r\n      valores: { 'tri-kw': kw, 'tri-kvar': kvar, 'tri-kva': kva, 'tri-fp': fp, 'tri-angulo': grausTotais },\r\n      veredito:\r\n        fp >= 0.92\r\n          ? 'FP dentro do mínimo regulatório de 0,92.'\r\n          : fp >= 0.85\r\n            ? 'FP abaixo de 0,92 — sujeito a cobrança de reativo excedente.'\r\n            : 'FP crítico — cobrança de reativo relevante e kVA exigido bem acima do útil.',\r\n    };\r\n  },",
+      "vereditos_calc_na_fonte": [
+        {
+          "texto": "FP dentro do mínimo regulatório de 0,92.",
+          "existe_na_fonte": false
+        },
+        {
+          "texto": "FP abaixo de 0,92 — sujeito a cobrança de reativo excedente.",
+          "existe_na_fonte": false
+        },
+        {
+          "texto": "FP crítico — cobrança de reativo relevante e kVA exigido bem acima do útil.",
+          "existe_na_fonte": false
+        }
+      ],
+      "marca_gridalpha_na_fonte_da_aula": 1,
+      "marca_gridalpha_no_corpo_codigo": 0,
+      "marca_nivar_no_corpo_codigo": 1,
+      "glossario": {
+        "verbetes_lidos_no_codigo": 35,
+        "ligados_a_aula_no_codigo": [
+          "Banco de capacitores",
+          "Energia",
+          "Fator de potência (FP)",
+          "Grupo A",
+          "Harmônicos",
+          "kVA",
+          "kVAr",
+          "kW",
+          "Potência",
+          "PRODIST",
+          "REN ANEEL 1.000/2021",
+          "Tensão",
+          "UFER"
+        ],
+        "candidatos_textuais_na_fonte": [
+          "Banco de capacitores",
+          "Eficiência",
+          "Energia",
+          "Fator de potência (FP)",
+          "Grupo A",
+          "Harmônicos",
+          "kVA",
+          "kVAr",
+          "kW",
+          "Potência",
+          "PRODIST",
+          "REN ANEEL 1.000/2021",
+          "Tensão",
+          "UFER"
+        ],
+        "ligados_no_codigo_sem_ocorrencia_textual": [],
+        "ocorrencia_textual_sem_ligacao_no_codigo": [
+          "Eficiência"
+        ]
+      }
+    },
+    "conforme": [
+      "Lead (p.lead) verbatim em MODULO_01_LEAD[\"aula-01-07\"].",
+      "Títulos 7.1–7.5 com número e texto corretos.",
+      "Parágrafos de 7.1 (3), 7.2 (1), 7.3 (1, inclusive a frase do QA-M01-A07, preservada tal como está na fonte), 7.4 (2) e 7.5 (1) verbatim.",
+      "Corpo do callout \"Referência regulatória\" verbatim.",
+      "Título do INST·05 e texto do instrument-note verbatim; ids, rótulos, unidades e padrões (800 / 480) dos 2 campos.",
+      "Ex·05: tag, enunciado e gabarito verbatim; vinculado à aula-01-07 (tag de posse declarada).",
+      "durationMinutes / difficulty / video = null, coerente com a fonte.",
+      "Sem </span> órfão no corpo de aula-01-07 (medido: 0; a fonte da aula tem 28 <span> fora do instrumento/figura contados na section inteira)."
+    ],
+    "divergencias": [
+      {
+        "id": "COD-01",
+        "gravidade": "alta",
+        "onde": "MODULO_01_CORPO[\"aula-01-07\"]",
+        "o_que": "A figura div.triangle-vis (SVG do triângulo com rótulos kW / kVAr / kVA / φ e as 5 leituras: Pot. ativa 800 kW, Pot. reativa 480 kVAr, Pot. aparente 933 kVA, Fator de potência 0,86, Ângulo φ 31,0°) não existe no corpo portado. O parágrafo de 7.2 (\"As três potências formam um triângulo retângulo:\") termina em dois-pontos e o bloco seguinte já é o título 7.3. Perda silenciosa (§5, §12).",
+        "fonte": "linhas 1917-1948"
+      },
+      {
+        "id": "COD-02",
+        "gravidade": "alta",
+        "onde": "AulaViewer.tsx + MODULO_01_AULAS",
+        "o_que": "O instrumento não tem posição no fluxo: fica em aula.instruments e é renderizado depois de TODA a apostila. Na fonte ele vem depois da figura triangle-vis e antes do h3 7.3 (linhas 1950-1973). Viola bar C5 e a Regra-mãe 1; \"As três potências formam um triângulo retângulo:\" deixa de apontar para o triângulo.",
+        "fonte": "linhas 1917-1975"
+      },
+      {
+        "id": "COD-03",
+        "gravidade": "alta",
+        "onde": "INSTRUMENTOS_MODULO_01 inst-05 .outputs",
+        "o_que": "outputs: [] — as 5 leituras da fonte (kW, kVAr, kVA, FP, φ; ids tri-*-val) não estão no objeto do instrumento. O desenho e os valores dependem de InstrumentPanel.tsx (ehDiagrama, ancorado no id) lendo valores tri-* do calculador; isso foi deduzido da leitura de código, não medido na tela.",
+        "fonte": "linhas 1942-1946, 2914-2918"
+      },
+      {
+        "id": "COD-04",
+        "gravidade": "alta",
+        "onde": "alexandria-instrument-calculators.ts inst-05 (veredito)",
+        "o_que": "Os três textos de veredito do calculador (\"FP dentro do mínimo regulatório de 0,92.\", \"FP abaixo de 0,92 — sujeito a cobrança de reativo excedente.\", \"FP crítico — cobrança de reativo relevante e kVA exigido bem acima do útil.\") NÃO existem no HTML: a fonte só troca a classe de cor do readout do FP (green / gold / red); não há texto de veredito. Verificado por substring: ausente, ausente, ausente. O comentário do calculador também descreve a faixa como \"verde / ouro / vermelho\".",
+        "fonte": "linhas 2920-2922"
+      },
+      {
+        "id": "COD-05",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-07\"] bloco de 7.3",
+        "o_que": "Fórmula portada com desc: null. A fonte tem div.desc: \"φ é o ângulo entre tensão e corrente em regime senoidal\".",
+        "fonte": "linha 1978"
+      },
+      {
+        "id": "COD-06",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-07\"] callouts",
+        "o_que": "Os dois callouts foram portados como nota { label: null, html: <rótulo> } seguida de parágrafo solto: \"Referência regulatória\" (callout neutro, 7.4) e \"Cuidado · diagnóstico antes de solução\" (callout red, 7.5). Na fonte o texto é o RÓTULO (div.callout-label) e o parágrafo é o CORPO do mesmo callout. Hierarquia partida (mesma natureza do COD-08 da A08).",
+        "fonte": "linhas 1988-1991, 1996-1999"
+      },
+      {
+        "id": "COD-07",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-07\"] corpo do callout red (7.5)",
+        "o_que": "Não verbatim: a fonte diz \"A linguagem GridAlpha correta é: …\"; o código diz \"A linguagem NIVAR correta é: …\" (ocorrências de \"GridAlpha\" na fonte da aula: 1; no corpo portado: 0; \"NIVAR\" no corpo portado: 1). Troca editorial (P24) sem marca no código; a fonte mantém a marca antiga.",
+        "fonte": "linha 1998"
+      },
+      {
+        "id": "COD-08",
+        "gravidade": "média",
+        "onde": "INSTRUMENTOS_MODULO_01 inst-05 .fields",
+        "o_que": "Os campos foram portados só como range (min 100 / 0, max 1500 / 1200, step 10, defaultValue 800 / 480). A fonte tem campo numérico E deslizador gêmeos com faixas diferentes: número min 0 step 50 (kW) e min 0 step 20 (kVAr), sem max; deslizador 100–1500 step 10 e 0–1200 step 10. Os parâmetros do campo numérico se perderam.",
+        "fonte": "linhas 1960-1961, 1965-1966"
+      },
+      {
+        "id": "COD-09",
+        "gravidade": "baixa",
+        "onde": "MODULO_01_AULAS aula-01-07 activities[0].points",
+        "o_que": "`points: 1` no Ex·05 não tem origem na fonte (o § Drill não pontua exercícios).",
+        "fonte": "linhas 2427-2434"
+      },
+      {
+        "id": "COD-10",
+        "gravidade": "baixa",
+        "onde": "alexandria-glossario.ts aulaIds",
+        "o_que": "aulaIds contêm \"aula-01-07\" em 13 verbetes (Banco de capacitores; Energia; Fator de potência (FP); Grupo A; Harmônicos; kVA; kVAr; kW; Potência; PRODIST; REN ANEEL 1.000/2021; Tensão; UFER); a fonte não declara aula por termo. Candidatos textuais medidos na section: Banco de capacitores; Eficiência; Energia; Fator de potência (FP); Grupo A; Harmônicos; kVA; kVAr; kW; Potência; PRODIST; REN ANEEL 1.000/2021; Tensão; UFER. Ligados no código sem ocorrência textual na aula: nenhum. Ocorrência textual sem ligação no código: Eficiência. Derivação do código, não dado da fonte (ver \"ocorrencias_contexto\" antes de ligar, §2).",
+        "fonte": "linhas 2520-2690"
+      },
+      {
+        "id": "COD-11",
+        "gravidade": "informativa",
+        "onde": "ids",
+        "o_que": "Código usa \"inst-05\", \"ex-05\", \"aula-01-07\"; esta extração usa \"m01-inst-05\", \"m01-ex-05\", \"m01-a07\" (ids estáveis com prefixo de módulo). Mapeamento 1:1.",
+        "fonte": null
+      }
+    ]
+  },
+  "contagens": {
+    "blocos": 19,
+    "blocos_por_tipo": {
+      "lead": 1,
+      "titulo": 5,
+      "paragrafo": 8,
+      "figura": 1,
+      "instrumento": 1,
+      "formula": 1,
+      "destaque": 2
+    },
+    "secoes_numeradas": [
+      "7.1",
+      "7.2",
+      "7.3",
+      "7.4",
+      "7.5"
+    ],
+    "figuras": 1,
+    "elementos_svg": 11,
+    "leituras_figura": 5,
+    "tabelas": 0,
+    "listas": 0,
+    "destaques": 2,
+    "vale_lembrar": 0,
+    "instrumentos": 1,
+    "entradas_instrumento": 2,
+    "saidas_numericas_instrumento": 0,
+    "ramos_semaforo_script": 3,
+    "linhas_script": 63,
+    "exercicios_vinculados": 1,
+    "relacionados_nao_vinculados": 4,
+    "remissoes_de_outras_partes": 1,
+    "termos_lexico_candidatos": 14,
+    "verbetes_lexico_modulo": 38,
+    "divergencias_fonte": 5,
+    "divergencias_codigo": 11
+  }
+}

@@ -1,0 +1,406 @@
+{
+  "modulo": "modulo-01",
+  "titulo_modulo": "Física de energia e eletricidade: o módulo que transforma watts em decisão financeira.",
+  "arquivos_fonte": [
+    "docs/alexandria-v2/extraction/m01/aula-01.md",
+    "docs/alexandria-v2/extraction/m01/aula-02.md",
+    "docs/alexandria-v2/extraction/m01/aula-03.md",
+    "docs/alexandria-v2/extraction/m01/aula-04.md",
+    "docs/alexandria-v2/extraction/m01/aula-05.md",
+    "docs/alexandria-v2/extraction/m01/aula-06.md",
+    "docs/alexandria-v2/extraction/m01/aula-07.md",
+    "docs/alexandria-v2/extraction/m01/aula-08.md",
+    "docs/alexandria-v2/extraction/m01/aula-09.md",
+    "docs/alexandria-v2/extraction/m01/aula-02.json",
+    "docs/alexandria-v2/extraction/m01/aula-03.json",
+    "docs/alexandria-v2/extraction/m01/aula-04.json",
+    "docs/alexandria-v2/extraction/m01/aula-06.json",
+    "docs/alexandria-v2/extraction/m01/aula-08.json",
+    "docs/alexandria-v2/extraction/m01/aparato.json",
+    "src/lib/data/alexandria-modulo-01-content.ts"
+  ],
+  "aulas": [
+    {
+      "numero": 1,
+      "chave": "aula-01.md",
+      "titulo": "Energia é volume. Potência é velocidade."
+    },
+    {
+      "numero": 2,
+      "chave": "aula-02.md",
+      "titulo": "Sete símbolos. Toda a linguagem."
+    },
+    {
+      "numero": 3,
+      "chave": "aula-03.md",
+      "titulo": "A rede tem um batimento cardíaco. Ele se chama 60 Hz."
+    },
+    {
+      "numero": 4,
+      "chave": "aula-04.md",
+      "titulo": "Por que perdas crescem ao quadrado. E por que isso desenhou toda a rede."
+    },
+    {
+      "numero": 5,
+      "chave": "aula-05.md",
+      "titulo": "Por que uma fábrica paga por capacidade reservada."
+    },
+    {
+      "numero": 6,
+      "chave": "aula-06.md",
+      "titulo": "A tensão de fornecimento define a tarifa que você paga."
+    },
+    {
+      "numero": 7,
+      "chave": "aula-07.md",
+      "titulo": "Existe energia que ocupa a rede e não vira produção."
+    },
+    {
+      "numero": 8,
+      "chave": "aula-08.md",
+      "titulo": "100 MW solar ≠ 100 MW térmica."
+    },
+    {
+      "numero": 9,
+      "chave": "aula-09.md",
+      "titulo": "Energia ruim pode custar mais do que energia cara."
+    }
+  ],
+  "mencoes": [
+    {
+      "aula": 1,
+      "tipo": "usina",
+      "nome": "UHE Itaipu",
+      "trecho": "1.000 MW — escala nacional\",\"Itaipu ≈ 14 GW de capacidade",
+      "arquivo": "src/lib/data/alexandria-modulo-01-content.ts",
+      "linha": 187,
+      "contexto": "A tabela da cadeia de unidades usa Itaipu como exemplo de escala para o gigawatt (linha GW da tabela 1.3).",
+      "ganho_no_mapa": "Ver Itaipu no mapa dá corpo ao gigawatt: uma única usina na fronteira ocupa a escala que a tabela chama de nacional.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 1,
+      "tipo": "pais",
+      "nome": "Brasil (consumo anual de eletricidade)",
+      "trecho": "escala de matriz nacional\",\"Brasil consome ≈ 530 TWh/ano",
+      "arquivo": "src/lib/data/alexandria-modulo-01-content.ts",
+      "linha": 187,
+      "contexto": "A mesma tabela fecha a escada de unidades com o consumo do país inteiro em TWh por ano.",
+      "ganho_no_mapa": "No globo, o aluno compara o consumo anual do Brasil com o de outros países e entende o que é a escala TWh.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 2,
+      "tipo": "linha",
+      "nome": "Escada de tensões da rede brasileira",
+      "trecho": "No Brasil, você verá tensões em escalas muito diferentes ao longo da cadeia elétrica:",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-02.json",
+      "linha": 105,
+      "contexto": "A aula apresenta o volt e abre a tabela de tensões, de 127/220 V até 230 kV ou mais, com onde cada uma aparece.",
+      "ganho_no_mapa": "Com as linhas coloridas por tensão, o aluno vê que cada faixa da tabela é uma camada física diferente da rede.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "linha",
+      "nome": "Transmissão de alta tensão (230 kV +)",
+      "trecho": "230 kV +\",\"Transmissão de alta tensão\",\"Indústrias eletrointensivas <b>(A1)</b>",
+      "arquivo": "src/lib/data/alexandria-modulo-01-content.ts",
+      "linha": 203,
+      "contexto": "Última linha da tabela de tensões: 230 kV ou mais é a transmissão de alta tensão, onde se conectam as eletrointensivas.",
+      "ganho_no_mapa": "Filtrar o mapa em 230 kV ou mais mostra a malha de transmissão que a tabela nomeia e por onde ela passa.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "outro",
+      "nome": "SIN — rede elétrica brasileira em 60 Hz",
+      "trecho": "A rede elétrica brasileira oscila sessenta vezes por segundo. Esse ritmo não é arbitrário — é a evidência física de que oferta e demanda estão em equilíbrio em tempo real.",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-03.md",
+      "linha": 97,
+      "contexto": "O lead da aula apresenta a frequência como evidência física do equilíbrio entre oferta e demanda em toda a rede.",
+      "ganho_no_mapa": "Ver a malha interligada inteira de uma vez mostra o tamanho do sistema que bate no mesmo ritmo.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "pais",
+      "nome": "Brasil (rede em 60 Hz)",
+      "trecho": "No Brasil, a alternância ocorre 60 vezes por segundo — frequência de 60 Hz.",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-03.md",
+      "linha": 92,
+      "contexto": "A seção 3.2 define corrente alternada e fixa a frequência da rede brasileira em 60 Hz.",
+      "ganho_no_mapa": "No globo, o aluno situa o Brasil entre os países de 60 Hz e percebe que a frequência é uma escolha de cada sistema.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 3,
+      "tipo": "bipolo",
+      "nome": "Elos HVDC Belo Monte → Sudeste",
+      "trecho": "DC volta com força hoje em aplicações específicas: solar fotovoltaica, armazenamento em baterias, eletrônica embarcada, e transmissão HVDC em interligações de longa distância (como o sistema de transmissão de Belo Monte para o Sudeste, que usa elos de corrente contínua).",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-03.json",
+      "linha": 192,
+      "contexto": "A seção 3.3 explica por que a AC venceu e onde a DC voltou, citando a transmissão HVDC de Belo Monte para o Sudeste.",
+      "ganho_no_mapa": "Ver o elo saindo de Belo Monte e chegando ao Sudeste mostra a distância que justifica usar corrente contínua.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "usina",
+      "nome": "UHE Belo Monte",
+      "trecho": "DC volta com força hoje em aplicações específicas: solar fotovoltaica, armazenamento em baterias, eletrônica embarcada, e transmissão HVDC em interligações de longa distância (como o sistema de transmissão de Belo Monte para o Sudeste, que usa elos de corrente contínua).",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-03.json",
+      "linha": 192,
+      "contexto": "Belo Monte é o exemplo brasileiro de geração distante ligada ao centro de carga por corrente contínua.",
+      "ganho_no_mapa": "Localizar a usina na Amazônia deixa claro o quão longe ela está de quem consome a energia.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "linha",
+      "nome": "Arquitetura da rede brasileira (alta, média e baixa tensão)",
+      "trecho": "Toda a arquitetura física do sistema elétrico brasileiro — alta tensão na transmissão, média tensão na distribuição, baixa tensão no consumidor — existe porque perdas resistivas crescem com o quadrado da corrente. Sem essa lei, nenhuma rede de país continental seria viável.",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-04.json",
+      "linha": 81,
+      "contexto": "O lead afirma que a divisão em alta, média e baixa tensão existe porque as perdas crescem com o quadrado da corrente.",
+      "ganho_no_mapa": "O mapa das linhas por tensão mostra a arquitetura de país continental de que o lead fala.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "linha",
+      "nome": "Linhas de transmissão de 230, 345, 500 e 750 kV",
+      "trecho": "Transmissão usa tensões altíssimas (230 kV, 345 kV, 500 kV, 750 kV) para mover blocos de centenas de MW por centenas ou milhares de quilômetros.",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-04.json",
+      "linha": 192,
+      "contexto": "A seção 4.2 lista os níveis de tensão usados na transmissão para levar grandes blocos de potência por longas distâncias.",
+      "ganho_no_mapa": "Acender cada classe de tensão mostra quais linhas cruzam centenas ou milhares de quilômetros e por quê.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "estado_regiao",
+      "nome": "Norte e Nordeste (perdas não técnicas urbanas)",
+      "trecho": "Para o analista, essa distinção importa porque perdas não técnicas concentradas em áreas urbanas brasileiras (especialmente Norte e Nordeste) são uma das razões pelas quais tarifas locais sobem ao longo dos anos, mesmo quando o custo da energia em si está estável.",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-04.json",
+      "linha": 342,
+      "contexto": "A seção 4.3 separa perdas técnicas de não técnicas e diz onde as não técnicas se concentram.",
+      "ganho_no_mapa": "Ver as regiões destacadas mostra que a perda não técnica tem endereço, e que a tarifa local reflete isso.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "cidade",
+      "nome": "Manaus",
+      "trecho": "Quando um cliente em Manaus reclama da fatura, parte do que ele paga é a externalidade de um sistema de distribuição com altas perdas comerciais.",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-04.json",
+      "linha": 342,
+      "contexto": "O parágrafo final dá Manaus como exemplo de cliente que paga a externalidade de uma distribuição com perdas comerciais altas.",
+      "ganho_no_mapa": "Situar Manaus na região Norte liga o exemplo da aula à geografia das perdas que o parágrafo descreve.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "estado_regiao",
+      "nome": "Minas Gerais",
+      "trecho": "Quando você falar com diretor de energia de mineradora média em Minas Gerais, A4 é provavelmente o subgrupo dele.",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-06.json",
+      "linha": 377,
+      "contexto": "A seção 6.2 apresenta os subgrupos do Grupo A e usa a mineradora média de Minas Gerais como perfil típico do A4.",
+      "ganho_no_mapa": "É só uma âncora de lugar: mostra onde fica o tipo de cliente que a aula usa como exemplo.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (eólica em bom regime de ventos)",
+      "trecho": "Faixa típica de hidrelétrica brasileira (média anual) ou eólica em região de bom regime de ventos (Nordeste).",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-08.json",
+      "linha": 495,
+      "contexto": "Texto de leitura da calculadora de fator de capacidade para a faixa de 40% a 55%.",
+      "ganho_no_mapa": "Ver os parques eólicos concentrados no Nordeste explica por que a faixa alta de fator de capacidade leva o nome da região.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 8,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (solar fotovoltaica com tracker)",
+      "trecho": "Faixa típica de eólica em regiões de vento moderado ou solar fotovoltaica com tracker em Nordeste BR.",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-08.json",
+      "linha": 505,
+      "contexto": "Texto de leitura da calculadora para a faixa de 25% a 40%, que é a do cenário-padrão da aula.",
+      "ganho_no_mapa": "As usinas solares do Nordeste no mapa mostram onde a mesma placa rende mais horas por ano.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 8,
+      "tipo": "usina",
+      "nome": "Hidrelétricas brasileiras (fator de capacidade médio em torno de 50%)",
+      "trecho": "A matriz brasileira é dominada por hidrelétricas com fator de capacidade médio em torno de 50%, fortemente dependente de regime hidrológico anual.",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-08.json",
+      "linha": 206,
+      "contexto": "O destaque final diz que a matriz é dominada por hidrelétricas cujo fator de capacidade depende da hidrologia do ano.",
+      "ganho_no_mapa": "A camada de hidrelétricas mostra o peso da fonte na matriz e onde está a capacidade que nem sempre vira geração.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 8,
+      "tipo": "reservatorio",
+      "nome": "Reservatórios (geração efetiva varia ano a ano)",
+      "trecho": "Em geração efetiva, a participação flutua ano a ano com chuvas, despacho térmico complementar e estado dos reservatórios.",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-08.json",
+      "linha": 206,
+      "contexto": "O mesmo destaque separa participação por capacidade instalada de participação por geração efetiva.",
+      "ganho_no_mapa": "Ver os reservatórios no mapa liga a diferença entre capacidade e geração a algo físico: a água guardada.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 8,
+      "tipo": "pais",
+      "nome": "Brasil (solar fotovoltaica em latitudes brasileiras)",
+      "trecho": "Faixa típica de usina solar fotovoltaica em latitudes brasileiras.",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-08.md",
+      "linha": 55,
+      "contexto": "Texto inicial de leitura da calculadora de fator de capacidade, antes de o cálculo rodar.",
+      "ganho_no_mapa": "A posição do Brasil no globo dá sentido à expressão latitudes brasileiras como causa do rendimento solar.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (usina solar bem localizada)",
+      "trecho": "30% é um pouco acima da média típica brasileira (~20–28%) — sugere usina bem localizada (Nordeste ou regiões de alta irradiação) e/ou tecnologia mais moderna com tracker solar.",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aula-08.json",
+      "linha": 609,
+      "contexto": "Gabarito do Ex · 06 (tag Aula 08): interpreta um fator de capacidade solar de 30% como sinal de boa localização.",
+      "ganho_no_mapa": "O mapa das usinas solares mostra o que o gabarito chama de usina bem localizada.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Minas Gerais (caso Operação A)",
+      "trecho": "Mineração de médio porte · Minas Gerais · Grupo A4 (13,8 kV)",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aparato.json",
+      "linha": 45,
+      "contexto": "Cabeçalho do caso de referência do módulo: o cliente fictício é uma mineração de médio porte em Minas Gerais.",
+      "ganho_no_mapa": "Situar o caso em Minas Gerais permite ligar a fatura estudada à rede e ao submercado onde o cliente está.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Norte e Nordeste (verbete Perdas não técnicas)",
+      "trecho": "Concentram-se especialmente em centros urbanos do Norte e Nordeste.",
+      "arquivo": "docs/alexandria-v2/extraction/m01/aparato.json",
+      "linha": 2305,
+      "contexto": "Verbete do glossário do módulo que define perdas não técnicas e diz onde elas se concentram.",
+      "ganho_no_mapa": "Destacar os centros urbanos do Norte e do Nordeste mostra a geografia do verbete.",
+      "relevancia": "media"
+    }
+  ],
+  "vistas_sugeridas": [
+    {
+      "aula": 1,
+      "titulo": "Itaipu, a medida do gigawatt",
+      "o_que_mostra": "Câmera fechada em Itaipu, com a camada de hidrelétricas ligada e a usina em destaque como régua da escala GW da tabela de unidades.",
+      "nomes": [
+        "UHE Itaipu"
+      ],
+      "camadas": [
+        "usinas_hidro"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "As tensões da rede no mapa",
+      "o_que_mostra": "Brasil inteiro com as linhas coloridas por nível de tensão; destaque para a classe de 230 kV ou mais, que a tabela chama de transmissão de alta tensão.",
+      "nomes": [
+        "Escada de tensões da rede brasileira",
+        "Transmissão de alta tensão (230 kV +)"
+      ],
+      "camadas": [
+        "linhas",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "De Belo Monte ao Sudeste em corrente contínua",
+      "o_que_mostra": "Câmera percorre o elo de corrente contínua da usina de Belo Monte até o Sudeste, com a linha HVDC destacada sobre a malha em corrente alternada.",
+      "nomes": [
+        "Elos HVDC Belo Monte → Sudeste",
+        "UHE Belo Monte"
+      ],
+      "camadas": [
+        "linhas",
+        "usinas_hidro",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "Uma rede, um batimento",
+      "o_que_mostra": "Brasil inteiro com toda a malha interligada acesa de uma vez, para mostrar o tamanho do sistema que opera na mesma frequência de 60 Hz.",
+      "nomes": [
+        "SIN — rede elétrica brasileira em 60 Hz",
+        "Brasil (rede em 60 Hz)"
+      ],
+      "camadas": [
+        "linhas",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 4,
+      "titulo": "Alta tensão para vencer a distância",
+      "o_que_mostra": "Brasil inteiro com as linhas de 230, 345, 500 e 750 kV acesas por classe; a tensão mais alta aparece nos percursos mais longos.",
+      "nomes": [
+        "Linhas de transmissão de 230, 345, 500 e 750 kV",
+        "Arquitetura da rede brasileira (alta, média e baixa tensão)"
+      ],
+      "camadas": [
+        "linhas"
+      ]
+    },
+    {
+      "aula": 4,
+      "titulo": "Onde a perda não técnica pesa",
+      "o_que_mostra": "Câmera sobre o Norte e o Nordeste, com as regiões destacadas e Manaus marcada como o exemplo citado na aula.",
+      "nomes": [
+        "Norte e Nordeste (perdas não técnicas urbanas)",
+        "Manaus"
+      ],
+      "camadas": [
+        "submercados",
+        "outra: áreas de concessão das distribuidoras"
+      ]
+    },
+    {
+      "aula": 8,
+      "titulo": "Vento e sol do Nordeste",
+      "o_que_mostra": "Câmera sobre o Nordeste com parques eólicos e usinas solares ligados, a região que os textos de leitura da calculadora citam nas faixas altas de fator de capacidade.",
+      "nomes": [
+        "Nordeste (eólica em bom regime de ventos)",
+        "Nordeste (solar fotovoltaica com tracker)"
+      ],
+      "camadas": [
+        "usinas_eolica",
+        "usinas_solar"
+      ]
+    },
+    {
+      "aula": 8,
+      "titulo": "Capacidade não é geração: hidrelétricas e reservatórios",
+      "o_que_mostra": "Brasil inteiro com hidrelétricas e reservatórios ligados, para mostrar a fonte que domina a capacidade instalada e depende da água guardada.",
+      "nomes": [
+        "Hidrelétricas brasileiras (fator de capacidade médio em torno de 50%)",
+        "Reservatórios (geração efetiva varia ano a ano)"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "reservatorios_bacias"
+      ]
+    }
+  ]
+}

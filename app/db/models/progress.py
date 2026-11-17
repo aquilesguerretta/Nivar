@@ -35,6 +35,7 @@ from sqlalchemy import (
     DateTime,
     ForeignKey,
     Integer,
+    LargeBinary,
     Text,
     func,
 )
@@ -52,6 +53,37 @@ EVENT_TYPES: tuple[str, ...] = (
 )
 
 AULA_STATUSES: tuple[str, ...] = ("em_andamento", "concluido")
+
+# --- Derivation vocabularies (Peça D) -----------------------------------
+#
+# Which event types count as the learner having STUDIED on a day. This is
+# the list the day-streak derives from, and it is deliberately NOT all of
+# `EVENT_TYPES`: `badge_conquistado` is emitted by the machine itself
+# (the award mechanism), never by a learner action, so counting it would
+# let the product's own congratulation extend the learner's streak. A
+# streak is evidence about the learner; an award is evidence about the
+# machine.
+STREAK_EVENT_TYPES: tuple[str, ...] = (
+    "aula_iniciada",
+    "aula_concluida",
+    "instrumento_usado",
+    "exercicio_respondido",
+)
+
+# The "Praticado" axis of `docs/alexandria-v2/bar.md` §S3: a registered
+# ATTEMPT at a task. Only these two event types are attempts — opening or
+# finishing a lesson is "Percorrido", and a badge is motivation, not
+# evidence. Nothing here is ever presented as "Demonstrado".
+PRACTICE_EVENT_TYPES: tuple[str, ...] = (
+    "instrumento_usado",
+    "exercicio_respondido",
+)
+
+# The learner's day is the learner's day. `progress_event.occurred_at` is
+# TIMESTAMPTZ (an instant), and an instant only becomes a calendar day
+# once a zone is named. This is the zone the product declares by default;
+# the read endpoints accept an explicit override.
+DEFAULT_LEARNER_TIMEZONE = "America/Sao_Paulo"
 
 
 class ProgressEvent(Base):
@@ -132,9 +164,25 @@ class BadgeAward(Base):
 class StudyStreak(Base):
     """Derived cache: consecutive-day study streak for one account.
 
-    Recomputed transactionally on every event via a single
-    INSERT ... ON CONFLICT, comparing ``last_active_date`` against
-    ``CURRENT_DATE`` — see ``app/services/progress_service.py``.
+    CACHE, NOT SOURCE (Peça D). It used to be maintained by blind
+    increment — every event, of every type, compared ``last_active_date``
+    to the database clock's ``CURRENT_DATE`` and added one. Two facts
+    were wrong in that: the day was UTC's day, not the learner's (a
+    22:00 study session in Brasília landed on the next calendar day),
+    and ``badge_conquistado`` — which the machine emits — extended the
+    learner's streak.
+
+    It is now written only from the derivation over ``progress_event``
+    in ``app/services/progress_service.py``: distinct study days in a
+    named zone, restricted to ``STREAK_EVENT_TYPES``. No read path reads
+    this table as a fact; every endpoint derives from the log. The row
+    survives as a reconstructible cache and can be dropped and rebuilt at
+    any time without losing anything.
+
+    ``longest_streak_days`` stores the record's LENGTH and not the day it
+    ended — that column does not exist and was deliberately not added
+    (no migration). "Longest streak: 5 days, ending 12 September" is
+    derived from the log on read, never stored, never guessed.
     """
 
     __tablename__ = "study_streak"
@@ -148,6 +196,61 @@ class StudyStreak(Base):
         Date, nullable=False, server_default=func.current_date()
     )
     updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        nullable=False,
+        server_default=func.now(),
+        onupdate=func.now(),
+    )
+
+# --- Perfil da Alexandria (LYCEUM, V2) ----------------------------------
+#
+# The two things on the Alexandria profile that the event log cannot
+# carry: the learner's photo and the banner they chose. Founder,
+# 2026-11-15: "a foto é só da Alexandria" — this photo is NOT the
+# platform account's avatar and nothing outside /alexandria reads it.
+# Identity (name, e-mail, password) stays in `users`, untouched.
+#
+# XP, level, medals, calendar and history are NOT stored here: all of
+# them are derived from `progress_event` by whoever already knows the
+# curriculum (the frontend). The banner id is opaque to this backend;
+# which banners a learner has unlocked is a curriculum fact, so the
+# frontend validates it and falls back to the default when it isn't.
+
+FOTO_TIPOS: tuple[str, ...] = ("image/webp", "image/jpeg", "image/png")
+FOTO_MAX_BYTES = 300_000
+
+
+class AlexandriaPerfil(Base):
+    __tablename__ = "alexandria_perfil"
+    __table_args__ = (
+        CheckConstraint(
+            "foto_tipo IS NULL OR foto_tipo IN ('image/webp', 'image/jpeg', 'image/png')",
+            name="alexandria_perfil_foto_tipo_check",
+        ),
+        CheckConstraint(
+            f"foto IS NULL OR octet_length(foto) <= {FOTO_MAX_BYTES}",
+            name="alexandria_perfil_foto_tamanho_check",
+        ),
+        CheckConstraint(
+            "(foto IS NULL) = (foto_tipo IS NULL)",
+            name="alexandria_perfil_foto_par_check",
+        ),
+        CheckConstraint(
+            "faixa IS NULL OR faixa ~ '^[a-z0-9][a-z0-9-]{0,63}$'",
+            name="alexandria_perfil_faixa_check",
+        ),
+    )
+
+    user_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), primary_key=True
+    )
+    foto: Mapped[bytes | None] = mapped_column(LargeBinary, nullable=True)
+    foto_tipo: Mapped[str | None] = mapped_column(Text, nullable=True)
+    foto_atualizada_em: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True), nullable=True
+    )
+    faixa: Mapped[str | None] = mapped_column(Text, nullable=True)
+    atualizado_em: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         nullable=False,
         server_default=func.now(),

@@ -1,0 +1,747 @@
+{
+ "documento": "contagens.json — as quatro contagens que o bar declara, conferidas contra a fonte e contra o código.",
+ "gerado_em": "2026-09-21",
+ "fonte_unica": "docs/alexandria-v2/extraction/mNN/{modulo,aparato,instrumentos}.json",
+ "codigo_medido_em": {
+  "arvore": "src/ do worktree gridalpha-v2-alexandria-v2-restructure",
+  "data": "2026-09-21",
+  "aviso": "src/ estava sendo reescrito por outro agente durante a medição. Retrato datado, não contrato.",
+  "metodo": {
+   "aulas": "entradas de topo em MODULO_NN_AULAS (varredura de chaves balanceadas).",
+   "instrumentos": "objetos com campo `outputs:` nos 17 alexandria-modulo-NN-content.ts.",
+   "exercicios": "ocorrências de `gabarito:` nos 17 arquivos de conteúdo.",
+   "exercicios_renderizados": "exercícios vinculados a aula (activities não vazias) + os buckets SOLTOS registrados em RecursosDoModulo.tsx (RECURSOS vai de modulo-01 a modulo-09).",
+   "termos": "ids `gl-…` / `gl-mNN-…` em alexandria-glossario.ts."
+  }
+ },
+ "headline": {
+  "aulas": {
+   "bar_declara": 141,
+   "fonte": 141,
+   "codigo": 141,
+   "veredito": "os três concordam. 141 = 141 = 141."
+  },
+  "instrumentos": {
+   "bar_declara": 165,
+   "fonte_medida_na_extracao": 158,
+   "fonte_nota": "M02–M17 somam 158 instrumentos medidos. O M01 não tem instrumentos.json: os 7 dele não têm contagem na camada-fonte. 158 + 7 = 165 fecha o número do bar, mas os 7 vêm do código e da aritmética do próprio bar (110 portados + 55 não portados), não de uma medição da fonte.",
+   "codigo": 111,
+   "codigo_nota": "111 objetos = 110 instrumentos da fonte + o reconstrutor do M08 dividido em dois. Bate com o que o bar afirma na linha \"Instrumentos de M09, M13, M14, M16, M17 (55)\".",
+   "nao_portados": {
+    "total": 55,
+    "modulos": {
+     "m09": 11,
+     "m13": 11,
+     "m14": 10,
+     "m16": 11,
+     "m17": 12
+    }
+   },
+   "veredito": "o 165 do bar não é verificável só pela extração: 158 medidos + 7 do M01 sem camada-fonte. O 111 do código está correto e é 110 + 1."
+  },
+  "exercicios": {
+   "bar_declara": 214,
+   "fonte": 214,
+   "codigo_no_dado": 214,
+   "codigo_renderizado": 95,
+   "invisiveis": 119,
+   "veredito": "não há divergência de contagem: 214 = 214 = 214. Os \"119 exercícios invisíveis\" do bar §B4 são exatamente os 119 dos módulos M10–M17 (14+14+14+14+14+15+16+18): existem no dado e não chegam à tela porque o registro RECURSOS em RecursosDoModulo.tsx termina em modulo-09. É defeito de ligação, não de extração.",
+   "agravante": "FolhaDoModulo.tsx imprime \"N exercícios com resposta de referência\" a partir do dossiê nos 17 módulos. Em M10–M17 o número aparece e o exercício não: a tela anuncia 119 exercícios que ela não mostra."
+  },
+  "termos": {
+   "bar_declara": 2124,
+   "fonte": 2124,
+   "codigo": 637,
+   "faltam_no_codigo": 1487,
+   "veredito": "fonte e bar concordam exatamente: 2.124. O código tem 637 (M01–M08), como o próprio bar registra em \"637/2.124\". Faltam 1.487 termos (M09–M17)."
+  },
+  "checklist": {
+   "bar_declara": 423,
+   "fonte": 423,
+   "veredito": "concordam: 423."
+  },
+  "quiz": {
+   "bar_declara": "quiz por módulo",
+   "fonte_questoes": 170,
+   "codigo_questoes_portadas": 0,
+   "veredito": "17 × 10 = 170 questões na fonte; zero portadas. A folha imprime só \"10 questões\"."
+  }
+ },
+ "divergencias_de_contagem_encontradas": [
+  {
+   "id": "CT-01",
+   "titulo": "O contador de divergências na tela mostra uma fração do total",
+   "o_que_o_produto_mostra": "RoteiroDoModulo.tsx imprime \"N pontos deste roteiro têm mais de uma leitura no material original e estão em revisão editorial\", com N = dossieModulos.divergencias.",
+   "de_onde_vem_o_N": "só o array `divergencias` de modulo.json. M01 → 14.",
+   "total_real": "M01 tem 30 divergências registradas (14 em modulo.json + 10 em aparato.json + 6 em aula-08.json). Somando os 17 módulos: 452, contra 208 que a soma dos dossiês exibiria (14+15+10+8+9+13+13+15+15+12+10+13+12+11+12+13+13).",
+   "consequencia": "o learner lê um número que subestima a revisão pendente em mais da metade."
+  },
+  {
+   "id": "CT-02",
+   "titulo": "M01 não tem camada-fonte para os próprios instrumentos",
+   "o_que_falta": "docs/alexandria-v2/extraction/m01/instrumentos.json não existe. A extração do M01 cobre modulo, aparato e a Aula 08.",
+   "consequencia": "os 7 instrumentos do M01 (INST 01–06 + LAB·01) só existem como dado no código. Qualquer conferência do \"165\" passa por eles sem fonte."
+  },
+  {
+   "id": "CT-03",
+   "titulo": "M17: 8 blocos de referência × 14 do script do hero",
+   "leitura_a": "aparato.json: total_blocos = 8; \"a fonte não lista referências individuais com título/URL: são 8 parágrafos-bloco\".",
+   "leitura_b": "contagem_do_hero_script: valor 14, regra \"ref-list p + (#ref .tbl tr − 1)\".",
+   "o_que_o_produto_mostra": "a folha do M17 imprime \"8 fontes primárias\"."
+  },
+  {
+   "id": "CT-04",
+   "titulo": "M02: prosa \"Oito exercícios\", markup com 10",
+   "o_que_o_produto_mostra": "10 (o dossiê usa a medição do markup).",
+   "nota": "o catálogo canônico repete a prosa e diz 8. Mesma classe do M01 §Lex \"Vinte e oito termos\" × 38 no markup, onde o código já adotou 38."
+  }
+ ],
+ "por_modulo": [
+  {
+   "modulo": "m01",
+   "aulas": {
+    "fonte": 9,
+    "codigo": 9,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": null,
+    "fonte_nota": "M01 não tem instrumentos.json na extração: só aula-08.json (INST·06) e o LAB·01 dentro de modulo.json. Os 7 do código não têm camada-fonte que os conte (S4).",
+    "codigo": 7,
+    "concordam": null,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 8,
+    "codigo_no_dado": 8,
+    "codigo_renderizado": 8,
+    "invisiveis": 0
+   },
+   "termos": {
+    "fonte": 38,
+    "codigo": 38,
+    "faltam_no_codigo": 0
+   },
+   "checklist": {
+    "fonte": 16,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 8,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m02",
+   "aulas": {
+    "fonte": 10,
+    "codigo": 10,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 9,
+    "fonte_nota": null,
+    "codigo": 9,
+    "concordam": true,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 10,
+    "codigo_no_dado": 10,
+    "codigo_renderizado": 10,
+    "invisiveis": 0
+   },
+   "termos": {
+    "fonte": 65,
+    "codigo": 65,
+    "faltam_no_codigo": 0
+   },
+   "checklist": {
+    "fonte": 18,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 16,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m03",
+   "aulas": {
+    "fonte": 10,
+    "codigo": 10,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 9,
+    "fonte_nota": null,
+    "codigo": 9,
+    "concordam": true,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 10,
+    "codigo_no_dado": 10,
+    "codigo_renderizado": 10,
+    "invisiveis": 0
+   },
+   "termos": {
+    "fonte": 63,
+    "codigo": 63,
+    "faltam_no_codigo": 0
+   },
+   "checklist": {
+    "fonte": 18,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 17,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m04",
+   "aulas": {
+    "fonte": 7,
+    "codigo": 7,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 7,
+    "fonte_nota": null,
+    "codigo": 7,
+    "concordam": true,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 9,
+    "codigo_no_dado": 9,
+    "codigo_renderizado": 9,
+    "invisiveis": 0
+   },
+   "termos": {
+    "fonte": 58,
+    "codigo": 58,
+    "faltam_no_codigo": 0
+   },
+   "checklist": {
+    "fonte": 20,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 11,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m05",
+   "aulas": {
+    "fonte": 6,
+    "codigo": 6,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 6,
+    "fonte_nota": null,
+    "codigo": 6,
+    "concordam": true,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 10,
+    "codigo_no_dado": 10,
+    "codigo_renderizado": 10,
+    "invisiveis": 0
+   },
+   "termos": {
+    "fonte": 72,
+    "codigo": 72,
+    "faltam_no_codigo": 0
+   },
+   "checklist": {
+    "fonte": 21,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 16,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m06",
+   "aulas": {
+    "fonte": 6,
+    "codigo": 6,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 8,
+    "fonte_nota": null,
+    "codigo": 8,
+    "concordam": true,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 10,
+    "codigo_no_dado": 10,
+    "codigo_renderizado": 10,
+    "invisiveis": 0
+   },
+   "termos": {
+    "fonte": 99,
+    "codigo": 99,
+    "faltam_no_codigo": 0
+   },
+   "checklist": {
+    "fonte": 24,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 21,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m07",
+   "aulas": {
+    "fonte": 7,
+    "codigo": 7,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 10,
+    "fonte_nota": null,
+    "codigo": 10,
+    "concordam": true,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 12,
+    "codigo_no_dado": 12,
+    "codigo_renderizado": 12,
+    "invisiveis": 0
+   },
+   "termos": {
+    "fonte": 118,
+    "codigo": 118,
+    "faltam_no_codigo": 0
+   },
+   "checklist": {
+    "fonte": 26,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 27,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m08",
+   "aulas": {
+    "fonte": 7,
+    "codigo": 7,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 11,
+    "fonte_nota": null,
+    "codigo": 12,
+    "concordam": false,
+    "nota": "M08: 12 objetos no código para 11 instrumentos da fonte — o reconstrutor (INST·04) está dividido em dois."
+   },
+   "exercicios": {
+    "fonte": 12,
+    "codigo_no_dado": 12,
+    "codigo_renderizado": 12,
+    "invisiveis": 0
+   },
+   "termos": {
+    "fonte": 124,
+    "codigo": 124,
+    "faltam_no_codigo": 0
+   },
+   "checklist": {
+    "fonte": 26,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 28,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m09",
+   "aulas": {
+    "fonte": 8,
+    "codigo": 8,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 11,
+    "fonte_nota": null,
+    "codigo": 0,
+    "concordam": false,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 14,
+    "codigo_no_dado": 14,
+    "codigo_renderizado": 14,
+    "invisiveis": 0
+   },
+   "termos": {
+    "fonte": 136,
+    "codigo": 0,
+    "faltam_no_codigo": 136
+   },
+   "checklist": {
+    "fonte": 28,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 30,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m10",
+   "aulas": {
+    "fonte": 9,
+    "codigo": 9,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 11,
+    "fonte_nota": null,
+    "codigo": 11,
+    "concordam": true,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 14,
+    "codigo_no_dado": 14,
+    "codigo_renderizado": 0,
+    "invisiveis": 14
+   },
+   "termos": {
+    "fonte": 161,
+    "codigo": 0,
+    "faltam_no_codigo": 161
+   },
+   "checklist": {
+    "fonte": 28,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 35,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m11",
+   "aulas": {
+    "fonte": 8,
+    "codigo": 8,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 11,
+    "fonte_nota": null,
+    "codigo": 11,
+    "concordam": true,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 14,
+    "codigo_no_dado": 14,
+    "codigo_renderizado": 0,
+    "invisiveis": 14
+   },
+   "termos": {
+    "fonte": 150,
+    "codigo": 0,
+    "faltam_no_codigo": 150
+   },
+   "checklist": {
+    "fonte": 28,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 32,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m12",
+   "aulas": {
+    "fonte": 8,
+    "codigo": 8,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 11,
+    "fonte_nota": null,
+    "codigo": 11,
+    "concordam": true,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 14,
+    "codigo_no_dado": 14,
+    "codigo_renderizado": 0,
+    "invisiveis": 14
+   },
+   "termos": {
+    "fonte": 152,
+    "codigo": 0,
+    "faltam_no_codigo": 152
+   },
+   "checklist": {
+    "fonte": 28,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 34,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m13",
+   "aulas": {
+    "fonte": 8,
+    "codigo": 8,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 11,
+    "fonte_nota": null,
+    "codigo": 0,
+    "concordam": false,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 14,
+    "codigo_no_dado": 14,
+    "codigo_renderizado": 0,
+    "invisiveis": 14
+   },
+   "termos": {
+    "fonte": 180,
+    "codigo": 0,
+    "faltam_no_codigo": 180
+   },
+   "checklist": {
+    "fonte": 28,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 36,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m14",
+   "aulas": {
+    "fonte": 8,
+    "codigo": 8,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 10,
+    "fonte_nota": null,
+    "codigo": 0,
+    "concordam": false,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 14,
+    "codigo_no_dado": 14,
+    "codigo_renderizado": 0,
+    "invisiveis": 14
+   },
+   "termos": {
+    "fonte": 158,
+    "codigo": 0,
+    "faltam_no_codigo": 158
+   },
+   "checklist": {
+    "fonte": 26,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 34,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m15",
+   "aulas": {
+    "fonte": 9,
+    "codigo": 9,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 10,
+    "fonte_nota": null,
+    "codigo": 10,
+    "concordam": true,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 15,
+    "codigo_no_dado": 15,
+    "codigo_renderizado": 0,
+    "invisiveis": 15
+   },
+   "termos": {
+    "fonte": 174,
+    "codigo": 0,
+    "faltam_no_codigo": 174
+   },
+   "checklist": {
+    "fonte": 28,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 36,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m16",
+   "aulas": {
+    "fonte": 10,
+    "codigo": 10,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 11,
+    "fonte_nota": null,
+    "codigo": 0,
+    "concordam": false,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 16,
+    "codigo_no_dado": 16,
+    "codigo_renderizado": 0,
+    "invisiveis": 16
+   },
+   "termos": {
+    "fonte": 184,
+    "codigo": 0,
+    "faltam_no_codigo": 184
+   },
+   "checklist": {
+    "fonte": 30,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 38,
+    "nota": null
+   }
+  },
+  {
+   "modulo": "m17",
+   "aulas": {
+    "fonte": 11,
+    "codigo": 11,
+    "concordam": true
+   },
+   "instrumentos": {
+    "fonte": 12,
+    "fonte_nota": null,
+    "codigo": 0,
+    "concordam": false,
+    "nota": null
+   },
+   "exercicios": {
+    "fonte": 18,
+    "codigo_no_dado": 18,
+    "codigo_renderizado": 0,
+    "invisiveis": 18
+   },
+   "termos": {
+    "fonte": 192,
+    "codigo": 0,
+    "faltam_no_codigo": 192
+   },
+   "checklist": {
+    "fonte": 30,
+    "codigo": "total no dossiê; a folha imprime até 8 itens e diz quantos faltam"
+   },
+   "quiz_questoes": {
+    "fonte": 10,
+    "codigo_portadas": 0
+   },
+   "referencias": {
+    "fonte": 8,
+    "nota": "M17: 8 parágrafos-bloco (a fonte não lista documento a documento); o script do hero conta 14 pela regra \"ref-list p + (#ref .tbl tr − 1)\". A tela imprime 8."
+   }
+  }
+ ]
+}

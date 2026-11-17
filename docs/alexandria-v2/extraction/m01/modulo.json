@@ -1,0 +1,2295 @@
+{
+  "grupo": "modulo",
+  "modulo": "m01",
+  "fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo01.html",
+  "gerado_por": "extração programática (Node) por linha + regex; nenhum texto de conteúdo digitado",
+  "convencoes": {
+    "html": "fragmento literal da fonte, com inline preservado",
+    "texto": "o mesmo fragmento com tags removidas e entidades &lt; &gt; &amp; decodificadas",
+    "linha_aprox": "número de linha 1-based no HTML-fonte (LF, 3.212 linhas)",
+    "marcacao_p14": "anotação desta extração, não texto da fonte"
+  },
+  "divergencias": [
+    {
+      "id": "div-01-criterio-drill-quiz-checklist",
+      "tema": "Três critérios de domínio/conclusão",
+      "leitura_a": {
+        "onde": "§ Drill L2389",
+        "texto": "O critério de domínio é resolver pelo menos seis dos oito sem consulta."
+      },
+      "leitura_b": {
+        "onde": "§ Quiz L2474 e § Final L2494",
+        "texto": "Quiz de fluência. Cada resposta tem feedback explicativo. O critério de domínio do módulo é acertar pelo menos 8 de 10 sem consultar. | Você só passa neste módulo se conseguir, sem consultar nenhum material, fazer todas as ações abaixo. Marque ao longo do estudo. Quando todas estiverem marcadas, você está pronto para o Módulo 02 — A Rede Elétrica."
+      },
+      "linhas_aprox": [
+        2389,
+        2474,
+        2494
+      ],
+      "nota": "A fonte chama dois limiares diferentes de \"critério de domínio\" (6/8 exercícios; 8/10 quiz) e ainda diz que \"só passa\" quem cumpre todos os 16 itens do checklist. Nenhum declara precedência.",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    },
+    {
+      "id": "div-02-quiz-mensagens-x-limiar",
+      "tema": "Mensagens do script do quiz contradizem o limiar 8/10",
+      "leitura_a": {
+        "onde": "prosa L2474",
+        "texto": "acertar pelo menos 8 de 10"
+      },
+      "leitura_b": {
+        "onde": "script L3199-3202",
+        "texto": "correct >= 9 → Domínio sólido. Pronto para o Módulo 02. | correct >= 7 → Bom. Revise os pontos errados, depois avance para o próximo módulo. | correct >= 5 → Domínio parcial. Volte às aulas onde errou antes de avançar. | else (correct < 5) → Refaça o estudo. O critério de domínio é 8/10 — sem atalho."
+      },
+      "linhas_aprox": [
+        2474,
+        3199,
+        3200,
+        3201,
+        3202
+      ],
+      "nota": "Com 7 acertos (abaixo do limiar) a mensagem manda avançar para o próximo módulo; com 8 (no limiar) recebe a mesma mensagem de \"Revise\"; \"Pronto para o Módulo 02\" só a partir de 9. É a contradição do M01 citada em bar.md §9/P5.",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    },
+    {
+      "id": "div-03-drill-nove-aulas",
+      "tema": "Drill diz alcançar as nove aulas; as tags não cobrem 03, 06 e 09",
+      "leitura_a": {
+        "onde": "§ Drill L2389",
+        "texto": "Os exercícios alcançam todas as nove aulas."
+      },
+      "leitura_b": {
+        "onde": "span.exercise-tag L2392-2457",
+        "texto": "Ex · 01 · Aula 01 | Ex · 02 · Aula 02 | Ex · 03 · Aula 04 | Ex · 04 · Aula 05 | Ex · 05 · Aula 07 | Ex · 06 · Aula 08 | Ex · 07 · 3 níveis · Aula 05 | Ex · 08 · Síntese · Diagnóstico inicial"
+      },
+      "linhas_aprox": [
+        2389,
+        2392,
+        2457
+      ],
+      "nota": "Tags apontam Aulas 01, 02, 04, 05 (x2), 07, 08 e uma \"Síntese\" sem aula. A contagem 8 bate com \"seis dos oito\"; o protocolo (§5) cita \"seis dos oito, há 8\" como precedente de divergência prosa x markup, mas a medição aqui dá 8=8 — a divergência real medida é a cobertura de aulas.",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    },
+    {
+      "id": "div-04-dois-marcadores-map",
+      "tema": "Mesmo marcador \"§ MAP\"/\"§ Map\" para duas seções diferentes",
+      "leitura_a": {
+        "onde": "L1325",
+        "texto": "num=\"§ MAP\", rótulo \"Mapa das aulas\""
+      },
+      "leitura_b": {
+        "onde": "L2358",
+        "texto": "num=\"§ Map\", rótulo \"Tradutor\""
+      },
+      "linhas_aprox": [
+        1325,
+        2358
+      ],
+      "nota": "Só a caixa distingue os dois. Qualquer chave por marcador sem normalização de caixa colide (ids desta extração levam sufixo de linha por isso).",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    },
+    {
+      "id": "div-05-trava-3-x-trava-4",
+      "tema": "Número da \"Trava\" do War Room para linguagem segura",
+      "leitura_a": {
+        "onde": "§ 00 L1314",
+        "texto": "Linguagem segura · Trava 4 do War Room"
+      },
+      "leitura_b": {
+        "onde": "§ Caso L2192",
+        "texto": "Linguagem segura aplicada conforme Trava 3 do War Room."
+      },
+      "linhas_aprox": [
+        1314,
+        2192
+      ],
+      "nota": "O corpo da Aula 05 (callout \"Onde isso entra no produto\") e o feedback da pergunta 10 do quiz também citam \"Trava 4\". Só o § Caso diz \"Trava 3\".",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    },
+    {
+      "id": "div-06-nome-modulo-02",
+      "tema": "Nome do próximo módulo",
+      "leitura_a": {
+        "onde": "hero-meta L1276 e § Final L2494",
+        "texto": "02 · A Rede Elétrica | Módulo 02 — A Rede Elétrica"
+      },
+      "leitura_b": {
+        "onde": "código alexandria-blocks.ts bloco-02",
+        "texto": "Como Funciona uma Rede Elétrica (priority: confirmar)"
+      },
+      "linhas_aprox": [
+        1276,
+        2494
+      ],
+      "nota": "P8: divergência de título entre a fonte do M01 e o catálogo do código para o M02.",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    },
+    {
+      "id": "div-07-titulo-modulo",
+      "tema": "Título do módulo: h1 x rodapé x catálogo",
+      "leitura_a": {
+        "onde": "h1 L1258",
+        "texto": "Física de energia e eletricidade: o módulo que transforma watts em decisão financeira."
+      },
+      "leitura_b": {
+        "onde": "rodapé L2715 e catálogo bloco-01",
+        "texto": "Módulo 01 · Física de Energia e Eletricidade | Física de Energia e Eletricidade"
+      },
+      "linhas_aprox": [
+        1258,
+        2715
+      ],
+      "nota": "O catálogo bate com o rodapé (nome curto, caixa de título). O h1 é o nome curto em caixa de frase + subtítulo editorial após dois-pontos. Qual string é o \"título\" fica para P8.",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    },
+    {
+      "id": "div-08-lab-markup-x-script",
+      "tema": "Valores estáticos da Fábrica B no markup diferem do que o script calcula nos defaults",
+      "leitura_a": {
+        "onde": "markup L2335 / L2340",
+        "texto": "Reativo excedente R$ 1.800 · Fatura estimada R$ 67.425"
+      },
+      "leitura_b": {
+        "onde": "script L3031-3044 (calculado)",
+        "texto": "Reativo excedente R$ 3.200 · Fatura estimada R$ 68.825"
+      },
+      "linhas_aprox": [
+        2335,
+        2340,
+        3040
+      ],
+      "nota": "(0,92 − 0,84) × 100.000 × 0,4 = 3.200. O script roda update() no carregamento, então a tela mostra 3.200/68.825; o HTML estático está desatualizado. Fábrica A bate nos dois.",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    },
+    {
+      "id": "div-09-lab-faixas-number-x-range",
+      "tema": "Faixas do campo numérico x deslizador gêmeo no LAB · 01",
+      "leitura_a": {
+        "onde": "input number",
+        "texto": "dem min 50 sem max · fp min 0.5 max 1 · ponta min 0 max 100"
+      },
+      "leitura_b": {
+        "onde": "input range",
+        "texto": "dem A 100–800 / B 100–1500 · fp 0.7–1 · ponta 0–50"
+      },
+      "linhas_aprox": [
+        2288,
+        2289,
+        2293,
+        2294,
+        2298,
+        2299
+      ],
+      "nota": "syncIR copia number→range e range→number; o range limita o valor, o number não. O código (lab-01) adotou as faixas do range (§12 do protocolo). Também: `parseFloat(fp.value) || 1` faz FP vazio virar 1 (resíduo a sinalizar, §10).",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    },
+    {
+      "id": "div-10-lab-rotulos-codigo",
+      "tema": "Rótulos dos campos do LAB · 01 no código não são literais",
+      "leitura_a": {
+        "onde": "fonte h5 L2285/L2315 + label",
+        "texto": "Fábrica A · Operação estável / Fábrica B · Operação concentrada + \"Demanda máxima\""
+      },
+      "leitura_b": {
+        "onde": "código lab-01",
+        "texto": "label \"Fábrica A · Demanda máxima\" (prefixo composto, sem \"Operação estável\"/\"Operação concentrada\")"
+      },
+      "linhas_aprox": [
+        2285,
+        2315
+      ],
+      "nota": "Composição da extração anterior, não texto da fonte. Os cabeçalhos completos das colunas não existem no código.",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    },
+    {
+      "id": "div-11-protocolo-lab-map",
+      "tema": "Localização do LAB · 01 descrita no protocolo",
+      "leitura_a": {
+        "onde": "extraction-protocol.md §3",
+        "texto": "padrão `§MAP`, primeiro visto como `LAB·01` no Módulo 1"
+      },
+      "leitura_b": {
+        "onde": "fonte L2258",
+        "texto": "LAB · 01 vive em \"§ Lab\" (Comparador interativo), não em § MAP"
+      },
+      "linhas_aprox": [
+        2258
+      ],
+      "nota": "Imprecisão no documento de protocolo; instrument-taxonomy.md diz corretamente \"§ Lab, aparato\".",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    },
+    {
+      "id": "div-12-glossario-contagem",
+      "tema": "Prosa do § Lex x markup",
+      "leitura_a": {
+        "onde": "L2524",
+        "texto": "Vinte e oito termos."
+      },
+      "leitura_b": {
+        "onde": "markup",
+        "texto": "38 details.glossary-item"
+      },
+      "linhas_aprox": [
+        2524
+      ],
+      "nota": "Já registrada no código (alexandria-glossario.ts). Repetida aqui por ser contagem de módulo (P8).",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    },
+    {
+      "id": "div-13-dimensoes-tese",
+      "tema": "Enumerações das \"cinco dimensões\" não coincidem",
+      "leitura_a": {
+        "onde": "§ 00 lead L1290",
+        "texto": "volume, capacidade, perfil de uso, qualidade e risco"
+      },
+      "leitura_b": {
+        "onde": "hero-subtitle L1259",
+        "texto": "consumo e capacidade e perfil e qualidade e risco"
+      },
+      "linhas_aprox": [
+        1259,
+        1290
+      ],
+      "nota": "Volume x consumo; \"perfil de uso\" x \"perfil\". Provavelmente a mesma lista, mas a fonte não diz. Nenhuma das duas é rotulada como eixo.",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    },
+    {
+      "id": "div-14-marca",
+      "tema": "Marca na fonte x produto atual",
+      "leitura_a": {
+        "onde": "header L1243, hero-meta L1271, footer L2714",
+        "texto": "GridAlpha · Alexandria Library / Produtos GridAlpha / GridAlpha Brasil"
+      },
+      "leitura_b": {
+        "onde": "AGENTS.md",
+        "texto": "produto se chama NIVAR"
+      },
+      "linhas_aprox": [
+        1243,
+        1271,
+        2714
+      ],
+      "nota": "Texto de marca literal da fonte; não trocado. P7 manda não exibir \"onde isso entra no produto\" nesta fase — vale para o hero-meta \"Produtos GridAlpha\".",
+      "decisao": "não escolhida — registrar para reconciliação (P5/P8)"
+    }
+  ],
+  "identidade": {
+    "id": "m01-identidade",
+    "tipo": "identidade",
+    "eyebrow": {
+      "html": "Nível 1 · Fundamentos Universais · Módulo 01",
+      "texto": "Nível 1 · Fundamentos Universais · Módulo 01",
+      "origem": {
+        "seletor": "section.hero .hero-eyebrow",
+        "trecho_inicial": "<div class=\"hero-eyebrow\">Nível 1 · Fundamentos Universais · Módulo 01</div>",
+        "linha_aprox": 1257
+      }
+    },
+    "titulo": {
+      "html": "Física de energia e <em>eletricidade</em>: o módulo que transforma watts em decisão financeira.",
+      "texto": "Física de energia e eletricidade: o módulo que transforma watts em decisão financeira.",
+      "origem": {
+        "seletor": "section.hero h1.hero-title",
+        "trecho_inicial": "<h1 class=\"hero-title\">Física de energia e <em>eletricidade</em>: o módulo que transforma ",
+        "linha_aprox": 1258
+      }
+    },
+    "subtitulo": {
+      "html": "A maioria das pessoas olha a conta de luz procurando consumo. Empresa industrial precisa olhar consumo <em>e</em> capacidade <em>e</em> perfil <em>e</em> qualidade <em>e</em> risco. Este módulo ensina o piso físico que sustenta todas as decisões nos blocos seguintes.",
+      "texto": "A maioria das pessoas olha a conta de luz procurando consumo. Empresa industrial precisa olhar consumo e capacidade e perfil e qualidade e risco. Este módulo ensina o piso físico que sustenta todas as decisões nos blocos seguintes.",
+      "origem": {
+        "seletor": "section.hero p.hero-subtitle",
+        "trecho_inicial": "<p class=\"hero-subtitle\">A maioria das pessoas olha a conta de luz procurando consumo. Emp",
+        "linha_aprox": 1259
+      }
+    },
+    "meta": [
+      {
+        "id": "m01-hero-meta-01",
+        "rotulo": "Tempo estimado",
+        "valor": "4 – 6 horas",
+        "classe_valor": "hero-meta-value",
+        "origem": {
+          "seletor": "section.hero .hero-meta .hero-meta-cell",
+          "trecho_inicial": "<div class=\"hero-meta-label\">Tempo estimado</div>",
+          "linha_aprox": 1263
+        }
+      },
+      {
+        "id": "m01-hero-meta-02",
+        "rotulo": "Nível do currículo",
+        "valor": "Fundamentos · Nível 1",
+        "classe_valor": "hero-meta-value accent",
+        "origem": {
+          "seletor": "section.hero .hero-meta .hero-meta-cell",
+          "trecho_inicial": "<div class=\"hero-meta-label\">Nível do currículo</div>",
+          "linha_aprox": 1267
+        }
+      },
+      {
+        "id": "m01-hero-meta-03",
+        "rotulo": "Produtos GridAlpha",
+        "valor": "CLE · Diagnóstico · PQA",
+        "classe_valor": "hero-meta-value gold",
+        "origem": {
+          "seletor": "section.hero .hero-meta .hero-meta-cell",
+          "trecho_inicial": "<div class=\"hero-meta-label\">Produtos GridAlpha</div>",
+          "linha_aprox": 1271
+        }
+      },
+      {
+        "id": "m01-hero-meta-04",
+        "rotulo": "Próximo módulo",
+        "valor": "02 · A Rede Elétrica",
+        "classe_valor": "hero-meta-value",
+        "origem": {
+          "seletor": "section.hero .hero-meta .hero-meta-cell",
+          "trecho_inicial": "<div class=\"hero-meta-label\">Próximo módulo</div>",
+          "linha_aprox": 1275
+        }
+      }
+    ],
+    "horas": {
+      "texto": "4 – 6 horas",
+      "min": null,
+      "max": null,
+      "nota": "A fonte declara só a string \"4 – 6 horas\" (hero-meta \"Tempo estimado\"). Os números 4 e 6 não foram convertidos aqui; o catálogo do código já traz estimatedHoursMin 4 / estimatedHoursMax 6.",
+      "origem": {
+        "seletor": "section.hero .hero-meta-cell:nth(1) .hero-meta-value",
+        "trecho_inicial": "<div class=\"hero-meta-value\">4 – 6 horas</div>",
+        "linha_aprox": 1264
+      }
+    },
+    "eixos": null,
+    "eixos_nota": "A fonte não declara \"eixos\" do módulo (zero ocorrências de \"eixo\"/\"eixos\" fora de CSS). O mais próximo é a enumeração de cinco dimensões no lead do § 00 (\"volume, capacidade, perfil de uso, qualidade e risco\") e no hero-subtitle (\"consumo e capacidade e perfil e qualidade e risco\") — as duas listas não são idênticas (volume × consumo) e nenhuma é rotulada como eixo. Não promovido a eixo.",
+    "cabecalho": {
+      "marca": "GridAlpha · Alexandria Library",
+      "meta_html": "Módulo <b>01</b> · Cobaia Zero <b>v1.0</b>",
+      "meta_texto": "Módulo 01 · Cobaia Zero v1.0",
+      "origem": {
+        "seletor": "header.alex-header",
+        "trecho_inicial": "<span>GridAlpha · Alexandria Library</span>",
+        "linha_aprox": 1243
+      }
+    },
+    "rodape": {
+      "html": [
+        "<b>Alexandria Library</b> · GridAlpha Brasil",
+        "Módulo 01 · Física de Energia e Eletricidade",
+        "Cobaia Zero · v1.0 · Maio de 2026"
+      ],
+      "linhas": [
+        "Alexandria Library · GridAlpha Brasil",
+        "Módulo 01 · Física de Energia e Eletricidade",
+        "Cobaia Zero · v1.0 · Maio de 2026"
+      ],
+      "origem": {
+        "seletor": "footer.alex-footer .footer-mono",
+        "trecho_inicial": "<div class=\"footer-mono\">",
+        "linha_aprox": 2713
+      }
+    }
+  },
+  "tese": {
+    "id": "m01-tese",
+    "tipo": "tese",
+    "marcador": {
+      "num": "§ 00",
+      "rotulo": "Filosofia do módulo"
+    },
+    "titulo_secao": {
+      "html": "A tese que <em>organiza</em> todo o resto.",
+      "texto": "A tese que organiza todo o resto."
+    },
+    "lead": {
+      "html": "Energia elétrica industrial não é comprada apenas como volume. É comprada como volume, capacidade, perfil de uso, qualidade e risco. Se você confunde essas cinco dimensões, não consegue analisar uma fatura industrial; você está apenas lendo um boleto.",
+      "texto": "Energia elétrica industrial não é comprada apenas como volume. É comprada como volume, capacidade, perfil de uso, qualidade e risco. Se você confunde essas cinco dimensões, não consegue analisar uma fatura industrial; você está apenas lendo um boleto."
+    },
+    "paragrafos": [
+      {
+        "id": "m01-tese-p1",
+        "html": "Duas empresas em Belo Horizonte podem consumir exatamente os mesmos <span class=\"hl\">100.000 kWh</span> em um mês e pagar contas radicalmente diferentes. A diferença raramente está no preço da energia. Está no <strong>perfil elétrico</strong> — quando consomem, com que potência simultânea, em qual nível de tensão, com qual fator de potência, com qual qualidade exigida.",
+        "texto": "Duas empresas em Belo Horizonte podem consumir exatamente os mesmos 100.000 kWh em um mês e pagar contas radicalmente diferentes. A diferença raramente está no preço da energia. Está no perfil elétrico — quando consomem, com que potência simultânea, em qual nível de tensão, com qual fator de potência, com qual qualidade exigida.",
+        "origem": {
+          "seletor": "section.aula(§ 00) > p",
+          "trecho_inicial": "<p>Duas empresas em Belo Horizonte podem consumir exatamente os mesmos <span class=\"hl\">10",
+          "linha_aprox": 1292
+        }
+      },
+      {
+        "id": "m01-tese-p2",
+        "html": "Este módulo existe para que, ao final de quatro a seis horas, você consiga olhar para qualquer fatura do Grupo A e fazer a pergunta certa antes de propor qualquer solução. Não é treinamento de engenheiro eletricista. É treinamento de <strong>analista de energia capaz de traduzir eletricidade em decisão financeira</strong>.",
+        "texto": "Este módulo existe para que, ao final de quatro a seis horas, você consiga olhar para qualquer fatura do Grupo A e fazer a pergunta certa antes de propor qualquer solução. Não é treinamento de engenheiro eletricista. É treinamento de analista de energia capaz de traduzir eletricidade em decisão financeira.",
+        "origem": {
+          "seletor": "section.aula(§ 00) > p",
+          "trecho_inicial": "<p>Este módulo existe para que, ao final de quatro a seis horas, você consiga olhar para q",
+          "linha_aprox": 1294
+        }
+      }
+    ],
+    "citacao": {
+      "html": "Uma conta de luz não é uma cobrança por energia. É uma fotografia econômica de como uma instalação usa potência, tempo, tensão, corrente, infraestrutura e qualidade elétrica.",
+      "texto": "Uma conta de luz não é uma cobrança por energia. É uma fotografia econômica de como uma instalação usa potência, tempo, tensão, corrente, infraestrutura e qualidade elétrica.",
+      "atribuicao": "— Alexandria Library · GridAlpha",
+      "origem": {
+        "seletor": "section.aula(§ 00) .pull-quote",
+        "trecho_inicial": "<div class=\"pull-quote\">",
+        "linha_aprox": 1296
+      }
+    },
+    "origem": {
+      "seletor": "section.aula .aula-marker \"§ 00\"",
+      "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ 00</span><span class=\"dot\"></span><span>Filos",
+      "linha_aprox": 1287
+    }
+  },
+  "resultado_esperado": {
+    "id": "m01-resultado-esperado",
+    "tipo": "capacidades",
+    "titulo": "Resultado esperado ao final do módulo",
+    "preambulo": "Você consegue, sem consultar nenhum material:",
+    "itens": [
+      {
+        "id": "m01-cap-01",
+        "tipo": "capacidade",
+        "ordem": 1,
+        "html": "Explicar a diferença entre energia e potência em 30 segundos.",
+        "texto": "Explicar a diferença entre energia e potência em 30 segundos.",
+        "origem": {
+          "seletor": "section.aula(§ 00) ul > li",
+          "trecho_inicial": "<li style=\"margin-bottom: 8px;\">Explicar a diferença entre energia e potência em 30 segund",
+          "linha_aprox": 1304
+        },
+        "marcacao_p14": [
+          "cronometrado",
+          "producao_oral_ou_livre"
+        ]
+      },
+      {
+        "id": "m01-cap-02",
+        "tipo": "capacidade",
+        "ordem": 2,
+        "html": "Ler <span class=\"hl\">kW</span>, <span class=\"hl\">kWh</span>, <span class=\"hl\">MW</span>, <span class=\"hl\">MWh</span>, <span class=\"hl\">kVA</span> e <span class=\"hl\">kVAr</span> sem confundir unidade nem grandeza.",
+        "texto": "Ler kW, kWh, MW, MWh, kVA e kVAr sem confundir unidade nem grandeza.",
+        "origem": {
+          "seletor": "section.aula(§ 00) ul > li",
+          "trecho_inicial": "<li style=\"margin-bottom: 8px;\">Ler <span class=\"hl\">kW</span>, <span class=\"hl\">kWh</span",
+          "linha_aprox": 1305
+        },
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ]
+      },
+      {
+        "id": "m01-cap-03",
+        "tipo": "capacidade",
+        "ordem": 3,
+        "html": "Explicar por que uma fábrica paga demanda além de consumo.",
+        "texto": "Explicar por que uma fábrica paga demanda além de consumo.",
+        "origem": {
+          "seletor": "section.aula(§ 00) ul > li",
+          "trecho_inicial": "<li style=\"margin-bottom: 8px;\">Explicar por que uma fábrica paga demanda além de consumo.",
+          "linha_aprox": 1306
+        },
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ]
+      },
+      {
+        "id": "m01-cap-04",
+        "tipo": "capacidade",
+        "ordem": 4,
+        "html": "Calcular fator de carga e interpretar se a instalação usa bem a capacidade que paga.",
+        "texto": "Calcular fator de carga e interpretar se a instalação usa bem a capacidade que paga.",
+        "origem": {
+          "seletor": "section.aula(§ 00) ul > li",
+          "trecho_inicial": "<li style=\"margin-bottom: 8px;\">Calcular fator de carga e interpretar se a instalação usa ",
+          "linha_aprox": 1307
+        },
+        "marcacao_p14": [
+          "producao_oral_ou_livre",
+          "calculo"
+        ]
+      },
+      {
+        "id": "m01-cap-05",
+        "tipo": "capacidade",
+        "ordem": 5,
+        "html": "Desenhar o triângulo de potência e explicar por que fator de potência baixo vira cobrança regulatória.",
+        "texto": "Desenhar o triângulo de potência e explicar por que fator de potência baixo vira cobrança regulatória.",
+        "origem": {
+          "seletor": "section.aula(§ 00) ul > li",
+          "trecho_inicial": "<li style=\"margin-bottom: 8px;\">Desenhar o triângulo de potência e explicar por que fator ",
+          "linha_aprox": 1308
+        },
+        "marcacao_p14": [
+          "producao_oral_ou_livre",
+          "desenho"
+        ]
+      },
+      {
+        "id": "m01-cap-06",
+        "tipo": "capacidade",
+        "ordem": 6,
+        "html": "Conectar tensão, corrente, perdas e qualidade ao desenho tarifário brasileiro.",
+        "texto": "Conectar tensão, corrente, perdas e qualidade ao desenho tarifário brasileiro.",
+        "origem": {
+          "seletor": "section.aula(§ 00) ul > li",
+          "trecho_inicial": "<li style=\"margin-bottom: 8px;\">Conectar tensão, corrente, perdas e qualidade ao desenho t",
+          "linha_aprox": 1309
+        },
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ]
+      },
+      {
+        "id": "m01-cap-07",
+        "tipo": "capacidade",
+        "ordem": 7,
+        "html": "Identificar quais informações pedir antes de recomendar qualquer economia.",
+        "texto": "Identificar quais informações pedir antes de recomendar qualquer economia.",
+        "origem": {
+          "seletor": "section.aula(§ 00) ul > li",
+          "trecho_inicial": "<li style=\"margin-bottom: 8px;\">Identificar quais informações pedir antes de recomendar qu",
+          "linha_aprox": 1310
+        },
+        "marcacao_p14": [
+          "producao_oral_ou_livre"
+        ]
+      }
+    ],
+    "origem": {
+      "seletor": "section.aula(§ 00) h4 + p + ul",
+      "trecho_inicial": "<h4>Resultado esperado ao final do módulo</h4>",
+      "linha_aprox": 1301
+    }
+  },
+  "mapa": {
+    "id": "m01-mapa",
+    "tipo": "mapa_do_modulo",
+    "marcador": {
+      "num": "§ MAP",
+      "rotulo": "Mapa das aulas"
+    },
+    "titulo_secao": {
+      "html": "Nove aulas, uma <em>arquitetura</em>.",
+      "texto": "Nove aulas, uma arquitetura."
+    },
+    "intro": {
+      "html": "Cada aula responde a uma pergunta específica que aparece em conversa com diretor de energia industrial. Aulas não são chapters de livro; são <strong>unidades de fluência operacional</strong>.",
+      "texto": "Cada aula responde a uma pergunta específica que aparece em conversa com diretor de energia industrial. Aulas não são chapters de livro; são unidades de fluência operacional."
+    },
+    "cabecalho_tabela": [
+      "Aula",
+      "Tema",
+      "Pergunta que precisa responder"
+    ],
+    "linhas": [
+      {
+        "id": "m01-map-aula-01",
+        "tipo": "pergunta_da_aula",
+        "aula": "01",
+        "tema": "Energia × Potência",
+        "pergunta": {
+          "html": "Por que <span class=\"hl\">kW</span> e <span class=\"hl\">kWh</span> não são a mesma coisa?",
+          "texto": "Por que kW e kWh não são a mesma coisa?"
+        },
+        "vinculos": {
+          "aula_id_codigo": "aula-01-01"
+        },
+        "origem": {
+          "seletor": "section.aula(§ MAP) table tbody tr",
+          "trecho_inicial": "<tr><td><b>01</b></td><td>Energia × Potência</td><td>Por que <span class=\"hl\">kW</span> e ",
+          "linha_aprox": 1339
+        }
+      },
+      {
+        "id": "m01-map-aula-02",
+        "tipo": "pergunta_da_aula",
+        "aula": "02",
+        "tema": "As sete unidades essenciais",
+        "pergunta": {
+          "html": "O que volt, ampere, watt, kVA e kVAr realmente medem?",
+          "texto": "O que volt, ampere, watt, kVA e kVAr realmente medem?"
+        },
+        "vinculos": {
+          "aula_id_codigo": "aula-01-02"
+        },
+        "origem": {
+          "seletor": "section.aula(§ MAP) table tbody tr",
+          "trecho_inicial": "<tr><td><b>02</b></td><td>As sete unidades essenciais</td><td>O que volt, ampere, watt, kV",
+          "linha_aprox": 1340
+        }
+      },
+      {
+        "id": "m01-map-aula-03",
+        "tipo": "pergunta_da_aula",
+        "aula": "03",
+        "tema": "Corrente alternada e frequência",
+        "pergunta": {
+          "html": "Por que a rede oscila 60 vezes por segundo, e por que isso importa?",
+          "texto": "Por que a rede oscila 60 vezes por segundo, e por que isso importa?"
+        },
+        "vinculos": {
+          "aula_id_codigo": "aula-01-03"
+        },
+        "origem": {
+          "seletor": "section.aula(§ MAP) table tbody tr",
+          "trecho_inicial": "<tr><td><b>03</b></td><td>Corrente alternada e frequência</td><td>Por que a rede oscila 60",
+          "linha_aprox": 1341
+        }
+      },
+      {
+        "id": "m01-map-aula-04",
+        "tipo": "pergunta_da_aula",
+        "aula": "04",
+        "tema": "Tensão, corrente e perdas",
+        "pergunta": {
+          "html": "Por que transmissão usa alta tensão? Por que perdas crescem ao quadrado?",
+          "texto": "Por que transmissão usa alta tensão? Por que perdas crescem ao quadrado?"
+        },
+        "vinculos": {
+          "aula_id_codigo": "aula-01-04"
+        },
+        "origem": {
+          "seletor": "section.aula(§ MAP) table tbody tr",
+          "trecho_inicial": "<tr><td><b>04</b></td><td>Tensão, corrente e perdas</td><td>Por que transmissão usa alta t",
+          "linha_aprox": 1342
+        }
+      },
+      {
+        "id": "m01-map-aula-05",
+        "tipo": "pergunta_da_aula",
+        "aula": "05",
+        "tema": "Demanda e fator de carga",
+        "pergunta": {
+          "html": "Por que uma fábrica paga por capacidade reservada, não só por energia?",
+          "texto": "Por que uma fábrica paga por capacidade reservada, não só por energia?"
+        },
+        "vinculos": {
+          "aula_id_codigo": "aula-01-05"
+        },
+        "origem": {
+          "seletor": "section.aula(§ MAP) table tbody tr",
+          "trecho_inicial": "<tr><td><b>05</b></td><td>Demanda e fator de carga</td><td>Por que uma fábrica paga por ca",
+          "linha_aprox": 1343
+        }
+      },
+      {
+        "id": "m01-map-aula-06",
+        "tipo": "pergunta_da_aula",
+        "aula": "06",
+        "tema": "Tensão como categoria econômica",
+        "pergunta": {
+          "html": "Por que sua tensão de fornecimento define seu grupo tarifário?",
+          "texto": "Por que sua tensão de fornecimento define seu grupo tarifário?"
+        },
+        "vinculos": {
+          "aula_id_codigo": "aula-01-06"
+        },
+        "origem": {
+          "seletor": "section.aula(§ MAP) table tbody tr",
+          "trecho_inicial": "<tr><td><b>06</b></td><td>Tensão como categoria econômica</td><td>Por que sua tensão de fo",
+          "linha_aprox": 1344
+        }
+      },
+      {
+        "id": "m01-map-aula-07",
+        "tipo": "pergunta_da_aula",
+        "aula": "07",
+        "tema": "Triângulo de potência e fator de potência",
+        "pergunta": {
+          "html": "Por que existe energia que ocupa a rede mas não vira produção?",
+          "texto": "Por que existe energia que ocupa a rede mas não vira produção?"
+        },
+        "vinculos": {
+          "aula_id_codigo": "aula-01-07"
+        },
+        "origem": {
+          "seletor": "section.aula(§ MAP) table tbody tr",
+          "trecho_inicial": "<tr><td><b>07</b></td><td>Triângulo de potência e fator de potência</td><td>Por que existe",
+          "linha_aprox": 1345
+        }
+      },
+      {
+        "id": "m01-map-aula-08",
+        "tipo": "pergunta_da_aula",
+        "aula": "08",
+        "tema": "Capacidade instalada e fator de capacidade",
+        "pergunta": {
+          "html": "Por que <span class=\"hl\">100 MW solar</span> ≠ <span class=\"hl\">100 MW térmica</span>?",
+          "texto": "Por que 100 MW solar ≠ 100 MW térmica?"
+        },
+        "vinculos": {
+          "aula_id_codigo": "aula-01-08"
+        },
+        "origem": {
+          "seletor": "section.aula(§ MAP) table tbody tr",
+          "trecho_inicial": "<tr><td><b>08</b></td><td>Capacidade instalada e fator de capacidade</td><td>Por que <span",
+          "linha_aprox": 1346
+        }
+      },
+      {
+        "id": "m01-map-aula-09",
+        "tipo": "pergunta_da_aula",
+        "aula": "09",
+        "tema": "Qualidade de energia",
+        "pergunta": {
+          "html": "Por que tensão ruim é problema financeiro, não só técnico?",
+          "texto": "Por que tensão ruim é problema financeiro, não só técnico?"
+        },
+        "vinculos": {
+          "aula_id_codigo": "aula-01-09"
+        },
+        "origem": {
+          "seletor": "section.aula(§ MAP) table tbody tr",
+          "trecho_inicial": "<tr><td><b>09</b></td><td>Qualidade de energia</td><td>Por que tensão ruim é problema fina",
+          "linha_aprox": 1347
+        }
+      }
+    ],
+    "origem": {
+      "seletor": "section.aula .aula-marker \"§ MAP\"",
+      "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ MAP</span><span class=\"dot\"></span><span>Mapa",
+      "linha_aprox": 1325
+    }
+  },
+  "roteiro": [
+    {
+      "id": "m01-roteiro-00-L1287",
+      "tipo": "aparato",
+      "ordem_na_fonte": 1,
+      "marcador_num": "§ 00",
+      "marcador_rotulo": "Filosofia do módulo",
+      "titulo": {
+        "html": "A tese que <em>organiza</em> todo o resto.",
+        "texto": "A tese que organiza todo o resto."
+      },
+      "vinculos": {},
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ 00</span><span class=\"dot\"></span><span>Filos",
+        "linha_aprox": 1287
+      }
+    },
+    {
+      "id": "m01-roteiro-map-L1325",
+      "tipo": "aparato",
+      "ordem_na_fonte": 2,
+      "marcador_num": "§ MAP",
+      "marcador_rotulo": "Mapa das aulas",
+      "titulo": {
+        "html": "Nove aulas, uma <em>arquitetura</em>.",
+        "texto": "Nove aulas, uma arquitetura."
+      },
+      "vinculos": {},
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ MAP</span><span class=\"dot\"></span><span>Mapa",
+        "linha_aprox": 1325
+      }
+    },
+    {
+      "id": "m01-roteiro-aula-01",
+      "tipo": "aula",
+      "ordem_na_fonte": 3,
+      "marcador_num": "Aula 01",
+      "marcador_rotulo": "Energia × Potência",
+      "titulo": {
+        "html": "Energia é volume. Potência é <em>velocidade</em>.",
+        "texto": "Energia é volume. Potência é velocidade."
+      },
+      "vinculos": {
+        "aula_id_codigo": "aula-01-01"
+      },
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">Aula 01</span><span class=\"dot\"></span><span>En",
+        "linha_aprox": 1360
+      }
+    },
+    {
+      "id": "m01-roteiro-aula-02",
+      "tipo": "aula",
+      "ordem_na_fonte": 4,
+      "marcador_num": "Aula 02",
+      "marcador_rotulo": "As sete unidades essenciais",
+      "titulo": {
+        "html": "Sete símbolos. Toda a <em>linguagem</em>.",
+        "texto": "Sete símbolos. Toda a linguagem."
+      },
+      "vinculos": {
+        "aula_id_codigo": "aula-01-02"
+      },
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">Aula 02</span><span class=\"dot\"></span><span>As",
+        "linha_aprox": 1486
+      }
+    },
+    {
+      "id": "m01-roteiro-aula-03",
+      "tipo": "aula",
+      "ordem_na_fonte": 5,
+      "marcador_num": "Aula 03",
+      "marcador_rotulo": "Corrente alternada e frequência",
+      "titulo": {
+        "html": "A rede tem um <em>batimento cardíaco</em>. Ele se chama 60 Hz.",
+        "texto": "A rede tem um batimento cardíaco. Ele se chama 60 Hz."
+      },
+      "vinculos": {
+        "aula_id_codigo": "aula-01-03"
+      },
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">Aula 03</span><span class=\"dot\"></span><span>Co",
+        "linha_aprox": 1587
+      }
+    },
+    {
+      "id": "m01-roteiro-aula-04",
+      "tipo": "aula",
+      "ordem_na_fonte": 6,
+      "marcador_num": "Aula 04",
+      "marcador_rotulo": "Tensão, corrente e perdas",
+      "titulo": {
+        "html": "Por que <em>perdas</em> crescem ao quadrado. E por que isso desenhou toda a rede.",
+        "texto": "Por que perdas crescem ao quadrado. E por que isso desenhou toda a rede."
+      },
+      "vinculos": {
+        "aula_id_codigo": "aula-01-04"
+      },
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">Aula 04</span><span class=\"dot\"></span><span>Te",
+        "linha_aprox": 1653
+      }
+    },
+    {
+      "id": "m01-roteiro-aula-05",
+      "tipo": "aula",
+      "ordem_na_fonte": 7,
+      "marcador_num": "Aula 05",
+      "marcador_rotulo": "Demanda e fator de carga",
+      "titulo": {
+        "html": "Por que uma fábrica paga por <em>capacidade reservada</em>.",
+        "texto": "Por que uma fábrica paga por capacidade reservada."
+      },
+      "vinculos": {
+        "aula_id_codigo": "aula-01-05"
+      },
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">Aula 05</span><span class=\"dot\"></span><span>De",
+        "linha_aprox": 1731
+      }
+    },
+    {
+      "id": "m01-roteiro-aula-06",
+      "tipo": "aula",
+      "ordem_na_fonte": 8,
+      "marcador_num": "Aula 06",
+      "marcador_rotulo": "Tensão como categoria econômica",
+      "titulo": {
+        "html": "A tensão de fornecimento <em>define</em> a tarifa que você paga.",
+        "texto": "A tensão de fornecimento define a tarifa que você paga."
+      },
+      "vinculos": {
+        "aula_id_codigo": "aula-01-06"
+      },
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">Aula 06</span><span class=\"dot\"></span><span>Te",
+        "linha_aprox": 1833
+      }
+    },
+    {
+      "id": "m01-roteiro-aula-07",
+      "tipo": "aula",
+      "ordem_na_fonte": 9,
+      "marcador_num": "Aula 07",
+      "marcador_rotulo": "Triângulo de potência e fator de potência",
+      "titulo": {
+        "html": "Existe energia que ocupa a rede e <em>não vira produção</em>.",
+        "texto": "Existe energia que ocupa a rede e não vira produção."
+      },
+      "vinculos": {
+        "aula_id_codigo": "aula-01-07"
+      },
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">Aula 07</span><span class=\"dot\"></span><span>Tr",
+        "linha_aprox": 1902
+      }
+    },
+    {
+      "id": "m01-roteiro-aula-08",
+      "tipo": "aula",
+      "ordem_na_fonte": 10,
+      "marcador_num": "Aula 08",
+      "marcador_rotulo": "Capacidade instalada e fator de capacidade",
+      "titulo": {
+        "html": "100 MW solar <em>≠</em> 100 MW térmica.",
+        "texto": "100 MW solar ≠ 100 MW térmica."
+      },
+      "vinculos": {
+        "aula_id_codigo": "aula-01-08"
+      },
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">Aula 08</span><span class=\"dot\"></span><span>Ca",
+        "linha_aprox": 2008
+      }
+    },
+    {
+      "id": "m01-roteiro-aula-09",
+      "tipo": "aula",
+      "ordem_na_fonte": 11,
+      "marcador_num": "Aula 09",
+      "marcador_rotulo": "Qualidade de energia",
+      "titulo": {
+        "html": "Energia ruim pode custar mais do que <em>energia cara</em>.",
+        "texto": "Energia ruim pode custar mais do que energia cara."
+      },
+      "vinculos": {
+        "aula_id_codigo": "aula-01-09"
+      },
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">Aula 09</span><span class=\"dot\"></span><span>Qu",
+        "linha_aprox": 2102
+      }
+    },
+    {
+      "id": "m01-roteiro-caso-L2181",
+      "tipo": "aparato",
+      "ordem_na_fonte": 12,
+      "marcador_num": "§ Caso",
+      "marcador_rotulo": "Aplicação prática",
+      "titulo": {
+        "html": "Operação A — leitura de uma <em>fatura industrial</em>.",
+        "texto": "Operação A — leitura de uma fatura industrial."
+      },
+      "vinculos": {},
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ Caso</span><span class=\"dot\"></span><span>Apl",
+        "linha_aprox": 2181
+      }
+    },
+    {
+      "id": "m01-roteiro-lab-L2258",
+      "tipo": "aparato",
+      "ordem_na_fonte": 13,
+      "marcador_num": "§ Lab",
+      "marcador_rotulo": "Comparador interativo",
+      "titulo": {
+        "html": "Duas fábricas. Mesmo <em>kWh</em>. Contas diferentes.",
+        "texto": "Duas fábricas. Mesmo kWh. Contas diferentes."
+      },
+      "vinculos": {},
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ Lab</span><span class=\"dot\"></span><span>Comp",
+        "linha_aprox": 2258
+      }
+    },
+    {
+      "id": "m01-roteiro-map-L2358",
+      "tipo": "aparato",
+      "ordem_na_fonte": 14,
+      "marcador_num": "§ Map",
+      "marcador_rotulo": "Tradutor",
+      "titulo": {
+        "html": "Física <em>traduzida</em> em fatura.",
+        "texto": "Física traduzida em fatura."
+      },
+      "vinculos": {},
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ Map</span><span class=\"dot\"></span><span>Trad",
+        "linha_aprox": 2358
+      }
+    },
+    {
+      "id": "m01-roteiro-drill-L2386",
+      "tipo": "aparato",
+      "ordem_na_fonte": 15,
+      "marcador_num": "§ Drill",
+      "marcador_rotulo": "Exercícios com gabarito",
+      "titulo": {
+        "html": "Resolva. Depois <em>verifique</em>.",
+        "texto": "Resolva. Depois verifique."
+      },
+      "vinculos": {},
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ Drill</span><span class=\"dot\"></span><span>Ex",
+        "linha_aprox": 2386
+      }
+    },
+    {
+      "id": "m01-roteiro-quiz-L2472",
+      "tipo": "aparato",
+      "ordem_na_fonte": 16,
+      "marcador_num": "§ Quiz",
+      "marcador_rotulo": "Verificação interativa de domínio",
+      "titulo": {
+        "html": "Dez perguntas. Resposta <em>imediata</em>.",
+        "texto": "Dez perguntas. Resposta imediata."
+      },
+      "vinculos": {},
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ Quiz</span><span class=\"dot\"></span><span>Ver",
+        "linha_aprox": 2472
+      }
+    },
+    {
+      "id": "m01-roteiro-final-L2491",
+      "tipo": "aparato",
+      "ordem_na_fonte": 17,
+      "marcador_num": "§ Final",
+      "marcador_rotulo": "Checklist de domínio",
+      "titulo": {
+        "html": "O critério de <em>conclusão</em>.",
+        "texto": "O critério de conclusão."
+      },
+      "vinculos": {},
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ Final</span><span class=\"dot\"></span><span>Ch",
+        "linha_aprox": 2491
+      }
+    },
+    {
+      "id": "m01-roteiro-lex-L2522",
+      "tipo": "aparato",
+      "ordem_na_fonte": 18,
+      "marcador_num": "§ Lex",
+      "marcador_rotulo": "Glossário expansível",
+      "titulo": {
+        "html": "Glossário <em>Alexandria</em>.",
+        "texto": "Glossário Alexandria."
+      },
+      "vinculos": {},
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ Lex</span><span class=\"dot\"></span><span>Glos",
+        "linha_aprox": 2522
+      }
+    },
+    {
+      "id": "m01-roteiro-ref-L2688",
+      "tipo": "aparato",
+      "ordem_na_fonte": 19,
+      "marcador_num": "§ Ref",
+      "marcador_rotulo": "Referências regulatórias e fontes primárias",
+      "titulo": {
+        "html": "A linguagem <em>defensável</em>.",
+        "texto": "A linguagem defensável."
+      },
+      "vinculos": {},
+      "origem": {
+        "seletor": "section.aula .aula-marker",
+        "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ Ref</span><span class=\"dot\"></span><span>Refe",
+        "linha_aprox": 2688
+      }
+    }
+  ],
+  "criterio": {
+    "id": "m01-criterio",
+    "tipo": "criterio_do_modulo",
+    "nota_p5": "Três critérios literais coexistem na fonte (Drill, Quiz, Checklist) e as mensagens do script do quiz não batem com o limiar 8/10 da prosa. Registrado, não reconciliado (P5).",
+    "criterios": [
+      {
+        "id": "m01-crit-drill",
+        "tipo": "criterio_exercicios",
+        "secao": "§ Drill",
+        "html": "Resolva cada exercício mentalmente ou no papel antes de revelar a resposta. Os exercícios alcançam todas as nove aulas. O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+        "texto": "Resolva cada exercício mentalmente ou no papel antes de revelar a resposta. Os exercícios alcançam todas as nove aulas. O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+        "frase_criterio": "O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+        "marcacao_p14": [
+          "autoavaliado_sem_registro"
+        ],
+        "nota": "O gabarito é revelado por botão; a fonte não registra acerto. O exercício 08 pede resposta \"em até oito linhas\" (limite de extensão, não de tempo).",
+        "origem": {
+          "seletor": "section.aula(§ Drill) > p",
+          "trecho_inicial": "<p>Resolva cada exercício mentalmente ou no papel antes de revelar a resposta. Os exercíci",
+          "linha_aprox": 2389
+        }
+      },
+      {
+        "id": "m01-crit-quiz",
+        "tipo": "criterio_quiz",
+        "secao": "§ Quiz",
+        "html": "Quiz de fluência. Cada resposta tem feedback explicativo. O critério de domínio do módulo é acertar pelo menos <strong>8 de 10</strong> sem consultar.",
+        "texto": "Quiz de fluência. Cada resposta tem feedback explicativo. O critério de domínio do módulo é acertar pelo menos 8 de 10 sem consultar.",
+        "limiar": {
+          "acertos": 8,
+          "total": 10,
+          "fonte_literal": "8 de 10"
+        },
+        "rotulo_pontuacao": "Pontuação final",
+        "mensagens_do_script": [
+          {
+            "condicao": "correct >= 9",
+            "mensagem": "Domínio sólido. Pronto para o Módulo 02.",
+            "origem": {
+              "seletor": "script QUIZ scoreMsg",
+              "trecho_inicial": "if (correct >= 9) scoreMsg.textContent = 'Domínio sólido. Pronto para o Módulo 02.';",
+              "linha_aprox": 3199
+            }
+          },
+          {
+            "condicao": "correct >= 7",
+            "mensagem": "Bom. Revise os pontos errados, depois avance para o próximo módulo.",
+            "origem": {
+              "seletor": "script QUIZ scoreMsg",
+              "trecho_inicial": "else if (correct >= 7) scoreMsg.textContent = 'Bom. Revise os pontos errados, depois avanc",
+              "linha_aprox": 3200
+            }
+          },
+          {
+            "condicao": "correct >= 5",
+            "mensagem": "Domínio parcial. Volte às aulas onde errou antes de avançar.",
+            "origem": {
+              "seletor": "script QUIZ scoreMsg",
+              "trecho_inicial": "else if (correct >= 5) scoreMsg.textContent = 'Domínio parcial. Volte às aulas onde errou ",
+              "linha_aprox": 3201
+            }
+          },
+          {
+            "condicao": "else (correct < 5)",
+            "mensagem": "Refaça o estudo. O critério de domínio é 8/10 — sem atalho.",
+            "origem": {
+              "seletor": "script QUIZ scoreMsg",
+              "trecho_inicial": "else scoreMsg.textContent = 'Refaça o estudo. O critério de domínio é 8/10 — sem atalho.';",
+              "linha_aprox": 3202
+            }
+          }
+        ],
+        "marcacao_p14": [
+          "automatizavel_mas_P5_limiar_nao_e_evidencia"
+        ],
+        "origem": {
+          "seletor": "section.aula(§ Quiz) > p",
+          "trecho_inicial": "<p>Quiz de fluência. Cada resposta tem feedback explicativo. O critério de domínio do módu",
+          "linha_aprox": 2474
+        }
+      },
+      {
+        "id": "m01-crit-checklist",
+        "tipo": "criterio_conclusao",
+        "secao": "§ Final",
+        "titulo_secao": {
+          "html": "O critério de <em>conclusão</em>.",
+          "texto": "O critério de conclusão."
+        },
+        "html": "Você só passa neste módulo se conseguir, sem consultar nenhum material, fazer todas as ações abaixo. Marque ao longo do estudo. Quando todas estiverem marcadas, você está pronto para o Módulo 02 — A Rede Elétrica.",
+        "texto": "Você só passa neste módulo se conseguir, sem consultar nenhum material, fazer todas as ações abaixo. Marque ao longo do estudo. Quando todas estiverem marcadas, você está pronto para o Módulo 02 — A Rede Elétrica.",
+        "itens": [
+          {
+            "id": "m01-crit-check-01",
+            "tipo": "item_de_checklist",
+            "ordem": 1,
+            "html": "Explicar kW vs kWh em 30 segundos, com exemplo numérico.",
+            "texto": "Explicar kW vs kWh em 30 segundos, com exemplo numérico.",
+            "marcacao_p14": [
+              "cronometrado",
+              "producao_oral_ou_livre"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Explicar kW vs kWh ",
+              "linha_aprox": 2497
+            }
+          },
+          {
+            "id": "m01-crit-check-02",
+            "tipo": "item_de_checklist",
+            "ordem": 2,
+            "html": "Dar um exemplo de Energia = Potência × Tempo, com unidades corretas.",
+            "texto": "Dar um exemplo de Energia = Potência × Tempo, com unidades corretas.",
+            "marcacao_p14": [
+              "producao_oral_ou_livre"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Dar um exemplo de E",
+              "linha_aprox": 2498
+            }
+          },
+          {
+            "id": "m01-crit-check-03",
+            "tipo": "item_de_checklist",
+            "ordem": 3,
+            "html": "Explicar por que demanda existe na conta industrial.",
+            "texto": "Explicar por que demanda existe na conta industrial.",
+            "marcacao_p14": [
+              "producao_oral_ou_livre"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Explicar por que de",
+              "linha_aprox": 2499
+            }
+          },
+          {
+            "id": "m01-crit-check-04",
+            "tipo": "item_de_checklist",
+            "ordem": 4,
+            "html": "Calcular demanda média a partir de kWh mensal e horas do período.",
+            "texto": "Calcular demanda média a partir de kWh mensal e horas do período.",
+            "marcacao_p14": [
+              "calculo"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Calcular demanda mé",
+              "linha_aprox": 2500
+            }
+          },
+          {
+            "id": "m01-crit-check-05",
+            "tipo": "item_de_checklist",
+            "ordem": 5,
+            "html": "Calcular fator de carga e interpretar o que ele significa operacionalmente.",
+            "texto": "Calcular fator de carga e interpretar o que ele significa operacionalmente.",
+            "marcacao_p14": [
+              "producao_oral_ou_livre",
+              "calculo"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Calcular fator de c",
+              "linha_aprox": 2501
+            }
+          },
+          {
+            "id": "m01-crit-check-06",
+            "tipo": "item_de_checklist",
+            "ordem": 6,
+            "html": "Explicar a Lei de Ohm e por que perdas crescem com I².",
+            "texto": "Explicar a Lei de Ohm e por que perdas crescem com I².",
+            "marcacao_p14": [
+              "producao_oral_ou_livre"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Explicar a Lei de O",
+              "linha_aprox": 2502
+            }
+          },
+          {
+            "id": "m01-crit-check-07",
+            "tipo": "item_de_checklist",
+            "ordem": 7,
+            "html": "Justificar fisicamente por que transmissão usa alta tensão.",
+            "texto": "Justificar fisicamente por que transmissão usa alta tensão.",
+            "marcacao_p14": [
+              "producao_oral_ou_livre"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Justificar fisicame",
+              "linha_aprox": 2503
+            }
+          },
+          {
+            "id": "m01-crit-check-08",
+            "tipo": "item_de_checklist",
+            "ordem": 8,
+            "html": "Explicar AC vs DC sem virar história longa de Tesla vs Edison.",
+            "texto": "Explicar AC vs DC sem virar história longa de Tesla vs Edison.",
+            "marcacao_p14": [
+              "producao_oral_ou_livre"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Explicar AC vs DC s",
+              "linha_aprox": 2504
+            }
+          },
+          {
+            "id": "m01-crit-check-09",
+            "tipo": "item_de_checklist",
+            "ordem": 9,
+            "html": "Explicar frequência como evidência física do equilíbrio geração-consumo.",
+            "texto": "Explicar frequência como evidência física do equilíbrio geração-consumo.",
+            "marcacao_p14": [
+              "producao_oral_ou_livre"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Explicar frequência",
+              "linha_aprox": 2505
+            }
+          },
+          {
+            "id": "m01-crit-check-10",
+            "tipo": "item_de_checklist",
+            "ordem": 10,
+            "html": "Desenhar o triângulo kW, kVAr, kVA e identificar cada lado.",
+            "texto": "Desenhar o triângulo kW, kVAr, kVA e identificar cada lado.",
+            "marcacao_p14": [
+              "producao_oral_ou_livre",
+              "desenho"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Desenhar o triângul",
+              "linha_aprox": 2506
+            }
+          },
+          {
+            "id": "m01-crit-check-11",
+            "tipo": "item_de_checklist",
+            "ordem": 11,
+            "html": "Calcular fator de potência e explicar por que abaixo de 0,92 pode virar cobrança.",
+            "texto": "Calcular fator de potência e explicar por que abaixo de 0,92 pode virar cobrança.",
+            "marcacao_p14": [
+              "producao_oral_ou_livre",
+              "calculo"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Calcular fator de p",
+              "linha_aprox": 2507
+            }
+          },
+          {
+            "id": "m01-crit-check-12",
+            "tipo": "item_de_checklist",
+            "ordem": 12,
+            "html": "Listar três fenômenos de qualidade de energia e sua consequência industrial.",
+            "texto": "Listar três fenômenos de qualidade de energia e sua consequência industrial.",
+            "marcacao_p14": [
+              "producao_oral_ou_livre"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Listar três fenômen",
+              "linha_aprox": 2508
+            }
+          },
+          {
+            "id": "m01-crit-check-13",
+            "tipo": "item_de_checklist",
+            "ordem": 13,
+            "html": "Diferenciar capacidade instalada e fator de capacidade por fonte.",
+            "texto": "Diferenciar capacidade instalada e fator de capacidade por fonte.",
+            "marcacao_p14": [
+              "producao_oral_ou_livre"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Diferenciar capacid",
+              "linha_aprox": 2509
+            }
+          },
+          {
+            "id": "m01-crit-check-14",
+            "tipo": "item_de_checklist",
+            "ordem": 14,
+            "html": "Identificar Grupo A4 e por que ele é o terreno prioritário da GridAlpha no Brasil.",
+            "texto": "Identificar Grupo A4 e por que ele é o terreno prioritário da GridAlpha no Brasil.",
+            "marcacao_p14": [
+              "producao_oral_ou_livre"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Identificar Grupo A",
+              "linha_aprox": 2510
+            }
+          },
+          {
+            "id": "m01-crit-check-15",
+            "tipo": "item_de_checklist",
+            "ordem": 15,
+            "html": "Listar exatamente quais dados pedir antes de recomendar economia.",
+            "texto": "Listar exatamente quais dados pedir antes de recomendar economia.",
+            "marcacao_p14": [
+              "producao_oral_ou_livre"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Listar exatamente q",
+              "linha_aprox": 2511
+            }
+          },
+          {
+            "id": "m01-crit-check-16",
+            "tipo": "item_de_checklist",
+            "ordem": 16,
+            "html": "Saber em que situação <strong>não</strong> recomendar redução de demanda contratada.",
+            "texto": "Saber em que situação não recomendar redução de demanda contratada.",
+            "marcacao_p14": [
+              "producao_oral_ou_livre"
+            ],
+            "origem": {
+              "seletor": "#checklist .checklist-item .text",
+              "trecho_inicial": "<div class=\"checklist-item\"><div class=\"check\"></div><div class=\"text\">Saber em que situaç",
+              "linha_aprox": 2512
+            }
+          }
+        ],
+        "nota": "A marcação é um toggle visual (script CHECKLIST: classList.toggle(\"checked\")), sem persistência nem verificação. marcacao_p14 é anotação desta extração inferida do verbo inicial de cada item — não é texto da fonte.",
+        "origem": {
+          "seletor": "section.aula(§ Final) > p + #checklist",
+          "trecho_inicial": "<p>Você só passa neste módulo se conseguir, sem consultar nenhum material, fazer todas as ",
+          "linha_aprox": 2494
+        }
+      }
+    ]
+  },
+  "lab_01": {
+    "id": "m01-lab-01",
+    "tipo": "laboratorio",
+    "instrument_id_fonte": "LAB · 01",
+    "titulo_instrumento": "Laboratório · Comparador de perfil elétrico",
+    "secao": {
+      "marcador_num": "§ Lab",
+      "marcador_rotulo": "Comparador interativo",
+      "titulo": {
+        "html": "Duas fábricas. Mesmo <em>kWh</em>. Contas diferentes.",
+        "texto": "Duas fábricas. Mesmo kWh. Contas diferentes."
+      }
+    },
+    "enunciado": {
+      "html": "Esta é a demonstração que valida toda a tese central do módulo. Ajuste as variáveis nas duas fábricas — mantendo o mesmo consumo total — e observe como a fatura mensal estimada diverge. O perfil elétrico é a diferença.",
+      "texto": "Esta é a demonstração que valida toda a tese central do módulo. Ajuste as variáveis nas duas fábricas — mantendo o mesmo consumo total — e observe como a fatura mensal estimada diverge. O perfil elétrico é a diferença.",
+      "origem": {
+        "seletor": "section.aula(§ Lab) p.lead",
+        "trecho_inicial": "<p class=\"lead\">Esta é a demonstração que valida toda a tese central do módulo. Ajuste as ",
+        "linha_aprox": 2261
+      }
+    },
+    "instrucao_interna": {
+      "html": "Ambas as fábricas consomem o mesmo volume de energia. As variáveis abaixo definem o <b>perfil</b>.",
+      "texto": "Ambas as fábricas consomem o mesmo volume de energia. As variáveis abaixo definem o perfil.",
+      "origem": {
+        "seletor": ".instrument-body > p",
+        "trecho_inicial": "<p style=\"font-family: var(--font-mono); font-size: 12px; color: var(--text-tertiary); mar",
+        "linha_aprox": 2270
+      }
+    },
+    "passos": null,
+    "passos_nota": "A fonte não enumera passos. A única instrução de ação é a frase do enunciado (\"Ajuste as variáveis nas duas fábricas — mantendo o mesmo consumo total — e observe como a fatura mensal estimada diverge.\").",
+    "entregavel": null,
+    "entregavel_nota": "A fonte não declara entregável, registro nem pergunta de fechamento para o LAB · 01.",
+    "campos_comuns": [
+      {
+        "rotulo": "Consumo mensal · ambas",
+        "unidade": "kWh",
+        "input_number": {
+          "type": "number",
+          "id": "lab-kwh",
+          "value": "100000",
+          "min": "10000",
+          "step": "5000"
+        },
+        "origem": {
+          "seletor": "section.aula(§ Lab) .instrument .field",
+          "trecho_inicial": "<label class=\"field-label\">Consumo mensal · ambas <span class=\"unit\">kWh</span></label>",
+          "linha_aprox": 2274
+        }
+      },
+      {
+        "rotulo": "Tarifa energia média",
+        "unidade": "R$/MWh",
+        "input_number": {
+          "type": "number",
+          "id": "lab-tarifa",
+          "value": "450",
+          "min": "100",
+          "step": "10"
+        },
+        "origem": {
+          "seletor": "section.aula(§ Lab) .instrument .field",
+          "trecho_inicial": "<label class=\"field-label\">Tarifa energia média <span class=\"unit\">R$/MWh</span></label>",
+          "linha_aprox": 2278
+        }
+      }
+    ],
+    "colunas": [
+      {
+        "id": "m01-lab-01-a",
+        "cabecalho": "Fábrica A · Operação estável",
+        "campos": [
+          {
+            "rotulo": "Demanda máxima",
+            "unidade": "kW",
+            "input_number": {
+              "type": "number",
+              "id": "lab-a-dem",
+              "value": "250",
+              "min": "50",
+              "step": "10"
+            },
+            "origem": {
+              "seletor": "section.aula(§ Lab) .instrument .field",
+              "trecho_inicial": "<label class=\"field-label\">Demanda máxima <span class=\"unit\">kW</span></label>",
+              "linha_aprox": 2287
+            },
+            "input_range": {
+              "type": "range",
+              "id": "lab-a-dem-range",
+              "min": "100",
+              "max": "800",
+              "value": "250",
+              "step": "10"
+            }
+          },
+          {
+            "rotulo": "Fator de potência",
+            "unidade": null,
+            "input_number": {
+              "type": "number",
+              "id": "lab-a-fp",
+              "value": "0.96",
+              "min": "0.5",
+              "max": "1",
+              "step": "0.01"
+            },
+            "origem": {
+              "seletor": "section.aula(§ Lab) .instrument .field",
+              "trecho_inicial": "<label class=\"field-label\">Fator de potência</label>",
+              "linha_aprox": 2292
+            },
+            "input_range": {
+              "type": "range",
+              "id": "lab-a-fp-range",
+              "min": "0.7",
+              "max": "1",
+              "value": "0.96",
+              "step": "0.01"
+            }
+          },
+          {
+            "rotulo": "Consumo em horário de ponta",
+            "unidade": "%",
+            "input_number": {
+              "type": "number",
+              "id": "lab-a-ponta",
+              "value": "5",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "origem": {
+              "seletor": "section.aula(§ Lab) .instrument .field",
+              "trecho_inicial": "<label class=\"field-label\">Consumo em horário de ponta <span class=\"unit\">%</span></label>",
+              "linha_aprox": 2297
+            },
+            "input_range": {
+              "type": "range",
+              "id": "lab-a-ponta-range",
+              "min": "0",
+              "max": "50",
+              "value": "5",
+              "step": "1"
+            }
+          }
+        ],
+        "saidas": [
+          {
+            "rotulo": "Energia",
+            "output_id": "lab-a-energia",
+            "valor_estatico_no_markup": "R$ 45.000",
+            "origem": {
+              "seletor": ".compare-row",
+              "trecho_inicial": "<div class=\"compare-row\"><span class=\"lbl\">Energia</span><span class=\"val\" id=\"lab-a-energ",
+              "linha_aprox": 2303
+            }
+          },
+          {
+            "rotulo": "Demanda",
+            "output_id": "lab-a-demanda",
+            "valor_estatico_no_markup": "R$ 6.250",
+            "origem": {
+              "seletor": ".compare-row",
+              "trecho_inicial": "<div class=\"compare-row\"><span class=\"lbl\">Demanda</span><span class=\"val\" id=\"lab-a-deman",
+              "linha_aprox": 2304
+            }
+          },
+          {
+            "rotulo": "Reativo excedente",
+            "output_id": "lab-a-reativo",
+            "valor_estatico_no_markup": "R$ 0",
+            "origem": {
+              "seletor": ".compare-row",
+              "trecho_inicial": "<div class=\"compare-row\"><span class=\"lbl\">Reativo excedente</span><span class=\"val\" id=\"l",
+              "linha_aprox": 2305
+            }
+          },
+          {
+            "rotulo": "Adicional ponta",
+            "output_id": "lab-a-adicponta",
+            "valor_estatico_no_markup": "R$ 1.125",
+            "origem": {
+              "seletor": ".compare-row",
+              "trecho_inicial": "<div class=\"compare-row\"><span class=\"lbl\">Adicional ponta</span><span class=\"val\" id=\"lab",
+              "linha_aprox": 2306
+            }
+          }
+        ],
+        "total": {
+          "rotulo": "Fatura estimada",
+          "output_id": "lab-a-total",
+          "valor_estatico_no_markup": "R$ 52.375",
+          "origem": {
+            "seletor": ".compare-bill .compare-bill-value",
+            "trecho_inicial": "<div class=\"compare-bill-value\" id=\"lab-a-total\">R$ 52.375</div>",
+            "linha_aprox": 2310
+          }
+        }
+      },
+      {
+        "id": "m01-lab-01-b",
+        "cabecalho": "Fábrica B · Operação concentrada",
+        "campos": [
+          {
+            "rotulo": "Demanda máxima",
+            "unidade": "kW",
+            "input_number": {
+              "type": "number",
+              "id": "lab-b-dem",
+              "value": "600",
+              "min": "50",
+              "step": "10"
+            },
+            "origem": {
+              "seletor": "section.aula(§ Lab) .instrument .field",
+              "trecho_inicial": "<label class=\"field-label\">Demanda máxima <span class=\"unit\">kW</span></label>",
+              "linha_aprox": 2317
+            },
+            "input_range": {
+              "type": "range",
+              "id": "lab-b-dem-range",
+              "min": "100",
+              "max": "1500",
+              "value": "600",
+              "step": "10"
+            }
+          },
+          {
+            "rotulo": "Fator de potência",
+            "unidade": null,
+            "input_number": {
+              "type": "number",
+              "id": "lab-b-fp",
+              "value": "0.84",
+              "min": "0.5",
+              "max": "1",
+              "step": "0.01"
+            },
+            "origem": {
+              "seletor": "section.aula(§ Lab) .instrument .field",
+              "trecho_inicial": "<label class=\"field-label\">Fator de potência</label>",
+              "linha_aprox": 2322
+            },
+            "input_range": {
+              "type": "range",
+              "id": "lab-b-fp-range",
+              "min": "0.7",
+              "max": "1",
+              "value": "0.84",
+              "step": "0.01"
+            }
+          },
+          {
+            "rotulo": "Consumo em horário de ponta",
+            "unidade": "%",
+            "input_number": {
+              "type": "number",
+              "id": "lab-b-ponta",
+              "value": "25",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            "origem": {
+              "seletor": "section.aula(§ Lab) .instrument .field",
+              "trecho_inicial": "<label class=\"field-label\">Consumo em horário de ponta <span class=\"unit\">%</span></label>",
+              "linha_aprox": 2327
+            },
+            "input_range": {
+              "type": "range",
+              "id": "lab-b-ponta-range",
+              "min": "0",
+              "max": "50",
+              "value": "25",
+              "step": "1"
+            }
+          }
+        ],
+        "saidas": [
+          {
+            "rotulo": "Energia",
+            "output_id": "lab-b-energia",
+            "valor_estatico_no_markup": "R$ 45.000",
+            "origem": {
+              "seletor": ".compare-row",
+              "trecho_inicial": "<div class=\"compare-row\"><span class=\"lbl\">Energia</span><span class=\"val\" id=\"lab-b-energ",
+              "linha_aprox": 2333
+            }
+          },
+          {
+            "rotulo": "Demanda",
+            "output_id": "lab-b-demanda",
+            "valor_estatico_no_markup": "R$ 15.000",
+            "origem": {
+              "seletor": ".compare-row",
+              "trecho_inicial": "<div class=\"compare-row\"><span class=\"lbl\">Demanda</span><span class=\"val\" id=\"lab-b-deman",
+              "linha_aprox": 2334
+            }
+          },
+          {
+            "rotulo": "Reativo excedente",
+            "output_id": "lab-b-reativo",
+            "valor_estatico_no_markup": "R$ 1.800",
+            "origem": {
+              "seletor": ".compare-row",
+              "trecho_inicial": "<div class=\"compare-row\"><span class=\"lbl\">Reativo excedente</span><span class=\"val\" id=\"l",
+              "linha_aprox": 2335
+            }
+          },
+          {
+            "rotulo": "Adicional ponta",
+            "output_id": "lab-b-adicponta",
+            "valor_estatico_no_markup": "R$ 5.625",
+            "origem": {
+              "seletor": ".compare-row",
+              "trecho_inicial": "<div class=\"compare-row\"><span class=\"lbl\">Adicional ponta</span><span class=\"val\" id=\"lab",
+              "linha_aprox": 2336
+            }
+          }
+        ],
+        "total": {
+          "rotulo": "Fatura estimada",
+          "output_id": "lab-b-total",
+          "valor_estatico_no_markup": "R$ 67.425",
+          "origem": {
+            "seletor": ".compare-bill .compare-bill-value",
+            "trecho_inicial": "<div class=\"compare-bill-value\" id=\"lab-b-total\">R$ 67.425</div>",
+            "linha_aprox": 2340
+          }
+        }
+      }
+    ],
+    "nota_instrumento": {
+      "html": "<b>Atenção · simulação didática.</b> Os valores acima usam coeficientes simplificados para fins pedagógicos. Tarifas reais dependem de modalidade (verde/azul), grupo tarifário, distribuidora, bandeira tarifária, encargos e tributos. <b>Não use este simulador como cálculo financeiro de cliente</b> — apenas para internalizar como o perfil elétrico move a fatura. Em um relatório Conta de Luz Express real, a fatura é decomposta linha por linha com base no documento fiscal efetivo.",
+      "texto": "Atenção · simulação didática. Os valores acima usam coeficientes simplificados para fins pedagógicos. Tarifas reais dependem de modalidade (verde/azul), grupo tarifário, distribuidora, bandeira tarifária, encargos e tributos. Não use este simulador como cálculo financeiro de cliente — apenas para internalizar como o perfil elétrico move a fatura. Em um relatório Conta de Luz Express real, a fatura é decomposta linha por linha com base no documento fiscal efetivo.",
+      "origem": {
+        "seletor": ".instrument-note",
+        "trecho_inicial": "<div class=\"instrument-note\">",
+        "linha_aprox": 2345
+      }
+    },
+    "script_coeficientes_verbatim": [
+      {
+        "codigo": "function update() {",
+        "linha_aprox": 3031
+      },
+      {
+        "codigo": "const kwh = parseFloat(kwhIn.value) || 0;",
+        "linha_aprox": 3032
+      },
+      {
+        "codigo": "const tarifa = parseFloat(tarifaIn.value) || 0;",
+        "linha_aprox": 3033
+      },
+      {
+        "codigo": "const D = parseFloat(dem.value) || 0;",
+        "linha_aprox": 3034
+      },
+      {
+        "codigo": "const FP = parseFloat(fp.value) || 1;",
+        "linha_aprox": 3035
+      },
+      {
+        "codigo": "const PCT = (parseFloat(ponta.value) || 0) / 100;",
+        "linha_aprox": 3036
+      },
+      {
+        "codigo": "// Coeficientes didáticos (NÃO usar para cálculos reais de fatura)",
+        "linha_aprox": 3038
+      },
+      {
+        "codigo": "const energia = (kwh / 1000) * tarifa;          // kWh * R$/MWh",
+        "linha_aprox": 3039
+      },
+      {
+        "codigo": "const demanda = D * 25;                          // R$ 25/kW de demanda",
+        "linha_aprox": 3040
+      },
+      {
+        "codigo": "const reativo = FP < 0.92 ? (0.92 - FP) * kwh * 0.4 : 0;",
+        "linha_aprox": 3041
+      },
+      {
+        "codigo": "const adicPonta = energia * PCT * 0.5;           // adicional ~50% da fração ponta",
+        "linha_aprox": 3042
+      },
+      {
+        "codigo": "const total = energia + demanda + reativo + adicPonta;",
+        "linha_aprox": 3044
+      }
+    ],
+    "vinculos": {
+      "aula": null,
+      "aula_nota": "Nenhuma aula referencia o LAB · 01; ele vive no aparato § Lab (P9/§3 do protocolo: vai para os recursos do módulo).",
+      "tese": "m01-tese",
+      "tese_nota": "Vínculo declarado em prosa pelo enunciado: \"valida toda a tese central do módulo\".",
+      "codigo": {
+        "arquivo": "src/lib/data/alexandria-modulo-01-content.ts",
+        "instrument_id": "lab-01",
+        "kind": "laboratorio"
+      }
+    },
+    "origem": {
+      "seletor": "section.aula .aula-marker \"§ Lab\"",
+      "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ Lab</span><span class=\"dot\"></span><span>Comp",
+      "linha_aprox": 2258
+    },
+    "valores_do_script_nos_defaults": {
+      "metodo": "Coeficientes do script (linhas 3031-3044) aplicados aos value= dos campos, em Node 24 com toLocaleString(\"pt-BR\"). O script roda update() no carregamento e sobrescreve o markup.",
+      "a": {
+        "energia": "R$ 45.000",
+        "demanda": "R$ 6.250",
+        "reativo": "R$ 0",
+        "adicponta": "R$ 1.125",
+        "total": "R$ 52.375"
+      },
+      "b": {
+        "energia": "R$ 45.000",
+        "demanda": "R$ 15.000",
+        "reativo": "R$ 3.200",
+        "adicponta": "R$ 5.625",
+        "total": "R$ 68.825"
+      }
+    }
+  },
+  "voz": [
+    {
+      "id": "m01-voz-linguagem-segura",
+      "tipo": "principio_editorial",
+      "rotulo": "Linguagem segura · Trava 4 do War Room",
+      "html": "Durante todo o módulo, falaremos em <strong>\"oportunidades potenciais a validar\"</strong>, nunca em <strong>\"economia garantida\"</strong>. Nenhum diagnóstico operacional sério promete número sem ter visto, no mínimo, doze faturas completas. Esse cuidado é o que separa fundador credível de consultor genérico.",
+      "texto": "Durante todo o módulo, falaremos em \"oportunidades potenciais a validar\", nunca em \"economia garantida\". Nenhum diagnóstico operacional sério promete número sem ter visto, no mínimo, doze faturas completas. Esse cuidado é o que separa fundador credível de consultor genérico.",
+      "origem": {
+        "seletor": "section.aula(§ 00) .callout.gold",
+        "trecho_inicial": "<div class=\"callout gold\">",
+        "linha_aprox": 1313
+      }
+    },
+    {
+      "id": "m01-voz-padrao-editorial",
+      "tipo": "principio_editorial",
+      "rotulo": "Padrão editorial Alexandria",
+      "html": "Ao converter este módulo em artigo público da Alexandria Library: <strong>(1)</strong> remover toda referência a cliente real; <strong>(2)</strong> manter \"Operação A\" como caso hipotético; <strong>(3)</strong> usar sempre \"oportunidade a validar\" ao invés de promessa de economia; <strong>(4)</strong> citar fontes primárias ANEEL/PRODIST quando houver afirmação regulatória; <strong>(5)</strong> fechar com call-to-action leve, nunca venda agressiva.",
+      "texto": "Ao converter este módulo em artigo público da Alexandria Library: (1) remover toda referência a cliente real; (2) manter \"Operação A\" como caso hipotético; (3) usar sempre \"oportunidade a validar\" ao invés de promessa de economia; (4) citar fontes primárias ANEEL/PRODIST quando houver afirmação regulatória; (5) fechar com call-to-action leve, nunca venda agressiva.",
+      "origem": {
+        "seletor": "section.aula(§ Ref) .callout.gold",
+        "trecho_inicial": "<div class=\"callout gold\">",
+        "linha_aprox": 2703
+      }
+    },
+    {
+      "id": "m01-voz-ref-intro",
+      "tipo": "principio_editorial",
+      "rotulo": null,
+      "html": "Toda afirmação regulatória deste módulo pode ser rastreada às fontes primárias abaixo. Antes de transformar qualquer ponto em recomendação financeira para cliente, valide a regra exata vigente — a regulação se atualiza, e a Alexandria não promete eternidade.",
+      "texto": "Toda afirmação regulatória deste módulo pode ser rastreada às fontes primárias abaixo. Antes de transformar qualquer ponto em recomendação financeira para cliente, valide a regra exata vigente — a regulação se atualiza, e a Alexandria não promete eternidade.",
+      "origem": {
+        "seletor": "section.aula(§ Ref) > p",
+        "trecho_inicial": "<p>Toda afirmação regulatória deste módulo pode ser rastreada às fontes primárias abaixo. ",
+        "linha_aprox": 2690
+      }
+    },
+    {
+      "id": "m01-voz-caso-linguagem",
+      "tipo": "exemplo_de_voz",
+      "rotulo": "Linguagem GridAlpha para esse caso",
+      "html": "\"A primeira leitura indica três frentes de análise: <strong>adequação da demanda contratada, possível custo por fator de potência abaixo do padrão de referência, e concentração operacional de carga</strong>. Nenhuma economia deve ser prometida antes de validar doze meses de faturas e entender o perfil real da operação. O objetivo é separar o que é custo estrutural inevitável do que é custo gerenciável — e mensurar oportunidade só na segunda categoria.\"",
+      "texto": "\"A primeira leitura indica três frentes de análise: adequação da demanda contratada, possível custo por fator de potência abaixo do padrão de referência, e concentração operacional de carga. Nenhuma economia deve ser prometida antes de validar doze meses de faturas e entender o perfil real da operação. O objetivo é separar o que é custo estrutural inevitável do que é custo gerenciável — e mensurar oportunidade só na segunda categoria.\"",
+      "origem": {
+        "seletor": "section.aula(§ Caso) .case-body .callout.gold",
+        "trecho_inicial": "<div class=\"callout gold\">",
+        "linha_aprox": 2231
+      },
+      "nota": "Vive dentro do § Caso; incluído aqui só como ponteiro de voz. O conteúdo do caso pertence ao grupo do caso."
+    }
+  ],
+  "erros_comuns": {
+    "id": "m01-erros-comuns",
+    "tipo": "erros_comuns",
+    "secao_de_modulo": null,
+    "nota": "A fonte não tem seção de \"erros comuns\" no nível do módulo. Há callouts de erro/cuidado DENTRO de aulas (ponteiros abaixo, só rótulo); o corpo pertence ao grupo das aulas.",
+    "ponteiros_em_aula": [
+      {
+        "rotulo": "Erro de fluência",
+        "classe": "callout red",
+        "aula": "01",
+        "vinculos": {
+          "aula_id_codigo": "aula-01-01"
+        },
+        "origem": {
+          "seletor": "Aula 01 · 1.5 .callout.red",
+          "trecho_inicial": "<div class=\"callout red\">",
+          "linha_aprox": 1452
+        }
+      },
+      {
+        "rotulo": "Atenção · regras de ultrapassagem",
+        "classe": "callout red",
+        "aula": "05",
+        "vinculos": {
+          "aula_id_codigo": "aula-01-05"
+        },
+        "origem": {
+          "seletor": "Aula 05 .callout.red",
+          "trecho_inicial": "<div class=\"callout red\">",
+          "linha_aprox": 1755
+        }
+      },
+      {
+        "rotulo": "Cuidado · diagnóstico antes de solução",
+        "classe": "callout red",
+        "aula": "07",
+        "vinculos": {
+          "aula_id_codigo": "aula-01-07"
+        },
+        "origem": {
+          "seletor": "Aula 07 .callout.red",
+          "trecho_inicial": "<div class=\"callout red\">",
+          "linha_aprox": 1996
+        }
+      }
+    ]
+  },
+  "tradutor": {
+    "id": "m01-tradutor",
+    "tipo": "sintese_de_modulo",
+    "marcador": {
+      "num": "§ Map",
+      "rotulo": "Tradutor"
+    },
+    "titulo_secao": {
+      "html": "Física <em>traduzida</em> em fatura.",
+      "texto": "Física traduzida em fatura."
+    },
+    "intro": {
+      "html": "Síntese executiva. Cada conceito físico das nove aulas tem uma contraparte na estrutura econômica da conta de luz industrial brasileira. Internalize esta tabela — ela é o esqueleto da Conta de Luz Express.",
+      "texto": "Síntese executiva. Cada conceito físico das nove aulas tem uma contraparte na estrutura econômica da conta de luz industrial brasileira. Internalize esta tabela — ela é o esqueleto da Conta de Luz Express."
+    },
+    "cabecalho_tabela": [
+      "Conceito físico",
+      "Manifestação na fatura",
+      "Análise prioritária"
+    ],
+    "linhas": [
+      {
+        "id": "m01-tradutor-01",
+        "celulas": [
+          {
+            "html": "<b>Energia consumida</b> (kWh)",
+            "texto": "Energia consumida (kWh)"
+          },
+          {
+            "html": "Componente de consumo (TE + TUSD-energia)",
+            "texto": "Componente de consumo (TE + TUSD-energia)"
+          },
+          {
+            "html": "Volume, sazonalidade, horário",
+            "texto": "Volume, sazonalidade, horário"
+          }
+        ],
+        "origem": {
+          "seletor": "section.aula(§ Map) table tbody tr",
+          "trecho_inicial": "<tr><td><b>Energia consumida</b> (kWh)</td><td>Componente de consumo (TE + TUSD-energia)</",
+          "linha_aprox": 2367
+        }
+      },
+      {
+        "id": "m01-tradutor-02",
+        "celulas": [
+          {
+            "html": "<b>Potência máxima</b> (kW)",
+            "texto": "Potência máxima (kW)"
+          },
+          {
+            "html": "Demanda contratada e medida (TUSD-demanda)",
+            "texto": "Demanda contratada e medida (TUSD-demanda)"
+          },
+          {
+            "html": "Adequação contratual, picos, fator de carga",
+            "texto": "Adequação contratual, picos, fator de carga"
+          }
+        ],
+        "origem": {
+          "seletor": "section.aula(§ Map) table tbody tr",
+          "trecho_inicial": "<tr><td><b>Potência máxima</b> (kW)</td><td>Demanda contratada e medida (TUSD-demanda)</td",
+          "linha_aprox": 2368
+        }
+      },
+      {
+        "id": "m01-tradutor-03",
+        "celulas": [
+          {
+            "html": "<b>Nível de tensão</b>",
+            "texto": "Nível de tensão"
+          },
+          {
+            "html": "Grupo e subgrupo tarifário",
+            "texto": "Grupo e subgrupo tarifário"
+          },
+          {
+            "html": "A1, A2, A3, A3a, A4, AS, B",
+            "texto": "A1, A2, A3, A3a, A4, AS, B"
+          }
+        ],
+        "origem": {
+          "seletor": "section.aula(§ Map) table tbody tr",
+          "trecho_inicial": "<tr><td><b>Nível de tensão</b></td><td>Grupo e subgrupo tarifário</td><td>A1, A2, A3, A3a,",
+          "linha_aprox": 2369
+        }
+      },
+      {
+        "id": "m01-tradutor-04",
+        "celulas": [
+          {
+            "html": "<b>Corrente alta · perdas</b>",
+            "texto": "Corrente alta · perdas"
+          },
+          {
+            "html": "Componente fio da TUSD; perdas técnicas regulatórias",
+            "texto": "Componente fio da TUSD; perdas técnicas regulatórias"
+          },
+          {
+            "html": "Adequação técnica do nível de tensão",
+            "texto": "Adequação técnica do nível de tensão"
+          }
+        ],
+        "origem": {
+          "seletor": "section.aula(§ Map) table tbody tr",
+          "trecho_inicial": "<tr><td><b>Corrente alta · perdas</b></td><td>Componente fio da TUSD; perdas técnicas regu",
+          "linha_aprox": 2370
+        }
+      },
+      {
+        "id": "m01-tradutor-05",
+        "celulas": [
+          {
+            "html": "<b>Fator de potência baixo</b>",
+            "texto": "Fator de potência baixo"
+          },
+          {
+            "html": "Cobrança de excedente reativo (UFER e similares)",
+            "texto": "Cobrança de excedente reativo (UFER e similares)"
+          },
+          {
+            "html": "Diagnóstico de causa, harmônicos, soluções",
+            "texto": "Diagnóstico de causa, harmônicos, soluções"
+          }
+        ],
+        "origem": {
+          "seletor": "section.aula(§ Map) table tbody tr",
+          "trecho_inicial": "<tr><td><b>Fator de potência baixo</b></td><td>Cobrança de excedente reativo (UFER e simil",
+          "linha_aprox": 2371
+        }
+      },
+      {
+        "id": "m01-tradutor-06",
+        "celulas": [
+          {
+            "html": "<b>Horário de uso</b>",
+            "texto": "Horário de uso"
+          },
+          {
+            "html": "Tarifa ponta vs. fora-ponta (modalidades horárias)",
+            "texto": "Tarifa ponta vs. fora-ponta (modalidades horárias)"
+          },
+          {
+            "html": "Deslocamento de carga, gestão operacional",
+            "texto": "Deslocamento de carga, gestão operacional"
+          }
+        ],
+        "origem": {
+          "seletor": "section.aula(§ Map) table tbody tr",
+          "trecho_inicial": "<tr><td><b>Horário de uso</b></td><td>Tarifa ponta vs. fora-ponta (modalidades horárias)</",
+          "linha_aprox": 2372
+        }
+      },
+      {
+        "id": "m01-tradutor-07",
+        "celulas": [
+          {
+            "html": "<b>Qualidade ruim</b>",
+            "texto": "Qualidade ruim"
+          },
+          {
+            "html": "Não aparece em linha direta, mas vira custo operacional (paradas, manutenção, equipamento)",
+            "texto": "Não aparece em linha direta, mas vira custo operacional (paradas, manutenção, equipamento)"
+          },
+          {
+            "html": "PRODIST Módulo 8, medições, tratativa com distribuidora",
+            "texto": "PRODIST Módulo 8, medições, tratativa com distribuidora"
+          }
+        ],
+        "origem": {
+          "seletor": "section.aula(§ Map) table tbody tr",
+          "trecho_inicial": "<tr><td><b>Qualidade ruim</b></td><td>Não aparece em linha direta, mas vira custo operacio",
+          "linha_aprox": 2373
+        }
+      },
+      {
+        "id": "m01-tradutor-08",
+        "celulas": [
+          {
+            "html": "<b>Fator de carga baixo</b>",
+            "texto": "Fator de carga baixo"
+          },
+          {
+            "html": "Baixa utilização da demanda paga — capacidade ociosa",
+            "texto": "Baixa utilização da demanda paga — capacidade ociosa"
+          },
+          {
+            "html": "Sequenciamento, automação, armazenamento atrás-do-medidor",
+            "texto": "Sequenciamento, automação, armazenamento atrás-do-medidor"
+          }
+        ],
+        "origem": {
+          "seletor": "section.aula(§ Map) table tbody tr",
+          "trecho_inicial": "<tr><td><b>Fator de carga baixo</b></td><td>Baixa utilização da demanda paga — capacidade ",
+          "linha_aprox": 2374
+        }
+      }
+    ],
+    "nota": "Aparato de módulo, sem vínculo de aula. Incluído neste grupo por ser síntese do módulo; deduplicar por id se outro grupo também extrair.",
+    "origem": {
+      "seletor": "section.aula .aula-marker \"§ Map\"",
+      "trecho_inicial": "<div class=\"aula-marker\"><span class=\"num\">§ Map</span><span class=\"dot\"></span><span>Trad",
+      "linha_aprox": 2358
+    }
+  },
+  "comparacao_codigo": {
+    "arquivos": [
+      "C:/dev/gridalpha-v2-alexandria-v2-restructure/src/lib/data/alexandria-modulo-01-content.ts",
+      "C:/dev/gridalpha-v2-alexandria-v2-restructure/src/lib/data/alexandria-blocks.ts",
+      "src/lib/data/alexandria-trilhas.ts",
+      "src/lib/data/alexandria-glossario.ts",
+      "src/lib/data/alexandria-badges.ts"
+    ],
+    "contagem_aulas": {
+      "fonte_marcadores": 9,
+      "fonte_map_linhas": 9,
+      "fonte_prosa_map": "Nove aulas, uma arquitetura.",
+      "codigo_aulas": 9,
+      "codigo_AULAS_POR_BLOCO": 9
+    },
+    "titulos": [
+      {
+        "aula": "01",
+        "fonte_h2_texto": "Energia é volume. Potência é velocidade.",
+        "fonte_marcador": "Energia × Potência",
+        "fonte_map_tema": "Energia × Potência",
+        "codigo_title": "Energia é volume. Potência é velocidade.",
+        "codigo_subtitle": "Energia × Potência",
+        "title_igual_h2": true,
+        "subtitle_igual_marcador": true,
+        "marcador_igual_map_tema": true
+      },
+      {
+        "aula": "02",
+        "fonte_h2_texto": "Sete símbolos. Toda a linguagem.",
+        "fonte_marcador": "As sete unidades essenciais",
+        "fonte_map_tema": "As sete unidades essenciais",
+        "codigo_title": "Sete símbolos. Toda a linguagem.",
+        "codigo_subtitle": "As sete unidades essenciais",
+        "title_igual_h2": true,
+        "subtitle_igual_marcador": true,
+        "marcador_igual_map_tema": true
+      },
+      {
+        "aula": "03",
+        "fonte_h2_texto": "A rede tem um batimento cardíaco. Ele se chama 60 Hz.",
+        "fonte_marcador": "Corrente alternada e frequência",
+        "fonte_map_tema": "Corrente alternada e frequência",
+        "codigo_title": "A rede tem um batimento cardíaco. Ele se chama 60 Hz.",
+        "codigo_subtitle": "Corrente alternada e frequência",
+        "title_igual_h2": true,
+        "subtitle_igual_marcador": true,
+        "marcador_igual_map_tema": true
+      },
+      {
+        "aula": "04",
+        "fonte_h2_texto": "Por que perdas crescem ao quadrado. E por que isso desenhou toda a rede.",
+        "fonte_marcador": "Tensão, corrente e perdas",
+        "fonte_map_tema": "Tensão, corrente e perdas",
+        "codigo_title": "Por que perdas crescem ao quadrado. E por que isso desenhou toda a rede.",
+        "codigo_subtitle": "Tensão, corrente e perdas",
+        "title_igual_h2": true,
+        "subtitle_igual_marcador": true,
+        "marcador_igual_map_tema": true
+      },
+      {
+        "aula": "05",
+        "fonte_h2_texto": "Por que uma fábrica paga por capacidade reservada.",
+        "fonte_marcador": "Demanda e fator de carga",
+        "fonte_map_tema": "Demanda e fator de carga",
+        "codigo_title": "Por que uma fábrica paga por capacidade reservada.",
+        "codigo_subtitle": "Demanda e fator de carga",
+        "title_igual_h2": true,
+        "subtitle_igual_marcador": true,
+        "marcador_igual_map_tema": true
+      },
+      {
+        "aula": "06",
+        "fonte_h2_texto": "A tensão de fornecimento define a tarifa que você paga.",
+        "fonte_marcador": "Tensão como categoria econômica",
+        "fonte_map_tema": "Tensão como categoria econômica",
+        "codigo_title": "A tensão de fornecimento define a tarifa que você paga.",
+        "codigo_subtitle": "Tensão como categoria econômica",
+        "title_igual_h2": true,
+        "subtitle_igual_marcador": true,
+        "marcador_igual_map_tema": true
+      },
+      {
+        "aula": "07",
+        "fonte_h2_texto": "Existe energia que ocupa a rede e não vira produção.",
+        "fonte_marcador": "Triângulo de potência e fator de potência",
+        "fonte_map_tema": "Triângulo de potência e fator de potência",
+        "codigo_title": "Existe energia que ocupa a rede e não vira produção.",
+        "codigo_subtitle": "Triângulo de potência e fator de potência",
+        "title_igual_h2": true,
+        "subtitle_igual_marcador": true,
+        "marcador_igual_map_tema": true
+      },
+      {
+        "aula": "08",
+        "fonte_h2_texto": "100 MW solar ≠ 100 MW térmica.",
+        "fonte_marcador": "Capacidade instalada e fator de capacidade",
+        "fonte_map_tema": "Capacidade instalada e fator de capacidade",
+        "codigo_title": "100 MW solar ≠ 100 MW térmica.",
+        "codigo_subtitle": "Capacidade instalada e fator de capacidade",
+        "title_igual_h2": true,
+        "subtitle_igual_marcador": true,
+        "marcador_igual_map_tema": true
+      },
+      {
+        "aula": "09",
+        "fonte_h2_texto": "Energia ruim pode custar mais do que energia cara.",
+        "fonte_marcador": "Qualidade de energia",
+        "fonte_map_tema": "Qualidade de energia",
+        "codigo_title": "Energia ruim pode custar mais do que energia cara.",
+        "codigo_subtitle": "Qualidade de energia",
+        "title_igual_h2": true,
+        "subtitle_igual_marcador": true,
+        "marcador_igual_map_tema": true
+      }
+    ],
+    "catalogo_bloco_01": "{ id: 'bloco-01', number: 1,  level: 1, title: 'Física de Energia e Eletricidade',         track: 'universal', illustrationPrefix: 'fis-', priority: 'media',      estimatedHoursMin: 4,    estimatedHoursMax: 6 }",
+    "catalogo_bloco_02": "{ id: 'bloco-02', number: 2,  level: 1, title: 'Como Funciona uma Rede Elétrica',          track: 'universal', illustrationPrefix: 'red-', priority: 'confirmar',  estimatedHoursMin: null, estimatedHoursMax: null }"
+  }
+}

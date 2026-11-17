@@ -1,0 +1,133 @@
+/* ── ambiente mínimo: o papel do DOM, para o corpo verbatim rodar ──
+   Nada aqui calcula. `$id` devolve um objeto que guarda o que o script
+   escreve; `segVal` devolve a escolha do aluno; `segBind`, `pair` e `chips`
+   registram os ouvintes da fonte, e `calcular` os dispara com a escolha do
+   aluno, na ordem em que a página os dispararia (seletor antes de chip). */
+function criarAmbiente(entradas) {
+  const els = {};
+  const ouvintesSeg = [];
+  const chipsReg = {};
+  const lista = () => {
+    const s = new Set();
+    return { add: (c) => s.add(c), remove: (c) => s.delete(c), contains: (c) => s.has(c), toggle: (c, f) => ((f ?? !s.has(c)) ? s.add(c) : s.delete(c)) };
+  };
+  const $id = (id) => {
+    if (!els[id]) {
+      const v = entradas[id];
+      els[id] = {
+        id,
+        innerHTML: '',
+        _texto: null,
+        className: '',
+        value: v === undefined || v === null ? '' : String(v),
+        style: {},
+        classList: lista(),
+        getAttribute: () => null,
+        setAttribute() {},
+        addEventListener() {},
+        querySelector: () => null,
+        querySelectorAll: () => [],
+      };
+      Object.defineProperty(els[id], 'textContent', {
+        get() { return this._texto ?? this.innerHTML.replace(/<[^>]+>/g, ''); },
+        set(t) { this._texto = String(t); this.innerHTML = esc(t); },
+      });
+    }
+    return els[id];
+  };
+  return {
+    els,
+    $id,
+    $all: () => [],
+    segBind: (id, fn) => { ouvintesSeg.push({ id, fn }); },
+    segVal: (id) => (entradas[id] === undefined || entradas[id] === null || entradas[id] === '' ? null : String(entradas[id])),
+    pair() {},
+    chips: (wrapId, list, attr, onPick) => { chipsReg[wrapId] = { list, onPick }; },
+    bars() {},
+    disparar() {
+      for (const { id, fn } of ouvintesSeg) {
+        const v = entradas[id];
+        if (v === undefined || v === null || v === '') continue;
+        fn({ getAttribute: () => String(v), classList: lista() });
+      }
+      for (const [wrapId, { list, onPick }] of Object.entries(chipsReg)) {
+        const v = entradas[wrapId];
+        if (v === undefined || v === null || v === '') continue;
+        if (list.some((o) => String(o.k) === String(v))) onPick(String(v));
+      }
+    },
+  };
+}
+
+/** HTML do painel da fonte → HTML curto que a aula v3 renderiza (b, em, br).
+ *  Rótulo de cartão vira negrito; bloco vira quebra; lista numerada mantém
+ *  o número. O texto é o da fonte, sem palavra nova. */
+function simplificar(h) {
+  let s = String(h);
+  s = s.replace(/<ol[^>]*>([\s\S]*?)<\/ol>/g, (m, corpo) => {
+    let k = 0;
+    return '<br>' + corpo.replace(/<li[^>]*>/g, () => `${++k}. `).replace(/<\/li>/g, '<br>');
+  });
+  s = s.replace(/<ul[^>]*>([\s\S]*?)<\/ul>/g, (m, corpo) => '<br>' + corpo.replace(/<li[^>]*>/g, '').replace(/<\/li>/g, '<br>'));
+  s = s.replace(/<span class="fzk">([\s\S]*?)<\/span>/g, '<b>$1</b> ');
+  s = s.replace(/<span class="fzn">([\s\S]*?)<\/span>/g, ' · $1');
+  s = s.replace(/<(div|span)\s+class="(?:ok2|tg2|tag|vf-lb|k|yr|ti|grg-k|ck2|jk|lb2|sub2|hd2|cl|nm2)"[^>]*>([\s\S]*?)<\/\1>/g, '<b>$2</b><br>');
+  s = s.replace(/<div class="lg"><b>([\s\S]*?)<\/b>/g, '<b>$1</b><br>');
+  s = s.replace(/<\/(div|p|li|tr)>/g, '<br>');
+  s = s.replace(/<(?!\/?(b|strong|em|i|br|sub|sup)\b)[^>]*>/g, '');
+  s = s.replace(/<br\s*\/?>/g, '<br>');
+  s = s.replace(/(\s*<br>\s*){3,}/g, '<br><br>');
+  s = s.replace(/^(\s*<br>\s*)+|(\s*<br>\s*)+$/g, '');
+  return s.replace(/[ \t\n]+/g, ' ').trim();
+}
+
+/** Número que o script escreveu no readout ("1.234,5<span class=u>MWh</span>"). */
+function lerReadout(h) {
+  const semUnidade = String(h).replace(/<(span|small)[^>]*>[\s\S]*?<\/\1>/g, '').replace(/<[^>]+>/g, '').replace(/^R\$\s*/, '').trim();
+  const t = semUnidade.replace(/\./g, '').replace(',', '.').replace(/[^\d.eE+-]/g, '');
+  const v = t === '' || t === '-' ? NaN : Number(t);
+  return Number.isFinite(v) ? v : NaN;
+}
+function unidadeDoReadout(h) {
+  const u = (String(h).match(/<(span|small)[^>]*>([\s\S]*?)<\/\1>/) || [])[2] ?? '';
+  const rs = /^\s*R\$/.test(String(h).replace(/<[^>]+>/g, '')) ? 'R$' : '';
+  return rs ? (u.startsWith('/') ? `${rs}${u}` : `${rs} ${u}`.trim()) : u || null;
+}
+function editar(s, editoriais) {
+  let r = s;
+  for (const [de, para] of editoriais) r = r.split(de).join(para);
+  return r;
+}
+
+/** Readout como a fonte o escreve, com a unidade: "378.592 MWh/ano", "R$ 93,02/MWh". */
+function textoDoReadout(h) {
+  return String(h)
+    .replace(/<(span|small)[^>]*>([\s\S]*?)<\/\1>/g, (m, t, u) => (u.startsWith('/') || u === '%' ? u : ` ${u}`))
+    .replace(/<[^>]+>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function calcular(fn, entradas, spec, editoriais, extratores) {
+  const amb = criarAmbiente(entradas);
+  fn(amb.$id, amb.$all, amb.segBind, amb.segVal, amb.pair, amb.chips, amb.bars);
+  amb.disparar();
+  const valores = {};
+  const unidades = {};
+  const textos = {};
+  for (const id of spec.readouts) {
+    const h = amb.$id(id).innerHTML;
+    valores[id] = lerReadout(h);
+    unidades[id] = unidadeDoReadout(h);
+    textos[id] = textoDoReadout(h);
+  }
+  const bruto = Object.fromEntries(Object.entries(amb.els).map(([k, e]) => [k, e.innerHTML]));
+  // Saída de escolha (previsão categórica): lida do que o script escreveu, nunca calculada aqui.
+  for (const [id, ler] of Object.entries(extratores ?? {})) {
+    const v = ler(bruto, entradas);
+    if (v !== null && v !== undefined) textos[id] = String(v);
+  }
+  const partes = spec.textos.map((id) => simplificar(amb.$id(id).innerHTML)).filter(Boolean);
+  // O script da fonte já formata em pt-BR (toLocaleString): a tela não troca ponto por vírgula.
+  return { valores, textos, veredito: editar(partes.join('<br><br>'), editoriais), vereditoPtBr: true, unidades, bruto };
+}

@@ -1,0 +1,596 @@
+{
+  "modulo": "modulo-08",
+  "titulo_modulo": "Matriz Elétrica (fonte: Bloco 8 — \"Não existe a matriz elétrica brasileira\")",
+  "trilha": "Trilha 2 (track 'brasil'), terceiro módulo",
+  "data_estudo": "2026-09-17",
+  "autor": "Claude (estudo de representação por aula; tudo que é proposta é camada Alexandria)",
+  "fontes_lidas": [
+    "docs/alexandria-v2/bar.md (§0, §4 inteiro, S1–S7, §6, §7, §8, §9, §11)",
+    "docs/alexandria-v2/decisoes/2026-09-16-ambiguidades-de-conteudo.md (P17–P25)",
+    "src/lib/data/alexandria-modulo-08-content.ts (MODULO_08_CORPO, MODULO_08_AULAS, MODULO_08_LEAD, INST 01–11, 12 exercícios soltos)",
+    "src/lib/data/alexandria-modulo-08-fatos.ts (tabela §00 e capacidade/FCap por fonte do INST·02)",
+    "src/lib/data/alexandria-instrument-calculators.ts (i1…i11 M08: lógica e vereditos portados)",
+    "src/lib/data/alexandria-glossario.ts (124 termos gl-m08-*)",
+    "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo08.html (só leitura: §00 Tese, §MAP, a01–a07, §Caso, §Erros, §Ex, §Quiz (script QZ), §Voz, §Final; scripts i6render e QZ)",
+    "docs/alexandria-v2/media-lab/aulas/ESTILO.md e media-lab/fontes-reais/CATALOGO.md"
+  ],
+  "estado_dependencias": {
+    "extracao_m08": "Em andamento: docs/alexandria-v2/extraction/m08/ só tem extratores (m08_lib.mjs, m08_instrumentos.mjs); nenhum JSON verificado ainda. Este estudo leu a fonte diretamente.",
+    "curadoria_midia_m08": "Em andamento: media-lab/aulas/m08/ sem plano.json (só _work com candidatas do Commons). Sugestões abaixo usam o CATALOGO.md aprovado de fontes-reais.",
+    "instrumentos_no_codigo": "Os 11 instrumentos têm calculadora portada (Wave 38; o INST·04 na Wave 34). O comentário de cabeçalho do content.ts ('os outros dez seguem não portados') está desatualizado. Nenhum desenha a figura que promete (pizzas, curvas, quadrante, calendário, mapa): toda saída é número ou HTML de veredito."
+  },
+  "convencoes": {
+    "bloco_indice": "Índice 0-based em MODULO_08_CORPO[aulaId]. 'após N' = o elemento entra entre o bloco N e o N+1. Índices conferidos por script em 2026-09-17.",
+    "camadas": "\"fonte\" = literal do HTML, com origem; \"alexandria\" = proposta pedagógica deste estudo, a revisar (P3/P11). Nada marcado \"alexandria\" pode receber rótulo de fonte.",
+    "p7": "Todas as notas 'Onde isso entra no produto' (último bloco de cada aula) ficam fora da interface (P7). Elas citam Brazil Pulse, Brasil Terminal, Diagnóstico Energético e a 'Trava 1'."
+  },
+  "achados_transversais": [
+    {
+      "id": "T1",
+      "tipo": "promessa de forma não cumprida (C5/C6 gate)",
+      "achado": "INST·02 ('as duas pizzas lado a lado'), INST·04 ('desenhe as duas pizzas'), INST·06 ('Curvas… três escalas sobrepostas'), INST·07 ('Calendário'), INST·08 ('observe o ponto migrar' num quadrante), INST·10 ('casamento com a curva de geração') e INST·01 ('Mapa físico') prometem figura e hoje só devolvem números/texto. O M08 é o módulo em que isso mais pesa: a própria tese diz que o bloco 'depende mais de instrumento do que qualquer anterior'."
+    },
+    {
+      "id": "T2",
+      "tipo": "lacuna de extração (fonte existe)",
+      "achado": "Aula 01: o bloco de fórmula da fonte (div.form, entre o parágrafo 'A razão entre a energia…' e 'Daí decorre…') não está em MODULO_08_CORPO. Ele traz 'Fator de capacidade = geração do período ÷ (capacidade nominal × horas do período)' e o alerta de denominador (potência de 31 de dezembro infla o denominador; caso da solar em 2025). Precisa voltar entre os blocos 3 e 4."
+    },
+    {
+      "id": "T3",
+      "tipo": "CONTENT QA (P20) — conflito de números dentro do módulo",
+      "achado": "(a) INST·02 usa FCap derivado de hidro 41,6% e solar 15,5%, abaixo das faixas típicas das fichas (hidro 45–60%, solar 20–30%) e do INST·03 (hidro 40–60, solar 20–30). O I2_DISC já declara que o cálculo não modela entrada de usinas no ano, e a fórmula da Aula 01 explica exatamente esse viés de denominador. (b) Faixas diferentes para a mesma fonte: nuclear 75–90% (fichas) × 75–92% (INST·03); hidro 45–60% (fichas) × 40–60% (INST·03). (c) Geração 2025: INST·04 (referência) dá térmica fóssil 11,8% > solar 11,4%; INST·02 derivado dá solar 11,6% > fóssil 10,1%; o Ex·02 e as fichas põem solar em terceiro (~11%) e gás ~8% (fóssil agregado 'ordem de 10%'). Como o INST·04 exige ordem EXATA, um learner que segue as fichas e o Ex·02 recebe 'A ordem das fontes está incorreta'. Nenhuma leitura é escolhida aqui; proposta de regra de pontuação da Alexandria (P19) para empates dentro da tolerância, pendente de revisão."
+    },
+    {
+      "id": "T4",
+      "tipo": "CONTENT QA — fonte contradiz a própria prosa",
+      "achado": "INST·06, escala anual com as 5 fontes ligadas (estado inicial): a soma passa da carga líquida em 12 de 12 meses (excedente máximo 23 un.), e o veredito diz 'Excedente em 12 dos 12 pontos… vira regime… corte por razão energética'. A prosa da mesma escala diz que as curvas 'somam uma linha bem mais estável'. O script-fonte i6render faz a mesma conta (conferido): o defeito é da fonte, não da portagem. Não construir a figura anual antes do content QA."
+    },
+    {
+      "id": "T5",
+      "tipo": "disclaimer da fonte perdido na portagem",
+      "achado": "INST·06: a nota do código não traz o disclaimer da fonte 'As curvas são perfis estilizados construídos para tornar visível a relação… não são séries medidas e não devem ser usadas para dimensionamento'. INST·05, INST·07, INST·09, INST·10 e INST·11 também têm p.disc na fonte que precisa ser conferido no código (a nota é truncada em uma linha)."
+    },
+    {
+      "id": "T6",
+      "tipo": "S2 / P18 — linguagem de competência e semáforo em vereditos literais",
+      "achado": "INST·04: 'Isso é o critério oficial de domínio deste bloco cumprido', 'Isso é aprovação no critério que importa', 'revise apenas as fontes marcadas em vermelho' (nada é marcado). INST·06: 'a área de excedente aparece em vermelho', 'A área vermelha…', 'A linha branca é a carga' (paleta escura da fonte). Quiz: 'critério de domínio… pelo menos 8 de 10'. §Final: 'Você domina o Bloco 8 quando'. Na interface: 'Concluído'/'dentro da tolerância declarada', nunca 'aprovação'/'domínio' sem evidência; excedente em hachura com rótulo, não em vermelho."
+    },
+    {
+      "id": "T7",
+      "tipo": "afirmação da fonte que fica falsa no produto v2",
+      "achado": "INST·04 e §00: 'é o único instrumento de todo o sistema Alexandria que exige que você produza a resposta antes de ver a correção'. Na v2 (C3/C5/C7) a previsão registrada passa a existir em muitas aulas. Ajuste na camada editorial (P3), com registro de proveniência."
+    },
+    {
+      "id": "T8",
+      "tipo": "números vivos vencidos (S4, 'nunca cite sem data')",
+      "achado": "Aula 06, Caso B: 'Recurso com julgamento previsto para agosto de 2026'. Hoje é 17/09/2026: o estágio descrito provavelmente já mudou. Caso A: 'Pedido judicial de encerramento da recuperação apresentado em julho de 2026' também pode ter evoluído. Todos os 'Números vivos' do módulo dizem 'verificado em 1º de agosto de 2026'. Re-verificação obrigatória antes de publicar; sem inventar desfecho."
+    },
+    {
+      "id": "T9",
+      "tipo": "P21 (FCap/FCarga)",
+      "achado": "Fórmulas do código usam 'FC' sozinho: INST·02 'TWh/ano = GW × (FC ÷ 100) × 8,76'; INST·03 'FC = energia gerada ÷ …'. INST·10 fala de fator de carga (id interno i10-fc). O glossário tem 'Fator de capacidade (FC)'. Exibir FCap e FCarga."
+    },
+    {
+      "id": "T10",
+      "tipo": "glossário (C4, D3, §9)",
+      "achado": "124 termos gl-m08-*; 120 sem âncora de aula (só 'Recorte' → A01, 2 → A03, 1 → A06). 'Fator de capacidade' e 'Energia natural afluente' existem mas com aulaIds []. A ligação termo→definição na aula depende de ancoragem."
+    },
+    {
+      "id": "T11",
+      "tipo": "aparato do módulo que serve às aulas (C10)",
+      "achado": "Quiz (10 questões) traz aula de origem literal no feedback: Aula 01 (Q1, Q2), Aula 04 (Q3), Aula 03 e 05 (Q4), Aula 05 (Q5, Q6, Q8), Aula 03 (Q7), Aula 06 (Q9, Q10). Aula 02 e Aula 07 não têm questão. §Erros (18) e §Ex (12) não têm vínculo literal com aula (P9: ficam na Revisão); o vínculo proposto abaixo é camada Alexandria, só para recuperação e remediação. §Final diz que 'cada verificação que falhar aponta uma aula específica', mas não diz qual."
+    },
+    {
+      "id": "T12",
+      "tipo": "P17/P23/P24/P25",
+      "achado": "§MAP e §Caso chamam o caso de 'Operação A · Parte 8' → 'Caso — Operação A' (P17). 'Trava 1' aparece só em nota P7 (A07) e não deve aparecer (P23). 'GridAlpha' aparece no §00 (nota P7), não no corpo das aulas (P24 ok nas aulas). Experiência jogável: só a linha 'em desenho' no módulo (P25); o M08 continua 'Exercício de decisão' (P4, B4)."
+    },
+    {
+      "id": "T13",
+      "tipo": "mídia sem registro (M6)",
+      "achado": "illustrations: 'mat-08-gerador-diesel-isolado.png' (A05) e 'mat-03-racks-data-center.png' (A06) estão em public/alexandria/gravuras/ mas sem entrada em media-provenance.md; classe (atmosfera × explicação) e revisão não declaradas. Não entram no build até M6."
+    }
+  ],
+  "aulas": [
+    {
+      "aulaId": "aula-08-01",
+      "codigo": "M08·A01",
+      "titulo": "Seis pizzas para a mesma pergunta",
+      "subtitulo": "Os três eixos · a aula que vem antes de qualquer número",
+      "blocos": 20,
+      "o_que_ensina": "Nenhum número de matriz é verificável sem três qualificações: grandeza (capacidade em GW é estoque de potência; geração em TWh é fluxo de energia; o FCap é a ponte), escopo (matriz elétrica 86,8% renovável × energética ~50% em 2025) e recorte (universo, data-base e método). Divergência entre fontes é primeiro hipótese de recorte, só depois erro.",
+      "natureza": ["leitura crítica de número", "conceito (estoque × fluxo)", "cálculo leve (FCap)", "método de qualificação"],
+      "melhor_representacao": {
+        "arquetipo": "Mesa de qualificação: coluna editorial em três capítulos (um por eixo), cada um com uma figura que desenha o eixo, e prancha dividida com instrumento vivo no Eixo 1.",
+        "por_que": "O mecanismo é um método (fazer três perguntas a um número), não uma curva. Cada eixo tem uma relação visual própria: Eixo 1 = a troca de posições entre duas pizzas; Eixo 2 = duas barras (tomada × tanque); Eixo 3 = os quatro totais nacionais do §00 lado a lado, com o que cada universo inclui. A aula se abre com o paradoxo dos quatro números e fecha com o learner qualificando um número sozinho.",
+        "sequencia": "abertura (4 totais, previsão) → 1.1 + fórmula restaurada + INST·03 (FCap, previsão) → prancha INST·02 (pizzas, previsão) → nota três níveis → 1.2 + figura tomada × tanque → 1.3 + figura de universos → ato de fecho (Ex·05) → registro",
+        "alem_do_conceito": "Etiqueta de recorte (grandeza · escopo · recorte) colada em todo número da aula; o learner vê a etiqueta mudar quando troca a pizza."
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "pergunta": "Quatro bases oficiais respondem quanto o Brasil tem de capacidade instalada: 261,0 GW, 215,9 GW, ~255 GW e 269 GW. Qual delas está errada?",
+        "objetivo": "Qualificar qualquer número de matriz por grandeza, escopo e recorte antes de aceitá-lo, e calcular o FCap que liga capacidade e geração.",
+        "previsao_util": true,
+        "previsao": {
+          "enunciado": "Escolha: (a) 261,0 GW; (b) 215,9 GW; (c) ~255 GW; (d) 269 GW; (e) nenhuma — medem coisas diferentes.",
+          "numeros_da_fonte": "Tabela do §00 Tese (fonte, módulo): 261,0 GW em 31/12/2025, conceito amplo; 215,9 GW em 01/01/2026, só centralizadas outorgadas em operação; ~255 GW, base do plano decenal; 269 GW, previsto 2030 no plano da operação de médio prazo. 'Verificados em fonte primária em 1º de agosto de 2026.' Já está em M08_UNIVERSOS_CAPACIDADE.",
+          "resposta_de_referencia": "(e). A fonte: 'Não é margem de erro… É que as quatro estão medindo coisas diferentes'.",
+          "erro_util": "Escolher um número é o erro que a aula existe para desfazer (quiz Q1/Q2, §Erros 'O Brasil tem 261 GW')."
+        }
+      },
+      "menor_ato_autentico_C9": {
+        "tipo": "responder exercício da fonte (com estrutura de ordenação)",
+        "camada": "fonte (Ex·05) com estrutura de interface da Alexandria",
+        "descricao": "Ex·05: 'Alguém afirma que a matriz brasileira é 88% renovável. O que você pergunta antes de aceitar?' O learner ordena e completa as três perguntas (elétrica ou energética; capacidade ou geração; qual ano e qual universo) antes de ver o gabarito literal.",
+        "por_que_este": "É o mecanismo central inteiro numa pergunta; a própria fonte diz: 'ele é o bloco inteiro em uma pergunta'.",
+        "atos_secundarios": [
+          {"tipo": "estimar (previsão registrada)", "onde": "INST·03, após bloco 3", "enunciado": "Uma usina de 300 MW gerou 1.200 GWh em um ano (8.760 h). Qual o FCap?", "referencia": "≈ 45,7% (Ex·03: 300 × 8.760 = 2.628 GWh; 1.200 ÷ 2.628)", "regra_de_entrada": "Arredondamento técnico como regra de pontuação da Alexandria (P19), não tolerância da fonte"},
+          {"tipo": "prever", "onde": "INST·03, mesmo cenário", "enunciado": "E se a usina entrou em operação em julho? O que acontece com o FCap?", "referencia": "Fonte (Ex·03): 'o denominador correto é aproximadamente metade, e o fator real dobra'. No instrumento, Período ≈ 4.380 h dá ≈ 91,3% (4.380 h é aproximação da Alexandria para 'metade')."},
+          {"tipo": "prever", "onde": "INST·02, após bloco 5", "enunciado": "A solar tem 24,8% da pizza de capacidade (64,8 GW de 261,0 GW). Na pizza de geração, a fatia dela sobe, fica igual ou cai? Para quanto?", "referencia": "No cenário do instrumento: 11,6% (cai para menos da metade). Rótulo obrigatório: 'Referência inicial do instrumento; FCap derivado da razão entre as duas séries (ver T3)'."},
+          {"tipo": "identificar o erro", "onde": "fim de 1.2 e 1.3", "itens_fonte": ["'A matriz elétrica brasileira é cerca de 50% renovável.'", "'Capacidade instalada é quanto o país produz.'", "'O fator de capacidade da solar é baixo, logo a solar é ineficiente.'", "'As fontes divergem sobre o percentual da hidro, logo uma está errada.'"], "origem": "§Erros (fonte); vínculo com a A01 é camada Alexandria"}
+        ]
+      },
+      "visualizacao_C6": [
+        {"o_que": "Duas pizzas + faixa de troca de posição", "relacao": "fatia em capacidade × fatia em geração; quem está acima do FCap médio do parque sobe", "eixos_unidade": "% da pizza; 6 fontes (heurística de 4 categorias quebrada de forma justificada: a aula é sobre as 6; rótulos diretos)", "fonte": "Referência inicial do INST·02 (BEN síntese, ano-base 2025, jun/2026; consulta 01/08/2026)", "existe_no_codigo": false, "promessa_nao_cumprida": "INST·02 promete 'as duas pizzas lado a lado' e só lista 12 percentuais"},
+        {"o_que": "Tomada × tanque", "relacao": "renovabilidade elétrica 86,8% × energética ~50% (2025)", "eixos_unidade": "% renovável; duas barras", "fonte": "fonte (bloco 9, tabela bloco 10, nota bloco 12: 88,2% em 2024)", "existe_no_codigo": false},
+        {"o_que": "Quatro universos de capacidade", "relacao": "o mesmo 'quanto o Brasil tem' em 4 bases; a diferença de 45 GW é maior que todo o parque eólico (34,7 GW, ficha da A02)", "eixos_unidade": "GW; 3 barras de estoque + 1 marcador de previsão (269 GW é 2030, não é estoque de hoje: não empilhar)", "fonte": "§00 Tese (fonte) — já em M08_UNIVERSOS_CAPACIDADE", "existe_no_codigo": false},
+        {"o_que": "Fórmula do FCap com o denominador em destaque", "relacao": "FCap = geração ÷ (capacidade × horas); denominador de fim de período infla", "eixos_unidade": "equação tipográfica", "fonte": "div.form da fonte (lacuna T2)", "existe_no_codigo": false}
+      ],
+      "instrumentos_C5": [
+        {"id": "m08-inst-03", "titulo": "Calculadora de fator de capacidade · com faixa típica por fonte", "bloco_indice_fonte": "após 18 (fim do Eixo 3)", "posicao_proposta": "após 3 (depois da fórmula restaurada), onde a prosa diz 'a única coisa desta aula que você precisa saber calcular de cabeça'", "previsao": true, "observacoes": "Padrão 300 MW / 1.200 GWh / 8.760 h / hidrelétrica = cenário do Ex·03 → 45,7%, 4.000 h equivalentes, dentro da faixa 40–60%. Reordenar é decisão editorial: registrar. Alternativa fiel à fonte: manter no fim do Eixo 3 como 'recorte de método' (o denominador) e usar o segundo cenário (julho)."},
+        {"id": "m08-inst-02", "titulo": "Conversor de três eixos · as duas pizzas lado a lado", "bloco_indice_fonte": "após 6 (nota três níveis)", "posicao_proposta": "após 5, antes da nota de três níveis (a nota explica o que a prancha mostra)", "previsao": true, "observacoes": "12 campos (6 GW + 6 FCap) → a 390 vira lista por fonte com FCap editável e capacidade recolhida. Saída principal: fontes que trocam de posição (padrão: 2 — solar 2º→3º e eólica 3º→2º), maior subida (hidro +10,5 pp) e maior queda (solar −13,2 pp). Rótulo de FCap: P21."}
+      ],
+      "checagem_C7": "Ex·05 e o 'identifique o erro' com campo de resposta; referência literal só depois do registro; comparação resposta × referência × 'o que a resposta completa acrescenta' (fonte) × critério; autoavaliação em três níveis (sem cor). Previsões numéricas: previsto × calculado no mesmo cenário, visível enquanto explora.",
+      "recuperacao_C10": {
+        "recuperacao_de_antes": "M01·A08 (FCap: '100 MW solar ≠ 100 MW térmica') com origem visível, antes da fórmula; e M07 (onde estão os dados), que a A07 cita literalmente.",
+        "proximo_passo": {"atende": "Próxima · M08·A02 — Seis fontes, dois rankings", "nao_atende_ex05": "Rever 1.3 (recorte)", "nao_atende_fcap": "Rever 1.1 e refazer INST·03", "leitura_sem_pratica": "Fazer o ato desta aula"},
+        "serve_a": "Capacidade do módulo 'qualifica pelos três eixos qualquer número de matriz' (§00, segunda parte do critério legado; exibir sem a palavra 'domínio'). Checklist §Final itens 2–7."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m08 (em andamento)",
+        "sugestoes": [
+          "Nenhuma imagem obrigatória: as figuras programáticas fazem o trabalho (teste de remoção).",
+          "Opcional no Eixo 1: par documental 'mesmo tamanho, trabalho diferente' do catálogo (m01a08-solar-araucaria-flutuante × m01a08-termica-candiota) só se não repetir a M01·A08; senão, nada."
+        ]
+      },
+      "mobile_390": "Três capítulos com localizador compacto 'Eixo 1 · 2 · 3'. Pizzas empilhadas com a faixa de troca entre elas; legenda como rótulo direto. INST·02 em lista por fonte (FCap editável; capacidade em disclosure). Abertura: pergunta + 4 números em lista + escolha no 1º viewport.",
+      "lacunas_e_dependencias": {
+        "fonte": ["T2 (fórmula ausente no corpo)", "T3a/b (FCap derivado × faixas; CONTENT QA)", "Bloco 4 e outros têm '</b>' órfão (ênfase perdida na extração)"],
+        "par9": ["Desenho das pizzas (INST·02)", "Registro de tentativas (previsões, Ex·05)", "Âncora de glossário (só 'Recorte' ligado)", "Colofão de fonte para a tabela §00"],
+        "decisoes": ["P7: ocultar bloco 19", "P19: arredondamento como regra de entrada", "P20: faixas", "P21: FCap nas fórmulas"]
+      },
+      "nota_ambicao": "O momento memorável é ver a lacuna de 45 GW entre as bases virar uma silhueta do parque eólico inteiro (34,7 GW) cabendo dentro dela. Depois, cada número da aula carrega a etiqueta de três eixos, e o learner aprende a pedir a etiqueta a qualquer número do mundo."
+    },
+    {
+      "aulaId": "aula-08-02",
+      "codigo": "M08·A02",
+      "titulo": "Seis fontes, dois rankings, uma troca que explica tudo",
+      "subtitulo": "A matriz por fonte · quanto, onde, e por que a ordem muda",
+      "blocos": 16,
+      "o_que_ensina": "A ordem das seis fontes muda entre a pizza de capacidade e a de geração, e a direção é previsível pelo FCap de cada uma frente à média do parque: hidro e nuclear sobem, solar despenca, eólica sobe um pouco, térmica fóssil depende do ano. Fichas de campo fixo permitem a leitura lateral (o mesmo campo nas seis fontes), que revela o sistema.",
+      "natureza": ["comparação de tecnologias/fontes", "reconstrução de memória (critério legado do módulo)", "leitura lateral de tabela"],
+      "melhor_representacao": {
+        "arquetipo": "Fichário lateral (mesa de comparação 6 × 7) + ateliê de reconstrução com correção sob demanda.",
+        "por_que": "A fonte diz que a leitura lateral 'é metade do valor desta aula' e que ler um gráfico correto 'só treina reconhecimento'. Uma matriz fonte × campo com foco por linha (ler uma fonte) ou por coluna (ler um campo) une as seis fichas e o INST·05 num objeto só, sem repetir texto. O reconstrutor é a outra metade: produzir antes de ver.",
+        "sequencia": "abertura: ordenação ingênua (antes das fichas) → fichário lateral (fichas + INST·05 fundidos; campo inicial 'saz' da fonte) → números vivos → fichário recolhido → reconstrutor, rodada 1 (capacidade) → correção → debrief de viés (bloco 14) → rodada 2 (geração) → comparação ingênua × reconstrução × referência → registro",
+        "alem_do_conceito": "A previsão ingênua registrada reaparece ao lado da reconstrução e da referência: o learner vê quanto a leitura moveu a própria pizza."
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "pergunta": "A solar já é a segunda maior fonte do Brasil?",
+        "objetivo": "Reconstruir de memória as duas pizzas (capacidade e geração) com a ordem certa e explicar cada troca de posição pelo FCap.",
+        "previsao_util": true,
+        "previsao": {
+          "enunciado": "Antes de ler as fichas, ordene as seis fontes (hidrelétrica, solar, eólica, biomassa, térmica fóssil, nuclear) da maior para a menor, primeiro em capacidade, depois em geração.",
+          "numeros_da_fonte": "Referência do INST·04 (fonte: BEN, relatório síntese, ano-base 2025, jun/2026, complementado pelo anuário; consulta 01/08/2026). Capacidade: hidro 42,2 · solar 24,8 · eólica 13,3 · fóssil 12,2 · biomassa 6,7 · nuclear 0,8. Geração: hidro 51,7 · eólica 15,0 · fóssil 11,8 · solar 11,4 · biomassa 8,1 · nuclear 2,0.",
+          "resposta_de_referencia": "Mostrada só pelas fichas (depois do registro). Ver T3c: fóssil × solar em geração tem conflito interno; a ordem exibida precisa de content QA antes.",
+          "erro_util": "§Erros: 'A solar já é a segunda maior fonte do Brasil' — verdadeiro em capacidade, falso em geração."
+        }
+      },
+      "menor_ato_autentico_C9": {
+        "tipo": "reconstruir (produzir) + comparar",
+        "camada": "fonte (INST·04; critério legado do §00) com fluxo de interface da Alexandria",
+        "descricao": "Reconstrutor em duas rodadas, com as fichas recolhidas: o learner estima as seis fatias (soma normalizável a 100%), registra, e só então vê erro por fonte, erro total, ordem e diagnóstico de viés (vereditos literais, com a linguagem de competência ajustada; T6).",
+        "tolerancia": "3 pp por fonte — declarada pela fonte ('escolhida porque abaixo disso o exercício vira decoreba de decimal'). Não é inventada (P6 ok). Empate dentro da tolerância (fóssil × solar em geração) pede regra de pontuação da Alexandria, pendente de revisão (T3c).",
+        "evidencia_S3": "É a tarefa mais próxima de 'portadora de evidência' do módulo (o critério legado é literalmente ela). Até a fase de Assessment definir a regra: registra Praticado; 'Demonstrado: ainda não avaliado'. Nunca 'aprovado'.",
+        "atos_secundarios": [
+          {"tipo": "comparar/explicar", "enunciado": "Ex·01 (fonte): 'Sem consultar nada: qual fonte tem fatia maior em geração do que em capacidade, e por quê?'", "onde": "depois da rodada 2"},
+          {"tipo": "ler lateralmente", "enunciado": "No fichário, escolha o campo que explica as trocas de posição (resposta da fonte: 'Fator de capacidade típico' — 'Esta é a coluna que explica as outras duas').", "camada": "alexandria (pergunta) sobre texto da fonte (M08_INST05_LEITURA.fc)"}
+        ]
+      },
+      "visualizacao_C6": [
+        {"o_que": "Pizza desenhável por arraste (rodada) com fantasma da referência após o registro", "relacao": "fatia estimada × fatia de referência, por fonte", "eixos_unidade": "% da pizza", "fonte": "INST·04 (acima)", "existe_no_codigo": false, "promessa_nao_cumprida": "título 'desenhe as duas pizzas de memória'; hoje são 6 campos numéricos"},
+        {"o_que": "Gráfico de inclinação capacidade → geração (6 linhas, rótulo direto)", "relacao": "subir/descer ao trocar de pizza; cruzamentos = trocas de posição", "eixos_unidade": "% da pizza nos dois lados", "fonte": "INST·04 ref (ou INST·02, se o QA escolher)", "existe_no_codigo": false},
+        {"o_que": "Faixas de FCap típico por fonte (barras de intervalo) com a linha do FCap médio do parque", "relacao": "acima da média sobe, abaixo desce", "eixos_unidade": "% (0–100); hidro 45–60, eólica 35–50, solar 20–30, biomassa 35–55, fóssil <10 a >70, nuclear 75–90 (fichas)", "fonte": "fichas (fonte); FCap médio 33,3% é derivado do INST·02 (ver T3)", "existe_no_codigo": false}
+      ],
+      "instrumentos_C5": [
+        {"id": "m08-inst-04-cap / m08-inst-04-ger", "titulo": "Reconstrutor de matriz · desenhe as duas pizzas de memória", "bloco_indice_fonte": "após 13 (números vivos)", "posicao_proposta": "após 13, com o fichário (blocos 1–12) recolhido por ação explícita 'Recolher fichas e reconstruir'", "previsao": true, "observacoes": "A fonte tinha um details editável 'Valores de referência… abra só depois de tentar' que não foi portado; na v2, a referência só aparece após 'Corrigir esta rodada'. O toggle de rodada virou dois instrumentos empilhados: na v2 pode voltar a ser uma prancha com duas rodadas em sequência."},
+        {"id": "m08-inst-05", "titulo": "Leitura lateral · o mesmo campo nas seis fontes", "bloco_indice_fonte": "após 14 (parágrafo dos vieses)", "posicao_proposta": "fundido com as fichas (blocos 1–12) como modo 'ler por campo' do fichário", "previsao": false, "observacoes": "Explorador puro, sem número. Os textos do INST·05 diferem das fichas em vários campos (ex.: biomassa/geração cita a divergência balanço × anuário). Fundir exige preservar as duas redações (fonte) ou escolher com revisão."}
+      ],
+      "decisao_editorial_pendente": "Bloco 14 ('Dois vieses… vale saber deles antes de tentar') está DEPOIS do INST·04 na fonte, mas pede leitura antes. Mostrá-lo antes contamina a tentativa (dá a direção do erro). Proposta: exibir como debrief ligado ao diagnóstico de viés do próprio learner (o veredito já contém as duas frases). Registrar como divergência de ordem.",
+      "checagem_C7": "Referência só depois de 'Corrigir esta rodada'; nenhuma cor para dentro/fora (silhueta + palavra); 'Nova tentativa' disponível; ordem errada → 'a revisar' com remediação literal da fonte ('Refaça esta rodada olhando as fichas… atenção ao fator de capacidade').",
+      "recuperacao_C10": {
+        "recuperacao_de_antes": "A01 (quiz Q1, origem visível): 'Uma fonte tem 25% da pizza de capacidade e 11% da de geração, no mesmo ano e universo. O que isso significa?' — pedido antes da resposta antiga.",
+        "proximo_passo": {"atende": "Próxima · M08·A03 — A matriz muda de forma três vezes", "ordem_incorreta": "Rever a coluna 'Fator de capacidade típico' do fichário e refazer a rodada", "leitura_sem_pratica": "Fazer o reconstrutor"},
+        "serve_a": "Primeira parte do critério legado (desenhar as duas pizzas com ordem correta e troca explicada) e §Final item 1 e 8. Sem 'domínio'."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m08",
+        "sugestoes": [
+          "Uma miniatura documental por ficha, só se ajudar a memória da fonte (teste de remoção): bse-itaipu-aerea (⚠ legenda), bse-eolica-paracuru, bse-solar-flutuante-araucaria, m01a08-termica-candiota (fóssil), bse-angra-usinas (nuclear).",
+          "Lacuna: biomassa (bagaço/cogeração) sem imagem aprovada no catálogo — buscar documental; não gerar como documental.",
+          "A 390, miniaturas ocultas."
+        ]
+      },
+      "mobile_390": "Fichário: seletor 'Fonte | Campo' + um cartão por vez (sem rolagem horizontal da página). Reconstrutor: seis linhas com passo ±1 pp e uma pizza viva acima; rodadas como etapas 1/2. Abertura: ordenação por arrastar ou por botões 'subir/descer' (sem depender de hover).",
+      "lacunas_e_dependencias": {
+        "fonte": ["T3c (ordem fóssil × solar em geração)", "Fichas: capacidade de biomassa 'entra agregada ao total térmico', mas INST·04 pede biomassa e fóssil separados em capacidade (tensão a registrar)", "Textos das fichas × INST·05 não idênticos"],
+        "par9": ["Pizza por arraste (desenho)", "Persistência das duas rodadas e da ordenação ingênua", "Tarefa portadora de evidência (regra de avaliação)"],
+        "decisoes": ["P6 (tolerância 3 pp é da fonte)", "P18 (sem 'aprovação')", "P19 (regra de empate)", "P7 (ocultar bloco 15)"]
+      },
+      "nota_ambicao": "A pizza que você desenha com o dedo, errada do jeito que todo mundo erra, e depois a animação da sua pizza de capacidade se transformando na de geração com as fatias trocando de lugar: o learner vê o FCap agir, em vez de ler que ele age."
+    },
+    {
+      "aulaId": "aula-08-03",
+      "codigo": "M08·A03",
+      "titulo": "A matriz muda de forma três vezes: no ano, no dia e na hora",
+      "subtitulo": "Sazonalidade e complementaridade · três escalas de tempo",
+      "blocos": 17,
+      "o_que_ensina": "A complementaridade opera em escalas independentes: no ano, chuva (nov–abr no SE/CO), vento (pico jul–set no NE) e cana (abr–nov no Centro-Sul) estão defasados; no dia, a carga líquida (consumo menos a geração que o operador não comanda) afunda ao meio-dia e sobe em rampa no fim da tarde. Sobra energia no P3 e falta potência no P4; o pior dia é o domingo ensolarado de feriado.",
+      "natureza": ["sistema/dinâmica temporal", "leitura de curva", "conceito operacional (patamares)"],
+      "melhor_representacao": {
+        "arquetipo": "Laboratório de curvas: palco de série temporal com troca de escala, no fluxo, e calendário anual como faixa de fases.",
+        "por_que": "O mecanismo é uma forma que muda com a escala. Só uma curva com carga e carga líquida sobrepostas mostra a distância do meio-dia (a geração fora de comando) e a rampa. A fonte pede para 'alternar para domingo de sol e observar o que muda': a leitura é guiada pelo gráfico. O calendário transforma as três safras num objeto que se carrega na cabeça ('do mesmo jeito que se carrega a forma das pizzas').",
+        "sequencia": "abertura (desenhe o domingo) → 3.1 + faixa de fases (chuva/vento/cana/sol) → 3.2 + patamares P1–P4 sobre o eixo de horas → palco INST·06 (dia útil → domingo; revela o desenho do learner) → bloco 13 como passo guiado → nota três níveis → 3.3 + INST·07 (calendário) → ato de fecho (Ex·04) → registro",
+        "alem_do_conceito": "O desenho de previsão do learner fica sobreposto à curva estilizada enquanto ele liga e desliga fontes."
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "pergunta": "Por que o pior dia do sistema elétrico brasileiro não é o mais quente nem o mais frio?",
+        "objetivo": "Explicar a complementaridade nas três escalas e distinguir sobra de energia (P3) de falta de potência (P4) sem consultar gráfico.",
+        "previsao_util": true,
+        "previsao": {
+          "enunciado": "Desenhe, sobre um eixo de 0h a 22h, a carga líquida de um domingo ensolarado. Onde ela fica mais baixa e onde sobe mais rápido?",
+          "numeros_da_fonte": "Qualitativa. A curva de referência é o perfil estilizado do INST·06 (escala 'dom'); a fonte declara: 'perfis estilizados… não são séries medidas' (T5). Ponto mais baixo da carga líquida estilizada: 38 un. às 12h; rampa até 78 un. às 20h.",
+          "resposta_de_referencia": "Depressão no meio do dia (P3, 09h–15h59) e rampa no fim da tarde (fonte, blocos 7 e 13).",
+          "erro_util": "Desenhar a carga líquida igual ao consumo (sem a geração fora de comando) é o erro que a aula corrige."
+        }
+      },
+      "menor_ato_autentico_C9": {
+        "tipo": "prever (desenhar) + responder exercício da fonte",
+        "camada": "Ex·04 (fonte: 'Desenhe de cabeça o perfil de um domingo ensolarado de outubro… O que acontece em cada um dos quatro patamares?') com mecânica de desenho da Alexandria",
+        "descricao": "O learner desenha a curva e, para cada patamar P1–P4, classifica: 'sobra energia', 'falta potência', 'transição', 'tranquilo'. Depois vê a referência literal do Ex·04 por patamar.",
+        "atos_secundarios": [
+          {"tipo": "manipular até meta", "enunciado": "No domingo, desligue fontes até zerar o excedente. Qual fonte você precisou desligar?", "referencia": "No perfil estilizado, desligar só a solar não basta (10/12 pontos continuam com excedente); a leitura da fonte é que o excedente 'existiria mesmo com rede infinita'. Meta derivada da saída 'Pontos com excedente' (alexandria). Depende do QA T4 para a escala anual."},
+          {"tipo": "classificar", "enunciado": "Arraste cada recurso (chuva, vento, cana, sol) para a escala em que ele ajuda (ano, dia).", "referencia": "fonte, bloco 3: 'a solar não tem papel sazonal e o vento não tem papel intradiário confiável'"}
+        ]
+      },
+      "visualizacao_C6": [
+        {"o_que": "Palco de curvas: carga (traço cheio), carga líquida (tracejado), fontes ligadas e soma; excedente em hachura rotulada", "relacao": "oferta das fontes ligadas × carga líquida; distância carga–carga líquida = geração fora de comando", "eixos_unidade": "x: mês (J–D) ou hora (0–22, de 2 em 2 h); y: índice estilizado 0–100 'un.' (não é MW; declarar)", "fonte": "INST·06 (fonte, perfis estilizados)", "existe_no_codigo": false, "promessa_nao_cumprida": "título 'Curvas… três escalas sobrepostas'; hoje só 4 números e texto; nota cita 'linha branca' e 'vermelho' (T6)"},
+        {"o_que": "Faixa de fases do ano", "relacao": "chuva nov–abr; vento 2º semestre, pico jul–set; cana abr–nov; sol sem papel sazonal", "eixos_unidade": "meses; 4 faixas", "fonte": "tabela do bloco 2 (fonte)", "existe_no_codigo": false},
+        {"o_que": "Régua de patamares P1–P4 sob o eixo de horas", "relacao": "faixas horárias × carga líquida × potencial solar × corte", "eixos_unidade": "horas; P2 tem duas janelas (07h–08h59 e 16h–17h59)", "fonte": "tabela do bloco 10 (fonte, nomenclatura do operador)", "existe_no_codigo": false},
+        {"o_que": "Calendário do sistema (12 colunas × 5 linhas: chuva, vento, safra, carga, risco de corte)", "relacao": "coincidências mês a mês; viradas de abril e novembro", "eixos_unidade": "categorias textuais ordinais (sem semáforo)", "fonte": "INST·07 (fonte; 'regimes típicos e aproximados')", "existe_no_codigo": false, "promessa_nao_cumprida": "'Calendário' hoje é um select de mês"}
+      ],
+      "instrumentos_C5": [
+        {"id": "m08-inst-06", "titulo": "Curvas de complementaridade · três escalas sobrepostas", "bloco_indice_fonte": "após 12 (nota três níveis)", "posicao_proposta": "após 11 (assimetria P3/P4), com o bloco 13 como passo guiado dentro da prancha; nota três níveis depois", "previsao": true, "observacoes": "Estado inicial proposto: escala 'dia útil' (a fonte abre em 'mes'), por causa do T4. No perfil estilizado: dia útil com todas as fontes = excedente em 8/12 pontos; domingo = 10/12; sem solar, dia útil cai para 4/12. Restaurar o disclaimer (T5) junto do gráfico."},
+        {"id": "m08-inst-07", "titulo": "Calendário sazonal · doze meses do sistema", "bloco_indice_fonte": "após 15", "posicao_proposta": "após 15 (mesmo lugar), com cursor de mês compartilhado com a escala anual do INST·06", "previsao": false, "observacoes": "Explorador. Mês inicial da fonte: julho. Ato possível (alexandria): 'Qual mês a fonte marca como risco de corte máximo do ano?' antes de clicar (resposta: agosto)."}
+      ],
+      "checagem_C7": "Desenho registrado antes da revelação; comparação desenho × perfil estilizado sem pontuação numérica (autoavaliação em três níveis, C7); Ex·04 com referência literal por patamar só depois.",
+      "recuperacao_C10": {
+        "recuperacao_de_antes": "A02, ficha eólica (perfil sazonal): 'Em que época do ano o vento do Nordeste é mais forte, e contra qual período do SE/CO?' (§Voz 12–13 como origem da pergunta).",
+        "proximo_passo": {"atende": "Próxima · M08·A04 — O maior sistema de armazenamento…", "nao_atende": "Rever 3.2 (carga líquida e patamares)", "leitura_sem_pratica": "Fazer o desenho do domingo"},
+        "serve_a": "Terceira parte do critério legado (complementaridade nas três escalas sem consultar gráfico); §Final 9–15."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m08",
+        "sugestoes": [
+          "Opcional junto da faixa de fases: bse-eolica-icarai (⚠ legenda) ou bse-eolica-paracuru — 'o vento do Nordeste na estação seca'. Teste de remoção: fraco; a figura programática faz o trabalho.",
+          "Nenhuma imagem sobre o palco de curvas (atmosfera nunca cobre dado)."
+        ]
+      },
+      "mobile_390": "Palco em largura total, altura ~260px; seletor de escala segmentado; chips de fonte com quebra de linha; rótulos na ponta das linhas. Desenho de previsão por toque (arrastar sobre o eixo) com alternativa acessível: escolher o nível em cada patamar. Calendário vira 12 linhas verticais (mês → 5 atributos).",
+      "lacunas_e_dependencias": {
+        "fonte": ["T4 (escala anual contradiz a prosa)", "T5 (disclaimer perdido)", "T6 (vermelho/branco)", "Unidade do eixo y é índice sem unidade na fonte"],
+        "par9": ["Desenho das curvas", "Mecânica de 'desenhe sua previsão'", "Estado compartilhado entre INST·06 e INST·07", "Âncoras de glossário (carga líquida, rampa, patamar)"],
+        "decisoes": ["S2 (sem semáforo)", "P20/QA antes da escala anual"]
+      },
+      "nota_ambicao": "O learner desenha o domingo, vê a curva real do modelo passar por cima do seu traço e, com um toque, descobre que desligar a solar não apaga o excedente: a distância entre carga e carga líquida (o que ninguém comanda) fica desenhada como o personagem principal da aula."
+    },
+    {
+      "aulaId": "aula-08-04",
+      "codigo": "M08·A04",
+      "titulo": "O maior sistema de armazenamento de energia do mundo não tem uma bateria",
+      "subtitulo": "Hidro-dependência · a mesma característica é vantagem e vulnerabilidade",
+      "blocos": 17,
+      "o_que_ensina": "'Nível dos reservatórios' esconde duas grandezas independentes: afluência (fluxo, % da MLT mensal e regional) e energia armazenada (estoque, % do volume útil). O diagnóstico exige as duas e a posição no ciclo anual: estoque alto com fluxo fraco se deteriora. A hidráulica tem piso de geração, que nas horas de sobreoferta vira causa de corte; vantagem e vulnerabilidade são o mesmo fato.",
+      "natureza": ["conceito físico (estoque × fluxo)", "leitura de indicador / diagnóstico bidimensional", "sistema"],
+      "melhor_representacao": {
+        "arquetipo": "Plano diagnóstico como palco: quadrante afluência × armazenamento com os quatro subsistemas datados, dentro da coluna editorial.",
+        "por_que": "A fonte diz que 'a leitura correta precisa das duas dimensões simultaneamente' e critica o formato 'número só, colorido de verde ou vermelho'. O plano 2D é a própria tese da aula; os quatro pontos de junho de 2026 mostram, de uma vez, Nordeste e Norte no quadrante que engana.",
+        "sequencia": "abertura (Nordeste × Sudeste/CO) → 4.1 + tabela ENA × EAR como figura estoque/fluxo → tabela dos subsistemas desenhada no plano → prancha INST·08 (previsão) → 4.2 piso → nota três níveis → 4.3 mesa vantagem × vulnerabilidade (ato de classificação) → registro",
+        "alem_do_conceito": "O ponto do Nordeste muda de diagnóstico quando o learner move só o mês (seco → úmido), sem mudar os dois números."
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "pergunta": "Em junho de 2026, o Nordeste tinha 89% do volume útil e o Sudeste/Centro-Oeste, 66%. Qual situação se sustenta melhor?",
+        "objetivo": "Diagnosticar a condição hidrológica lendo estoque e fluxo juntos, com a posição no ciclo anual.",
+        "previsao_util": true,
+        "previsao": {
+          "enunciado": "Escolha: (a) Nordeste, porque tem mais água guardada; (b) Sudeste/CO; (c) as duas iguais; (d) não dá para dizer só com esses dois números.",
+          "numeros_da_fonte": "Junho de 2026, reportado ao comitê de monitoramento do setor elétrico; consulta 01/08/2026: SE/CO afluência 93% da MLT e armazenamento 66%; Sul 82% e 63%; Nordeste 59% e 89%; Norte 58% e 95%.",
+          "resposta_de_referencia": "Com a afluência revelada: 'estoque alto com fluxo fraco é uma situação que se deteriora e estoque médio com fluxo normal é uma situação que se sustenta' (bloco 7). (d) é a leitura correta antes de ver a afluência; a pergunta revela a afluência depois do registro.",
+          "erro_util": "§Erros: 'Nível de reservatório alto significa situação confortável.'"
+        }
+      },
+      "menor_ato_autentico_C9": {
+        "tipo": "localizar e diagnosticar (classificar no plano)",
+        "camada": "Ex·11 (fonte) com mecânica de posicionamento da Alexandria",
+        "descricao": "O learner posiciona o Nordeste (59% MLT, 89% útil) no plano, escolhe o diagnóstico entre os quatro quadrantes e diz o que muda se o mês for de período úmido. Referência literal do Ex·11 ('confortável no presente e em deterioração…'; 'estoque alto entrando no período seco tem significado oposto…').",
+        "atos_secundarios": [
+          {"tipo": "classificar", "enunciado": "Para cada fato da mesa 4.3, separe a leitura de vantagem da de vulnerabilidade (4 fatos × 2 colunas).", "origem": "tabela do bloco 14 (fonte)"},
+          {"tipo": "identificar o erro", "enunciado": "'Hidrelétrica só serve para energia barata.'", "origem": "§Erros (fonte)"}
+        ]
+      },
+      "visualizacao_C6": [
+        {"o_que": "Plano afluência × armazenamento com quatro pontos datados e o ponto móvel do instrumento", "relacao": "quadrante = diagnóstico; limiares do instrumento: 100% da MLT e 50% do útil", "eixos_unidade": "x: % da MLT (10–200); y: % do volume útil (0–100)", "fonte": "INST·08 (fonte, jun/2026, consulta 01/08/2026); limiares são do instrumento, rotular como didáticos", "existe_no_codigo": false, "promessa_nao_cumprida": "'Duas dimensões, quatro quadrantes… observe o ponto migrar' — hoje só texto e 'folga'"},
+        {"o_que": "Tanque com entrada (fluxo) e nível (estoque), e o piso de geração marcado", "relacao": "fluxo ≠ estoque; piso hidráulico abaixo do qual o operador não desce", "eixos_unidade": "diagrama explicativo", "fonte": "blocos 2, 9 e 10 (fonte)", "existe_no_codigo": false}
+      ],
+      "instrumentos_C5": [
+        {"id": "m08-inst-08", "titulo": "Termômetro hidrológico · estoque contra fluxo", "bloco_indice_fonte": "após 7", "posicao_proposta": "após 7 (mesmo lugar)", "previsao": true, "observacoes": "Restaurar as quatro 'fotografias' da fonte como atalhos (a portagem as virou nota). Padrão SE/CO (93/66/jun): quadrante 'Estoque alto · fluxo fraco' com veredito 'próximo do normal' — rótulo interno contraditório (limiar de 'forte' = 100%); revisar texto (camada editorial). 'Folga aproximada' dá 17 meses no padrão e 13 no Nordeste: a fonte chama de 'aproximação didática grosseira'; exibir como ordem de grandeza com o aviso colado, ou ocultar o número (decisão de revisão)."}
+      ],
+      "checagem_C7": "Posição e diagnóstico registrados antes da referência; comparação com o texto do Ex·11 e com o veredito do instrumento no mesmo cenário; 'não atende' → rever 4.1.",
+      "recuperacao_C10": {
+        "recuperacao_de_antes": "A03: 'Em qual patamar sobra energia e em qual falta potência?' (quiz Q4, origem Aula 03 e 05).",
+        "proximo_passo": {"atende": "Próxima · M08·A05 — O recurso está a dois mil quilômetros da carga (o piso vira corte)", "nao_atende": "Rever 4.1", "leitura_sem_pratica": "Fazer o diagnóstico do Nordeste"},
+        "serve_a": "§Final 16–18 (afluência × armazenamento; MLT; piso e corte); parte hídrica da terceira capacidade legada."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m08",
+        "sugestoes": [
+          "Forte candidata em 4.1: bse-sat-sobradinho-iss (reservatório visto do espaço; domínio público/NASA) — trabalho: 'o estoque é um lugar físico'.",
+          "Par comparador 2019 × 2021 (bse-sat-paranaiba-2019/2021): mostra nível visível variando. Legenda deve dizer que área de espelho d'água não é a energia armazenada medida (%). Não trazer o contexto '2021' como fato da aula (não está na fonte do M08).",
+          "bse-itaipu-aerea (⚠ legenda) só se não houver par de satélite."
+        ]
+      },
+      "mobile_390": "Plano quadrado em largura total; controles (afluência, armazenamento, mês) abaixo; chips dos quatro subsistemas; tabela dos subsistemas vira quatro cartões com os dois números e a leitura. Pergunta de abertura com os dois números no 1º viewport.",
+      "lacunas_e_dependencias": {
+        "fonte": ["Limiares 100%/50% são do instrumento, não da regulação", "Fórmula de folga declaradamente grosseira", "Números vivos de jun/2026 e 70,7% (20/07/2026) precisam de data colada"],
+        "par9": ["Desenho do quadrante", "Atalhos de fotografia", "Âncora de 'Energia natural afluente' (aulaIds vazio)", "Registro de posição/diagnóstico"],
+        "decisoes": ["S2 (quadrantes sem semáforo)", "S4 (número vivo com data)", "P7 (ocultar bloco 16)"]
+      },
+      "nota_ambicao": "Um plano em que o learner vê o Nordeste 'confortável' escorregar para a zona que engana só porque o mês mudou: a aula ensina que o calendário é a terceira dimensão sem acrescentar nenhum número novo."
+    },
+    {
+      "aulaId": "aula-08-05",
+      "codigo": "M08·A05",
+      "titulo": "O recurso está a dois mil quilômetros da carga",
+      "subtitulo": "Transmissão e gargalos · onde a energia trava",
+      "blocos": 30,
+      "o_que_ensina": "O SIN não é uma placa de cobre: limites de transmissão definem submercados (zonas de contabilização, não regiões) e o contrato não define o caminho físico. Corrente contínua leva blocos longe; alternada integra a malha. O corte de geração tem três causas juridicamente distintas, e só a confiabilidade se resolve com linha; a razão energética (54% em 2025) recai sobre a geração sob comando, embora a GD a cause (contrafactual do operador). Também: número de empresa tem denominador escolhido; uma obra tem cinco datas.",
+      "natureza": ["sistema/rede", "mercado/regulação", "leitura crítica de número e de data", "classificação de causa"],
+      "melhor_representacao": {
+        "arquetipo": "Mapa/rede como palco + classificador de causa (laboratório guiado), com duas fichas de leitura de número (AXIA, Roraima) no fluxo.",
+        "por_que": "O título e o lead são espaciais ('o que existe entre os dois'). A topologia (origem, corredor, destino, gargalo) só se entende desenhada. O mecanismo decisório da aula é classificar a causa do corte, e isso pede um laboratório de cenários com previsão antes do veredito. A aula é a mais longa do módulo (30 blocos): precisa de atos intermediários (C4) em 5.3 e 5.4.",
+        "sequencia": "abertura (mais linha resolve o corte?) → 5.1 com mapa esquemático (submercados; reuso do INST·01 do módulo, rotulado como tal) → 5.2 corredores desenhados no mesmo mapa (CA × CC) → 5.3 ficha 'qual qualificador caiu' (Ex·07) → 5.4 linha do tempo 2010–2026 e as cinco datas (Ex·08) → 5.5 tabela de causas + série do corte com quebra + contrafactual → laboratório INST·09 → horizonte (limite de recebimento; PAR) → registro",
+        "alem_do_conceito": "No classificador, a geração distribuída aparece sempre intacta, enquanto a centralizada é cortada: 'quem nunca é cortado' fica visível em todo cenário."
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "pergunta": "Se o Nordeste corta geração, construir mais linha de transmissão resolve?",
+        "objetivo": "Classificar um corte de geração pela causa (confiabilidade, razão energética, indisponibilidade externa) e dizer o que efetivamente o resolve.",
+        "previsao_util": true,
+        "previsao": {
+          "enunciado": "Escolha: sim / não / depende da causa. Se 'depende', estime que fração do corte de 2025 não se resolveria com linha.",
+          "numeros_da_fonte": "Repartição 2025: ~54% razão energética, ~33% confiabilidade, ~13% indisponibilidade externa; corte eólico+solar centralizado ~20% em 2025 (0,1% em 2021; 0,5% em 2022; 3,6% em 2023; 9,3% em 2024); quebra de série em abr/2024. Verificado 01/08/2026.",
+          "resposta_de_referencia": "Depende; mais linha não resolve a razão energética (~54% em 2025). §Voz Ataque 6: 'a premissa está desatualizada'.",
+          "regra_de_entrada": "Faixa aceita para a estimativa é regra de pontuação da Alexandria (P19), não tolerância da fonte.",
+          "erro_util": "§Erros: 'Corte de geração prova que faltou linha de transmissão.'"
+        }
+      },
+      "menor_ato_autentico_C9": {
+        "tipo": "classificar (prever a causa antes do veredito)",
+        "camada": "INST·09 (fonte) com previsão da Alexandria",
+        "descricao": "Três cenários montados no laboratório (ex.: P3 · domingo · Nordeste · rede normal; P1 · dia útil · Nordeste · limite de exportação; P4 · dia útil · SE/CO · rede normal). Para cada um, o learner escolhe a causa e 'o que resolve' antes de ver o veredito literal.",
+        "referencias_do_instrumento": "P3/domingo/NE/normal → razão energética; P1/útil/NE/limite → confiabilidade elétrica (com a frase da revisão dos modelos dinâmicos de 2023); P4/útil/SE-CO/normal → sem corte esperado (o problema é a rampa). Lógica da fonte: com simultaneidade, prevalece a razão energética.",
+        "atos_secundarios": [
+          {"tipo": "identificar o erro", "onde": "após bloco 12", "enunciado": "Ex·07: 'A AXIA Energia informa deter 37% das linhas de transmissão do país. Como você lê esse número?'", "origem": "fonte"},
+          {"tipo": "associar/ordenar", "onde": "após bloco 18", "enunciado": "Ex·08: 'Uma reportagem diz que a interligação de Roraima ocorreu em 10 de setembro de 2025. Está certo?' + associar cada data à pergunta que ela responde", "origem": "fonte (tabela bloco 18)"},
+          {"tipo": "identificar o erro", "enunciado": "'Com Roraima interligado, acabaram os sistemas isolados.'", "origem": "§Erros (fonte)"}
+        ]
+      },
+      "visualizacao_C6": [
+        {"o_que": "Mapa esquemático do SIN: 4 submercados, 3 corredores (eixo Norte-Sul em CA; bipolos do Madeira e de Belo Monte em CC), fronteira de exportação N/NE", "relacao": "recurso longe da carga; origem → corredor → destino; gargalo", "eixos_unidade": "topologia esquemática (a fonte avisa: 'posições aproximadas… não um mapa cartográfico'); contorno do Brasil só de Natural Earth", "fonte": "blocos 3 e 7 (fonte) + INST·01 do módulo (14 nós)", "existe_no_codigo": false, "promessa_nao_cumprida": "INST·01 'Mapa físico' não desenha mapa (módulo)"},
+        {"o_que": "Série do corte 2021–2025 com quebra metodológica marcada em abr/2024", "relacao": "inclinação = fenômeno + mudança de universo", "eixos_unidade": "% do eólico+solar centralizado; anos", "fonte": "nota do bloco 25 (fonte, verificado 01/08/2026)", "existe_no_codigo": false},
+        {"o_que": "Repartição 2025 por causa (barra única 54/33/13)", "relacao": "qual parte se resolve com linha", "eixos_unidade": "% do corte", "fonte": "bloco 25", "existe_no_codigo": false},
+        {"o_que": "Contrafactual do operador (2024 sem GD)", "relacao": "4.330 GWh → 7,6 GWh; 493 MWmed → <1", "eixos_unidade": "GWh (escala quebrada ou anotada; nunca esconder a razão ~570×)", "fonte": "bloco 26 (fonte; M08_FATOS)", "existe_no_codigo": false},
+        {"o_que": "Uma obra, cinco datas + quinze anos", "relacao": "2010 estudo → 2011 leilão → 2025 energização; zoom 03/09/2025 → 01/01/2026", "eixos_unidade": "linha do tempo", "fonte": "blocos 18 e 20", "existe_no_codigo": false},
+        {"o_que": "Horizonte do reforço", "relacao": "limite de recebimento SE/CO 18.500 MW (jan/2026) → 23.000 MW (jan/2030); ciclo anterior 1.260 km / R$ 7,6 bi × atual 5.301 km / R$ 28,1 bi", "eixos_unidade": "MW; km; R$ bi (figuras separadas por unidade)", "fonte": "bloco 28", "existe_no_codigo": false}
+      ],
+      "instrumentos_C5": [
+        {"id": "m08-inst-09", "titulo": "Anatomia do corte de geração · causa, hora e quem paga", "bloco_indice_fonte": "após 27", "posicao_proposta": "após 27 (mesmo lugar); bloco 28 depois do laboratório", "previsao": true, "observacoes": "Quatro seletores (patamar, dia, região, rede); saída só texto. 'Sobre quem recai' = '—' no caso sem corte (trocar por palavra, S3/S4). Restaurar o disclaimer da fonte (aplica a lógica de classificação do operador; não reproduz despacho real)."},
+        {"id": "m08-inst-01 (módulo)", "titulo": "Mapa físico do Brasil elétrico · geração × escoamento", "bloco_indice_fonte": "§MAP (fora de aula)", "posicao_proposta": "reuso opcional após 4 como palco de 5.1–5.2, rotulado 'mapa do módulo'", "previsao": true, "observacoes": "A fonte manda usá-lo antes das aulas e depois da A07 ('se você conseguir prever o painel de cada nó antes de clicar… o mapa está internalizado'): previsão natural = prever o papel do Nordeste no fluxo de escoamento antes de alternar."}
+      ],
+      "checagem_C7": "Causa escolhida antes do veredito; comparação lado a lado com as quatro leituras do instrumento; Ex·07/Ex·08 com campo e referência literal depois; 'não atende' na classificação → rever a tabela do bloco 23.",
+      "recuperacao_C10": {
+        "recuperacao_de_antes": "A04: 'Por que a hidráulica tem piso de geração, e o que isso produz nas horas de sobreoferta?' e A01 ('qual recorte?') aplicado ao tempo (as cinco datas).",
+        "proximo_passo": {"atende": "Próxima · M08·A06 — Dois casos, um decreto, desfechos opostos", "nao_atende": "Rever 5.5 (causas do corte)", "leitura_sem_pratica": "Fazer o classificador"},
+        "serve_a": "§Final 19–23 (causas; quem é cortado e o contrafactual; corredores; contrato × caminho físico; cinco datas)."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m08",
+        "sugestoes": [
+          "5.1: bse-sat-brasil-noite (onde está a carga) ao lado do mapa esquemático — trabalho nomeado: 'a carga vista do espaço'.",
+          "5.2: bse-itaipu-linhas-saida (⚠ legenda) ou bse-itaipu-torres-barragem — 'geração e transmissão no mesmo quadro'.",
+          "5.4: gravura existente mat-08-gerador-diesel-isolado.png junto do bloco 15 — só com registro M6 e classe declarada (T13).",
+          "Lacuna do catálogo: estação conversora/bipolo CC (Blender, explicação) para 5.2."
+        ]
+      },
+      "mobile_390": "Mapa vira esquema vertical N → NE → SE/CO → S com corredores como conectores e nós tocáveis (painel inferior); linha do tempo vertical; classificador com os quatro seletores empilhados e previsão acima do veredito; gráficos da série e do contrafactual em largura total, um por tela.",
+      "lacunas_e_dependencias": {
+        "fonte": ["Posições do mapa são esquemáticas (declarado)", "Números vivos (corte, PAR, limites) com data de 01/08/2026", "Termos de empresas reais (AXIA) exigem classe documental em qualquer imagem"],
+        "par9": ["Desenho do mapa (INST·01) e das figuras de série", "Registro das classificações", "Glossário: submercado, corte, razão energética (âncoras)"],
+        "decisoes": ["P7 (ocultar bloco 29)", "S4 (fonte colada nas figuras)", "§7 M4 (esquemático ≠ cartográfico)"]
+      },
+      "nota_ambicao": "O mesmo Nordeste que é o nó mais denso no mapa de geração vira o ponto de maior tensão no de escoamento, e o classificador mostra, cenário após cenário, os telhados solares intocados enquanto a usina centralizada paga: a aula deixa o learner ver a assimetria de regra, não só ler sobre ela."
+    },
+    {
+      "aulaId": "aula-08-06",
+      "codigo": "M08·A06",
+      "titulo": "Dois casos, um decreto, desfechos opostos",
+      "subtitulo": "Distribuição e consumo · a concessão como ativo com prazo",
+      "blocos": 26,
+      "o_que_ensina": "Distribuição é monopólio natural outorgado por concessão com prazo; migrar para o mercado livre troca o fornecedor, não o fio. O mesmo marco de renovação produziu desfechos opostos (Light: holding em recuperação, concessão renovada; Enel SP: processo de caducidade em curso), e processo em curso nunca se descreve como desfecho. Indicador médio esconde a cauda. Consumo se lê pelo formato (fator de carga, perfil horário), não pelo volume anual; migração move consumo entre ambientes sem reduzi-lo.",
+      "natureza": ["caso/decisão comparada", "mercado/regulação", "cálculo (fator de carga)", "leitura de número (classes, ambientes)"],
+      "melhor_representacao": {
+        "arquetipo": "Dossiê de caso comparado (dois arcos paralelos) + laboratório de perfil de carga desenhado.",
+        "por_que": "O título é o contraste de dois arcos sob o mesmo instrumento; as fichas da fonte já têm campos paralelos (área, crise, reação, desfecho/estágio, lição). Um arco fechado e um aberto, lado a lado e datados, ensinam o método ('rito, contraditório, prazo') melhor que prosa. A segunda metade (consumo e formato) é um laboratório: duas plantas com o mesmo consumo anual e custos diferentes.",
+        "sequencia": "abertura (holding ou distribuidora?) → 6.1 com figura 'o fio não muda' → nota três níveis → 6.2 mesa de indicadores (o que cada um esconde) → 6.3 dois arcos paralelos + carimbo 'processo em curso · verificado em 01/08/2026' → ato 'fato × processo' → 6.4 classes e ambientes (Ex·12) → laboratório INST·10 → 6.5 data centers (fila × parque) → registro",
+        "alem_do_conceito": "O arco da Enel SP é desenhado aberto, com carimbo de verificação que mostra a idade do dado; o produto se recusa a fechar o que a fonte não fechou."
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "pergunta": "Quem pediu recuperação judicial no caso Light: a distribuidora ou a holding? E por que isso importa para o serviço?",
+        "objetivo": "Separar risco da holding de risco da concessão, descrever processo em curso como processo, e ler um perfil de carga pelo formato.",
+        "previsao_util": true,
+        "previsao": {
+          "enunciado": "Escolha: (a) a distribuidora, com autorização do regulador; (b) o poder concedente; (c) a holding, porque a concessionária não pode recorrer ao instrumento com a concessão ativa; (d) credores.",
+          "numeros_da_fonte": "Caso A (fonte): pedido em 12/05/2023 pela Light S.A. (holding), passivo da ordem de R$ 11 bilhões; concessão prorrogada por 30 anos (04/06/2026 a 04/06/2056). Alternativas = quiz Q9 (fonte).",
+          "resposta_de_referencia": "(c), com o feedback literal do quiz Q9.",
+          "erro_util": "§Erros: 'A Light distribuidora entrou em recuperação judicial.'"
+        }
+      },
+      "menor_ato_autentico_C9": {
+        "tipo": "identificar o erro (fato consumado × processo em curso)",
+        "camada": "fonte (§Erros 'A Enel SP já perdeu a concessão'; nota do bloco 15) + itens de interface da Alexandria construídos só com fatos dos casos",
+        "descricao": "Quatro frases sobre os dois casos; o learner marca quais descrevem processo em curso como desfecho e reescreve uma delas corretamente. Referência: correção literal do §Erros e regra da fonte ('Descrever processo administrativo em andamento como decisão consumada é o erro mais comum e mais caro desta matéria').",
+        "atos_secundarios": [
+          {"tipo": "manipular até meta + prever", "onde": "INST·10, após bloco 20", "enunciado": "Duas plantas com 120 GWh/ano. A primeira opera 24 h × 7 dias. Preveja o fator de carga de uma que opere 10 h/dia × 5 dias. Depois, ajuste até cair na faixa 'perfil altamente concentrado'.", "referencia": "Padrão do instrumento (120 GWh, 24 h, 7 d, 40% diurno): FCarga ≈ 99,7%, demanda média ≈ 13,7 MW, 8.736 h, cobertura solar teórica ≈ 40%. Cenário 10 h × 5 d: FCarga ≈ 29,7% (<30%, faixa 'altamente concentrado' do veredito). O cenário 10 h × 5 d é da Alexandria; as faixas 85/55/30 são do instrumento-fonte."},
+          {"tipo": "responder exercício da fonte", "enunciado": "Ex·12: 'O consumo do mercado regulado caiu 3,5% e o do livre subiu. O consumo brasileiro caiu?'", "onde": "após bloco 20"}
+        ]
+      },
+      "visualizacao_C6": [
+        {"o_que": "Dois arcos paralelos (Light fechado; Enel SP aberto)", "relacao": "mesmo instrumento (decreto de 2024, recomendação da agência, decisão do ministério) → desfechos opostos", "eixos_unidade": "linha do tempo 2018–2056 com datas literais (12/05/2023; jul/2023; 2024; nov/2025; mai/2026; 04/06/2026–04/06/2056; 07/04/2026; jul/2026; ago/2026 'previsto')", "fonte": "blocos 12 e 14 (fonte)", "existe_no_codigo": false},
+        {"o_que": "Consumo por classe 2025 (566,7 TWh)", "relacao": "indústria 199,3 > residencial 179,6 > comercial 104,0 > demais", "eixos_unidade": "TWh; até 4 categorias com 'demais' agrupando rural, serviço público, poder público, iluminação e consumo próprio (83,7 TWh), abertas sob demanda", "fonte": "tabela do bloco 18", "existe_no_codigo": false},
+        {"o_que": "Ambientes: livre ~45% × regulado ~55%, regulado −3,5%, total +0,9%", "relacao": "migração não é queda de consumo", "eixos_unidade": "% do consumo; barra única com anotações", "fonte": "blocos 17 e 20", "existe_no_codigo": false},
+        {"o_que": "Perfil de carga desenhado (24 h × 7 dias) com a janela solar 09h–16h", "relacao": "formato da curva × janela de produção", "eixos_unidade": "horas × dias; perfil retangular por turno (limite declarado pela fonte)", "fonte": "INST·10 (fonte)", "existe_no_codigo": false, "promessa_nao_cumprida": "'casamento com a curva de geração' — hoje só 4 números"},
+        {"o_que": "Fila × parque de data centers", "relacao": "~800 MW operando × 19,8 GW (set/2025) → 26,2 GW (nov/2025) em pedidos", "eixos_unidade": "MW/GW na mesma escala; rótulo 'pedido de estudo de conexão não é projeto'", "fonte": "bloco 22", "existe_no_codigo": false}
+      ],
+      "instrumentos_C5": [
+        {"id": "m08-inst-10", "titulo": "Perfil de carga · casamento com a curva de geração", "bloco_indice_fonte": "após 20", "posicao_proposta": "após 20 (mesmo lugar)", "previsao": true, "observacoes": "P21: 'fator de carga' → FCarga na exibição. 'Cobertura solar teórica' usa janela fixa de 7 h (min(h,7)): heurística do instrumento, declarar. Restaurar disclaimer da fonte (perfil retangular; tarifa é Bloco 10)."}
+      ],
+      "checagem_C7": "Frases marcadas e reescrita registradas antes da correção literal; INST·10 com previsto × calculado no mesmo cenário; Ex·12 com referência depois.",
+      "recuperacao_C10": {
+        "recuperacao_de_antes": "A05: 'Contrato de energia determina o caminho físico dos elétrons?' (§Voz 32 como origem) — ponte para 'o consumidor livre continua usando o fio'.",
+        "proximo_passo": {"atende": "Próxima · M08·A07 — Três forças", "nao_atende_caso": "Rever 6.3 (arcos)", "nao_atende_perfil": "Refazer INST·10 com o cenário 10 h × 5 d", "leitura_sem_pratica": "Fazer o ato 'fato × processo'"},
+        "serve_a": "§Final 24–25 (holding × concessão; processo em curso). A §Caso (Operação A, C.2) reutiliza a leitura de perfil de carga: ponte para o caso (P17: 'Caso — Operação A', sem 'Parte')."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m08",
+        "sugestoes": [
+          "6.1: bse-distribuicao-poste — 'o fio que o consumidor livre continua usando'.",
+          "6.5: gravura existente mat-03-racks-data-center.png junto do bloco 22 — só com registro M6 (T13); se for atmosfera, não pode parecer data center real identificável.",
+          "Nenhuma foto de marca, logotipo ou sede de Light/Enel (documental exige propósito; não há trabalho nomeado)."
+        ]
+      },
+      "mobile_390": "Arcos empilhados por etapa (área → crise → reação → desfecho/estágio → lição), cada etapa mostrando A e B em sequência com rótulos; carimbo 'em curso' fixo no cabeçalho do arco B. INST·10 com quatro controles empilhados e o perfil 24 h como faixa horizontal compacta (sem rolagem da página). Abertura com as quatro alternativas no 1º viewport.",
+      "lacunas_e_dependencias": {
+        "fonte": ["T8: Caso B com julgamento 'previsto para agosto de 2026' (hoje 17/09/2026) — re-verificar antes de publicar; Caso A idem", "Número de distribuidoras é 'pergunta de recorte' (de pouco mais de 40 a mais de 130): não exibir número único", "'Cerca de uma vintena' de contratos vencendo 2025–2031 é aproximação da fonte"],
+        "par9": ["Carimbo de idade dos números vivos", "Desenho do perfil de carga", "Registro das marcações e reescritas", "Glossário (caducidade, concessão, perdas) — 1 termo ancorado"],
+        "decisoes": ["S4 (número vivo)", "P7 (ocultar bloco 25; ele também cita 'Diagnóstico Energético')", "P21 (FCarga)"]
+      },
+      "nota_ambicao": "Dois arcos lado a lado, um que termina num contrato até 2056 e outro que para num carimbo 'processo em curso · verificado em 1º/08/2026 · há 47 dias'. A aula ensina humildade temporal pelo próprio design: o produto mostra a idade do que sabe."
+    },
+    {
+      "aulaId": "aula-08-07",
+      "codigo": "M08·A07",
+      "titulo": "Três forças, e o que cada uma já mudou de forma mensurável",
+      "subtitulo": "Síntese · a matriz é fluxo, não foto",
+      "blocos": 20,
+      "o_que_ensina": "A matriz se move por três forças com rastro público: a hidro é diluída (cai a fração estocável), parte crescente da geração está fora de comando (rastro: corte; contrafactual), e a geração anda mais rápido que a rede (rastro: salto do PAR; 15 anos de Roraima). Duas armadilhas de série: preliminar tratado como verificado e emenda de edições (quebra de abr/2024). O que sobra são relações e endereços, não percentuais.",
+      "natureza": ["síntese", "método de fonte / leitura de série temporal", "recuperação"],
+      "melhor_representacao": {
+        "arquetipo": "Mesa de forças com rastro (força → rastro mensurável → onde ver) + gráfico-armadilha para corrigir + roteador de fontes como prancha de consulta.",
+        "por_que": "A aula não traz mecanismo físico novo: ela liga cada força a uma série pública e ensina a desconfiar do gráfico. O ato mais autêntico é o de analista: marcar a quebra que um gráfico ingênuo esconde e escolher a base certa para uma pergunta. A lista final (11 itens) é material de recuperação, não de leitura passiva.",
+        "sequencia": "abertura (quanto da inclinação é fenômeno?) → 7.1–7.3 como mesa de três colunas, cada força com seu rastro desenhado → 7.4 tabela das armadilhas + gráfico ingênuo para corrigir → prancha INST·11 (rotear três perguntas) → 7.5 como recuperação ativa (os 11 enunciados como perguntas, com a aula de origem) → Revisão do módulo → registro",
+        "alem_do_conceito": "A lista 'o que sobra' vira recuperação: cada item aparece primeiro como pergunta, com a aula de origem visível, antes do enunciado."
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "pergunta": "Uma série mostra o corte de geração indo de 0,1% em 2021 para cerca de 20% em 2025. Quanto dessa inclinação é fenômeno físico?",
+        "objetivo": "Ligar cada força em movimento à série pública que registra o seu rastro e ler uma série sem cair em preliminar × verificado nem em emenda de edições.",
+        "previsao_util": true,
+        "previsao": {
+          "enunciado": "Escolha: (a) toda; (b) quase toda; (c) parte, e não dá para quantificar só com esta série; (d) nenhuma.",
+          "numeros_da_fonte": "0,1% (2021), ~0,5% (2022), 3,6% (2023), 9,3% (2024), ~20% (2025); até mar/2024 só eólicas; fotovoltaicas a partir de abr/2024 (bloco 15; nota da A05).",
+          "resposta_de_referencia": "(c). Ex·10: 'Parte da inclinação é mudança de universo, não fenômeno. Um gráfico honesto marca a quebra.' A fonte não dá a parcela: não inventar (C5: 'não é possível concluir').",
+          "erro_util": "§Erros: 'O gráfico de corte de geração de 2021 a 2025 mostra a evolução do fenômeno.'"
+        }
+      },
+      "menor_ato_autentico_C9": {
+        "tipo": "identificar o erro (num gráfico)",
+        "camada": "alexandria (mecânica) sobre fatos da fonte (bloco 15, Ex·10)",
+        "descricao": "O learner recebe o gráfico 2021–2025 sem marcação e marca onde está a quebra de universo e o que ela muda na leitura; depois compara com o gráfico honesto (quebra em abr/2024) e com a resposta literal do Ex·10.",
+        "atos_secundarios": [
+          {"tipo": "rotear (classificar pergunta → base)", "onde": "INST·11, após bloco 15", "enunciado": "Para três perguntas (ex.: 'condição hidrológica de ontem para análise interna'; 'capacidade instalada anual para material publicado'; 'corte por causa mensal'), escolha base e granularidade antes de abrir a ficha do roteador.", "referencia": "Fichas M08_INST11_DB (fonte)."},
+          {"tipo": "recuperar", "enunciado": "Os 11 enunciados do bloco 18 como perguntas, cada um com a aula de origem (A01–A06).", "origem": "lista da fonte; vínculo item→aula é camada Alexandria"},
+          {"tipo": "responder exercício da fonte", "enunciado": "Ex·09: 'A geração hidrelétrica caiu cerca de 5% num ano e a renovabilidade da matriz elétrica caiu 1,4 ponto. O que aconteceu?'"}
+        ]
+      },
+      "visualizacao_C6": [
+        {"o_que": "Gráfico-armadilha e gráfico honesto da série de corte", "relacao": "mesma série, com e sem quebra marcada", "eixos_unidade": "% do eólico+solar centralizado; anos (5 pontos; 2022 e 2025 são 'aproximadamente'/'cerca de')", "fonte": "bloco 15 e nota da A05 (fonte)", "existe_no_codigo": false},
+        {"o_que": "Prazo de usina × prazo de linha", "relacao": "eólica/solar 1–2 anos × linha 5–15 anos", "eixos_unidade": "anos; barras de intervalo", "fonte": "bloco 9", "existe_no_codigo": false},
+        {"o_que": "Salto do PAR entre ciclos", "relacao": "1.260 km → 5.301 km; R$ 7,6 bi → R$ 28,1 bi", "eixos_unidade": "km e R$ bi em figuras separadas", "fonte": "bloco 10", "existe_no_codigo": false},
+        {"o_que": "Força 1 e Força 2 sem série desenhada", "relacao": "hidro '>60%' → 'cerca de metade' em 'pouco mais de uma década'; GD 'menos de dez GW' → 'dezenas de GW'", "eixos_unidade": "NÃO desenhar série: a fonte não dá anos nem valores; usar dois estados rotulados ('antes'/'agora') ou só texto", "fonte": "blocos 1 e 5", "existe_no_codigo": false}
+      ],
+      "instrumentos_C5": [
+        {"id": "m08-inst-11", "titulo": "Roteador de recorte · qual base responde a qual pergunta", "bloco_indice_fonte": "após 15", "posicao_proposta": "após 15 (mesmo lugar)", "previsao": true, "observacoes": "Explorador (18 fichas × 2 usos). O eixo 'uso' só troca o veredito (fonte). O veredito de 'material publicado' cita 'A trava de dados verificados' — conferir P23 (termo 'trava' sem número; ok) e restaurar disclaimer da fonte."}
+      ],
+      "checagem_C7": "Marcação da quebra e roteamentos registrados antes de revelar; comparação com o gráfico honesto e com as fichas; recuperação dos 11 itens sem mostrar o enunciado antes da tentativa.",
+      "recuperacao_C10": {
+        "recuperacao_de_antes": "A05: 'Qual das três causas de corte mais linha resolve?' e A01: 'Quando duas fontes divergem, qual é a primeira hipótese?'",
+        "proximo_passo": {"atende": "Revisão do M08 (12 exercícios; 18 erros) → Avaliação do módulo (quiz de 10; P18: resultado, nunca 'aprovado') → Caso — Operação A (P17) → mapa do módulo de novo (a fonte pede o INST·01 'outra vez depois de fechar a Aula 07')", "nao_atende": "Rever 7.4", "leitura_sem_pratica": "Fazer o ato do gráfico"},
+        "serve_a": "§Final 26 (três forças e onde deixam rastro) e a segunda capacidade legada (qualificar números). Experiência jogável: linha 'em desenho' no módulo (P25)."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m08",
+        "sugestoes": ["Nenhuma: teste de remoção. A aula é de método; as figuras programáticas fazem o trabalho."]
+      },
+      "mobile_390": "Três forças como cartões empilhados (força · rastro · onde ver); gráfico-armadilha em largura total com marcação por toque (e alternativa: escolher o período da quebra num seletor); roteador com três seletores empilhados e ficha abaixo; recuperação um item por vez.",
+      "lacunas_e_dependencias": {
+        "fonte": ["Séries das forças 1 e 2 sem valores anuais na fonte (não desenhar)", "Projeção 'dominar quase totalmente os cortes no fim da década' sem número"],
+        "par9": ["Registro de marcação e roteamento", "Biblioteca com fichas de fonte para ligar o roteador às fichas reais (D5)", "Recuperação com origem visível"],
+        "decisoes": ["P7 (bloco 19 cita 'Trava 1' e produto: ocultar)", "P18 (avaliação)", "P17 (nome do caso)", "P25 (jogo só como linha)"]
+      },
+      "nota_ambicao": "A aula termina com o learner corrigindo um gráfico 'bonito' que mente por construção e montando o próprio endereço de consulta. É o fechamento da tese do módulo: os números vão vencer, e quem sai daqui sabe onde buscar o próximo e como não se enganar com ele."
+    }
+  ],
+  "resumo_arquetipos": {
+    "aula-08-01": "Mesa de qualificação (três eixos) com prancha viva no Eixo 1",
+    "aula-08-02": "Fichário lateral + ateliê de reconstrução",
+    "aula-08-03": "Laboratório de curvas + calendário do sistema",
+    "aula-08-04": "Plano diagnóstico (quadrante) como palco",
+    "aula-08-05": "Mapa/rede como palco + classificador de causa",
+    "aula-08-06": "Dossiê de dois arcos + laboratório de perfil de carga",
+    "aula-08-07": "Mesa de forças com rastro + gráfico-armadilha + roteador"
+  },
+  "atos_por_aula": {
+    "aula-08-01": "responder Ex·05 (qualificar pelos três eixos) + estimar FCap",
+    "aula-08-02": "reconstruir as duas pizzas (produzir antes de ver)",
+    "aula-08-03": "desenhar a carga líquida do domingo + classificar patamares (Ex·04)",
+    "aula-08-04": "posicionar e diagnosticar o Nordeste no plano (Ex·11)",
+    "aula-08-05": "classificar a causa do corte antes do veredito (INST·09)",
+    "aula-08-06": "identificar 'processo em curso descrito como desfecho' + manipular perfil até a faixa",
+    "aula-08-07": "marcar a quebra num gráfico + rotear perguntas para bases",
+    "observacao": "Nenhuma aula fecha em 'explique com suas palavras'. Todos os atos exercitam o mecanismo central."
+  },
+  "vinculos_de_recuperacao_propostos": {
+    "camada": "alexandria (a fonte não vincula §Ex e §Erros a aulas; o quiz sim)",
+    "quiz_literal": {"Q1": "A01", "Q2": "A01", "Q3": "A04", "Q4": "A03 e A05", "Q5": "A05", "Q6": "A05", "Q7": "A03", "Q8": "A05", "Q9": "A06", "Q10": "A06"},
+    "exercicios": {"ex-01": "A02", "ex-02": "A02", "ex-03": "A01", "ex-04": "A03", "ex-05": "A01", "ex-06": "A01", "ex-07": "A05", "ex-08": "A05", "ex-09": "A07 (e fichas da A02)", "ex-10": "A07 (e A05)", "ex-11": "A04", "ex-12": "A06"},
+    "erros": {"1": "A01", "2": "A02", "3": "A01", "4": "A01", "5": "A01", "6": "A01", "7": "A04", "8": "A04", "9": "A02", "10": "A02/A03", "11": "A05", "12": "A06", "13": "A05", "14": "A06", "15": "A06", "16": "A06", "17": "A06", "18": "A07"},
+    "final_checklist": {"1": "A02", "2-7": "A01", "8": "A02", "9-15": "A03", "16-18": "A04 (18 também A05)", "19-23": "A05", "24-25": "A06", "26": "A07"},
+    "voz_ataques_P14": {"1": "A01/A05", "2": "A04", "3": "A06", "4": "A06/A05", "5": "A03/A04", "6": "A05", "7": "A06", "tratamento": "atividade recomendada (oral), nunca evidência automatizada"}
+  },
+  "experiencia_jogavel": "Só a linha de metadado 'experiência jogável em desenho' no módulo (P25). O M08 segue exibido como 'Exercício de decisão' (P4, B4); este estudo não projeta jogo.",
+  "caso_operacao_a": "§Caso do M08 ('A planta pela lente da matriz') usa A05 (gargalo; limite de recebimento com ampliação de ~25% até o início da década de 2030) e A06 (perfil de carga plano × solar/eólica/hidro). Título: 'Caso — Operação A' (P17). Atenção: o §MAP diz 'Parte 8' (não usar). O ~25% do caso é coerente com 18.500 → 23.000 MW da A05 (+24%). O 'cerca de vinte por cento' do nó Sul no INST·01 é outro limite (recebimento do Sul a partir do SE/CO), não uma contradição."
+}

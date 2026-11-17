@@ -26,19 +26,19 @@
 export const A = {
   // ── CAMPOS ────────────────────────────────────────────────
   navy: '#0D2340',           // L945 'navy (nav/sidebar)' · L1149 'Campo estrutural · autoridade'
-  cremePapel: '#F2E9D6',     // L942 'paper' — campo do canvas e do rail esquerdo
+  cremePapel: 'var(--alx-creme, #F2E9D6)',     // L942 'paper' — campo do canvas e do rail esquerdo
 
   // ── COR SEMÂNTICA — nunca decorativa ──────────────────────
   oliva: '#55663F',          // L1147 'Concluído · argumento favorável · positivo' · L968 accent-olive 5.6:1
-  terracota: '#A8462A',      // L1148 'Em andamento · argumento crítico · cabeçalho de seção'
+  terracota: 'var(--alx-terracota, #A8462A)',      // L1148 'Em andamento · argumento crítico · cabeçalho de seção'
 
   // ── TINTA ─────────────────────────────────────────────────
-  tintaSobreCreme: '#2A2620', // L954 'ink' — contraste declarado 12.8:1
-  tintaSobreNavy: '#F2E9D6',  // L956 'on-navy' — contraste declarado 13.4:1
-  tintaSuave: '#5C5346',      // L955 'ink-muted' — contraste declarado 6.1:1
+  tintaSobreCreme: 'var(--alx-tinta, #2A2620)', // L954 'ink' — contraste declarado 12.8:1
+  tintaSobreNavy: 'var(--alx-sobre-navy, #F2E9D6)',  // L956 'on-navy' — contraste declarado 13.4:1
+  tintaSuave: 'var(--alx-tinta-suave, #5C5346)',      // L955 'ink-muted' — contraste declarado 6.1:1
 
   // ── FIO — profundidade vem daqui, nunca de sombra ─────────
-  fioSobreCreme: '#CFC1A4',   // L1029 + L959 'rule (fio de tabela)'
+  fioSobreCreme: 'var(--alx-fio, #CFC1A4)',   // L1029 + L959 'rule (fio de tabela)'
   fioSobreNavy: '#22405F',    // L1029 + L947 'navy-line'
 } as const;
 
@@ -56,31 +56,51 @@ export const A = {
 export const A2 = {
   navyProfundo: '#071628',    // L946 'navy-deep (rodapé)' — este É declarado
   navyAfundado: '#0A1D36',    //  19x — card dentro do campo navy (L257)
-  cremeSuperficie: '#FBF6EA', // L943 'paper-raised' — este É declarado
-  cremeAfundado: '#E7DAC0',   // L944 'paper-sunken' — este É declarado
-  tintaMetadado: '#6B6255',   // 204x — eyebrow Cinzel 11px e caption (papel inferido)
+  cremeSuperficie: 'var(--alx-creme-superficie, #FBF6EA)', // L943 'paper-raised' — este É declarado
+  cremeAfundado: 'var(--alx-creme-afundado, #E7DAC0)',   // L944 'paper-sunken' — este É declarado
+  tintaMetadado: 'var(--alx-metadado, #6B6255)',   // 204x — eyebrow Cinzel 11px e caption (papel inferido)
   tintaSobreNavySuave: '#A9B6C8', // L957 'on-navy-muted' 6.9:1 — declarado
   tintaMetadadoNavy: '#8CA0B8',   // 116x — eyebrow/metadado sobre navy (inferido)
   ouroSobreNavy: '#CBAA6E',   // L958 'on-navy-gold' 7.6:1 — declarado
   olivaSobreNavy: '#8E9E6B',  //  47x — oliva legível em campo navy (inferido)
   terracotaClara: '#C2683C',  // L967 'accent-bright (faixa/hover)' — declarado
-  fioClaroSobreCreme: '#E4D8BE',  // 74x — linha de lista / célula de grade densa
-  fioColunaSobreCreme: '#DCCEB2', // 39x — divisória de coluna
+  fioClaroSobreCreme: 'var(--alx-fio-claro, #E4D8BE)',  // 74x — linha de lista / célula de grade densa
+  fioColunaSobreCreme: 'var(--alx-fio-coluna, #DCCEB2)', // 39x — divisória de coluna
   fioCampoSobreNavy: '#35506E',   // 27x — borda de campo de formulário em navy
 } as const;
 
 export const AF = {
   // Cinzel: display, H1, H2, nav, rótulo. SEMPRE caixa alta ou versalete.
-  display: "'Cinzel', serif",
+  // "* Fallback" = serifada do sistema com métrica ajustada (bar A5; faces
+  // declaradas em AFONT_FALLBACK_CSS e injetadas pelo shell).
+  // var(): dentro da casca v3 (.alx3) a fonte muda; fora dela (Atlas,
+  // telas antigas) o valor original segue valendo como padrão.
+  display: "var(--alx-f-display, 'Cinzel', 'Cinzel Fallback', serif)",
   // Lora: H3, corpo, apostila, dado tabular.
-  corpo: "'Lora', serif",
+  corpo: "var(--alx-f-corpo, 'Lora', 'Lora Fallback', serif)",
 } as const;
 
 // Famílias carregadas pelo shell. O handoff carrega TRÊS (L13) — a
 // terceira é Playfair Display, com 36 declarações. Playfair é o
 // defeito conhecido que o brief manda corrigir, então NÃO entra aqui.
 export const AFONT_HREF =
-  'https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap';
+  'https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap';
+
+/** Fallback com métrica ajustada (bar A5: carregamento sem salto). Georgia
+ *  (regular até 549; Bold a partir de 550, que é o que o sistema usa para
+ *  600/700) redimensionada para a largura média de Lora/Cinzel, com ascendente
+ *  e descendente das faces finais. Medido no Chrome em 2026-09-17 por
+ *  docs/alexandria-v2/media-lab/A-r04/integracao/medir_fontes.mjs:
+ *    Lora 400/500 × Georgia = 105,4/106,3% · Lora 600 × Georgia Bold = 91,8%
+ *    Cinzel 500 × Georgia = 101,6% · Cinzel 600 × Georgia Bold = 92,9%
+ *    ascendente/descendente: Lora 1,01/0,27 · Cinzel 0,98/0,37 (em). */
+export const AFONT_FALLBACK_CSS = `
+@font-face { font-family: 'Lora Fallback'; font-style: normal; font-weight: 100 549; src: local('Georgia'); size-adjust: 105.8%; ascent-override: 95.5%; descent-override: 25.5%; line-gap-override: 0%; }
+@font-face { font-family: 'Lora Fallback'; font-style: italic; font-weight: 100 549; src: local('Georgia Italic'), local('Georgia'); size-adjust: 103%; ascent-override: 98%; descent-override: 26.2%; line-gap-override: 0%; }
+@font-face { font-family: 'Lora Fallback'; font-style: normal; font-weight: 550 900; src: local('Georgia Bold'), local('Georgia'); size-adjust: 91.8%; ascent-override: 110%; descent-override: 29.4%; line-gap-override: 0%; }
+@font-face { font-family: 'Cinzel Fallback'; font-style: normal; font-weight: 100 549; src: local('Georgia'); size-adjust: 101.6%; ascent-override: 96.5%; descent-override: 36.4%; line-gap-override: 0%; }
+@font-face { font-family: 'Cinzel Fallback'; font-style: normal; font-weight: 550 900; src: local('Georgia Bold'), local('Georgia'); size-adjust: 92.9%; ascent-override: 105.5%; descent-override: 39.8%; line-gap-override: 0%; }
+`;
 
 /** Tracking inversamente proporcional ao corpo:
  *  quanto menor a fonte, maior o espaçamento entre letras.
@@ -101,12 +121,15 @@ export const AFONT_HREF =
  *  mas também diz 'valores do handoff'. Decisão de Aquiles — trocar é
  *  uma linha por papel. */
 export const AT = {
-  display: { fontFamily: AF.display, fontSize: '46px', letterSpacing: '0.10em', textTransform: 'uppercase' as const },
-  h1:      { fontFamily: AF.display, fontSize: '32px', letterSpacing: '0.12em', textTransform: 'uppercase' as const },
-  h2:      { fontFamily: AF.display, fontSize: '22px', letterSpacing: '0.14em', textTransform: 'uppercase' as const },
-  nav:     { fontFamily: AF.display, fontSize: '13px', letterSpacing: '0.18em', textTransform: 'uppercase' as const },
-  rotulo:  { fontFamily: AF.display, fontSize: '11px', letterSpacing: '0.18em', textTransform: 'uppercase' as const },
-  h3:      { fontFamily: AF.corpo, fontSize: '15px', fontWeight: '600', letterSpacing: '0.10em', textTransform: 'uppercase' as const },
+  // As variáveis --alx-* só existem dentro de .alx3 (casca v3): lá o título é
+  // caixa alta e baixa com tracking negativo e o rótulo vai para a mono. Fora
+  // dela, valem os valores originais (Atlas e telas antigas não mudam).
+  display: { fontFamily: AF.display, fontSize: '46px', letterSpacing: 'var(--alx-ls-display, 0.10em)', textTransform: 'var(--alx-tt-titulo, uppercase)' as 'uppercase' },
+  h1:      { fontFamily: AF.display, fontSize: '32px', letterSpacing: 'var(--alx-ls-h1, 0.12em)', textTransform: 'var(--alx-tt-titulo, uppercase)' as 'uppercase' },
+  h2:      { fontFamily: AF.display, fontSize: '22px', letterSpacing: 'var(--alx-ls-h2, 0.14em)', textTransform: 'var(--alx-tt-titulo, uppercase)' as 'uppercase' },
+  nav:     { fontFamily: "var(--alx-f-rotulo, 'Cinzel', 'Cinzel Fallback', serif)", fontSize: '13px', letterSpacing: 'var(--alx-ls-nav, 0.18em)', textTransform: 'uppercase' as const },
+  rotulo:  { fontFamily: "var(--alx-f-rotulo, 'Cinzel', 'Cinzel Fallback', serif)", fontSize: '11px', letterSpacing: 'var(--alx-ls-rotulo, 0.18em)', textTransform: 'uppercase' as const },
+  h3:      { fontFamily: AF.corpo, fontSize: '15px', fontWeight: '600', letterSpacing: 'var(--alx-ls-h3, 0.10em)', textTransform: 'var(--alx-tt-titulo, uppercase)' as 'uppercase' },
   corpo:   { fontFamily: AF.corpo, fontSize: '16px', fontWeight: '400', lineHeight: '1.65', maxWidth: '68ch' },
   dado:    { fontFamily: AF.corpo, fontSize: '14px', fontWeight: '400', fontVariantNumeric: 'tabular-nums' as const },
 } as const;
@@ -184,4 +207,54 @@ export const ATEXTURA = {
   fibraUrl: `url("data:image/svg+xml;utf8,${encodeURIComponent(FIBRA_SVG)}")`,
   fibraOpacidade: 0.04,   // L1098 — teto de 4%, não ultrapassar
   fibraTile: '240px 240px',
+} as const;
+
+// ─────────────────────────────────────────────────────────────
+// ALEXANDRIA v2 — Peça A (entrada + shell). SÓ ADITIVO.
+//
+// Nenhum valor da paleta-base muda aqui. Estes tokens nomeiam medidas
+// e vozes que a v2 usa em mais de um arquivo (shell, busca, home), para
+// que header, rodapé e barra móvel não divirjam em silêncio.
+// ─────────────────────────────────────────────────────────────
+
+/** Pontos de quebra do shell v2. `movel` < 768 ≤ `medio` < 1100 ≤ `largo`. */
+export const ABP = {
+  medio: 768,
+  /** Abaixo disto a nav global mora na barra inferior (não cabe no header). */
+  navTopo: 960,
+  largo: 1100,
+} as const;
+
+/** Medidas do shell v2. Sem rail em nenhuma largura (bar S5). */
+export const ALAYOUT2 = {
+  headerAltura: '64px',
+  headerAlturaMovel: '56px',
+  localizadorAltura: '36px',
+  barraMovelAltura: '60px',
+  /** Medida da prancha de leitura (páginas B, C, D) — a mesma de antes. */
+  medidaPrancha: '1120px',
+  /** Medida da entrada: composição de duas colunas com a carta. */
+  medidaAmpla: '1312px',
+  gutterLargo: '32px',
+  gutterMovel: '16px',
+} as const;
+
+/** Vozes da v2 (bar S2). Identidade = Cinzel caixa alta espaçada;
+ *  conteúdo = Lora caixa alta e baixa; aparato = algarismo tabular. */
+export const AT2 = {
+  /** Tese da entrada — título de conteúdo, nunca caixa alta total. */
+  tese: { fontFamily: AF.corpo, fontSize: '50px', fontWeight: '500', lineHeight: '1.08', letterSpacing: '-0.01em' },
+  teseMovel: { fontFamily: AF.corpo, fontSize: '31px', fontWeight: '500', lineHeight: '1.14', letterSpacing: '-0.005em' },
+  lede: { fontFamily: AF.corpo, fontSize: '17px', fontWeight: '400', lineHeight: '1.6' },
+  /** Título de objeto de estudo (aula, trilha) em bloco de entrada. */
+  tituloObjeto: { fontFamily: AF.corpo, fontSize: '24px', fontWeight: '500', lineHeight: '1.25' },
+  /** Rótulo de identidade/nav — caixa alta espaçada, nunca < 11px. */
+  marca: { fontFamily: AF.display, fontSize: '19px', fontWeight: '500', letterSpacing: '0.22em', textTransform: 'uppercase' as const },
+  navV2: { fontFamily: AF.display, fontSize: '12px', fontWeight: '600', letterSpacing: '0.16em', textTransform: 'uppercase' as const },
+  eyebrow: { fontFamily: "var(--alx-f-rotulo, 'Cinzel', 'Cinzel Fallback', serif)", fontSize: '11px', fontWeight: '600', letterSpacing: 'var(--alx-ls-rotulo, 0.2em)', textTransform: 'uppercase' as const },
+  /** Aparato: código de aula, contagem com escopo. */
+  codigo: { fontFamily: AF.corpo, fontSize: '13px', fontWeight: '600', letterSpacing: '0.06em', fontVariantNumeric: 'tabular-nums lining-nums' as const },
+  /** Linha de metadado em prosa. Sem `tabular-nums`: no Lora ele alarga o
+   *  espaço entre palavras no peso 600 (medido no render). */
+  metadado: { fontFamily: AF.corpo, fontSize: '14px', fontWeight: '400', lineHeight: '1.5' },
 } as const;

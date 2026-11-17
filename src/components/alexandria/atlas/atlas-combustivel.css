@@ -1,0 +1,50 @@
+/* Atlas da Alexandria v3 — capítulo "O combustível".
+ * Separado de atlas-v3.css de propósito: só o que é novo deste capítulo. (O ajuste
+ * da antiga grade de capítulos saiu daqui: o índice agora é lista, em atlas-v3.css.) */
+
+/* ── os dois números do capítulo: hierarquia por escala, sem caixa ── */
+.alx3 .atl-comb-numeros {
+  display: grid;
+  gap: 14px;
+  margin: 0 0 6px;
+}
+
+.alx3 .atl-comb-numeros > div {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.alx3 .atl-comb-numero {
+  order: -1;
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--tinta);
+  font-variant-numeric: lining-nums;
+}
+
+.alx3 .atl-comb-unidade {
+  margin-left: 8px;
+  font-family: var(--f-leitura);
+  font-size: 17px;
+  font-style: italic;
+  letter-spacing: 0;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-comb-legenda {
+  margin-top: 5px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--tinta-suave);
+  text-wrap: pretty;
+}
+
+/* no celular o número desce um degrau, a hierarquia fica */
+.alx3 .atl-estreito .atl-comb-numero {
+  font-size: 32px;
+}

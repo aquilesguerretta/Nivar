@@ -1,0 +1,466 @@
+{
+  "modulo": "modulo-13",
+  "titulo_modulo": "Análise Financeira de Empresas e Projetos",
+  "arquivos_fonte": [
+    "src/lib/data/alexandria-modulo-13-content.ts",
+    "docs/alexandria-v2/extraction/m13/aparato.json",
+    "docs/alexandria-v2/extraction/m13/instrumentos.json"
+  ],
+  "aulas": [
+    {
+      "numero": 1,
+      "chave": "aula-13-01",
+      "titulo": "Por que EV/EBITDA e não P/E — e por que alavancagem infla os dois por razões opostas"
+    },
+    {
+      "numero": 2,
+      "chave": "aula-13-02",
+      "titulo": "O que acontece com um fluxo de caixa descontado quando o direito econômico tem data para acabar"
+    },
+    {
+      "numero": 3,
+      "chave": "aula-13-03",
+      "titulo": "Trinta minutos no release, sessenta no Formulário de Referência, e a pergunta que só a segunda leitura permite"
+    },
+    {
+      "numero": 4,
+      "chave": "aula-13-04",
+      "titulo": "Participação econômica não é poder de voto — e no Brasil elas divergem com frequência"
+    },
+    {
+      "numero": 5,
+      "chave": "aula-13-05",
+      "titulo": "A dívida que o projeto paga sozinho — e a métrica que decide quanto dela cabe"
+    },
+    {
+      "numero": 6,
+      "chave": "aula-13-06",
+      "titulo": "Seis categorias de risco, e a sexta é a que o currículo não nomeia"
+    },
+    {
+      "numero": 7,
+      "chave": "aula-13-07",
+      "titulo": "Seis fichas, um arquétipo cada, e um campo deixado deliberadamente em branco"
+    },
+    {
+      "numero": 8,
+      "chave": "aula-13-08",
+      "titulo": "O andaime: três teses, três riscos, três lacunas — em uma hora, com âncora e contraponto"
+    }
+  ],
+  "mencoes": [
+    {
+      "aula": 2,
+      "tipo": "distribuidora",
+      "nome": "Light — distribuidora do Rio de Janeiro",
+      "trecho": "Uma distribuidora do Rio de Janeiro chegou a 2026 com a concessão vencendo em junho daquele ano, em meio a um processo de recuperação judicial iniciado em 2023.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 123,
+      "contexto": "A aula usa uma distribuidora fluminense com concessão a vencer em 2026 para mostrar que o valor de um DCF de concessão depende do direito econômico documentado, não do ativo físico; a aula não nomeia a empresa (o material de extração do módulo a identifica como Light).",
+      "ganho_no_mapa": "Ver a área atendida pela distribuidora deixa concreto que o que se avalia é o direito de operar um território por prazo definido, e não as redes em si.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "distribuidora",
+      "nome": "Light — área de concessão (31 municípios)",
+      "trecho": "Em dezembro de 2025, a diretoria do regulador recomendou ao ministério a prorrogação por mais trinta anos, com contrapartida de investimento da ordem de R$ 10 bilhões até 2030, cobrindo trinta e um municípios e mais de quatro milhões de unidades consumidoras.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 123,
+      "contexto": "A recomendação de prorrogação por trinta anos muda o horizonte do fluxo de caixa de meses para décadas sem mudar o ativo físico.",
+      "ganho_no_mapa": "O contorno dos trinta e um municípios mostra o tamanho do território cujo direito econômico foi estendido.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "usina",
+      "nome": "Usinas nucleares de Angra (Eletronuclear)",
+      "trecho": "Em outubro de 2025, a Âmbar Energia assinou contrato para adquirir a totalidade da participação da AXIA Energia na Eletronuclear — a operadora das usinas nucleares brasileiras.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 167,
+      "contexto": "Caso central da aula: a compra de 68% do capital total da operadora nuclear deu só 35,3% do voto; a aula fala em \"usinas nucleares brasileiras\" sem nomear Angra (identificação do leitor).",
+      "ganho_no_mapa": "Localizar as usinas mostra que o ativo físico é um único sítio, enquanto capital e voto se dividem entre sócios diferentes.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "usina",
+      "nome": "Angra 3 (terceira usina nuclear)",
+      "trecho": "ampliou o conselho de administração de sete para dez membros, com três indicações adicionais da União, e desobrigou a companhia de novos aportes na terceira usina nuclear.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 173,
+      "contexto": "O termo de conciliação homologado no STF restaurou influência da União no conselho da AXIA e a desobrigou de aportes na terceira usina nuclear; a aula não usa o nome Angra 3 (identificação do leitor).",
+      "ganho_no_mapa": "Ver a obra ao lado das duas usinas em operação dá endereço físico à obrigação de aporte que a conciliação retirou da companhia.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "pais",
+      "nome": "Espanha",
+      "trecho": "A controladora espanhola comprou, em setembro de 2025, a fatia detida por um fundo de pensão brasileiro, elevando sua posição para pouco mais de quatro quintos do capital.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 177,
+      "contexto": "A aula usa o fechamento de capital da Neoenergia pela controladora espanhola para mostrar que valor de mercado e dividend yield deixam de existir quando a listagem acaba.",
+      "ganho_no_mapa": "No globo, a ligação Brasil–Espanha mostra que o controle de uma grande concessionária brasileira é exercido de outro país.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 4,
+      "tipo": "pais",
+      "nome": "China",
+      "trecho": "Controlada pela State Grid Corporation of China, por meio de holding brasileira. Não pela China Three Gorges — são estatais chinesas distintas.",
+      "arquivo": "docs/alexandria-v2/extraction/m13/instrumentos.json",
+      "linha": 2444,
+      "contexto": "Dado do Classificador de arquétipo de controle (instrumento da Aula 04, lido da extração de instrumentos): a nota da CPFL Energia identifica o controlador estatal chinês.",
+      "ganho_no_mapa": "No globo, a ligação Brasil–China mostra um controlador estatal estrangeiro por trás de uma concessionária brasileira.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 4,
+      "tipo": "pais",
+      "nome": "Canadá",
+      "trecho": "Grupo industrial brasileiro e fundo de pensão canadense como acionistas de referência.",
+      "arquivo": "docs/alexandria-v2/extraction/m13/instrumentos.json",
+      "linha": 2462,
+      "contexto": "Dado do Classificador de arquétipo de controle (instrumento da Aula 04, lido da extração de instrumentos): a nota da Auren Energia registra um fundo de pensão canadense entre os acionistas de referência.",
+      "ganho_no_mapa": "No globo, a ligação Brasil–Canadá mostra capital institucional estrangeiro como sócio de referência de uma geradora brasileira.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 5,
+      "tipo": "outro",
+      "nome": "Cortes de geração no sistema brasileiro",
+      "trecho": "Projetos expostos a preço de mercado, ou sujeitos a cortes de geração relevantes — fenômeno que se tornou material no sistema brasileiro nos últimos ciclos — suportam bem menos.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 190,
+      "contexto": "A capacidade de dívida de um projeto cai quando ele está exposto a preço de mercado ou a cortes de geração; a aula ancora o fenômeno só no \"sistema brasileiro\", sem localizar.",
+      "ganho_no_mapa": "Ver onde a geração é cortada por falta de escoamento mostra por que a localização do projeto muda quanto de dívida ele suporta.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "distribuidora",
+      "nome": "Light — distribuidora do Rio de Janeiro",
+      "trecho": "Dívida da ordem de R$ 11 bilhões, agravada por furto de energia e inadimplência em áreas de ocupação irregular. Concessão de distribuição com vencimento previsto para 2026",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 216,
+      "contexto": "Estudo de caso da recuperação judicial de distribuidora: a dívida foi agravada por furto de energia e inadimplência em áreas de ocupação irregular, com a concessão perto do vencimento; a aula não nomeia a empresa (o material de extração a identifica como Light).",
+      "ganho_no_mapa": "Ver a área de concessão mostra que perda não técnica é um risco com endereço, não uma média da empresa.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 6,
+      "tipo": "cidade",
+      "nome": "Rio de Janeiro (capital)",
+      "trecho": "Pedido formal de encerramento protocolado na 3ª Vara Empresarial da comarca da capital do Rio de Janeiro",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 216,
+      "contexto": "A cronologia do caso termina com o pedido de encerramento da recuperação judicial protocolado na capital fluminense, ainda sem decisão na data de verificação.",
+      "ganho_no_mapa": "Situa o caso na capital fluminense, centro da área atendida pela distribuidora.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "biocombustivel",
+      "nome": "Raízen",
+      "trecho": "A Raízen — sociedade constituída como associação entre dois grupos de referência — ajuizou pedido de recuperação extrajudicial em março de 2026, com dívida financeira quirografária sujeita de aproximadamente R$ 65,1 bilhões.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 211,
+      "contexto": "A aula usa a recuperação extrajudicial da Raízen como caso de risco de crédito e de estrutura de capital, sem tratar das operações agroindustriais.",
+      "ganho_no_mapa": "As unidades de bioenergia e a rede de combustíveis no mapa mostram que uma operação espalhada e ativa pode coexistir com uma dívida que não fecha.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 7,
+      "tipo": "linha",
+      "nome": "AXIA Energia — rede de transmissão e parque gerador nos quatro submercados",
+      "trecho": "Geração e transmissão em escala nacional. Cerca de 44,0 GW de capacidade instalada e cerca de 74,8 mil km de linhas de transmissão, com atuação nos quatro submercados.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 229,
+      "contexto": "Ficha da AXIA Energia (ex-Eletrobras): o campo de segmento e geografia dá a escala nacional de geração e transmissão.",
+      "ganho_no_mapa": "Ver 74,8 mil km de linhas e as usinas espalhadas pelos quatro submercados mostra por que a companhia pesa na matriz e na rede básica do país inteiro.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "usina",
+      "nome": "Usinas nucleares de Angra (Eletronuclear)",
+      "trecho": "A União segue controlando a operadora nuclear com cerca de 64,7% do capital votante.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 229,
+      "contexto": "O evento estrutural da ficha da AXIA é a venda da participação na operadora nuclear, que continua controlada pela União; Angra não é nomeada (identificação do leitor).",
+      "ganho_no_mapa": "O sítio nuclear no mapa lembra que a companhia saiu do capital de um ativo que continua operando no mesmo lugar, sob o mesmo controlador.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 7,
+      "tipo": "distribuidora",
+      "nome": "Cemig — concentração em Minas Gerais",
+      "trecho": "Integrada: distribuição, geração, transmissão, comercialização e distribuição de gás natural, com concentração em Minas Gerais e presença em outros estados via geração e comercialização.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 231,
+      "contexto": "Ficha da Cemig, arquétipo de estatal subnacional: atuação integrada concentrada em Minas Gerais, com presença em outros estados.",
+      "ganho_no_mapa": "Ver a área de concessão e as usinas concentradas em um estado mostra por que o controlador estadual e o calendário político local pesam no risco.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "pais",
+      "nome": "França",
+      "trecho": "Controlada pelo grupo francês Engie , por meio de holding brasileira. Capital composto exclusivamente por ações ordinárias, o que torna participação econômica e poder de voto coincidentes",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 233,
+      "contexto": "Ficha da ENGIE Brasil Energia, arquétipo de controlador estrangeiro privado majoritário: só ações ordinárias, então participação e voto coincidem.",
+      "ganho_no_mapa": "No globo, a ligação Brasil–França mostra onde está o centro de decisão de uma das grandes geradoras do país.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 7,
+      "tipo": "usina",
+      "nome": "ENGIE Brasil Energia — portfólio de geração e transmissão",
+      "trecho": "Ativos distribuídos por múltiplos submercados. Portfólio com hidrelétricas de grande porte, complexos eólicos e solares, e ativos de transmissão contratados.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 233,
+      "contexto": "O campo de geografia da ficha descreve um portfólio espalhado por vários submercados, com hidrelétricas, complexos eólicos e solares e transmissão.",
+      "ganho_no_mapa": "Ver os ativos distribuídos por submercados mostra a diversificação geográfica que reduz a exposição a um único regime de chuva ou de vento.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 7,
+      "tipo": "gasoduto",
+      "nome": "Infraestrutura de transporte de gás com participação da ENGIE (não nomeada na fonte)",
+      "trecho": "Geração — com predominância renovável —, transmissão e comercialização, além de participação em infraestrutura de transporte de gás.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 233,
+      "contexto": "A ficha registra que a companhia também participa de infraestrutura de transporte de gás, sem nomear o ativo.",
+      "ganho_no_mapa": "A malha de gasodutos no mapa mostra que parte do resultado da companhia vem de um ativo de rede fora do setor elétrico.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 7,
+      "tipo": "usina",
+      "nome": "Usina hidrelétrica de grande porte adquirida da controladora da ENGIE (não nomeada na fonte)",
+      "trecho": "Assembleia de 2 de julho de 2026 aprovou a aquisição de participação de 40% em usina hidrelétrica de grande porte detida pela controladora, com valor atribuído de cerca de R$ 5,7 bi",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 233,
+      "contexto": "O evento estrutural da ficha é a compra de 40% de uma grande hidrelétrica do próprio controlador, transação com parte relacionada; a fonte não diz qual é a usina.",
+      "ganho_no_mapa": "Localizar a usina, quando identificada em fonte primária, mostraria em que bacia e submercado está o ativo que justificou a oferta de ações.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 7,
+      "tipo": "campo_bacia_petroleo",
+      "nome": "Eneva — gás em bacias terrestres integrado a termelétricas",
+      "trecho": "exploração e produção de gás em bacias terrestres, transporte dedicado e usinas termelétricas no mesmo complexo, com contratos de capacidade. Concentração nas regiões Norte e Nordeste.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 235,
+      "contexto": "Ficha da Eneva: modelo integrado em que a companhia produz o gás e gera a energia no mesmo complexo, concentrado no Norte e no Nordeste; a fonte não nomeia as bacias.",
+      "ganho_no_mapa": "Ver campo de gás, transporte dedicado e térmica lado a lado mostra por que o risco de combustível dessa companhia é diferente do de uma térmica que compra gás de terceiros.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "distribuidora",
+      "nome": "Equatorial Energia — distribuição em múltiplos estados",
+      "trecho": "distribuição de energia em múltiplos estados, transmissão, geração renovável, saneamento básico e participações societárias relevantes. Presença concentrada nas regiões Norte, Nordeste e Sudeste.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 237,
+      "contexto": "Ficha da Equatorial, corporação sem controlador: holding com distribuidoras em vários estados, transmissão, renováveis e saneamento.",
+      "ganho_no_mapa": "Ver as áreas de concessão espalhadas por Norte, Nordeste e Sudeste mostra por que a soma das partes é obrigatória e o risco de execução é simultâneo.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "biocombustivel",
+      "nome": "Raízen",
+      "trecho": "Bioenergia, açúcar, combustíveis e logística em estrutura integrada.",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 239,
+      "contexto": "A ficha trata a Raízen só como caso financeiro e remete o lado agroindustrial ao Módulo 14.",
+      "ganho_no_mapa": "As unidades de bioenergia e a logística de combustíveis no mapa dão dimensão física à companhia cuja dívida é o objeto da ficha.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 7,
+      "tipo": "pais",
+      "nome": "Estados Unidos",
+      "trecho": "A americana AES Corporation vendeu a totalidade de sua participação à Auren Energia em operação anunciada em maio de 2024",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 244,
+      "contexto": "A AES Brasil não recebe ficha porque foi incorporada pela Auren após a saída da controladora americana; ativos e riscos migraram para o balanço da adquirente.",
+      "ganho_no_mapa": "No globo, a saída do controlador americano mostra uma ligação de controle que deixou de existir enquanto os ativos continuaram no mesmo lugar.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Operação A — mineração em Minas Gerais (submercado Sudeste/Centro-Oeste)",
+      "trecho": "As doze partes anteriores construíram o perfil da Operação A — mineração em Minas Gerais, submercado Sudeste/Centro-Oeste, fator de carga elevado",
+      "arquivo": "docs/alexandria-v2/extraction/m13/aparato.json",
+      "linha": 52,
+      "contexto": "Caso do módulo: a Operação A, mineradora em Minas Gerais no submercado Sudeste/Centro-Oeste, passa a avaliar uma geradora como contraparte de crédito.",
+      "ganho_no_mapa": "Ver a operação dentro do submercado dela situa de que região vêm o preço e a contraparte que ela precisa avaliar.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Minas Gerais",
+      "trecho": "Operação A — mineração em Minas Gerais. Sem nome, sem número de inscrição fiscal, sem município exato, sem valor de operação específica e sem dado sensível.",
+      "arquivo": "docs/alexandria-v2/extraction/m13/aparato.json",
+      "linha": 414,
+      "contexto": "O caso declara que a operação é identificada só pelo estado, sem município nem dado sensível.",
+      "ganho_no_mapa": "O mapa só pode destacar o estado, não um ponto: a própria fonte limita a precisão geográfica do caso.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "pais",
+      "nome": "Estados Unidos",
+      "trecho": "A americana AES Corporation vendeu a totalidade de sua participação à Auren Energia; operação anunciada em maio de 2024",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 349,
+      "contexto": "Exercício 11: a AES Brasil deixou de existir como emissora independente depois da saída da controladora americana.",
+      "ganho_no_mapa": "No globo, marca o país de origem do controlador que saiu.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "pais",
+      "nome": "Espanha",
+      "trecho": "A controladora espanhola elevou sua posição em setembro de 2025 comprando a fatia de um fundo de pensão",
+      "arquivo": "src/lib/data/alexandria-modulo-13-content.ts",
+      "linha": 356,
+      "contexto": "Exercício 12: o fechamento de capital da Neoenergia pela controladora espanhola muda o que o battlecard consegue medir.",
+      "ganho_no_mapa": "No globo, marca o país de onde o controle é exercido.",
+      "relevancia": "baixa"
+    }
+  ],
+  "vistas_sugeridas": [
+    {
+      "aula": 2,
+      "titulo": "A concessão com data para acabar",
+      "o_que_mostra": "Câmera na região metropolitana do Rio de Janeiro; contorno da área de concessão da distribuidora (31 municípios) sobre as subestações e linhas que a alimentam.",
+      "nomes": [
+        "Light — distribuidora do Rio de Janeiro",
+        "Light — área de concessão (31 municípios)"
+      ],
+      "camadas": [
+        "outra: áreas de concessão de distribuição",
+        "subestacoes",
+        "linhas"
+      ]
+    },
+    {
+      "aula": 4,
+      "titulo": "Um sítio, dois sócios: capital não é voto",
+      "o_que_mostra": "Câmera no litoral sul fluminense; destaque das usinas nucleares e da terceira unidade, com as linhas que as ligam ao Sudeste.",
+      "nomes": [
+        "Usinas nucleares de Angra (Eletronuclear)",
+        "Angra 3 (terceira usina nuclear)"
+      ],
+      "camadas": [
+        "usinas_nuclear",
+        "linhas",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 4,
+      "titulo": "De onde vem o controle",
+      "o_que_mostra": "Globo com o Brasil ligado aos países de origem de controladores e acionistas de referência citados na aula e no classificador (Espanha, China, Canadá).",
+      "nomes": [
+        "Espanha",
+        "China",
+        "Canadá"
+      ],
+      "camadas": [
+        "mundo_paises"
+      ]
+    },
+    {
+      "aula": 6,
+      "titulo": "Perda não técnica tem endereço",
+      "o_que_mostra": "Câmera na capital fluminense e entorno; área de concessão da distribuidora em recuperação judicial, com destaque para o território atendido.",
+      "nomes": [
+        "Light — distribuidora do Rio de Janeiro",
+        "Rio de Janeiro (capital)"
+      ],
+      "camadas": [
+        "outra: áreas de concessão de distribuição",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 7,
+      "titulo": "Uma companhia nos quatro submercados",
+      "o_que_mostra": "Brasil inteiro; linhas de transmissão e usinas da AXIA sobre os quatro submercados.",
+      "nomes": [
+        "AXIA Energia — rede de transmissão e parque gerador nos quatro submercados"
+      ],
+      "camadas": [
+        "linhas",
+        "usinas_hidro",
+        "submercados",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 7,
+      "titulo": "Seis fichas, seis geografias",
+      "o_que_mostra": "Brasil inteiro; áreas de concessão da Cemig e da Equatorial, portfólio da ENGIE por submercado e complexos da Eneva no Norte e no Nordeste — um destaque por ficha.",
+      "nomes": [
+        "Cemig — concentração em Minas Gerais",
+        "Equatorial Energia — distribuição em múltiplos estados",
+        "ENGIE Brasil Energia — portfólio de geração e transmissão",
+        "Eneva — gás em bacias terrestres integrado a termelétricas"
+      ],
+      "camadas": [
+        "outra: áreas de concessão de distribuição",
+        "usinas_hidro",
+        "usinas_eolica",
+        "usinas_solar",
+        "usinas_termica",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 7,
+      "titulo": "Gás e térmica no mesmo complexo",
+      "o_que_mostra": "Câmera no Norte e no Nordeste; termelétricas a gás junto às bacias terrestres produtoras, com a malha de gasodutos do país como contraste.",
+      "nomes": [
+        "Eneva — gás em bacias terrestres integrado a termelétricas",
+        "Infraestrutura de transporte de gás com participação da ENGIE (não nomeada na fonte)"
+      ],
+      "camadas": [
+        "usinas_termica",
+        "gasodutos",
+        "outra: bacias terrestres de gás"
+      ]
+    },
+    {
+      "aula": 7,
+      "titulo": "Controladores estrangeiros no globo",
+      "o_que_mostra": "Globo com o Brasil ligado à França (controlador atual de uma geradora) e aos Estados Unidos (controlador que saiu em 2024).",
+      "nomes": [
+        "França",
+        "Estados Unidos"
+      ],
+      "camadas": [
+        "mundo_paises"
+      ]
+    },
+    {
+      "aula": 0,
+      "titulo": "A Operação A no submercado dela",
+      "o_que_mostra": "Câmera em Minas Gerais dentro do submercado Sudeste/Centro-Oeste; destaque do estado, sem ponto exato (a fonte não informa município).",
+      "nomes": [
+        "Operação A — mineração em Minas Gerais (submercado Sudeste/Centro-Oeste)",
+        "Minas Gerais"
+      ],
+      "camadas": [
+        "submercados"
+      ]
+    }
+  ]
+}

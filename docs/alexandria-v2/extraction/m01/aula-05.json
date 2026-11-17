@@ -1,0 +1,1830 @@
+{
+  "meta": {
+    "grupo": "aula05",
+    "modulo": "M01",
+    "aula": "M01·A05",
+    "fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo01.html",
+    "fonte_somente_leitura": true,
+    "fonte_total_linhas": 3212,
+    "aula_linhas": {
+      "inicio": 1726,
+      "fim": 1826,
+      "nota": "comentário de abertura 1726-1728; section.aula 1729-1826"
+    },
+    "extraido_em": "2026-11-14",
+    "metodo": "Extração programática (script node sobre fatias do HTML por linha + regex ancorado; nenhuma prosa digitada). `html` guarda o innerHTML literal; `texto` é o mesmo conteúdo com tags removidas e entidades decodificadas. O script do instrumento foi EXECUTADO num DOM simulado (node:vm) para obter as saídas do cenário-padrão.",
+    "gerador": "docs/alexandria-v2/extraction/m01/extratores/gen-aula05.mjs",
+    "verificador": "docs/alexandria-v2/extraction/m01/extratores/verify-aula05.mjs",
+    "protocolo": "docs/alexandria/extraction-protocol.md",
+    "taxonomia": "docs/alexandria/instrument-taxonomy.md",
+    "convencoes": {
+      "ausencia": "null + campo *_nota explicando o que foi medido",
+      "ids": "m01-a05-bNN-<tipo> para blocos (ordem da fonte); m01-inst-04; m01-ex-04; m01-ex-07",
+      "vinculos": "só quando a fonte declara (tag, posição dentro da section, remissão textual literal); correspondência textual ou numérica é marcada como tal"
+    }
+  },
+  "aula": {
+    "id": "m01-a05",
+    "numero": 5,
+    "marcador": {
+      "num": "Aula 05",
+      "nome": "Demanda e fator de carga",
+      "origem": {
+        "seletor": "div.aula-marker",
+        "trecho_inicial": "Aula 05 Demanda e fator de carga",
+        "linha_aprox": 1731
+      }
+    },
+    "titulo_h2_html": "Por que uma fábrica paga por <em>capacidade reservada</em>.",
+    "titulo_h2_texto": "Por que uma fábrica paga por capacidade reservada.",
+    "titulo_h2_origem": {
+      "seletor": "h2.aula-title",
+      "trecho_inicial": "Por que uma fábrica paga por capacidade reservada.",
+      "linha_aprox": 1732
+    },
+    "pergunta_mapa": {
+      "numero": "05",
+      "tema": "Demanda e fator de carga",
+      "pergunta_html": "Por que uma fábrica paga por capacidade reservada, não só por energia?",
+      "pergunta_texto": "Por que uma fábrica paga por capacidade reservada, não só por energia?",
+      "origem": {
+        "seletor": "§ MAP table > tbody > tr(05)",
+        "trecho_inicial": "Por que uma fábrica paga por capacidade reservada, não só po",
+        "linha_aprox": 1343
+      },
+      "nota": "Única pergunta que a fonte declara para esta aula. Vive na tabela do § MAP, não na aula."
+    },
+    "duracao_min": null,
+    "dificuldade": null,
+    "video": null,
+    "ausencias_nota": "Sem duração, dificuldade, vídeo, <img>, figura ou \"Vale lembrar\" dentro da section (ver varredura_de_ausencia)."
+  },
+  "blocos": [
+    {
+      "id": "m01-a05-b01-lead",
+      "tipo": "lead",
+      "html": "A segunda fluência que separa analista credível de iniciante: entender que demanda não é uma cobrança esotérica nem um truque tarifário. É a tradução econômica de uma realidade física da rede.",
+      "texto": "A segunda fluência que separa analista credível de iniciante: entender que demanda não é uma cobrança esotérica nem um truque tarifário. É a tradução econômica de uma realidade física da rede.",
+      "origem": {
+        "seletor": "section.aula(Aula 05) > .container > p.lead",
+        "trecho_inicial": "A segunda fluência que separa analista credível de iniciante",
+        "linha_aprox": 1734
+      }
+    },
+    {
+      "id": "m01-a05-b02-titulo",
+      "tipo": "titulo",
+      "numero": "5.1",
+      "texto": "Consumo é volume. Demanda é dimensão da rede.",
+      "html": "<span class=\"num\">5.1</span>Consumo é volume. Demanda é dimensão da rede.",
+      "origem": {
+        "seletor": "h3 > span.num(5.1)",
+        "trecho_inicial": "5.1Consumo é volume. Demanda é dimensão da rede.",
+        "linha_aprox": 1736
+      }
+    },
+    {
+      "id": "m01-a05-b03-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Imagine uma estrada que liga uma fábrica a um centro logístico. Se a fábrica trabalha em ritmo constante, basta uma estrada de tamanho moderado. Se a fábrica concentra toda a operação em um turno de quatro horas — descarrega tudo, depois fica vazia — a estrada precisa ser dimensionada para o <strong>pico</strong>, não para a média. Mesmo que ela passe a maior parte do tempo subutilizada.",
+      "texto": "Imagine uma estrada que liga uma fábrica a um centro logístico. Se a fábrica trabalha em ritmo constante, basta uma estrada de tamanho moderado. Se a fábrica concentra toda a operação em um turno de quatro horas — descarrega tudo, depois fica vazia — a estrada precisa ser dimensionada para o pico, não para a média. Mesmo que ela passe a maior parte do tempo subutilizada.",
+      "origem": {
+        "seletor": "h3(5.1) ~ p:nth-of-type(1)",
+        "trecho_inicial": "Imagine uma estrada que liga uma fábrica a um centro logísti",
+        "linha_aprox": 1737
+      }
+    },
+    {
+      "id": "m01-a05-b04-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Na rede elétrica, a lógica é idêntica. A distribuidora precisa ter transformadores, cabos, subestações e proteção dimensionados para o <strong>pior momento simultâneo</strong> em que todos os clientes daquela rede puxam energia. Essa infraestrutura tem custo fixo: existe e custa, mesmo se a fábrica usar pouco.",
+      "texto": "Na rede elétrica, a lógica é idêntica. A distribuidora precisa ter transformadores, cabos, subestações e proteção dimensionados para o pior momento simultâneo em que todos os clientes daquela rede puxam energia. Essa infraestrutura tem custo fixo: existe e custa, mesmo se a fábrica usar pouco.",
+      "origem": {
+        "seletor": "h3(5.1) ~ p:nth-of-type(2)",
+        "trecho_inicial": "Na rede elétrica, a lógica é idêntica. A distribuidora preci",
+        "linha_aprox": 1739
+      }
+    },
+    {
+      "id": "m01-a05-b05-paragrafo",
+      "tipo": "paragrafo",
+      "html": "<strong>Demanda</strong> é a cobrança por essa capacidade reservada da rede.",
+      "texto": "Demanda é a cobrança por essa capacidade reservada da rede.",
+      "origem": {
+        "seletor": "h3(5.1) ~ p:nth-of-type(3)",
+        "trecho_inicial": "Demanda é a cobrança por essa capacidade reservada da rede.",
+        "linha_aprox": 1741
+      }
+    },
+    {
+      "id": "m01-a05-b06-titulo",
+      "tipo": "titulo",
+      "numero": "5.2",
+      "texto": "Os três conceitos de demanda",
+      "html": "<span class=\"num\">5.2</span>Os três conceitos de demanda",
+      "origem": {
+        "seletor": "h3 > span.num(5.2)",
+        "trecho_inicial": "5.2Os três conceitos de demanda",
+        "linha_aprox": 1743
+      }
+    },
+    {
+      "id": "m01-a05-b07-tabela",
+      "tipo": "tabela",
+      "cabecalho": [
+        {
+          "html": "Conceito",
+          "texto": "Conceito"
+        },
+        {
+          "html": "O que significa",
+          "texto": "O que significa"
+        },
+        {
+          "html": "Como é cobrado",
+          "texto": "Como é cobrado"
+        }
+      ],
+      "linhas": [
+        {
+          "celulas": [
+            {
+              "html": "<b>Demanda contratada</b>",
+              "texto": "Demanda contratada",
+              "classe": null
+            },
+            {
+              "html": "Capacidade em kW que a empresa contrata junto à distribuidora",
+              "texto": "Capacidade em kW que a empresa contrata junto à distribuidora",
+              "classe": null
+            },
+            {
+              "html": "Cobrada integralmente, mesmo se a empresa não usar",
+              "texto": "Cobrada integralmente, mesmo se a empresa não usar",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Demanda contratada",
+            "linha_aprox": 1748
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>Demanda medida</b>",
+              "texto": "Demanda medida",
+              "classe": null
+            },
+            {
+              "html": "Maior demanda efetivamente registrada no intervalo de medição (tipicamente 15 minutos integralizados) no período de faturamento",
+              "texto": "Maior demanda efetivamente registrada no intervalo de medição (tipicamente 15 minutos integralizados) no período de faturamento",
+              "classe": null
+            },
+            {
+              "html": "Compara-se com a contratada para determinar enquadramento",
+              "texto": "Compara-se com a contratada para determinar enquadramento",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Demanda medida",
+            "linha_aprox": 1749
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>Demanda de ultrapassagem</b>",
+              "texto": "Demanda de ultrapassagem",
+              "classe": null
+            },
+            {
+              "html": "Parcela da demanda medida que excede a contratada, observada tolerância regulatória",
+              "texto": "Parcela da demanda medida que excede a contratada, observada tolerância regulatória",
+              "classe": null
+            },
+            {
+              "html": "Pode ser tarifada em valor superior, conforme regras vigentes",
+              "texto": "Pode ser tarifada em valor superior, conforme regras vigentes",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Demanda de ultrapassagem",
+            "linha_aprox": 1750
+          }
+        }
+      ],
+      "n_colunas": 3,
+      "n_linhas_dados": 3,
+      "texto": "Conceito O que significa Como é cobrado Demanda contratada Capacidade em kW que a empresa contrata junto à distribuidora Cobrada integralmente, mesmo se a empresa não usar Demanda medida Maior demanda efetivamente registrada no intervalo de medição (tipicamente 15 minutos integralizados) no período de faturamento Compara-se com a contratada para determinar enquadramento Demanda de ultrapassagem Parcela da demanda medida que excede a contratada, observada tolerância regulatória Pode ser tarifada em valor superior, conforme regras vigentes",
+      "origem": {
+        "seletor": "h3(5.2) ~ div.table-wrap > table",
+        "trecho_inicial": "Conceito O que significa Como é cobrado Demanda contratada C",
+        "linha_aprox": 1746
+      },
+      "linha_tabela": 1745,
+      "nota": "Cabeçalho em <thead><th>; dados em <tbody><td>. `classe` guarda o class do td quando existe."
+    },
+    {
+      "id": "m01-a05-b08-destaque",
+      "tipo": "destaque",
+      "tom": "red",
+      "rotulo": "Atenção · regras de ultrapassagem",
+      "html": "Os detalhes operacionais e contratuais de ultrapassagem de demanda dependem da modalidade tarifária, da tensão de fornecimento, da distribuidora e das regras regulatórias vigentes (atualmente <strong>Resolução Normativa ANEEL nº 1.000/2021</strong>, que substituiu a REN 414/2010 a partir de janeiro de 2022). Antes de transformar qualquer recomendação de redução de demanda em recomendação financeira, valide a regra específica aplicável ao contrato. Esta é uma trava operacional da GridAlpha.",
+      "texto": "Os detalhes operacionais e contratuais de ultrapassagem de demanda dependem da modalidade tarifária, da tensão de fornecimento, da distribuidora e das regras regulatórias vigentes (atualmente Resolução Normativa ANEEL nº 1.000/2021, que substituiu a REN 414/2010 a partir de janeiro de 2022). Antes de transformar qualquer recomendação de redução de demanda em recomendação financeira, valide a regra específica aplicável ao contrato. Esta é uma trava operacional da GridAlpha.",
+      "origem": {
+        "seletor": "div.callout.red",
+        "trecho_inicial": "Os detalhes operacionais e contratuais de ultrapassagem de d",
+        "linha_aprox": 1755
+      },
+      "nota": "Um callout: rótulo (div.callout-label, linha 1756) + corpo (p, linha 1757)."
+    },
+    {
+      "id": "m01-a05-b09-titulo",
+      "tipo": "titulo",
+      "numero": "5.3",
+      "texto": "Demanda média e fator de carga",
+      "html": "<span class=\"num\">5.3</span>Demanda média e fator de carga",
+      "origem": {
+        "seletor": "h3 > span.num(5.3)",
+        "trecho_inicial": "5.3Demanda média e fator de carga",
+        "linha_aprox": 1760
+      }
+    },
+    {
+      "id": "m01-a05-b10-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Demanda média é uma construção: o consumo total do período dividido pelas horas do período. Não é uma medição real, mas uma média virtual que ajuda a comparar com a demanda máxima medida.",
+      "texto": "Demanda média é uma construção: o consumo total do período dividido pelas horas do período. Não é uma medição real, mas uma média virtual que ajuda a comparar com a demanda máxima medida.",
+      "origem": {
+        "seletor": "h3(5.3) ~ p:nth-of-type(1)",
+        "trecho_inicial": "Demanda média é uma construção: o consumo total do período d",
+        "linha_aprox": 1761
+      }
+    },
+    {
+      "id": "m01-a05-b11-formula",
+      "tipo": "formula",
+      "eq_html": "Demanda média <span class=\"op\">=</span> kWh consumido <span class=\"op\">÷</span> horas do período",
+      "eq_texto": "Demanda média = kWh consumido ÷ horas do período",
+      "desc": null,
+      "origem": {
+        "seletor": "div.formula > div.eq",
+        "trecho_inicial": "Demanda média = kWh consumido ÷ horas do período",
+        "linha_aprox": 1763
+      },
+      "nota": "div.formula sem div.desc na fonte (demanda média). desc = null medido."
+    },
+    {
+      "id": "m01-a05-b12-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Fator de carga é a razão entre demanda média e demanda máxima. Ele mede <strong>quão bem a instalação aproveita a capacidade que paga</strong>:",
+      "texto": "Fator de carga é a razão entre demanda média e demanda máxima. Ele mede quão bem a instalação aproveita a capacidade que paga:",
+      "origem": {
+        "seletor": "h3(5.3) ~ p:nth-of-type(2) (termina em \":\" e introduz a 2ª fórmula)",
+        "trecho_inicial": "Fator de carga é a razão entre demanda média e demanda máxim",
+        "linha_aprox": 1767
+      }
+    },
+    {
+      "id": "m01-a05-b13-formula",
+      "tipo": "formula",
+      "eq_html": "Fator de carga <span class=\"op\">=</span> Demanda média <span class=\"op\">÷</span> Demanda máxima",
+      "eq_texto": "Fator de carga = Demanda média ÷ Demanda máxima",
+      "desc": null,
+      "origem": {
+        "seletor": "div.formula > div.eq",
+        "trecho_inicial": "Fator de carga = Demanda média ÷ Demanda máxima",
+        "linha_aprox": 1769
+      },
+      "nota": "div.formula sem div.desc na fonte (fator de carga). desc = null medido."
+    },
+    {
+      "id": "m01-a05-b14-instrumento",
+      "tipo": "instrumento",
+      "ref": "m01-inst-04",
+      "texto": "Calculadora · Demanda média e fator de carga",
+      "origem": {
+        "seletor": "div.instrument (comentário <!-- INSTRUMENT 04: Demand + Load Factor --> na linha 1773)",
+        "trecho_inicial": "Calculadora · Demanda média e fator de carga",
+        "linha_aprox": 1774
+      },
+      "vinculos": {
+        "instrumento": "m01-inst-04"
+      },
+      "nota": "Posição literal na fonte: entre a 2ª fórmula de 5.3 (linhas 1769-1771) e o h3 de 5.4 (linha 1808). Nenhum parágrafo da aula o invoca por frase (ver invocacoes_no_texto). Especificação completa em instrumentos[0]."
+    },
+    {
+      "id": "m01-a05-b15-titulo",
+      "tipo": "titulo",
+      "numero": "5.4",
+      "texto": "Como ler o fator de carga",
+      "html": "<span class=\"num\">5.4</span>Como ler o fator de carga",
+      "origem": {
+        "seletor": "h3 > span.num(5.4)",
+        "trecho_inicial": "5.4Como ler o fator de carga",
+        "linha_aprox": 1808
+      }
+    },
+    {
+      "id": "m01-a05-b16-tabela",
+      "tipo": "tabela",
+      "cabecalho": [
+        {
+          "html": "FC",
+          "texto": "FC"
+        },
+        {
+          "html": "Perfil típico",
+          "texto": "Perfil típico"
+        },
+        {
+          "html": "Implicação",
+          "texto": "Implicação"
+        }
+      ],
+      "linhas": [
+        {
+          "celulas": [
+            {
+              "html": "0,70 – 0,90",
+              "texto": "0,70 – 0,90",
+              "classe": "mono"
+            },
+            {
+              "html": "Operação contínua, carga estável (24/7)",
+              "texto": "Operação contínua, carga estável (24/7)",
+              "classe": null
+            },
+            {
+              "html": "Bom aproveitamento — pouca oportunidade em ajuste de demanda",
+              "texto": "Bom aproveitamento — pouca oportunidade em ajuste de demanda",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "0,70 – 0,90",
+            "linha_aprox": 1813
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "0,40 – 0,70",
+              "texto": "0,40 – 0,70",
+              "classe": "mono"
+            },
+            {
+              "html": "Operação em turnos, sazonalidade moderada",
+              "texto": "Operação em turnos, sazonalidade moderada",
+              "classe": null
+            },
+            {
+              "html": "Possível oportunidade em gestão de carga, a validar com 12 meses",
+              "texto": "Possível oportunidade em gestão de carga, a validar com 12 meses",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "0,40 – 0,70",
+            "linha_aprox": 1814
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "0,15 – 0,40",
+              "texto": "0,15 – 0,40",
+              "classe": "mono"
+            },
+            {
+              "html": "Picos altos, operação concentrada, partidas simultâneas",
+              "texto": "Picos altos, operação concentrada, partidas simultâneas",
+              "classe": null
+            },
+            {
+              "html": "Investigação operacional necessária antes de qualquer mudança contratual",
+              "texto": "Investigação operacional necessária antes de qualquer mudança contratual",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "0,15 – 0,40",
+            "linha_aprox": 1815
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "&lt; 0,15",
+              "texto": "< 0,15",
+              "classe": "mono"
+            },
+            {
+              "html": "Padrão raro — pode indicar erro de medição ou contratação superdimensionada",
+              "texto": "Padrão raro — pode indicar erro de medição ou contratação superdimensionada",
+              "classe": null
+            },
+            {
+              "html": "Auditoria de medição e revisão completa",
+              "texto": "Auditoria de medição e revisão completa",
+              "classe": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "< 0,15",
+            "linha_aprox": 1816
+          }
+        }
+      ],
+      "n_colunas": 3,
+      "n_linhas_dados": 4,
+      "texto": "FC Perfil típico Implicação 0,70 – 0,90 Operação contínua, carga estável (24/7) Bom aproveitamento — pouca oportunidade em ajuste de demanda 0,40 – 0,70 Operação em turnos, sazonalidade moderada Possível oportunidade em gestão de carga, a validar com 12 meses 0,15 – 0,40 Picos altos, operação concentrada, partidas simultâneas Investigação operacional necessária antes de qualquer mudança contratual < 0,15 Padrão raro — pode indicar erro de medição ou contratação superdimensionada Auditoria de medição e revisão completa",
+      "origem": {
+        "seletor": "h3(5.4) ~ div.table-wrap > table",
+        "trecho_inicial": "FC Perfil típico Implicação 0,70 – 0,90 Operação contínua, c",
+        "linha_aprox": 1811
+      },
+      "linha_tabela": 1810,
+      "nota": "Cabeçalho em <thead><th>; dados em <tbody><td>. `classe` guarda o class do td quando existe."
+    },
+    {
+      "id": "m01-a05-b17-destaque",
+      "tipo": "destaque",
+      "tom": "neutro",
+      "rotulo": "Onde isso entra no produto",
+      "html": "No <strong>Conta de Luz Express</strong>, demanda é um dos primeiros campos do relatório. O output deve sempre informar: demanda contratada, demanda medida, diferença, existência de ultrapassagem, histórico necessário antes de recomendar alteração, e risco operacional de reduzir demanda sem entender expansão e sazonalidade. Linguagem segura: <em>\"há possível oportunidade de ajuste de demanda contratada, a validar com 12 meses de histórico e entendimento operacional\"</em>. Nunca: \"você pode reduzir e economizar X reais\". Promessa sem validação fere a Trava 4 do War Room.",
+      "texto": "No Conta de Luz Express, demanda é um dos primeiros campos do relatório. O output deve sempre informar: demanda contratada, demanda medida, diferença, existência de ultrapassagem, histórico necessário antes de recomendar alteração, e risco operacional de reduzir demanda sem entender expansão e sazonalidade. Linguagem segura: \"há possível oportunidade de ajuste de demanda contratada, a validar com 12 meses de histórico e entendimento operacional\". Nunca: \"você pode reduzir e economizar X reais\". Promessa sem validação fere a Trava 4 do War Room.",
+      "origem": {
+        "seletor": "div.callout",
+        "trecho_inicial": "No Conta de Luz Express, demanda é um dos primeiros campos d",
+        "linha_aprox": 1821
+      },
+      "nota": "Um callout: rótulo (div.callout-label, linha 1822) + corpo (p, linha 1823)."
+    }
+  ],
+  "figuras": [],
+  "figuras_nota": "Nenhuma figura na section da Aula 05: sem <img>, <svg>, <canvas>, <figure> nem div de gráfico (varredura_de_ausencia.figura_ou_imagem_na_section).",
+  "tabelas": [
+    "m01-a05-b07-tabela",
+    "m01-a05-b16-tabela"
+  ],
+  "listas": [],
+  "listas_nota": "Nenhum <ul>/<ol> dentro da section da Aula 05 (varredura_de_ausencia.listas_na_section).",
+  "formulas": [
+    "m01-a05-b11-formula",
+    "m01-a05-b13-formula"
+  ],
+  "destaques": [
+    "m01-a05-b08-destaque",
+    "m01-a05-b17-destaque"
+  ],
+  "vale_lembrar": null,
+  "vale_lembrar_nota": "A expressão \"Vale lembrar\" não ocorre no HTML do M01. Os dois destaques da aula são callout.red e callout (neutro), ver destaques.",
+  "varredura_de_ausencia": {
+    "nota": "Varreduras por regex nas linhas indicadas; resultado = linhas que casam.",
+    "invocacao_do_instrumento_na_prosa": {
+      "regex": "/calculadora|instrumento|i04|INST ?· ?04|abaixo/i",
+      "linhas_fora_do_div_instrument": []
+    },
+    "figura_ou_imagem_na_section": {
+      "regex": "/<img|<svg|<canvas|<figure|<picture|cf-chart/i",
+      "linhas": []
+    },
+    "video_na_section": {
+      "regex": "/<video|<iframe|youtube|vimeo|\\.mp4/i",
+      "linhas": []
+    },
+    "vale_lembrar_no_arquivo": {
+      "regex": "/vale lembrar/i",
+      "linhas": []
+    },
+    "listas_na_section": {
+      "regex": "/<ul|<ol|<li/i",
+      "linhas": []
+    },
+    "marca_gridalpha_na_section": {
+      "regex": "/GridAlpha/",
+      "linhas": [
+        1757
+      ]
+    },
+    "referencias_a_aula_05_fora_da_section": {
+      "regex": "/Aula 0?5\\b|aula 0?5\\b/",
+      "linhas": [
+        2419,
+        2446
+      ]
+    }
+  },
+  "termos_lexico": {
+    "vinculo_declarado_pela_fonte": false,
+    "nota": "O glossário da fonte (§ Lex) não declara aula por termo. Abaixo: verbetes cujo nome-base (sem parênteses) ocorre como palavra no texto da section (incluindo o instrumento). Correspondência textual, não posse; ler ocorrencias_contexto antes de ligar (§2 do protocolo).",
+    "total_verbetes_fonte": 38,
+    "candidatos": [
+      {
+        "termo": "Demanda",
+        "unidade_rotulo": "kW",
+        "definicao_html": "Potência ativa exigida ou requerida por uma unidade consumidora em determinado intervalo de medição (tipicamente 15 minutos integralizados). Distinta do consumo (kWh), reflete a capacidade instantânea exigida da rede.",
+        "ocorrencias_contexto": [
+          "Aula 05 Demanda e fator de carga Por que uma fábrica pa",
+          "sta credível de iniciante: entender que demanda não é uma cobrança esotérica nem um tru",
+          "e física da rede. 5.1 Consumo é volume. Demanda é dimensão da rede. Imagine uma estrada",
+          "e custa, mesmo se a fábrica usar pouco. Demanda é a cobrança por essa capacidade reserv",
+          "rvada da rede. 5.2 Os três conceitos de demanda Conceito O que significa Como é cobrado",
+          "Conceito O que significa Como é cobrado Demanda contratada Capacidade em kW que a empre",
+          "egralmente, mesmo se a empresa não usar Demanda medida Maior demanda efetivamente regis",
+          "a empresa não usar Demanda medida Maior demanda efetivamente registrada no intervalo de",
+          "ontratada para determinar enquadramento Demanda de ultrapassagem Parcela da demanda med",
+          "nto Demanda de ultrapassagem Parcela da demanda medida que excede a contratada, observa",
+          "onais e contratuais de ultrapassagem de demanda dependem da modalidade tarifária, da te",
+          "mar qualquer recomendação de redução de demanda em recomendação financeira, valide a re"
+        ],
+        "n_ocorrencias": 30,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Demanda",
+          "linha_aprox": 2556
+        }
+      },
+      {
+        "termo": "Demanda contratada",
+        "unidade_rotulo": "kW",
+        "definicao_html": "Capacidade em kW reservada contratualmente pelo consumidor do Grupo A junto à distribuidora. Cobrada integralmente todo mês, mesmo se não usada. Dimensionamento exige histórico de 12 meses, sazonalidade e planos de expansão.",
+        "ocorrencias_contexto": [
+          "Conceito O que significa Como é cobrado Demanda contratada Capacidade em kW que a empresa contrata",
+          "latório. O output deve sempre informar: demanda contratada, demanda medida, diferença, existência ",
+          " \"há possível oportunidade de ajuste de demanda contratada, a validar com 12 meses de histórico e "
+        ],
+        "n_ocorrencias": 3,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Demanda contratada",
+          "linha_aprox": 2560
+        }
+      },
+      {
+        "termo": "Energia",
+        "unidade_rotulo": "kWh, MWh",
+        "definicao_html": "Capacidade de realizar trabalho ou produzir transformação. Em eletricidade, energia é potência integrada no tempo (kWh = kW × h). É a grandeza cobrada como \"consumo\" na fatura.",
+        "ocorrencias_contexto": [
+          "ue todos os clientes daquela rede puxam energia. Essa infraestrutura tem custo fixo: ex"
+        ],
+        "n_ocorrencias": 1,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Energia",
+          "linha_aprox": 2572
+        }
+      },
+      {
+        "termo": "Fator de carga (FC)",
+        "unidade_rotulo": "Razão",
+        "definicao_html": "Razão entre demanda média e demanda máxima de uma unidade consumidora. Mede quão bem a instalação aproveita a capacidade reservada. Operação contínua: 0,70–0,90. Operação concentrada com picos: 0,15–0,40. FC baixo não é necessariamente erro — pode refletir processo produtivo legítimo.",
+        "ocorrencias_contexto": [
+          "Aula 05 Demanda e fator de carga Por que uma fábrica paga por capacidade",
+          "ional da GridAlpha. 5.3 Demanda média e fator de carga Demanda média é uma construção: o consu",
+          "édia = kWh consumido ÷ horas do período Fator de carga é a razão entre demanda média e demanda",
+          "lação aproveita a capacidade que paga : Fator de carga = Demanda média ÷ Demanda máxima Calcul",
+          "da máxima Calculadora · Demanda média e fator de carga INST · 04 Consumo mensal kWh Horas do p",
+          " Demanda máxima kW Demanda média 200 kW Fator de carga 0,25 25% Fator de carga baixo: muitos p",
+          "da média 200 kW Fator de carga 0,25 25% Fator de carga baixo: muitos picos altos em relação ao",
+          "ndar mudança contratual. 5.4 Como ler o fator de carga FC Perfil típico Implicação 0,70 – 0,90"
+        ],
+        "n_ocorrencias": 8,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Fator de carga (FC)",
+          "linha_aprox": 2580
+        }
+      },
+      {
+        "termo": "kW",
+        "unidade_rotulo": "Potência ativa",
+        "definicao_html": "Quilowatt. Unidade de potência ativa — a parcela da potência elétrica que realiza trabalho útil (gira eixo, esquenta forno, aciona esteira). 1 kW = 1.000 W. Não confundir com kWh, que é energia.",
+        "ocorrencias_contexto": [
+          "obrado Demanda contratada Capacidade em kW que a empresa contrata junto à distribu",
+          " demanda máxima medida. Demanda média = kWh consumido ÷ horas do período Fator de ",
+          "fator de carga INST · 04 Consumo mensal kWh Horas do período h Demanda máxima kW D",
+          "l kWh Horas do período h Demanda máxima kW Demanda média 200 kW Fator de carga 0,2",
+          "o h Demanda máxima kW Demanda média 200 kW Fator de carga 0,25 25% Fator de carga "
+        ],
+        "n_ocorrencias": 5,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "kW",
+          "linha_aprox": 2612
+        }
+      },
+      {
+        "termo": "kWh",
+        "unidade_rotulo": "Energia",
+        "definicao_html": "Quilowatt-hora. Unidade de energia equivalente a um quilowatt durante uma hora. É a grandeza que aparece como \"consumo\" em qualquer fatura elétrica. kWh = kW × h.",
+        "ocorrencias_contexto": [
+          " demanda máxima medida. Demanda média = kWh consumido ÷ horas do período Fator de c",
+          "fator de carga INST · 04 Consumo mensal kWh Horas do período h Demanda máxima kW De"
+        ],
+        "n_ocorrencias": 2,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "kWh",
+          "linha_aprox": 2616
+        }
+      },
+      {
+        "termo": "Modalidade tarifária",
+        "unidade_rotulo": "Tarifa",
+        "definicao_html": "Forma de estruturação tarifária aplicável ao consumidor. Para Grupo A: <b>Verde</b> (demanda única, mas tarifa de energia diferenciada por horário), <b>Azul</b> (demanda diferenciada por horário ponta/fora-ponta), e <b>Branca</b> (apenas Grupo B em casos específicos). A escolha tem impacto direto na fatura e exige análise do perfil operacional.",
+        "ocorrencias_contexto": [
+          "de ultrapassagem de demanda dependem da modalidade tarifária, da tensão de fornecimento, da distribu"
+        ],
+        "n_ocorrencias": 1,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Modalidade tarifária",
+          "linha_aprox": 2624
+        }
+      },
+      {
+        "termo": "Tensão",
+        "unidade_rotulo": "V, kV",
+        "definicao_html": "Diferença de potencial elétrico entre dois pontos de um circuito. Analogia hidráulica: pressão da água. Unidade SI é o volt (V). Define grupo tarifário no Brasil: Grupo B (baixa tensão, &lt; 2,3 kV) ou Grupo A (média/alta tensão, ≥ 2,3 kV).",
+        "ocorrencias_contexto": [
+          "da dependem da modalidade tarifária, da tensão de fornecimento, da distribuidora e das"
+        ],
+        "n_ocorrencias": 1,
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Tensão",
+          "linha_aprox": 2656
+        }
+      }
+    ]
+  },
+  "instrumentos": [
+    {
+      "id": "m01-inst-04",
+      "id_fonte": "INST · 04",
+      "kind_taxonomia": "calculadora",
+      "kind_nota": "Medido na marcação: 3 input[type=number] → 2 linhas de saída numérica (uma com valor + percentual) + 1 texto de leitura dinâmico. Não há range gêmeo.",
+      "titulo": "Calculadora · Demanda média e fator de carga",
+      "pergunta": null,
+      "pergunta_nota": "A prancha do instrumento não tem pergunta própria. A pergunta que a fonte declara para esta aula está fora do instrumento: a do § MAP, linha 1343 (aula.pergunta_mapa). O enunciado do Ex·04 (exercicios[0]) usa os mesmos números do cenário-padrão. Qualquer pergunta de previsão seria DERIVADA (P3/P11), não extraída.",
+      "vinculos": {
+        "aula": "m01-a05",
+        "exercicio_relacionado": "m01-ex-04",
+        "termo": null
+      },
+      "vinculos_nota": "O vínculo aula↔instrumento é por posição (o div.instrument está dentro da section da Aula 05). O vínculo instrumento↔Ex·04 NÃO é declarado pela fonte: é coincidência medida de valores (ver coincidencia_com_exercicio).",
+      "entradas": [
+        {
+          "id": "i04-kwh",
+          "rotulo": "Consumo mensal",
+          "unidade": "kWh",
+          "tipo_input": "number",
+          "padrao": 144000,
+          "min": 0,
+          "max": null,
+          "max_nota": "Sem atributo max na fonte.",
+          "step": 1000,
+          "origem": {
+            "seletor": "input#i04-kwh",
+            "trecho_inicial": "Consumo mensal kWh",
+            "linha_aprox": 1783
+          }
+        },
+        {
+          "id": "i04-h",
+          "rotulo": "Horas do período",
+          "unidade": "h",
+          "tipo_input": "number",
+          "padrao": 720,
+          "min": 0,
+          "max": null,
+          "max_nota": "Sem atributo max na fonte.",
+          "step": 24,
+          "origem": {
+            "seletor": "input#i04-h",
+            "trecho_inicial": "Horas do período h",
+            "linha_aprox": 1787
+          }
+        },
+        {
+          "id": "i04-pmax",
+          "rotulo": "Demanda máxima",
+          "unidade": "kW",
+          "tipo_input": "number",
+          "padrao": 800,
+          "min": 0,
+          "max": null,
+          "max_nota": "Sem atributo max na fonte.",
+          "step": 50,
+          "origem": {
+            "seletor": "input#i04-pmax",
+            "trecho_inicial": "Demanda máxima kW",
+            "linha_aprox": 1791
+          }
+        }
+      ],
+      "saidas": [
+        {
+          "id": "i04-pmed",
+          "rotulo": "Demanda média",
+          "unidade": "kW",
+          "valor_inicial_marcacao": "200",
+          "formula_exata_script": [
+            "const E = parseFloat(kwh.value) || 0;",
+            "const T = parseFloat(h.value) || 1;",
+            "const Pmed = E / T;"
+          ],
+          "formatacao_script": "pmed.textContent = Pmed.toLocaleString('pt-BR', { maximumFractionDigits: 1 });",
+          "formatacao_descricao": "Pmed = E / T, pt-BR, no máximo 1 casa decimal (maximumFractionDigits: 1, sem mínimo).",
+          "origem": {
+            "seletor": "div.instrument-output > span#i04-pmed",
+            "trecho_inicial": "Demanda média",
+            "linha_aprox": 1796
+          }
+        },
+        {
+          "id": "i04-fc",
+          "rotulo": "Fator de carga",
+          "unidade": null,
+          "unidade_nota": "O span.unit desta linha de saída não carrega unidade: carrega o span#i04-fcp (percentual). O valor de i04-fc é adimensional (razão).",
+          "valor_inicial_marcacao": "0,25",
+          "formula_exata_script": [
+            "const Pmax = parseFloat(pmax.value) || 1;",
+            "const FC = Pmax > 0 ? Pmed / Pmax : 0;"
+          ],
+          "formula_exibida_na_aula": "Fator de carga = Demanda média ÷ Demanda máxima",
+          "formula_exibida_na_aula_origem": {
+            "seletor": "div.formula > div.eq (2ª fórmula de 5.3)",
+            "linha_aprox": 1770,
+            "nota": "Está na prosa de 5.3, FORA do div.instrument.",
+            "trecho_inicial": "Fator de carga = Demanda média ÷ Demanda máxima"
+          },
+          "formatacao_script": "fc.textContent = FC.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });",
+          "formatacao_descricao": "FC (razão), pt-BR, exatamente 2 casas decimais (minimumFractionDigits: 2, maximumFractionDigits: 2).",
+          "origem": {
+            "seletor": "div.instrument-output > span#i04-fc",
+            "trecho_inicial": "Fator de carga 0,25",
+            "linha_aprox": 1800
+          }
+        },
+        {
+          "id": "i04-fcp",
+          "rotulo": null,
+          "rotulo_nota": "A fonte não rotula este valor: é o span#i04-fcp dentro do span.unit da linha \"Fator de carga\" (L1800).",
+          "unidade": "%",
+          "unidade_nota": "O símbolo % faz parte do texto do span (textContent = toFixed(0) + \"%\"), não de um span de unidade separado.",
+          "valor_inicial_marcacao": "25%",
+          "formatacao_script": "fcp.textContent = (FC * 100).toFixed(0) + '%';",
+          "formatacao_descricao": "FC × 100 com toFixed(0) e o sufixo \"%\": zero casa decimal.",
+          "origem": {
+            "seletor": "span.unit > span#i04-fcp",
+            "trecho_inicial": "25%",
+            "linha_aprox": 1800
+          }
+        }
+      ],
+      "coercao_entradas": {
+        "i04-kwh": "const E = parseFloat(kwh.value) || 0;",
+        "i04-h": "const T = parseFloat(h.value) || 1;",
+        "i04-pmax": "const Pmax = parseFloat(pmax.value) || 1;",
+        "nota": "Resíduo do original, sinalizado e não corrigido (§10): `|| 0` faz consumo vazio virar 0; `|| 1` faz horas vazias OU zero virarem 1, e demanda máxima vazia OU zero virar 1. Por causa do `|| 1`, Pmax nunca é 0 dentro de calc(): o ramo `: 0` de `Pmax > 0 ? … : 0` só é alcançável com Pmax negativo."
+      },
+      "texto_leitura": {
+        "id": "i04-interp",
+        "tipo": "dinamico_por_faixa",
+        "seletor": "div.instrument-note > b#i04-interp",
+        "texto_inicial_marcacao": "Fator de carga baixo: muitos picos altos em relação ao uso médio. Pode indicar partidas simultâneas, operação concentrada em poucas horas ou demanda mal dimensionada — investigar antes de recomendar mudança contratual.",
+        "texto_inicial_marcacao_origem": {
+          "seletor": "b#i04-interp",
+          "trecho_inicial": "Fator de carga baixo: muitos picos altos em relação ao uso m",
+          "linha_aprox": 1803
+        },
+        "marcacao_igual_ao_ramo_ativo_no_padrao": true,
+        "ramos": [
+          {
+            "condicao_literal": "if (FC >= 0.70)",
+            "limiar_inferior_fc": 0.7,
+            "texto": "Bom aproveitamento da capacidade contratada. Operação contínua, carga estável. Pouca oportunidade em ajuste de demanda — focar em outras frentes (energia, FP, modalidade tarifária).",
+            "origem": {
+              "seletor": "script (IIFE INSTRUMENT 04) > calc()",
+              "trecho_inicial": "Bom aproveitamento da capacidade contratada. Operação contín",
+              "linha_aprox": 2846
+            }
+          },
+          {
+            "condicao_literal": "else if (FC >= 0.40)",
+            "limiar_inferior_fc": 0.4,
+            "texto": "Operação em turnos ou com sazonalidade moderada. Possível oportunidade em gestão de carga e deslocamento operacional, a validar com 12 meses de histórico.",
+            "origem": {
+              "seletor": "script (IIFE INSTRUMENT 04) > calc()",
+              "trecho_inicial": "Operação em turnos ou com sazonalidade moderada. Possível op",
+              "linha_aprox": 2847
+            }
+          },
+          {
+            "condicao_literal": "else if (FC >= 0.15)",
+            "limiar_inferior_fc": 0.15,
+            "texto": "Fator de carga baixo: muitos picos altos em relação ao uso médio. Pode indicar partidas simultâneas, operação concentrada em poucas horas ou demanda mal dimensionada — investigar antes de recomendar mudança contratual.",
+            "origem": {
+              "seletor": "script (IIFE INSTRUMENT 04) > calc()",
+              "trecho_inicial": "Fator de carga baixo: muitos picos altos em relação ao uso m",
+              "linha_aprox": 2848
+            }
+          },
+          {
+            "condicao_literal": "else",
+            "limiar_inferior_fc": null,
+            "texto": "FC muito baixo: padrão raro. Pode indicar erro de medição, contratação superdimensionada, ou operação muito atípica. Recomenda-se auditoria completa antes de qualquer decisão.",
+            "origem": {
+              "seletor": "script (IIFE INSTRUMENT 04) > calc()",
+              "trecho_inicial": "FC muito baixo: padrão raro. Pode indicar erro de medição, c",
+              "linha_aprox": 2849
+            }
+          }
+        ],
+        "nota": "O div.instrument-note NÃO é nota estática: é o elemento que calc() sobrescreve (interp.textContent) em cada input e uma vez no carregamento (linha 2852 `calc();`). Aqui, ao contrário do INST·06, o texto da marcação é idêntico ao do ramo ativo no cenário-padrão (verificado por execução do script)."
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i04-kwh": 144000,
+          "i04-h": 720,
+          "i04-pmax": 800
+        },
+        "origem_nota": "atributos value dos inputs (linhas 1783, 1787, 1791); valores iniciais das saídas nas linhas 1796 e 1800.",
+        "saidas_executando_o_script_original": {
+          "i04-pmed": "200",
+          "i04-fc": "0,25",
+          "i04-fcp": "25%"
+        },
+        "ramo_ativo_pelo_script": "else if (FC >= 0.15)",
+        "texto_leitura_pelo_script": "Fator de carga baixo: muitos picos altos em relação ao uso médio. Pode indicar partidas simultâneas, operação concentrada em poucas horas ou demanda mal dimensionada — investigar antes de recomendar mudança contratual.",
+        "nota": "Executado o texto do IIFE (L2826-2853) num DOM simulado (node:vm), não reimplementado."
+      },
+      "execucao_script_amostra": {
+        "nota": "Amostra de cenários executando o script ORIGINAL em DOM simulado. Não é cobertura exaustiva do espaço de entrada.",
+        "cenarios": [
+          {
+            "cenario": "padrão (valores dos atributos value)",
+            "entradas": {
+              "i04-kwh": 144000,
+              "i04-h": 720,
+              "i04-pmax": 800
+            },
+            "saidas": {
+              "i04-pmed": "200",
+              "i04-fc": "0,25",
+              "i04-fcp": "25%"
+            },
+            "ramo_ativo": "else if (FC >= 0.15)",
+            "texto_leitura": "Fator de carga baixo: muitos picos altos em relação ao uso médio. Pode indicar partidas simultâneas, operação concentrada em poucas horas ou demanda mal dimensionada — investigar antes de recomendar mudança contratual."
+          },
+          {
+            "cenario": "FC = 0,70 exato (504000 / 720 / 1000)",
+            "entradas": {
+              "i04-kwh": 504000,
+              "i04-h": 720,
+              "i04-pmax": 1000
+            },
+            "saidas": {
+              "i04-pmed": "700",
+              "i04-fc": "0,70",
+              "i04-fcp": "70%"
+            },
+            "ramo_ativo": "if (FC >= 0.70)",
+            "texto_leitura": "Bom aproveitamento da capacidade contratada. Operação contínua, carga estável. Pouca oportunidade em ajuste de demanda — focar em outras frentes (energia, FP, modalidade tarifária)."
+          },
+          {
+            "cenario": "FC = 0,40 exato (288000 / 720 / 1000)",
+            "entradas": {
+              "i04-kwh": 288000,
+              "i04-h": 720,
+              "i04-pmax": 1000
+            },
+            "saidas": {
+              "i04-pmed": "400",
+              "i04-fc": "0,40",
+              "i04-fcp": "40%"
+            },
+            "ramo_ativo": "else if (FC >= 0.40)",
+            "texto_leitura": "Operação em turnos ou com sazonalidade moderada. Possível oportunidade em gestão de carga e deslocamento operacional, a validar com 12 meses de histórico."
+          },
+          {
+            "cenario": "FC = 0,15 exato (108000 / 720 / 1000)",
+            "entradas": {
+              "i04-kwh": 108000,
+              "i04-h": 720,
+              "i04-pmax": 1000
+            },
+            "saidas": {
+              "i04-pmed": "150",
+              "i04-fc": "0,15",
+              "i04-fcp": "15%"
+            },
+            "ramo_ativo": "else if (FC >= 0.15)",
+            "texto_leitura": "Fator de carga baixo: muitos picos altos em relação ao uso médio. Pode indicar partidas simultâneas, operação concentrada em poucas horas ou demanda mal dimensionada — investigar antes de recomendar mudança contratual."
+          },
+          {
+            "cenario": "FC = 0,10 (72000 / 720 / 1000)",
+            "entradas": {
+              "i04-kwh": 72000,
+              "i04-h": 720,
+              "i04-pmax": 1000
+            },
+            "saidas": {
+              "i04-pmed": "100",
+              "i04-fc": "0,10",
+              "i04-fcp": "10%"
+            },
+            "ramo_ativo": "else",
+            "texto_leitura": "FC muito baixo: padrão raro. Pode indicar erro de medição, contratação superdimensionada, ou operação muito atípica. Recomenda-se auditoria completa antes de qualquer decisão."
+          },
+          {
+            "cenario": "FC = 1,00 (720000 / 720 / 1000)",
+            "entradas": {
+              "i04-kwh": 720000,
+              "i04-h": 720,
+              "i04-pmax": 1000
+            },
+            "saidas": {
+              "i04-pmed": "1.000",
+              "i04-fc": "1,00",
+              "i04-fcp": "100%"
+            },
+            "ramo_ativo": "if (FC >= 0.70)",
+            "texto_leitura": "Bom aproveitamento da capacidade contratada. Operação contínua, carga estável. Pouca oportunidade em ajuste de demanda — focar em outras frentes (energia, FP, modalidade tarifária)."
+          },
+          {
+            "cenario": "horas vazias",
+            "entradas": {
+              "i04-kwh": 144000,
+              "i04-h": "",
+              "i04-pmax": 800
+            },
+            "saidas": {
+              "i04-pmed": "144.000",
+              "i04-fc": "180,00",
+              "i04-fcp": "18000%"
+            },
+            "ramo_ativo": "if (FC >= 0.70)",
+            "texto_leitura": "Bom aproveitamento da capacidade contratada. Operação contínua, carga estável. Pouca oportunidade em ajuste de demanda — focar em outras frentes (energia, FP, modalidade tarifária)."
+          },
+          {
+            "cenario": "demanda máxima vazia",
+            "entradas": {
+              "i04-kwh": 144000,
+              "i04-h": 720,
+              "i04-pmax": ""
+            },
+            "saidas": {
+              "i04-pmed": "200",
+              "i04-fc": "200,00",
+              "i04-fcp": "20000%"
+            },
+            "ramo_ativo": "if (FC >= 0.70)",
+            "texto_leitura": "Bom aproveitamento da capacidade contratada. Operação contínua, carga estável. Pouca oportunidade em ajuste de demanda — focar em outras frentes (energia, FP, modalidade tarifária)."
+          },
+          {
+            "cenario": "demanda máxima 0",
+            "entradas": {
+              "i04-kwh": 144000,
+              "i04-h": 720,
+              "i04-pmax": 0
+            },
+            "saidas": {
+              "i04-pmed": "200",
+              "i04-fc": "200,00",
+              "i04-fcp": "20000%"
+            },
+            "ramo_ativo": "if (FC >= 0.70)",
+            "texto_leitura": "Bom aproveitamento da capacidade contratada. Operação contínua, carga estável. Pouca oportunidade em ajuste de demanda — focar em outras frentes (energia, FP, modalidade tarifária)."
+          },
+          {
+            "cenario": "consumo 1000 / 720 h / 800 kW (casas decimais)",
+            "entradas": {
+              "i04-kwh": 1000,
+              "i04-h": 720,
+              "i04-pmax": 800
+            },
+            "saidas": {
+              "i04-pmed": "1,4",
+              "i04-fc": "0,00",
+              "i04-fcp": "0%"
+            },
+            "ramo_ativo": "else",
+            "texto_leitura": "FC muito baixo: padrão raro. Pode indicar erro de medição, contratação superdimensionada, ou operação muito atípica. Recomenda-se auditoria completa antes de qualquer decisão."
+          },
+          {
+            "cenario": "consumo 360000 / 720 h / 1000 kW (FC 0,5)",
+            "entradas": {
+              "i04-kwh": 360000,
+              "i04-h": 720,
+              "i04-pmax": 1000
+            },
+            "saidas": {
+              "i04-pmed": "500",
+              "i04-fc": "0,50",
+              "i04-fcp": "50%"
+            },
+            "ramo_ativo": "else if (FC >= 0.40)",
+            "texto_leitura": "Operação em turnos ou com sazonalidade moderada. Possível oportunidade em gestão de carga e deslocamento operacional, a validar com 12 meses de histórico."
+          }
+        ]
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "A fonte não cita procedência para o cenário-padrão (144.000 kWh / 720 h / 800 kW) nem para os limiares das faixas (0,70 / 0,40 / 0,15). 720 h = 30 dias × 24 h (implícito no enunciado do Ex·04 \"mês de 720 horas\"; não declarado como tal no instrumento).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada (P6). O instrumento não tem previsão, gabarito nem correção.",
+      "figura_prometida": null,
+      "figura_prometida_nota": "O título (\"Calculadora · …\") não promete forma desenhada. Não há figura na aula 05 (nenhum svg, canvas ou div de gráfico dentro da section).",
+      "origem": {
+        "seletor": "section.aula(Aula 05) div.instrument",
+        "trecho_inicial": "Calculadora · Demanda média e fator de carga INST · 04",
+        "linha_aprox": 1774
+      },
+      "linha_fim_aprox": 1806,
+      "script_origem": {
+        "seletor": "script: IIFE \"INSTRUMENT 04: Demand average + Load Factor\"",
+        "linha_aprox": 2826,
+        "linha_fim_aprox": 2853,
+        "comentario_cabecalho_linhas": [
+          2823,
+          2825
+        ],
+        "trecho_inicial": "(function() {"
+      },
+      "coincidencia_com_exercicio": {
+        "exercicio": "m01-ex-04",
+        "entradas": [
+          {
+            "campo": "i04-kwh",
+            "rotulo_instrumento": "Consumo mensal",
+            "padrao_instrumento": 144000,
+            "no_enunciado_ex04": "144.000 kWh",
+            "mesmo_valor": true
+          },
+          {
+            "campo": "i04-h",
+            "rotulo_instrumento": "Horas do período",
+            "padrao_instrumento": 720,
+            "no_enunciado_ex04": "720 horas",
+            "mesmo_valor": true
+          },
+          {
+            "campo": "i04-pmax",
+            "rotulo_instrumento": "Demanda máxima",
+            "padrao_instrumento": 800,
+            "no_enunciado_ex04": "800 kW",
+            "mesmo_valor": true
+          }
+        ],
+        "saidas": [
+          {
+            "campo": "i04-pmed",
+            "saida_do_instrumento_no_padrao": "200 kW",
+            "no_gabarito_ex04": "144.000 ÷ 720 = 200 kW",
+            "mesmo_valor": true
+          },
+          {
+            "campo": "i04-fc / i04-fcp",
+            "saida_do_instrumento_no_padrao": "0,25 / 25%",
+            "no_gabarito_ex04": "200 ÷ 800 = 0,25 = 25%",
+            "mesmo_valor": true
+          }
+        ],
+        "texto_leitura_no_padrao": "Fator de carga baixo: muitos picos altos em relação ao uso médio. Pode indicar partidas simultâneas, operação concentrada em poucas horas ou demanda mal dimensionada — investigar antes de recomendar mudança contratual.",
+        "trecho_do_gabarito_ex04_sobre_interpretacao": "Interpretação: fator de carga baixo indica picos elevados em relação ao consumo médio.",
+        "origem_enunciado": {
+          "seletor": "§ Drill > div.exercise(Ex · 04) > .exercise-question",
+          "trecho_inicial": "Uma empresa consome 144.000 kWh em um mês de 720 horas. Dema",
+          "linha_aprox": 2420
+        },
+        "origem_gabarito": {
+          "seletor": "§ Drill > div.exercise(Ex · 04) > .exercise-answer > p",
+          "trecho_inicial": "Demanda média: 144.000 ÷ 720 = 200 kW",
+          "linha_aprox": 2423
+        },
+        "conclusao": "Medido: as três entradas-padrão e as duas saídas do INST·04 são idênticas ao enunciado e ao resultado do gabarito do Ex·04. Consequência (leitura derivada, não declarada pela fonte): abrir o instrumento no estado inicial exibe a resposta do exercício. A fonte não ordena um antes do outro (o instrumento está na aula, L1774; o Ex·04 está no § Drill, L2419). Nada foi alterado."
+      }
+    }
+  ],
+  "invocacoes_no_texto": [],
+  "invocacoes_no_texto_nota": "Nenhum parágrafo da aula invoca o INST·04 por frase. Varredura (calculadora|instrumento|i04|INST · 04|abaixo) fora do div.instrument: []. Antes dele vem a 2ª div.formula de 5.3 (L1769-1771); depois, o h3 5.4 (L1808). O bloco m01-a05-b14-instrumento marca a posição.",
+  "exercicios": [
+    {
+      "id": "m01-ex-04",
+      "tipo": "discursiva_com_gabarito",
+      "tag_fonte": "Ex · 04 · Aula 05",
+      "vinculo_declarado": {
+        "aula": "m01-a05",
+        "como": "span.exercise-tag \"Ex · 04 · Aula 05\" (tag de posse, §4 do protocolo)"
+      },
+      "enunciado_html": "Uma empresa consome <b>144.000 kWh</b> em um mês de 720 horas. Demanda máxima medida foi <b>800 kW</b>. Calcule demanda média e fator de carga. Como interpretar?",
+      "enunciado_texto": "Uma empresa consome 144.000 kWh em um mês de 720 horas. Demanda máxima medida foi 800 kW. Calcule demanda média e fator de carga. Como interpretar?",
+      "resposta_referencia_paragrafos": [
+        {
+          "html": "Demanda média: <span class=\"calc\">144.000 ÷ 720 = 200 kW</span>. Fator de carga: <span class=\"calc\">200 ÷ 800 = 0,25 = 25%</span>. <b>Interpretação:</b> fator de carga baixo indica picos elevados em relação ao consumo médio. Pode haver oportunidade de gestão de demanda (sequenciamento, automação, deslocamento), mas <b>não recomende mudança contratual sem ver 12 meses de histórico e entender a operação</b>. O perfil pode ser legitimamente concentrado por razões de processo produtivo.",
+          "texto": "Demanda média: 144.000 ÷ 720 = 200 kW. Fator de carga: 200 ÷ 800 = 0,25 = 25%. Interpretação: fator de carga baixo indica picos elevados em relação ao consumo médio. Pode haver oportunidade de gestão de demanda (sequenciamento, automação, deslocamento), mas não recomende mudança contratual sem ver 12 meses de histórico e entender a operação. O perfil pode ser legitimamente concentrado por razões de processo produtivo.",
+          "estilo_inline": null,
+          "origem": {
+            "seletor": "div.exercise-answer > p",
+            "trecho_inicial": "Demanda média: 144.000 ÷ 720 = 200 kW. Fator de carga: 200 ÷",
+            "linha_aprox": 2423
+          }
+        }
+      ],
+      "resposta_referencia_texto": "Demanda média: 144.000 ÷ 720 = 200 kW. Fator de carga: 200 ÷ 800 = 0,25 = 25%. Interpretação: fator de carga baixo indica picos elevados em relação ao consumo médio. Pode haver oportunidade de gestão de demanda (sequenciamento, automação, deslocamento), mas não recomende mudança contratual sem ver 12 meses de histórico e entender a operação. O perfil pode ser legitimamente concentrado por razões de processo produtivo.",
+      "criterio": null,
+      "criterio_nota": "Sem critério por exercício na fonte. O único critério declarado é de nível do § Drill (todos os exercícios), citado em criterio_modulo_drill.",
+      "criterio_modulo_drill": {
+        "texto": "Resolva cada exercício mentalmente ou no papel antes de revelar a resposta. Os exercícios alcançam todas as nove aulas. O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+        "origem": {
+          "seletor": "§ Drill > p",
+          "trecho_inicial": "Resolva cada exercício mentalmente ou no papel antes de reve",
+          "linha_aprox": 2389
+        }
+      },
+      "mecanica_fonte": "button.exercise-toggle \"Revelar gabarito\" (onclick toggleAns): referência revelável sem tentativa registrada (ver bar C7).",
+      "origem": {
+        "seletor": "§ Drill > div.exercise",
+        "trecho_inicial": "Ex · 04 · Aula 05 Uma empresa consome 144.000 kWh em um mês de 720 horas. Dema",
+        "linha_aprox": 2418
+      },
+      "linha_fim_aprox": 2425,
+      "vinculos": {
+        "aula": "m01-a05",
+        "instrumento": null,
+        "instrumento_nota": "Não declarado pela fonte, mas os valores do enunciado coincidem com os do cenário-padrão do INST·04 (ver instrumentos[0].coincidencia_com_exercicio).",
+        "termo": null
+      }
+    },
+    {
+      "id": "m01-ex-07",
+      "tipo": "discursiva_com_gabarito",
+      "tag_fonte": "Ex · 07 · 3 níveis · Aula 05",
+      "vinculo_declarado": {
+        "aula": "m01-a05",
+        "como": "span.exercise-tag \"Ex · 07 · 3 níveis · Aula 05\" (tag de posse, §4 do protocolo)"
+      },
+      "enunciado_html": "Explique <b>\"demanda contratada\"</b> em três versões: para uma criança de 12 anos, para um CFO industrial, e para um especialista de setor.",
+      "enunciado_texto": "Explique \"demanda contratada\" em três versões: para uma criança de 12 anos, para um CFO industrial, e para um especialista de setor.",
+      "resposta_referencia_paragrafos": [
+        {
+          "html": "<b>12 anos:</b> \"É como reservar uma estrada grande o suficiente para o maior trânsito que a fábrica pode causar. Mesmo que a estrada fique vazia a maior parte do tempo, ela precisa estar pronta para o pior momento.\"",
+          "texto": "12 anos: \"É como reservar uma estrada grande o suficiente para o maior trânsito que a fábrica pode causar. Mesmo que a estrada fique vazia a maior parte do tempo, ela precisa estar pronta para o pior momento.\"",
+          "estilo_inline": null,
+          "origem": {
+            "seletor": "div.exercise-answer > p",
+            "trecho_inicial": "12 anos: \"É como reservar uma estrada grande o suficiente pa",
+            "linha_aprox": 2450
+          }
+        },
+        {
+          "html": "<b>CFO:</b> \"É a capacidade em kW que a empresa contrata da distribuidora. Se contratar demais, paga capacidade ociosa todo mês. Se contratar de menos, pode pagar ultrapassagem em valor superior. O ajuste exige histórico de 12 meses e entendimento de planos de expansão e sazonalidade.\"",
+          "texto": "CFO: \"É a capacidade em kW que a empresa contrata da distribuidora. Se contratar demais, paga capacidade ociosa todo mês. Se contratar de menos, pode pagar ultrapassagem em valor superior. O ajuste exige histórico de 12 meses e entendimento de planos de expansão e sazonalidade.\"",
+          "estilo_inline": "margin-top: 12px;",
+          "origem": {
+            "seletor": "div.exercise-answer > p",
+            "trecho_inicial": "CFO: \"É a capacidade em kW que a empresa contrata da distrib",
+            "linha_aprox": 2451
+          }
+        },
+        {
+          "html": "<b>Especialista:</b> \"É o montante de demanda, em kW, contratado para faturamento de unidade do Grupo A junto à distribuidora, comparado à demanda medida em intervalos de integração definidos, sujeito às regras da modalidade tarifária aplicável e ao Contrato de Uso do Sistema de Distribuição (CUSD), no contexto regulatório atualmente regido pela REN ANEEL 1.000/2021.\"",
+          "texto": "Especialista: \"É o montante de demanda, em kW, contratado para faturamento de unidade do Grupo A junto à distribuidora, comparado à demanda medida em intervalos de integração definidos, sujeito às regras da modalidade tarifária aplicável e ao Contrato de Uso do Sistema de Distribuição (CUSD), no contexto regulatório atualmente regido pela REN ANEEL 1.000/2021.\"",
+          "estilo_inline": "margin-top: 12px;",
+          "origem": {
+            "seletor": "div.exercise-answer > p",
+            "trecho_inicial": "Especialista: \"É o montante de demanda, em kW, contratado pa",
+            "linha_aprox": 2452
+          }
+        }
+      ],
+      "resposta_referencia_texto": "12 anos: \"É como reservar uma estrada grande o suficiente para o maior trânsito que a fábrica pode causar. Mesmo que a estrada fique vazia a maior parte do tempo, ela precisa estar pronta para o pior momento.\" CFO: \"É a capacidade em kW que a empresa contrata da distribuidora. Se contratar demais, paga capacidade ociosa todo mês. Se contratar de menos, pode pagar ultrapassagem em valor superior. O ajuste exige histórico de 12 meses e entendimento de planos de expansão e sazonalidade.\" Especialista: \"É o montante de demanda, em kW, contratado para faturamento de unidade do Grupo A junto à distribuidora, comparado à demanda medida em intervalos de integração definidos, sujeito às regras da modalidade tarifária aplicável e ao Contrato de Uso do Sistema de Distribuição (CUSD), no contexto regulatório atualmente regido pela REN ANEEL 1.000/2021.\"",
+      "criterio": null,
+      "criterio_nota": "Sem critério por exercício na fonte. O único critério declarado é de nível do § Drill (todos os exercícios), citado em criterio_modulo_drill.",
+      "criterio_modulo_drill": {
+        "texto": "Resolva cada exercício mentalmente ou no papel antes de revelar a resposta. Os exercícios alcançam todas as nove aulas. O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+        "origem": {
+          "seletor": "§ Drill > p",
+          "trecho_inicial": "Resolva cada exercício mentalmente ou no papel antes de reve",
+          "linha_aprox": 2389
+        }
+      },
+      "mecanica_fonte": "button.exercise-toggle \"Revelar gabarito\" (onclick toggleAns): referência revelável sem tentativa registrada (ver bar C7).",
+      "origem": {
+        "seletor": "§ Drill > div.exercise",
+        "trecho_inicial": "Ex · 07 · 3 níveis · Aula 05 Explique \"demanda contratada\" em três versões: para",
+        "linha_aprox": 2445
+      },
+      "linha_fim_aprox": 2454,
+      "vinculos": {
+        "aula": "m01-a05",
+        "instrumento": null,
+        "termo": null
+      },
+      "nota": "O gabarito são 3 <p> (12 anos / CFO / Especialista); o 2º e o 3º levam style=\"margin-top: 12px;\" na fonte. Cada um está em resposta_referencia_paragrafos[]."
+    }
+  ],
+  "relacionados_nao_vinculados": [
+    {
+      "id": "m01-quiz-demanda",
+      "tipo": "questao_quiz_multipla_escolha",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Sem tag de aula no array `questions`. Tema = demanda (A05); posse NÃO declarada. Listado só para rastreio.",
+      "posicao_no_quiz": 4,
+      "total_questoes_no_array": 10,
+      "enunciado": "Por que uma fábrica paga demanda além de consumo?",
+      "opcoes": [
+        "É um truque tarifário para aumentar receita da distribuidora",
+        "Porque a rede precisa ser dimensionada para o pico de potência, não para o consumo médio",
+        "Porque é exigência legal sem justificativa técnica",
+        "Para compensar perdas técnicas da rede"
+      ],
+      "indice_correto": 1,
+      "opcao_correta": "Porque a rede precisa ser dimensionada para o pico de potência, não para o consumo médio",
+      "feedback": "A distribuidora dimensiona transformadores, cabos e proteção para o pior momento simultâneo de demanda. Essa infraestrutura tem custo fixo: existe e custa mesmo se a fábrica usa pouco. Demanda é a cobrança por essa capacidade reservada — é tradução econômica de uma realidade física, não cobrança esotérica.",
+      "origem": {
+        "seletor": "script: const questions = [...]",
+        "trecho_inicial": "Por que uma fábrica paga demanda além de consumo?",
+        "linha_aprox": 3096
+      }
+    },
+    {
+      "id": "m01-quiz-fator-de-carga",
+      "tipo": "questao_quiz_multipla_escolha",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Sem tag de aula. Tema = fator de carga (A05). Usa 200 kW / 500 kW (≠ cenário do INST·04). Ver DIV-02: FC = 0,40 cai na fronteira fechada de duas faixas da tabela 5.4.",
+      "posicao_no_quiz": 5,
+      "total_questoes_no_array": 10,
+      "enunciado": "Uma instalação tem demanda média de 200 kW e demanda máxima de 500 kW. Qual o fator de carga?",
+      "opcoes": [
+        "0,40",
+        "0,60",
+        "2,50",
+        "0,25"
+      ],
+      "indice_correto": 0,
+      "opcao_correta": "0,40",
+      "feedback": "FC = Demanda média ÷ Demanda máxima = 200 ÷ 500 = 0,40 (40%). Esse FC indica operação com sazonalidade moderada — possível oportunidade de gestão de carga, mas exige 12 meses de histórico para decisão.",
+      "origem": {
+        "seletor": "script: const questions = [...]",
+        "trecho_inicial": "Uma instalação tem demanda média de 200 kW e demanda máxima ",
+        "linha_aprox": 3107
+      }
+    },
+    {
+      "id": "m01-checklist-a05-01",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática.",
+      "texto": "Explicar por que demanda existe na conta industrial.",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Explicar por que demanda existe na conta industrial.",
+        "linha_aprox": 2499
+      }
+    },
+    {
+      "id": "m01-checklist-a05-02",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática.",
+      "texto": "Calcular demanda média a partir de kWh mensal e horas do período.",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Calcular demanda média a partir de kWh mensal e horas do per",
+        "linha_aprox": 2500
+      }
+    },
+    {
+      "id": "m01-checklist-a05-03",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática.",
+      "texto": "Calcular fator de carga e interpretar o que ele significa operacionalmente.",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Calcular fator de carga e interpretar o que ele significa op",
+        "linha_aprox": 2501
+      }
+    },
+    {
+      "id": "m01-checklist-a05-04",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática.",
+      "texto": "Saber em que situação <strong>não</strong> recomendar redução de demanda contratada.",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Saber em que situação não recomendar redução de demanda cont",
+        "linha_aprox": 2512
+      }
+    }
+  ],
+  "cobertura_texto_por_token": {
+    "tokens_fonte": 582,
+    "tokens_casados": 582,
+    "pct": 100,
+    "tokens_nao_casados": [],
+    "instrumento_fora_do_denominador": true,
+    "instrumento": {
+      "tokens_fonte": 60,
+      "tokens_casados": 60,
+      "pct": 100,
+      "tokens_nao_casados": [],
+      "nota": "Cobertura à parte do div.instrument (L1774-1806): título, id, rótulos, unidades, valores iniciais e texto de leitura contra os campos extraídos de instrumentos[0]. Os atributos value/min/step dos inputs não são texto e ficam de fora do denominador."
+    },
+    "nota": "Denominador = texto da section (L1731–L1824) sem o div.instrument (L1773–L1806), §5. Tags viram espaço antes de tokenizar (não cola spans vizinhos, ao contrário do medidor da A08). Cada token da fonte consome um token extraído."
+  },
+  "divergencias": [
+    {
+      "id": "DIV-01",
+      "tipo": "achado_instrumento_x_exercicio",
+      "o_que": "O cenário-padrão do INST·04 é idêntico ao enunciado do Ex·04, e as saídas iniciais são o resultado do gabarito.",
+      "leitura_a": {
+        "entradas_padrao": {
+          "i04-kwh": 144000,
+          "i04-h": 720,
+          "i04-pmax": 800
+        },
+        "saidas_iniciais_marcacao": {
+          "i04-pmed": "200",
+          "i04-fc": "0,25",
+          "i04-fcp": "25%"
+        },
+        "origem": {
+          "seletor": "div.instrument",
+          "trecho_inicial": "Consumo mensal kWh",
+          "linha_aprox": 1782,
+          "linha_fim_aprox": 1800
+        }
+      },
+      "leitura_b": {
+        "texto": "Uma empresa consome 144.000 kWh em um mês de 720 horas. Demanda máxima medida foi 800 kW. Calcule demanda média e fator de carga. Como interpretar?",
+        "origem": {
+          "seletor": "§ Drill > Ex · 04 > .exercise-question",
+          "trecho_inicial": "Uma empresa consome 144.000 kWh em um mês de 720 horas. Dema",
+          "linha_aprox": 2420
+        },
+        "gabarito_partes": [
+          "144.000 ÷ 720 = 200 kW",
+          "200 ÷ 800 = 0,25 = 25%"
+        ],
+        "gabarito_origem": {
+          "seletor": "§ Drill > Ex · 04 > .exercise-answer",
+          "trecho_inicial": "Demanda média: 144.000 ÷ 720 = 200 kW",
+          "linha_aprox": 2423
+        }
+      },
+      "decisao": "não é contradição: é coincidência medida. Registrado para a camada de produto (bar C7: abrir o instrumento entrega a resposta). Nada alterado."
+    },
+    {
+      "id": "DIV-02",
+      "tipo": "fonte_contraditoria_interna",
+      "o_que": "Fronteiras da tabela 5.4 (intervalos fechados nos dois lados) × limiares `>=` do script do INST·04.",
+      "faixas_tabela_5_4": [
+        {
+          "faixa": "0,70 – 0,90",
+          "perfil": "Operação contínua, carga estável (24/7)",
+          "linha": 1813
+        },
+        {
+          "faixa": "0,40 – 0,70",
+          "perfil": "Operação em turnos, sazonalidade moderada",
+          "linha": 1814
+        },
+        {
+          "faixa": "0,15 – 0,40",
+          "perfil": "Picos altos, operação concentrada, partidas simultâneas",
+          "linha": 1815
+        },
+        {
+          "faixa": "< 0,15",
+          "perfil": "Padrão raro — pode indicar erro de medição ou contratação superdimensionada",
+          "linha": 1816
+        }
+      ],
+      "leitura_a": {
+        "partes": [
+          "0,70 – 0,90",
+          "0,40 – 0,70",
+          "0,15 – 0,40",
+          "< 0,15"
+        ],
+        "origem": {
+          "seletor": "h3(5.4) ~ table",
+          "linha_aprox": 1813,
+          "linha_fim_aprox": 1816,
+          "trecho_inicial": "0,70 – 0,90Operação contínua, carga estável (24/7)Bom aprove"
+        },
+        "argumento": "Os valores 0,70, 0,40 e 0,15 aparecem como limite de DUAS linhas (0,40 – 0,70 e 0,70 – 0,90; 0,15 – 0,40 e 0,40 – 0,70; \"< 0,15\" e 0,15 – 0,40). Acima de 0,90 a tabela não diz nada."
+      },
+      "leitura_b": {
+        "partes": [
+          "if (FC >= 0.70)",
+          "else if (FC >= 0.40)",
+          "else if (FC >= 0.15)",
+          "else"
+        ],
+        "origem": {
+          "seletor": "script calc()",
+          "linha_aprox": 2846,
+          "linha_fim_aprox": 2849,
+          "trecho_inicial": "if (FC >= 0.70) interp.textContent = 'Bom aproveitamento da "
+        },
+        "argumento": "O script resolve com `>=`: FC = 0,70 → 1º ramo; 0,40 → 2º; 0,15 → 3º; e qualquer FC ≥ 0,70 (inclusive acima de 0,90) → 1º ramo."
+      },
+      "exemplos_executando_o_script": [
+        "FC = 0,70 exato (504000 / 720 / 1000): FC 0,70 → if (FC >= 0.70)",
+        "FC = 0,40 exato (288000 / 720 / 1000): FC 0,40 → else if (FC >= 0.40)",
+        "FC = 0,15 exato (108000 / 720 / 1000): FC 0,15 → else if (FC >= 0.15)",
+        "FC = 1,00 (720000 / 720 / 1000): FC 1,00 → if (FC >= 0.70)"
+      ],
+      "quiz_na_fronteira": {
+        "texto": "Uma instalação tem demanda média de 200 kW e demanda máxima de 500 kW. Qual o fator de carga?",
+        "feedback": "FC = Demanda média ÷ Demanda máxima = 200 ÷ 500 = 0,40 (40%). Esse FC indica operação com sazonalidade moderada — possível oportunidade de gestão de carga, mas exige 12 meses de histórico para decisão.",
+        "origem": {
+          "seletor": "script: const questions = [...]",
+          "trecho_inicial": "Uma instalação tem demanda média de 200 kW e demanda máxima ",
+          "linha_aprox": 3107
+        },
+        "argumento": "FC = 0,40 exato: o feedback do quiz o lê como a faixa de sazonalidade moderada (2ª linha da tabela), mas 0,40 também é o limite superior de \"Picos altos, operação concentrada, partidas simultâneas\"."
+      },
+      "decisao": "não escolhida — as duas leituras coexistem na fonte."
+    },
+    {
+      "id": "DIV-03",
+      "tipo": "fonte_sigla_ambigua",
+      "o_que": "A sigla FC designa duas grandezas no mesmo módulo, e a A05 usa a sigla sem expandir.",
+      "leitura_a": {
+        "texto": "Fator de carga (FC)",
+        "origem": {
+          "seletor": "§ Lex",
+          "linha_aprox": 2580,
+          "trecho_inicial": "Fator de carga (FC)Razão"
+        },
+        "uso": "Aula 05: cabeçalho da tabela 5.4 (\"FC\"), texto de leitura do instrumento (\"FC muito baixo\") e o léxico \"Fator de carga (FC)\""
+      },
+      "leitura_b": {
+        "texto": "Fator de capacidade (FC)",
+        "origem": {
+          "seletor": "§ Lex",
+          "linha_aprox": 2576,
+          "trecho_inicial": "Fator de capacidade (FC)Geração"
+        },
+        "uso": "Aula 08 (fórmula e prosa de 8.2)"
+      },
+      "decisao": "não escolhida — ligação termo↔aula por sigla \"FC\" é ambígua; ligar pelo nome completo (P21 decide FCarga / FCap na camada de produto)."
+    },
+    {
+      "id": "DIV-04",
+      "tipo": "fonte_contraditoria_interna",
+      "o_que": "Numeração da trava do War Room citada no callout final desta aula.",
+      "leitura_a": {
+        "texto": "Promessa sem validação fere a Trava 4 do War Room.",
+        "origem": {
+          "seletor": "div.callout > p (Onde isso entra no produto)",
+          "linha_aprox": 1823,
+          "trecho_inicial": "No Conta de Luz Express, demanda é um dos primeiros campos d"
+        }
+      },
+      "leitura_b": {
+        "texto": "Trava 3 do War Room",
+        "origem": {
+          "seletor": "§ Caso",
+          "linha_aprox": 2192,
+          "trecho_inicial": "Cliente fictício consolidado de traços comuns. Não represent"
+        },
+        "argumento": "A fonte não define as travas. Ocorrências de \"Trava 3|4\" no arquivo: L1314 (Trava 4 do War Room); L1823 (Trava 4 do War Room); L2192 (Trava 3 do War Room); L3150 (Trava 4 do War Room)"
+      },
+      "decisao": "não escolhida — P23: reconciliar pelo contexto ou usar rótulo semântico. A A05 (L1823) diz \"Trava 4\", como as ocorrências L1314 e L3150; só a L2192 (§ Caso) diz \"Trava 3\"."
+    },
+    {
+      "id": "DIV-05",
+      "tipo": "observacao_editorial_marca",
+      "o_que": "A fonte nomeia a marca GridAlpha dentro desta aula; o produto hoje é NIVAR (P24).",
+      "leitura_a": {
+        "texto": "Esta é uma trava operacional da GridAlpha.",
+        "origem": {
+          "seletor": "div.callout.red > p",
+          "linha_aprox": 1757,
+          "trecho_inicial": "Os detalhes operacionais e contratuais de ultrapassagem de d"
+        }
+      },
+      "leitura_b": {
+        "texto": null,
+        "nota": "Outra leitura não está na fonte: a camada de produto usa NIVAR (empresa) / Alexandria (produto) por decisão P24, fora desta extração.",
+        "origem": null
+      },
+      "decisao": "não escolhida — texto da fonte mantido literal; o código já trocou a marca (COD-05)."
+    }
+  ],
+  "comparacao_codigo": {
+    "arquivos": [
+      "src/lib/data/alexandria-modulo-01-content.ts (INSTRUMENTOS_MODULO_01 inst-04 l.85; MODULO_01_LEAD aula-01-05 l.167; MODULO_01_CORPO aula-01-05 l.249; MODULO_01_AULAS aula-01-05 l.441)",
+      "src/lib/data/alexandria-instrument-calculators.ts (inst-04, l.1726+)",
+      "src/lib/data/alexandria-glossario.ts (aulaIds)",
+      "src/components/alexandria/viewer/AulaViewer.tsx l.123-127 e InstrumentPanel.tsx l.47-56, l.705 (lidos para entender o efeito das divergências; não são fonte)"
+    ],
+    "verificacoes_programaticas": {
+      "lead_verbatim": true,
+      "titulos_com_numero_e_texto": true,
+      "paragrafos_verbatim": [
+        {
+          "linha": 1737,
+          "verbatim": true
+        },
+        {
+          "linha": 1739,
+          "verbatim": true
+        },
+        {
+          "linha": 1741,
+          "verbatim": true
+        },
+        {
+          "linha": 1761,
+          "verbatim": true
+        },
+        {
+          "linha": 1767,
+          "verbatim": true
+        }
+      ],
+      "tabelas_celulas_verbatim": [
+        {
+          "linha": 1745,
+          "todas_as_celulas": true
+        },
+        {
+          "linha": 1810,
+          "todas_as_celulas": true
+        }
+      ],
+      "celulas_com_classe_na_fonte": 4,
+      "formulas_no_corpo_codigo": 0,
+      "formulas_na_fonte": 2,
+      "callout_vermelho_corpo_verbatim_exceto_marca": true,
+      "callout_vermelho_corpo_verbatim_literal": false,
+      "callout_neutro_corpo_verbatim": true,
+      "rotulos_de_callout_como_nota_html": [
+        {
+          "rotulo": "Atenção · regras de ultrapassagem",
+          "aparece_como_nota_com_label_null": true
+        },
+        {
+          "rotulo": "Onde isso entra no produto",
+          "aparece_como_nota_com_label_null": true
+        }
+      ],
+      "span_orfao_no_corpo": 0,
+      "span_abre_no_corpo": 0,
+      "instrumento_formula_literal_no_codigo": "FC = P média ÷ P máxima",
+      "instrumento_formula_existe_no_html": false,
+      "instrumento_note_estatica": "<b>Fator de carga baixo: muitos picos altos em relação ao uso médio. Pode indicar partidas simultâneas, operação concentrada em poucas horas ou demanda mal dimensionada — investigar antes de recomendar mudança contratual.</b>",
+      "instrumento_note_igual_marcacao": true,
+      "instrumento_outputs": [
+        {
+          "id": "i04-pmed",
+          "label": "Demanda média",
+          "unit": "\"kW\""
+        },
+        {
+          "id": "i04-fc",
+          "label": "Fator de carga",
+          "unit": "null"
+        },
+        {
+          "id": "i04-fcp",
+          "label": "Fator de carga (%)",
+          "unit": "\"%\""
+        }
+      ],
+      "instrumento_campos_batem_com_fonte": true,
+      "instrumento_ramos_verbatim_no_calculador": true,
+      "instrumento_ordem_na_aula": "aula.instruments (depois da apostila; AulaViewer.tsx l.125 renderiza ApostilaPanel e só depois aula.instruments.map)",
+      "calculador_coercoes": [
+        {
+          "var": "E",
+          "fn": "n",
+          "campo": "i04-kwh",
+          "padrao_vazio": null
+        },
+        {
+          "var": "T",
+          "fn": "nOu",
+          "campo": "i04-h",
+          "padrao_vazio": "1"
+        },
+        {
+          "var": "Pmax",
+          "fn": "nOu",
+          "campo": "i04-pmax",
+          "padrao_vazio": "1"
+        }
+      ],
+      "ex04_prompt_verbatim": true,
+      "ex04_gabarito_verbatim": true,
+      "ex04_tag_verbatim": true,
+      "ex07_prompt_verbatim": true,
+      "ex07_tag_verbatim": true,
+      "ex07_paragrafos_do_gabarito_presentes": [
+        true,
+        true,
+        true
+      ],
+      "ex07_gabarito_uma_string_unica": {
+        "uma_string": true,
+        "contem_tag_p": false,
+        "contem_margin_top": false,
+        "separador_entre_vozes": true
+      },
+      "points_nos_dois_exercicios": [
+        1,
+        1
+      ],
+      "titulo_aula_igual_h2_sem_em": true,
+      "subtitulo_igual_marcador": true,
+      "duracao_dificuldade_video_null": true,
+      "glossario_aulaIds_com_a05": [
+        "Demanda",
+        "Demanda contratada",
+        "Energia",
+        "Fator de carga (FC)",
+        "kW",
+        "Modalidade tarifária",
+        "REN ANEEL 1.000/2021",
+        "Tensão"
+      ]
+    },
+    "conforme": [
+      "Lead e os 4 parágrafos corridos de 5.1/5.3 (3 + 2) verbatim no corpo.",
+      "Títulos 5.1–5.4 com número e texto corretos.",
+      "Tabelas 5.2 e 5.4: todas as células verbatim (cabeçalho = primeira linha, igual à fonte; `&lt;` decodificado para \"<\").",
+      "Corpo do callout \"Onde isso entra no produto\" verbatim (inclusive \"Trava 4 do War Room\").",
+      "Nenhum `</span>` órfão no corpo de aula-01-05 (0 aberturas, 0 fechamentos).",
+      "INST·04: título, ids e rótulos dos 3 campos, unidades, padrões (144000 / 720 / 800), min 0, steps (1000 / 24 / 50), ausência de max, rótulo/unidade de i04-pmed.",
+      "Lógica do cálculo e os 4 textos de faixa verbatim e na mesma ordem; `|| 1` de horas e demanda máxima preservado (nOu(…, 1)).",
+      "Ex·04: tag, enunciado e gabarito verbatim; Ex·07: tag e enunciado verbatim, e cada uma das 3 vozes do gabarito presente como substring.",
+      "durationMinutes / difficulty / video = null, coerente com a fonte."
+    ],
+    "divergencias": [
+      {
+        "id": "COD-01",
+        "gravidade": "alta",
+        "onde": "MODULO_01_CORPO[\"aula-01-05\"] (entre 5.3 e 5.4)",
+        "o_que": "As duas fórmulas de 5.3 (div.formula, \"Demanda média = kWh consumido ÷ horas do período\" e \"Fator de carga = Demanda média ÷ Demanda máxima\") não foram portadas: 0 blocos kind 'formula' no corpo da aula, contra 2 na fonte. O 2º parágrafo de 5.3 termina em \":\" e não tem continuação.",
+        "fonte": "linhas 1763-1765 e 1769-1771"
+      },
+      {
+        "id": "COD-02",
+        "gravidade": "alta",
+        "onde": "AulaViewer.tsx + MODULO_01_AULAS aula-01-05",
+        "o_que": "O instrumento não tem posição no fluxo: fica em `aula.instruments` e é renderizado depois de TODA a apostila (ApostilaPanel e só depois instruments.map). Na fonte ele está entre a 2ª fórmula de 5.3 e o h3 5.4. Viola C5 (posição no ponto da prosa) e a Regra-mãe 1.",
+        "fonte": "linhas 1769-1808"
+      },
+      {
+        "id": "COD-03",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-05\"] callout vermelho",
+        "o_que": "O callout.red portado como nota {tom: \"red\", label: null, html: \"Atenção · regras de ultrapassagem\"} seguida de um parágrafo solto com o corpo. Na fonte \"Atenção · regras de ultrapassagem\" é o RÓTULO (div.callout-label) e o parágrafo é o CORPO do mesmo callout. Hierarquia invertida/partida.",
+        "fonte": "linhas 1755-1758"
+      },
+      {
+        "id": "COD-04",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-05\"] callout neutro",
+        "o_que": "Mesmo defeito em \"Onde isso entra no produto\": rótulo portado como `html` de nota (label: null) e corpo como parágrafo solto.",
+        "fonte": "linhas 1821-1824"
+      },
+      {
+        "id": "COD-05",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-05\"] parágrafo do callout vermelho",
+        "o_que": "Não verbatim: a fonte diz \"Esta é uma trava operacional da GridAlpha.\" e o código diz \"…da NIVAR.\" Troca editorial de marca já feita no código (pendência R8 / P24 / Q03 do inventário); a camada fonte preserva \"GridAlpha\".",
+        "fonte": "linha 1757"
+      },
+      {
+        "id": "COD-06",
+        "gravidade": "média",
+        "onde": "INSTRUMENTOS_MODULO_01 inst-04 .formula",
+        "o_que": "formula = \"FC = P média ÷ P máxima\" é paráfrase (abreviações \"P média\" / \"P máxima\") e não existe no HTML (instrumento_formula_existe_no_html = false). O literal da fonte é a 2ª div.formula de 5.3 (\"Fator de carga = Demanda média ÷ Demanda máxima\"), fora do instrumento.",
+        "fonte": "linha 1770"
+      },
+      {
+        "id": "COD-07",
+        "gravidade": "média",
+        "onde": "INSTRUMENTOS_MODULO_01 inst-04 .note + InstrumentPanel",
+        "o_que": "O texto inicial de b#i04-interp foi portado como `note` ESTÁTICA (envolta em <b>). Na fonte é o próprio elemento de leitura, sobrescrito por calc() (4 ramos). O painel renderiza `veredito` e `note` juntos: no cenário-padrão os dois dizem o mesmo (a marcação é idêntica ao ramo ≥0,15); com outra entrada (ex.: FC ≥ 0,70) o painel mostra o ramo vivo e, ao mesmo tempo, a nota fixa do ramo 0,15–0,40.",
+        "fonte": "linhas 1802-1804, 2846-2852"
+      },
+      {
+        "id": "COD-08",
+        "gravidade": "baixa",
+        "onde": "INSTRUMENTOS_MODULO_01 inst-04 .outputs",
+        "o_que": "Três saídas no código (i04-pmed \"Demanda média\" unit \"kW\"; i04-fc \"Fator de carga\" unit null; i04-fcp \"Fator de carga (%)\" unit \"%\"). Na fonte são duas linhas: \"Demanda média\" (kW) e \"Fator de carga\", cujo valor \"0,25\" tem ao lado o percentual \"25%\" dentro do span.unit, SEM rótulo próprio. O rótulo \"Fator de carga (%)\" não existe na fonte, e i04-fc ficou sem unidade.",
+        "fonte": "linhas 1794-1801"
+      },
+      {
+        "id": "COD-09",
+        "gravidade": "baixa",
+        "onde": "InstrumentPanel.tsx fmt()",
+        "o_que": "Formatação das saídas diverge da fonte (deduzido da leitura de `fmt`, não medido na tela): a fonte usa pmed com no máximo 1 casa, FC com exatamente 2 casas (\"0,50\") e fcp = toFixed(0) + \"%\"; o painel usa `fmt(v, 2)` (máx. 2 casas, sem mínimo): pmed 1000/720 → \"1,39\" (fonte \"1,4\"), FC 0,5 → \"0,5\" (fonte \"0,50\"), fcp → \"25\" com unidade \"%\" separada.",
+        "fonte": "linhas 2842-2844"
+      },
+      {
+        "id": "COD-10",
+        "gravidade": "baixa",
+        "onde": "alexandria-instrument-calculators.ts n()",
+        "o_que": "Para `i04-kwh` o código usa n() (Number) onde a fonte usa parseFloat(v) || 0; diferem só para strings com sufixo não numérico (praticamente inalcançável em input[type=number]). T e Pmax usam nOu(…, 1), fiel ao `|| 1` da fonte (conforme).",
+        "fonte": "linhas 2836-2838"
+      },
+      {
+        "id": "COD-11",
+        "gravidade": "média",
+        "onde": "MODULO_01_AULAS aula-01-05 activities[1] (Ex·07) .config.gabarito",
+        "o_que": "O gabarito do Ex·07 são 3 <p> na fonte (12 anos / CFO / Especialista; o 2º e o 3º com style=\"margin-top: 12px;\"). No código viraram UMA string, com as três vozes separadas por um espaço e sem <p>: a separação de parágrafos se perdeu. O texto das três vozes está presente e verbatim.",
+        "fonte": "linhas 2450-2452"
+      },
+      {
+        "id": "COD-12",
+        "gravidade": "baixa",
+        "onde": "MODULO_01_AULAS aula-01-05 activities[].points",
+        "o_que": "`points: 1 / 1` nos dois exercícios não tem origem na fonte (o § Drill não pontua).",
+        "fonte": "linhas 2418-2454"
+      },
+      {
+        "id": "COD-13",
+        "gravidade": "baixa",
+        "onde": "alexandria-glossario.ts aulaIds",
+        "o_que": "Termos com \"aula-01-05\" em aulaIds: Demanda, Demanda contratada, Energia, Fator de carga (FC), kW, Modalidade tarifária, REN ANEEL 1.000/2021, Tensão. A fonte não declara aula por termo; é derivação do código. Ver termos_lexico.candidatos para as correspondências textuais medidas.",
+        "fonte": "linhas 2556-2600 (§ Lex)"
+      },
+      {
+        "id": "COD-14",
+        "gravidade": "informativa",
+        "onde": "MODULO_01_CORPO[\"aula-01-05\"] tabela 5.4",
+        "o_que": "As 4 células da 1ª coluna da tabela 5.4 têm class=\"mono\" na fonte; o tipo 'tabela' do código só guarda o html da célula, então a classe não foi portada.",
+        "fonte": "linhas 1813-1816"
+      },
+      {
+        "id": "COD-15",
+        "gravidade": "informativa",
+        "onde": "ids",
+        "o_que": "Código usa \"inst-04\", \"ex-04\", \"ex-07\", \"aula-01-05\"; esta extração usa \"m01-inst-04\", \"m01-ex-04\", \"m01-ex-07\", \"m01-a05\". Mapeamento 1:1.",
+        "fonte": null
+      }
+    ]
+  },
+  "contagens": {
+    "blocos": 17,
+    "blocos_por_tipo": {
+      "lead": 1,
+      "titulo": 4,
+      "paragrafo": 5,
+      "tabela": 2,
+      "destaque": 2,
+      "formula": 2,
+      "instrumento": 1
+    },
+    "secoes_numeradas": [
+      "5.1",
+      "5.2",
+      "5.3",
+      "5.4"
+    ],
+    "figuras": 0,
+    "tabelas": 2,
+    "linhas_de_dados_por_tabela": [
+      3,
+      4
+    ],
+    "formulas": 2,
+    "listas": 0,
+    "destaques": 2,
+    "vale_lembrar": 0,
+    "instrumentos": 1,
+    "entradas_instrumento": 3,
+    "saidas_instrumento": 3,
+    "ramos_texto_leitura": 4,
+    "invocacoes_no_texto": 0,
+    "exercicios_vinculados": 2,
+    "relacionados_nao_vinculados": 6,
+    "termos_lexico_candidatos": 8,
+    "verbetes_lexico_modulo": 38,
+    "divergencias_fonte": 5,
+    "divergencias_codigo": 15
+  }
+}

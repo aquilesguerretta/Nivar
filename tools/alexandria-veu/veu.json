@@ -1,0 +1,318 @@
+{
+ "note": "O véu dos quatro arquétipos construídos (SISTEMA.md §2.6 L2). Cada caso nomeia UM ato, o que ele protege e a prova de que o véu CAI no registro. `proibidos` = o que não pode ter retângulo > 0 antes do registro; `exigidoApos` = o que tem de aparecer depois, para que apagar o conteúdo não passe no gate. A bandeja de opções (`data-veu=\"escolhas\"`) fica fora da varredura: uma escolha múltipla contém a resposta certa por construção. Rodar com o dev server na 5311.",
+ "casos": [
+  {
+   "nome": "m01-a08 · ato 1 · previsão do fator de capacidade",
+   "route": "/alexandria/trilha/trilha-fundamentos-universais/modulo/modulo-01/aula/8",
+   "state": "E2",
+   "viewport": [
+    1440,
+    900
+   ],
+   "proibidos": [
+    {
+     "re": "\\b25[,.]1\\s*%",
+     "porque": "é o FCap que o INST·06 calcula do cenário — a resposta da previsão"
+    },
+    {
+     "re": "Solar\\s+fotovoltaica[^|]{0,60}\\b2[0-9]\\s*[–—-]\\s*2[0-9]\\s*%",
+     "porque": "a faixa da figura 8.3 para solar contém o valor previsto: permite CALCULAR a referência (L2)"
+    },
+    {
+     "re": "faixa de 25\\s*%\\s*a\\s*30\\s*%",
+     "porque": "a leitura por faixa do instrumento revela o intervalo do resultado"
+    }
+   ],
+   "abrir": [
+    {
+     "fill": [
+      "[data-capture=\"ato-campo\"]",
+      "25"
+     ]
+    },
+    {
+     "click": "[data-capture=\"ato-registrar\"]"
+    }
+   ],
+   "exigidoApos": [
+    {
+     "re": "\\b25[,.]1\\s*%",
+     "porque": "o véu cai no registro; o FCap calculado tem de aparecer no previsto × calculado"
+    }
+   ]
+  },
+  {
+   "nome": "m01-a08 · ato 2 · a fonte que a faixa descreve",
+   "route": "/alexandria/trilha/trilha-fundamentos-universais/modulo/modulo-01/aula/8",
+   "state": "E2",
+   "viewport": [
+    1440,
+    900
+   ],
+   "proibidos": [
+    {
+     "re": "Hidrel[eé]trica\\s*\\(\\s*BR",
+     "porque": "é a resposta literal do ato, e estava em negrito no próprio enunciado (achado 8 da r12)"
+    },
+    {
+     "re": "hidrel[eé]tric\\w*[^.;]{0,120}\\b(4[5-9]|5[0-5])\\s*%",
+     "porque": "nomear a hidro junto de um número dentro da faixa 45–55% entrega a resposta por cálculo (L2)"
+    },
+    {
+     "re": "\\b(4[5-9]|5[0-5])\\s*%[^.;]{0,120}hidrel[eé]tric",
+     "porque": "o mesmo par, na ordem inversa"
+    },
+    {
+     "re": "~?\\s*45\\s*[–—-]\\s*55\\s*%",
+     "porque": "a linha da régua 8.3 que casa a faixa-alvo com o nome da fonte"
+    }
+   ],
+   "abrir": [
+    {
+     "click": "[data-capture=\"instrumento-controle\"]"
+    },
+    {
+     "wait": 300
+    },
+    {
+     "click": "[data-capture=\"meta-opcao-2\"]"
+    },
+    {
+     "click": "[data-capture=\"meta-registrar\"]"
+    },
+    {
+     "wait": 600
+    }
+   ],
+   "exigidoApos": [
+    {
+     "re": "Hidrel[eé]trica\\s*\\(\\s*BR",
+     "porque": "registrada a meta, a régua 8.3 e a referência do ato abrem — o véu cai, não some"
+    }
+   ]
+  },
+  {
+   "nome": "m02-a04 · ato 1 · o traço da curva líquida",
+   "route": "/alexandria/trilha/trilha-fundamentos-universais/modulo/modulo-02/aula/4",
+   "state": "E2",
+   "viewport": [
+    1440,
+    900
+   ],
+   "proibidos": [
+    {
+     "re": "m[ií]nim\\w+[^.;]{0,60}\\b1[0-9]\\s*h\\b",
+     "porque": "a hora do mínimo da curva líquida é metade da resposta do traço"
+    },
+    {
+     "re": "rampa[^.;]{0,80}\\+?\\s*\\d+[,.]\\d\\s*GW",
+     "porque": "o valor da rampa calculada é a outra metade"
+    },
+    {
+     "re": "GW/h\\s*calculada",
+     "porque": "o quadro previsto × calculado não pode abrir antes do registro"
+    }
+   ],
+   "abrir": [
+    {
+     "click": "[data-capture=\"ato-registrar\"]"
+    },
+    {
+     "wait": 400
+    }
+   ],
+   "exigidoApos": [
+    {
+     "re": "calculada",
+     "porque": "registrado o traço, o quadro previsto × calculado abre"
+    }
+   ]
+  },
+  {
+   "nome": "m12-a01 · ato 1 · a faixa da matriz energética",
+   "route": "/alexandria/trilha/trilha-setor-eletrico-brasileiro/modulo/modulo-12/aula/1",
+   "state": "E2",
+   "viewport": [
+    1440,
+    900
+   ],
+   "proibidos": [
+    {
+     "re": "matriz\\s+energ[eé]tica[^.;]{0,90}\\b(4[0-9]|5[0-9])[,.]?\\d*\\s*%",
+     "porque": "o valor oficial da matriz energética é a resposta da estimativa"
+    },
+    {
+     "re": "\\b(4[0-9]|5[0-9])[,.]?\\d*\\s*%[^.;]{0,90}matriz\\s+energ[eé]tica",
+     "porque": "o mesmo par, na ordem inversa"
+    },
+    {
+     "re": "~\\s*50\\s*%",
+     "porque": "a leitura arredondada do valor oficial entrega a faixa"
+    }
+   ],
+   "abrir": [
+    {
+     "click": "[data-capture=\"ato-opcao-2\"]"
+    },
+    {
+     "click": "[data-capture=\"ato-registrar\"]"
+    },
+    {
+     "wait": 400
+    }
+   ],
+   "exigidoApos": [
+    {
+     "re": "matriz\\s+energ[eé]tica|valor oficial",
+     "porque": "registrada a estimativa, o valor oficial abre"
+    }
+   ]
+  },
+  {
+   "nome": "m13-a06 · ato 1 · a categoria do sinal",
+   "route": "/alexandria/trilha/trilha-especializacao-estrategica/modulo/modulo-13/aula/6",
+   "state": "E2",
+   "viewport": [
+    1440,
+    900
+   ],
+   "proibidos": [
+    {
+     "re": "gatilho\\s+contratual",
+     "porque": "é a segunda metade da resposta do ato (a lente da sociedade de projeto)"
+    },
+    {
+     "re": "Hidrol[oó]gico[^.;]{0,140}garantia\\s+f[ií]sica",
+     "porque": "a linha da matriz que nomeia a categoria junto do sinal entrega a primeira metade (L3)"
+    }
+   ],
+   "abrir": [
+    {
+     "click": "[data-capture=\"ato-opcao-1\"]"
+    },
+    {
+     "wait": 300
+    },
+    {
+     "click": "[data-capture=\"lente-opcao-2\"]"
+    },
+    {
+     "wait": 200
+    },
+    {
+     "click": "[data-capture=\"ato-registrar\"]"
+    },
+    {
+     "wait": 600
+    }
+   ],
+   "exigidoApos": [
+    {
+     "re": "Registrado:[^.]*gatilho\\s+contratual",
+     "porque": "registrado o ato, a classificação do learner volta escrita — o véu cai, não some (a matriz inteira abre no ato 2, L3)"
+    }
+   ]
+  },
+  {
+   "nome": "m01-a08 · ato 3 · o exercício Ex·06 da fonte",
+   "route": "/alexandria/trilha/trilha-fundamentos-universais/modulo/modulo-01/aula/8",
+   "state": "E2",
+   "viewport": [
+    1440,
+    900
+   ],
+   "proibidos": [
+    {
+     "re": "438[.]000",
+     "porque": "o teto teórico do Ex·06 (50 × 8.760) é metade da conta que o ato pede"
+    },
+    {
+     "re": "=\\s*0,30|\b30\\s?%[^.;]{0,40}(solar|média típica)",
+     "porque": "o resultado do Ex·06 e a leitura dele"
+    }
+   ],
+   "abrir": [
+    {
+     "fill": [
+      "[data-capture=\"ex06-campo\"]",
+      "30"
+     ]
+    },
+    {
+     "click": "[data-capture=\"ex06-opcao-2\"]"
+    },
+    {
+     "click": "[data-capture=\"checagem-registrar\"]"
+    },
+    {
+     "wait": 600
+    }
+   ],
+   "exigidoApos": [
+    {
+     "re": "438[.]000",
+     "porque": "registrado o Ex·06, a conta de referência abre — o véu cai, não some"
+    }
+   ]
+  },
+  {
+   "nome": "m02-a04 · ato 2 · a menor solar que cruza o limiar",
+   "route": "/alexandria/trilha/trilha-fundamentos-universais/modulo/modulo-02/aula/4",
+   "state": "E2",
+   "viewport": [
+    1440,
+    900
+   ],
+   "proibidos": [
+    {
+     "re": "menor solar[^.;]{0,60}\b\\d{1,2}\\s*GW",
+     "porque": "a menor solar que faz a rampa cruzar o limiar é a resposta do ato"
+    },
+    {
+     "re": "meta registrada[^.;]{0,40}GW",
+     "porque": "o registro do ato não pode aparecer antes dele"
+    }
+   ]
+  },
+  {
+   "nome": "m12-a01 · ato 4 · a frase do Aquífero Guarani",
+   "route": "/alexandria/trilha/trilha-setor-eletrico-brasileiro/modulo/modulo-12/aula/1",
+   "state": "E2",
+   "viewport": [
+    1440,
+    900
+   ],
+   "proibidos": [
+    {
+     "re": "sem relação[^.;]{0,40}geração hidrelétrica",
+     "porque": "é a referência literal do ato: a frase está errada porque o aquífero não serve à geração"
+    },
+    {
+     "re": "não move nenhuma turbina",
+     "porque": "a mesma referência, dita na legenda da figura"
+    },
+    {
+     "re": "Aqu[ií]fero[^.;]{0,160}(sem relação|não serve|não move)",
+     "porque": "o par nome + negção entrega o veredito do ato"
+    }
+   ],
+   "abrir": [
+    {
+     "click": "[data-capture=\"erro-opcao-2\"]"
+    },
+    {
+     "click": "[data-capture=\"checagem-registrar\"]"
+    },
+    {
+     "wait": 600
+    }
+   ],
+   "exigidoApos": [
+    {
+     "re": "sem relação[^.;]{0,40}geração hidrelétrica",
+     "porque": "registrado o ato, a referência abre — o véu cai, não some"
+    }
+   ]
+  }
+ ]
+}

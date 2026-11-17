@@ -1,0 +1,1029 @@
+/* Alexandria v3 — Início (apresentação e mesa de estudo). */
+
+.alx3 .home-espera {
+  min-height: 70vh;
+}
+
+/* ── entrada: palavras que sobem ─────────────────────────── */
+
+@keyframes alx3-sobe {
+  from {
+    opacity: 0;
+    transform: translateY(0.45em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.alx3 .sobe {
+  display: inline-block;
+  opacity: 0;
+  animation: alx3-sobe 720ms cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 70ms + 120ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alx3 .sobe {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* ── botões e links da casa ──────────────────────────────── */
+
+.alx3 .botao {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 26px;
+  background: var(--tinta);
+  color: var(--sobre-tinta);
+  font-size: 16.5px;
+  font-weight: 500;
+  text-decoration: none;
+  overflow: hidden;
+  transition: background var(--t-hover);
+}
+
+/* um fio óxido corre por baixo do botão no hover */
+.alx3 .botao::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--oxido);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 420ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.alx3 .botao:hover::after,
+.alx3 .botao:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.alx3 .link-seta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  font-size: 16.5px;
+  color: var(--tinta);
+  text-decoration: none;
+  border-bottom: 1px solid var(--fio-forte);
+}
+
+.alx3 .link-seta::after {
+  content: '→';
+  transition: transform var(--t-hover);
+}
+
+.alx3 .link-seta:hover::after {
+  transform: translateX(5px);
+}
+
+.alx3 .legenda-gravura {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  font-size: 13px;
+  color: #3d4252;
+  background: rgba(242, 236, 223, 0.86);
+  padding: 3px 6px;
+}
+
+/* ── herói ───────────────────────────────────────────────── */
+
+/* a Home ocupa a largura toda; o texto se alinha à casca (1440) */
+.alx3 .home {
+  --margem: max(64px, calc((100vw - 1440px) / 2 + 32px));
+}
+
+.alx3 .heroi {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: calc(100vh - 65px);
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .heroi-texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 48px 56px 32px var(--margem);
+}
+
+.alx3 .heroi-topo {
+  display: grid;
+  gap: 24px;
+  margin-top: auto;
+}
+
+.alx3 .heroi-titulo {
+  margin: 0;
+  font-size: clamp(56px, 5.85vw, 103.5px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+
+.alx3 .heroi-titulo em {
+  display: block;
+  font-style: italic;
+}
+
+.alx3 .heroi-sub {
+  margin: 0;
+  max-width: 36ch;
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+.alx3 .heroi-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 28px;
+  margin-top: 6px;
+}
+
+/* teses que passam */
+
+.alx3 .teses {
+  position: relative;
+  border-top: 1px solid var(--fio-forte);
+  padding-top: 16px;
+  max-width: 560px;
+}
+
+.alx3 .teses-cabeca {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alx3 .teses-proxima {
+  font-family: var(--f-dado);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--tinta-suave);
+  background: none;
+  border: 0;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: color var(--t-hover);
+}
+
+.alx3 .teses-proxima:hover {
+  color: var(--oxido);
+}
+
+@keyframes alx3-tese-entra {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.alx3 .tese-atual {
+  display: grid;
+  gap: 8px;
+  margin-top: 6px;
+  min-height: 112px;
+  text-decoration: none;
+  color: var(--tinta);
+  animation: alx3-tese-entra 700ms cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.alx3 .tese-frase {
+  font-family: var(--f-leitura);
+  font-style: italic;
+  font-size: clamp(24px, 2.05vw, 32.5px);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+}
+
+.alx3 .tese-atual:hover .tese-frase {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--oxido);
+}
+
+.alx3 .tese-origem {
+  font-size: 13px;
+}
+
+@keyframes alx3-tempo {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.alx3 .teses-tempo {
+  position: absolute;
+  left: 0;
+  top: -1px;
+  height: 1px;
+  width: 100%;
+  background: var(--oxido);
+  transform-origin: left;
+  animation: alx3-tempo 5200ms linear both;
+}
+
+.alx3 .teses-tempo[data-pausa] {
+  animation-play-state: paused;
+}
+
+/* a gravura */
+
+.alx3 .heroi-figura {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-left: 1px solid var(--fio);
+  background: var(--papel-fundo);
+}
+
+@keyframes alx3-respira {
+  from {
+    transform: scale(1.08) translate(1.2%, 0);
+  }
+  to {
+    transform: scale(1.01) translate(0, 0);
+  }
+}
+
+.alx3 .heroi-figura img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 50%;
+  animation: alx3-respira 18s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+/* clarão de relâmpago: raro, curto, nunca seguido (≈ a cada 9 s) */
+@keyframes alx3-clarao {
+  0%, 86%, 100% {
+    opacity: 0;
+  }
+  87% {
+    opacity: 0.32;
+  }
+  88% {
+    opacity: 0.04;
+  }
+  89.5% {
+    opacity: 0.22;
+  }
+  92% {
+    opacity: 0;
+  }
+}
+
+.alx3 .relampago {
+  position: absolute;
+  inset: 0;
+  background: #fbf7ee;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  opacity: 0;
+  animation: alx3-clarao 9s linear 2.4s infinite;
+}
+
+/* faixa das trilhas na base do herói */
+
+.alx3 .heroi-trilhas {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--fio);
+  padding: 0 var(--margem);
+}
+
+.alx3 .heroi-trilha {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  padding: 20px 24px 22px;
+  border-right: 1px solid var(--fio);
+  text-decoration: none;
+  color: var(--tinta);
+  transition: background var(--t-hover);
+}
+
+.alx3 .heroi-trilha:first-child {
+  border-left: 1px solid var(--fio);
+}
+
+.alx3 .heroi-trilha:hover {
+  background: var(--papel-hover);
+}
+
+.alx3 .heroi-trilha-romano {
+  grid-row: 1 / 3;
+  font-family: var(--f-leitura);
+  font-size: 36px;
+  line-height: 1;
+  color: var(--oxido);
+}
+
+.alx3 .heroi-trilha-nome {
+  font-family: var(--f-leitura);
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+.alx3 .heroi-trilha .v-dado {
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* modo noturno: a gravura fica positiva e só escurece — inverter vira negativo
+   fantasma e ninguém lê */
+.alx3[data-modo='noturno'] .heroi-figura img,
+.alx3[data-modo='noturno'] .faixa-gravura img,
+.alx3[data-modo='noturno'] .carta-imagem img {
+  filter: brightness(0.8) contrast(1.06) saturate(0.85);
+}
+
+.alx3[data-modo='noturno'] .relampago {
+  mix-blend-mode: soft-light;
+}
+
+/* ── números ─────────────────────────────────────────────── */
+
+.alx3 .numeros {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid var(--fio);
+  padding: 0 var(--margem);
+}
+
+.alx3 .numero {
+  display: grid;
+  gap: 6px;
+  padding: 40px 40px 44px;
+  border-right: 1px solid var(--fio);
+}
+
+.alx3 .numero:last-child {
+  border-right: 0;
+}
+
+.alx3 .numero-valor {
+  font-family: var(--f-leitura);
+  font-size: clamp(47.5px, 4.95vw, 78px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.alx3 .numero-desc {
+  font-size: 16px;
+  color: var(--tinta-suave);
+}
+
+/* ── seções ──────────────────────────────────────────────── */
+
+.alx3 .secao-cabeca {
+  padding: 88px var(--margem) 36px;
+}
+
+.alx3 .secao-titulo {
+  margin: 10px 0 0;
+  font-size: clamp(36.5px, 4.1vw, 60.5px);
+  max-width: 20ch;
+}
+
+.alx3 .secao-titulo em {
+  font-style: italic;
+}
+
+/* cartas das trilhas */
+
+.alx3 .trilhas-cartas {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--margem) 96px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .carta {
+  border-left: 1px solid var(--fio);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+.alx3 .carta:last-child {
+  border-right: 1px solid var(--fio);
+}
+
+.alx3 .carta-link {
+  display: grid;
+  gap: 8px;
+  padding: 0 24px 28px;
+  height: 100%;
+  text-decoration: none;
+  color: var(--tinta);
+  transition: background var(--t-hover);
+}
+
+.alx3 .carta-link:hover {
+  background: var(--papel-hover);
+}
+
+.alx3 .carta-imagem {
+  display: block;
+  margin: 0 -24px 14px;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .carta-imagem img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.alx3 .carta-link:hover .carta-imagem img {
+  transform: scale(1.045);
+}
+
+.alx3 .carta-romano {
+  font-family: var(--f-dado);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--oxido);
+}
+
+.alx3 .carta-nome {
+  font-family: var(--f-leitura);
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+.alx3 .carta-tese {
+  margin-top: 10px;
+  font-family: var(--f-leitura);
+  font-style: italic;
+  font-size: 21px;
+  line-height: 1.3;
+  color: var(--tinta-suave);
+}
+
+.alx3 .carta-tese-fonte {
+  font-size: 13px;
+}
+
+/* como se estuda */
+
+.alx3 .como {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 56px;
+  padding: 88px var(--margem) 96px;
+  align-items: start;
+}
+
+.alx3 .passos {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--fio);
+}
+
+.alx3 .passos li {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 8px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--fio);
+  font-size: 17.5px;
+  line-height: 1.5;
+}
+
+.alx3 .passos .v-dado {
+  color: var(--oxido);
+  padding-top: 3px;
+}
+
+/* instrumento */
+
+.alx3 .inst {
+  margin: 0;
+  border: 1px solid var(--fio-forte);
+  background: var(--papel);
+}
+
+.alx3 .inst-cabeca {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 20px 26px;
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .inst-cabeca p {
+  margin: 0;
+}
+
+.alx3 .inst-titulo {
+  font-size: 30px;
+}
+
+.alx3 .inst-corpo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+}
+
+.alx3 .inst-entradas {
+  display: grid;
+  gap: 26px;
+  padding: 26px;
+  border-right: 1px solid var(--fio);
+}
+
+.alx3 .inst-saida {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  padding: 26px;
+}
+
+.alx3 .inst-numero {
+  font-family: var(--f-leitura);
+  font-size: clamp(60.5px, 6.5vw, 95px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.alx3 .inst-unidade {
+  font-size: 0.5em;
+  margin-left: 4px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .inst-medidor {
+  display: block;
+  height: 4px;
+  background: var(--fio);
+}
+
+.alx3 .inst-medidor-cheio {
+  display: block;
+  height: 100%;
+  background: var(--tinta);
+  transition: width 280ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.alx3 .inst-fonte {
+  display: block;
+  padding: 12px 26px;
+  border-top: 1px solid var(--fio);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* régua deslizante */
+
+.alx3 .regua-campo {
+  display: grid;
+  gap: 10px;
+}
+
+.alx3 .regua-cabeca {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.alx3 .regua-rotulo {
+  font-family: var(--f-leitura);
+  font-size: 21px;
+}
+
+.alx3 .regua-valor {
+  font-family: var(--f-leitura);
+  font-size: 24px;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.alx3 .regua-unidade {
+  font-size: 13px;
+  /* unidade nunca muda de caixa: MWh não é MWH, h não é H */
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.alx3 .regua-trilho {
+  position: relative;
+  height: 30px;
+  cursor: ew-resize;
+  touch-action: none;
+  outline-offset: 4px;
+}
+
+.alx3 .regua-escala {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--fio-forte);
+}
+
+.alx3 .regua-marca {
+  display: block;
+  width: 1px;
+  height: 6px;
+  background: var(--fio-forte);
+}
+
+.alx3 .regua-marca[data-maior] {
+  height: 12px;
+  background: var(--tinta-suave);
+}
+
+.alx3 .regua-feito {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--tinta);
+  transition: width 200ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.alx3 .regua-polegar {
+  position: absolute;
+  bottom: -6px;
+  width: 11px;
+  height: 22px;
+  margin-left: -5px;
+  background: var(--tinta);
+  transition: left 200ms cubic-bezier(0.25, 1, 0.5, 1), transform var(--t-hover);
+}
+
+.alx3 .regua-trilho:hover .regua-polegar,
+.alx3 .regua-trilho:focus-visible .regua-polegar {
+  transform: scaleY(1.18);
+  background: var(--oxido);
+}
+
+.alx3 .regua-trilho[data-arrastando] .regua-polegar,
+.alx3 .regua-trilho[data-arrastando] .regua-feito {
+  transition: none;
+}
+
+/* faixa de gravura */
+
+.alx3 .faixa-gravura {
+  position: relative;
+  margin: 0;
+  height: 56vh;
+  min-height: 320px;
+  overflow: hidden;
+  border-top: 1px solid var(--fio);
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .faixa-gravura img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+
+/* filme */
+
+.alx3 .filme {
+  padding: 88px var(--margem) 40px;
+}
+
+.alx3 .filme-video {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  border: 1px solid var(--fio);
+  background: #0f1728;
+}
+
+/* fecho */
+
+.alx3 .fecho {
+  padding: 96px var(--margem) 120px;
+  display: grid;
+  gap: 28px;
+}
+
+.alx3 .fecho-titulo {
+  margin: 0;
+  max-width: 22ch;
+  font-size: clamp(36.5px, 4.1vw, 60.5px);
+}
+
+.alx3 .fecho-titulo em {
+  font-style: italic;
+}
+
+/* ── mesa de estudo (com conta) ──────────────────────────── */
+
+.alx3 .mesa {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 56px 64px 120px;
+}
+
+.alx3 .mesa-cabeca {
+  display: grid;
+  gap: 10px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .mesa-titulo {
+  margin: 0;
+  font-size: clamp(47.5px, 5.4vw, 82px);
+}
+
+.alx3 .mesa-titulo em {
+  font-style: italic;
+}
+
+.alx3 .mesa-grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+}
+
+.alx3 .continuar {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+  padding: 44px 56px 56px 0;
+  border-right: 1px solid var(--fio);
+}
+
+.alx3 .continuar .botao {
+  justify-self: start;
+}
+
+.alx3 .continuar-titulo {
+  margin: 0;
+  font-size: clamp(36.5px, 3.9vw, 58.5px);
+}
+
+.alx3 .continuar-motivo {
+  margin: 0;
+  font-size: 18.5px;
+  color: var(--tinta-suave);
+  max-width: 52ch;
+}
+
+.alx3 .continuar-tese {
+  margin: 24px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--fio);
+  display: grid;
+  gap: 6px;
+}
+
+.alx3 .continuar-tese em {
+  font-family: var(--f-leitura);
+  font-size: 26px;
+  line-height: 1.25;
+}
+
+.alx3 .mesa-lado {
+  display: grid;
+  align-content: start;
+}
+
+.alx3 .mesa-lado > section {
+  padding: 32px 0 28px 40px;
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .mesa-lado .percurso {
+  margin-top: 0;
+}
+
+.alx3 .mesa-sub {
+  margin: 0 0 14px;
+  font-family: var(--f-leitura);
+  font-size: 28px;
+  font-weight: 450;
+}
+
+.alx3 .registro-linhas {
+  margin: 0;
+  display: grid;
+}
+
+.alx3 .registro-linhas div {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--fio);
+  font-size: 17.5px;
+}
+
+.alx3 .registro-linhas dt {
+  font-weight: 600;
+}
+
+.alx3 .registro-linhas dt::after {
+  content: ' —';
+  font-weight: 400;
+}
+
+.alx3 .registro-linhas dd {
+  margin: 0;
+  color: var(--tinta-suave);
+}
+
+.alx3 .mesa-nota {
+  margin: 0;
+  font-size: 16.5px;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+.alx3 .conquistas-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.alx3 .conquistas-lista li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.alx3 .conquistas-lista li > span:last-child {
+  display: grid;
+}
+
+.alx3 .medalha {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--ouro);
+  outline: 1px solid var(--ouro);
+  outline-offset: -6px;
+}
+
+.alx3 .sequencia-texto {
+  margin: 0 0 4px;
+  font-family: var(--f-leitura);
+  font-size: 24px;
+}
+
+.alx3 .mesa-trilhas {
+  padding-top: 40px;
+}
+
+/* ── tablet e celular ────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .alx3 .numeros {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .alx3 .numero:nth-child(2) {
+    border-right: 0;
+  }
+  .alx3 .numero:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--fio);
+  }
+  .alx3 .como {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .alx3 .home {
+    --margem: 16px;
+  }
+  .alx3 .heroi {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    min-height: 0;
+  }
+  .alx3 .heroi-texto {
+    padding: 32px 16px 28px;
+    order: 2;
+    gap: 36px;
+  }
+  .alx3 .heroi-figura {
+    order: 1;
+    border-left: 0;
+    border-bottom: 1px solid var(--fio);
+    aspect-ratio: 4 / 3;
+  }
+  .alx3 .heroi-trilhas {
+    order: 3;
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+  .alx3 .heroi-trilha,
+  .alx3 .heroi-trilha:first-child {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--fio);
+    padding: 16px;
+  }
+  .alx3 .numero {
+    padding: 24px 16px 28px;
+  }
+  .alx3 .secao-cabeca {
+    padding: 56px 16px 24px;
+  }
+  .alx3 .trilhas-cartas {
+    grid-template-columns: 1fr;
+    padding: 0 16px 56px;
+  }
+  .alx3 .carta,
+  .alx3 .carta:last-child {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--fio);
+  }
+  .alx3 .carta-link {
+    padding: 0 0 24px;
+  }
+  .alx3 .carta-imagem {
+    margin: 0 0 12px;
+  }
+  .alx3 .como {
+    padding: 56px 16px;
+    gap: 32px;
+  }
+  .alx3 .inst-corpo {
+    grid-template-columns: 1fr;
+  }
+  .alx3 .inst-entradas {
+    border-right: 0;
+    border-bottom: 1px solid var(--fio);
+    padding: 20px 16px;
+  }
+  .alx3 .inst-saida,
+  .alx3 .inst-cabeca,
+  .alx3 .inst-fonte {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .alx3 .inst-cabeca {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .alx3 .faixa-gravura {
+    height: 36vh;
+  }
+  .alx3 .filme,
+  .alx3 .fecho {
+    padding: 56px 16px 72px;
+  }
+  .alx3 .mesa {
+    padding: 32px 16px 80px;
+  }
+  .alx3 .mesa-grade {
+    grid-template-columns: 1fr;
+  }
+  .alx3 .continuar {
+    padding: 32px 0 40px;
+    border-right: 0;
+    border-bottom: 1px solid var(--fio);
+  }
+  .alx3 .mesa-lado > section {
+    padding: 24px 0;
+  }
+}

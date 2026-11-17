@@ -1,0 +1,672 @@
+{
+  "modulo": "modulo-17",
+  "vistas": [
+    {
+      "id": "m17-a01-preco-uniforme-por-submercado",
+      "modulo": "modulo-17",
+      "aula": 1,
+      "titulo": "O preço uniforme por submercado",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [
+        "submercados",
+        "linhas",
+        "subestacoes"
+      ],
+      "destaque": {
+        "submercados": [
+          "SE",
+          "S",
+          "NE",
+          "N"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Um preço nodal é o custo de atender mais um megawatt naquele ponto específico da rede, com congestionamento e perdas dentro; um preço zonal é uma média sobre uma área em que o congestionamento interno foi assumido como inexistente por convenção; um preço uniforme por submercado com valor modelado por custo declarado não é sequer o resultado de um processo de oferta.",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 130
+      },
+      "leitura": [
+        1,
+        2
+      ],
+      "nota_de_dado": "O mapa mostra os quatro submercados brasileiros, com as linhas e as subestações como pontos da rede; o Atlas não tem preço por nó nem zonas de preço de outros países."
+    },
+    {
+      "id": "m17-a02-hidreletricas-nas-grandes-bacias",
+      "modulo": "modulo-17",
+      "aula": 2,
+      "titulo": "Hidrelétricas ao longo das grandes bacias",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [
+        "hidro",
+        "bacias"
+      ],
+      "destaque": {
+        "bacias": [
+          "Paraná",
+          "Tocantins",
+          "Xingu",
+          "São Francisco",
+          "Paranaíba",
+          "Grande",
+          "Madeira",
+          "Iguaçu",
+          "Uruguai"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Um sistema cuja matriz elétrica é majoritariamente renovável porque uma bacia hidrográfica continental atravessa o território não descobriu nada que possa ser copiado por um país sem aquela bacia.",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 137
+      },
+      "leitura": [
+        3
+      ],
+      "nota_de_dado": "A aula não nomeia o país; a ficha do módulo atribui a bacia continental ao Brasil, e o mapa destaca as nove bacias do ONS com mais de 5 GW em hidrelétricas."
+    },
+    {
+      "id": "m17-a02-milhares-de-quilometros",
+      "modulo": "modulo-17",
+      "aula": 2,
+      "titulo": "Milhares de quilômetros entre geração e consumo",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -67.15,
+          -24.99,
+          -41.23,
+          -0.77
+        ]
+      },
+      "camadas": [
+        "hidro",
+        "linhas"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.PA.030354-2.1",
+          "UHE.PH.RO.029707-0.1",
+          "UHE.PH.RO.029736-4.1"
+        ],
+        "linhas": [
+          "ROCPV-6ARA21SP",
+          "ROCPV-6ARA22SP",
+          "ROCPV-6ARA23SP",
+          "ROCPV-6ARA24SP",
+          "PAXNG-8EST-1MG",
+          "PAXNG-8EST-2MG",
+          "PAXNG-8TRIO1RJ",
+          "PAXNG-8TRIO2RJ"
+        ],
+        "subestacoes": [
+          "PAXIN",
+          "MGSTES",
+          "RJTRIO",
+          "ROCPH",
+          "SPARA2"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "A recíproca também vale e é menos confortável: quando um sistema é mais caro porque precisa transportar energia por milhares de quilômetros entre onde ela é gerada e onde é consumida, isso também é dotação, e também não é falha de gestão. <b>A geografia entra nos dois lados da conta.</b>",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 138
+      },
+      "leitura": [
+        5
+      ],
+      "nota_de_dado": "A aula fala em tese; a ficha do módulo atribui ao Brasil recurso e carga separados por milhares de quilômetros, e o mapa mostra os bipolos de corrente contínua do Madeira e de Belo Monte, com 2.084 a 2.518 km no cadastro do ONS."
+    },
+    {
+      "id": "m17-a03-agua-estocada",
+      "modulo": "modulo-17",
+      "aula": 3,
+      "titulo": "Água estocada nos grandes reservatórios",
+      "capitulo": "agua",
+      "camera": {
+        "limites": [
+          -61.71,
+          -22.92,
+          -38.59,
+          0.34
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "reservatorios": [
+          "251",
+          "275",
+          "169",
+          "6",
+          "156",
+          "24",
+          "277",
+          "31",
+          "25"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Otimização de um recurso estocado plurianual — água em reservatório — contra combustível, num horizonte que nenhum agente individual internaliza.",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 155
+      },
+      "leitura": [
+        8
+      ],
+      "nota_de_dado": "A aula fala em tese; a ficha do módulo atribui a estocagem plurianual ao Brasil, e o mapa destaca os nove reservatórios com volume útil acima de 10 mil hm³ no cadastro do ONS, sem o custo do combustível das térmicas."
+    },
+    {
+      "id": "m17-a03-intercambio-entre-areas",
+      "modulo": "modulo-17",
+      "aula": 3,
+      "titulo": "Intercâmbio entre as áreas de preço",
+      "capitulo": "trocas",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {},
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Um preço por área de mercado definida administrativamente, com valor derivado de otimização e não de ofertas, e com separação de preço entre áreas só quando o intercâmbio satura.",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 160
+      },
+      "leitura": [
+        11,
+        13
+      ],
+      "nota_de_dado": "O capítulo mostra o intercâmbio líquido médio do mês entre os subsistemas; o Atlas não tem o preço de cada submercado nem o limite de intercâmbio."
+    },
+    {
+      "id": "m17-a05-um-pais-sete-operadores",
+      "modulo": "modulo-17",
+      "aula": 5,
+      "titulo": "Um país, não um mercado único",
+      "capitulo": "mundo",
+      "camera": {
+        "limites": [
+          -131.62,
+          22.16,
+          -60.04,
+          52.31
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "paises": [
+          "USA"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Não existe “o mercado americano”. Existe um regulador federal com jurisdição sobre o comércio atacadista interestadual e sobre tarifas de transmissão, seis operadores regionais sob essa jurisdição, um sétimo que opera quase inteiramente dentro de uma única fronteira estadual",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 117
+      },
+      "leitura": [
+        14,
+        15
+      ],
+      "nota_de_dado": "O globo mostra o país como uma só área, com a matriz elétrica nacional; o Atlas não tem os territórios dos sete operadores nem a área fora dos mercados organizados."
+    },
+    {
+      "id": "m17-a07-china-recurso-e-carga",
+      "modulo": "modulo-17",
+      "aula": 7,
+      "titulo": "China: recurso no oeste e no norte, carga no leste",
+      "capitulo": "mundo",
+      "camera": {
+        "limites": [
+          66.32,
+          13.97,
+          142.38,
+          57.69
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "paises": [
+          "CHN"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "O recurso eólico, solar, hidrelétrico e de carvão está concentrado no oeste e no norte; a carga está concentrada no litoral leste. A distância entre os dois é a variável estruturante, e é <b>dotação</b> — ninguém a escolheu.",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 214
+      },
+      "leitura": [
+        25,
+        27
+      ],
+      "nota_de_dado": "O globo mostra o território e a matriz elétrica do país; o Atlas não tem usinas, centros de carga nem linhas de transmissão fora do Brasil."
+    },
+    {
+      "id": "m17-a08-duas-jurisdicoes",
+      "modulo": "modulo-17",
+      "aula": 8,
+      "titulo": "A assimetria regulatória entre as duas jurisdições",
+      "capitulo": "mundo",
+      "camera": {
+        "limites": [
+          -86.95,
+          -46.24,
+          46.96,
+          82.63
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "paises": [
+          "BRA",
+          "AUT",
+          "BEL",
+          "BGR",
+          "HRV",
+          "CYP",
+          "CZE",
+          "DNK",
+          "EST",
+          "FIN",
+          "FRA",
+          "DEU",
+          "GRC",
+          "HUN",
+          "IRL",
+          "ITA",
+          "LVA",
+          "LTU",
+          "LUX",
+          "NLD",
+          "POL",
+          "PRT",
+          "ROU",
+          "SVK",
+          "SVN",
+          "ESP",
+          "SWE"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "A leitura operacional é direta e desconfortável: <b>não existe preço de carbono pago no Brasil para abater hoje, e não existirá antes de 2030 no calendário vigente.</b> A assimetria regulatória entre as duas jurisdições, portanto, não é temporária no horizonte de decisão de um exportador — ela é o cenário-base da década.",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 229
+      },
+      "leitura": [
+        30,
+        31,
+        32
+      ],
+      "nota_de_dado": "A aula diz autoridade europeia e as referências do módulo registram a União Europeia; o globo marca o Brasil e os 26 Estados-membros que o mapa desenha (Malta não tem polígono nesta escala), sem preço de carbono nem rotas de exportação."
+    },
+    {
+      "id": "m17-a09-dois-vizinhos",
+      "modulo": "modulo-17",
+      "aula": 9,
+      "titulo": "Dois vizinhos no mesmo mercado acoplado",
+      "capitulo": "mundo",
+      "camera": {
+        "limites": [
+          -6.94,
+          40.82,
+          17.37,
+          56.5
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "paises": [
+          "DEU",
+          "FRA"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "<b>Integração não elimina soberania</b>: cada Estado escolhe matriz, apoio a tecnologias, tributação e ritmo — e é por isso que dois países vizinhos, dentro do mesmo mercado acoplado, oferecem o contraste mais instrutivo do módulo.",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 239
+      },
+      "leitura": [
+        34,
+        35,
+        36
+      ],
+      "nota_de_dado": "A aula não nomeia os dois países; a grade do módulo registra Alemanha e França, e o globo mostra a matriz elétrica de cada um, sem as interconexões entre eles."
+    },
+    {
+      "id": "m17-a09-peninsula-pouco-ligada",
+      "modulo": "modulo-17",
+      "aula": 9,
+      "titulo": "Uma península pouco ligada ao continente",
+      "capitulo": "mundo",
+      "camera": {
+        "limites": [
+          -11.65,
+          34.13,
+          10.22,
+          52.97
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "paises": [
+          "ESP",
+          "PRT"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Há um terceiro caso na mesma região que isola a variável de interconexão: uma península com recurso solar e eólico excelente e ligação limitada ao resto do continente, onde a participação renovável fechou 2025 acima de metade da geração num dos países e o outro registrou renováveis equivalentes a mais de dois terços do consumo.",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 241
+      },
+      "leitura": [
+        38,
+        39,
+        40
+      ],
+      "nota_de_dado": "A aula diz só uma península; a grade do módulo registra a Península Ibérica, e o globo mostra os dois países e a fronteira com o vizinho continental, sem as linhas que a cruzam."
+    },
+    {
+      "id": "m17-a10-sistema-longo-e-estreito",
+      "modulo": "modulo-17",
+      "aula": 10,
+      "titulo": "Um sistema longo e estreito",
+      "capitulo": "mundo",
+      "camera": {
+        "limites": [
+          -76.69,
+          -60.17,
+          -65.92,
+          -13.02
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "paises": [
+          "CHL"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Um sistema sul-americano longo e estreito, com geração liberalizada e preços locacionais. O recurso solar está concentrado no norte; grandes centros de carga e outras fontes estão separados por transmissão.",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 245
+      },
+      "leitura": [
+        41,
+        42
+      ],
+      "nota_de_dado": "A aula não nomeia o país; a ficha do módulo o registra como Chile, e o globo mostra o território e a matriz elétrica, sem usinas nem linhas de transmissão."
+    },
+    {
+      "id": "m17-a10-pais-vizinho",
+      "modulo": "modulo-17",
+      "aula": 10,
+      "titulo": "Um país vizinho de operação centralizada",
+      "capitulo": "mundo",
+      "camera": {
+        "limites": [
+          -78.7,
+          -62.51,
+          -30.02,
+          12.5
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "paises": [
+          "ARG"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Um país vizinho com operação centralizada, mercado atacadista estruturado, presença forte de gás, hidráulica e nuclear, e histórico longo de contratos e subsídios.",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 251
+      },
+      "leitura": [
+        44
+      ],
+      "nota_de_dado": "A aula não nomeia o país; as referências do módulo citam o mercado atacadista argentino, e o globo mostra a matriz elétrica ao lado do Brasil, sem moeda, tarifas nem contratos."
+    },
+    {
+      "id": "m17-a10-escala-continental",
+      "modulo": "modulo-17",
+      "aula": 10,
+      "titulo": "Um sistema asiático de escala continental",
+      "capitulo": "mundo",
+      "camera": {
+        "limites": [
+          64.67,
+          4.67,
+          100.91,
+          38.79
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "paises": [
+          "IND"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Um sistema asiático de escala continental, com ponta atendida acima de <b>270 GW</b> em maio de 2026, expansão simultânea de renováveis, carvão, transmissão e armazenamento, sob coordenação entre governo central e estados.",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 254
+      },
+      "leitura": [
+        45
+      ],
+      "nota_de_dado": "A aula não nomeia o país; as referências do módulo citam a autoridade central de eletricidade indiana, e o globo mostra o território e a matriz elétrica, sem a demanda de ponta."
+    },
+    {
+      "id": "m17-a10-mercado-insular",
+      "modulo": "modulo-17",
+      "aula": 10,
+      "titulo": "Um mercado insular do hemisfério sul",
+      "capitulo": "mundo",
+      "camera": {
+        "limites": [
+          108.51,
+          -47.6,
+          158.4,
+          -6.71
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "paises": [
+          "AUS"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Um mercado insular do hemisfério sul com despacho e preço de curto prazo em intervalos curtos entre estados, complementado por contratos financeiros e mecanismo de confiabilidade baseado em obrigação do agente supridor.",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 257
+      },
+      "leitura": [
+        46
+      ],
+      "nota_de_dado": "A aula não nomeia o país; as referências do módulo citam o operador australiano, e o globo mostra o país inteiro, sem os estados nem as ligações entre eles."
+    },
+    {
+      "id": "m17-a11-jurisdicoes-comparadas",
+      "modulo": "modulo-17",
+      "aula": 11,
+      "titulo": "O Brasil entre as jurisdições comparadas",
+      "capitulo": "mundo",
+      "camera": {
+        "limites": [
+          -141.46,
+          -68.88,
+          31.79,
+          68.25
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "paises": [
+          "BRA",
+          "USA",
+          "DEU",
+          "CHN",
+          "CHL",
+          "FRA",
+          "ESP",
+          "PRT",
+          "MEX",
+          "ARG",
+          "IND",
+          "AUS"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Se a métrica for participação renovável em geração, o sistema brasileiro parte de um patamar que a maioria das jurisdições comparadas não alcançou — e por dotação, o que também não é mérito.",
+        "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+        "linha": 268
+      },
+      "leitura": [
+        47,
+        48
+      ],
+      "nota_de_dado": "As dezessete jurisdições da grade viram doze países no globo, porque os sete operadores norte-americanos ficam em um só país e a península em dois; China, Índia e Austrália ficam na outra face do globo."
+    }
+  ],
+  "sem_vista": [
+    {
+      "aula": 1,
+      "tema": "zona de preço nacional do mercado europeu do exemplo",
+      "motivo": "a aula não nomeia o país do exemplo e o Atlas não tem zonas de preço fora do Brasil"
+    },
+    {
+      "aula": 2,
+      "tema": "faixa costeira de fator de capacidade eólico excepcional",
+      "motivo": "a aula não nomeia a faixa nem o país, e nenhuma ficha do módulo a identifica; escolher um litoral seria identificação nossa, não da aula"
+    },
+    {
+      "aula": 2,
+      "tema": "estocagem hidráulica plurianual e a forma do problema de adequação",
+      "motivo": "a frase trata de mercado de capacidade, que o mapa não mostra; os grandes reservatórios ganham vista na Aula 03"
+    },
+    {
+      "aula": 2,
+      "tema": "frota nuclear grande e padronizada (exemplo estático)",
+      "motivo": "a aula declara as proporções do exemplo como ilustrativas e não nomeia o país; o caso de base nuclear ganha vista na Aula 09"
+    },
+    {
+      "aula": 3,
+      "tema": "linha congestionada do preço nodal",
+      "motivo": "a aula fala de uma linha em tese; o Atlas não tem preço por nó nem carregamento de linha"
+    },
+    {
+      "aula": 3,
+      "tema": "zona de preço do território de um país ou de um estado",
+      "motivo": "o Atlas não tem zonas de preço fora do Brasil"
+    },
+    {
+      "aula": 3,
+      "tema": "geração a milhares de quilômetros do consumo",
+      "motivo": "a mesma geografia já tem vista na Aula 02 (os bipolos do Madeira e de Belo Monte); o Atlas não tem centros de carga nem preço por ponto"
+    },
+    {
+      "aula": 5,
+      "tema": "territórios dos sete operadores de mercado norte-americanos",
+      "motivo": "o globo só destaca países; o Atlas não tem áreas subnacionais fora do Brasil"
+    },
+    {
+      "aula": 5,
+      "tema": "rede quase isolada do operador de um único estado",
+      "motivo": "o Atlas não tem as interconexões elétricas da América do Norte"
+    },
+    {
+      "aula": 5,
+      "tema": "mercado do dia anterior estendido e corte de geração solar na costa oeste",
+      "motivo": "o Atlas não tem áreas de mercado, usinas nem linhas fora do Brasil"
+    },
+    {
+      "aula": 6,
+      "tema": "divisas estaduais e linha de transmissão interestadual",
+      "motivo": "o Atlas não tem divisas estaduais nem linhas de transmissão dos Estados Unidos"
+    },
+    {
+      "aula": 6,
+      "tema": "mudança de orientação da política energética federal",
+      "motivo": "sem geografia além do país, que já tem vista na Aula 05; o globo não mostra política"
+    },
+    {
+      "aula": 7,
+      "tema": "corredores de transporte oeste-leste, mercados provinciais e os dois grupos estatais de rede da China",
+      "motivo": "o Atlas não tem províncias, usinas, linhas nem áreas de operação de rede da China; a vista da aula mostra só o país"
+    },
+    {
+      "aula": 8,
+      "tema": "rota de exportação industrial até a jurisdição do ajuste de fronteira",
+      "motivo": "o Atlas não tem rotas de comércio; a vista da aula mostra só origem e destino"
+    },
+    {
+      "aula": 9,
+      "tema": "interconexões entre vizinhos europeus e usinas da frota nuclear",
+      "motivo": "o Atlas não tem linhas nem usinas fora do Brasil"
+    },
+    {
+      "aula": 9,
+      "tema": "área da interrupção generalizada de abril de 2025",
+      "motivo": "o Atlas não tem área de eventos; a vista da aula mostra a península"
+    },
+    {
+      "aula": 10,
+      "tema": "corredor de transmissão entre o norte solar e o centro de carga",
+      "motivo": "o Atlas não tem linhas de transmissão fora do Brasil"
+    },
+    {
+      "aula": 10,
+      "tema": "reforma de 2025 no país norte-americano de língua espanhola",
+      "motivo": "limite de quatro vistas por aula; o caso é institucional e o globo só acrescentaria a posição do país"
+    }
+  ]
+}

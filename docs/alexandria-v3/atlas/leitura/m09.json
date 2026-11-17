@@ -1,0 +1,541 @@
+{
+  "modulo": "modulo-09",
+  "titulo_modulo": "Os Mercados ACR e ACL em Profundidade",
+  "arquivos_fonte": [
+    "src/lib/data/alexandria-modulo-09-content.ts",
+    "docs/alexandria-v2/extraction/m09/aparato.json"
+  ],
+  "aulas": [
+    {
+      "numero": 1,
+      "chave": "aula-09-01",
+      "titulo": "O que muda e o que não muda quando se migra"
+    },
+    {
+      "numero": 2,
+      "chave": "aula-09-02",
+      "titulo": "O regulado por dentro: como a carteira é montada e como o resultado chega"
+    },
+    {
+      "numero": 3,
+      "chave": "aula-09-03",
+      "titulo": "O livre por dentro: quem pode, quando, por qual porta e sob qual obrigação"
+    },
+    {
+      "numero": 4,
+      "chave": "aula-09-04",
+      "titulo": "O contrato é um sistema de alocação de risco. O preço é uma cláusula entre onze."
+    },
+    {
+      "numero": 5,
+      "chave": "aula-09-05",
+      "titulo": "Os riscos, um a um: quem carrega, o que dispara, o que mitiga e o que sobra descoberto"
+    },
+    {
+      "numero": 6,
+      "chave": "aula-09-06",
+      "titulo": "O preço que liquida a diferença — e por que a variável é a exposição, não o preço"
+    },
+    {
+      "numero": 7,
+      "chave": "aula-09-07",
+      "titulo": "Realocação e fator de ajuste: por que uma indústria que não gera precisa entender isto"
+    },
+    {
+      "numero": 8,
+      "chave": "aula-09-08",
+      "titulo": "Quando vale, quando não vale e quando não dá para dizer"
+    }
+  ],
+  "mencoes": [
+    {
+      "aula": 1,
+      "tipo": "submercado",
+      "nome": "Submercado de consumo (genérico)",
+      "trecho": "A migração desloca a energia do regime de repasse tarifário regulado, com reconhecimento de custo por fórmula e defasagem, para contratação bilateral com posição registrada e liquidação de diferenças no mercado de curto prazo, ao preço horário do submercado de consumo.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 122,
+      "contexto": "Ao migrar, a diferença entre contrato e medição passa a ser liquidada ao preço horário do submercado onde a unidade consome.",
+      "ganho_no_mapa": "Ver em qual dos submercados a unidade está mostra de qual preço horário ela passa a depender.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 1,
+      "tipo": "distribuidora",
+      "nome": "Área de concessão da distribuidora (genérico)",
+      "trecho": "O consumidor livre não deixa de ser cliente da distribuidora: deixa de comprar energia dela.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 96,
+      "contexto": "O uso da rede continua devido à mesma distribuidora depois da migração.",
+      "ganho_no_mapa": "Ver a área de concessão em volta da unidade mostra que a rede e quem a opera continuam os mesmos.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 1,
+      "tipo": "outro",
+      "nome": "Caminho contratual × caminho físico (genérico)",
+      "trecho": "Do mesmo modo, o consumidor livre não escolhe fisicamente de qual usina vem o elétron que aciona seu motor.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 107,
+      "contexto": "O contrato define de quem se compra o direito comercial, não a trajetória física da energia.",
+      "ganho_no_mapa": "Traçar a linha contratual até uma usina distante sobre a malha real mostra que o contrato não desenha o fluxo.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 2,
+      "tipo": "distribuidora",
+      "nome": "Área de concessão da distribuidora (genérico)",
+      "trecho": "A distribuidora, na esmagadora maioria dos casos, não produz essa energia: ela agrega a demanda da área de concessão, contrata um portfólio de fontes e contratos, paga transmissão e encargos, opera a rede e fatura.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 126,
+      "contexto": "A distribuidora agrega a demanda da sua área de concessão e monta uma carteira de contratos para atendê-la.",
+      "ganho_no_mapa": "Ver a área de concessão como o território cuja demanda a carteira precisa cobrir.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "UHE Itaipu",
+      "trecho": "A carteira de uma distribuidora combina contratos de comercialização no ambiente regulado firmados em leilões de safras diferentes, cotas de garantia física de usinas em regime específico, energia de Itaipu, energia de Angra, contratos do programa de incentivo às fontes alternativas e outras alocações previstas em lei.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 128,
+      "contexto": "A carteira regulada é um mosaico histórico que inclui a energia de Itaipu.",
+      "ganho_no_mapa": "Ver Itaipu na fronteira e as áreas de concessão que carregam essa energia mostra que parte da carteira não vem de leilão.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "Usinas nucleares de Angra",
+      "trecho": "A carteira de uma distribuidora combina contratos de comercialização no ambiente regulado firmados em leilões de safras diferentes, cotas de garantia física de usinas em regime específico, energia de Itaipu, energia de Angra, contratos do programa de incentivo às fontes alternativas e outras alocações previstas em lei.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 128,
+      "contexto": "A energia de Angra é outro componente da carteira das distribuidoras.",
+      "ganho_no_mapa": "Ver Angra no litoral e os mercados regulados que carregam esse componente na tarifa.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "Hidrelétricas em regime de cotas (sem usina nomeada)",
+      "trecho": "A carteira de uma distribuidora combina contratos de comercialização no ambiente regulado firmados em leilões de safras diferentes, cotas de garantia física de usinas em regime específico, energia de Itaipu, energia de Angra, contratos do programa de incentivo às fontes alternativas e outras alocações previstas em lei.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 128,
+      "contexto": "As cotas de garantia física de usinas em regime específico também entram na carteira.",
+      "ganho_no_mapa": "Ver quais hidrelétricas entregam energia por cota ajuda a entender por que decisões antigas seguem dentro da tarifa.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 2,
+      "tipo": "submercado",
+      "nome": "Submercados",
+      "trecho": "O preço de curto prazo é horário e por submercado, e liquida diferenças entre posição contratada e medição.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 155,
+      "contexto": "A aula separa a bandeira, mensal e para cativos, do preço de curto prazo, horário e por submercado.",
+      "ganho_no_mapa": "Ver o país dividido em zonas de preço mostra que a bandeira é uma só e o preço de curto prazo é regional.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "sistema_isolado",
+      "nome": "Sistemas isolados (sem localidade nomeada)",
+      "trecho": "A Conta de Desenvolvimento Energético financia políticas públicas e descontos setoriais — universalização, tarifa social, sistemas isolados, fontes incentivadas, entre outras finalidades legais.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 158,
+      "contexto": "A CDE financia políticas públicas, entre elas o atendimento a sistemas isolados.",
+      "ganho_no_mapa": "Ver as localidades fora da malha interligada mostra quem recebe um subsídio pago pelo conjunto dos consumidores.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "submercado",
+      "nome": "Submercado de entrega (genérico)",
+      "trecho": "Definir volume, perfil, prazo, preço, indexação, submercado de entrega, flexibilidade e garantias.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 176,
+      "contexto": "No rito de migração, o submercado de entrega é um dos parâmetros a definir na contratação de energia.",
+      "ganho_no_mapa": "Localizar o submercado de entrega em relação à unidade mostra se o contrato cria risco de diferença entre zonas.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 4,
+      "tipo": "submercado",
+      "nome": "Submercado de entrega (genérico)",
+      "trecho": "Exposição à diferença de preço entre submercados, mesmo com volume integralmente coberto",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 197,
+      "contexto": "Entre as perguntas de leitura do contrato, a de ponto e submercado define onde a energia é entregue contabilmente.",
+      "ganho_no_mapa": "Ver entrega e consumo em submercados diferentes mostra de onde vem a exposição mesmo com volume coberto.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "submercado",
+      "nome": "Submercados",
+      "trecho": "O Módulo 08 estabeleceu o submercado como zona de contabilização, e a razão de existir é a limitação de intercâmbio entre regiões.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 239,
+      "contexto": "A aula retoma o submercado como zona de contabilização criada pela limitação de intercâmbio entre regiões.",
+      "ganho_no_mapa": "Ver as zonas e as fronteiras entre elas dá corpo ao risco de submercado.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "intercambio",
+      "nome": "Intercâmbio entre submercados",
+      "trecho": "A consequência contratual é direta: quando a transmissão limita a troca, os submercados podem apresentar preços diferentes no mesmo instante. Um contrato com entrega contábil num submercado e consumo em outro cria exposição à diferença entre eles, mesmo com o volume integralmente coberto.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 239,
+      "contexto": "Quando a transmissão limita a troca, os preços se descolam e o contrato com entrega em outra zona fica exposto.",
+      "ganho_no_mapa": "Ver os corredores que ligam os submercados mostra onde o limite de transmissão separa os preços.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "outro",
+      "nome": "Região de concentração solar e escoamento (sem região nomeada)",
+      "trecho": "Contratar fonte solar para uma carga diurna parece cobertura natural. Pode ser — e pode também concentrar risco, porque eventos meteorológicos regionais e restrições de escoamento afetam geração e preço simultaneamente.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 252,
+      "contexto": "Diversificação real considera a correlação entre fonte, região, contraparte e indexador.",
+      "ganho_no_mapa": "Ver parques solares concentrados na mesma região e nas mesmas linhas mostra por que clima e escoamento falham juntos.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "submercado",
+      "nome": "Submercados",
+      "trecho": "Desde 2021 é calculado e publicado em base horária, para os quatro submercados.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 257,
+      "contexto": "O preço de liquidação das diferenças é horário e publicado para cada um dos quatro submercados.",
+      "ganho_no_mapa": "Ver as quatro zonas mostra que não existe um único preço de curto prazo para o país.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 6,
+      "tipo": "usina",
+      "nome": "UHE Itaipu",
+      "trecho": "preço mínimo R$ 57,31/MWh, correspondente ao maior valor entre a tarifa de energia de otimização e a tarifa de energia de otimização de Itaipu",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 260,
+      "contexto": "O preço mínimo é definido com referência às tarifas de energia de otimização, inclusive a de Itaipu.",
+      "ganho_no_mapa": "Localizar Itaipu lembra que uma usina específica entra na definição do piso do preço do sistema.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "intercambio",
+      "nome": "Intercâmbio entre submercados",
+      "trecho": "Quando a transmissão limita o intercâmbio, os submercados podem apresentar preços distintos no mesmo instante. Para o contrato, isso significa que entrega contábil e consumo em regiões diferentes criam exposição à diferença — separada do nível médio de preço e independente do volume estar coberto. É risco de localização contábil, não de quantidade.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 263,
+      "contexto": "Entrega contábil e consumo em regiões diferentes criam exposição à diferença de preço entre submercados.",
+      "ganho_no_mapa": "Ver as interligações entre regiões mostra onde os preços podem se separar e criar a exposição.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "usina",
+      "nome": "Hidrelétricas do mecanismo de realocação (genérico)",
+      "trecho": "Em vez de cada usina depender apenas da água do próprio rio, a geração total do conjunto é alocada proporcionalmente às garantias físicas, ajustadas pelas regras aplicáveis.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 270,
+      "contexto": "O mecanismo reparte a geração do conjunto para que nenhuma usina dependa só da água do próprio rio.",
+      "ganho_no_mapa": "Ver hidrelétricas espalhadas por bacias diferentes mostra o que o mecanismo diversifica e o que ele não cria.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "evento",
+      "nome": "Crise hídrica de 2014–2015",
+      "trecho": "O que quebrou em 2014-2015, e o que sobrou disso",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 273,
+      "contexto": "Em 2014-2015 o fator de ajuste ficou persistentemente abaixo de um e as perdas levaram à judicialização.",
+      "ganho_no_mapa": "Ver reservatórios baixos em várias bacias ao mesmo tempo mostra que a escassez era do conjunto, não de uma usina.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 7,
+      "tipo": "estado_regiao",
+      "nome": "Região Norte",
+      "trecho": "Havendo excedente, ele é destinado a distribuidoras para contenção de impacto tarifário de consumidores regulados da região Norte.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 275,
+      "contexto": "Pelo desenho legal, o excedente do mecanismo concorrencial contém impacto tarifário na região Norte.",
+      "ganho_no_mapa": "Destacar a região Norte mostra onde foi parar o excedente de uma disputa de alcance nacional.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 7,
+      "tipo": "estado_regiao",
+      "nome": "Rondônia",
+      "trecho": "o excedente de R$ 550,6 milhões foi integralmente repassado até fevereiro de 2026 para modicidade tarifária de consumidores regulados de Rondônia, Acre e Amapá.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 276,
+      "contexto": "O excedente foi repassado para modicidade tarifária de consumidores regulados de três estados.",
+      "ganho_no_mapa": "Ver Rondônia entre os três estados que receberam o repasse.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 7,
+      "tipo": "estado_regiao",
+      "nome": "Acre",
+      "trecho": "o excedente de R$ 550,6 milhões foi integralmente repassado até fevereiro de 2026 para modicidade tarifária de consumidores regulados de Rondônia, Acre e Amapá.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 276,
+      "contexto": "O excedente foi repassado para modicidade tarifária de consumidores regulados de três estados.",
+      "ganho_no_mapa": "Ver o Acre entre os três estados que receberam o repasse.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 7,
+      "tipo": "estado_regiao",
+      "nome": "Amapá",
+      "trecho": "o excedente de R$ 550,6 milhões foi integralmente repassado até fevereiro de 2026 para modicidade tarifária de consumidores regulados de Rondônia, Acre e Amapá.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 276,
+      "contexto": "O excedente foi repassado para modicidade tarifária de consumidores regulados de três estados.",
+      "ganho_no_mapa": "Ver o Amapá, distante dos outros dois, entre os estados que receberam o repasse.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 7,
+      "tipo": "submercado",
+      "nome": "Submercados",
+      "trecho": "Fator inferior à unidade gera exposição para participantes cuja posição contratual exceda a energia alocada, liquidada ao preço do submercado",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 280,
+      "contexto": "Quando o fator fica abaixo de um, a exposição do participante é liquidada ao preço do submercado.",
+      "ganho_no_mapa": "Ver em que submercado cada hidrelétrica está mostra a que preço a exposição dela é valorada.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "submercado",
+      "nome": "Submercados",
+      "trecho": "Preço de liquidação horário por submercado, no painel de preços da câmara",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 298,
+      "contexto": "A aula lista as séries públicas a acompanhar mensalmente durante a transição.",
+      "ganho_no_mapa": "Ver os submercados lembra que a série de preço tem uma versão por zona.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "reservatorio",
+      "nome": "Reservatórios — armazenamento e afluência (genérico)",
+      "trecho": "Armazenamento, energia natural afluente e despacho térmico, nos boletins e dados abertos do operador",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 298,
+      "contexto": "Entre as séries a acompanhar estão armazenamento, afluência e despacho térmico.",
+      "ganho_no_mapa": "Ver os reservatórios no mapa dá lugar físico ao indicador de armazenamento.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Submercado de entrega (genérico)",
+      "trecho": "Ela compra uma posição comercial: o direito e a obrigação sobre um montante de energia, com atributo de fonte, entregue contabilmente num submercado. A energia física que aciona os motores da fábrica vem do despacho do sistema interligado, coordenado pelo operador, e não segue o contrato.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 317,
+      "contexto": "O exercício corrige a ideia de que o consumidor livre compra a energia física de uma usina específica.",
+      "ganho_no_mapa": "Ver a usina contratada e a fábrica ligadas por contrato, e não por fluxo, dentro dos submercados.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Submercado de consumo (genérico)",
+      "trecho": "Contrato de trinta e seis meses, volume plano, sem banda, preço fixo, entrega no mesmo submercado do consumo.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 373,
+      "contexto": "O exercício pede os riscos que ficam descobertos quando o de submercado já está resolvido.",
+      "ganho_no_mapa": "Ver entrega e carga na mesma zona mostra qual risco esse contrato elimina.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "Hidrelétricas do mecanismo de realocação (genérico)",
+      "trecho": "Isso protege cada usina da má sorte do próprio rio, mas não protege o conjunto de um ano ruim para todos.",
+      "arquivo": "src/lib/data/alexandria-modulo-09-content.ts",
+      "linha": 331,
+      "contexto": "O exercício pede explicar o mecanismo de realocação a um diretor industrial.",
+      "ganho_no_mapa": "Ver hidrelétricas em rios diferentes mostra o que o mecanismo protege e o que não protege.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Minas Gerais",
+      "trecho": "Operação A — mineração em Minas Gerais. As oito partes anteriores construíram o perfil.",
+      "arquivo": "docs/alexandria-v2/extraction/m09/aparato.json",
+      "linha": 32,
+      "contexto": "O caso do módulo é uma operação de mineração em Minas Gerais.",
+      "ganho_no_mapa": "Localizar a operação em Minas Gerais ancora o caso num lugar e num submercado.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Submercado Sudeste/Centro-Oeste",
+      "trecho": "carga razoavelmente plana, operação em turnos, submercado Sudeste/Centro-Oeste, fator de carga elevado e pouca flexibilidade operacional natural",
+      "arquivo": "docs/alexandria-v2/extraction/m09/aparato.json",
+      "linha": 51,
+      "contexto": "O caso resume o perfil da operação, que consome no submercado Sudeste/Centro-Oeste.",
+      "ganho_no_mapa": "Ver o Sudeste/Centro-Oeste destacado mostra de qual preço horário a operação depende.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Submercado Sudeste/Centro-Oeste (entrega contratual)",
+      "trecho": "Sobre submercado: consumo no Sudeste/Centro-Oeste com entrega contratual no mesmo submercado elimina uma classe inteira de risco.",
+      "arquivo": "docs/alexandria-v2/extraction/m09/aparato.json",
+      "linha": 197,
+      "contexto": "O caso registra que entrega contratual no mesmo submercado do consumo elimina uma classe de risco.",
+      "ganho_no_mapa": "Ver entrega e consumo dentro da mesma zona mostra o risco que desaparece.",
+      "relevancia": "media"
+    }
+  ],
+  "vistas_sugeridas": [
+    {
+      "aula": 2,
+      "titulo": "De onde vem a carteira da distribuidora",
+      "o_que_mostra": "Brasil com uma área de concessão de exemplo destacada e, fora dela, Itaipu e Angra — duas das origens de energia que o texto cita na carteira regulada. A área de exemplo é escolha editorial; o texto não nomeia distribuidora.",
+      "nomes": [
+        "Área de concessão da distribuidora (genérico)",
+        "UHE Itaipu",
+        "Usinas nucleares de Angra",
+        "Hidrelétricas em regime de cotas (sem usina nomeada)"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "usinas_nuclear",
+        "outra: áreas de concessão de distribuição"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "Sistemas isolados na conta de todos",
+      "o_que_mostra": "Câmera nas localidades fora da malha interligada. O texto cita os sistemas isolados sem nomeá-los; as localidades vêm da base do Atlas.",
+      "nomes": [
+        "Sistemas isolados (sem localidade nomeada)"
+      ],
+      "camadas": [
+        "linhas",
+        "usinas_termica",
+        "outra: sistemas isolados"
+      ]
+    },
+    {
+      "aula": 4,
+      "titulo": "Ponto de entrega: em qual submercado o contrato liquida",
+      "o_que_mostra": "Brasil com os quatro submercados coloridos e as interligações entre eles, para localizar o ponto de entrega contábil de um contrato em relação à carga.",
+      "nomes": [
+        "Submercado de entrega (genérico)"
+      ],
+      "camadas": [
+        "submercados",
+        "linhas"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "Entrega num submercado, consumo em outro",
+      "o_que_mostra": "Brasil com os submercados e os corredores de intercâmbio em destaque; um par de entrega e carga em zonas diferentes ilustra a exposição à diferença de preço.",
+      "nomes": [
+        "Submercados",
+        "Intercâmbio entre submercados"
+      ],
+      "camadas": [
+        "submercados",
+        "linhas",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "Quando o sol e o escoamento falham juntos",
+      "o_que_mostra": "Câmera numa região de concentração de usinas solares, com as linhas que escoam essa geração. O texto não nomeia a região; a concentração vem da base do Atlas.",
+      "nomes": [
+        "Região de concentração solar e escoamento (sem região nomeada)"
+      ],
+      "camadas": [
+        "usinas_solar",
+        "linhas",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 6,
+      "titulo": "Quatro submercados, quatro preços horários",
+      "o_que_mostra": "Brasil dividido nos quatro submercados, cada um como zona própria de preço horário.",
+      "nomes": [
+        "Submercados"
+      ],
+      "camadas": [
+        "submercados"
+      ]
+    },
+    {
+      "aula": 6,
+      "titulo": "Quando a transmissão limita o intercâmbio",
+      "o_que_mostra": "Câmera nas interligações entre submercados, com os corredores destacados sobre a malha de transmissão, para mostrar onde os preços podem se descolar.",
+      "nomes": [
+        "Intercâmbio entre submercados"
+      ],
+      "camadas": [
+        "submercados",
+        "linhas",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 7,
+      "titulo": "Um condomínio de água: hidrelétricas em rios diferentes",
+      "o_que_mostra": "Brasil com todas as hidrelétricas e as bacias ao fundo, para ver que o conjunto reúne usinas de rios diferentes — a variância que o mecanismo reparte.",
+      "nomes": [
+        "Hidrelétricas do mecanismo de realocação (genérico)",
+        "Crise hídrica de 2014–2015"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "reservatorios_bacias",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 7,
+      "titulo": "Para onde foi o excedente: Rondônia, Acre e Amapá",
+      "o_que_mostra": "Câmera na região Norte com os três estados destacados, destino do excedente repassado para modicidade tarifária dos consumidores regulados.",
+      "nomes": [
+        "Região Norte",
+        "Rondônia",
+        "Acre",
+        "Amapá"
+      ],
+      "camadas": [
+        "submercados",
+        "outra: limites estaduais"
+      ]
+    },
+    {
+      "aula": 0,
+      "titulo": "Operação A: consumo e entrega no Sudeste/Centro-Oeste",
+      "o_que_mostra": "Câmera em Minas Gerais, dentro do submercado Sudeste/Centro-Oeste destacado; os outros submercados aparecem esmaecidos para mostrar o risco que a entrega na mesma zona elimina.",
+      "nomes": [
+        "Minas Gerais",
+        "Submercado Sudeste/Centro-Oeste",
+        "Submercado Sudeste/Centro-Oeste (entrega contratual)"
+      ],
+      "camadas": [
+        "submercados",
+        "linhas"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M04·A07 · Portfólio de contratação · Alexandria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>/* Tronco comum das aulas — protótipo estático (camada Alexandria, 2026-09-17).
+   Tokens de src/design/alexandria-tokens.ts (A, A2). Raio 0, zero sombra, zero gradiente. */
+:root{
+  --navy:#0D2340; --navy-deep:#071628; --navy-sunk:#0A1D36; --fio-navy:#22405F;
+  --creme:#F2E9D6; --sup:#FBF6EA; --afund:#E7DAC0;
+  --tinta:#2A2620; --suave:#5C5346; --meta:#6B6255;
+  --fio:#CFC1A4; --fio-cl:#E4D8BE; --fio-col:#DCCEB2;
+  --oliva:#55663F; --terra:#A8462A; --ouro:#CBAA6E;
+  --on-navy:#F2E9D6; --on-navy-m:#A9B6C8; --meta-navy:#8CA0B8;
+  --cinzel:'Cinzel','Georgia',serif; --lora:'Lora','Georgia',serif;
+  --w:1200px; --leit:680px;
+  --hatch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M-2 2l4-4M0 8l8-8M6 10l4-4' stroke='%23CFC1A4' stroke-width='1'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:56px}
+body{margin:0;background:var(--creme);color:var(--tinta);font-family:var(--lora);font-size:17px;line-height:1.65;
+  font-variant-numeric:lining-nums;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+img{display:block;max-width:100%}
+.tab{font-variant-numeric:tabular-nums lining-nums}
+
+/* ── T1 · Shell ─────────────────────────────────────────── */
+.hdr{height:70px;display:flex;align-items:center;padding:0 32px;border-bottom:1px solid var(--fio);background:var(--creme)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--tinta)}
+.brand svg{width:30px;height:30px}
+.brand b{font:500 22px/1 var(--cinzel);letter-spacing:.3em}
+.hdr .sep{width:1px;height:26px;background:var(--fio);margin:0 32px 0 34px}
+.nav{display:flex;gap:28px}
+.nav a{font:500 12.5px/1 var(--cinzel);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--suave);padding:10px 0}
+.hdr .grow{flex:1}
+.busca{display:flex;align-items:center;gap:12px;border:1px solid var(--fio);background:var(--sup);padding:0 16px;height:40px;margin-right:40px;text-decoration:none}
+.busca b{font:600 12px/1 var(--cinzel);letter-spacing:.2em}
+.busca i{font-size:14px;color:var(--meta)}
+.busca kbd{font:12px/1 var(--lora);border:1px solid var(--fio);padding:3px 6px;color:var(--suave)}
+.conta{display:flex;align-items:center;gap:12px;text-decoration:none}
+.conta span{font:500 12px/1 var(--cinzel);letter-spacing:.2em;color:var(--suave)}
+.conta .av{color:var(--on-navy);letter-spacing:0}
+.av{width:32px;height:32px;border-radius:50%;background:var(--navy);color:var(--on-navy);display:grid;place-items:center;font:600 13px/1 var(--cinzel)}
+.tabbar{display:none}
+/* Guarda de versão (S7): nenhuma regra local de figura (ex.: .caixa svg{display:block}) pode reexibir a versão de outra largura. */
+@media (min-width:761px){.mob-only{display:none!important}}
+
+.loc{position:sticky;top:0;z-index:30;height:40px;background:var(--sup);border-bottom:1px solid var(--fio);display:flex;align-items:center;padding:0 32px;font-size:13.5px;gap:10px}
+.loc ol{display:flex;gap:8px;list-style:none;margin:0;padding:0;align-items:center;min-width:0}
+.loc li{white-space:nowrap}
+.loc li+li::before{content:"›";margin-right:8px;color:var(--meta)}
+.loc a{text-decoration:none;border-bottom:1px solid var(--fio);color:var(--suave)}
+.loc .cod{font:600 12px var(--cinzel);letter-spacing:.12em;margin-right:4px}
+.loc [aria-current]{font-weight:600;color:var(--tinta)}
+.loc .grow{flex:1}
+.loc .pos{font-size:13px;color:var(--meta)}
+.btn-sum{display:flex;align-items:center;gap:8px;border:1px solid var(--fio);background:transparent;height:28px;padding:0 10px;font:500 11px/1 var(--cinzel);letter-spacing:.18em;text-transform:uppercase;cursor:pointer}
+.btn-sum svg{width:14px;height:14px}
+.gaveta{position:fixed;top:0;right:0;bottom:0;width:360px;background:var(--sup);border-left:1px solid var(--fio);z-index:60;padding:24px;transform:translateX(100%);visibility:hidden}
+.gaveta.aberta{transform:none;visibility:visible}
+.gaveta h2{font:500 12px var(--cinzel);letter-spacing:.2em;text-transform:uppercase;margin:0 0 16px}
+.gaveta ol{margin:0;padding:0;list-style:none;font-size:15px}
+.gaveta li{padding:8px 0;border-bottom:1px solid var(--fio-cl)}
+.gaveta .x{position:absolute;top:18px;right:18px;border:1px solid var(--fio);background:none;width:32px;height:32px;cursor:pointer}
+
+.wrap{max-width:calc(var(--w) + 48px);margin:0 auto;padding:0 24px}
+
+/* ── Vozes ───────────────────────────────────────────────── */
+.eyebrow{font:500 11px/1.4 var(--cinzel);letter-spacing:.2em;text-transform:uppercase;color:var(--meta)}
+/* T5 · camada Alexandria: uma única voz de aparato (losango vazado + versalete + "Alexandria") */
+.apar{display:inline-flex;align-items:center;gap:8px;font:600 10.5px/1.3 var(--cinzel);letter-spacing:.2em;text-transform:uppercase;color:var(--suave)}
+.apar::before{content:"";width:7px;height:7px;border:1.5px solid var(--suave);transform:rotate(45deg);flex:none;margin:0 1px}
+.apar em{font:italic 400 12.5px/1 var(--lora);letter-spacing:0;text-transform:none;color:var(--meta)}
+.apar em::before{content:"· ";font-style:normal}
+/* voz de texto do curso quando precisa ser distinguida da camada Alexandria */
+.curso{display:inline-flex;align-items:center;gap:8px;font:600 10.5px/1.3 var(--cinzel);letter-spacing:.2em;text-transform:uppercase;color:var(--suave)}
+.curso::before{content:"";width:8px;height:8px;background:var(--suave);flex:none}
+.curso em{font:italic 400 12.5px/1 var(--lora);letter-spacing:0;text-transform:none;color:var(--meta)}
+.curso em::before{content:"· ";font-style:normal}
+
+/* ── T2 · Abertura ──────────────────────────────────────── */
+.ab{display:grid;grid-template-columns:7fr 5fr;gap:56px;padding:44px 0 44px;border-bottom:1px solid var(--fio)}
+.ab h1{font:500 46px/1.1 var(--lora);letter-spacing:-.005em;margin:14px 0 8px;text-wrap:balance}
+.ab .sub{font-size:16px;color:var(--suave);margin:0 0 28px}
+.ab .pergunta{font:italic 400 24px/1.42 var(--lora);margin:10px 0 18px;max-width:30em}
+.ab .obj{font-size:15px;color:var(--suave);max-width:36em;margin:0}
+.ab .obj b{font:600 10.5px var(--cinzel);letter-spacing:.2em;text-transform:uppercase;color:var(--meta);margin-right:6px}
+.ab .lede{margin-top:26px;padding-top:20px;border-top:1px solid var(--fio-cl);font:italic 400 18.5px/1.6 var(--lora);color:var(--tinta);max-width:34em}
+.ab-dir{display:flex;flex-direction:column;gap:18px}
+
+/* T3 · Ato (máquina de estados comum) */
+.ato{background:var(--sup);border:1px solid var(--fio);border-top:3px solid var(--navy);padding:18px 22px 20px}
+.ato-h{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.estado{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--suave);white-space:nowrap}
+.estado svg{width:13px;height:13px}
+.ato .enun{font:500 18px/1.45 var(--lora);margin:0 0 12px}
+.cen{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--fio-cl);border-bottom:1px solid var(--fio-cl);margin:0 0 6px}
+.cen div{padding:8px 10px 8px 0}
+.cen div+div{padding-left:12px;border-left:1px solid var(--fio-cl)}
+.cen dt{font:600 10px/1.3 var(--cinzel);letter-spacing:.16em;text-transform:uppercase;color:var(--meta)}
+.cen dd{margin:2px 0 0;font:500 18px/1.2 var(--lora);font-variant-numeric:tabular-nums}
+.cen dd small{font-size:13px;color:var(--suave);font-weight:400}
+.nota-cen{font-size:12.5px;line-height:1.45;color:var(--meta);margin:6px 0 14px;font-style:italic}
+.campo{display:flex;align-items:stretch;gap:0;margin:0 0 12px}
+.campo label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.inp{display:flex;align-items:center;border:1px solid var(--suave);background:var(--creme);height:50px;padding:0 14px;flex:1}
+.inp input{border:0;background:transparent;width:100%;font:500 24px/1 var(--lora);font-variant-numeric:tabular-nums;outline:none}
+.inp span{font-size:16px;color:var(--suave);margin-left:8px}
+.inp.pre input::placeholder{color:#9A8F7E}
+.btn-pri{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:52px;border:0;background:var(--navy);color:var(--on-navy);font:600 12.5px/1.3 var(--cinzel);letter-spacing:.14em;text-transform:uppercase;padding:10px 18px;cursor:pointer;text-align:left;text-decoration:none}
+.btn-pri b{color:var(--ouro);font-weight:600}
+.btn-pri svg{width:22px;height:12px;flex:none;margin-left:12px}
+.btn-sec{display:inline-flex;align-items:center;gap:8px;min-height:36px;border:1px solid var(--navy);background:transparent;color:var(--navy);font:600 11px/1.2 var(--cinzel);letter-spacing:.15em;text-transform:uppercase;padding:6px 14px;cursor:pointer;text-decoration:none}
+.btn-link{border:0;background:none;padding:0;font-size:14px;color:var(--suave);text-decoration:underline;text-decoration-color:var(--fio);text-underline-offset:3px;cursor:pointer}
+.aviso-reg{font-size:12.5px;color:var(--meta);margin:10px 0 0;font-style:italic}
+.opcoes{display:grid;gap:8px;margin:0 0 12px}
+.opcoes.c3{grid-template-columns:1fr 1fr 1.6fr}
+.opcoes.c2{grid-template-columns:repeat(2,1fr)}
+.op{display:flex;align-items:center;gap:10px;min-height:44px;border:1px solid var(--fio);background:var(--creme);padding:8px 12px;font-size:15px;cursor:pointer;text-align:left}
+.op::before{content:"";width:14px;height:14px;border:1.5px solid var(--suave);border-radius:50%;flex:none}
+.op.sel{border-color:var(--navy);outline:1px solid var(--navy)}
+.op.sel::before{border-color:var(--navy);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Ccircle cx='7' cy='7' r='3.4' fill='%230D2340'/%3E%3C/svg%3E") center/100% no-repeat}
+.op.chk::before{border-radius:0}
+.op.chk.sel::before{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Crect x='3' y='3' width='8' height='8' fill='%230D2340'/%3E%3C/svg%3E") center/100% no-repeat}
+
+/* mini-rota do módulo (anti-LMS 1) */
+.rota{border:1px solid var(--fio-cl);padding:12px 16px 10px}
+.rota-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.rota-h .eyebrow{font-size:10px}
+.rota-h span:last-child{font-size:13px;color:var(--suave)}
+.rota svg{width:100%;height:46px;display:block}
+.rota .leg{display:flex;gap:16px;font-size:12px;color:var(--meta);margin-top:2px}
+.rota .leg span{display:inline-flex;align-items:center;gap:5px}
+.rota .leg svg{width:12px;height:12px}
+.rota-mob{display:none}
+
+/* T9 · recuperação */
+.recup{border:1px solid var(--fio-cl);background:transparent;padding:12px 16px}
+.recup-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.recup .orig{font:600 11px var(--cinzel);letter-spacing:.14em;color:var(--tinta);border:1px solid var(--fio);padding:3px 7px;white-space:nowrap}
+.recup p{margin:6px 0 8px;font-size:15.5px;line-height:1.5}
+.recup .linha{display:flex;gap:8px;align-items:center}
+.recup .linha .inp{height:38px}
+.recup .linha .inp input{font-size:15px}
+
+/* ── T8 · Leitura ───────────────────────────────────────── */
+.corpo{padding:40px 0 0}
+.fila{display:grid;grid-template-columns:var(--leit) 1fr;gap:56px;align-items:start}
+.fila>.l{max-width:var(--leit)}
+.fila>.m{padding-top:6px}
+.l p{margin:0 0 18px}
+.lead{font:italic 400 21px/1.58 var(--lora);margin:0 0 30px}
+.lead.mob{display:none}
+.hl{background:var(--afund);padding:0 2px}
+.sec{display:flex;align-items:baseline;gap:14px;margin:38px 0 14px}
+.sec .n{font:600 13px var(--cinzel);letter-spacing:.1em;color:var(--meta);min-width:30px}
+.sec h2{font:600 25px/1.25 var(--lora);margin:0}
+.formula{border-top:1px solid var(--fio);border-bottom:1px solid var(--fio);padding:14px 0 16px;margin:6px 0 22px}
+.formula .eq{font:500 19px/1.45 var(--lora);font-variant-numeric:tabular-nums}
+.formula .eq i{font-style:normal;color:var(--meta);margin:0 6px}
+.formula .d{font-size:14px;color:var(--suave);margin-top:4px}
+.velado{display:inline-block;padding:0 8px;border:1px dashed var(--suave);background:var(--hatch);font-size:14px;font-style:italic;color:var(--suave);line-height:1.6}
+.st-reg .velado{display:none}
+.revel{display:none}
+.st-reg .revel{display:inline;font-weight:600;background:var(--afund);padding:0 3px}
+.nota{border-left:3px solid var(--tinta);background:var(--sup);padding:14px 18px;margin:8px 0 24px}
+.nota.ouro{border-left-color:var(--ouro)}
+.nota .t{font:600 11px/1.3 var(--cinzel);letter-spacing:.18em;text-transform:uppercase;color:var(--suave);margin-bottom:6px}
+.nota p{margin:0;font-size:16px}
+.lista{margin:0 0 20px;padding-left:22px}
+.lista li{margin-bottom:10px}
+
+/* figuras e mídia (T14) */
+.fig{margin:0}
+.fig img{width:100%;border:1px solid var(--fio)}
+.fig figcaption{font-size:13.5px;line-height:1.5;color:var(--suave);margin-top:8px}
+.classe{display:inline-block;font:600 9.5px/1 var(--cinzel);letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--suave);padding:3px 5px;margin-right:6px;vertical-align:1px;color:var(--suave)}
+.classe.ger{border-style:dashed}
+.cred{display:block;font-size:12px;color:var(--meta);margin-top:3px}
+
+/* T4 · fonte */
+.fonte{border-top:1px solid var(--fio);margin-top:24px;padding-top:10px;font-size:13px;line-height:1.5;color:var(--suave)}
+.fonte summary{list-style:none;cursor:pointer;display:block}
+.fonte summary>*+*{margin-left:8px}
+.fonte summary::-webkit-details-marker{display:none}
+.fonte summary .k{font:600 10px var(--cinzel);letter-spacing:.2em;text-transform:uppercase;color:var(--tinta)}
+.fonte summary .k::before{content:"";display:inline-block;width:7px;height:7px;background:var(--tinta);margin-right:7px;vertical-align:0}
+.fonte summary u{text-decoration-color:var(--fio);text-underline-offset:3px;white-space:nowrap}
+.fonte .ficha{margin-top:8px;padding:10px 12px;background:var(--afund);font-size:13px}
+.fonte .ficha dl{display:grid;grid-template-columns:140px 1fr;gap:3px 12px;margin:0}
+.fonte .ficha dt{color:var(--meta)}
+.fonte .ficha dd{margin:0}
+.selo{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--suave);padding:2px 7px;font-size:12px;color:var(--tinta);white-space:nowrap}
+.selo::before{content:"";width:8px;height:8px;border:1.5px solid var(--suave);border-radius:50%}
+.selo.pend::before{border-style:dashed}
+
+/* palco */
+.palco{margin:12px 0 40px;background:var(--sup);border:1px solid var(--fio)}
+.palco-h{background:var(--navy);color:var(--on-navy);display:flex;align-items:baseline;gap:16px;padding:12px 22px}
+.palco-h .num{font:600 12px var(--cinzel);letter-spacing:.2em;color:var(--ouro)}
+.palco-h h3{font:500 18px/1.3 var(--lora);margin:0}
+.palco-h .k{margin-left:auto;font-size:12.5px;color:var(--on-navy-m);font-style:italic}
+.palco-b{padding:18px 22px 20px}
+.palco .perg{display:flex;gap:14px;align-items:baseline;margin:0 0 14px}
+.palco .perg p{margin:0;font:500 18px/1.4 var(--lora)}
+.pvc{display:grid;grid-template-columns:1fr 1fr 1.3fr;border:1px solid var(--fio);background:var(--creme);margin-bottom:18px}
+.pvc>div{padding:10px 14px}
+.pvc>div+div{border-left:1px solid var(--fio)}
+.pvc dt{font:600 10px var(--cinzel);letter-spacing:.16em;text-transform:uppercase;color:var(--meta)}
+.pvc dd{margin:2px 0 0;font:500 24px/1.2 var(--lora);font-variant-numeric:tabular-nums}
+.pvc dd.vaz{font:italic 400 14px/1.5 var(--lora);color:var(--suave);padding-top:6px}
+.pvc dd small{font-size:13px;font-weight:400;color:var(--suave)}
+.ctrl{display:grid;gap:14px}
+.ctrl .c label{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:4px}
+.ctrl .c label span{font-weight:400;color:var(--meta)}
+.num-step{display:flex;height:44px;border:1px solid var(--suave);background:var(--creme)}
+.num-step button{width:40px;border:0;background:none;font-size:18px;cursor:pointer;color:var(--suave)}
+.num-step button:first-child{border-right:1px solid var(--fio)}
+.num-step button:last-child{border-left:1px solid var(--fio)}
+.num-step input{flex:1;min-width:0;border:0;background:none;text-align:center;font:500 18px var(--lora);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--navy);margin:8px 0 0;height:20px}
+.saidas{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--fio);margin-top:16px}
+.saidas>div{padding:10px 12px 4px 0}
+.saidas>div+div{padding-left:12px;border-left:1px solid var(--fio-cl)}
+.saidas dt{font-size:12.5px;color:var(--suave);line-height:1.3}
+.saidas dd{margin:3px 0 0;font:500 20px/1.25 var(--lora);font-variant-numeric:tabular-nums}
+.leitura-inst{margin-top:14px;padding:12px 14px;border:1px solid var(--fio-cl);background:var(--creme);font-size:15px}
+.leitura-inst .t{font:600 10px var(--cinzel);letter-spacing:.18em;text-transform:uppercase;color:var(--meta);display:block;margin-bottom:4px}
+.meta-x{margin-top:16px;border-top:1px dashed var(--fio);padding-top:14px;display:grid;grid-template-columns:1fr auto;gap:12px 24px;align-items:center}
+.meta-x p{margin:4px 0 0;font-size:15.5px}
+.st-reg .so-reg{display:block}.st-reg .so-reg-f{display:flex}.st-reg .so-reg-g{display:grid}.st-reg .so-reg-i{display:inline}
+.so-ini-f{display:flex}.so-ini-g{display:grid}
+body:not(.st-reg) .so-reg,body:not(.st-reg) .so-reg-f,body:not(.st-reg) .so-reg-g,body:not(.st-reg) .so-reg-i,
+.st-reg .so-ini,.st-reg .so-ini-f,.st-reg .so-ini-g{display:none!important}
+svg.g{width:13px;height:13px;display:inline-block;vertical-align:-1px;flex:none}
+
+/* ato de exercício ou tarefa da seção (K) */
+.ex{max-width:1000px;border:1px solid var(--fio);border-top:3px solid var(--navy);background:var(--sup);padding:18px 22px 20px;margin:8px 0 0}
+.ex-h{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.ex h2{margin:12px 0 6px}
+.ex-e{font:500 18px/1.5 var(--lora);margin:0 0 14px;max-width:44em}
+.ex-g{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:end;margin-bottom:12px}
+.larga{max-width:none}
+.pratic{margin:14px 0 0;gap:10px;align-items:center;font-size:14.5px;border:1px solid var(--tinta);padding:8px 12px;background:var(--creme)}
+.pratic svg{width:16px;height:16px;flex:none}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.seg .op{font-size:13.5px;min-height:40px;padding:6px 8px}
+.rot{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+
+/* comparação K (C7) */
+.comp{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--fio);margin-top:12px}
+.comp>div{padding:12px 16px}
+.comp>div+div{border-left:1px solid var(--fio)}
+.comp h4{margin:0 0 4px;font:600 10px var(--cinzel);letter-spacing:.18em;text-transform:uppercase;color:var(--meta)}
+.comp p{margin:0 0 6px;font-size:15px}
+.autoav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px;font-size:14px}
+.autoav .op{min-height:36px;font-size:14px}
+
+/* T10 · registro · T11 · próximo */
+.registro{margin:56px 0 0;border-top:2px solid var(--tinta);padding:18px 0 22px}
+.registro-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.registro-h h2{font:600 11px var(--cinzel);letter-spacing:.22em;text-transform:uppercase;margin:0}
+.eixos{display:grid;grid-template-columns:1fr 1fr 2fr;border:1px solid var(--fio);background:var(--sup)}
+.eixos>div{padding:12px 16px}
+.eixos>div+div{border-left:1px solid var(--fio)}
+.eixos dt{font:600 10px var(--cinzel);letter-spacing:.18em;text-transform:uppercase;color:var(--meta);margin-bottom:4px}
+.eixos dd{margin:0;display:flex;gap:8px;align-items:center;font-size:15.5px;line-height:1.4}
+.eixos dd svg{width:14px;height:14px;flex:none}
+.eixos .sa{align-items:flex-start;flex-direction:column;gap:2px}
+.demo{font-size:13.5px;color:var(--meta);margin:8px 0 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.proximo{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:stretch;border-top:1px solid var(--fio);padding:18px 0 40px}
+.prox-a{display:flex;flex-direction:column;justify-content:center;gap:4px}
+.prox-a small{font-size:13px;color:var(--meta)}
+.prox-a .btn-pri{max-width:640px}
+.prox-b{display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:6px;font-size:14px;color:var(--suave);text-align:right}
+
+.rodape{background:var(--navy);color:var(--on-navy-m);font-size:12.5px;line-height:1.55;margin-top:0}
+.rodape .wrap{padding-top:22px;padding-bottom:26px;display:grid;grid-template-columns:220px 1fr;gap:32px}
+.rodape h2{font:600 10.5px var(--cinzel);letter-spacing:.22em;text-transform:uppercase;color:var(--ouro);margin:0}
+.rodape ol{margin:0;padding-left:18px;columns:2;column-gap:36px}
+.rodape li{margin-bottom:5px;break-inside:avoid}
+.rodape b{color:var(--on-navy);font-weight:500}
+
+/* figuras SVG */
+.svgfig text{font-family:var(--lora)}
+.fig-t{font:600 17px/1.35 var(--lora);margin:0}
+.fig-s{font-size:13.5px;color:var(--suave);margin:2px 0 10px}
+
+/* ── 390 ─────────────────────────────────────────────────── */
+@media (max-width:760px){
+  body{font-size:16.5px;padding-bottom:64px}
+  .hdr{height:54px;padding:0 16px}
+  .brand svg{width:24px;height:24px}
+  .brand b{font-size:17px;letter-spacing:.24em}
+  .hdr .sep,.nav,.conta span,.busca i,.busca kbd{display:none}
+  .busca{margin-right:10px;height:40px;padding:0 12px}
+  .av{width:36px;height:36px}
+  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;height:62px;background:var(--sup);border-top:1px solid var(--fio);z-index:40}
+  .tabbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-decoration:none;font:600 9.5px var(--cinzel);letter-spacing:.1em;color:var(--suave)}
+  .tabbar svg{width:20px;height:20px}
+  .loc{height:auto;min-height:40px;padding:6px 16px;font-size:12.5px}
+  .loc ol{flex-wrap:nowrap;overflow:hidden}
+  .loc ol li:first-child{display:none}
+  .loc ol li.m{overflow:hidden;text-overflow:ellipsis;max-width:48%}
+  .loc ol li.m::before{content:none}
+  .loc li:last-child{overflow:hidden;text-overflow:ellipsis}
+  .loc .pos{display:none}
+  .btn-sum span{display:none}
+  .btn-sum{height:32px;width:36px;justify-content:center;padding:0}
+  .gaveta{width:100%}
+  .wrap{padding:0 16px}
+  .ab{grid-template-columns:1fr;gap:16px;padding:16px 0 28px}
+  .ab h1{font-size:29px;line-height:1.14;margin:6px 0 4px}
+  .ab .sub{margin-bottom:12px;font-size:14px}
+  .ab .pergunta{font-size:18.5px;margin:6px 0 4px;line-height:1.4}
+  .ab .obj,.ab .lede,.eyebrow .dsk{display:none}
+  .lead.mob{display:block}
+  .cen dd{font-size:15px}
+  .cen dd small{font-size:12px}
+  .ab-dir{gap:14px}
+  .ato{padding:12px 14px 14px}
+  .ato-h{margin-bottom:6px;align-items:flex-start}
+  .apar{flex-wrap:wrap;row-gap:3px}
+  .ato .enun{font-size:16px;margin-bottom:8px}
+  .cen dd{font-size:16px}
+  .cen dt{font-size:9.5px}
+  .nota-cen{margin:4px 0 8px}
+  .inp{height:48px}
+  .btn-pri{min-height:48px;font-size:11.5px}
+  .rota{display:none}
+  .rota-mob{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--fio-cl);padding:10px 12px;font-size:13.5px}
+  .rota-mob svg{height:12px}
+  .fila{grid-template-columns:1fr;gap:18px}
+  .lead{font-size:19px}
+  .sec h2{font-size:21px}
+  .palco-h{flex-wrap:wrap;padding:10px 14px;gap:4px 12px}
+  .palco-h .k{margin-left:0;width:100%}
+  .palco-b{padding:14px}
+  .palco .perg{flex-direction:column;gap:4px}
+  .dsk-only{display:none!important}
+  .pvc{grid-template-columns:1fr 1fr;position:sticky;top:44px;z-index:5}
+  .pvc>div:last-child{grid-column:1/-1;border-left:0;border-top:1px solid var(--fio)}
+  .pvc dd{font-size:20px}
+  .saidas{grid-template-columns:1fr 1fr}
+  .saidas>div:nth-child(odd){padding-left:0;border-left:0}
+  .meta-x{grid-template-columns:1fr}
+  .comp{grid-template-columns:1fr}
+  .comp>div+div{border-left:0;border-top:1px solid var(--fio)}
+  .opcoes.c3{grid-template-columns:1fr}
+  .eixos{grid-template-columns:1fr}
+  .eixos>div+div{border-left:0;border-top:1px solid var(--fio)}
+  .proximo{grid-template-columns:1fr}
+  .prox-b{align-items:flex-start;text-align:left}
+  .rodape .wrap{grid-template-columns:1fr;gap:10px}
+  .rodape ol{columns:1}
+  .ex{padding:14px}
+  .ex-g{grid-template-columns:1fr}
+}
+
+.camadas{max-width:1000px;border:1px solid var(--fio);background:var(--sup);margin:0 0 26px}
+.cr{display:grid;grid-template-columns:140px 1fr 1.2fr 1.3fr;border-top:1px solid var(--fio-cl);font-size:14.5px;line-height:1.45}
+.cr>span{padding:8px 12px}.cr>span+span{border-left:1px solid var(--fio-cl)}
+.cr>span:first-child{font-weight:600}
+.cr-h{border-top:0;background:var(--afund)}
+.cr-h>span{font:600 10px var(--cinzel)!important;letter-spacing:.16em;text-transform:uppercase;color:var(--suave)}
+.doc{border:1px solid var(--tinta);background:var(--sup);padding:16px 18px;margin-top:46px}
+.doc-h{display:flex;flex-direction:column;gap:3px;border-bottom:1px solid var(--tinta);padding-bottom:10px;margin-bottom:6px}
+.doc-h b{font:600 18px var(--lora)}
+.doc-h small{font-size:12.5px;color:var(--meta)}
+.doc-z{margin:0;padding:0 0 0 20px;font-size:14.5px}
+.doc-z li{padding:7px 0;border-bottom:1px dotted var(--fio);display:flex;justify-content:space-between;gap:10px}
+.doc-z i{color:var(--meta);font-size:13.5px}
+.campo-doc{border:1px solid var(--suave);background:var(--creme);padding:0 8px;font-weight:600;white-space:nowrap}
+.doc-n{font-size:12.5px;color:var(--suave);margin:8px 0 0}
+.niveis{border-top:1px solid var(--fio);border-bottom:1px solid var(--fio);padding:10px 0;margin:6px 0 20px}
+.niveis summary{cursor:pointer;font:600 11px var(--cinzel);letter-spacing:.16em;text-transform:uppercase}
+.niveis p{font-size:15.5px;margin:10px 0 0}
+.intro{margin:0 0 12px;font-size:15px}
+.dos-g{display:grid;grid-template-columns:7fr 5fr;gap:32px;align-items:start}
+.dos-l{min-width:0}
+.ctrl4{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px}
+.ctrl4 .c{display:grid;grid-template-columns:1fr 50px;gap:0 10px;align-items:center}
+.ctrl4 label{grid-column:1/-1;display:flex;justify-content:space-between;font-size:13.5px;font-weight:600}
+.ctrl4 label span{font-weight:400;color:var(--meta)}
+.vv{font:500 15px var(--lora);text-align:right;border:1px solid var(--suave);padding:1px 6px;background:var(--creme)}
+.expo{width:100%;height:auto;display:block}
+.vz{font-size:14px;font-style:italic;color:var(--suave)}
+.dos-l .saidas dd{font-size:17px}
+.mesa{border-left:3px solid var(--navy);background:var(--creme);padding:14px 18px 18px}
+.mesa .opcoes .op{justify-content:flex-start;font-size:15px}
+.mesa .op small{margin-left:auto;color:var(--meta);font-size:12.5px}
+.mesa .rot{margin-top:12px;font-size:13.5px}
+.mesa .rot small{font-weight:400;color:var(--meta)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips .op{min-height:32px;font-size:13px;padding:4px 10px}
+.mesa textarea{width:100%;border:1px solid var(--suave);background:var(--sup);font:15px var(--lora);padding:6px 10px;resize:vertical}
+.barreira{margin:14px 0 0;padding:10px 12px;border:1px dashed var(--suave);background:var(--hatch);font-style:italic;color:var(--suave);font-size:14px;display:flex;gap:8px;align-items:center}
+.consq{margin-top:20px;border-top:2px solid var(--tinta);padding-top:14px}
+.ct{width:100%;border-collapse:collapse;margin-top:10px;font-size:14.5px;font-variant-numeric:tabular-nums}
+.ct th{font:600 9.5px var(--cinzel);letter-spacing:.14em;text-transform:uppercase;color:var(--meta);text-align:left;padding:6px 10px;border-bottom:1px solid var(--tinta)}
+.ct td{padding:8px 10px;border-bottom:1px solid var(--fio-cl)}
+.ct tr.sua td{background:var(--creme);font-weight:600;border-top:1.5px solid var(--tinta);border-bottom:1.5px solid var(--tinta)}
+.ct small{font-weight:400;color:var(--meta);margin-left:4px}
+.balanco{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--fio);margin-top:14px}
+.balanco>div{padding:10px 14px}.balanco>div+div{border-left:1px solid var(--fio)}
+.balanco h4{margin:0 0 4px;font:600 10px var(--cinzel);letter-spacing:.16em;text-transform:uppercase;color:var(--meta)}
+.balanco p{margin:0;font-size:14.5px}
+.nc-c{display:none}
+.cen4{grid-template-columns:1fr 1fr}
+.cen4>div:nth-child(3){padding-left:0;border-left:0}
+.cen4>div:nth-child(n+3){border-top:1px solid var(--fio-cl)}
+.recup .opcoes.c3{grid-template-columns:repeat(3,auto);justify-content:start}
+.cen4 .un{display:block;font-size:11.5px!important;line-height:1.3;color:var(--meta);margin-top:2px}
+.cen4 .lim dd{font-weight:600}
+.dica-ch{font-size:12.5px;line-height:1.45;color:var(--meta);margin:8px 0 0}
+.dica-ch b{font-weight:600;color:var(--suave)}
+.fim-mod{grid-column:1/-1;list-style:none;margin:0;padding:10px 0 0;border-top:1px solid var(--fio-cl);display:grid;grid-template-columns:repeat(3,1fr);gap:8px 20px;font-size:14px}
+.fim-mod li{display:flex;gap:8px;align-items:flex-start;line-height:1.4}
+.fim-mod li svg{width:14px;height:14px;flex:none;margin-top:3px}
+.fim-mod li.aqui{color:var(--suave)}
+@media (max-width:760px){
+  .recup .opcoes.c3{grid-template-columns:1fr}
+  .fim-mod{grid-template-columns:1fr}
+  .cr-h{display:none}.cr{grid-template-columns:1fr}.cr>span+span{border-left:0;padding-top:0}
+  .doc{margin-top:0}
+  .dos-g{grid-template-columns:1fr}
+  .ctrl4{grid-template-columns:1fr}
+  .ct thead{display:none}.ct tr{display:block;border-bottom:1px solid var(--fio)}.ct td{display:block;border:0;padding:3px 0}
+  .balanco{grid-template-columns:1fr}.balanco>div+div{border-left:0;border-top:1px solid var(--fio)}
+  .ab .nota-cen{font-size:11.5px;margin:4px 0 6px}
+  .nc-l{display:none}.nc-c{display:inline}
+  .ab .sub{display:none}
+  .opcoes.c3.ato-op{grid-template-columns:.8fr 1fr 1.5fr;gap:6px}
+  .ato-op .op{font-size:14px;padding:6px 8px;line-height:1.25}
+  .ato .enun{font-size:15.5px;margin-bottom:8px}
+}
+</style>
+</head>
+<body data-arquetipo="DOSSIE">
+<header class="hdr">
+  <a class="brand" href="#"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="9.5" fill="none" stroke="#2A2620" stroke-width="1"/><path d="M16 1l2.2 12.8L31 16l-12.8 2.2L16 31l-2.2-12.8L1 16l12.8-2.2z" fill="none" stroke="#2A2620" stroke-width="1.1"/><path d="M16 1l2.2 12.8L16 16zM31 16l-12.8 2.2L16 16zM16 31l-2.2-12.8L16 16zM1 16l12.8-2.2L16 16z" fill="#2A2620"/></svg><b>ALEXANDRIA</b></a><span class="sep"></span>
+  <nav class="nav" aria-label="Navegação global"><a href="#">Trilhas</a><a href="#">Atlas</a><a href="#">Glossário</a><a href="#">Biblioteca</a></nav><span class="grow"></span>
+  <a class="busca" href="#"><b>BUSCAR</b><i>aula, módulo ou termo</i><kbd>Ctrl K</kbd></a>
+  <a class="conta" href="#"><span>PROGRESSO</span><span class="av">M</span></a>
+</header>
+<nav class="loc" aria-label="Localização"><ol><li><a href="#">Trilha I · Fundamentos Universais</a></li><li class="m"><a href="#"><span class="cod">M04</span>Economia de Mercados de Energia</a></li><li><span aria-current="page">Aula 07 · Portfólio de contratação</span></li></ol><span class="grow"></span><span class="pos">Aula 07 de 07</span><button class="btn-sum" type="button" data-gaveta aria-expanded="false" aria-controls="gaveta"><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 3.5h10M2 7h10M2 10.5h6" stroke="currentColor" stroke-width="1.4"/></svg><span>Sumário da aula</span></button></nav>
+<aside class="gaveta" id="gaveta" aria-label="Sumário da aula"><button class="x" type="button" data-gaveta-fechar aria-label="Fechar sumário">×</button>
+<h2>Sumário da aula</h2><ol><li>Abertura · o pior mês cabe na política?</li><li>7.1 Contratação em camadas</li><li>7.2 A política de risco, por escrito · documento de exercício</li><li>7.3 Cenários, não previsão</li><li>7.4 O custo que importa</li><li>Dossiê e decisão · INST·07</li><li>Registro da aula · Revisão do módulo</li></ol></aside>
+<main class="wrap">
+
+
+<section class="ab" aria-labelledby="titulo">
+  <div>
+    <p class="eyebrow">M04<span class="dsk"> · Economia de Mercados de Energia</span> · Aula 07 de 07 · última do módulo</p>
+    <h1 id="titulo">Portfólio de contratação</h1>
+    <p class="sub">Síntese</p>
+    <span class="apar">Pergunta da aula<em>Alexandria</em></span>
+    <p class="pergunta">Uma empresa consome 10.000 MWh por mês. Que carteira cabe na política de risco — e sobrevive ao pior mês?</p>
+    <p class="obj"><b>Objetivo</b>Montar uma carteira em camadas que cumpra os dois limites de uma política escrita no cenário de choque, e nomear o trade-off da escolha.</p>
+    <p class="lede">Nenhuma empresa madura decide "spot ou contrato". Ela decide quanto de cada um, em quais prazos, sob qual política escrita — e revisa isso periodicamente. Comprar energia é gerir uma carteira, não fechar uma compra.</p>
+  </div>
+  <div class="ab-dir">
+    <div class="ato" data-ato>
+      <div class="ato-h"><span class="apar">Ato 1 de 2 · previsão<em>Alexandria</em></span>
+        <span class="estado so-ini"><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.2" fill="none" stroke="#5C5346" stroke-width="1.5"/></svg>vazio</span><span class="estado so-reg-f"><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.9" fill="#2A2620"/></svg>registrado</span></div>
+      <dl class="cen cen4">
+        <div><dt>Carteira</dt><dd>50 · 25 · 15 <small>%</small><small class="un">base · média · curta</small></dd></div>
+        <div><dt>Exposto</dt><dd>10 <small>% ao PLD</small><small class="un">1.000 MWh/mês</small></dd></div>
+        <div><dt>Choque</dt><dd>100 <small>de 100</small><small class="un">PLD até 2× em out.</small></dd></div>
+        <div class="lim"><dt>Limite da política</dt><dd>R$ 500 <small>mil</small><small class="un">exposição no pior mês</small></dd></div>
+      </dl>
+      <p class="nota-cen"><span class="nc-l">Limite: enunciado do Ex·09 do curso. Choque: modelo do INST·07 (intensidade 0–100); “até 2×” é leitura da Alexandria sobre a fórmula. Fonte externa dos valores não declarada.</span><span class="nc-c">Ex·09 e INST·07 do curso · “até 2×”: leitura da Alexandria · sem fonte externa</span></p>
+      <p class="enun">No pior mês, a exposição ao PLD fica dentro do limite de R$ 500 mil?</p>
+      <div class="opcoes c3 ato-op so-ini-g" data-grupo><button class="op">cabe</button><button class="op">não cabe</button><button class="op">não é possível concluir</button></div>
+      <button class="btn-pri so-ini-f" type="button" data-registrar><span>Registrar previsão · <b>pior mês da carteira</b></span><svg viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button>
+      <p class="so-reg aviso-reg" style="font-style:normal;color:var(--tinta)">Previsão registrada: <b>não cabe</b>. O dossiê no fim da aula mostra o calculado.</p>
+    </div>
+    <nav class="rota" aria-label="Rota do módulo"><div class="rota-h"><span class="eyebrow">Rota do módulo M04</span><span>Aula 07 de 07</span></div><svg viewBox="0 0 400 46" role="img" aria-label="Rota do módulo M04: aula 07 de 07"><line x1="14" y1="15" x2="386" y2="15" stroke="#CFC1A4" stroke-width="1.2"/><a href="#" aria-label="Aula 01"><circle cx="14.0" cy="15" r="5.4" fill="#FBF6EA" stroke="#5C5346" stroke-width="1.3"/><text x="14.0" y="40" text-anchor="middle" font-size="11" fill="#5C5346">01</text></a><a href="#" aria-label="Aula 02"><circle cx="76.0" cy="15" r="5.4" fill="#FBF6EA" stroke="#5C5346" stroke-width="1.3"/><text x="76.0" y="40" text-anchor="middle" font-size="11" fill="#5C5346">02</text></a><a href="#" aria-label="Aula 03"><circle cx="138.0" cy="15" r="5.4" fill="#FBF6EA" stroke="#5C5346" stroke-width="1.3"/><text x="138.0" y="40" text-anchor="middle" font-size="11" fill="#5C5346">03</text></a><a href="#" aria-label="Aula 04"><circle cx="200.0" cy="15" r="5.4" fill="#FBF6EA" stroke="#5C5346" stroke-width="1.3"/><text x="200.0" y="40" text-anchor="middle" font-size="11" fill="#5C5346">04</text></a><a href="#" aria-label="Aula 05"><circle cx="262.0" cy="15" r="5.4" fill="#FBF6EA" stroke="#5C5346" stroke-width="1.3"/><text x="262.0" y="40" text-anchor="middle" font-size="11" fill="#5C5346">05</text></a><a href="#" aria-label="Aula 06"><circle cx="324.0" cy="15" r="5.4" fill="#FBF6EA" stroke="#5C5346" stroke-width="1.3"/><text x="324.0" y="40" text-anchor="middle" font-size="11" fill="#5C5346">06</text></a><circle cx="386.0" cy="15" r="9" fill="#F2E9D6" stroke="#2A2620" stroke-width="1.3"/><circle cx="386.0" cy="15" r="4.4" fill="#2A2620"/><text x="386.0" y="40" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2A2620">07</text></svg><div class="leg"><span><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="#2A2620" stroke-width="1.2"/><circle cx="7" cy="7" r="3" fill="#2A2620"/></svg>você está aqui</span><span><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.2" fill="none" stroke="#5C5346" stroke-width="1.5"/></svg>sem registro ainda</span></div></nav><div class="rota-mob"><span><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="#2A2620" stroke-width="1.2"/><circle cx="7" cy="7" r="3" fill="#2A2620"/></svg> Aula 07 de 07 · Módulo 04</span><span class="eyebrow">rota ›</span></div>
+    <div class="recup">
+      <div class="recup-h"><span class="apar">Recuperação<em>Alexandria</em></span><span class="orig">De M04·A06</span></div>
+      <p>Um hedge que trava o preço de 60% do consumo elimina o risco de preço de quê?</p>
+      <div class="opcoes c3" data-grupo style="margin:0"><button class="op">dos 60%</button><button class="op">do consumo todo</button><button class="op">de nada</button></div>
+    </div>
+  </div>
+</section>
+
+<div class="corpo">
+  <div class="fila"><div class="l">
+    <p class="lead mob">Nenhuma empresa madura decide "spot ou contrato". Ela decide quanto de cada um, em quais prazos, sob qual política escrita — e revisa isso periodicamente. Comprar energia é gerir uma carteira, não fechar uma compra.</p>
+    <div class="sec"><span class="n">7.1</span><h2>Contratação em camadas</h2></div>
+    <p>A estrutura para a qual a maioria dos consumidores sofisticados converge é a mesma, e ela existe por um motivo econômico preciso: <strong>diferentes parcelas do consumo têm diferentes graus de certeza</strong>. O consumo que a empresa tem quase certeza de que existirá em cinco anos merece tratamento diferente do consumo que depende do plano de expansão que ainda não foi aprovado.</p>
+    <p>Daí a estrutura: uma <strong>base longa</strong> que cobre o consumo estrutural, uma <strong>camada média</strong> que acompanha o horizonte de planejamento industrial, uma <strong>camada curta</strong> ajustada ao ano corrente e uma <strong>exposição residual</strong> deliberada. A exposição residual não é descuido — é a folga que permite absorver variação de produção sem cair em sobrecontratação. Uma empresa contratada a 100% do previsto não está protegida; está apenas trocando um risco por outro, e o outro costuma ser pior porque é irreversível.</p>
+  </div></div>
+  <div class="camadas" role="table" aria-label="Camadas da contratação">
+    <div class="cr cr-h" role="row"><span>Camada</span><span>Função</span><span>O que ela protege</span><span>O que ela custa</span></div>
+    <div class="cr" role="row"><span>Base longa</span><span>Travar o consumo estrutural</span><span>Orçamento plurianual e financiamento de expansão</span><span>Rigidez se a operação encolher; multa se precisar sair</span></div>
+    <div class="cr" role="row"><span>Média</span><span>Acompanhar o plano industrial</span><span>Ciclo de investimento e crescimento previsto</span><span>Prêmio de prazo intermediário</span></div>
+    <div class="cr" role="row"><span>Curta</span><span>Ajustar ao ano corrente</span><span>Desvio já observado de consumo</span><span>Exposição ao preço do momento da compra</span></div>
+    <div class="cr" role="row"><span>Residual</span><span>Absorver variação operacional</span><span>Flexibilidade real da planta</span><span>Exposição direta ao PLD</span></div>
+  </div>
+  <div class="fila"><div class="l">
+    <p>Há uma estrutura a termo escondida nessa tabela. Em condições normais, contratos mais longos carregam prêmio sobre contratos curtos, porque o vendedor está assumindo incerteza por mais tempo. Mas essa relação inverte com frequência: em ano de estresse hidrológico, o produto curto pode ficar <em>mais caro</em> que o longo, porque o curto precifica um problema que já está acontecendo e o longo precifica a reversão à média. Ler essa inversão é uma das leituras mais valiosas que um gestor de energia faz — e ela só é visível para quem acompanha a curva, não só o spot.</p>
+    <div class="sec"><span class="n">7.2</span><h2>A política de risco, por escrito</h2></div>
+    <p>O que separa uma empresa que <em>gere</em> energia de uma que <em>reage</em> a energia é um documento de uma página. Ele define: <strong>percentual mínimo contratado</strong> por horizonte, <strong>limite máximo de exposição</strong> ao curto prazo em MWh e em reais, <strong>indexadores permitidos</strong> e vedados, <strong>prazo máximo</strong> de contrato, <strong>critérios de contraparte</strong> — rating mínimo, garantias exigidas, limite de concentração por vendedor — e <strong>alçadas de aprovação</strong> por tamanho de decisão.</p>
+    <p>Sem esse documento, cada decisão de contratação é tomada pelo humor do mercado e pela habilidade do vendedor da vez. Com ele, a conversa muda de natureza: em vez de "esse preço está bom?", a pergunta passa a ser "essa proposta cabe na nossa política?" — que é respondível com dados e não depende de prever preço. É a diferença entre uma decisão defensável em auditoria e uma decisão que precisa dar certo para ser justificada.</p>
+  </div>
+  <aside class="m">
+    <div class="doc" aria-label="Política de risco, documento de exercício">
+      <div class="doc-h"><span class="apar">Documento de exercício<em>Alexandria</em></span><b>Política de contratação de energia</b><small>empresa fictícia · 1 página</small></div>
+      <ol class="doc-z">
+        <li><span>Percentual mínimo contratado</span><b class="campo-doc">80 %</b></li>
+        <li><span>Exposição máxima no pior mês</span><b class="campo-doc">R$ 500 mil</b></li>
+        <li><span>Indexadores permitidos</span><i>a preencher</i></li>
+        <li><span>Prazo máximo de contrato</span><i>a preencher</i></li>
+        <li><span>Critérios de contraparte</span><i>a preencher</i></li>
+        <li><span>Alçadas de aprovação</span><i>a preencher</i></li>
+      </ol>
+      <p class="doc-n">Os dois limites vêm do enunciado do Ex·09 do curso. Os campos 3 a 6 ficam para a Revisão.</p>
+    </div>
+  </aside></div>
+  <div class="fila"><div class="l">
+    <div class="sec"><span class="n">7.3</span><h2>Cenários, não previsão</h2></div>
+    <p>A pergunta certa nunca é "qual vai ser o PLD". É "esta decisão sobrevive a quais cenários". Um mínimo defensável são cinco: <strong>base</strong>, com premissas mais prováveis; <strong>PLD alto</strong>, com seca prolongada e despacho térmico intenso; <strong>PLD baixo</strong>, com hidrologia favorável e sobreoferta renovável; <strong>consumo abaixo do previsto</strong>, que expõe sobrecontratação e take-or-pay; e <strong>consumo acima do previsto</strong>, que força compra no curto prazo possivelmente no pior momento.</p>
+    <p>Testar um cenário por vez é <em>análise de sensibilidade</em> — muda-se uma premissa e observa-se o efeito. Testar milhares de combinações simultâneas é <em>simulação estocástica</em>, útil quando o risco não é linear, que é justamente o caso quando existem cláusulas de take-or-pay, bandas de flexibilidade e multas: essas cláusulas criam degraus na função de custo, e degraus não aparecem numa análise de sensibilidade simples. Uma proposta só é boa se sobrevive aos cenários ruins — no cenário base, toda proposta parece boa; é para isso que ela foi escrita.</p>
+    <div class="sec"><span class="n">7.4</span><h2>O custo que importa e como ler uma proposta</h2></div>
+    <p>O R$/MWh de uma proposta é a primeira parcela de sete. O custo total esperado soma <strong>energia contratada</strong>, <strong>custo da exposição</strong>, <strong>encargos setoriais</strong>, <strong>uso da rede</strong>, <strong>tributos</strong>, <strong>custo das garantias</strong> — que travam capital de giro e têm preço — e <strong>custo do risco</strong>, que é a diferença entre o cenário base e o cenário ruim ponderada pelo apetite da empresa. Comparar propostas pela primeira parcela é comparar carros pelo preço do pneu.</p>
+    <p>Dez perguntas expõem uma proposta fraca em poucos minutos, e todas são respondíveis com documento: qual consumo histórico foi usado como base; se a economia estimada considerou perfil horário ou apenas média mensal; quais encargos foram incluídos e quais ficaram de fora; se o preço é fixo ou indexado e por qual índice; qual a multa de saída e sua fórmula; se o contrato acompanha crescimento de carga; quem assume risco de submercado; o que acontece se o consumo cair; se a comparação considerou demanda e uso de rede; e quais cenários de PLD foram testados. Uma proposta que não responde a essas dez com números não é uma proposta — é uma peça de venda.</p>
+    <details class="niveis"><summary>O conceito em três níveis · criança · executivo · especialista</summary>
+      <p><b>Criança de 12 anos.</b> É como não colocar todo o dinheiro num único lugar. Uma parte você combina agora por muitos anos, outra por pouco tempo, e deixa um pedacinho livre para o caso de precisar mudar. Assim, se der errado, dá errado só num pedaço.</p>
+      <p><b>Executivo.</b> É contratar energia em camadas de prazos diferentes, em vez de tomar uma única decisão de compra. Reduz a dependência de acertar o momento certo do mercado, permite ajustar ao consumo real e distribui o risco ao longo do tempo — mas exige gestão contínua e uma política de risco definida pela diretoria.</p>
+      <p><b>Especialista.</b> É a construção de uma carteira de contratos com escalonamento de prazos e de indexadores, calibrada por uma política formal que fixa percentual mínimo contratado, limite de exposição ao curto prazo, prazo máximo, indexadores admitidos, critérios de contraparte e alçadas. A avaliação é feita por cenários e sensibilidades sobre custo total esperado, não sobre preço unitário de energia.</p></details>
+  </div></div>
+
+  <section class="palco larga" id="dossie" data-palco aria-labelledby="dos-t">
+    <div class="palco-h"><span class="num">DOSSIÊ · INST·07</span><h3 id="dos-t">Portfólio em camadas · decida que carteira adotar</h3><span class="k">dossiê → decisão → consequências → balanço</span></div>
+    <div class="palco-b">
+      <div class="dos-g">
+        <div class="dos-l">
+          <p class="intro">Distribua o consumo de 10.000 MWh/mês entre as camadas. O que sobrar fica exposto ao PLD. Aplique um choque de preço no segundo semestre e observe o custo mensal — e o que acontece se a soma das camadas passar de 100%.</p>
+          <div class="ctrl4">
+            <div class="c"><label>Base longa · R$ 330/MWh <span>%</span></label><input type="range" min="0" max="120" step="5" value="50" aria-label="Base longa"><b class="vv">50</b></div>
+            <div class="c"><label>Camada média · R$ 348/MWh <span>%</span></label><input type="range" min="0" max="120" step="5" value="25" aria-label="Camada média"><b class="vv">25</b></div>
+            <div class="c"><label>Camada curta · R$ 366/MWh <span>%</span></label><input type="range" min="0" max="120" step="5" value="15" aria-label="Camada curta"><b class="vv">15</b></div>
+            <div class="c"><label>Choque de PLD no 2º semestre <span>intensidade 0–100</span></label><input type="range" min="0" max="100" step="5" value="100" aria-label="Choque de PLD, intensidade de 0 a 100"><b class="vv">100</b></div>
+          </div>
+          <p class="dica-ch"><b>Intensidade do choque:</b> 100 = PLD do mês multiplicado por até 2, no pico de outubro. Leitura da Alexandria sobre a fórmula do INST·07; a fonte só diz “intensidade”.</p>
+          <p class="fig-t" style="margin-top:14px"><span class="so-ini">O pior mês de exposição, contra o limite da política</span><span class="so-reg">Com 10% exposto, o pior mês encosta no limite da política</span></p>
+          <p class="fig-s">Custo da exposição ao PLD por mês, R$ · 1.000 MWh expostos · choque de intensidade 100 (PLD até 2× em outubro) no 2º semestre</p>
+          <svg class="expo" viewBox="0 0 620 280" role="img" aria-label="Barras mensais da exposição. No primeiro semestre, de 144 a 224 mil reais. No segundo, com choque, sobe até 480 mil em outubro, abaixo da linha do limite de 500 mil."><line x1="70" y1="250.0" x2="600" y2="250.0" stroke="#E4D8BE"/><text x="62" y="254.0" text-anchor="end" font-size="12" fill="#5C5346">0 mil</text><line x1="70" y1="192.5" x2="600" y2="192.5" stroke="#E4D8BE"/><text x="62" y="196.5" text-anchor="end" font-size="12" fill="#5C5346">200 mil</text><line x1="70" y1="135.0" x2="600" y2="135.0" stroke="#E4D8BE"/><text x="62" y="139.0" text-anchor="end" font-size="12" fill="#5C5346">400 mil</text><line x1="70" y1="77.5" x2="600" y2="77.5" stroke="#E4D8BE"/><text x="62" y="81.5" text-anchor="end" font-size="12" fill="#5C5346">600 mil</text><line x1="70" y1="20.0" x2="600" y2="20.0" stroke="#E4D8BE"/><text x="62" y="24.0" text-anchor="end" font-size="12" fill="#5C5346">800 mil</text><text x="92.1" y="268" text-anchor="middle" font-size="12" fill="#5C5346">Jan</text><rect x="78.8" y="206.9" width="26.5" height="43.1" fill="#0D2340"/><text x="136.2" y="268" text-anchor="middle" font-size="12" fill="#5C5346">Fev</text><rect x="123.0" y="208.6" width="26.5" height="41.4" fill="#0D2340"/><text x="180.4" y="268" text-anchor="middle" font-size="12" fill="#5C5346">Mar</text><rect x="167.2" y="205.2" width="26.5" height="44.8" fill="#0D2340"/><text x="224.6" y="268" text-anchor="middle" font-size="12" fill="#5C5346">Abr</text><rect x="211.3" y="201.1" width="26.5" height="48.9" fill="#0D2340"/><text x="268.8" y="268" text-anchor="middle" font-size="12" fill="#5C5346">Mai</text><rect x="255.5" y="192.5" width="26.5" height="57.5" fill="#0D2340"/><text x="312.9" y="268" text-anchor="middle" font-size="12" fill="#5C5346">Jun</text><rect x="299.7" y="185.6" width="26.5" height="64.4" fill="#0D2340"/><text x="357.1" y="268" text-anchor="middle" font-size="12" fill="#5C5346">Jul</text><rect class="so-reg" x="343.8" y="158.8" width="26.5" height="91.2" fill="#0D2340"/><text x="401.2" y="268" text-anchor="middle" font-size="12" fill="#5C5346">Ago</text><rect class="so-reg" x="388.0" y="134.1" width="26.5" height="115.9" fill="#0D2340"/><text x="445.4" y="268" text-anchor="middle" font-size="12" fill="#5C5346">Set</text><rect class="so-reg" x="432.2" y="113.4" width="26.5" height="136.6" fill="#0D2340"/><text x="489.6" y="268" text-anchor="middle" font-size="12" fill="#5C5346">Out</text><rect class="so-reg" x="476.3" y="112.0" width="26.5" height="138.0" fill="#0D2340"/><text x="533.8" y="268" text-anchor="middle" font-size="12" fill="#5C5346">Nov</text><rect class="so-reg" x="520.5" y="152.2" width="26.5" height="97.8" fill="#0D2340"/><text x="577.9" y="268" text-anchor="middle" font-size="12" fill="#5C5346">Dez</text><rect class="so-reg" x="564.7" y="186.3" width="26.5" height="63.7" fill="#0D2340"/><g class="so-ini"><rect x="337.0" y="20" width="261.0" height="230" fill="#FBF6EA" stroke="#CFC1A4" stroke-dasharray="4 3"/><text x="467.5" y="126.4" text-anchor="middle" font-size="13" font-style="italic" fill="#5C5346">2º semestre com choque:</text><text x="467.5" y="143.4" text-anchor="middle" font-size="13" font-style="italic" fill="#5C5346">aparece depois da sua previsão</text></g><line x1="70" y1="106.2" x2="600" y2="106.2" stroke="#2A2620" stroke-width="1.8" stroke-dasharray="8 5"/><text x="74" y="99.2" font-size="13" font-weight="600" fill="#2A2620">limite da política · R$ 500 mil</text><g class="so-reg"><text x="489.6" y="80.4" text-anchor="middle" font-size="13" font-weight="600" fill="#0D2340">Out · R$ 480 mil</text></g><line x1="70" y1="250" x2="600" y2="250" stroke="#2A2620"/></svg>
+          <dl class="saidas">
+            <div><dt>Exposição residual</dt><dd>10 %</dd></div>
+            <div><dt>Custo médio anual</dt><dd><span class="so-ini vz">velado</span><span class="so-reg-i">R$ 3,34 mi</span></dd></div>
+            <div><dt>Pior mês (custo total)</dt><dd><span class="so-ini vz">velado</span><span class="so-reg-i">Out · R$ 3,55 mi</span></dd></div>
+            <div><dt>Amplitude do ano</dt><dd><span class="so-ini vz">velada</span><span class="so-reg-i">R$ 336 mil</span></dd></div>
+          </dl>
+          <details class="fonte"><summary><span class="k">Fonte</span><span>Preços das camadas, perfil sazonal e choque (entrada “intensidade”, 0–100): modelo didático do INST·07; fonte externa dos valores não declarada. Limites de PLD do modelo: ANEEL, Despacho 3.850/2025, citado no módulo · verificação pendente.</span><u>Ficha</u></summary><div class="ficha">Custo da exposição = % exposto × PLD do mês × 10.000 MWh. PLD do mês = 200 × sazonalidade do mês × (1 + intensidade/100 × rampa do mês), dentro dos limites de PLD. A rampa vale 0 no 1º semestre e chega a 1,00 em outubro; por isso intensidade 100 dobra o PLD de outubro (leitura da Alexandria sobre a fórmula do curso).</div></details>
+        </div>
+        <div class="mesa">
+          <span class="apar">Ato 2 de 2 · decisão<em>Alexandria</em></span>
+          <p class="enun" style="margin:8px 0 10px">Que carteira a empresa adota, com o choque máximo?</p>
+          <div class="opcoes" data-grupo>
+            <button class="op">50 · 25 · 10 <small>15% exposto</small></button>
+            <button class="op so-reg-f sel">50 · 25 · 15 <small>10% exposto</small></button>
+            <button class="op so-ini-f">50 · 25 · 15 <small>10% exposto</small></button>
+            <button class="op">50 · 25 · 20 <small>5% exposto</small></button>
+            <button class="op">Não é possível concluir com estes dados</button>
+          </div>
+          <span class="rot">Evidência que você usa <small>(itens do dossiê)</small></span>
+          <div class="chips"><button class="op chk so-reg-f sel">pior mês de exposição</button><button class="op chk so-ini-f">pior mês de exposição</button><button class="op chk">custo médio</button><button class="op chk so-reg-f sel">política · R$ 500 mil</button><button class="op chk so-ini-f">política · R$ 500 mil</button><button class="op chk">política · 80%</button></div>
+          <label class="rot" for="prem">Premissa</label>
+          <textarea id="prem" rows="2" placeholder="O que você está supondo?"></textarea>
+          <label class="rot" for="trade">Trade-off que você aceita</label>
+          <textarea id="trade" rows="2" placeholder="O que você cede em troca?"></textarea>
+          <button class="btn-pri so-ini-f" type="button" data-registrar style="margin-top:12px"><span>Registrar decisão · <b>carteira</b></span><svg viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button>
+          <p class="barreira so-ini"><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><rect x="1.5" y="1.5" width="11" height="11" fill="none" stroke="#5C5346" stroke-width="1.3" stroke-dasharray="2.2 1.6"/></svg> As consequências aparecem depois da sua decisão.</p>
+          <p class="so-reg aviso-reg" style="font-style:normal;color:var(--tinta)">Decisão registrada · premissa: “o choque máximo é o pior caso do ano” · trade-off: “aceito R$ 20 mil de folga em outubro”.</p>
+        </div>
+      </div>
+      <div class="consq so-reg">
+        <span class="apar">Consequências · duas dimensões, sem nota<em>Alexandria, calculadas no modelo do curso</em></span>
+        <table class="ct">
+          <thead><tr><th>Carteira</th><th>Custo médio da energia</th><th>Exposição no pior mês</th><th>Contratado ≥ 80%</th><th>Exposição ≤ R$ 500 mil</th></tr></thead>
+          <tbody>
+            <tr><td>50 · 25 · 10</td><td>R$ 329,61/MWh</td><td>R$ 720 mil · Out</td><td>cumpre (85%)</td><td><b>não cumpre</b> · passa R$ 220 mil</td></tr>
+            <tr class="sua"><td><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="#2A2620" stroke-width="1.2"/><circle cx="7" cy="7" r="3" fill="#2A2620"/></svg> 50 · 25 · 15 <small>sua decisão</small></td><td>R$ 334,24/MWh</td><td>R$ 480 mil · Out</td><td>cumpre (90%)</td><td>cumpre · folga de R$ 20 mil</td></tr>
+            <tr><td>50 · 25 · 20</td><td>R$ 338,87/MWh</td><td>R$ 240 mil · Out</td><td>cumpre (95%)</td><td>cumpre · folga de R$ 260 mil</td></tr>
+          </tbody>
+        </table>
+        <div class="leitura-inst"><span class="t">Leitura do instrumento · exposição até 15%</span>Exposição residual de 10%, com amplitude anual de R$ 336 mil. Custo médio de R$ 334,24/MWh. É a faixa em que a folga absorve variação operacional sem transformar o orçamento em aposta — o desenho que a maioria das políticas de risco industriais persegue.</div>
+        <div class="balanco">
+          <div><h4>Sua previsão da abertura</h4><p>“não cabe” · calculado: <b>cabe</b>, com R$ 20 mil de folga. Com 15% exposto, não caberia — mesmo com 85% contratado.</p></div>
+          <div><h4>O que a decisão mobilizou</h4><p>PLD e sazonalidade (A02) · hedge e cobertura parcial (A06) · os dois critérios da política (7.2)</p></div>
+          <div><h4>O que faria mudar de decisão</h4><p>No Ex·09 do curso, o estresse é PLD de R$ 700/MWh, não o choque deste modelo. Com esse estresse, 10% exposto já passaria do limite.</p></div>
+        </div>
+        <div class="autoav" data-grupo><span>Sua justificativa (evidência, premissa, trade-off):</span><button class="op sel">atende</button><button class="op">atende em parte</button><button class="op">não atende</button></div>
+        <p class="pratic" style="display:flex"><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.2" fill="none" stroke="#2A2620" stroke-width="1.5"/><circle cx="7" cy="7" r="2.6" fill="#2A2620"/></svg><span><b>Praticado nesta aula:</b> previsão e decisão registradas; consequências abertas.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="registro" aria-labelledby="reg-t">
+    <div class="registro-h"><h2 id="reg-t">Registro da aula</h2><button class="btn-link so-ini" type="button">Registrar leitura sem prática</button></div>
+    <dl class="eixos">
+      <div><dt>Percorrido</dt><dd><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.2" fill="none" stroke="#2A2620" stroke-width="1.5"/><path d="M7 1.8a5.2 5.2 0 0 0 0 10.4z" fill="#2A2620"/></svg>em leitura</dd></div>
+      <div><dt>Praticado</dt><dd class="so-ini"><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.2" fill="none" stroke="#5C5346" stroke-width="1.5"/></svg>ainda sem prática · 0 de 2 atos</dd><dd class="so-reg-f"><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.2" fill="none" stroke="#2A2620" stroke-width="1.5"/><circle cx="7" cy="7" r="2.6" fill="#2A2620"/></svg>com prática · decisão registrada</dd></div>
+      <div><dt>Serve a</dt><dd class="sa"><span>Capacidade do módulo · <i>ainda não disponível</i></span><span style="color:var(--suave);font-size:14px">A política e a carteira ficam no seu caderno para o Caso — Operação A · ainda não disponível</span></dd></div>
+    </dl>
+    <p class="demo"><span>Demonstrado: ainda não avaliado.</span><span>Última aula do Módulo 04 · a seguir, a Revisão do módulo e, depois dela, a Avaliação, com o critério mostrado antes.</span></p>
+  </section>
+  <nav class="proximo" aria-label="Próximo passo">
+    <div class="prox-a">
+      <small class="so-ini">Próximo passo · o ato desta aula ainda está pendente</small><small class="so-reg">Próximo passo · as aulas do módulo terminaram; falta a Revisão</small>
+      <a class="btn-pri so-ini-f" href="#titulo"><span>Fazer o ato desta aula · <b>decidir a carteira</b></span><svg viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+      <a class="btn-pri so-reg-f" href="#"><span>Revisão do Módulo 04 · <b>depois, a Avaliação, com o critério mostrado antes</b></span><svg viewBox="0 0 22 12" aria-hidden="true"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+    </div>
+    <div class="prox-b"><a class="btn-link so-ini" href="#">Ir direto à Revisão do Módulo 04</a><a class="btn-link" href="#">Voltar à rota do Módulo 04</a></div>
+    <ol class="fim-mod" aria-label="Fim do Módulo 04">
+      <li class="aqui"><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="#2A2620" stroke-width="1.2"/><circle cx="7" cy="7" r="3" fill="#2A2620"/></svg><span><b>Aula 07</b> · esta aula</span></li>
+      <li><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.2" fill="none" stroke="#5C5346" stroke-width="1.5"/></svg><span><b>Revisão do módulo</b> · retoma A01–A07 e os campos 3 a 6 da política</span></li>
+      <li><svg class="g" viewBox="0 0 14 14" aria-hidden="true"><rect x="1.5" y="1.5" width="11" height="11" fill="none" stroke="#5C5346" stroke-width="1.3" stroke-dasharray="2.2 1.6"/></svg><span><b>Avaliação do Módulo 04</b> · abre depois da Revisão, com o critério mostrado antes</span></li>
+    </ol>
+  </nav>
+</div>
+
+</main>
+<footer class="rodape"><div class="wrap"><h2>Créditos desta rota</h2><ol><li><b>Sem imagens nesta aula.</b> A política é um documento de exercício desenhado pela Alexandria; o gráfico usa o modelo do INST·07 do curso.</li></ol></div></footer>
+<nav class="tabbar" aria-label="Navegação global"><a href="#"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M3 17l5-6 4 3 6-9" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="3" cy="17" r="1.6"/><circle cx="18" cy="5" r="1.6"/></svg>TRILHAS</a><a href="#"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 10h15M10 2.5c-4 4.5-4 10.5 0 15M10 2.5c4 4.5 4 10.5 0 15" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>ATLAS</a><a href="#"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><rect x="4" y="2.5" width="12" height="15" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 7h6M7 10h6M7 13h4" stroke="currentColor" stroke-width="1.2"/></svg>GLOSSÁRIO</a><a href="#"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M3 17V4M6.5 17V4M10 17V6M13 17l3-12 2.5.6-3 12" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2 17.5h17" stroke="currentColor" stroke-width="1.2"/></svg>BIBLIOTECA</a><a href="#"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M3 5.5h14M3 10h14M3 14.5h14" stroke="currentColor" stroke-width="1.6"/></svg>MAIS</a></nav>
+<script>(function () {
+  var b = document.body;
+  // Estado do comp: ?estado=registrado mostra o quadro "registrado → comparação".
+  if (/estado=registrado/.test(location.search) || location.hash === '#registrado') b.classList.add('st-reg');
+  // Gaveta do sumário: começa fechada, fecha com Esc.
+  var gav = document.getElementById('gaveta');
+  var gat = document.querySelector('[data-gaveta]');
+  function fechar() { gav.classList.remove('aberta'); gat.setAttribute('aria-expanded', 'false'); }
+  gat.addEventListener('click', function () {
+    var ab = gav.classList.toggle('aberta');
+    gat.setAttribute('aria-expanded', ab ? 'true' : 'false');
+  });
+  document.querySelector('[data-gaveta-fechar]').addEventListener('click', fechar);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fechar(); });
+  // Opções: rádio por grupo, caixa de marcar quando .chk.
+  document.querySelectorAll('.op').forEach(function (op) {
+    op.setAttribute('type', 'button');
+    op.addEventListener('click', function () {
+      if (op.classList.contains('chk')) { op.classList.toggle('sel'); return; }
+      var g = op.closest('[data-grupo]') || op.parentNode;
+      g.querySelectorAll('.op').forEach(function (o) { o.classList.remove('sel'); o.setAttribute('aria-pressed', 'false'); });
+      op.classList.add('sel'); op.setAttribute('aria-pressed', 'true');
+    });
+  });
+  // Registrar: no comp, qualquer registro leva a aula ao quadro "registrado → comparação".
+  document.querySelectorAll('[data-registrar]').forEach(function (bt) {
+    bt.addEventListener('click', function () { b.classList.add('st-reg'); });
+  });
+  // Passos numéricos (−/+) com o passo declarado no campo.
+  document.querySelectorAll('.num-step').forEach(function (ns) {
+    var inp = ns.querySelector('input');
+    var bts = ns.querySelectorAll('button');
+    function mudar(s) {
+      var v = parseFloat(String(inp.value).replace(/\./g, '').replace(',', '.')) || 0;
+      v = Math.max(parseFloat(inp.dataset.min || 0), v + s * parseFloat(inp.dataset.passo || 1));
+      inp.value = v.toLocaleString('pt-BR');
+    }
+    bts[0].addEventListener('click', function () { mudar(-1); });
+    bts[1].addEventListener('click', function () { mudar(1); });
+  });
+})();
+</script>
+</body>
+</html>

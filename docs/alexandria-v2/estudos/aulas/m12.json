@@ -1,0 +1,772 @@
+{
+  "modulo": "modulo-12",
+  "titulo_modulo": "Geopolítica Energética do Brasil",
+  "trilha": "T2 · brasil · 7º e último módulo da trilha",
+  "estudado_em": "2026-09-17",
+  "fontes_lidas": [
+    "src/lib/data/alexandria-modulo-12-content.ts (MODULO_12_LEAD, MODULO_12_CORPO, 11 instrumentos, tabelas de dado, 14 exercícios soltos, MODULO_12_AULAS)",
+    "src/lib/data/alexandria-instrument-calculators.ts (i1m12…i11m12)",
+    "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo12.html (só leitura: §00, §MAP, 8 aulas, §Caso, §Erros, §Ex, §Quiz, §Voz, posição dos 11 .inst)",
+    "docs/alexandria-v2/bar.md (§0, §4, S1–S7, §7, §9, §11)",
+    "docs/alexandria-v2/decisoes/2026-09-16-ambiguidades-de-conteudo.md (P17–P25)"
+  ],
+  "estado_das_dependencias_de_estudo": {
+    "extracao_verificada_m12": "Não existe ainda. docs/alexandria-v2/extraction/m12/ só tem extratores (m12_dom.mjs, m12_lib.mjs, ts-hooks.mjs); nenhum aparato.json/aula-NN.json. Este estudo usou o TS e o HTML-fonte diretamente.",
+    "curadoria_de_midia_m12": "Não existe plano.json. media-lab/aulas/m12/_work tem 4 candidatos sem registro de crédito: alba.jpg (linha de cubas de alumínio, fotografia industrial), yulian.jpg (complexo industrial com letreiros em chinês), hofmann1866.jpg (gravura de 1866 do aparelho de Hofmann, eletrólise da água) e hofmann_dm.jpg (foto de museu do mesmo aparelho, com etiquetas em alemão). blender/ e originais/ vazios. Qualquer uso depende do registro M6.",
+    "gravuras_existentes": "public/alexandria/gravuras/geo-01…geo-10 (classe atmosfera). Mapeadas no código: A1 geo-05, A2 geo-08, A3 geo-10, A6 geo-07, A7 geo-06. geo-01 e geo-09 são falso positivo registrado no cabeçalho do TS."
+  },
+  "leitura_do_modulo": {
+    "tese_da_fonte": "Duas colunas ditas juntas (renovável × fóssil) e três vetores que ligam o Brasil ao mundo: capital, regulação e diplomacia, cadeia de valor. O módulo olha de fora para dentro.",
+    "mecanismo_transversal": "Toda afirmação sobre o Brasil precisa carregar três coisas antes de ser repetida: GRANDEZA (qual denominador), ESTADO (lei, regulamento, projeto, anúncio, com data) e ETAPA (recurso primário ou transformação). As 8 aulas são variações desse tripé.",
+    "natureza_dominante": "mercado/regulação + epistemologia de número e de estado jurídico. Não há física nem cálculo de engenharia; os dois instrumentos numéricos (inst-02, inst-09) são aritmética de proporção.",
+    "risco_de_layout": "Sem cuidado, o módulo vira 8 colunas de prosa densa com um select de texto no fim de cada uma: 9 dos 11 instrumentos são consultas (select → texto). O desenho precisa converter consulta em ato (classificar, ordenar, prever) e dar forma visual ao que os títulos prometem (tabuleiro, régua, andaime, separador, razão).",
+    "perecibilidade": "Verificação da fonte em 2 de agosto de 2026. Hoje é 2026-09-17. Pelo menos três estados podem ter mudado desde então e não foram reverificados aqui: presidência da COP (expira na abertura da COP31, em novembro de 2026), decreto do hidrogênio (não publicado em 02/08) e tramitação do PL 2.780/2024. A interface precisa mostrar a data de verificação junto de cada estado (S4) e tratar a expiração conhecida da presidência.",
+    "aparato_do_modulo_para_recuperacao": {
+      "erros_comuns_20": "§Erros: 20 pares erro → correção, todos atribuíveis a uma aula. Mapeamento (camada Alexandria): 1–4 → A01; 5–9 → A02; 10–11 → A03; 12–15 → A04; 16–17 → A06; 18–20 → A07. Nenhum erro para A05 e A08.",
+      "quiz_10": "Mapeamento (camada Alexandria): Q1, Q8 → A01; Q6 → A02; Q4 → A05 (com A02); Q5, Q9 → A04; Q2, Q10 → A06; Q3, Q7 → A07. Pela heurística de C10, questão usada em recuperação sai da avaliação; por isso a recuperação usa os erros comuns, não o quiz.",
+      "exercicios_14": "Todos soltos (P9 → Revisão). Afinidade temática (camada Alexandria, revisável): ex01, ex03, ex13, ex14 → A01/A08; ex02, ex11 → A04; ex04 → A08; ex05 → A03; ex06, ex09 → A06; ex07, ex12 → A07; ex08, ex10 → A02. Os exercícios continuam morando na Revisão; a aula pode apontar para eles como ato secundário.",
+      "caso": "§Caso 'Operação A — Parte 12' → P17: título 'Caso — Operação A', sem 'Parte'. §C.1 liga diretamente ao inst-07 (A05); §C.2 liga ao PL 2.780 (A07). Desafio de decisão da camada Alexandria autorizado no fim.",
+      "quiz_criterio": "'Dez questões, critério de oito acertos' → P18: registro legado, nunca 'Aprovado'.",
+      "voz": "Roteiro oral de 10 minutos, cronometrado → P14: 'atividade recomendada', sem evidência automatizada.",
+      "checklist_final": "28 itens (§Final).",
+      "lexico": "152 termos (§Lex).",
+      "referencias": "34 fontes consultadas em 2 de agosto de 2026 (§Ref)."
+    },
+    "instrumento_de_modulo": "m12-inst-01 'Tabuleiro geopolítico' vive no §MAP, fora de aula (§9: instrumento de módulo m12 extraído, não renderizado). Lugar natural: página do módulo (C1/C2), como mapa dos 3 vetores × 5 frentes; cada aula pode abrir o tabuleiro já filtrado na sua frente."
+  },
+  "aulas": [
+    {
+      "aulaId": "aula-12-01",
+      "codigo": "M12·A01",
+      "titulo": "Oitenta e sete por cento de quê, exatamente",
+      "subtitulo_fonte": "O paradoxo",
+      "ensina": "Um percentual de renovabilidade só é verificável depois de declarado o denominador: matriz elétrica (OIEE, TWh, 86,8% renovável em 2025) e matriz energética (OIE, Mtep, ~50%) são contas diferentes, e o ranking do G20 é de instituto internacional com fronteira de geração, não dado brasileiro. Corolário: aquífero não gera eletricidade (hidrologia de superfície).",
+      "natureza": ["leitura crítica de número", "comparação de grandezas", "cálculo de proporção (média ponderada)"],
+      "representacao": {
+        "arquetipo": "Prancha de dois denominadores: coluna editorial com uma figura-âncora que acompanha a leitura e vira instrumento vivo no ponto do inst-02.",
+        "porque": "O mecanismo inteiro é geométrico: a eletricidade é uma fatia da energia total, e a renovabilidade agregada é a média ponderada das duas partes. Um mosaico de área (largura = peso da eletricidade, altura = renovável) mostra de uma vez por que 86,8% 'vira' ~50%. A figura explica e o inst-02 a manipula; a figura e o instrumento devem ser o mesmo objeto.",
+        "composicao_1440": "Coluna de leitura de 60–72 caracteres à esquerda; à direita, figura com cerca de 40% da largura, fixa durante 01.1 e liberada ao fim da seção. Em 01.2 a figura vira um par 'duas fontes, dois números' (EPE 86,8% × instituto internacional 87%, fronteiras diferentes). 01.3 e 01.4 voltam à coluna simples."
+      },
+      "abertura": {
+        "camada": "alexandria",
+        "pergunta": "Quando alguém diz que o Brasil é '87% renovável', de qual conta está falando e quanto sobra quando a conta é toda a energia do país?",
+        "objetivo": "Reconstruir o denominador de um percentual de renovabilidade antes de aceitá-lo, e citar as duas grandezas, cada uma com fonte e ano-base.",
+        "previsao": {
+          "util": true,
+          "pergunta": "A matriz elétrica brasileira foi 86,8% renovável em 2025. Considerando TODA a energia consumida no país (diesel, aviação, calor industrial, gás, eletricidade), a participação renovável é de aproximadamente quanto? (%)",
+          "valores_fonte": "86,8% (OIEE 2025, BEN 2026); ~50% (OIE 2025, 327,9 Mtep); petróleo e derivados 33,7%, gás 10,4%. Fonte: BEN 2026, ano-base 2025, EPE/MME, consulta em 02/08/2026.",
+          "referencia": "~50% (a fonte dá 'aproximadamente'; nenhuma margem factual)",
+          "regra_entrada": "Regra de entrada da Alexandria (não é tolerância da fonte): aceitar como 'na faixa' respostas entre 45% e 55%, porque a própria fonte declara '~50%'. Rotular como regra de pontuação, não como margem do dado (P6, P19).",
+          "posicao": "Primeiro ato, ANTES do lede. O lede da fonte revela a resposta ('diferença de quase quarenta pontos percentuais'); o bloco 2 também revela ('o número cai pela metade'). O lede deve aparecer depois do registro, ou ser encurtado na camada editorial até a última frase.",
+          "segunda_previsao": "No inst-02, com peso da eletricidade 19% e renováveis fora da eletricidade 41% (entradas padrão do instrumento), qual a renovabilidade agregada implícita? Calculado: 0,19 × 86,8 + 0,81 × 41 = 49,7%. Previsto × calculado no mesmo cenário (C5)."
+        }
+      },
+      "ato": {
+        "tipo": "estimar (previsão registrada) → manipular até meta",
+        "descricao": "1) Estimar a renovabilidade da matriz energética a partir da elétrica. 2) No inst-02, com o valor oficial em 50%, mover o peso da eletricidade até a distância entre as duas grandezas ficar à vista, e dizer em uma frase por que ela não é erro de conta. O veredito 'Consistente / Divergência moderada / alta' do instrumento usa faixas do próprio script da fonte (≤2 e ≤6 pontos); apresentar como regra do instrumento.",
+        "chave_fonte": "~50% (BEN 2026). Faixas do veredito: script da fonte.",
+        "atos_secundarios": [
+          "Classificar (inst-03 convertido): para cada um dos 8 números em circulação, escolher a pergunta de verificação que falta (grandeza? ano-base? fonte? estágio?) antes de abrir a resposta da fonte.",
+          "Identificar o erro: 'o Aquífero Guarani é reserva hídrica estratégica para a geração elétrica' (Q8 do quiz; erro comum 4) — usar o erro comum, não a questão do quiz, se o quiz continuar sendo avaliação."
+        ]
+      },
+      "visualizacao": [
+        {
+          "trabalho": "Mostrar que a renovabilidade total é a média ponderada da elétrica e da não elétrica.",
+          "relacao": "Mosaico de área (marimekko de duas colunas): largura = peso da eletricidade na energia total (%), altura = renovável dentro da parte (%). Área renovável total = número agregado.",
+          "eixos": "x: participação na energia total, 0–100%; y: participação renovável, 0–100%",
+          "unidade": "% (pontos percentuais para a distância)",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": "inst-02 'Separador de grandeza' promete separar visualmente; hoje devolve 4 saídas numéricas e um veredito de texto."
+        },
+        {
+          "trabalho": "Distinguir dado oficial de ranking internacional.",
+          "relacao": "Par de fichas lado a lado: EPE (OIEE, inclui importação) 88,2% em 2024 → 86,8% em 2025 × instituto internacional (geração) 89% 2023, 87% 2024, 87% 2025.",
+          "eixos": "ano × %, duas séries curtas com rótulo direto e fonte sob cada uma",
+          "unidade": "%",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": null
+        }
+      ],
+      "instrumentos": [
+        {"id": "m12-inst-02", "titulo": "Separador de grandeza — quanto a eletricidade explica da energia total", "kind": "calculadora", "bloco_indice": 6, "apos": "parágrafo 'A armadilha é exatamente a mesma…' (fim de 01.1)", "previsao": true, "observacoes": "Na fonte, o instrumento vem logo depois da prosa que o invoca. Saída 'sg-co' (contribuição da eletricidade) é a peça que o mosaico desenha. A entrada padrão de 41% (renováveis fora da eletricidade) não tem fonte própria declarada; a nota só fundamenta o peso de 19% como 'ordem de grandeza'."},
+        {"id": "m12-inst-03", "titulo": "Verificador de fonte de número", "kind": "explorador", "bloco_indice": 10, "apos": "parágrafo sobre pico de emissões do setor elétrico em 2014 (fim de 01.2)", "previsao": false, "observacoes": "Consulta de 8 números. Converter em ato de classificação com revelação depois da tentativa. Os números citados em inst-03 cobrem conteúdo de A02, A06 e A07 (NDC, reservas, anúncio de H2): é um instrumento de módulo disfarçado de instrumento de aula e pode reaparecer na recuperação."}
+      ],
+      "checagem": "Previsto × calculado lado a lado e visível enquanto o learner manipula o inst-02. No inst-03 convertido, a resposta da fonte (fonte provável, o que mede, erro típico, o que verificar) só aparece depois da escolha registrada; autoavaliação em três níveis.",
+      "recuperacao": {
+        "itens": "Erros comuns 1–4 (grandeza sem nome; ano-base velho; ranking atribuído à EPE; aquífero).",
+        "origem_visivel": "§Erros do módulo 12",
+        "uso_futuro": "A07 recupera esta aula: 'duas metodologias, dois números' é o mesmo mecanismo (a fonte diz isso literalmente em 07.2)."
+      },
+      "proximo_passo": "Não atende → 'Rever 01.1 · dois denominadores'. Leitura sem prática → 'Fazer o ato: estimar a matriz energética'. Demais → 'Próxima · M12·A02 — O que foi decidido, o que ficou de fora'.",
+      "midia": {
+        "plano_curadoria": "inexistente para m12",
+        "ilustracoes_atuais": ["geo-05-canavial-colheitadeira.png (atmosfera; justificada por 01.4 etanol)"],
+        "onde_ajuda": [
+          "01.3: um corte esquemático (explicação, programático) 'água subterrânea × hidrologia de superfície com reservatório' faz trabalho real e desfaz o erro do aquífero. Nunca foto nomeando o aquífero sem crédito documental.",
+          "01.4: a gravura do canavial é atmosfera; passa no teste de remoção só se ficar ao lado do dado 'etanol de milho = 25% da produção em 2025' sem cobri-lo. Se não, sai."
+        ]
+      },
+      "mobile_390": "Abertura com a pergunta e o campo de previsão no 1º viewport (S7). O mosaico vira figura de largura total, abaixo do parágrafo que explica, com os controles do inst-02 empilhados sob a figura, que fica colada ao topo enquanto os sliders estão em foco. O par EPE × instituto vira duas fichas empilhadas, cada uma com a sua fonte.",
+      "lacunas_fonte": [
+        "Peso da eletricidade (19%) e renováveis fora da eletricidade (41%) são entradas padrão sem fonte específica; tratar como 'cenário didático do instrumento; fonte externa não declarada' (análogo a P19).",
+        "O nome do instituto internacional do ranking do G20 é omitido de propósito (política da A08, categoria 5: só em referência). A ficha de fonte precisa vir da §Ref (34 fontes); ainda não extraída.",
+        "'Cerca de 11% de eletricidade de fósseis' e 'segundo maior gerador hidrelétrico' são dados da medição internacional, sem número de fonte brasileira ao lado."
+      ],
+      "content_qa": [
+        "Nota 'Onde isso entra no produto' (bloco 18) → P7: não exibir.",
+        "O lede revela a resposta da previsão; ajuste de ordem na camada editorial."
+      ],
+      "dependencias_s9": ["registro de previsão e de manipulação (eventos)", "desenho da forma prometida pelo inst-02", "fichas de fonte (§Ref) para S4", "extração m12 verificada"],
+      "ambicao": "O learner digita '87' ou '80' para a matriz energética, e o mosaico se abre mostrando onde os ~37 pontos desaparecem: a coluna larga do diesel e do calor industrial. Depois, a mesma figura recebe os 8 números do inst-03, cada um com o denominador que lhe falta. A aula ensina um reflexo, não um número, e o reflexo volta nas A07 e A08."
+    },
+    {
+      "aulaId": "aula-12-02",
+      "codigo": "M12·A02",
+      "titulo": "O que foi decidido, o que ficou de fora, e por que a distinção é o conteúdo",
+      "subtitulo_fonte": "COP30 e o ciclo climático",
+      "ensina": "Um resultado climático só se descreve com a sua natureza jurídica: decisão por consenso × iniciativa voluntária da presidência × anúncio; compromisso (NDC 59–67% até 2035 sobre 2005) × previsão; lei (SBCE, Lei 15.042/2024) × sistema operante. Corolário: no Brasil, metade das emissões de energia vem dos transportes (220,8 de 440,2 MtCO2e), então eletrificar é o maior salto disponível.",
+      "natureza": ["regulação/diplomacia", "leitura de estado jurídico datado", "linha do tempo"],
+      "representacao": {
+        "arquetipo": "Régua de estado: linha do tempo com marcos como protagonista, e a prosa ancorada em cada marco.",
+        "porque": "A aula é sobre ESTADO no tempo (aprovado, voluntário, vigente até, sem regulamento). Uma régua datada (ago 2024 → nov 2026) com glifo de estado por marco torna visível a tese 'lei existe, regulamento não'. O inst-04 é exatamente essa régua; hoje é um select com texto.",
+        "composicao_1440": "Faixa horizontal da régua (12 marcos do inst-04; os 5 desta aula ativos, os demais em espera) no topo de cada seção, com o marco da seção destacado; a coluna editorial corre abaixo. Em 02.1, um quadro de duas metades ('entrou no consenso' | 'ficou de fora') com os itens da fonte. Em 02.3, uma barra de composição das emissões de energia."
+      },
+      "abertura": {
+        "camada": "alexandria",
+        "pergunta": "Quando alguém diz 'a COP30 decidiu X', como saber se foi decisão das partes, iniciativa da presidência ou anúncio, e o que isso muda?",
+        "objetivo": "Classificar cada resultado da COP30 e cada norma climática doméstica pela natureza e pelo estado, com data.",
+        "previsao": {
+          "util": true,
+          "pergunta": "Das emissões do setor de energia do Brasil em 2025 (440,2 MtCO2e), qual subsetor responde pela maior parcela: geração elétrica, transportes ou indústria?",
+          "valores_fonte": "440,2 MtCO2e no total; transportes 220,8 MtCO2e ('praticamente metade'); fator médio da eletricidade 64,8 kgCO2e/MWh. Fonte: citada na prosa sem nomear a publicação em 02.3; no §00 atribuída ao BEN 2026 (EPE/MME).",
+          "referencia": "Transportes, com cerca de metade.",
+          "regra_entrada": "Escolha única; sem tolerância numérica.",
+          "posicao": "Antes de 02.3 (bloco 8); o bloco 11 revela a resposta.",
+          "segunda_previsao": "Previsão rápida em 02.1: 'O texto final da COP30 incluiu linguagem de eliminação de combustíveis fósseis?' (fonte: não houve consenso). Útil porque a manchete comum sugere o contrário."
+        }
+      },
+      "ato": {
+        "tipo": "classificar",
+        "descricao": "Ordenar 6 resultados da COP30 em três caixas: decisão aprovada por consenso | iniciativa da presidência, fora do texto | (distrator) previsão. Itens da fonte: triplicar o financiamento de adaptação até 2035; conclusão do Roteiro de Adaptação de Baku (2026–2028); 59 indicadores voluntários da Meta Global de Adaptação; roteiro sobre afastamento dos combustíveis fósseis; roteiro sobre desmatamento; mecanismo de financiamento para florestas tropicais (iniciativa paralela da presidência). Em seguida, aplicar as três perguntas da nota de 02.1 a um dos itens.",
+        "chave_fonte": "02.1: os três primeiros entram no Pacote de Belém (consenso); os dois roteiros e o mecanismo florestal são iniciativas da presidência.",
+        "atos_secundarios": [
+          "No inst-04: para cada marco, prever o estado ('vigente', 'vigente sem regulamento', 'anúncio não cumprido', 'aprovado em uma Casa', 'instrumento de planejamento') antes de abrir os três campos.",
+          "Exercícios da Revisão com afinidade: ex08 (dois minutos sobre a COP30 sem dizer sucesso ou fracasso) e ex10 (substância ou protocolo)."
+        ]
+      },
+      "visualizacao": [
+        {
+          "trabalho": "Tornar impossível citar um marco sem o seu estado.",
+          "relacao": "Linha do tempo com 12 marcos, cada um com glifo de estado (silhueta + palavra, nunca cor) e 'o que ainda falta'.",
+          "eixos": "tempo, ago 2024 → nov 2026 (mais COP32/2027 como marco anunciado)",
+          "unidade": "data (mês/ano da fonte)",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": "inst-04 'Régua diplomático-regulatória' promete uma régua; o HTML-fonte tem navegação ◀ Anterior / Próximo ▶ que o port não reproduz."
+        },
+        {
+          "trabalho": "Mostrar onde estão as emissões de energia.",
+          "relacao": "Barra única 100% de 440,2 MtCO2e com transportes 220,8 destacado e o restante 'demais subsetores' (a fonte não detalha).",
+          "eixos": "MtCO2e",
+          "unidade": "MtCO2e, 2025",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": null
+        }
+      ],
+      "instrumentos": [
+        {"id": "m12-inst-04", "titulo": "Régua diplomático-regulatória — o que existe, em que estado, com que prazo", "kind": "explorador", "bloco_indice": 15, "apos": "parágrafo do desconto CBAM × SBCE (fim de 02.4)", "previsao": true, "observacoes": "Os 12 marcos cobrem A02, A04, A05, A06 e A07. É instrumento de módulo com lugar nesta aula; propor que reapareça como régua viva nas aulas seguintes, com os marcos de cada uma em destaque. Estado 'em 2 de agosto de 2026' está escrito dentro do veredito (bom para S4)."}
+      ],
+      "checagem": "Classificação registrada → chave da fonte ao lado → para cada item errado, a frase de 02.1 que o decide. Sem cor de certo/errado.",
+      "recuperacao": {
+        "itens": "Erros comuns 5–9 (COP30 como evento futuro; só a metade do consenso; 'lidera' sem prazo; NDC como previsão; matriz limpa compensa desmatamento). Na abertura, recuperar A01: 'matriz elétrica ou energética?' antes de mostrar 86,8%.",
+        "origem_visivel": "§Erros; A01",
+        "uso_futuro": "A05 e A06 retomam 'lei sem regulamento'."
+      },
+      "proximo_passo": "Não atende → 'Rever 02.1 · as duas metades'. Demais → 'Próxima · M12·A03 — Complementaridade forte, concentração alta'.",
+      "midia": {
+        "plano_curadoria": "inexistente para m12",
+        "ilustracoes_atuais": ["geo-08-globo-terrestre.png (atmosfera)"],
+        "onde_ajuda": [
+          "O globo não faz trabalho; passa no teste de remoção só como marca de capítulo. Se ficar, fica pequeno e longe dos dados.",
+          "Imagem documental da COP30 (Belém, nov 2025) só com crédito M6 completo e licença aceita; é a única classe que pode nomear o evento. Opcional: a régua carrega a aula sem foto."
+        ]
+      },
+      "mobile_390": "A régua vira vertical (eixo de tempo descendo), recolhida em 'marco desta seção + ver régua completa'. A classificação vira lista com três botões por item (não arrasto). A barra de emissões fica em largura total com rótulo direto.",
+      "lacunas_fonte": [
+        "Decomposição das emissões de energia além de transportes não é dada; não inventar fatias.",
+        "O valor do mecanismo florestal e das iniciativas paralelas não é dado.",
+        "A fonte da cifra 440,2 / 220,8 não é nomeada em 02.3 (o §00 aponta o BEN 2026)."
+      ],
+      "content_qa": [
+        "PERECÍVEL: 'presidência vigente até novembro de 2026'. A própria fonte manda passar ao pretérito depois da COP31. A interface precisa de validade explícita nesse estado, não só da data de verificação.",
+        "Nota 'Onde isso entra no produto' (bloco 16) cita 'GridAlpha' e 'Regulatory Radar' → P7 e P24: não exibir.",
+        "Timeline de 04.2 e régua têm datas que se cruzam com esta aula; manter uma fonte única de marcos (MODULO_12_MARCOS)."
+      ],
+      "dependencias_s9": ["registro da classificação", "desenho da régua", "estado com validade/reverificação", "fichas de fonte (UNFCCC, Planalto)"],
+      "ambicao": "A régua da A02 é o fio do módulo: acesa aqui com 5 marcos, ela ganha um marco por aula até a A08, onde o learner a percorre inteira. Quando a data de hoje passar da COP31, o marco 12 muda sozinho para 'verificar: estado pode ter mudado', e a aula mostra o próprio conteúdo envelhecendo, que é exatamente o que ela ensina."
+    },
+    {
+      "aulaId": "aula-12-03",
+      "codigo": "M12·A03",
+      "titulo": "Complementaridade forte, concentração alta, e a diferença entre as duas",
+      "subtitulo_fonte": "China",
+      "ensina": "Risco não é nacionalidade, é concentração. A relação com a China tem três camadas (ativos regulados, cadeia de equipamento, comércio) com riscos diferentes, que o teste 'se essa fonte parasse por seis meses, existe alternativa a que preço e em que prazo?' separa: baixo, real e imediato, de demanda. Diversificar é criar alternativa, não romper.",
+      "natureza": ["sistema/estrutura de relação", "análise de risco", "comparação por camadas"],
+      "representacao": {
+        "arquetipo": "Anatomia em estratos: três camadas empilhadas como corte, com o teste dos seis meses aplicado em cada uma; depois o comparador de parceiros.",
+        "porque": "A fonte já estrutura a aula como três camadas (div.gcmp) e insiste que 'costumam ser tratadas como uma só'. Um corte em estratos, com a mesma pergunta atravessando todos, desenha a separação. Não há números na aula (a fonte avisa que números sobre a relação exigem fluxo × estoque × anunciado), então a figura é estrutural, não quantitativa.",
+        "composicao_1440": "03.1: corte de três estratos à direita, com as notas-camada da fonte como legendas diretas. 03.2: o teste dos seis meses vira uma régua lateral que atravessa os três estratos; o ato acontece aqui. A ficha de campo 1 de 4 entra como documento anotado (anatomia de ficha: investe, segmento, fricção, o que um número precisa ter). 03.3: 'três movimentos' como sequência numerada."
+      },
+      "abertura": {
+        "camada": "alexandria",
+        "pergunta": "Onde, exatamente, está o risco na relação energética Brasil–China, e onde está só complementaridade?",
+        "objetivo": "Separar as três camadas da relação e dizer, para cada uma, que tipo de risco o teste dos seis meses revela.",
+        "previsao": {
+          "util": true,
+          "pergunta": "Das três camadas (ativos regulados, cadeia de equipamento, comércio e demanda), em qual o risco de interrupção é mais imediato se a fonte parar por seis meses?",
+          "valores_fonte": "Sem números; resposta qualitativa em 03.2.",
+          "referencia": "Cadeia de equipamento: 'risco real e já materializado em outros mercados'. Ativos regulados: baixo. Comércio: risco de demanda (câmbio, custo de insumo).",
+          "regra_entrada": "Escolha única, com justificativa curta opcional.",
+          "posicao": "Antes de 03.2 (bloco 6).",
+          "segunda_previsao": null
+        }
+      },
+      "ato": {
+        "tipo": "classificar",
+        "descricao": "Para cada camada, escolher o tipo de exposição (baixa / imediata de fornecimento / de demanda e câmbio) e a mitigação ('criar alternativa qualificada' × 'romper'). Depois, reescrever uma frase-teste sem a palavra 'dependência' (restrição do ex05 da fonte) usando só estrutura.",
+        "chave_fonte": "03.2, parágrafos 2 e 3.",
+        "atos_secundarios": [
+          "No inst-05: fixar a China e alternar o vetor; registrar em uma linha o que muda (a nota da fonte diz que 'dizer isso é o conteúdo').",
+          "Identificar o erro: 'as duas estatais chinesas no setor elétrico são a mesma empresa' (erro comum 10)."
+        ]
+      },
+      "visualizacao": [
+        {
+          "trabalho": "Separar camadas que costumam ser tratadas como uma.",
+          "relacao": "Corte em três estratos × pergunta dos seis meses → exposição e horizonte por camada.",
+          "eixos": "qualitativo: camada × (exposição, prazo, mitigação)",
+          "unidade": "sem unidade (estrutura)",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": null
+        },
+        {
+          "trabalho": "Mostrar que nenhum parceiro é 'melhor' em abstrato.",
+          "relacao": "Matriz 4 parceiros × 3 vetores (inst-05), com a célula ativa aberta e as outras visíveis como títulos.",
+          "eixos": "parceiro × vetor",
+          "unidade": "texto",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": "inst-05 'Comparador' promete comparação; hoje mostra uma célula por vez, sem vizinhas, o que impede comparar."
+        }
+      ],
+      "instrumentos": [
+        {"id": "m12-inst-05", "titulo": "Comparador de parceiros bilaterais — quatro parceiros, três vetores", "kind": "comparador", "bloco_indice": 9, "apos": "parágrafo 'diversificar é criar alternativa…' (fim de 03.2), antes da ficha de campo 1 de 4", "previsao": false, "observacoes": "Cobre China, EUA, Europa e BRICS: instrumento das A03–A05. Propor abertura filtrada (China aqui, EUA em A04, Europa/BRICS em A05) com a matriz inteira sempre visível."}
+      ],
+      "checagem": "Classificação registrada → frases de 03.2 que a decidem. A reescrita sem 'dependência' é autoavaliada contra a resposta-modelo do ex05 (Resposta / O que acrescenta / Critério), só depois da tentativa.",
+      "recuperacao": {
+        "itens": "Erros comuns 10–11. Recuperar A01 com uma pergunta de grandeza: '\"investimento chinês no Brasil\": fluxo, estoque ou anunciado?' (da ficha 1 de 4).",
+        "origem_visivel": "§Erros; ficha de campo 1 de 4",
+        "uso_futuro": "A04 reutiliza a camada de equipamento (restrição americana a 'entidade estrangeira de interesse')."
+      },
+      "proximo_passo": "Não atende → 'Rever 03.2 · onde está o risco'. Demais → 'Próxima · M12·A04 — Duas políticas simultâneas'.",
+      "midia": {
+        "plano_curadoria": "inexistente para m12",
+        "ilustracoes_atuais": ["geo-10-painel-solar-container.png (atmosfera; justificada pela camada 2)"],
+        "onde_ajuda": [
+          "Camada 2: a gravura do contêiner de painéis cabe como marca da camada de equipamento, pequena.",
+          "yulian.jpg (_work) é fotografia de complexo industrial com letreiros em chinês, sem crédito registrado. Mesmo com crédito, não passa no teste de remoção aqui: a aula ensina estrutura, e uma fábrica identificável não explica camada nenhuma. Além disso, contraria a política de nomeação da A08 se identificar a empresa. Não recomendado."
+        ]
+      },
+      "mobile_390": "Estratos viram três blocos empilhados, cada um com a pergunta dos seis meses repetida como linha de aparato e o seletor de exposição embaixo. O comparador vira seletor de parceiro + três disclosures (um por vetor), com o parceiro fixo.",
+      "lacunas_fonte": [
+        "Nenhum valor de investimento, participação ou volume comercial é dado, por decisão da fonte. Não preencher.",
+        "Nomes de empresas omitidos de propósito (política da A08); a interface não pode reintroduzi-los por imagem ou legenda."
+      ],
+      "content_qa": [
+        "Ficha 'China Energy Watch' como gancho de produto (linha 5 da ficha e nota final) → P7: não exibir.",
+        "Ficha de campo fixo é tabela chave/valor; o cabeçalho do TS avisa que 'Tabela' do renderizador come o primeiro par como thead. Renderizar como lista de definição."
+      ],
+      "dependencias_s9": ["registro da classificação e da reescrita", "renderização de instrumento de comparação em matriz", "exercícios da Revisão renderizados (M10–M17)"],
+      "ambicao": "O learner descobre sozinho que 'China' não é uma variável: são três, com prazos diferentes. A mesma régua dos seis meses depois volta como ferramenta para EUA e Europa, e o módulo ganha um instrumento mental reaproveitável."
+    },
+    {
+      "aulaId": "aula-12-04",
+      "codigo": "M12·A04",
+      "titulo": "Duas políticas simultâneas que puxam em direções opostas",
+      "subtitulo_fonte": "Estados Unidos",
+      "ensina": "A base jurídica de uma medida comercial importa mais que o percentual: ela decide duração, reversibilidade e escopo (emergência caiu na Suprema Corte; Seção 232 sobreviveu; Seção 301 é lenta e resistente; Seção 122 é curta por lei). E o padrão da lista de isenção revela a cadeia de valor: matéria-prima passa (energia, terras-raras), produto transformado é taxado (etanol, açúcar). A sobretaxa soma à tarifa regular (5% + 25% = 30%).",
+      "natureza": ["mercado/regulação", "leitura de instrumento jurídico", "história recente em cronologia", "caso de contraste"],
+      "representacao": {
+        "arquetipo": "Dossiê cronológico + matriz de roteamento (instrumento × classe de produto).",
+        "porque": "A aula tem uma cronologia real e densa (jul 2025 → jul 2026), hoje escrita num único parágrafo com datas coloridas (inline style da fonte). A matriz 4 × 6 do inst-06 é o próprio mecanismo 'base jurídica decide'. O contraste de 04.3 (isento × exposto) é o dado mais memorável e merece ser o centro visual.",
+        "composicao_1440": "04.1: coluna editorial com duas ressalvas em nota lateral no fluxo. 04.2: cronologia vertical com 5 passos datados, cada um com o dispositivo jurídico como etiqueta; a declaração de neutralidade da fonte fica acima da cronologia, visível. 04.3: faixa 'isentado | exposto' com as classes. Inst-06 como prancha: matriz com linha e coluna selecionáveis e a célula aberta."
+      },
+      "abertura": {
+        "camada": "alexandria",
+        "pergunta": "Por que a sobretaxa americana de 2026 isentou produtos energéticos e terras-raras e deixou etanol e açúcar expostos, e por que o dispositivo jurídico importa mais que os 25%?",
+        "objetivo": "Classificar uma medida comercial pelo dispositivo jurídico e prever o tratamento de uma classe de produto a partir da posição dela na cadeia.",
+        "previsao": {
+          "util": true,
+          "pergunta": "Na ação final de julho de 2026 (25% adicionais), marque cada classe como isentada ou exposta: petróleo e produtos energéticos; etanol e açúcar; terras-raras; café, carne e suco; manufaturados diversos.",
+          "valores_fonte": "04.2 e MODULO_12_CLASSES_PRODUTO (coluna s301). Aço e alumínio: 'em geral excluído por já estar sujeito à medida setorial', uma terceira categoria, oferecida como opção.",
+          "referencia": "Isentados: energéticos, terras-raras, café/carne/suco. Expostos: etanol e açúcar, manufaturados diversos (máquinas agrícolas, calçados, equipamentos elétricos e papel tiveram isenção rejeitada). Aço/alumínio: medida setorial própria.",
+          "regra_entrada": "Classificação item a item; sem pontuação agregada única.",
+          "posicao": "Primeiro ato, antes de 04.2 (bloco 5). O bloco 8 revela a lista.",
+          "segunda_previsao": "Estimar: produto com 5% de tarifa regular sob sobretaxa de 25% paga quanto? Referência da fonte: 30%."
+        }
+      },
+      "ato": {
+        "tipo": "prever/classificar → identificar o erro",
+        "descricao": "Classificar as 6 classes de produto (acima), depois, no inst-06, encontrar o instrumento sob o qual a mesma classe muda de tratamento, e dizer em uma frase por que. Fechar identificando o erro em 'energia brasileira foi taxada' e em '25% é a tarifa que o produto paga'.",
+        "chave_fonte": "04.2, 04.3; MODULO_12_CLASSES_PRODUTO; MODULO_12_INSTRUMENTOS_COMERCIAIS.",
+        "atos_secundarios": [
+          "Ordenar os 4 dispositivos por fragilidade judicial (campo 'jud' da fonte: emergência alto, 301 moderado, 232 baixo, 122 baixo com prazo curto).",
+          "Exercícios da Revisão com afinidade: ex02 (atualização dos créditos americanos) e ex11 (por que a tarifa atingiu etanol e não energia)."
+        ]
+      },
+      "visualizacao": [
+        {
+          "trabalho": "Mostrar que a política mudou de veículo, não de direção.",
+          "relacao": "Cronologia com 5 eventos; cada evento com dispositivo, estado e isenções.",
+          "eixos": "tempo, jul 2025 → jul 2026",
+          "unidade": "data",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": null
+        },
+        {
+          "trabalho": "Rotear classe de produto por dispositivo.",
+          "relacao": "Matriz 4 dispositivos × 6 classes; atributos por dispositivo (autoridade, prazo, controle judicial, reversibilidade) no cabeçalho da coluna.",
+          "eixos": "dispositivo × classe",
+          "unidade": "texto categórico (isentado / exposto / fora do escopo / setorial)",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": "inst-06 'Roteador' promete roteamento visível; hoje devolve um bloco de texto por combinação."
+        }
+      ],
+      "instrumentos": [
+        {"id": "m12-inst-06", "titulo": "Roteador de instrumento comercial — a base jurídica decide o comportamento", "kind": "quebra-cabeca", "bloco_indice": 13, "apos": "parágrafo 'economia política da posição brasileira…' (fim de 04.3), antes da ficha de campo 2 de 4", "previsao": true, "observacoes": "A nota do instrumento repete a neutralidade da fonte ('não toma posição sobre qual país tem razão'); deve ficar visível na prancha. O veredito sempre inclui o aviso 'soma à tarifa regular'."}
+      ],
+      "checagem": "Classificação registrada → coluna s301 da fonte ao lado, com o motivo (insumo necessário × produto que compete). A estimativa 30% aparece como 'previsto × fonte'.",
+      "recuperacao": {
+        "itens": "Erros comuns 12–15 (reorientar × extinguir créditos; percentual sem dispositivo; adicional × total; 'energia foi taxada'). Recuperar A03: a restrição americana a 'entidade estrangeira designada' atinge qual camada da relação com a China?",
+        "origem_visivel": "§Erros; A03",
+        "uso_futuro": "A07 retoma a mina adquirida por grupo americano antes do marco legal."
+      },
+      "proximo_passo": "Não atende → 'Rever 04.3 · o contraste'. Demais → 'Próxima · M12·A05 — Quando a regra é o produto de exportação'.",
+      "midia": {
+        "plano_curadoria": "inexistente para m12",
+        "ilustracoes_atuais": [],
+        "onde_ajuda": [
+          "Documento público como evidência: a página do registro federal americano com a notificação de ação (obra do governo federal dos EUA, domínio público) como anatomia de documento, com anotação em 'dispositivo', 'vigência' e 'anexo de isenção'. Classe documental, com crédito. Opcional, mas é a única imagem que faz trabalho aqui.",
+          "Nenhuma foto de porto, navio ou bandeira: não explica nada."
+        ]
+      },
+      "mobile_390": "Cronologia vertical nativa. A matriz vira dois seletores (dispositivo, classe) com a célula aberta abaixo e uma tira compacta mostrando o tratamento da classe nos 4 dispositivos. A classificação inicial usa pares de botões 'isentado / exposto / outro regime' por linha.",
+      "lacunas_fonte": [
+        "Alíquotas da tarifa geral da Seção 122 e do processo paralelo (~60 economias) não são dadas ('sem configuração final').",
+        "Valor exportado afetado por classe não é dado; a fonte aponta o Comex Stat para isso. Não estimar.",
+        "O processo judicial brasileiro citado como motivo não é nomeado nem avaliado, por decisão explícita da fonte."
+      ],
+      "content_qa": [
+        "CONTENT QA: 'seis categorias de práticas comerciais' é seguido de uma lista com SETE itens (comércio digital, pagamento eletrônico, tarifas preferenciais, combate à corrupção, propriedade intelectual, etanol, desmatamento ilegal). Aparece em 04.2 e no marco m10. Não corrigir em silêncio; registrar e reconciliar pelo texto primário.",
+        "04.2 usa estilo inline de cor (var(--gd)) nas datas; converter em estrutura de cronologia, sem cor semântica (S2).",
+        "Nota 'Onde isso entra no produto' e linha 'Gancho de produto' da ficha → P7.",
+        "PERECÍVEL: tudo desta aula (a fonte chama de 'o item mais volátil do módulo'). Mostrar a data de verificação na cronologia e na matriz."
+      ],
+      "dependencias_s9": ["registro da classificação", "desenho da matriz do roteador", "estado com reverificação", "ficha de fonte (Federal Register, USTR, Suprema Corte)"],
+      "ambicao": "A matriz 4 × 6 deixa o learner 'pilotar' a mesma classe de produto por quatro regimes e ver que a manchete de 25% não diz nada sem o dispositivo. O contraste etanol × energia fica como a imagem do vetor cadeia de valor, a mesma que a A07 vai medir com números."
+    },
+    {
+      "aulaId": "aula-12-05",
+      "codigo": "M12·A05",
+      "titulo": "Quando a regra é o produto de exportação",
+      "subtitulo_fonte": "Europa e capital multilateral",
+      "ensina": "A Europa influencia sem tarifar: exporta padrão. No CBAM (regime definitivo desde 1º/01/2026), quem paga é o importador europeu, mas a primeira barreira do exportador brasileiro é dado auditável por produto (sem ele, valor padrão desfavorável), e o desconto por preço de carbono doméstico não se materializa enquanto o SBCE não opera. Capital estrangeiro se lê em quatro campos: moeda, condicionalidade, horizonte, governança; memorando não é contrato.",
+      "natureza": ["mercado/regulação", "cadeia causal", "diagnóstico/decisão"],
+      "representacao": {
+        "arquetipo": "Laboratório guiado: cadeia causal desenhada + diagnóstico de prontidão (inst-07) como bancada.",
+        "porque": "A tese da aula é uma cadeia de causas ('lei sem regulamento → sem desconto → custo de exportação'; 'sem dado → valor padrão'). Desenhar a cadeia e depois pôr o learner no papel do exportador que ajusta os 4 eixos até sair de 'Frágil' torna o mecanismo operável. O inst-07 é o instrumento mais 'aplicado' do módulo e é citado no Caso (§C.1).",
+        "composicao_1440": "05.1: diagrama de fluxo em faixa larga (importador europeu ← certificado; exportador → dado; SBCE → desconto) com as três precisões da fonte ancoradas nos nós. 05.2: nota curta 'memorando ≠ contrato'. 05.3: quadro dos quatro campos (moeda, condicionalidade, horizonte, governança) comparando banco bilateral × banco multilateral. Inst-07 depois dos quatro campos, como bancada de 4 eixos com o eixo bloqueador marcado. Fichas 3 e 4 de 4 como documentos anotados."
+      },
+      "abertura": {
+        "camada": "alexandria",
+        "pergunta": "Se o exportador brasileiro não paga o certificado do CBAM, por que é ele quem precisa se mexer primeiro, e em quê?",
+        "objetivo": "Diagnosticar a prontidão de dado de carbono de um exportador e explicar por que o desconto por preço de carbono doméstico ainda não existe na prática.",
+        "previsao": {
+          "util": true,
+          "pergunta": "No regime definitivo do mecanismo europeu de ajuste de carbono na fronteira, quem compra o certificado: o exportador brasileiro ou o importador europeu?",
+          "valores_fonte": "05.1, primeira precisão.",
+          "referencia": "O importador europeu; o efeito sobre o exportador é indireto (repasse de preço e exigência de dado).",
+          "regra_entrada": "Escolha única.",
+          "posicao": "Primeiro ato, antes do bloco 3.",
+          "segunda_previsao": "Antes do inst-07: 'Um exportador com inventário corporativo verificado por terceiro e dado completo de precursor tem posição defensável?' (instrumento: não; a fronteira corporativa bloqueia e 'nenhum outro eixo compensa')."
+        }
+      },
+      "ato": {
+        "tipo": "manipular até meta",
+        "descricao": "No inst-07, partindo do padrão (corporativo, sem verificação, sem precursor, sem regime), chegar a 'Defensável' e registrar qual eixo foi decisivo. Depois, constatar que o eixo 'preço de carbono doméstico' não pode ir a 'operacional' hoje por razão regulatória (SBCE em regulamentação em 02/08/2026), e explicar em uma frase o que isso custa.",
+        "chave_fonte": "Regra do script da fonte: base = fronteira + verificação + precursor; fronteira corporativa bloqueia; base ≥ 5 'Defensável'; desconto depende só do 4º eixo. 05.1, terceira precisão.",
+        "atos_secundarios": [
+          "Comparar casos: banco bilateral europeu × banco multilateral do qual o Brasil é sócio, nos quatro campos (05.3 e nota).",
+          "Decidir com justificativa (ponte para o Caso §C.1): separar, numa proposta de capital, a parte 'financiamento de ativo' da parte 'relacionamento comercial de longo prazo'."
+        ]
+      },
+      "visualizacao": [
+        {
+          "trabalho": "Mostrar a cadeia causal entre uma lei sem regulamento e o custo de exportar.",
+          "relacao": "Grafo dirigido de 5–6 nós: SBCE lei (dez 2024) → sem regime operante → sem desconto CBAM → custo repassado; exportador sem dado por produto → valor padrão → custo repassado.",
+          "eixos": "nenhum (diagrama de fluxo)",
+          "unidade": "sem unidade",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": null
+        },
+        {
+          "trabalho": "Mostrar qual eixo bloqueia a posição do dado.",
+          "relacao": "4 escadas de 3 degraus (0/1/2) lado a lado; soma dos 3 primeiros; eixo bloqueador com marca de silhueta.",
+          "eixos": "eixo × estado",
+          "unidade": "estado categórico",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": "inst-07 'Diagnóstico' calcula 'pc-base' mas não o exibe (outputs vazio); só texto."
+        }
+      ],
+      "instrumentos": [
+        {"id": "m12-inst-07", "titulo": "Diagnóstico de prontidão de dado de carbono para exportação", "kind": "quebra-cabeca", "bloco_indice": 12, "apos": "nota 'A pergunta que se faz a qualquer capital estrangeiro' (quatro campos), antes das fichas 3 e 4 de 4", "previsao": true, "observacoes": "Na fonte o instrumento vem depois de 05.3, longe de 05.1, que é a prosa que ele exercita. Proposta: levá-lo para o fim de 05.1 (após bloco 5), aplicando C5 'no ponto da prosa que o invoca'. Registrar como reposicionamento da camada Alexandria. O instrumento declara que não calcula custo nem certificado; manter visível."}
+      ],
+      "checagem": "Estado atingido e eixo decisivo registrados → texto do veredito da fonte. A frase sobre o desconto é autoavaliada contra a terceira precisão de 05.1.",
+      "recuperacao": {
+        "itens": "Não há erro comum atribuído a esta aula. Usar recuperação cruzada: A02 ('o SBCE é lei desde quando e está operando?') e A01 ('64,8 kgCO2e/MWh é de qual grandeza?').",
+        "origem_visivel": "A02; A01",
+        "uso_futuro": "Caso — Operação A (§C.1) usa este diagnóstico."
+      },
+      "proximo_passo": "Não atende → 'Rever 05.1 · as três precisões'. Demais → 'Próxima · M12·A06 — Duas leis sancionadas, um regime que ainda não opera'. Ramo opcional: 'Caso — Operação A · a conversa do CBAM'.",
+      "midia": {
+        "plano_curadoria": "inexistente para m12",
+        "ilustracoes_atuais": [],
+        "onde_ajuda": [
+          "05.1 'alumínio primário e aço em rota elétrica': alba.jpg (_work, linha de cubas de redução de alumínio) é documental e faz trabalho (mostra o que é um produto eletrointensivo). Só entra com crédito M6 completo (autor, origem, licença, data) e legenda sem nome de empresa se a política da A08 se aplicar à interface. Hoje sem registro: bloqueado.",
+          "O diagrama causal é visualização programática; não precisa de imagem gerada."
+        ]
+      },
+      "mobile_390": "Diagrama causal vira sequência vertical de nós com setas descendo. O inst-07 vira 4 seletores empilhados com a escada de estado inline em cada um; posição e eixo bloqueador ficam num rodapé colado enquanto o learner mexe.",
+      "lacunas_fonte": [
+        "Nenhum preço de certificado, valor padrão ou custo; o instrumento se recusa a simular, por desenho. Não preencher.",
+        "Nome do complexo portuário brasileiro e do porto europeu omitidos pela fonte.",
+        "Critério exato de 'regime equivalente' no regulamento europeu não é detalhado."
+      ],
+      "content_qa": [
+        "Ficha 3 de 4 cita 'camada avançada da Alexandria' como gancho → P7.",
+        "Nota final 'Onde isso entra no produto' → P7."
+      ],
+      "dependencias_s9": ["registro de manipulação", "exibição do estado/pontuação do inst-07", "reposicionamento do instrumento (decisão de desenho)", "Caso extraído (P17)"],
+      "ambicao": "O learner tenta chegar a 'Defensável' e descobre que o último eixo não depende dele: depende de um regulamento brasileiro que ainda não saiu. A aula faz sentir na mão a frase da fonte: 'a primeira barreira comercial de carbono não é técnica, é de dado'."
+    },
+    {
+      "aulaId": "aula-12-06",
+      "codigo": "M12·A06",
+      "titulo": "Duas leis sancionadas, um regime que ainda não opera",
+      "subtitulo_fonte": "Hidrogênio de baixa emissão",
+      "ensina": "Lei vigente não é regime operacional: as Leis 14.948 e 14.990/2024 (critério de até 7 kgCO2e/kgH2 por desempenho; crédito de até R$ 18,3 bi) dependem de decreto que não havia saído em 02/08/2026, apesar dos anúncios. E anúncio agregado não é capacidade contratada: a maturidade de um projeto se mede em itens vinculantes, com três críticos (energia, comprador, financiamento).",
+      "natureza": ["mercado/regulação", "caso/decisão", "leitura de estado", "avaliação de maturidade de projeto"],
+      "representacao": {
+        "arquetipo": "Dossiê de caso com régua de maturidade: cronologia da espera + laboratório de pontuação.",
+        "porque": "Duas ideias concretas e visuais: a espera (anúncio em nov 2025, reiterado em mar, abr, jun, jul, sem publicação em 02/08/2026) e o funil (70 propostas → 5 priorizadas 'com potencial até 2035'). A régua de 9 itens × 3 estados é a ferramenta que a aula quer que o learner leve para qualquer anúncio. O critério por desempenho pede um eixo com um limiar.",
+        "composicao_1440": "06.1: eixo horizontal de intensidade (kgCO2e/kgH2) com o limiar de 7 marcado e a frase 'qualquer rota abaixo se enquadra'. 06.2: cronologia da espera, com os anúncios como marcas vazias e a data de verificação como marca cheia sem publicação. Ficha 5 de 6 como documento com etiquetas de estado. 06.3: funil 70 → 5. Inst-08 como prancha 9 × 3 (grade de estados), com os críticos destacados por silhueta. 06.4: quatro fatores (eletricidade, utilização, água, comprador) em lista numerada."
+      },
+      "abertura": {
+        "camada": "alexandria",
+        "pergunta": "O Brasil 'tem R$ 18,3 bilhões em incentivo ao hidrogênio'. O que precisa ser verdade para alguém conseguir usar esse incentivo hoje?",
+        "objetivo": "Distinguir lei vigente de regime operacional e medir o estágio real de um projeto anunciado pelos itens vinculantes.",
+        "previsao": {
+          "util": true,
+          "pergunta": "Na régua de maturidade (9 itens, 0–2 cada, total 0–18), qual é a pontuação MÁXIMA que um projeto brasileiro de hidrogênio consegue alcançar em 2 de agosto de 2026?",
+          "valores_fonte": "Nota do item i9 (fonte): 'o estado vinculante deste item não é alcançável por nenhum projeto brasileiro de hidrogênio hoje', porque o decreto não foi publicado. Escala 0/1/2 e faixas do script da fonte.",
+          "referencia": "17 (8 itens × 2 + item 9 em 1). Pelas faixas do instrumento, 17 cai em 'Pronto para implantação' (16–18), o que é em si uma leitura a discutir: a soma esconde o bloqueio regulatório.",
+          "regra_entrada": "Número inteiro; resposta exata (derivada da regra do instrumento, não de dado externo).",
+          "posicao": "Imediatamente antes do inst-08 (após bloco 13). A prosa anterior (06.2) já estabeleceu o decreto ausente; a previsão é aplicação.",
+          "segunda_previsao": "Em 06.3, antes do bloco 12: 'Uma chamada pública recebeu 70 propostas de polos. Quantas foram priorizadas em 2025, e isso significa quantas plantas em operação?' (fonte: 5 priorizadas; nenhuma afirmação de planta em operação; 'potencial de implementação até 2035')."
+        }
+      },
+      "ato": {
+        "tipo": "classificar/manipular até meta",
+        "descricao": "Pontuar um projeto hipotético descrito só em termos da régua (camada Alexandria, sem fato real: 'memorando com autoridade portuária; estudo conceitual; área indicada; carta de interesse de comprador não vinculante; sem contrato de energia') e prever o estágio antes do veredito. Depois, mudar o mínimo de itens para sair de 'Anúncio, não projeto' e dizer qual crítico continua em zero.",
+        "chave_fonte": "Script da fonte: faixas 0–3 Anúncio, 4–7 Estudo, 8–11 Desenvolvimento, 12–15 Estruturação avançada, 16–18 Pronto; três críticos em zero → 'Anúncio, não projeto'.",
+        "atos_secundarios": [
+          "Decidir com justificativa: responder à frase 'o Brasil tem R$ 18,3 bilhões em incentivo' (ex06 da Revisão; referência: perguntar se o decreto já saiu).",
+          "Identificar o erro: somar valores anunciados de projetos em estágios diferentes (erro comum 17; Q10 do quiz fica na avaliação)."
+        ]
+      },
+      "visualizacao": [
+        {
+          "trabalho": "Mostrar que o critério é por desempenho, não por rota.",
+          "relacao": "Eixo único de intensidade com limiar em 7 kgCO2e/kgH2; qualquer rota à esquerda se enquadra.",
+          "eixos": "kgCO2e por kgH2",
+          "unidade": "kgCO2e/kgH2",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": null
+        },
+        {
+          "trabalho": "Fazer a espera virar dado.",
+          "relacao": "Cronologia nov 2025 → 02 ago 2026 com anúncios de publicação iminente e ausência de publicação.",
+          "eixos": "tempo (mês)",
+          "unidade": "data",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": null
+        },
+        {
+          "trabalho": "Separar pontuação de bloqueio crítico.",
+          "relacao": "Grade 9 itens × 3 estados, com soma e contagem de vinculantes; críticos marcados por silhueta; i9 com o estado 2 indisponível e o motivo.",
+          "eixos": "item × estado",
+          "unidade": "pontos (0–18), itens vinculantes (0–9)",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": "inst-08 'Régua' promete régua; hoje é um select de foco + 9 selects, e os campos 'Estágio classificado' e 'Bloqueios críticos' do HTML-fonte só aparecem no veredito."
+        }
+      ],
+      "instrumentos": [
+        {"id": "m12-inst-08", "titulo": "Régua de maturidade de projeto anunciado", "kind": "quebra-cabeca", "bloco_indice": 13, "apos": "parágrafo 'Anúncio agregado não equivale a capacidade contratada…' (fim de 06.3)", "previsao": true, "observacoes": "A fonte diz que a régua vale para qualquer projeto de infraestrutura; é candidata a instrumento transversal do currículo."}
+      ],
+      "checagem": "Previsto × calculado (pontuação e estágio) no mesmo cenário. A resposta ao ex06 é autoavaliada contra a resposta-modelo só depois do registro.",
+      "recuperacao": {
+        "itens": "Erros comuns 16–17. Recuperar A02 ('SBCE: lei ou sistema operante?') e A05 ('memorando entre portos é contrato de compra?').",
+        "origem_visivel": "§Erros; A02; A05",
+        "uso_futuro": "A07 repete 'dois estados' com o PL de minerais; A08 usa a régua no movimento 'Aposta'."
+      },
+      "proximo_passo": "Não atende → 'Rever 06.2 · o regulamento que não veio'. Demais → 'Próxima · M12·A07 — Vinte e cinco por cento da reserva'.",
+      "midia": {
+        "plano_curadoria": "inexistente para m12",
+        "ilustracoes_atuais": ["geo-07-cilindro-hidrogenio.png (atmosfera)"],
+        "onde_ajuda": [
+          "06.4 'eletrólise consome água de alta pureza': hofmann1866.jpg (_work, aparelho de Hofmann, 1866) pode ser explicação histórica do princípio da eletrólise, classe explicação/atmosfera de arquivo, com crédito. Passa no teste de remoção só se a legenda disser o que ela mostra (água → H2 + O2 por corrente) e não sugerir escala industrial.",
+          "Nenhuma foto de planta de hidrogênio nomeada: a aula ensina que projetos anunciados não são plantas."
+        ]
+      },
+      "mobile_390": "Eixo de intensidade e cronologia viram faixas verticais curtas. A grade 9 × 3 vira 9 linhas com controle segmentado de 3 posições; soma, vinculantes e bloqueios num rodapé colado. Item 9 mostra o estado 2 desabilitado com a razão em texto (não só visual).",
+      "lacunas_fonte": [
+        "Janela de anos do crédito fiscal: alterada por lei posterior (Lei 15.269/2025) e 'deslocada para o início da década de 2030', sem ano exato na fonte. Não afirmar anos.",
+        "Custo do hidrogênio, capacidade dos polos e valores dos projetos priorizados não são dados ('sem número inventado' é título da seção 06.4).",
+        "O estado do decreto depois de 02/08/2026 não foi verificado neste estudo."
+      ],
+      "content_qa": [
+        "PERECÍVEL: 'decreto não publicado'. Reverificar no DOU antes de publicar a aula; se publicado, a aula muda de exemplo vivo para exemplo histórico, e a nota do i9 muda.",
+        "Ficha 5 de 6: a célula 'Estado na data de verificação' chegou concatenada ('Lei · vigenteDecreto · não publicadoLeilão de incentivo · sem edital'); são três etiquetas de estado separadas na fonte.",
+        "A ficha diz '5 de 6' e as fichas de parceiro dizem '1 de 4' a '4 de 4': duas séries misturadas. Rotular 'Parceiro bilateral · n de 4' e 'Marco regulatório vivo · n de 2' ou conferir a intenção.",
+        "Nota 'Onde isso entra no produto' → P7."
+      ],
+      "dependencias_s9": ["registro de pontuação e previsão", "grade da régua", "estado com reverificação (DOU)"],
+      "ambicao": "O momento memorável é o item 9 travado: o learner arrasta tudo para 'vinculante' e um item não vai, com a explicação 'não por deficiência do projeto, por razão regulatória'. 'Um projeto atrasado × um projeto esperando' vira experiência, não frase."
+    },
+    {
+      "aulaId": "aula-12-07",
+      "codigo": "M12·A07",
+      "titulo": "Vinte e cinco por cento da reserva, menos de um por cento da produção",
+      "subtitulo_fonte": "Minerais críticos e estratégicos",
+      "ensina": "Dotação não é cadeia: o Brasil tem ~25% da reserva mundial de terras-raras (USGS: 21 de 85 Mt) e produziu 20 t em 2024 contra 390 kt mundiais, porque o gargalo está na separação, no refino e nos ímãs. Recurso ≠ reserva; duas metodologias (21 × 11,4 Mt) entram juntas; PL 2.780/2024 aprovado na Câmara não é lei, e não há lista oficial de minerais críticos.",
+      "natureza": ["comparação de grandezas", "cálculo de proporção", "cadeia de valor (sistema)", "regulação em tramitação"],
+      "representacao": {
+        "arquetipo": "Prancha de assimetria: instrumento vivo com barras em escala logarítmica + cadeia de etapas industriais.",
+        "porque": "O título já é a comparação de duas proporções com cinco ordens de grandeza de diferença (24,7% × 0,005%). Em escala linear, a barra de produção some; em escala log, a distância vira objeto de leitura. O inst-09 calcula exatamente isso e tem o nome 'a assimetria medida, não afirmada'. A cadeia de etapas mostra onde está o gargalo.",
+        "composicao_1440": "07.1: par recurso × reserva como definição visual (fatores modificadores entre os dois). 07.2: dois cartões de dado (a estrutura div.dual da fonte) lado a lado, USGS × ANM, cada um com fonte e critério. 07.3: prancha do inst-09 em largura de ~70%, com as duas barras log e a razão; logo abaixo, a cadeia minério → separação → refino → ímã, com a posição brasileira marcada, e as três analogias (lítio, grafite, nióbio). 07.4: estado do PL como etiquetas + ficha 6 de 6 + meta do PNM 2050 (8,3% → 12,2%)."
+      },
+      "abertura": {
+        "camada": "alexandria",
+        "pergunta": "Se o Brasil tem cerca de um quarto da reserva mundial de terras-raras, qual é a sua parcela da produção mundial e onde está o gargalo?",
+        "objetivo": "Medir a razão entre dotação e produção, citar reserva com fonte e metodologia, e localizar o gargalo na cadeia.",
+        "previsao": {
+          "util": true,
+          "pergunta": "Reserva brasileira: 21 Mt de 85 Mt mundiais (~25%, USGS). Qual a ordem de grandeza da participação brasileira na produção mundial de terras-raras em 2024? (10% · 1% · 0,1% · 0,01% · 0,001%)",
+          "valores_fonte": "20 t (2024) contra 390.000 t mundiais; 07.3. Reserva: 21 Mt (USGS) de 85 Mt (2025), 07.2.",
+          "referencia": "0,02 kt / 390 kt = 0,0051% → ordem de grandeza 0,01%. Razão de assimetria no inst-09 com os valores padrão: 24,7% / 0,0051% ≈ 4.818 vezes; 'anos de reserva ao ritmo atual' = 1.050.000 (razão estoque/fluxo, não previsão, como avisa a fonte).",
+          "regra_entrada": "Escolha de ordem de grandeza (regra da Alexandria). O título da aula já diz 'menos de um por cento'; a previsão testa o quanto menos.",
+          "posicao": "Antes do bloco 11 (07.3), que revela '20 toneladas'. Idealmente na abertura, antes do lede.",
+          "segunda_previsao": "Antes de 07.2: 'Duas cifras oficiais para a mesma reserva: são erro de uma das fontes?' (fonte: não; metodologias distintas)."
+        }
+      },
+      "ato": {
+        "tipo": "prever → manipular → localizar na cadeia",
+        "descricao": "Registrar a previsão, conferir no inst-09 (previsto × calculado), trocar a reserva para 11,4 Mt (ANM) e ver a assimetria mudar sem mudar a conclusão. Em seguida, marcar na cadeia minério → separação → refino → ímã em que etapa está o gargalo global.",
+        "chave_fonte": "07.3 (valores e gargalo); cálculo do script da fonte.",
+        "atos_secundarios": [
+          "Classificar o estado de 4 afirmações sobre a política de minerais ('é lei', 'aprovado na Câmara', 'lista oficial existe', 'meta do PNM 2050 obriga') com a ficha 6 de 6 como chave.",
+          "Exercícios da Revisão com afinidade: ex07 (por que não domina o mercado) e ex12 (a política entrou em vigor?)."
+        ]
+      },
+      "visualizacao": [
+        {
+          "trabalho": "Medir a assimetria entre dotação e cadeia.",
+          "relacao": "Duas barras horizontais em escala log (participação na reserva × na produção) com a razão escrita entre elas; troca de metodologia da reserva como alternância.",
+          "eixos": "participação mundial, % em escala log (0,001% a 100%)",
+          "unidade": "%; razão adimensional",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": "inst-09 'Razão reserva-produção' promete a assimetria 'medida'; hoje devolve 4 números e texto, sem forma."
+        },
+        {
+          "trabalho": "Localizar o gargalo.",
+          "relacao": "Cadeia de 4 etapas (minério, separação, refino, ímã) com a concentração global indicada só onde a fonte diz (separação, refino e ímãs concentrados em um país) e a posição brasileira no minério.",
+          "eixos": "etapa da cadeia",
+          "unidade": "sem unidade",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": null
+        },
+        {
+          "trabalho": "Mostrar que dois números oficiais coexistem.",
+          "relacao": "Cartões lado a lado: 21 Mt (~25%, USGS) × 11,4 Mt (~15%, ANM); série da reserva mundial 110 → 90 → 85 Mt (2023–2025).",
+          "eixos": "Mt; ano",
+          "unidade": "Mt de óxidos totais de terras-raras equivalente",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": null
+        }
+      ],
+      "instrumentos": [
+        {"id": "m12-inst-09", "titulo": "Razão reserva-produção — a assimetria medida, não afirmada", "kind": "calculadora", "bloco_indice": 13, "apos": "parágrafo lítio/grafite/nióbio (fim de 07.3)", "previsao": true, "observacoes": "A prosa (bloco 11) revela os 20 t antes do instrumento: a previsão precisa vir antes. O script tem ramos para entrada inconsistente e produção nula; ambos são pedagógicos e merecem estado visual próprio."}
+      ],
+      "checagem": "Previsto (ordem de grandeza) × calculado (0,0051%) lado a lado, visível durante a manipulação. Localização na cadeia registrada → frase de 07.3 como referência.",
+      "recuperacao": {
+        "itens": "Erros comuns 18–20. Recuperação explícita de A01: 'por que existem dois números de reserva?' antes de mostrar 07.2 (a fonte faz a ponte). Recuperar A04: 'terras-raras foram isentadas ou taxadas em jul 2026?'",
+        "origem_visivel": "§Erros; A01; A04",
+        "uso_futuro": "A08, movimento 'Aposta'."
+      },
+      "proximo_passo": "Não atende → 'Rever 07.3 · o gargalo não está na mina'. Demais → 'Próxima · M12·A08 — Os trinta minutos'.",
+      "midia": {
+        "plano_curadoria": "inexistente para m12",
+        "ilustracoes_atuais": ["geo-06-amostras-minerio.png (atmosfera)"],
+        "onde_ajuda": [
+          "A gravura das amostras funciona como marca de 07.1 (recurso × reserva), pequena.",
+          "Documental possível: amostra de óxidos de terras-raras (acervo público, ex.: USGS/USDA, domínio público) em 07.1, para mostrar que 'óxido total equivalente' é uma substância e não um número. Só com crédito M6.",
+          "Não usar foto da mina de Goiás: a aula e a política de nomeação da A08 descrevem a transação sem nome; uma foto identificável reintroduz o nome."
+        ]
+      },
+      "mobile_390": "As duas barras log ficam em largura total, uma sobre a outra, com a razão em algarismos grandes entre elas; os 4 campos do inst-09 ficam num disclosure 'editar entradas'. A cadeia vira lista vertical de 4 etapas com a marca 'gargalo' em palavra. Os cartões USGS × ANM ficam empilhados.",
+      "lacunas_fonte": [
+        "Participação brasileira de ~15% na base ANM não fecha com 11,4/85 (13,4%); a fonte não declara o denominador mundial usado nesse cálculo.",
+        "Produção de 2025 não é dada (só 2024).",
+        "Nióbio: '~16 Mt e >90%' sem ano-base explícito na nota.",
+        "Valores do PNM 2050 são metas de plano, não dado observado."
+      ],
+      "content_qa": [
+        "CONTENT QA: '~15%' (ANM) × 11,4/85 = 13,4%. Reconciliar o denominador ou apresentar só a cifra em Mt.",
+        "A fonte indica 'revisão adicional do valor brasileiro no levantamento internacional em 2026'; reverificar antes de publicar.",
+        "PERECÍVEL: estado do PL 2.780/2024 no Senado.",
+        "Nota 'Onde isso entra no produto' → P7."
+      ],
+      "dependencias_s9": ["registro de previsão e manipulação", "desenho das barras log do inst-09", "reverificação USGS/ANM e Senado", "ficha de fonte (§Ref)"],
+      "ambicao": "A barra de produção, praticamente invisível em escala linear, aparece em escala log a quase quatro ordens de grandeza da barra de reserva. O learner troca USGS por ANM, a razão cai à metade, e a conclusão não muda. 'Nunca cite dotação sem citar produção' vira algo que ele viu, não uma regra."
+    },
+    {
+      "aulaId": "aula-12-08",
+      "codigo": "M12·A08",
+      "titulo": "Os trinta minutos: oito movimentos, nenhum argumento repetido",
+      "subtitulo_fonte": "Síntese",
+      "ensina": "Sustentar uma conversa geopolítica é ter ORDEM: oito movimentos (Tese, Grandeza, Clima, Carteira, Comércio, Padrão, Aposta, Fecho), cada um com pergunta, âncoras datadas, ponte e erro a evitar. Duas ferramentas de higiene antes: a taxonomia de nomeação (estrutura em vez de nome, seis categorias) e 'quem lucra com esta versão da história'. A pergunta final ('boa aposta?') se responde em três partes, devolvendo 'exposto em qual coluna?'.",
+      "natureza": ["síntese", "retórica/argumentação aplicada", "classificação editorial", "leitura crítica de narrativa"],
+      "representacao": {
+        "arquetipo": "Partitura de conversa: linha de tempo de 0 a 30 minutos como palco, com a mesa de classificação de nomes e a tabela de narrativas como estações antes dela.",
+        "porque": "O instrumento-produto do módulo é temporal e ordenado (00–03, 03–07 … 27–30). Uma partitura horizontal, em que cada movimento é um compasso com pergunta, âncoras e ponte, desenha 'a ordem importa'. As estações anteriores (nomes, narrativas) são classificações, e classificação pede mesa, não prosa.",
+        "composicao_1440": "08.1: mesa de classificação (12 entidades × 7 categorias) com o status por palavra e silhueta, sem as cores ok/per/att da fonte. 08.2: tabela de narrativas como três colunas (narrativa | quem se beneficia | o que verificar), com cada 'o que verificar' ligado à aula de origem (A06, A02, A01, A07, A03, A04). 08.3: a partitura em largura total, com o compasso ativo aberto. 08.4: três partes da resposta final como sequência numerada, com o espaço de resposta do learner."
+      },
+      "abertura": {
+        "camada": "alexandria",
+        "pergunta": "Você tem trinta minutos com um investidor cético. Em que ordem diz o que aprendeu, para nunca precisar voltar a um ponto?",
+        "objetivo": "Ordenar os oito movimentos pela dependência entre eles, classificar nomes pela taxonomia e responder à pergunta final em três partes.",
+        "previsao": {
+          "util": false,
+          "pergunta": null,
+          "valores_fonte": null,
+          "referencia": null,
+          "regra_entrada": null,
+          "posicao": "Aula de síntese: o ato inicial é ordenação, não previsão numérica. A recuperação das A01–A07 faz o papel de 'tentar antes de ver'.",
+          "segunda_previsao": null
+        }
+      },
+      "ato": {
+        "tipo": "ordenar",
+        "descricao": "Receber as 8 perguntas-governo embaralhadas (da fonte) e ordená-las na partitura; depois abrir as pontes da fonte e comparar. Em seguida, entrar por um movimento sorteado e dizer qual vem depois e o que ainda não pode ser dito (instrução do próprio inst-11).",
+        "chave_fonte": "MODULO_12_MOVIMENTOS (ordem e campos 'br' e 'no').",
+        "atos_secundarios": [
+          "Classificar (inst-10 convertido): 12 entidades → categoria e 'pode nomear?', antes de abrir 'onde aparece / substituição / por quê'. Chave: MODULO_12_ENTIDADES. Exercício da fonte equivalente: ex04.",
+          "Combinar: cada narrativa da 08.2 com 'o que verificar' (chave: tabela da fonte).",
+          "Responder exercício da fonte: ex14 (pergunta final), com autoavaliação contra a resposta-modelo depois da tentativa.",
+          "Atividade recomendada (P14): roteiro oral de 10 minutos (§Voz), sem evidência automatizada."
+        ]
+      },
+      "visualizacao": [
+        {
+          "trabalho": "Tornar visível a dependência entre movimentos.",
+          "relacao": "Partitura 0–30 min com 8 compassos; cada ponte é uma seta para o compasso seguinte; o compasso ativo mostra pergunta, âncoras (com fonte) e erro.",
+          "eixos": "tempo de conversa, minutos 0–30",
+          "unidade": "min (rótulo de tempo da fonte, não somável)",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": "inst-11 'Andaime' promete 'trinta minutos, oito movimentos'; hoje é um select com texto. O HTML-fonte tem abas de movimento."
+        },
+        {
+          "trabalho": "Decidir nomeação por categoria.",
+          "relacao": "Grade entidade × categoria (0–6), status em palavra: nomeação livre / padrão preferido / permitido / proibido / só em referência / zona cinzenta.",
+          "eixos": "entidade × categoria",
+          "unidade": "categórico",
+          "existe_no_codigo": false,
+          "forma_prometida_nao_desenhada": null
+        }
+      ],
+      "instrumentos": [
+        {"id": "m12-inst-10", "titulo": "Classificador de nome — em que categoria cai, e o que fazer com ele", "kind": "explorador", "bloco_indice": 9, "apos": "nota '6 · Zona cinzenta' (fim de 08.1)", "previsao": false, "observacoes": "Autorreferente (disciplina do próprio ativo). A categoria de status usa classes ok/per/att na fonte; S2 proíbe semáforo, então o status vira palavra e silhueta."},
+        {"id": "m12-inst-11", "titulo": "Andaime de conversa — trinta minutos, oito movimentos, sem repetição", "kind": "explorador", "bloco_indice": 15, "apos": "parágrafo 'O instrumento abaixo é o produto final deste módulo…' (08.3)", "previsao": false, "observacoes": "O ato de ordenar precisa acontecer antes de o instrumento mostrar a ordem; o select atual já expõe a sequência nas opções (Tese → Fecho). Embaralhar na tarefa. As âncoras carregam números de A01–A07: fonte visível por âncora (S4)."}
+      ],
+      "checagem": "Ordem registrada → ordem da fonte com as pontes que a justificam; classificação registrada → categoria da fonte com o 'por quê'. Ex14: Resposta × referência × o que acrescenta × critério, em três níveis de autoavaliação.",
+      "recuperacao": {
+        "itens": "Esta aula É a recuperação do módulo: cada movimento pede, antes de abrir as âncoras, o número datado da aula de origem (Grandeza → A01: 86,8% em 2025; Clima → A02: 59–67% até 2035; Comércio → A04: 25% adicionais desde 22/07/2026; Aposta → A06/A07: R$ 18,3 bi sem decreto; 21 × 11,4 Mt). Não há erro comum atribuído à A08.",
+        "origem_visivel": "A01–A07, pelo código da aula em cada âncora",
+        "uso_futuro": "Revisão do módulo e avaliação (quiz: P18, sem 'Aprovado')."
+      },
+      "proximo_passo": "Última aula → 'Caso — Operação A' (P17, com Desafio de decisão da camada Alexandria) → Revisão (14 exercícios, 20 erros comuns, checklist de 28 itens) → Avaliação do módulo (critério literal da fonte como registro legado, P18). Fim da Trilha 2: próximo território, T3, como orientação, sem trava (P13).",
+      "midia": {
+        "plano_curadoria": "inexistente para m12",
+        "ilustracoes_atuais": [],
+        "onde_ajuda": [
+          "Nenhuma imagem necessária: a partitura e a mesa são o visual. Teste de remoção reprova qualquer foto aqui.",
+          "Se houver figura de fechamento da trilha, que seja a rota da T2 com a posição do learner (cartografia que trabalha), não atmosfera."
+        ]
+      },
+      "mobile_390": "Partitura vira lista vertical de 8 compassos com o tempo à esquerda; a tarefa de ordenar usa botões subir/descer (sem arrasto obrigatório). A mesa de classificação vira cartões por entidade com seletor de categoria. A tabela de narrativas vira cartões de três linhas.",
+      "lacunas_fonte": [
+        "As âncoras dos movimentos trazem fonte agregada na base do instrumento, não por âncora; a fonte por âncora vem das aulas de origem.",
+        "O 'instituto internacional', a 'agência intergovernamental' e o 'banco multilateral' não são nomeados na prosa, por regra da própria aula (categoria 5: só em referência). A §Ref precisa ser extraída para a ficha."
+      ],
+      "content_qa": [
+        "DECISÃO DO FOUNDER NECESSÁRIA: 08.1 e o inst-10 justificam a regra de nomeação pelo 'posicionamento da plataforma' e por 'território reservado a outro produto da plataforma' (e7), uma política editorial interna da NIVAR apresentada ao learner. Valor pedagógico real (disciplina de nomeação), mas parte do porquê é comercial. Decidir se a aula mostra essa razão, reescreve na camada editorial como 'política editorial desta biblioteca' ou reduz a aula a narrativas + andaime.",
+        "Nota da categoria 4 contém 'nunca published' (inglês no meio do português).",
+        "Status das categorias vem com classes de cor (ok/per/att) → S2: palavra e silhueta.",
+        "Movimentos Grandeza e Fecho citam '87% renovável' e '86,8%'; manter as duas fontes distintas (A01).",
+        "Nota 'Onde isso entra no produto' → P7.",
+        "'coluna verde'/'coluna fóssil' é vocabulário da fonte; nenhuma cor deve codificar as colunas (S2)."
+      ],
+      "dependencias_s9": ["registro de ordenação, classificação e resposta", "desenho da partitura", "exercícios da Revisão renderizados", "Caso extraído", "avaliação do módulo extraída"],
+      "ambicao": "A A08 fecha a trilha como um ensaio: o learner monta os trinta minutos com as próprias previsões e respostas das A01–A07 aparecendo nos compassos ('você disse 80% na A01; o número é 86,8% elétrica, ~50% energética'). O módulo termina com o learner ensaiando uma conversa, sem botão de 'concluída'."
+    }
+  ],
+  "sintese_de_representacoes": {
+    "A01": "prancha de dois denominadores (mosaico vivo)",
+    "A02": "régua de estado datada (linha do tempo protagonista)",
+    "A03": "anatomia em estratos + comparador matricial",
+    "A04": "dossiê cronológico + matriz de roteamento",
+    "A05": "laboratório guiado: cadeia causal + bancada de 4 eixos",
+    "A06": "dossiê de caso com régua de maturidade (grade 9 × 3)",
+    "A07": "prancha de assimetria em escala log + cadeia de etapas",
+    "A08": "partitura de conversa 0–30 min + mesa de classificação"
+  },
+  "atos_por_aula": {
+    "A01": "estimar (previsão registrada)",
+    "A02": "classificar",
+    "A03": "classificar",
+    "A04": "prever/classificar",
+    "A05": "manipular até meta",
+    "A06": "classificar/manipular até meta (com previsão)",
+    "A07": "prever → manipular → localizar",
+    "A08": "ordenar",
+    "observacao": "Nenhuma aula fecha em texto aberto como ato principal; os discursivos (exercícios) ficam como atos secundários ligados à Revisão (C9)."
+  },
+  "pendencias_transversais": [
+    "Extração verificada do m12 (aparato, §Ref, §Caso, §Quiz) ainda não existe; este estudo lê o TS e o HTML diretamente.",
+    "Curadoria de mídia m12 sem plano.json; candidatos em _work sem crédito.",
+    "Reverificação de estados perecíveis antes de qualquer publicação (COP31, decreto do H2, PL 2.780, tarifas, revisão USGS).",
+    "Content QA: 'seis categorias' com sete itens (A04); ~15% × 13,4% (A07); fichas com estado concatenado; séries '1–4 de 4' e '5–6 de 6'.",
+    "Decisão do Founder sobre a razão comercial da taxonomia de nomeação (A08).",
+    "P7 e P24: 8 notas 'Onde isso entra no produto', uma delas com 'GridAlpha' (A02).",
+    "P17 (Caso sem 'Parte 12'), P18 (quiz 'critério de oito acertos' como registro legado), P14 (roteiro oral)."
+  ]
+}

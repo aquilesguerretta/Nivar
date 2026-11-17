@@ -1,0 +1,1551 @@
+/* Alexandria v3 — modelo da aula.
+ *
+ * Tokens de alexandria-v3.css (papel, tinta, fio, ouro, óxido; três vozes).
+ * Raio zero, nenhuma sombra, nenhum gradiente nem blur; profundidade por fio
+ * de 1 px. Óxido só para "você está aqui", número de seção e ação principal.
+ * Nenhuma cor marca certo ou errado: estado é silhueta + palavra.
+ */
+
+.alx3 .av-aula {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 0 64px;
+  align-items: start;
+}
+
+.alx3 .av-principal {
+  min-width: 0;
+  display: grid;
+  gap: 0;
+}
+
+/* medida de leitura: o texto fica em ~68 caracteres; figura e instrumento
+   usam a largura toda da coluna principal */
+.alx3 .av-principal > *,
+.alx3 .av-leitura > * {
+  max-width: 700px;
+}
+
+.alx3 .av-principal > .av-video,
+.alx3 .av-principal > .av-instrumento,
+.alx3 .av-principal > .av-exercicios,
+.alx3 .av-principal > .av-prova,
+.alx3 .av-principal > .av-leitura,
+.alx3 .av-leitura > .av-instrumento,
+.alx3 .av-leitura > .av-figura {
+  max-width: 980px;
+}
+
+.alx3 .av-rotulo {
+  display: block;
+  font-family: var(--f-dado);
+  font-size: 13.5px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  margin: 0;
+}
+
+.alx3 .av-unidade {
+  font-family: var(--f-dado);
+  font-size: 0.62em;
+  letter-spacing: 0.02em;
+  color: var(--tinta-suave);
+  text-transform: none;
+}
+
+.alx3 .av-aparato {
+  margin: 0;
+  font-family: var(--f-interface);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--tinta-fraca);
+}
+
+.alx3 .av-link {
+  font: inherit;
+  color: var(--tinta);
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 2px 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--ouro);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color var(--t-hover), color var(--t-hover);
+}
+
+.alx3 .av-link:hover {
+  text-decoration-color: var(--oxido);
+}
+
+.alx3 .av-acao {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 20px;
+  font-family: var(--f-interface);
+  font-size: 16.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--sobre-tinta);
+  background: var(--tinta);
+  border: 1px solid var(--tinta);
+  border-radius: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--t-hover), border-color var(--t-hover);
+}
+
+.alx3 .av-acao:hover {
+  background: var(--oxido);
+  border-color: var(--oxido);
+}
+
+.alx3 .av-acao-linha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+}
+
+.alx3 .av-aviso {
+  font-family: var(--f-interface);
+  font-size: 16px;
+  color: var(--tinta);
+  border-left: 2px solid var(--oxido);
+  padding-left: 10px;
+}
+
+/* ── lateral: módulo, seções, aulas (rola com a página; não é trilho fixo) ── */
+
+.alx3 .av-lateral {
+  padding-top: 6px;
+}
+
+.alx3 .av-indice {
+  display: grid;
+  gap: 28px;
+}
+
+.alx3 .av-indice-modulo {
+  display: grid;
+  gap: 6px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--ouro);
+}
+
+.alx3 .av-indice-titulo {
+  font-family: var(--f-leitura);
+  font-style: italic;
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+.alx3 .av-indice ol {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.alx3 .av-indice-secoes button,
+.alx3 .av-indice-aulas a,
+.alx3 .av-indice-aqui {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 4px;
+  width: 100%;
+  padding: 6px 0 6px 10px;
+  margin-left: -10px;
+  font-family: var(--f-leitura);
+  font-size: 17px;
+  line-height: 1.3;
+  text-align: left;
+  color: var(--tinta-suave);
+  background: none;
+  border: 0;
+  border-left: 2px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color var(--t-hover), border-color var(--t-hover);
+}
+
+.alx3 .av-indice-secoes button:hover,
+.alx3 .av-indice-aulas a:hover {
+  color: var(--tinta);
+  border-left-color: var(--fio-forte);
+}
+
+.alx3 .av-indice-aqui {
+  color: var(--tinta);
+  border-left-color: var(--oxido);
+  cursor: default;
+}
+
+.alx3 .av-indice-num {
+  font-family: var(--f-dado);
+  font-size: 14px;
+  padding-top: 3px;
+  color: var(--tinta-fraca);
+}
+
+.alx3 .av-indice-aqui .av-indice-num {
+  color: var(--oxido);
+}
+
+.alx3 .av-indice-estreito {
+  display: none;
+}
+
+/* ── vídeo ── */
+
+.alx3 .av-video {
+  margin: 0 0 40px;
+  display: grid;
+  gap: 10px;
+}
+
+.alx3 .av-video video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--papel-fundo);
+  border: 1px solid var(--fio);
+}
+
+.alx3 .av-video figcaption {
+  display: grid;
+  gap: 2px;
+  font-family: var(--f-leitura);
+  font-size: 17.5px;
+}
+
+/* ── abertura ── */
+
+.alx3 .av-abertura {
+  display: grid;
+  gap: 16px;
+  padding-bottom: 30px;
+  margin-bottom: 34px;
+  border-bottom: 1px solid var(--ouro);
+}
+
+.alx3 .av-titulo {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-optical-sizing: auto;
+  font-size: clamp(36.5px, 4.2vw, 60.5px);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.alx3 .av-pergunta {
+  display: grid;
+  gap: 6px;
+  padding-left: 18px;
+  border-left: 2px solid var(--oxido);
+}
+
+.alx3 .av-pergunta p {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-style: italic;
+  font-size: clamp(22.5px, 2.05vw, 28px);
+  line-height: 1.3;
+  text-wrap: pretty;
+}
+
+.alx3 .av-lede {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 21.5px;
+  line-height: 1.55;
+  color: var(--tinta-suave);
+}
+
+.alx3 .av-caminho {
+  margin: 0;
+  font-family: var(--f-dado);
+  font-size: 14.5px;
+  letter-spacing: 0.03em;
+  color: var(--tinta-suave);
+}
+
+.alx3 .av-caminho .av-link {
+  font-family: var(--f-dado);
+  font-size: 14.5px;
+  min-height: 24px;
+}
+
+/* ── leitura ── */
+
+.alx3 .av-leitura {
+  display: grid;
+  gap: 0;
+}
+
+.alx3 .av-secao {
+  margin: 44px 0 14px;
+  font-family: var(--f-leitura);
+  font-size: clamp(28px, 2.5vw, 34.5px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  scroll-margin-top: 130px;
+}
+
+.alx3 .av-leitura > .av-secao:first-child {
+  margin-top: 0;
+}
+
+.alx3 .av-secao-num {
+  color: var(--oxido);
+  margin-right: 0.4em;
+  font-variant-numeric: lining-nums;
+}
+
+.alx3 .av-p,
+.alx3 .av-nota p {
+  margin: 0 0 18px;
+  font-family: var(--f-leitura);
+  font-size: 20.5px;
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+.alx3 .av-p strong,
+.alx3 .av-nota strong {
+  font-weight: 600;
+}
+
+.alx3 .av-calc {
+  font-family: var(--f-dado);
+  font-size: 0.86em;
+  white-space: nowrap;
+}
+
+.alx3 .av-formula {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  text-align: center;
+  margin: 10px 0 26px;
+  padding: 22px 12px;
+  border-top: 1px solid var(--fio);
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .av-formula-eq {
+  font-family: var(--f-leitura);
+  font-style: italic;
+  font-size: clamp(24px, 2.4vw, 30px);
+  line-height: 1.25;
+}
+
+.alx3 .av-formula-desc {
+  font-family: var(--f-dado);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--tinta-suave);
+}
+
+.alx3 .av-nota {
+  margin: 6px 0 24px;
+  padding: 2px 0 0 20px;
+  border-left: 2px solid var(--tinta);
+}
+
+.alx3 .av-nota[data-tom='ouro'] {
+  border-left-color: var(--ouro);
+}
+
+.alx3 .av-nota .av-nota-rotulo {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--f-dado);
+  font-size: 13.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta);
+}
+
+.alx3 .av-nota p {
+  font-size: 18.5px;
+  margin-bottom: 12px;
+}
+
+.alx3 .av-lista {
+  margin: 0 0 22px;
+  padding: 0 0 0 22px;
+  font-family: var(--f-leitura);
+  font-size: 20px;
+  line-height: 1.55;
+}
+
+.alx3 .av-lista li {
+  margin-bottom: 6px;
+}
+
+.alx3 .av-lista li::marker {
+  color: var(--ouro);
+}
+
+.alx3 .av-tabela-rolo {
+  margin: 4px 0 26px;
+  overflow-x: auto;
+}
+
+.alx3 .av-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--f-leitura);
+  font-size: 17.5px;
+  line-height: 1.4;
+}
+
+.alx3 .av-tabela th {
+  text-align: left;
+  font-family: var(--f-dado);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  padding: 0 14px 8px 0;
+  border-bottom: 1px solid var(--fio-forte);
+  vertical-align: bottom;
+}
+
+.alx3 .av-tabela td {
+  padding: 9px 14px 9px 0;
+  border-bottom: 1px solid var(--fio);
+  vertical-align: top;
+}
+
+.alx3 .av-tabela strong {
+  font-weight: 600;
+}
+
+/* termo do glossário no fluxo */
+
+.alx3 .av-termo {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline dotted;
+  text-decoration-color: var(--ouro);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 5px;
+  transition: text-decoration-color var(--t-hover);
+}
+
+.alx3 .av-termo:hover,
+.alx3 .av-termo[aria-expanded='true'] {
+  text-decoration-style: solid;
+  text-decoration-color: var(--oxido);
+}
+
+.alx3 .av-definicao {
+  margin: -6px 0 22px;
+  padding: 12px 0 12px 18px;
+  border-left: 1px solid var(--ouro);
+  display: grid;
+  gap: 6px;
+}
+
+.alx3 .av-definicao p {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.alx3 .av-definicao-acoes {
+  display: flex;
+  gap: 18px;
+  font-family: var(--f-interface);
+  font-size: 15.5px;
+}
+
+.alx3 .av-veu-trecho {
+  margin: 0 0 18px;
+  padding: 10px 0 10px 16px;
+  border-left: 1px dashed var(--fio-forte);
+  font-family: var(--f-interface);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+/* figura */
+
+.alx3 .av-figura {
+  margin: 14px 0 34px;
+  display: grid;
+  gap: 10px;
+}
+
+.alx3 .av-figura img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--fio);
+}
+
+.alx3 .av-figura-diagrama {
+  width: 100%;
+}
+
+.alx3 .av-figura figcaption {
+  display: grid;
+  gap: 4px;
+  max-width: 700px;
+}
+
+.alx3 .av-figura-legenda {
+  font-family: var(--f-leitura);
+  font-size: 17.5px;
+  line-height: 1.45;
+}
+
+.alx3 .av-figura-fonte {
+  font-family: var(--f-dado);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--tinta-fraca);
+}
+
+.alx3 .av-fim-do-texto {
+  display: block;
+  height: 1px;
+}
+
+/* ── instrumento ── */
+
+.alx3 .av-instrumento {
+  margin: 18px 0 40px;
+  border: 1px solid var(--fio-forte);
+  display: grid;
+  scroll-margin-top: 130px;
+}
+
+.alx3 .av-instrumento > * {
+  padding: 22px 28px;
+}
+
+.alx3 .av-instrumento > * + * {
+  border-top: 1px solid var(--fio);
+}
+
+.alx3 .av-inst-cabeca {
+  display: grid;
+  gap: 6px;
+}
+
+.alx3 .av-inst-cabeca h3 {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: clamp(30px, 2.8vw, 39px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+.alx3 .av-inst-formula {
+  font-family: var(--f-leitura);
+  font-style: italic;
+  font-size: 21px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .av-prever {
+  display: grid;
+  gap: 16px;
+}
+
+.alx3 .av-prever-pergunta {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: clamp(21.5px, 1.95vw, 26px);
+  line-height: 1.35;
+  max-width: 34em;
+}
+
+.alx3 .av-cenario {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.alx3 .av-cenario > div {
+  padding: 2px 22px 2px 0;
+  margin-right: 22px;
+  border-right: 1px solid var(--fio);
+  display: grid;
+  gap: 2px;
+}
+
+.alx3 .av-cenario > div:last-child {
+  border-right: 0;
+}
+
+.alx3 .av-cenario dt {
+  font-family: var(--f-dado);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+.alx3 .av-cenario dd {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 24px;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.alx3 .av-prever-campo {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.alx3 .av-prever-campo input,
+.alx3 .av-campo input {
+  width: 9em;
+  font-family: var(--f-leitura);
+  font-size: 30px;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--tinta);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--tinta);
+  border-radius: 0;
+  padding: 4px 2px;
+}
+
+.alx3 .av-prever-campo input::placeholder,
+.alx3 .av-campo input::placeholder {
+  color: var(--tinta-fraca);
+  font-style: italic;
+}
+
+.alx3 .av-prever-unidade {
+  font-family: var(--f-dado);
+  font-size: 17.5px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .av-escolhas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+
+.alx3 .av-escolhas-coluna {
+  flex-direction: column;
+  gap: 4px;
+}
+
+.alx3 .av-escolha {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 36px;
+  padding: 7px 4px;
+  font-family: var(--f-leitura);
+  font-size: 20px;
+  line-height: 1.35;
+  text-align: left;
+  color: var(--tinta);
+  background: none;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.alx3 .av-escolha:disabled {
+  cursor: default;
+}
+
+.alx3 .av-escolha[data-referencia] {
+  text-decoration: underline;
+  text-decoration-color: var(--ouro);
+  text-underline-offset: 5px;
+}
+
+.alx3 .av-marca {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-top: 5px;
+  border: 1.5px solid var(--tinta);
+  background: transparent;
+  border-radius: 50%;
+}
+
+.alx3 .av-marca[data-marcada] {
+  background: var(--tinta);
+  outline: 3px solid var(--papel);
+  outline-offset: -5px;
+}
+
+.alx3 .av-anotacao {
+  font-family: var(--f-dado);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--tinta-suave);
+}
+
+/* comparação previsto × calculado */
+
+.alx3 .av-comparar {
+  display: grid;
+  gap: 16px;
+}
+
+.alx3 .av-comparar-par {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.alx3 .av-comparar-par > div {
+  display: grid;
+  gap: 2px;
+  padding-right: 18px;
+}
+
+.alx3 .av-comparar-par > div + div {
+  padding-left: 22px;
+  border-left: 1px solid var(--fio-forte);
+}
+
+.alx3 .av-comparar-valor {
+  font-family: var(--f-leitura);
+  font-size: clamp(43px, 4.75vw, 65px);
+  font-weight: 450;
+  line-height: 1;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.alx3 .av-comparar-texto {
+  font-size: clamp(24px, 2.15vw, 30px);
+  line-height: 1.2;
+}
+
+.alx3 .av-comparar-u {
+  font-size: 0.5em;
+  margin-left: 0.15em;
+  color: var(--tinta-suave);
+}
+
+.alx3 .av-comparar-quem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-interface);
+  font-size: 16.5px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .av-glifo,
+.alx3 .av-glifo-cheio,
+.alx3 .av-glifo-vazado {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  flex: none;
+}
+
+.alx3 .av-glifo-cheio,
+.alx3 .av-glifo[data-forma='cheio'] {
+  background: var(--tinta);
+  border: 1.5px solid var(--tinta);
+}
+
+.alx3 .av-glifo-vazado,
+.alx3 .av-glifo[data-forma='vazado'] {
+  background: transparent;
+  border: 1.5px solid var(--tinta);
+}
+
+.alx3 .av-comparar-regua {
+  position: relative;
+  height: 46px;
+  margin: 6px 8px 4px;
+}
+
+.alx3 .av-comparar-trilho {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 14px;
+  border-top: 1px solid var(--fio-forte);
+}
+
+.alx3 .av-comparar-tique {
+  position: absolute;
+  top: 10px;
+  width: 1px;
+  height: 9px;
+  background: var(--fio-forte);
+}
+
+.alx3 .av-comparar-tique span {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  transform: translateX(-50%);
+  font-family: var(--f-dado);
+  font-size: 13px;
+  color: var(--tinta-suave);
+  white-space: nowrap;
+}
+
+.alx3 .av-comparar-marca {
+  position: absolute;
+  top: 7px;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+}
+
+.alx3 .av-comparar-frase {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 20px;
+  line-height: 1.5;
+  max-width: 40em;
+}
+
+/* exploração */
+
+.alx3 .av-explorar {
+  display: grid;
+  gap: 16px;
+}
+
+.alx3 .av-explorar-grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 28px 40px;
+  align-items: start;
+}
+
+.alx3 .av-controles {
+  display: grid;
+  gap: 22px;
+}
+
+.alx3 .av-campo {
+  display: grid;
+  gap: 6px;
+}
+
+.alx3 .av-campo label {
+  font-family: var(--f-leitura);
+  font-size: 20px;
+}
+
+.alx3 .av-campo-linha {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.alx3 .av-campo input {
+  font-size: 24px;
+  width: 8em;
+}
+
+.alx3 .av-saidas {
+  display: grid;
+  gap: 14px;
+  padding-left: 28px;
+  border-left: 1px solid var(--fio);
+}
+
+.alx3 .av-saida {
+  display: grid;
+  gap: 2px;
+}
+
+.alx3 .av-saida-rotulo {
+  font-family: var(--f-dado);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+.alx3 .av-saida-valor {
+  font-family: var(--f-leitura);
+  font-size: 34px;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.alx3 .av-veredito {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+.alx3 .av-triangulo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.alx3 .av-tri-forma {
+  fill: none;
+  stroke: var(--tinta);
+  stroke-width: 1.5;
+}
+
+.alx3 .av-tri-reto {
+  fill: none;
+  stroke: var(--tinta);
+  stroke-width: 1;
+}
+
+.alx3 .av-triangulo text {
+  fill: var(--tinta);
+  font-family: var(--f-dado);
+  font-size: 14px;
+}
+
+.alx3 .av-inst-nota {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--tinta-suave);
+}
+
+.alx3 .av-inst-fonte {
+  margin: 0;
+  font-family: var(--f-dado);
+  font-size: 13.5px;
+  letter-spacing: 0.04em;
+  color: var(--tinta-fraca);
+}
+
+/* régua deslizante — mesmo desenho de home-v3.css, para a aula não depender
+   do CSS da Home */
+
+.alx3 .av-instrumento .regua-campo {
+  display: grid;
+  gap: 10px;
+}
+
+.alx3 .av-instrumento .regua-cabeca {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.alx3 .av-instrumento .regua-rotulo {
+  font-family: var(--f-leitura);
+  font-size: 20px;
+}
+
+.alx3 .av-instrumento .regua-valor {
+  font-family: var(--f-leitura);
+  font-size: 24px;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.alx3 .av-instrumento .regua-unidade {
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.alx3 .av-instrumento .regua-trilho {
+  position: relative;
+  height: 30px;
+  cursor: ew-resize;
+  touch-action: none;
+  outline-offset: 4px;
+}
+
+.alx3 .av-instrumento .regua-escala {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--fio-forte);
+}
+
+.alx3 .av-instrumento .regua-marca {
+  display: block;
+  width: 1px;
+  height: 6px;
+  background: var(--fio-forte);
+}
+
+.alx3 .av-instrumento .regua-marca[data-maior] {
+  height: 12px;
+  background: var(--tinta-suave);
+}
+
+.alx3 .av-instrumento .regua-feito {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--tinta);
+  transition: width 200ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.alx3 .av-instrumento .regua-polegar {
+  position: absolute;
+  bottom: -6px;
+  width: 11px;
+  height: 22px;
+  margin-left: -5px;
+  background: var(--tinta);
+  transition: left 200ms cubic-bezier(0.25, 1, 0.5, 1), transform var(--t-hover);
+}
+
+.alx3 .av-instrumento .regua-trilho:hover .regua-polegar,
+.alx3 .av-instrumento .regua-trilho:focus-visible .regua-polegar {
+  transform: scaleY(1.18);
+  background: var(--oxido);
+}
+
+.alx3 .av-instrumento .regua-trilho[data-arrastando] .regua-polegar,
+.alx3 .av-instrumento .regua-trilho[data-arrastando] .regua-feito {
+  transition: none;
+}
+
+/* ── exercícios e prova ── */
+
+.alx3 .av-exercicios,
+.alx3 .av-prova {
+  margin: 30px 0 10px;
+  padding-top: 30px;
+  border-top: 1px solid var(--ouro);
+  display: grid;
+  gap: 30px;
+  scroll-margin-top: 130px;
+}
+
+.alx3 .av-bloco-cabeca {
+  display: grid;
+  gap: 8px;
+}
+
+.alx3 .av-bloco-cabeca h2 {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: clamp(30px, 2.7vw, 39px);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.alx3 .av-item {
+  display: grid;
+  gap: 14px;
+  padding-left: 20px;
+  border-left: 1px solid var(--fio-forte);
+}
+
+.alx3 .av-item-enunciado {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 21.5px;
+  line-height: 1.5;
+  max-width: 38em;
+}
+
+/* pauta: área de escrita entre dois fios, sem caixa e sem fundo próprio */
+.alx3 .av-pauta {
+  width: 100%;
+  max-width: 700px;
+  resize: vertical;
+  font-family: var(--f-leitura);
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--tinta);
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--fio-forte);
+  border-bottom: 1px solid var(--fio-forte);
+  border-radius: 0;
+  padding: 10px 2px;
+}
+
+.alx3 .av-pauta::placeholder {
+  color: var(--tinta-fraca);
+  font-style: italic;
+}
+
+.alx3 .av-comparacao-item {
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+}
+
+.alx3 .av-lado-a-lado {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.alx3 .av-lado-a-lado > div {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding-right: 20px;
+}
+
+.alx3 .av-lado-a-lado > div + div {
+  padding-left: 22px;
+  border-left: 1px solid var(--fio-forte);
+}
+
+.alx3 .av-resposta,
+.alx3 .av-referencia {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 19px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.alx3 .av-referencia {
+  white-space: normal;
+}
+
+.alx3 .av-criterio {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.alx3 .av-criterio .av-rotulo {
+  display: inline;
+  margin-right: 6px;
+}
+
+.alx3 .av-autoavaliacao {
+  display: grid;
+  gap: 6px;
+}
+
+.alx3 .av-estado {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--f-interface);
+  font-size: 16.5px;
+}
+
+.alx3 .av-prova-criterio {
+  display: grid;
+  gap: 8px;
+  padding: 16px 0 16px 20px;
+  border-left: 2px solid var(--ouro);
+}
+
+.alx3 .av-prova-criterio p {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.alx3 .av-prova-criterio .av-aparato {
+  font-family: var(--f-interface);
+  font-size: 15px;
+}
+
+.alx3 .av-prova-resultado {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: clamp(26px, 2.4vw, 32.5px);
+  line-height: 1.2;
+  padding: 14px 0;
+  border-top: 1px solid var(--fio-forte);
+  border-bottom: 1px solid var(--fio-forte);
+}
+
+.alx3 .av-explicacao {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+  max-width: 40em;
+}
+
+.alx3 .av-prova-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 28px;
+}
+
+/* ── fim da aula ── */
+
+.alx3 .av-fim {
+  margin-top: 40px;
+  padding-top: 26px;
+  border-top: 1px solid var(--ouro);
+  display: grid;
+  gap: 22px;
+}
+
+.alx3 .av-registro {
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.alx3 .av-registro > div {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.alx3 .av-registro dt {
+  font-family: var(--f-dado);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+.alx3 .av-registro dd {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+.alx3 .av-proximo {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+
+/* ── larguras ── */
+
+@media (max-width: 1100px) {
+  .alx3 .av-aula {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .alx3 .av-lateral {
+    display: none;
+  }
+  .alx3 .av-indice-estreito {
+    display: block;
+    margin: -14px 0 28px;
+    font-family: var(--f-interface);
+    font-size: 16px;
+    border-bottom: 1px solid var(--fio);
+    padding-bottom: 10px;
+  }
+  .alx3 .av-indice-estreito summary {
+    cursor: pointer;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    font-family: var(--f-dado);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--tinta-suave);
+  }
+  .alx3 .av-indice-estreito ol {
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 2px;
+  }
+  .alx3 .av-indice-estreito .av-link {
+    text-align: left;
+    min-height: 32px;
+    font-family: var(--f-leitura);
+    font-size: 17.5px;
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .alx3 .av-titulo {
+    font-size: 36px;
+  }
+  .alx3 .av-lede {
+    font-size: 20px;
+  }
+  .alx3 .av-p {
+    font-size: 20px;
+  }
+  .alx3 .av-instrumento > * {
+    padding: 18px 16px;
+  }
+  .alx3 .av-explorar-grade,
+  .alx3 .av-lado-a-lado {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .alx3 .av-saidas {
+    padding-left: 0;
+    padding-top: 18px;
+    border-left: 0;
+    border-top: 1px solid var(--fio);
+  }
+  .alx3 .av-lado-a-lado > div + div {
+    padding-left: 0;
+    padding-top: 14px;
+    margin-top: 14px;
+    border-left: 0;
+    border-top: 1px solid var(--fio-forte);
+  }
+  .alx3 .av-comparar-par > div + div {
+    padding-left: 14px;
+  }
+  .alx3 .av-registro > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+  .alx3 .av-cenario > div {
+    padding-right: 14px;
+    margin-right: 14px;
+  }
+  .alx3 .av-cenario dd {
+    font-size: 21px;
+  }
+  .alx3 .av-item {
+    padding-left: 14px;
+  }
+}
+
+/* unidade ao lado de campo: tamanho próprio, nunca abaixo de 11 px */
+.alx3 .av-campo-linha .av-unidade,
+.alx3 .av-cenario .av-unidade {
+  font-size: 14px;
+}
+
+/* trilho único com mínimo zero: sem isto o trilho implícito cresce até o
+   min-content do filho mais largo (diagrama, tabela) e a 390 a página rola
+   para o lado */
+.alx3 .av-principal,
+.alx3 .av-leitura,
+.alx3 .av-instrumento,
+.alx3 .av-exercicios,
+.alx3 .av-prova,
+.alx3 .av-item,
+.alx3 .av-fim,
+.alx3 .av-figura {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* ── topo: vídeo + abertura ── */
+
+.alx3 .av-principal > .av-topo {
+  max-width: 980px;
+}
+
+.alx3 .av-topo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  padding-bottom: 30px;
+  margin-bottom: 34px;
+  border-bottom: 1px solid var(--ouro);
+}
+
+.alx3 .av-topo .av-abertura {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.alx3 .av-topo .av-video {
+  margin-bottom: 28px;
+}
+
+.alx3 .av-topo .av-caminho {
+  margin-top: -2px;
+}
+
+/* A partir de 1100 px o vídeo fica ao lado da abertura e é o elemento maior
+   do topo (pedido do Founder, 15/11/2026: "make it bigger"): ~60% da largura,
+   a abertura nos ~40% restantes, com a pergunta e o caminho ainda no 1º
+   viewport. O topo usa a coluna principal inteira, sem o teto de 980 px. */
+@media (min-width: 1100px) {
+  .alx3 .av-principal > .av-topo[data-com-video] {
+    max-width: none;
+  }
+  .alx3 .av-topo[data-com-video] {
+    grid-template-columns: minmax(300px, 0.8fr) minmax(0, 1.2fr);
+    gap: 0 40px;
+    align-items: start;
+  }
+  .alx3 .av-topo[data-com-video] .av-video {
+    order: 2;
+    margin: 6px 0 0;
+  }
+  .alx3 .av-topo[data-com-video] .av-titulo {
+    font-size: clamp(34.5px, 2.9vw, 47.5px);
+  }
+}
+
+/* ── checklist do módulo (última aula) ── */
+
+.alx3 .av-principal > .av-checklist {
+  max-width: 980px;
+}
+
+.alx3 .av-checklist {
+  margin: 30px 0 10px;
+  padding-top: 30px;
+  border-top: 1px solid var(--ouro);
+  display: grid;
+  gap: 22px;
+  scroll-margin-top: 130px;
+}
+
+.alx3 .av-checklist-itens {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  border-top: 1px solid var(--fio);
+}
+
+.alx3 .av-checklist-itens li {
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .av-checklist-itens label {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 12px 0;
+  font-family: var(--f-leitura);
+  font-size: 20px;
+  line-height: 1.45;
+  cursor: pointer;
+  transition: background var(--t-hover);
+}
+
+.alx3 .av-checklist-itens label:hover {
+  background: var(--papel-hover);
+}
+
+.alx3 .av-checklist-itens input {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  margin: 5px 0 0;
+  border: 1px solid var(--fio-forte);
+  background: var(--papel);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background var(--t-hover), border-color var(--t-hover);
+}
+
+.alx3 .av-checklist-itens input:checked {
+  background: var(--tinta);
+  border-color: var(--tinta);
+}
+
+.alx3 .av-checklist-itens input:checked::after {
+  content: '';
+  width: 8px;
+  height: 4px;
+  border-left: 1.5px solid var(--papel);
+  border-bottom: 1.5px solid var(--papel);
+  transform: translateY(-1px) rotate(-45deg);
+}
+
+.alx3 .av-checklist-itens input:checked + span {
+  color: var(--tinta-suave);
+}
+
+/* ── campo de escolha (kind: 'select') e saída textual ── */
+
+.alx3 .av-campo-opcoes {
+  gap: 10px;
+}
+
+.alx3 .av-campo-rotulo {
+  font-family: var(--f-leitura);
+  font-size: 20px;
+}
+
+.alx3 .av-opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.alx3 .av-opcao {
+  min-height: 36px;
+  padding: 7px 12px;
+  font-family: var(--f-interface);
+  font-size: 16px;
+  line-height: 1.3;
+  text-align: left;
+  color: var(--tinta);
+  background: transparent;
+  border: 1px solid var(--fio-forte);
+  border-radius: 0;
+  cursor: pointer;
+  transition: background var(--t-hover), color var(--t-hover), border-color var(--t-hover);
+}
+
+.alx3 .av-opcao:hover {
+  background: var(--papel-hover);
+}
+
+.alx3 .av-opcao[aria-checked='true'] {
+  background: var(--tinta);
+  color: var(--papel);
+  border-color: var(--tinta);
+}
+
+.alx3 .av-saida-texto {
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+.alx3 .av-veredito b,
+.alx3 .av-veredito strong {
+  font-weight: 600;
+}
+
+@media (max-width: 860px) {
+  .alx3 .av-opcao {
+    min-height: 44px;
+  }
+}

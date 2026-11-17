@@ -1,0 +1,1678 @@
+{
+  "meta": {
+    "grupo": "aula01",
+    "modulo": "M01",
+    "aula": "M01·A01",
+    "fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo01.html",
+    "fonte_somente_leitura": true,
+    "fonte_total_linhas": 3212,
+    "aula_linhas": {
+      "inicio": 1356,
+      "fim": 1479,
+      "nota": "comentário de abertura 1356; section.aula 1358–1479"
+    },
+    "extraido_em": "2026-11-14",
+    "metodo": "Extração programática estrita (script node sobre fatias do HTML por linha; o percorredor lança erro em qualquer linha que não reconhece; nenhuma prosa digitada). Campos `html` guardam o innerHTML literal; campos `texto` são o mesmo conteúdo com tags removidas e entidades decodificadas.",
+    "protocolo": "docs/alexandria/extraction-protocol.md",
+    "taxonomia": "docs/alexandria/instrument-taxonomy.md",
+    "convencoes": {
+      "ausencia": "null + campo *_nota explicando o que foi medido",
+      "ids": "m01-a01-bNN-<tipo> para blocos (ordem da fonte); m01-inst-01; m01-ex-01",
+      "vinculos": "só quando a fonte declara (tag, posição dentro da section, remissão textual literal); correspondência textual é marcada como tal",
+      "comentario": "Campos de prosa nossa são só `nota`, `*_nota`, `o_que`, `argumento`, `decisao`, `onde` e a lista comparacao_codigo; todo o resto é verbatim e verificado por substring contra o HTML."
+    }
+  },
+  "aula": {
+    "id": "m01-a01",
+    "numero": 1,
+    "marcador": {
+      "num": "Aula 01",
+      "nome": "Energia × Potência",
+      "origem": {
+        "seletor": "div.aula-marker",
+        "trecho_inicial": "Aula 01 Energia × Potência",
+        "linha_aprox": 1360
+      }
+    },
+    "titulo_h2_html": "Energia é volume. Potência é <em>velocidade</em>.",
+    "titulo_h2_texto": "Energia é volume. Potência é velocidade.",
+    "titulo_h2_origem": {
+      "seletor": "h2.aula-title",
+      "trecho_inicial": "Energia é volume. Potência é velocidade.",
+      "linha_aprox": 1361
+    },
+    "pergunta_mapa": {
+      "numero": "01",
+      "tema": "Energia × Potência",
+      "pergunta_html": "Por que <span class=\"hl\">kW</span> e <span class=\"hl\">kWh</span> não são a mesma coisa?",
+      "pergunta_texto": "Por que kW e kWh não são a mesma coisa?",
+      "origem": {
+        "seletor": "§ MAP table > tbody > tr(01)",
+        "trecho_inicial": "Por que kW e kWh não são a mesma coisa?",
+        "linha_aprox": 1339
+      },
+      "nota": "Única pergunta que a fonte declara para esta aula. Vive na tabela do § MAP, não na aula."
+    },
+    "duracao_min": null,
+    "dificuldade": null,
+    "video": null,
+    "ausencias_nota": "Sem duração, dificuldade, vídeo, <img>, <svg>, lista (<ul>/<ol>), referência por aula ou \"Vale lembrar\" dentro da section. Medido na fatia 1358–1479: {\"ul_ol\":0,\"img\":0,\"svg\":0,\"video\":0,\"canvas\":0,\"entidades\":0,\"vale_lembrar\":0}."
+  },
+  "blocos": [
+    {
+      "id": "m01-a01-b01-lead",
+      "tipo": "lead",
+      "html": "Se você dominar uma distinção neste módulo, que seja essa. O erro de tratar kW e kWh como sinônimos é a primeira fluência que separa quem entende setor elétrico de quem só fala sobre ele.",
+      "texto": "Se você dominar uma distinção neste módulo, que seja essa. O erro de tratar kW e kWh como sinônimos é a primeira fluência que separa quem entende setor elétrico de quem só fala sobre ele.",
+      "origem": {
+        "seletor": "section.aula(Aula 01) > .container > p.lead",
+        "trecho_inicial": "Se você dominar uma distinção neste módulo, que seja essa. O",
+        "linha_aprox": 1363
+      }
+    },
+    {
+      "id": "m01-a01-b02-titulo",
+      "tipo": "titulo",
+      "numero": "1.1",
+      "texto": "Energia, primeiro",
+      "html": "<span class=\"num\">1.1</span>Energia, primeiro",
+      "origem": {
+        "seletor": "h3 > span.num(1.1)",
+        "trecho_inicial": "1.1Energia, primeiro",
+        "linha_aprox": 1365
+      }
+    },
+    {
+      "id": "m01-a01-b03-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Energia é a capacidade de realizar trabalho ou produzir transformação. Quando algo se move, esquenta, ilumina, gira, bombeia, comprime, levanta, resfria, funde, corta ou transporta, há energia envolvida. A gasolina no tanque tem energia química. A água em uma represa tem energia potencial gravitacional. O vento tem energia cinética. Um forno industrial usa energia térmica. Um motor elétrico transforma energia elétrica em movimento.",
+      "texto": "Energia é a capacidade de realizar trabalho ou produzir transformação. Quando algo se move, esquenta, ilumina, gira, bombeia, comprime, levanta, resfria, funde, corta ou transporta, há energia envolvida. A gasolina no tanque tem energia química. A água em uma represa tem energia potencial gravitacional. O vento tem energia cinética. Um forno industrial usa energia térmica. Um motor elétrico transforma energia elétrica em movimento.",
+      "origem": {
+        "seletor": "h3(1.1) ~ p:nth-of-type(1)",
+        "trecho_inicial": "Energia é a capacidade de realizar trabalho ou produzir tran",
+        "linha_aprox": 1366
+      }
+    },
+    {
+      "id": "m01-a01-b04-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Eletricidade é apenas <strong>uma das formas</strong> de energia — a forma que predomina em redes públicas de transmissão e distribuição. Mas pensar em energia apenas como eletricidade é estreitar demais a análise. Quando uma indústria brasileira decide entre rede e cogeração a gás, está decidindo entre formas diferentes de energia para o mesmo trabalho útil.",
+      "texto": "Eletricidade é apenas uma das formas de energia — a forma que predomina em redes públicas de transmissão e distribuição. Mas pensar em energia apenas como eletricidade é estreitar demais a análise. Quando uma indústria brasileira decide entre rede e cogeração a gás, está decidindo entre formas diferentes de energia para o mesmo trabalho útil.",
+      "marcacao_inline": {
+        "strong": [
+          "uma das formas"
+        ]
+      },
+      "origem": {
+        "seletor": "h3(1.1) ~ p:nth-of-type(2)",
+        "trecho_inicial": "Eletricidade é apenas uma das formas de energia — a forma qu",
+        "linha_aprox": 1368
+      }
+    },
+    {
+      "id": "m01-a01-b05-destaque",
+      "tipo": "destaque",
+      "tom": "neutro",
+      "classe_literal": "callout",
+      "rotulo": "Princípio físico subjacente",
+      "paragrafos": [
+        {
+          "html": "Energia não é criada nem destruída — apenas transformada. Uma hidrelétrica não \"cria\" energia; transforma energia potencial gravitacional da água em energia cinética na turbina e em energia elétrica no gerador. Cada transformação tem perda. Cada perda tem custo. <strong>O problema econômico do setor elétrico nasce exatamente das perdas e custos de cada transformação física.</strong>",
+          "texto": "Energia não é criada nem destruída — apenas transformada. Uma hidrelétrica não \"cria\" energia; transforma energia potencial gravitacional da água em energia cinética na turbina e em energia elétrica no gerador. Cada transformação tem perda. Cada perda tem custo. O problema econômico do setor elétrico nasce exatamente das perdas e custos de cada transformação física.",
+          "marcacao_inline": {
+            "strong": [
+              "O problema econômico do setor elétrico nasce exatamente das perdas e custos de cada transformação física."
+            ]
+          },
+          "origem": {
+            "seletor": "div.callout > p:nth-of-type(1)",
+            "trecho_inicial": "Energia não é criada nem destruída — apenas transformada. Um",
+            "linha_aprox": 1372
+          }
+        }
+      ],
+      "origem": {
+        "seletor": "div.callout",
+        "trecho_inicial": "Princípio físico subjacente",
+        "linha_aprox": 1370,
+        "linha_fim_aprox": 1373
+      },
+      "nota": "rótulo (div.callout-label, linha 1371) + 1 parágrafo(s) no corpo. A fonte não usa a expressão \"Vale lembrar\"."
+    },
+    {
+      "id": "m01-a01-b06-titulo",
+      "tipo": "titulo",
+      "numero": "1.2",
+      "texto": "Potência é a taxa",
+      "html": "<span class=\"num\">1.2</span>Potência é a taxa",
+      "origem": {
+        "seletor": "h3 > span.num(1.2)",
+        "trecho_inicial": "1.2Potência é a taxa",
+        "linha_aprox": 1375
+      }
+    },
+    {
+      "id": "m01-a01-b07-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Potência é a velocidade com que energia é usada, gerada ou transformada. Energia responde \"quanto foi usado no total?\". Potência responde \"com que ritmo está sendo usado agora?\".",
+      "texto": "Potência é a velocidade com que energia é usada, gerada ou transformada. Energia responde \"quanto foi usado no total?\". Potência responde \"com que ritmo está sendo usado agora?\".",
+      "origem": {
+        "seletor": "h3(1.2) ~ p:nth-of-type(1)",
+        "trecho_inicial": "Potência é a velocidade com que energia é usada, gerada ou t",
+        "linha_aprox": 1376
+      }
+    },
+    {
+      "id": "m01-a01-b08-paragrafo",
+      "tipo": "paragrafo",
+      "html": "A analogia mais útil é a torneira enchendo uma caixa d'água:",
+      "texto": "A analogia mais útil é a torneira enchendo uma caixa d'água:",
+      "origem": {
+        "seletor": "h3(1.2) ~ p:nth-of-type(2)",
+        "trecho_inicial": "A analogia mais útil é a torneira enchendo uma caixa d'água:",
+        "linha_aprox": 1378
+      }
+    },
+    {
+      "id": "m01-a01-b09-tabela",
+      "tipo": "tabela",
+      "cabecalho": [
+        {
+          "html": "Analogia hidráulica",
+          "texto": "Analogia hidráulica"
+        },
+        {
+          "html": "Equivalente elétrico",
+          "texto": "Equivalente elétrico"
+        },
+        {
+          "html": "O que mede",
+          "texto": "O que mede"
+        }
+      ],
+      "linhas": [
+        {
+          "celulas": [
+            {
+              "html": "Vazão da torneira (L/s)",
+              "texto": "Vazão da torneira (L/s)"
+            },
+            {
+              "html": "<b>Potência</b> (kW)",
+              "texto": "Potência (kW)"
+            },
+            {
+              "html": "Quanto fluxo neste instante",
+              "texto": "Quanto fluxo neste instante"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(1)",
+            "trecho_inicial": "Vazão da torneira (L/s)",
+            "linha_aprox": 1386
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "Volume na caixa (L)",
+              "texto": "Volume na caixa (L)"
+            },
+            {
+              "html": "<b>Energia</b> (kWh)",
+              "texto": "Energia (kWh)"
+            },
+            {
+              "html": "Quanto se acumulou no tempo",
+              "texto": "Quanto se acumulou no tempo"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(2)",
+            "trecho_inicial": "Volume na caixa (L)",
+            "linha_aprox": 1387
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "Pressão da água",
+              "texto": "Pressão da água"
+            },
+            {
+              "html": "<b>Tensão</b> (V)",
+              "texto": "Tensão (V)"
+            },
+            {
+              "html": "A \"força\" que empurra",
+              "texto": "A \"força\" que empurra"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(3)",
+            "trecho_inicial": "Pressão da água",
+            "linha_aprox": 1388
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "Diâmetro do cano",
+              "texto": "Diâmetro do cano"
+            },
+            {
+              "html": "<b>Corrente</b> (A)",
+              "texto": "Corrente (A)"
+            },
+            {
+              "html": "Quanta carga atravessa",
+              "texto": "Quanta carga atravessa"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(4)",
+            "trecho_inicial": "Diâmetro do cano",
+            "linha_aprox": 1389
+          }
+        }
+      ],
+      "n_colunas": 3,
+      "n_linhas_dados": 4,
+      "origem": {
+        "seletor": "h3(1.2) ~ div.table-wrap > table",
+        "trecho_inicial": "",
+        "linha_aprox": 1380,
+        "linha_fim_aprox": 1392
+      }
+    },
+    {
+      "id": "m01-a01-b10-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Uma torneira muito forte por dois minutos enche pouco volume — alta potência, baixa energia. Uma torneira fraca aberta por oito horas enche bastante volume — baixa potência, alta energia. <strong>Volume e velocidade não são a mesma grandeza.</strong>",
+      "texto": "Uma torneira muito forte por dois minutos enche pouco volume — alta potência, baixa energia. Uma torneira fraca aberta por oito horas enche bastante volume — baixa potência, alta energia. Volume e velocidade não são a mesma grandeza.",
+      "marcacao_inline": {
+        "strong": [
+          "Volume e velocidade não são a mesma grandeza."
+        ]
+      },
+      "origem": {
+        "seletor": "h3(1.2) ~ p:nth-of-type(3)",
+        "trecho_inicial": "Uma torneira muito forte por dois minutos enche pouco volume",
+        "linha_aprox": 1394
+      }
+    },
+    {
+      "id": "m01-a01-b11-titulo",
+      "tipo": "titulo",
+      "numero": "1.3",
+      "texto": "A cadeia de unidades",
+      "html": "<span class=\"num\">1.3</span>A cadeia de unidades",
+      "origem": {
+        "seletor": "h3 > span.num(1.3)",
+        "trecho_inicial": "1.3A cadeia de unidades",
+        "linha_aprox": 1396
+      }
+    },
+    {
+      "id": "m01-a01-b12-tabela",
+      "tipo": "tabela",
+      "cabecalho": [
+        {
+          "html": "Unidade",
+          "texto": "Unidade"
+        },
+        {
+          "html": "Significa",
+          "texto": "Significa"
+        },
+        {
+          "html": "Escala típica",
+          "texto": "Escala típica"
+        }
+      ],
+      "linhas": [
+        {
+          "celulas": [
+            {
+              "html": "<b class=\"mono\">W</b>",
+              "texto": "W"
+            },
+            {
+              "html": "watt — unidade base de potência",
+              "texto": "watt — unidade base de potência"
+            },
+            {
+              "html": "Lâmpada LED ≈ 9 W",
+              "texto": "Lâmpada LED ≈ 9 W"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(1)",
+            "trecho_inicial": "W",
+            "linha_aprox": 1403
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b class=\"mono\">kW</b>",
+              "texto": "kW"
+            },
+            {
+              "html": "1.000 W — potência residencial e comercial",
+              "texto": "1.000 W — potência residencial e comercial"
+            },
+            {
+              "html": "Chuveiro elétrico ≈ 5,5 kW",
+              "texto": "Chuveiro elétrico ≈ 5,5 kW"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(2)",
+            "trecho_inicial": "kW",
+            "linha_aprox": 1404
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b class=\"mono\">MW</b>",
+              "texto": "MW"
+            },
+            {
+              "html": "1.000 kW — escala industrial e sistêmica",
+              "texto": "1.000 kW — escala industrial e sistêmica"
+            },
+            {
+              "html": "Britador de mineração ≈ 2 MW",
+              "texto": "Britador de mineração ≈ 2 MW"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(3)",
+            "trecho_inicial": "MW",
+            "linha_aprox": 1405
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b class=\"mono\">GW</b>",
+              "texto": "GW"
+            },
+            {
+              "html": "1.000 MW — escala nacional",
+              "texto": "1.000 MW — escala nacional"
+            },
+            {
+              "html": "Itaipu ≈ 14 GW de capacidade",
+              "texto": "Itaipu ≈ 14 GW de capacidade"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(4)",
+            "trecho_inicial": "GW",
+            "linha_aprox": 1406
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b class=\"mono\">kWh</b>",
+              "texto": "kWh"
+            },
+            {
+              "html": "energia: 1 kW durante 1 hora",
+              "texto": "energia: 1 kW durante 1 hora"
+            },
+            {
+              "html": "Geladeira/mês ≈ 40 kWh",
+              "texto": "Geladeira/mês ≈ 40 kWh"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(5)",
+            "trecho_inicial": "kWh",
+            "linha_aprox": 1407
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b class=\"mono\">MWh</b>",
+              "texto": "MWh"
+            },
+            {
+              "html": "1.000 kWh — escala industrial",
+              "texto": "1.000 kWh — escala industrial"
+            },
+            {
+              "html": "Cimenteira/mês ≈ 5.000 MWh",
+              "texto": "Cimenteira/mês ≈ 5.000 MWh"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(6)",
+            "trecho_inicial": "MWh",
+            "linha_aprox": 1408
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b class=\"mono\">GWh / TWh</b>",
+              "texto": "GWh / TWh"
+            },
+            {
+              "html": "escala de matriz nacional",
+              "texto": "escala de matriz nacional"
+            },
+            {
+              "html": "Brasil consome ≈ 530 TWh/ano",
+              "texto": "Brasil consome ≈ 530 TWh/ano"
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr:nth-child(7)",
+            "trecho_inicial": "GWh / TWh",
+            "linha_aprox": 1409
+          }
+        }
+      ],
+      "n_colunas": 3,
+      "n_linhas_dados": 7,
+      "origem": {
+        "seletor": "h3(1.3) ~ div.table-wrap > table",
+        "trecho_inicial": "",
+        "linha_aprox": 1397,
+        "linha_fim_aprox": 1412
+      }
+    },
+    {
+      "id": "m01-a01-b13-titulo",
+      "tipo": "titulo",
+      "numero": "1.4",
+      "texto": "A fórmula que conecta tudo",
+      "html": "<span class=\"num\">1.4</span>A fórmula que conecta tudo",
+      "origem": {
+        "seletor": "h3 > span.num(1.4)",
+        "trecho_inicial": "1.4A fórmula que conecta tudo",
+        "linha_aprox": 1414
+      }
+    },
+    {
+      "id": "m01-a01-b14-formula",
+      "tipo": "formula",
+      "eq_html": "Energia <span class=\"op\">=</span> Potência <span class=\"op\">×</span> Tempo",
+      "eq_texto": "Energia = Potência × Tempo",
+      "desc_html": "kWh = kW × horas",
+      "desc_texto": "kWh = kW × horas",
+      "origem": {
+        "seletor": "h3(1.4) ~ div.formula > div.eq",
+        "trecho_inicial": "Energia = Potência × Tempo",
+        "linha_aprox": 1416,
+        "linha_fim_aprox": 1419
+      },
+      "nota": "div.desc presente na fonte (o porte antigo gravou desc = null)."
+    },
+    {
+      "id": "m01-a01-b15-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Um motor de <span class=\"hl\">10 kW</span> ligado por <span class=\"hl\">5 horas</span> consome <span class=\"hl\">50 kWh</span>. Um equipamento de <span class=\"hl\">2 kW</span> ligado por <span class=\"hl\">10 horas</span> consome <span class=\"hl\">20 kWh</span>. A multiplicação é trivial. O que não é trivial é resistir à tentação de tratá-las como intercambiáveis. Pratique abaixo.",
+      "texto": "Um motor de 10 kW ligado por 5 horas consome 50 kWh. Um equipamento de 2 kW ligado por 10 horas consome 20 kWh. A multiplicação é trivial. O que não é trivial é resistir à tentação de tratá-las como intercambiáveis. Pratique abaixo.",
+      "marcacao_inline": {
+        "hl": [
+          "10 kW",
+          "5 horas",
+          "50 kWh",
+          "2 kW",
+          "10 horas",
+          "20 kWh"
+        ]
+      },
+      "origem": {
+        "seletor": "h3(1.4) ~ p:nth-of-type(1)",
+        "trecho_inicial": "Um motor de 10 kW ligado por 5 horas consome 50 kWh. Um equi",
+        "linha_aprox": 1421
+      }
+    },
+    {
+      "id": "m01-a01-b16-instrumento",
+      "tipo": "instrumento",
+      "ref": "m01-inst-01",
+      "texto": "Calculadora · kWh = kW × h",
+      "origem": {
+        "seletor": "div.instrument (comentário na linha 1423)",
+        "trecho_inicial": "Calculadora · kWh = kW × h",
+        "linha_aprox": 1423,
+        "linha_fim_aprox": 1448
+      },
+      "vinculos": {
+        "instrumento": "m01-inst-01"
+      },
+      "nota": "Posição literal na fonte: depois do bloco anterior e antes do bloco seguinte da sequência. Especificação completa em instrumentos[0]. Linhas 1424–1448."
+    },
+    {
+      "id": "m01-a01-b17-titulo",
+      "tipo": "titulo",
+      "numero": "1.5",
+      "texto": "O erro fatal: confundir kW com kWh",
+      "html": "<span class=\"num\">1.5</span>O erro fatal: confundir kW com kWh",
+      "origem": {
+        "seletor": "h3 > span.num(1.5)",
+        "trecho_inicial": "1.5O erro fatal: confundir kW com kWh",
+        "linha_aprox": 1450
+      }
+    },
+    {
+      "id": "m01-a01-b18-destaque",
+      "tipo": "destaque",
+      "tom": "red",
+      "classe_literal": "callout red",
+      "rotulo": "Erro de fluência",
+      "paragrafos": [
+        {
+          "html": "<strong>\"Essa usina gerou 100 MW no mês.\"</strong> Errado. MW mede potência, não energia. O correto é: \"a usina tem capacidade de 100 MW\" ou \"a usina gerou 30.000 MWh no mês\".",
+          "texto": "\"Essa usina gerou 100 MW no mês.\" Errado. MW mede potência, não energia. O correto é: \"a usina tem capacidade de 100 MW\" ou \"a usina gerou 30.000 MWh no mês\".",
+          "marcacao_inline": {
+            "strong": [
+              "\"Essa usina gerou 100 MW no mês.\""
+            ]
+          },
+          "origem": {
+            "seletor": "div.callout > p:nth-of-type(1)",
+            "trecho_inicial": "\"Essa usina gerou 100 MW no mês.\" Errado. MW mede potência, ",
+            "linha_aprox": 1454
+          }
+        },
+        {
+          "html": "<strong>\"A empresa consumiu 500 kW no mês.\"</strong> Errado. Ela <em>demandou</em> 500 kW em algum momento e <em>consumiu</em> X kWh ao longo do mês.",
+          "texto": "\"A empresa consumiu 500 kW no mês.\" Errado. Ela demandou 500 kW em algum momento e consumiu X kWh ao longo do mês.",
+          "estilo_inline": "margin-top: 12px;",
+          "marcacao_inline": {
+            "strong": [
+              "\"A empresa consumiu 500 kW no mês.\""
+            ],
+            "em": [
+              "demandou",
+              "consumiu"
+            ]
+          },
+          "origem": {
+            "seletor": "div.callout > p:nth-of-type(2)",
+            "trecho_inicial": "\"A empresa consumiu 500 kW no mês.\" Errado. Ela demandou 500",
+            "linha_aprox": 1455
+          }
+        },
+        {
+          "html": "Esse deslize, em conversa com diretor de energia, custa credibilidade imediata. Em conversa com investidor, custa a rodada.",
+          "texto": "Esse deslize, em conversa com diretor de energia, custa credibilidade imediata. Em conversa com investidor, custa a rodada.",
+          "estilo_inline": "margin-top: 12px;",
+          "origem": {
+            "seletor": "div.callout > p:nth-of-type(3)",
+            "trecho_inicial": "Esse deslize, em conversa com diretor de energia, custa cred",
+            "linha_aprox": 1456
+          }
+        }
+      ],
+      "origem": {
+        "seletor": "div.callout.red",
+        "trecho_inicial": "Erro de fluência",
+        "linha_aprox": 1452,
+        "linha_fim_aprox": 1457
+      },
+      "nota": "rótulo (div.callout-label, linha 1453) + 3 parágrafo(s) no corpo. A fonte não usa a expressão \"Vale lembrar\"."
+    },
+    {
+      "id": "m01-a01-b19-titulo",
+      "tipo": "titulo",
+      "numero": "1.6",
+      "texto": "O conceito em três níveis",
+      "html": "<span class=\"num\">1.6</span>O conceito em três níveis",
+      "origem": {
+        "seletor": "h3 > span.num(1.6)",
+        "trecho_inicial": "1.6O conceito em três níveis",
+        "linha_aprox": 1459
+      }
+    },
+    {
+      "id": "m01-a01-b20-tres_niveis",
+      "tipo": "tres_niveis",
+      "data_id": "t01",
+      "abas": [
+        {
+          "indice": 0,
+          "ativa_na_carga": true,
+          "rotulo": "01 · 12 anos",
+          "html": "01 · 12 anos",
+          "origem": {
+            "seletor": "button.three-levels-tab[data-target=0]",
+            "trecho_inicial": "01 · 12 anos",
+            "linha_aprox": 1463
+          }
+        },
+        {
+          "indice": 1,
+          "ativa_na_carga": false,
+          "rotulo": "02 · Executivo não técnico",
+          "html": "02 · Executivo não técnico",
+          "origem": {
+            "seletor": "button.three-levels-tab[data-target=1]",
+            "trecho_inicial": "02 · Executivo não técnico",
+            "linha_aprox": 1464
+          }
+        },
+        {
+          "indice": 2,
+          "ativa_na_carga": false,
+          "rotulo": "03 · Especialista de setor",
+          "html": "03 · Especialista de setor",
+          "origem": {
+            "seletor": "button.three-levels-tab[data-target=2]",
+            "trecho_inicial": "03 · Especialista de setor",
+            "linha_aprox": 1465
+          }
+        }
+      ],
+      "paineis": [
+        {
+          "indice": 0,
+          "ativo_na_carga": true,
+          "html": "A <b>potência</b> é a força do aparelho ligado agora. A <b>energia</b> é quanto ele gastou depois de ficar ligado por um tempo. Mesmo aparelho, ligado por mais horas, gasta mais energia — mas a força dele não mudou.",
+          "texto": "A potência é a força do aparelho ligado agora. A energia é quanto ele gastou depois de ficar ligado por um tempo. Mesmo aparelho, ligado por mais horas, gasta mais energia — mas a força dele não mudou.",
+          "marcacao_inline": {
+            "b": [
+              "potência",
+              "energia"
+            ]
+          },
+          "origem": {
+            "seletor": "div.three-levels-panel:nth-child(1)",
+            "trecho_inicial": "A potência é a força do aparelho ligado agora. A energia é q",
+            "linha_aprox": 1468
+          }
+        },
+        {
+          "indice": 1,
+          "ativo_na_carga": false,
+          "html": "<b>kW</b> mede a potência instantânea que a operação exige da rede neste momento. <b>kWh</b> mede o consumo acumulado que aparece na fatura. Sua tarifa pode cobrar essas duas grandezas separadamente: uma pela capacidade que você reserva, outra pela energia que efetivamente usa. Tratá-las como sinônimo é o erro que esconde a metade da fatura industrial.",
+          "texto": "kW mede a potência instantânea que a operação exige da rede neste momento. kWh mede o consumo acumulado que aparece na fatura. Sua tarifa pode cobrar essas duas grandezas separadamente: uma pela capacidade que você reserva, outra pela energia que efetivamente usa. Tratá-las como sinônimo é o erro que esconde a metade da fatura industrial.",
+          "marcacao_inline": {
+            "b": [
+              "kW",
+              "kWh"
+            ]
+          },
+          "origem": {
+            "seletor": "div.three-levels-panel:nth-child(2)",
+            "trecho_inicial": "kW mede a potência instantânea que a operação exige da rede ",
+            "linha_aprox": 1469
+          }
+        },
+        {
+          "indice": 2,
+          "ativo_na_carga": false,
+          "html": "<b>kW</b> é unidade de potência ativa, representando taxa instantânea de conversão ou transferência de energia. <b>kWh</b> é unidade de energia, equivalente à potência ativa integrada no tempo (∫P·dt). Em consumidores do Grupo A, a fatura tarifa demanda em kW (TUSD-demanda) e energia em kWh (TE + TUSD-energia) sob lógicas distintas — capacidade reservada vs. uso efetivo —, justificadas por diferentes componentes de custo da rede e da geração.",
+          "texto": "kW é unidade de potência ativa, representando taxa instantânea de conversão ou transferência de energia. kWh é unidade de energia, equivalente à potência ativa integrada no tempo (∫P·dt). Em consumidores do Grupo A, a fatura tarifa demanda em kW (TUSD-demanda) e energia em kWh (TE + TUSD-energia) sob lógicas distintas — capacidade reservada vs. uso efetivo —, justificadas por diferentes componentes de custo da rede e da geração.",
+          "marcacao_inline": {
+            "b": [
+              "kW",
+              "kWh"
+            ]
+          },
+          "origem": {
+            "seletor": "div.three-levels-panel:nth-child(3)",
+            "trecho_inicial": "kW é unidade de potência ativa, representando taxa instantân",
+            "linha_aprox": 1470
+          }
+        }
+      ],
+      "origem": {
+        "seletor": "h3(1.6) ~ div.three-levels[data-id=t01]",
+        "trecho_inicial": "",
+        "linha_aprox": 1461,
+        "linha_fim_aprox": 1472
+      },
+      "nota": "Componente de abas: cada aba (button) abre o painel de mesmo índice (script THREE-LEVELS TABS, L2963–2979). Os três painéis são o conteúdo da seção; o porte antigo só gravou o h3."
+    },
+    {
+      "id": "m01-a01-b21-destaque",
+      "tipo": "destaque",
+      "tom": "neutro",
+      "classe_literal": "callout",
+      "rotulo": "Onde isso entra no produto",
+      "paragrafos": [
+        {
+          "html": "No <strong>Conta de Luz Express</strong>, a primeira checagem ao receber uma fatura é separar cobrança por demanda de cobrança por consumo. Se o cliente diz \"minha conta subiu\", a próxima pergunta deve ser estruturada: subiu por kWh, por kW, por horário, por bandeira, por reativo, por imposto, ou por reajuste? <strong>Sem essa separação, você não está analisando conta — está lendo boleto.</strong>",
+          "texto": "No Conta de Luz Express, a primeira checagem ao receber uma fatura é separar cobrança por demanda de cobrança por consumo. Se o cliente diz \"minha conta subiu\", a próxima pergunta deve ser estruturada: subiu por kWh, por kW, por horário, por bandeira, por reativo, por imposto, ou por reajuste? Sem essa separação, você não está analisando conta — está lendo boleto.",
+          "marcacao_inline": {
+            "strong": [
+              "Conta de Luz Express",
+              "Sem essa separação, você não está analisando conta — está lendo boleto."
+            ]
+          },
+          "origem": {
+            "seletor": "div.callout > p:nth-of-type(1)",
+            "trecho_inicial": "No Conta de Luz Express, a primeira checagem ao receber uma ",
+            "linha_aprox": 1476
+          }
+        }
+      ],
+      "origem": {
+        "seletor": "div.callout",
+        "trecho_inicial": "Onde isso entra no produto",
+        "linha_aprox": 1474,
+        "linha_fim_aprox": 1477
+      },
+      "nota": "rótulo (div.callout-label, linha 1475) + 1 parágrafo(s) no corpo. A fonte não usa a expressão \"Vale lembrar\"."
+    }
+  ],
+  "figuras": [],
+  "figuras_nota": "Nenhuma figura na section: 0 <img>, 0 <svg>, 0 <canvas>. As tabelas ficam em blocos de tipo \"tabela\".",
+  "tabelas": [
+    "m01-a01-b09-tabela",
+    "m01-a01-b12-tabela"
+  ],
+  "destaques": [
+    "m01-a01-b05-destaque",
+    "m01-a01-b18-destaque",
+    "m01-a01-b21-destaque"
+  ],
+  "tres_niveis": [
+    "m01-a01-b20-tres_niveis"
+  ],
+  "listas": [],
+  "listas_nota": "Nenhuma <ul>/<ol> na section (medido: 0).",
+  "vale_lembrar": null,
+  "vale_lembrar_nota": "A expressão \"Vale lembrar\" não ocorre dentro da section (medido); os destaques da aula são os div.callout.",
+  "termos_lexico": {
+    "vinculo_declarado_pela_fonte": false,
+    "nota": "O glossário da fonte (§ Lex) não declara aula por termo. Abaixo: verbetes cujo nome-base (sem parênteses) ocorre como palavra no texto da section (incluindo o instrumento). Correspondência textual, não posse — ler ocorrencias_contexto antes de ligar (§2 do protocolo).",
+    "total_verbetes_fonte": 38,
+    "candidatos": [
+      {
+        "termo": "Demanda",
+        "unidade_rotulo": "kW",
+        "definicao_html": "Potência ativa exigida ou requerida por uma unidade consumidora em determinado intervalo de medição (tipicamente 15 minutos integralizados). Distinta do consumo (kWh), reflete a capacidade instantânea exigida da rede.",
+        "n_ocorrencias": 3,
+        "ocorrencias_contexto": [
+          "onsumidores do Grupo A, a fatura tarifa demanda em kW (TUSD-demanda) e energia em kWh (",
+          " A, a fatura tarifa demanda em kW (TUSD-demanda) e energia em kWh (TE + TUSD-energia) s",
+          "ceber uma fatura é separar cobrança por demanda de cobrança por consumo. Se o cliente d"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Demanda",
+          "linha_aprox": 2556
+        },
+        "leitura_nota": "menção do conceito no painel 3 e no callout final (\"separar cobrança por demanda de cobrança por consumo\"); a A01 não o define."
+      },
+      {
+        "termo": "Energia",
+        "unidade_rotulo": "kWh, MWh",
+        "definicao_html": "Capacidade de realizar trabalho ou produzir transformação. Em eletricidade, energia é potência integrada no tempo (kWh = kW × h). É a grandeza cobrada como \"consumo\" na fatura.",
+        "n_ocorrencias": 35,
+        "ocorrencias_contexto": [
+          "Aula 01 Energia × Potência Energia é volume. Potência é",
+          "Aula 01 Energia × Potência Energia é volume. Potência é velocidade . Se vo",
+          "elétrico de quem só fala sobre ele. 1.1 Energia, primeiro Energia é a capacidade de rea",
+          "ó fala sobre ele. 1.1 Energia, primeiro Energia é a capacidade de realizar trabalho ou ",
+          "resfria, funde, corta ou transporta, há energia envolvida. A gasolina no tanque tem ene",
+          "gia envolvida. A gasolina no tanque tem energia química. A água em uma represa tem ener",
+          "rgia química. A água em uma represa tem energia potencial gravitacional. O vento tem en",
+          "ia potencial gravitacional. O vento tem energia cinética. Um forno industrial usa energ",
+          "ergia cinética. Um forno industrial usa energia térmica. Um motor elétrico transforma e",
+          "a térmica. Um motor elétrico transforma energia elétrica em movimento. Eletricidade é a",
+          "Eletricidade é apenas uma das formas de energia — a forma que predomina em redes públic",
+          "ansmissão e distribuição. Mas pensar em energia apenas como eletricidade é estreitar de"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Energia",
+          "linha_aprox": 2572
+        },
+        "leitura_nota": "conceito central: título 1.1, definição no primeiro parágrafo, fórmula 1.4."
+      },
+      {
+        "termo": "Grupo A",
+        "unidade_rotulo": "Classificação",
+        "definicao_html": "Classe de consumidores atendidos em alta ou média tensão (≥ 2,3 kV) — indústrias, grandes comércios. Subdivide-se em A1, A2, A3, A3a, A4 e AS por nível de tensão. Estrutura tarifária binômia (consumo + demanda). Todo o universo industrial relevante da GridAlpha está aqui.",
+        "n_ocorrencias": 1,
+        "ocorrencias_contexto": [
+          "da no tempo (∫P·dt). Em consumidores do Grupo A, a fatura tarifa demanda em kW (TUSD-de"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Grupo A",
+          "linha_aprox": 2592
+        },
+        "leitura_nota": "menção no painel 3 (\"Em consumidores do Grupo A\"); a A01 não o define."
+      },
+      {
+        "termo": "kW",
+        "unidade_rotulo": "Potência ativa",
+        "definicao_html": "Quilowatt. Unidade de potência ativa — a parcela da potência elétrica que realiza trabalho útil (gira eixo, esquenta forno, aciona esteira). 1 kW = 1.000 W. Não confundir com kWh, que é energia.",
+        "n_ocorrencias": 22,
+        "ocorrencias_contexto": [
+          "módulo, que seja essa. O erro de tratar kW e kWh como sinônimos é a primeira fluên",
+          " mede Vazão da torneira (L/s) Potência (kW) Quanto fluxo neste instante Volume na ",
+          "dade base de potência Lâmpada LED ≈ 9 W kW 1.000 W — potência residencial e comerc",
+          "ial e comercial Chuveiro elétrico ≈ 5,5 kW MW 1.000 kW — escala industrial e sistê",
+          "ial Chuveiro elétrico ≈ 5,5 kW MW 1.000 kW — escala industrial e sistêmica Britado",
+          "pu ≈ 14 GW de capacidade kWh energia: 1 kW durante 1 hora Geladeira/mês ≈ 40 kWh M",
+          "a tudo Energia = Potência × Tempo kWh = kW × horas Um motor de 10 kW ligado por 5 ",
+          "× Tempo kWh = kW × horas Um motor de 10 kW ligado por 5 horas consome 50 kWh . Um ",
+          "as consome 50 kWh . Um equipamento de 2 kW ligado por 10 horas consome 20 kWh . A ",
+          "s. Pratique abaixo. Calculadora · kWh = kW × h INST · 01 Potência kW Tempo h Energ",
+          "adora · kWh = kW × h INST · 01 Potência kW Tempo h Energia consumida 50 kWh Experi",
+          " Experimente comparar dois cenários: 50 kW × 1 h e 1 kW × 50 h . Mesmo kWh, perfis"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "kW",
+          "linha_aprox": 2612
+        },
+        "leitura_nota": "unidade central: tabela 1.3, fórmula e instrumento."
+      },
+      {
+        "termo": "kWh",
+        "unidade_rotulo": "Energia",
+        "definicao_html": "Quilowatt-hora. Unidade de energia equivalente a um quilowatt durante uma hora. É a grandeza que aparece como \"consumo\" em qualquer fatura elétrica. kWh = kW × h.",
+        "n_ocorrencias": 18,
+        "ocorrencias_contexto": [
+          "o, que seja essa. O erro de tratar kW e kWh como sinônimos é a primeira fluência qu",
+          "e instante Volume na caixa (L) Energia (kWh) Quanto se acumulou no tempo Pressão da",
+          "a nacional Itaipu ≈ 14 GW de capacidade kWh energia: 1 kW durante 1 hora Geladeira/",
+          " 1 kW durante 1 hora Geladeira/mês ≈ 40 kWh MWh 1.000 kWh — escala industrial Cimen",
+          "1 hora Geladeira/mês ≈ 40 kWh MWh 1.000 kWh — escala industrial Cimenteira/mês ≈ 5.",
+          "conecta tudo Energia = Potência × Tempo kWh = kW × horas Um motor de 10 kW ligado p",
+          " de 10 kW ligado por 5 horas consome 50 kWh . Um equipamento de 2 kW ligado por 10 ",
+          " de 2 kW ligado por 10 horas consome 20 kWh . A multiplicação é trivial. O que não ",
+          "biáveis. Pratique abaixo. Calculadora · kWh = kW × h INST · 01 Potência kW Tempo h ",
+          "otência kW Tempo h Energia consumida 50 kWh Experimente comparar dois cenários: 50 ",
+          "rios: 50 kW × 1 h e 1 kW × 50 h . Mesmo kWh, perfis completamente diferentes. A pri",
+          " 50 kW de pico. A segunda, para 1 kW. O kWh igual mascara que são problemas de enge"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "kWh",
+          "linha_aprox": 2616
+        },
+        "leitura_nota": "unidade central: tabela 1.3, fórmula e instrumento."
+      },
+      {
+        "termo": "Potência",
+        "unidade_rotulo": "W, kW, MW",
+        "definicao_html": "Taxa instantânea de uso, geração ou transformação de energia. Unidade SI é o watt (W). Difere de energia: potência mede velocidade; energia mede volume acumulado.",
+        "n_ocorrencias": 17,
+        "ocorrencias_contexto": [
+          "Aula 01 Energia × Potência Energia é volume. Potência é velocidade",
+          "01 Energia × Potência Energia é volume. Potência é velocidade . Se você dominar uma dist",
+          "ustos de cada transformação física. 1.2 Potência é a taxa Potência é a velocidade com qu",
+          "sformação física. 1.2 Potência é a taxa Potência é a velocidade com que energia é usada,",
+          " responde \"quanto foi usado no total?\". Potência responde \"com que ritmo está sendo usad",
+          "rico O que mede Vazão da torneira (L/s) Potência (kW) Quanto fluxo neste instante Volume",
+          " dois minutos enche pouco volume — alta potência, baixa energia. Uma torneira fraca aber",
+          "ito horas enche bastante volume — baixa potência, alta energia. Volume e velocidade não ",
+          " Escala típica W watt — unidade base de potência Lâmpada LED ≈ 9 W kW 1.000 W — potência",
+          "potência Lâmpada LED ≈ 9 W kW 1.000 W — potência residencial e comercial Chuveiro elétri",
+          ".4 A fórmula que conecta tudo Energia = Potência × Tempo kWh = kW × horas Um motor de 10",
+          "o. Calculadora · kWh = kW × h INST · 01 Potência kW Tempo h Energia consumida 50 kWh Exp"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Potência",
+          "linha_aprox": 2644
+        },
+        "leitura_nota": "conceito central: título 1.2 e fórmula 1.4. Na marcação \"Energia × Potência\" e em \"Potência é a taxa\" o termo é o assunto."
+      },
+      {
+        "termo": "Tensão",
+        "unidade_rotulo": "V, kV",
+        "definicao_html": "Diferença de potencial elétrico entre dois pontos de um circuito. Analogia hidráulica: pressão da água. Unidade SI é o volt (V). Define grupo tarifário no Brasil: Grupo B (baixa tensão, &lt; 2,3 kV) ou Grupo A (média/alta tensão, ≥ 2,3 kV).",
+        "n_ocorrencias": 1,
+        "ocorrencias_contexto": [
+          "to se acumulou no tempo Pressão da água Tensão (V) A \"força\" que empurra Diâmetro do c"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Tensão",
+          "linha_aprox": 2656
+        },
+        "leitura_nota": "célula \"Tensão (V)\" da tabela 1.2 (analogia hidráulica): uso real do conceito, sem definição."
+      },
+      {
+        "termo": "TUSD",
+        "unidade_rotulo": "Tarifa",
+        "definicao_html": "Tarifa de Uso do Sistema de Distribuição. Componente tarifária que remunera o uso da infraestrutura de distribuição. Subdivide-se em TUSD-fio (rede física e perdas) e TUSD-demanda (capacidade reservada). Separada da TE (Tarifa de Energia) que remunera a energia em si.",
+        "n_ocorrencias": 2,
+        "ocorrencias_contexto": [
+          "Grupo A, a fatura tarifa demanda em kW (TUSD-demanda) e energia em kWh (TE + TUSD-en",
+          "W (TUSD-demanda) e energia em kWh (TE + TUSD-energia) sob lógicas distintas — capaci"
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "TUSD",
+          "linha_aprox": 2664
+        },
+        "leitura_nota": "sigla em \"TUSD-demanda\" e \"TUSD-energia\" no painel 3: menção, sem definição."
+      },
+      {
+        "termo": "Watt (W)",
+        "unidade_rotulo": "Potência",
+        "definicao_html": "Unidade SI de potência. 1 W = 1 J/s (joule por segundo). Em circuitos DC: W = V × A. Em escala industrial usa-se kW (1.000 W) ou MW (1.000.000 W).",
+        "n_ocorrencias": 1,
+        "ocorrencias_contexto": [
+          "dades Unidade Significa Escala típica W watt — unidade base de potência Lâmpada LED "
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Watt (W)",
+          "linha_aprox": 2676
+        },
+        "leitura_nota": "uma ocorrência, na linha \"W — watt — unidade base de potência\" da tabela 1.3: uso real do verbete, sem subseção própria."
+      }
+    ],
+    "comparacao_com_inventario": {
+      "fonte_da_lista": "docs/alexandria-v2/m01/aulas.md, seção 5 de cada aula (derivação nossa, não do HTML)",
+      "inventario": [
+        "Energia",
+        "Potência",
+        "kW",
+        "kWh",
+        "Watt (W)",
+        "Eficiência"
+      ],
+      "inventario_sem_correspondencia_textual": [
+        "Eficiência"
+      ],
+      "candidatos_fora_do_inventario": [
+        "Demanda",
+        "Grupo A",
+        "Tensão",
+        "TUSD"
+      ]
+    }
+  },
+  "instrumentos": [
+    {
+      "id": "m01-inst-01",
+      "id_fonte": "INST · 01",
+      "kind_taxonomia": "calculadora",
+      "kind_nota": "Taxonomia: \"Calculadora · kWh = kW × h\" é `calculadora` (2 campos numéricos → 1 saída numérica). Confirmado pela marcação: 2 input[type=number], 1 saída numérica, sem texto de leitura dinâmico.",
+      "titulo": "Calculadora · kWh = kW × h",
+      "pergunta": null,
+      "pergunta_nota": "A prancha não tem pergunta própria. O convite da div.instrument-note (\"Experimente comparar dois cenários: 50 kW × 1 h e 1 kW × 50 h.\") é a coisa mais próxima, e a fonte não o chama de pergunta. A pergunta do § MAP (L1339) está fora do instrumento. Qualquer pergunta de previsão seria DERIVADA (P3/P11), não extraída.",
+      "instrucao": null,
+      "instrucao_nota": "Sem p de instrução dentro de div.instrument-body.",
+      "vinculos": {
+        "aula": "m01-a01",
+        "exercicio_relacionado": null,
+        "termo": null
+      },
+      "vinculos_nota": "O vínculo aula↔instrumento é por posição (div.instrument está dentro da section da aula). O vínculo com termos do léxico e com o exercício não é declarado pela fonte.",
+      "entradas": [
+        {
+          "id": "i01-kw",
+          "rotulo": "Potência",
+          "unidade": "kW",
+          "tipo_input": "number",
+          "padrao": 10,
+          "placeholder": null,
+          "min": 0,
+          "max": null,
+          "max_nota": "Sem atributo max na fonte.",
+          "step": 0.5,
+          "atributos_literais": {
+            "type": "number",
+            "id": "i01-kw",
+            "value": "10",
+            "min": "0",
+            "step": "0.5"
+          },
+          "origem": {
+            "seletor": "input#i01-kw",
+            "trecho_inicial": "Potência kW",
+            "linha_aprox": 1433
+          }
+        },
+        {
+          "id": "i01-h",
+          "rotulo": "Tempo",
+          "unidade": "h",
+          "tipo_input": "number",
+          "padrao": 5,
+          "placeholder": null,
+          "min": 0,
+          "max": null,
+          "max_nota": "Sem atributo max na fonte.",
+          "step": 0.5,
+          "atributos_literais": {
+            "type": "number",
+            "id": "i01-h",
+            "value": "5",
+            "min": "0",
+            "step": "0.5"
+          },
+          "origem": {
+            "seletor": "input#i01-h",
+            "trecho_inicial": "Tempo h",
+            "linha_aprox": 1437
+          }
+        }
+      ],
+      "saidas": [
+        {
+          "id": "i01-out",
+          "rotulo": "Energia consumida",
+          "valor_inicial_marcacao": "50",
+          "unidade": "kWh",
+          "estilo_inline": null,
+          "origem": {
+            "seletor": "div.instrument-output > span#i01-out",
+            "trecho_inicial": "Energia consumida",
+            "linha_aprox": 1441,
+            "linha_fim_aprox": 1442
+          },
+          "formula_exata_script": [
+            "const v = (parseFloat(kw.value) || 0) * (parseFloat(h.value) || 0);"
+          ],
+          "formula_exibida_na_aula": "Energia = Potência × Tempo",
+          "formula_exibida_na_aula_nota": "Está na prosa, FORA do div.instrument."
+        }
+      ],
+      "texto_nota_estatica": {
+        "id": null,
+        "html": "Experimente comparar dois cenários: <b>50 kW × 1 h</b> e <b>1 kW × 50 h</b>. Mesmo kWh, perfis completamente diferentes. A primeira instalação exige rede para 50 kW de pico. A segunda, para 1 kW. <b>O kWh igual mascara que são problemas de engenharia opostos.</b>",
+        "texto": "Experimente comparar dois cenários: 50 kW × 1 h e 1 kW × 50 h. Mesmo kWh, perfis completamente diferentes. A primeira instalação exige rede para 50 kW de pico. A segunda, para 1 kW. O kWh igual mascara que são problemas de engenharia opostos.",
+        "marcacao_inline": {
+          "b": [
+            "50 kW × 1 h",
+            "1 kW × 50 h",
+            "O kWh igual mascara que são problemas de engenharia opostos."
+          ]
+        },
+        "origem": {
+          "seletor": "div.instrument-note",
+          "trecho_inicial": "Experimente comparar dois cenários: 50 kW × 1 h e 1 kW × 50 ",
+          "linha_aprox": 1445
+        },
+        "nota": "Nota estática: nenhum script escreve nela (diferente do INST·06, cujo texto de leitura é sobrescrito por calc())."
+      },
+      "script": {
+        "origem": {
+          "seletor": "script: bloco \"INSTRUMENT 01: kWh = kW × h\"",
+          "trecho_inicial": "INSTRUMENT 01: kWh = kW × h",
+          "linha_aprox": 2737,
+          "linha_fim_aprox": 2750
+        },
+        "linhas": [
+          {
+            "n": 2737,
+            "texto": "/* ============================================================"
+          },
+          {
+            "n": 2738,
+            "texto": "   INSTRUMENT 01: kWh = kW × h"
+          },
+          {
+            "n": 2739,
+            "texto": "   ============================================================ */"
+          },
+          {
+            "n": 2740,
+            "texto": "(function() {"
+          },
+          {
+            "n": 2741,
+            "texto": "  const kw = document.getElementById('i01-kw');"
+          },
+          {
+            "n": 2742,
+            "texto": "  const h  = document.getElementById('i01-h');"
+          },
+          {
+            "n": 2743,
+            "texto": "  const out = document.getElementById('i01-out');"
+          },
+          {
+            "n": 2744,
+            "texto": "  function calc() {"
+          },
+          {
+            "n": 2745,
+            "texto": "    const v = (parseFloat(kw.value) || 0) * (parseFloat(h.value) || 0);"
+          },
+          {
+            "n": 2746,
+            "texto": "    out.textContent = v.toLocaleString('pt-BR', { maximumFractionDigits: 2 });"
+          },
+          {
+            "n": 2747,
+            "texto": "  }"
+          },
+          {
+            "n": 2748,
+            "texto": "  [kw, h].forEach(el => el.addEventListener('input', calc));"
+          },
+          {
+            "n": 2749,
+            "texto": "  calc();"
+          },
+          {
+            "n": 2750,
+            "texto": "})();"
+          }
+        ],
+        "nota": "Linhas verbatim, uma por item, do comentário de abertura até `})();`."
+      },
+      "execucao_do_script_fonte": {
+        "metodo": "O código das linhas do script foi executado com `new Function` sobre um `document` simulado (getElementById devolve objetos com value/textContent/addEventListener). Os estados abaixo são saída real do script, não leitura.",
+        "resultados": [
+          {
+            "nome": "carga (valores da marcação)",
+            "entradas": {
+              "i01-kw": "10",
+              "i01-h": "5"
+            },
+            "saida_texto": "50"
+          },
+          {
+            "nome": "nota da fonte, cenário 1: 50 kW × 1 h",
+            "entradas": {
+              "i01-kw": "50",
+              "i01-h": "1"
+            },
+            "saida_texto": "50"
+          },
+          {
+            "nome": "nota da fonte, cenário 2: 1 kW × 50 h",
+            "entradas": {
+              "i01-kw": "1",
+              "i01-h": "50"
+            },
+            "saida_texto": "50"
+          },
+          {
+            "nome": "campos vazios",
+            "entradas": {
+              "i01-kw": "",
+              "i01-h": ""
+            },
+            "saida_texto": "0"
+          },
+          {
+            "nome": "arredondamento: 0,333 kW × 1 h",
+            "entradas": {
+              "i01-kw": "0.333",
+              "i01-h": "1"
+            },
+            "saida_texto": "0,33"
+          },
+          {
+            "nome": "milhar: 1500 kW × 2 h",
+            "entradas": {
+              "i01-kw": "1500",
+              "i01-h": "2"
+            },
+            "saida_texto": "3.000"
+          }
+        ]
+      },
+      "residuos_do_script": [
+        "O cálculo é `(parseFloat(kw.value) || 0) * (parseFloat(h.value) || 0)`: campo vazio ou não numérico vale 0 e a saída é \"0\".",
+        "A saída é `toLocaleString('pt-BR', { maximumFractionDigits: 2 })`: no máximo 2 casas, sem mínimo (50 → \"50\"; 0,333 → \"0,33\").",
+        "O `calc()` roda uma vez no carregamento (linha `calc();` antes do `})();`) e a cada evento `input` dos dois campos.",
+        "Não há max nem validação de negativo: o atributo min=\"0\" é só do navegador, e o script aceita um valor negativo digitado."
+      ],
+      "residuos_do_script_nota": "Resíduos do original, sinalizados e não corrigidos (§10).",
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "A fonte não cita procedência para os valores-padrão (10 kW, 5 h) nem para os cenários da nota (50 kW × 1 h, 1 kW × 50 h).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada (P6). O instrumento não tem previsão, gabarito nem correção; não existe \"dentro/fora\".",
+      "figura_prometida": null,
+      "figura_prometida_nota": "O título (\"Calculadora · …\") não promete forma desenhada.",
+      "origem": {
+        "seletor": "section.aula(Aula 01) div.instrument",
+        "trecho_inicial": "Calculadora · kWh = kW × h INST · 01",
+        "linha_aprox": 1424,
+        "linha_fim_aprox": 1448
+      },
+      "linha_fim_aprox": 1448
+    }
+  ],
+  "invocacoes_no_texto": [
+    {
+      "id": "m01-a01-inv-01",
+      "alvo": "m01-inst-01",
+      "tipo": "invocacao_direta",
+      "texto": "Pratique abaixo.",
+      "bloco": "m01-a01-b15-paragrafo",
+      "origem": {
+        "seletor": "p que antecede o instrumento",
+        "trecho_inicial": "Pratique abaixo.",
+        "linha_aprox": 1421
+      },
+      "posicao_instrumento": "imediatamente depois deste parágrafo (linhas undefined–1448)"
+    }
+  ],
+  "remissoes_a_outras_aulas": [],
+  "exercicios": [
+    {
+      "id": "m01-ex-01",
+      "tipo": "discursiva_com_gabarito",
+      "tag_fonte": "Ex · 01 · Aula 01",
+      "vinculo_declarado": {
+        "aula": "m01-a01",
+        "como": "span.exercise-tag \"Ex · 01 · Aula 01\" (tag de posse, §4 do protocolo)"
+      },
+      "enunciado_html": "Um motor de <b>15 kW</b> opera por <b>8 horas</b>. Qual o consumo em kWh? E se o motor operar 12 horas, o que muda: kW, kWh ou ambos?",
+      "enunciado_texto": "Um motor de 15 kW opera por 8 horas. Qual o consumo em kWh? E se o motor operar 12 horas, o que muda: kW, kWh ou ambos?",
+      "rotulo_botao_gabarito": "Revelar gabarito",
+      "resposta_referencia_html": "Consumo: <span class=\"calc\">15 × 8 = 120 kWh</span>. Operando por 12 horas: <span class=\"calc\">15 × 12 = 180 kWh</span>. O kW (potência) <b>não muda</b> — a máquina continua sendo 15 kW. O que muda é apenas o kWh acumulado, porque o tempo de operação aumentou. Para um gestor industrial: <i>\"a potência da máquina é a mesma; ela só ficou ligada por mais horas\".</i>",
+      "resposta_referencia_texto": "Consumo: 15 × 8 = 120 kWh. Operando por 12 horas: 15 × 12 = 180 kWh. O kW (potência) não muda — a máquina continua sendo 15 kW. O que muda é apenas o kWh acumulado, porque o tempo de operação aumentou. Para um gestor industrial: \"a potência da máquina é a mesma; ela só ficou ligada por mais horas\".",
+      "calculos_em_destaque": [
+        "15 × 8 = 120 kWh",
+        "15 × 12 = 180 kWh"
+      ],
+      "criterio": null,
+      "criterio_nota": "Sem critério por exercício na fonte. O único critério declarado é de nível do § Drill (todos os exercícios), citado em criterio_modulo_drill.",
+      "criterio_modulo_drill": {
+        "texto": "Resolva cada exercício mentalmente ou no papel antes de revelar a resposta. Os exercícios alcançam todas as nove aulas. O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+        "origem": {
+          "seletor": "§ Drill > p",
+          "trecho_inicial": "Resolva cada exercício mentalmente ou no papel antes de reve",
+          "linha_aprox": 2389
+        }
+      },
+      "mecanica_fonte": "button.exercise-toggle \"Revelar gabarito\" (onclick toggleAns, L2984–2993) alterna a visibilidade da resposta; a resposta está no DOM desde a carga. Sem tentativa registrada antes da referência.",
+      "vinculos": {
+        "aula": "m01-a01",
+        "instrumento": null,
+        "instrumento_nota": "Não declarado pela fonte.",
+        "termo": null
+      },
+      "origem": {
+        "seletor": "§ Drill > div.exercise:nth-of-type(1)",
+        "trecho_inicial": "Ex · 01 · Aula 01 Um motor de 15 kW opera por 8 horas. Qual o consumo em kWh? ",
+        "linha_aprox": 2391,
+        "linha_fim_aprox": 2398
+      },
+      "linha_fim_aprox": 2398
+    }
+  ],
+  "relacionados_nao_vinculados": [
+    {
+      "id": "m01-quiz-q01",
+      "tipo": "questao_quiz_multipla_escolha",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Sem tag de aula no array `questions` do script. Tema coincide; posse NÃO declarada (pertence à avaliação do módulo). Listado só para rastreio.",
+      "enunciado": "Um motor de 20 kW opera por 4 horas. Qual o consumo?",
+      "opcoes": [
+        "20 kW",
+        "80 kW",
+        "80 kWh",
+        "5 kWh"
+      ],
+      "indice_correto": 2,
+      "opcao_correta": "80 kWh",
+      "feedback": "Consumo = potência × tempo = 20 kW × 4 h = 80 kWh. kW mede potência (taxa); kWh mede energia (acumulado). Esse é o teste mais básico de fluência kW vs kWh.",
+      "origem": {
+        "seletor": "script: const questions = [...]",
+        "trecho_inicial": "Um motor de 20 kW opera por 4 horas. Qual o consumo?",
+        "linha_aprox": 3078
+      }
+    },
+    {
+      "id": "m01-checklist-01",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática.",
+      "texto": "Explicar kW vs kWh em 30 segundos, com exemplo numérico.",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Explicar kW vs kWh em 30 segundos, com exemplo numérico.",
+        "linha_aprox": 2497
+      }
+    },
+    {
+      "id": "m01-checklist-02",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática.",
+      "texto": "Dar um exemplo de Energia = Potência × Tempo, com unidades corretas.",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Dar um exemplo de Energia = Potência × Tempo, com unidades c",
+        "linha_aprox": 2498
+      }
+    }
+  ],
+  "mencoes_externas_a_esta_aula": {
+    "total": 1,
+    "itens": [
+      {
+        "linha": 2392,
+        "trecho": "Ex · 01 · Aula 01"
+      }
+    ],
+    "nota": "Varredura do arquivo inteiro por \"Aula 0N\" fora da section da aula (tags de exercício, tabela § MAP, etc.). A tag do exercício vinculado é a linha do § Drill; as demais são só rastreio."
+  },
+  "cobertura_texto_por_token": {
+    "tokens_fonte_sem_instrumento": 828,
+    "tokens_extraidos": 828,
+    "tokens_casados": 828,
+    "pct": 100,
+    "tokens_nao_casados": [],
+    "sequencia_identica_em_ordem": true,
+    "nota": "Denominador = texto da section sem o div.instrument (e sem o comentário que o precede), §5; tags viram espaço para o medidor não colar spans vizinhos. A sequência de tokens extraída é comparada com a da fonte em ordem. Instrumento medido à parte em cobertura_instrumento."
+  },
+  "cobertura_instrumento": {
+    "tokens_fonte": 57,
+    "tokens_extraidos": 57,
+    "sequencia_identica_em_ordem": true,
+    "nota": "Texto visível da marcação do div.instrument (título, id, instrução, rótulos, unidades, saída, nota) contra os campos do instrumento, em ordem."
+  },
+  "divergencias": [
+    {
+      "id": "DIV-01",
+      "tipo": "analogia_hidraulica_contraditoria_entre_aulas",
+      "o_que": "A analogia hidráulica atribui papéis diferentes a \"vazão\" e \"corrente\" na A01 e na A02.",
+      "leituras": [
+        {
+          "rotulo": "A01, tabela 1.2",
+          "texto": "Vazão da torneira (L/s) | Potência (kW) | Quanto fluxo neste instante",
+          "origem": {
+            "seletor": "tabela 1.2 > tr",
+            "trecho_inicial": "Vazão da torneira (L/s)Potência (kW)Quanto fluxo neste insta",
+            "linha_aprox": 1386
+          }
+        },
+        {
+          "rotulo": "A01, tabela 1.2",
+          "texto": "Diâmetro do cano | Corrente (A) | Quanta carga atravessa",
+          "origem": {
+            "seletor": "tabela 1.2 > tr",
+            "trecho_inicial": "Diâmetro do canoCorrente (A)Quanta carga atravessa",
+            "linha_aprox": 1389
+          }
+        },
+        {
+          "rotulo": "A02, 2.2",
+          "texto": "Ampere (A) mede corrente elétrica: o fluxo de carga elétrica passando pelo condutor por segundo. Se tensão é pressão, corrente é vazão. Cargas grandes — motores industriais, britadores, fornos — puxam mais corrente, especialmente em tensões mais baixas.",
+          "origem": {
+            "seletor": "h3(2.2) ~ p",
+            "trecho_inicial": "Ampere (A) mede corrente elétrica: o fluxo de carga elétrica",
+            "linha_aprox": 1512
+          }
+        },
+        {
+          "rotulo": "§ Lex, Ampere (A)",
+          "texto": "Unidade de medida de corrente elétrica — o fluxo de carga que atravessa um condutor por segundo. Analogia hidráulica: vazão de água. Em instalações industriais, cargas grandes (motores, britadores, fornos) puxam alta corrente especialmente quando operam em tensões mais baixas.",
+          "origem": {
+            "seletor": "§ Lex Ampere (A) > div.glossary-content",
+            "trecho_inicial": "Unidade de medida de corrente elétrica — o fluxo de carga qu",
+            "linha_aprox": 2529
+          }
+        }
+      ],
+      "argumento": "Na tabela 1.2 a vazão (L/s) corresponde à potência e o diâmetro do cano à corrente; na 2.2 e no verbete, a corrente é a vazão. Já registrada como R5 em docs/alexandria-v2/m01/aulas.md.",
+      "decisao": "não escolhida — preservar as duas leituras; é Content QA antes de desenhar a analogia."
+    },
+    {
+      "id": "DIV-02",
+      "tipo": "grafia_da_formula_energia",
+      "o_que": "A fórmula de energia aparece com \"horas\" por extenso na aula e com \"h\" no título do instrumento e no léxico.",
+      "leituras": [
+        {
+          "rotulo": "div.formula.desc (1.4)",
+          "texto": "kWh = kW × horas",
+          "origem": {
+            "seletor": "h3(1.4) ~ div.formula > div.desc",
+            "trecho_inicial": "kWh = kW × horas",
+            "linha_aprox": 1418
+          }
+        },
+        {
+          "rotulo": "título do INST·01",
+          "texto": "Calculadora · kWh = kW × h",
+          "origem": {
+            "seletor": "div.instrument-title",
+            "trecho_inicial": "Calculadora · kWh = kW × h",
+            "linha_aprox": 1426
+          }
+        },
+        {
+          "rotulo": "§ Lex, kWh",
+          "texto": "Quilowatt-hora. Unidade de energia equivalente a um quilowatt durante uma hora. É a grandeza que aparece como \"consumo\" em qualquer fatura elétrica. kWh = kW × h.",
+          "origem": {
+            "seletor": "§ Lex kWh > div.glossary-content",
+            "trecho_inicial": "Quilowatt-hora. Unidade de energia equivalente a um quilowat",
+            "linha_aprox": 2617
+          }
+        }
+      ],
+      "argumento": "Mesma relação; só a grafia da unidade de tempo difere (\"horas\" × \"h\").",
+      "decisao": "não escolhida — informativa."
+    }
+  ],
+  "comparacao_codigo": {
+    "arquivos": [
+      "src/lib/data/alexandria-modulo-01-content.ts (MODULO_01_CORPO aula-01-01; INSTRUMENTOS_MODULO_01 inst-01; MODULO_01_AULAS aula-01-01; MODULO_01_LEAD aula-01-01)",
+      "src/lib/data/alexandria-instrument-calculators.ts (inst-01)",
+      "src/components/alexandria/viewer/AulaViewer.tsx L125 e src/lib/types/alexandria.ts L271 (lidos para entender o efeito das divergências; não são fonte)"
+    ],
+    "verificacoes_programaticas": {
+      "n_blocos_codigo": 21,
+      "n_blocos_fonte_sem_instrumento": 20,
+      "paragrafos_verbatim": 5,
+      "paragrafos_texto_igual_marcacao_diferente": 1,
+      "paragrafos_ausentes": 0,
+      "titulos_ausentes": [],
+      "formulas": [
+        {
+          "numero_bloco": "m01-a01-b14-formula",
+          "eq_texto": "Energia = Potência × Tempo",
+          "no_codigo": true,
+          "eq_igual": true,
+          "desc_fonte": "kWh = kW × horas",
+          "desc_codigo": null
+        }
+      ],
+      "tabelas": [
+        {
+          "bloco": "m01-a01-b09-tabela",
+          "no_codigo": true,
+          "celulas": 12,
+          "verbatim": 12,
+          "so_difere_por_atributo_class": 0,
+          "divergentes": 0
+        },
+        {
+          "bloco": "m01-a01-b12-tabela",
+          "no_codigo": true,
+          "celulas": 21,
+          "verbatim": 14,
+          "so_difere_por_atributo_class": 7,
+          "divergentes": 0
+        }
+      ],
+      "destaques": [
+        {
+          "bloco": "m01-a01-b05-destaque",
+          "tom_fonte": "neutro",
+          "rotulo": "Princípio físico subjacente",
+          "rotulo_no_codigo_como": "nota{tom:\"neutro\", label:null, html:rótulo}",
+          "paragrafos_fonte": 1,
+          "paragrafos_no_codigo": 1
+        },
+        {
+          "bloco": "m01-a01-b18-destaque",
+          "tom_fonte": "red",
+          "rotulo": "Erro de fluência",
+          "rotulo_no_codigo_como": "nota{tom:\"red\", label:null, html:rótulo}",
+          "paragrafos_fonte": 3,
+          "paragrafos_no_codigo": 1
+        },
+        {
+          "bloco": "m01-a01-b21-destaque",
+          "tom_fonte": "neutro",
+          "rotulo": "Onde isso entra no produto",
+          "rotulo_no_codigo_como": "nota{tom:\"neutro\", label:null, html:rótulo}",
+          "paragrafos_fonte": 1,
+          "paragrafos_no_codigo": 1
+        }
+      ],
+      "tres_niveis": [
+        {
+          "bloco": "m01-a01-b20-tres_niveis",
+          "paineis_fonte": 3,
+          "paineis_no_codigo": 0,
+          "abas_fonte": 3,
+          "abas_no_codigo": 0
+        }
+      ],
+      "span_fechamento_orfao_no_corpo": 6,
+      "lead_verbatim": true,
+      "ex_enunciado_verbatim": true,
+      "ex_gabarito_verbatim": true,
+      "inst_titulo_verbatim": true,
+      "inst_nota_verbatim": true
+    },
+    "conforme": [
+      "Lead verbatim em MODULO_01_LEAD[\"aula-01-01\"].",
+      "Títulos 1.1–1.6 com número e texto corretos.",
+      "Cabeçalhos das tabelas 1.2 e 1.3 verbatim.",
+      "Ex·01: tag, enunciado e gabarito verbatim; vinculado à aula pela tag.",
+      "INST·01: título, ids dos campos, rótulos, unidades, padrões (10 e 5), min 0, step 0,5, ausência de max, rótulo/unidade da saída e nota verbatim.",
+      "durationMinutes/difficulty/video = null, coerente com a fonte."
+    ],
+    "divergencias": [
+      {
+        "id": "COD-01",
+        "gravidade": "alta",
+        "onde": "MODULO_01_CORPO[\"aula-01-01\"] callout \"Erro de fluência\"",
+        "o_que": "Callout vermelho com 3 parágrafos na fonte; o código tem 1. Faltam 2 parágrafos (\"A empresa consumiu 500 kW no mês.\" e \"Esse deslize, em conversa com diretor de energia…\"). O rótulo virou nota{tom:\"red\", label:null, html:rótulo} (o tom \"red\" foi preservado; o texto do rótulo ocupa o corpo da nota). Os parágrafos 2 e 3, os ausentes, levam style=\"margin-top: 12px;\" na fonte.",
+        "fonte": "linhas 1452–1457"
+      },
+      {
+        "id": "COD-02",
+        "gravidade": "alta",
+        "onde": "MODULO_01_CORPO[\"aula-01-01\"] seção 1.6",
+        "o_que": "O h3 1.6 \"O conceito em três níveis\" foi portado, mas o componente three-levels inteiro não: 0 de 3 painéis e 0 de 3 rótulos de aba (\"01 · 12 anos\", \"02 · Executivo não técnico\", \"03 · Especialista de setor\") estão no código. A seção 1.6 fica sem conteúdo e é seguida direto pelo callout \"Onde isso entra no produto\".",
+        "fonte": "linhas 1459–1472"
+      },
+      {
+        "id": "COD-03",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-01\"] fórmula 1.4",
+        "o_que": "desc = null no código; a fonte tem div.desc \"kWh = kW × horas\". O eq é igual (\"Energia = Potência × Tempo\").",
+        "fonte": "linhas 1416–1419"
+      },
+      {
+        "id": "COD-04",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-01\"] parágrafo 1.4 (L190 do .ts)",
+        "o_que": "Parágrafo não verbatim: os 6 <span class=\"hl\"> foram removidos e os 6 </span> de fechamento ficaram (HTML malformado: \"Um motor de 10 kW</span> ligado por 5 horas</span> consome 50 kWh</span>…\"). Texto sem tags igual ao da fonte.",
+        "fonte": "linha 1421"
+      },
+      {
+        "id": "COD-05",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-01\"] callouts neutros",
+        "o_que": "2 callouts neutros (\"Princípio físico subjacente\", \"Onde isso entra no produto\") portados como nota { tom: \"neutro\", label: null, html: <rótulo> } seguida de parágrafo solto: o rótulo ocupa o corpo e o corpo vira parágrafo comum, e a hierarquia rótulo → corpo se perde. Os parágrafos em si são verbatim (2 de 2).",
+        "fonte": "linhas 1370–1373 e 1474–1477"
+      },
+      {
+        "id": "COD-06",
+        "gravidade": "alta",
+        "onde": "AulaViewer.tsx + MODULO_01_AULAS aula-01-01",
+        "o_que": "O instrumento não tem posição no fluxo: está em aula.instruments e AulaViewer.tsx (L125) o renderiza depois da apostila inteira e antes dos exercícios. Na fonte ele fica entre o parágrafo 1.4, que termina em \"Pratique abaixo.\", e o h3 1.5. O \"abaixo\" do texto passa a apontar para a seção 1.5 e os blocos seguintes. Viola bar C5 e a Regra-mãe 1.",
+        "fonte": "linhas 1423–1448"
+      },
+      {
+        "id": "COD-07",
+        "gravidade": "média",
+        "onde": "INSTRUMENTOS_MODULO_01 inst-01 .formula",
+        "o_que": "formula = \"kWh = kW × h\" é o sufixo do título \"Calculadora · kWh = kW × h\"; o instrumento não declara fórmula própria. O texto literal na prosa é o div.desc da 1.4, \"kWh = kW × horas\" (fora do instrumento). Ver DIV-02.",
+        "fonte": "linhas 1418, 1426"
+      },
+      {
+        "id": "COD-08",
+        "gravidade": "baixa",
+        "onde": "MODULO_01_CORPO[\"aula-01-01\"] tabelas",
+        "o_que": "As 2 tabelas (1.2 e 1.3) têm 33 células de dados no total; 26 são verbatim, 7 só diferem por atributo class (a tabela 1.3 usa <b class=\"mono\"> e o código grava <b>) e 0 divergem de outra forma. Os cabeçalhos são verbatim.",
+        "fonte": "linhas 1380–1392 e 1397–1412"
+      },
+      {
+        "id": "COD-09",
+        "gravidade": "baixa",
+        "onde": "MODULO_01_AULAS aula-01-01 activities[0].points",
+        "o_que": "`points: 1` não tem origem na fonte (o § Drill não pontua exercícios). O enunciado, o gabarito e a tag do Ex·01 são verbatim.",
+        "fonte": "linhas 2391–2398"
+      },
+      {
+        "id": "COD-10",
+        "gravidade": "baixa",
+        "onde": "alexandria-instrument-calculators.ts n()",
+        "o_que": "n() usa Number(v) e o original usa parseFloat(v) || 0. Diferem em strings com sufixo não numérico (\"12abc\": parseFloat → 12, Number → 0). Com input[type=number] a diferença é praticamente inalcançável; registrada por fidelidade (§10).",
+        "fonte": "linha 2745 (script)"
+      },
+      {
+        "id": "COD-11",
+        "gravidade": "informativa",
+        "onde": "ids",
+        "o_que": "Código usa \"inst-01\", \"ex-01\", \"aula-01-01\"; esta extração usa \"m01-inst-01\", \"m01-ex-01\", \"m01-a01\". Mapeamento 1:1.",
+        "fonte": null
+      }
+    ]
+  },
+  "contagens": {
+    "blocos": 21,
+    "blocos_por_tipo": {
+      "lead": 1,
+      "titulo": 6,
+      "paragrafo": 6,
+      "destaque": 3,
+      "tabela": 2,
+      "formula": 1,
+      "instrumento": 1,
+      "tres_niveis": 1
+    },
+    "secoes_numeradas": [
+      "1.1",
+      "1.2",
+      "1.3",
+      "1.4",
+      "1.5",
+      "1.6"
+    ],
+    "tabelas": 2,
+    "linhas_de_dados_por_tabela": [
+      4,
+      7
+    ],
+    "celulas_de_tabela": 33,
+    "destaques": 3,
+    "paragrafos_de_destaque": 5,
+    "paineis_tres_niveis": 3,
+    "formulas": 1,
+    "formulas_com_desc": 1,
+    "figuras": 0,
+    "listas": 0,
+    "vale_lembrar": 0,
+    "instrumentos": 1,
+    "entradas_instrumento": 2,
+    "saidas_instrumento": 1,
+    "linhas_de_script": 14,
+    "cenarios_de_execucao": 6,
+    "invocacoes_no_texto": 1,
+    "remissoes_a_outras_aulas": 0,
+    "exercicios_vinculados": 1,
+    "relacionados_nao_vinculados": 3,
+    "termos_lexico_candidatos": 9,
+    "verbetes_lexico_modulo": 38,
+    "divergencias_fonte": 2,
+    "divergencias_codigo": 11
+  }
+}

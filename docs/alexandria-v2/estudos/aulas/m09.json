@@ -1,0 +1,548 @@
+{
+  "modulo": "modulo-09",
+  "titulo_catalogo": "Mercado ACR e ACL",
+  "titulo_fonte": "Os Mercados ACR e ACL em Profundidade",
+  "trilha": "Trilha 2 — Setor Elétrico Brasileiro",
+  "estudado_em": "2026-09-17",
+  "autor": "Claude (estudo de representação, camada Alexandria)",
+  "fontes_lidas": {
+    "corpo": "src/lib/data/alexandria-modulo-09-content.ts (MODULO_09_LEAD, MODULO_09_CORPO, MODULO_09_AULAS, MODULO_09_EXERCICIOS_SOLTOS)",
+    "html_fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo09.html (lido inteiro: §00, §MAP, a01–a08, §Caso, §Erros, §Ex, §Quiz, §Voz, §Final, §Lex, §Ref e o script dos 11 instrumentos e do quiz)",
+    "extracao_verificada": "não existe docs/alexandria-v2/extraction/m09 na data deste estudo",
+    "curadoria_de_imagens": "docs/alexandria-v2/media-lab/aulas/m09 sem plano.json; só buscas em andamento em _busca/lt, _busca/lt2 (linhas de transmissão e mapa do sistema interligado) e _busca/sobr (reservatório em seca, fotos do Commons)"
+  },
+  "convencoes": {
+    "bloco_indice": "Índice 0-based em MODULO_09_CORPO[aulaId]. 'depois_do_bloco: N' significa inserir entre o bloco N e o N+1.",
+    "camada": "'fonte' = literal do HTML/TS; 'alexandria' = produto pedagógico desenhado aqui, nunca atribuído à fonte, sujeito a revisão P3/P11.",
+    "p21": "Onde a fonte diz 'fator de carga' exibir FCarga; 'fator de capacidade', FCap. 'Fator de ajuste' fica por extenso (sem sigla nova).",
+    "p18": "Fim de aula: registro Percorrido · Praticado · Serve a. Nunca 'Aprovado'. O critério 8/10 do quiz fica como registro legado, sem declarar domínio.",
+    "p25": "Nenhum jogo desenhado. O módulo só reserva a linha 'experiência jogável em desenho'."
+  },
+  "leitura_do_modulo": {
+    "tese_fonte": "Os dois ambientes não são dois preços: são dois arranjos de alocação de risco, e o preço decorre do arranjo.",
+    "fio_condutor": "As 8 aulas são uma escada de ferramentas de análise que termina num veredito triplo: vale investigar, não vale nas condições informadas, não é possível concluir. Por isso as aulas pedem representações diferentes: decomposição (A01), sistema/carteira (A02), linha do tempo condicionada e rito (A03), anatomia de documento (A04), matriz como palco (A05), laboratório de exposição (A06), mecanismo físico-financeiro + história (A07), triagem de dossiês (A08).",
+    "distribuicao_de_arquetipos": {
+      "aula-09-01": "Anatomia de fatura decomposta (mesa de classificação)",
+      "aula-09-02": "Sistema em camadas: a carteira como estratigrafia + mesa de fichas de leilão",
+      "aula-09-03": "Linha do tempo condicionada (escada + portão de 5 travas) + rito em fita",
+      "aula-09-04": "Anatomia de documento com anotações (proposta-espécime) + mesa de leitura lateral",
+      "aula-09-05": "Matriz como palco (6 × 7), leitura por linha",
+      "aula-09-06": "Laboratório guiado em prancha dividida (carga × contrato × exposição) + teto em camadas",
+      "aula-09-07": "Prancha de mecanismo (condomínio de usinas) + linha do tempo curta + classificador de recorte",
+      "aula-09-08": "Dossiê de triagem com veredito triplo + painel de vigilância"
+    },
+    "instrumentos_da_fonte": [
+      {"id": "INST·01", "nome": "Mapa do mercado — energia, contrato, dinheiro", "secao_fonte": "§MAP (fora de aula)", "desenha_hoje": "no HTML: sim (SVG com 3 camadas de setas e 8 agentes clicáveis); no código v2: não portado"},
+      {"id": "INST·02", "nome": "Comparador componente a componente", "secao_fonte": "a01"},
+      {"id": "INST·03", "nome": "Anatomia do produto de leilão", "secao_fonte": "a02"},
+      {"id": "INST·04", "nome": "Régua de elegibilidade e cronograma condicionado", "secao_fonte": "a03"},
+      {"id": "INST·05", "nome": "Montador de contrato — perfil de risco resultante", "secao_fonte": "a04"},
+      {"id": "INST·06", "nome": "Matriz contrato × risco — produto cartesiano completo", "secao_fonte": "a05"},
+      {"id": "INST·07", "nome": "Simulador de exposição residual", "secao_fonte": "a06"},
+      {"id": "INST·08", "nome": "Anatomia do fator de ajuste", "secao_fonte": "a07"},
+      {"id": "INST·09", "nome": "Roteador — vale investigar, não vale, ou não dá para dizer", "secao_fonte": "a08"},
+      {"id": "INST·10", "nome": "Régua do ciclo comercial — o que pode dar errado em cada etapa", "secao_fonte": "a08"},
+      {"id": "INST·11", "nome": "Localizador de dado de mercado", "secao_fonte": "a08"}
+    ],
+    "estado_no_codigo": "instruments: [] e activities: [] nas 8 aulas (não portados; §9 do bar: 'Instrumentos de M09… não portados'). Nenhum instrumento declara ref nem tol. video: null medido. illustrations só em A04 (mer-01-aperto-maos-contrato.png) e A05 (mer-05-balanca-risco-economia.png).",
+    "mapa_aparato_para_aulas": {
+      "camada": "alexandria (vínculo derivado por conteúdo; a fonte não liga exercício a aula; P9: o que não tiver vínculo fica na Revisão)",
+      "exercicios": {
+        "Ex.1": "aula-09-01 (+ INST·01)", "Ex.2": "aula-09-01", "Ex.3": "aula-09-03", "Ex.4": "aula-09-07",
+        "Ex.5": "aula-09-08 (+ A01 Eixo 4)", "Ex.6": "aula-09-03 (+ A01 Eixo 4)", "Ex.7": "aula-09-06 (+ A04)",
+        "Ex.8": "aula-09-05", "Ex.9": "aula-09-01 (obrigação da totalidade) e aula-09-06", "Ex.10": "aula-09-04 (+ A05)",
+        "Ex.11": "aula-09-04", "Ex.12": "aula-09-04", "Ex.13": "aula-09-08 (+ A01)", "Ex.14": "aula-09-01"
+      },
+      "quiz": {
+        "Q1": "aula-09-01", "Q2": "aula-09-03", "Q3": "aula-09-04 / aula-09-06", "Q4": "aula-09-02", "Q5": "aula-09-02",
+        "Q6": "aula-09-07", "Q7": "aula-09-08", "Q8": "aula-09-06", "Q9": "aula-09-03", "Q10": "aula-09-08"
+      },
+      "checklist_final_28": {
+        "itens 1–5": "aula-09-01 (1, 2 e 4 dependem de INST·01)", "itens 6–12": "aula-09-02 (12 também A06)",
+        "itens 13–19": "aula-09-03", "itens 20–22": "aula-09-04", "item 23": "aula-09-05", "item 24": "aula-09-06",
+        "itens 25–26": "aula-09-07", "itens 27–28": "aula-09-08"
+      },
+      "erros_20": {
+        "1": "A01/A08", "2": "A01", "3": "A03", "4": "A03", "5": "A02", "6": "A02/A06", "7": "A04/A06", "8": "A04/A05",
+        "9": "A01 (INST·01)", "10": "A02", "11": "A02", "12": "A02", "13": "A07", "14": "A07", "15": "A07", "16": "A01",
+        "17": "A03", "18": "A03", "19": "A02/A03", "20": "A03/A08"
+      },
+      "voz_40": "As 40 perguntas-relâmpago têm resposta de uma frase na fonte e servem de banco de recuperação (C10). Uso digitado, sem cronômetro (P14: fala cronometrada é só 'atividade recomendada')."
+    },
+    "decisoes_de_posicao_propostas": [
+      "INST·01 continua como peça do módulo (§MAP), mas a camada 'dinheiro' é reusada dentro da A01 no Eixo 1b: a A01 afirma 'quantos pagamentos' só por meio dele (checklist 4, Ex.1).",
+      "INST·05 sai do fim da A04 (Regra-mãe 1: apêndice) e entra depois do bloco 25 (tabela de indexação), antes de 04.5.",
+      "INST·07 sai do fim da A06 e entra depois do bloco 2 (lista 'liquida diferença, não consumo').",
+      "INST·08 sai do fim da A07 e entra depois do bloco 2 (nota 'diversifica hidrologia; não cria água'); a história de 2014–2015 vem depois do ato.",
+      "INST·10 (ciclo comercial do lado do consumidor) é candidato a mudar para a A06, depois do bloco 3 (piso e teto), porque suas etapas 'valoração', 'garantias' e 'liquidação' são o assunto da A06. Decisão do Founder/Design Loop; na A08 ele é apêndice.",
+      "INST·11 fica na A08, no ponto 08.3 (depois do bloco 12), e absorve a lista do bloco 13 como painel (as duas formas dizem o mesmo)."
+    ],
+    "content_qa_do_modulo": [
+      "INST·02: o resumo estático do HTML diz 'Muda de mecanismo 3 · Permanece devido 4', mas os dados do script classificam 4 como 'muda de mecanismo' (encargos gerais, CDE, bandeira, tributos) e 3 como 'permanece devido' (uso da distribuição, uso da transmissão, reserva de capacidade). A contagem na interface deve ser derivada dos dados (princípio de P22) e a divergência registrada.",
+      "INST·05: exibe 'Camadas descobertas X de 5', mas a soma máxima do script é 6 (longo 1 + plano 2 + rígido 1 + câmbio/curto prazo 1 + submercado diferente 1). Não expor 'de 5' sem reconciliar.",
+      "INST·05 × Ex.10: o instrumento conta 'camadas' (5 dimensões) e o Ex.10 conta 'classes de risco descobertas' (volume, perfil, crédito, regulatório, renovação). São duas contagens diferentes: não colocar lado a lado como se medissem a mesma coisa.",
+      "INST·06: o texto de abertura diz 'três perguntas idênticas' por célula, mas o script tem quatro campos (quem carrega, o que dispara, o que mitiga, o que sobra descoberto).",
+      "INST·08: rotula 'posição comprada' quando a posição vendida do gerador excede a energia alocada. O glossário define 'posição comprada' pela ótica do consumidor (medição > contratado). A convenção de sinal para gerador precisa de verificação autoritativa antes de ir ao learner (tratamento tipo P20).",
+      "TS · corpo: marcas </b> soltas (A01 blocos 6 e 27; A02 bloco 3; A03 bloco 1; A06 bloco 4; A08 bloco 9) e negritos perdidos nas fichas da A04 ('Vendedor , sobre…'). No rito da A03 (bloco 11), rótulo e título colados ('Diagnósticoantes de tudo', 'Denúncia formalprazo inegociável', 'Operação recorrentepara sempre'): o rótulo da etapa precisa voltar a ser campo próprio.",
+      "TS · exercícios: os 14 têm id 'm09-ex-null' (duplicado) e prompt vazio, com o enunciado dentro de config.tag ('null · Ex. N — …'). Reextrair antes de renderizar.",
+      "P7: cada aula termina numa nota 'Onde isso entra no produto' (e §00 tem outra); ficam fora da interface.",
+      "P24: 'GridAlpha' aparece nas notas de produto (A02, A06, A07) e na prosa da A08 (08.2: 'tese comercial da GridAlpha'). A 08.2 é posicionamento da empresa dentro da aula: tratamento editorial é decisão do Founder (reescrever para NIVAR, reduzir a 'fato / dimensionamento / interpretação' sem tese comercial, ou mover).",
+      "S4: 'A tabela de sete linhas do §00' (A01 bloco 17) usa código interno proibido ao learner; trocar por referência nomeada ('a tabela O mesmo risco, dois destinos', na abertura do módulo).",
+      "Validade: toda nota 'Números vivos' é de consulta em 1º/8/2026. Hoje (17/9/2026) a bandeira citada (agosto/2026) já não é a do mês corrente, e a janela de repactuação do risco hidrológico (A07) 'se encerra em novembro de 2026'. Revalidar antes do build e exibir a data de consulta junto do número (S4)."
+    ]
+  },
+  "aulas": [
+    {
+      "aulaId": "aula-09-01",
+      "titulo": "O que muda e o que não muda quando se migra",
+      "subtitulo_fonte": "Os quatro eixos",
+      "o_que_ensina": "Na migração, só a energia troca de fornecedor: o uso da rede continua devido, parte dos encargos e a bandeira mudam de mecanismo, e custos e obrigações novas passam a existir. Por isso comparar o preço do contrato livre com o total da fatura cativa compara uma parte com o todo. A aula ainda fixa três eixos de leitura: quem carrega cada risco, o horizonte (12/36/60 meses) e a reversibilidade assimétrica (denúncia com antecedência mínima de 180 dias, saída com multa).",
+      "natureza": ["leitura de documento/fatura", "mercado/regulação", "classificação conceitual"],
+      "melhor_representacao": {
+        "arquetipo": "Anatomia de fatura decomposta: mesa de classificação",
+        "descricao": "No alto, uma 'fatura única' esquemática (sem valores) que o learner desmonta em 10 linhas; cada linha vai para uma de 4 colunas (troca de fornecedor · muda de mecanismo · permanece devido · passa a existir). A prosa do Eixo 1 corre ao lado de cada componente: o parágrafo sobre o fio fica junto da linha 'uso da distribuição', o da CDE junto da linha 'CDE' (C4). Depois da mesa, três pranchas curtas e desiguais: Eixo 2 (quatro perguntas de alocação), Eixo 3 (tríptico 12/36/60 meses) e Eixo 4 (duas fitas de tempo, entrada × saída).",
+        "por_que": "A aula inteira é um ato de decomposição: a tese só fica visível quando o learner vê 1 componente de 10 mudar de fornecedor. Uma coluna editorial pura esconderia a proporção 1:10, que é o argumento. A fatura é o objeto real que o learner conhece, e desmontá-la dá um denominador concreto para as aulas seguintes."
+      },
+      "abertura": {
+        "pergunta_objetivo": {"camada": "alexandria", "texto": "Ao migrar, o que sai da sua fatura, o que fica e o que entra? Objetivo: classificar os 10 componentes do custo em quatro destinos e explicar por que 'preço do contrato × fatura cativa' não é economia."},
+        "previsao": {"util": true, "camada": "alexandria", "pergunta": "Dos 10 componentes do custo de eletricidade de uma unidade industrial, quantos trocam efetivamente de fornecedor quando ela migra?", "resposta_fonte": "1 (só a energia) — INST·02 e Quiz Q1", "por_que_ensina": "A intuição comum ('migrei, troquei de fornecedor') prevê a maioria; o erro de previsão é exatamente o erro clássico que a aula combate."}
+      },
+      "ato_autentico": {
+        "tipo": "classificar",
+        "descricao": "Classificar os 10 componentes do INST·02 nas 4 categorias antes de abrir a classificação da fonte; depois, comparação lado a lado (sua classificação × fonte × 'erro de leitura mais comum' de cada componente).",
+        "referencia": "classificação do script do INST·02 (camada fonte), depois de reconciliar a contagem divergente (content_qa)",
+        "tolerancia": "categórica exata; sem tolerância inventada. Para os 4 'muda de mecanismo' × 'permanece devido', aceitar autoavaliação C7 enquanto a divergência não for resolvida."
+      },
+      "visualizacao": {
+        "o_que_desenhar": "(1) Fatura esquemática → 10 linhas → 4 colunas, com largura igual por linha (categórica, não proporcional) e a legenda 'sem proporção de valor: a fonte não dá a composição da fatura'. (2) Camada 'dinheiro' do INST·01: cativo = 1 pagamento; livre = no mínimo 3 (energia ao vendedor, uso do fio à distribuidora, diferença na câmara) + encargos, garantias e representação. (3) Eixo 4: duas fitas de tempo; a de entrada com '≥ 180 dias de denúncia (REN 1.000/2021 art. 133, com a REN 1.081/2023)' e a de saída com três parcelas sem duração declarada (prazo regulatório de retorno, recomposição pela distribuidora, multa).",
+        "eixos_unidade": "categórico (componentes × destino); tempo em dias só na entrada",
+        "existe_no_codigo": false,
+        "forma_prometida_nao_desenhada": "INST·02 promete leitura lateral, 'lado a lado nos dois ambientes'. O HTML só tem chips + cartões e nenhum código v2. INST·01 desenha no HTML, mas não foi portado."
+      },
+      "instrumento": {
+        "id": "INST·02",
+        "posicao": {"depois_do_bloco": 15, "motivo": "a fonte o coloca depois do Eixo 1b (bloco 15, 'o consumidor livre não escolhe fisicamente…') e antes do Eixo 2 (bloco 16). Proposta: abrir a mesa já depois do bloco 2 (título do Eixo 1) como ato de previsão e manter o detalhe por componente junto dos blocos 3–12; o fecho da classificação fica no bloco 15."},
+        "com_previsao": true,
+        "reuso": "INST·01, camada 'dinheiro', depois do bloco 15"
+      },
+      "checagem": {
+        "camada": "fonte",
+        "itens": ["Ex.2 (corrigir 'compra energia de uma usina eólica específica'), com tentativa antes do gabarito", "Ex.14 (ampliação de demanda com desconto de 2023), com tentativa antes do gabarito", "Eixo 2, camada alexandria: para o risco de volume, quem escolheu, quem controla, quem tem a informação e quem paga? A referência é o caso dos blocos 17–18."],
+        "formato": "resposta × referência × o que acrescenta × critério; autoavaliação em três níveis (C7)"
+      },
+      "recuperacao_proximo_passo": {
+        "recuperacao": "Primeira aula do módulo: puxar do M05 a ideia de desmembramento vertical (citada no §MAP) com a pergunta 'onde há concorrência e onde há monopólio regulado?'. A origem fica visível.",
+        "proximo": "Próxima · M09·A02 — O regulado por dentro. Com 'não atende' na classificação: rever o Eixo 1."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m09",
+        "onde_ajuda": "Uma foto documental de rede de distribuição ou transmissão (busca _busca/lt) junto do bloco 14, para ancorar 'a rede é a mesma, a qualidade não muda'. Classe documental com crédito, sem legenda que nomeie instalação além do que o metadado do Commons afirma.",
+        "evitar": "Qualquer ilustração de 'energia solar chegando à fábrica' (contradiz o bloco 15)."
+      },
+      "mobile_390": "A mesa vira uma pilha de 10 cartões; cada cartão tem um seletor de 4 opções com rótulo inteiro, sem abreviar. O placar '1 · 4 · 3 · 2' fica fixo abaixo do título da seção enquanto se classifica. O tríptico 12/36/60 vira três disclosures, e as duas fitas do Eixo 4 ficam empilhadas na mesma escala.",
+      "lacunas_e_dependencias": [
+        "Fonte: não dá composição de valor da fatura (declarar; nada de barra proporcional). Prazo de retorno ao regulado: 'não declarado'.",
+        "Content QA: divergência 1/3/4/2 × 1/4/3/2 do INST·02.",
+        "§9: INST·01 e INST·02 não portados; eventos de tentativa não emitidos; nenhuma persistência de classificação.",
+        "S4/P7: trocar a referência '§00' do bloco 17; ocultar a nota de produto (bloco 31).",
+        "As duas notas 'regra em movimento' (blocos 6 e 28) e a 'Regra de método' (bloco 23) ficam junto do parágrafo que qualificam; as duas primeiras levam a data de consulta (1º/8/2026)."
+      ],
+      "nota_de_ambicao": "O momento memorável é a fatura se desfazendo: o learner arrasta 10 linhas e vê só uma sair de casa. Fechar com o 'guardanapo' do §MAP (1 pagamento contra 3) desenhado pelas próprias setas dele torna a tese do módulo inesquecível, sem nenhum número inventado."
+    },
+    {
+      "aulaId": "aula-09-02",
+      "titulo": "O regulado por dentro: como a carteira é montada e como o resultado chega",
+      "subtitulo_fonte": "Ambiente regulado",
+      "o_que_ensina": "A distribuidora monta uma carteira plurianual (um mosaico de safras de leilão, cotas, Itaipu, Angra, programa de fontes alternativas), erra a previsão, e a sobra ou o déficit chegam ao cativo por regras de reconhecimento tarifário com defasagem, e pela bandeira, que é o repasse mensal do risco de geração cara. A modalidade do contrato regulado (quantidade × disponibilidade) decide quem carrega produção e combustível; desde 2025, a sobrecontratação causada por migração é rateada entre os dois ambientes.",
+      "natureza": ["sistema/rede de contratos", "mercado/regulação", "comparação de modalidades"],
+      "melhor_representacao": {
+        "arquetipo": "Sistema em camadas: a carteira como estratigrafia, com mesa de fichas de leilão",
+        "descricao": "Uma prancha esquemática da carteira como estratos de safras sobrepostos no tempo, com rótulos de tipo (leilões de safras diferentes, cotas, Itaipu, Angra, fontes alternativas) e sem espessuras quantitativas. A partir dela saem dois caminhos do resultado: 'reconhecimento tarifário (anual, com defasagem)' e 'bandeira (mensal, por patamar)'. Em 02.4, a mesa do INST·03 com 6 famílias × 5 campos fixos e uma linha-foco que atravessa as colunas. Em 02.5, um par de diagramas espelhados (quantidade | disponibilidade) em que só o dono do risco muda de lado.",
+        "por_que": "A frase central da aula é temporal e estrutural ('decisões de dez anos atrás continuam na tarifa de hoje'; 'o lance é parte de uma parte'). Estratos e aninhamento desenham isso melhor que texto, e a mesa de fichas é a forma que a própria fonte pede ('leitura lateral')."
+      },
+      "abertura": {
+        "pergunta_objetivo": {"camada": "alexandria", "texto": "Se um leilão fecha barato este ano, a sua tarifa cai na mesma proporção? Objetivo: explicar por onde o erro da carteira chega ao cativo e quem carrega o risco de produção em cada modalidade."},
+        "previsao": {"util": true, "camada": "alexandria", "pergunta": "'O leilão fechou a X R$/MWh.' O consumidor cativo pagará X R$/MWh pela energia? (sim · não, paga mais · não, o lance é só uma parte de uma parte)", "resposta_fonte": "Não: 'o lance vencedor é uma parte de uma parte do custo de energia, que por sua vez é uma parte da tarifa' (bloco 3)", "por_que_ensina": "Previsão conceitual, sem número (a fonte não dá valor de lance). O erro é a manchete de jornal que a aula desmonta."}
+      },
+      "ato_autentico": {
+        "tipo": "classificar (casar família e problema) + decidir quem carrega",
+        "descricao": "No INST·03, casar as 6 famílias de produto (energia nova, existente, ajuste, fontes alternativas, reserva, reserva de capacidade) ao 'risco que resolve' de cada uma, apresentado embaralhado. Depois, no seletor de modalidade, prever qual campo troca de dono ao passar de 'por quantidade' para 'por disponibilidade'.",
+        "referencia": "campos 'risco' do LEI e textos MOD do script (fonte). Quantidade: risco de produção com o vendedor; disponibilidade: 'o risco de combustível e de despacho, que passa para a tarifa'.",
+        "tolerancia": "casamento exato (6 pares)"
+      },
+      "visualizacao": {
+        "o_que_desenhar": "(1) Aninhamento 'lance ⊂ custo de energia ⊂ tarifa', sem valores. (2) Estratos da carteira no tempo, esquemáticos. (3) Tabela das bandeiras com fonte e data de consulta: verde sem adicional; amarela R$ 1,885 a cada 100 kWh; vermelha P1 R$ 4,463 a cada 100 kWh; vermelha P2 'patamar superior, revisado por ato da agência'. (4) Bandeira × preço de curto prazo em três dimensões (periodicidade, abrangência, metodologia), da prosa 02.7 e do checklist 12. (5) Diagrama espelhado quantidade × disponibilidade. (6) Degraus da CDE por tensão desde 1/1/2026 (≥ 69 kV = 50%; 2,3–69 kV = 80%; < 2,3 kV = 100% de referência).",
+        "eixos_unidade": "tabela R$/100 kWh; degraus de CDE em % do valor pago abaixo de 2,3 kV",
+        "existe_no_codigo": false,
+        "forma_prometida_nao_desenhada": "INST·03 promete 'leitura lateral' entre famílias, mas o HTML mostra uma família por vez (cartões). A mesa com todas as colunas visíveis é o que cumpre a promessa."
+      },
+      "instrumento": {
+        "id": "INST·03",
+        "posicao": {"depois_do_bloco": 14, "motivo": "a fonte o põe depois de 02.4 (famílias de leilão, blocos 12–14) e antes de 02.5 (modalidades), e o segundo seletor antecipa 02.5. Manter essa posição."},
+        "com_previsao": true
+      },
+      "checagem": {
+        "camada": "fonte + alexandria",
+        "itens": ["Identificar o erro (fonte, Erros 10–12): 'Sobrecontratação até 105% é sempre repassada'; 'Quantidade e disponibilidade são nomes para a mesma coisa'; 'A letra do leilão define o produto'.", "Correção imediata (bloco 20): 'É térmica, logo é por disponibilidade' → erro; a modalidade se lê no edital e no contrato.", "Quiz Q4 e Q5, na Revisão ou como retorno pós-aula (C10: questão usada sai da avaliação)."],
+        "formato": "tentativa → referência da fonte → o que acrescenta"
+      },
+      "recuperacao_proximo_passo": {
+        "recuperacao": "Antes da resposta antiga, repetir a A01: 'O que efetivamente troca de fornecedor na migração?' (Voz 2 · Quiz Q1). E 'Bandeira incide sobre energia contratada no livre?' (Voz 5).",
+        "proximo": "Próxima · M09·A03 — O livre por dentro. Com 'não atende' no casamento família × problema: rever 02.4."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente",
+        "onde_ajuda": "Uma prancha explicativa (gravura da casa) de 'usina de segurança pronta, parada' junto do bloco 19 ('prestar um serviço valioso: estar pronta'). Classe explicação, sem nomear usina real. É opcional: pelo teste de remoção, a figura só entra se tornar memorável a separação prontidão × produção.",
+        "evitar": "Foto de leilão ou de pregão (não é como o certame ocorre e não explica nada)."
+      },
+      "mobile_390": "A mesa do INST·03 vira um carrossel de colunas com o campo-foco fixo no topo (ex.: 'Risco que resolve'), e deslizar troca a família mantendo o mesmo campo, o que preserva a leitura lateral. Os estratos da carteira giram 90° (tempo na vertical). A tabela de bandeiras vira lista de 4 linhas com o adicional à direita.",
+      "lacunas_e_dependencias": [
+        "Fonte: nenhuma composição quantitativa de carteira (estratos esquemáticos, com essa legenda); o adicional da vermelha P2 não é dado; a regra dos PRORET não é detalhada (a aula manda consultar a versão vigente).",
+        "Validade: a bandeira de agosto/2026 já está vencida em setembro; revalidar.",
+        "P7/P24: nota de produto (bloco 36) cita 'GridAlpha Brasil Terminal'; fica fora.",
+        "P21: bloco 19 fala em 'fator de capacidade' → FCap na exibição, com o nome completo na primeira ocorrência.",
+        "§9: INST·03 não portado."
+      ],
+      "nota_de_ambicao": "Fazer o learner sentir o tempo dentro da tarifa: passar o cursor por um estrato antigo e ver que ele ainda está lá hoje. E a virada do diagrama espelhado, em que um só campo troca de lado ao mudar de modalidade, vira a lição de alocação de risco 'mais transferível deste módulo inteiro', como a própria fonte diz."
+    },
+    {
+      "aulaId": "aula-09-03",
+      "titulo": "O livre por dentro: quem pode, quando, por qual porta e sob qual obrigação",
+      "subtitulo_fonte": "Ambiente livre",
+      "o_que_ensina": "Três distinções: elegibilidade não é prontidão (todo o Grupo A desde 1/1/2024, mas a migração tem um rito de 10 etapas com um item inegociável, a denúncia); cronograma legal não é data (baixa tensão: tetos de 24 e 36 meses desde 25/11/2025, condicionados a 5 requisitos prévios); representação não transfere risco econômico (varejista; supridor de última instância com déficit rateado entre os livres). Fecha com a régua correta da autoprodução por equiparação.",
+      "natureza": ["mercado/regulação", "história/linha do tempo", "procedimento"],
+      "melhor_representacao": {
+        "arquetipo": "Linha do tempo condicionada (escada + portão de 5 travas) e rito em fita",
+        "descricao": "Primeira prancha: escada de abertura com os degraus datados da fonte (1995: 10 MW; jul/2019: 2,5 MW; jan/2020: 2,0 MW; 1/1/2024: todo o Grupo A, sem carga mínima). Ela continua no futuro como trecho tracejado até dois tetos (indústria e comércio em BT: 24 meses; demais: 36 meses), e antes deles fica um portão com 5 travas nomeadas. O INST·04 é o controle desse portão. Segunda prancha: o rito como fita de 10 estações, cada uma com a 'falha típica' embaixo; a estação 4 (denúncia) é marcada como inegociável e a 10 ('para sempre') abre para um laço. Terceira: um quadro-régua da equiparação (30.000 kW agregado, 3.000 kW por unidade, participação com voto, aproveitamento limitado ao menor entre consumo próprio e participação).",
+        "por_que": "O conteúdo é sobre tempo condicionado e sequência. A frase que a aula mais quer corrigir ('a partir de tal data poderá') é um erro de representação temporal, e só uma linha do tempo com portão mostra que o teto não é a data."
+      },
+      "abertura": {
+        "pergunta_objetivo": {"camada": "alexandria", "texto": "Um comércio atendido em baixa tensão pergunta: 'Quando eu posso migrar?' Objetivo: responder com o que a lei diz e o que falta, sem dizer uma data."},
+        "previsao": {"util": true, "camada": "alexandria", "pergunta": "Baixa tensão · indústria e comércio; lei publicada em 11/2025; prazo legal de 24 meses; 0 de 5 requisitos cumpridos. Em que data esse cliente poderá migrar?", "resposta_fonte": "Data não afirmável. O teto previsto em lei é novembro de 2027, condicionado aos 5 requisitos (saída do INST·04 com os padrões da fonte; leitura pública do ministério citada no bloco 7).", "por_que_ensina": "Quem prevê 'novembro de 2027' comete exatamente o erro 18 da fonte; o instrumento devolve 'não elegível hoje, e a data não é afirmável'."}
+      },
+      "ato_autentico": {
+        "tipo": "ordenar + identificar o erro",
+        "descricao": "(1) Ordenar as 10 etapas do rito, dadas embaralhadas, e marcar qual delas é inegociável. (2) Reescrever a frase do cliente 'Em novembro de 2027 o comércio de baixa tensão poderá migrar' na forma correta.",
+        "referencia": "ordem do bloco 11 e rótulo 'prazo inegociável' da etapa 4 (fonte); correção do Erro 18 (fonte: 'Diga prazo previsto em lei')",
+        "tolerancia": "ordem exata para as etapas 1–4 e 9–10. Para 5–8 a fonte dá a ordem, mas não diz que ela é obrigatória; aceitar autoavaliação C7 nessa faixa, sem inventar regra."
+      },
+      "visualizacao": {
+        "o_que_desenhar": "Escada de abertura (limite de carga em MW × tempo): só os degraus datados; entre 1995 e 2019 a legenda diz 'degraus intermediários não declarados na fonte'. Os limites históricos de 1.500 kW e 500 kW aparecem como nota sem data. Portão de 5 travas com estado editável e data de consulta. Barra 'canal de entrada' de abril/2026: cerca de 75% por representação varejista, 1.213 migrações, com fonte e data. Régua de equiparação com dois limiares.",
+        "eixos_unidade": "MW (log ou degrau) × ano; meses até o teto; kW nos limiares da equiparação",
+        "existe_no_codigo": false,
+        "forma_prometida_nao_desenhada": "O INST·04 se chama 'Régua… e cronograma condicionado', mas o HTML não desenha régua nem cronograma: só números e cartões. A escada com portão é a forma que o nome promete."
+      },
+      "instrumento": {
+        "id": "INST·04",
+        "posicao": {"depois_do_bloco": 7, "motivo": "a fonte o põe depois da nota 'regra em movimento' de 03.1 e antes de 03.2. Manter essa posição: é o ponto em que a prosa invoca os 5 requisitos."},
+        "com_previsao": true,
+        "observacao": "As datas são entrada editável de propósito (fonte). O padrão de marco zero '11/2025' vem do script."
+      },
+      "checagem": {
+        "camada": "fonte + alexandria",
+        "itens": ["Ex.3 (reconstruir de memória as 5 condições), com tentativa antes do gabarito", "Ex.6 (migrar em dois meses com janela maior de denúncia)", "Camada alexandria: dois grupos hipotéticos com os limiares da fonte (ex.: 4 unidades de 8.000 kW; 12 unidades de 2.500 kW); classificar 'atende / não atende a régua geral de equiparação' e dizer por quê (o segundo falha no limite individual de 3.000 kW mesmo somando 30.000 kW). Números do cenário são da Alexandria; os limiares são da fonte.", "Identificar o erro (fonte): a 'meia-verdade dos 30%' (bloco 24)."],
+        "formato": "tentativa → referência → o que acrescenta; C7"
+      },
+      "recuperacao_proximo_passo": {
+        "recuperacao": "Da A01: 'Qual é o prazo de denúncia junto à distribuidora?' (Voz 20) e 'O contrato ainda trava a migração até o aniversário?' (Voz 21), antes da resposta antiga. Da A02: 'Quem paga a sobrecontratação involuntária causada por migração?' (Voz 19).",
+        "proximo": "Próxima · M09·A04 — O contrato é um sistema de alocação de risco. Com erro na etapa inegociável: rever 03.2."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente",
+        "onde_ajuda": "Nenhuma imagem é necessária: o trabalho visual é a linha do tempo e a fita (visualização programática). Uma foto documental de medidor de faturamento junto da etapa 6 ('Medição e adequações') passaria no teste de remoção só se o Design Loop mostrar ganho.",
+        "evitar": "Imagens de 'aperto de mãos com varejista' ou de 'porta' metafórica."
+      },
+      "mobile_390": "A escada vira uma linha do tempo vertical, com o presente marcado ('você está aqui', sem cor de estado) e o portão como bloco de 5 caixas de marcar. A fita do rito vira lista numerada ordenável por arrastar e também por botões ↑/↓ (teclado e toque). A régua de equiparação vira dois medidores empilhados.",
+      "lacunas_e_dependencias": [
+        "Fonte: degraus de abertura entre 1995 e 2019 não datados; limites de 1.500 kW e 500 kW sem data.",
+        "Leitura do ministério (nov/2027 · nov/2028) é leitura pública, não texto legal; a lei diz 'demais consumidores', mais amplo que 'residencial' (bloco 7). A interface precisa mostrar essa diferença.",
+        "TS: rótulos do rito colados ao título (bloco 11); reextrair para os campos rótulo/título/falha.",
+        "Validade: números de migração de abril/2026 (consulta 1/8/2026).",
+        "§9: INST·04 não portado; estado dos 5 requisitos não tem fonte de dados viva (é entrada do learner)."
+      ],
+      "nota_de_ambicao": "O portão trancado ao lado do teto tracejado vira o ícone mental do módulo para 'prazo previsto em lei'. Se o learner abrir travas e o texto do instrumento ainda recusar prometer data (porque falta ato regulatório), ele aprende a humildade de método que a fonte chama de competência."
+    },
+    {
+      "aulaId": "aula-09-04",
+      "titulo": "O contrato é um sistema de alocação de risco. O preço é uma cláusula entre onze.",
+      "subtitulo_fonte": "Anatomia do contrato",
+      "o_que_ensina": "Um contrato bilateral se lê por 11 perguntas (partes, submercado, volume, perfil, prazo, preço, indexação, fonte, garantias, mudança em lei, rescisão). Volume anual não é cobertura: sazonalização, modulação e flexibilidade são três decisões independentes. As 6 estruturas (plano, sazonalizado, modulado, acompanhamento de carga, banda com mínimo, indexado com teto e piso) se comparam lendo o mesmo campo nas seis.",
+      "natureza": ["leitura de documento (contrato)", "comparação de estruturas", "caso/decisão"],
+      "melhor_representacao": {
+        "arquetipo": "Anatomia de documento com anotações + mesa de leitura lateral",
+        "descricao": "Uma proposta-espécime (camada alexandria, genérica, sem marca nem preço real) com 11 zonas anotáveis, montada só com fórmulas que a fonte critica ('tudo incluso', 'reequilíbrio de boa-fé', 'banda de ±20%', entrega em submercado não declarado). A tabela das 11 perguntas vira a margem de anotação. Em 04.2, um gráfico duplo (12 meses e 24 horas) mostra consumo × entrega contratada e as áreas de descasamento. Em 04.3, as 6 fichas viram uma mesa de 7 linhas × 6 colunas com uma linha-foco ('o que fica exposto', depois 'o que dispara penalidade'), exatamente como a fonte manda ler. O montador (INST·05) fecha a parte de estrutura.",
+        "por_que": "A aula é sobre ler um documento, e o gesto autêntico de um analista é anotar uma proposta. A fonte insiste que a leitura certa é lateral, e só uma mesa com linha-foco produz esse gesto; seis cartões empilhados produzem leitura vertical."
+      },
+      "abertura": {
+        "pergunta_objetivo": {"camada": "alexandria", "texto": "Duas propostas com o mesmo preço podem ser instrumentos opostos. Objetivo: localizar, numa proposta, onde cada risco foi alocado e o que ficou descoberto."},
+        "previsao": {"util": true, "camada": "alexandria", "pergunta": "Uma unidade consome 12.000 MWh por ano e contrata exatamente 12.000 MWh, planos. Ela está protegida?", "resposta_fonte": "Não necessariamente, e provavelmente não; sem série horária a resposta é 'não é possível concluir' (Ex.7; Quiz Q3; Erro 7). O número 12.000 é da própria fonte (prosa 04.2 e Ex.7).", "por_que_ensina": "A cobertura anual parece completa; o erro de previsão abre a seção 04.2."}
+      },
+      "ato_autentico": {
+        "tipo": "responder exercício da fonte + identificar o erro",
+        "descricao": "Ex.10 como ato principal: 'Contrato de 36 meses, volume plano, sem banda, preço fixo, mesmo submercado. Qual risco ficou descoberto?' O learner marca as classes descobertas antes de ver o gabarito. Ato secundário: anotar na proposta-espécime as três cláusulas que a fonte reprova (Ex.11, Ex.12, Ex.13).",
+        "referencia": "gabarito do Ex.10: descobertos volume, perfil, crédito, regulatório e renovação; preço travado sobre o contratado; submercado resolvido",
+        "tolerancia": "conjunto exato para as 5 classes; autoavaliação C7 para a justificativa"
+      },
+      "visualizacao": {
+        "o_que_desenhar": "(1) Consumo × entrega em 12 meses: exemplo da fonte com um mês de 1.500 MWh e outro de 500 MWh numa entrega plana de 1.000 MWh/mês; os demais meses são esquemáticos e rotulados 'exemplo ilustrativo'. Áreas de 'falta (compra ao preço do momento)' e 'sobra (venda ao preço do momento)'. (2) O mesmo em 24 horas para 'carga concentrada à noite × entrega uniforme' (fonte, qualitativo). (3) Mesa das fichas com linha-foco. (4) Banda assimétrica: faixa com teto e piso, lado do excedente e lado da sobra com remunerações diferentes (qualitativo, sem preço).",
+        "eixos_unidade": "MWh/mês × mês; MWh/h × hora (esquemático)",
+        "existe_no_codigo": false,
+        "forma_prometida_nao_desenhada": "O INST·05 promete 'perfil de risco resultante', mas o HTML entrega 3 rótulos + contagem + cartões. Falta a figura que mostre as camadas cobertas e descobertas; a própria contagem 'de 5' está errada (content_qa)."
+      },
+      "instrumento": {
+        "id": "INST·05",
+        "posicao": {"depois_do_bloco": 25, "motivo": "a fonte o põe depois de 04.5 (bloco 29), no fim da aula, o que é apêndice (Regra-mãe 1). Proposta: depois da tabela de indexação (bloco 25), quando as 5 dimensões do montador (horizonte, forma, flexibilidade, indexação, submercado) já foram explicadas; 04.5 (garantias, mudança em lei, término) vem depois do ato."},
+        "com_previsao": false,
+        "observacao": "Instrumento exploratório (sandbox), que começa por meta e não por previsão (C3). Meta, camada alexandria: 'monte a estrutura do Ex.10 e compare com as classes que você marcou'; depois, 'reduza as camadas descobertas mudando uma dimensão por vez'. Não confrontar a contagem de camadas com a contagem do Ex.10 (content_qa)."
+      },
+      "checagem": {
+        "camada": "fonte",
+        "itens": ["Ex.11 (banda de ±20%: ler a simetria)", "Ex.12 (reequilíbrio de boa-fé)", "Ex.13 ('tudo incluso')", "Erro 8: 'Preço fixo elimina o risco'"],
+        "formato": "tentativa → gabarito → o que acrescenta; C7"
+      },
+      "recuperacao_proximo_passo": {
+        "recuperacao": "Da A01, Eixo 4: 'Reversibilidade teórica com custo inviável é o quê?' (resposta: irreversibilidade, bloco 29 da A01). Da A03: 'Qual etapa do rito é inegociável?'",
+        "proximo": "Próxima · M09·A05 — Os riscos, um a um. Com 'não atende' no Ex.10: rever 04.2 e a ficha 'Volume plano'."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente; o código mapeia mer-01-aperto-maos-contrato.png",
+        "onde_ajuda": "A imagem que ajuda é o próprio documento anotado (HTML/SVG), não foto.",
+        "avaliacao_da_ilustracao_atual": "mer-01 (aperto de mãos) provavelmente reprova no teste de remoção M7: tirá-la não custa entendimento, e ela reforça a leitura 'contrato = acordo amigável', o oposto da tese 'contrato = alocação de risco'. Recomendação: retirar ou substituir por prancha explicativa de 'documento com cláusulas anotadas' em gravura, sem texto dentro da imagem."
+      },
+      "mobile_390": "A proposta-espécime vira uma sequência de 11 cláusulas colapsáveis, com a anotação abaixo de cada uma. A mesa de fichas vira um seletor de linha-foco no topo mais 6 cartões curtos só com o campo em foco (a leitura lateral sobrevive). Nos gráficos 12 meses/24 horas, os eixos ficam na largura toda, com rótulos diretos e sem legenda separada. O montador empilha as 5 dimensões com o resultado fixo no rodapé do bloco.",
+      "lacunas_e_dependencias": [
+        "Fonte: nenhum preço, prêmio ou multa numérica (a aula é propositalmente sem número); a proposta-espécime não pode inventar valor.",
+        "TS: negritos perdidos nas fichas; tabelas-ficha precisam de campo 'titulo' + 'estrutura N de 6'.",
+        "Content QA: 'de 5' × máximo 6 no INST·05.",
+        "P21: 'fator de carga alto' (ficha 1) → FCarga.",
+        "§9: INST·05 não portado; figura de perfil não existe."
+      ],
+      "nota_de_ambicao": "A proposta-espécime com a caneta do analista: o learner sublinha 'tudo incluso' e a margem responde com a pergunta da fonte ('o que está dentro e o que está fora?'). Isso transforma 11 linhas de tabela no ofício real e prepara o 'Contract Intelligence' sem mencioná-lo (P7)."
+    },
+    {
+      "aulaId": "aula-09-05",
+      "titulo": "Os riscos, um a um: quem carrega, o que dispara, o que mitiga e o que sobra descoberto",
+      "subtitulo_fonte": "Risco",
+      "o_que_ensina": "Sete classes de risco (preço, volume, perfil, submercado, crédito, descontratação e saída, regulatório) não desaparecem na migração: mudam de dono, gatilho e frequência. A leitura que decide é a célula da matriz estrutura × risco. A qualidade da informação multiplica todas as classes, e correlação pode fazer três proteções falharem juntas.",
+      "natureza": ["sistema de risco (matriz)", "caso/decisão"],
+      "melhor_representacao": {
+        "arquetipo": "Matriz como palco (6 estruturas × 7 classes), com leitura por linha",
+        "descricao": "A matriz ocupa a largura útil desde o início da aula como mapa do território. Cada seção 05.1–05.7 'acende' a linha da sua classe, e a célula abre no lugar com os 4 campos da fonte. Cada célula traz um glifo de silhueta para 'quem carrega' (comprador / vendedor / compartilhado), sem cor de estado. A seção 05.8 (correlação) fecha com um teste de carteira: três contratos e um cenário.",
+        "por_que": "A primeira frase da aula ('uma lista de riscos é inútil; o que decide é a matriz') é a instrução de representação. Hoje a fonte entrega 7 seções de prosa e só depois a matriz, com cerca de 7 seções sem ato (C4). Como palco, a matriz organiza a leitura em vez de ser apêndice."
+      },
+      "abertura": {
+        "pergunta_objetivo": {"camada": "alexandria", "texto": "Na estrutura que a sua empresa assinou, quem paga quando a carga muda de forma? Objetivo: para uma classe de risco, dizer quem carrega em cada uma das 6 estruturas e o que sobra descoberto."},
+        "previsao": {"util": true, "camada": "alexandria", "pergunta": "Risco de perfil: em quais das 6 estruturas o comprador continua carregando a maior parte?", "resposta_fonte": "Derivada das células da matriz (INST·06) e das fichas da A04: por exemplo, no plano e no sazonalizado o perfil fica com o comprador, e no modulado e no acompanhamento de carga fica em boa parte coberto (o INST·05 usa a mesma regra). A derivação categórica precisa de revisão P3/P11.", "por_que_ensina": "O erro comum é achar que 'preço fixo' ou 'volume certo' cobrem o perfil."}
+      },
+      "ato_autentico": {
+        "tipo": "classificar (leitura lateral) + decidir com justificativa",
+        "descricao": "Escolher uma linha (começando por Perfil) e marcar o glifo 'quem carrega' nas 6 células antes de abri-las; depois abrir e comparar com os 4 campos da fonte. Ato secundário, literal da fonte: Ex.8 ('preço 8% menor, sem demonstrações nem garantidor'), com três saídas: aceitar, recusar ou 'não é possível avaliar'.",
+        "referencia": "células do INST·06 (fonte, em prosa) → rótulo categórico derivado (camada alexandria, com revisão); gabarito do Ex.8 (fonte: 'não é possível avaliar')",
+        "tolerancia": "sem tolerância numérica; enquanto os rótulos derivados não forem revisados, usar autoavaliação C7"
+      },
+      "visualizacao": {
+        "o_que_desenhar": "(1) Matriz 6 × 7 com glifos de silhueta e linha-foco. (2) As três faces do risco de preço (curto prazo sobre a parcela descoberta; renovação concentrada; preço baixo também é risco) como tríade. (3) Consumo da banda ao longo do ano: o único ponto dado pela fonte é 'outubro com 90% da banda anual usada' (exemplo da prosa); o resto da curva é esquemático e rotulado. (4) Teste de correlação: três proteções e um cenário comum que atinge as três (solar + mesma região + contraparte fraca com teto), qualitativo.",
+        "eixos_unidade": "categórico; banda em % consumido × mês",
+        "existe_no_codigo": false,
+        "forma_prometida_nao_desenhada": "O INST·06 se chama 'produto cartesiano completo', mas o HTML mostra uma célula por vez, e a completude que 'permite ler lateralmente' nunca aparece inteira. A matriz visível é a forma prometida."
+      },
+      "instrumento": {
+        "id": "INST·06",
+        "posicao": {"depois_do_bloco": 0, "motivo": "a fonte o põe depois de 05.7 (bloco 22), depois de 7 seções. Proposta: a matriz entra como palco depois do bloco 0 (introdução das 7 classes). Cada título 05.x (blocos 1, 4, 7, 10, 13, 17, 20) ativa a linha correspondente, e a leitura lateral completa (ato) fica depois do bloco 22, onde a fonte a pôs."},
+        "com_previsao": true
+      },
+      "checagem": {
+        "camada": "fonte + alexandria",
+        "itens": ["Ex.8 (crédito)", "Ex.10, revisitado pelo lado da matriz (ponte com A04)", "Teste do conselho, com a pergunta da fonte (bloco 3) e a estrutura escolhida pelo learner (camada alexandria): 'se o preço cair pela metade e ficar lá por dois anos, esta estrutura é defensável?' Resposta com justificativa + C7.", "Teste de correlação (bloco 25): existe cenário plausível em que três proteções falham juntas? Decidir e justificar."],
+        "formato": "decisão → justificativa → referência → C7"
+      },
+      "recuperacao_proximo_passo": {
+        "recuperacao": "Da A04: 'Qual a diferença entre sazonalização e modulação?' (Voz 25) e 'O que se lê antes de aceitar uma banda?' (Voz 28), antes das respostas antigas. Do M08 (citado no bloco 11): submercado como zona de contabilização.",
+        "proximo": "Próxima · M09·A06 — O preço que liquida a diferença. Com 'não atende' na linha Perfil: rever 05.3 e a ficha 'Volume plano' (A04)."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente; o código mapeia mer-05-balanca-risco-economia.png",
+        "onde_ajuda": "O mapa do sistema interligado (busca _busca/lt, item 3) poderia servir a 05.4 (submercado) como documental, mas só se houver fonte e licença e se mostrar a limitação de intercâmbio; caso contrário, usar a cartografia do Atlas.",
+        "avaliacao_da_ilustracao_atual": "mer-05 (balança risco × economia) sugere pesar 'risco contra economia' num único prato, justamente a leitura de número único que a aula recusa. Pelo M7, recomendação: retirar."
+      },
+      "mobile_390": "A matriz não cabe em 6 × 7 a 390: vira seletor de linha (classe) + lista de 6 estruturas com glifo e disclosure para os 4 campos, ou seja, a mesma leitura lateral em uma dimensão. O cabeçalho de classe fica fixo durante a rolagem das 6 estruturas. A tríade de preço vira três blocos empilhados.",
+      "lacunas_e_dependencias": [
+        "Fonte: células em prosa, sem rótulo categórico; o rótulo 'quem carrega' é derivação alexandria e exige revisão (P3/P11).",
+        "Content QA: 'três perguntas' × 4 campos no INST·06.",
+        "Fonte: a 'oitava categoria' (qualidade da informação) não tem linha na matriz; se entrar na representação, fica marcada como transversal, sem célula inventada.",
+        "§9: INST·06 não portado (42 células × 4 campos estão só no script)."
+      ],
+      "nota_de_ambicao": "A matriz acende linha por linha conforme a leitura avança, e no fim o learner vê o território inteiro que atravessou. É o único lugar do módulo em que o 'produto cartesiano completo' fica visível de uma vez, e isso ensina que mitigar não é eliminar (o 4º campo)."
+    },
+    {
+      "aulaId": "aula-09-06",
+      "titulo": "O preço que liquida a diferença — e por que a variável é a exposição, não o preço",
+      "subtitulo_fonte": "Preço de curto prazo",
+      "o_que_ensina": "O preço de liquidação das diferenças é horário (desde 2021), tem 4 submercados e valora só a diferença entre medição e contrato. A exposição é escolha de desenho contratual. Piso e tetos são recalculados todo ano (2026: mínimo R$ 57,31/MWh, estrutural R$ 785,27/MWh, horário R$ 1.611,04/MWh) e operam em camadas: o horário limita o pior instante e o estrutural limita a persistência. O preço de hoje não serve para precificar contrato de cinco anos.",
+      "natureza": ["mecanismo de mercado", "cálculo/simulação"],
+      "melhor_representacao": {
+        "arquetipo": "Laboratório guiado em prancha dividida",
+        "descricao": "À esquerda, controles e a curva de carga contra a entrega contratada (mês e hora); à direita, a exposição residual em % e MWh, com a origem sazonal e a horária separadas. Uma segunda bancada menor mostra o 'dia de preços' ilustrativo com as duas linhas de teto, onde o learner eleva preços até a média diária cruzar o estrutural e vê a série inteira ser comprimida.",
+        "por_que": "A aula afirma uma relação causal manipulável ('o desenho contratual determina a exposição, não o tamanho da fábrica nem o preço'). Só manipulando se vê a exposição 'mudar de patamar'. O teto em camadas é contraintuitivo e só fica claro em movimento (S6: consequência)."
+      },
+      "abertura": {
+        "pergunta_objetivo": {"camada": "alexandria", "texto": "Se o contrato cobre 100% do consumo médio, quanto do consumo ainda fica exposto ao preço horário? Objetivo: estimar a exposição residual e dizer de onde ela vem."},
+        "previsao": {"util": true, "camada": "alexandria", "pergunta": "Consumo médio 1.000 MWh/mês; amplitude sazonal ±15%; dispersão horária ±20%; contratado 100% do consumo médio; banda ±10%; entrega plana. Exposição residual, % do consumo?", "resposta_fonte": "15,0% (≈ 150 MWh/mês) no modelo didático do INST·07 (padrões do script). No mesmo cenário, com entrega sazonalizada, ≈ 10,1%; com entrega modulada, 0%.", "rotulo_obrigatorio": "Modelo didático e ilustrativo da fonte (aproximação por amplitude média); não é resultado real. O arredondamento aceito é regra de entrada da Alexandria (P19), não tolerância da fonte.", "por_que_ensina": "Quem prevê 0% repete o Erro 7 ('contrato anual cobre o consumo anual')."}
+      },
+      "ato_autentico": {
+        "tipo": "prever → manipular até meta",
+        "descricao": "Registrar a previsão; ver previsto × calculado no mesmo cenário (C5). Depois, com o quadro visível, a meta 'leve a exposição abaixo de 3% mudando só a forma de entrega e a banda' (limiar 'baixa' do próprio script) e dizer qual origem dominava.",
+        "referencia": "cálculo do INST·07: base = √(sazRes² + horRes²) + |100 − V|; exp = máx(0, base − F); sazRes = S×0,15 se sazonalizado ou modulado; horRes = H×0,20 se modulado",
+        "tolerancia": "nenhuma da fonte; regra de entrada alexandria: 1 casa decimal"
+      },
+      "visualizacao": {
+        "o_que_desenhar": "(1) Composição da exposição: duas componentes (sazonal e horária) mais o desvio de nível, desenhadas como vetores ou barras que somam antes de descontar a banda, fiel à fórmula. (2) Mini-curva mensal e mini-curva horária com a entrega contratada sobreposta. (3) Teto em camadas: 24 barras horárias ilustrativas, linha do teto horário (1.611,04), linha do estrutural (785,27) aplicada à média diária e linha do piso (57,31), com o antes/depois do ajuste proporcional. Série rotulada 'ilustrativa, não histórica'; limites com fonte e data de consulta.",
+        "eixos_unidade": "% do consumo e MWh/mês; R$/MWh × hora",
+        "existe_no_codigo": false,
+        "forma_prometida_nao_desenhada": "O INST·07 promete 'observe a exposição residual mudar de patamar', mas o HTML mostra números e um veredito, sem figura. O teto em camadas é afirmado no bloco 4 e não é desenhado em lugar nenhum."
+      },
+      "instrumento": {
+        "id": "INST·07",
+        "posicao": {"depois_do_bloco": 2, "motivo": "a fonte o põe depois da nota em três níveis (bloco 9), no fim da aula (apêndice). Proposta: logo depois da lista 'liquida diferença, não consumo / horário e regional / piso e teto' (bloco 2), o ponto que invoca o mecanismo. A bancada do teto em camadas entra depois do bloco 4."},
+        "com_previsao": true
+      },
+      "checagem": {
+        "camada": "fonte",
+        "itens": ["Ex.7 (12.000 contra 12.000, planos)", "Ex.9 ('cem por cento exposto e comprar quando estiver barato'): duas objeções, e a primeira (legal) encerra", "Quiz Q8 (função do teto estrutural)", "Identificar o erro (Erro 6): 'Bandeira e preço de curto prazo são a mesma coisa'"],
+        "formato": "tentativa → gabarito → o que acrescenta; C7"
+      },
+      "recuperacao_proximo_passo": {
+        "recuperacao": "Da A04: repetir a previsão '12.000 contra 12.000' se o learner a errou lá (a revisita mostra a resposta antiga só depois). Da A02: 'Bandeira e preço de curto prazo são a mesma variável?' (Voz 7). Do M04 (citado no lead): como o preço se forma, só como ponte.",
+        "proximo": "Próxima · M09·A07 — Realocação e fator de ajuste. Se a meta não foi atingida: repetir o laboratório com a origem dominante destacada."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente",
+        "onde_ajuda": "Nenhuma foto. O trabalho é todo de visualização programática. A 'padaria' da nota em três níveis pode virar pictograma explicativo de 10 pães por dia com dias de 12 e de 8, sem preços inventados, só se o Design Loop mostrar ganho.",
+        "evitar": "Painel de bolsa, candlestick ou 'tela de trader': sugere previsão de preço, o oposto da aula."
+      },
+      "mobile_390": "A prancha dividida empilha: resultado (% e MWh) fixo no topo do bloco, controles embaixo, sliders com campo numérico e unidade (entrada por teclado). O quadro 'previsto × calculado' permanece visível acima dos controles durante a exploração (C5). A bancada do teto vira 24 barras finas na largura toda, com as três linhas rotuladas na ponta direita.",
+      "lacunas_e_dependencias": [
+        "Fonte: o detalhe algorítmico do ajuste proporcional com piso não está especificado além de 'uniforme e proporcional, respeitado o piso, por submercado'. A bancada precisa declarar 'simplificação' ou ser verificada nas regras de comercialização vigentes.",
+        "Fonte: nenhuma série histórica de preço; qualquer série é ilustrativa.",
+        "Validade: limites de 2026 (despacho anual); a partir de dez/2026 valem os de 2027.",
+        "P7/P24: nota de produto do bloco 10 ('GridAlpha Simulate').",
+        "Decisão pendente: receber ou não o INST·10 (ciclo comercial) após o bloco 3.",
+        "§9: INST·07 não portado; persistência de previsão não existe."
+      ],
+      "nota_de_ambicao": "O instante em que o learner empurra um preço horário para cima e vê o dia inteiro afundar proporcionalmente sob o teto estrutural: 'o teto horário limita o pior instante; o estrutural limita a persistência' vira algo visto, e não decorado."
+    },
+    {
+      "aulaId": "aula-09-07",
+      "titulo": "Realocação e fator de ajuste: por que uma indústria que não gera precisa entender isto",
+      "subtitulo_fonte": "Realocação e fator de ajuste",
+      "o_que_ensina": "O mecanismo de realocação soma a geração das hidrelétricas participantes e a aloca proporcionalmente às garantias físicas. O fator de ajuste (geração do conjunto ÷ garantia física ajustada) abaixo de 1 reduz a alocação de todos, e quem vendeu acima do alocado compra a diferença no curto prazo. O mecanismo diversifica hidrologia, mas não cria água. A aula conta a judicialização de 2014–2015 até a revogação da última liminar (18/12/2025) e ensina a declarar o recorte: 'ainda dura' é falso, verdadeiro ou parcialmente verdadeiro conforme o objeto.",
+      "natureza": ["conceito de sistema", "cálculo", "história/narrativa", "leitura de afirmação por recorte"],
+      "melhor_representacao": {
+        "arquetipo": "Prancha de mecanismo (condomínio de usinas) + linha do tempo curta + classificador de recorte",
+        "descricao": "Prancha principal: algumas usinas hipotéticas, cada uma com geração própria contra garantia física; um reservatório comum soma e redistribui; o fator de ajuste aparece como a razão desenhada. O INST·08 é a lupa sobre um participante: alocada × contratada → diferença a liquidar. Depois, uma linha do tempo 2014–2015 → mecanismo concorrencial → 18/12/2025 → nov/2026 (prazo da vedação), com os números da fonte. Fecho: a frase 'a judicialização ainda dura' e três recortes para classificar.",
+        "por_que": "A intuição que a aula corrige ('o mecanismo garante a energia de cada usina') só cai quando se veem duas situações: variância individual compensada e escassez coletiva não compensada. Isso exige pelo menos duas usinas no desenho, que o INST·08 (um participante) não tem."
+      },
+      "abertura": {
+        "pergunta_objetivo": {"camada": "alexandria", "texto": "Sua fábrica não tem hidrelétrica. Por que o fator de ajuste chega ao seu custo? Objetivo: calcular a diferença a liquidar de um participante e nomear as três portas pelas quais o risco chega ao comprador."},
+        "previsao": {"util": true, "camada": "alexandria", "pergunta": "Fator de ajuste 0,92. Usina com garantia física de 100 MW médios vendeu 95% dela. Ela precisa comprar ou vender no curto prazo, e quantos MW médios?", "resposta_fonte": "Comprar 3 MW médios (alocada 92; contratada 95), pelos padrões e pelo cálculo do INST·08 (representação simplificada da fonte).", "por_que_ensina": "Quem pensa 'vendeu menos que a garantia física, logo está folgada' erra o sentido; o fator se aplica antes da comparação."}
+      },
+      "ato_autentico": {
+        "tipo": "prever (cálculo) + classificar por recorte",
+        "descricao": "(1) Previsão registrada e depois previsto × calculado no INST·08; exploração com meta: 'encontre o fator em que esta usina fica equilibrada' (resposta: 0,95 com 95% vendido). (2) Classificar 'a judicialização ainda dura' em três recortes (bloqueio judicial das liquidações · risco hidrológico em si · efeitos residuais) como falso, verdadeiro ou parcialmente verdadeiro.",
+        "referencia": "INST·08: alocada = GF × f; contratada = GF × v/100; diferença = contratada − alocada. Bloco 7 (fonte): falso / verdadeiro / parcialmente verdadeiro, nessa ordem.",
+        "tolerancia": "cálculo exato com 1 casa (regra de entrada alexandria); classificação exata"
+      },
+      "visualizacao": {
+        "o_que_desenhar": "(1) Condomínio: 3–4 usinas hipotéticas (camada alexandria, números ilustrativos) com barras de geração × garantia física → soma → alocação proporcional; dois estados: 'uma seca, outra cheia' (compensação) e 'todas abaixo' (déficit distribuído). (2) Lupa do INST·08: três barras (alocada, contratada, diferença) em MW médios. (3) Linha do tempo com fonte e data de consulta: liminares 2014–2015; mecanismo concorrencial (−72%, R$ 1,34 bi arrecadado, R$ 792,59 mi ao mercado de curto prazo, excedente de R$ 550,6 mi repassado até fev/2026 a consumidores regulados de RO, AC e AP); 18/12/2025, última liminar revogada (passivo de R$ 323,78 mi na liquidação de outubro); nov/2026, fim da janela de repactuação. (4) Banda de revisão da garantia física: 5% por revisão, 10% acumulado.",
+        "eixos_unidade": "MW médios; R$ milhões/bilhões; datas",
+        "existe_no_codigo": false,
+        "forma_prometida_nao_desenhada": "O INST·08 promete 'o mecanismo de transmissão do déficit do conjunto até a posição de um contrato específico', mas o HTML não desenha o conjunto nem a transmissão: só 4 números e um veredito."
+      },
+      "instrumento": {
+        "id": "INST·08",
+        "posicao": {"depois_do_bloco": 2, "motivo": "a fonte o põe depois de 07.2 (bloco 9), perto do fim. Proposta: depois da nota 'diversifica hidrologia; não cria água' (bloco 2), quando o mecanismo foi explicado; a história (blocos 3–7) e a atualização técnica (8–9) vêm depois do ato."},
+        "com_previsao": true
+      },
+      "checagem": {
+        "camada": "fonte",
+        "itens": ["Ex.4 (explicar o mecanismo a um diretor industrial em quatro frases, sem 'condomínio'), explicação com gabarito", "Quiz Q6", "Identificar o erro (Erros 13–15)", "As três portas (lead + nota em três níveis): preço de contratos lastreados em hidrelétrica, preço de curto prazo e bandeira, saúde da contraparte. O learner nomeia as três antes de ver."],
+        "formato": "tentativa → referência → C7"
+      },
+      "recuperacao_proximo_passo": {
+        "recuperacao": "Da A06: 'Para que serve o teto estrutural?' (Voz 35) e 'O preço de hoje serve para precificar contrato de cinco anos?' (Voz 36), antes da resposta antiga. Da A02: 'Bandeira é imposto?' (Voz 6).",
+        "proximo": "Próxima · M09·A08 — Quando vale, quando não vale e quando não dá para dizer. Com erro no sentido da diferença: repetir a lupa com o fator acima de 1."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente; busca em andamento em _busca/sobr (fotos do Commons de reservatório em seca)",
+        "onde_ajuda": "Uma foto documental de reservatório em seca junto do bloco 2 ('não cria água': escassez coletiva). Classe documental com crédito completo. A legenda descreve só o que o metadado do Commons afirma (lugar e data da foto) e não liga a imagem à crise de 2014–2015 nem a um fator de ajuste específico, porque a aula não faz essa ligação. As fotos com animal morto (sobr/06) devem ser evitadas: o impacto emocional não ensina o mecanismo.",
+        "evitar": "Geração de imagem de 'usina hidrelétrica brasileira' com aparência documental (P10); qualquer legenda com nome de usina em imagem gerada."
+      },
+      "mobile_390": "O condomínio vira pilha vertical de usinas com uma barra cada, e a soma fica num bloco abaixo. O seletor 'uma seca / todas abaixo' fica no topo. A lupa do INST·08 fica com três controles empilhados e três barras horizontais. A linha do tempo é vertical, com valores em algarismos tabulares. O classificador de recorte vira três cartões com seletor de 3 opções.",
+      "lacunas_e_dependencias": [
+        "Content QA: convenção 'posição comprada/vendida' no INST·08 × glossário.",
+        "Fonte: a fórmula é 'representação simplificada' (declarada no instrumento); o condomínio de várias usinas é camada alexandria com números hipotéticos, rotulados.",
+        "Validade: 'janela se encerra em novembro de 2026' (hoje, 17/9/2026). Depois disso o texto vira passado e precisa de revisão.",
+        "P7/P24: nota de produto do bloco 11.",
+        "§9: INST·08 não portado."
+      ],
+      "nota_de_ambicao": "Ver a própria usina 'salva' pela vizinha num ano e afundar com todas no outro. Depois, a mesma frase ('ainda dura') recebendo três veredictos diferentes, o que ensina a competência que a fonte nomeia: declarar o recorte."
+    },
+    {
+      "aulaId": "aula-09-08",
+      "titulo": "Quando vale, quando não vale e quando não dá para dizer",
+      "subtitulo_fonte": "Síntese",
+      "o_que_ensina": "A decisão de migrar tem três saídas com o mesmo status (vale investigar · não vale nas condições informadas · não é possível concluir), e a terceira é a mais frequente. Ela se apoia em 7 sinais favoráveis e 8 de cautela, compara custo total comparável em cenários (nunca preço × tarifa) e responde 'não sei' como informação. A aula separa fato, dimensionamento e interpretação ao ler janeiro de 2024, e mostra quais séries públicas acompanhar.",
+      "natureza": ["caso/decisão", "síntese", "leitura de fontes"],
+      "melhor_representacao": {
+        "arquetipo": "Dossiê de triagem com veredito triplo + painel de vigilância",
+        "descricao": "Três dossiês lado a lado (fichas de caso curtas) e três bandejas de veredito de mesmo peso visual. O roteador (INST·09) é a mesa de triagem, e cada dossiê passa pelas 6 perguntas com 'não sei' como resposta de primeira classe. Antes, a 'estrutura da decisão sem número' como diagrama de dois totais comparáveis. Depois, 08.2 como leitura em três camadas (fato · dimensionamento · interpretação), e 08.3 como painel de vigilância (INST·11) que substitui a lista.",
+        "por_que": "É a aula-síntese e o critério de domínio do módulo pede simetria dos três vereditos. Um dossiê torna o 'não é possível concluir' um resultado tangível (uma bandeja cheia), e não uma evasiva. O Caso Operação A da fonte já termina exatamente nesse veredito."
+      },
+      "abertura": {
+        "pergunta_objetivo": {"camada": "alexandria", "texto": "Três empresas perguntam 'vale migrar?'. Objetivo: dar a cada uma um dos três vereditos, com a lista do que falta quando for o caso, sem nenhum número de economia."},
+        "previsao": {"util": true, "camada": "alexandria", "pergunta": "Na prática de mercado, qual dos três vereditos é o mais frequente?", "resposta_fonte": "'Não é possível concluir' (lead da aula; nota do INST·09: 'na prática de mercado, o mais frequente')", "por_que_ensina": "A expectativa comum ('a maioria vale ou não vale') é a discrepância que a fonte chama de 'dado sobre o mercado'."}
+      },
+      "ato_autentico": {
+        "tipo": "decidir com justificativa (triagem)",
+        "descricao": "Passar três dossiês pelo roteador e registrar o veredito antes do diagnóstico. Dossiê A, fonte: Operação A (§Caso: carga razoavelmente plana, turnos, SE/CO, FCarga elevado, pouca flexibilidade, horizonte longo, sem série horária). Dossiê B, fonte Ex.5: encerra a operação em 18 meses, proposta de 5 anos. Dossiê C, camada alexandria: montado só com os 7 sinais favoráveis da tabela 08.1, sem fato novo.",
+        "referencia": "A → 'não é possível concluir com o que foi informado' (Diagnóstico da parte 9: falta a série horária). B → 'não vale nas condições informadas' (gabarito do Ex.5). C → 'vale investigar' (lógica do INST·09 com seis 'sim'), com a ressalva da fonte: 'isso não significa que migrar seja vantajoso'.",
+        "tolerancia": "veredito exato; justificativa em C7"
+      },
+      "visualizacao": {
+        "o_que_desenhar": "(1) Estrutura da decisão sem número: dois totais em blocos. Regulado: energia, rede, encargos, tributos, cenário de bandeira. Livre: contrato, rede, encargos, tributos, perdas, câmara/representação, garantias, exposição residual. Menos custos de migração e gestão, ajustado pelo prêmio de risco descoberto, em cenários. Sem valores. (2) Sinais favoráveis × cautela como livro-razão de duas colunas com marcação do dossiê ativo. (3) 08.2 em três faixas: fato (degraus 1995/2019/2020/2024, reuso da escada da A03), dimensionamento (21,7 mil novos em 2025; cerca de 85 mil participantes; cerca de 43% da eletricidade; 6.478 serviços e 4.098 comércio; mais de 90 mil em abr/2026; cerca de 75% por varejista), com fonte, data e recorte declarados, e interpretação, marcada como tal. (4) Painel do INST·11: pergunta → onde está → defasagem → forma de citação → armadilha.",
+        "eixos_unidade": "categórico; contagens de consumidores; % com recorte declarado",
+        "existe_no_codigo": false,
+        "forma_prometida_nao_desenhada": "O INST·09 promete 'diagnóstico e a lista das perguntas que faltam', e o HTML cumpre em texto. Falta o dossiê como objeto e o registro do veredito antes do diagnóstico."
+      },
+      "instrumento": {
+        "id": "INST·09 (principal); INST·11; INST·10 (realocação proposta)",
+        "posicao": {"INST·09": {"depois_do_bloco": 4, "motivo": "posição da fonte (depois da nota 'a estrutura da decisão, sem número'); manter"}, "INST·11": {"depois_do_bloco": 12, "motivo": "a fonte o põe no fim (depois do bloco 13); proposta: no ponto em que 08.3 o invoca ('saber qual série pública responde qual pergunta'), absorvendo a lista do bloco 13"}, "INST·10": {"depois_do_bloco": 13, "motivo": "posição da fonte (apêndice); proposta: mover para a A06 (ver decisões do módulo)"}},
+        "com_previsao": true
+      },
+      "checagem": {
+        "camada": "fonte + alexandria",
+        "itens": ["Ex.13 ('tudo incluso')", "Quiz Q7 e Q10", "Classificar frases de 08.2 em fato / dimensionamento / interpretação (camada alexandria sobre rótulos literais da fonte: 'O fato.', 'O dimensionamento.', 'A interpretação')", "Ataque do decisor, fonte §Voz: 'Me dá só uma estimativa. Um percentual aproximado.' Resposta escrita + referência (P14: a fala cronometrada fica como atividade recomendada)."],
+        "formato": "tentativa → referência → C7"
+      },
+      "recuperacao_proximo_passo": {
+        "recuperacao": "Recuperação cumulativa do módulo, com a origem visível: A01 (quantos componentes trocam), A03 (o cronograma é uma data?), A04 (12.000 × 12.000), A06 (o preço horário valora o quê?), A07 (fator abaixo de 1 significa o quê?). Perguntas-relâmpago da §Voz.",
+        "proximo": "Última aula: Revisão do módulo (Erros, Exercícios sem vínculo, Caso — Operação A com o Desafio de decisão P17) → Avaliação (quiz de 10, critério da fonte exibido antes, sem 'Aprovado', P18). Linha 'experiência jogável em desenho' no módulo (P25)."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente",
+        "onde_ajuda": "Nenhuma foto é necessária. Os dossiês podem usar a materialidade de pasta e ficha do sistema de identidade (não é imagem de conteúdo).",
+        "evitar": "Pictogramas de 'supermercados, hospitais, hotéis' em 08.2: ilustram a interpretação como se fosse fato."
+      },
+      "mobile_390": "Um dossiê por tela, com as três bandejas como seletor de 3 opções fixo no rodapé do bloco. O roteador fica com as 6 perguntas empilhadas e o contador (respondidas · 'não sei' · impedimentos) fixo. O livro-razão vira duas listas com disclosure. O painel do INST·11 vira lista de perguntas com expansão.",
+      "lacunas_e_dependencias": [
+        "P24/editorial: 08.2 afirma a 'tese comercial da GridAlpha' dentro da aula; decisão do Founder sobre tratamento (ver módulo).",
+        "Fonte: o dossiê C não existe na fonte; é montagem alexandria só com sinais da tabela 08.1 (revisão P3).",
+        "P17: o Caso é 'Caso — Operação A' (sem 'parte 9' na interface); a aula só aponta para ele. O Desafio de decisão fica na Revisão.",
+        "P21: 'fator de carga' do Caso → FCarga.",
+        "Validade: números de migração (2025; abr/2026) consultados em 1/8/2026.",
+        "§9: INST·09/10/11 não portados; o quiz não está extraído no TS (só no script do HTML); registro de veredito não existe."
+      ],
+      "nota_de_ambicao": "Três bandejas de mesmo tamanho e a mais cheia é a do 'não é possível concluir': o módulo termina com o learner praticando a competência mais escassa que ele nomeia, e com uma lista acionável do que falta, em vez de um número."
+    }
+  ]
+}

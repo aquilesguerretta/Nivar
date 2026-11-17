@@ -1,0 +1,214 @@
+/* Alexandria v3 — tokens e base visual (direção A, "biblioteca viva").
+ *
+ * Escopo: tudo vive sob .alx3. Nada aqui vaza para o Portal NIVAR nem para as
+ * telas antigas da Alexandria, que seguem em alexandria-tokens.ts até migrarem.
+ *
+ * Três vozes tipográficas com papéis fixos (o mesmo trio que a NIVAR usa,
+ * medido na pesquisa ao vivo): Newsreader para leitura e manchete, Instrument
+ * Sans para interface, IBM Plex Mono para dado, unidade, código e fonte.
+ *
+ * Materialidade: raio zero (só o círculo pleno), nenhuma sombra, profundidade
+ * por fio de 1 px. Ouro só em fio e marca pequena. Óxido só para "você está
+ * aqui" e para a ação principal em foco. Nenhum semáforo.
+ *
+ * Movimento: uma família de curvas. Hover curto (160 ms), abrir com curva de
+ * gaveta (650 ms), revelar ao rolar com expo-out (500 ms). Com
+ * prefers-reduced-motion, tudo vira corte seco.
+ */
+
+.alx3 {
+  --papel: #f2ecdf;
+  --papel-fundo: #ebe3d3;
+  --papel-hover: #e7dcc7;
+  --tinta: #15213b;
+  --tinta-suave: #4a5163;
+  --tinta-fraca: #6d6a62;
+  --ouro: #a8854f;
+  --fio: rgba(21, 33, 59, 0.16);
+  --fio-forte: rgba(21, 33, 59, 0.38);
+  --oxido: #9a3b22;
+  --sobre-tinta: #f2ecdf;
+
+  --f-leitura: 'Newsreader Variable', 'Newsreader', Georgia, serif;
+  --f-interface: 'Instrument Sans Variable', 'Instrument Sans', system-ui, sans-serif;
+  --f-dado: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --t-hover: 160ms cubic-bezier(0.25, 1, 0.5, 1);
+  --t-abrir: 650ms cubic-bezier(0.32, 0.72, 0, 1);
+  --t-revelar: 500ms cubic-bezier(0.19, 1, 0.22, 1);
+
+  /* ponte para os componentes antigos (tokens de alexandria-tokens.ts viram
+     var(--alx-*, valor antigo)): dentro da casca v3 eles herdam a v3 */
+  --alx-sobre-navy: #f2ecdf;
+  --alx-creme: var(--papel);
+  --alx-creme-superficie: var(--papel);
+  --alx-creme-afundado: var(--papel-fundo);
+  --alx-tinta: var(--tinta);
+  --alx-tinta-suave: var(--tinta-suave);
+  --alx-metadado: var(--tinta-fraca);
+  --alx-terracota: var(--oxido);
+  --alx-fio: var(--fio-forte);
+  --alx-fio-claro: var(--fio);
+  --alx-fio-coluna: var(--fio);
+  --alx-f-display: var(--f-leitura);
+  --alx-f-corpo: var(--f-leitura);
+  --alx-f-rotulo: var(--f-dado);
+  --alx-tt-titulo: none;
+  --alx-ls-display: -0.02em;
+  --alx-ls-h1: -0.015em;
+  --alx-ls-h2: -0.01em;
+  --alx-ls-h3: 0;
+  --alx-ls-rotulo: 0.08em;
+  --alx-ls-nav: 0.04em;
+
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--f-interface);
+  font-size: 17.5px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  /* O app trava html/body com overflow: hidden (CSS global de outra posse).
+     Sem isto a página da Alexandria não rola: a raiz .alx3 é quem rola. */
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.alx3[data-modo='noturno'] {
+  --papel: #0f1728;
+  --papel-fundo: #0b1220;
+  --papel-hover: #18233a;
+  --tinta: #ede5d3;
+  --tinta-suave: #c3bba9;
+  --tinta-fraca: #9b9484;
+  --ouro: #c4a26a;
+  --fio: rgba(237, 229, 211, 0.16);
+  --fio-forte: rgba(237, 229, 211, 0.4);
+  --oxido: #e07a57;
+  --sobre-tinta: #0f1728;
+}
+
+.alx3 *,
+.alx3 *::before,
+.alx3 *::after {
+  box-sizing: border-box;
+}
+
+.alx3 a {
+  color: inherit;
+}
+
+/* ── barras de rolagem: fio de tinta sobre o papel, sem setas ── */
+
+.alx3,
+.alx3 * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rolagem) transparent;
+}
+
+.alx3 {
+  --rolagem: rgba(21, 33, 59, 0.28);
+}
+
+.alx3[data-modo='noturno'] {
+  --rolagem: rgba(237, 229, 211, 0.26);
+}
+
+.alx3::-webkit-scrollbar,
+.alx3 *::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.alx3::-webkit-scrollbar-track,
+.alx3 *::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.alx3::-webkit-scrollbar-thumb,
+.alx3 *::-webkit-scrollbar-thumb {
+  background: var(--rolagem);
+}
+
+.alx3::-webkit-scrollbar-button,
+.alx3 *::-webkit-scrollbar-button {
+  display: none;
+}
+
+.alx3 :focus-visible {
+  outline: 2px solid var(--oxido);
+  outline-offset: 3px;
+}
+
+/* índice e expoente (P<sub>perdas</sub>, I<sup>2</sup>): o CSS global do app
+   zera vertical-align e tamanho; aqui eles voltam, sem mexer na entrelinha */
+.alx3 sub,
+.alx3 sup {
+  font-size: 0.68em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.alx3 sup {
+  top: -0.5em;
+}
+
+.alx3 sub {
+  bottom: -0.25em;
+}
+
+/* texto só para leitor de tela */
+.alx3 .so-leitor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ── vozes ───────────────────────────────────────────────── */
+
+.alx3 .v-dado {
+  font-family: var(--f-dado);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+.alx3 .v-manchete {
+  font-family: var(--f-leitura);
+  font-optical-sizing: auto;
+  font-weight: 450;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
+}
+
+/* ── revelar ao rolar ────────────────────────────────────── */
+
+.alx3 .revelar {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--t-revelar), transform var(--t-revelar);
+}
+
+.alx3 .revelar.visivel {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alx3 *,
+  .alx3 *::before,
+  .alx3 *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+  .alx3 .revelar {
+    opacity: 1;
+    transform: none;
+  }
+}

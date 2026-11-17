@@ -1,0 +1,2036 @@
+{
+  "modulo": "modulo-08",
+  "titulo_modulo": "Matriz Elétrica Brasileira em Profundidade",
+  "arquivos_fonte": [
+    "src/lib/data/alexandria-modulo-08-content.ts",
+    "docs/alexandria-v2/extraction/m08/modulo.md",
+    "docs/alexandria-v2/extraction/m08/aparato.md",
+    "docs/alexandria-v2/extraction/m08/aparato.json",
+    "docs/alexandria-v2/extraction/m08/modulo.json"
+  ],
+  "aulas": [
+    {
+      "numero": 1,
+      "chave": "aula-08-01",
+      "titulo": "Seis pizzas para a mesma pergunta"
+    },
+    {
+      "numero": 2,
+      "chave": "aula-08-02",
+      "titulo": "Seis fontes, dois rankings, uma troca que explica tudo"
+    },
+    {
+      "numero": 3,
+      "chave": "aula-08-03",
+      "titulo": "A matriz muda de forma três vezes: no ano, no dia e na hora"
+    },
+    {
+      "numero": 4,
+      "chave": "aula-08-04",
+      "titulo": "O maior sistema de armazenamento de energia do mundo não tem uma bateria"
+    },
+    {
+      "numero": 5,
+      "chave": "aula-08-05",
+      "titulo": "O recurso está a dois mil quilômetros da carga"
+    },
+    {
+      "numero": 6,
+      "chave": "aula-08-06",
+      "titulo": "Dois casos, um decreto, desfechos opostos"
+    },
+    {
+      "numero": 7,
+      "chave": "aula-08-07",
+      "titulo": "Três forças, e o que cada uma já mudou de forma mensurável"
+    }
+  ],
+  "mencoes": [
+    {
+      "aula": 0,
+      "tipo": "sistema_isolado",
+      "nome": "Roraima",
+      "trecho": "Último estado a se conectar ao sistema interligado, em setembro de 2025. Antes disso, atendimento por térmicas a óleo diesel e por importação de sistema vizinho.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 671,
+      "contexto": "Nó \"Roraima\" do Inst · 01 (mapa físico do § MAP), fluxo de geração: como o estado era atendido antes de entrar no sistema interligado.",
+      "ganho_no_mapa": "Ver Roraima no extremo norte, fora da malha até 2025, deixa claro por que foi o último estado a se conectar.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "linha",
+      "nome": "LT 500 kV Manaus–Boa Vista",
+      "trecho": "A linha que o conectou tem cerca de 725 quilômetros em circuito duplo de 500 quilovolts e custou aproximadamente R$ 2,6 bilhões.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 671,
+      "contexto": "Nó \"Roraima\" do Inst · 01: dimensões da linha que conectou o estado (a Aula 05 a nomeia como a linha entre Manaus e Boa Vista).",
+      "ganho_no_mapa": "O traçado de 725 km sobre a floresta mostra o tamanho da obra necessária para ligar um único estado.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "linha",
+      "nome": "LT 500 kV Manaus–Boa Vista",
+      "trecho": "Ponta de linha. A capacidade da conexão foi dimensionada em cerca de quatro vezes a demanda atual do estado, o que a torna também um caminho para escoar futuras hidrelétricas inventariadas na região.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 672,
+      "contexto": "Nó \"Roraima\" do Inst · 01, fluxo de escoamento: a conexão é ponta de linha superdimensionada em relação à demanda local.",
+      "ganho_no_mapa": "No mapa a linha termina em Roraima sem continuar: é ponta de rede, e a folga indica um futuro caminho de escoamento.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "sistema_isolado",
+      "nome": "Sistemas isolados da Amazônia",
+      "trecho": "Menos de meio por cento da geração nacional, com perfil muito mais fóssil que a média — o diesel dominava a geração isolada em 2025. É a melhor demonstração de que média nacional esconde realidade local: o país é renovável e centenas de localidades não são.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 676,
+      "contexto": "Nó \"Sistemas isolados da Amazônia\" do Inst · 01: média nacional renovável convive com centenas de localidades a diesel.",
+      "ganho_no_mapa": "Pontos espalhados pela Amazônia, sem nenhuma linha chegando, tornam visível o que a média nacional esconde.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "UHE Belo Monte (Complexo do Xingu)",
+      "trecho": "Grande hidrelétrica a fio d'água, com capacidade elevada e forte sazonalidade de vazão. Contribui muito para a capacidade instalada nacional e menos para o armazenamento, porque não regulariza.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 681,
+      "contexto": "Nó \"Complexo do Xingu — Belo Monte\" do Inst · 01, fluxo de geração: usina grande que soma capacidade, não armazenamento.",
+      "ganho_no_mapa": "Localizar Belo Monte no Xingu, sem grande reservatório ao lado, mostra por que capacidade e armazenamento não andam juntos.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "bipolo",
+      "nome": "Bipolos de Belo Monte (Xingu–Sudeste)",
+      "trecho": "Escoada por elos dedicados de corrente contínua em alta tensão até o Sudeste, com entrega em pontos distintos da rede para distribuir o impacto.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 682,
+      "contexto": "Nó \"Belo Monte\" do Inst · 01, fluxo de escoamento: a energia do Xingu desce ao Sudeste por elos de corrente contínua.",
+      "ganho_no_mapa": "Ver os elos saindo do Xingu e chegando a pontos diferentes do Sudeste explica a ideia de distribuir o impacto da entrega.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "UHE Tucuruí",
+      "trecho": "Um dos maiores aproveitamentos hidrelétricos do país e ponto histórico de partida da integração nacional.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 686,
+      "contexto": "Nó \"Tucuruí e eixo Norte-Sul\" do Inst · 01, fluxo de geração: Tucuruí como ponto de partida da integração.",
+      "ganho_no_mapa": "Tucuruí no Tocantins, com o eixo partindo dele para o sul, mostra onde a rede nacional começou a ser costurada.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "linha",
+      "nome": "Eixo Norte–Sul",
+      "trecho": "Origem do eixo Norte-Sul em corrente alternada, que transformou sistemas regionais numa rede nacional. Não é uma linha: é um conjunto de corredores e reforços cuja saturação divide eletricamente o país.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 687,
+      "contexto": "Nó \"Tucuruí e eixo Norte-Sul\" do Inst · 01, fluxo de escoamento: o eixo é um feixe de corredores, não uma linha única.",
+      "ganho_no_mapa": "No mapa o eixo aparece como vários circuitos paralelos ligando Norte e Sudeste; cortá-los separa o país em dois.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "Complexo do Madeira (Rondônia)",
+      "trecho": "Duas grandes usinas a fio d'água em Rondônia, com regime de vazão marcadamente sazonal e pouca capacidade de deslocar geração no tempo.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 691,
+      "contexto": "Nó \"Complexo do Madeira\" do Inst · 01, fluxo de geração: duas usinas a fio d'água em Rondônia (a fonte não as nomeia).",
+      "ganho_no_mapa": "Ver as duas usinas no rio Madeira, longe de tudo, prepara a pergunta de como essa energia chega à carga.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "bipolo",
+      "nome": "Bipolos do Madeira (Rondônia–Sudeste)",
+      "trecho": "Escoada por bipolos de corrente contínua até o Sudeste, com mais de dois mil quilômetros. É o caso mais didático de por que corrente contínua existe: bloco grande, distância muito longa, fluxo controlável.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 692,
+      "contexto": "Nó \"Complexo do Madeira\" do Inst · 01, fluxo de escoamento: bipolos de corrente contínua de mais de dois mil quilômetros.",
+      "ganho_no_mapa": "A linha reta de Rondônia ao Sudeste, atravessando o país, é a imagem de por que se usa corrente contínua.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "Polo eólico do litoral — Rio Grande do Norte e Ceará",
+      "trecho": "Um dos melhores recursos eólicos do mundo. Ventos fortes, regulares e com direção estável, o que produz fator de capacidade na faixa alta e previsibilidade acima da média internacional.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 696,
+      "contexto": "Nó \"Eólicas do litoral — Rio Grande do Norte e Ceará\" do Inst · 01, fluxo de geração: qualidade do recurso eólico.",
+      "ganho_no_mapa": "A faixa de parques colada ao litoral do RN e do CE mostra onde o vento brasileiro é melhor.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "Polo eólico do litoral — Rio Grande do Norte e Ceará",
+      "trecho": "É onde a estabilidade de tensão limita o escoamento. Após a revisão dos modelos dinâmicos das usinas, a capacidade calculada de escoamento da região caiu, e compensadores síncronos passaram a ser indicados para restaurar parte dela.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 697,
+      "contexto": "Nó \"Eólicas do litoral\" do Inst · 01, fluxo de escoamento: o limite da região é estabilidade de tensão, não falta de vento.",
+      "ganho_no_mapa": "Sobrepor os parques do litoral às poucas linhas que saem dali mostra onde a tensão, e não a turbina, limita a entrega.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "Polo eólico e solar do interior — Bahia e Piauí",
+      "trecho": "Segundo polo de renovável variável, com eólica de interior e forte adição de solar centralizada. A coexistência das duas fontes no mesmo ponto de conexão amplia o volume e concentra o risco.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 701,
+      "contexto": "Nó \"Eólicas e solar do interior — Bahia e Piauí\" do Inst · 01, fluxo de geração: eólica e solar dividindo os mesmos pontos de conexão.",
+      "ganho_no_mapa": "Ver parques eólicos e solares empilhados nas mesmas subestações do interior da BA e do PI mostra a concentração de risco.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "Polo eólico e solar do interior — Bahia e Piauí",
+      "trecho": "É a origem geográfica da maior parte do corte de geração brasileiro. A carga local é muito menor que o potencial de oferta em vários períodos, e o excedente depende inteiramente da capacidade de exportação.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 702,
+      "contexto": "Nó \"Bahia e Piauí\" do Inst · 01, fluxo de escoamento: é de onde vem a maior parte do corte de geração.",
+      "ganho_no_mapa": "Muita geração, pouca cidade em volta e poucas linhas de saída: o mapa mostra por que o corte nasce ali.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "reservatorio",
+      "nome": "UHE Sobradinho",
+      "trecho": "Aproveitamentos hidrelétricos com regularização relevante, que dão ao Nordeste um estoque de energia próprio e uma capacidade de modulação que a eólica não tem.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 706,
+      "contexto": "Nó \"São Francisco — Sobradinho e Paulo Afonso\" do Inst · 01, fluxo de geração: reservatórios que dão estoque próprio ao Nordeste.",
+      "ganho_no_mapa": "O espelho d'água de Sobradinho no meio do semiárido mostra onde fica o estoque de energia do Nordeste.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "Complexo de Paulo Afonso",
+      "trecho": "Nó de articulação entre a geração renovável variável da região e o restante da malha.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 707,
+      "contexto": "Nó \"São Francisco — Sobradinho e Paulo Afonso\" do Inst · 01, fluxo de escoamento: ponto onde a renovável do Nordeste encontra a malha.",
+      "ganho_no_mapa": "Ver as linhas convergindo no São Francisco mostra o papel de nó de articulação entre eólicas, solares e o resto do sistema.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "rio_bacia",
+      "nome": "Rio São Francisco",
+      "trecho": "A operação desses reservatórios é condicionada por uso múltiplo da água — abastecimento, irrigação e navegação.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 707,
+      "contexto": "Nó \"São Francisco\" do Inst · 01: a operação dos reservatórios do rio depende de outros usos da água.",
+      "ganho_no_mapa": "Acompanhar o curso do São Francisco, com cidades e perímetros irrigados ao longo dele, explica por que a usina não decide sozinha.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "intercambio",
+      "nome": "Fronteira de exportação Norte/Nordeste → Sudeste/Centro-Oeste",
+      "trecho": "Não é ponto de geração: é o limite através do qual a produção do Norte e do Nordeste alcança o maior centro de carga do país.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 711,
+      "contexto": "Nó \"Fronteira de exportação Norte e Nordeste\" do Inst · 01, fluxo de geração: o nó é um limite, não uma usina.",
+      "ganho_no_mapa": "Uma linha de corte entre Norte/Nordeste e Sudeste/Centro-Oeste mostra o funil por onde toda essa energia precisa passar.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "intercambio",
+      "nome": "Fronteira de exportação Norte/Nordeste → Sudeste/Centro-Oeste",
+      "trecho": "O gargalo estruturante do sistema brasileiro. O plano da operação de médio prazo projeta o limite de recebimento do Sudeste/Centro-Oeste evoluindo de 18.500 megawatts em janeiro de 2026 para 23.000 em janeiro de 2030, condicionado à entrada de obras.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 712,
+      "contexto": "Nó \"Fronteira de exportação\" do Inst · 01, fluxo de escoamento: tamanho atual e projetado do limite de recebimento do Sudeste/Centro-Oeste.",
+      "ganho_no_mapa": "Mostrar as linhas que cruzam essa fronteira, com o limite em megawatts, dá escala ao gargalo e ao que as obras acrescentam.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "rio_bacia",
+      "nome": "Bacia do Paraná (rios Grande e Paranaíba)",
+      "trecho": "O coração do armazenamento brasileiro. O subsistema concentra cerca de setenta por cento da capacidade de armazenamento do país, e é por isso que a afluência dessas bacias é o número hidrológico que mais importa.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 716,
+      "contexto": "Nó \"Bacia do Paraná — Grande e Paranaíba\" do Inst · 01, fluxo de geração: onde está o armazenamento do país.",
+      "ganho_no_mapa": "A fileira de reservatórios nos rios Grande e Paranaíba mostra, de uma vez, onde mora a maior parte do estoque de energia.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Submercado Sudeste/Centro-Oeste",
+      "trecho": "Destino da maioria dos intercâmbios e origem da exportação para o Sul. É também onde a geração hidráulica cumpre a função de equilibrar a rampa vespertina do sistema inteiro.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 717,
+      "contexto": "Nó \"Bacia do Paraná\" do Inst · 01, fluxo de escoamento: o Sudeste/Centro-Oeste recebe de quase todos e exporta para o Sul.",
+      "ganho_no_mapa": "Setas chegando do Norte e do Nordeste e saindo para o Sul mostram o Sudeste/Centro-Oeste como centro da troca.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "Polo solar centralizado — norte de Minas Gerais",
+      "trecho": "Polo de solar centralizada em crescimento acelerado, com irradiância elevada e proximidade relativa do maior centro de carga. Dá ao Sudeste uma assinatura diurna de geração que não existia há cinco anos.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 721,
+      "contexto": "Nó \"Solar centralizada — norte de Minas\" do Inst · 01, fluxo de geração: polo solar próximo do centro de carga.",
+      "ganho_no_mapa": "Ver o polo solar no norte de Minas, bem mais perto de São Paulo que os parques nordestinos, explica a vantagem de posição.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "Polo solar centralizado — norte de Minas Gerais",
+      "trecho": "Mais próxima da carga que a solar nordestina, o que reduz a exposição ao limite de exportação. Não elimina a exposição ao corte por razão energética, que é nacional e ocorre na mesma janela horária em todo o país.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 722,
+      "contexto": "Nó \"norte de Minas\" do Inst · 01, fluxo de escoamento: estar perto da carga livra do gargalo, não do corte energético.",
+      "ganho_no_mapa": "O polo fica do lado de cá da fronteira de exportação: o mapa mostra de qual restrição ele escapa e de qual não.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Centro de carga — São Paulo, Minas Gerais e Rio de Janeiro",
+      "trecho": "Onde está o consumo. Concentra indústria, serviços e população, e é o destino final da maior parte da energia produzida nos nós acima.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 726,
+      "contexto": "Nó \"Centro de carga — São Paulo, Minas e Rio\" do Inst · 01, fluxo de geração: onde está o consumo.",
+      "ganho_no_mapa": "A mancha de carga em São Paulo, Minas e Rio, longe das usinas do Norte e do Nordeste, dá o destino de todos os fluxos.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Centro de carga — São Paulo, Minas Gerais e Rio de Janeiro",
+      "trecho": "Recebe de todas as direções: do Norte por corrente contínua e por corrente alternada, do Nordeste pela fronteira de exportação, do Sul quando o Sul exporta, e da própria bacia do Paraná.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 727,
+      "contexto": "Nó \"Centro de carga\" do Inst · 01, fluxo de escoamento: por quais caminhos a energia chega ao Sudeste.",
+      "ganho_no_mapa": "Ver as linhas convergindo de quatro direções sobre o Sudeste mostra que receber também tem limite.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "UHE Itaipu",
+      "trecho": "Usina binacional criada por tratado. A parcela produzida para o país vizinho e adquirida pelo Brasil entra nas contas nacionais como eletricidade importada — motivo pelo qual a oferta interna de energia elétrica é maior que a geração nacional.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 731,
+      "contexto": "Nó \"Itaipu\" do Inst · 01, fluxo de geração: a convenção estatística que faz parte da energia de Itaipu contar como importação.",
+      "ganho_no_mapa": "Itaipu exatamente sobre a fronteira explica por que metade da usina entra na conta como energia importada.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "interconexao_internacional",
+      "nome": "Itaipu — energia do país vizinho adquirida pelo Brasil",
+      "trecho": "A parcela produzida para o país vizinho e adquirida pelo Brasil entra nas contas nacionais como eletricidade importada",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 731,
+      "contexto": "Mesmo nó \"Itaipu\": a fonte fala em \"país vizinho\" sem nomeá-lo; é o vínculo internacional da matriz brasileira.",
+      "ganho_no_mapa": "No globo, o fluxo que cruza a fronteira em Itaipu mostra de onde vem a importação líquida da oferta interna.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "linha",
+      "nome": "Sistema de transmissão de Itaipu (corrente alternada e corrente contínua)",
+      "trecho": "Escoada em corrente alternada e em corrente contínua, com sistemas dedicados.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 732,
+      "contexto": "Nó \"Itaipu\" do Inst · 01, fluxo de escoamento: dois sistemas dedicados levam a energia da usina.",
+      "ganho_no_mapa": "Os dois troncos saindo de Itaipu rumo ao Sudeste mostram os sistemas dedicados em corrente alternada e contínua.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Submercado Sul",
+      "trecho": "Hidrologia própria e descolada das demais, com pouca regularização e alta volatilidade. Parque eólico relevante com regime distinto do nordestino, e carga industrial e agrícola forte.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 736,
+      "contexto": "Nó \"Sul — hidrelétricas e eólicas\" do Inst · 01, fluxo de geração: o Sul tem água e vento com regime próprio.",
+      "ganho_no_mapa": "Destacar o Sul com suas usinas e parques eólicos mostra um subsistema que não acompanha a hidrologia do resto do país.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "intercambio",
+      "nome": "Intercâmbio Sudeste/Centro-Oeste ↔ Sul",
+      "trecho": "O subsistema mais bidirecional: alterna importação e exportação conforme água, vento e carga. O plano de médio prazo projeta ampliação de cerca de vinte por cento na capacidade de recebimento a partir do Sudeste/Centro-Oeste.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 737,
+      "contexto": "Nó \"Sul\" do Inst · 01, fluxo de escoamento: o Sul ora importa, ora exporta, e seu recebimento será ampliado.",
+      "ganho_no_mapa": "Uma seta de dois sentidos entre Sul e Sudeste/Centro-Oeste mostra a troca que inverte conforme a época.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "intercambio",
+      "nome": "Distância entre o melhor recurso eólico e o maior centro de carga",
+      "trecho": "O melhor recurso eólico do país está a dois mil quilômetros do maior centro de carga, e essa distância é metade da história deste bloco.",
+      "arquivo": "docs/alexandria-v2/extraction/m08/modulo.md",
+      "linha": 68,
+      "contexto": "Lead do § MAP: a pizza diz quanto, não diz onde; a distância entre recurso e carga organiza o bloco.",
+      "ganho_no_mapa": "Medir no mapa os dois mil quilômetros entre o litoral nordestino e São Paulo transforma a frase em distância visível.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (nó mais denso de geração e ponto de maior tensão de escoamento)",
+      "trecho": "No fluxo de geração, o Nordeste é o nó mais denso do mapa — é onde o recurso eólico e solar se concentra, e por boas razões físicas. No fluxo de escoamento, o mesmo Nordeste vira o ponto de maior tensão do sistema, porque a oferta que nasce ali frequentemente excede a capacidade de a rede levá-la para onde há carga.",
+      "arquivo": "docs/alexandria-v2/extraction/m08/modulo.json",
+      "linha": 919,
+      "contexto": "Parágrafo do § MAP que comenta o Inst · 01: a mesma região tem dois papéis contraditórios conforme o fluxo exibido.",
+      "ganho_no_mapa": "Alternar entre a camada de usinas e a de linhas sobre o Nordeste mostra a mesma região como abundância e como gargalo.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Minas Gerais (Operação A — mineração)",
+      "trecho": "A operação está em Minas Gerais, portanto no submercado Sudeste/Centro-Oeste — o maior centro de carga do país e o que concentra a maior parte da capacidade de armazenamento hidráulico.",
+      "arquivo": "docs/alexandria-v2/extraction/m08/aparato.json",
+      "linha": 68,
+      "contexto": "Caso C.1: a planta do caso corrente é localizada em Minas Gerais e, por isso, no submercado Sudeste/Centro-Oeste.",
+      "ganho_no_mapa": "Situar a planta dentro do polígono do Sudeste/Centro-Oeste mostra de qual submercado ela puxa e o que há em volta.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Interior da Bahia (corte de geração como fenômeno local)",
+      "trecho": "Ela não convive com o corte de geração como fenômeno local da mesma forma que uma planta no interior da Bahia conviveria; ela convive com a consequência dele, que é a energia que não chegou.",
+      "arquivo": "docs/alexandria-v2/extraction/m08/aparato.json",
+      "linha": 79,
+      "contexto": "Caso C.1: a planta em Minas está no destino dos intercâmbios; quem vive o corte de perto é quem está no interior da Bahia.",
+      "ganho_no_mapa": "Colocar lado a lado a planta em Minas e o interior da Bahia mostra a diferença entre estar na origem e no destino do fluxo.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "usina",
+      "nome": "Polo solar centralizado — norte de Minas Gerais",
+      "trecho": "Terceira: o norte de Minas concentra solar centralizada relevante, então a curva de geração da região tem uma assinatura diurna que não existia há cinco anos.",
+      "arquivo": "docs/alexandria-v2/extraction/m08/aparato.json",
+      "linha": 79,
+      "contexto": "Caso C.1: a região da planta ganhou geração solar concentrada no norte de Minas.",
+      "ganho_no_mapa": "Ver o polo solar no mesmo estado da planta explica a nova forma diurna da geração da região.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "intercambio",
+      "nome": "Fronteira de exportação Norte/Nordeste → Sudeste/Centro-Oeste",
+      "trecho": "O gargalo estruturante mais relevante para uma operação no Sudeste/Centro-Oeste não está ao lado dela — está na fronteira de recebimento a partir do Norte e do Nordeste, que é por onde chega a energia renovável variável que o submercado importa.",
+      "arquivo": "docs/alexandria-v2/extraction/m08/aparato.json",
+      "linha": 205,
+      "contexto": "Caso C.3: o gargalo que importa para a planta está longe dela, na fronteira de recebimento do Norte e do Nordeste.",
+      "ganho_no_mapa": "Traçar a distância entre a planta e a fronteira de recebimento mostra que o gargalo relevante não é o vizinho.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "evento",
+      "nome": "Interligação de Roraima ao sistema interligado (setembro de 2025)",
+      "trecho": "A interligação física efetiva foi em 16 de setembro; a operação comercial começou em outubro; a licença de operação é de 3 de setembro; e para fins de comercialização o sistema passou a ser considerado interligado a partir de 1º de janeiro de 2026, por despacho da agência.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1344,
+      "contexto": "Exercício 08: a data da interligação de Roraima tem cinco respostas corretas conforme a pergunta.",
+      "ganho_no_mapa": "Uma linha do tempo presa ao traçado da linha de Roraima mostra as cinco datas do mesmo evento.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (concentração da capacidade variável)",
+      "trecho": "Primeira causa: crescimento da capacidade variável em ritmo superior ao da carga e ao da rede, concentrado no Nordeste.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1358,
+      "contexto": "Exercício 10: a primeira causa da inclinação da série de corte é a expansão variável concentrada no Nordeste.",
+      "ganho_no_mapa": "A densidade de parques eólicos e solares no Nordeste, contra a carga local, mostra a primeira causa do corte.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "evento",
+      "nome": "Perturbação relevante de 2023 (sem dia nem local na fonte)",
+      "trecho": "Segunda: revisão dos modelos dinâmicos das usinas após uma perturbação relevante de 2023, que reduziu a capacidade de escoamento calculada.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1358,
+      "contexto": "Exercício 10: depois de uma perturbação em 2023 os modelos das usinas foram revistos e o escoamento calculado caiu.",
+      "ganho_no_mapa": "Marcar o evento sobre a região de escoamento ajuda a ligar a ocorrência à queda do limite calculado; a fonte não dá o local.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Submercado Nordeste",
+      "trecho": "11 · O Nordeste aparece com afluência em 59% da média de longo termo e armazenamento em 89% do volume útil. Como você lê isso?",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1365,
+      "contexto": "Exercício 11: leitura conjunta de afluência e armazenamento do subsistema Nordeste.",
+      "ganho_no_mapa": "Colorir o Nordeste por estoque e por fluxo, lado a lado com os outros subsistemas, mostra as duas grandezas divergindo.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "linha",
+      "nome": "Malha de transmissão acima de 230 kV (AXIA Energia)",
+      "trecho": "No caso concreto, o percentual refere-se ao segmento acima de 230 quilovolts e inclui participações em sociedades de propósito específico — dois qualificadores que mudam o significado da frase.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1337,
+      "contexto": "Exercício 07: os 37% divulgados pela AXIA Energia valem só para o segmento acima de 230 quilovolts.",
+      "ganho_no_mapa": "Filtrar as linhas por tensão acima de 230 kV mostra a que parte da malha o percentual se refere.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "sistema_isolado",
+      "nome": "Sistemas isolados da Amazônia",
+      "trecho": "Todos os estados passaram a ter conexão ao sistema interligado. Centenas de localidades amazônicas seguem isoladas, com geração majoritariamente a diesel.",
+      "arquivo": "docs/alexandria-v2/extraction/m08/modulo.md",
+      "linha": 196,
+      "contexto": "Erro 13: Roraima interligado não significa o fim dos sistemas isolados.",
+      "ganho_no_mapa": "Mesmo com a linha de Roraima desenhada, os pontos isolados da Amazônia continuam no mapa.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (sítios eólicos)",
+      "trecho": "Há sítios excelentes, mas o valor varia por local, ano, altura, disponibilidade e corte. Um fator regional não se aplica a um município específico.",
+      "arquivo": "docs/alexandria-v2/extraction/m08/modulo.md",
+      "linha": 192,
+      "contexto": "Erro 9: fator de capacidade eólico do Nordeste não é um número único para a região.",
+      "ganho_no_mapa": "Parques do litoral e do interior no mesmo mapa lembram que o recurso muda de município para município.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "distribuidora",
+      "nome": "Light (região metropolitana do Rio de Janeiro)",
+      "trecho": "O pedido foi da Light S.A., a holding. A concessionária não ingressou no regime, porque a legislação impede enquanto a concessão está ativa.",
+      "arquivo": "docs/alexandria-v2/extraction/m08/modulo.md",
+      "linha": 198,
+      "contexto": "Erro 15: quem pediu recuperação judicial foi a holding, não a distribuidora.",
+      "ganho_no_mapa": "A área de concessão no Rio de Janeiro identifica de qual concessionária se está falando.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "distribuidora",
+      "nome": "Enel Distribuição São Paulo (região metropolitana de São Paulo)",
+      "trecho": "Há processo administrativo de caducidade instaurado, com contraditório, defesa e recurso em curso.",
+      "arquivo": "docs/alexandria-v2/extraction/m08/modulo.md",
+      "linha": 199,
+      "contexto": "Erro 16: a Enel SP não perdeu a concessão; há processo em curso.",
+      "ganho_no_mapa": "A área de concessão em São Paulo identifica o território afetado pelo processo.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (eólica) × Sudeste (hidrologia)",
+      "trecho": "Por que a complementaridade entre a eólica do Nordeste e a hidrologia do Sudeste é considerada eficiente sistemicamente?",
+      "arquivo": "docs/alexandria-v2/extraction/m08/aparato.md",
+      "linha": 66,
+      "contexto": "Questão 7 do quiz: a safra dos ventos coincide com o período seco e permite poupar água.",
+      "ganho_no_mapa": "Ver os parques do Nordeste e os reservatórios do Sudeste no mesmo mapa mostra as duas pontas da complementaridade.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "outro",
+      "nome": "Brasil — onde instalar grande carga (matriz, gargalo e submercado)",
+      "trecho": "Onde no Brasil eu deveria instalar carga, considerando matriz, gargalo e submercado?",
+      "arquivo": "docs/alexandria-v2/extraction/m08/aparato.json",
+      "linha": 2774,
+      "contexto": "Ataque 4 do § Voz (executivo de data center): a resposta tem quatro camadas e a intuitiva (\"no Nordeste\") é incompleta.",
+      "ganho_no_mapa": "Sobrepor submercados, gargalos e polos de geração é exatamente o exercício que a pergunta pede.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 1,
+      "tipo": "pais",
+      "nome": "Brasil (base hidrelétrica em comparação com outros países)",
+      "trecho": "A diferença existe porque transporte e calor industrial ainda dependem fortemente de combustíveis líquidos e gasosos, enquanto a eletricidade brasileira parte de uma base hidrelétrica que nenhum outro país de porte comparável tem.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1133,
+      "contexto": "Seção 1.2: por que a matriz elétrica brasileira é muito mais renovável que a energética.",
+      "ganho_no_mapa": "No globo, comparar o Brasil com países de porte parecido mostra o quanto a base hidrelétrica é incomum.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 1,
+      "tipo": "usina",
+      "nome": "UHE Itaipu (citada como 'usina binacional')",
+      "trecho": "medida na barra da usina ou no centro de gravidade do submercado, com ou sem a parcela de energia importada de usina binacional",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1141,
+      "contexto": "Seção 1.3: o recorte de método inclui contar ou não a energia importada da usina binacional; a aula não a nomeia.",
+      "ganho_no_mapa": "Ver a usina sobre a fronteira explica por que existe um recorte \"com ou sem\" a parcela importada.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 1,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (sítios eólicos)",
+      "trecho": "Acima da faixa é plausível em sítios excepcionais do Nordeste, especialmente no segundo semestre.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 207,
+      "contexto": "Inst · 03 (calculadora de fator de capacidade): fator eólico acima da faixa típica é plausível em bons sítios do Nordeste.",
+      "ganho_no_mapa": "Localizar os parques do Nordeste dá endereço ao \"sítio excepcional\" que explica um fator acima da faixa.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 2,
+      "tipo": "rio_bacia",
+      "nome": "Bacia do Paraná",
+      "trecho": "Bacia do Paraná no Sudeste/Centro-Oeste concentra o armazenamento; grandes usinas a fio d'água no Norte, nos rios Madeira e Xingu; São Francisco no Nordeste; Iguaçu e Uruguai no Sul.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1148,
+      "contexto": "Ficha da hidrelétrica, campo \"Concentração geográfica\": o armazenamento está na bacia do Paraná.",
+      "ganho_no_mapa": "Os reservatórios enfileirados na bacia do Paraná mostram onde a água é guardada.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "rio_bacia",
+      "nome": "Rio Madeira",
+      "trecho": "Bacia do Paraná no Sudeste/Centro-Oeste concentra o armazenamento; grandes usinas a fio d'água no Norte, nos rios Madeira e Xingu; São Francisco no Nordeste; Iguaçu e Uruguai no Sul.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1148,
+      "contexto": "Ficha da hidrelétrica: as grandes usinas a fio d'água do Norte estão nos rios Madeira e Xingu.",
+      "ganho_no_mapa": "O Madeira aparece com usina grande e sem reservatório de regularização: capacidade sem estoque.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "rio_bacia",
+      "nome": "Rio Xingu",
+      "trecho": "Bacia do Paraná no Sudeste/Centro-Oeste concentra o armazenamento; grandes usinas a fio d'água no Norte, nos rios Madeira e Xingu; São Francisco no Nordeste; Iguaçu e Uruguai no Sul.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1148,
+      "contexto": "Ficha da hidrelétrica: as grandes usinas a fio d'água do Norte estão nos rios Madeira e Xingu.",
+      "ganho_no_mapa": "O Xingu aparece com usina grande e sem reservatório de regularização: capacidade sem estoque.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "rio_bacia",
+      "nome": "Rio São Francisco",
+      "trecho": "Bacia do Paraná no Sudeste/Centro-Oeste concentra o armazenamento; grandes usinas a fio d'água no Norte, nos rios Madeira e Xingu; São Francisco no Nordeste; Iguaçu e Uruguai no Sul.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1148,
+      "contexto": "Ficha da hidrelétrica: o São Francisco é a hidreletricidade do Nordeste.",
+      "ganho_no_mapa": "O rio corta o Nordeste e concentra as hidrelétricas da região.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "rio_bacia",
+      "nome": "Rio Iguaçu",
+      "trecho": "Bacia do Paraná no Sudeste/Centro-Oeste concentra o armazenamento; grandes usinas a fio d'água no Norte, nos rios Madeira e Xingu; São Francisco no Nordeste; Iguaçu e Uruguai no Sul.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1148,
+      "contexto": "Ficha da hidrelétrica: Iguaçu e Uruguai são os rios da hidreletricidade do Sul.",
+      "ganho_no_mapa": "As usinas do Iguaçu ficam no Sul, com regime de chuva próprio.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "rio_bacia",
+      "nome": "Rio Uruguai",
+      "trecho": "Bacia do Paraná no Sudeste/Centro-Oeste concentra o armazenamento; grandes usinas a fio d'água no Norte, nos rios Madeira e Xingu; São Francisco no Nordeste; Iguaçu e Uruguai no Sul.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1148,
+      "contexto": "Ficha da hidrelétrica: Iguaçu e Uruguai são os rios da hidreletricidade do Sul.",
+      "ganho_no_mapa": "As usinas do Uruguai ficam no extremo Sul, com regime de chuva próprio.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "submercado",
+      "nome": "Submercado Sudeste/Centro-Oeste",
+      "trecho": "Período úmido do Sudeste/Centro-Oeste vai de novembro a abril; o seco, de maio a outubro. A diversidade entre bacias é o que a integração nacional existe para aproveitar.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1148,
+      "contexto": "Ficha da hidrelétrica, campo \"Perfil sazonal\": calendário de chuva do Sudeste/Centro-Oeste e diversidade entre bacias.",
+      "ganho_no_mapa": "Bacias distantes com calendários de chuva diferentes, ligadas por linhas, mostram o que a integração aproveita.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "Polo eólico do litoral — Rio Grande do Norte e Ceará",
+      "trecho": "Fortemente concentrada no Nordeste, com o litoral do Rio Grande do Norte e do Ceará e o interior da Bahia e do Piauí como polos. Sul tem parque relevante e regime diferente.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1150,
+      "contexto": "Ficha da eólica, campo \"Concentração geográfica\": o litoral do RN e do CE é um dos dois polos.",
+      "ganho_no_mapa": "A mancha de parques no litoral potiguar e cearense mostra a concentração da fonte.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "Polo eólico e solar do interior — Bahia e Piauí",
+      "trecho": "Fortemente concentrada no Nordeste, com o litoral do Rio Grande do Norte e do Ceará e o interior da Bahia e do Piauí como polos. Sul tem parque relevante e regime diferente.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1150,
+      "contexto": "Ficha da eólica: o interior da Bahia e do Piauí é o outro polo.",
+      "ganho_no_mapa": "A segunda mancha, no interior da BA e do PI, mostra que a eólica não é só litoral.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "Eólicas do Sul",
+      "trecho": "Fortemente concentrada no Nordeste, com o litoral do Rio Grande do Norte e do Ceará e o interior da Bahia e do Piauí como polos. Sul tem parque relevante e regime diferente.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1150,
+      "contexto": "Ficha da eólica: o Sul tem parque relevante com regime de vento diferente do nordestino.",
+      "ganho_no_mapa": "O parque do Sul, isolado dos polos nordestinos, mostra um segundo regime de vento no país.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (safra dos ventos) × período seco do Sudeste/Centro-Oeste",
+      "trecho": "No Nordeste, os ventos se fortalecem no segundo semestre — a chamada safra dos ventos, com pico entre julho e setembro. Coincide com o período seco do Sudeste/Centro-Oeste, e essa coincidência é o fato mais elegante da matriz brasileira.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1150,
+      "contexto": "Ficha da eólica, campo \"Perfil sazonal\": o vento do Nordeste é forte quando a água do Sudeste/Centro-Oeste é escassa.",
+      "ganho_no_mapa": "Parques no Nordeste e reservatórios no Sudeste, em regiões distintas, mostram que a coincidência é entre lugares diferentes.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "Polo solar centralizado — Nordeste",
+      "trecho": "Centralizada concentrada no Nordeste e no norte de Minas Gerais. Distribuída espalhada por todo o país, seguindo tarifa, renda e número de unidades consumidoras — é a única fonte cuja geografia acompanha o consumo em vez do recurso.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1152,
+      "contexto": "Ficha da solar, campo \"Concentração geográfica\": a solar centralizada está no Nordeste e no norte de Minas.",
+      "ganho_no_mapa": "As usinas solares grandes aparecem agrupadas no Nordeste, onde está o recurso.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "Polo solar centralizado — norte de Minas Gerais",
+      "trecho": "Centralizada concentrada no Nordeste e no norte de Minas Gerais. Distribuída espalhada por todo o país, seguindo tarifa, renda e número de unidades consumidoras — é a única fonte cuja geografia acompanha o consumo em vez do recurso.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1152,
+      "contexto": "Ficha da solar: o norte de Minas Gerais é o segundo polo de solar centralizada.",
+      "ganho_no_mapa": "O polo do norte de Minas aparece separado do nordestino e mais perto da carga.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "outro",
+      "nome": "Geração solar distribuída (todo o país)",
+      "trecho": "Distribuída espalhada por todo o país, seguindo tarifa, renda e número de unidades consumidoras — é a única fonte cuja geografia acompanha o consumo em vez do recurso.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1152,
+      "contexto": "Ficha da solar: a geração distribuída segue o consumo, não o recurso.",
+      "ganho_no_mapa": "Uma camada espalhada sobre as cidades, e não sobre o semiárido, mostra a única fonte que acompanha o consumo.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "biocombustivel",
+      "nome": "Polo sucroenergético — São Paulo, Goiás, Minas Gerais e Mato Grosso do Sul",
+      "trecho": "São Paulo, Goiás, Minas Gerais e Mato Grosso do Sul para cana; Sul, Sudeste e Bahia para celulose.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1154,
+      "contexto": "Ficha da biomassa, campo \"Concentração geográfica\": o bagaço de cana está em SP, GO, MG e MS.",
+      "ganho_no_mapa": "As usinas de cana agrupadas no Centro-Sul mostram onde a bioeletricidade nasce.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "Celulose (licor preto) — Sul, Sudeste e Bahia",
+      "trecho": "São Paulo, Goiás, Minas Gerais e Mato Grosso do Sul para cana; Sul, Sudeste e Bahia para celulose.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1154,
+      "contexto": "Ficha da biomassa: o licor preto vem das fábricas de celulose no Sul, no Sudeste e na Bahia.",
+      "ganho_no_mapa": "As térmicas de celulose aparecem em outro conjunto de estados, distinto do da cana.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "biocombustivel",
+      "nome": "Polo sucroenergético — São Paulo, Goiás, Minas Gerais e Mato Grosso do Sul",
+      "trecho": "Segue a safra da cana, concentrada de abril a novembro no Centro-Sul — ou seja, dentro do período seco.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1154,
+      "contexto": "Ficha da biomassa, campo \"Perfil sazonal\": a safra da cana no Centro-Sul cai dentro do período seco.",
+      "ganho_no_mapa": "As usinas de cana ficam na mesma região dos grandes reservatórios: geram justamente quando eles são poupados.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "Termelétricas a gás — Sudeste, Nordeste e litoral",
+      "trecho": "Gás no Sudeste, Nordeste e litoral com acesso a gasoduto ou terminal; carvão no Sul, junto às jazidas; derivados de petróleo em sistemas isolados e em atendimento local de segurança.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1156,
+      "contexto": "Ficha da térmica fóssil, campo \"Concentração geográfica\": o gás está onde há gasoduto ou terminal.",
+      "ganho_no_mapa": "As térmicas a gás aparecem coladas ao litoral e aos gasodutos: o combustível decide o endereço.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "gasoduto",
+      "nome": "Gasodutos e terminais de gás (não nomeados na fonte)",
+      "trecho": "Gás no Sudeste, Nordeste e litoral com acesso a gasoduto ou terminal; carvão no Sul, junto às jazidas; derivados de petróleo em sistemas isolados e em atendimento local de segurança.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1156,
+      "contexto": "Ficha da térmica fóssil: a localização do gás depende de acesso a gasoduto ou terminal.",
+      "ganho_no_mapa": "Ligar a camada de gasodutos mostra por que as térmicas a gás estão onde estão.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "Termelétricas a carvão — Sul",
+      "trecho": "Gás no Sudeste, Nordeste e litoral com acesso a gasoduto ou terminal; carvão no Sul, junto às jazidas; derivados de petróleo em sistemas isolados e em atendimento local de segurança.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1156,
+      "contexto": "Ficha da térmica fóssil: o carvão está no Sul, junto às jazidas.",
+      "ganho_no_mapa": "As usinas a carvão aparecem concentradas no Sul, ao lado da mina.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "sistema_isolado",
+      "nome": "Sistemas isolados (térmicas a derivados de petróleo)",
+      "trecho": "Gás no Sudeste, Nordeste e litoral com acesso a gasoduto ou terminal; carvão no Sul, junto às jazidas; derivados de petróleo em sistemas isolados e em atendimento local de segurança.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1156,
+      "contexto": "Ficha da térmica fóssil: derivados de petróleo abastecem sistemas isolados e atendimento local de segurança.",
+      "ganho_no_mapa": "Os pontos a óleo aparecem onde a rede não chega.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "usina",
+      "nome": "Central nuclear — litoral sul do Rio de Janeiro",
+      "trecho": "Um único sítio, no litoral sul do Rio de Janeiro.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1158,
+      "contexto": "Ficha da nuclear, campo \"Concentração geográfica\": toda a geração nuclear do país está num só lugar (a fonte não o nomeia).",
+      "ganho_no_mapa": "Um único ponto no litoral fluminense, entre Rio e São Paulo, mostra por que a saída das unidades pesa regionalmente.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "outro",
+      "nome": "Concentração geográfica das seis fontes",
+      "trecho": "A leitura lateral desta coluna revela o problema estruturante da Aula 05: cinco das seis fontes têm concentração geográfica marcada, e só uma delas — a solar distribuída — segue o consumo em vez do recurso. Todas as outras precisam de rede para chegar onde há carga.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 313,
+      "contexto": "Inst · 05 (leitura lateral), campo \"Concentração geográfica\": cinco das seis fontes estão longe do consumo.",
+      "ganho_no_mapa": "Ligar uma fonte por vez sobre o mapa de carga mostra, em sequência, quem está perto do consumo e quem depende de rede.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (expansão eólica)",
+      "trecho": "Essa defasagem não é sorte: é geografia física, e é a razão de a expansão eólica no Nordeste ter sido tão eficiente do ponto de vista sistêmico, para além de ter sido barata.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1165,
+      "contexto": "Seção 3.1: as três safras (chuva, vento, cana) estão defasadas, e isso explica a eficiência da eólica nordestina.",
+      "ganho_no_mapa": "Ver o vento no Nordeste e a água no Sudeste em regiões separadas mostra que a defasagem é geográfica.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "submercado",
+      "nome": "Submercado Sudeste/Centro-Oeste",
+      "trecho": "Novembro a abril no Sudeste/Centro-Oeste; regimes distintos no Norte, Nordeste e Sul",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1166,
+      "contexto": "Tabela de 3.1, linha \"Chuva\": cada subsistema tem seu calendário de chuva.",
+      "ganho_no_mapa": "Os quatro subsistemas com calendários de chuva diferentes mostram que não existe uma estação úmida nacional.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "rio_bacia",
+      "nome": "Bacia do Paraná",
+      "trecho": "Bacia do Paraná concentra o armazenamento",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1166,
+      "contexto": "Tabela de 3.1, linha \"Chuva\", coluna \"Onde\": a chuva que importa é a que cai sobre a bacia do Paraná.",
+      "ganho_no_mapa": "Os reservatórios da bacia do Paraná mostram onde a chuva vira estoque.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "rio_bacia",
+      "nome": "Bacia do Paraná",
+      "trecho": "As afluências chegam ao pico anual em boa parte das bacias do Paraná e o operador acompanha se o enchimento está aderente à média.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 398,
+      "contexto": "Inst · 07 (calendário sazonal), janeiro: mês de recomposição dos reservatórios das bacias do Paraná.",
+      "ganho_no_mapa": "Destacar a bacia em janeiro mostra onde o enchimento do ano se decide.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "usina",
+      "nome": "Polo eólico do litoral — Rio Grande do Norte e Ceará",
+      "trecho": "Litoral do Rio Grande do Norte e do Ceará; interior da Bahia e do Piauí",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1166,
+      "contexto": "Tabela de 3.1, linha \"Vento\", coluna \"Onde\": litoral do RN e do CE.",
+      "ganho_no_mapa": "O polo do litoral mostra onde sopra o vento do segundo semestre.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "usina",
+      "nome": "Polo eólico e solar do interior — Bahia e Piauí",
+      "trecho": "Litoral do Rio Grande do Norte e do Ceará; interior da Bahia e do Piauí",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1166,
+      "contexto": "Tabela de 3.1, linha \"Vento\", coluna \"Onde\": interior da BA e do PI.",
+      "ganho_no_mapa": "O polo do interior mostra a segunda área da safra dos ventos.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "intercambio",
+      "nome": "Complementaridade Nordeste (vento) × Sudeste/Centro-Oeste (período seco)",
+      "trecho": "Compensa o período seco do Sudeste/Centro-Oeste — poupa água quando a água é mais cara",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1166,
+      "contexto": "Tabela de 3.1, linha \"Vento\": o vento do Nordeste compensa a seca do Sudeste/Centro-Oeste.",
+      "ganho_no_mapa": "A seta do Nordeste para o Sudeste/Centro-Oeste mostra a energia que viaja para poupar a água de lá.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "biocombustivel",
+      "nome": "Polo sucroenergético — São Paulo, Goiás, Minas Gerais e Mato Grosso do Sul",
+      "trecho": "São Paulo, Goiás, Minas Gerais, Mato Grosso do Sul",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1166,
+      "contexto": "Tabela de 3.1, linha \"Cana\", coluna \"Onde\": a terceira safra está no Centro-Sul.",
+      "ganho_no_mapa": "As usinas de cana no Centro-Sul mostram a terceira safra, dentro da própria região dos reservatórios.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "usina",
+      "nome": "Polo solar centralizado — Nordeste",
+      "trecho": "Nordeste e norte de Minas para centralizada; todo o país para distribuída",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1166,
+      "contexto": "Tabela de 3.1, linha \"Sol\", coluna \"Onde\": solar centralizada no Nordeste e no norte de Minas.",
+      "ganho_no_mapa": "A solar centralizada do Nordeste entra no mapa como a fonte sem papel sazonal.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "usina",
+      "nome": "Polo solar centralizado — norte de Minas Gerais",
+      "trecho": "Nordeste e norte de Minas para centralizada; todo o país para distribuída",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1166,
+      "contexto": "Tabela de 3.1, linha \"Sol\", coluna \"Onde\": solar centralizada no Nordeste e no norte de Minas.",
+      "ganho_no_mapa": "O polo do norte de Minas completa o retrato de onde o sol entra na matriz.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "intercambio",
+      "nome": "Distância entre fontes complementares (dois mil quilômetros)",
+      "trecho": "<strong>duas fontes podem ser complementares no tempo e estar separadas por dois mil quilômetros</strong>. Sem capacidade de intercâmbio, a complementaridade estatística não vira benefício físico.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1168,
+      "contexto": "Seção 3.1: a complementaridade no tempo só vale se houver rede entre as duas regiões.",
+      "ganho_no_mapa": "A distância medida entre os parques do Nordeste e os reservatórios do Sudeste mostra o que a rede precisa vencer.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "mercado_estrangeiro",
+      "nome": "Outro mercado elétrico, não nomeado na fonte (origem do apelido da curva de carga líquida)",
+      "trecho": "Esse fenômeno recebeu um apelido pitoresco em outro mercado elétrico, e o apelido viajou.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1172,
+      "contexto": "Seção 3.2: o módulo recusa o apelido importado da curva de carga líquida e não diz de qual mercado ele veio.",
+      "ganho_no_mapa": "No globo caberia apontar o mercado de origem, mas a fonte não o nomeia: fica registrado sem coordenada.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 3,
+      "tipo": "intercambio",
+      "nome": "Fronteira de exportação do Nordeste",
+      "trecho": "Começa a safra dos ventos no Nordeste, e com ela o período de maior tensão de escoamento do ano. Vento forte, carga baixa e sol razoável coincidem, e a fronteira de exportação da região passa a operar no limite com frequência.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 452,
+      "contexto": "Inst · 07 (calendário sazonal), julho: a fronteira de exportação do Nordeste passa a operar no limite.",
+      "ganho_no_mapa": "Em julho, a fronteira de saída do Nordeste aparece carregada: o calendário ganha endereço.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "estado_regiao",
+      "nome": "Nordeste (pico eólico) × Sudeste/Centro-Oeste (mínimo hidrológico) em agosto",
+      "trecho": "Coincidem o pico eólico do Nordeste, o mínimo hidrológico do Sudeste/Centro-Oeste e a safra da cana.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 461,
+      "contexto": "Inst · 07 (calendário sazonal), agosto: o mês mais crítico para escoamento.",
+      "ganho_no_mapa": "Os três fenômenos de agosto acontecem em três regiões diferentes, e o mapa mostra onde cada um está.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "submercado",
+      "nome": "Submercado Sudeste/Centro-Oeste",
+      "trecho": "Chegando quase o normal, com estoque médio. É o subsistema que concentra cerca de setenta por cento da capacidade de armazenamento do país, então é o número que mais importa.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1188,
+      "contexto": "Tabela de 4.1 (junho de 2026), linha do Sudeste/Centro-Oeste: 93% de afluência, 66% de armazenamento.",
+      "ganho_no_mapa": "O Sudeste/Centro-Oeste, com a maior parte dos reservatórios, aparece como o subsistema que decide a leitura.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "submercado",
+      "nome": "Submercado Sul",
+      "trecho": "Regime próprio, pouca regularização, alta volatilidade.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1188,
+      "contexto": "Tabela de 4.1 (junho de 2026), linha do Sul: 82% de afluência, 63% de armazenamento.",
+      "ganho_no_mapa": "O Sul, com poucos reservatórios de regularização, mostra por que seu número oscila mais.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "submercado",
+      "nome": "Submercado Nordeste",
+      "trecho": "Olhe o Nordeste e o Sudeste/Centro-Oeste lado a lado. O Nordeste tem quase o dobro do estoque relativo do Sudeste, com uma afluência que é dois terços da dele.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1190,
+      "contexto": "Seção 4.1: comparação entre Nordeste e Sudeste/Centro-Oeste mostra estoque e fluxo apontando para lados opostos.",
+      "ganho_no_mapa": "Dois subsistemas vizinhos coloridos por estoque e por fluxo mostram leituras opostas conforme a grandeza escolhida.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 4,
+      "tipo": "submercado",
+      "nome": "Submercado Norte",
+      "trecho": "<b>Fotografias por subsistema, junho de 2026</b> — Sudeste/Centro-Oeste: afluência 93% da MLT, armazenamento 66% do útil. Sul: 82% e 63%. Nordeste: 59% e 89%. Norte: 58% e 95%.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 946,
+      "contexto": "Inst · 08 (termômetro hidrológico): as quatro fotografias de junho de 2026, com o Norte no extremo de estoque alto e fluxo fraco.",
+      "ganho_no_mapa": "Os quatro subsistemas com seus dois percentuais mostram o Norte como o caso mais acentuado.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "submercado",
+      "nome": "Submercado Nordeste",
+      "trecho": "Ela é a régua contra a qual a afluência é lida, e é regionalizada e mensal — comparar a afluência de julho no Nordeste com a média anual do Brasil não significa nada.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1186,
+      "contexto": "Seção 4.1: a média de longo termo vale por mês e por subsistema.",
+      "ganho_no_mapa": "Cada subsistema com sua própria régua de afluência mostra por que não existe uma média nacional.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "usina",
+      "nome": "Hidrelétricas a fio d'água das últimas duas décadas (não nomeadas na fonte)",
+      "trecho": "a expansão do parque hidrelétrico ocorreu predominantemente a fio d'água nas últimas duas décadas, o que aumenta capacidade sem aumentar armazenamento",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1194,
+      "contexto": "Nota \"Hidro-dependência · três níveis\" (especialista): a expansão hidrelétrica recente não trouxe reservatório.",
+      "ganho_no_mapa": "Separar no mapa usinas com reservatório das usinas a fio d'água mostra onde a capacidade cresceu sem estoque.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "rio_bacia",
+      "nome": "Bacias do sistema interligado (diversidade hidrológica)",
+      "trecho": "Aproveita diversidade hidrológica entre bacias distantes",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1197,
+      "contexto": "Tabela de 4.3, linha \"O parque é integrado nacionalmente\": a integração aproveita bacias com regimes diferentes.",
+      "ganho_no_mapa": "As bacias espalhadas pelo território, ligadas pela rede, mostram de onde vem a diversidade hidrológica.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 4,
+      "tipo": "pais",
+      "nome": "Brasil (armazenamento hidráulico em comparação com outros sistemas)",
+      "trecho": "É o ativo que dá ao Brasil uma flexibilidade que quase nenhum sistema tem — e é o mesmo ativo que expõe o país a um risco que quase nenhum sistema corre.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1115,
+      "contexto": "Lead da aula: o reservatório é vantagem e vulnerabilidade ao mesmo tempo, e poucos sistemas têm algo parecido.",
+      "ganho_no_mapa": "No globo, o Brasil se destaca entre os poucos sistemas apoiados em reservatórios hidrelétricos.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 5,
+      "tipo": "intercambio",
+      "nome": "Distância entre o melhor vento e o maior consumo do Brasil",
+      "trecho": "O melhor vento do Brasil e o maior consumo do Brasil não estão no mesmo lugar, e nunca estarão.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1116,
+      "contexto": "Lead da aula: o recurso está longe da carga, e a aula trata do que existe entre os dois.",
+      "ganho_no_mapa": "Ver o vento no Nordeste e o consumo no Sudeste no mesmo mapa é a própria tese da aula.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "linha",
+      "nome": "Malha de transmissão do sistema interligado",
+      "trecho": "Ao fim de 2025 o país contava com cerca de 181,8 mil quilômetros de linhas de transmissão, com 5,6 mil quilômetros adicionados no ano.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1203,
+      "contexto": "Seção 5.1: tamanho da rede de transmissão brasileira.",
+      "ganho_no_mapa": "A malha inteira desenhada sobre o território dá a escala continental da rede.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "submercado",
+      "nome": "Os quatro submercados",
+      "trecho": "Limites físicos de transmissão separam regiões e condicionam a operação, e é sobre esses limites que se definem os quatro submercados.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1204,
+      "contexto": "Seção 5.1: o sistema não é uma placa de cobre; os submercados nascem dos limites de transmissão.",
+      "ganho_no_mapa": "Os quatro polígonos sobre a malha mostram que as fronteiras passam onde a rede é mais fina.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "submercado",
+      "nome": "Submercado Sudeste/Centro-Oeste",
+      "trecho": "Principal centro de consumo e de armazenamento hidráulico; é o destino da maioria dos intercâmbios",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1205,
+      "contexto": "Tabela de 5.1, linha do Sudeste/Centro-Oeste.",
+      "ganho_no_mapa": "O Sudeste/Centro-Oeste aparece como o destino para onde as setas de intercâmbio convergem.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "submercado",
+      "nome": "Submercado Sul",
+      "trecho": "Alterna importação e exportação conforme água, vento e carga — o mais bidirecional dos quatro",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1205,
+      "contexto": "Tabela de 5.1, linha do Sul.",
+      "ganho_no_mapa": "A seta de dois sentidos entre o Sul e o Sudeste/Centro-Oeste mostra a troca que inverte.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "submercado",
+      "nome": "Submercado Nordeste",
+      "trecho": "Exportador renovável e foco dos limites de escoamento e do corte de geração",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1205,
+      "contexto": "Tabela de 5.1, linha do Nordeste.",
+      "ganho_no_mapa": "O Nordeste aparece cheio de parques e com poucas saídas: exportador e foco de corte.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "submercado",
+      "nome": "Submercado Norte",
+      "trecho": "Grandes hidrelétricas a fio d'água, longas distâncias, integração amazônica complexa",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1205,
+      "contexto": "Tabela de 5.1, linha do Norte.",
+      "ganho_no_mapa": "O Norte aparece com poucas usinas enormes ligadas por linhas muito longas.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "submercado",
+      "nome": "Os quatro submercados",
+      "trecho": "Submercado é zona de contabilização e de preço, não fronteira administrativa — as bordas seguem topologia elétrica e não coincidem com as cinco regiões geográficas.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1206,
+      "contexto": "Seção 5.1: as bordas dos submercados não são as das cinco regiões do IBGE.",
+      "ganho_no_mapa": "Sobrepor submercados e regiões geográficas mostra onde as duas divisões não coincidem.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "intercambio",
+      "nome": "Contrato entre indústria no Sudeste e eólica no Nordeste (exposição de submercado)",
+      "trecho": "Uma indústria no Sudeste pode contratar uma eólica no Nordeste; comercialmente existe um contrato e uma exposição de submercado, fisicamente a rede equilibra o conjunto e a energia que entra naquela fábrica é a que estava mais perto.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1206,
+      "contexto": "Seção 5.1: contrato de energia não determina o caminho físico dos elétrons.",
+      "ganho_no_mapa": "O contrato liga dois pontos distantes; o mapa mostra que a energia física vem das usinas vizinhas à fábrica.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "linha",
+      "nome": "Eixo Norte–Sul",
+      "trecho": "Norte e Nordeste ao Sudeste/Centro-Oeste, em corrente alternada",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1209,
+      "contexto": "Tabela de 5.2, linha \"Eixo Norte-Sul\", coluna \"O que conecta\".",
+      "ganho_no_mapa": "O feixe de linhas em corrente alternada entre Norte/Nordeste e Sudeste/Centro-Oeste mostra a espinha da integração.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "linha",
+      "nome": "Eixo Norte–Sul",
+      "trecho": "Saturação ou falha divide eletricamente o país e eleva custo local; não é uma linha, é um conjunto de corredores e reforços",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1209,
+      "contexto": "Tabela de 5.2, linha \"Eixo Norte-Sul\", coluna \"Que risco criou\".",
+      "ganho_no_mapa": "Ver que poucos corredores ligam as duas metades do país explica o risco de separação elétrica.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "bipolo",
+      "nome": "Bipolos do Madeira (Rondônia–Sudeste)",
+      "trecho": "Complexo hidrelétrico de Rondônia ao Sudeste, em corrente contínua de alta tensão",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1209,
+      "contexto": "Tabela de 5.2, linha \"Bipolos do Madeira\", coluna \"O que conecta\".",
+      "ganho_no_mapa": "A linha direta de Rondônia ao Sudeste mostra um bloco levado de A para B sem paradas.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "usina",
+      "nome": "Complexo do Madeira (Rondônia)",
+      "trecho": "Complexo hidrelétrico de Rondônia ao Sudeste, em corrente contínua de alta tensão",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1209,
+      "contexto": "Tabela de 5.2: o complexo hidrelétrico de Rondônia é a origem dos bipolos do Madeira.",
+      "ganho_no_mapa": "As usinas na ponta oeste do corredor mostram de onde sai o bloco de energia.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "bipolo",
+      "nome": "Bipolos de Belo Monte (Xingu–Sudeste)",
+      "trecho": "Complexo do Xingu ao Sudeste, em corrente contínua de alta tensão",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1209,
+      "contexto": "Tabela de 5.2, linha \"Bipolos de Belo Monte\", coluna \"O que conecta\".",
+      "ganho_no_mapa": "Os elos do Xingu ao Sudeste mostram o segundo grande corredor em corrente contínua.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "bipolo",
+      "nome": "Bipolos de Belo Monte (Xingu–Sudeste)",
+      "trecho": "Mesmo princípio, com entrega em pontos distintos da rede para distribuir o impacto",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1209,
+      "contexto": "Tabela de 5.2, linha \"Bipolos de Belo Monte\", coluna \"Qual problema resolveu\".",
+      "ganho_no_mapa": "Os dois pontos de chegada diferentes no Sudeste mostram a entrega repartida.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "usina",
+      "nome": "UHE Belo Monte (Complexo do Xingu)",
+      "trecho": "Complexo do Xingu ao Sudeste, em corrente contínua de alta tensão",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1209,
+      "contexto": "Tabela de 5.2: o complexo do Xingu é a origem dos bipolos de Belo Monte.",
+      "ganho_no_mapa": "A usina no Xingu, na ponta norte do corredor, mostra de onde sai o bloco.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "subestacao",
+      "nome": "Estações conversoras dos bipolos",
+      "trecho": "Dependência de estações conversoras; a perda de um bipolo é contingência de magnitude elevada",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1209,
+      "contexto": "Tabela de 5.2, coluna \"Que risco criou\": os corredores em corrente contínua dependem de estações conversoras nas pontas.",
+      "ganho_no_mapa": "As conversoras nas duas pontas de cada bipolo mostram os pontos únicos de que o corredor depende.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "linha",
+      "nome": "Malha de transmissão acima de 230 kV (AXIA Energia)",
+      "trecho": "informou, ao fim de 2025, cerca de 74,8 mil quilômetros de linhas, dos quais 69,3 mil acima de 230 quilovolts, e uma participação de mercado de 37% <strong>no segmento acima de 230 quilovolts</strong>, incluindo participações em sociedades de propósito específico",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1212,
+      "contexto": "Seção 5.3: a concentração da malha em uma companhia, e o qualificador de tensão que o número carrega.",
+      "ganho_no_mapa": "Filtrar as linhas por tensão acima de 230 kV mostra a que malha o percentual se refere.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "usina",
+      "nome": "Usina binacional e usina nuclear (excluídas do denominador; não nomeadas na fonte)",
+      "trecho": "A mesma companhia informou 43,9 gigawatts de capacidade de geração, correspondentes a 17% do total do país — percentual calculado <strong>excluindo</strong> a usina binacional e a nuclear.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1212,
+      "contexto": "Seção 5.3: o percentual de geração da companhia muda conforme o denominador inclua a binacional e a nuclear.",
+      "ganho_no_mapa": "Apagar dois pontos do mapa, a binacional e a nuclear, mostra como o denominador muda.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 5,
+      "tipo": "sistema_isolado",
+      "nome": "Sistemas isolados da Amazônia",
+      "trecho": "Sistemas isolados atendem localidades não conectadas ao sistema interligado, sobretudo na Amazônia. Respondem por menos de meio por cento da geração nacional, com perfil muito mais fóssil que a média — o diesel dominava a geração isolada em 2025.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1217,
+      "contexto": "Seção 5.4: o que são os sistemas isolados e onde estão.",
+      "ganho_no_mapa": "Os pontos isolados na Amazônia, fora da malha, mostram o Brasil que a média renovável não descreve.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "sistema_isolado",
+      "nome": "Roraima",
+      "trecho": "Em setembro de 2025, Roraima deixou de ser o último estado fora do sistema interligado.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1218,
+      "contexto": "Seção 5.4: Roraima foi o último estado a entrar no sistema interligado.",
+      "ganho_no_mapa": "Roraima passa de ilha elétrica a ponta da malha: o antes e depois cabe num único mapa.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "sistema_isolado",
+      "nome": "Roraima",
+      "trecho": "Conectou cerca de 209 mil unidades consumidoras e reduziu drasticamente o consumo do sistema isolado do estado.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1218,
+      "contexto": "Seção 5.4: efeito da interligação sobre o sistema isolado de Roraima.",
+      "ganho_no_mapa": "A área atendida em Roraima mostra quem deixou de depender da geração local.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "linha",
+      "nome": "LT 500 kV Manaus–Boa Vista",
+      "trecho": "A linha entre Manaus e Boa Vista custou cerca de R$ 2,6 bilhões, tem aproximadamente 725 quilômetros em circuito duplo de 500 quilovolts e atravessa terra indígena e nove municípios.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1218,
+      "contexto": "Seção 5.4: dados da linha que interligou Roraima.",
+      "ganho_no_mapa": "O traçado de Manaus a Boa Vista, cruzando terra indígena, mostra o tamanho e a dificuldade da obra.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "cidade",
+      "nome": "Manaus (AM)",
+      "trecho": "A linha entre Manaus e Boa Vista custou cerca de R$ 2,6 bilhões",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1218,
+      "contexto": "Seção 5.4: Manaus é a ponta sul da linha que interligou Roraima.",
+      "ganho_no_mapa": "Manaus aparece como o ponto onde a malha nacional terminava antes da obra.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "cidade",
+      "nome": "Boa Vista (RR)",
+      "trecho": "O estudo técnico que recomendou a interligação de Boa Vista é de 2010; o leilão que a contratou, de 2011; a energização, de 2025.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1222,
+      "contexto": "Seção 5.4: quinze anos entre a recomendação e a energização da interligação de Boa Vista.",
+      "ganho_no_mapa": "Boa Vista na ponta da linha, com as três datas, mostra quanto tempo a rede levou para chegar.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "outro",
+      "nome": "Terra indígena e nove municípios atravessados pela linha Manaus–Boa Vista (não nomeados na fonte)",
+      "trecho": "tem aproximadamente 725 quilômetros em circuito duplo de 500 quilovolts e atravessa terra indígena e nove municípios",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1218,
+      "contexto": "Seção 5.4: o traçado cruza terra indígena, uma das razões do prazo longo.",
+      "ganho_no_mapa": "O traçado sobre a terra indígena mostra por que licenciamento domina o cronograma.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 5,
+      "tipo": "evento",
+      "nome": "Interligação física de Roraima ao sistema interligado (16 de setembro de 2025)",
+      "trecho": "Interligação física efetiva, às 7h23; o estado deixa de importar energia do sistema vizinho",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1220,
+      "contexto": "Tabela de 5.4: das cinco datas da interligação, a de 16 de setembro é a da operação física.",
+      "ganho_no_mapa": "A linha do tempo presa ao traçado mostra que \"a data da interligação\" são cinco datas.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "interconexao_internacional",
+      "nome": "Roraima — importação de energia do sistema vizinho (país não nomeado na fonte)",
+      "trecho": "Interligação física efetiva, às 7h23; o estado deixa de importar energia do sistema vizinho",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1220,
+      "contexto": "Tabela de 5.4: até a interligação o estado importava energia de um sistema vizinho, que a fonte não nomeia.",
+      "ganho_no_mapa": "A conexão que cruzava a fronteira norte mostra de onde Roraima se abastecia antes de se ligar ao resto do país.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "intercambio",
+      "nome": "Fronteira de exportação do Nordeste",
+      "trecho": "Exportação do Nordeste limitada para evitar colapso de tensão após contingência",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1225,
+      "contexto": "Tabela de 5.5, causa \"Confiabilidade elétrica\": exemplo típico de corte por limite de rede.",
+      "ganho_no_mapa": "As linhas que saem do Nordeste, com o limite de exportação, mostram onde o corte por confiabilidade acontece.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "outro",
+      "nome": "Sistema interligado — corte por razão energética (país inteiro, sem gargalo local)",
+      "trecho": "Corte por razão energética é problema de <em>balanço</em>: mais linha não resolve nada, porque a energia não tem para onde ir em lugar nenhum do país naquela hora.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1226,
+      "contexto": "Seção 5.5: diferença entre corte de rede (localizado) e corte de balanço (nacional).",
+      "ganho_no_mapa": "O contraste entre um gargalo que tem endereço e um excedente que cobre o país inteiro só aparece no mapa.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "linha",
+      "nome": "Reforços de transmissão indicados para 2026–2030",
+      "trecho": "o plano da operação elétrica de médio prazo indicou, para o ciclo 2026-2030, cerca de 5.301 quilômetros de novas linhas e 24.314 megavolt-ampère de capacidade adicional de transformação, com investimento estimado em R$ 28,1 bilhões",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1230,
+      "contexto": "Seção 5.5: volume de reforços de rede indicados para o ciclo 2026-2030.",
+      "ganho_no_mapa": "As linhas novas indicadas sobre a malha existente mostram onde o reforço se concentra.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "intercambio",
+      "nome": "Fronteira de exportação Norte/Nordeste → Sudeste/Centro-Oeste",
+      "trecho": "projetou o limite de recebimento do Sudeste/Centro-Oeste a partir do Norte e Nordeste evoluindo de 18.500 megawatts em janeiro de 2026 para 23.000 em janeiro de 2030",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1230,
+      "contexto": "Seção 5.5: evolução projetada do limite de recebimento do Sudeste/Centro-Oeste.",
+      "ganho_no_mapa": "A fronteira entre Norte/Nordeste e Sudeste/Centro-Oeste, com os dois valores, mostra quanto o funil se alarga.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 6,
+      "tipo": "distribuidora",
+      "nome": "Concessões de distribuição com vencimento entre 2025 e 2031",
+      "trecho": "A última milha é monopólio natural por área de concessão, e concessão é contrato com data de vencimento. Entre 2025 e 2031 vence cerca de uma vintena desses contratos, todos sob o mesmo marco de renovação",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1117,
+      "contexto": "Lead da aula: concessão de distribuição é território com prazo, e cerca de vinte contratos vencem no período.",
+      "ganho_no_mapa": "Colorir as áreas de concessão pelo ano de vencimento mostra quanto do território entra em renovação.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 6,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "Para análise séria, o mapa de áreas de atuação e o relatório de indicadores da agência prevalecem sobre número memorizado de relatório antigo.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1239,
+      "contexto": "Seção 6.1: quantas distribuidoras existem é pergunta de recorte; a referência é o mapa de áreas de atuação.",
+      "ganho_no_mapa": "O mapa das áreas de atuação é a própria fonte que a aula manda consultar.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 6,
+      "tipo": "distribuidora",
+      "nome": "Áreas de concessão das distribuidoras",
+      "trecho": "a atividade é outorgada com exclusividade territorial e regulada em contrapartida — obrigação de universalização, de continuidade e de modicidade",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1235,
+      "contexto": "Seção 6.1: distribuição é monopólio territorial regulado.",
+      "ganho_no_mapa": "Polígonos que não se sobrepõem mostram o que significa exclusividade territorial.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "distribuidora",
+      "nome": "Cemig (Minas Gerais)",
+      "trecho": "como a <strong>Cemig</strong>, controlada pelo estado de Minas Gerais",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1238,
+      "contexto": "Seção 6.1: a propriedade do setor é mista; a Cemig é exemplo de companhia com controle estatal.",
+      "ganho_no_mapa": "A área da Cemig em Minas Gerais dá território ao exemplo de controle estadual.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "distribuidora",
+      "nome": "Copel (Paraná)",
+      "trecho": "a <strong>Copel</strong>, que passou por corporativização em 2023 e deixou de ter o estado do Paraná como controlador, mantendo-o como acionista relevante",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1238,
+      "contexto": "Seção 6.1: a Copel é exemplo de companhia que deixou de ter o estado como controlador.",
+      "ganho_no_mapa": "A área da Copel no Paraná dá território ao exemplo de corporativização.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "cidade",
+      "nome": "Região metropolitana do Rio de Janeiro",
+      "trecho": "Caso A · Light — região metropolitana do Rio de Janeiro · Arco fechado",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1245,
+      "contexto": "Seção 6.3: título do primeiro caso de renovação de concessão.",
+      "ganho_no_mapa": "A região metropolitana do Rio delimita onde o Caso A acontece.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "distribuidora",
+      "nome": "Light (região metropolitana do Rio de Janeiro)",
+      "trecho": "Alta densidade urbana, violência, informalidade e perdas não técnicas estruturalmente elevadas. Atende cerca de 4,3 milhões de unidades consumidoras em 31 municípios fluminenses, e opera na região desde 1904.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1246,
+      "contexto": "Caso A (Light): o que caracteriza a área de concessão.",
+      "ganho_no_mapa": "Os 31 municípios fluminenses da concessão mostram o território denso onde a perda não técnica pesa.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 6,
+      "tipo": "evento",
+      "nome": "Recuperação judicial da Light S.A. (12 de maio de 2023)",
+      "trecho": "Pedido de recuperação judicial em 12 de maio de 2023, com passivo da ordem de R$ 11 bilhões.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1246,
+      "contexto": "Caso A (Light): a crise que antecedeu a renovação.",
+      "ganho_no_mapa": "O evento datado sobre a área da Light abre a linha do tempo do caso.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "evento",
+      "nome": "Renovação da concessão da Light (2026–2056)",
+      "trecho": "Termo aditivo assinado com o ministério em maio de 2026, prorrogando a concessão por 30 anos, de 4 de junho de 2026 a 4 de junho de 2056.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1246,
+      "contexto": "Caso A (Light): o desfecho foi a prorrogação por 30 anos.",
+      "ganho_no_mapa": "A mesma área de concessão com o novo prazo fecha a linha do tempo do caso.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "cidade",
+      "nome": "Região metropolitana de São Paulo",
+      "trecho": "Caso B · Enel Distribuição São Paulo — região metropolitana de São Paulo · Arco aberto",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1247,
+      "contexto": "Seção 6.3: título do segundo caso, ainda em curso.",
+      "ganho_no_mapa": "A região metropolitana de São Paulo delimita onde o Caso B acontece.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "distribuidora",
+      "nome": "Enel Distribuição São Paulo (região metropolitana de São Paulo)",
+      "trecho": "O maior centro de carga do país, com arborização urbana densa e exposição crescente a eventos climáticos severos. A concessionária é a antiga Eletropaulo, adquirida pelo grupo italiano em 2018; o contrato de concessão é de 1998, com vigência de 30 anos.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1248,
+      "contexto": "Caso B (Enel São Paulo): o que caracteriza a área de concessão.",
+      "ganho_no_mapa": "A área de concessão sobre a maior mancha urbana do país mostra o tamanho da carga exposta.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 6,
+      "tipo": "evento",
+      "nome": "Interrupções prolongadas na região metropolitana de São Paulo (desde 2023)",
+      "trecho": "Interrupções prolongadas recorrentes após eventos climáticos desde 2023, com tempo elevado de atendimento emergencial e aumento de interrupções superiores a 24 horas.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1248,
+      "contexto": "Caso B (Enel São Paulo): a crise que levou ao processo.",
+      "ganho_no_mapa": "Os eventos sobre a área de concessão mostram que a falha se concentra em um território e em dias específicos.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 6,
+      "tipo": "evento",
+      "nome": "Instauração do processo de caducidade da Enel São Paulo (7 de abril de 2026)",
+      "trecho": "Em 7 de abril de 2026, a diretoria colegiada decidiu pela instauração de processo administrativo de caducidade",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1248,
+      "contexto": "Caso B (Enel São Paulo): a reação regulatória; é processo em curso, não desfecho.",
+      "ganho_no_mapa": "O marco datado sobre a área da concessão mostra o estágio do caso sem tratá-lo como encerrado.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "pais",
+      "nome": "Itália (grupo controlador da Enel São Paulo)",
+      "trecho": "A concessionária é a antiga Eletropaulo, adquirida pelo grupo italiano em 2018",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1248,
+      "contexto": "Caso B: a concessionária paulista pertence a um grupo italiano.",
+      "ganho_no_mapa": "No globo, a ligação entre São Paulo e a Itália mostra a origem do controlador.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 6,
+      "tipo": "outro",
+      "nome": "Data centers — pedidos de conexão no país (sem localização na fonte)",
+      "trecho": "A razão é temporal e locacional — carga constante não coincide com todas as horas e todos os lugares de excedente, e restrição elétrica permanece onde ela existe.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1257,
+      "contexto": "Seção 6.5: nova carga só reduz corte quando coincide em hora e em lugar com o excedente.",
+      "ganho_no_mapa": "Comparar onde a carga se instala com onde sobra energia mostra por que a coincidência de lugar importa.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 7,
+      "tipo": "usina",
+      "nome": "Hidrelétricas a fio d'água das últimas duas décadas (não nomeadas na fonte)",
+      "trecho": "E como a expansão hidrelétrica das últimas duas décadas foi predominantemente a fio d'água, a capacidade cresceu mais que o armazenamento até dentro da própria fonte.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1264,
+      "contexto": "Seção 7.1 (Força 1): a hidro é diluída e a fração estocável do sistema encolhe.",
+      "ganho_no_mapa": "Usinas novas sem reservatório ao lado das antigas com reservatório mostram a capacidade crescendo sem estoque.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 7,
+      "tipo": "submercado",
+      "nome": "Os quatro subsistemas (séries públicas por subsistema)",
+      "trecho": "série histórica de energia armazenada por subsistema no portal aberto do operador",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1265,
+      "contexto": "Seção 7.1, \"Onde ver\": a série que registra a Força 1 é publicada por subsistema.",
+      "ganho_no_mapa": "Os quatro subsistemas são a unidade geográfica em que o dado é publicado.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 7,
+      "tipo": "linha",
+      "nome": "Reforços de transmissão indicados para 2026–2030",
+      "trecho": "de aproximadamente 1.260 quilômetros e R$ 7,6 bilhões num ciclo para aproximadamente 5.301 quilômetros e R$ 28,1 bilhões no seguinte",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1272,
+      "contexto": "Seção 7.3 (Força 3): o salto de obras indicadas entre dois ciclos do plano da operação.",
+      "ganho_no_mapa": "As linhas indicadas no ciclo novo, sobre a malha atual, mostram a rede correndo atrás da geração.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 7,
+      "tipo": "linha",
+      "nome": "LT 500 kV Manaus–Boa Vista",
+      "trecho": "E o rastro histórico é a linha de Roraima: quinze anos entre a recomendação técnica e a energização.",
+      "arquivo": "src/lib/data/alexandria-modulo-08-content.ts",
+      "linha": 1272,
+      "contexto": "Seção 7.3 (Força 3): a linha de Roraima como exemplo do prazo de transmissão.",
+      "ganho_no_mapa": "O traçado até Roraima vira a régua de quanto tempo uma linha leva para sair do papel.",
+      "relevancia": "alta"
+    }
+  ],
+  "vistas_sugeridas": [
+    {
+      "aula": 0,
+      "titulo": "Mapa físico: onde a energia nasce",
+      "o_que_mostra": "Brasil inteiro, com os nós do Inst · 01 no fluxo de geração: hidrelétricas do Norte, polos eólicos e solares do Nordeste, bacia do Paraná, norte de Minas, Itaipu e o Sul. Destaque para o Nordeste como nó mais denso e para o centro de carga em São Paulo, Minas e Rio.",
+      "nomes": [
+        "UHE Belo Monte (Complexo do Xingu)",
+        "UHE Tucuruí",
+        "Complexo do Madeira (Rondônia)",
+        "Polo eólico do litoral — Rio Grande do Norte e Ceará",
+        "Polo eólico e solar do interior — Bahia e Piauí",
+        "UHE Sobradinho",
+        "Bacia do Paraná (rios Grande e Paranaíba)",
+        "Polo solar centralizado — norte de Minas Gerais",
+        "UHE Itaipu",
+        "Submercado Sul",
+        "Centro de carga — São Paulo, Minas Gerais e Rio de Janeiro",
+        "Nordeste (nó mais denso de geração e ponto de maior tensão de escoamento)"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "usinas_eolica",
+        "usinas_solar",
+        "reservatorios_bacias",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 0,
+      "titulo": "Mapa físico: por onde a energia sai",
+      "o_que_mostra": "Mesma câmera, agora com as linhas: bipolos do Madeira e de Belo Monte, eixo Norte–Sul, sistema de Itaipu e a troca com o Sul. Destaque para a fronteira de exportação do Norte e Nordeste, com o limite de recebimento do Sudeste/Centro-Oeste.",
+      "nomes": [
+        "Bipolos do Madeira (Rondônia–Sudeste)",
+        "Bipolos de Belo Monte (Xingu–Sudeste)",
+        "Eixo Norte–Sul",
+        "Fronteira de exportação Norte/Nordeste → Sudeste/Centro-Oeste",
+        "Intercâmbio Sudeste/Centro-Oeste ↔ Sul",
+        "Sistema de transmissão de Itaipu (corrente alternada e corrente contínua)",
+        "Centro de carga — São Paulo, Minas Gerais e Rio de Janeiro",
+        "Distância entre o melhor recurso eólico e o maior centro de carga"
+      ],
+      "camadas": [
+        "linhas",
+        "subestacoes",
+        "submercados",
+        "usinas_hidro",
+        "usinas_eolica"
+      ]
+    },
+    {
+      "aula": 0,
+      "titulo": "Fora da malha: Roraima e a Amazônia isolada",
+      "o_que_mostra": "Câmera sobre a Amazônia: a linha de 500 kV que termina em Roraima e as localidades isoladas sem nenhuma linha chegando. Destaque para a ponta de linha e para a geração a diesel.",
+      "nomes": [
+        "Roraima",
+        "LT 500 kV Manaus–Boa Vista",
+        "Sistemas isolados da Amazônia",
+        "Interligação de Roraima ao sistema interligado (setembro de 2025)"
+      ],
+      "camadas": [
+        "linhas",
+        "subestacoes",
+        "usinas_termica",
+        "outra: sistemas isolados"
+      ]
+    },
+    {
+      "aula": 0,
+      "titulo": "Operação A: a planta em Minas pela lente da matriz",
+      "o_que_mostra": "Câmera em Minas Gerais dentro do polígono do Sudeste/Centro-Oeste: o polo solar do norte de Minas, os reservatórios do submercado e, ao longe, a fronteira de recebimento do Norte e do Nordeste e o interior da Bahia.",
+      "nomes": [
+        "Minas Gerais (Operação A — mineração)",
+        "Polo solar centralizado — norte de Minas Gerais",
+        "Fronteira de exportação Norte/Nordeste → Sudeste/Centro-Oeste",
+        "Interior da Bahia (corte de geração como fenômeno local)",
+        "Submercado Sudeste/Centro-Oeste"
+      ],
+      "camadas": [
+        "submercados",
+        "usinas_solar",
+        "reservatorios_bacias",
+        "linhas"
+      ]
+    },
+    {
+      "aula": 1,
+      "titulo": "Uma base hidrelétrica sem par",
+      "o_que_mostra": "Globo com os países coloridos pela participação da hidreletricidade na geração elétrica; destaque para o Brasil entre países de porte comparável.",
+      "nomes": [
+        "Brasil (base hidrelétrica em comparação com outros países)"
+      ],
+      "camadas": [
+        "mundo_paises"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "Onde está cada fonte",
+      "o_que_mostra": "Brasil inteiro, uma fonte por vez, na ordem das seis fichas: a cada troca o mapa acende outra região. Destaque para a única fonte que segue o consumo, a solar distribuída.",
+      "nomes": [
+        "Concentração geográfica das seis fontes",
+        "Bacia do Paraná",
+        "Polo eólico do litoral — Rio Grande do Norte e Ceará",
+        "Polo solar centralizado — Nordeste",
+        "Polo sucroenergético — São Paulo, Goiás, Minas Gerais e Mato Grosso do Sul",
+        "Termelétricas a gás — Sudeste, Nordeste e litoral",
+        "Central nuclear — litoral sul do Rio de Janeiro",
+        "Geração solar distribuída (todo o país)"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "usinas_eolica",
+        "usinas_solar",
+        "usinas_biomassa",
+        "usinas_termica",
+        "usinas_nuclear"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "A água: estoque no Paraná, fio d'água no Norte",
+      "o_que_mostra": "Bacias e rios da ficha hidrelétrica: reservatórios na bacia do Paraná, grandes usinas a fio d'água no Madeira e no Xingu, São Francisco no Nordeste, Iguaçu e Uruguai no Sul.",
+      "nomes": [
+        "Bacia do Paraná",
+        "Rio Madeira",
+        "Rio Xingu",
+        "Rio São Francisco",
+        "Rio Iguaçu",
+        "Rio Uruguai",
+        "Submercado Sudeste/Centro-Oeste"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "reservatorios_bacias",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "Vento e sol: dois polos no Nordeste, um no norte de Minas",
+      "o_que_mostra": "Câmera sobre o Nordeste e o norte de Minas: polo eólico do litoral (RN e CE), polo do interior (BA e PI), solar centralizada e, ao sul, o parque eólico do Sul.",
+      "nomes": [
+        "Polo eólico do litoral — Rio Grande do Norte e Ceará",
+        "Polo eólico e solar do interior — Bahia e Piauí",
+        "Eólicas do Sul",
+        "Polo solar centralizado — Nordeste",
+        "Polo solar centralizado — norte de Minas Gerais",
+        "Nordeste (safra dos ventos) × período seco do Sudeste/Centro-Oeste"
+      ],
+      "camadas": [
+        "usinas_eolica",
+        "usinas_solar",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "Térmicas: cana, gás, carvão e um único sítio nuclear",
+      "o_que_mostra": "Cana no Centro-Sul, celulose no Sul, Sudeste e Bahia, gás junto a gasodutos e terminais, carvão no Sul junto às jazidas e o ponto nuclear no litoral sul fluminense.",
+      "nomes": [
+        "Polo sucroenergético — São Paulo, Goiás, Minas Gerais e Mato Grosso do Sul",
+        "Celulose (licor preto) — Sul, Sudeste e Bahia",
+        "Termelétricas a gás — Sudeste, Nordeste e litoral",
+        "Gasodutos e terminais de gás (não nomeados na fonte)",
+        "Termelétricas a carvão — Sul",
+        "Sistemas isolados (térmicas a derivados de petróleo)",
+        "Central nuclear — litoral sul do Rio de Janeiro"
+      ],
+      "camadas": [
+        "usinas_biomassa",
+        "usinas_termica",
+        "usinas_nuclear",
+        "gasodutos"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "Três safras que não coincidem",
+      "o_que_mostra": "Chuva sobre a bacia do Paraná, vento no litoral e no interior do Nordeste, cana no Centro-Sul: três regiões que acendem em meses diferentes.",
+      "nomes": [
+        "Bacia do Paraná",
+        "Polo eólico do litoral — Rio Grande do Norte e Ceará",
+        "Polo eólico e solar do interior — Bahia e Piauí",
+        "Polo sucroenergético — São Paulo, Goiás, Minas Gerais e Mato Grosso do Sul",
+        "Submercado Sudeste/Centro-Oeste",
+        "Nordeste (expansão eólica)"
+      ],
+      "camadas": [
+        "reservatorios_bacias",
+        "usinas_hidro",
+        "usinas_eolica",
+        "usinas_biomassa"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "Complementares, a dois mil quilômetros",
+      "o_que_mostra": "Do Nordeste ao Sudeste/Centro-Oeste com as linhas que os ligam: o vento que poupa a água só vale se houver rede no meio. Destaque para a distância.",
+      "nomes": [
+        "Complementaridade Nordeste (vento) × Sudeste/Centro-Oeste (período seco)",
+        "Distância entre fontes complementares (dois mil quilômetros)",
+        "Nordeste (expansão eólica)"
+      ],
+      "camadas": [
+        "linhas",
+        "submercados",
+        "usinas_eolica",
+        "reservatorios_bacias"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "Agosto: pico de vento, mínimo de água",
+      "o_que_mostra": "Calendário do sistema em julho e agosto: parques do Nordeste no auge, reservatórios do Sudeste/Centro-Oeste no mínimo e a fronteira de exportação do Nordeste no limite.",
+      "nomes": [
+        "Fronteira de exportação do Nordeste",
+        "Nordeste (pico eólico) × Sudeste/Centro-Oeste (mínimo hidrológico) em agosto"
+      ],
+      "camadas": [
+        "linhas",
+        "submercados",
+        "usinas_eolica",
+        "usinas_solar",
+        "reservatorios_bacias"
+      ]
+    },
+    {
+      "aula": 4,
+      "titulo": "Quatro subsistemas: estoque contra fluxo",
+      "o_que_mostra": "Os quatro subsistemas coloridos duas vezes, por afluência e por armazenamento, na fotografia de junho de 2026. Destaque para Nordeste e Sudeste/Centro-Oeste lado a lado.",
+      "nomes": [
+        "Submercado Sudeste/Centro-Oeste",
+        "Submercado Sul",
+        "Submercado Nordeste",
+        "Submercado Norte"
+      ],
+      "camadas": [
+        "submercados",
+        "reservatorios_bacias"
+      ]
+    },
+    {
+      "aula": 4,
+      "titulo": "Onde mora o armazenamento",
+      "o_que_mostra": "Reservatórios e usinas hidrelétricas do país, separando as que têm reservatório das que são a fio d'água: o estoque está no Sudeste/Centro-Oeste e a expansão recente não o aumentou.",
+      "nomes": [
+        "Submercado Sudeste/Centro-Oeste",
+        "Hidrelétricas a fio d'água das últimas duas décadas (não nomeadas na fonte)",
+        "Bacias do sistema interligado (diversidade hidrológica)"
+      ],
+      "camadas": [
+        "usinas_hidro",
+        "reservatorios_bacias",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "A malha e os quatro submercados",
+      "o_que_mostra": "Brasil inteiro com a rede de transmissão e os quatro polígonos de submercado por cima; destaque para as bordas, que seguem a rede e não as regiões geográficas.",
+      "nomes": [
+        "Malha de transmissão do sistema interligado",
+        "Os quatro submercados",
+        "Submercado Sudeste/Centro-Oeste",
+        "Submercado Sul",
+        "Submercado Nordeste",
+        "Submercado Norte",
+        "Malha de transmissão acima de 230 kV (AXIA Energia)"
+      ],
+      "camadas": [
+        "linhas",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "Os corredores estruturantes",
+      "o_que_mostra": "Três corredores em destaque: eixo Norte–Sul em corrente alternada e os bipolos do Madeira e de Belo Monte em corrente contínua, com as estações conversoras nas pontas.",
+      "nomes": [
+        "Eixo Norte–Sul",
+        "Bipolos do Madeira (Rondônia–Sudeste)",
+        "Complexo do Madeira (Rondônia)",
+        "Bipolos de Belo Monte (Xingu–Sudeste)",
+        "UHE Belo Monte (Complexo do Xingu)",
+        "Estações conversoras dos bipolos"
+      ],
+      "camadas": [
+        "linhas",
+        "subestacoes",
+        "usinas_hidro",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "Roraima: a última interligação",
+      "o_que_mostra": "Câmera de Manaus a Boa Vista: a linha de 500 kV e 725 km, a terra indígena no caminho e as localidades amazônicas que seguem isoladas. Linha do tempo com as cinco datas.",
+      "nomes": [
+        "Roraima",
+        "LT 500 kV Manaus–Boa Vista",
+        "Manaus (AM)",
+        "Boa Vista (RR)",
+        "Sistemas isolados da Amazônia",
+        "Interligação física de Roraima ao sistema interligado (16 de setembro de 2025)",
+        "Roraima — importação de energia do sistema vizinho (país não nomeado na fonte)"
+      ],
+      "camadas": [
+        "linhas",
+        "subestacoes",
+        "usinas_termica",
+        "outra: sistemas isolados"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "O gargalo: do Norte e do Nordeste ao Sudeste",
+      "o_que_mostra": "Fronteira entre Norte/Nordeste e Sudeste/Centro-Oeste com as linhas que a cruzam e o limite de recebimento (18.500 MW em 2026, 23.000 MW em 2030); parques eólicos e solares do Nordeste de um lado, carga do outro.",
+      "nomes": [
+        "Fronteira de exportação Norte/Nordeste → Sudeste/Centro-Oeste",
+        "Fronteira de exportação do Nordeste",
+        "Distância entre o melhor vento e o maior consumo do Brasil",
+        "Reforços de transmissão indicados para 2026–2030",
+        "Sistema interligado — corte por razão energética (país inteiro, sem gargalo local)"
+      ],
+      "camadas": [
+        "linhas",
+        "submercados",
+        "usinas_eolica",
+        "usinas_solar"
+      ]
+    },
+    {
+      "aula": 6,
+      "titulo": "O mapa das áreas de concessão",
+      "o_que_mostra": "Brasil dividido em áreas de concessão de distribuição, com as que vencem entre 2025 e 2031 em destaque; Cemig e Copel marcadas como exemplos de estrutura de controle.",
+      "nomes": [
+        "Áreas de concessão das distribuidoras",
+        "Concessões de distribuição com vencimento entre 2025 e 2031",
+        "Cemig (Minas Gerais)",
+        "Copel (Paraná)"
+      ],
+      "camadas": [
+        "outra: áreas de concessão das distribuidoras"
+      ]
+    },
+    {
+      "aula": 6,
+      "titulo": "Rio e São Paulo: um decreto, dois desfechos",
+      "o_que_mostra": "Duas câmeras próximas, uma sobre a região metropolitana do Rio (Light) e outra sobre a de São Paulo (Enel), cada uma com a área de concessão e a linha do tempo do caso.",
+      "nomes": [
+        "Light (região metropolitana do Rio de Janeiro)",
+        "Enel Distribuição São Paulo (região metropolitana de São Paulo)",
+        "Região metropolitana do Rio de Janeiro",
+        "Região metropolitana de São Paulo",
+        "Renovação da concessão da Light (2026–2056)",
+        "Instauração do processo de caducidade da Enel São Paulo (7 de abril de 2026)"
+      ],
+      "camadas": [
+        "outra: áreas de concessão das distribuidoras",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 7,
+      "titulo": "A geração anda mais rápido que a rede",
+      "o_que_mostra": "Malha atual com os reforços indicados para 2026–2030 e a linha de Roraima como régua de prazo; ao fundo, hidrelétricas a fio d'água sem reservatório.",
+      "nomes": [
+        "LT 500 kV Manaus–Boa Vista",
+        "Reforços de transmissão indicados para 2026–2030",
+        "Hidrelétricas a fio d'água das últimas duas décadas (não nomeadas na fonte)"
+      ],
+      "camadas": [
+        "linhas",
+        "usinas_hidro",
+        "usinas_eolica",
+        "usinas_solar",
+        "reservatorios_bacias"
+      ]
+    }
+  ]
+}

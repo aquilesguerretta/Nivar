@@ -1,0 +1,1008 @@
+{
+  "meta": {
+    "modulo": "M01",
+    "titulo_modulo": "Física de Energia e Eletricidade",
+    "data": "2026-09-17",
+    "autor": "estudo de representação por aula (agente de leitura, camada Alexandria)",
+    "fontes_lidas": {
+      "html_fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo01.html (3.212 linhas; aulas L1358–L2175; script L2720–L3209; § MAP L1323; § Caso L2179; § Lab L2256; § Drill ~L2386; § Quiz ~L2474; § Final ~L2490)",
+      "codigo": "src/lib/data/alexandria-modulo-01-content.ts (MODULO_01_CORPO, MODULO_01_LEAD, MODULO_01_AULAS, INSTRUMENTOS_MODULO_01)",
+      "extracao": "docs/alexandria-v2/extraction/m01/ (README, modulo.md, aula-08.md, aparato.md)",
+      "curadoria_midia": "docs/alexandria-v2/media-lab/aulas/m01/ existe mas está VAZIO (sem plano.json em 2026-09-17). Apontamentos de mídia abaixo vêm de media-lab/fontes-reais/CATALOGO.md e media-lab/aulas/ESTILO.md",
+      "contrato": "docs/alexandria-v2/bar.md §0, §1 S1–S7, §4 C1–C10 e Regra-mãe, §7 M1–M7, §9, §11 P1–P25; decisoes/2026-09-16-ambiguidades-de-conteudo.md (P17–P24)"
+    },
+    "convencoes": {
+      "bloco_indice": "Índice 0-based no array MODULO_01_CORPO[aulaId] do código atual. 'após N' = o elemento entra entre o bloco N e o N+1.",
+      "camada": "'fonte' = literal do HTML; 'alexandria' = produto pedagógico desenhado aqui, nunca atribuído à fonte, sujeito a revisão P3/P11.",
+      "numeros_derivados": "Todo número marcado 'derivado' é aritmética sobre números da fonte, sem fato novo."
+    }
+  },
+  "achados_transversais": [
+    {
+      "id": "T01",
+      "tema": "Perda de estrutura no porte para o código",
+      "descricao": "O MODULO_01_CORPO perdeu elementos que carregam o mecanismo: todas as linhas 'desc' das fórmulas (desc: null nas 9 aulas, a fonte tem 6), as 2 fórmulas da 5.3, a fórmula da 8.2, as 3 listas <ul> (4.2, 6.3, 9.4) — o que deixa parágrafos terminando em 'Veja:', 'Por isso:', 'Logo:' e 'prejuízo direto:' sem continuação —, os parágrafos 2 e 3 do callout 'Erro de fluência' (A01), os 3 painéis 'O conceito em três níveis' (A01 1.6; só sobrou o rótulo), a figura AC×DC (A03), a figura cf-chart (A08) e a instrução 'Preencha dois campos' do INST·02. Os callouts viraram par nota(rótulo)+parágrafo solto (COD-08 generalizado).",
+      "gate": "C4, C6, S4",
+      "acao": "Re-extração determinística por aula antes do layout; nenhum layout desta wave deve ser julgado sobre o corpo atual."
+    },
+    {
+      "id": "T02",
+      "tema": "Ordem da aula no viewer atual",
+      "descricao": "AulaViewer renderiza VideoArea (estado 'em produção') no topo, a apostila inteira, depois InstrumentPanel, depois ExercicioBlock com 'Revelar gabarito'. Nas 6 aulas com instrumento isso viola Regra-mãe 1 (apêndice), C3 (ausência no topo) e C7 (revelação direta).",
+      "gate": "Regra-mãe 1, 2, 5; C3; C5; C7"
+    },
+    {
+      "id": "T03",
+      "tema": "Blocos 'Onde isso entra no produto' (P7)",
+      "descricao": "A01 (bloco 19–20), A05 (13–14) e A09 (12–13) terminam com esse bloco. Pelo P7 ele não aparece. Consequência: as três aulas perdem o fechamento aplicado e precisam de outro fechamento (ato C8/C9 derivado do corpo, não do bloco oculto).",
+      "gate": "P7, C9"
+    },
+    {
+      "id": "T04",
+      "tema": "GridAlpha, War Room e Trava (P23, P24)",
+      "descricao": "Texto voltado ao learner cita 'trava operacional da GridAlpha' (A05 bloco 7), 'Trava 4 do War Room' (A05 bloco 14, P7), 'prospecção da GridAlpha' (A06 bloco 6), 'linguagem GridAlpha correta' (A07 bloco 17), 'PQA da GridAlpha' (A09 bloco 13, P7). Troca editorial registrada: 'Alexandria'/'NIVAR' conforme o sujeito; 'Trava N' vira rótulo semântico ('a regra de linguagem segura do módulo').",
+      "gate": "P23, P24, S4"
+    },
+    {
+      "id": "T05",
+      "tema": "Sigla FC (P21)",
+      "descricao": "INST·04 usa 'FC = P média ÷ P máxima' (fator de carga) e INST·06 'FC = geração ÷ …' (fator de capacidade); a tabela 5.4 tem cabeçalho 'FC'; o gabarito do Ex06 e o léxico usam 'FC'. Exibir FCarga (A05) e FCap (A08), nome completo na primeira ocorrência de cada aula.",
+      "gate": "P21"
+    },
+    {
+      "id": "T06",
+      "tema": "Números factuais sem fonte declarada (S4)",
+      "descricao": "A fonte afirma números reais sem citar origem: escalas típicas da tabela 1.3 (Itaipu ≈ 14 GW, Brasil ≈ 530 TWh/ano, cimenteira ≈ 5.000 MWh/mês…), faixas de tensão por subgrupo (2.1, 6.2), 0,92 (7.4), '15 minutos integralizados' (5.2), 1.008 leituras (9.3), faixas de FCap (8.3, P20), '60% hidro' e 'hidro ~50%' (8.3). Onde o regulador é nomeado (ANEEL, REN 1.000/2021, PRODIST Módulo 8) há nome de fonte mas não ficha nem data de verificação. Regra de exibição: 'fonte externa não declarada' ou nome do documento + 'verificação pendente' junto do bloco; nunca transformar em dado oficial.",
+      "gate": "S4, P19, P20, §9 (modelo de dados de fonte)"
+    },
+    {
+      "id": "T07",
+      "tema": "Três aulas sem instrumento nem exercício",
+      "descricao": "A03, A06 e A09 não têm instrumento, exercício com tag nem questão de quiz ligável (A06 tem só Q9 do quiz, que pertence à Avaliação). O ato autêntico dessas três é da camada Alexandria, derivado de tabelas e afirmações da própria aula (classificar, prever direção, localizar). É o caso-teste de C9 dentro do M01.",
+      "gate": "C9"
+    },
+    {
+      "id": "T08",
+      "tema": "Recuperação × Avaliação",
+      "descricao": "Q1–Q9 do quiz são irmãos próximos de exercícios das aulas (Q8 ≈ Ex06, Q5 ≈ Ex04). C10 diz 'questão já usada sai da avaliação'. Proposta: a recuperação usa os Ex·NN de aulas anteriores e itens Alexandria derivados; o quiz fica intacto para a Avaliação do módulo (P18: resultado de avaliação, nunca Demonstrado).",
+      "gate": "C10, P5, P18"
+    },
+    {
+      "id": "T09",
+      "tema": "Gravuras fis-01…fis-06 já referenciadas no código",
+      "descricao": "CurriculumAula.illustrations aponta fis-04 (A02), fis-01/02/06 (A03), fis-03 (A04); fis-05 existe em public/ sem uso. Busca por 'fis-0' em media-provenance.md não achou registro. Pelo M6 nada vai ao build sem proveniência e revisão; pelo M3 mídia antiga não cria preferência. Tratar como candidatas a reavaliar, não como plano.",
+      "gate": "M3, M6, M7"
+    },
+    {
+      "id": "T10",
+      "tema": "Um plano geométrico que atravessa o módulo",
+      "descricao": "A01 (energia = área sob P×t), A05 (demanda média = altura do retângulo de mesma área; demanda máxima = pico) e A08 (geração máxima teórica = retângulo capacidade × 8.760 h; FCap = área preenchida ÷ área total) são a MESMA figura. Um plano potência×tempo reutilizado dá continuidade visual real entre aulas (S6 continuidade) e transforma três fórmulas em uma ideia.",
+      "gate": "C6, S6",
+      "feature": "F-M01-01"
+    }
+  ],
+  "mapeamentos_derivados": {
+    "camada": "alexandria",
+    "nota": "A fonte não declara vínculo aula ↔ capacidade, checklist ou quiz (README da extração, 'Lacunas'). Os mapas abaixo são derivados por conteúdo e precisam de revisão (P11). Servem para 'Serve a' (C9) e para recuperação (C10).",
+    "capacidades_resultado_esperado": {
+      "m01-cap-01 Explicar a diferença entre energia e potência em 30 segundos (cronometrado, P14)": ["aula-01-01"],
+      "m01-cap-02 Ler kW, kWh, MW, MWh, kVA e kVAr sem confundir unidade nem grandeza": ["aula-01-01", "aula-01-02", "aula-01-08"],
+      "m01-cap-03 Explicar por que uma fábrica paga demanda além de consumo": ["aula-01-05"],
+      "m01-cap-04 Calcular fator de carga e interpretar": ["aula-01-05"],
+      "m01-cap-05 Desenhar o triângulo de potência e explicar por que FP baixo vira cobrança": ["aula-01-07", "aula-01-02"],
+      "m01-cap-06 Conectar tensão, corrente, perdas e qualidade ao desenho tarifário": ["aula-01-04", "aula-01-06", "aula-01-09", "aula-01-03"],
+      "m01-cap-07 Identificar quais informações pedir antes de recomendar economia": ["aula-01-05", "aula-01-07", "aula-01-09"]
+    },
+    "checklist_final_16": {
+      "01 kW vs kWh em 30 s (cronometrado)": "aula-01-01",
+      "02 Energia = Potência × Tempo com unidades": "aula-01-01",
+      "03 Por que demanda existe": "aula-01-05",
+      "04 Calcular demanda média": "aula-01-05",
+      "05 Calcular e interpretar fator de carga": "aula-01-05",
+      "06 Lei de Ohm e perdas com I²": "aula-01-02 + aula-01-04",
+      "07 Por que transmissão usa alta tensão": "aula-01-04 (e aula-01-03 3.3)",
+      "08 AC vs DC sem história longa": "aula-01-03",
+      "09 Frequência como evidência do equilíbrio": "aula-01-03",
+      "10 Desenhar o triângulo": "aula-01-07",
+      "11 Calcular FP e explicar 0,92": "aula-01-07",
+      "12 Três fenômenos de qualidade e consequência": "aula-01-09",
+      "13 Capacidade instalada vs fator de capacidade por fonte": "aula-01-08",
+      "14 Grupo A4 e prioridade comercial (P24: reescrever sem GridAlpha)": "aula-01-06",
+      "15 Quais dados pedir antes de recomendar economia": "Síntese Ex08 / Caso (apoio aula-01-05)",
+      "16 Quando não recomendar redução de demanda": "aula-01-05 / Caso"
+    },
+    "quiz_10_relacionados_nao_vinculados": {
+      "Q1 motor 20 kW × 4 h": "aula-01-01",
+      "Q2 P = V × I": "aula-01-02",
+      "Q3 corrente triplica → perdas ×9": "aula-01-04",
+      "Q4 por que demanda": "aula-01-05",
+      "Q5 FCarga 200/500 = 0,40 (fronteira de faixa, contradição fonte #10)": "aula-01-05",
+      "Q6 FP mínimo 0,92": "aula-01-07",
+      "Q7 kVA² = kW² + kVAr²": "aula-01-07",
+      "Q8 solar 50 MW, 100.000 MWh → 22,8%": "aula-01-08",
+      "Q9 subgrupo A4": "aula-01-06",
+      "Q10 cliente quer mercado livre": "Síntese",
+      "nota": "Ficam na Avaliação do módulo (P9, T08). Nenhuma questão para aula-01-03 e aula-01-09."
+    }
+  },
+  "aulas": [
+    {
+      "aulaId": "aula-01-01",
+      "codigo": "M01·A01",
+      "titulo": "Energia é volume. Potência é velocidade.",
+      "subtitulo": "Energia × Potência",
+      "linhas_fonte": "L1358–L1480",
+      "pergunta_map_fonte": "Por que kW e kWh não são a mesma coisa? (§ MAP L1339)",
+      "ensina": {
+        "mecanismo_central": "Energia é potência acumulada no tempo (kWh = kW × h): o mesmo kWh pode vir de uma carga alta por pouco tempo ou de uma carga baixa por muito tempo, e esses dois perfis exigem da rede coisas opostas.",
+        "natureza": ["conceito físico", "cálculo", "fluência de vocabulário"]
+      },
+      "representacao": {
+        "arquetipo": "Coluna editorial com prancha de área (plano potência × tempo) no fluxo",
+        "descricao": "Leitura em coluna única; na 1.4 a prosa abre uma prancha larga com o plano P×t: dois retângulos de mesma área (50 kW × 1 h e 1 kW × 50 h), rótulo direto 'mesmos 50 kWh', e a altura de cada um lida como 'rede necessária'. O INST·01 vive dentro da prancha: os dois campos mudam o retângulo do learner. A 1.5 vira um bloco de 'identificar o erro' com as duas frases erradas da fonte. A 1.6 (três níveis) vira disclosure empilhado no ponto de uso.",
+        "por_que": "A aula inteira é uma distinção entre duas grandezas; a área sob a curva é a única imagem que mostra as duas ao mesmo tempo (altura = kW, área = kWh). A calculadora sozinha devolve um número igual para os dois cenários — exatamente o que esconde a diferença que a aula quer ensinar. É também a base geométrica que A05 e A08 reutilizam (T10)."
+      },
+      "abertura_C3": {
+        "pergunta": {
+          "texto": "Duas instalações consomem os mesmos 50 kWh. Uma liga 50 kW por 1 hora; a outra, 1 kW por 50 horas. Elas pedem a mesma coisa da rede?",
+          "camada": "alexandria",
+          "base_fonte": "§ MAP L1339 ('Por que kW e kWh não são a mesma coisa?') + nota do INST·01 (L1445: '50 kW × 1 h e 1 kW × 50 h')"
+        },
+        "previsao": {
+          "util": true,
+          "enunciado": "Antes de ver a prancha: qual das duas exige mais da rede no pico? (A · B · as duas igual)",
+          "numeros_da_fonte": "50 kW × 1 h; 1 kW × 50 h (nota INST·01)",
+          "resposta": "A (50 kW de pico contra 1 kW); a energia é igual (50 kWh, derivado)",
+          "por_que": "O erro previsto ('mesmo kWh = mesmo problema') é exatamente o erro que a aula combate; errar e ver o contraste ensina."
+        }
+      },
+      "ato_C9": {
+        "principal": {
+          "tipo": "identificar o erro",
+          "enunciado": "Duas frases da fonte: 'Essa usina gerou 100 MW no mês.' e 'A empresa consumiu 500 kW no mês.' Para cada uma: qual unidade está errada e como a frase fica correta?",
+          "camada": "alexandria (forma da tarefa); frases e correções são da fonte (callout 'Erro de fluência', L1453–L1456)",
+          "referencia_apos_tentativa": "Correções literais da fonte: 'capacidade de 100 MW' ou 'gerou 30.000 MWh no mês'; 'demandou 500 kW em algum momento e consumiu X kWh'.",
+          "exercita": "separar grandeza instantânea (kW) de grandeza acumulada (kWh)"
+        },
+        "secundarios": [
+          { "tipo": "prever", "descricao": "a previsão da abertura, registrada e comparada na prancha" },
+          { "tipo": "responder exercício da fonte", "descricao": "Ex·01 (15 kW × 8 h; e se forem 12 h, muda kW, kWh ou ambos?) — a segunda pergunta é classificação, pode ser escolha fechada antes do gabarito" }
+        ]
+      },
+      "visualizacao_C6": [
+        {
+          "trabalho": "mostrar que kWh é área e kW é altura",
+          "relacao": "E = P × t",
+          "eixos": "x: tempo (h); y: potência (kW); área sombreada: energia (kWh)",
+          "existe_no_codigo": false,
+          "promessa_do_instrumento": "INST·01 não promete forma (é 'Calculadora'), mas a nota dele pede comparar dois cenários — hoje o learner só vê um número por vez."
+        },
+        {
+          "trabalho": "escada de escalas W → kW → MW → GW e kWh → MWh → TWh",
+          "relacao": "fator 1.000 entre degraus",
+          "eixos": "escada logarítmica, uma coluna potência e uma energia",
+          "existe_no_codigo": "só como tabela",
+          "nota": "Os exemplos de escala (Itaipu ≈ 14 GW etc.) não têm fonte (T06); a escada funciona sem eles, e eles entram só com 'fonte externa não declarada'."
+        }
+      ],
+      "instrumento_C5": {
+        "id": "inst-01 (INST · 01, Calculadora · kWh = kW × h)",
+        "posicao": "após bloco_indice 14 ('… Pratique abaixo.'), antes do título 1.5 (fonte L1424–L1448)",
+        "com_previsao": true,
+        "notas": "Duas colunas (instalação A e B) no mesmo cenário da previsão; saída kWh com 2 casas (script L2744). O quadro previsto × calculado mostra 'pico A × pico B' e 'kWh A × kWh B'."
+      },
+      "checagem_C7": "Ex·01 com campo de resposta (número + escolha 'kW / kWh / ambos'); referência literal só após registro; autoavaliação em três níveis. A frase-erro do ato principal também registra antes de mostrar a correção.",
+      "recuperacao_C10": {
+        "recuperacao": "Primeira aula: sem item anterior. Pode abrir com a pergunta da tese (§ 00: 'Duas empresas … mesmos 100.000 kWh … contas diferentes') como gancho, sem resposta.",
+        "proximo_passo": "Próxima · M01·A02 — Sete símbolos. Toda a linguagem. (ou 'Rever 1.5' se a frase-erro ficar 'não atende')",
+        "serve_a": ["m01-cap-01 (atividade recomendada, cronometrada — P14)", "m01-cap-02", "checklist 01, 02"]
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m01",
+        "recomendacao": "0–1 imagem. A figura que carrega a aula é programática (plano P×t).",
+        "candidatas": [
+          {
+            "asset": "m01a08-hidro-itaipu-sala-controle (CATALOGO, ✂ recorte web)",
+            "classe": "documental",
+            "onde": "junto da 1.5, ao lado da frase 'gerou 100 MW'",
+            "trabalho": "um painel real lê potência instantânea (MW), não energia do mês",
+            "risco": "legenda não pode afirmar o que os mostradores indicam sem verificação"
+          }
+        ]
+      },
+      "mobile_390": "Pergunta + previsão no 1º viewport (S7). A prancha P×t empilha: um gráfico por instalação, com o mesmo eixo de tempo truncado e marca de quebra (50 h não cabe em escala junto de 1 h — usar eixo log-tempo ou quebra explícita). Tabelas 1.2/1.3 viram listas de definição. Três níveis como disclosure.",
+      "lacunas_fonte": [
+        "Exemplos de escala da tabela 1.3 sem fonte (T06).",
+        "Duração, dificuldade e vídeo: null (estado real, não lacuna a esconder)."
+      ],
+      "qa_conteudo": [
+        "A tabela 1.2 mapeia 'Vazão da torneira → Potência' e 'Diâmetro do cano → Corrente', mas a A02 (2.2, L1512) e o léxico ('Ampere … Analogia hidráulica: vazão de água') dizem 'corrente é vazão'. Analogia contraditória dentro do módulo: CONTENT QA antes de desenhar a analogia."
+      ],
+      "divergencias_codigo": [
+        "Callout 'Erro de fluência': só o 1º de 3 parágrafos portado (README).",
+        "1.6 'três níveis': os 3 painéis não foram portados; sobrou o rótulo P7 logo depois.",
+        "Fórmula 1.4 sem desc 'kWh = kW × horas'.",
+        "Parágrafo 1.4 com </span> órfãos."
+      ],
+      "dependencias_s9": ["registro de previsão e resposta (eventos de prática)", "persistência de autoavaliação"],
+      "ambicao": "O retângulo que não muda de área: o learner arrasta a altura (kW) e a largura (h) se ajusta para manter 50 kWh, enquanto uma régua lateral 'rede necessária' sobe e desce. Um gesto mostra que o kWh igual esconde problemas de engenharia opostos — a frase da própria fonte vira experiência."
+    },
+    {
+      "aulaId": "aula-01-02",
+      "codigo": "M01·A02",
+      "titulo": "Sete símbolos. Toda a linguagem.",
+      "subtitulo": "As sete unidades essenciais",
+      "linhas_fonte": "L1484–L1581",
+      "pergunta_map_fonte": "O que volt, ampere, watt, kVA e kVAr realmente medem? (§ MAP L1340)",
+      "ensina": {
+        "mecanismo_central": "As unidades formam uma cadeia rígida — V × A → W → kW → kWh × tarifa = R$ — com V = I × R por baixo; em corrente alternada, a potência se divide em ativa (kW), reativa (kVAr) e aparente (kVA), e só a ativa vira produção.",
+        "natureza": ["vocabulário técnico", "conceito físico", "cálculo"]
+      },
+      "representacao": {
+        "arquetipo": "Espinha de unidades (cadeia horizontal) com estações ancoradas à prosa",
+        "descricao": "Uma cadeia fixa no topo da leitura (V · A · W · kW · kWh · R$, mais o ramo kVA/kVAr) funciona como índice vivo: cada seção 2.1–2.5 acende a sua estação. O INST·02 fica entre 2.4 e 2.5 e escreve seus valores na cadeia (220 V × 10 A → 2.200 W → 2,2 kW → 11 kWh em 5 h, números da nota da fonte). A tabela 2.1 vira uma régua de tensão em escala logarítmica de 127 V a 230 kV+.",
+        "por_que": "A aula não ensina sete fatos soltos; ensina uma cadeia. Uma lista/tabela de unidades é exatamente o formato LMS que o §0 reprova. A espinha dá lugar a cada unidade e mostra a dependência entre elas."
+      },
+      "abertura_C3": {
+        "pergunta": {
+          "texto": "Numa fatura industrial aparecem V, A, W, kW, kWh, kVA e kVAr. Qual delas vira produção, e qual ocupa a rede sem virar?",
+          "camada": "alexandria",
+          "base_fonte": "§ MAP L1340 + fechamento da 2.5 (L1578: 'kW é o que vira produção; kVAr ocupa a rede sem virar produção; kVA é o que a rede precisa dimensionar')"
+        },
+        "previsao": {
+          "util": false,
+          "por_que": "Os cálculos (220 × 20) são diretos; o erro útil aqui é de classificação, não de estimativa. Usar ato de classificar em vez de previsão numérica."
+        }
+      },
+      "ato_C9": {
+        "principal": {
+          "tipo": "classificar",
+          "enunciado": "Ponha cada unidade na grandeza que ela mede: tensão · corrente · potência ativa · energia · potência reativa · potência aparente · resistência (V, A, W/kW, kWh, kVAr, kVA, Ω).",
+          "camada": "alexandria; pares da fonte (2.1–2.5, tabela 2.5)",
+          "exercita": "o vocabulário que sustenta a cadeia"
+        },
+        "secundarios": [
+          { "tipo": "responder exercício da fonte", "descricao": "Ex·02 (220 V, 20 A → kW; 6 h → kWh), com a cadeia preenchida só após o registro" },
+          { "tipo": "identificar o erro", "descricao": "o próprio INST·02 produz 'Inconsistente — limpe um campo' quando os três valores não fecham (script L2785); pode virar tarefa: 'estes três valores fecham? qual está errado?'" }
+        ]
+      },
+      "visualizacao_C6": [
+        {
+          "trabalho": "cadeia de conversão até R$",
+          "relacao": "P = V × I; kW = W ÷ 1.000; kWh = kW × h; custo = kWh × tarifa",
+          "eixos": "diagrama de fluxo, não gráfico",
+          "existe_no_codigo": false,
+          "nota": "A etapa 'tarifa = R$' não tem valor na aula; desenhar a estação sem número ('tarifa: ver M10' ou 'não declarado aqui')."
+        },
+        {
+          "trabalho": "régua de tensão do Brasil",
+          "relacao": "nível de tensão × onde aparece × subgrupo",
+          "eixos": "log V de 127 V a 230 kV+",
+          "existe_no_codigo": "só tabela",
+          "nota": "Reaproveitada em A04 e A06 (F-M01-04)."
+        },
+        {
+          "trabalho": "prévia do triângulo kW/kVAr/kVA",
+          "relacao": "catetos e hipotenusa (2.5)",
+          "existe_no_codigo": "gravura fis-04 referenciada, sem proveniência (T09); o diagrama vivo pertence à A07",
+          "nota": "Aqui basta um triângulo estático pequeno com rótulos diretos e link 'em profundidade na A07'."
+        }
+      ],
+      "instrumento_C5": {
+        "id": "inst-02 (INST · 02, Calculadora · Lei de Ohm)",
+        "posicao": "após bloco_indice 12 (parágrafo 'Resistência não é maldade física…'), antes do título 2.5 (fonte L1533–L1562)",
+        "com_previsao": false,
+        "notas": "Instrução da fonte 'Preencha dois campos. O terceiro é calculado.' foi perdida no código e é a pergunta do instrumento. Estados reais: 'Aguardando 2 valores…', resultado, 'Coerente', 'Inconsistente'. A nota fala de potência (2,2 kW), mas o instrumento só calcula V/I/R — a cadeia até kWh é a camada nova, aritmética pura."
+      },
+      "checagem_C7": "Classificação registrada antes de mostrar os pares; Ex·02 com campo numérico (kW, kWh) antes do gabarito.",
+      "recuperacao_C10": {
+        "recuperacao": "Abrir com o Ex·01 da A01 ('15 kW por 12 h: muda kW, kWh ou ambos?') sem mostrar a resposta antiga.",
+        "proximo_passo": "Próxima · M01·A03 — A rede tem um batimento cardíaco. Ele se chama 60 Hz.",
+        "serve_a": ["m01-cap-02", "m01-cap-05 (introdução)", "checklist 06"]
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m01",
+        "recomendacao": "0–1 imagem; a espinha é programática.",
+        "candidatas": [
+          {
+            "asset": "m01a08-hist-volta-pilha-coroa (Philosophical Transactions, 1800; CC BY 4.0, Wellcome)",
+            "classe": "documental",
+            "onde": "junto da 2.1 (volt)",
+            "trabalho": "origem material da unidade de tensão",
+            "risco": "a prosa da aula não cita Volta; a legenda não pode acrescentar história sem revisão (P3). Teste de remoção fraco: só entra se o layout da espinha tiver 'quem deu nome à unidade' como camada revisada."
+          }
+        ]
+      },
+      "mobile_390": "A espinha vira trilho vertical fixo à esquerda de 24px com a estação atual expandida; régua de tensão vertical (natural para escada). INST·02 com três campos empilhados e status abaixo.",
+      "lacunas_fonte": [
+        "Faixas da tabela 2.1 (tensão × subgrupo) sem fonte (T06).",
+        "Nenhuma tarifa de exemplo para fechar a cadeia em R$."
+      ],
+      "qa_conteudo": [
+        "Ver A01: analogia 'corrente = vazão' (2.2) contradiz a tabela 1.2 ('corrente = diâmetro do cano')."
+      ],
+      "divergencias_codigo": [
+        "Descrições das fórmulas 2.3 ('Cadeia: V × A → W → kW → kWh × tarifa = custo') e 2.4 perdidas — a primeira é a tese da aula.",
+        "Instrução do INST·02 perdida; nota com </span> órfãos.",
+        "illustrations: ['fis-04-triangulo-potencia.png'] sem proveniência (T09)."
+      ],
+      "dependencias_s9": ["registro de classificação"],
+      "ambicao": "A fatura que se monta sozinha: o learner digita 220 V e 10 A e vê a corrente atravessar a cadeia estação por estação até a unidade que aparece na conta — a 'espinha física da fatura elétrica' (nota da fonte) desenhada como espinha de verdade."
+    },
+    {
+      "aulaId": "aula-01-03",
+      "codigo": "M01·A03",
+      "titulo": "A rede tem um batimento cardíaco. Ele se chama 60 Hz.",
+      "subtitulo": "Corrente alternada e frequência",
+      "linhas_fonte": "L1585–L1647",
+      "pergunta_map_fonte": "Por que a rede oscila 60 vezes por segundo, e por que isso importa? (§ MAP L1341)",
+      "ensina": {
+        "mecanismo_central": "Num sistema interligado em corrente alternada, geração ≈ consumo em tempo real, e o desequilíbrio aparece como desvio de frequência (consumo acima da geração → frequência cai; geração acima → sobe); a AC venceu porque transformadores mudam a tensão com facilidade.",
+        "natureza": ["conceito físico", "sistema/rede", "história curta"]
+      },
+      "representacao": {
+        "arquetipo": "Palco de equilíbrio: balança geração × consumo com mostrador de frequência, dentro da coluna editorial",
+        "descricao": "Duas partes. (1) Na 3.2, a figura da fonte (linha reta DC × senoide AC) como 'osciloscópio' com rótulos diretos. (2) Na 3.4, um palco largo com dois pratos (geração, consumo) e um mostrador centrado em 60 Hz que só indica DIREÇÃO (cai / estável / sobe), sem escala numérica de desvio. A 3.3 (guerra das correntes) fica como parágrafo com uma única imagem explicativa do transformador.",
+        "por_que": "O mecanismo é causal e direcional (se isto, então aquilo). Uma balança com mostrador é a forma mais curta de fazer o learner prever a direção. A fonte não dá números de desvio, faixas nem dinâmica — por isso o palco é qualitativo e declarado 'esquemático'."
+      },
+      "abertura_C3": {
+        "pergunta": {
+          "texto": "Numa rede em corrente alternada, o consumo sobe de repente e a geração não acompanha. O que acontece com os 60 Hz?",
+          "camada": "alexandria",
+          "base_fonte": "3.4 (L1636: 'Se o consumo aumenta e a geração não acompanha, a frequência da rede cai. Se a geração supera o consumo, a frequência sobe.')"
+        },
+        "previsao": {
+          "util": true,
+          "enunciado": "Consumo sobe, geração fica igual: a frequência cai · sobe · não muda?",
+          "numeros_da_fonte": "60 Hz (nominal)",
+          "resposta": "cai",
+          "por_que": "Intuição comum é que 'a rede tem folga'; a fonte afirma que não há buffer físico. A previsão fixa a direção antes da explicação."
+        }
+      },
+      "ato_C9": {
+        "principal": {
+          "tipo": "prever (direção) + classificar",
+          "enunciado": "Três situações no palco (consumo sobe; geração sobe; ambos sobem juntos): para cada uma, a frequência cai, sobe ou fica? Depois: classifique baterias, painel solar antes do inversor, eletrônica interna, rede pública e elo HVDC em DC ou AC.",
+          "camada": "alexandria; relações e itens da fonte (3.1, 3.2, 3.3, 3.4)",
+          "exercita": "frequência como sinal do equilíbrio; onde DC e AC vivem"
+        },
+        "secundarios": [
+          { "tipo": "manipular até meta (opcional)", "descricao": "depois de um degrau de consumo, ajustar a geração até o mostrador voltar a 'estável' — puramente direcional, sem constante de tempo inventada" }
+        ]
+      },
+      "visualizacao_C6": [
+        {
+          "trabalho": "distinguir fluxo constante de fluxo que alterna",
+          "relacao": "DC constante × AC senoidal",
+          "eixos": "tempo (esquemático) × amplitude (sem unidade)",
+          "existe_no_codigo": false,
+          "nota": "A fonte (L1599–L1618) desenha 4 ciclos em 300px sem eixo de tempo. Se o eixo tiver escala, 60 Hz → período de 1/60 s ≈ 16,7 ms (derivado). Rótulos da fonte estão em inglês ('Direct Current', 'Alternating Current') — traduzir. Cores da fonte (ciano/âmbar) trocam por tokens (S2)."
+        },
+        {
+          "trabalho": "mostrar a direção do desvio de frequência",
+          "relacao": "sinal(geração − consumo) → sinal(Δf)",
+          "eixos": "mostrador qualitativo com 60 Hz ao centro",
+          "existe_no_codigo": false,
+          "promessa": "nenhum instrumento na fonte"
+        }
+      ],
+      "instrumento_C5": {
+        "id": null,
+        "posicao": "sem instrumento na fonte; o palco de equilíbrio (camada Alexandria) entra após bloco_indice 11 (parágrafo 'Se o consumo aumenta…'), antes da nota gold",
+        "com_previsao": true,
+        "notas": "Declarado 'modelo esquemático, sem escala' — nunca mostrar Hz com casas decimais de desvio."
+      },
+      "checagem_C7": "Previsões registradas antes do palco reagir; a classificação DC/AC mostra os pares da fonte após o registro. Sem exercício da fonte.",
+      "recuperacao_C10": {
+        "recuperacao": "Abrir com a classificação da A02 ('qual unidade vira produção?') sem resposta.",
+        "proximo_passo": "Próxima · M01·A04 — Por que perdas crescem ao quadrado. E por que isso desenhou toda a rede.",
+        "serve_a": ["checklist 08, 09 (atividade recomendada: explicação oral)", "m01-cap-06 (parcial)"],
+        "fio_de_retorno": "A 3.5 promete 'voltaremos a este ponto' na A09, mas a A09 da fonte não retoma frequência (lacuna). A pergunta desta aula pode reaparecer como recuperação no topo da A09 (F-M01-11)."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m01",
+        "recomendacao": "1 imagem na 3.3.",
+        "candidatas": [
+          {
+            "asset": "t1-09-anel-de-faraday (trilhas-territorios; ⚠ corrigir atribuição para Uppenborn 1889)",
+            "classe": "explicação",
+            "onde": "junto da 3.3, parágrafo 'com AC é simples elevar e reduzir tensão usando transformadores'",
+            "trabalho": "o transformador como objeto: bobinas num núcleo",
+            "risco": "catálogo o chama 'primeiro transformador' — afirmação histórica a revisar antes de ir para legenda"
+          },
+          {
+            "asset": "fis-01-dinamo-cc, fis-02-alternador-ca, fis-06-medidor-frequencia (public/, referenciados no código)",
+            "classe": "a definir",
+            "trabalho": "dínamo × alternador; medidor de frequência",
+            "risco": "sem registro de proveniência (T09); só entram após M6. O medidor de frequência poderia ser o mostrador do palco — preferir desenho programático."
+          }
+        ]
+      },
+      "mobile_390": "Osciloscópio DC/AC empilhado (DC em cima). Palco de equilíbrio vertical: consumo em cima, geração embaixo, mostrador entre eles; três botões de situação em linha, alvo ≥ 44px.",
+      "lacunas_fonte": [
+        "Sem instrumento, exercício com tag ou questão de quiz (T07).",
+        "Sem faixas de frequência operacional, sem números de desvio — o palco não pode mostrar escala.",
+        "Afirmação 'Belo Monte → Sudeste usa elos de corrente contínua' sem fonte (T06).",
+        "Promessa de retomada na A09 não cumprida na fonte."
+      ],
+      "qa_conteudo": [
+        "Nota gold: 'equilibrar oferta e demanda 86.400 vezes por dia — uma vez por segundo' apresenta um equilíbrio contínuo como discreto por segundo; revisar a formulação antes de desenhar qualquer contador.",
+        "Nota gold chama o próximo módulo de 'Bloco 02'; catálogo canônico governa o nome (P24/P8).",
+        "Narrativa Westinghouse/Tesla × Edison: fato histórico sem fonte (revisão P3)."
+      ],
+      "divergencias_codigo": [
+        "Figura AC × DC (div.ac-dc-vis) não portada.",
+        "Descrição da fórmula 3.4 ('Desequilíbrio se manifesta como desvio de frequência') perdida — é a frase-mecanismo.",
+        "Texto '60 Hz</span>' com span órfão."
+      ],
+      "dependencias_s9": ["registro de previsão"],
+      "ambicao": "O batimento: um traço de osciloscópio que corre em cima da página a 60 ciclos esquemáticos e, quando o learner desequilibra os pratos, alarga ou estreita a onda — a página inteira 'sente' o desequilíbrio. Movimento com função (consequência), com versão reduzida que só troca o rótulo."
+    },
+    {
+      "aulaId": "aula-01-04",
+      "codigo": "M01·A04",
+      "titulo": "Por que perdas crescem ao quadrado. E por que isso desenhou toda a rede.",
+      "subtitulo": "Tensão, corrente e perdas",
+      "linhas_fonte": "L1651–L1725",
+      "pergunta_map_fonte": "Por que transmissão usa alta tensão? Por que perdas crescem ao quadrado? (§ MAP L1342)",
+      "ensina": {
+        "mecanismo_central": "Perda resistiva = I² × R; como P = V × I, transmitir a mesma potência em tensão mais alta exige corrente menor e dissipa muito menos — por isso a rede tem degraus de tensão (transmissão, subtransmissão/distribuição, baixa tensão).",
+        "natureza": ["conceito físico", "cálculo", "sistema/rede", "regulação (TUSD, perdas)"]
+      },
+      "representacao": {
+        "arquetipo": "Prancha dividida com instrumento vivo (curva de perda) + escada de tensão",
+        "descricao": "Na 4.1, prancha larga: à esquerda os controles do INST·03 (I, R), à direita a parábola P = I²R para o R escolhido, com o ponto atual e o ponto 'corrente dobrada' marcado (5.000 W → 20.000 W no padrão). Na 4.2, a lista perdida vira escada de tensão (transmissão 230–750 kV; 13,8–138 kV; 127/220 V) com um seletor 'mesma potência, outra tensão' que mostra só a perda RELATIVA (∝ 1/V², aritmética). A 4.3 é uma mesa de comparação técnicas × não técnicas.",
+        "por_que": "O conceito é uma forma (curva quadrática), e a própria fonte diz 'Veja:' antes do instrumento: pede ver. A escada responde a segunda metade da pergunta do § MAP (arquitetura da rede), que o instrumento sozinho não alcança porque não tem campo de tensão."
+      },
+      "abertura_C3": {
+        "pergunta": {
+          "texto": "Um cabo com 0,5 Ω leva 100 A e dissipa 5.000 W. Se a corrente dobrar para 200 A, quanto ele dissipa?",
+          "camada": "alexandria",
+          "base_fonte": "padrão do INST·03 (L1680–L1690: 100 A, 0,5 Ω, 5.000 W) + 4.1 ('Se a corrente dobra, as perdas quadruplicam')"
+        },
+        "previsao": {
+          "util": true,
+          "enunciado": "Perda com 200 A e 0,5 Ω, em W",
+          "numeros_da_fonte": "100 A; 0,5 Ω; 5.000 W",
+          "resposta": "20.000 W (derivado: 200² × 0,5)",
+          "regra_de_entrada": "valor em W; aceitar arredondamento técnico normal como regra Alexandria (P19), sem tolerância atribuída à fonte",
+          "por_que": "A intuição linear ('dobra → 10.000 W') é o erro exato que a aula existe para desfazer."
+        }
+      },
+      "ato_C9": {
+        "principal": {
+          "tipo": "prever → manipular",
+          "enunciado": "Registrar a previsão, depois mover a corrente para 200 A e comparar previsto × calculado; em seguida, encontrar a corrente que dá 9 × a perda inicial.",
+          "camada": "alexandria sobre INST·03 da fonte",
+          "meta_derivada": "9 × 5.000 W = 45.000 W → 300 A (dentro da faixa do deslizador 10–500 A, passo 5)",
+          "exercita": "o expoente 2 da corrente"
+        },
+        "secundarios": [
+          { "tipo": "responder exercício da fonte", "descricao": "Ex·03 ('Se a corrente dobra… o que acontece? Por quê?') — pede justificativa: campo curto + referência após registro" },
+          { "tipo": "classificar", "descricao": "furto, aquecimento de cabo, fraude no medidor, perda em transformador, erro de medição → técnica ou não técnica (tabela 4.3)" }
+        ]
+      },
+      "visualizacao_C6": [
+        {
+          "trabalho": "mostrar a forma quadrática",
+          "relacao": "P = I² × R",
+          "eixos": "x: corrente (A, 10–500); y: perda (W); uma curva por R",
+          "existe_no_codigo": false,
+          "promessa": "INST·03 é 'Calculadora' e não promete forma; a nota ('Dobre a corrente. Veja a perda quadruplicar') pede um antes/depois visível."
+        },
+        {
+          "trabalho": "escada de tensão e perda relativa",
+          "relacao": "mesma P e R: perda ∝ 1/V² (ex.: 13,8 kV → 138 kV reduz a perda a 1/100, derivado)",
+          "eixos": "escada vertical de níveis da lista 4.2; barra de perda relativa",
+          "existe_no_codigo": false,
+          "nota": "Sem valores absolutos — a fonte não dá cenário de linha."
+        }
+      ],
+      "instrumento_C5": {
+        "id": "inst-03 (INST · 03, Calculadora · Perdas resistivas)",
+        "posicao": "após bloco_indice 3 ('… Veja:'), antes do título 4.2 (fonte L1669–L1695)",
+        "com_previsao": true,
+        "notas": "Saída em W sem casas (script L2808). A fonte tem campo numérico + deslizador gêmeos; o código só range. Quadro previsto × calculado fica fixo enquanto o learner explora."
+      },
+      "checagem_C7": "Previsão com valor; Ex·03 com resposta curta antes do gabarito; classificação 4.3 com pares após registro.",
+      "recuperacao_C10": {
+        "recuperacao": "Abrir com o Ex·02 da A02 (220 V × 20 A → kW) — a mesma P = V × I que a 4.2 usa.",
+        "proximo_passo": "Próxima · M01·A05 — Por que uma fábrica paga por capacidade reservada.",
+        "serve_a": ["checklist 06, 07", "m01-cap-06"]
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m01",
+        "recomendacao": "1 composição documental de três degraus na escada 4.2 (opcional).",
+        "candidatas": [
+          { "asset": "bse-itaipu-torres-barragem (CC BY-SA 3.0)", "classe": "documental", "onde": "degrau transmissão", "trabalho": "reconhecer a torre de alta tensão" },
+          { "asset": "bse-subestacao-aerea (CC BY-SA 2.0)", "classe": "documental", "onde": "degrau de transformação", "risco": "não detalhar localização (instalação de Defesa, CATALOGO)" },
+          { "asset": "bse-distribuicao-poste (CC BY-SA 2.0)", "classe": "documental", "onde": "degrau baixa tensão", "risco": "CATALOGO: fonte não confirma 'média tensão'; legendar sem afirmar o nível" },
+          { "asset": "fis-03-transformador-elevador (código)", "risco": "sem proveniência (T09)" }
+        ]
+      },
+      "mobile_390": "Prancha empilha: pergunta/previsão, controles, curva (largura total, altura ~220px), quadro previsto × calculado fixo no rodapé da prancha. Escada vertical com as fotos como miniaturas de 64px ao lado de cada degrau.",
+      "lacunas_fonte": [
+        "Lista de níveis de transmissão (230/345/500/750 kV) e distribuição sem fonte (T06).",
+        "Callout TUSD-fio e 'perdas regulatórias' cita ANEEL sem documento específico.",
+        "'Norte e Nordeste', 'cliente em Manaus': afirmações regionais sem fonte."
+      ],
+      "qa_conteudo": [
+        "A 4.1 ('O exponencial é o que muda tudo') e a nota do INST·03 ('comportamento exponencial') chamam de exponencial um crescimento quadrático. Erro conceitual: registrar e corrigir na camada editorial ('quadrático') com proveniência, pois a curva desenhada é parábola, não exponencial."
+      ],
+      "divergencias_codigo": [
+        "Lista da 4.2 não portada (bloco 5 termina em 'Por isso:').",
+        "Descrição da fórmula 4.1 perdida; eq portada como 'P perdas = I 2 × R' (sub/sup achatados).",
+        "illustrations: fis-03 sem proveniência (T09)."
+      ],
+      "dependencias_s9": ["registro de previsão", "modelo de dados de fonte (ANEEL)"],
+      "ambicao": "Duas linhas levando a mesma potência lado a lado — uma em baixa tensão, grossa de calor, outra em alta, quase fria — com a espessura do 'calor' proporcional a 1/V². A arquitetura inteira da rede brasileira explicada por um único expoente."
+    },
+    {
+      "aulaId": "aula-01-05",
+      "codigo": "M01·A05",
+      "titulo": "Por que uma fábrica paga por capacidade reservada.",
+      "subtitulo": "Demanda e fator de carga",
+      "linhas_fonte": "L1729–L1827",
+      "pergunta_map_fonte": "Por que uma fábrica paga por capacidade reservada, não só por energia? (§ MAP L1343)",
+      "ensina": {
+        "mecanismo_central": "A rede é dimensionada para o pico simultâneo, e a demanda (kW) cobra essa capacidade reservada; o fator de carga (demanda média ÷ demanda máxima) diz quão bem a instalação usa a capacidade que paga — e um mês de dados não basta para recomendar mudança de contrato.",
+        "natureza": ["cálculo", "leitura de fatura/contrato", "mercado/regulação", "decisão"]
+      },
+      "representacao": {
+        "arquetipo": "Laboratório guiado sobre o perfil de carga, terminando em decisão com 'não é possível concluir'",
+        "descricao": "5.1 em coluna com a analogia da estrada. 5.2 como ficha de três conceitos (contratada · medida · ultrapassagem). 5.3: primeiro o Ex·04 como tentativa, DEPOIS o INST·04 no plano P×t (T10): retângulo da demanda média (200 kW) sob a linha da demanda máxima (800 kW); o FCarga é a razão das alturas. 5.4 vira régua 0–1 com as quatro faixas da tabela e o marcador do cálculo. Fecha com uma decisão: 'recomendar reduzir a demanda contratada?'.",
+        "por_que": "É a aula mais aplicada do módulo e a que mais perde com o P7 (o fechamento 'Conta de Luz Express' some). A decisão com 'não é possível concluir' reconstrói esse fechamento só com texto permitido (callout vermelho 5.2 e gabarito Ex·04). O retângulo de mesma área liga visualmente média e consumo."
+      },
+      "abertura_C3": {
+        "pergunta": {
+          "texto": "Uma empresa consumiu 144.000 kWh num mês de 720 horas e teve pico de 800 kW. Ela aproveita bem a capacidade que paga?",
+          "camada": "alexandria",
+          "base_fonte": "Ex·04 e padrão do INST·04 (mesmos números) + 5.3 ('quão bem a instalação aproveita a capacidade que paga')"
+        },
+        "previsao": {
+          "util": true,
+          "enunciado": "Estime o fator de carga (0 a 1) antes de calcular",
+          "numeros_da_fonte": "144.000 kWh; 720 h; 800 kW",
+          "resposta": "0,25 (derivado: 200 ÷ 800)",
+          "por_que": "Quem olha só o volume (144 MWh) tende a achar o uso 'alto'; o número baixo surpreende e abre a leitura da tabela 5.4."
+        }
+      },
+      "ato_C9": {
+        "principal": {
+          "tipo": "decidir com justificativa",
+          "enunciado": "Com o FCarga calculado e um único mês de dados: você recomenda reduzir a demanda contratada? (sim · não · não é possível concluir) Justifique em uma frase.",
+          "camada": "alexandria; critério da fonte (gabarito Ex·04: 'não recomende mudança contratual sem ver 12 meses de histórico'; callout 5.2: validar a regra do contrato; tabela 5.4: 'investigação operacional necessária')",
+          "resposta_de_referencia": "não é possível concluir",
+          "exercita": "ler FCarga como sinal a investigar, não como veredito"
+        },
+        "secundarios": [
+          { "tipo": "responder exercício da fonte", "descricao": "Ex·04 (demanda média e FCarga) — ANTES do instrumento, porque o padrão do INST·04 é idêntico ao Ex·04 e revelaria a resposta (C7)" },
+          { "tipo": "classificar", "descricao": "três definições → contratada / medida / ultrapassagem (tabela 5.2)" },
+          { "tipo": "responder exercício da fonte (fallback texto)", "descricao": "Ex·07 (demanda contratada em três níveis) — texto aberto, opcional, depois do ato principal" }
+        ]
+      },
+      "visualizacao_C6": [
+        {
+          "trabalho": "média × pico no mesmo plano",
+          "relacao": "Demanda média = kWh ÷ h; FCarga = média ÷ máxima",
+          "eixos": "x: horas do período (h); y: demanda (kW); retângulo da média de mesma área que o consumo; linha da máxima",
+          "existe_no_codigo": false,
+          "nota": "Sem curva de carga real na fonte: nenhum perfil horário é desenhado; só retângulo (média) e linha (máxima). Um perfil ilustrativo exigiria rótulo 'esquemático' e não é necessário."
+        },
+        {
+          "trabalho": "onde o número cai na leitura da fonte",
+          "relacao": "faixas 5.4",
+          "eixos": "régua 0–1 com 4 faixas",
+          "existe_no_codigo": "só tabela",
+          "nota": "As faixas da tabela compartilham fronteiras (0,40 e 0,70 em duas linhas; contradição #10 com o Q5). O script usa ≥ (fronteira pertence à faixa de cima). Desenhar a fronteira como fio e declarar a regra do script."
+        }
+      ],
+      "instrumento_C5": {
+        "id": "inst-04 (INST · 04, Calculadora · Demanda média e fator de carga)",
+        "posicao": "após bloco_indice 10 (parágrafo do fator de carga; as duas fórmulas perdidas entram após 9 e após 10), antes do título 5.4 (fonte L1774–L1806)",
+        "com_previsao": true,
+        "notas": "Leitura dinâmica de 4 ramos (script L2846–L2849) — no dado portado virou note estática (só o ramo 0,15–0,40). Proteger a tentativa do Ex·04: instrumento abre velado ou com cenário só depois do registro (F-M01-08). Coerção '|| 1' em horas e demanda máxima: campo vazio vira 1 — não mostrar resultado com campo vazio."
+      },
+      "checagem_C7": "Ex·04 com dois campos numéricos + escolha de faixa; decisão registrada antes do comentário; Ex·07 com autoavaliação nos três níveis (atende · atende em parte · não atende), referência literal após o envio.",
+      "recuperacao_C10": {
+        "recuperacao": "Abrir com a pergunta da A01: '50 kW × 1 h e 1 kW × 50 h pedem o mesmo da rede?' — é a mesma ideia de pico, sem mostrar a resposta antiga.",
+        "proximo_passo": "Não atende na decisão → 'Rever 5.4 e o callout de ultrapassagem'; demais → Próxima · M01·A06 — A tensão de fornecimento define a tarifa que você paga.",
+        "serve_a": ["m01-cap-03", "m01-cap-04", "m01-cap-07", "checklist 03, 04, 05, 16"]
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m01",
+        "recomendacao": "0 imagens. A figura programática carrega a aula; a analogia da estrada não precisa de gravura (teste de remoção).",
+        "lacuna_catalogo": "medidor de energia / registro de demanda não existe no catálogo (Blender sugerido) — só se a Revisão/Caso precisar."
+      },
+      "mobile_390": "Pergunta + previsão no 1º viewport; Ex·04 em seguida; plano P×t em largura total com rótulos acima (não à direita); régua 0–1 horizontal com rótulos de faixa em duas linhas; decisão como três botões empilhados de 44px.",
+      "lacunas_fonte": [
+        "'Tipicamente 15 minutos integralizados' e REN 1.000/2021 substituindo a REN 414/2010 a partir de jan/2022: fatos regulatórios sem ficha (T06).",
+        "Faixas da tabela 5.4 sem fonte e com fronteiras duplicadas."
+      ],
+      "qa_conteudo": [
+        "Callout 5.2 'trava operacional da GridAlpha' (P24) e bloco P7 'Trava 4 do War Room' (P23).",
+        "Sigla FC na tabela 5.4 e no INST·04 → FCarga (P21)."
+      ],
+      "divergencias_codigo": [
+        "Duas fórmulas da 5.3 não portadas.",
+        "Leitura do INST·04 estática no dado.",
+        "Callout 5.2: rótulo como nota + corpo solto (COD-08)."
+      ],
+      "dependencias_s9": ["registro de decisão e justificativa", "persistência de texto (Ex·07)"],
+      "ambicao": "O learner estica a largura do retângulo (horas de operação) mantendo o consumo e vê a média afundar sob a linha do pico: 'concentrar a operação' deixa de ser frase e vira geometria. A decisão final com 'não é possível concluir' treina o hábito mais valioso do módulo — não prometer economia sem histórico."
+    },
+    {
+      "aulaId": "aula-01-06",
+      "codigo": "M01·A06",
+      "titulo": "A tensão de fornecimento define a tarifa que você paga.",
+      "subtitulo": "Tensão como categoria econômica",
+      "linhas_fonte": "L1831–L1896",
+      "pergunta_map_fonte": "Por que sua tensão de fornecimento define seu grupo tarifário? (§ MAP L1344)",
+      "ensina": {
+        "mecanismo_central": "A tensão de fornecimento enquadra o consumidor em Grupo B (tarifa simples, kWh) ou Grupo A (binômia, kWh + kW) e nos subgrupos A1…A4/AS; quanto mais alta a tensão, menos camadas de rede o cliente usa e, em geral, menor a tarifa total por kWh.",
+        "natureza": ["mercado/regulação", "classificação/taxonomia", "leitura de documento (enquadramento)"]
+      },
+      "representacao": {
+        "arquetipo": "Mapa de enquadramento: escada de tensão com faixas de subgrupo, onde o learner localiza clientes",
+        "descricao": "Uma escada vertical (a mesma régua da A02/A04, F-M01-04) com as faixas da tabela 6.2 pintadas por fio e rótulo (A1 ≥ 230 kV; A2 88–138; A3 69; A3a 30–44; A4 2,3–25; B < 2,3), os intervalos sem subgrupo desenhados como vazio 'não declarado', e ao lado a estrutura tarifária (monômia × binômia). Fichas de cliente são soltas na escada. 6.3 como diagrama de camadas de rede atravessadas. 6.4 como mesa de comparação mono/bi/trifásico.",
+        "por_que": "A aula é uma taxonomia ancorada num eixo físico. Uma tabela de subgrupos esconde que é uma escada; a escada torna o 'mais alto → menos rede' visível e ainda revela as lacunas da própria tabela."
+      },
+      "abertura_C3": {
+        "pergunta": {
+          "texto": "Uma indústria recebe energia em 13,8 kV. Em que grupo e subgrupo ela está, e que estrutura de fatura recebe?",
+          "camada": "alexandria",
+          "base_fonte": "tabelas 2.1 (13,8 kV → A4), 6.1 e 6.2; parágrafo 6.1 sobre tarifa binômia"
+        },
+        "previsao": {
+          "util": false,
+          "por_que": "Não há resultado numérico a prever; o erro útil é de enquadramento, que o ato de localizar já captura."
+        }
+      },
+      "ato_C9": {
+        "principal": {
+          "tipo": "localizar no mapa (classificar)",
+          "enunciado": "Posicione na escada cinco fornecimentos — 220 V, 13,8 kV, 34,5 kV, 69 kV, 230 kV — e diga o grupo/subgrupo e se a fatura é monômia (kWh) ou binômia (kWh + kW).",
+          "camada": "alexandria; tensões e enquadramentos das tabelas 2.1, 6.1 e 6.2",
+          "exercita": "tensão como chave de enquadramento tarifário"
+        },
+        "secundarios": [
+          { "tipo": "ordenar", "descricao": "Para o mesmo kWh, ordene A1 (230 kV) e A4 (13,8 kV) por tarifa total esperada 'em geral', e marque as três razões da lista 6.3" },
+          { "tipo": "classificar", "descricao": "carga residencial simples / comércio médio com motores / mineração → mono, bi ou trifásico (tabela 6.4)" }
+        ]
+      },
+      "visualizacao_C6": [
+        {
+          "trabalho": "enquadramento por tensão",
+          "relacao": "faixa de tensão → subgrupo → estrutura tarifária",
+          "eixos": "escada log V; faixas rotuladas; vazios declarados",
+          "existe_no_codigo": "só tabelas",
+          "nota": "Intervalos sem subgrupo na tabela 6.2 (25–30 kV, 44–69 kV, 69–88 kV, 138–230 kV) aparecem vazios com 'não declarado' — nunca preenchidos por plausibilidade."
+        },
+        {
+          "trabalho": "por que tensão alta costuma pagar menos",
+          "relacao": "camadas de rede atravessadas (6.3)",
+          "eixos": "diagrama de camadas; sem valores de tarifa",
+          "existe_no_codigo": false
+        }
+      ],
+      "instrumento_C5": {
+        "id": null,
+        "posicao": "sem instrumento na fonte; o mapa de enquadramento (camada Alexandria) entra após bloco_indice 5 (tabela 6.2), antes do parágrafo de prospecção",
+        "com_previsao": false,
+        "notas": "Mesa estática com fichas arrastáveis e alternativa por teclado/seleção (S7)."
+      },
+      "checagem_C7": "Localizações registradas; depois a escada mostra a posição de referência de cada ficha, com a linha da tabela da fonte que a justifica.",
+      "recuperacao_C10": {
+        "recuperacao": "Abrir com a previsão da A04 ('100 A → 200 A: quanto dissipa?') — liga 'menos perdas' da 6.3 à I²R.",
+        "proximo_passo": "Próxima · M01·A07 — Existe energia que ocupa a rede e não vira produção.",
+        "serve_a": ["m01-cap-06", "checklist 14 (reescrito sem GridAlpha, P24)"]
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m01",
+        "recomendacao": "0–1 imagem.",
+        "candidatas": [
+          { "asset": "bse-itaipu-linhas-saida (⚠ não afirmar lado da fronteira) ou t1-12-torres-chickamauga-1942", "classe": "documental", "onde": "topo da escada (A1)", "trabalho": "reconhecer o nível de quem se liga na transmissão", "risco": "teste de remoção fraco; só se a escada ganhar miniaturas nos extremos" }
+        ]
+      },
+      "mobile_390": "Escada vertical ocupa a largura; fichas viram lista de seleção abaixo ('coloque em…') em vez de arrastar. Mesa 6.4 vira três cartões empilhados.",
+      "lacunas_fonte": [
+        "Sem instrumento, exercício com tag (T07); só Q9 do quiz, reservado à Avaliação.",
+        "Faixas por subgrupo, limites de fases ('≤ ~10 kW', 'acima de ~15 kW') sem fonte (T06)."
+      ],
+      "qa_conteudo": [
+        "Tabela 6.1 define Grupo A como '≥ 2,3 kV', mas a 6.2 lista AS '< 2,3 kV (subterrâneo)' dentro do Grupo A: contradição interna a reconciliar antes de desenhar a escada (AS não cabe no eixo como está).",
+        "Parágrafo de prospecção (bloco 6) e checklist 14: posicionamento comercial da GridAlpha ('terreno mais fértil', 'não atendido por consultorias premium') sem fonte; P24 + revisão — possivelmente fora da aula, como o P7.",
+        "Tabela 6.2 A4: 'onde concentra a maioria do mercado livre potencial' — afirmação de mercado sem fonte."
+      ],
+      "divergencias_codigo": [
+        "Lista 6.3 não portada (bloco 8 termina em 'Logo:').",
+        "Sem ilustração nem instrumento no dado (coerente com a fonte)."
+      ],
+      "dependencias_s9": ["registro de classificação"],
+      "ambicao": "A ficha do cliente: o learner monta um cartão (tensão, fases, grupo, estrutura tarifária) que fica guardado no caderno e reaparece no M10 quando a fatura real for lida — a primeira peça de um dossiê que atravessa a trilha."
+    },
+    {
+      "aulaId": "aula-01-07",
+      "codigo": "M01·A07",
+      "titulo": "Existe energia que ocupa a rede e não vira produção.",
+      "subtitulo": "Triângulo de potência e fator de potência",
+      "linhas_fonte": "L1900–L2002",
+      "pergunta_map_fonte": "Por que existe energia que ocupa a rede mas não vira produção? (§ MAP L1345)",
+      "ensina": {
+        "mecanismo_central": "Cargas indutivas atrasam a corrente e fazem circular potência reativa (kVAr) que não vira trabalho; kW, kVAr e kVA formam um triângulo retângulo (kVA² = kW² + kVAr²), FP = kW ÷ kVA = cos φ, e abaixo de 0,92 no Grupo A pode haver cobrança — corrigir com capacitores exige diagnóstico antes.",
+        "natureza": ["conceito físico", "cálculo", "regulação", "decisão"]
+      },
+      "representacao": {
+        "arquetipo": "Prancha dividida com instrumento vivo (o triângulo é o palco) + decisão de diagnóstico",
+        "descricao": "Coluna até 7.2; ali abre a prancha: triângulo desenhado à esquerda (já existe no código para inst-05), leituras (kW, kVAr, kVA, FP, φ) e controles à direita, com a referência 0,92 desenhada como um arco-limite de ângulo (φ ≈ 23,1°, derivado) — sem semáforo. 7.3–7.4 em coluna, com a fórmula e o callout regulatório com fonte nomeada. 7.5 fecha com decisão (Ex·05) sobre recomendar ou não banco de capacitores.",
+        "por_que": "O título do instrumento promete uma forma ('Triângulo de potência') e é o único que a desenha hoje; a aula é 'o coração técnico do módulo' (lead). Uma prancha dividida mantém forma e números visíveis juntos enquanto o learner manipula."
+      },
+      "abertura_C3": {
+        "pergunta": {
+          "texto": "Uma instalação usa 800 kW de potência ativa e 480 kVAr de reativa. O fator de potência dela fica acima ou abaixo da referência de 0,92?",
+          "camada": "alexandria",
+          "base_fonte": "padrão do INST·05 e leituras da fonte (L1941–L1947: 800 kW, 480 kVAr, 933 kVA, FP 0,86, φ 31,0°) + 7.4 (0,92)"
+        },
+        "previsao": {
+          "util": true,
+          "enunciado": "FP de 800 kW e 480 kVAr: acima ou abaixo de 0,92? (e, se quiser, o valor)",
+          "numeros_da_fonte": "800 kW; 480 kVAr; referência 0,92",
+          "resposta": "abaixo — 0,86 (fonte, leitura padrão)",
+          "por_que": "A tentação é comparar 480 com 800 linearmente ('60%'); só o triângulo dá 0,86."
+        }
+      },
+      "ato_C9": {
+        "principal": {
+          "tipo": "manipular até uma meta",
+          "enunciado": "Mantendo 800 kW, reduza a potência reativa até o FP chegar à referência de 0,92. Quanto kVAr a instalação pode puxar da rede, no máximo?",
+          "camada": "alexandria sobre INST·05 da fonte",
+          "meta_derivada": "kVAr ≤ 800 × tan(arccos 0,92) ≈ 340,8 kVAr; com passo 10, 340 kVAr dá FP 0,9204 e 350 kVAr dá 0,9162",
+          "cuidado_de_implementacao": "O mostrador usa 2 casas: 350 kVAr exibe '0,92' mas está abaixo. A detecção de meta usa o valor não arredondado, e a leitura mostra 3 casas perto da referência ou a palavra 'abaixo/atingida'.",
+          "exercita": "a geometria FP = cos φ e a relação kVAr ↔ FP"
+        },
+        "secundarios": [
+          { "tipo": "prever", "descricao": "a previsão da abertura, com previsto × calculado" },
+          { "tipo": "decidir com justificativa", "descricao": "Ex·05 (900 kW, 1.000 kVA → FP 0,90): 'recomendar banco de capacitores agora?' — sim · não · diagnosticar antes; referência da fonte: diagnóstico antes de solução (7.5, gabarito Ex·05)" }
+        ]
+      },
+      "visualizacao_C6": [
+        {
+          "trabalho": "desenhar o triângulo e o ângulo",
+          "relacao": "kVA² = kW² + kVAr²; FP = cos φ",
+          "eixos": "x: kW (0–1500); y: kVAr (0–1200); origem comum; escala do script (MAX_LEN 200px, kVAr × 0,85) — revisar: escalas diferentes nos dois eixos distorcem o ângulo desenhado em relação a φ real",
+          "existe_no_codigo": true,
+          "promessa_cumprida": "sim (única do módulo, §9)",
+          "correcoes": "Fonte colore a leitura do FP em verde/ouro/vermelho por faixa (script L2920–L2922): proibido (S2) — trocar por silhueta + palavra ('abaixo da referência 0,92'). A referência 0,92 entra como fio/arco rotulado."
+        }
+      ],
+      "instrumento_C5": {
+        "id": "inst-05 (INST · 05, Controles · Triângulo de potência)",
+        "posicao": "após bloco_indice 5 ('As três potências formam um triângulo retângulo:'), antes do título 7.3 (fonte L1917–L1973)",
+        "com_previsao": true,
+        "notas": "Campo numérico e deslizador gêmeos têm faixas diferentes (número min 0 passo 50/20; deslizador 100–1500 passo 10 e 0–1200 passo 10). Código: outputs vazios, diagrama ancorado no id."
+      },
+      "checagem_C7": "Previsão registrada; meta reconhecida por palavra; Ex·05 com campo numérico (FP) + decisão antes do gabarito, autoavaliação na parte 'qual cuidado'.",
+      "recuperacao_C10": {
+        "recuperacao": "Abrir com a classificação da A02 (kW · kVAr · kVA: qual vira produção?) sem resposta.",
+        "proximo_passo": "Decisão 'instalar já' → 'Rever 7.5'; demais → Próxima · M01·A08 — 100 MW solar ≠ 100 MW térmica.",
+        "serve_a": ["m01-cap-05", "m01-cap-07", "checklist 10, 11"]
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m01",
+        "recomendacao": "0–1 imagem na 7.1.",
+        "candidatas": [
+          { "asset": "fis-05-motor-inducao (public/, sem uso)", "classe": "explicação (a confirmar)", "onde": "7.1, cargas indutivas", "trabalho": "o motor como carga que precisa de campo magnético", "risco": "sem proveniência (T09)" },
+          { "lacuna": "banco de capacitores industrial — não há no catálogo; Blender sugerido (objeto genérico, sem marca) se a 7.5 precisar" }
+        ]
+      },
+      "mobile_390": "Triângulo em cima (largura total, ~260px), leituras em grade 2×3 logo abaixo, controles depois; a linha 'meta 0,92 · atingida/abaixo' fica fixa no rodapé da prancha durante a rolagem dos controles.",
+      "lacunas_fonte": [
+        "0,92 indutivo e capacitivo, UFER, PRODIST Módulo 8: nomeados sem ficha nem data (T06).",
+        "Sem valor de cobrança de reativo (o LAB·01 usa coeficiente didático, não da aula)."
+      ],
+      "qa_conteudo": [
+        "7.3: 'FP 0,85 significa que apenas 85% da potência aparente vira trabalho útil; os outros 15% são reativos' está fisicamente errado — com FP 0,85, kVAr/kVA ≈ 0,53 (derivado de √(1 − 0,85²)). O triângulo vivo, ao lado, mostraria 527 kVAr por 1.000 kVA e contradiria o parágrafo. CONTENT QA obrigatório antes de publicar prosa e instrumento juntos.",
+        "Callout 7.5 'A linguagem GridAlpha correta' (P24).",
+        "Escala do desenho: eixos com fatores diferentes fazem o ângulo desenhado diferir de φ."
+      ],
+      "divergencias_codigo": [
+        "Descrição da fórmula 7.3 ('φ é o ângulo entre tensão e corrente em regime senoidal') perdida.",
+        "Verificar no render se o código herdou as classes de cor do FP."
+      ],
+      "dependencias_s9": ["registro de previsão, meta e decisão"],
+      "ambicao": "O triângulo que 'encosta' na referência: ao reduzir kVAr, a hipotenusa gira até tocar o arco dos 0,92 e o rótulo muda de palavra — e o learner descobre sozinho o número (≈ 340 kVAr) que um banco de capacitores teria de compensar, antes de a aula lhe dizer que isso ainda não é diagnóstico."
+    },
+    {
+      "aulaId": "aula-01-08",
+      "codigo": "M01·A08",
+      "titulo": "100 MW solar ≠ 100 MW térmica.",
+      "subtitulo": "Capacidade instalada e fator de capacidade",
+      "linhas_fonte": "L2006–L2096 (INST·06 script L2935–L2962)",
+      "pergunta_map_fonte": "Por que 100 MW solar ≠ 100 MW térmica? (§ MAP L1346)",
+      "ensina": {
+        "mecanismo_central": "Capacidade instalada (MW) é o teto teórico; geração efetiva (MWh) é o que a fonte primária e o despacho permitem; FCap = geração ÷ (capacidade × horas) é a fração desse teto que virou energia, e cada tecnologia tem uma faixa característica.",
+        "natureza": ["cálculo", "comparação de tecnologias", "leitura da matriz"]
+      },
+      "representacao": {
+        "arquetipo": "Prancha comparativa: 'caixa teórica' preenchida + faixas por fonte, com instrumento no meio",
+        "descricao": "8.1 em coluna com a imagem da placa de potência instalada. 8.2: a fórmula (hoje perdida) e, logo, a prancha do INST·06 no plano P×t (T10): um retângulo 100 MW × 8.760 h = 876.000 MWh (derivado), preenchido pela área dos 220.000 MWh; o FCap é a fração preenchida. 8.3: a figura cf-chart redesenhada como barras de FAIXA (intervalo, não barra cheia) com o ponto calculado pelo learner sobreposto, e o selo 'faixas do módulo · verificação pendente' (P20). Callout gold como nota 'Por que isso importa para o Brasil', com imagem de reservatório.",
+        "por_que": "É a peça-piloto (captura obrigatória C2) e a aula onde previsão, instrumento, figura e exercício existem na fonte. A caixa teórica mostra que 'MW' é o tamanho da caixa e 'MWh' o quanto ela encheu — a mesma ideia de área da A01, agora com escala de usina."
+      },
+      "abertura_C3": {
+        "pergunta": {
+          "texto": "Duas usinas têm 100 MW cada — uma solar, uma térmica. Por que elas não entregam a mesma energia num ano?",
+          "camada": "alexandria (autorizada, P19)",
+          "base_fonte": "título + § MAP L1346"
+        },
+        "previsao": {
+          "util": true,
+          "enunciado": "Uma usina solar de 100 MW gerou 220.000 MWh em 1 ano (8.760 h). Qual foi o fator de capacidade, em %?",
+          "numeros_da_fonte": "100 MW; 220.000 MWh; 8.760 h (cenário padrão do INST·06 e parágrafo 8.2)",
+          "resposta": "25,1% (fonte)",
+          "regra_de_entrada": "% com arredondamento técnico normal como regra de entrada Alexandria (P19), nunca 'tolerância da fonte'",
+          "rotulo_obrigatorio": "Cenário didático presente no módulo; fonte externa dos valores não declarada. (P19)",
+          "cuidado": "O parágrafo 8.2 (bloco 4) diz '25,1%' antes do instrumento: a previsão tem de vir antes desse parágrafo (na abertura) ou o número do parágrafo fica oculto até o registro.",
+          "alternativa_conceitual_P19": "Ordenar por MWh entregues por MW instalado apenas os extremos não sobrepostos da figura (nuclear, solar, peaker), evitando faixas sobrepostas e contestadas (P20)."
+        }
+      },
+      "ato_C9": {
+        "principal": {
+          "tipo": "prever → calcular → comparar",
+          "enunciado": "Registrar a previsão do FCap; calcular no INST·06; ver previsto × calculado no mesmo cenário; depois mudar a geração para colocar a usina em outra faixa da figura e dizer que tipo de fonte aquela faixa descreve.",
+          "camada": "alexandria sobre INST·06 da fonte",
+          "exercita": "MW como teto, MWh como entrega, FCap como razão"
+        },
+        "secundarios": [
+          { "tipo": "responder exercício da fonte", "descricao": "Ex·06 (50 MW, 131.400 MWh, 8.760 h → 30%; 'é razoável para solar no Brasil?') com campo numérico + escolha; gabarito da fonte traz faixas (P20) e deve carregar o mesmo selo" }
+        ]
+      },
+      "visualizacao_C6": [
+        {
+          "trabalho": "caixa teórica × energia entregue",
+          "relacao": "FCap = MWh ÷ (MW × h)",
+          "eixos": "x: horas (0–8.760 h); y: MW (0–capacidade); área total = MWh teóricos; área preenchida = MWh gerados",
+          "existe_no_codigo": false,
+          "nota": "Preenchimento uniforme (um retângulo de altura média), sem sugerir perfil horário — a fonte não tem série."
+        },
+        {
+          "trabalho": "comparar tecnologias",
+          "relacao": "faixa de FCap por fonte + ponto calculado",
+          "eixos": "x: FCap 0–100%; 7 linhas (nuclear, carvão base, CCGT, hidro BR, eólica NE BR, solar BR, peaker a óleo)",
+          "existe_no_codigo": false,
+          "promessa_nao_cumprida": "a nota do INST·06 diz 'Compare com FCs típicos abaixo' e a figura não existe no código (COD-01)",
+          "nota": "Sete categorias excedem a heurística de 4 (S2): uma série carrega o argumento (a faixa onde o ponto do learner cai) e as demais ficam em tinta neutra, rótulo direto. Faixas do script contradizem a figura (DIV-02, P20)."
+        }
+      ],
+      "instrumento_C5": {
+        "id": "inst-06 (INST · 06, Calculadora · Fator de capacidade)",
+        "posicao": "após bloco_indice 4 ('… Use a calculadora abaixo:'; fórmula perdida entra antes do bloco 4), antes do título 8.3 (fonte L2025–L2054)",
+        "com_previsao": true,
+        "notas": "Saída com 1 casa fixa (COD-07). Leitura dinâmica de 6 ramos; no padrão cai no ramo ≥ 0,25, não no texto da marcação (DIV-01, COD-06) — mostrar só o ramo ativo. Fórmula do instrumento é paráfrase (COD-05): usar a da fonte. Ramos citam 'carvão ≥ 0,85' e 'CCGT ≥ 0,55' que contradizem a figura (P20) — exibir com o mesmo selo de verificação."
+      },
+      "checagem_C7": "Previsão numérica registrada → quadro previsto × calculado fixo; Ex·06 com resposta antes do gabarito; autoavaliação para a parte interpretativa ('é razoável?').",
+      "recuperacao_C10": {
+        "recuperacao": "Abrir com a frase-erro da A01 ('Essa usina gerou 100 MW no mês') para o learner corrigir de novo — é a mesma confusão MW × MWh.",
+        "proximo_passo": "Leitura sem prática → 'Fazer o ato desta aula'; demais → Próxima · M01·A09 — Energia ruim pode custar mais do que energia cara.",
+        "serve_a": ["m01-cap-02", "checklist 13"]
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m01; há 28 assets aprovados em fontes-reais/aula-m01-a08 (revisão factual pendente em todos)",
+        "recomendacao": "2 imagens + fichas opcionais.",
+        "candidatas": [
+          { "asset": "m01a08-termica-igarape-placa (✂ só web; CC BY-SA 3.0)", "classe": "documental", "onde": "8.1, junto de 'capacidade instalada é o tamanho nominal'", "trabalho": "a capacidade está escrita na pedra, em kW: tamanho, não produção", "derivado_possivel": "131 MW × 8.760 h = 1.147.560 MWh teóricos (aritmética)" },
+          { "asset": "m01a08-hidro-sobradinho-seca-barragem (CC BY 3.0 BR, crédito com link da licença)", "classe": "documental", "onde": "callout 'Por que isso importa para o Brasil'", "trabalho": "mesma capacidade, menos água: a geração efetiva depende da chuva" },
+          { "asset": "fichas por faixa (opcional): m01a08-nuclear-angra, m01a08-termica-candiota, m01a08-solar-araucaria-flutuante (⧉), m01a08-hidro-itaipu-aerea (⚠ ⧉)", "classe": "documental", "onde": "miniatura por linha da figura 8.3, no máximo uma por faixa", "risco": "a imagem de uma usina real não pode sugerir que aquela usina tem o FCap da faixa (fato não declarado); legenda só identifica a usina" }
+        ]
+      },
+      "mobile_390": "Pergunta + previsão no 1º viewport (gate S7 verificado nesta aula). Caixa teórica em largura total com rótulos acima; quadro previsto × calculado como faixa fixa de duas colunas; figura 8.3 com rótulo da fonte em linha própria acima de cada faixa; selo P20 logo abaixo do título da figura.",
+      "lacunas_fonte": [
+        "Cenário padrão, limiares do script e faixas da figura sem procedência (P19, P20).",
+        "Figura sem título e sem unidade declarada (% inferido).",
+        "'60% hidro' por capacidade e 'hidro ~50%' sem fonte (T06).",
+        "Ex·06 sem critério próprio; nenhuma tolerância (P6)."
+      ],
+      "qa_conteudo": [
+        "P20: faixas do script × figura (solar 20–28% × corte 0,25; carvão 55–75% × ≥0,85; CCGT 40–60% × ≥0,55).",
+        "DIV-03: léxico usa valores pontuais; Ex·06 diz peaker 'abaixo de 15%', figura diz 5–15%.",
+        "P21: FC → FCap em prosa, instrumento, gabarito."
+      ],
+      "divergencias_codigo": ["COD-01 a COD-12 (extraction/m01/aula-08.md)"],
+      "dependencias_s9": ["registro de previsão e resposta", "implementação da figura", "modelo de dados de fonte para a futura verificação P20"],
+      "ambicao": "A caixa que enche: o learner vê 876.000 MWh de 'espaço' e a geração solar ocupando só um quarto — depois arrasta a mesma caixa para a faixa da nuclear e a vê quase cheia. '100 MW ≠ 100 MW' vira uma imagem que se lembra sem fórmula."
+    },
+    {
+      "aulaId": "aula-01-09",
+      "codigo": "M01·A09",
+      "titulo": "Energia ruim pode custar mais do que energia cara.",
+      "subtitulo": "Qualidade de energia",
+      "linhas_fonte": "L2100–L2175",
+      "pergunta_map_fonte": "Por que tensão ruim é problema financeiro, não só técnico? (§ MAP L1347)",
+      "ensina": {
+        "mecanismo_central": "Qualidade do fornecimento tem três dimensões (continuidade, conformidade da tensão, atendimento comercial), medidas por indicadores regulatórios; fenômenos como harmônicos, afundamentos e desequilíbrios não aparecem como linha da fatura, mas viram custo operacional na indústria.",
+        "natureza": ["mercado/regulação", "classificação/taxonomia", "conceito físico (formas de onda)", "caso/decisão (triagem)"]
+      },
+      "representacao": {
+        "arquetipo": "Atlas de fenômenos: pequenos múltiplos de formas de onda + mesa de classificação sintoma → fenômeno",
+        "descricao": "9.1 como mapa de três dimensões (serviço · produto · comercial) com os indicadores pendurados em cada uma. 9.2 como ficha de siglas (DEC/FEC coletivos × DIC/FIC/DMIC/DICRI individuais) em duas colunas. 9.3 vira uma prancha de 5 pequenos múltiplos esquemáticos (harmônico, afundamento, sobretensão, desequilíbrio, flicker) sobre uma senoide de referência, sem escala numérica, cada um com a consequência industrial da tabela. O callout PRODIST vira um diagrama da amostra: 7 dias × 144 intervalos de 10 min = 1.008 leituras (derivado). 9.4 (lista perdida) fecha como cadeia 'fenômeno → consequência → custo'.",
+        "por_que": "A aula é uma taxonomia de coisas que o learner nunca viu; uma tabela de texto não ensina a reconhecer um afundamento. Formas de onda esquemáticas dão identidade visual a cada fenômeno e permitem um ato de classificação autêntico."
+      },
+      "abertura_C3": {
+        "pergunta": {
+          "texto": "A fatura não tem nenhuma linha chamada 'qualidade'. Como tensão ruim pode sair mais cara do que energia cara?",
+          "camada": "alexandria",
+          "base_fonte": "§ MAP L1347 + título + § Map/Tradutor ('Qualidade ruim: não aparece em linha direta, mas vira custo operacional')"
+        },
+        "previsao": {
+          "util": false,
+          "por_que": "A fonte não traz números de custo nem limites; não há resultado a prever sem inventar. O ato é de reconhecimento."
+        },
+        "recuperacao_no_topo": "A 3.5 da A03 prometeu retomar frequência aqui; usar a previsão da A03 como item de recuperação antes da leitura."
+      },
+      "ato_C9": {
+        "principal": {
+          "tipo": "classificar (sintoma → fenômeno)",
+          "enunciado": "Quatro relatos de fábrica — 'a linha parou e os controles reiniciaram após uma queda rápida e temporária da tensão'; 'motores aquecem e vibram, e as três fases não medem igual'; 'transformadores aquecem e proteções disparam desde que instalamos inversores'; 'a iluminação da vizinhança oscila quando o forno a arco liga' — para cada um, qual fenômeno da 9.3?",
+          "camada": "alexandria; relatos compostos só com as colunas 'o que é' e 'consequência industrial' da tabela 9.3",
+          "resposta_de_referencia": "afundamento de tensão; desequilíbrio entre fases; harmônicos; flicker",
+          "exercita": "reconhecer fenômeno pelo efeito, que é como ele chega ao analista"
+        },
+        "secundarios": [
+          { "tipo": "classificar", "descricao": "definições → DEC, FEC, DIC, FIC, DMIC, DICRI; e coletivo × individual (tabelas 9.1 e 9.2)" },
+          { "tipo": "decidir com justificativa", "descricao": "'O cliente relata problema sistemático de tensão. Qual o caminho técnico?' — referência: medição conforme PRODIST Módulo 8 (DRP/DRC) e tratativa com a distribuidora (callout 9.3). Não usar o bloco P7 (triagem PQA)." }
+        ]
+      },
+      "visualizacao_C6": [
+        {
+          "trabalho": "dar forma a cada fenômeno",
+          "relacao": "senoide de referência × senoide perturbada",
+          "eixos": "tempo e amplitude esquemáticos, sem unidade; selo 'esquemático'",
+          "existe_no_codigo": false,
+          "nota": "Nenhum limite, porcentagem ou duração: a fonte não os dá."
+        },
+        {
+          "trabalho": "mostrar o tamanho da amostra de conformidade",
+          "relacao": "10 min × 7 dias = 1.008 leituras",
+          "eixos": "grade 7 × 144",
+          "existe_no_codigo": false,
+          "nota": "Classificação adequada/precária/crítica na grade só como textura/rotulo, nunca cor-semáforo, e sem dado real (é o formato da amostra, não uma medição)."
+        }
+      ],
+      "instrumento_C5": {
+        "id": null,
+        "posicao": "sem instrumento na fonte; a prancha de fenômenos (camada Alexandria) entra após bloco_indice 7 (tabela 9.3), antes do callout PRODIST",
+        "com_previsao": false,
+        "notas": "Mesa de classificação com seleção por teclado."
+      },
+      "checagem_C7": "Classificações registradas antes dos pares; a decisão de caminho técnico registra antes de mostrar o callout como referência.",
+      "recuperacao_C10": {
+        "recuperacao": "No topo: pergunta da A03 ('consumo sobe, geração não acompanha: a frequência…?'). No fim: item da A07 (FP 0,88 do Caso não pode ser dado ainda — usar Ex·05).",
+        "proximo_passo": "Última aula → Revisão do módulo (Caso — Operação A + Desafio de decisão P17, LAB·01, Ex·08 Síntese) → Avaliação do módulo (quiz; critério apresentado antes, P18). Linha 'experiência jogável em desenho' no módulo (P25).",
+        "serve_a": ["m01-cap-06", "m01-cap-07", "checklist 12 (atividade recomendada: listar oralmente)"]
+      },
+      "midia": {
+        "plano_curadoria": "inexistente para m01",
+        "recomendacao": "0 imagens; as formas de onda são programáticas e fazem o trabalho.",
+        "lacuna_catalogo": "nenhuma foto de dano por qualidade de energia no catálogo; não gerar (tema documental)."
+      },
+      "mobile_390": "Pequenos múltiplos em grade 2 × 3 (a sexta célula é a senoide de referência); relatos do ato como cartões empilhados com seletor abaixo; ficha de siglas como lista de definição.",
+      "lacunas_fonte": [
+        "Sem instrumento, exercício com tag nem questão de quiz (T07).",
+        "Sem limites das faixas adequada/precária/crítica, sem fórmula de DRP/DRC; 1.008 leituras e 10 min sem ficha (T06).",
+        "Sem retomada da frequência prometida na A03.",
+        "'Qualidade comercial': indicadores descritos de forma vaga."
+      ],
+      "qa_conteudo": [
+        "Bloco P7 com 'Power Quality Audit (PQA) da GridAlpha' (P7, P24): oculto; a triagem dele não pode ser reaproveitada como ato.",
+        "DICRI definido como 'DIC em dia crítico' — verificar redação regulatória antes de exibir como definição."
+      ],
+      "divergencias_codigo": [
+        "Lista 9.4 não portada (bloco 11 termina em 'prejuízo direto:').",
+        "Callout PRODIST: rótulo como nota + corpo solto (COD-08)."
+      ],
+      "dependencias_s9": ["registro de classificação e decisão", "extração do Caso/quiz/checklist para a Revisão (só no HTML)"],
+      "ambicao": "Um 'atlas de ondas doentes': a senoide limpa da A03 reaparece e, fenômeno a fenômeno, se deforma diante do learner, com a consequência industrial escrita na margem — o módulo fecha voltando à imagem com que a rede foi apresentada."
+    }
+  ],
+  "features_registradas": ["F-M01-01", "F-M01-02", "F-M01-03", "F-M01-04", "F-M01-05", "F-M01-06", "F-M01-07", "F-M01-08", "F-M01-09", "F-M01-10", "F-M01-11"],
+  "features_arquivo": "docs/alexandria-v2/estudos/features-propostas-aulas.md"
+}

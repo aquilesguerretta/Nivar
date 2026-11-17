@@ -1,0 +1,180 @@
+{
+  "gerado_em": "2026-09-17",
+  "verbatim_e_origem": {
+    "checks": 2227,
+    "falhas": 0,
+    "script": "extratores/m05_verify.mjs"
+  },
+  "cobertura_por_token_global": {
+    "tese": 100,
+    "map": 100,
+    "caso": 100,
+    "erros": 100,
+    "ex": 100,
+    "quiz": 100,
+    "voz": 100,
+    "final": 100,
+    "lex": 100,
+    "ref": 100,
+    "a01": 100,
+    "a02": 100,
+    "a03": 100,
+    "a04": 100,
+    "a05": 100,
+    "a06": 100
+  },
+  "cobertura_por_token_estrita": {
+    "tese": {
+      "pct": 100,
+      "tokens": 1145,
+      "escopo": "seção inteira"
+    },
+    "map": {
+      "pct": 100,
+      "tokens": 179,
+      "escopo": "seção inteira"
+    },
+    "a01": {
+      "pct": 100,
+      "tokens": 157,
+      "escopo": "markup do instrumento"
+    },
+    "a02": {
+      "pct": 100,
+      "tokens": 149,
+      "escopo": "markup do instrumento"
+    },
+    "a03": {
+      "pct": 100,
+      "tokens": 136,
+      "escopo": "markup do instrumento"
+    },
+    "a04": {
+      "pct": 100,
+      "tokens": 118,
+      "escopo": "markup do instrumento"
+    },
+    "a05": {
+      "pct": 100,
+      "tokens": 189,
+      "escopo": "markup do instrumento"
+    },
+    "a06": {
+      "pct": 100,
+      "tokens": 161,
+      "escopo": "markup do instrumento"
+    },
+    "caso": {
+      "pct": 100,
+      "tokens": 801,
+      "escopo": "seção inteira"
+    },
+    "erros": {
+      "pct": 100,
+      "tokens": 438,
+      "escopo": "seção inteira"
+    },
+    "ex": {
+      "pct": 100,
+      "tokens": 1463,
+      "escopo": "seção inteira"
+    },
+    "quiz": {
+      "pct": 100,
+      "tokens": 39,
+      "escopo": "seção inteira"
+    },
+    "voz": {
+      "pct": 100,
+      "tokens": 1494,
+      "escopo": "seção inteira"
+    },
+    "final": {
+      "pct": 100,
+      "tokens": 398,
+      "escopo": "seção inteira"
+    },
+    "lex": {
+      "pct": 100,
+      "tokens": 2115,
+      "escopo": "seção inteira"
+    },
+    "ref": {
+      "pct": 100,
+      "tokens": 704,
+      "escopo": "seção inteira"
+    }
+  },
+  "nota": "Global: saco único de tokens de todos os JSON (m05_verify.mjs). Estrita: saco por seção, só com nós cuja âncora de linha cai na seção (m05_cobertura_estrita.mjs). Nas aulas, mede só o markup do instrumento (o corpo da aula não é deste pacote).",
+  "instrumentos_grade": {
+    "Inst · 01": {
+      "casos": 360,
+      "numerico_painel": "0/360",
+      "ramo": "27/360",
+      "verbatim": "0/360"
+    },
+    "Inst · 02": {
+      "casos": 1764,
+      "numerico_painel": "1764/1764",
+      "ramo": "1764/1764",
+      "verbatim": "0/1764"
+    },
+    "Inst · 03": {
+      "casos": 1815,
+      "numerico_painel": "1815/1815",
+      "ramo": "1815/1815",
+      "verbatim": "0/1815"
+    },
+    "Inst · 04": {
+      "casos": 768,
+      "numerico_painel": "768/768",
+      "ramo": "768/768",
+      "verbatim": "3/768"
+    },
+    "Inst · 05": {
+      "casos": 972,
+      "numerico_painel": "972/972",
+      "ramo": "0/972",
+      "verbatim": "0/972"
+    },
+    "Inst · 06": {
+      "casos": 9261,
+      "numerico_painel": "9261/9261",
+      "ramo": "9261/9261",
+      "verbatim": "0/9261"
+    }
+  },
+  "aparato_contagens": {
+    "quiz": 10,
+    "checklist": 21,
+    "exercicios": 10,
+    "referencias": 16,
+    "termos": 72
+  },
+  "verificacao_independente": {
+    "data": "2026-09-17",
+    "metodo": "Parser e normalização próprios (sem m05_lib): tags removidas, entidades decodificadas e espaços ignorados; texto comparado contra a janela da fonte em torno de linha_aprox (±3 linhas, alargada pelo tamanho do texto). Quiz: o literal var Q avaliado de novo e comparado campo a campo. Script: cada {linha, codigo} comparado com a linha da fonte.",
+    "amostras": {
+      "textos_e_origens_aparato": "694 checagens, 0 falhas (todos os itens com texto e origem)",
+      "textos_e_origens_modulo": "640 checagens; 9 acusações, todas falso-positivo do medidor (convenções, título do catálogo L441 de outro arquivo, títulos de instrumento no roteiro ancorados por linhas[] e não pela origem do pai)",
+      "textos_e_origens_instrumentos": "143 checagens, 0 falhas",
+      "quiz": "10/10 questões: enunciado, 4 alternativas, gabarito e explicação idênticos ao var Q avaliado; rótulo \"Questão N de 10\"; linha ±3; 2 faixas de placar (L1872, L1875) conferidas",
+      "checklist": "21/21 itens: html idêntico ao <li> e linha exata (ul.ck única, L1224)",
+      "formulas_script": "403/403 pares {linha, codigo} idênticos; cobertura das linhas não vazias de cada bloco INST 01–06 completa; 23/23 ramos de veredito (condição e expressao_js) idênticos às linhas 1493–1757",
+      "exercicios": "10/10: tag, enunciado e cada parágrafo do gabarito (html e linha) idênticos",
+      "referencias": "16/16 (texto igual, exceto <br> → espaço), 4 URLs idênticas",
+      "glossario": "72/72: termo, definição e linha; 5 resumos de família literais",
+      "voz_e_erros": "34/34 perguntas-relâmpago, 6/6 ataques e 12/12 erros: html e linha idênticos"
+    },
+    "contagens_recalculadas": "Todas as contagens declaradas conferem com a recontagem direta no HTML: 16 sec-id; 6 aulas; 6 div.inst; 21 ranges (4+3+4+1+6+3); 8 sinais (array SIG, pesos somam 100); 24 readouts (4 por instrumento), 4 textuais; 23 ramos vd() (4+3+5+4+4+3); 72 termos (12/12/11/17/20; 92 span.term − 20 do §Ex); 10 exercícios; 21 itens; 10 × 4 no quiz; 8 perguntas no caso; 16 referências (4 com href); 6 map-card; 7 pílulas; 34/6/5 na §Voz; 12 erros; 6 painéis lv; 7 boxes \"Onde isso entra no produto\"; 10 linhas com \"GridAlpha\"; 30 h3 nas aulas; 0 Lab/Tradutor/Resultado esperado/vídeo.",
+    "reproducoes": "Cenários-padrão refeitos à mão pelas fórmulas do script: INST·01 R$ 630; INST·02 32/30/63; INST·03 227,50 / 319,90 / 184,80; INST·05 R$ 1,1 bi, 78,57, participação 27%; INST·06 coerência 84, distância 0, quadrante e risco. Grade INST·01: 360 casos e 27 ramos coincidentes reproduzidos; tamanhos das demais grades (1764, 1815, 768, 972, 9261) conferem. m05_verify.mjs rodado de novo: saída idêntica (2227/0).",
+    "divergencias": "As 25 conferidas contra a fonte e o código (inst-01 id \"i1\" × i['i1-n'] em alexandria-instrument-calculators.ts L2870; inst-03 texto único; inst-06 selects \"(N pts)\"; mod-06 \"Criança de 12 anos Executivo Especialista\" num <b> só; literal da taxonomia citado em inst-04 confere). Nenhuma inventada.",
+    "correcoes": [
+      "div-m05-mod-02, leitura_b.onde: listava \"§Voz lede, Aula 05 lede\" sob o literal \"Bloco 5\", mas nessas linhas a fonte diz só \"Neste bloco\" (L1148) e \"do bloco\" (L761). O literal \"Bloco 5\" está em L287, L325 e L1222. Corrigido em modulo.json e em m05_modulo.mjs, com as 7 linhas de \"bloco\" em minúscula listadas à parte."
+    ],
+    "observacoes_sem_correcao": [
+      "marcacao_p14 do checklist: o item 01 (\"Aplica a régua…\") não recebe \"aplicacao\" e o item 17 (\"Aplica o teste… a uma decisão concreta\") recebe. É a regra declarada no extrator (só \"a uma decisão concreta\" ou \"Plota\"), não um erro; continua como anotação a revisar.",
+      "O lead da Aula 06 no código difere da fonte só pelo escape das aspas (\\\"), então lead_igual = true se mantém."
+    ]
+  }
+}

@@ -1,0 +1,180 @@
+/* Diagramas do M01 — regra 3 da regra de imagem da v3: visual comum de
+ * demonstração. Eixo, rótulo, unidade, escala e fonte; sem hachura, sem
+ * gradiente, sem sombra, raio zero. Cores só pelos tokens da v3 (--tinta,
+ * --tinta-suave, --tinta-fraca, --fio, --fio-forte; --oxido só em destaque),
+ * então valem nos dois modos. As unidades ficam na caixa certa (kW, MWh, h):
+ * nada aqui usa text-transform. */
+
+.dg {
+  margin: 28px 0;
+  padding: 0;
+}
+
+.dg-rolagem {
+  overflow-x: auto;
+  border-top: 1px solid var(--fio-forte);
+  border-bottom: 1px solid var(--fio);
+}
+
+.dg svg {
+  display: block;
+  width: 100%;
+  min-width: 600px;
+  height: auto;
+}
+
+.dg text {
+  text-transform: none;
+  letter-spacing: 0;
+  fill: var(--tinta-suave);
+}
+
+.dg .dg-n {
+  font-family: var(--f-dado);
+  font-size: 12px;
+}
+
+.dg .dg-t {
+  font-family: var(--f-interface);
+  font-size: 13px;
+  fill: var(--tinta);
+}
+
+.dg .dg-s {
+  font-family: var(--f-interface);
+  font-size: 12px;
+}
+
+.dg .dg-eixo-titulo {
+  font-family: var(--f-interface);
+  font-size: 12px;
+  font-style: italic;
+}
+
+.dg .dg-forte {
+  fill: var(--tinta);
+}
+
+.dg .dg-dest {
+  fill: var(--oxido);
+}
+
+.dg .dg-negrito {
+  font-weight: 600;
+}
+
+.dg .dg-fim {
+  text-anchor: end;
+}
+
+.dg .dg-meio {
+  text-anchor: middle;
+}
+
+.dg .dg-eixo {
+  stroke: var(--fio-forte);
+  stroke-width: 1;
+  fill: none;
+}
+
+.dg .dg-grade {
+  stroke: var(--fio);
+  stroke-width: 1;
+  fill: none;
+}
+
+.dg .dg-tracejado {
+  stroke-dasharray: 5 4;
+}
+
+.dg .dg-linha {
+  stroke: var(--tinta);
+  stroke-width: 2;
+  fill: none;
+}
+
+.dg .dg-linha-suave {
+  stroke: var(--tinta-suave);
+  stroke-width: 2;
+  fill: none;
+}
+
+.dg .dg-linha-dest {
+  stroke: var(--oxido);
+  stroke-width: 2;
+  fill: none;
+}
+
+.dg .dg-fino {
+  stroke: var(--tinta-suave);
+  stroke-width: 1;
+  fill: none;
+}
+
+.dg .dg-barra {
+  fill: var(--tinta);
+}
+
+.dg .dg-barra-suave {
+  fill: var(--tinta-suave);
+}
+
+.dg .dg-area {
+  fill: var(--fio);
+  stroke: var(--tinta);
+  stroke-width: 1.5;
+}
+
+.dg .dg-vazio {
+  fill: none;
+  stroke: var(--fio-forte);
+  stroke-width: 1;
+}
+
+.dg .dg-ponto {
+  fill: var(--tinta);
+}
+
+.dg .dg-ponto-dest {
+  fill: var(--oxido);
+}
+
+.dg .dg-seta {
+  fill: var(--tinta);
+}
+
+.dg .dg-seta-suave {
+  fill: var(--tinta-suave);
+}
+
+.alx3 .dg .dg-legenda,
+.dg-legenda {
+  display: block;
+  max-width: none;
+  margin: 0;
+  padding: 10px 0 0;
+  font-family: var(--f-dado);
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--tinta-suave);
+}
+
+.dg-legenda .dg-rotulo {
+  display: inline;
+  font-weight: 500;
+  color: var(--tinta);
+}
+
+.dg-nota {
+  margin: 4px 0 0;
+  font-family: var(--f-interface);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--tinta-fraca);
+}
+
+.dg .dg-fraco {
+  fill: var(--tinta-fraca);
+}

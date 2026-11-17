@@ -1,0 +1,260 @@
+{
+  "modulo": "modulo-04",
+  "vistas": [
+    {
+      "id": "m04-a02-quatro-submercados",
+      "modulo": "modulo-04",
+      "aula": 2,
+      "titulo": "Quatro submercados, quatro preços",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [
+        "submercados"
+      ],
+      "destaque": {
+        "submercados": [
+          "SE",
+          "S",
+          "NE",
+          "N"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Os <strong>quatro submercados</strong> — Sudeste/Centro-Oeste, Sul, Nordeste e Norte — têm preços próprios.",
+        "arquivo": "src/lib/data/alexandria-modulo-04-content.ts",
+        "linha": 271
+      },
+      "leitura": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "nota_de_dado": "O Atlas não traz o PLD; a vista mostra os quatro submercados em que ele é apurado."
+    },
+    {
+      "id": "m04-a02-intercambios",
+      "modulo": "modulo-04",
+      "aula": 2,
+      "titulo": "Os intercâmbios entre os submercados",
+      "capitulo": "trocas",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {},
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Quando os intercâmbios estão livres, os preços convergem e diz-se que o sistema está <em>acoplado</em>. Quando um limite de transmissão satura, os preços descolam, e essa diferença tem nome comercial: <strong>risco de submercado</strong>, ou risco de base.",
+        "arquivo": "src/lib/data/alexandria-modulo-04-content.ts",
+        "linha": 271
+      },
+      "leitura": [
+        4
+      ],
+      "nota_de_dado": "O Atlas não traz o PLD nem os limites de transmissão; mostra o intercâmbio líquido médio de cada mês entre os subsistemas."
+    },
+    {
+      "id": "m04-a02-agua-em-janeiro-de-2026",
+      "modulo": "modulo-04",
+      "aula": 2,
+      "titulo": "A água por submercado em janeiro de 2026",
+      "capitulo": "agua",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "submercados": [
+          "SE",
+          "S",
+          "NE",
+          "N"
+        ]
+      },
+      "satelite": false,
+      "momento": "2026-01",
+      "trecho": {
+        "texto": "Um retrato de janeiro de 2026 mostra a mecânica funcionando. No dia 8, o PLD operava perto de <strong>R$ 156/MWh</strong> em todos os quatro submercados — sistema acoplado, sem estresse local. Onze dias depois, a EAR estava em 43,3% no Sudeste/Centro-Oeste, 47,2% no Nordeste, 55,9% no Norte e 66,2% no Sul, com chuvas abaixo do padrão histórico em pleno período úmido.",
+        "arquivo": "src/lib/data/alexandria-modulo-04-content.ts",
+        "linha": 280
+      },
+      "leitura": [
+        6,
+        7
+      ],
+      "nota_de_dado": "A série do Atlas é mensal: o mapa mostra o último dia de janeiro de 2026 (SE/CO 47,5%, NE 53,8%, N 58,4%, S 58,9%), não o dia 19 citado na aula; o PLD não está no Atlas."
+    },
+    {
+      "id": "m04-a05-submercado-do-contrato",
+      "modulo": "modulo-04",
+      "aula": 5,
+      "titulo": "Submercado do contrato, submercado da carga",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [
+        "submercados",
+        "linhas"
+      ],
+      "destaque": {
+        "submercados": [
+          "SE",
+          "S",
+          "NE",
+          "N"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Contrato num submercado e carga em outro = risco de base aberto",
+        "arquivo": "src/lib/data/alexandria-modulo-04-content.ts",
+        "linha": 331
+      },
+      "leitura": [
+        9,
+        13
+      ],
+      "nota_de_dado": "O Atlas não traz preços; a vista mostra as fronteiras entre submercados que um contrato pode cruzar."
+    },
+    {
+      "id": "m04-a05-eolicas-e-solares",
+      "modulo": "modulo-04",
+      "aula": 5,
+      "titulo": "Onde estão as usinas eólicas e solares",
+      "capitulo": "rede",
+      "camera": {
+        "centro": [
+          -40.47,
+          -8.66
+        ],
+        "zoom": 5.3
+      },
+      "camadas": [
+        "eolica",
+        "solar",
+        "linhas",
+        "submercados"
+      ],
+      "destaque": {
+        "submercados": [
+          "NE"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "O corte de geração — <em>curtailment</em>, ou <em>constrained-off</em> quando determinado pelo operador — passou de exceção a fator estrutural nas fontes eólica e solar centralizada, com patamares que em 2025 se aproximaram de <strong>um quinto da geração possível</strong> dessas fontes.",
+        "arquivo": "src/lib/data/alexandria-modulo-04-content.ts",
+        "linha": 339
+      },
+      "leitura": [
+        10
+      ],
+      "nota_de_dado": "O Atlas não traz os cortes de geração, e a aula não diz onde ocorrem; a vista mostra onde estão as usinas eólicas e solares, com a maior parte da potência em operação no Nordeste."
+    },
+    {
+      "id": "m04-a05-geracao-e-carga-hora-a-hora",
+      "modulo": "modulo-04",
+      "aula": 5,
+      "titulo": "Geração e carga em cada hora do dia",
+      "capitulo": "dia",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {},
+      "satelite": false,
+      "momento": "2026-10",
+      "trecho": {
+        "texto": "Mais importante que o número: a <em>razão</em> do corte mudou. Antes predominava restrição de transmissão; cada vez mais predomina <strong>sobreoferta</strong> — energia que simplesmente não tem demanda naquele instante.",
+        "arquivo": "src/lib/data/alexandria-modulo-04-content.ts",
+        "linha": 339
+      },
+      "leitura": [
+        10
+      ],
+      "nota_de_dado": "O Atlas mostra a geração realizada em cada hora, não a energia cortada; em outubro de 2026, ao meio-dia, o Nordeste gerou em média 21,4 GW para uma carga de 14,6 GW."
+    },
+    {
+      "id": "m04-a06-liquidez-por-submercado",
+      "modulo": "modulo-04",
+      "aula": 6,
+      "titulo": "Sudeste/Centro-Oeste e Norte na curva de preços",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [
+        "submercados"
+      ],
+      "destaque": {
+        "submercados": [
+          "SE",
+          "N"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "A referência de curva de preços futuros vem principalmente da negociação em ambiente de balcão organizado, com liquidez concentrada no submercado Sudeste/Centro-Oeste e nos vencimentos curtos — o que significa que travar preço para um horizonte de cinco anos num submercado do Norte é, na prática, uma negociação bilateral com pouca referência pública.",
+        "arquivo": "src/lib/data/alexandria-modulo-04-content.ts",
+        "linha": 354
+      },
+      "leitura": [
+        11,
+        12
+      ],
+      "nota_de_dado": "O Atlas não traz preços nem liquidez de contratos; a vista mostra os dois submercados que a frase compara."
+    }
+  ],
+  "sem_vista": [
+    {
+      "aula": 2,
+      "tema": "TEO Itaipu no piso do PLD",
+      "motivo": "o Atlas não traz tarifas nem preços; marcar a usina não mostraria o piso"
+    },
+    {
+      "aula": 2,
+      "tema": "PLD de 8 de janeiro de 2026 e curva de contratos de 2026 no Sudeste/Centro-Oeste",
+      "motivo": "o Atlas não traz o PLD nem preços de contrato; o retrato de janeiro de 2026 entra pela água (EAR), que o Atlas tem"
+    }
+  ]
+}

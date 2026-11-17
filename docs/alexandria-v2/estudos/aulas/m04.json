@@ -1,0 +1,794 @@
+{
+  "modulo": "04",
+  "titulo_catalogo": "Economia de Mercados de Energia",
+  "estudo": {
+    "data": "2026-09-17",
+    "autor": "Claude (subagente de estudo de aulas, Peça C)",
+    "camada": "alexandria",
+    "fontes_lidas": [
+      "src/lib/data/alexandria-modulo-04-content.ts (MODULO_04_CORPO, MODULO_04_AULAS, MODULO_04_LEAD, INSTRUMENTOS_MODULO_04, MODULO_04_EXERCICIOS_SOLTOS)",
+      "src/lib/data/alexandria-instrument-calculators.ts (m04-inst-01 a 07)",
+      "src/components/alexandria/viewer/InstrumentPanel.tsx e AulaViewer.tsx (o que é desenhado hoje)",
+      "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo04.html (somente leitura: aulas, instrumentos com inst-intro e disc, <script> dos 7 instrumentos, §Quiz, §Ex, §Erros, §Caso, §Voz, §Final, §Lex, §Ref)",
+      "src/lib/data/alexandria-modulo-02-content.ts e -03- (pontes de recuperação)"
+    ],
+    "convencao_bloco_indice": "Índice base 0 em MODULO_04_CORPO[aulaId], igual a media-lab/aulas/ESTILO.md. 'depois_do_bloco: N' = o instrumento entra logo após o bloco N.",
+    "numeros_verificados": "Todo valor de previsão abaixo foi recalculado rodando as fórmulas do <script> da fonte (idênticas às de alexandria-instrument-calculators.ts) no cenário indicado. São valores de CENÁRIO DIDÁTICO do instrumento, nunca dado real (a própria fonte rotula cada instrumento como 'Didático/ilustrativo — não usar para dimensionamento real')."
+  },
+  "estado_das_dependencias_de_estudo": {
+    "extraction_m04": "Só existe extraction/m04/extratores/m04_harness_script.mjs. Não há extração verificada do M04. Este estudo leu direto o HTML-fonte e o content.ts.",
+    "media_lab_m04": "media-lab/aulas/m04/ tem só _work/ e originais/ vazio. Não há plano.json. As sugestões de mídia abaixo são pontos candidatos, não curadoria.",
+    "gravura": "bloco-04 tem illustrationPrefix: null. O módulo não tem gravura própria; illustrations: [] nas 7 aulas."
+  },
+  "achados_transversais": [
+    {
+      "id": "T1",
+      "tema": "Instrumento como apêndice (Regra-mãe 1)",
+      "achado": "O AulaViewer renderiza aula.instruments depois de todo o corpo. Na fonte, os instrumentos de A01, A05 e A06 já vêm depois de toda a prosa: depois deles só há o explicador de três níveis, a nota 'Onde isso entra no produto' (P7, não exibida) e, na A06, o 'Teste de sanidade'. Mantidos onde estão, reprovam a Regra-mãe 1. A02, A03, A04 e A07 têm prosa depois do instrumento na fonte.",
+      "proposta": "Cada aula abaixo declara posicao_proposta. Nas três aulas afetadas, o instrumento sobe para o ponto em que o mecanismo que ele exercita acabou de ser explicado."
+    },
+    {
+      "id": "T2",
+      "tema": "Pergunta e fonte do instrumento perdidas no porte",
+      "achado": "Os 7 instrumentos têm note: null no content.ts. A fonte tem, em cada um, um 'inst-intro' (a pergunta/tarefa) e um 'disc' (Didático/ilustrativo + premissas do modelo: capacidades fixas, propostas fictícias, etc.). C5 exige pergunta e fonte; S4 exige a classe honesta do número.",
+      "proposta": "Portar inst-intro como pergunta da prancha (fonte) e disc como linha de fonte/classe ('Cenário didático presente no módulo; premissas: …'), no espírito de P19."
+    },
+    {
+      "id": "T3",
+      "tema": "Nenhuma forma desenhada",
+      "achado": "InstrumentPanel só desenha o Triângulo de Potência do M01. A fonte desenha: INST 01, 03 e 04 com barras HTML; INST 02, 05 e 07 com SVG de 12 meses; o INST 06 não desenha nada, embora a nota 'Teste de sanidade' diga que 'o instrumento acima mostra exatamente o ponto em que a curva atravessa essa fronteira'. Títulos que prometem forma: 'PLD ao longo do ano', 'Contrato × spot ao longo de 12 meses', 'Portfólio em camadas', 'Sala do leilão reverso', e o Teste de sanidade (curva do hedge).",
+      "proposta": "Cada aula declara a figura mínima. A fonte usa cores de semáforo (verde/âmbar/vermelho em veredito e legenda, faixa vermelha no período seco); o redesenho usa tokens (S2), e o estado do veredito vira palavra e silhueta."
+    },
+    {
+      "id": "T4",
+      "tema": "Saídas categóricas descartadas",
+      "achado": "Seis saídas textuais da fonte (usina marginal, limite aplicado, mês crítico, mês mais barato, mês mais caro, pior mês) não entram em valores: Record<string, number>. Várias previsões úteis do módulo são categóricas ('qual usina fica marginal', 'em que mês cai o pico').",
+      "proposta": "Dependência de contrato de tipo (FOUNDRY): permitir saída categórica. Até lá, a previsão categórica é conferida pelo veredito literal ou fica 'ainda não disponível'."
+    },
+    {
+      "id": "T5",
+      "tema": "Nove exercícios soltos (P9) e vínculo temático evidente",
+      "achado": "A fonte não liga nenhum dos 9 exercícios a uma aula. O §Quiz, por outro lado, DECLARA a aula de origem no retorno de cada questão: Q1 e Q4 → Aula 01; Q2 e Q3 → Aula 02; Q5 e Q10 → Aula 03; Q6 e Q7 → Aula 04; Q8 → Aula 05; Q9 → Aula 06; nenhuma → Aula 07.",
+      "proposta": "Os exercícios ficam na Revisão (P9). A aula pode apontar 'também na Revisão: Ex NN' só se o Founder aprovar o vínculo temático (Ex 01–02 ↔ A01, 03–04 ↔ A02, 05 ↔ A03, 06 ↔ A04, 07 ↔ A05, 08 ↔ A06, 09 ↔ A07), sempre marcado como camada Alexandria. As questões do quiz têm vínculo declarado e podem servir à checagem ou à recuperação, mas C10 diz que questão já usada sai da avaliação: é preciso escolher o destino de cada uma."
+    },
+    {
+      "id": "T6",
+      "tema": "Destaques perdidos e tags órfãs",
+      "achado": "13 ocorrências de '</b>' sem abertura no content.ts (o <span class=\"hl\"> da fonte virou só o fechamento), por exemplo 'margem inframarginal</b>' (A01 bloco 1), 'politicamente insustentáveis</b>' (A03 bloco 6), 'não é preço médio contratado</b>' (A04 bloco 2), 'captura o preço das horas em que gera</b>' (A05 bloco 10), 'reduz a dispersão em torno dele</b>' (A06 bloco 2), 'foi escrita</b>' (A07 bloco 10). As frases perderam o destaque, e são justamente as teses de cada aula. Leads perderam <em> e ficaram com espaço solto ('uma diferença .').",
+      "proposta": "Content QA no dado, fora desta tarefa (não tocar src/). As frases destacadas são boas candidatas à frase-tese de cada seção."
+    },
+    {
+      "id": "T7",
+      "tema": "Decisões P7, P17, P18, P24 no nível do módulo",
+      "achado": "Toda aula termina com a nota 'Onde isso entra no produto' (P7: não exibir), e a A03 e a A07 citam 'GridAlpha Simulate' e 'portfólio GridAlpha' (P24). A Tese traz a caixa 'Critério de domínio deste módulo', o §Quiz diz 'Critério de domínio atingido' com 8/10 e o §Final diz 'Você domina o Bloco 4 quando' (20 verificações): tudo isso é registro legado (P18); a interface diz 'Concluído' e nunca 'Aprovado' ou 'Dominado'. O §Caso é 'Operação A — Parte 4' e cita 'Partes 1 a 3': pela P17, o título é 'Caso — Operação A', sem 'Parte'. O §Voz (32 perguntas, 6 ataques, roteiro de 5 min) é oral e cronometrado: vira 'atividade recomendada' (P14).",
+      "proposta": "Aplicar no módulo (C1/C2). Nas aulas, o próximo passo da A07 aponta Revisão → Avaliação → Caso."
+    },
+    {
+      "id": "T8",
+      "tema": "Modelo didático que contradiz a regra que a aula ensina",
+      "achado": "A A02 ensina que o PLDmax estrutural (R$ 785,27) limita a MÉDIA do período: os 24 valores horários do dia são ajustados para que a média o respeite. O INST 02 produz PLD MENSAL acima desse teto (ENA 50% da MLT → pico de R$ 888 em Set; ENA 40% → R$ 1.130), e o INST 06 aceita 'PLD realizado no mês' até R$ 1.611. Se toda média diária fica ≤ R$ 785,27, a média mensal também fica.",
+      "proposta": "CONTENT QA — AUTHORITATIVE VERIFICATION REQUIRED (mesmo espírito de P20). Não corrigir em silêncio. Enquanto não houver revisão, a prancha declara o limite do modelo ('o modelo não aplica o ajuste do teto estrutural') em vez de esconder o valor."
+    }
+  ],
+  "aulas": [
+    {
+      "aulaId": "aula-04-01",
+      "titulo": "Ordem de mérito como formador de preço",
+      "subtitulo_fonte": "Formação de preço",
+      "o_que_ensina": "Montada a fila por custo variável, o preço de curto prazo é o custo da última usina necessária (CMO), e todas as de baixo capturam a margem inframarginal com que pagam o custo fixo. No Brasil esse preço sai de modelo, não de pregão, e o valor da água (custo de oportunidade) pode empurrar a hidráulica para cima do gás sem que nada mude fisicamente.",
+      "natureza": ["conceito econômico", "sistema/despacho", "manipulação de mecanismo"],
+      "representacao": {
+        "arquetipo": "Prancha dividida com a pilha de oferta viva",
+        "descricao": "Coluna editorial curta (1.1 e 1.2) que desemboca numa prancha larga: a curva de oferta em degraus (usinas ordenadas por R$/MWh, largura = MW) com a linha vertical da demanda. O preço é a altura do degrau que a demanda corta, e a margem inframarginal de cada usina aparece como área sob o preço. Os controles ficam ao lado a 1440 e embaixo a 390. Depois, 1.3 vira uma pequena mesa de classificação (tecnologia → de onde vem o custo marginal).",
+        "por_que": "A tese da aula é geométrica: 'a última usina define o preço', 'a solar desloca a curva para a direita', 'reservatório esvaziando empurra a hidráulica para cima'. A lista de barras da fonte mostra quanto cada usina gera, mas não mostra o preço se formando. A pilha mostra os três fatos num só desenho, e o slider do reservatório faz o degrau da hidráulica pular por cima do gás.",
+        "alem_do_conceito": "A previsão registrada (qual usina é marginal) reaparece como marca na própria pilha: previsto × calculado no mesmo desenho."
+      },
+      "abertura": {
+        "pergunta": "Uma vez montada a fila, qual preço ela produz — e para quem esse preço vale?",
+        "camada": "fonte",
+        "origem": "MODULO_04_LEAD['aula-04-01'] (lede literal)",
+        "objetivo_derivado": {
+          "texto": "Apontar, numa fila de usinas, qual delas forma o preço e explicar por que o reservatório muda essa resposta.",
+          "camada": "alexandria"
+        },
+        "previsao": {
+          "util": true,
+          "camada": "alexandria",
+          "enunciado_1": "Demanda de 1.000 MW, renováveis a 100%, reservatório a 100%, gás com CVU de R$ 250/MWh. Qual usina fica marginal e qual preço se forma?",
+          "resposta_1": "Gás; R$ 250/MWh (solar 200 + eólica 300 + hidráulica 350 = 850 MW; o gás cobre os 150 MW restantes).",
+          "enunciado_2": "Mantendo tudo igual, a partir de que nível de reservatório a hidráulica passa o gás e vira a usina marginal?",
+          "resposta_2": "30% (valor da água do modelo = R$ 254/MWh > R$ 250). A 35% ainda é o gás (R$ 238).",
+          "por_que_ensina": "O erro previsível é achar que a usina sem combustível nunca encarece o sistema, ou que a usina de custo zero define o preço. O cenário vira a resposta sem mexer em demanda nem em combustível, que é o ponto do bloco 7 e do Ex 02.",
+          "rotulo_obrigatorio": "Cenário didático presente no módulo: capacidades fixas (solar 200 · eólica 300 · hidráulica 350 · gás 400 · óleo 250 MW) e valor da água linear (R$ 30 cheio → R$ 350 vazio), conforme a própria fonte."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever + manipular até uma meta",
+        "enunciado": "Registrar a previsão 1; depois baixar o reservatório até a hidráulica virar marginal e dizer o nível encontrado.",
+        "exercita_mecanismo": "Sim: posição na fila → usina marginal → preço, com o valor da água como custo sem desembolso.",
+        "criterio": "Nível ≤ 30% com os demais parâmetros no padrão (regra do modelo, não tolerância de fonte).",
+        "secundarios": [
+          {
+            "tipo": "classificar",
+            "enunciado": "Ligar cada recurso (térmica, hidrelétrica com reservatório, solar/eólica, bateria, demanda flexível) à origem do seu custo marginal, conforme 1.3 (blocos 9–10).",
+            "camada": "alexandria (tarefa); fonte (conteúdo das respostas)"
+          },
+          {
+            "tipo": "identificar o erro",
+            "enunciado": "Afirmação a julgar: 'com muita solar ao meio-dia o preço cai porque a solar, de custo zero, passa a definir o preço'.",
+            "referencia_fonte": "Quiz Q1, retorno 'Aula 01' (literal)"
+          }
+        ]
+      },
+      "visualizacao": [
+        {
+          "nome": "Pilha de oferta (ordem de mérito)",
+          "trabalho": "Mostrar que o preço é a altura do degrau que a demanda corta, e a margem inframarginal é a área entre esse preço e o custo de cada usina.",
+          "relacao": "MW acumulado → R$/MWh; preço = CVU da última usina chamada",
+          "eixos": "x: potência acumulada (MW, 0–1.500); y: custo variável (R$/MWh). Linha vertical: demanda (MW). Linhas horizontais de referência: PLDmin R$ 57,31 e teto estrutural R$ 785,27 (fonte: ANEEL, Despacho nº 3.850/2025, citado na A02).",
+          "unidade": "MW; R$/MWh",
+          "existe_na_fonte": "Não. A fonte desenha barras horizontais por usina (MW usados · CVU).",
+          "existe_no_codigo": "Não. Nada é desenhado.",
+          "forma_prometida_nao_desenhada": "Sim: 'Formador de preço' e o texto 'desloca a curva para a direita' pedem a curva de oferta."
+        },
+        {
+          "nome": "Cadeia de modelos",
+          "trabalho": "Situar o preço como resultado de modelo (bloco 5).",
+          "relacao": "NEWAVE → DECOMP → DESSEM, do horizonte longo ao curto",
+          "eixos": "linha de horizonte",
+          "unidade": "tempo",
+          "existe_na_fonte": "Só em texto.",
+          "existe_no_codigo": "Não.",
+          "nota": "Ver lacuna sobre o horizonte do DESSEM."
+        }
+      ],
+      "instrumento": {
+        "id": "m04-inst-01",
+        "titulo": "Simulador · Formador de preço",
+        "pergunta_fonte": "Monte a fila e veja qual usina fica marginal, qual preço ela forma e quando o limite regulatório passa a mandar mais que a economia. Repare especialmente no que acontece com a hidráulica quando o reservatório cai.",
+        "posicao_fonte": { "depois_do_bloco": 11, "trecho": "nota 'A fila real'" },
+        "posicao_proposta": { "depois_do_bloco": 7, "trecho": "fim de 1.2 ('…o mais mal explicado publicamente.')" },
+        "motivo": "Na fonte, depois do instrumento só vêm o explicador de três níveis e a nota de produto: é apêndice (T1). No fim de 1.2 o learner já leu os dois mecanismos que o ato exige (marginalismo e valor da água). A nota 'A fila real' (bloco 11), que fala do próprio simulador, desce para logo abaixo da prancha como ressalva. A 1.3 vira o ato de classificação. Alternativa fiel: manter depois do bloco 11 e abrir a aula com a previsão.",
+        "com_previsao": true,
+        "cenario_padrao_calculado": "Marginal: Gás · preço R$ 250/MWh · déficit 0 · limite: nenhum · veredito 'Sistema em atenção'.",
+        "outros_cenarios_uteis": [
+          "Renováveis 0%: marginal Óleo, R$ 900/MWh, acima do teto estrutural.",
+          "Demanda 300 MW: marginal Eólica (CVU R$ 12), preço vai ao piso R$ 57,31 — a usina barata não leva o preço a zero.",
+          "Demanda 1.600 MW: déficit de 100 MW, preço no teto horário R$ 1.611,04."
+        ]
+      },
+      "checagem": {
+        "tentativa_antes_da_referencia": "A previsão fica registrada antes de o preço aparecer; o calculado aparece ao lado do previsto e continua visível durante a exploração.",
+        "referencia": "Quiz Q1 e Q4 (retornos literais citam 'Aula 01'), se destinadas à checagem desta aula (T5). Ex 01–02 continuam na Revisão.",
+        "sem_tolerancia": "Resposta categórica (usina) e limiar do modelo (30%): não se inventa margem."
+      },
+      "recuperacao": {
+        "antes": "M02·aula-02-05 ('Quem liga agora — e por quê', despacho e ordem de mérito, valor da água): 'O que põe uma hidrelétrica na fila, se ela não queima combustível?' Tentativa antes de mostrar a resposta antiga. A tese do M04 declara despacho, valor da água, CVU e ordem de mérito como pré-requisitos dos Módulos 02 e 03.",
+        "depois": "Na A02: 'Qual a relação entre CMO e PLD?'"
+      },
+      "proximo_passo": "Conforme o resultado (C10). Caso padrão: 'Próxima · M04·A02 — PLD: o preço do curto prazo'. A ponte é literal: o CMO é insumo direto do PLD, depois dos limites regulatórios.",
+      "midia": {
+        "plano_curadoria": "inexistente (media-lab/aulas/m04 sem plano.json)",
+        "sugestao": "Nenhuma imagem necessária: a pilha é visualização programática e carrega o argumento. Uma foto não passa no teste de remoção (M7)."
+      },
+      "mobile_390": "Pergunta + cartão de previsão no 1º viewport (S7). A pilha ocupa a largura toda (358px): 5 degraus com rótulo direto dentro do degrau ou acima dele. Os controles vêm em 'Ajustar cenário' logo abaixo, com o reservatório primeiro. As 4 saídas ficam em grade 2×2 fixa sob a figura enquanto se mexe no controle. A mesa de classificação da 1.3 vira lista de pares tocáveis.",
+      "lacunas_fonte": [
+        "Horizonte do DESSEM divergente entre módulos: M04 diz 'do horizonte de anos ao horizonte de meia hora'; M02·aula-02-05 diz 'DESSEM (programação diária, resolução horária)'. CONTENT QA; nenhuma leitura é escolhida em silêncio.",
+        "O M04 não dá o horizonte do DECOMP (o M02 dá 'meses e semanas'). O §Voz pede 'o horizonte de cada um'.",
+        "Frota e CVUs do INST 01 são didáticos (disc da fonte); o Ex 01 usa outra frota (eólica a R$ 20, hidráulica 300 MW). São cenários distintos e não se misturam."
+      ],
+      "dependencias_s9": [
+        "Registro de previsão e de tentativa (eventos emitidos e persistidos).",
+        "Saída categórica 'Usina marginal' no contrato (T4).",
+        "Pergunta e disc do instrumento no dado (T2).",
+        "Desenho da pilha (forma prometida).",
+        "Ligação dos termos do §Lex (CMO, CVU, ordem de mérito, usina marginal, margem inframarginal, valor da água) à definição dentro da aula (C4)."
+      ],
+      "content_qa": ["'margem inframarginal</b>' com tag órfã (bloco 1), perda do destaque (T6).", "Nota 'Onde isso entra no produto' (bloco 13): P7, não exibir."],
+      "ambicao": "'A mesma hora, quatro resultados econômicos.' Depois do preço formado, a pilha acende a área de margem de cada usina: a solar recebe R$ 250/MWh com custo zero. Essa é a semente que a própria fonte planta para a A03. Com o slider do reservatório, o degrau da hidráulica salta sobre o gás e o preço muda sem nenhuma turbina ter mudado.",
+      "marcadores_anti_lms": ["previsão antes do resultado", "ato registrado", "fonte junto ao número (piso/tetos com despacho ANEEL; cenário didático rotulado)", "gravura/cartografia que trabalha: a pilha"]
+    },
+    {
+      "aulaId": "aula-04-02",
+      "titulo": "PLD: o preço do curto prazo",
+      "subtitulo_fonte": "Curto prazo",
+      "o_que_ensina": "O PLD só valora a diferença entre o contratado e o medido, por hora e por submercado. Ele sai do CMO, entre um piso e dois tetos fixados todo ano, e se move sobretudo com a hidrologia (ENA, EAR) e com a sazonalidade. Por isso a pergunta certa é qual a exposição em MWh e em qual submercado, não se o PLD está alto.",
+      "natureza": ["mercado/regulação", "leitura de número com fonte", "cálculo de exposição"],
+      "representacao": {
+        "arquetipo": "Régua regulatória + trajetória anual + balança da liquidação",
+        "descricao": "Leitura editorial em três figuras no fluxo: (1) no fim de 2.1, a balança da liquidação (contratado × medido, com a diferença destacada e multiplicada pelo PLD); (2) em 2.2, a régua dos limites de 2026 (piso, teto estrutural, teto horário) com a fonte logo abaixo; (3) depois de 2.3, a prancha do INST 02 com a trajetória de 12 meses e o período seco marcado. O par 'R$ 156 spot × R$ 355 contrato' vira uma figura pareada que o learner precisa explicar.",
+        "por_que": "A aula tem três ideias com formas diferentes: o que o PLD é (uma diferença), o que o limita (uma régua com números oficiais e datados) e o que o move (uma trajetória no tempo). Uma prancha única esconderia duas delas.",
+        "alem_do_conceito": "A régua é o primeiro número oficial do módulo com fonte e vigência à vista, e o carimbo 'números vivos' traz a data de verificação."
+      },
+      "abertura": {
+        "pergunta": "Se o PLD não é o preço da energia, de que ele é o preço?",
+        "camada": "alexandria (derivada do lede: 'Ele é o preço de uma diferença')",
+        "previsao": {
+          "util": true,
+          "camada": "alexandria",
+          "enunciado_1": "Cenário padrão do simulador (ENA 100% da MLT, EAR 60% em janeiro, carga estável): em que mês cai o pico do PLD?",
+          "resposta_1": "Setembro, com R$ 158/MWh; média do ano R$ 106/MWh; 1 MW médio descoberto custa cerca de R$ 115 mil no mês crítico (730 MWh).",
+          "enunciado_2": "Mantendo EAR 60%, com ENA a 50% da MLT: o pico passa do teto estrutural de R$ 785,27?",
+          "resposta_2": "Sim: R$ 888 em setembro. A 60% da MLT, não: R$ 679.",
+          "por_que_ensina": "Liga a sazonalidade (seco de maio a novembro, bloco 11) e a não linearidade hidrológica à exposição. Ver T8: o modelo não aplica o ajuste do teto estrutural, e isso precisa ser dito na prancha.",
+          "rotulo_obrigatorio": "Cenário didático presente no módulo: superfície de resposta com sazonalidade fixa; não reproduz NEWAVE/DECOMP/DESSEM (disc da fonte)."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "identificar o erro",
+        "enunciado": "Julgar duas frases com base no texto: (a) 'O contrato de 2026 a R$ 355 está caro, porque o PLD de hoje é R$ 156'; (b) 'Um PLD de R$ 800 multiplica a conta de luz por cinco'. Para cada uma, dizer o que está errado.",
+        "exercita_mecanismo": "Sim: o PLD valora só a parcela descoberta, e o contrato precifica a expectativa do ano mais o prêmio de risco.",
+        "referencia_fonte": "Blocos 13 ('Leia esses dois números juntos') e 15 ('Um PLD de R$ 800/MWh não multiplica a conta por cinco'), mostrados só depois da tentativa.",
+        "camada": "alexandria (tarefa); fonte (refutação)",
+        "secundarios": [
+          { "tipo": "prever", "enunciado": "Previsões 1 e 2 no INST 02." },
+          { "tipo": "estimar", "enunciado": "No cenário que o learner deixou no simulador, quanto custa no mês crítico deixar 3 MW médios descobertos? (3 × a saída '1 MW médio descoberto'.)", "camada": "alexandria" }
+        ]
+      },
+      "visualizacao": [
+        {
+          "nome": "Balança da liquidação",
+          "trabalho": "Mostrar que só a diferença é liquidada ao PLD, nas duas direções.",
+          "relacao": "(medido − contratado) × PLD",
+          "eixos": "duas barras (contratado, medido) em MWh; a diferença destacada",
+          "unidade": "MWh; R$",
+          "valores": "Exemplo literal do bloco 1: contratado 1.000 × medido 1.100 e 1.000 × 900, sem PLD (a fonte não dá preço nesse exemplo).",
+          "existe_na_fonte": "Não (só texto).",
+          "existe_no_codigo": "Não."
+        },
+        {
+          "nome": "Régua dos limites de 2026",
+          "trabalho": "Pôr piso e tetos numa só escala e mostrar que o teto horário é o dobro do estrutural.",
+          "relacao": "R$ 57,31 · R$ 785,27 · R$ 1.611,04",
+          "eixos": "escala vertical R$/MWh",
+          "unidade": "R$/MWh",
+          "fonte": "ANEEL, Despacho nº 3.850, de 23/12/2025; metodologia REN ANEEL nº 858/2019 (bloco 7, literal)",
+          "existe_na_fonte": "Como tabela.",
+          "existe_no_codigo": "Como tabela."
+        },
+        {
+          "nome": "Trajetória mensal do PLD",
+          "trabalho": "Ver o preço subir no período seco e cruzar (ou não) o teto estrutural.",
+          "relacao": "mês → PLD estimado",
+          "eixos": "x: Jan–Dez; y: R$/MWh; faixa do período seco; linhas de piso e de teto estrutural",
+          "unidade": "R$/MWh",
+          "existe_na_fonte": "Sim (SVG), com faixa seca em vermelho, a trocar por token.",
+          "existe_no_codigo": "Não.",
+          "forma_prometida_nao_desenhada": "Sim: 'PLD ao longo do ano'."
+        },
+        {
+          "nome": "Retrato de janeiro de 2026 por submercado",
+          "trabalho": "Localizar os quatro submercados e ler a EAR de cada um.",
+          "relacao": "submercado → EAR (%)",
+          "valores": "SE/CO 43,3% · NE 47,2% · N 55,9% · S 66,2% (bloco 12, 'onze dias depois' de 8 de janeiro)",
+          "existe_na_fonte": "Só em texto.",
+          "existe_no_codigo": "Não.",
+          "dependencia": "Geometria dos submercados de fonte autoritativa (ONS). Nunca desenhar à mão nem por IA."
+        }
+      ],
+      "instrumento": {
+        "id": "m04-inst-02",
+        "titulo": "Simulador · PLD ao longo do ano",
+        "pergunta_fonte": "Defina o cenário hidrológico e acompanhe a trajetória do preço mês a mês, com o período seco marcado. Repare em que momento a curva cruza o teto estrutural — e quanto custa, no mês crítico, um megawatt médio descoberto.",
+        "posicao_fonte": { "depois_do_bloco": 13, "trecho": "nota 'Leia esses dois números juntos'" },
+        "posicao_proposta": { "depois_do_bloco": 13, "trecho": "mantida" },
+        "motivo": "O instrumento vem logo depois de 'O que move o PLD', e a 2.4 continua depois dele. Não é apêndice.",
+        "com_previsao": true,
+        "cenario_padrao_calculado": "Média do ano R$ 106/MWh · pico em Set a R$ 158/MWh · 1 MW médio descoberto ≈ R$ 115 mil · veredito 'Pico em Set a R$ 158/MWh…'."
+      },
+      "checagem": {
+        "tentativa_antes_da_referencia": "Frases julgadas antes de abrir os blocos 13 e 15 como referência; previsões registradas antes da curva.",
+        "referencia": "Quiz Q2 e Q3 (retorno 'Aula 02', literal). Ex 03–04 na Revisão (T5).",
+        "autoavaliacao": "Julgamento em texto curto → comparação lado a lado com o trecho da fonte, em três níveis (C7)."
+      },
+      "recuperacao": {
+        "antes": "M04·A01: 'Quem define o CMO numa hora?' Para acoplamento e descolamento, M02·aula-02-10 (instrumento 'Dois submercados, um fio').",
+        "depois": "Na A05 e na A06: 'O que o PLD valora?'"
+      },
+      "proximo_passo": "Caso padrão: 'Próxima · M04·A03 — Energia × capacidade e o missing money'. A ponte é literal (bloco 5): 'O preço de fazer isso aparece inteiro na Aula 03'.",
+      "midia": {
+        "plano_curadoria": "inexistente",
+        "sugestao": "Opcional, classe documental: foto real e creditada de um reservatório com nível baixo (Wikimedia Commons ou Agência Brasil), junto dos blocos 10–12, com o trabalho de tornar a EAR concreta. Sem nomear o lugar se a legenda não puder ser verificada. Se não passar no teste de remoção, fica sem imagem."
+      },
+      "mobile_390": "Pergunta e as duas frases do ato perto do topo. A régua fica vertical e estreita, com os três valores e a fonte logo abaixo. A trajetória ocupa 358px, com rótulo de mês alternado (Jan, Mar, Mai…) e o pico marcado por forma e rótulo. A balança vira duas barras empilhadas. Os 4 submercados, se houver mapa, entram como lista ordenada por EAR até a geometria existir.",
+      "lacunas_fonte": [
+        "PLD ~R$ 156/MWh em 8/1/2026, EAR por submercado em 19/1/2026, curva 2026 SE/CO ~R$ 355 e média 2025 ~R$ 223: a aula não cita documento específico. O §Ref cobre com 'CCEE · dados e metodologia do PLD', 'ONS · dados abertos' e 'Referências de preço de contrato' ('ordem de grandeza publicada, não cotação oficial'). Mostrar essa classe junto do número.",
+        "Limites valem para 2026 (números vivos); hoje é 2026-09-17. Datar a verificação.",
+        "T8: o modelo mensal ultrapassa o teto estrutural."
+      ],
+      "dependencias_s9": ["Registro de previsão e de julgamento", "Saída categórica 'Mês crítico' (T4)", "Desenho da trajetória", "Geometria de submercados com fonte", "Carimbo de verificação de números vivos"],
+      "content_qa": ["Lede sem <em> ('uma diferença .').", "'…em qual submercado?\"</b>' com tag órfã (bloco 15).", "Nota de produto (bloco 17): P7."],
+      "ambicao": "'Dois números, o mesmo mês.' O learner vê R$ 156 e R$ 355 lado a lado, escreve por que não são contraditórios e só então lê a explicação da fonte. Depois, o '1 MW médio descoberto' vira a unidade de medida do próprio risco dele.",
+      "marcadores_anti_lms": ["fonte junto ao número (régua ANEEL)", "previsão antes do resultado", "ato registrado", "cartografia que trabalha (submercados, quando houver geometria)"]
+    },
+    {
+      "aulaId": "aula-04-03",
+      "titulo": "Energia × capacidade e o missing money",
+      "subtitulo_fonte": "Desenho de mercado",
+      "o_que_ensina": "Energia (MWh) e capacidade (MW disponível na hora crítica) são produtos diferentes. Num mercado só de energia, o teto de preço, a raridade dos eventos críticos e o limite político impedem que a usina de ponta recupere o custo fixo: é o missing money. Teto e mecanismo de capacidade são duas metades da mesma decisão, e o Brasil responde com leilões de reserva de capacidade (LRCAP).",
+      "natureza": ["desenho de mercado", "cálculo de balanço", "caso atual datado (LRCAP 2026)"],
+      "representacao": {
+        "arquetipo": "Laboratório guiado do buraco + linha do tempo viva",
+        "descricao": "3.1–3.3 em coluna editorial, com uma figura de duas unidades (MWh × MW) em 3.1. Depois vem a prancha do INST 03: barras de receita, custo fixo e falta, com a meta 'feche a conta'. Em 3.4, uma linha do tempo datada do LRCAP (2º e 3º certames, homologação, portaria de armazenamento, certames de dezembro, início de suprimento), com marcador 'hoje' e carimbo de números vivos.",
+        "por_que": "O mecanismo é aritmético: receita < custo fixo, e a diferença tem nome. A barra 'falta' é o argumento. A resposta brasileira é uma sequência de atos datados e contestados, e a forma natural disso é uma linha do tempo, não um parágrafo.",
+        "alem_do_conceito": "O learner fecha o buraco com horas de despacho e descobre sozinho a 'usina de base disfarçada' do veredito da fonte."
+      },
+      "abertura": {
+        "pergunta": "Se o LCOE da solar é menor que o do gás, por que o gás roda?",
+        "camada": "fonte",
+        "origem": "Lede literal da A03, que retoma a pergunta do critério do M03 ('por que o gás roda se a solar é mais barata?').",
+        "previsao": {
+          "util": true,
+          "camada": "alexandria",
+          "enunciado": "Térmica de ponta de 200 MW, 200 h de despacho por ano, margem líquida de R$ 400/MWh quando gera, custo fixo de R$ 300/kW-ano. A receita de energia cobre o custo fixo? Se não, quanto falta?",
+          "resposta": "Não. Receita R$ 16 mi × custo fixo R$ 60 mi: faltam R$ 44 mi, ou R$ 220/kW-ano. O fator de capacidade é de 2,3%.",
+          "por_que_ensina": "A intuição 'a usina cara se paga nas horas caras' falha pela ordem de grandeza.",
+          "rotulo_obrigatorio": "Cenário didático: modelo de caixa simplificado, sem impostos, alavancagem, partida, ancilares ou opcionalidade (disc da fonte)."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever + manipular até uma meta",
+        "enunciado": "Mantendo margem de R$ 400 e custo fixo de R$ 300, quantas horas de despacho por ano fecham a conta? E, fixando 200 h, alguma margem do simulador fecha?",
+        "respostas_do_modelo": "750 h (fator de capacidade de 8,6%; o veredito diz 'usina de base disfarçada'). Com 200 h, nem a margem máxima do simulador (R$ 1.400) fecha: ainda faltam R$ 4 mi. Aqui se aceita 'não é possível'.",
+        "exercita_mecanismo": "Sim: poucas horas × margem limitada não pagam a disponibilidade.",
+        "criterio": "750 h (passo de 10 h do controle; 740 h ainda deixa R$ 0,8 mi de buraco). É regra do modelo.",
+        "secundarios": [
+          { "tipo": "classificar", "enunciado": "Distribuir as três razões do bloco 6 (tetos regulatórios, eventos raros, preços politicamente insustentáveis) e dizer qual delas o simulador representa diretamente (a margem limitada).", "camada": "alexandria" },
+          { "tipo": "responder exercício da fonte", "enunciado": "Ex 05 'Missing money na mão' na Revisão (T5)." }
+        ]
+      },
+      "visualizacao": [
+        {
+          "nome": "Balanço do ativo de ponta",
+          "trabalho": "Tornar visível o buraco e o preço de capacidade que o fecha.",
+          "relacao": "receita = MW × h × margem; custo = kW × R$/kW-ano; falta = custo − receita",
+          "eixos": "3 barras horizontais na mesma escala",
+          "unidade": "R$ mi/ano; R$/kW-ano",
+          "existe_na_fonte": "Sim (barras HTML em verde/vermelho/âmbar: semáforo, trocar por token).",
+          "existe_no_codigo": "Não."
+        },
+        {
+          "nome": "Dois produtos, duas unidades",
+          "trabalho": "Separar MWh entregue ao longo do ano de MW disponível na hora crítica (bloco 1).",
+          "relacao": "esquema qualitativo solar × térmica flexível",
+          "unidade": "MWh × MW",
+          "existe_na_fonte": "Só em texto.",
+          "existe_no_codigo": "Não.",
+          "nota": "Sem valores: a fonte não quantifica. Rotular como esquema."
+        },
+        {
+          "nome": "Linha do tempo LRCAP 2026",
+          "trabalho": "Ordenar a resposta brasileira e mostrar o que ainda está em disputa.",
+          "valores": "2º LRCAP 18/03/2026 (18,97 GW, hidro + gás + carvão; ~R$ 64,5 bi; entregas 2026–2031); 3º LRCAP dois dias depois (501,3 MW, óleo diesel, óleo combustível, biodiesel); homologação maio–junho de 2026 sob contestação; Portaria Normativa MME nº 136 (junho de 2026); certames de armazenamento em 2 e 4/12/2026; suprimento a partir de agosto de 2028; contratos de 15 anos.",
+          "fonte": "§Ref: ANEEL (homologação LRCAP 2026), EPE (LRCAP 2026), MME (Portaria 136)",
+          "existe_na_fonte": "Só em texto.",
+          "existe_no_codigo": "Não."
+        }
+      ],
+      "instrumento": {
+        "id": "m04-inst-03",
+        "titulo": "Simulador · O dinheiro que falta",
+        "pergunta_fonte": "Uma usina de ponta tenta se pagar só vendendo energia. Ajuste quantas horas ela roda, quanto ganha por MWh quando roda e quanto custa mantê-la disponível — e veja o buraco aparecer, medido em reais por kW-ano.",
+        "posicao_fonte": { "depois_do_bloco": 10, "trecho": "nota 'A frase que resolve a pergunta do Módulo 03'" },
+        "posicao_proposta": { "depois_do_bloco": 10, "trecho": "mantida" },
+        "motivo": "O instrumento vem logo depois do mecanismo (3.2–3.3) e antes da resposta brasileira (3.4).",
+        "com_previsao": true,
+        "cenario_padrao_calculado": "Receita R$ 16 mi · custo fixo R$ 60 mi · falta R$ 44 mi · preço de capacidade necessário R$ 220/kW-ano · veredito 'Vendendo só energia, este ativo não existe…'."
+      },
+      "checagem": {
+        "referencia": "Quiz Q5 e Q10 (retorno 'Aula 03', literal). Ex 05 na Revisão.",
+        "tentativa_antes_da_referencia": "Previsão registrada antes das barras aparecerem; horas encontradas antes de o veredito ser mostrado."
+      },
+      "recuperacao": {
+        "antes": "M03·aula-03-10 ('LCOE, valor de sistema e portfólio'): 'O que o LCOE não enxerga?' Tentativa antes de reabrir a tabela dos quatro limites. E M04·A01: 'De onde uma usina abaixo da margem tira o dinheiro do custo fixo?' A fonte chama isso de 'semente da Aula 03'.",
+        "depois": "Na A04, antes de 4.3: 'O que o vencedor de um LRCAP se compromete a entregar?'"
+      },
+      "proximo_passo": "Caso padrão: 'Próxima · M04·A04 — Leilões: como o regulador descobre o preço'. A ponte é literal: 4.3 retoma 'o LRCAP da Aula 03'.",
+      "midia": {
+        "plano_curadoria": "inexistente",
+        "sugestao": "Opcional, classe documental: foto real e creditada de um sistema de baterias em contêiner junto do bloco 15 (1º LRCAP de armazenamento), com o trabalho de mostrar que 'bateria é um jeito de comprar disponibilidade'. Sem nomear projeto real que a legenda não possa verificar. Se não passar no teste de remoção, fica sem imagem."
+      },
+      "mobile_390": "Pergunta da fonte e previsão no 1º viewport. As três barras ficam empilhadas na largura toda, com o valor à direita. Os controles vêm abaixo, com 'Horas de despacho' primeiro (é o controle da meta). A linha do tempo fica vertical, com datas à esquerda e o marcador 'hoje' entre junho e dezembro de 2026.",
+      "lacunas_fonte": [
+        "'~R$ 64,5 bilhões' e 'entregas escalonadas entre 2026 e 2031' não aparecem no §Ref, que cita 18,97 GW e 501,3 MW. A fonte específica desses dois números não é declarada.",
+        "Contestação do MPF, questionamentos no TCU e ações judiciais: sem documento citado no §Ref.",
+        "Números vivos com prazo curto: os certames de dezembro de 2026 ainda são futuros em 2026-09-17. Datar a verificação e revisar depois de dezembro.",
+        "Valor da energia não suprida: conceito sem número na fonte. Não quantificar."
+      ],
+      "dependencias_s9": ["Registro de previsão e de meta", "Desenho das barras", "Pergunta e disc do instrumento (T2)", "Carimbo de verificação de números vivos"],
+      "content_qa": ["'politicamente insustentáveis</b>' com tag órfã (bloco 6).", "Nota de produto cita 'GridAlpha Simulate' (bloco 19): P7 e P24."],
+      "ambicao": "O learner arrasta as horas até o buraco sumir e lê: 'não é uma usina de ponta — é uma usina de base disfarçada'. A analogia do bombeiro (explicador de três níveis, nível 1) fecha o raciocínio, e a linha do tempo mostra o Brasil comprando bombeiros, com a data de hoje marcada.",
+      "marcadores_anti_lms": ["previsão antes do resultado", "ato registrado (meta)", "fonte junto ao número (LRCAP com ANEEL/EPE/MME)", "linha do tempo que trabalha"]
+    },
+    {
+      "aulaId": "aula-04-04",
+      "titulo": "Leilões: como o regulador descobre o preço",
+      "subtitulo_fonte": "Descoberta de preço",
+      "o_que_ensina": "No leilão reverso, os vendedores descem o preço até a quantidade demandada ser atendida. O último lance aceito é o preço de corte, e a média contratada depende da regra (por lance ou uniforme). O preço-teto pode barrar oferta. A-n indica a antecedência da contratação, e energia nova, energia existente e leilões de segurança têm lógicas diferentes. O leilão resolve competição e financiamento, mas não resolve previsão, execução nem envelhecimento tecnológico.",
+      "natureza": ["mecanismo de mercado", "nomenclatura/classificação", "leitura de resultado"],
+      "representacao": {
+        "arquetipo": "Sala do leilão (curva de lances) + escada temporal",
+        "descricao": "4.1 curta e, logo depois, a prancha da sala: as seis propostas ordenadas como degraus (largura = MW, altura = R$/MWh), com a linha vertical da quantidade demandada, a linha horizontal do teto e duas marcas, o preço de corte e o preço médio por lance. As propostas acima do teto aparecem barradas por forma, não por cor. Em 4.2, a escada A-1 → A-6 desenhada como régua de anos antes do suprimento. O fecho é uma 'ficha de leitura de resultado' com os quatro números do bloco 13, na ordem da fonte.",
+        "por_que": "Corte × média é uma diferença de altura numa curva de degraus. O teto é uma linha que corta a oferta. A nomenclatura A-n é uma distância no tempo. As três coisas são espaciais.",
+        "alem_do_conceito": "Alternância de regra de liquidação (por lance × uniforme) mostrando o valor que muda de lado por MWh. A conta deriva das definições do bloco 2; nenhum fato novo."
+      },
+      "abertura": {
+        "pergunta": "Quando os vendedores competem para baixo, que preço fica — e quem recebe o quê?",
+        "camada": "alexandria (derivada de 4.1)",
+        "previsao": {
+          "util": true,
+          "camada": "alexandria",
+          "enunciado": "O comprador quer 1.000 MW, o teto do edital é R$ 300/MWh e há seis propostas na mesa. Qual será o preço de corte? O preço médio por lance fica acima, abaixo ou igual a ele?",
+          "resposta": "Corte R$ 230/MWh (Solar A 500 + Eólica B 400 + 100 MW da Hidro C). Média por lance R$ 186/MWh: abaixo, com diferença de R$ 44/MWh. A Térmica F (R$ 340) fica barrada pelo teto.",
+          "por_que_ensina": "O erro previsível é tomar o corte como o preço que todos recebem, ou ler o resultado só pela coluna de R$/MWh.",
+          "rotulo_obrigatorio": "Propostas fictícias; ordenação só por preço. Leilões reais aplicam índices de custo-benefício, garantia física e restrições de escoamento (disc da fonte)."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever + manipular até uma meta",
+        "enunciado": "Com 1.000 MW demandados, baixar o teto até (a) o leilão deixar demanda sem atender e (b) sair deserto. Dizer o que cada situação devolve ao planejador.",
+        "respostas_do_modelo": "(a) Teto de R$ 225: contrata 900 MW, faltam 100 MW, 1.170 MW barrados. (b) Teto abaixo de R$ 170 (mínimo do controle, R$ 150): nada contratado.",
+        "exercita_mecanismo": "Sim: fila de lances, corte, média e teto.",
+        "secundarios": [
+          { "tipo": "classificar", "enunciado": "Ligar A-1, A-3/A-4 e A-5/A-6 ao perfil típico de vendedor e à função no sistema (tabela do bloco 6).", "camada": "alexandria (tarefa); fonte (tabela)" },
+          { "tipo": "identificar o erro", "enunciado": "Julgar a frase 'a energia ficou mais cara', tirada da comparação entre o preço de um leilão de energia nova e o de um de existente (bloco 8, literal)." }
+        ]
+      },
+      "visualizacao": [
+        {
+          "nome": "Curva de lances",
+          "trabalho": "Mostrar corte, média e teto na mesma geometria.",
+          "relacao": "MW acumulado → R$/MWh do lance; corte = lance da última proposta aceita",
+          "eixos": "x: MW acumulado (0–2.070); y: R$/MWh (150–400); vertical: demanda; horizontal: teto",
+          "unidade": "MW; R$/MWh",
+          "existe_na_fonte": "Parcial: barras por proposta, com cor por fonte.",
+          "existe_no_codigo": "Não.",
+          "forma_prometida_nao_desenhada": "Sim: 'Sala do leilão reverso'."
+        },
+        {
+          "nome": "Escada A-n",
+          "trabalho": "Traduzir a letra e o número em distância temporal até o suprimento.",
+          "relacao": "anos de antecedência → perfil de projeto",
+          "eixos": "régua de 0 a 6 anos antes do ano A",
+          "unidade": "anos",
+          "existe_na_fonte": "Como tabela.",
+          "existe_no_codigo": "Como tabela."
+        }
+      ],
+      "instrumento": {
+        "id": "m04-inst-04",
+        "titulo": "Simulador · Sala do leilão reverso",
+        "pergunta_fonte": "Seis propostas na mesa. Ajuste quanto o comprador quer contratar e onde fica o teto do edital — e observe o preço de corte se separar do preço médio, e o teto começar a barrar oferta.",
+        "posicao_fonte": { "depois_do_bloco": 3, "trecho": "fim de 4.1 ('…conclusões erradas com frequência incômoda.')" },
+        "posicao_proposta": { "depois_do_bloco": 3, "trecho": "mantida" },
+        "motivo": "Na fonte, o instrumento já fica no ponto que o invoca.",
+        "com_previsao": true,
+        "cenario_padrao_calculado": "Contratado 1.000 MW · corte R$ 230/MWh · média por lance R$ 186,00/MWh · demanda não atendida 0 · veredito 'Contratado integralmente… diferença de R$ 44,00 por MWh'.",
+        "propostas_da_fonte": "Solar A 500 MW a R$ 170 · Eólica B 400 a R$ 195 · Hidro C 150 a R$ 230 · Gás D 600 a R$ 265 · Biomassa E 120 a R$ 280 · Térmica F 300 a R$ 340 (fictícias)"
+      },
+      "checagem": {
+        "referencia": "Quiz Q6 (A-5) e Q7 (corte × média), com retorno 'Aula 04' literal. Ex 06 na Revisão: mesmo mecanismo, com outras propostas e conta anual em MW médios.",
+        "tentativa_antes_da_referencia": "Corte e média previstos antes das marcas aparecerem na curva."
+      },
+      "recuperacao": {
+        "antes": "M04·A01: 'Numa hora, quem recebe o preço formado pela usina marginal?' A liquidação uniforme é a mesma lógica. Antes de 4.3, M04·A03: 'O que o LRCAP compra?'",
+        "depois": "No fim do módulo (Revisão): Ex 06."
+      },
+      "proximo_passo": "Caso padrão: 'Próxima · M04·A05 — PPA: onde mora a economia real'.",
+      "midia": {
+        "plano_curadoria": "inexistente",
+        "sugestao": "Nenhuma essencial. Uma foto de sessão real de leilão só entraria como documental creditada, e dificilmente passa no teste de remoção."
+      },
+      "mobile_390": "Previsão no topo. A curva de lances ocupa a largura toda, com os rótulos das propostas dentro dos degraus, abreviados ('Solar A · 170'). Os dois controles (quantidade e teto) ficam logo abaixo e o teto move a linha na figura. As 4 saídas em 2×2. A escada A-n vira lista vertical, e a ficha de leitura vira lista numerada de 4 itens.",
+      "lacunas_fonte": [
+        "Índices de custo-benefício: a fonte descreve, mas não dá fórmula. Não modelar.",
+        "A aula não traz nenhum resultado real de leilão (volume, deságio, composição, corte × média). A 'ficha de leitura' só pode ser exercitada com o cenário fictício, ou com um resultado real depois de verificado em EPE/CCEE (dependência de fonte; não inventar)."
+      ],
+      "dependencias_s9": ["Registro de previsão e meta", "Desenho da curva de lances", "Pergunta e disc do instrumento (T2)"],
+      "content_qa": ["'não é preço médio contratado</b>' com tag órfã (bloco 2).", "Nota de produto (bloco 14): P7."],
+      "ambicao": "Uma alavanca 'por lance ↔ uniforme' pinta a faixa entre a média e o corte como valor que muda de bolso ('a regra do edital, não a teoria', veredito literal). O learner vê que nenhuma tecnologia mudou, só a regra, que é a frase do Ex 06.",
+      "marcadores_anti_lms": ["previsão antes do resultado", "ato registrado", "cenário fictício rotulado junto aos números", "figura que trabalha (curva de lances)"]
+    },
+    {
+      "aulaId": "aula-04-05",
+      "titulo": "PPA: onde mora a economia real",
+      "subtitulo_fonte": "Longo prazo",
+      "o_que_ensina": "Um PPA não elimina risco: muda o risco de dono, e treze cláusulas decidem o resultado. Físico e financeiro são coisas diferentes. O perfil pesa mais que o preço médio, porque uma usina captura o preço das horas em que gera (daí a canibalização). O curtailment passou a ser uma variável econômica do contrato.",
+      "natureza": ["leitura de documento/contrato", "alocação de risco", "comparação contrato × spot"],
+      "representacao": {
+        "arquetipo": "Anatomia de documento com anotações + prancha contrato × spot",
+        "descricao": "Um term sheet esquemático de PPA (camada Alexandria, rotulado como esquema didático, sem partes reais) em que cada uma das 13 cláusulas da tabela da fonte é uma âncora com anotação ('o que decide' / 'onde costuma doer'). A prancha do INST 05 entra logo depois de 5.1. Em 5.4, uma figura de perfil de 24 h (geração solar diurna × consumo noturno, sobra e falta) sustenta o ato de identificar o erro.",
+        "por_que": "A tese é que o preço é uma linha entre treze. A forma que ensina isso é o próprio documento, com a linha do preço visualmente pequena entre as outras. O mecanismo do perfil precisa de um eixo de horas, que nenhum instrumento da fonte tem.",
+        "alem_do_conceito": "O learner marca no term sheet a cláusula que dói antes de ler a anotação."
+      },
+      "abertura": {
+        "pergunta": "Se o preço é só uma de treze cláusulas, onde mora a economia de um PPA?",
+        "camada": "alexandria (derivada do lede)",
+        "previsao": {
+          "util": true,
+          "camada": "alexandria",
+          "enunciado": "Indústria de 10.000 MWh/mês, PLD médio de R$ 250 com oscilação de ±R$ 120. Passando de 0% para 70% contratado em PPA a R$ 355: o custo médio mensal sobe, cai ou fica? E a diferença entre o melhor e o pior mês?",
+          "resposta": "O custo médio sobe (≈ R$ 2,54 mi → ≈ R$ 3,25 mi/mês) e a amplitude cai (R$ 2,4 mi → R$ 720 mil).",
+          "por_que_ensina": "Materializa o bloco 2 ('transforma risco', 'o preço da cláusula é o pagamento por essa transferência') e desmonta a leitura 'contrato = economia'.",
+          "rotulo_obrigatorio": "Cenário didático: aderência perfeita de volume; ignora modulação, sazonalização, encargos, rede, tributos e garantias (disc da fonte)."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "identificar o erro",
+        "enunciado": "Uma empresa com consumo concentrado à noite recebe uma proposta de PPA solar flat com preço médio abaixo do mercado. Apontar no term sheet a cláusula (ou a ausência dela) que transforma o contrato barato em exposição cara e explicar o mecanismo.",
+        "referencia_fonte": "Blocos 9–10 ('O contrato barato produziu uma exposição cara'; 'uma usina não captura o preço médio do ano'), linhas 'Modulação' e 'Sazonalização' da tabela.",
+        "exercita_mecanismo": "Sim: perfil > preço médio.",
+        "camada": "alexandria (tarefa); fonte (cenário e resposta)",
+        "secundarios": [
+          { "tipo": "prever", "enunciado": "A previsão do INST 05." },
+          { "tipo": "classificar", "enunciado": "Separar as variantes do bloco 7 (contrato por diferença, PPA virtual, PPA intermediado) e o PPA físico do financeiro pela pergunta 'um elétron a mais chega na fábrica?'.", "camada": "alexandria" }
+        ]
+      },
+      "visualizacao": [
+        {
+          "nome": "Term sheet anotado",
+          "trabalho": "Mostrar o preço como uma linha entre treze e ligar cada cláusula ao risco que aloca.",
+          "relacao": "cláusula → o que decide → onde costuma doer",
+          "unidade": "—",
+          "existe_na_fonte": "Como tabela de 13 linhas.",
+          "existe_no_codigo": "Como tabela.",
+          "nota": "Esquema didático da camada Alexandria. Nunca imitar contrato real, empresa real ou logotipo."
+        },
+        {
+          "nome": "Perfil de 24 h: geração × consumo",
+          "trabalho": "Mostrar a sobra de dia e a falta à noite no contrato flat solar.",
+          "relacao": "hora → MWh gerado / MWh consumido",
+          "eixos": "x: 0–24 h; y: sem escala numérica",
+          "unidade": "esquema qualitativo",
+          "existe_na_fonte": "Não (só texto).",
+          "existe_no_codigo": "Não.",
+          "nota": "A fonte não dá curvas nem preços por hora: desenhar sem escala e rotular 'esquema'."
+        },
+        {
+          "nome": "Custo mensal contrato × spot",
+          "trabalho": "Separar o efeito do contrato na média do efeito na amplitude.",
+          "relacao": "mês → parcela fixa + parcela exposta; linha da média",
+          "eixos": "x: Jan–Dez; y: R$ mi/mês",
+          "unidade": "R$",
+          "existe_na_fonte": "Sim (SVG de barras empilhadas).",
+          "existe_no_codigo": "Não.",
+          "forma_prometida_nao_desenhada": "Sim: 'ao longo de 12 meses'."
+        }
+      ],
+      "instrumento": {
+        "id": "m04-inst-05",
+        "titulo": "Simulador · Contrato × spot ao longo de 12 meses",
+        "pergunta_fonte": "Uma indústria com consumo de 10.000 MWh/mês decide quanto contratar. O gráfico mostra o custo mês a mês: a parcela travada não se move, a parcela exposta acompanha o PLD. Repare no que o contrato faz com a média e no que ele faz com a amplitude — são efeitos diferentes e é o segundo que costuma decidir.",
+        "posicao_fonte": { "depois_do_bloco": 14, "trecho": "nota 'Números vivos' (fim de toda a prosa)" },
+        "posicao_proposta": { "depois_do_bloco": 2, "trecho": "fim de 5.1 ('…o preço da cláusula é o pagamento por essa transferência.')" },
+        "motivo": "Na fonte, só o explicador e a nota de produto vêm depois do instrumento: é apêndice (T1). O instrumento exercita exatamente a afirmação de 5.1 (previsibilidade trocada por custo), e o disc diz que ele ignora modulação, por isso não serve a 5.4, que ganha o próprio ato e a figura de 24 h.",
+        "com_previsao": true,
+        "cenario_padrao_calculado": "Custo médio R$ 3,25 mi/mês · mês mais barato Fev R$ 2,88 mi · mais caro Ago R$ 3,60 mi · amplitude R$ 720 mil · veredito 'Amplitude anual de R$ 720 mil… Repare que a média mal se moveu…'."
+      },
+      "checagem": {
+        "referencia": "Quiz Q8 (retorno 'Aula 05', literal). Ex 07 na Revisão, com lista de riscos que serve de critério de comparação.",
+        "tentativa_antes_da_referencia": "Cláusula marcada e mecanismo escrito antes de as anotações se abrirem."
+      },
+      "recuperacao": {
+        "antes": "M04·A02: 'O que o PLD valora?' (antes de 5.4). Para curtailment e perfil, M02·aula-02-04 (curva líquida) e M02·aula-02-10 ('Da física ao custo: fio, congestionamento e curtailment').",
+        "depois": "Na A06: 'Cite três cláusulas que alocam risco de volume ou de submercado.'"
+      },
+      "proximo_passo": "Caso padrão: 'Próxima · M04·A06 — Hedge: travando exposição ao PLD'. A ponte é literal (A06, bloco 9): hedge contratual 'traz junto todas as treze cláusulas da Aula 05'.",
+      "midia": {
+        "plano_curadoria": "inexistente",
+        "sugestao": "Nenhuma essencial. Uma foto documental de usina solar centralizada junto de 5.4 dificilmente passa no teste de remoção: o que ensina é o eixo de horas, e ele é desenho."
+      },
+      "mobile_390": "Pergunta + previsão no topo; o instrumento vem logo depois de 5.1. O term sheet vira uma lista de 13 cláusulas em disclosure: cada linha mostra o nome e abre 'o que decide / onde dói'. A cláusula marcada pelo learner fica com glifo. O perfil de 24 h ocupa a largura toda com duas curvas rotuladas diretamente. O gráfico de 12 meses ocupa 358px.",
+      "lacunas_fonte": [
+        "'Patamares que em 2025 se aproximaram de um quinto da geração possível': sem documento específico. O §Ref cita 'ONS · dados abertos' (séries de constrained-off). Mostrar como ordem de grandeza e declarar a fonte genérica.",
+        "'Projeções do operador apontam…': documento não citado.",
+        "Lei 15.269/2025 (desconto de TUSD): citada no §Ref; o detalhamento é escopo do Módulo 09 (declarado pela fonte).",
+        "O instrumento não representa perfil nem modulação (disc), justamente o mecanismo de 5.4."
+      ],
+      "dependencias_s9": ["Registro de previsão e de marcação", "Desenho do gráfico mensal", "Saídas textuais 'Mês mais barato/caro' (T4)", "Pergunta e disc do instrumento (T2)"],
+      "content_qa": [
+        "O veredito da faixa intermediária diz 'Repare que a média mal se moveu: o que mudou foi a dispersão' para qualquer controle movido. Se o learner mexeu na parcela contratada ou no preço do PPA, a média se move (0% → 70%: R$ 2,54 mi → R$ 3,25 mi). O texto é verdadeiro para a amplitude do PLD e falso para os outros controles. Registrar; não reescrever em silêncio.",
+        "'captura o preço das horas em que gera</b>' com tag órfã (bloco 10).",
+        "Nota de produto (bloco 16): P7."
+      ],
+      "ambicao": "'A proposta que parece barata.' O learner recebe o term sheet de um PPA solar flat, marca onde dói, e o perfil de 24 h revela a sobra ao meio-dia e a falta às 20h: as duas contra o comprador, como diz a fonte.",
+      "marcadores_anti_lms": ["previsão antes do resultado", "ato registrado (marcação)", "cenário didático rotulado", "figura que trabalha (term sheet, perfil)"]
+    },
+    {
+      "aulaId": "aula-04-06",
+      "titulo": "Hedge: travando exposição ao PLD",
+      "subtitulo_fonte": "Gestão de risco",
+      "o_que_ensina": "Hedge é uma posição que se move contra a exposição: não reduz o custo esperado, reduz a dispersão em torno dele. Swap, collar e opção cobram de jeitos diferentes, e no Brasil o hedge é sobretudo contratual. Sempre sobram risco de base, de perfil, de volume e de contraparte. Volume travado acima do consumo deixa de ser hedge e vira aposta.",
+      "natureza": ["finanças/risco", "cálculo", "comparação de instrumentos"],
+      "representacao": {
+        "arquetipo": "Mesa de hedge com diagrama de custo efetivo + mesa de comparação",
+        "descricao": "6.1 e o parágrafo do swap em coluna editorial, depois a prancha do INST 06 com o diagrama que a fonte promete: custo efetivo (R$/MWh) em função do PLD realizado. A diagonal 'sem hedge' fica fixa, a reta do volume atual aparece e um ponto marca o PLD do mês. A 10.000 MWh a reta fica horizontal; acima disso, inclina ao contrário. Em 6.2, uma mesa de três colunas (swap, collar, opção): o que paga, do que abre mão, se preserva o cenário bom. Em 6.4, a lista do que sempre sobra.",
+        "por_que": "'Reduz a dispersão, não o custo esperado' e 'o ponto em que a curva atravessa essa fronteira' são afirmações sobre inclinação. Só um diagrama mostra isso sem conta.",
+        "alem_do_conceito": "O instrumento que na fonte só imprime números passa a desenhar a curva que a nota 'Teste de sanidade' promete."
+      },
+      "abertura": {
+        "pergunta": "Se o mercado cair depois que você travou o preço, o hedge foi um erro?",
+        "camada": "alexandria (derivada do lede e do bloco 2)",
+        "previsao": {
+          "util": true,
+          "camada": "alexandria",
+          "enunciado": "Consumo de 10.000 MWh no mês. Você travou 8.000 MWh num swap a R$ 300. O PLD fecha em R$ 250. Seu custo efetivo fica acima ou abaixo de R$ 250/MWh? Quanto?",
+          "resposta": "Acima: R$ 290/MWh. O swap custou R$ 400 mil (custo sem hedge R$ 2,5 mi; com hedge R$ 2,9 mi).",
+          "por_que_ensina": "O erro previsível é esperar que 'estar protegido' sempre barateie. É o 'preço do seguro num ano sem sinistro' (veredito da fonte).",
+          "rotulo_obrigatorio": "Cenário didático: swap liquidado contra o PLD médio do mês, sem intermediação, garantias, tributos ou risco de base (disc da fonte)."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "prever + manipular até uma meta",
+        "enunciado": "Encontrar o volume travado em que o custo efetivo deixa de depender do PLD; depois ultrapassá-lo e dizer, com as palavras da aula, o que a posição virou.",
+        "respostas_do_modelo": "10.000 MWh (o consumo): o custo efetivo fica igual ao preço fixo (R$ 300) com qualquer PLD. Acima disso, 'posição direcional' (bloco 13 e veredito). Exemplo: 12.000 MWh com PLD de R$ 600 dá custo efetivo de R$ 240, abaixo do preço fixo, o que mostra a aposta.",
+        "exercita_mecanismo": "Sim: sinal oposto à exposição, dispersão × custo esperado, fronteira do hedge.",
+        "secundarios": [
+          { "tipo": "classificar", "enunciado": "Swap, collar e opção × 'paga prêmio explícito?', 'preserva o cenário favorável?', 'custo real onde?' (blocos 4–6).", "camada": "alexandria (tarefa); fonte (respostas)" },
+          { "tipo": "decidir com justificativa", "enunciado": "Responder ao diretor financeiro do §Voz: 'Travamos, o mercado caiu, perdemos com o hedge. Por que faria de novo?'", "camada": "fonte (pergunta); autoavaliação C7" }
+        ]
+      },
+      "visualizacao": [
+        {
+          "nome": "Custo efetivo × PLD realizado",
+          "trabalho": "Mostrar a compressão da dispersão e a fronteira em que o hedge vira aposta.",
+          "relacao": "custo efetivo = F·V/C + PLD·(1 − V/C), com C = 10.000 MWh (derivada da fórmula do instrumento; nenhum fato novo)",
+          "eixos": "x: PLD realizado (R$ 57–1.611/MWh); y: custo efetivo (R$/MWh); diagonal = sem hedge",
+          "unidade": "R$/MWh",
+          "existe_na_fonte": "Não. O INST 06 não desenha nada, mas a nota 'Teste de sanidade' diz que ele mostra a curva.",
+          "existe_no_codigo": "Não.",
+          "forma_prometida_nao_desenhada": "Sim."
+        },
+        {
+          "nome": "Três instrumentos lado a lado",
+          "trabalho": "Comparar o que cada um cobra.",
+          "relacao": "qualitativa",
+          "unidade": "—",
+          "existe_na_fonte": "Só em texto.",
+          "existe_no_codigo": "Não.",
+          "nota": "Formas de payoff do collar e da opção só como esquema sem números: a fonte não dá piso, teto nem prêmio."
+        }
+      ],
+      "instrumento": {
+        "id": "m04-inst-06",
+        "titulo": "Mesa de hedge · swap simples",
+        "pergunta_fonte": "Consumo fixo de 10.000 MWh/mês. Você trava um preço fixo para parte dele. Mexa no volume travado — e repare no que acontece quando ele passa do consumo.",
+        "posicao_fonte": { "depois_do_bloco": 11, "trecho": "fim de 6.4 (fim de toda a prosa)" },
+        "posicao_proposta": { "depois_do_bloco": 4, "trecho": "parágrafo do swap em 6.2" },
+        "motivo": "Na fonte, só o explicador e o 'Teste de sanidade' vêm depois do instrumento: é apêndice (T1). O instrumento é um swap e fica logo depois da definição do swap. O 'Teste de sanidade' (bloco 13), que fala do 'instrumento acima', desce para logo abaixo da prancha. Collar, opção, estado do mercado e o que sobra continuam depois, como leitura com a mesa de comparação.",
+        "com_previsao": true,
+        "cenario_padrao_calculado": "Resultado do swap − R$ 400 mil · custo sem hedge R$ 2,5 mi · com hedge R$ 2,9 mi · custo efetivo R$ 290,00/MWh · veredito 'O PLD ficou abaixo do preço travado… é o preço do seguro num ano em que não houve sinistro…'."
+      },
+      "checagem": {
+        "referencia": "Quiz Q9 (retorno 'Aula 06', literal). Ex 08 na Revisão: a compressão de 70% da fonte é igual a V/C = 7.000/10.000, e o diagrama a torna visível.",
+        "tentativa_antes_da_referencia": "Custo efetivo previsto antes das saídas; resposta ao diretor financeiro escrita antes de abrir o explicador de três níveis."
+      },
+      "recuperacao": {
+        "antes": "M04·A02: 'Quem perde quando o PLD sobe?' (exposição descoberta). M04·A05: 'Cite três das treze cláusulas.'",
+        "depois": "Na A07: 'O hedge reduz o custo esperado?'"
+      },
+      "proximo_passo": "Caso padrão: 'Próxima · M04·A07 — Portfólio de contratação'.",
+      "midia": {
+        "plano_curadoria": "inexistente",
+        "sugestao": "Nenhuma imagem. Conceito financeiro; o diagrama carrega o argumento."
+      },
+      "mobile_390": "Pergunta + previsão no topo. O diagrama ocupa a largura toda, com o controle de volume logo abaixo dele (a relação controle → inclinação precisa caber num viewport). Preço fixo e PLD vêm em seguida. As saídas em 2×2. A mesa de comparação vira três blocos empilhados com as mesmas três linhas.",
+      "lacunas_fonte": [
+        "Collar e opção sem parâmetros numéricos: só esquema.",
+        "'Negociação em ambiente de balcão organizado': nenhum ambiente nomeado nem fonte específica.",
+        "T8: o instrumento aceita PLD mensal até R$ 1.611, acima do teto estrutural."
+      ],
+      "dependencias_s9": ["Registro de previsão e meta", "Desenho do diagrama (forma prometida)", "Pergunta e disc do instrumento (T2)"],
+      "content_qa": ["'reduz a dispersão em torno dele</b>' com tag órfã (bloco 2).", "O 'Teste de sanidade' promete uma curva que não é desenhada (C5)."],
+      "ambicao": "Arrastar o volume faz a reta girar: fica deitada no consumo e passa do ponto logo depois. O instante em que 'deixou de ser hedge' fica geométrico, e a frase do diretor financeiro ganha resposta com o próprio desenho.",
+      "marcadores_anti_lms": ["previsão antes do resultado", "ato registrado (meta)", "cenário didático rotulado", "figura que trabalha (diagrama de custo efetivo)"]
+    },
+    {
+      "aulaId": "aula-04-07",
+      "titulo": "Portfólio de contratação",
+      "subtitulo_fonte": "Síntese",
+      "o_que_ensina": "Parcelas do consumo com graus de certeza diferentes pedem camadas de prazo diferentes (base longa, média, curta e uma exposição residual deliberada), governadas por uma política de risco escrita e testadas contra cenários, não contra uma previsão. Uma proposta se compara pelo custo total (sete parcelas), não pelo R$/MWh.",
+      "natureza": ["síntese", "caso/decisão", "política como documento"],
+      "representacao": {
+        "arquetipo": "Dossiê de decisão",
+        "descricao": "Três peças de um dossiê em sequência: (1) a tabela de camadas (7.1); (2) uma 'política de risco de uma página' como objeto que o learner preenche com dois limites (percentual mínimo e exposição máxima no cenário de estresse), na camada Alexandria, estruturada pelos itens do bloco 6; (3) a prancha do INST 07, que desenha as camadas mês a mês e a linha do limite da política sobre a exposição. O fecho (7.4) vira um checklist de auditoria com as 10 perguntas da fonte e as 7 parcelas do custo total.",
+        "por_que": "É a aula de síntese, e a fonte diz que a pergunta muda de 'o preço está bom?' para 'a proposta cabe na política?'. O ato natural é decidir contra uma política, e a política é um documento.",
+        "alem_do_conceito": "Os dois números que o learner escreve na política viram linhas no gráfico, e ele vê a carteira que cumpre o percentual e viola o valor."
+      },
+      "abertura": {
+        "objetivo": "Montar uma carteira em camadas que caiba numa política de risco escrita e sobreviva ao cenário ruim.",
+        "camada": "alexandria (derivado do lede e de 7.2–7.3)",
+        "previsao": {
+          "util": true,
+          "camada": "alexandria",
+          "enunciado": "Base longa 50%, média 25%, curta 15% (exposição residual de 10%) e choque máximo de PLD no 2º semestre. No pior mês, a exposição cabe num limite de R$ 500 mil? E se a camada curta cair para 10%?",
+          "resposta": "Com 10% exposto: R$ 480 mil em outubro (PLD do modelo R$ 480), cabe. Com 15% exposto (85% contratado, acima de 80%): R$ 720 mil, não cabe.",
+          "por_que_ensina": "Reproduz no instrumento a lição do Ex 09: cumprir o critério percentual não garante o financeiro.",
+          "origem_dos_parametros": "Mínimo de 80% e limite de R$ 500 mil vêm do enunciado do Ex 09 (fonte). O cenário de estresse aqui é o do INST 07 (PLD didático de R$ 480), não os R$ 700 do Ex 09. Não misturar.",
+          "rotulo_obrigatorio": "Cenário didático: estrutura a termo e sazonalidade fixas, consumo constante, sobra liquidada sem penalidade; preços de camada R$ 330/348/366 são do simulador (disc da fonte)."
+        }
+      },
+      "ato_autentico": {
+        "tipo": "decidir com justificativa",
+        "enunciado": "Com choque máximo, montar as camadas de modo que a política (≥ 80% contratado; exposição no pior mês ≤ R$ 500 mil) seja cumprida sem passar de 100%. Registrar a carteira escolhida e nomear o trade-off aceito (rigidez e custo médio × exposição).",
+        "respostas_do_modelo": "Soma das camadas entre 90% e 100%. Exemplos: 50/25/15 → custo médio R$ 334,24/MWh, pior mês R$ 3,55 mi; 50/25/20 → R$ 338,87; 50/25/25 (100%) → R$ 343,50, amplitude zero e 'perfeitamente rígido' (veredito). Acima de 100%, o veredito denuncia sobrecontratação.",
+        "exercita_mecanismo": "Sim: camadas, exposição residual deliberada, política com dois critérios, cenário ruim.",
+        "criterio": "Os dois critérios cumpridos no modelo + trade-off nomeado com palavras da aula (autoavaliação C7 em três níveis). Não existe carteira 'certa' única.",
+        "secundarios": [
+          { "tipo": "identificar o erro", "enunciado": "Usar as 10 perguntas do bloco 13 como auditoria de uma proposta esquemática: quais ela não responde?", "camada": "alexandria (proposta esquemática, sem números novos)" },
+          { "tipo": "responder exercício da fonte", "enunciado": "Ex 09 'Portfólio e política de risco' na Revisão (T5)." }
+        ]
+      },
+      "visualizacao": [
+        {
+          "nome": "Custo mensal por camada",
+          "trabalho": "Ver a parte fixa, a parte exposta, o crédito da sobra e a linha do limite da política.",
+          "relacao": "mês → base + média + curta + exposição − crédito de sobra",
+          "eixos": "x: Jan–Dez; y: R$ mi/mês; linha: custo médio; linha tracejada: limite de exposição da política (camada Alexandria)",
+          "unidade": "R$",
+          "existe_na_fonte": "Sim (SVG empilhado; sobra em vermelho, trocar por token e silhueta).",
+          "existe_no_codigo": "Não.",
+          "forma_prometida_nao_desenhada": "Sim: 'Portfólio em camadas'."
+        },
+        {
+          "nome": "Custo total em sete parcelas",
+          "trabalho": "Mostrar o R$/MWh como a primeira parcela de sete.",
+          "relacao": "lista ordenada, sem valores",
+          "unidade": "—",
+          "existe_na_fonte": "Só em texto.",
+          "existe_no_codigo": "Não.",
+          "nota": "A fonte não dá proporções. Não desenhar como pizza ou barra proporcional."
+        }
+      ],
+      "instrumento": {
+        "id": "m04-inst-07",
+        "titulo": "Simulador · Portfólio em camadas",
+        "pergunta_fonte": "Distribua o consumo de 10.000 MWh/mês entre as camadas. O que sobrar fica exposto ao PLD. Aplique um choque de preço no segundo semestre e observe o custo mensal — e o que acontece se a soma das camadas passar de 100%.",
+        "posicao_fonte": { "depois_do_bloco": 10, "trecho": "fim de 7.3 ('…é para isso que ela foi escrita')" },
+        "posicao_proposta": { "depois_do_bloco": 10, "trecho": "mantida; a política preenchida pelo learner entra logo antes (depois do bloco 7)" },
+        "motivo": "O instrumento vem depois de camadas, política e cenários, e a 7.4 continua depois dele. Não é apêndice.",
+        "com_previsao": true,
+        "cenario_padrao_calculado": "Exposição residual 10% · custo médio R$ 3,27 mi/mês (R$ 327,03/MWh) · pior mês Set R$ 3,33 mi · amplitude R$ 120 mil · veredito 'Exposição residual de 10%… o desenho que a maioria das políticas de risco industriais persegue'."
+      },
+      "checagem": {
+        "referencia": "Ex 09 na Revisão. Nenhuma questão do quiz declara 'Aula 07' (lacuna de checagem objetiva; não inventar questão com rótulo de fonte).",
+        "tentativa_antes_da_referencia": "Carteira e justificativa registradas antes de o veredito da faixa aparecer."
+      },
+      "recuperacao": {
+        "antes": "Ciclo de síntese com três itens, cada um com a origem visível e tentativa antes: A02 ('o que o PLD valora?'), A05 ('por que o perfil pesa mais que o preço médio?'), A06 ('o hedge reduz o custo esperado?').",
+        "depois": "Na Revisão do módulo: §Erros (10 armadilhas) como banco de 'identificar o erro'."
+      },
+      "proximo_passo": "Última aula (C10): 'Revisão do M04' → 'Avaliação do módulo' (quiz de 10 questões; o critério 8/10 da fonte aparece como registro legado, sem 'Aprovado' nem 'Domínio', P18) → 'Caso — Operação A' (P17: as 8 perguntas de diagnóstico, que a fonte liga a esta lente de risco, com o Desafio de decisão autorizado). Linha 'experiência jogável em desenho' (P25). Depois do módulo: M05 — Regulação e Desenho de Mercados.",
+      "midia": {
+        "plano_curadoria": "inexistente",
+        "sugestao": "Nenhuma imagem. A 'política de uma página' é um objeto desenhado, não uma foto."
+      },
+      "mobile_390": "Objetivo + previsão no topo. A política vira um cartão com dois campos numéricos. Os controles de camada ficam em 2×2 acima do gráfico, e o choque fica separado. O gráfico ocupa 358px, com a linha do limite rotulada diretamente. As saídas em 2×2. O checklist das 10 perguntas vira lista marcável.",
+      "lacunas_fonte": [
+        "Os cinco cenários (bloco 9) não têm números na fonte. Não quantificar além do choque do simulador.",
+        "Inversão da estrutura a termo (bloco 4): sem dado. Só texto.",
+        "Nenhuma questão do quiz de origem 'Aula 07'."
+      ],
+      "dependencias_s9": ["Registro da carteira e da justificativa", "Política preenchida persistida", "Desenho do gráfico empilhado com linha de limite", "Saída textual 'Pior mês' (T4)", "Pergunta e disc do instrumento (T2)"],
+      "content_qa": ["'foi escrita</b>' com tag órfã (bloco 10).", "A nota de produto (bloco 15) cita 'portfólio GridAlpha' e 'GridAlpha Simulate': P7 e P24."],
+      "ambicao": "O learner escreve dois números numa política de uma página, e eles viram linhas no gráfico. Com 85% contratado ele cumpre o percentual e vê a barra de outubro furar o limite financeiro: a frase da fonte ('o falso conforto é pior que a ausência de política') acontece na tela dele.",
+      "marcadores_anti_lms": ["decisão registrada com justificativa", "previsão antes do resultado", "cenário didático rotulado; parâmetros do Ex 09 com origem", "rota: fecho que leva a Revisão → Avaliação → Caso"]
+    }
+  ],
+  "sintese_de_representacoes": [
+    { "aulaId": "aula-04-01", "arquetipo": "Prancha dividida com a pilha de oferta viva", "ato": "prever + manipular até meta (reservatório 30%)" },
+    { "aulaId": "aula-04-02", "arquetipo": "Régua regulatória + trajetória anual + balança da liquidação", "ato": "identificar o erro (R$ 156 × R$ 355; PLD × conta)" },
+    { "aulaId": "aula-04-03", "arquetipo": "Laboratório guiado do buraco + linha do tempo viva", "ato": "prever + manipular até meta (750 h)" },
+    { "aulaId": "aula-04-04", "arquetipo": "Sala do leilão (curva de lances) + escada temporal", "ato": "prever corte × média + manipular teto" },
+    { "aulaId": "aula-04-05", "arquetipo": "Anatomia de documento (term sheet) + prancha contrato × spot", "ato": "identificar o erro (PPA solar flat × carga noturna)" },
+    { "aulaId": "aula-04-06", "arquetipo": "Mesa de hedge com diagrama de custo efetivo", "ato": "prever + manipular até meta (volume = consumo)" },
+    { "aulaId": "aula-04-07", "arquetipo": "Dossiê de decisão (política de uma página)", "ato": "decidir com justificativa" }
+  ],
+  "pendencias_para_o_founder": [
+    "Aprovar ou recusar o vínculo temático dos 9 exercícios soltos com as aulas (T5; P9 manda deixá-los na Revisão).",
+    "Destino das questões do quiz com aula declarada: checagem na aula, recuperação ou só avaliação (C10: questão usada sai da avaliação).",
+    "Reordenação editorial proposta nas aulas 01, 05 e 06 (instrumento sobe; nota que cita o instrumento desce junto).",
+    "T8: modelo mensal do INST 02 e do INST 06 acima do teto estrutural (CONTENT QA).",
+    "Divergência DESSEM 'meia hora' (M04) × 'resolução horária' (M02) (CONTENT QA)."
+  ]
+}

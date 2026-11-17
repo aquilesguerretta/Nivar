@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="pt-BR" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Newsreader";
+        src: url("assets/fonts/newsreader-latin-opsz-normal.woff2") format("woff2");
+        font-weight: 200 800;
+        font-style: normal;
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212;
+      }
+      @font-face {
+        font-family: "Newsreader";
+        src: url("assets/fonts/newsreader-latin-opsz-italic.woff2") format("woff2");
+        font-weight: 200 800;
+        font-style: italic;
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212;
+      }
+      @font-face {
+        font-family: "Newsreader";
+        src: url("assets/fonts/newsreader-latin-ext-opsz-normal.woff2") format("woff2");
+        font-weight: 200 800;
+        font-style: normal;
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F;
+      }
+      @font-face {
+        font-family: "Instrument Sans";
+        src: url("assets/fonts/instrument-sans-latin-wght-normal.woff2") format("woff2");
+        font-weight: 400 700;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "IBM Plex Mono";
+        src: url("assets/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "IBM Plex Mono";
+        src: url("assets/fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2");
+        font-weight: 500;
+        font-style: normal;
+      }
+      :root {
+        --papel: #f2ecdf;
+        --tinta: #15213b;
+        --tinta-suave: rgba(21, 33, 59, 0.74);
+        --ouro-texto: #6b5120;
+        --fio: rgba(21, 33, 59, 0.22);
+        --ouro: #a8843a;
+        --ouro-claro: #d2b26c;
+        --serif: "Newsreader", Georgia, serif;
+        --sans: "Instrument Sans", Arial, sans-serif;
+        --mono: "IBM Plex Mono", Consolas, monospace;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--tinta); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--tinta); }
+
+      video.plano { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .camada { position: absolute; inset: 0; }
+
+      /* letreiros */
+      .mono { font-family: var(--mono); font-weight: 500; font-size: 21px; letter-spacing: 0.16em; text-transform: uppercase; }
+      .serif { font-family: var(--serif); font-optical-sizing: auto; }
+      .bloco { display: block; }
+      .fio-ouro { display: block; width: 72px; height: 1px; background: var(--ouro-claro); }
+      .veu-topo { position: absolute; left: 0; right: 0; top: 0; height: 720px;
+        background: linear-gradient(180deg, rgba(242,236,223,0.93) 0%, rgba(242,236,223,0.84) 52%, rgba(242,236,223,0) 100%); }
+      .veu-base { position: absolute; left: 0; right: 0; bottom: 0; height: 620px;
+        background: linear-gradient(0deg, rgba(242,236,223,0.92) 0%, rgba(242,236,223,0.7) 50%, rgba(242,236,223,0) 100%); }
+
+      /* ≠ desenhado: o corte latino da Newsreader não traz U+2260 */
+      .neq { position: relative; display: inline-block; }
+      .neq::after { content: ""; position: absolute; left: 50%; top: 18%; width: 0.07em; height: 64%;
+        background: currentColor; transform: translateX(-50%) rotate(28deg); }
+
+      /* selo de classe de imagem */
+      #selo { position: absolute; right: 48px; bottom: 40px; padding: 7px 11px 6px;
+        background: rgba(242,236,223,0.88); color: var(--tinta); font-family: var(--mono);
+        font-size: 15px; font-weight: 500; letter-spacing: 0.18em; }
+
+      /* P1 */
+      #t1 .grupo { position: absolute; left: 140px; top: 340px; width: 720px; color: var(--papel); }
+      #t1-titulo { font-size: 172px; font-weight: 380; letter-spacing: -0.015em; line-height: 1; }
+      #t1-sub { margin-top: 18px; font-size: 46px; font-style: italic; font-weight: 340; color: rgba(242,236,223,0.88); }
+      #t1-fio { margin-top: 44px; }
+      #t1-num { margin-top: 18px; line-height: 1.7; font-size: 20px; color: var(--ouro-claro); }
+
+      /* P2 */
+      #t2 .grupo { position: absolute; left: 140px; top: 110px; width: 1560px; color: var(--tinta); }
+      #t2-olho { color: var(--tinta-suave); }
+      #t2-mod { margin-top: 10px; color: var(--ouro-texto); }
+      #t2-tese { margin-top: 34px; font-size: 84px; font-weight: 420; line-height: 1.04; letter-spacing: -0.01em; max-width: 1440px; }
+      #t2-segue { margin-top: 26px; font-size: 36px; font-style: italic; font-weight: 360; line-height: 1.3; max-width: 1240px; color: rgba(21,33,59,0.86); }
+
+      /* P3 */
+      #t3 .grupo { position: absolute; left: 140px; top: 120px; width: 1500px; color: var(--tinta); }
+      #t3-olho { color: var(--ouro-texto); }
+      #t3-perg { white-space: nowrap; margin-top: 30px; font-size: 104px; font-weight: 420; line-height: 1.02; letter-spacing: -0.012em; }
+
+      /* P4–P5 prancha */
+      #prancha { background: var(--papel); color: var(--tinta); }
+      #pr-topo { position: absolute; left: 140px; right: 140px; top: 96px; display: flex; align-items: center; gap: 28px; }
+      #pr-topo .mono { color: var(--tinta-suave); font-size: 19px; white-space: nowrap; }
+      #pr-topo .linha { flex: 1; height: 1px; background: var(--ouro); }
+      #pr-esq { position: absolute; left: 140px; top: 236px; width: 640px; }
+      .pr-tit { position: absolute; left: 0; top: 0; width: 640px; font-size: 92px; font-weight: 400; line-height: 1.02; letter-spacing: -0.014em; }
+      .pr-tit em { font-style: italic; font-weight: 360; }
+      #pr-inst { position: absolute; left: 140px; bottom: 96px; color: var(--tinta-suave); font-size: 18px; }
+      #pr-dir { position: absolute; left: 900px; top: 236px; width: 880px; }
+      #pr-enun { font-size: 40px; font-style: italic; font-weight: 360; line-height: 1.25; }
+      #pr-cen { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--fio); border-bottom: 1px solid var(--fio); }
+      #pr-cen > div { padding: 18px 20px 16px; }
+      #pr-cen > div + div { border-left: 1px solid var(--fio); }
+      .rot { font-family: var(--mono); font-size: 17px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--tinta-suave); }
+      .val { margin-top: 6px; font-family: var(--serif); font-size: 54px; font-weight: 420; font-variant-numeric: tabular-nums lining-nums; line-height: 1.05; }
+      .val small { font-size: 22px; font-weight: 400; color: var(--tinta-suave); margin-left: 6px; }
+
+      #pr-zona { position: relative; margin-top: 44px; height: 300px; }
+      #pr-previsao { position: absolute; inset: 0; }
+      #pr-campo-rot { font-family: var(--sans); font-size: 24px; font-weight: 500; }
+      #pr-campo-linha { margin-top: 14px; display: flex; align-items: center; gap: 22px; }
+      #pr-campo { width: 230px; height: 92px; border: 1px solid var(--tinta); display: flex; align-items: center; padding: 0 20px; gap: 10px; }
+      #pr-campo .num { font-family: var(--serif); font-size: 58px; font-weight: 420; font-variant-numeric: tabular-nums lining-nums; min-width: 70px; }
+      #pr-campo .pct { font-family: var(--serif); font-size: 28px; color: var(--tinta-suave); }
+      #pr-cursor { width: 2px; height: 52px; background: var(--tinta); }
+      #pr-exemplo { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.18em; color: var(--ouro-texto); }
+      #pr-botao { position: relative; margin-top: 30px; display: inline-block; padding: 18px 30px 17px; border: 1px solid var(--tinta);
+        font-family: var(--sans); font-size: 24px; font-weight: 600; letter-spacing: 0.01em; overflow: hidden; }
+      #pr-botao-tinta { position: absolute; inset: 0; background: var(--tinta); transform-origin: left center; }
+      #pr-botao-txt { position: relative; }
+
+      #pr-resposta { position: absolute; inset: 0; }
+      #pr-quadro { display: grid; grid-template-columns: 1fr 1fr 1.4fr; border-top: 1px solid var(--tinta); border-bottom: 1px solid var(--fio); }
+      #pr-quadro > div { padding: 16px 20px 18px; display: flex; flex-direction: column; }
+      #pr-quadro .val { margin-top: auto; padding-top: 6px; }
+      #pr-quadro #pr-comp { margin-top: 10px; }
+      #pr-quadro > div + div { border-left: 1px solid var(--fio); }
+      #pr-comp { margin-top: 10px; font-family: var(--serif); font-size: 25px; line-height: 1.32; }
+      #pr-comp b { font-weight: 600; }
+      #pr-regua { position: relative; margin-top: 56px; height: 90px; }
+      #pr-regua .base { position: absolute; left: 0; right: 0; top: 40px; height: 1px; background: var(--tinta); }
+      .tq { position: absolute; top: 34px; width: 1px; height: 13px; background: var(--tinta); }
+      .tq.menor { top: 37px; height: 7px; background: var(--tinta-suave); }
+      .tq-r { white-space: nowrap; position: absolute; top: 56px; transform: translateX(-50%); font-family: var(--mono); font-size: 15px; color: var(--tinta-suave); }
+      #m-prev { position: absolute; top: 29px; width: 22px; height: 22px; border: 2px solid var(--tinta); border-radius: 50%; background: var(--papel); margin-left: -11px; }
+      #m-calc { position: absolute; top: 18px; width: 4px; height: 44px; background: var(--tinta); margin-left: -2px; }
+      #m-entre { position: absolute; top: 38px; height: 5px; background: var(--ouro); transform-origin: right center; }
+      .m-rot { position: absolute; top: -8px; transform: translateX(-50%); font-family: var(--mono); font-size: 15px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
+      #pr-formula { position: absolute; left: 900px; top: 930px; width: 900px; font-family: var(--mono); font-size: 21px; color: var(--tinta); letter-spacing: 0.01em; }
+
+      /* P6 */
+      #t6 .grupo { position: absolute; left: 140px; top: 330px; width: 640px; color: var(--papel); }
+      #t6-olho { color: var(--ouro-claro); }
+      #t6-frase { margin-top: 28px; font-size: 72px; font-weight: 400; line-height: 1.06; letter-spacing: -0.01em; }
+      #t6-reg { margin-top: 40px; font-size: 19px; line-height: 1.9; color: rgba(242,236,223,0.82); }
+
+      /* P7 */
+      #t7 .grupo { position: absolute; left: 140px; bottom: 120px; width: 1300px; color: var(--tinta); }
+      #t7-olho { color: var(--ouro-texto); }
+      .trilha { margin-top: 18px; display: flex; align-items: baseline; gap: 28px; }
+      .trilha .n { width: 64px; font-family: var(--mono); font-size: 24px; font-weight: 500; color: var(--ouro-texto); letter-spacing: 0.08em; }
+      .trilha .nome { font-family: var(--serif); font-size: 64px; font-weight: 420; letter-spacing: -0.01em; line-height: 1.08; }
+
+      /* cartela final */
+      #fim { background: var(--papel); color: var(--tinta); }
+      #fim .grupo { position: absolute; left: 0; right: 0; top: 370px; display: flex; flex-direction: column; align-items: center; }
+      #fim-tit { margin-top: 30px; font-size: 150px; font-weight: 380; letter-spacing: -0.015em; line-height: 1; }
+      #fim-num { margin-top: 34px; font-size: 20px; color: var(--tinta); }
+      #fim-classe { position: absolute; left: 0; right: 0; bottom: 70px; text-align: center; font-size: 16px; color: var(--tinta-suave); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="80" data-width="1920" data-height="1080">
+
+      <!-- planos de gravura (vídeo) -->
+      <video id="v1" class="plano clip" src="assets/v1.mp4" muted playsinline data-start="0" data-duration="10" data-track-index="0"></video>
+      <video id="v2" class="plano clip" src="assets/v2.mp4" muted playsinline data-start="9" data-duration="13" data-track-index="1"></video>
+      <video id="v3" class="plano clip" src="assets/v3.mp4" muted playsinline data-start="21" data-duration="11" data-track-index="0"></video>
+
+      <!-- P4–P5 prancha do instrumento -->
+      <section id="prancha" data-hold class="camada clip" data-start="31" data-duration="25.5" data-track-index="1">
+        <div id="pr-topo"><span class="mono">M01 · Aula 08 · Capacidade instalada e fator de capacidade</span><span class="linha"></span></div>
+        <div id="pr-esq">
+          <h2 id="pr-tit4" class="pr-tit serif"><span class="bloco">Antes de calcular,</span><em class="bloco">você prevê.</em></h2>
+          <h2 id="pr-tit5" class="pr-tit serif"><span class="bloco">O instrumento</span><em class="bloco">responde.</em></h2>
+        </div>
+        <div id="pr-inst" class="mono">INST · 06 · Calculadora · Fator de capacidade</div>
+        <div id="pr-dir">
+          <p id="pr-enun" class="serif">Uma usina solar gerou isto em um ano. Qual foi o fator de capacidade (FCap)?</p>
+          <div id="pr-cen">
+            <div class="cen"><div class="rot">Capacidade</div><div class="val">100<small>MW</small></div></div>
+            <div class="cen"><div class="rot">Geração</div><div class="val">220.000<small>MWh</small></div></div>
+            <div class="cen"><div class="rot">Período</div><div class="val">8.760<small>h</small></div></div>
+          </div>
+          <div id="pr-zona">
+            <div id="pr-previsao">
+              <div id="pr-campo-rot">Sua previsão de FCap</div>
+              <div id="pr-campo-linha">
+                <div id="pr-campo"><span class="num"><span id="dig4">4</span><span id="dig0">0</span></span><span id="pr-cursor"></span><span class="pct">%</span></div>
+                <span id="pr-exemplo">EXEMPLO</span>
+              </div>
+              <div id="pr-botao"><span id="pr-botao-tinta"></span><span id="pr-botao-txt">Registrar previsão</span></div>
+            </div>
+            <div id="pr-resposta">
+              <div id="pr-quadro">
+                <div><div class="rot">Sua previsão</div><div class="val">40,0<small>%</small></div></div>
+                <div><div class="rot">Calculado · mesmo cenário</div><div class="val"><span id="calc">25,1</span><small>%</small></div></div>
+                <div><div class="rot">Comparação</div><p id="pr-comp">Sua previsão ficou <b>14,9 pontos acima</b> do calculado.</p></div>
+              </div>
+              <div id="pr-regua">
+                <div class="base"></div>
+                <div id="tiques"></div>
+                <div id="m-entre"></div>
+                <div id="m-calc"></div>
+                <div id="m-prev"></div>
+                <span id="r-calc" class="m-rot">calculado</span>
+                <span id="r-prev" class="m-rot">sua previsão</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="pr-formula">FC = Geração real ÷ (Capacidade instalada × horas do período)</div>
+      </section>
+
+      <video id="v6" class="plano clip" src="assets/v6.mp4" muted playsinline data-start="55.5" data-duration="13" data-track-index="0"></video>
+      <video id="v7" class="plano clip" src="assets/v7.mp4" muted playsinline data-start="67.5" data-duration="12.5" data-track-index="1"></video>
+
+      <!-- letreiros -->
+      <section id="t1" class="camada clip" data-start="0.6" data-duration="8.8" data-track-index="2">
+        <div class="grupo">
+          <h1 id="t1-titulo" class="serif">Alexandria</h1>
+          <p id="t1-sub" class="serif">Um currículo de energia.</p>
+          <span id="t1-fio" class="fio-ouro"></span>
+          <p id="t1-num" class="mono"><span class="bloco">17 módulos · 3 trilhas</span><span class="bloco">141 aulas · 165 instrumentos</span></p>
+        </div>
+      </section>
+
+      <section id="t2" class="camada clip" data-start="9.6" data-duration="12" data-track-index="2">
+        <div id="t2-veu" class="veu-topo"></div>
+        <div class="grupo">
+          <p id="t2-olho" class="mono">Cada módulo parte de uma frase</p>
+          <p id="t2-mod" class="mono">M01 · Física de Energia e Eletricidade</p>
+          <h2 id="t2-tese" class="serif">Uma conta de luz não é uma cobrança por energia.</h2>
+          <p id="t2-segue" class="serif">É uma fotografia econômica de como uma instalação usa potência, tempo, tensão, corrente, infraestrutura e qualidade elétrica.</p>
+        </div>
+      </section>
+
+      <section id="t3" class="camada clip" data-start="21.6" data-duration="9.8" data-track-index="2">
+        <div id="t3-veu" class="veu-topo"></div>
+        <div class="grupo">
+          <p id="t3-olho" class="mono">M01 · Aula 08 · Capacidade instalada e fator de capacidade</p>
+          <h2 id="t3-perg" class="serif"><span class="bloco">Por que 100 MW solar</span><span class="bloco"><span class="neq">=</span> 100 MW térmica?</span></h2>
+        </div>
+      </section>
+
+      <section id="t6" class="camada clip" data-start="56.6" data-duration="11.2" data-track-index="2">
+        <div class="grupo">
+          <p id="t6-olho" class="mono">No dia seguinte</p>
+          <h2 id="t6-frase" class="serif">A Alexandria retoma de onde você parou.</h2>
+          <p id="t6-reg" class="mono"><span class="bloco">M01 · Aula 08</span><span class="bloco">Sua previsão 40,0 % · Calculado 25,1 %</span></p>
+        </div>
+      </section>
+
+      <section id="t7" class="camada clip" data-start="68.2" data-duration="8.6" data-track-index="2">
+        <div id="t7-veu" class="veu-base"></div>
+        <div class="grupo">
+          <p id="t7-olho" class="mono">Três trilhas</p>
+          <div class="trilha" id="tr1"><span class="n">I</span><span class="nome">Fundamentos Universais</span></div>
+          <div class="trilha" id="tr2"><span class="n">II</span><span class="nome">Setor Elétrico Brasileiro</span></div>
+          <div class="trilha" id="tr3"><span class="n">III</span><span class="nome">Especialização Estratégica</span></div>
+        </div>
+      </section>
+
+      <section id="fim" class="camada clip" data-start="76.4" data-duration="3.6" data-track-index="3">
+        <div class="grupo">
+          <span class="fio-ouro" style="background: var(--ouro)"></span>
+          <h2 id="fim-tit" class="serif">Alexandria</h2>
+          <p id="fim-num" class="mono">17 módulos · 3 trilhas · 141 aulas · 165 instrumentos</p>
+        </div>
+        <p id="fim-classe" class="mono">Gravuras geradas · textos do próprio currículo</p>
+      </section>
+
+      <div id="selo" class="clip" data-start="0" data-duration="77" data-track-index="4">GRAVURA GERADA</div>
+    </div>
+
+    <script>
+      // régua 0–100 %, largura 880
+      const W = 880;
+      const tiq = document.getElementById("tiques");
+      for (let v = 0; v <= 100; v += 5) {
+        const t = document.createElement("div");
+        t.className = v % 25 === 0 ? "tq" : "tq menor";
+        t.style.left = (v / 100) * W + "px";
+        tiq.appendChild(t);
+        if (v % 25 === 0) {
+          const r = document.createElement("span");
+          r.className = "tq-r";
+          r.style.left = (v / 100) * W + "px";
+          r.textContent = v + " %";
+          tiq.appendChild(r);
+        }
+      }
+      const xPrev = 0.4 * W, xCalc = 0.251 * W;
+      document.getElementById("m-prev").style.left = xPrev + "px";
+      document.getElementById("m-calc").style.left = xCalc + "px";
+      document.getElementById("r-prev").style.left = xPrev + "px";
+      document.getElementById("r-calc").style.left = xCalc + "px";
+      const entre = document.getElementById("m-entre");
+      entre.style.left = xCalc + "px";
+      entre.style.width = xPrev - xCalc + "px";
+
+      const tl = gsap.timeline({ paused: true });
+      const E = "power2.out", S = "sine.inOut";
+
+      // cortes: dissolve de 1 s entre planos
+      tl.fromTo("#v2", { opacity: 0 }, { opacity: 1, duration: 1, ease: S }, 9);
+      tl.fromTo("#v3", { opacity: 0 }, { opacity: 1, duration: 1, ease: S }, 21);
+      tl.fromTo("#prancha", { opacity: 0 }, { opacity: 1, duration: 1, ease: S }, 31);
+      tl.fromTo("#v6", { opacity: 0 }, { opacity: 1, duration: 1, ease: S }, 55.5);
+      tl.fromTo("#v7", { opacity: 0 }, { opacity: 1, duration: 1, ease: S }, 67.5);
+      tl.fromTo("#fim", { opacity: 0 }, { opacity: 1, duration: 1.2, ease: S }, 76.4);
+
+      // selo: some na prancha, volta nas gravuras
+      tl.to("#selo", { opacity: 0, duration: 0.6, ease: S }, 30.8);
+      tl.to("#selo", { opacity: 1, duration: 0.6, ease: S }, 56);
+
+      // P1
+      tl.fromTo("#t1-titulo", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1.6, ease: E }, 0.8);
+      tl.fromTo("#t1-sub", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 1.4, ease: E }, 2.4);
+      tl.fromTo("#t1-fio", { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 1.0, ease: E }, 3.9);
+      tl.fromTo("#t1-num", { opacity: 0 }, { opacity: 1, duration: 1.2, ease: E }, 4.4);
+      tl.to("#t1 .grupo", { opacity: 0, duration: 0.9, ease: S }, 8.4);
+
+      // P2
+      tl.fromTo("#t2-veu", { opacity: 0 }, { opacity: 1, duration: 1.2, ease: S }, 9.6);
+      tl.fromTo("#t2-olho", { opacity: 0 }, { opacity: 1, duration: 1, ease: E }, 10.2);
+      tl.fromTo("#t2-mod", { opacity: 0 }, { opacity: 1, duration: 1, ease: E }, 10.7);
+      tl.fromTo("#t2-tese", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.6, ease: E }, 11.4);
+      tl.fromTo("#t2-segue", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.4, ease: E }, 14.6);
+      tl.to("#t2 .grupo", { opacity: 0, duration: 0.9, ease: S }, 20.5);
+      tl.to("#t2-veu", { opacity: 0, duration: 1.1, ease: S }, 20.6);
+
+      // P3
+      tl.fromTo("#t3-veu", { opacity: 0 }, { opacity: 1, duration: 1.2, ease: S }, 21.6);
+      tl.fromTo("#t3-olho", { opacity: 0 }, { opacity: 1, duration: 1, ease: E }, 22.4);
+      tl.fromTo("#t3-perg", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.6, ease: E }, 23.2);
+
+      // P4 — previsão
+      tl.fromTo("#pr-topo", { opacity: 0 }, { opacity: 1, duration: 0.9, ease: E }, 31.6);
+      tl.fromTo("#pr-topo .linha", { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 1.6, ease: E }, 31.8);
+      tl.fromTo("#pr-tit4", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.4, ease: E }, 32.2);
+      tl.fromTo("#pr-inst", { opacity: 0 }, { opacity: 1, duration: 1, ease: E }, 33.0);
+      tl.fromTo("#pr-enun", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.2, ease: E }, 33.4);
+      tl.fromTo("#pr-cen", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 34.6);
+      tl.fromTo("#pr-cen .cen", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.8, ease: E, stagger: 0.45 }, 34.6);
+      tl.fromTo("#pr-previsao", { opacity: 0 }, { opacity: 1, duration: 0.9, ease: E }, 36.6);
+      tl.set(["#dig4", "#dig0"], { opacity: 0 }, 31);
+      // cursor pisca até digitar
+      [37.2, 37.8, 38.4].forEach((t, i) => tl.set("#pr-cursor", { opacity: i % 2 ? 1 : 0 }, t));
+      tl.set("#dig4", { opacity: 1 }, 38.7);
+      tl.set("#dig0", { opacity: 1 }, 39.05);
+      tl.set("#pr-cursor", { opacity: 0 }, 39.6);
+      tl.fromTo("#pr-exemplo", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 39.3);
+      // botão é acionado
+      tl.fromTo("#pr-botao-tinta", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.inOut" }, 41.0);
+      tl.to("#pr-botao-txt", { color: "#f2ecdf", duration: 0.3 }, 41.15);
+
+      // P5 — resposta
+      tl.to("#pr-tit4", { opacity: 0, duration: 0.7, ease: S }, 43.4);
+      tl.to("#pr-previsao", { opacity: 0, duration: 0.7, ease: S }, 43.4);
+      tl.fromTo("#pr-tit5", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.4, ease: E }, 44.0);
+      tl.fromTo("#pr-resposta", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: E }, 44.2);
+      const contador = { v: 0 };
+      const calcEl = document.getElementById("calc");
+      tl.fromTo(contador, { v: 0 }, { v: 25.1, duration: 2.0, ease: "power3.out",
+        onUpdate: () => { calcEl.textContent = contador.v.toFixed(1).replace(".", ","); } }, 44.8);
+      tl.fromTo("#pr-formula", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 2.2, ease: "power1.inOut" }, 45.4);
+      tl.fromTo("#pr-comp", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: E }, 47.4);
+      tl.fromTo("#pr-regua", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: E }, 48.2);
+      tl.fromTo(["#m-prev", "#r-prev"], { opacity: 0 }, { opacity: 1, duration: 0.6 }, 48.8);
+      tl.fromTo(["#m-calc", "#r-calc"], { opacity: 0 }, { opacity: 1, duration: 0.6 }, 49.4);
+      tl.fromTo("#m-entre", { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "power2.inOut" }, 50.0);
+
+      // P6
+      tl.fromTo("#t6-olho", { opacity: 0 }, { opacity: 1, duration: 1, ease: E }, 57.4);
+      tl.fromTo("#t6-frase", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.6, ease: E }, 58.2);
+      tl.fromTo("#t6-reg", { opacity: 0 }, { opacity: 1, duration: 1.2, ease: E }, 60.6);
+      tl.to("#t6 .grupo", { opacity: 0, duration: 0.9, ease: S }, 66.8);
+
+      // P7
+      tl.fromTo("#t7-veu", { opacity: 0 }, { opacity: 1, duration: 1.4, ease: S }, 68.2);
+      tl.fromTo("#t7-olho", { opacity: 0 }, { opacity: 1, duration: 1, ease: E }, 69.0);
+      tl.fromTo(["#tr1", "#tr2", "#tr3"], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.2, ease: E, stagger: 0.9 }, 69.6);
+
+      // cartela
+      tl.fromTo("#fim .fio-ouro", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: E }, 76.9);
+      tl.fromTo("#fim-tit", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.2, ease: E }, 77.0);
+      tl.fromTo("#fim-num", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: E }, 77.6);
+      tl.fromTo("#fim-classe", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: E }, 78.0);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

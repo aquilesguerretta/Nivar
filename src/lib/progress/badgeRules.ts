@@ -1,82 +1,195 @@
 // src/lib/progress/badgeRules.ts
-// LYCEUM — Alexandria Wave 39.
+// LYCEUM — Alexandria Wave 39; família CONCLUSÃO ligada na v3 (eventos).
 //
-// A regra de concessão dos 13 badges de `alexandria-badges.ts`, e o
-// registro — executável, não em prosa — de por que cada um ainda não
-// pode ser concedido.
+// Duas tabelas, dois destinos:
 //
-// ─────────────────────────────────────────────────────────────────────
-// O VEREDITO DESTA WAVE: nenhum dos 13 tem regra automática hoje.
-// ─────────────────────────────────────────────────────────────────────
+// (1) A FAMÍLIA CONCLUSÃO — LIGADA. É a única computável hoje: lê
+//     `aula_concluida` (pela lista `aulasConcluidas` do servidor) e mostra
+//     a data real de `badge_award.awarded_at`. O catálogo e a regra de cada
+//     uma são lógica pura em `src/lib/alexandria/progresso/conquistas.ts`;
+//     aqui só se monta o currículo real e se fala com a rede. Especificação:
+//     `docs/alexandria-v2/estudos/movimento-e-conquistas/sistema-de-conquistas.md`
+//     §2.1. Conquista é comportamento registrado — "concluiu as aulas
+//     listadas" —, nunca prova de aprendizagem (bar S3).
 //
-// Não é conclusão preguiçosa: é o que a auditoria mediu. A superfície de
-// observação disponível ao produto inteiro hoje é EXATAMENTE dois sinais
-// — `aula_iniciada` e `aula_concluida` —, porque `AulaViewer` é o único
-// arquivo em todo o `src/` que chama `recordEvent`. Os outros três tipos
-// de evento que o backend aceita (`instrumento_usado`,
-// `exercicio_respondido`, `badge_conquistado`) nunca foram emitidos por
-// ninguém.
+// (2) OS 13 BADGES LEGADOS de `alexandria-badges.ts` — NENHUM LIGADO.
+//     Doze ficam explicitamente EM DESENHO (`situacao: 'em-desenho'`), cada
+//     um com o bloqueio e a razão. O décimo terceiro, Anatomista de
+//     Faturas, é SUBSTITUÍDO: o critério dele era a conclusão de uma aula da
+//     conta industrial, e o §3 da especificação o cobre por
+//     `conclusao.modulo.modulo-10`. Ele não ganha regra própria — um nome
+//     de persona para um fato que a família CONCLUSÃO já registra seria
+//     duas medalhas para o mesmo evento.
 //
-// Contra essa superfície, os 13 critérios caem em quatro classes de
-// bloqueio, nenhuma resolvível sem sair da posse desta wave:
-//
-//   competencia-humana      8 · o critério é demonstração no mundo real
-//                               ("explicar em 30 segundos", "desenhar num
-//                               guardanapo", "narrar", "recitar"). Nenhum
-//                               evento prova isso. Uma autodeclaração
-//                               provaria a AFIRMAÇÃO do aluno, não o
-//                               critério — seria proxy, e proxy está
-//                               proibido nesta wave.
-//   instrumentacao-ausente  3 · o critério É mecanicamente verificável e
-//                               o número já é calculado hoje — mas vive
-//                               no estado interno de `InstrumentPanel`,
-//                               que tem prop única (`{ instrumento }`),
-//                               nenhum callback, e é NUNCA MODIFICAR
-//                               aqui. É o bloqueio mais barato de abrir.
-//   conteudo-ausente        1 · o conteúdo por trás não foi extraído.
-//   feature-ausente         1 · a superfície exigida não existe.
-//
-// O que este arquivo entrega, então, não é concessão — é (a) a auditoria
-// em forma consultável e travada por tipo, para a próxima wave ler código
-// em vez de CLAUDE.md, e (b) o caminho de emissão pronto e ligado, para
-// que abrir um bloqueio seja uma linha de regra e não uma wave de
-// encanamento. Enquanto nenhuma regra existir, `avaliarPorConclusao`
-// devolve lista vazia SEM tocar a rede.
+// Os nomes legados ("Guardião", "Leitor de…", "Aferidor…") são de persona
+// e alguns têm critério de competência; por isso nenhum deles é exposto
+// como conquista obtível. A tela mostra a família em desenho como UMA
+// linha (§5), sem lista de nomes indisponíveis.
 
 import { ALEXANDRIA_BADGES } from '@/lib/data/alexandria-badges';
-import { recordEvent } from './progressApi';
+import { ALEXANDRIA_MODULES } from '@/lib/data/alexandria-trilhas';
+import { idDaAula, indice } from '@/lib/alexandria/indice';
+import {
+  catalogoDeConclusao,
+  conquistasARegistrar,
+  TERRITORIOS,
+  type AvaliacaoDeConquista,
+  type ConquistaDeConclusao,
+  type CurriculoParaConquistas,
+  type Territorio,
+} from '@/lib/alexandria/progresso/conquistas';
+import { getMyProgress, recordEvent, type MyProgress } from './progressApi';
 
-/** Por que um critério ainda não pode ser verificado automaticamente.
- *  Classificação, não desculpa: cada valor aponta para um trabalho
- *  diferente, em posse diferente. */
+// ─────────────────────────────────────────────────────────────────────
+// (1) CONCLUSÃO
+// ─────────────────────────────────────────────────────────────────────
+
+/**
+ * O currículo das conquistas, montado do índice v3 (`indice.dados.ts`,
+ * gerado da extração verificada).
+ *
+ * RECONCILIAÇÃO (P8), DERIVADA E NÃO DIGITADA: um módulo só conta como
+ * reconciliado quando as DUAS contagens independentes do repositório
+ * concordam — o número de aulas do índice v3 (extração) e o
+ * `totalAulas` de `ALEXANDRIA_MODULES` (medido sobre o HTML de origem,
+ * Waves 2–41). Divergência ou ausência = "indisponível", e a conquista do
+ * módulo não é concedida nem negada.
+ */
+export const CURRICULO_DAS_CONQUISTAS: CurriculoParaConquistas = {
+  modulos: indice.modulos.map((m) => {
+    const trilha = indice.trilhas.find((t) => t.id === m.trilhaId);
+    const romano = trilha?.romano;
+    const territorio: Territorio | null =
+      romano && (TERRITORIOS as readonly string[]).includes(romano) ? (romano as Territorio) : null;
+    const legado = ALEXANDRIA_MODULES.find((x) => x.id === m.id);
+    const n = m.aulas.length;
+    return {
+      id: m.id,
+      codigo: m.codigo,
+      territorio,
+      aulaIds: n > 0 ? m.aulas.map((a) => idDaAula(m, a.numero)) : null,
+      reconciliado: n > 0 && legado?.totalAulas === n,
+    };
+  }),
+};
+
+export const CONQUISTAS_DE_CONCLUSAO: ConquistaDeConclusao[] = catalogoDeConclusao(CURRICULO_DAS_CONQUISTAS);
+
+export interface ConquistaRegistrada {
+  id: string;
+  nome: string;
+  criterio: string;
+  /** `occurredAt` do evento que a registrou — o dia do REGISTRO (§8). */
+  registradaEm: string;
+  retroativa: boolean;
+}
+
+/**
+ * Depois de uma `aula_concluida` CONFIRMADA pelo servidor: lê o progresso
+ * real, avalia a família CONCLUSÃO e registra `badge_conquistado` para o
+ * que acabou de ser obtido. Devolve só as registradas AGORA pela primeira
+ * vez (`badgeAlreadyAwarded === false`) — é o que o fim de aula pode
+ * mostrar como "REGISTRO DE PERCURSO".
+ *
+ * Best-effort como todo evento de progresso: falha loga e devolve o que
+ * deu; "a regra roda de novo no próximo evento confirmado" (§5).
+ */
+export async function registrarConquistasDeConclusao(aulaId: string): Promise<ConquistaRegistrada[]> {
+  let progresso: MyProgress;
+  try {
+    progresso = await getMyProgress();
+  } catch (err) {
+    console.error('[alexandria] conquistas: progresso indisponível, avaliação adiada', err);
+    return [];
+  }
+
+  const aRegistrar = conquistasARegistrar(
+    CONQUISTAS_DE_CONCLUSAO,
+    progresso.aulasConcluidas,
+    aulaId,
+    progresso.badges.map((b) => b.badgeId),
+  );
+  if (aRegistrar.length === 0) return [];
+
+  const porId = new Map(CONQUISTAS_DE_CONCLUSAO.map((c) => [c.id, c]));
+  const registradas: ConquistaRegistrada[] = [];
+  await Promise.all(
+    aRegistrar.map(async ({ id, retroativa }) => {
+      try {
+        const r = await recordEvent('badge_conquistado', id, {
+          familia: 'conclusao',
+          origem: 'aula_concluida',
+          aulaId,
+          retroativa,
+        });
+        const c = porId.get(id);
+        if (r.badgeAlreadyAwarded === false && c) {
+          registradas.push({ id, nome: c.nome, criterio: c.criterio, registradaEm: r.occurredAt, retroativa });
+        }
+      } catch (err) {
+        console.error('[alexandria] falha ao registrar badge_conquistado', id, err);
+      }
+    }),
+  );
+  // Ordem do catálogo, não ordem de chegada da rede.
+  const ordem = new Map(CONQUISTAS_DE_CONCLUSAO.map((c, i) => [c.id, i]));
+  return registradas.sort((a, b) => (ordem.get(a.id) ?? 0) - (ordem.get(b.id) ?? 0));
+}
+
+export interface EstadoDeConquista {
+  conquista: ConquistaDeConclusao;
+  avaliacao: AvaliacaoDeConquista;
+  /** `badge_award.awarded_at`, quando registrada. */
+  registradaEm: string | null;
+}
+
+/** O caderno de marcos da família CONCLUSÃO para um progresso real: cada
+ *  conquista com a avaliação de agora e a data de registro, quando houver.
+ *  Mecânica para o chat visual consumir; nenhuma decisão de aparência. */
+export function estadoDasConquistasDeConclusao(p: MyProgress): EstadoDeConquista[] {
+  const concluidas = new Set(p.aulasConcluidas);
+  const datas = new Map(p.badges.map((b) => [b.badgeId, b.awardedAt]));
+  return CONQUISTAS_DE_CONCLUSAO.map((c) => ({
+    conquista: c,
+    avaliacao: c.avaliar(concluidas),
+    registradaEm: datas.get(c.id) ?? null,
+  }));
+}
+
+/** A linha única das famílias que não estão ligadas (§5, "Família em
+ *  desenho"): sem discos, sem lista de nomes indisponíveis (S4). */
+export const FRASE_FAMILIAS_EM_DESENHO = 'Registros de prática, exploração e hábito: em desenho.';
+
+// ─────────────────────────────────────────────────────────────────────
+// (2) LEGADOS
+// ─────────────────────────────────────────────────────────────────────
+
+/** Por que um critério legado ainda não pode ser verificado. Classificação,
+ *  não desculpa: cada valor aponta para um trabalho diferente. */
 export type BloqueioBadge =
   /** O critério é demonstração humana (explicar / desenhar / narrar /
    *  recitar / interpretar). Nenhum evento prova. Abrir isto é decisão
    *  de produto sobre o que conta como prova — não de engenharia. */
   | 'competencia-humana'
-  /** O valor que o critério exige já é calculado hoje, mas nada o
-   *  observa. Abrir isto é dar a `InstrumentPanel` um callback de
-   *  resultado. */
+  /** O critério é mecanicamente verificável, mas o evento que o provaria
+   *  não carrega o dado necessário (resultado corrigido, limiar). */
   | 'instrumentacao-ausente'
   /** A aula ou o módulo por trás do critério ainda não foi extraído. */
   | 'conteudo-ausente'
   /** A superfície que o critério nomeia ainda não existe no produto. */
   | 'feature-ausente';
 
-/** Sinais que o produto sabe observar hoje. Cresce quando um bloqueio
- *  abre — e crescer aqui é o gatilho para escrever `avaliar`. */
-export interface SinaisConclusao {
-  /** A aula que acabou de ser marcada como concluída. */
-  aulaId: string;
-}
-
 export interface RegraBadge {
   badgeId: string;
-  /** `null` = não existe regra automática honesta hoje. Nunca preencher
-   *  com aproximação: um gatilho que "quase" prova o critério concede
-   *  badge falso, e badge falso é pior que badge ausente. */
-  avaliar: ((sinais: SinaisConclusao) => boolean) | null;
+  /** `em-desenho` = sem regra automática honesta hoje. `substituida` = o
+   *  fato que o critério pedia já é registrado por outra conquista. */
+  situacao: 'em-desenho' | 'substituida';
+  /** Sempre `null` para os legados: nenhum tem regra hoje. Nunca preencher
+   *  com aproximação — badge falso é pior que badge ausente. */
+  avaliar: null;
   bloqueio: BloqueioBadge | null;
+  /** Para `substituida`: o id da conquista que registra o mesmo fato. */
+  substituidaPor?: string;
   /** O que exatamente falta, em uma frase verificável. */
   razao: string;
 }
@@ -85,50 +198,58 @@ export const REGRAS_BADGE: RegraBadge[] = [
   // ── (A) Referência visual ────────────────────────────────────────────
   {
     badgeId: 'badge-anatomista-de-faturas',
+    situacao: 'substituida',
     avaliar: null,
-    bloqueio: 'conteudo-ausente',
+    bloqueio: null,
+    substituidaPor: 'conclusao.modulo.modulo-10',
     razao:
-      'É o único dos 13 cujo critério é puramente conclusão de aula — "Concluiu a aula da conta de luz industrial item por item" mapeia direto em `aula_concluida`, o sinal que já existe. Falta a aula: o Bloco 10 (Tarifas e a Conta de Luz Industrial) não tem HTML extraído, e nenhuma aula dos módulos 01-09 trata da conta industrial. Sem id de aula para nomear, a regra não pode ser escrita sem generalizar para o módulo inteiro — o que seria proxy. Extraído o Bloco 10, esta linha vira uma comparação de id.',
+      'O critério ("concluiu a aula da conta de luz industrial item por item") é conclusão de UMA aula, recorte arbitrário, com nome de persona. A especificação de conquistas (§3) o tira do catálogo: o fato que importa é registrado por `conclusao.modulo.modulo-10` (Tarifas e a Conta de Luz Industrial), e a aula específica ganha só o estado "percorrida".',
   },
   {
     badgeId: 'badge-cartografo-do-sin',
+    situacao: 'em-desenho',
     avaliar: null,
     bloqueio: 'feature-ausente',
     razao:
-      'Exige "os quatro submercados no Atlas interativo". O Atlas da Wave 27 é mundial (188 países da OWID); a camada Brasil com os quatro submercados está declarada na própria página como wave separada, ainda não construída. Além da camada, exigiria um evento de exploração por região — que também não existe.',
+      'Exige "os quatro submercados no Atlas interativo". O Atlas é mundial e está congelado por decisão do Founder; a camada Brasil com os quatro submercados não existe, nem um evento de exploração por região. Destino no catálogo novo: `exploracao.atlas-submercados`.',
   },
   {
     badgeId: 'badge-leitor-de-mercado',
+    situacao: 'em-desenho',
     avaliar: null,
     bloqueio: 'instrumentacao-ausente',
     razao:
-      '"Acertou 90% das questões" exige questão corrigida, e nada no produto corrige resposta: `ExercicioBlock` tem apenas revelar/ocultar gabarito, sem campo de resposta e sem checagem. O backend já aceita `exercicio_respondido`, mas nenhum arquivo o emite. Abrir isto é uma wave de exercício avaliado, não um callback.',
+      '"Acertou 90% das questões" exige questão corrigida, e nada no produto corrige resposta: `exercicio_respondido` agora é emitido com a resposta, mas a checagem é autoavaliação em três níveis, sem gabarito computável. O ponto de corte também não tem fonte (P18). Destino: resultado de avaliação na camada de evidência, não conquista.',
   },
   {
     badgeId: 'badge-guardiao-fp',
+    situacao: 'em-desenho',
     avaliar: null,
     bloqueio: 'instrumentacao-ausente',
     razao:
-      'O critério mais próximo de automático de todos os 13: "Atinja 0,92 de FP médio em simulação tarifária" é um limiar numérico sobre uma saída que JÁ é calculada. `lab-01` (Comparador de perfil elétrico, Módulo 01) é literalmente a simulação tarifária, tem FP por perfil como campo, e usa 0,92 como o limiar que dispara a cobrança de reativo. Falta só observar: `InstrumentPanel` não expõe resultado, e é NUNCA MODIFICAR nesta wave.',
+      '"Atinja 0,92 de FP médio" é desempenho apresentado como conquista. `instrumento_usado` agora sai com os valores do controle, mas a especificação converte o critério em exploração do limiar (`pratica.dois-lados-092`), família ainda em desenho.',
   },
 
   // ── (B) Checklist do Módulo 01 ───────────────────────────────────────
   {
     badgeId: 'badge-tradutor-kw-kwh',
+    situacao: 'em-desenho',
     avaliar: null,
     bloqueio: 'competencia-humana',
     razao:
-      '"Explicar kW vs kWh em 30 segundos, com exemplo numérico." Usar o `inst-01` produz um exemplo numérico, mas usar não é explicar — e conceder pelo uso seria exatamente o proxy que esta wave proíbe.',
+      '"Explicar kW vs kWh em 30 segundos, com exemplo numérico." Usar o `inst-01` produz um exemplo numérico, mas usar não é explicar — conceder pelo uso seria proxy.',
   },
   {
     badgeId: 'badge-fator-de-carga',
+    situacao: 'em-desenho',
     avaliar: null,
     bloqueio: 'competencia-humana',
     razao:
-      'Critério composto: "Calcular fator de carga E interpretar o que ele significa operacionalmente." A primeira metade é observável em princípio (o `inst-04` calcula FC, e o veredito dele É a interpretação operacional); a segunda é compreensão, que nenhum evento alcança. Conceder pela metade mensurável é conceder por proxy do todo. Duplamente bloqueado, aliás: mesmo a primeira metade está atrás do `InstrumentPanel`.',
+      'Critério composto: "Calcular fator de carga E interpretar o que ele significa operacionalmente." A primeira metade é observável (o `inst-04` calcula FC); a segunda é compreensão, que nenhum evento alcança. Conceder pela metade mensurável é conceder por proxy do todo.',
   },
   {
     badgeId: 'badge-lei-de-ohm',
+    situacao: 'em-desenho',
     avaliar: null,
     bloqueio: 'competencia-humana',
     razao:
@@ -138,19 +259,22 @@ export const REGRAS_BADGE: RegraBadge[] = [
   // ── (B) Checklist do Módulo 02 ───────────────────────────────────────
   {
     badgeId: 'badge-cadeia-da-rede',
+    situacao: 'em-desenho',
     avaliar: null,
     bloqueio: 'competencia-humana',
     razao: '"Desenhar num guardanapo" a cadeia com tensões e dono de cada trecho. Desenho fora da tela.',
   },
   {
     badgeId: 'badge-fronteira-do-ons',
+    situacao: 'em-desenho',
     avaliar: null,
     bloqueio: 'competencia-humana',
     razao:
-      '"Listar três coisas que o ONS faz e três que ele não faz, nomeando quem faz." Produção de lista pelo aluno; o produto não tem campo onde ela caiba, nem correção para ela.',
+      '"Listar três coisas que o ONS faz e três que ele não faz, nomeando quem faz." Produção de lista pelo aluno, sem correção possível hoje.',
   },
   {
     badgeId: 'badge-dez-segundos',
+    situacao: 'em-desenho',
     avaliar: null,
     bloqueio: 'competencia-humana',
     razao: '"Narrar os dez segundos pós-perda de usina." Narração falada, em sequência, sem superfície no produto.',
@@ -159,49 +283,50 @@ export const REGRAS_BADGE: RegraBadge[] = [
   // ── (B) Checklist do Módulo 03 ───────────────────────────────────────
   {
     badgeId: 'badge-matriz-em-duas-lentes',
+    situacao: 'em-desenho',
     avaliar: null,
     bloqueio: 'instrumentacao-ausente',
     razao:
-      'O segundo mais próximo de automático. O critério — "desenhar a matriz brasileira em capacidade E em energia, dois desenhos diferentes, com ordens de grandeza por fonte" — é exatamente o que o Reconstrutor de matriz do Módulo 08 (`m08-inst-04-cap` e `m08-inst-04-ger`, LYCEUM Wave 34) faz: o aluno PRODUZ as seis fatias de memória e o instrumento corrige contra referência com tolerância. O próprio veredito da fonte chama ordem certa + seis fatias dentro da tolerância de "o critério oficial de domínio deste bloco cumprido". Falta observar as duas rodadas: `InstrumentPanel` não expõe resultado, e `ordemOk` nem sequer sai em `valores` (só `i4-acertos`, `i4-err`, `i4-soma`).',
+      'O Reconstrutor de matriz do Módulo 08 (`m08-inst-04-cap` / `m08-inst-04-ger`) corrige as seis fatias contra referência, e cada correção agora sai como `instrumento_usado` com `modo: correcao`. Falta o veredito no evento (`ordemOk` não sai em `valores`) e a revisão da tolerância (P6, P18). Destino: `pratica.matriz-duas-lentes`, família em desenho.',
   },
   {
     badgeId: 'badge-fator-de-capacidade',
+    situacao: 'em-desenho',
     avaliar: null,
     bloqueio: 'competencia-humana',
     razao:
-      '"Definir fator de capacidade pela fórmula e citar as faixas típicas de hidro, eólica NE, solar e nuclear." O `inst-06` calcula FC e seus seis vereditos nomeiam essas faixas — mas quem cita é o instrumento, não o aluno. Percorrer as faixas não é citá-las.',
+      '"Definir fator de capacidade pela fórmula e citar as faixas típicas." Quem cita as faixas é o instrumento, não o aluno — e as faixas estão em verificação (P20).',
   },
   {
     badgeId: 'badge-vacina-do-lcoe',
+    situacao: 'em-desenho',
     avaliar: null,
     bloqueio: 'competencia-humana',
     razao:
-      'Composto como o do fator de carga: "Calcular um LCOE didático no guardanapo E recitar os quatro limites como vacina." O cálculo tem instrumento no Módulo 03; a recitação dos quatro limites não tem prova possível.',
+      'Composto: "Calcular um LCOE didático no guardanapo E recitar os quatro limites como vacina." A recitação não tem prova possível.',
   },
 ];
 
-/** Trava de DEV: cobertura 1:1 entre catálogo e regras. Sem isto, um badge
- *  novo entra em `alexandria-badges.ts` e fica silenciosamente sem regra —
- *  e "sem regra" é indistinguível de "regra que nunca dispara". */
+/** Trava de DEV: cobertura 1:1 entre catálogo legado e regras, e ids únicos
+ *  na família CONCLUSÃO. "Sem regra" é indistinguível de "regra que nunca
+ *  dispara" — por isso a tabela tem de cobrir o catálogo inteiro. */
 if (import.meta.env.DEV) {
   const doCatalogo = new Set(ALEXANDRIA_BADGES.map((b) => b.id));
   const dasRegras = new Set(REGRAS_BADGE.map((r) => r.badgeId));
   const semRegra = [...doCatalogo].filter((id) => !dasRegras.has(id));
   const orfas = [...dasRegras].filter((id) => !doCatalogo.has(id));
   if (semRegra.length || orfas.length || dasRegras.size !== REGRAS_BADGE.length) {
-    console.warn(
-      '[alexandria] regras de badge fora de sincronia com o catálogo.',
-      { semRegra, orfas },
-    );
+    console.warn('[alexandria] regras de badge fora de sincronia com o catálogo.', { semRegra, orfas });
   }
+  const ids = CONQUISTAS_DE_CONCLUSAO.map((c) => c.id);
+  if (new Set(ids).size !== ids.length) console.warn('[alexandria] id repetido na família CONCLUSÃO.');
 }
 
-/** Badges cujo critério NÃO tem regra automática hoje, com o bloqueio de
- *  cada um. Consumido pelo Perfil para declarar a pendência ao aluno em
- *  vez de deixar a lista de insígnias vazia e muda. */
-export const BADGES_SEM_REGRA = REGRAS_BADGE.filter((r) => r.avaliar === null);
+/** Os legados EM DESENHO (12), com o bloqueio de cada um. O substituído
+ *  não entra: ele não está pendente, está coberto. */
+export const BADGES_SEM_REGRA = REGRAS_BADGE.filter((r) => r.situacao === 'em-desenho');
 
-/** Quantos badges estão bloqueados por cada classe. Derivado — a soma
+/** Quantos legados em desenho por classe de bloqueio. Derivado — a soma
  *  nunca diverge da tabela. */
 export function contarBloqueios(): Record<BloqueioBadge, number> {
   const conta: Record<BloqueioBadge, number> = {
@@ -212,43 +337,4 @@ export function contarBloqueios(): Record<BloqueioBadge, number> {
   };
   for (const r of BADGES_SEM_REGRA) if (r.bloqueio) conta[r.bloqueio] += 1;
   return conta;
-}
-
-/**
- * Avalia os badges concedíveis a partir de uma conclusão de aula — o
- * único sinal que o produto emite hoje.
- *
- * Devolve `[]` quando nenhuma regra existe, o que é o caso de todas as
- * treze neste fechamento. Nenhuma chamada de rede acontece nesse caminho:
- * a lista vazia sai antes de qualquer `fetch`.
- */
-export function avaliarPorConclusao(sinais: SinaisConclusao): string[] {
-  return REGRAS_BADGE.filter((r) => r.avaliar !== null && r.avaliar(sinais)).map(
-    (r) => r.badgeId,
-  );
-}
-
-/**
- * Emite `badge_conquistado` para cada badge satisfeito. Idempotente do
- * lado do backend (`badgeAlreadyAwarded` distingue primeira concessão de
- * repetição), então reenviar não duplica — mas a lista vazia nem chega a
- * abrir requisição.
- *
- * Best-effort, como os outros eventos de progresso: falha loga e segue,
- * nunca bloqueia a aula.
- */
-export async function concederBadges(badgeIds: string[]): Promise<string[]> {
-  if (badgeIds.length === 0) return [];
-  const concedidos: string[] = [];
-  await Promise.all(
-    badgeIds.map(async (id) => {
-      try {
-        const r = await recordEvent('badge_conquistado', id);
-        if (r.badgeAlreadyAwarded === false) concedidos.push(id);
-      } catch (err) {
-        console.error('[alexandria] falha ao registrar badge_conquistado', id, err);
-      }
-    }),
-  );
-  return concedidos;
 }

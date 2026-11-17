@@ -1,0 +1,420 @@
+{
+  "modulo": "modulo-01",
+  "vistas": [
+    {
+      "id": "m01-a01-itaipu-a-regua-do-gigawatt",
+      "modulo": "modulo-01",
+      "aula": 1,
+      "titulo": "Itaipu, a régua do gigawatt",
+      "capitulo": "rede",
+      "camera": {
+        "centro": [
+          -54.5874,
+          -25.4083
+        ],
+        "zoom": 12.4,
+        "inclinacao": 52,
+        "rumo": -25
+      },
+      "camadas": [
+        "hidro",
+        "linhas",
+        "subestacoes"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.PR.001161-4.1"
+        ]
+      },
+      "satelite": true,
+      "momento": null,
+      "trecho": {
+        "texto": "Itaipu ≈ 14 GW de capacidade",
+        "arquivo": "docs/alexandria-v2/extraction/m01/aula-01.json",
+        "linha": 409
+      },
+      "leitura": [
+        0
+      ],
+      "nota_de_dado": "Itaipu é binacional. O cadastro da ANEEL traz só a parte brasileira: 7.000 MW. A base de capacidade do ONS traz também as 10 unidades do setor paraguaio, de 50 Hz, e o Atlas as deixa fora da soma: ficam as 10 unidades geradoras do lado brasileiro. Os dois números estão na ficha."
+    },
+    {
+      "id": "m01-a02-tensoes-em-sao-paulo",
+      "modulo": "modulo-01",
+      "aula": 2,
+      "titulo": "As tensões da transmissão em torno de São Paulo",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -47.28,
+          -23.94,
+          -45.41,
+          -22.98
+        ]
+      },
+      "camadas": [
+        "linhas",
+        "subestacoes"
+      ],
+      "destaque": {
+        "subestacoes": [
+          "SPSTTP",
+          "SPSTIN",
+          "SPTAU",
+          "SPBSA"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "No Brasil, você verá tensões em escalas muito diferentes ao longo da cadeia elétrica:",
+        "arquivo": "docs/alexandria-v2/extraction/m01/aula-02.json",
+        "linha": 105
+      },
+      "leitura": [
+        2,
+        3
+      ],
+      "nota_de_dado": "O Atlas mostra só a transmissão: nesta região há linhas de 88, 230, 345, 440, 500 e 765 kV em corrente alternada e de 600 kV em corrente contínua; a distribuição em média e baixa tensão não está no mapa."
+    },
+    {
+      "id": "m01-a03-rede-interligada",
+      "modulo": "modulo-01",
+      "aula": 3,
+      "titulo": "A rede elétrica brasileira de ponta a ponta",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [
+        "linhas",
+        "submercados"
+      ],
+      "destaque": {
+        "submercados": [
+          "SE",
+          "S",
+          "NE",
+          "N"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "A rede elétrica brasileira oscila sessenta vezes por segundo.",
+        "arquivo": "docs/alexandria-v2/extraction/m01/aula-03.json",
+        "linha": 81
+      },
+      "leitura": [
+        4
+      ],
+      "nota_de_dado": "O Atlas não traz a frequência da rede; a vista mostra a malha interligada e os quatro subsistemas que operam em conjunto."
+    },
+    {
+      "id": "m01-a03-oferta-e-demanda-hora-a-hora",
+      "modulo": "modulo-01",
+      "aula": 3,
+      "titulo": "Oferta e demanda, hora a hora",
+      "capitulo": "dia",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {},
+      "satelite": false,
+      "momento": "2026-10",
+      "trecho": {
+        "texto": "A rede elétrica brasileira oscila sessenta vezes por segundo. Esse ritmo não é arbitrário — é a evidência física de que oferta e demanda estão em equilíbrio em tempo real.",
+        "arquivo": "docs/alexandria-v2/extraction/m01/aula-03.json",
+        "linha": 81
+      },
+      "leitura": [
+        4
+      ],
+      "nota_de_dado": "O Atlas não traz a frequência nem o tempo real, só a média de cada hora: em outubro de 2026, ao meio-dia, os quatro subsistemas geraram em média 87,8 GW para uma carga de 87,8 GW."
+    },
+    {
+      "id": "m01-a03-belo-monte-em-corrente-continua",
+      "modulo": "modulo-01",
+      "aula": 3,
+      "titulo": "De Belo Monte ao Sudeste em corrente contínua",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -52.74,
+          -24.99,
+          -42.78,
+          -0.77
+        ]
+      },
+      "camadas": [
+        "hidro",
+        "linhas"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.PA.030354-2.1"
+        ],
+        "linhas": [
+          "PAXNG-8EST-1MG",
+          "PAXNG-8EST-2MG",
+          "PAXNG-8TRIO1RJ",
+          "PAXNG-8TRIO2RJ"
+        ],
+        "subestacoes": [
+          "PAXIN",
+          "MGSTES",
+          "RJTRIO"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "DC volta com força hoje em aplicações específicas: solar fotovoltaica, armazenamento em baterias, eletrônica embarcada, e transmissão HVDC em interligações de longa distância (como o sistema de transmissão de Belo Monte para o Sudeste, que usa elos de corrente contínua).",
+        "arquivo": "docs/alexandria-v2/extraction/m01/aula-03.json",
+        "linha": 192
+      },
+      "leitura": [
+        6,
+        7
+      ],
+      "nota_de_dado": null
+    },
+    {
+      "id": "m01-a04-tronco-de-765-kv",
+      "modulo": "modulo-01",
+      "aula": 4,
+      "titulo": "Tronco de 765 kV: de Foz do Iguaçu a Tijuco Preto",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -55.59,
+          -25.69,
+          -45.24,
+          -23.5
+        ]
+      },
+      "camadas": [
+        "hidro",
+        "linhas"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.PR.001161-4.1"
+        ],
+        "linhas": [
+          "PRSTIV7STF61",
+          "PRSTIV7STF62",
+          "PRSTIV7STF63",
+          "SPSTIA7STIV1PR",
+          "SPSTIA7STIV2PR",
+          "SPSTIA7STIV3PR",
+          "SPSTIA7STTP1",
+          "SPSTIA7STTP2",
+          "SPSTIA7STTP3"
+        ],
+        "subestacoes": [
+          "PRSTF6",
+          "PRSTIV",
+          "SPSTIA",
+          "SPSTTP"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Transmissão usa tensões altíssimas (230 kV, 345 kV, 500 kV, 750 kV) para mover blocos de centenas de MW por centenas ou milhares de quilômetros.",
+        "arquivo": "docs/alexandria-v2/extraction/m01/aula-04.json",
+        "linha": 192
+      },
+      "leitura": [
+        8,
+        9
+      ],
+      "nota_de_dado": "A aula não nomeia linha alguma; o destaque é a classe mais alta em corrente alternada do mapa, que a aula chama de 750 kV e o ONS registra como 765 kV: três circuitos de cerca de 900 km entre Foz do Iguaçu, junto a Itaipu, e Tijuco Preto."
+    },
+    {
+      "id": "m01-a08-eolicas-do-nordeste",
+      "modulo": "modulo-01",
+      "aula": 8,
+      "titulo": "Os parques eólicos do Nordeste",
+      "capitulo": "rede",
+      "camera": {
+        "centro": [
+          -39.17,
+          -8.66
+        ],
+        "zoom": 5.3
+      },
+      "camadas": [
+        "eolica",
+        "submercados"
+      ],
+      "destaque": {
+        "submercados": [
+          "NE"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Faixa típica de hidrelétrica brasileira (média anual) ou eólica em região de bom regime de ventos (Nordeste).",
+        "arquivo": "docs/alexandria-v2/extraction/m01/aula-08.json",
+        "linha": 495
+      },
+      "leitura": [
+        13
+      ],
+      "nota_de_dado": "Na aula, a frase é a leitura da calculadora para fator de capacidade entre 40% e 55%; o Atlas mostra onde os parques eólicos estão instalados, não o fator de capacidade nem o regime de ventos, e o contorno é o do submercado Nordeste, que não inclui o Maranhão."
+    },
+    {
+      "id": "m01-a08-solares-do-nordeste",
+      "modulo": "modulo-01",
+      "aula": 8,
+      "titulo": "As usinas solares do Nordeste",
+      "capitulo": "rede",
+      "camera": {
+        "centro": [
+          -40.75,
+          -8.31
+        ],
+        "zoom": 5.3
+      },
+      "camadas": [
+        "solar",
+        "submercados"
+      ],
+      "destaque": {
+        "submercados": [
+          "NE"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Faixa típica de eólica em regiões de vento moderado ou solar fotovoltaica com tracker em Nordeste BR.",
+        "arquivo": "docs/alexandria-v2/extraction/m01/aula-08.json",
+        "linha": 505
+      },
+      "leitura": [
+        14,
+        18
+      ],
+      "nota_de_dado": "Na aula, a frase é a leitura da calculadora para fator de capacidade entre 25% e 40%; o Atlas mostra onde as usinas solares estão instaladas, não o fator de capacidade nem a irradiação, e o contorno é o do submercado Nordeste, que não inclui o Maranhão."
+    },
+    {
+      "id": "m01-a08-hidreletricas-na-matriz",
+      "modulo": "modulo-01",
+      "aula": 8,
+      "titulo": "As hidrelétricas na matriz brasileira",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [
+        "hidro"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.PA.030354-2.1",
+          "UHE.PH.PA.002889-4.1",
+          "UHE.PH.PR.001161-4.1",
+          "UHE.PH.RO.029736-4.1",
+          "UHE.PH.RO.029707-0.1",
+          "UHE.PH.SP.001120-7.1",
+          "UHE.PH.SE.027053-9.1"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "A matriz brasileira é dominada por hidrelétricas com fator de capacidade médio em torno de 50%, fortemente dependente de regime hidrológico anual.",
+        "arquivo": "docs/alexandria-v2/extraction/m01/aula-08.json",
+        "linha": 206
+      },
+      "leitura": [
+        15
+      ],
+      "nota_de_dado": "O Atlas mostra a potência instalada de cada hidrelétrica, não o fator de capacidade; o destaque são as sete com 3 GW ou mais."
+    },
+    {
+      "id": "m01-a08-estado-dos-reservatorios",
+      "modulo": "modulo-01",
+      "aula": 8,
+      "titulo": "O estado dos reservatórios, mês a mês",
+      "capitulo": "agua",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "reservatorios": [
+          "251",
+          "275",
+          "169",
+          "6",
+          "156",
+          "24"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Em geração efetiva, a participação flutua ano a ano com chuvas, despacho térmico complementar e estado dos reservatórios.",
+        "arquivo": "docs/alexandria-v2/extraction/m01/aula-08.json",
+        "linha": 206
+      },
+      "leitura": [
+        16
+      ],
+      "nota_de_dado": "A vista mostra a energia armazenada mês a mês, não a participação de cada fonte na geração; o destaque são os seis reservatórios de maior volume útil."
+    }
+  ],
+  "sem_vista": [
+    {
+      "aula": 1,
+      "tema": "consumo anual do Brasil (≈ 530 TWh)",
+      "motivo": "célula de tabela sem frase citável; a escala TWh não é geografia que o mapa mostre"
+    },
+    {
+      "aula": 3,
+      "tema": "frequência de 60 Hz do Brasil entre os países",
+      "motivo": "o globo traz o perfil energético de cada país, não a frequência da rede"
+    },
+    {
+      "aula": 4,
+      "tema": "perdas não técnicas em áreas urbanas do Norte e do Nordeste; Manaus",
+      "motivo": "o Atlas não tem áreas de concessão de distribuidoras, cidades como camada nem dado de perdas; os submercados N e NE não coincidem com as regiões Norte e Nordeste"
+    },
+    {
+      "aula": 6,
+      "tema": "mineradora média em Minas Gerais (subgrupo A4)",
+      "motivo": "âncora de lugar sem ativo: o Atlas não tem estados como camada nem rede de distribuição em 13,8 kV"
+    },
+    {
+      "aula": 8,
+      "tema": "solar fotovoltaica em latitudes brasileiras",
+      "motivo": "o globo traz o perfil energético de cada país, não a irradiação solar; a aula já tem quatro vistas, e o tema fica com a das usinas solares do Nordeste"
+    }
+  ]
+}

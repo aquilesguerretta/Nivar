@@ -1,0 +1,119 @@
+/* Alexandria v3 — casca da aula. */
+
+.alx3 .aula-local {
+  position: sticky;
+  top: 65px;
+  z-index: 15;
+  background: var(--papel);
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .aula-local-linha {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 10px 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+  font-family: var(--f-dado);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--tinta-suave);
+}
+
+.alx3 .aula-local-linha a {
+  text-decoration: none;
+  color: var(--tinta-suave);
+  padding: 6px 0;
+  transition: color var(--t-hover);
+}
+
+.alx3 .aula-local-linha a:hover {
+  color: var(--tinta);
+}
+
+.alx3 .aula-local-linha [aria-current] {
+  color: var(--tinta);
+}
+
+/* um traço por aula do módulo: as anteriores mais escuras, a atual em óxido */
+.alx3 .aula-local-tracos {
+  display: flex;
+  gap: 3px;
+  height: 2px;
+}
+
+.alx3 .aula-local-tracos span {
+  flex: 1;
+  background: var(--fio);
+  transition: background var(--t-revelar);
+}
+
+.alx3 .aula-local-tracos span[data-antes] {
+  background: var(--fio-forte);
+}
+
+.alx3 .aula-local-tracos span[data-atual] {
+  background: var(--oxido);
+}
+
+.alx3 .aula-v3 {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 32px 120px;
+}
+
+.alx3 .aula-v3-ampla {
+  max-width: 1360px;
+}
+
+.alx3 .aula-cabeca {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.alx3 .aula-cabeca h1 {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: clamp(39px, 4.55vw, 65px);
+  font-weight: 450;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.alx3 .aula-cabeca .aula-sub {
+  font-family: var(--f-leitura);
+  font-style: italic;
+  font-size: 23px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .aula-ausente {
+  border-left: 2px solid var(--fio-forte);
+  padding: 12px 22px;
+  display: grid;
+  gap: 6px;
+  max-width: 62ch;
+  color: var(--tinta-suave);
+}
+
+.alx3 .aula-ausente strong {
+  font-family: var(--f-leitura);
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--tinta);
+}
+
+@media (max-width: 860px) {
+  .alx3 .aula-local {
+    top: 0;
+  }
+  .alx3 .aula-local-linha {
+    padding: 8px 16px;
+  }
+  .alx3 .aula-v3 {
+    padding: 28px 16px 80px;
+  }
+}

@@ -1,0 +1,606 @@
+/* Atlas da Alexandria v3 — o painel de "A rede" (leva 4).
+ *
+ * Uma estrutura, não seis grupos iguais: o topo carrega o escopo, o ÚNICO número grande, a barra
+ * por fonte (que liga e desliga a fonte) e a régua do ano colada nele; um alternador de lente troca
+ * o corpo (Fontes | Donos | Rede); as camadas de território numa linha dupla de fichas; um só
+ * "Como ler este mapa" no fim. Escala: título 44 › número 40 › 20 (só no corpo) › 15 › 12 mono.
+ * Tokens de alexandria-v3.css; raio zero, sem sombra, fio de 1 px; óxido só na seleção do mapa.
+ */
+
+.alx3 .atl-rp {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── topo ─────────────────────────────────────────────────────────── */
+
+.alx3 .atl-rp-topo {
+  margin: 0;
+}
+
+/* sobretítulo: o escopo em versal mono (o papel da kicker na casa), o ano na letra da interface */
+.alx3 .atl-rp-sobre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 8px;
+  margin: 0 0 8px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-rp-sobre-escopo {
+  font-family: var(--f-dado);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.alx3 .atl-rp-sobre-ano {
+  font-family: var(--f-interface);
+  font-size: 12.5px;
+  color: var(--tinta);
+}
+
+.alx3 .atl-rp-sobre-ano::before {
+  content: '·';
+  margin-right: 8px;
+  color: var(--tinta-fraca);
+}
+
+.alx3 .atl-rp-hoje {
+  min-height: 28px;
+  margin-left: auto;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: var(--f-interface);
+  font-size: 12.5px;
+  color: var(--tinta);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.alx3 .atl-rp-numero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 10px;
+  margin: 0 0 10px;
+}
+
+.alx3 .atl-rp-numero-legenda {
+  font-family: var(--f-leitura);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--tinta-suave);
+}
+
+/* a barra é o interruptor das fontes: fatias coladas, separadas por um fio de papel */
+.alx3 .atl-rp-barra {
+  display: flex;
+  height: 22px;
+  border: 1px solid var(--fio-forte);
+  background: var(--papel-fundo);
+}
+
+.alx3 .atl-rp-fatia {
+  --cor: var(--tinta);
+  display: block;
+  min-width: 3px;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: var(--cor);
+  cursor: default;
+}
+
+.alx3 .atl-rp-fatia + .atl-rp-fatia {
+  border-left: 1px solid var(--papel);
+}
+
+.alx3 button.atl-rp-fatia {
+  cursor: pointer;
+  transition: opacity var(--t-hover);
+}
+
+.alx3 button.atl-rp-fatia:hover {
+  opacity: 0.78;
+}
+
+/* desligada no mapa: hachurada, continua na conta */
+.alx3 .atl-rp-fatia[aria-pressed='false'] {
+  background: repeating-linear-gradient(135deg, var(--cor) 0 1.5px, transparent 1.5px 5px);
+}
+
+.alx3 .atl-rp-fatia:focus-visible {
+  outline: 1px solid var(--tinta);
+  outline-offset: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.alx3 .atl-rp-fontes {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 12px;
+  margin: 7px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-rp-fontes [data-desligada] {
+  color: var(--tinta-fraca);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.alx3 .atl-rp-cor {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 5px;
+}
+
+.alx3 .atl-rp-topo .atl-rede-tempo {
+  margin: 14px 0 0;
+}
+
+/* a ressalva da conta: curta, visível, tinta suave (não o cinza claro de rodapé) */
+.alx3 .atl-rp-ressalva {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--tinta-suave);
+  text-wrap: pretty;
+}
+
+.alx3 .atl-rp-ressalva + .atl-rp-ressalva {
+  margin-top: 4px;
+}
+
+/* ── alternador de lente ─────────────────────────────────────────── */
+
+.alx3 .atl-rp-lentes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 22px 0 0;
+  border-bottom: 1px solid var(--fio-forte);
+}
+
+.alx3 .atl-rp-lente {
+  min-height: 40px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-family: var(--f-interface);
+  font-size: 14px;
+  color: var(--tinta-suave);
+  cursor: pointer;
+}
+
+.alx3 .atl-rp-lente:hover {
+  color: var(--tinta);
+}
+
+.alx3 .atl-rp-lente[aria-selected='true'] {
+  color: var(--tinta);
+  font-weight: 600;
+  border-bottom-color: var(--tinta);
+}
+
+.alx3 .atl-rp-lente:focus-visible {
+  outline: 1px solid var(--tinta);
+  outline-offset: -3px;
+}
+
+.alx3 .atl-rp-corpo {
+  padding-top: 18px;
+}
+
+/* o corpo de cada lente: o único lugar com título de 20 px */
+.alx3 .atl-rp-h {
+  margin: 0 0 6px;
+  font-family: var(--f-leitura);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--tinta);
+}
+
+.alx3 .atl-rp-h em {
+  font-style: italic;
+  font-weight: 450;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-rp-bloco + .atl-rp-bloco,
+.alx3 .atl-rp-maiores + .atl-rp-bloco {
+  margin-top: 22px;
+}
+
+.alx3 .atl-rp-cabeca {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.alx3 .atl-rp-acao {
+  min-height: 28px;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: var(--f-interface);
+  font-size: 12.5px;
+  color: var(--tinta-suave);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.alx3 .atl-rp-acao:hover {
+  color: var(--tinta);
+}
+
+/* as cinco maiores: uma linha cada, nome à esquerda e potência à direita */
+.alx3 .atl-rp-maiores ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.alx3 .atl-rp-maiores button {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 10px;
+  width: 100%;
+  min-height: 34px;
+  padding: 4px 0;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--fio);
+  font: inherit;
+  color: var(--tinta);
+  text-align: left;
+  cursor: pointer;
+}
+
+.alx3 .atl-rp-maiores li:last-child button {
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .atl-rp-selo {
+  width: 16px;
+  height: 16px;
+}
+
+.alx3 .atl-rp-maior-nome {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14.5px;
+}
+
+.alx3 .atl-rp-maior-kw {
+  font-size: 12.5px;
+}
+
+.alx3 .atl-rp-maiores button:hover .atl-rp-maior-nome {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* as fontes em duas colunas: nome na linha de cima, GW e contagem embaixo */
+.alx3 .atl-rp-fontes-lista {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 14px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.alx3 .atl-chave.atl-rp-celula {
+  grid-template-columns: 16px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  row-gap: 1px;
+  column-gap: 8px;
+  min-height: 42px;
+  padding: 4px 0;
+  border-top: 1px solid var(--fio);
+  font-size: 14px;
+}
+
+.alx3 .atl-chave.atl-rp-celula .atl-chave-rotulo {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.alx3 .atl-rp-celula-n {
+  grid-column: 2;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-rp-celula-n .atl-num {
+  font-size: 12px;
+  color: var(--tinta);
+}
+
+.alx3 .atl-rp-celula[aria-checked='false'] .atl-rp-celula-n,
+.alx3 .atl-rp-celula[aria-checked='false'] .atl-rp-celula-n .atl-num {
+  color: var(--tinta-fraca);
+}
+
+/* recolhido do corpo (o gráfico por período) */
+.alx3 .atl-rp-recolhido {
+  margin-top: 6px;
+}
+
+.alx3 .atl-rp-recolhido > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  font-family: var(--f-interface);
+  font-size: 14px;
+  color: var(--tinta);
+  cursor: pointer;
+  list-style: none;
+  border-top: 1px solid var(--fio);
+}
+
+.alx3 .atl-rp-recolhido > summary::-webkit-details-marker {
+  display: none;
+}
+
+.alx3 .atl-rp-recolhido > summary::after {
+  content: '+';
+  margin-left: auto;
+  font-family: var(--f-dado);
+  font-size: 13px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-rp-recolhido[open] > summary::after {
+  content: '−';
+}
+
+.alx3 .atl-rp-recolhido-corpo {
+  padding: 8px 0 4px;
+}
+
+/* o gráfico dentro do recolhido já tem a moldura do recolhido: sem margem de grupo */
+.alx3 .atl-rp-recolhido-corpo > * > .atl-grupo,
+.alx3 .atl-rp-recolhido-corpo > .atl-grupo {
+  margin-top: 0;
+}
+
+/* a lente Donos: a seção do tempo-e-donos entra sem a margem de grupo */
+.alx3 .atl-rp-corpo > .atl-grupo:first-child {
+  margin-top: 0;
+}
+
+.alx3 .atl-rp-linhas {
+  margin: 0 0 18px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--tinta);
+  text-wrap: pretty;
+}
+
+/* ── camadas: uma linha dupla de fichas ─────────────────────────── */
+
+.alx3 .atl-rp-camadas {
+  margin-top: 26px;
+  padding-top: 14px;
+  border-top: 1px solid var(--fio-forte);
+}
+
+.alx3 .atl-rp-fichas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.alx3 .atl-rp-ficha {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 32px;
+  padding: 0 10px;
+  background: none;
+  border: 1px solid var(--fio-forte);
+  font-family: var(--f-interface);
+  font-size: 13px;
+  color: var(--tinta);
+  cursor: pointer;
+  transition: border-color var(--t-hover), color var(--t-hover);
+}
+
+.alx3 .atl-rp-ficha:hover {
+  border-color: var(--tinta);
+}
+
+.alx3 .atl-rp-ficha-marca {
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--tinta);
+  background: var(--tinta);
+}
+
+.alx3 .atl-rp-ficha-img {
+  width: 14px;
+  height: 14px;
+}
+
+.alx3 .atl-rp-ficha-n {
+  font-size: 12px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-rp-ficha[aria-checked='false'] {
+  border-color: var(--fio);
+  color: var(--tinta-fraca);
+}
+
+.alx3 .atl-rp-ficha[aria-checked='false'] .atl-rp-ficha-marca {
+  background: transparent;
+  border-color: var(--fio-forte);
+}
+
+.alx3 .atl-rp-ficha[aria-checked='false'] .atl-rp-ficha-img {
+  opacity: 0.4;
+}
+
+.alx3 .atl-rp-ficha:focus-visible {
+  outline: 1px solid var(--tinta);
+  outline-offset: 2px;
+}
+
+.alx3 .atl-rp-camadas .atl-resumo-maquetes {
+  margin-top: 8px;
+}
+
+/* ── o "Como ler" único ──────────────────────────────────────────── */
+
+.alx3 .atl-rp-como-ler {
+  margin-top: 18px;
+  padding-top: 6px;
+  border-top: 1px solid var(--fio);
+}
+
+.alx3 .atl-rp-como-ler > summary {
+  font-size: 14px;
+  color: var(--tinta);
+}
+
+.alx3 .atl-rp-h4 {
+  margin: 14px 0 6px;
+  font-family: var(--f-dado);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-rp-como-ler .atl-como-ler-corpo > .atl-rp-h4:first-child {
+  margin-top: 6px;
+}
+
+/* ── as aulas do capítulo: uma linha que abre a lista ───────────── */
+
+.alx3 .atl-rp-vistas {
+  margin-top: 14px;
+}
+
+.alx3 .atl-rp-vistas-abrir {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 36px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--fio);
+  border-bottom: 1px solid var(--fio);
+  font-family: var(--f-interface);
+  font-size: 14px;
+  color: var(--tinta);
+  text-align: left;
+  cursor: pointer;
+}
+
+.alx3 .atl-rp-vistas-abrir:hover > span:first-child {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.alx3 .atl-rp-vistas-seta {
+  margin-left: auto;
+  font-family: var(--f-dado);
+  font-size: 13px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-rp-vistas[data-aberta] .atl-rp-vistas-abrir {
+  border-bottom-color: transparent;
+}
+
+.alx3 .atl-rp-vistas ul {
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .atl-rp-vistas li button {
+  min-height: 34px;
+}
+
+/* ── o bloco solto (montagem antiga da página) ──────────────────── */
+
+.alx3 .atl-rp-solto {
+  margin: 0 0 30px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .atl-rp-solto .atl-rp-linhas {
+  margin: 12px 0 0;
+}
+
+.alx3 .atl-rp-solto .atl-rp-maiores {
+  margin-top: 16px;
+}
+
+/* ── celular: a gaveta, alvos de 44 px ──────────────────────────── */
+
+.alx3 .atl-estreito .atl-rp-barra {
+  height: 46px;
+}
+
+/* no celular nada abaixo de 12 px: a versal do sobretítulo e o número da legenda sobem */
+.alx3 .atl-estreito .atl-rp-sobre-escopo,
+.alx3 .atl-estreito .atl-rp-h4 {
+  font-size: 12px;
+}
+
+.alx3 .atl-estreito .atl-rp-fontes,
+.alx3 .atl-estreito .atl-rp-como-ler .atl-como-ler-corpo p {
+  font-size: 13.5px;
+}
+
+.alx3 .atl-estreito .atl-rp-lente,
+.alx3 .atl-estreito .atl-rp-ficha,
+.alx3 .atl-estreito .atl-rp-maiores button,
+.alx3 .atl-estreito .atl-rp-recolhido > summary,
+.alx3 .atl-estreito .atl-rp-vistas-abrir,
+.alx3 .atl-estreito .atl-rp-vistas li button,
+.alx3 .atl-estreito .atl-chave.atl-rp-celula,
+.alx3 .atl-estreito .atl-rp-hoje,
+.alx3 .atl-estreito .atl-rp-acao {
+  min-height: 44px;
+}
+
+.alx3 .atl-estreito .atl-rp-ficha {
+  font-size: 14px;
+}

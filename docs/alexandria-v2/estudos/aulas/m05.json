@@ -1,0 +1,523 @@
+{
+  "modulo": "modulo-05",
+  "titulo_modulo": "Regulação e Desenho de Mercados",
+  "trilha": "Fundamentos Universais (última do bloco, segundo o comentário do arquivo de conteúdo)",
+  "data_estudo": "2026-09-17",
+  "fontes_lidas": [
+    "src/lib/data/alexandria-modulo-05-content.ts (MODULO_05_CORPO, MODULO_05_LEAD, MODULO_05_AULAS, INSTRUMENTOS_MODULO_05, MODULO_05_EXERCICIOS_SOLTOS)",
+    "src/lib/data/alexandria-instrument-calculators.ts (m05-inst-01..06)",
+    "src/components/alexandria/viewer/InstrumentPanel.tsx (só o inst-05 do M01 desenha figura)",
+    "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo05.html (§00, §MAP, Aulas 01–06, §Caso, §Erros, §Ex, §Quiz, §Voz, §Final, §Lex, §Ref e <script>)",
+    "docs/alexandria-v2/bar.md §0, §4, S1–S7, §7, §9, §11",
+    "docs/alexandria-v2/decisoes/2026-09-16-ambiguidades-de-conteudo.md (P17–P25)"
+  ],
+  "estado_dependencias": {
+    "extraction_m05": "Só existe a pasta extraction/m05/extratores; nenhum aparato.json nem aula-NN.json. Este estudo lê direto do HTML-fonte.",
+    "media_plano_m05": "Não existe media-lab/aulas/m05/plano.json. A curadoria está em andamento: há candidatos em media-lab/aulas/m05/_cand (vistos: wall1888.jpg, nyc40.jpg, bosses_v.jpg, amprion_v.jpg). As sugestões de mídia abaixo são provisórias até o plano existir."
+  },
+  "achados_transversais": [
+    {
+      "id": "T1",
+      "tipo": "perda de extração",
+      "o_que": "O explicador em três níveis (`div.lv`) perdeu dois dos três níveis no código. A nota 'X · três níveis' guarda só o texto 'Criança de 12 anos'; os textos 'Executivo' e 'Especialista' existem na fonte e sumiram. O rótulo das três abas também virou texto corrido ('<b>Criança de 12 anos Executivo Especialista</b>').",
+      "onde": "último bloco das 6 aulas",
+      "efeito": "C4 pede três níveis de explicação no ponto de uso; hoje o produto mostra só o nível infantil."
+    },
+    {
+      "id": "T2",
+      "tipo": "perda de extração",
+      "o_que": "Rótulos de caixa (`box` com cabeçalho) viraram `label: null`: 'O que a regulação substitui' (A01), 'A pergunta cética que você precisa responder' (A04), 'Números vivos · verificar na fonte antes de uso externo' (A05), 'A formulação de três frases' (A06). Na A03, a caixa 'Pool e bilateral não são alternativas…' também não tem rótulo.",
+      "efeito": "A caixa perde a função (aviso de dado vivo, pergunta cética, síntese)."
+    },
+    {
+      "id": "T3",
+      "tipo": "perda de extração",
+      "o_que": "O bloco de fórmula `div.form` da seção 5.3 não está em MODULO_05_CORPO: 'Remuneração do capital = BRR líquida × WACC regulatório', 'Parcela B ≈ OPEX eficiente + Remuneração + Reintegração − Outras receitas ± Ajustes', 'Componente médio = Receita atribuída ÷ Energia faturada' e a nota 'Mapa conceitual, não memória de cálculo…'.",
+      "efeito": "A A05 perde exatamente a identidade que o próprio lead chama de 'a coisa só' da aula."
+    },
+    {
+      "id": "T4",
+      "tipo": "bug de dado × calculadora",
+      "o_que": "No m05-inst-01, o campo 'Operadores concorrentes na área' tem id \"i1\" no conteúdo, mas a calculadora lê i['i1-n'] (id da fonte: `i1-n`, com o gêmeo numérico `i1-n-n`). O extrator cortou o sufixo. Com n() coagindo ausente para 0, N = 0 e o custo médio perde o custo fixo, deixando o veredito errado.",
+      "efeito": "Até ser corrigido, o instrumento central da A01 não responde ao controle principal. Correção em src/, fora desta posse."
+    },
+    {
+      "id": "T5",
+      "tipo": "empobrecimento do porte",
+      "o_que": "Os vereditos das calculadoras m05 foram parafraseados sem os números (a fonte cita o sobrecusto em %, R$/ano, opacidade/100 etc.). O m05-inst-05 tem um veredito fixo único, enquanto a fonte tem 4 ramos (índice líquido negativo; remuneração ≥ 48% da Parcela B; ≥ 25%; < 25%). As descrições dos 8 sinais do Termômetro (campo `d` do script) também não foram portadas.",
+      "efeito": "O retorno do instrumento deixa de ensinar o que muda com o parâmetro (C5, S6 consequência)."
+    },
+    {
+      "id": "T6",
+      "tipo": "forma prometida não desenhada (C5, §9)",
+      "o_que": "Os 6 instrumentos da fonte desenham uma figura: inst-01, curva de custo médio × nº de redes (1–6); inst-02, barras empilhadas de conflito + coordenação por grau (4); inst-03, barras de composição (longo/curto/descoberto ou sobra); inst-04, barras dos pesos dos sinais marcados; inst-05, barras empilhadas OPEX/remuneração/reintegração em 5 anos + linha de R$/MWh; inst-06, mapa de 2 eixos com A, B, C, Brasil e a configuração escolhida. O código não desenha nenhuma delas.",
+      "efeito": "A01 declara que 'o ponto do instrumento não é o número — é a forma da curva'. Sem a figura, o instrumento não cumpre a própria promessa."
+    },
+    {
+      "id": "T7",
+      "tipo": "P24 / P7",
+      "o_que": "Todas as aulas têm uma nota gold 'Onde isso entra no produto' (Regulatory Radar, Brazil Pulse, Mercado Livre Readiness, camada internacional da GridAlpha): fica fora da interface (P7). A A04 vai além: a seção 4.6 inteira ('Onde isso vira a tese da GridAlpha') e a nota cética são posicionamento da empresa dentro da prosa curricular, com afirmações factuais sobre a empresa ('não vende energia, não opera comercializadora e não recebe comissão').",
+      "decisao_necessaria": "Founder/content QA: manter o argumento econômico ('independência é propriedade do modelo de receita') em formulação genérica ('análise independente') e retirar a tese institucional da aula, ou transformá-la num bloco editorial NIVAR declarado. Não renderizar como está: GridAlpha está morta para o learner (P24)."
+    },
+    {
+      "id": "T8",
+      "tipo": "P17 / P18",
+      "o_que": "O §Caso se chama 'Operação A — Parte 5' (P17: sem 'Parte'). O §Quiz declara o 'critério de domínio' de 8/10 e trava o §Voz abaixo disso; o §Final se chama 'Você domina o Bloco 5 quando' (P18: só registro legado; nada de 'domínio' sem evidência).",
+      "efeito": "A recuperação (C10) pode usar as questões, mas nunca o limiar."
+    },
+    {
+      "id": "T9",
+      "tipo": "content QA",
+      "o_que": "Nas 10 questões do §Quiz, a alternativa correta é sempre a segunda (índice 1).",
+      "efeito": "Ao reusar questões na recuperação, embaralhar as alternativas (camada Alexandria) sem alterar o texto."
+    },
+    {
+      "id": "T10",
+      "tipo": "content QA",
+      "o_que": "Inst-03: o ramo 'D === 0' do veredito da fonte afirma 'amplitude zero', mas a fórmula dá sig = SP·(V/100)·((D + 0,45·C)/100)·1,6, que só zera com C = 0. Com os padrões L=85, C=15, V=55, a amplitude calculada é R$ 47,52/MWh, e o texto diz zero.",
+      "efeito": "CONTENT QA antes de exibir esse veredito; ou condicionar o texto a C = 0."
+    },
+    {
+      "id": "T11",
+      "tipo": "reconciliação curricular (P8)",
+      "o_que": "A prosa cita 'Bloco 6' (A02, história de 2004) e 'Bloco 9' (A03, migração e lastro), e o módulo se chama 'Bloco 5'. É preciso mapear para os códigos canônicos de módulo antes de virar link.",
+      "efeito": "Não renderizar 'Bloco N' ao learner sem a reconciliação."
+    },
+    {
+      "id": "T12",
+      "tipo": "ativo transversal da fonte",
+      "o_que": "§00 traz 'a régua das quatro perguntas' (Que falha ela corrige? Que incentivo ela cria? Quem assume o risco? Como o custo chega ao consumidor?). A 6.5 a desdobra em 9 perguntas, e o §Final a exige como primeiro critério. Ela é a ferramenta do módulo, e hoje não aparece em aula nenhuma.",
+      "efeito": "Proposta: a régua como objeto persistente do módulo, que cada aula exercita num caso (ver features-propostas-aulas.md)."
+    },
+    {
+      "id": "T13",
+      "tipo": "aparato aproveitável por aula",
+      "o_que": "Nenhum exercício tem tag de aula (os 10 vão para a Revisão, P9), mas o conteúdo de cada um corresponde a uma aula. O §Quiz traz a aula no retorno de cada questão, e §Erros, §Final, §Voz e os grupos do §Lex também se distribuem por aula. O mapeamento está em cada aula abaixo, como proposta Alexandria a revisar.",
+      "mapa": {
+        "aula-05-01": {"ex": ["ex-01"], "quiz": [1, 2], "erros": [1, 2], "final": [1, 2, 3, 4, 5, 6], "lex": "Fundamento econômico da regulação · 12 termos"},
+        "aula-05-02": {"ex": ["ex-02"], "quiz": [3, 4], "erros": [3, 4, 5], "final": [7, 8, 9, 10], "lex": "Unbundling e cadeia de valor · 12 termos"},
+        "aula-05-03": {"ex": ["ex-03", "ex-08"], "quiz": [5, 6], "erros": [6, 7], "final": [11, 12, 13, 14], "lex": "Desenho do atacado · 11 termos"},
+        "aula-05-04": {"ex": ["ex-05", "ex-09"], "quiz": [7, 8], "erros": [9, 10], "final": [15, 16, 17, 18], "lex": "Captura e governança regulatória · 17 termos"},
+        "aula-05-05": {"ex": ["ex-04", "ex-06", "ex-07"], "quiz": [9, 10], "erros": [11, 12], "final": [19, 20], "lex": "Regulação econômica e tarifa · 20 termos"},
+        "aula-05-06": {"ex": ["ex-10", "ex-08"], "quiz": [], "erros": [8], "final": [21], "lex": "nenhum grupo próprio"}
+      }
+    }
+  ],
+  "aulas": [
+    {
+      "aulaId": "aula-05-01",
+      "titulo": "Por que regulado",
+      "subtitulo": "Fundamento econômico",
+      "blocos": 17,
+      "o_que_ensina": "Monopólio natural é propriedade da função de custo (custo fixo alto, incremental baixo), não da propriedade do operador. O problema aparece depois do investimento afundado, e por isso a competição possível é pelo mercado (leilão), não no mercado. Três outras razões para regular: essencialidade com demanda inelástica, externalidades e coordenação física em tempo real.",
+      "natureza": ["conceito econômico", "cálculo leve (custo médio)", "distinção conceitual"],
+      "melhor_representacao": {
+        "arquetipo": "Prancha dividida com instrumento vivo, aberta por uma previsão",
+        "por_que": "O mecanismo central é uma forma de curva (custo médio × nº de redes), e a fonte diz isso: 'o ponto do instrumento não é o número — é a forma da curva'. A aula pede que o learner sinta a escala do desperdício antes de ler a teoria de 'competir pelo mercado'. A prancha com a curva desenhada precisa ficar ao lado da 1.1, onde a propriedade de custo é definida, e não no fim. O resto (1.2, 1.3) é coluna editorial com uma mesa de comparação (tabela de externalidades).",
+        "sequencia": "abertura com previsão → 1.1 + prancha INST·01 (previsto × calculado) → 1.2 com o contraste 'no × pelo' → 1.3 com a mesa das externalidades → caixa 'O que a regulação substitui' → ato de fecho (exercício ex-01) → registro"
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "pergunta": "Se uma rede só é mais barata, de onde vem o problema que a regulação resolve?",
+        "objetivo": "Explicar por que duplicar a rede eleva o custo médio e distinguir competir no mercado de competir pelo mercado.",
+        "previsao_util": true,
+        "previsao": {
+          "camada": "alexandria",
+          "enunciado": "Cidade com 200 mil consumidores, rede completa de R$ 900 mi e R$ 180/ano de custo incremental por consumidor (cenário do instrumento). Com 1 rede, o custo médio é R$ 630/ano por consumidor. Com 5 redes concorrentes, quanto fica?",
+          "resposta_calculada": "R$ 2.430/ano por consumidor (≈ 3,9×, sobrecusto ≈ 286%), pela fórmula da fonte cm = (n·f·0,10 + c·q)/q",
+          "numeros_da_fonte": "Padrões do Inst·01 (200 mil, R$ 900 mi, R$ 180/ano). O '5 redes / 200 mil consumidores' vem do ex-01. CRF de 10% é premissa do instrumento.",
+          "rotulo_obrigatorio": "Cenário didático do módulo; o modelo replica o custo fixo integralmente (nota do instrumento). Não é dado de rede real.",
+          "regra_de_entrada": "Arredondamento técnico normal como regra de entrada da Alexandria (P19), nunca tolerância da fonte (P6)"
+        }
+      },
+      "ato_autentico_C9": {
+        "principal": "prever (custo médio com 5 redes) → comparar com o calculado",
+        "secundario": "manipular até meta: 'encontre uma configuração em que 2 redes custam no máximo 10% a mais que 1'. O ramo de veredito da fonte ('o argumento de monopólio natural é fraco') ensina que nem toda rede é monopólio natural na mesma intensidade.",
+        "fechamento": "responder exercício da fonte ex-01 ('A rua com cinco redes'): nomear a falha e dizer por que a concorrência não resolve. Tentativa antes do gabarito."
+      },
+      "visualizacao_C6": {
+        "o_que_desenhar": "Curva de custo médio anual por consumidor (R$/ano, eixo y) × número de redes (1–6, eixo x), com o ponto escolhido marcado e o nível de 'rede única' como referência horizontal; a distância entre as duas é o desperdício.",
+        "titulo_afirmacao": "Cada rede a mais multiplica o custo fixo que o mesmo consumidor paga",
+        "existe_no_codigo": false,
+        "instrumento_promete_forma_nao_desenhada": true,
+        "segunda_figura": "Contraste 'competir no mercado × pelo mercado' como linha do tempo mínima de 2 momentos (disputa antes da concessão → monopólio depois do ativo afundado). É desenho conceitual da camada Alexandria, sem datas."
+      },
+      "instrumento_C5": {
+        "id": "m05-inst-01",
+        "titulo_fonte": "Simulador · Quando duplicar a rede fica caro",
+        "posicao_fonte": "depois do bloco 14 (caixa 'O que a regulação substitui'), antes da nota gold",
+        "bloco_indice_proposto": 3,
+        "justificativa_posicao": "O bloco 3 fecha a 1.1 com 'é a eficiência que cria o problema'. A prosa que invoca a curva está na 1.1, e o learner chega à 1.2 já tendo visto o desperdício.",
+        "com_previsao": true,
+        "dependencias": ["T4: corrigir id i1 → i1-n", "T5: restaurar números no veredito", "T6: desenhar a curva"]
+      },
+      "checagem_C7": "ex-01 com campo de resposta; depois da tentativa, lado a lado: resposta × gabarito da fonte × 'o que acrescenta' (a duplicação consome bem público não replicável: subsolo, via, licença, servidão) × autoavaliação em 3 níveis.",
+      "recuperacao_C10": {
+        "recupera_de": "Módulo 04 (demanda inelástica e formação de preço, citados em 1.3) e Módulo 02 (coordenação física, citado em 1.3). As questões exatas dependem da extração desses módulos.",
+        "itens_para_revisao_futura": ["Quiz Q1 (monopólio natural)", "Quiz Q2 (leilão de transmissão = competição pelo mercado)", "§Erros 1–2"],
+        "proximo_passo": "Não atende → 'Rever 1.1 — monopólio natural'. Com prática → 'Próxima · M05·A02 — Unbundling', com o gancho 'se só a rede é monopólio, por que separar o resto dela?' (lead da A02)."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente (em andamento)",
+        "candidato_visto": "_cand/wall1888.jpg: fotografia de época, rua coberta de neve com um emaranhado denso de fios aéreos em muitos postes. Pode ser evidência visual de 'muitas redes na mesma rua', junto da 1.2 ('duas distribuidoras cabeando a mesma rua…').",
+        "classe": "documental",
+        "cuidados": "Legenda e crédito só a partir do registro do arquivo (lugar, data, autor, licença). A fonte do módulo não fala dessa cena, então a legenda não pode afirmar que os fios eram de empresas concorrentes de eletricidade sem verificação no registro. Teste de remoção: a imagem fica se ancorar a intuição de duplicação; sai se for só atmosfera."
+      },
+      "mobile_390": "Abertura com a previsão no 1º viewport (pergunta + campo em R$/ano). A prancha empilha pergunta → controles (4 sliders em coluna, número acima do slider) → curva em largura total (6 pontos, rótulos '1'…'6') → quadro previsto × calculado fixo acima dos controles ao rolar. A tabela de externalidades vira lista de cartões-linha em 3 campos (externalidade · mecanismo · por que o preço não resolve), sem rolagem horizontal.",
+      "lacunas_e_dependencias": [
+        "Fonte: nenhuma lacuna factual; tudo é conceitual e o cenário é didático.",
+        "§9: forma prometida não desenhada; registro de previsão; persistência de resposta do ex-01.",
+        "Extração: níveis 'Executivo/Especialista' (T1); rótulo da caixa (T2).",
+        "Referências da §Ref ligáveis (proposta, revisar): Constituição art. 21 XII b e art. 175; Lei 8.987/1995."
+      ],
+      "nota_de_ambicao": "O momento memorável é ver a curva saltar de 630 para 2.430 com um único controle, e só então ler que 'é a eficiência que cria o problema'. O mesmo gesto, reduzido a 2 redes num mercado grande, mostra o contrário: o monopólio natural tem intensidade, não é um rótulo."
+    },
+    {
+      "aulaId": "aula-05-02",
+      "titulo": "Unbundling",
+      "subtitulo": "Arquitetura setorial",
+      "blocos": 19,
+      "o_que_ensina": "Quem é dono da infraestrutura essencial e compete a jusante discrimina rivais sem tocar na tarifa (fila, prazo, dado, alocação contábil). O unbundling remove a estrutura que torna isso lucrativo, em quatro graus (contábil → funcional → jurídica → societária), cada um trocando conflito por custo de coordenação. O Brasil parou na separação jurídica, não na societária.",
+      "natureza": ["conceito econômico", "sistema/arquitetura institucional", "classificação", "trade-off"],
+      "melhor_representacao": {
+        "arquetipo": "Escada de graus (diagrama de espectro) + mesa de classificação, com instrumento de trade-off",
+        "por_que": "O conteúdo é um espectro ordenado de 4 degraus com 'o que separa / o que resolve / o que fica aberto', além de uma classificação dos 4 segmentos. Uma escada visual onde o learner marca 'onde o Brasil parou' ensina mais que duas tabelas soltas. O trade-off conflito × coordenação é uma soma de duas curvas opostas com mínimo: é isso que o INST·02 desenha.",
+        "sequencia": "abertura → 2.1 (condutas de discriminação) → ato de classificar condutas → 2.2 escada + INST·02 → 2.3 mesa dos segmentos → 2.4 'o corte que o Brasil fez' com marcação na escada → 2.5 acesso formal × efetivo → ex-02 → registro"
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "pergunta": "Se só a rede é monopólio, por que separar geração e comercialização dela, e até onde?",
+        "objetivo": "Nomear os quatro graus de separação e o conflito que cada um resolve, e localizar o Brasil nessa escala.",
+        "previsao_util": true,
+        "previsao": {
+          "camada": "alexandria",
+          "enunciado": "No simulador (dependência de coordenação 50, fiscalização de acesso 55), o grau de menor atrito é a separação jurídica. Se a fiscalização de acesso cair a zero, o grau de menor atrito fica mais raso, igual ou mais profundo?",
+          "resposta_calculada": "Mais profundo: vai para a societária (atrito total 69,4 contra 70,4 da jurídica), pelas fórmulas da fonte conf = BC·(1−0,35·f/100) e coor = BK·(0,35+0,65·c/100).",
+          "numeros_da_fonte": "Padrões do Inst·02 (grau 3, coordenação 50, fiscalização 55) e vetores BC/BK do script",
+          "rotulo_obrigatorio": "Índices adimensionais construídos só para mostrar o formato do trade-off (nota do instrumento)"
+        }
+      },
+      "ato_autentico_C9": {
+        "principal": "classificar: 5 condutas da 2.1 (fila de conexão, estudo técnico extra, lentidão em informar capacidade, alocação de custo competitivo na atividade regulada, vazamento de dado comercial) no grau de separação que as resolve, conforme a tabela 2.2. Por exemplo, subsídio cruzado → contábil; vazamento de informação → funcional.",
+        "secundario": "prever o deslocamento do ótimo quando a fiscalização cai (acima) e localizar o Brasil na escada (jurídica, com camada regulatória e contábil).",
+        "fechamento": "ex-02 ('A afiliada que conecta mais rápido', 60 × 240 dias): nomear o conceito e o instrumento."
+      },
+      "visualizacao_C6": {
+        "o_que_desenhar": "(1) Escada de 4 degraus com o que cada um separa e o que deixa aberto, com a marca 'Brasil' no 3º. (2) Figura do INST·02: barras empilhadas por grau (conflito residual embaixo, custo de coordenação em cima, índice adimensional), com o total anotado e o grau de menor atrito destacado por silhueta, não por cor.",
+        "titulo_afirmacao": "Separar mais reduz conflito e cobra coordenação: o ótimo depende da fiscalização",
+        "existe_no_codigo": false,
+        "instrumento_promete_forma_nao_desenhada": true,
+        "alerta_S2": "A fonte pinta conflito de vermelho (#EF4444). Na Alexandria, usar tokens e não usar semáforo."
+      },
+      "instrumento_C5": {
+        "id": "m05-inst-02",
+        "titulo_fonte": "Simulador · Grau de separação",
+        "posicao_fonte": "depois do bloco 16 (2.5), antes da nota gold",
+        "bloco_indice_proposto": 7,
+        "justificativa_posicao": "O bloco 7 termina a 2.2 com a pergunta de desenho: 'qual grau de separação compra mais redução de conflito por unidade de coordenação perdida?'. É a pergunta que o instrumento responde.",
+        "com_previsao": true,
+        "dependencias": ["T5: saída textual i2-b (grau ótimo) deve aparecer como saída nomeada, não só no veredito; hoje ResultadoInstrumento.valores é só numérico", "T6: desenhar as barras"]
+      },
+      "checagem_C7": "Classificação: depois do registro, mostrar a tabela 2.2 como referência, com a coluna 'o que continua aberto'. ex-02: resposta × gabarito (o item que muda comportamento é publicar o prazo médio de conexão por vínculo societário) × autoavaliação.",
+      "recuperacao_C10": {
+        "recupera_de": "A01: 'competir pelo mercado' (a 2.3 cita que a transmissão é adjudicada competitivamente). Pergunta antes da resposta: 'por que um leilão de linha é competição, se o vencedor não terá rival?'",
+        "itens_para_revisao_futura": ["Quiz Q3, Q4", "§Erros 3–5"],
+        "proximo_passo": "Não atende → 'Rever 2.2 — quatro graus'. Com prática → 'Próxima · M05·A03 — Pool e bilateral'."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente (em andamento)",
+        "sugestao": "Nenhuma imagem é necessária. O trabalho visual é do diagrama de escada, uma figura programática. Uma foto de subestação ou de medidor não carregaria 'separação societária' e reprovaria o teste de remoção."
+      },
+      "mobile_390": "A escada vira lista vertical de 4 degraus, recolhíveis. A classificação usa um seletor por conduta (menu de 4 graus), sem arrastar. O INST·02 mostra 3 sliders e as barras em 4 colunas estreitas com rótulos abreviados ('Cont.', 'Func.', 'Jur.', 'Soc.') e legenda por padrão de preenchimento. As tabelas 2.2 e 2.3 viram cartões por linha.",
+      "lacunas_e_dependencias": [
+        "Fonte: o marco de 2004 está citado; a 'história' fica para o 'Bloco 6', que precisa de reconciliação (T11).",
+        "Referências da §Ref ligáveis (proposta): Lei 9.074/1995; Decreto 2.655/1998; Lei 10.848/2004 e Decreto 5.163/2004.",
+        "A pergunta empírica da 2.5 (prazo médio de conexão por vínculo societário) não tem dado na fonte: não inventar número; se virar exercício, é pergunta de método."
+      ],
+      "nota_de_ambicao": "O learner põe o Brasil no degrau certo e ouve o próprio erro que a aula prevê: 'no Brasil nenhum grupo faz as duas coisas'. Depois vê, no simulador, que baixar a fiscalização empurra o ótimo para a separação mais funda, ou seja, que o desenho responde à capacidade de fiscalizar."
+    },
+    {
+      "aulaId": "aula-05-03",
+      "titulo": "Pool e bilateral",
+      "subtitulo": "Desenho do atacado",
+      "blocos": 19,
+      "o_que_ensina": "O operador coordena elétrons; o contrato coordena dinheiro e risco. Pool e bilateral fazem coisas diferentes, e todo sistema grande usa os dois. O Brasil é híbrido em três dimensões independentes (operação centralizada, contratação plural, contabilização centralizada), por causa da otimização hidrotérmica intertemporal.",
+      "natureza": ["sistema/rede", "mercado/regulação", "comparação de desenhos", "distinção conceitual"],
+      "melhor_representacao": {
+        "arquetipo": "Diagrama em duas camadas sobrepostas (física × comercial) como palco, com ato de classificação",
+        "por_que": "A distinção central é espacial: o fluxo físico segue a rede, e o fluxo de dinheiro segue o contrato. Um palco com as duas camadas desenhadas (usina eólica distante, térmica próxima, fábrica; setas de energia de um lado, contrato e liquidação de diferenças do outro) desmonta o erro 'meu contrato traz a energia daquela usina' melhor que qualquer parágrafo. As três dimensões do híbrido viram três faixas do mesmo diagrama.",
+        "sequencia": "abertura com o caso do ex-03 como pergunta → 3.1 pool / 3.2 bilateral (mesa de comparação: compra / custa / patologias) → INST·03 junto da 3.2 → 3.3 palco de duas camadas → 3.4 três faixas + ato de classificação → fecho com decisão (ex-03) → registro"
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "pergunta": "Uma fábrica no Sudeste compra 10 MW médios de uma eólica no Nordeste, e o operador despacha térmicas no Sudeste. O contrato foi descumprido?",
+        "objetivo": "Separar a coordenação física (operador) da coordenação econômica (contrato) e nomear as três dimensões do híbrido brasileiro.",
+        "origem": "caso do ex-03 da fonte usado como pergunta de abertura; a resposta (gabarito) só depois da tentativa",
+        "previsao_util": true,
+        "previsao": {
+          "camada": "alexandria",
+          "enunciado": "Consumidor com 60% em contrato longo, 25% em contrato curto e 15% descoberto (prêmio R$ 40/MWh, volatilidade 55), com custo esperado de R$ 227,50/MWh e amplitude de R$ 184,80/MWh. Se ele passar o longo para 85% e zerar o descoberto, o custo esperado sobe ou cai? E a amplitude?",
+          "resposta_calculada": "Custo esperado sobe (R$ 236,10/MWh); amplitude cai (R$ 47,52/MWh). 'O prêmio pago no contrato longo comprou redução de dispersão, não redução de custo' (veredito da fonte).",
+          "numeros_da_fonte": "Padrões do Inst·03 e fórmula do script (SP = R$ 200/MWh de referência didática)",
+          "rotulo_obrigatorio": "Preço de referência e dispersão didáticos; sem hidrologia, submercado, encargo ou tributo (nota do instrumento)",
+          "alerta": "T10: o veredito da fonte para 'descoberto = 0' diz 'amplitude zero', o que contradiz o cálculo com contrato curto > 0. Content QA antes de exibir."
+        }
+      },
+      "ato_autentico_C9": {
+        "principal": "decidir com justificativa: 'o contrato foi descumprido?' (ex-03), com opção 'não é possível concluir'. A justificativa deve nomear camada física × camada econômica.",
+        "secundario": "classificar 6 afirmações da 3.4 em operação / contratação / contabilização (ex.: 'a usina despachável gera quando é mandada' → operação; 'a diferença entre contratado e medido é valorada pelo preço de liquidação das diferenças, por hora e submercado' → contabilização).",
+        "terciario": "prever no INST·03 (nível × dispersão)."
+      },
+      "visualizacao_C6": {
+        "o_que_desenhar": "(1) Palco de duas camadas. Em cima, a rede: injeções e cargas, com o fluxo determinado pela rede e pelo operador. Embaixo, o dinheiro: contrato bilateral, medição e liquidação de diferenças na câmara. Uma linha pontilhada liga 'contratado' a 'medido'. (2) Barras de composição do INST·03 (longo / curto / descoberto ou sobra, % do volume) com custo esperado e cenário ruim em R$/MWh, e a amplitude como faixa, não como número solto.",
+        "titulo_afirmacao": "O contrato move dinheiro; o operador move elétrons",
+        "existe_no_codigo": false,
+        "instrumento_promete_forma_nao_desenhada": true,
+        "observacao": "O palco (1) é desenho da camada Alexandria sobre fatos da fonte; nenhum nome de usina ou lugar real além de 'Sudeste/Nordeste' do ex-03."
+      },
+      "instrumento_C5": {
+        "id": "m05-inst-03",
+        "titulo_fonte": "Simulador · Composição de contratação",
+        "posicao_fonte": "depois do bloco 16 (fim da 3.4, parágrafo da otimização hidrotérmica)",
+        "bloco_indice_proposto": 6,
+        "justificativa_posicao": "O instrumento exercita a alocação de risco por contrato (3.2: 'elas alocam risco entre as partes…'), não o híbrido nem a hidrotermia. Na posição da fonte, ele desvia do fecho da aula. Depois do bloco 6 (patologias do bilateral puro), ele é a etapa do contrato, antes da 3.3.",
+        "com_previsao": true,
+        "alerta_alinhamento": "O mecanismo central da aula (dinheiro × elétrons) não é exercitado por este instrumento. O ato principal precisa ser o de decisão/classificação acima, não o simulador.",
+        "dependencias": ["T6: barras de composição", "T10: QA do veredito de amplitude"]
+      },
+      "checagem_C7": "ex-03: resposta × gabarito × 'o que acrescenta' (existe risco real, só que outro: restrição de geração e diferença de preço entre submercados, alocados por cláusula, conteúdo do Módulo 04). Classificação: referência = os três parágrafos da 3.4 marcados.",
+      "recuperacao_C10": {
+        "recupera_de": "A02: 'em que grau de separação o Brasil parou?' (a 2.4 fala das três casas institucionais: agência, operador, câmara, que a 3.4 reaproveita). Módulo 02: otimização hidrotérmica, citada na 3.4.",
+        "itens_para_revisao_futura": ["Quiz Q5, Q6", "§Erros 6–7", "ex-08 (por que não leiloar o despacho), que serve de ponte para a A06"],
+        "proximo_passo": "Não atende na decisão → 'Rever 3.3 — a distinção que resolve a confusão'. Com prática → 'Próxima · M05·A04 — Captura regulatória', com o gancho da 3.1: 'quem define a metodologia define o resultado econômico'."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente (em andamento)",
+        "candidato_visto": "_cand/amprion_v.jpg: sala de controle de operador de transmissão com painel mural de diagrama unifilar e visitantes (há também terna1/terna2/ercot2 em _cand, não vistos). Pode ancorar 'operador central' na 3.1.",
+        "classe": "documental",
+        "cuidados": "É operador estrangeiro. Legenda só com o registro do arquivo e sem sugerir que é o operador brasileiro. Talvez sirva melhor na A06 (6.4: 'mercados internacionais organizados executam despacho centralizado'). Usar uma imagem só no módulo, não nas duas aulas."
+      },
+      "mobile_390": "Pergunta do caso no 1º viewport, com 3 opções (sim / não / não é possível concluir) e campo curto de justificativa. O palco de duas camadas vira duas faixas empilhadas (rede em cima, dinheiro embaixo) com a mesma linha de conexão vertical. A classificação é um seletor de 3 valores por afirmação. O INST·03 mostra 4 sliders; as barras horizontais já são nativas de mobile.",
+      "lacunas_e_dependencias": [
+        "Fonte: 'regras de migração e de lastro que o Bloco 9 detalha' dependem da reconciliação T11.",
+        "Referências da §Ref ligáveis (proposta): ONS (atribuições e programação); CCEE (contabilização e liquidação).",
+        "§9: persistência da decisão e da justificativa."
+      ],
+      "nota_de_ambicao": "O learner decide 'descumprido' ou não e depois vê a mesma cena em duas camadas: a energia seguiu o operador, e o dinheiro seguiu o contrato até a liquidação. A segunda leitura da cena é o que torna a aula memorável, e é o que desmonta o erro mais repetido do setor."
+    },
+    {
+      "aulaId": "aula-05-04",
+      "titulo": "Captura regulatória",
+      "subtitulo": "Economia política da regulação",
+      "blocos": 24,
+      "o_que_ensina": "Captura é desvio persistente da decisão pública em favor de um grupo organizado, produzido por benefício concentrado × custo difuso e por assimetria de informação, sem exigir ilícito. É diagnóstico institucional, não veredito moral. Ela se infere por sinais verificáveis (teste de sete perguntas: anterioridade do método, dado público, reprodutibilidade…), nunca por um resultado isolado.",
+      "natureza": ["economia política", "caso/decisão", "leitura de documento/processo", "diagnóstico por sinais"],
+      "melhor_representacao": {
+        "arquetipo": "Dossiê de caso com decisão (mesa de diagnóstico), com o Termômetro como etapa",
+        "por_que": "O mecanismo é um procedimento de inferência: marcar sinais num processo concreto, pesar, e decidir o que pode ser afirmado publicamente. Um dossiê (descrição do processo → sinais → teste de 7 perguntas → decisão sobre o que publicar) exercita exatamente a disciplina que a aula ensina ('análise publica o que consegue reproduzir'). A seção de mecanismos é uma mesa de 6 linhas com sinal observável, que funciona como referência do dossiê.",
+        "sequencia": "abertura → 4.1 definição e ação coletiva → 4.2 mesa dos seis mecanismos → 4.3 → 4.4 antídotos (lista) → 4.5 teste de sete perguntas → dossiê ex-09 com INST·04 (previsão → cálculo → decisão de publicação) → ex-05 como contraprova (sem captura) → 4.6 conforme decisão T7 → registro"
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "pergunta": "Uma decisão favorável à concessionária prova captura? Se não, o que provaria?",
+        "objetivo": "Aplicar o teste de sete perguntas a um processo descrito e dizer o que se pode e o que não se pode afirmar.",
+        "previsao_util": true,
+        "previsao": {
+          "camada": "alexandria",
+          "enunciado": "Processo com metodologia divulgada depois da decisão, dados de entrada indisponíveis e contribuições sem resposta, com materialidade de R$ 400 mi/ano (caso do ex-09). Antes de marcar no Termômetro: a reprodutibilidade é 'sim', 'parcial' ou 'não'? Quanto da decisão fica fora de verificação por ano?",
+          "resposta_calculada": "Reprodutibilidade 'parcial' (o sinal 'resultado não reproduzível' não foi afirmado); opacidade 52/100; exposição R$ 208 mi/ano (400 × 52/100).",
+          "numeros_da_fonte": "Pesos do script (20 + 20 + 12) e caso do ex-09",
+          "rotulo_obrigatorio": "Pesos arbitrários, para treinar a hierarquia dos sinais; jamais imputação a instituição ou pessoa (nota do instrumento)"
+        }
+      },
+      "ato_autentico_C9": {
+        "principal": "decidir com justificativa: 'Qual conclusão você publica?' (ex-09), depois do Termômetro. Opções derivadas do gabarito (camada Alexandria): acusar captura / publicar a lacuna verificável + materialidade + pedido formal dos dados / não publicar nada.",
+        "secundario": "identificar o erro: §Erros 9 ('Captura regulatória é propina') e 10 ('A decisão favoreceu a empresa, logo houve captura').",
+        "contraprova": "ex-05 (processo com as quatro condições cumpridas e denúncia das associações): quem tem razão?"
+      },
+      "visualizacao_C6": {
+        "o_que_desenhar": "(1) Barras dos pesos dos sinais marcados (pts, 0–22), ordenadas, com a opacidade total /100 e a exposição em R$ mi/ano. (2) Diagrama 'benefício concentrado × custo difuso': poucos agentes com ganho grande × milhões com perda pequena, para mostrar por que só um lado se organiza. É desenho conceitual, sem números inventados.",
+        "titulo_afirmacao": "O que pesa é o que impede a verificação, não o resultado",
+        "existe_no_codigo": false,
+        "instrumento_promete_forma_nao_desenhada": true,
+        "alerta_S2": "Termômetro não pode virar semáforo vermelho/verde; o título 'O termômetro dá vermelho' do ex-09 é da fonte e fica como título literal, sem cor."
+      },
+      "instrumento_C5": {
+        "id": "m05-inst-04",
+        "titulo_fonte": "Termômetro · Risco de captura",
+        "posicao_fonte": "depois do bloco 15 (fim da 4.5), antes da 4.6",
+        "bloco_indice_proposto": 15,
+        "justificativa_posicao": "A posição da fonte já é a certa: logo depois do teste de sete perguntas e de 'essas três são as que valem a pena investigar primeiro'.",
+        "com_previsao": true,
+        "dependencias": ["T5: portar as descrições dos 8 sinais e a saída 'reprodutibilidade' como saída nomeada", "T6: barras de sinais", "kind 'quebra-cabeca' é mapeamento interno; o título 'Termômetro' fica literal"]
+      },
+      "checagem_C7": "ex-09 e ex-05: resposta × gabarito × critério ('captura é padrão institucional inferido ao longo do tempo, não diagnóstico de um ato isolado'). Autoavaliação em 3 níveis; 'não atende' → a revisar 4.1.",
+      "recuperacao_C10": {
+        "recupera_de": "A03: 'o que o pool custa?' (resposta da fonte: concentração de poder na metodologia, 'gancho direto da Aula 04'). A02: 'por que acesso formal não é acesso efetivo?' (a 2.5 anuncia que a Aula 04 trata a lacuna de dado como sinal).",
+        "itens_para_revisao_futura": ["Quiz Q7, Q8", "§Erros 9–10", "§Voz V.2 ataque do jornalista (atividade recomendada, P14)"],
+        "proximo_passo": "Não atende → 'Rever 4.1 — a definição correta'. Com prática → 'Próxima · M05·A05 — Revisão tarifária', com o gancho da 4.3: 'um ponto percentual num parâmetro de remuneração vale dezenas de milhões por ano'."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente (em andamento)",
+        "candidato_visto": "_cand/bosses_v.jpg: charge de revista satírica do fim do século XIX (Puck, assinada J. Keppler, 'The Bosses of the Senate'), com trustes como figuras gigantes dominando um senado.",
+        "classe": "documental (documento histórico)",
+        "uso_proposto": "Como contraexemplo, junto da 4.1: é a imagem popular de captura como conluio e corrupção que a aula corrige ('Captura é diagnóstico institucional, não veredito moral'). O trabalho da imagem é mostrar a intuição errada.",
+        "cuidados": "Crédito e data só do registro do arquivo; legenda sem afirmar fatos históricos que a fonte do módulo não traz. Texto em inglês dentro da imagem pede tradução curta na legenda. Risco de soar como acusação: a legenda deve dizer que a aula recusa essa leitura."
+      },
+      "mobile_390": "Pergunta e previsão (radio de 3 + valor em R$ mi/ano) no 1º viewport. A mesa dos seis mecanismos vira cartões recolhíveis (mecanismo → como opera → sinal observável). O Termômetro mostra 8 chaves em lista, cada uma com título e descrição curta, alvo ≥ 44px; as barras vêm abaixo, e o bloco de saídas fica fixo no rodapé do instrumento enquanto se marca. O dossiê é uma sequência vertical: processo → sinais → decisão.",
+      "lacunas_e_dependencias": [
+        "P24/P7 (T7): 4.6 e a nota cética não podem ir ao learner como estão; decisão do Founder.",
+        "Referências da §Ref ligáveis (proposta): Lei 13.848/2019; Lei 12.813/2013; Lei 9.784/1999; Lei 12.527/2011; Decreto 10.411/2020; 'Literatura econômica de regulação' (sem autor nomeado na fonte = não declarado).",
+        "A fonte não nomeia casos reais de captura, e o produto não deve nomear."
+      ],
+      "nota_de_ambicao": "A aula é memorável quando o learner, depois de calcular R$ 208 mi/ano fora de verificação, escolhe o que publicar e percebe que a resposta mais forte não é a acusação: é a lacuna verificada. A charge antiga, ao lado da definição, mostra de onde vem a intuição que a aula desmonta."
+    },
+    {
+      "aulaId": "aula-05-05",
+      "titulo": "Revisão tarifária",
+      "subtitulo": "Regulação econômica",
+      "blocos": 27,
+      "o_que_ensina": "A receita que a rede pode recuperar (Parcela B) é BRR líquida × WACC regulatório + OPEX eficiente (empresa de referência) + reintegração. A Parcela A (energia, transmissão, encargos) é repasse. Um ponto percentual de WACC sobre uma base de bilhões vale dezenas de milhões por ano. A Parcela B chega também ao consumidor livre pela tarifa de uso da rede.",
+      "natureza": ["cálculo", "mercado/regulação", "leitura de tarifa (decomposição)", "comparação (WACC projeto × regulatório; três movimentos)"],
+      "melhor_representacao": {
+        "arquetipo": "Laboratório guiado de cálculo (identidade → estimativa → instrumento), com mesas de comparação",
+        "por_que": "É a aula 'mais concreta do bloco' (lead), com uma identidade para escrever de cabeça (§Final 20) e um exercício numérico da fonte (ex-04). O laboratório começa pela identidade restaurada (T3), pede uma estimativa com os números do ex-04 e depois abre o simulador de ciclo. Com 27 blocos, é a aula mais longa do módulo: precisa de atos no meio (C4 ≈ 1.350px), senão vira parede de texto.",
+        "sequencia": "abertura com estimativa → 5.1 custo de serviço × price cap → 5.2 Parcela A × B + ato de classificar itens → 5.3 identidade (fórmula restaurada) → estimativa ex-04 → 5.4 WACC e os dois erros simétricos + caixa 'Números vivos' → 5.5 mesa dos três movimentos + Fator X → 5.6 mesa projeto × regulatório → 5.7 conta industrial no mercado livre → INST·05 → ex-06 / ex-07 → registro"
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "pergunta": "Quanto vale um ponto percentual de custo de capital regulatório?",
+        "objetivo": "Montar a Parcela B pela identidade e estimar o efeito de uma variação de WACC sobre a base.",
+        "previsao_util": true,
+        "previsao": {
+          "camada": "alexandria",
+          "enunciado": "Base de remuneração líquida de R$ 6 bilhões; o custo de capital regulatório passa de 7,2% para 8,0%, tudo o mais constante. Estime o efeito anual sobre a remuneração do capital.",
+          "resposta_calculada": "≈ R$ 48 milhões por ano (6.000 × 0,008), gabarito do ex-04",
+          "numeros_da_fonte": "ex-04 (valores hipotéticos da fonte)",
+          "rotulo_obrigatorio": "Valores hipotéticos; nenhum percentual daqui serve para análise externa (caixa 'Números vivos' da fonte)",
+          "segunda_previsao_no_instrumento": "INST·05 com padrões (base R$ 4.000 mi, WACC 7,5%, OPEX R$ 620 mi, reintegração R$ 180 mi, 14.000 GWh, índice − X = 2,5%): efeito de +1 p.p. = R$ 40 mi/ano; Parcela B ano 0 = R$ 1.100 mi; componente médio = R$ 78,57/MWh; ano 4 ≈ R$ 1.214 mi."
+        }
+      },
+      "ato_autentico_C9": {
+        "principal": "estimar (ex-04) e depois decidir: 'isso é evidência de captura?' (não; a avaliação exige método, período, estrutura de capital, convenção real/nominal, simetria entre pares). Liga A05 à A04.",
+        "meio_da_aula": "classificar itens em Parcela A ou Parcela B (compra de energia, uso da transmissão, encargos setoriais × custo operacional, remuneração do capital, depreciação/reintegração), conforme a 5.2; e classificar situações nos três movimentos da 5.5.",
+        "fechamento": "ex-06 ('A conta subiu 12%', Parcela B +2%): três explicações e o primeiro dado a pedir. ex-07 ('Migrou e continua exposta'): identificar o erro do diretor financeiro."
+      },
+      "visualizacao_C6": {
+        "o_que_desenhar": "(1) Identidade da Parcela B como equação montável: blocos OPEX + BRR×WACC + reintegração, com unidade R$ mi/ano. (2) Figura do INST·05: barras empilhadas OPEX / remuneração / reintegração em 5 anos (revisão, +1…+4) em R$ mi, com a linha do componente médio em R$/MWh num eixo próprio e rotulado. A fonte usa uma escala kc escondida no mesmo eixo; na Alexandria, um eixo secundário honesto ou dois painéis. (3) Decomposição conceitual de um reajuste (Parcela A, Parcela B, tributos, componentes financeiros) sem valores, porque a fonte não dá os pesos.",
+        "titulo_afirmacao": "A revisão decide a Parcela B, e o WACC move a maior fatia dela quando a concessão é intensiva em capital",
+        "existe_no_codigo": false,
+        "instrumento_promete_forma_nao_desenhada": true
+      },
+      "instrumento_C5": {
+        "id": "m05-inst-05",
+        "titulo_fonte": "Simulador · Ciclo de revisão tarifária",
+        "posicao_fonte": "depois do bloco 24 (fim da 5.7)",
+        "bloco_indice_proposto": 18,
+        "justificativa_posicao": "O bloco 18 explica o Fator X ('entra subtraindo do índice de correção da Parcela B'). A essa altura, identidade, WACC e ciclo já foram lidos, e o instrumento é exatamente 'revisão no ano zero + reajustes por índice − X'. Deixá-lo depois da 5.7 empurra o cálculo para depois da aplicação industrial.",
+        "com_previsao": true,
+        "dependencias": ["T3: restaurar a fórmula da 5.3", "T5: restaurar os 4 ramos de veredito da fonte (índice negativo; remuneração ≥ 48%; ≥ 25%; < 25%)", "T6: barras + linha"]
+      },
+      "checagem_C7": "ex-04, ex-06, ex-07: tentativa → gabarito → 'o que acrescenta' → autoavaliação. Classificação A/B: referência = 5.2.",
+      "recuperacao_C10": {
+        "recupera_de": "A01: 'o que a regulação substitui num monopólio de rede?' (a 5.1 retoma: empresa de referência = benchmark artificial 'exatamente como a Aula 01 antecipou'). A04: 'por que um ponto percentual é terreno fértil para captura?' (4.3).",
+        "itens_para_revisao_futura": ["Quiz Q9, Q10", "§Erros 11–12", "§Voz V.1 30 ('escreva de cabeça a identidade da Parcela B')"],
+        "proximo_passo": "Não atende → 'Rever 5.2 — Parcela A e Parcela B' ou 'Rever 5.3'. Com prática → 'Próxima · M05·A06 — Desenho de mercado comparado'."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente (em andamento)",
+        "sugestao": "Imagem opcional junto da 5.3 ('ativos prudentes, úteis, efetivamente em serviço'): fotografia documental de ativo de distribuição (poste com transformador, subestação de distribuição), com crédito, para mostrar que a 'base de ativos' é coisa física. Fatura: a fonte não traz modelo de fatura; não gerar fatura com aparência real (imitaria documento de empresa real). Se houver, é diagrama genérico programático sem marca."
+      },
+      "mobile_390": "Pergunta e campo de estimativa (R$ mi/ano) no 1º viewport. A identidade vira 3 blocos empilhados que se somam. As mesas 5.5 e 5.6 viram cartões por linha; a 5.6 pode virar alternância 'projeto | regulatório' por dimensão. INST·05: 6 sliders em coluna, depois as barras em 5 colunas com rótulos 'R', '+1'…'+4' e a linha de R$/MWh num segundo painel pequeno abaixo. Saídas em grade 2×2.",
+      "lacunas_e_dependencias": [
+        "Fonte: valores vigentes de WACC, estrutura de capital e resultados de revisões não são dados. É proposital ('números vivos'): mostrar a caixa, nunca preencher.",
+        "Fonte: a periodicidade da revisão está como 'tipicamente da ordem de quatro a cinco anos', definida em cada contrato. Não transformar em número fixo.",
+        "Referências da §Ref ligáveis (proposta): ANEEL PRORET Módulo 2; ANEEL estrutura da tarifa; Lei 8.987/1995.",
+        "Extração: fórmula da 5.3 (T3); rótulo 'Números vivos' (T2)."
+      ],
+      "nota_de_ambicao": "O learner escreve a identidade, estima os R$ 48 mi do ex-04 e decide que isso, sozinho, não é captura. Depois move um slider de WACC e vê a fatia de remuneração engordar em 5 anos, enquanto o componente em R$/MWh mostra quanto disso chega à fatura. A aula termina na fábrica que migrou e continua pagando a rede, com o 'custo a validar' fechando o circuito."
+    },
+    {
+      "aulaId": "aula-05-06",
+      "titulo": "Desenho de mercado comparado",
+      "subtitulo": "Síntese",
+      "blocos": 20,
+      "o_que_ensina": "Qualquer desenho se localiza em dois eixos independentes: como o custo é revelado para o despacho (oferta × custo declarado e auditado) e como a capacidade firme é paga (só energia × produto formal). Todo sistema grande tem despacho central por razão física, então a dicotomia 'centralizado × descentralizado' mistura as camadas física e comercial. O Brasil fica perto do extremo de custo declarado (hidrotermia) e numa posição intermediária de capacidade.",
+      "natureza": ["síntese", "comparação de desenhos", "mapa conceitual", "mercado/regulação"],
+      "melhor_representacao": {
+        "arquetipo": "Mapa como palco (plano cartesiano conceitual), com ato de localizar e a matriz final como ferramenta",
+        "por_que": "A aula é literalmente um mapa de dois eixos com quadrantes, pontos de referência e o Brasil. O mapa deve ser o palco da aula inteira: os quadrantes da 6.2 são regiões do mapa (compra / paga / quebra), o Brasil aparece como marca na 6.3, a 6.4 corrige a dicotomia sobre ele, e o INST·06 é o próprio mapa ficando interativo. É a aula que mais combina com a identidade cartográfica da Alexandria.",
+        "sequencia": "abertura com localização (ex-10) → 6.1 os dois eixos se desenham → 6.2 quadrantes preenchidos → 6.3 Brasil marcado → 6.4 dicotomia (identificar o erro) + caixa 'formulação de três frases' → INST·06 → 6.5 matriz de nove perguntas → registro de fim de módulo → Revisão/Avaliação"
+      },
+      "abertura_C3": {
+        "camada": "alexandria",
+        "pergunta": "Um sistema com 70% da energia de reservatórios plurianuais, despacho por custos declarados e auditados, nenhum pagamento permanente por disponibilidade e teto apertado sobre o preço de curto prazo: onde ele fica no mapa, e qual é o risco dominante?",
+        "objetivo": "Localizar um desenho nos dois eixos e nomear o risco que ele carrega.",
+        "origem": "enunciado do ex-10 da fonte usado como abertura",
+        "previsao_util": true,
+        "previsao": {
+          "camada": "alexandria",
+          "enunciado": "Antes de ler a 6.1, marque o ponto no mapa vazio e escolha o risco dominante entre os cinco rótulos do instrumento (missing money, erro de projeção, coordenação intertemporal, opacidade metodológica, custo administrativo).",
+          "resposta_de_referencia": "Alto em revelação por custo, baixo em remuneração de capacidade; risco dominante: missing money (gabarito do ex-10). No INST·06, com peso armazenável 70, a posição coerente calculada é x ≈ 67,5 e y ≈ 45,5, e qualquer y < 32 dá 'Missing money'.",
+          "numeros_da_fonte": "ex-10 e fórmulas do script (xId = 15 + 0,75·H; yId = 70 − 0,35·H; limites de risco)",
+          "rotulo_obrigatorio": "Eixos são índices adimensionais do módulo; A, B e C são configurações genéricas, não sistemas reais; a marca 'Brasil' (85, 45) é a posição didática do módulo, não uma medição.",
+          "regra_de_entrada": "Localização aceita por quadrante (camada Alexandria), não por coordenada exata"
+        }
+      },
+      "ato_autentico_C9": {
+        "principal": "localizar no mapa (ex-10) e nomear o risco, com a justificativa pedida pela fonte: a saída não é remover o teto, é criar um produto de disponibilidade.",
+        "secundario": "identificar o erro: 'no Brasil o despacho é centralizado, lá fora o mercado é descentralizado' (6.4, §Erros 8), reescrevendo a frase pela 'formulação de três frases'.",
+        "terciario": "responder ex-08 (por que não leiloar o despacho) em até quatro frases, que é o limite da fonte."
+      },
+      "visualizacao_C6": {
+        "o_que_desenhar": "Plano de 2 eixos (x: revelação de custo, 0 oferta → 100 custo declarado; y: remuneração de capacidade, 0 só energia → 100 formal). Linhas de quadrante em 50, os quatro quadrantes rotulados com o texto da 6.2 (compra / paga / quebra, em disclosure), os pontos A, B, C (círculos vazios), o Brasil (marca distinta) e a configuração do learner. Opcional: o ponto 'coerente com o parque' (xId, yId) como alvo pontilhado, porque a fórmula já existe no script.",
+        "titulo_afirmacao": "Todo desenho tem operador central; o que muda é quem revela o custo e como a capacidade é paga",
+        "existe_no_codigo": false,
+        "instrumento_promete_forma_nao_desenhada": true,
+        "observacao": "O kind interno é 'simulador', mas o título literal é 'Mapa'. É o caso mais forte de C5 'forma prometida' do módulo: sem o plano desenhado, o instrumento não existe."
+      },
+      "instrumento_C5": {
+        "id": "m05-inst-06",
+        "titulo_fonte": "Mapa · Posição no desenho de mercado",
+        "posicao_fonte": "depois do bloco 14 (caixa 'formulação de três frases'), antes da 6.5",
+        "bloco_indice_proposto": 14,
+        "justificativa_posicao": "A posição da fonte está certa: o learner já tem eixos, quadrantes e Brasil. Proposta adicional: o mapa aparece estático desde a 6.1 (palco) e fica interativo aqui.",
+        "com_previsao": true,
+        "observacao_padrao": "Os padrões da fonte (X = 85, Y = 45) coincidem com o Brasil (distância 0). Para a previsão do ex-10, iniciar sem ponto marcado; o padrão da fonte vale como 'mostrar Brasil'.",
+        "dependencias": ["T5: quadrante e risco dominante como saídas nomeadas (hoje só no veredito)", "T6: desenhar o plano", "restaurar o veredito da fonte com xId/yId na faixa média (coerência 55–80)"]
+      },
+      "checagem_C7": "ex-10: localização × gabarito × 'o que acrescenta' (remover o teto transfere risco extremo ao consumidor) × autoavaliação. Erro da dicotomia: a referência é a 'formulação de três frases' da fonte, mostrada depois da reescrita.",
+      "recuperacao_C10": {
+        "recupera_de": "Esta é a aula de recuperação natural do módulo. A01: 'por que todo sistema grande tem coordenação central?' (1.3, 'Guarde este ponto: ele é a chave da Aula 06'). A03: 'quais são as três dimensões do híbrido?' (a 6.4 retoma a camada de dinheiro da Aula 03). §00: enunciar a régua das quatro perguntas antes de abrir a matriz de nove.",
+        "itens_para_revisao_futura": ["§Final 21", "§Voz V.1 34", "ex-10"],
+        "proximo_passo": "Última aula → 'Revisão do módulo (exercícios ex-01…ex-10, caso Operação A, erros)' → 'Avaliação do módulo' (quiz, com critério literal da fonte mostrado como registro, sem 'domínio' — P5/P18). Não atende → 'Rever 6.4 — a dicotomia falsa'."
+      },
+      "midia": {
+        "plano_curadoria": "inexistente (em andamento)",
+        "candidato_visto": "_cand/amprion_v.jpg (sala de controle de operador de transmissão estrangeiro). Há também ercot2, terna1 e terna2 em _cand, não vistos neste estudo.",
+        "uso_proposto": "Junto da 6.4 ('mercados internacionais organizados executam despacho econômico centralizado'): evidência visual de que o 'mercado descentralizado' também tem sala de despacho central.",
+        "classe": "documental",
+        "cuidados": "Crédito do arquivo. A legenda pode nomear o operador só se o registro o nomear. Não afirmar o desenho de mercado daquele país além do que a fonte do módulo diz (a fonte não nomeia países). Uma única imagem de sala de controle no módulo."
+      },
+      "mobile_390": "Pergunta do ex-10 e o mapa quadrado (largura total, ~358×358) no 1º/2º viewport, com toque para marcar e seletor de risco abaixo. Quadrantes com rótulos curtos; 'compra / paga / quebra' em disclosure sob o mapa, por quadrante tocado. INST·06: 3 sliders abaixo do mapa, com o mapa fixo no topo do instrumento enquanto se arrasta. A matriz de 9 perguntas vira lista recolhível (pergunta → sinal bom → sinal de risco).",
+      "lacunas_e_dependencias": [
+        "Fonte: 'o Brasil vem se deslocando' no eixo 2 não tem direção nem ritmo quantificados; não desenhar trajetória.",
+        "Fonte: não nomeia nenhum sistema estrangeiro; A, B e C seguem anônimos.",
+        "Sem grupo de glossário próprio; termos vêm dos grupos das A03 e A05 (ex.: missing money, lastro) — confirmar no §Lex.",
+        "P24: nota gold 'camada internacional da GridAlpha' fora da interface (P7).",
+        "Referências da §Ref ligáveis (proposta): ONS; CCEE."
+      ],
+      "nota_de_ambicao": "O mapa do fim do módulo é o objeto que o learner leva: ele marca um sistema desconhecido, vê o Brasil a uma distância mensurável, nomeia o risco que escolheu carregar e reescreve em voz própria a frase errada que ouve toda semana. É a síntese do módulo num único gesto cartográfico, coerente com o atlas."
+    }
+  ],
+  "resumo_arquetipos": {
+    "aula-05-01": "prancha dividida com instrumento vivo (curva) + previsão",
+    "aula-05-02": "escada de graus + mesa de classificação + trade-off",
+    "aula-05-03": "palco de duas camadas (física × dinheiro) + decisão",
+    "aula-05-04": "dossiê de caso com decisão de publicação + termômetro",
+    "aula-05-05": "laboratório guiado de cálculo + mesas de comparação",
+    "aula-05-06": "mapa conceitual como palco + localizar"
+  },
+  "experiencia_jogavel": "Fora desta wave (P25): o módulo só reserva a linha 'experiência jogável em desenho'. Não há jogo aqui.",
+  "caso_operacao_a": "O §Caso deste módulo (C.1 oito perguntas de diagnóstico; C.2 o que não faz) pertence ao caso transversal: título 'Caso — Operação A' sem 'Parte 5' (P17). O Desafio de decisão da camada Alexandria pode usar as oito perguntas como inventário de lacunas. Liga-se à A05 (5.7) e à A04 (participação institucional)."
+}

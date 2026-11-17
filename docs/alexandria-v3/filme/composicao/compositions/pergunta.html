@@ -1,0 +1,37 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" /></head>
+<body>
+  <template>
+    <style>
+      #root { position: absolute; inset: 0; }
+      #pg-veu { position: absolute; left: 0; right: 0; top: 0; height: 720px;
+        background: linear-gradient(180deg, rgba(242,236,223,0.93) 0%, rgba(242,236,223,0.84) 52%, rgba(242,236,223,0) 100%); }
+      #pg-g { position: absolute; left: 140px; top: 130px; width: 1500px; color: var(--tinta); }
+      #pg-olho { color: var(--ouro-texto); }
+      #pg-perg { margin-top: 30px; font-size: 104px; font-weight: 420; line-height: 1.02; letter-spacing: -0.012em; white-space: nowrap; }
+      .neq { position: relative; display: inline-block; }
+      .neq::after { content: ""; position: absolute; left: 50%; top: 18%; width: 0.07em; height: 64%;
+        background: currentColor; transform: translateX(-50%) rotate(28deg); }
+    </style>
+    <div id="root" data-composition-id="pergunta" data-width="1920" data-height="1080">
+      <div id="pg-cena" class="fundo">
+        <video id="pg-v" class="plano" src="assets/v3.mp4" muted playsinline data-start="0" data-duration="6" data-track-index="0"></video>
+        <div id="pg-veu"></div>
+        <div id="pg-g">
+          <p id="pg-olho" class="mono">M01 · Aula 08 · Capacidade instalada e fator de capacidade</p>
+          <h2 id="pg-perg" class="serif"><span class="bloco">Por que 100 MW solar</span><span class="bloco"><span class="neq">=</span> 100 MW térmica?</span></h2>
+        </div>
+        <div class="selo">GRAVURA GERADA</div>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power2.out", S = "sine.inOut";
+      tl.fromTo("#pg-cena", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: S }, 0);
+      tl.fromTo("#pg-veu", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: S }, 0.3);
+      tl.fromTo("#pg-olho", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: E }, 0.8);
+      tl.fromTo("#pg-perg", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.4, ease: E }, 1.3);
+      window.__timelines["pergunta"] = tl;
+    </script>
+  </template>
+</body></html>

@@ -11,7 +11,7 @@
 //
 // Raio zero, sem sombra, tinta e fio do sistema Alexandria.
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import type { Instrument, InstrumentField } from '@/lib/types/alexandria';
 import {
   INSTRUMENT_CALCULATORS,
@@ -19,7 +19,14 @@ import {
   type EntradaInstrumento,
   type ResultadoInstrumento,
 } from '@/lib/data/alexandria-instrument-calculators';
-import { A, A2, AT, AS, AR, AE } from '@/design/alexandria-tokens';
+import { A, A2, AF, AT, AT2, AS } from '@/design/alexandria-tokens';
+import {
+  AssentoDeValor,
+  EscalaDePosicoes,
+  MarcaDeAcao,
+  ReguaGraduada,
+} from './ControlesDeInstrumento';
+import { useLargura } from '../shell/navegacao';
 
 /** O LAB 01 é comparador de dois lados. A coluna vem prefixada no rótulo
  *  ("Fábrica A · Demanda máxima"), porque `InstrumentField` não tem campo
@@ -29,14 +36,51 @@ function separaColuna(label: string): { coluna: string | null; texto: string } {
   return m ? { coluna: m[1], texto: m[2] } : { coluna: null, texto: label };
 }
 
+/** Tira do título o prefixo que a seção acima já disse. Só o prefixo, só
+ *  quando é exatamente a mesma palavra, e nunca deixando o título vazio. */
+function tituloSemEco(titulo: string, contexto: string | null): string {
+  if (!contexto) return titulo;
+  const sem = titulo.replace(new RegExp(String.raw`^\s*${contexto}\s*·\s*`, 'i'), '');
+  return sem.trim() ? sem : titulo;
+}
+
 const fmt = (v: number, casas = 2) =>
   v.toLocaleString('pt-BR', { maximumFractionDigits: casas });
+
+/** Casas FIXAS. Numa régua graduada o número tem sempre a mesma forma: o
+ *  fator de potência lê 0,96 e 1,00, nunca 0,96 e 1 — a leitura de um
+ *  instrumento não muda de casa no meio da escala. */
+const fixo = (v: number, casas: number) =>
+  v.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
 
 /** O `f1` da fonte do Módulo 08: uma casa fixa, vírgula. Usado só na
  *  comparação do modo de correção sob demanda. */
 const umaCasa = (v: number) => (Math.round(v * 10) / 10).toFixed(1).replace('.', ',');
 
-export function InstrumentPanel({ instrumento }: { instrumento: Instrument }) {
+export function InstrumentPanel({
+  instrumento,
+  contexto = null,
+  fonte = null,
+  aoUsar,
+}: {
+  instrumento: Instrument;
+  /** Callback de USO — v3 (eventos). Chamado a cada mudança de controle
+   *  feita pelo aluno (`ajuste`) e a cada pedido de correção (`correcao`),
+   *  com os valores daquele momento. O painel não agrupa nem envia nada:
+   *  quem o monta numa aula liga isto a `useLoopDaAula().usarInstrumento`,
+   *  que agrupa o arrasto num evento só e põe `aulaId`. Sem o callback (a
+   *  folha do módulo), o instrumento funciona igual e nada é registrado. */
+  aoUsar?: (uso: { modo: 'ajuste' | 'correcao'; valores: Record<string, EntradaInstrumento> }) => void;
+  /** A procedência dos números deste instrumento, renderizada junto ao
+   *  bloco e antes da nota que o interpreta (S4). Quem monta o instrumento
+   *  é quem sabe de que estante ele veio. */
+  fonte?: ReactNode;
+  /** O nome da seção que ABRE este instrumento, quando há uma. A folha do
+   *  módulo já imprime "LABORATÓRIO" na margem do roteiro, e o título da
+   *  fonte começa com a mesma palavra ("Laboratório · Comparador de perfil
+   *  elétrico"): sem isto a mesma palavra aparecia três vezes em 90 px. */
+  contexto?: string | null;
+}) {
   // Semeia TODO campo que declara default, número ou string.
   //
   // Até a Wave 18 esta linha era `if (typeof f.defaultValue === 'number')`,
@@ -55,6 +99,7 @@ export function InstrumentPanel({ instrumento }: { instrumento: Instrument }) {
   }, [instrumento]);
 
   const [valores, setValores] = useState<Record<string, EntradaInstrumento>>(inicial);
+  const movel = useLargura() === 'movel';
 
   // ── Modo de correção sob demanda — LYCEUM Wave 34 ────────────────
   // Quando `correcaoSobDemanda` existe, NADA calcula ao vivo: o resultado
@@ -107,6 +152,7 @@ export function InstrumentPanel({ instrumento }: { instrumento: Instrument }) {
       completo,
       resultado: calc ? calc(v) : { valores: {} },
     });
+    aoUsar?.({ modo: 'correcao', valores: v });
   };
 
   /** Reescala os campos da referência para somarem `alvo` e corrige em
@@ -148,16 +194,21 @@ export function InstrumentPanel({ instrumento }: { instrumento: Instrument }) {
   // ('a2'/'a4'/'bt') viravam NaN ao primeiro clique. Os selects numéricos
   // ('500' kV, '2' circuitos) seguem chegando como número, que é o que as
   // calculadoras esperam.
+  const proximoValor = (v: Record<string, EntradaInstrumento>, id: string, bruto: string) => {
+    const proximo = { ...v };
+    if (bruto === '') delete proximo[id];
+    else {
+      const comoNumero = Number(bruto);
+      proximo[id] = Number.isFinite(comoNumero) ? comoNumero : bruto;
+    }
+    return proximo;
+  };
   const setCampo = (id: string, bruto: string) => {
-    setValores((v) => {
-      const proximo = { ...v };
-      if (bruto === '') delete proximo[id];
-      else {
-        const comoNumero = Number(bruto);
-        proximo[id] = Number.isFinite(comoNumero) ? comoNumero : bruto;
-      }
-      return proximo;
-    });
+    setValores((v) => proximoValor(v, id, bruto));
+    // Fora do updater (efeito colateral não entra em setState). Os valores
+    // são os do render corrente mais esta mudança; quem agrupa fica com o
+    // último, que é o assentado.
+    aoUsar?.({ modo: 'ajuste', valores: proximoValor(valores, id, bruto) });
   };
 
   // Campos que a própria calculadora resolveu (Lei de Ohm preenche a
@@ -185,13 +236,19 @@ export function InstrumentPanel({ instrumento }: { instrumento: Instrument }) {
   const ehDiagrama = instrumento.id === 'inst-05';
 
   return (
+    // A PRANCHA NÃO É UM CARTÃO. Ela era uma caixa com fio nos quatro lados
+    // e fundo creme próprio, colada sobre o creme da folha: mobília de
+    // aplicação dentro de um documento gravado. Agora é uma prancha do
+    // atlas — fio de abertura pesado, título e fólio na mesma linha, e o
+    // papel da folha correndo por baixo. A profundidade vem do fio, como
+    // em todo o resto da casa.
     <section
       style={{
-        border: `1px solid ${A.fioSobreCreme}`,
-        borderRadius: AR.none,
-        background: A2.cremeSuperficie,
         display: 'flex',
         flexDirection: 'column',
+        gap: movel ? AS.lg : AS.xl,
+        borderTop: `1.4px solid ${A.tintaSobreCreme}`,
+        paddingTop: AS.md,
       }}
     >
       <header
@@ -200,26 +257,40 @@ export function InstrumentPanel({ instrumento }: { instrumento: Instrument }) {
           alignItems: 'baseline',
           justifyContent: 'space-between',
           gap: AS.md,
-          padding: `${AS.md} ${AS.lg}`,
-          borderBottom: `1px solid ${A.fioSobreCreme}`,
+          flexWrap: 'wrap',
         }}
       >
-        <span style={{ ...AT.h3, color: A.tintaSobreCreme, letterSpacing: '0.06em' }}>
-          {instrumento.title}
+        {/* Título de objeto em serifa, caixa alta e baixa: o `AT.h3` que
+            estava aqui carrega `text-transform: uppercase`, e título de
+            conteúdo em versalete é o tique T23. O versalete fica para o
+            aparato à direita, que é metadado. */}
+        <span
+          style={{
+            fontFamily: AF.corpo,
+            fontSize: movel ? '18px' : '20px',
+            fontWeight: 500,
+            lineHeight: 1.22,
+            color: A.tintaSobreCreme,
+          }}
+        >
+          {tituloSemEco(instrumento.title, contexto)}
         </span>
-        <span style={{ ...AT.rotulo, fontSize: '10px', color: A2.tintaMetadado }}>
-          {instrumento.id.replace('-', ' · ').toUpperCase()}
+        <span style={{ ...AT2.eyebrow, fontSize: '11px', color: A2.tintaMetadado }}>
+          instrumento de bancada
         </span>
       </header>
 
-      <div style={{ padding: AS.lg, display: 'flex', flexDirection: 'column', gap: AS.lg }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: movel ? AS.lg : AS.xl }}>
         {instrumento.formula && (
+          // A fórmula é a inscrição da prancha: ela fica em tinta, sobre um
+          // fio. A barra terracota de 3px saiu — terracota é pontuação
+          // rara, e aqui ela competia com o total da leitura.
           <div
             style={{
               ...AT.dado,
               fontSize: '15px',
-              color: A.terracota,
-              borderLeft: `3px solid ${A.terracota}`,
+              color: A.tintaSobreCreme,
+              borderLeft: `1.2px solid ${A.tintaSobreCreme}`,
               paddingLeft: AS.md,
             }}
           >
@@ -252,6 +323,7 @@ export function InstrumentPanel({ instrumento }: { instrumento: Instrument }) {
               campos={instrumento.fields.filter((f) => separaColuna(f.label).coluna === null)}
               mostrado={mostrado}
               setCampo={setCampo}
+              movel={movel}
             />
             <div
               style={{
@@ -271,11 +343,12 @@ export function InstrumentPanel({ instrumento }: { instrumento: Instrument }) {
                     gap: AS.md,
                   }}
                 >
-                  <span style={{ ...AT.rotulo, color: A.terracota }}>{col}</span>
+                  <span style={{ ...AT2.eyebrow, fontSize: '11px', color: A.tintaSobreCreme }}>{col}</span>
                   <CamposGrade
                     campos={instrumento.fields.filter((f) => separaColuna(f.label).coluna === col)}
                     mostrado={mostrado}
                     setCampo={setCampo}
+                    movel={movel}
                     umaColuna
                   />
                   <Saidas
@@ -289,7 +362,12 @@ export function InstrumentPanel({ instrumento }: { instrumento: Instrument }) {
             </div>
           </>
         ) : (
-          <CamposGrade campos={instrumento.fields} mostrado={mostrado} setCampo={setCampo} />
+          <CamposGrade
+            campos={instrumento.fields}
+            mostrado={mostrado}
+            setCampo={setCampo}
+            movel={movel}
+          />
         )}
 
         {!correcao && colunas.length === 0 && instrumento.outputs.length > 0 && (
@@ -324,6 +402,7 @@ export function InstrumentPanel({ instrumento }: { instrumento: Instrument }) {
           <CorrecaoBloco
             correcao={correcao}
             campos={instrumento.fields}
+            movel={movel}
             saidas={instrumento.outputs}
             revelado={revelado}
             onCorrigir={() => corrigir(valores)}
@@ -331,6 +410,13 @@ export function InstrumentPanel({ instrumento }: { instrumento: Instrument }) {
             onZerar={correcao.zerarRotulo ? zerar : undefined}
           />
         )}
+
+        {/* A FONTE VEM ANTES DA PROSA QUE INTERPRETA (S4). O instrumento
+            devolve número, e número factual tem procedência junto ao
+            bloco, na mesma tela — nunca só no rodapé da página. Quem monta
+            o instrumento passa a linha; onde ela não vier, nada é
+            inventado aqui. */}
+        {fonte}
 
         {!correcao && instrumento.note && (
           <p
@@ -357,6 +443,7 @@ export function InstrumentPanel({ instrumento }: { instrumento: Instrument }) {
 function CorrecaoBloco({
   correcao,
   campos,
+  movel,
   saidas,
   revelado,
   onCorrigir,
@@ -365,6 +452,7 @@ function CorrecaoBloco({
 }: {
   correcao: NonNullable<Instrument['correcaoSobDemanda']>;
   campos: InstrumentField[];
+  movel: boolean;
   saidas: { id: string; label: string; unit: string | null }[];
   revelado: {
     produzido: Record<string, number>;
@@ -381,16 +469,6 @@ function CorrecaoBloco({
   const temSaidas =
     revelado !== null && Object.keys(revelado.resultado.valores).length > 0;
 
-  const botaoBase: React.CSSProperties = {
-    ...AT.rotulo,
-    fontSize: '10px',
-    background: 'none',
-    borderRadius: AR.none,
-    padding: `${AS.xs} ${AS.md}`,
-    cursor: 'pointer',
-    transition: `color ${AE.estado} ${AE.easing}, border-color ${AE.estado} ${AE.easing}`,
-  };
-
   return (
     <div
       style={{
@@ -401,39 +479,24 @@ function CorrecaoBloco({
         paddingTop: AS.md,
       }}
     >
-      <div style={{ display: 'flex', gap: AS.md, flexWrap: 'wrap' }}>
-        <button
-          type="button"
-          onClick={onCorrigir}
-          style={{ ...botaoBase, color: A.terracota, border: `1px solid ${A.terracota}` }}
-        >
+      {/* Os comandos da bancada eram três retângulos com fio nos quatro
+          lados — e o principal em terracota, que é a cor que a casa guarda
+          para a posição atual. Agora são cartelas entalhadas, a mesma peça
+          terminal da Retomada, com a principal em tinta cheia e as outras
+          em tinta suave. */}
+      <div style={{ display: 'flex', gap: AS.lg, flexWrap: 'wrap', alignItems: 'center' }}>
+        <MarcaDeAcao principal movel={movel} onClick={onCorrigir}>
           {correcao.botaoRotulo}
-        </button>
+        </MarcaDeAcao>
         {onNormalizar && (
-          <button
-            type="button"
-            onClick={onNormalizar}
-            style={{
-              ...botaoBase,
-              color: A2.tintaMetadado,
-              border: `1px solid ${A2.fioClaroSobreCreme}`,
-            }}
-          >
+          <MarcaDeAcao movel={movel} onClick={onNormalizar}>
             {correcao.normalizar?.rotulo}
-          </button>
+          </MarcaDeAcao>
         )}
         {onZerar && (
-          <button
-            type="button"
-            onClick={onZerar}
-            style={{
-              ...botaoBase,
-              color: A2.tintaMetadado,
-              border: `1px solid ${A2.fioClaroSobreCreme}`,
-            }}
-          >
+          <MarcaDeAcao movel={movel} onClick={onZerar}>
             {correcao.zerarRotulo}
-          </button>
+          </MarcaDeAcao>
         )}
       </div>
 
@@ -527,88 +590,97 @@ function CorrecaoBloco({
   );
 }
 
+/** A BANCADA: um controle por campo, cada um um objeto do atlas.
+ *
+ *  Até a r01 esta função era um formulário — rótulo, `<input type="number">`
+ *  com fundo próprio e, quando `kind` era `range`, um `<input type="range">`
+ *  de trilho terracota com o botão redondo do sistema operacional por cima.
+ *  Era a caixa default e o círculo de formulário na mesma linha, dentro de
+ *  um documento gravado. O que entra no lugar está em
+ *  `ControlesDeInstrumento.tsx`, e a escolha do controle continua sendo a
+ *  que a fonte declara: `range` vira régua graduada, `select` vira escala
+ *  de posições, o resto vira assento de valor. */
 function CamposGrade({
   campos,
   mostrado,
   setCampo,
+  movel,
   umaColuna = false,
 }: {
   campos: InstrumentField[];
   mostrado: (f: InstrumentField) => string;
   setCampo: (id: string, v: string) => void;
+  movel: boolean;
   umaColuna?: boolean;
 }) {
   if (!campos.length) return null;
+  const colunas = umaColuna ? 1 : Math.min(campos.length, movel ? 1 : 3);
   return (
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: umaColuna ? '1fr' : `repeat(${Math.min(campos.length, 3)}, 1fr)`,
-        gap: AS.lg,
+        gridTemplateColumns: `repeat(${colunas}, minmax(0, 1fr))`,
+        gap: movel ? AS.lg : AS.xl,
       }}
     >
       {campos.map((f) => {
         const { texto } = separaColuna(f.label);
+        const mostradoTexto = mostrado(f);
+
+        if (f.kind === 'select') {
+          return (
+            <EscalaDePosicoes
+              key={f.id}
+              rotulo={texto}
+              unidade={f.unit ?? null}
+              opcoes={f.options ?? []}
+              valor={mostradoTexto}
+              movel={movel}
+              onMudar={(v) => setCampo(f.id, v)}
+            />
+          );
+        }
+
+        if (f.kind === 'range' && f.min !== undefined && f.max !== undefined) {
+          const passo = f.step ?? 1;
+          const bruto = Number(mostradoTexto);
+          const valor = Number.isFinite(bruto) ? Math.min(f.max, Math.max(f.min, bruto)) : f.min;
+          return (
+            <ReguaGraduada
+              key={f.id}
+              rotulo={texto}
+              unidade={f.unit ?? null}
+              valor={valor}
+              min={f.min}
+              max={f.max}
+              passo={passo}
+              movel={movel}
+              // A escala herda as casas decimais do passo da fonte: o fator
+              // de potência anda de 0,01 e precisa de duas; a demanda anda
+              // de 10 kW e não precisa de nenhuma.
+              formatar={(v) => fixo(v, (String(passo).split('.')[1] ?? '').length)}
+              onMudar={(v) => setCampo(f.id, String(v))}
+            />
+          );
+        }
+
         return (
-          <label key={f.id} style={{ display: 'flex', flexDirection: 'column', gap: AS.xs }}>
-            <span style={{ ...AT.rotulo, fontSize: '10px', color: A2.tintaMetadado }}>
-              {texto}
-              {f.unit && <span style={{ color: A.terracota }}> · {f.unit}</span>}
-            </span>
-
-            {f.kind === 'select' ? (
-              <select
-                value={mostrado(f)}
-                onChange={(e) => setCampo(f.id, e.target.value)}
-                style={campoEstilo}
-              >
-                {(f.options ?? []).map((o) => (
-                  <option key={o.value} value={o.value}>
-                    {o.label}
-                  </option>
-                ))}
-              </select>
-            ) : (
-              <input
-                type="number"
-                value={mostrado(f)}
-                min={f.min}
-                max={f.max}
-                step={f.step}
-                onChange={(e) => setCampo(f.id, e.target.value)}
-                style={campoEstilo}
-              />
-            )}
-
-            {f.kind === 'range' && (
-              <input
-                type="range"
-                value={mostrado(f) || f.min || 0}
-                min={f.min}
-                max={f.max}
-                step={f.step}
-                onChange={(e) => setCampo(f.id, e.target.value)}
-                style={{ width: '100%', accentColor: A.terracota }}
-              />
-            )}
-          </label>
+          <AssentoDeValor
+            key={f.id}
+            rotulo={texto}
+            unidade={f.unit ?? null}
+            texto={mostradoTexto}
+            min={f.min}
+            max={f.max}
+            passo={f.step}
+            movel={movel}
+            onMudar={(v) => setCampo(f.id, v)}
+          />
         );
       })}
     </div>
   );
 }
-
-const campoEstilo: React.CSSProperties = {
-  ...AT.dado,
-  color: A.tintaSobreCreme,
-  background: A.cremePapel,
-  border: 'none',
-  borderBottom: `1px solid ${A2.fioColunaSobreCreme}`,
-  borderRadius: AR.none,
-  padding: `${AS.xs} 0`,
-  outline: 'none',
-  width: '100%',
-};
 
 function Saidas({
   saidas,

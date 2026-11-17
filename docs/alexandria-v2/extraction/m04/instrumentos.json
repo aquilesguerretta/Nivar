@@ -1,0 +1,4158 @@
+{
+  "modulo": "04",
+  "fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo04.html",
+  "camada": "fonte",
+  "metodo": "Markup por bs4; lógica e ramos lidos linha a linha do <script> (texto literal, sem reescrita); cenário-padrão e comparação com a porta por execução do script original em DOM simulado (extratores/m04_harness_script.mjs).",
+  "constantes_globais": [
+    {
+      "linha": 1337,
+      "codigo": "/* limites regulatórios vigentes 2026 — ANEEL Despacho 3.850/2025 */"
+    },
+    {
+      "linha": 1338,
+      "codigo": "var PLD_MIN=57.31, PLD_MAX_H=1611.04, PLD_MAX_E=785.27;"
+    },
+    {
+      "linha": 1339,
+      "codigo": "var MES=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];"
+    }
+  ],
+  "formatadores_script": [
+    {
+      "linha": 1324,
+      "codigo": "function brl(v){return 'R$ '+Math.round(v).toLocaleString('pt-BR');}"
+    },
+    {
+      "linha": 1325,
+      "codigo": "function brl2(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}"
+    },
+    {
+      "linha": 1326,
+      "codigo": "function mi(v){"
+    },
+    {
+      "linha": 1327,
+      "codigo": "var a=Math.abs(v);"
+    },
+    {
+      "linha": 1328,
+      "codigo": "if(a>=1e9) return 'R$ '+(v/1e9).toLocaleString('pt-BR',{maximumFractionDigits:2})+' bi';"
+    },
+    {
+      "linha": 1329,
+      "codigo": "if(a>=1e6) return 'R$ '+(v/1e6).toLocaleString('pt-BR',{maximumFractionDigits:2})+' mi';"
+    },
+    {
+      "linha": 1330,
+      "codigo": "if(a>=1e3) return 'R$ '+(v/1e3).toLocaleString('pt-BR',{maximumFractionDigits:0})+' mil';"
+    },
+    {
+      "linha": 1331,
+      "codigo": "return 'R$ '+Math.round(v).toLocaleString('pt-BR');"
+    },
+    {
+      "linha": 1332,
+      "codigo": "}"
+    },
+    {
+      "linha": 1333,
+      "codigo": "function num(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}"
+    },
+    {
+      "linha": 1334,
+      "codigo": "function clamp(v,a,b){return v<a?a:(v>b?b:v);}"
+    },
+    {
+      "linha": 1335,
+      "codigo": "function vd(el,cls,txt){el.className='verdict '+cls;el.textContent=txt;}"
+    }
+  ],
+  "ligacao_campos_script": {
+    "linhas": [
+      1357,
+      1368
+    ],
+    "codigo": "function link(id,cb){\n  var r=$id(id), n=$id(id+'-n');\n  if(!r) return null;\n  r.addEventListener('input',function(){ if(n) n.value=r.value; cb(); });\n  if(n) n.addEventListener('change',function(){\n    var v=parseFloat(n.value);\n    if(isNaN(v)) v=parseFloat(r.value);\n    v=clamp(v,parseFloat(r.min),parseFloat(r.max));\n    n.value=v; r.value=v; cb();\n  });\n  return r;\n}"
+  },
+  "instrumentos": [
+    {
+      "id": "m04-inst-01",
+      "id_literal_fonte": "Inst · 01",
+      "titulo": "Simulador · Formador de preço",
+      "kind_taxonomia": "simulador",
+      "kind_nota": "Campos numéricos (par number+range) → readouts → veredito por ramos.",
+      "aula": "01",
+      "aula_id_codigo": "aula-04-01",
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não tem pergunta própria. A intro (inst-intro) é instrução, não pergunta; a pergunta de previsão, se houver, é camada Alexandria (P19).",
+      "intro": {
+        "html": "Monte a fila e veja qual usina fica marginal, qual preço ela forma e quando o limite regulatório passa a mandar mais que a economia. Repare especialmente no que acontece com a hidráulica quando o reservatório cai.",
+        "texto": "Monte a fila e veja qual usina fica marginal, qual preço ela forma e quando o limite regulatório passa a mandar mais que a economia. Repare especialmente no que acontece com a hidráulica quando o reservatório cai.",
+        "origem": {
+          "seletor": "div.inst(Inst · 01) p.inst-intro",
+          "trecho_inicial": "<p class=\"inst-intro\">Monte a fila e veja qual usina fica marginal, qual preço ela forma e",
+          "linha_aprox": 354
+        }
+      },
+      "entradas": [
+        {
+          "rotulo": "Demanda do sistema",
+          "unidade": "MW",
+          "id_number": "i1-d-n",
+          "id_range": "i1-d",
+          "padrao": 1000.0,
+          "min": 300.0,
+          "max": 1600.0,
+          "passo": 25.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 01) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Demanda do sistema <span class=\"unit\">MW</sp",
+            "linha_aprox": 356
+          }
+        },
+        {
+          "rotulo": "Disponibilidade renovável",
+          "unidade": "%",
+          "id_number": "i1-r-n",
+          "id_range": "i1-r",
+          "padrao": 100.0,
+          "min": 0.0,
+          "max": 100.0,
+          "passo": 5.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 01) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Disponibilidade renovável <span class=\"unit\"",
+            "linha_aprox": 359
+          }
+        },
+        {
+          "rotulo": "Nível de reservatório",
+          "unidade": "%",
+          "id_number": "i1-h-n",
+          "id_range": "i1-h",
+          "padrao": 100.0,
+          "min": 0.0,
+          "max": 100.0,
+          "passo": 5.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 01) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Nível de reservatório <span class=\"unit\">%</",
+            "linha_aprox": 362
+          }
+        },
+        {
+          "rotulo": "Preço do gás no CVU",
+          "unidade": "R$/MWh",
+          "id_number": "i1-g-n",
+          "id_range": "i1-g",
+          "padrao": 250.0,
+          "min": 120.0,
+          "max": 600.0,
+          "passo": 10.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 01) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Preço do gás no CVU <span class=\"unit\">R$/MW",
+            "linha_aprox": 365
+          }
+        }
+      ],
+      "saidas": [
+        {
+          "id": "i1-p",
+          "rotulo": "Preço formado",
+          "destaque": true,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 01) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Preço formado</div><div class=\"n gold\" id=\"i1-p\">—</div></d",
+            "linha_aprox": 371
+          },
+          "expressao_script": {
+            "propriedade": "innerHTML",
+            "codigo": "brl(price)+'<span class=\"u\">/MWh</span>'",
+            "linha_aprox": 1427
+          },
+          "valor_padrao_renderizado": "R$ 250/MWh",
+          "valor_padrao_bruto": {
+            "innerHTML": "R$ 250<span class=\"u\">/MWh</span>"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": "/MWh"
+        },
+        {
+          "id": "i1-m",
+          "rotulo": "Usina marginal",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 01) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Usina marginal</div><div class=\"n\" id=\"i1-m\" style=\"font-si",
+            "linha_aprox": 372
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "marg?marg.n:'—'",
+            "linha_aprox": 1428
+          },
+          "valor_padrao_renderizado": "Gás",
+          "valor_padrao_bruto": {
+            "textContent": "Gás"
+          },
+          "tipo_saida": "textual",
+          "unidade_renderizada": null
+        },
+        {
+          "id": "i1-def",
+          "rotulo": "Déficit",
+          "destaque": false,
+          "markup_inicial": "0<span class=\"u\">MW</span>",
+          "unidade_no_markup_inicial": "MW",
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 01) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Déficit</div><div class=\"n\" id=\"i1-def\">0<span class=\"u\">MW",
+            "linha_aprox": 373
+          },
+          "expressao_script": {
+            "propriedade": "innerHTML",
+            "codigo": "num(def)+'<span class=\"u\">MW</span>'",
+            "linha_aprox": 1429
+          },
+          "valor_padrao_renderizado": "0MW",
+          "valor_padrao_bruto": {
+            "innerHTML": "0<span class=\"u\">MW</span>"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": "MW"
+        },
+        {
+          "id": "i1-lim",
+          "rotulo": "Limite aplicado",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 01) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Limite aplicado</div><div class=\"n\" id=\"i1-lim\" style=\"font",
+            "linha_aprox": 374
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "lim",
+            "linha_aprox": 1430
+          },
+          "valor_padrao_renderizado": "nenhum",
+          "valor_padrao_bruto": {
+            "textContent": "nenhum"
+          },
+          "tipo_saida": "textual",
+          "unidade_renderizada": null
+        }
+      ],
+      "veredito": {
+        "id": "i1-vd",
+        "markup_inicial": "—",
+        "ramos": [
+          {
+            "ordem": 1,
+            "palavra": "if",
+            "condicao": "(def>0.001)",
+            "classe": "per",
+            "texto_expressao_js": "'Déficit de '+num(def)+' MW: a capacidade disponível não atende a carga. O preço vai ao teto horário e o problema deixa de ser econômico — passa a ser de segurança de suprimento.'",
+            "linha_aprox": 1446
+          },
+          {
+            "ordem": 2,
+            "palavra": "else if",
+            "condicao": "(price<=120)",
+            "classe": "ok",
+            "texto_expressao_js": "'Sistema folgado. A margem entre a usina marginal e as usinas baratas é pequena, e quem está no fim da fila captura pouca margem inframarginal. Bom para o consumidor exposto; ruim para quem precisa recuperar custo fixo vendendo energia.'",
+            "linha_aprox": 1447
+          },
+          {
+            "ordem": 3,
+            "palavra": "else if",
+            "condicao": "(price<=400)",
+            "classe": "att",
+            "texto_expressao_js": "'Sistema em atenção. A térmica ou a hidráulica cara já está na margem. Neste patamar, a diferença entre estar contratado e estar exposto começa a aparecer no orçamento mensal.'",
+            "linha_aprox": 1448
+          },
+          {
+            "ordem": 4,
+            "palavra": "else",
+            "condicao": null,
+            "classe": "per",
+            "texto_expressao_js": "'Sistema pressionado. Recurso caro na margem. Toda energia descoberta é liquidada perto deste valor — e é exatamente aqui que a decisão de contratação tomada meses atrás mostra se foi boa.'",
+            "linha_aprox": 1449
+          }
+        ],
+        "ramo_no_cenario_padrao": 3
+      },
+      "script": {
+        "linhas": [
+          1399,
+          1453
+        ],
+        "constantes_e_frota": [
+          {
+            "linha": 1402,
+            "codigo": "var COL={'Solar':'#F59E0B','Eólica':'#06B6D4','Hidráulica':'#3B82F6','Gás':'#A855F7','Óleo':'#EF4444'};"
+          }
+        ],
+        "calculo": [
+          {
+            "linha": 1404,
+            "codigo": "    var D=+$id('i1-d').value, R=+$id('i1-r').value/100, Hh=+$id('i1-h').value, G=+$id('i1-g').value;"
+          },
+          {
+            "linha": 1405,
+            "codigo": "    var agua=30+(100-Hh)/100*320;"
+          },
+          {
+            "linha": 1406,
+            "codigo": "    var fleet=["
+          },
+          {
+            "linha": 1407,
+            "codigo": "      {n:'Solar',cap:200*R,cvu:0},"
+          },
+          {
+            "linha": 1408,
+            "codigo": "      {n:'Eólica',cap:300*R,cvu:12},"
+          },
+          {
+            "linha": 1409,
+            "codigo": "      {n:'Hidráulica',cap:350,cvu:agua},"
+          },
+          {
+            "linha": 1410,
+            "codigo": "      {n:'Gás',cap:400,cvu:G},"
+          },
+          {
+            "linha": 1411,
+            "codigo": "      {n:'Óleo',cap:250,cvu:900}"
+          },
+          {
+            "linha": 1412,
+            "codigo": "    ];"
+          },
+          {
+            "linha": 1413,
+            "codigo": "    fleet.sort(function(a,b){return a.cvu-b.cvu;});"
+          },
+          {
+            "linha": 1414,
+            "codigo": "    var rest=D, marg=null, price=0, i;"
+          },
+          {
+            "linha": 1415,
+            "codigo": "    for(i=0;i<fleet.length;i++){"
+          },
+          {
+            "linha": 1416,
+            "codigo": "      var use=Math.min(fleet[i].cap,rest);"
+          },
+          {
+            "linha": 1417,
+            "codigo": "      fleet[i].use=use; rest-=use;"
+          },
+          {
+            "linha": 1418,
+            "codigo": "      if(use>0.001){marg=fleet[i];price=fleet[i].cvu;}"
+          },
+          {
+            "linha": 1419,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1420,
+            "codigo": "    var def=Math.max(0,rest);"
+          },
+          {
+            "linha": 1421,
+            "codigo": "    if(def>0.001){price=PLD_MAX_H;marg={n:'déficit'};}"
+          },
+          {
+            "linha": 1422,
+            "codigo": "    var lim='nenhum';"
+          },
+          {
+            "linha": 1423,
+            "codigo": "    if(price<PLD_MIN){price=PLD_MIN;lim='piso R$ 57,31';}"
+          },
+          {
+            "linha": 1424,
+            "codigo": "    else if(price>PLD_MAX_H){price=PLD_MAX_H;lim='teto horário';}"
+          },
+          {
+            "linha": 1425,
+            "codigo": "    else if(price>PLD_MAX_E){lim='acima do teto estrutural';}"
+          }
+        ],
+        "preambulo_do_veredito": [
+          {
+            "linha": 1445,
+            "codigo": "var v=$id('i1-vd');"
+          }
+        ],
+        "run_completo": [
+          {
+            "linha": 1403,
+            "codigo": "  function run(){"
+          },
+          {
+            "linha": 1404,
+            "codigo": "    var D=+$id('i1-d').value, R=+$id('i1-r').value/100, Hh=+$id('i1-h').value, G=+$id('i1-g').value;"
+          },
+          {
+            "linha": 1405,
+            "codigo": "    var agua=30+(100-Hh)/100*320;"
+          },
+          {
+            "linha": 1406,
+            "codigo": "    var fleet=["
+          },
+          {
+            "linha": 1407,
+            "codigo": "      {n:'Solar',cap:200*R,cvu:0},"
+          },
+          {
+            "linha": 1408,
+            "codigo": "      {n:'Eólica',cap:300*R,cvu:12},"
+          },
+          {
+            "linha": 1409,
+            "codigo": "      {n:'Hidráulica',cap:350,cvu:agua},"
+          },
+          {
+            "linha": 1410,
+            "codigo": "      {n:'Gás',cap:400,cvu:G},"
+          },
+          {
+            "linha": 1411,
+            "codigo": "      {n:'Óleo',cap:250,cvu:900}"
+          },
+          {
+            "linha": 1412,
+            "codigo": "    ];"
+          },
+          {
+            "linha": 1413,
+            "codigo": "    fleet.sort(function(a,b){return a.cvu-b.cvu;});"
+          },
+          {
+            "linha": 1414,
+            "codigo": "    var rest=D, marg=null, price=0, i;"
+          },
+          {
+            "linha": 1415,
+            "codigo": "    for(i=0;i<fleet.length;i++){"
+          },
+          {
+            "linha": 1416,
+            "codigo": "      var use=Math.min(fleet[i].cap,rest);"
+          },
+          {
+            "linha": 1417,
+            "codigo": "      fleet[i].use=use; rest-=use;"
+          },
+          {
+            "linha": 1418,
+            "codigo": "      if(use>0.001){marg=fleet[i];price=fleet[i].cvu;}"
+          },
+          {
+            "linha": 1419,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1420,
+            "codigo": "    var def=Math.max(0,rest);"
+          },
+          {
+            "linha": 1421,
+            "codigo": "    if(def>0.001){price=PLD_MAX_H;marg={n:'déficit'};}"
+          },
+          {
+            "linha": 1422,
+            "codigo": "    var lim='nenhum';"
+          },
+          {
+            "linha": 1423,
+            "codigo": "    if(price<PLD_MIN){price=PLD_MIN;lim='piso R$ 57,31';}"
+          },
+          {
+            "linha": 1424,
+            "codigo": "    else if(price>PLD_MAX_H){price=PLD_MAX_H;lim='teto horário';}"
+          },
+          {
+            "linha": 1425,
+            "codigo": "    else if(price>PLD_MAX_E){lim='acima do teto estrutural';}"
+          },
+          {
+            "linha": 1426,
+            "codigo": ""
+          },
+          {
+            "linha": 1427,
+            "codigo": "    $id('i1-p').innerHTML=brl(price)+'<span class=\"u\">/MWh</span>';"
+          },
+          {
+            "linha": 1428,
+            "codigo": "    $id('i1-m').textContent=marg?marg.n:'—';"
+          },
+          {
+            "linha": 1429,
+            "codigo": "    $id('i1-def').innerHTML=num(def)+'<span class=\"u\">MW</span>';"
+          },
+          {
+            "linha": 1430,
+            "codigo": "    $id('i1-lim').textContent=lim;"
+          },
+          {
+            "linha": 1431,
+            "codigo": ""
+          },
+          {
+            "linha": 1432,
+            "codigo": "    var maxc=0;"
+          },
+          {
+            "linha": 1433,
+            "codigo": "    for(i=0;i<fleet.length;i++){if(fleet[i].cap>maxc)maxc=fleet[i].cap;}"
+          },
+          {
+            "linha": 1434,
+            "codigo": "    var html='';"
+          },
+          {
+            "linha": 1435,
+            "codigo": "    for(i=0;i<fleet.length;i++){"
+          },
+          {
+            "linha": 1436,
+            "codigo": "      var f=fleet[i];"
+          },
+          {
+            "linha": 1437,
+            "codigo": "      var pct=(f.use/Math.max(maxc,1))*100;"
+          },
+          {
+            "linha": 1438,
+            "codigo": "      var on=f.use>0.001;"
+          },
+          {
+            "linha": 1439,
+            "codigo": "      html+='<div class=\"bar-row\"><div class=\"lb\">'+f.n+'</div><div class=\"bar-track\">'+"
+          },
+          {
+            "linha": 1440,
+            "codigo": "        '<div class=\"bar-fill\" style=\"width:'+clamp(pct,0,100).toFixed(1)+'%;background:'+(on?COL[f.n]:'#2E3440')+';opacity:'+(on?'.85':'.4')+'\"></div></div>'+"
+          },
+          {
+            "linha": 1441,
+            "codigo": "        '<div class=\"vl\">'+num(f.use||0)+' MW · '+num(f.cvu)+'</div></div>';"
+          },
+          {
+            "linha": 1442,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1443,
+            "codigo": "    $id('i1-bars').innerHTML=html;"
+          },
+          {
+            "linha": 1444,
+            "codigo": ""
+          },
+          {
+            "linha": 1445,
+            "codigo": "    var v=$id('i1-vd');"
+          },
+          {
+            "linha": 1446,
+            "codigo": "    if(def>0.001) vd(v,'per','Déficit de '+num(def)+' MW: a capacidade disponível não atende a carga. O preço vai ao teto horário e o problema deixa de ser econômico — passa a ser de segurança de suprimento.');"
+          },
+          {
+            "linha": 1447,
+            "codigo": "    else if(price<=120) vd(v,'ok','Sistema folgado. A margem entre a usina marginal e as usinas baratas é pequena, e quem está no fim da fila captura pouca margem inframarginal. Bom para o consumidor exposto; ruim para quem precisa recuperar custo fixo vendendo energia.');"
+          },
+          {
+            "linha": 1448,
+            "codigo": "    else if(price<=400) vd(v,'att','Sistema em atenção. A térmica ou a hidráulica cara já está na margem. Neste patamar, a diferença entre estar contratado e estar exposto começa a aparecer no orçamento mensal.');"
+          },
+          {
+            "linha": 1449,
+            "codigo": "    else vd(v,'per','Sistema pressionado. Recurso caro na margem. Toda energia descoberta é liquidada perto deste valor — e é exatamente aqui que a decisão de contratação tomada meses atrás mostra se foi boa.');"
+          },
+          {
+            "linha": 1450,
+            "codigo": "  }"
+          }
+        ],
+        "nota": "calculo = linhas de run() entre a leitura das entradas e a primeira saída/desenho; run_completo inclui desenho (SVG/barras) e ramos. Tudo literal."
+      },
+      "constantes_globais_usadas": [
+        "PLD_MIN",
+        "PLD_MAX_H",
+        "PLD_MAX_E"
+      ],
+      "visual": {
+        "barras": "i1-bars",
+        "svg": null
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i1-d": 1000,
+          "i1-r": 100,
+          "i1-h": 100,
+          "i1-g": 250
+        },
+        "saidas_renderizadas": {
+          "i1-p": "R$ 250/MWh",
+          "i1-m": "Gás",
+          "i1-def": "0MW",
+          "i1-lim": "nenhum"
+        },
+        "veredito": "Sistema em atenção. A térmica ou a hidráulica cara já está na margem. Neste patamar, a diferença entre estar contratado e estar exposto começa a aparecer no orçamento mensal.",
+        "classe_veredito": "verdict att",
+        "metodo": "Execução do <script> original em DOM simulado (m04_harness_script.mjs), Node v24.14.0, toLocaleString pt-BR."
+      },
+      "nota_didatica": {
+        "html": "Didático/ilustrativo — não usar para dimensionamento real. Capacidades fixas: solar 200 · eólica 300 · hidráulica 350 · gás 400 · óleo 250 MW. O valor da água é modelado como função linear do reservatório (R$ 30/MWh cheio → R$ 350/MWh vazio) apenas para tornar o custo de oportunidade visível; o cálculo real vem da função de custo futuro dos modelos oficiais.",
+        "texto": "Didático/ilustrativo — não usar para dimensionamento real. Capacidades fixas: solar 200 · eólica 300 · hidráulica 350 · gás 400 · óleo 250 MW. O valor da água é modelado como função linear do reservatório (R$ 30/MWh cheio → R$ 350/MWh vazio) apenas para tornar o custo de oportunidade visível; o cálculo real vem da função de custo futuro dos modelos oficiais.",
+        "origem": {
+          "seletor": "div.inst(Inst · 01) p.disc",
+          "trecho_inicial": "<p class=\"disc\">Didático/ilustrativo — não usar para dimensionamento real. Capacidades fix",
+          "linha_aprox": 377
+        }
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "Limites PLD_MIN/PLD_MAX_H/PLD_MAX_E: comentário do script \"limites regulatórios vigentes 2026 — ANEEL Despacho 3.850/2025\" (L1337), confirmado em §Ref item 1. Demais parâmetros (frota, curvas, lances, preços de camada, sazonalidades) sem fonte externa declarada; a própria nota diz \"Didático/ilustrativo — não usar para dimensionamento real\". Na interface: cenário didático, fonte externa não declarada (P19).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada na fonte.",
+      "observacoes_fonte": [
+        "Ramo inalcançável (L1424): `else if(price>PLD_MAX_H){…lim='teto horário';}` nunca executa. No déficit o preço é igualado a PLD_MAX_H (não maior) e cai no ramo seguinte; o readout \"Limite aplicado\" mostra \"acima do teto estrutural\" com \"Usina marginal\" = \"déficit\". Provado no espaço inteiro (1.145.277 combinações; extratores/m04_inst01_limite.mjs): rótulos alcançados = nenhum, piso R$ 57,31, acima do teto estrutural.",
+        "Com óleo na margem (CVU 900) o preço formado é R$ 900/MWh, acima do PLDmax estrutural (R$ 785,27) e abaixo do horário: o simulador não aplica o teto estrutural (que a Aula 02 descreve como teto da média do período).",
+        "Exercício 01 usa eólica a R$ 20/MWh e capacidades diferentes; o simulador usa eólica CVU 12 e a frota fixa da nota. Cenários distintos, não contradição."
+      ],
+      "invocacao": {
+        "secao_anterior_h3": {
+          "numero": "1.3",
+          "linha_aprox": 340
+        },
+        "elemento_anterior": {
+          "tag": "div",
+          "classe": "box cy",
+          "trecho": "A fila real Despacho real = ordem econômica + restrições de transmissão + segurança operativa + requisitos de reserva e ",
+          "linha_aprox": 345
+        },
+        "elemento_seguinte": {
+          "tag": "div",
+          "classe": "lv",
+          "trecho": "Ordem de mérito · três níveis Criança de 12 anos Executivo Especialista É uma fila. As usinas mais baratas de operar ent",
+          "linha_aprox": 381
+        },
+        "mencoes_no_texto_da_aula": [
+          "Todo simulador de ordem de mérito — inclusive o desta página — mostra apenas o primeiro termo dessa soma."
+        ],
+        "origem": {
+          "seletor": "section#a01 div.inst",
+          "trecho_inicial": "<div class=\"inst\">",
+          "linha_aprox": 351
+        }
+      },
+      "codigo": {
+        "status": "divergente",
+        "status_nota": "Cálculo e veredito portados fielmente (harness: 8100 combinações, 0 vereditos divergentes); a divergência é de contrato/apresentação, listada abaixo.",
+        "instrument_em": "src/lib/data/alexandria-modulo-04-content.ts (INSTRUMENTOS_MODULO_04)",
+        "calculadora_em": "src/lib/data/alexandria-instrument-calculators.ts",
+        "title_igual": true,
+        "kind_codigo": "simulador",
+        "campos": [
+          {
+            "id_fonte": "i1-d-n",
+            "id_codigo": "i1-d-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i1-r-n",
+            "id_codigo": "i1-r-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i1-h-n",
+            "id_codigo": "i1-h-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i1-g-n",
+            "id_codigo": "i1-g-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          }
+        ],
+        "saidas_codigo": [
+          "i1-p",
+          "i1-def"
+        ],
+        "harness": {
+          "combinacoes": 8100,
+          "veredito_divergente": 0,
+          "exemplos": []
+        },
+        "divergencias": [
+          "Saídas ausentes no código (texto não cabe em Record<string, number>): i1-m, i1-lim.",
+          "Unidade de i1-p: fonte renderiza \"/MWh\", código declara None.",
+          "note: null — a fonte tem p.disc (texto de contexto) e p.inst-intro; nenhum dos dois está no Instrument.",
+          "formula: null — coerente: a fonte não exibe fórmula (div.formula ausente).",
+          "Formatação: a porta emite número cru em valores; a fonte formata cada readout (brl/brl2/mi/num; ver saidas[].expressao_script).",
+          "Visual não portado: barras #i1-bars (desenhadas pelo script).",
+          "Classe do veredito (ok/att/per → verde/âmbar/vermelho) não portada; as cores são semáforo e o sistema de design proíbe semáforo.",
+          "Entrada: na fonte o campo numérico vazio/NaN volta ao valor do deslizador e é limitado à faixa (link()); na porta, vazio vira 0 e não há clamp.",
+          "Posição: a fonte coloca o instrumento dentro do fluxo da aula; MODULO_04_CORPO não tem bloco de instrumento, e aula.instruments é renderizado à parte (não verificado na tela)."
+        ]
+      }
+    },
+    {
+      "id": "m04-inst-02",
+      "id_literal_fonte": "Inst · 02",
+      "titulo": "Simulador · PLD ao longo do ano",
+      "kind_taxonomia": "simulador",
+      "kind_nota": "Campos numéricos (par number+range) → readouts → veredito por ramos.",
+      "aula": "02",
+      "aula_id_codigo": "aula-04-02",
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não tem pergunta própria. A intro (inst-intro) é instrução, não pergunta; a pergunta de previsão, se houver, é camada Alexandria (P19).",
+      "intro": {
+        "html": "Defina o cenário hidrológico e acompanhe a trajetória do preço mês a mês, com o período seco marcado. Repare em que momento a curva cruza o teto estrutural — e quanto custa, no mês crítico, um megawatt médio descoberto.",
+        "texto": "Defina o cenário hidrológico e acompanhe a trajetória do preço mês a mês, com o período seco marcado. Repare em que momento a curva cruza o teto estrutural — e quanto custa, no mês crítico, um megawatt médio descoberto.",
+        "origem": {
+          "seletor": "div.inst(Inst · 02) p.inst-intro",
+          "trecho_inicial": "<p class=\"inst-intro\">Defina o cenário hidrológico e acompanhe a trajetória do preço mês a",
+          "linha_aprox": 450
+        }
+      },
+      "entradas": [
+        {
+          "rotulo": "ENA — afluência",
+          "unidade": "% da MLT",
+          "id_number": "i2-e-n",
+          "id_range": "i2-e",
+          "padrao": 100.0,
+          "min": 40.0,
+          "max": 140.0,
+          "passo": 2.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 02) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">ENA — afluência <span class=\"unit\">% da MLT<",
+            "linha_aprox": 452
+          }
+        },
+        {
+          "rotulo": "EAR inicial em janeiro",
+          "unidade": "%",
+          "id_number": "i2-a-n",
+          "id_range": "i2-a",
+          "padrao": 60.0,
+          "min": 10.0,
+          "max": 95.0,
+          "passo": 1.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 02) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">EAR inicial em janeiro <span class=\"unit\">%<",
+            "linha_aprox": 455
+          }
+        },
+        {
+          "rotulo": "Variação da carga",
+          "unidade": "%",
+          "id_number": "i2-c-n",
+          "id_range": "i2-c",
+          "padrao": 0.0,
+          "min": -5.0,
+          "max": 10.0,
+          "passo": 1.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 02) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Variação da carga <span class=\"unit\">%</span",
+            "linha_aprox": 458
+          }
+        }
+      ],
+      "saidas": [
+        {
+          "id": "i2-p",
+          "rotulo": "PLD médio do ano",
+          "destaque": true,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 02) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">PLD médio do ano</div><div class=\"n gold\" id=\"i2-p\">—</div>",
+            "linha_aprox": 472
+          },
+          "expressao_script": {
+            "propriedade": "innerHTML",
+            "codigo": "brl(med)+'<span class=\"u\">/MWh</span>'",
+            "linha_aprox": 1491
+          },
+          "valor_padrao_renderizado": "R$ 106/MWh",
+          "valor_padrao_bruto": {
+            "innerHTML": "R$ 106<span class=\"u\">/MWh</span>"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": "/MWh"
+        },
+        {
+          "id": "i2-mes",
+          "rotulo": "Mês crítico",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 02) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Mês crítico</div><div class=\"n\" id=\"i2-mes\" style=\"font-siz",
+            "linha_aprox": 473
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "MES[mxi]",
+            "linha_aprox": 1492
+          },
+          "valor_padrao_renderizado": "Set",
+          "valor_padrao_bruto": {
+            "textContent": "Set"
+          },
+          "tipo_saida": "textual",
+          "unidade_renderizada": null
+        },
+        {
+          "id": "i2-max",
+          "rotulo": "Pico do ano",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 02) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Pico do ano</div><div class=\"n\" id=\"i2-max\" style=\"font-siz",
+            "linha_aprox": 474
+          },
+          "expressao_script": {
+            "propriedade": "innerHTML",
+            "codigo": "brl(mx)+'<span class=\"u\">/MWh</span>'",
+            "linha_aprox": 1493
+          },
+          "valor_padrao_renderizado": "R$ 158/MWh",
+          "valor_padrao_bruto": {
+            "innerHTML": "R$ 158<span class=\"u\">/MWh</span>"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": "/MWh"
+        },
+        {
+          "id": "i2-x",
+          "rotulo": "1 MW médio descoberto",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": "custo no mês crítico · 730 MWh",
+          "origem": {
+            "seletor": "div.inst(Inst · 02) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">1 MW médio descoberto</div><div class=\"n\" id=\"i2-x\" style=\"",
+            "linha_aprox": 475
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "mi(mx*730)",
+            "linha_aprox": 1494
+          },
+          "valor_padrao_renderizado": "R$ 115 mil",
+          "valor_padrao_bruto": {
+            "textContent": "R$ 115 mil"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": null
+        }
+      ],
+      "veredito": {
+        "id": "i2-vd",
+        "markup_inicial": "—",
+        "ramos": [
+          {
+            "ordem": 1,
+            "palavra": "if",
+            "condicao": "(mx<=120)",
+            "classe": "ok",
+            "texto_expressao_js": "'Ano confortável do começo ao fim. O preço fica baixo mesmo no seco, e a tentação de reduzir contratação aumenta. Registre a tentação: é exatamente aqui que se assinam as subcontratações que doem dois anos depois.'",
+            "linha_aprox": 1497
+          },
+          {
+            "ordem": 2,
+            "palavra": "else if",
+            "condicao": "(mx<=350)",
+            "classe": "att",
+            "texto_expressao_js": "'Pico em '+MES[mxi]+' a '+brl(mx)+'/MWh. O modelo já está preservando água e chamando térmica no seco. Um megawatt médio descoberto custa '+mi(mx*730)+' no mês crítico — a conta cresce mais rápido que a percepção.'",
+            "linha_aprox": 1498
+          },
+          {
+            "ordem": 3,
+            "palavra": "else if",
+            "condicao": "(mx<=PLD_MAX_E)",
+            "classe": "per",
+            "texto_expressao_js": "'Escassez precificada, com pico em '+MES[mxi]+'. Quem está descoberto sente no caixa. Repare que o preço ainda está abaixo do teto estrutural: o limite regulatório ainda não é o que está segurando o número.'",
+            "linha_aprox": 1499
+          },
+          {
+            "ordem": 4,
+            "palavra": "else",
+            "condicao": null,
+            "classe": "per",
+            "texto_expressao_js": "'Estresse severo: o pico de '+MES[mxi]+' passa do teto estrutural de R$ 785,27, e o ajuste regulatório sobre a média do período entra em cena. Este é o território onde o mercado só-de-energia deveria pagar a capacidade — e onde o teto impede que ele pague.'",
+            "linha_aprox": 1500
+          }
+        ],
+        "ramo_no_cenario_padrao": 2
+      },
+      "script": {
+        "linhas": [
+          1455,
+          1504
+        ],
+        "constantes_e_frota": [
+          {
+            "linha": 1458,
+            "codigo": "var SEAS=[0.55,0.50,0.55,0.65,0.85,1.00,1.15,1.25,1.30,1.20,0.95,0.70];"
+          }
+        ],
+        "calculo": [
+          {
+            "linha": 1460,
+            "codigo": "    var E=+$id('i2-e').value, A=+$id('i2-a').value, C=+$id('i2-c').value;"
+          },
+          {
+            "linha": 1461,
+            "codigo": "    var pE=clamp((110-E)/70,0,1), pA=clamp((80-A)/70,0,1), pC=clamp((C+5)/15,0,1);"
+          },
+          {
+            "linha": 1462,
+            "codigo": "    var pres=0.50*pE+0.35*pA+0.15*pC;"
+          },
+          {
+            "linha": 1463,
+            "codigo": "    var vals=[],i,soma=0,mx=-1,mi_=1e9,mxi=0;"
+          },
+          {
+            "linha": 1464,
+            "codigo": "    for(i=0;i<12;i++){"
+          },
+          {
+            "linha": 1465,
+            "codigo": "      var p=clamp(pres*SEAS[i],0,1);"
+          },
+          {
+            "linha": 1466,
+            "codigo": "      var pld=clamp(PLD_MIN+(PLD_MAX_H-PLD_MIN)*Math.pow(p,2.2),PLD_MIN,PLD_MAX_H);"
+          },
+          {
+            "linha": 1467,
+            "codigo": "      vals.push(pld); soma+=pld;"
+          },
+          {
+            "linha": 1468,
+            "codigo": "      if(pld>mx){mx=pld;mxi=i;}"
+          },
+          {
+            "linha": 1469,
+            "codigo": "      if(pld<mi_){mi_=pld;}"
+          },
+          {
+            "linha": 1470,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1471,
+            "codigo": "    var med=soma/12;"
+          }
+        ],
+        "preambulo_do_veredito": [
+          {
+            "linha": 1496,
+            "codigo": "var v=$id('i2-vd');"
+          }
+        ],
+        "run_completo": [
+          {
+            "linha": 1459,
+            "codigo": "  function run(){"
+          },
+          {
+            "linha": 1460,
+            "codigo": "    var E=+$id('i2-e').value, A=+$id('i2-a').value, C=+$id('i2-c').value;"
+          },
+          {
+            "linha": 1461,
+            "codigo": "    var pE=clamp((110-E)/70,0,1), pA=clamp((80-A)/70,0,1), pC=clamp((C+5)/15,0,1);"
+          },
+          {
+            "linha": 1462,
+            "codigo": "    var pres=0.50*pE+0.35*pA+0.15*pC;"
+          },
+          {
+            "linha": 1463,
+            "codigo": "    var vals=[],i,soma=0,mx=-1,mi_=1e9,mxi=0;"
+          },
+          {
+            "linha": 1464,
+            "codigo": "    for(i=0;i<12;i++){"
+          },
+          {
+            "linha": 1465,
+            "codigo": "      var p=clamp(pres*SEAS[i],0,1);"
+          },
+          {
+            "linha": 1466,
+            "codigo": "      var pld=clamp(PLD_MIN+(PLD_MAX_H-PLD_MIN)*Math.pow(p,2.2),PLD_MIN,PLD_MAX_H);"
+          },
+          {
+            "linha": 1467,
+            "codigo": "      vals.push(pld); soma+=pld;"
+          },
+          {
+            "linha": 1468,
+            "codigo": "      if(pld>mx){mx=pld;mxi=i;}"
+          },
+          {
+            "linha": 1469,
+            "codigo": "      if(pld<mi_){mi_=pld;}"
+          },
+          {
+            "linha": 1470,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1471,
+            "codigo": "    var med=soma/12;"
+          },
+          {
+            "linha": 1472,
+            "codigo": "    var yMax=Math.max(niceMax(mx*1.15),200);"
+          },
+          {
+            "linha": 1473,
+            "codigo": ""
+          },
+          {
+            "linha": 1474,
+            "codigo": "    var s='';"
+          },
+          {
+            "linha": 1475,
+            "codigo": "    s+='<rect x=\"'+xc(4).toFixed(1)+'\" y=\"'+PT+'\" width=\"'+(xc(10)-xc(4)).toFixed(1)+'\" height=\"'+PH+'\" fill=\"rgba(239,68,68,.07)\"/>';"
+          },
+          {
+            "linha": 1476,
+            "codigo": "    s+='<text x=\"'+((xc(4)+xc(10))/2).toFixed(1)+'\" y=\"'+(PT+13)+'\" fill=\"rgba(239,68,68,.55)\" font-size=\"9.5\" font-family=\"monospace\" text-anchor=\"middle\">PERÍODO SECO</text>';"
+          },
+          {
+            "linha": 1477,
+            "codigo": "    s+=grid(yMax,function(v){return Math.round(v);});"
+          },
+          {
+            "linha": 1478,
+            "codigo": "    if(PLD_MAX_E<yMax){"
+          },
+          {
+            "linha": 1479,
+            "codigo": "      s+='<line x1=\"'+PL+'\" y1=\"'+yc(PLD_MAX_E,yMax).toFixed(1)+'\" x2=\"'+(PL+PW)+'\" y2=\"'+yc(PLD_MAX_E,yMax).toFixed(1)+'\" stroke=\"#F59E0B\" stroke-width=\"1\" stroke-dasharray=\"5 4\" opacity=\".8\"/>';"
+          },
+          {
+            "linha": 1480,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1481,
+            "codigo": "    s+='<line x1=\"'+PL+'\" y1=\"'+yc(PLD_MIN,yMax).toFixed(1)+'\" x2=\"'+(PL+PW)+'\" y2=\"'+yc(PLD_MIN,yMax).toFixed(1)+'\" stroke=\"#2E3440\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/>';"
+          },
+          {
+            "linha": 1482,
+            "codigo": "    var pts='';"
+          },
+          {
+            "linha": 1483,
+            "codigo": "    for(i=0;i<12;i++){pts+=xc(i).toFixed(1)+','+yc(vals[i],yMax).toFixed(1)+' ';}"
+          },
+          {
+            "linha": 1484,
+            "codigo": "    s+='<polyline points=\"'+pts+'\" fill=\"none\" stroke=\"#06B6D4\" stroke-width=\"2.2\" stroke-linejoin=\"round\"/>';"
+          },
+          {
+            "linha": 1485,
+            "codigo": "    for(i=0;i<12;i++){"
+          },
+          {
+            "linha": 1486,
+            "codigo": "      s+='<circle cx=\"'+xc(i).toFixed(1)+'\" cy=\"'+yc(vals[i],yMax).toFixed(1)+'\" r=\"'+(i===mxi?4:2.6)+'\" fill=\"'+(i===mxi?'#F59E0B':'#06B6D4')+'\"/>';"
+          },
+          {
+            "linha": 1487,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1488,
+            "codigo": "    s+=xlabels();"
+          },
+          {
+            "linha": 1489,
+            "codigo": "    $id('i2-svg').innerHTML=s;"
+          },
+          {
+            "linha": 1490,
+            "codigo": ""
+          },
+          {
+            "linha": 1491,
+            "codigo": "    $id('i2-p').innerHTML=brl(med)+'<span class=\"u\">/MWh</span>';"
+          },
+          {
+            "linha": 1492,
+            "codigo": "    $id('i2-mes').textContent=MES[mxi];"
+          },
+          {
+            "linha": 1493,
+            "codigo": "    $id('i2-max').innerHTML=brl(mx)+'<span class=\"u\">/MWh</span>';"
+          },
+          {
+            "linha": 1494,
+            "codigo": "    $id('i2-x').textContent=mi(mx*730);"
+          },
+          {
+            "linha": 1495,
+            "codigo": ""
+          },
+          {
+            "linha": 1496,
+            "codigo": "    var v=$id('i2-vd');"
+          },
+          {
+            "linha": 1497,
+            "codigo": "    if(mx<=120) vd(v,'ok','Ano confortável do começo ao fim. O preço fica baixo mesmo no seco, e a tentação de reduzir contratação aumenta. Registre a tentação: é exatamente aqui que se assinam as subcontratações que doem dois anos depois.');"
+          },
+          {
+            "linha": 1498,
+            "codigo": "    else if(mx<=350) vd(v,'att','Pico em '+MES[mxi]+' a '+brl(mx)+'/MWh. O modelo já está preservando água e chamando térmica no seco. Um megawatt médio descoberto custa '+mi(mx*730)+' no mês crítico — a conta cresce mais rápido que a percepção.');"
+          },
+          {
+            "linha": 1499,
+            "codigo": "    else if(mx<=PLD_MAX_E) vd(v,'per','Escassez precificada, com pico em '+MES[mxi]+'. Quem está descoberto sente no caixa. Repare que o preço ainda está abaixo do teto estrutural: o limite regulatório ainda não é o que está segurando o número.');"
+          },
+          {
+            "linha": 1500,
+            "codigo": "    else vd(v,'per','Estresse severo: o pico de '+MES[mxi]+' passa do teto estrutural de R$ 785,27, e o ajuste regulatório sobre a média do período entra em cena. Este é o território onde o mercado só-de-energia deveria pagar a capacidade — e onde o teto impede que ele pague.');"
+          },
+          {
+            "linha": 1501,
+            "codigo": "  }"
+          }
+        ],
+        "nota": "calculo = linhas de run() entre a leitura das entradas e a primeira saída/desenho; run_completo inclui desenho (SVG/barras) e ramos. Tudo literal."
+      },
+      "constantes_globais_usadas": [
+        "PLD_MIN",
+        "PLD_MAX_H",
+        "PLD_MAX_E",
+        "MES"
+      ],
+      "visual": {
+        "barras": null,
+        "svg": {
+          "id": "i2-svg",
+          "aria_label": "Trajetória mensal estimada do PLD",
+          "legenda": [
+            "PLD mensal estimado",
+            "Teto estrutural R$ 785,27",
+            "Piso R$ 57,31",
+            "Período seco"
+          ]
+        }
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i2-e": 100,
+          "i2-a": 60,
+          "i2-c": 0
+        },
+        "saidas_renderizadas": {
+          "i2-p": "R$ 106/MWh",
+          "i2-mes": "Set",
+          "i2-max": "R$ 158/MWh",
+          "i2-x": "R$ 115 mil"
+        },
+        "veredito": "Pico em Set a R$ 158/MWh. O modelo já está preservando água e chamando térmica no seco. Um megawatt médio descoberto custa R$ 115 mil no mês crítico — a conta cresce mais rápido que a percepção.",
+        "classe_veredito": "verdict att",
+        "metodo": "Execução do <script> original em DOM simulado (m04_harness_script.mjs), Node v24.14.0, toLocaleString pt-BR."
+      },
+      "nota_didatica": {
+        "html": "Didático/ilustrativo — não usar para dimensionamento real. Superfície de resposta monotônica com sazonalidade fixa, construída para tornar visível a sensibilidade do preço à hidrologia; não reproduz o encadeamento NEWAVE/DECOMP/DESSEM, que considera dezenas de variáveis adicionais e decisões de política operativa. Bandas fixadas nos limites vigentes para 2026.",
+        "texto": "Didático/ilustrativo — não usar para dimensionamento real. Superfície de resposta monotônica com sazonalidade fixa, construída para tornar visível a sensibilidade do preço à hidrologia; não reproduz o encadeamento NEWAVE/DECOMP/DESSEM, que considera dezenas de variáveis adicionais e decisões de política operativa. Bandas fixadas nos limites vigentes para 2026.",
+        "origem": {
+          "seletor": "div.inst(Inst · 02) p.disc",
+          "trecho_inicial": "<p class=\"disc\">Didático/ilustrativo — não usar para dimensionamento real. Superfície de r",
+          "linha_aprox": 478
+        }
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "Limites PLD_MIN/PLD_MAX_H/PLD_MAX_E: comentário do script \"limites regulatórios vigentes 2026 — ANEEL Despacho 3.850/2025\" (L1337), confirmado em §Ref item 1. Demais parâmetros (frota, curvas, lances, preços de camada, sazonalidades) sem fonte externa declarada; a própria nota diz \"Didático/ilustrativo — não usar para dimensionamento real\". Na interface: cenário didático, fonte externa não declarada (P19).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada na fonte.",
+      "observacoes_fonte": [
+        "A legenda fixa o teto em \"R$ 785,27\" e o piso em \"R$ 57,31\"; a curva é limitada por PLD_MAX_H (1.611,04), não pelo estrutural. A nota declara \"Superfície de resposta monotônica com sazonalidade fixa\"."
+      ],
+      "invocacao": {
+        "secao_anterior_h3": {
+          "numero": "2.3",
+          "linha_aprox": 434
+        },
+        "elemento_anterior": {
+          "tag": "div",
+          "classe": "box cy",
+          "trecho": "Leia esses dois números juntos PLD spot em R$ 156 e contrato anual em R$ 355 ao mesmo tempo não é contradição nem erro d",
+          "linha_aprox": 441
+        },
+        "elemento_seguinte": {
+          "tag": "h3",
+          "classe": "",
+          "trecho": "2.4Por que o PLD não é o preço da conta de luz",
+          "linha_aprox": 482
+        },
+        "mencoes_no_texto_da_aula": [],
+        "origem": {
+          "seletor": "section#a02 div.inst",
+          "trecho_inicial": "<div class=\"inst\">",
+          "linha_aprox": 447
+        }
+      },
+      "codigo": {
+        "status": "divergente",
+        "status_nota": "Cálculo e veredito portados fielmente (harness: 1000 combinações, 0 vereditos divergentes); a divergência é de contrato/apresentação, listada abaixo.",
+        "instrument_em": "src/lib/data/alexandria-modulo-04-content.ts (INSTRUMENTOS_MODULO_04)",
+        "calculadora_em": "src/lib/data/alexandria-instrument-calculators.ts",
+        "title_igual": true,
+        "kind_codigo": "simulador",
+        "campos": [
+          {
+            "id_fonte": "i2-e-n",
+            "id_codigo": "i2-e-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i2-a-n",
+            "id_codigo": "i2-a-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i2-c-n",
+            "id_codigo": "i2-c-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          }
+        ],
+        "saidas_codigo": [
+          "i2-p",
+          "i2-max",
+          "i2-x"
+        ],
+        "harness": {
+          "combinacoes": 1000,
+          "veredito_divergente": 0,
+          "exemplos": []
+        },
+        "divergencias": [
+          "Saídas ausentes no código (texto não cabe em Record<string, number>): i2-mes.",
+          "Unidade de i2-p: fonte renderiza \"/MWh\", código declara None.",
+          "Unidade de i2-max: fonte renderiza \"/MWh\", código declara None.",
+          "note: null — a fonte tem p.disc (texto de contexto) e p.inst-intro; nenhum dos dois está no Instrument.",
+          "formula: null — coerente: a fonte não exibe fórmula (div.formula ausente).",
+          "Formatação: a porta emite número cru em valores; a fonte formata cada readout (brl/brl2/mi/num; ver saidas[].expressao_script).",
+          "Visual não portado: gráfico SVG #i2-svg com legenda de 4 itens.",
+          "Classe do veredito (ok/att/per → verde/âmbar/vermelho) não portada; as cores são semáforo e o sistema de design proíbe semáforo.",
+          "Entrada: na fonte o campo numérico vazio/NaN volta ao valor do deslizador e é limitado à faixa (link()); na porta, vazio vira 0 e não há clamp.",
+          "Posição: a fonte coloca o instrumento dentro do fluxo da aula; MODULO_04_CORPO não tem bloco de instrumento, e aula.instruments é renderizado à parte (não verificado na tela)."
+        ]
+      }
+    },
+    {
+      "id": "m04-inst-03",
+      "id_literal_fonte": "Inst · 03",
+      "titulo": "Simulador · O dinheiro que falta",
+      "kind_taxonomia": "simulador",
+      "kind_nota": "Campos numéricos (par number+range) → readouts → veredito por ramos.",
+      "aula": "03",
+      "aula_id_codigo": "aula-04-03",
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não tem pergunta própria. A intro (inst-intro) é instrução, não pergunta; a pergunta de previsão, se houver, é camada Alexandria (P19).",
+      "intro": {
+        "html": "Uma usina de ponta tenta se pagar só vendendo energia. Ajuste quantas horas ela roda, quanto ganha por MWh quando roda e quanto custa mantê-la disponível — e veja o buraco aparecer, medido em reais por kW-ano.",
+        "texto": "Uma usina de ponta tenta se pagar só vendendo energia. Ajuste quantas horas ela roda, quanto ganha por MWh quando roda e quanto custa mantê-la disponível — e veja o buraco aparecer, medido em reais por kW-ano.",
+        "origem": {
+          "seletor": "div.inst(Inst · 03) p.inst-intro",
+          "trecho_inicial": "<p class=\"inst-intro\">Uma usina de ponta tenta se pagar só vendendo energia. Ajuste quanta",
+          "linha_aprox": 539
+        }
+      },
+      "entradas": [
+        {
+          "rotulo": "Potência do ativo",
+          "unidade": "MW",
+          "id_number": "i3-p-n",
+          "id_range": "i3-p",
+          "padrao": 200.0,
+          "min": 10.0,
+          "max": 500.0,
+          "passo": 10.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 03) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Potência do ativo <span class=\"unit\">MW</spa",
+            "linha_aprox": 541
+          }
+        },
+        {
+          "rotulo": "Horas de despacho por ano",
+          "unidade": "h",
+          "id_number": "i3-h-n",
+          "id_range": "i3-h",
+          "padrao": 200.0,
+          "min": 10.0,
+          "max": 3000.0,
+          "passo": 10.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 03) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Horas de despacho por ano <span class=\"unit\"",
+            "linha_aprox": 544
+          }
+        },
+        {
+          "rotulo": "Margem líquida quando gera",
+          "unidade": "R$/MWh",
+          "id_number": "i3-m-n",
+          "id_range": "i3-m",
+          "padrao": 400.0,
+          "min": 20.0,
+          "max": 1400.0,
+          "passo": 10.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 03) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Margem líquida quando gera <span class=\"unit",
+            "linha_aprox": 547
+          }
+        },
+        {
+          "rotulo": "Custo fixo de disponibilidade",
+          "unidade": "R$/kW-ano",
+          "id_number": "i3-f-n",
+          "id_range": "i3-f",
+          "padrao": 300.0,
+          "min": 80.0,
+          "max": 700.0,
+          "passo": 10.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 03) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Custo fixo de disponibilidade <span class=\"u",
+            "linha_aprox": 550
+          }
+        }
+      ],
+      "saidas": [
+        {
+          "id": "i3-r",
+          "rotulo": "Receita de energia",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 03) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Receita de energia</div><div class=\"n\" id=\"i3-r\" style=\"fon",
+            "linha_aprox": 556
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "mi(rec)",
+            "linha_aprox": 1515
+          },
+          "valor_padrao_renderizado": "R$ 16 mi",
+          "valor_padrao_bruto": {
+            "textContent": "R$ 16 mi"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": null
+        },
+        {
+          "id": "i3-c",
+          "rotulo": "Custo fixo anual",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 03) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Custo fixo anual</div><div class=\"n\" id=\"i3-c\" style=\"font-",
+            "linha_aprox": 557
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "mi(cst)",
+            "linha_aprox": 1516
+          },
+          "valor_padrao_renderizado": "R$ 60 mi",
+          "valor_padrao_bruto": {
+            "textContent": "R$ 60 mi"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": null
+        },
+        {
+          "id": "i3-g",
+          "rotulo": "Dinheiro que falta",
+          "destaque": true,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 03) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Dinheiro que falta</div><div class=\"n gold\" id=\"i3-g\" style",
+            "linha_aprox": 558
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "gap>0?mi(gap):'zero'",
+            "linha_aprox": 1517
+          },
+          "valor_padrao_renderizado": "R$ 44 mi",
+          "valor_padrao_bruto": {
+            "textContent": "R$ 44 mi"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": null
+        },
+        {
+          "id": "i3-k",
+          "rotulo": "Preço de capacidade necessário",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 03) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Preço de capacidade necessário</div><div class=\"n\" id=\"i3-k",
+            "linha_aprox": 559
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "gap>0?('R$ '+num(need)+'/kW-ano'):'não precisa'",
+            "linha_aprox": 1518
+          },
+          "valor_padrao_renderizado": "R$ 220/kW-ano",
+          "valor_padrao_bruto": {
+            "textContent": "R$ 220/kW-ano"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": null
+        }
+      ],
+      "veredito": {
+        "id": "i3-vd",
+        "markup_inicial": "—",
+        "ramos": [
+          {
+            "ordem": 1,
+            "palavra": "if",
+            "condicao": "(gap<=0)",
+            "classe": "ok",
+            "texto_expressao_js": "'A receita de energia cobre o custo fixo. Repare no que foi preciso: '+num(Hh)+' horas de despacho, um fator de capacidade de '+fc.toFixed(1)+'%, com margem de R$ '+num(M)+'/MWh. Um ativo com esse perfil não é uma usina de ponta — é uma usina de base disfarçada.'",
+            "linha_aprox": 1528
+          },
+          {
+            "ordem": 2,
+            "palavra": "else if",
+            "condicao": "(need<80)",
+            "classe": "att",
+            "texto_expressao_js": "'Falta '+mi(gap)+'. O gap é pequeno diante do custo fixo, e um prêmio de capacidade de R$ '+num(need)+'/kW-ano fecharia a conta. É a faixa em que o debate de desenho de mercado costuma acontecer — nem óbvio, nem impossível.'",
+            "linha_aprox": 1529
+          },
+          {
+            "ordem": 3,
+            "palavra": "else",
+            "condicao": null,
+            "classe": "per",
+            "texto_expressao_js": "'Falta '+mi(gap)+'. Vendendo só energia, este ativo não existe: nenhum banco financia e nenhum acionista aporta. Seriam necessários R$ '+num(need)+'/kW-ano de receita de disponibilidade para viabilizá-lo. Este número tem nome — é o missing money, e é a razão de existir dos leilões de reserva de capacidade.'",
+            "linha_aprox": 1530
+          }
+        ],
+        "ramo_no_cenario_padrao": 3
+      },
+      "script": {
+        "linhas": [
+          1506,
+          1534
+        ],
+        "constantes_e_frota": [],
+        "calculo": [
+          {
+            "linha": 1510,
+            "codigo": "    var P=+$id('i3-p').value, Hh=+$id('i3-h').value, M=+$id('i3-m').value, F=+$id('i3-f').value;"
+          },
+          {
+            "linha": 1511,
+            "codigo": "    var rec=P*Hh*M, cst=P*1000*F, gap=cst-rec;"
+          },
+          {
+            "linha": 1512,
+            "codigo": "    var need=gap>0?gap/(P*1000):0;"
+          },
+          {
+            "linha": 1513,
+            "codigo": "    var fc=Hh/8760*100;"
+          }
+        ],
+        "preambulo_do_veredito": [
+          {
+            "linha": 1527,
+            "codigo": "var v=$id('i3-vd');"
+          }
+        ],
+        "run_completo": [
+          {
+            "linha": 1509,
+            "codigo": "  function run(){"
+          },
+          {
+            "linha": 1510,
+            "codigo": "    var P=+$id('i3-p').value, Hh=+$id('i3-h').value, M=+$id('i3-m').value, F=+$id('i3-f').value;"
+          },
+          {
+            "linha": 1511,
+            "codigo": "    var rec=P*Hh*M, cst=P*1000*F, gap=cst-rec;"
+          },
+          {
+            "linha": 1512,
+            "codigo": "    var need=gap>0?gap/(P*1000):0;"
+          },
+          {
+            "linha": 1513,
+            "codigo": "    var fc=Hh/8760*100;"
+          },
+          {
+            "linha": 1514,
+            "codigo": ""
+          },
+          {
+            "linha": 1515,
+            "codigo": "    $id('i3-r').textContent=mi(rec);"
+          },
+          {
+            "linha": 1516,
+            "codigo": "    $id('i3-c').textContent=mi(cst);"
+          },
+          {
+            "linha": 1517,
+            "codigo": "    $id('i3-g').textContent=gap>0?mi(gap):'zero';"
+          },
+          {
+            "linha": 1518,
+            "codigo": "    $id('i3-k').textContent=gap>0?('R$ '+num(need)+'/kW-ano'):'não precisa';"
+          },
+          {
+            "linha": 1519,
+            "codigo": ""
+          },
+          {
+            "linha": 1520,
+            "codigo": "    var ref=Math.max(rec,cst,1);"
+          },
+          {
+            "linha": 1521,
+            "codigo": "    var html='';"
+          },
+          {
+            "linha": 1522,
+            "codigo": "    html+='<div class=\"bar-row\"><div class=\"lb\">Receita</div><div class=\"bar-track\"><div class=\"bar-fill\" style=\"width:'+(rec/ref*100).toFixed(1)+'%;background:#10B981;opacity:.8\"></div></div><div class=\"vl\">'+mi(rec)+'</div></div>';"
+          },
+          {
+            "linha": 1523,
+            "codigo": "    html+='<div class=\"bar-row\"><div class=\"lb\">Custo fixo</div><div class=\"bar-track\"><div class=\"bar-fill\" style=\"width:'+(cst/ref*100).toFixed(1)+'%;background:#EF4444;opacity:.8\"></div></div><div class=\"vl\">'+mi(cst)+'</div></div>';"
+          },
+          {
+            "linha": 1524,
+            "codigo": "    if(gap>0) html+='<div class=\"bar-row\"><div class=\"lb\">Falta</div><div class=\"bar-track\"><div class=\"bar-fill\" style=\"width:'+(gap/ref*100).toFixed(1)+'%;background:#F59E0B;opacity:.85\"></div></div><div class=\"vl\">'+mi(gap)+'</div></div>';"
+          },
+          {
+            "linha": 1525,
+            "codigo": "    $id('i3-bars').innerHTML=html;"
+          },
+          {
+            "linha": 1526,
+            "codigo": ""
+          },
+          {
+            "linha": 1527,
+            "codigo": "    var v=$id('i3-vd');"
+          },
+          {
+            "linha": 1528,
+            "codigo": "    if(gap<=0) vd(v,'ok','A receita de energia cobre o custo fixo. Repare no que foi preciso: '+num(Hh)+' horas de despacho, um fator de capacidade de '+fc.toFixed(1)+'%, com margem de R$ '+num(M)+'/MWh. Um ativo com esse perfil não é uma usina de ponta — é uma usina de base disfarçada.');"
+          },
+          {
+            "linha": 1529,
+            "codigo": "    else if(need<80) vd(v,'att','Falta '+mi(gap)+'. O gap é pequeno diante do custo fixo, e um prêmio de capacidade de R$ '+num(need)+'/kW-ano fecharia a conta. É a faixa em que o debate de desenho de mercado costuma acontecer — nem óbvio, nem impossível.');"
+          },
+          {
+            "linha": 1530,
+            "codigo": "    else vd(v,'per','Falta '+mi(gap)+'. Vendendo só energia, este ativo não existe: nenhum banco financia e nenhum acionista aporta. Seriam necessários R$ '+num(need)+'/kW-ano de receita de disponibilidade para viabilizá-lo. Este número tem nome — é o missing money, e é a razão de existir dos leilões de reserva de capacidade.');"
+          },
+          {
+            "linha": 1531,
+            "codigo": "  }"
+          }
+        ],
+        "nota": "calculo = linhas de run() entre a leitura das entradas e a primeira saída/desenho; run_completo inclui desenho (SVG/barras) e ramos. Tudo literal."
+      },
+      "constantes_globais_usadas": [],
+      "visual": {
+        "barras": "i3-bars",
+        "svg": null
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i3-p": 200,
+          "i3-h": 200,
+          "i3-m": 400,
+          "i3-f": 300
+        },
+        "saidas_renderizadas": {
+          "i3-r": "R$ 16 mi",
+          "i3-c": "R$ 60 mi",
+          "i3-g": "R$ 44 mi",
+          "i3-k": "R$ 220/kW-ano"
+        },
+        "veredito": "Falta R$ 44 mi. Vendendo só energia, este ativo não existe: nenhum banco financia e nenhum acionista aporta. Seriam necessários R$ 220/kW-ano de receita de disponibilidade para viabilizá-lo. Este número tem nome — é o missing money, e é a razão de existir dos leilões de reserva de capacidade.",
+        "classe_veredito": "verdict per",
+        "metodo": "Execução do <script> original em DOM simulado (m04_harness_script.mjs), Node v24.14.0, toLocaleString pt-BR."
+      },
+      "nota_didatica": {
+        "html": "Didático/ilustrativo — não usar para dimensionamento real. Modelo de caixa simplificado: ignora impostos, alavancagem, custo de partida, receita de serviços ancilares e valor de opcionalidade. Serve para tornar visível a ordem de grandeza do gap, não para avaliar um ativo.",
+        "texto": "Didático/ilustrativo — não usar para dimensionamento real. Modelo de caixa simplificado: ignora impostos, alavancagem, custo de partida, receita de serviços ancilares e valor de opcionalidade. Serve para tornar visível a ordem de grandeza do gap, não para avaliar um ativo.",
+        "origem": {
+          "seletor": "div.inst(Inst · 03) p.disc",
+          "trecho_inicial": "<p class=\"disc\">Didático/ilustrativo — não usar para dimensionamento real. Modelo de caixa",
+          "linha_aprox": 562
+        }
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "Demais parâmetros (frota, curvas, lances, preços de camada, sazonalidades) sem fonte externa declarada; a própria nota diz \"Didático/ilustrativo — não usar para dimensionamento real\". Na interface: cenário didático, fonte externa não declarada (P19).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada na fonte.",
+      "observacoes_fonte": [],
+      "invocacao": {
+        "secao_anterior_h3": {
+          "numero": "3.3",
+          "linha_aprox": 525
+        },
+        "elemento_anterior": {
+          "tag": "div",
+          "classe": "box cy",
+          "trecho": "A frase que resolve a pergunta do Módulo 03 A solar ganha no LCOE porque LCOE compara custo médio por MWh entregue. O gá",
+          "linha_aprox": 530
+        },
+        "elemento_seguinte": {
+          "tag": "h3",
+          "classe": "",
+          "trecho": "3.4Como o Brasil está endereçando isso",
+          "linha_aprox": 566
+        },
+        "mencoes_no_texto_da_aula": [],
+        "origem": {
+          "seletor": "section#a03 div.inst",
+          "trecho_inicial": "<div class=\"inst\">",
+          "linha_aprox": 536
+        }
+      },
+      "codigo": {
+        "status": "divergente",
+        "status_nota": "Cálculo e veredito portados fielmente (harness: 10000 combinações, 0 vereditos divergentes); a divergência é de contrato/apresentação, listada abaixo.",
+        "instrument_em": "src/lib/data/alexandria-modulo-04-content.ts (INSTRUMENTOS_MODULO_04)",
+        "calculadora_em": "src/lib/data/alexandria-instrument-calculators.ts",
+        "title_igual": true,
+        "kind_codigo": "simulador",
+        "campos": [
+          {
+            "id_fonte": "i3-p-n",
+            "id_codigo": "i3-p-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i3-h-n",
+            "id_codigo": "i3-h-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i3-m-n",
+            "id_codigo": "i3-m-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i3-f-n",
+            "id_codigo": "i3-f-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          }
+        ],
+        "saidas_codigo": [
+          "i3-r",
+          "i3-c",
+          "i3-g",
+          "i3-k"
+        ],
+        "harness": {
+          "combinacoes": 10000,
+          "veredito_divergente": 0,
+          "exemplos": []
+        },
+        "divergencias": [
+          "note: null — a fonte tem p.disc (texto de contexto) e p.inst-intro; nenhum dos dois está no Instrument.",
+          "formula: null — coerente: a fonte não exibe fórmula (div.formula ausente).",
+          "Formatação: a porta emite número cru em valores; a fonte formata cada readout (brl/brl2/mi/num; ver saidas[].expressao_script).",
+          "Onde a fonte mostra texto em vez de número a porta emite 0: i3-g \"zero\" (gap<=0) e i3-k \"não precisa\" (gap<=0).",
+          "Visual não portado: barras #i3-bars (desenhadas pelo script).",
+          "Classe do veredito (ok/att/per → verde/âmbar/vermelho) não portada; as cores são semáforo e o sistema de design proíbe semáforo.",
+          "Entrada: na fonte o campo numérico vazio/NaN volta ao valor do deslizador e é limitado à faixa (link()); na porta, vazio vira 0 e não há clamp.",
+          "Posição: a fonte coloca o instrumento dentro do fluxo da aula; MODULO_04_CORPO não tem bloco de instrumento, e aula.instruments é renderizado à parte (não verificado na tela)."
+        ]
+      }
+    },
+    {
+      "id": "m04-inst-04",
+      "id_literal_fonte": "Inst · 04",
+      "titulo": "Simulador · Sala do leilão reverso",
+      "kind_taxonomia": "simulador",
+      "kind_nota": "Campos numéricos (par number+range) → readouts → veredito por ramos.",
+      "aula": "04",
+      "aula_id_codigo": "aula-04-04",
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não tem pergunta própria. A intro (inst-intro) é instrução, não pergunta; a pergunta de previsão, se houver, é camada Alexandria (P19).",
+      "intro": {
+        "html": "Seis propostas na mesa. Ajuste quanto o comprador quer contratar e onde fica o teto do edital — e observe o preço de corte se separar do preço médio, e o teto começar a barrar oferta.",
+        "texto": "Seis propostas na mesa. Ajuste quanto o comprador quer contratar e onde fica o teto do edital — e observe o preço de corte se separar do preço médio, e o teto começar a barrar oferta.",
+        "origem": {
+          "seletor": "div.inst(Inst · 04) p.inst-intro",
+          "trecho_inicial": "<p class=\"inst-intro\">Seis propostas na mesa. Ajuste quanto o comprador quer contratar e o",
+          "linha_aprox": 624
+        }
+      },
+      "entradas": [
+        {
+          "rotulo": "Quantidade demandada",
+          "unidade": "MW",
+          "id_number": "i4-d-n",
+          "id_range": "i4-d",
+          "padrao": 1000.0,
+          "min": 0.0,
+          "max": 2100.0,
+          "passo": 50.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 04) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Quantidade demandada <span class=\"unit\">MW</",
+            "linha_aprox": 626
+          }
+        },
+        {
+          "rotulo": "Preço-teto do edital",
+          "unidade": "R$/MWh",
+          "id_number": "i4-t-n",
+          "id_range": "i4-t",
+          "padrao": 300.0,
+          "min": 150.0,
+          "max": 400.0,
+          "passo": 5.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 04) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Preço-teto do edital <span class=\"unit\">R$/M",
+            "linha_aprox": 629
+          }
+        }
+      ],
+      "saidas": [
+        {
+          "id": "i4-q",
+          "rotulo": "Contratado",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 04) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Contratado</div><div class=\"n\" id=\"i4-q\" style=\"font-size:1",
+            "linha_aprox": 635
+          },
+          "expressao_script": {
+            "propriedade": "innerHTML",
+            "codigo": "num(somaMW)+'<span class=\"u\">MW</span>'",
+            "linha_aprox": 1560
+          },
+          "valor_padrao_renderizado": "1.000MW",
+          "valor_padrao_bruto": {
+            "innerHTML": "1.000<span class=\"u\">MW</span>"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": "MW"
+        },
+        {
+          "id": "i4-c",
+          "rotulo": "Preço de corte",
+          "destaque": true,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 04) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Preço de corte</div><div class=\"n gold\" id=\"i4-c\" style=\"fo",
+            "linha_aprox": 636
+          },
+          "expressao_script": {
+            "propriedade": "innerHTML",
+            "codigo": "somaMW>0?(brl(corte)+'<span class=\"u\">/MWh</span>'):'—'",
+            "linha_aprox": 1561
+          },
+          "valor_padrao_renderizado": "R$ 230/MWh",
+          "valor_padrao_bruto": {
+            "innerHTML": "R$ 230<span class=\"u\">/MWh</span>"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": "/MWh"
+        },
+        {
+          "id": "i4-m",
+          "rotulo": "Preço médio por lance",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 04) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Preço médio por lance</div><div class=\"n\" id=\"i4-m\" style=\"",
+            "linha_aprox": 637
+          },
+          "expressao_script": {
+            "propriedade": "innerHTML",
+            "codigo": "somaMW>0?(brl2(med)+'<span class=\"u\">/MWh</span>'):'—'",
+            "linha_aprox": 1562
+          },
+          "valor_padrao_renderizado": "R$ 186,00/MWh",
+          "valor_padrao_bruto": {
+            "innerHTML": "R$ 186,00<span class=\"u\">/MWh</span>"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": "/MWh"
+        },
+        {
+          "id": "i4-f",
+          "rotulo": "Demanda não atendida",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 04) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Demanda não atendida</div><div class=\"n\" id=\"i4-f\" style=\"f",
+            "linha_aprox": 638
+          },
+          "expressao_script": {
+            "propriedade": "innerHTML",
+            "codigo": "num(falta)+'<span class=\"u\">MW</span>'",
+            "linha_aprox": 1563
+          },
+          "valor_padrao_renderizado": "0MW",
+          "valor_padrao_bruto": {
+            "innerHTML": "0<span class=\"u\">MW</span>"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": "MW"
+        }
+      ],
+      "veredito": {
+        "id": "i4-vd",
+        "markup_inicial": "—",
+        "ramos": [
+          {
+            "ordem": 1,
+            "palavra": "if",
+            "condicao": "(somaMW===0 && D>0)",
+            "classe": "per",
+            "texto_expressao_js": "'Nada contratado. O teto do edital ficou abaixo de todas as propostas e o leilão saiu deserto. Acontece de verdade: teto mal calibrado não reduz preço — devolve o problema inteiro para o planejador, um ano depois e mais caro.'",
+            "linha_aprox": 1575
+          },
+          {
+            "ordem": 2,
+            "palavra": "else if",
+            "condicao": "(somaMW===0)",
+            "classe": "att",
+            "texto_expressao_js": "'Demanda zero, nada a contratar. Suba a quantidade demandada para ver a fila de propostas se formar.'",
+            "linha_aprox": 1576
+          },
+          {
+            "ordem": 3,
+            "palavra": "else if",
+            "condicao": "(falta>0 && barrado>=falta)",
+            "classe": "per",
+            "texto_expressao_js": "'Demanda não atendida em '+num(falta)+' MW, com '+num(barrado)+' MW de oferta barrados pelo teto. Do ponto de vista tarifário, o teto protegeu o consumidor; do ponto de vista de suprimento, deixou um buraco que reaparece no certame seguinte — em geral mais caro, porque a urgência aumentou.'",
+            "linha_aprox": 1577
+          },
+          {
+            "ordem": 4,
+            "palavra": "else if",
+            "condicao": "(falta>0)",
+            "classe": "per",
+            "texto_expressao_js": "'Demanda não atendida em '+num(falta)+' MW por insuficiência de oferta: mesmo contratando tudo que apareceu, não deu. Isso não é problema de preço-teto — é sinal de que o produto demandado não atraiu projetos suficientes, e a resposta está no desenho do edital.'",
+            "linha_aprox": 1578
+          },
+          {
+            "ordem": 5,
+            "palavra": "else",
+            "condicao": null,
+            "classe": "att",
+            "texto_expressao_js": "'Contratado integralmente. Preço de corte '+brl(corte)+'/MWh, preço médio por lance '+brl2(med)+'/MWh — uma diferença de '+brl2(corte-med)+' por MWh. Se o edital liquidar por preço uniforme, todos recebem o corte e essa diferença migra do bolso do consumidor para o do gerador. É a regra do edital, não a teoria, que decide isso.'",
+            "linha_aprox": 1579
+          }
+        ],
+        "ramo_no_cenario_padrao": 5
+      },
+      "script": {
+        "linhas": [
+          1536,
+          1583
+        ],
+        "constantes_e_frota": [
+          {
+            "linha": 1539,
+            "codigo": "var BIDS=["
+          },
+          {
+            "linha": 1540,
+            "codigo": "{n:'Solar A',mw:500,p:170,c:'#F59E0B'},"
+          },
+          {
+            "linha": 1541,
+            "codigo": "{n:'Eólica B',mw:400,p:195,c:'#06B6D4'},"
+          },
+          {
+            "linha": 1542,
+            "codigo": "{n:'Hidro C',mw:150,p:230,c:'#3B82F6'},"
+          },
+          {
+            "linha": 1543,
+            "codigo": "{n:'Gás D',mw:600,p:265,c:'#A855F7'},"
+          },
+          {
+            "linha": 1544,
+            "codigo": "{n:'Biomassa E',mw:120,p:280,c:'#10B981'},"
+          },
+          {
+            "linha": 1545,
+            "codigo": "{n:'Térmica F',mw:300,p:340,c:'#EF4444'}"
+          }
+        ],
+        "calculo": [
+          {
+            "linha": 1548,
+            "codigo": "    var D=+$id('i4-d').value, T=+$id('i4-t').value;"
+          },
+          {
+            "linha": 1549,
+            "codigo": "    var rest=D, corte=0, somaRS=0, somaMW=0, barrado=0, i;"
+          },
+          {
+            "linha": 1550,
+            "codigo": "    var rows=[];"
+          },
+          {
+            "linha": 1551,
+            "codigo": "    for(i=0;i<BIDS.length;i++){"
+          },
+          {
+            "linha": 1552,
+            "codigo": "      var b=BIDS[i], take=0;"
+          },
+          {
+            "linha": 1553,
+            "codigo": "      if(b.p>T){barrado+=b.mw;}"
+          },
+          {
+            "linha": 1554,
+            "codigo": "      else if(rest>0){take=Math.min(b.mw,rest);rest-=take;corte=b.p;somaRS+=take*b.p;somaMW+=take;}"
+          },
+          {
+            "linha": 1555,
+            "codigo": "      rows.push({b:b,take:take});"
+          },
+          {
+            "linha": 1556,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1557,
+            "codigo": "    var med=somaMW>0?somaRS/somaMW:0;"
+          },
+          {
+            "linha": 1558,
+            "codigo": "    var falta=Math.max(0,rest);"
+          }
+        ],
+        "preambulo_do_veredito": [
+          {
+            "linha": 1574,
+            "codigo": "var v=$id('i4-vd');"
+          }
+        ],
+        "run_completo": [
+          {
+            "linha": 1547,
+            "codigo": "  function run(){"
+          },
+          {
+            "linha": 1548,
+            "codigo": "    var D=+$id('i4-d').value, T=+$id('i4-t').value;"
+          },
+          {
+            "linha": 1549,
+            "codigo": "    var rest=D, corte=0, somaRS=0, somaMW=0, barrado=0, i;"
+          },
+          {
+            "linha": 1550,
+            "codigo": "    var rows=[];"
+          },
+          {
+            "linha": 1551,
+            "codigo": "    for(i=0;i<BIDS.length;i++){"
+          },
+          {
+            "linha": 1552,
+            "codigo": "      var b=BIDS[i], take=0;"
+          },
+          {
+            "linha": 1553,
+            "codigo": "      if(b.p>T){barrado+=b.mw;}"
+          },
+          {
+            "linha": 1554,
+            "codigo": "      else if(rest>0){take=Math.min(b.mw,rest);rest-=take;corte=b.p;somaRS+=take*b.p;somaMW+=take;}"
+          },
+          {
+            "linha": 1555,
+            "codigo": "      rows.push({b:b,take:take});"
+          },
+          {
+            "linha": 1556,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1557,
+            "codigo": "    var med=somaMW>0?somaRS/somaMW:0;"
+          },
+          {
+            "linha": 1558,
+            "codigo": "    var falta=Math.max(0,rest);"
+          },
+          {
+            "linha": 1559,
+            "codigo": ""
+          },
+          {
+            "linha": 1560,
+            "codigo": "    $id('i4-q').innerHTML=num(somaMW)+'<span class=\"u\">MW</span>';"
+          },
+          {
+            "linha": 1561,
+            "codigo": "    $id('i4-c').innerHTML=somaMW>0?(brl(corte)+'<span class=\"u\">/MWh</span>'):'—';"
+          },
+          {
+            "linha": 1562,
+            "codigo": "    $id('i4-m').innerHTML=somaMW>0?(brl2(med)+'<span class=\"u\">/MWh</span>'):'—';"
+          },
+          {
+            "linha": 1563,
+            "codigo": "    $id('i4-f').innerHTML=num(falta)+'<span class=\"u\">MW</span>';"
+          },
+          {
+            "linha": 1564,
+            "codigo": ""
+          },
+          {
+            "linha": 1565,
+            "codigo": "    var html='';"
+          },
+          {
+            "linha": 1566,
+            "codigo": "    for(i=0;i<rows.length;i++){"
+          },
+          {
+            "linha": 1567,
+            "codigo": "      var r=rows[i], on=r.take>0;"
+          },
+          {
+            "linha": 1568,
+            "codigo": "      html+='<div class=\"bar-row\"><div class=\"lb\">'+r.b.n+'</div><div class=\"bar-track\">'+"
+          },
+          {
+            "linha": 1569,
+            "codigo": "        '<div class=\"bar-fill\" style=\"width:'+clamp(r.take/700*100,0,100).toFixed(1)+'%;background:'+(on?r.b.c:'#2E3440')+';opacity:'+(on?'.85':'.4')+'\"></div></div>'+"
+          },
+          {
+            "linha": 1570,
+            "codigo": "        '<div class=\"vl\">R$ '+r.b.p+' · '+num(r.take)+' MW</div></div>';"
+          },
+          {
+            "linha": 1571,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1572,
+            "codigo": "    $id('i4-bars').innerHTML=html;"
+          },
+          {
+            "linha": 1573,
+            "codigo": ""
+          },
+          {
+            "linha": 1574,
+            "codigo": "    var v=$id('i4-vd');"
+          },
+          {
+            "linha": 1575,
+            "codigo": "    if(somaMW===0 && D>0) vd(v,'per','Nada contratado. O teto do edital ficou abaixo de todas as propostas e o leilão saiu deserto. Acontece de verdade: teto mal calibrado não reduz preço — devolve o problema inteiro para o planejador, um ano depois e mais caro.');"
+          },
+          {
+            "linha": 1576,
+            "codigo": "    else if(somaMW===0) vd(v,'att','Demanda zero, nada a contratar. Suba a quantidade demandada para ver a fila de propostas se formar.');"
+          },
+          {
+            "linha": 1577,
+            "codigo": "    else if(falta>0 && barrado>=falta) vd(v,'per','Demanda não atendida em '+num(falta)+' MW, com '+num(barrado)+' MW de oferta barrados pelo teto. Do ponto de vista tarifário, o teto protegeu o consumidor; do ponto de vista de suprimento, deixou um buraco que reaparece no certame seguinte — em geral mais caro, porque a urgência aumentou.');"
+          },
+          {
+            "linha": 1578,
+            "codigo": "    else if(falta>0) vd(v,'per','Demanda não atendida em '+num(falta)+' MW por insuficiência de oferta: mesmo contratando tudo que apareceu, não deu. Isso não é problema de preço-teto — é sinal de que o produto demandado não atraiu projetos suficientes, e a resposta está no desenho do edital.');"
+          },
+          {
+            "linha": 1579,
+            "codigo": "    else vd(v,'att','Contratado integralmente. Preço de corte '+brl(corte)+'/MWh, preço médio por lance '+brl2(med)+'/MWh — uma diferença de '+brl2(corte-med)+' por MWh. Se o edital liquidar por preço uniforme, todos recebem o corte e essa diferença migra do bolso do consumidor para o do gerador. É a regra do edital, não a teoria, que decide isso.');"
+          },
+          {
+            "linha": 1580,
+            "codigo": "  }"
+          }
+        ],
+        "nota": "calculo = linhas de run() entre a leitura das entradas e a primeira saída/desenho; run_completo inclui desenho (SVG/barras) e ramos. Tudo literal."
+      },
+      "constantes_globais_usadas": [],
+      "visual": {
+        "barras": "i4-bars",
+        "svg": null
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i4-d": 1000,
+          "i4-t": 300
+        },
+        "saidas_renderizadas": {
+          "i4-q": "1.000MW",
+          "i4-c": "R$ 230/MWh",
+          "i4-m": "R$ 186,00/MWh",
+          "i4-f": "0MW"
+        },
+        "veredito": "Contratado integralmente. Preço de corte R$ 230/MWh, preço médio por lance R$ 186,00/MWh — uma diferença de R$ 44,00 por MWh. Se o edital liquidar por preço uniforme, todos recebem o corte e essa diferença migra do bolso do consumidor para o do gerador. É a regra do edital, não a teoria, que decide isso.",
+        "classe_veredito": "verdict att",
+        "metodo": "Execução do <script> original em DOM simulado (m04_harness_script.mjs), Node v24.14.0, toLocaleString pt-BR."
+      },
+      "nota_didatica": {
+        "html": "Didático/ilustrativo — não usar para dimensionamento real. Propostas fictícias e ordenação puramente por preço. Leilões reais aplicam índices de custo-benefício, requisitos de garantia física, restrições de escoamento pela rede e critérios técnicos de habilitação que alteram a ordem de classificação.",
+        "texto": "Didático/ilustrativo — não usar para dimensionamento real. Propostas fictícias e ordenação puramente por preço. Leilões reais aplicam índices de custo-benefício, requisitos de garantia física, restrições de escoamento pela rede e critérios técnicos de habilitação que alteram a ordem de classificação.",
+        "origem": {
+          "seletor": "div.inst(Inst · 04) p.disc",
+          "trecho_inicial": "<p class=\"disc\">Didático/ilustrativo — não usar para dimensionamento real. Propostas fictí",
+          "linha_aprox": 641
+        }
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "Demais parâmetros (frota, curvas, lances, preços de camada, sazonalidades) sem fonte externa declarada; a própria nota diz \"Didático/ilustrativo — não usar para dimensionamento real\". Na interface: cenário didático, fonte externa não declarada (P19).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada na fonte.",
+      "observacoes_fonte": [
+        "Lances fixos (BIDS, L1539–1546) diferem das propostas do Exercício 06 (A–D). Cenários distintos."
+      ],
+      "invocacao": {
+        "secao_anterior_h3": {
+          "numero": "4.1",
+          "linha_aprox": 613
+        },
+        "elemento_anterior": {
+          "tag": "p",
+          "classe": "",
+          "trecho": "Existe ainda um terceiro elemento que a versão simplificada esconde: leilões reais raramente ordenam apenas por preço. A",
+          "linha_aprox": 618
+        },
+        "elemento_seguinte": {
+          "tag": "h3",
+          "classe": "",
+          "trecho": "4.2A escada A-1 a A-6",
+          "linha_aprox": 645
+        },
+        "mencoes_no_texto_da_aula": [],
+        "origem": {
+          "seletor": "section#a04 div.inst",
+          "trecho_inicial": "<div class=\"inst\">",
+          "linha_aprox": 621
+        }
+      },
+      "codigo": {
+        "status": "divergente",
+        "status_nota": "Cálculo e veredito portados fielmente (harness: 100 combinações, 0 vereditos divergentes); a divergência é de contrato/apresentação, listada abaixo.",
+        "instrument_em": "src/lib/data/alexandria-modulo-04-content.ts (INSTRUMENTOS_MODULO_04)",
+        "calculadora_em": "src/lib/data/alexandria-instrument-calculators.ts",
+        "title_igual": true,
+        "kind_codigo": "simulador",
+        "campos": [
+          {
+            "id_fonte": "i4-d-n",
+            "id_codigo": "i4-d-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i4-t-n",
+            "id_codigo": "i4-t-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          }
+        ],
+        "saidas_codigo": [
+          "i4-q",
+          "i4-c",
+          "i4-m",
+          "i4-f"
+        ],
+        "harness": {
+          "combinacoes": 100,
+          "veredito_divergente": 0,
+          "exemplos": []
+        },
+        "divergencias": [
+          "Unidade de i4-q: fonte renderiza \"MW\", código declara None.",
+          "Unidade de i4-c: fonte renderiza \"/MWh\", código declara None.",
+          "Unidade de i4-m: fonte renderiza \"/MWh\", código declara None.",
+          "Unidade de i4-f: fonte renderiza \"MW\", código declara None.",
+          "note: null — a fonte tem p.disc (texto de contexto) e p.inst-intro; nenhum dos dois está no Instrument.",
+          "formula: null — coerente: a fonte não exibe fórmula (div.formula ausente).",
+          "Formatação: a porta emite número cru em valores; a fonte formata cada readout (brl/brl2/mi/num; ver saidas[].expressao_script).",
+          "Onde a fonte mostra \"—\" (somaMW=0) em i4-c e i4-m, a porta emite 0.",
+          "Visual não portado: barras #i4-bars (desenhadas pelo script).",
+          "Classe do veredito (ok/att/per → verde/âmbar/vermelho) não portada; as cores são semáforo e o sistema de design proíbe semáforo.",
+          "Entrada: na fonte o campo numérico vazio/NaN volta ao valor do deslizador e é limitado à faixa (link()); na porta, vazio vira 0 e não há clamp.",
+          "Posição: a fonte coloca o instrumento dentro do fluxo da aula; MODULO_04_CORPO não tem bloco de instrumento, e aula.instruments é renderizado à parte (não verificado na tela)."
+        ]
+      }
+    },
+    {
+      "id": "m04-inst-05",
+      "id_literal_fonte": "Inst · 05",
+      "titulo": "Simulador · Contrato × spot ao longo de 12 meses",
+      "kind_taxonomia": "simulador",
+      "kind_nota": "Campos numéricos (par number+range) → readouts → veredito por ramos.",
+      "aula": "05",
+      "aula_id_codigo": "aula-04-05",
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não tem pergunta própria. A intro (inst-intro) é instrução, não pergunta; a pergunta de previsão, se houver, é camada Alexandria (P19).",
+      "intro": {
+        "html": "Uma indústria com consumo de 10.000 MWh/mês decide quanto contratar. O gráfico mostra o custo mês a mês: a parcela travada não se move, a parcela exposta acompanha o PLD. Repare no que o contrato faz com a <em>média</em> e no que ele faz com a <em>amplitude</em> — são efeitos diferentes e é o segundo que costuma decidir.",
+        "texto": "Uma indústria com consumo de 10.000 MWh/mês decide quanto contratar. O gráfico mostra o custo mês a mês: a parcela travada não se move, a parcela exposta acompanha o PLD. Repare no que o contrato faz com a média e no que ele faz com a amplitude — são efeitos diferentes e é o segundo que costuma decidir.",
+        "origem": {
+          "seletor": "div.inst(Inst · 05) p.inst-intro",
+          "trecho_inicial": "<p class=\"inst-intro\">Uma indústria com consumo de 10.000 MWh/mês decide quanto contratar.",
+          "linha_aprox": 735
+        }
+      },
+      "entradas": [
+        {
+          "rotulo": "Parcela contratada em PPA",
+          "unidade": "%",
+          "id_number": "i5-c-n",
+          "id_range": "i5-c",
+          "padrao": 70.0,
+          "min": 0.0,
+          "max": 100.0,
+          "passo": 5.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 05) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Parcela contratada em PPA <span class=\"unit\"",
+            "linha_aprox": 737
+          }
+        },
+        {
+          "rotulo": "Preço do PPA",
+          "unidade": "R$/MWh",
+          "id_number": "i5-p-n",
+          "id_range": "i5-p",
+          "padrao": 355.0,
+          "min": 180.0,
+          "max": 500.0,
+          "passo": 5.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 05) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Preço do PPA <span class=\"unit\">R$/MWh</span",
+            "linha_aprox": 740
+          }
+        },
+        {
+          "rotulo": "PLD médio do cenário",
+          "unidade": "R$/MWh",
+          "id_number": "i5-l-n",
+          "id_range": "i5-l",
+          "padrao": 250.0,
+          "min": 57.0,
+          "max": 800.0,
+          "passo": 1.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 05) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">PLD médio do cenário <span class=\"unit\">R$/M",
+            "linha_aprox": 743
+          }
+        },
+        {
+          "rotulo": "Amplitude mensal do PLD",
+          "unidade": "± R$/MWh",
+          "id_number": "i5-s-n",
+          "id_range": "i5-s",
+          "padrao": 120.0,
+          "min": 0.0,
+          "max": 350.0,
+          "passo": 10.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 05) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Amplitude mensal do PLD <span class=\"unit\">±",
+            "linha_aprox": 746
+          }
+        }
+      ],
+      "saidas": [
+        {
+          "id": "i5-a",
+          "rotulo": "Custo médio",
+          "destaque": true,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 05) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Custo médio</div><div class=\"n gold\" id=\"i5-a\" style=\"font-",
+            "linha_aprox": 759
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "mi(med)",
+            "linha_aprox": 1616
+          },
+          "valor_padrao_renderizado": "R$ 3,25 mi",
+          "valor_padrao_bruto": {
+            "textContent": "R$ 3,25 mi"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": null
+        },
+        {
+          "id": "i5-lo",
+          "rotulo": "Mês mais barato",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 05) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Mês mais barato</div><div class=\"n\" id=\"i5-lo\" style=\"font-",
+            "linha_aprox": 760
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "MES[mni]+' · '+mi(mn)",
+            "linha_aprox": 1617
+          },
+          "valor_padrao_renderizado": "Fev · R$ 2,87 mi",
+          "valor_padrao_bruto": {
+            "textContent": "Fev · R$ 2,87 mi"
+          },
+          "tipo_saida": "textual",
+          "unidade_renderizada": null
+        },
+        {
+          "id": "i5-w",
+          "rotulo": "Mês mais caro",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 05) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Mês mais caro</div><div class=\"n\" id=\"i5-w\" style=\"font-siz",
+            "linha_aprox": 761
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "MES[mxi]+' · '+mi(mx)",
+            "linha_aprox": 1618
+          },
+          "valor_padrao_renderizado": "Ago · R$ 3,6 mi",
+          "valor_padrao_bruto": {
+            "textContent": "Ago · R$ 3,6 mi"
+          },
+          "tipo_saida": "textual",
+          "unidade_renderizada": null
+        },
+        {
+          "id": "i5-r",
+          "rotulo": "Amplitude anual",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 05) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Amplitude anual</div><div class=\"n\" id=\"i5-r\" style=\"font-s",
+            "linha_aprox": 762
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "mi(mx-mn)",
+            "linha_aprox": 1619
+          },
+          "valor_padrao_renderizado": "R$ 720 mil",
+          "valor_padrao_bruto": {
+            "textContent": "R$ 720 mil"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": null
+        }
+      ],
+      "veredito": {
+        "id": "i5-vd",
+        "markup_inicial": "—",
+        "ramos": [
+          {
+            "ordem": 1,
+            "palavra": "if",
+            "condicao": "(C>=0.999)",
+            "classe": "att",
+            "texto_expressao_js": "'Cem por cento contratado. A volatilidade some — e no lugar dela entra o risco de sobrecontratação: se a produção cair, a sobra é liquidada a preço que a empresa não escolhe. Proteção total contra um risco costuma ser exposição total a outro.'",
+            "linha_aprox": 1622
+          },
+          {
+            "ordem": 2,
+            "palavra": "else if",
+            "condicao": "(amp<=400000)",
+            "classe": "ok",
+            "texto_expressao_js": "'Amplitude anual de '+mi(amp)+' entre o melhor e o pior mês. Absorvível pelo caixa da maioria das operações industriais — é a faixa em que a flexibilidade da exposição residual compra mais valor do que custa.'",
+            "linha_aprox": 1623
+          },
+          {
+            "ordem": 3,
+            "palavra": "else if",
+            "condicao": "(amp<=1500000)",
+            "classe": "att",
+            "texto_expressao_js": "'Amplitude anual de '+mi(amp)+'. Esse número precisa caber na política de risco por escrito, e não apenas na expectativa de quem assinou o contrato. Repare que a média mal se moveu: o que mudou foi a dispersão.'",
+            "linha_aprox": 1624
+          },
+          {
+            "ordem": 4,
+            "palavra": "else",
+            "condicao": null,
+            "classe": "per",
+            "texto_expressao_js": "'Amplitude anual de '+mi(amp)+', com pior mês em '+MES[mxi]+'. Nada garante que os meses ruins não se agrupem. Se essa variação não cabe no orçamento, a discussão não é de preço — é de política de contratação.'",
+            "linha_aprox": 1625
+          }
+        ],
+        "ramo_no_cenario_padrao": 3
+      },
+      "script": {
+        "linhas": [
+          1585,
+          1629
+        ],
+        "constantes_e_frota": [
+          {
+            "linha": 1588,
+            "codigo": "var CONS=10000;"
+          },
+          {
+            "linha": 1589,
+            "codigo": "var WAVE=[-0.85,-1.00,-0.75,-0.40,0.10,0.50,0.80,1.00,0.90,0.55,0.05,-0.50];"
+          }
+        ],
+        "calculo": [
+          {
+            "linha": 1591,
+            "codigo": "    var C=+$id('i5-c').value/100, P=+$id('i5-p').value, L=+$id('i5-l').value, S=+$id('i5-s').value;"
+          },
+          {
+            "linha": 1592,
+            "codigo": "    var fix=C*P*CONS, i, tot=[], expo=[], mx=-1,mn=1e18,soma=0,mxi=0,mni=0;"
+          },
+          {
+            "linha": 1593,
+            "codigo": "    for(i=0;i<12;i++){"
+          },
+          {
+            "linha": 1594,
+            "codigo": "      var pld=clamp(L+S*WAVE[i],PLD_MIN,PLD_MAX_H);"
+          },
+          {
+            "linha": 1595,
+            "codigo": "      var e=(1-C)*pld*CONS;"
+          },
+          {
+            "linha": 1596,
+            "codigo": "      expo.push(e); tot.push(fix+e); soma+=fix+e;"
+          },
+          {
+            "linha": 1597,
+            "codigo": "      if(fix+e>mx){mx=fix+e;mxi=i;}"
+          },
+          {
+            "linha": 1598,
+            "codigo": "      if(fix+e<mn){mn=fix+e;mni=i;}"
+          },
+          {
+            "linha": 1599,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1600,
+            "codigo": "    var med=soma/12;"
+          }
+        ],
+        "preambulo_do_veredito": [
+          {
+            "linha": 1621,
+            "codigo": "var v=$id('i5-vd'), amp=mx-mn;"
+          }
+        ],
+        "run_completo": [
+          {
+            "linha": 1590,
+            "codigo": "  function run(){"
+          },
+          {
+            "linha": 1591,
+            "codigo": "    var C=+$id('i5-c').value/100, P=+$id('i5-p').value, L=+$id('i5-l').value, S=+$id('i5-s').value;"
+          },
+          {
+            "linha": 1592,
+            "codigo": "    var fix=C*P*CONS, i, tot=[], expo=[], mx=-1,mn=1e18,soma=0,mxi=0,mni=0;"
+          },
+          {
+            "linha": 1593,
+            "codigo": "    for(i=0;i<12;i++){"
+          },
+          {
+            "linha": 1594,
+            "codigo": "      var pld=clamp(L+S*WAVE[i],PLD_MIN,PLD_MAX_H);"
+          },
+          {
+            "linha": 1595,
+            "codigo": "      var e=(1-C)*pld*CONS;"
+          },
+          {
+            "linha": 1596,
+            "codigo": "      expo.push(e); tot.push(fix+e); soma+=fix+e;"
+          },
+          {
+            "linha": 1597,
+            "codigo": "      if(fix+e>mx){mx=fix+e;mxi=i;}"
+          },
+          {
+            "linha": 1598,
+            "codigo": "      if(fix+e<mn){mn=fix+e;mni=i;}"
+          },
+          {
+            "linha": 1599,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1600,
+            "codigo": "    var med=soma/12;"
+          },
+          {
+            "linha": 1601,
+            "codigo": "    var yMax=niceMax(mx*1.12);"
+          },
+          {
+            "linha": 1602,
+            "codigo": ""
+          },
+          {
+            "linha": 1603,
+            "codigo": "    var s=grid(yMax,function(v){return (v/1e6).toFixed(1)+'M';});"
+          },
+          {
+            "linha": 1604,
+            "codigo": "    var bw=(PW/12)*0.6;"
+          },
+          {
+            "linha": 1605,
+            "codigo": "    for(i=0;i<12;i++){"
+          },
+          {
+            "linha": 1606,
+            "codigo": "      var x=xc(i)-bw/2;"
+          },
+          {
+            "linha": 1607,
+            "codigo": "      var yF=yc(fix,yMax), hF=PT+PH-yF;"
+          },
+          {
+            "linha": 1608,
+            "codigo": "      var yT=yc(tot[i],yMax), hE=yF-yT;"
+          },
+          {
+            "linha": 1609,
+            "codigo": "      if(hE>0.3) s+='<rect x=\"'+x.toFixed(1)+'\" y=\"'+yT.toFixed(1)+'\" width=\"'+bw.toFixed(1)+'\" height=\"'+hE.toFixed(1)+'\" fill=\"#F59E0B\" opacity=\".85\" rx=\"1\"/>';"
+          },
+          {
+            "linha": 1610,
+            "codigo": "      if(hF>0.3) s+='<rect x=\"'+x.toFixed(1)+'\" y=\"'+yF.toFixed(1)+'\" width=\"'+bw.toFixed(1)+'\" height=\"'+hF.toFixed(1)+'\" fill=\"#06B6D4\" opacity=\".85\" rx=\"1\"/>';"
+          },
+          {
+            "linha": 1611,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1612,
+            "codigo": "    s+='<line x1=\"'+PL+'\" y1=\"'+yc(med,yMax).toFixed(1)+'\" x2=\"'+(PL+PW)+'\" y2=\"'+yc(med,yMax).toFixed(1)+'\" stroke=\"#EF4444\" stroke-width=\"1.6\" stroke-dasharray=\"6 4\"/>';"
+          },
+          {
+            "linha": 1613,
+            "codigo": "    s+=xlabels();"
+          },
+          {
+            "linha": 1614,
+            "codigo": "    $id('i5-svg').innerHTML=s;"
+          },
+          {
+            "linha": 1615,
+            "codigo": ""
+          },
+          {
+            "linha": 1616,
+            "codigo": "    $id('i5-a').textContent=mi(med);"
+          },
+          {
+            "linha": 1617,
+            "codigo": "    $id('i5-lo').textContent=MES[mni]+' · '+mi(mn);"
+          },
+          {
+            "linha": 1618,
+            "codigo": "    $id('i5-w').textContent=MES[mxi]+' · '+mi(mx);"
+          },
+          {
+            "linha": 1619,
+            "codigo": "    $id('i5-r').textContent=mi(mx-mn);"
+          },
+          {
+            "linha": 1620,
+            "codigo": ""
+          },
+          {
+            "linha": 1621,
+            "codigo": "    var v=$id('i5-vd'), amp=mx-mn;"
+          },
+          {
+            "linha": 1622,
+            "codigo": "    if(C>=0.999) vd(v,'att','Cem por cento contratado. A volatilidade some — e no lugar dela entra o risco de sobrecontratação: se a produção cair, a sobra é liquidada a preço que a empresa não escolhe. Proteção total contra um risco costuma ser exposição total a outro.');"
+          },
+          {
+            "linha": 1623,
+            "codigo": "    else if(amp<=400000) vd(v,'ok','Amplitude anual de '+mi(amp)+' entre o melhor e o pior mês. Absorvível pelo caixa da maioria das operações industriais — é a faixa em que a flexibilidade da exposição residual compra mais valor do que custa.');"
+          },
+          {
+            "linha": 1624,
+            "codigo": "    else if(amp<=1500000) vd(v,'att','Amplitude anual de '+mi(amp)+'. Esse número precisa caber na política de risco por escrito, e não apenas na expectativa de quem assinou o contrato. Repare que a média mal se moveu: o que mudou foi a dispersão.');"
+          },
+          {
+            "linha": 1625,
+            "codigo": "    else vd(v,'per','Amplitude anual de '+mi(amp)+', com pior mês em '+MES[mxi]+'. Nada garante que os meses ruins não se agrupem. Se essa variação não cabe no orçamento, a discussão não é de preço — é de política de contratação.');"
+          },
+          {
+            "linha": 1626,
+            "codigo": "  }"
+          }
+        ],
+        "nota": "calculo = linhas de run() entre a leitura das entradas e a primeira saída/desenho; run_completo inclui desenho (SVG/barras) e ramos. Tudo literal."
+      },
+      "constantes_globais_usadas": [
+        "PLD_MIN",
+        "PLD_MAX_H",
+        "MES"
+      ],
+      "visual": {
+        "barras": null,
+        "svg": {
+          "id": "i5-svg",
+          "aria_label": "Custo mensal com parcela contratada e parcela exposta",
+          "legenda": [
+            "Parcela contratada (fixa)",
+            "Parcela exposta ao PLD",
+            "Custo médio"
+          ]
+        }
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i5-c": 70,
+          "i5-p": 355,
+          "i5-l": 250,
+          "i5-s": 120
+        },
+        "saidas_renderizadas": {
+          "i5-a": "R$ 3,25 mi",
+          "i5-lo": "Fev · R$ 2,87 mi",
+          "i5-w": "Ago · R$ 3,6 mi",
+          "i5-r": "R$ 720 mil"
+        },
+        "veredito": "Amplitude anual de R$ 720 mil. Esse número precisa caber na política de risco por escrito, e não apenas na expectativa de quem assinou o contrato. Repare que a média mal se moveu: o que mudou foi a dispersão.",
+        "classe_veredito": "verdict att",
+        "metodo": "Execução do <script> original em DOM simulado (m04_harness_script.mjs), Node v24.14.0, toLocaleString pt-BR."
+      },
+      "nota_didatica": {
+        "html": "Didático/ilustrativo — não usar para dimensionamento real. Assume aderência perfeita entre volume contratado e consumo medido, ignora modulação, sazonalização, encargos, tarifa de uso da rede, tributos e custo de garantias. Numa avaliação real, a diferença entre contrato flat e perfil de carga costuma valer mais que a diferença de preço.",
+        "texto": "Didático/ilustrativo — não usar para dimensionamento real. Assume aderência perfeita entre volume contratado e consumo medido, ignora modulação, sazonalização, encargos, tarifa de uso da rede, tributos e custo de garantias. Numa avaliação real, a diferença entre contrato flat e perfil de carga costuma valer mais que a diferença de preço.",
+        "origem": {
+          "seletor": "div.inst(Inst · 05) p.disc",
+          "trecho_inicial": "<p class=\"disc\">Didático/ilustrativo — não usar para dimensionamento real. Assume aderênci",
+          "linha_aprox": 765
+        }
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "Limites PLD_MIN/PLD_MAX_H/PLD_MAX_E: comentário do script \"limites regulatórios vigentes 2026 — ANEEL Despacho 3.850/2025\" (L1337), confirmado em §Ref item 1. Demais parâmetros (frota, curvas, lances, preços de camada, sazonalidades) sem fonte externa declarada; a própria nota diz \"Didático/ilustrativo — não usar para dimensionamento real\". Na interface: cenário didático, fonte externa não declarada (P19).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada na fonte.",
+      "observacoes_fonte": [
+        "A faixa \"PLD médio do cenário\" começa em 57 (PLD_MIN arredondado para baixo); a curva mensal é limitada em PLD_MIN=57,31."
+      ],
+      "invocacao": {
+        "secao_anterior_h3": {
+          "numero": "5.5",
+          "linha_aprox": 721
+        },
+        "elemento_anterior": {
+          "tag": "div",
+          "classe": "box rd",
+          "trecho": "Números vivos · verificar na fonte antes de uso externo Percentuais de curtailment, composição por motivo e regras de re",
+          "linha_aprox": 726
+        },
+        "elemento_seguinte": {
+          "tag": "div",
+          "classe": "lv",
+          "trecho": "PPA · três níveis Criança de 12 anos Executivo Especialista É um combinado longo: eu compro sua energia por vários anos,",
+          "linha_aprox": 769
+        },
+        "mencoes_no_texto_da_aula": [],
+        "origem": {
+          "seletor": "section#a05 div.inst",
+          "trecho_inicial": "<div class=\"inst\">",
+          "linha_aprox": 732
+        }
+      },
+      "codigo": {
+        "status": "divergente",
+        "status_nota": "Cálculo e veredito portados fielmente (harness: 10000 combinações, 0 vereditos divergentes); a divergência é de contrato/apresentação, listada abaixo.",
+        "instrument_em": "src/lib/data/alexandria-modulo-04-content.ts (INSTRUMENTOS_MODULO_04)",
+        "calculadora_em": "src/lib/data/alexandria-instrument-calculators.ts",
+        "title_igual": true,
+        "kind_codigo": "simulador",
+        "campos": [
+          {
+            "id_fonte": "i5-c-n",
+            "id_codigo": "i5-c-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i5-p-n",
+            "id_codigo": "i5-p-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i5-l-n",
+            "id_codigo": "i5-l-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i5-s-n",
+            "id_codigo": "i5-s-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          }
+        ],
+        "saidas_codigo": [
+          "i5-a",
+          "i5-r"
+        ],
+        "harness": {
+          "combinacoes": 10000,
+          "veredito_divergente": 0,
+          "exemplos": []
+        },
+        "divergencias": [
+          "Saídas ausentes no código (texto não cabe em Record<string, number>): i5-lo, i5-w.",
+          "note: null — a fonte tem p.disc (texto de contexto) e p.inst-intro; nenhum dos dois está no Instrument.",
+          "formula: null — coerente: a fonte não exibe fórmula (div.formula ausente).",
+          "Formatação: a porta emite número cru em valores; a fonte formata cada readout (brl/brl2/mi/num; ver saidas[].expressao_script).",
+          "Visual não portado: gráfico SVG #i5-svg com legenda de 3 itens.",
+          "Classe do veredito (ok/att/per → verde/âmbar/vermelho) não portada; as cores são semáforo e o sistema de design proíbe semáforo.",
+          "Entrada: na fonte o campo numérico vazio/NaN volta ao valor do deslizador e é limitado à faixa (link()); na porta, vazio vira 0 e não há clamp.",
+          "Posição: a fonte coloca o instrumento dentro do fluxo da aula; MODULO_04_CORPO não tem bloco de instrumento, e aula.instruments é renderizado à parte (não verificado na tela)."
+        ]
+      }
+    },
+    {
+      "id": "m04-inst-06",
+      "id_literal_fonte": "Inst · 06",
+      "titulo": "Mesa de hedge · swap simples",
+      "kind_taxonomia": "simulador",
+      "kind_nota": "Campos numéricos (par number+range) → readouts → veredito por ramos. \"Mesa de hedge\" (Inst · 06) tem a mesma mecânica; taxonomia já registra como simulador.",
+      "aula": "06",
+      "aula_id_codigo": "aula-04-06",
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não tem pergunta própria. A intro (inst-intro) é instrução, não pergunta; a pergunta de previsão, se houver, é camada Alexandria (P19).",
+      "intro": {
+        "html": "Consumo fixo de 10.000 MWh/mês. Você trava um preço fixo para parte dele. Mexa no volume travado — e repare no que acontece quando ele passa do consumo.",
+        "texto": "Consumo fixo de 10.000 MWh/mês. Você trava um preço fixo para parte dele. Mexa no volume travado — e repare no que acontece quando ele passa do consumo.",
+        "origem": {
+          "seletor": "div.inst(Inst · 06) p.inst-intro",
+          "trecho_inicial": "<p class=\"inst-intro\">Consumo fixo de 10.000 MWh/mês. Você trava um preço fixo para parte ",
+          "linha_aprox": 821
+        }
+      },
+      "entradas": [
+        {
+          "rotulo": "Preço fixo do swap",
+          "unidade": "R$/MWh",
+          "id_number": "i6-f-n",
+          "id_range": "i6-f",
+          "padrao": 300.0,
+          "min": 150.0,
+          "max": 600.0,
+          "passo": 5.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 06) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Preço fixo do swap <span class=\"unit\">R$/MWh",
+            "linha_aprox": 823
+          }
+        },
+        {
+          "rotulo": "PLD realizado no mês",
+          "unidade": "R$/MWh",
+          "id_number": "i6-p-n",
+          "id_range": "i6-p",
+          "padrao": 250.0,
+          "min": 57.0,
+          "max": 1611.0,
+          "passo": 1.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 06) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">PLD realizado no mês <span class=\"unit\">R$/M",
+            "linha_aprox": 826
+          }
+        },
+        {
+          "rotulo": "Volume travado",
+          "unidade": "MWh",
+          "id_number": "i6-v-n",
+          "id_range": "i6-v",
+          "padrao": 8000.0,
+          "min": 0.0,
+          "max": 16000.0,
+          "passo": 500.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 06) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Volume travado <span class=\"unit\">MWh</span>",
+            "linha_aprox": 829
+          }
+        }
+      ],
+      "saidas": [
+        {
+          "id": "i6-r",
+          "rotulo": "Resultado do swap",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 06) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Resultado do swap</div><div class=\"n\" id=\"i6-r\" style=\"font",
+            "linha_aprox": 834
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "(pay>=0?'+ ':'− ')+mi(Math.abs(pay))",
+            "linha_aprox": 1639
+          },
+          "valor_padrao_renderizado": "− R$ 400 mil",
+          "valor_padrao_bruto": {
+            "textContent": "− R$ 400 mil"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": null
+        },
+        {
+          "id": "i6-a",
+          "rotulo": "Custo sem hedge",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 06) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Custo sem hedge</div><div class=\"n\" id=\"i6-a\" style=\"font-s",
+            "linha_aprox": 835
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "mi(semH)",
+            "linha_aprox": 1640
+          },
+          "valor_padrao_renderizado": "R$ 2,5 mi",
+          "valor_padrao_bruto": {
+            "textContent": "R$ 2,5 mi"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": null
+        },
+        {
+          "id": "i6-b",
+          "rotulo": "Custo com hedge",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 06) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Custo com hedge</div><div class=\"n\" id=\"i6-b\" style=\"font-s",
+            "linha_aprox": 836
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "mi(comH)",
+            "linha_aprox": 1641
+          },
+          "valor_padrao_renderizado": "R$ 2,9 mi",
+          "valor_padrao_bruto": {
+            "textContent": "R$ 2,9 mi"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": null
+        },
+        {
+          "id": "i6-u",
+          "rotulo": "Custo efetivo",
+          "destaque": true,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 06) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Custo efetivo</div><div class=\"n gold\" id=\"i6-u\" style=\"fon",
+            "linha_aprox": 837
+          },
+          "expressao_script": {
+            "propriedade": "innerHTML",
+            "codigo": "brl2(efe)+'<span class=\"u\">/MWh</span>'",
+            "linha_aprox": 1642
+          },
+          "valor_padrao_renderizado": "R$ 290,00/MWh",
+          "valor_padrao_bruto": {
+            "innerHTML": "R$ 290,00<span class=\"u\">/MWh</span>"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": "/MWh"
+        }
+      ],
+      "veredito": {
+        "id": "i6-vd",
+        "markup_inicial": "—",
+        "ramos": [
+          {
+            "ordem": 1,
+            "palavra": "if",
+            "condicao": "(V>CONS+0.5)",
+            "classe": "per",
+            "texto_expressao_js": "'Volume travado acima do consumo. Os '+num(V-CONS)+' MWh excedentes não protegem nada — são posição direcional pura. Se o PLD cair, essa parcela gera prejuízo sem nenhuma perda física do outro lado para compensar. Isso deixou de ser hedge.'",
+            "linha_aprox": 1645
+          },
+          {
+            "ordem": 2,
+            "palavra": "else if",
+            "condicao": "(V===0)",
+            "classe": "att",
+            "texto_expressao_js": "'Sem proteção. O custo efetivo é o PLD realizado, seja ele qual for. Perfeitamente legítimo — desde que seja uma decisão registrada na política de risco, e não o resultado de ninguém ter decidido nada.'",
+            "linha_aprox": 1646
+          },
+          {
+            "ordem": 3,
+            "palavra": "else if",
+            "condicao": "(P>F)",
+            "classe": "ok",
+            "texto_expressao_js": "'O PLD subiu acima do preço travado. O swap devolveu '+mi(pay)+', reduzindo o custo efetivo para '+brl2(efe)+'/MWh contra '+brl2(P)+'/MWh sem proteção. Foi para este cenário que o hedge foi contratado.'",
+            "linha_aprox": 1647
+          },
+          {
+            "ordem": 4,
+            "palavra": "else if",
+            "condicao": "(P<F)",
+            "classe": "att",
+            "texto_expressao_js": "'O PLD ficou abaixo do preço travado. O swap custou '+mi(Math.abs(pay))+' e o custo efetivo subiu para '+brl2(efe)+'/MWh. Isso não é um erro: é o preço do seguro num ano em que não houve sinistro. A pergunta correta é se a previsibilidade valeu esse valor, não se o mercado caiu.'",
+            "linha_aprox": 1648
+          },
+          {
+            "ordem": 5,
+            "palavra": "else",
+            "condicao": null,
+            "classe": "ok",
+            "texto_expressao_js": "'PLD igual ao preço travado. Resultado nulo no swap — o cenário exato em que o hedge não muda nada, e o único em que ele não tem opinião.'",
+            "linha_aprox": 1649
+          }
+        ],
+        "ramo_no_cenario_padrao": 4
+      },
+      "script": {
+        "linhas": [
+          1631,
+          1653
+        ],
+        "constantes_e_frota": [
+          {
+            "linha": 1634,
+            "codigo": "var CONS=10000;"
+          }
+        ],
+        "calculo": [
+          {
+            "linha": 1636,
+            "codigo": "    var F=+$id('i6-f').value, P=+$id('i6-p').value, V=+$id('i6-v').value;"
+          },
+          {
+            "linha": 1637,
+            "codigo": "    var pay=(P-F)*V, semH=CONS*P, comH=semH-pay, efe=comH/CONS;"
+          }
+        ],
+        "preambulo_do_veredito": [
+          {
+            "linha": 1644,
+            "codigo": "var v=$id('i6-vd');"
+          }
+        ],
+        "run_completo": [
+          {
+            "linha": 1635,
+            "codigo": "  function run(){"
+          },
+          {
+            "linha": 1636,
+            "codigo": "    var F=+$id('i6-f').value, P=+$id('i6-p').value, V=+$id('i6-v').value;"
+          },
+          {
+            "linha": 1637,
+            "codigo": "    var pay=(P-F)*V, semH=CONS*P, comH=semH-pay, efe=comH/CONS;"
+          },
+          {
+            "linha": 1638,
+            "codigo": ""
+          },
+          {
+            "linha": 1639,
+            "codigo": "    $id('i6-r').textContent=(pay>=0?'+ ':'− ')+mi(Math.abs(pay));"
+          },
+          {
+            "linha": 1640,
+            "codigo": "    $id('i6-a').textContent=mi(semH);"
+          },
+          {
+            "linha": 1641,
+            "codigo": "    $id('i6-b').textContent=mi(comH);"
+          },
+          {
+            "linha": 1642,
+            "codigo": "    $id('i6-u').innerHTML=brl2(efe)+'<span class=\"u\">/MWh</span>';"
+          },
+          {
+            "linha": 1643,
+            "codigo": ""
+          },
+          {
+            "linha": 1644,
+            "codigo": "    var v=$id('i6-vd');"
+          },
+          {
+            "linha": 1645,
+            "codigo": "    if(V>CONS+0.5) vd(v,'per','Volume travado acima do consumo. Os '+num(V-CONS)+' MWh excedentes não protegem nada — são posição direcional pura. Se o PLD cair, essa parcela gera prejuízo sem nenhuma perda física do outro lado para compensar. Isso deixou de ser hedge.');"
+          },
+          {
+            "linha": 1646,
+            "codigo": "    else if(V===0) vd(v,'att','Sem proteção. O custo efetivo é o PLD realizado, seja ele qual for. Perfeitamente legítimo — desde que seja uma decisão registrada na política de risco, e não o resultado de ninguém ter decidido nada.');"
+          },
+          {
+            "linha": 1647,
+            "codigo": "    else if(P>F) vd(v,'ok','O PLD subiu acima do preço travado. O swap devolveu '+mi(pay)+', reduzindo o custo efetivo para '+brl2(efe)+'/MWh contra '+brl2(P)+'/MWh sem proteção. Foi para este cenário que o hedge foi contratado.');"
+          },
+          {
+            "linha": 1648,
+            "codigo": "    else if(P<F) vd(v,'att','O PLD ficou abaixo do preço travado. O swap custou '+mi(Math.abs(pay))+' e o custo efetivo subiu para '+brl2(efe)+'/MWh. Isso não é um erro: é o preço do seguro num ano em que não houve sinistro. A pergunta correta é se a previsibilidade valeu esse valor, não se o mercado caiu.');"
+          },
+          {
+            "linha": 1649,
+            "codigo": "    else vd(v,'ok','PLD igual ao preço travado. Resultado nulo no swap — o cenário exato em que o hedge não muda nada, e o único em que ele não tem opinião.');"
+          },
+          {
+            "linha": 1650,
+            "codigo": "  }"
+          }
+        ],
+        "nota": "calculo = linhas de run() entre a leitura das entradas e a primeira saída/desenho; run_completo inclui desenho (SVG/barras) e ramos. Tudo literal."
+      },
+      "constantes_globais_usadas": [],
+      "visual": {
+        "barras": null,
+        "svg": null
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i6-f": 300,
+          "i6-p": 250,
+          "i6-v": 8000
+        },
+        "saidas_renderizadas": {
+          "i6-r": "− R$ 400 mil",
+          "i6-a": "R$ 2,5 mi",
+          "i6-b": "R$ 2,9 mi",
+          "i6-u": "R$ 290,00/MWh"
+        },
+        "veredito": "O PLD ficou abaixo do preço travado. O swap custou R$ 400 mil e o custo efetivo subiu para R$ 290,00/MWh. Isso não é um erro: é o preço do seguro num ano em que não houve sinistro. A pergunta correta é se a previsibilidade valeu esse valor, não se o mercado caiu.",
+        "classe_veredito": "verdict att",
+        "metodo": "Execução do <script> original em DOM simulado (m04_harness_script.mjs), Node v24.14.0, toLocaleString pt-BR."
+      },
+      "nota_didatica": {
+        "html": "Didático/ilustrativo — não usar para dimensionamento real. Swap liquidado contra o PLD médio do mês, sem custo de intermediação, garantias, tributos ou risco de base entre submercados. Um swap real liquida contra uma referência contratual específica que pode não coincidir com a exposição física.",
+        "texto": "Didático/ilustrativo — não usar para dimensionamento real. Swap liquidado contra o PLD médio do mês, sem custo de intermediação, garantias, tributos ou risco de base entre submercados. Um swap real liquida contra uma referência contratual específica que pode não coincidir com a exposição física.",
+        "origem": {
+          "seletor": "div.inst(Inst · 06) p.disc",
+          "trecho_inicial": "<p class=\"disc\">Didático/ilustrativo — não usar para dimensionamento real. Swap liquidado ",
+          "linha_aprox": 840
+        }
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "Demais parâmetros (frota, curvas, lances, preços de camada, sazonalidades) sem fonte externa declarada; a própria nota diz \"Didático/ilustrativo — não usar para dimensionamento real\". Na interface: cenário didático, fonte externa não declarada (P19).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada na fonte.",
+      "observacoes_fonte": [
+        "A faixa do PLD realizado (57–1611) usa os limites 2026 arredondados (PLD_MIN 57,31 → 57; PLD_MAX_H 1.611,04 → 1611)."
+      ],
+      "invocacao": {
+        "secao_anterior_h3": {
+          "numero": "6.4",
+          "linha_aprox": 814
+        },
+        "elemento_anterior": {
+          "tag": "p",
+          "classe": "",
+          "trecho": "Hedge perfeito não existe. Sobra risco de base — a diferença entre o preço da referência do hedge e o preço da exposição",
+          "linha_aprox": 815
+        },
+        "elemento_seguinte": {
+          "tag": "div",
+          "classe": "lv",
+          "trecho": "Hedge · três níveis Criança de 12 anos Executivo Especialista É como combinar um preço fixo do lanche pro ano inteiro. S",
+          "linha_aprox": 844
+        },
+        "mencoes_no_texto_da_aula": [
+          "O instrumento acima mostra exatamente o ponto em que a curva atravessa essa fronteira."
+        ],
+        "origem": {
+          "seletor": "section#a06 div.inst",
+          "trecho_inicial": "<div class=\"inst\">",
+          "linha_aprox": 818
+        }
+      },
+      "codigo": {
+        "status": "divergente",
+        "status_nota": "Cálculo e veredito portados fielmente (harness: 900 combinações, 0 vereditos divergentes); a divergência é de contrato/apresentação, listada abaixo.",
+        "instrument_em": "src/lib/data/alexandria-modulo-04-content.ts (INSTRUMENTOS_MODULO_04)",
+        "calculadora_em": "src/lib/data/alexandria-instrument-calculators.ts",
+        "title_igual": true,
+        "kind_codigo": "simulador",
+        "campos": [
+          {
+            "id_fonte": "i6-f-n",
+            "id_codigo": "i6-f-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i6-p-n",
+            "id_codigo": "i6-p-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i6-v-n",
+            "id_codigo": "i6-v-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          }
+        ],
+        "saidas_codigo": [
+          "i6-r",
+          "i6-a",
+          "i6-b",
+          "i6-u"
+        ],
+        "harness": {
+          "combinacoes": 900,
+          "veredito_divergente": 0,
+          "exemplos": []
+        },
+        "divergencias": [
+          "Unidade de i6-u: fonte renderiza \"/MWh\", código declara None.",
+          "note: null — a fonte tem p.disc (texto de contexto) e p.inst-intro; nenhum dos dois está no Instrument.",
+          "formula: null — coerente: a fonte não exibe fórmula (div.formula ausente).",
+          "Formatação: a porta emite número cru em valores; a fonte formata cada readout (brl/brl2/mi/num; ver saidas[].expressao_script).",
+          "i6-r: a fonte prefixa \"+ \" ou \"− \" e formata o módulo com mi(); a porta emite o número com sinal.",
+          "Classe do veredito (ok/att/per → verde/âmbar/vermelho) não portada; as cores são semáforo e o sistema de design proíbe semáforo.",
+          "Entrada: na fonte o campo numérico vazio/NaN volta ao valor do deslizador e é limitado à faixa (link()); na porta, vazio vira 0 e não há clamp.",
+          "Posição: a fonte coloca o instrumento dentro do fluxo da aula; MODULO_04_CORPO não tem bloco de instrumento, e aula.instruments é renderizado à parte (não verificado na tela)."
+        ]
+      }
+    },
+    {
+      "id": "m04-inst-07",
+      "id_literal_fonte": "Inst · 07",
+      "titulo": "Simulador · Portfólio em camadas",
+      "kind_taxonomia": "simulador",
+      "kind_nota": "Campos numéricos (par number+range) → readouts → veredito por ramos.",
+      "aula": "07",
+      "aula_id_codigo": "aula-04-07",
+      "pergunta": null,
+      "pergunta_nota": "O instrumento não tem pergunta própria. A intro (inst-intro) é instrução, não pergunta; a pergunta de previsão, se houver, é camada Alexandria (P19).",
+      "intro": {
+        "html": "Distribua o consumo de 10.000 MWh/mês entre as camadas. O que sobrar fica exposto ao PLD. Aplique um choque de preço no segundo semestre e observe o custo mensal — e o que acontece se a soma das camadas passar de 100%.",
+        "texto": "Distribua o consumo de 10.000 MWh/mês entre as camadas. O que sobrar fica exposto ao PLD. Aplique um choque de preço no segundo semestre e observe o custo mensal — e o que acontece se a soma das camadas passar de 100%.",
+        "origem": {
+          "seletor": "div.inst(Inst · 07) p.inst-intro",
+          "trecho_inicial": "<p class=\"inst-intro\">Distribua o consumo de 10.000 MWh/mês entre as camadas. O que sobrar",
+          "linha_aprox": 903
+        }
+      },
+      "entradas": [
+        {
+          "rotulo": "Base longa · R$ 330/MWh",
+          "unidade": "%",
+          "id_number": "i7-a-n",
+          "id_range": "i7-a",
+          "padrao": 50.0,
+          "min": 0.0,
+          "max": 120.0,
+          "passo": 5.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 07) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Base longa · R$ 330/MWh <span class=\"unit\">%",
+            "linha_aprox": 905
+          }
+        },
+        {
+          "rotulo": "Camada média · R$ 348/MWh",
+          "unidade": "%",
+          "id_number": "i7-b-n",
+          "id_range": "i7-b",
+          "padrao": 25.0,
+          "min": 0.0,
+          "max": 120.0,
+          "passo": 5.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 07) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Camada média · R$ 348/MWh <span class=\"unit\"",
+            "linha_aprox": 908
+          }
+        },
+        {
+          "rotulo": "Camada curta · R$ 366/MWh",
+          "unidade": "%",
+          "id_number": "i7-c-n",
+          "id_range": "i7-c",
+          "padrao": 15.0,
+          "min": 0.0,
+          "max": 120.0,
+          "passo": 5.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 07) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Camada curta · R$ 366/MWh <span class=\"unit\"",
+            "linha_aprox": 911
+          }
+        },
+        {
+          "rotulo": "Choque de PLD no 2º semestre",
+          "unidade": "intensidade",
+          "id_number": "i7-s-n",
+          "id_range": "i7-s",
+          "padrao": 0.0,
+          "min": 0.0,
+          "max": 100.0,
+          "passo": 5.0,
+          "range_igual_number": true,
+          "origem": {
+            "seletor": "div.inst(Inst · 07) .field",
+            "trecho_inicial": "<div class=\"field\"><label class=\"field-label\">Choque de PLD no 2º semestre <span class=\"un",
+            "linha_aprox": 914
+          }
+        }
+      ],
+      "saidas": [
+        {
+          "id": "i7-e",
+          "rotulo": "Exposição residual",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 07) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Exposição residual</div><div class=\"n\" id=\"i7-e\" style=\"fon",
+            "linha_aprox": 929
+          },
+          "expressao_script": {
+            "propriedade": "innerHTML",
+            "codigo": "(over>0?('−'+num(over)):num(resid))+'<span class=\"u\">%</span>'",
+            "linha_aprox": 1707
+          },
+          "valor_padrao_renderizado": "10%",
+          "valor_padrao_bruto": {
+            "innerHTML": "10<span class=\"u\">%</span>"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": "%"
+        },
+        {
+          "id": "i7-m",
+          "rotulo": "Custo médio anual",
+          "destaque": true,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 07) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Custo médio anual</div><div class=\"n gold\" id=\"i7-m\" style=",
+            "linha_aprox": 930
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "mi(med)",
+            "linha_aprox": 1708
+          },
+          "valor_padrao_renderizado": "R$ 3,27 mi",
+          "valor_padrao_bruto": {
+            "textContent": "R$ 3,27 mi"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": null
+        },
+        {
+          "id": "i7-w",
+          "rotulo": "Pior mês",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 07) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Pior mês</div><div class=\"n\" id=\"i7-w\" style=\"font-size:15p",
+            "linha_aprox": 931
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "MES[mxi]+' · '+mi(mx)",
+            "linha_aprox": 1709
+          },
+          "valor_padrao_renderizado": "Set · R$ 3,33 mi",
+          "valor_padrao_bruto": {
+            "textContent": "Set · R$ 3,33 mi"
+          },
+          "tipo_saida": "textual",
+          "unidade_renderizada": null
+        },
+        {
+          "id": "i7-r",
+          "rotulo": "Amplitude do ano",
+          "destaque": false,
+          "markup_inicial": "—",
+          "unidade_no_markup_inicial": null,
+          "sub_rotulo": null,
+          "origem": {
+            "seletor": "div.inst(Inst · 07) .readout .ro",
+            "trecho_inicial": "<div class=\"ro\"><div class=\"k\">Amplitude do ano</div><div class=\"n\" id=\"i7-r\" style=\"font-",
+            "linha_aprox": 932
+          },
+          "expressao_script": {
+            "propriedade": "textContent",
+            "codigo": "mi(mx-mn)",
+            "linha_aprox": 1710
+          },
+          "valor_padrao_renderizado": "R$ 120 mil",
+          "valor_padrao_bruto": {
+            "textContent": "R$ 120 mil"
+          },
+          "tipo_saida": "numerica_formatada",
+          "unidade_renderizada": null
+        }
+      ],
+      "veredito": {
+        "id": "i7-vd",
+        "markup_inicial": "—",
+        "ramos": [
+          {
+            "ordem": 1,
+            "palavra": "if",
+            "condicao": "(over>0)",
+            "classe": "per",
+            "texto_expressao_js": "'As camadas somam '+num(soma)+'% do consumo: há '+num(over)+'% de sobrecontratação estrutural. Todo mês a empresa compra energia a preço de contrato e revende a sobra ao PLD — em geral mais baixo. O custo efetivo sobe para '+brl2(unit)+'/MWh mesmo tendo \"travado\" preço. Contratar demais não é prudência: é comprar caro para revender barato, todo mês, por contrato.'",
+            "linha_aprox": 1713
+          },
+          {
+            "ordem": 2,
+            "palavra": "else if",
+            "condicao": "(resid===0)",
+            "classe": "att",
+            "texto_expressao_js": "'Cem por cento contratado, exposição zero. O custo é perfeitamente previsível em '+brl2(unit)+'/MWh — e perfeitamente rígido. Qualquer queda de produção vira sobrecontratação imediata. Previsibilidade total é uma escolha, não um ótimo.'",
+            "linha_aprox": 1714
+          },
+          {
+            "ordem": 3,
+            "palavra": "else if",
+            "condicao": "(resid<=15)",
+            "classe": "ok",
+            "texto_expressao_js": "'Exposição residual de '+num(resid)+'%, com amplitude anual de '+mi(mx-mn)+'. Custo médio de '+brl2(unit)+'/MWh. É a faixa em que a folga absorve variação operacional sem transformar o orçamento em aposta — o desenho que a maioria das políticas de risco industriais persegue.'",
+            "linha_aprox": 1715
+          },
+          {
+            "ordem": 4,
+            "palavra": "else if",
+            "condicao": "(resid<=35)",
+            "classe": "att",
+            "texto_expressao_js": "'Exposição de '+num(resid)+'% e amplitude anual de '+mi(mx-mn)+'. Ainda gerenciável, mas o pior mês ('+MES[mxi]+') já custa '+mi(mx)+'. Verifique se esse valor cabe no limite financeiro da política, e não apenas no limite percentual — são critérios diferentes e um não garante o outro.'",
+            "linha_aprox": 1716
+          },
+          {
+            "ordem": 5,
+            "palavra": "else",
+            "condicao": null,
+            "classe": "per",
+            "texto_expressao_js": "'Exposição de '+num(resid)+'%: a maior parte do custo de energia desta empresa é decidida pelo mercado, não por ela. Amplitude anual de '+mi(mx-mn)+', pior mês em '+MES[mxi]+' a '+mi(mx)+'. Isso é uma posição direcional em preço de energia assumida por quem não vive de negociar energia.'",
+            "linha_aprox": 1717
+          }
+        ],
+        "ramo_no_cenario_padrao": 3
+      },
+      "script": {
+        "linhas": [
+          1655,
+          1721
+        ],
+        "constantes_e_frota": [
+          {
+            "linha": 1658,
+            "codigo": "var CONS=10000, PL_A=330, PL_B=348, PL_C=366;"
+          },
+          {
+            "linha": 1659,
+            "codigo": "var SEAS=[0.75,0.72,0.78,0.85,1.00,1.12,1.22,1.30,1.32,1.20,1.00,0.82];"
+          },
+          {
+            "linha": 1660,
+            "codigo": "var RAMP=[0,0,0,0,0,0,0.30,0.55,0.80,1.00,0.70,0.35];"
+          }
+        ],
+        "calculo": [
+          {
+            "linha": 1662,
+            "codigo": "    var A=+$id('i7-a').value, B=+$id('i7-b').value, Cc=+$id('i7-c').value, S=+$id('i7-s').value;"
+          },
+          {
+            "linha": 1663,
+            "codigo": "    var soma=A+B+Cc;"
+          },
+          {
+            "linha": 1664,
+            "codigo": "    var over=Math.max(0,soma-100);"
+          },
+          {
+            "linha": 1665,
+            "codigo": "    var resid=Math.max(0,100-soma);"
+          },
+          {
+            "linha": 1666,
+            "codigo": "    var custoFixo=(A*PL_A+B*PL_B+Cc*PL_C)/100*CONS;"
+          },
+          {
+            "linha": 1667,
+            "codigo": "    var i, tot=[], mx=-1,mn=1e18,acc=0,mxi=0;"
+          },
+          {
+            "linha": 1668,
+            "codigo": "    var creditos=[];"
+          },
+          {
+            "linha": 1669,
+            "codigo": "    for(i=0;i<12;i++){"
+          },
+          {
+            "linha": 1670,
+            "codigo": "      var pld=clamp(200*SEAS[i]*(1+S/100*RAMP[i]),PLD_MIN,PLD_MAX_H);"
+          },
+          {
+            "linha": 1671,
+            "codigo": "      var expo=resid/100*pld*CONS;"
+          },
+          {
+            "linha": 1672,
+            "codigo": "      var cred=over/100*pld*CONS;"
+          },
+          {
+            "linha": 1673,
+            "codigo": "      var t=custoFixo+expo-cred;"
+          },
+          {
+            "linha": 1674,
+            "codigo": "      creditos.push(cred);"
+          },
+          {
+            "linha": 1675,
+            "codigo": "      tot.push({t:t,expo:expo,cred:cred});"
+          },
+          {
+            "linha": 1676,
+            "codigo": "      acc+=t;"
+          },
+          {
+            "linha": 1677,
+            "codigo": "      if(t>mx){mx=t;mxi=i;}"
+          },
+          {
+            "linha": 1678,
+            "codigo": "      if(t<mn){mn=t;}"
+          },
+          {
+            "linha": 1679,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1680,
+            "codigo": "    var med=acc/12;"
+          }
+        ],
+        "preambulo_do_veredito": [
+          {
+            "linha": 1712,
+            "codigo": "var v=$id('i7-vd'), unit=med/CONS;"
+          }
+        ],
+        "run_completo": [
+          {
+            "linha": 1661,
+            "codigo": "  function run(){"
+          },
+          {
+            "linha": 1662,
+            "codigo": "    var A=+$id('i7-a').value, B=+$id('i7-b').value, Cc=+$id('i7-c').value, S=+$id('i7-s').value;"
+          },
+          {
+            "linha": 1663,
+            "codigo": "    var soma=A+B+Cc;"
+          },
+          {
+            "linha": 1664,
+            "codigo": "    var over=Math.max(0,soma-100);"
+          },
+          {
+            "linha": 1665,
+            "codigo": "    var resid=Math.max(0,100-soma);"
+          },
+          {
+            "linha": 1666,
+            "codigo": "    var custoFixo=(A*PL_A+B*PL_B+Cc*PL_C)/100*CONS;"
+          },
+          {
+            "linha": 1667,
+            "codigo": "    var i, tot=[], mx=-1,mn=1e18,acc=0,mxi=0;"
+          },
+          {
+            "linha": 1668,
+            "codigo": "    var creditos=[];"
+          },
+          {
+            "linha": 1669,
+            "codigo": "    for(i=0;i<12;i++){"
+          },
+          {
+            "linha": 1670,
+            "codigo": "      var pld=clamp(200*SEAS[i]*(1+S/100*RAMP[i]),PLD_MIN,PLD_MAX_H);"
+          },
+          {
+            "linha": 1671,
+            "codigo": "      var expo=resid/100*pld*CONS;"
+          },
+          {
+            "linha": 1672,
+            "codigo": "      var cred=over/100*pld*CONS;"
+          },
+          {
+            "linha": 1673,
+            "codigo": "      var t=custoFixo+expo-cred;"
+          },
+          {
+            "linha": 1674,
+            "codigo": "      creditos.push(cred);"
+          },
+          {
+            "linha": 1675,
+            "codigo": "      tot.push({t:t,expo:expo,cred:cred});"
+          },
+          {
+            "linha": 1676,
+            "codigo": "      acc+=t;"
+          },
+          {
+            "linha": 1677,
+            "codigo": "      if(t>mx){mx=t;mxi=i;}"
+          },
+          {
+            "linha": 1678,
+            "codigo": "      if(t<mn){mn=t;}"
+          },
+          {
+            "linha": 1679,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1680,
+            "codigo": "    var med=acc/12;"
+          },
+          {
+            "linha": 1681,
+            "codigo": "    var topo=custoFixo;"
+          },
+          {
+            "linha": 1682,
+            "codigo": "    for(i=0;i<12;i++){if(custoFixo+tot[i].expo>topo) topo=custoFixo+tot[i].expo;}"
+          },
+          {
+            "linha": 1683,
+            "codigo": "    var yMax=niceMax(topo*1.12);"
+          },
+          {
+            "linha": 1684,
+            "codigo": ""
+          },
+          {
+            "linha": 1685,
+            "codigo": "    var s=grid(yMax,function(v){return (v/1e6).toFixed(1)+'M';});"
+          },
+          {
+            "linha": 1686,
+            "codigo": "    var bw=(PW/12)*0.6;"
+          },
+          {
+            "linha": 1687,
+            "codigo": "    var hA=A/100*PL_A*CONS, hB=B/100*PL_B*CONS, hC=Cc/100*PL_C*CONS;"
+          },
+          {
+            "linha": 1688,
+            "codigo": "    for(i=0;i<12;i++){"
+          },
+          {
+            "linha": 1689,
+            "codigo": "      var x=xc(i)-bw/2, base=PT+PH, seg;"
+          },
+          {
+            "linha": 1690,
+            "codigo": "      function push(val,color){"
+          },
+          {
+            "linha": 1691,
+            "codigo": "        if(val<=0) return;"
+          },
+          {
+            "linha": 1692,
+            "codigo": "        var h=PH*clamp(val/yMax,0,1);"
+          },
+          {
+            "linha": 1693,
+            "codigo": "        s+='<rect x=\"'+x.toFixed(1)+'\" y=\"'+(base-h).toFixed(1)+'\" width=\"'+bw.toFixed(1)+'\" height=\"'+h.toFixed(1)+'\" fill=\"'+color+'\" opacity=\".85\" rx=\"1\"/>';"
+          },
+          {
+            "linha": 1694,
+            "codigo": "        base-=h;"
+          },
+          {
+            "linha": 1695,
+            "codigo": "      }"
+          },
+          {
+            "linha": 1696,
+            "codigo": "      push(hA,'#06B6D4'); push(hB,'#3B82F6'); push(hC,'#A855F7');"
+          },
+          {
+            "linha": 1697,
+            "codigo": "      push(tot[i].expo,'#F59E0B');"
+          },
+          {
+            "linha": 1698,
+            "codigo": "      if(tot[i].cred>0){"
+          },
+          {
+            "linha": 1699,
+            "codigo": "        var hCr=PH*clamp(tot[i].cred/yMax,0,1);"
+          },
+          {
+            "linha": 1700,
+            "codigo": "        s+='<rect x=\"'+x.toFixed(1)+'\" y=\"'+base.toFixed(1)+'\" width=\"'+bw.toFixed(1)+'\" height=\"'+hCr.toFixed(1)+'\" fill=\"#EF4444\" opacity=\".55\" rx=\"1\"/>';"
+          },
+          {
+            "linha": 1701,
+            "codigo": "      }"
+          },
+          {
+            "linha": 1702,
+            "codigo": "    }"
+          },
+          {
+            "linha": 1703,
+            "codigo": "    s+='<line x1=\"'+PL+'\" y1=\"'+yc(med,yMax).toFixed(1)+'\" x2=\"'+(PL+PW)+'\" y2=\"'+yc(med,yMax).toFixed(1)+'\" stroke=\"#E6E8EC\" stroke-width=\"1.2\" stroke-dasharray=\"6 4\" opacity=\".55\"/>';"
+          },
+          {
+            "linha": 1704,
+            "codigo": "    s+=xlabels();"
+          },
+          {
+            "linha": 1705,
+            "codigo": "    $id('i7-svg').innerHTML=s;"
+          },
+          {
+            "linha": 1706,
+            "codigo": ""
+          },
+          {
+            "linha": 1707,
+            "codigo": "    $id('i7-e').innerHTML=(over>0?('−'+num(over)):num(resid))+'<span class=\"u\">%</span>';"
+          },
+          {
+            "linha": 1708,
+            "codigo": "    $id('i7-m').textContent=mi(med);"
+          },
+          {
+            "linha": 1709,
+            "codigo": "    $id('i7-w').textContent=MES[mxi]+' · '+mi(mx);"
+          },
+          {
+            "linha": 1710,
+            "codigo": "    $id('i7-r').textContent=mi(mx-mn);"
+          },
+          {
+            "linha": 1711,
+            "codigo": ""
+          },
+          {
+            "linha": 1712,
+            "codigo": "    var v=$id('i7-vd'), unit=med/CONS;"
+          },
+          {
+            "linha": 1713,
+            "codigo": "    if(over>0) vd(v,'per','As camadas somam '+num(soma)+'% do consumo: há '+num(over)+'% de sobrecontratação estrutural. Todo mês a empresa compra energia a preço de contrato e revende a sobra ao PLD — em geral mais baixo. O custo efetivo sobe para '+brl2(unit)+'/MWh mesmo tendo \"travado\" preço. Contratar demais não é prudência: é comprar caro para revender barato, todo mês, por contrato.');"
+          },
+          {
+            "linha": 1714,
+            "codigo": "    else if(resid===0) vd(v,'att','Cem por cento contratado, exposição zero. O custo é perfeitamente previsível em '+brl2(unit)+'/MWh — e perfeitamente rígido. Qualquer queda de produção vira sobrecontratação imediata. Previsibilidade total é uma escolha, não um ótimo.');"
+          },
+          {
+            "linha": 1715,
+            "codigo": "    else if(resid<=15) vd(v,'ok','Exposição residual de '+num(resid)+'%, com amplitude anual de '+mi(mx-mn)+'. Custo médio de '+brl2(unit)+'/MWh. É a faixa em que a folga absorve variação operacional sem transformar o orçamento em aposta — o desenho que a maioria das políticas de risco industriais persegue.');"
+          },
+          {
+            "linha": 1716,
+            "codigo": "    else if(resid<=35) vd(v,'att','Exposição de '+num(resid)+'% e amplitude anual de '+mi(mx-mn)+'. Ainda gerenciável, mas o pior mês ('+MES[mxi]+') já custa '+mi(mx)+'. Verifique se esse valor cabe no limite financeiro da política, e não apenas no limite percentual — são critérios diferentes e um não garante o outro.');"
+          },
+          {
+            "linha": 1717,
+            "codigo": "    else vd(v,'per','Exposição de '+num(resid)+'%: a maior parte do custo de energia desta empresa é decidida pelo mercado, não por ela. Amplitude anual de '+mi(mx-mn)+', pior mês em '+MES[mxi]+' a '+mi(mx)+'. Isso é uma posição direcional em preço de energia assumida por quem não vive de negociar energia.');"
+          },
+          {
+            "linha": 1718,
+            "codigo": "  }"
+          }
+        ],
+        "nota": "calculo = linhas de run() entre a leitura das entradas e a primeira saída/desenho; run_completo inclui desenho (SVG/barras) e ramos. Tudo literal."
+      },
+      "constantes_globais_usadas": [
+        "PLD_MIN",
+        "PLD_MAX_H",
+        "MES"
+      ],
+      "visual": {
+        "barras": null,
+        "svg": {
+          "id": "i7-svg",
+          "aria_label": "Custo mensal por camada de contratação",
+          "legenda": [
+            "Base longa",
+            "Média",
+            "Curta",
+            "Exposição ao PLD",
+            "Sobra revendida (crédito)"
+          ]
+        }
+      },
+      "cenario_padrao": {
+        "entradas": {
+          "i7-a": 50,
+          "i7-b": 25,
+          "i7-c": 15,
+          "i7-s": 0
+        },
+        "saidas_renderizadas": {
+          "i7-e": "10%",
+          "i7-m": "R$ 3,27 mi",
+          "i7-w": "Set · R$ 3,33 mi",
+          "i7-r": "R$ 120 mil"
+        },
+        "veredito": "Exposição residual de 10%, com amplitude anual de R$ 120 mil. Custo médio de R$ 327,03/MWh. É a faixa em que a folga absorve variação operacional sem transformar o orçamento em aposta — o desenho que a maioria das políticas de risco industriais persegue.",
+        "classe_veredito": "verdict ok",
+        "metodo": "Execução do <script> original em DOM simulado (m04_harness_script.mjs), Node v24.14.0, toLocaleString pt-BR."
+      },
+      "nota_didatica": {
+        "html": "Didático/ilustrativo — não usar para dimensionamento real. Estrutura a termo e sazonalidade fixas; consumo constante de 10.000 MWh/mês; sobra liquidada ao PLD do mês sem penalidade contratual. Um portfólio real embute take-or-pay, bandas de flexibilidade, sazonalização, modulação e multas — degraus que este modelo linear não representa.",
+        "texto": "Didático/ilustrativo — não usar para dimensionamento real. Estrutura a termo e sazonalidade fixas; consumo constante de 10.000 MWh/mês; sobra liquidada ao PLD do mês sem penalidade contratual. Um portfólio real embute take-or-pay, bandas de flexibilidade, sazonalização, modulação e multas — degraus que este modelo linear não representa.",
+        "origem": {
+          "seletor": "div.inst(Inst · 07) p.disc",
+          "trecho_inicial": "<p class=\"disc\">Didático/ilustrativo — não usar para dimensionamento real. Estrutura a ter",
+          "linha_aprox": 935
+        }
+      },
+      "fonte_dos_numeros": null,
+      "fonte_dos_numeros_nota": "Limites PLD_MIN/PLD_MAX_H/PLD_MAX_E: comentário do script \"limites regulatórios vigentes 2026 — ANEEL Despacho 3.850/2025\" (L1337), confirmado em §Ref item 1. Demais parâmetros (frota, curvas, lances, preços de camada, sazonalidades) sem fonte externa declarada; a própria nota diz \"Didático/ilustrativo — não usar para dimensionamento real\". Na interface: cenário didático, fonte externa não declarada (P19).",
+      "tolerancias": null,
+      "tolerancias_nota": "Nenhuma tolerância declarada na fonte.",
+      "observacoes_fonte": [],
+      "invocacao": {
+        "secao_anterior_h3": {
+          "numero": "7.3",
+          "linha_aprox": 894
+        },
+        "elemento_anterior": {
+          "tag": "p",
+          "classe": "",
+          "trecho": "Testar um cenário por vez é análise de sensibilidade — muda-se uma premissa e observa-se o efeito. Testar milhares de co",
+          "linha_aprox": 897
+        },
+        "elemento_seguinte": {
+          "tag": "h3",
+          "classe": "",
+          "trecho": "7.4O custo que importa e como ler uma proposta",
+          "linha_aprox": 939
+        },
+        "mencoes_no_texto_da_aula": [],
+        "origem": {
+          "seletor": "section#a07 div.inst",
+          "trecho_inicial": "<div class=\"inst\">",
+          "linha_aprox": 900
+        }
+      },
+      "codigo": {
+        "status": "divergente",
+        "status_nota": "Cálculo e veredito portados fielmente (harness: 8100 combinações, 0 vereditos divergentes); a divergência é de contrato/apresentação, listada abaixo.",
+        "instrument_em": "src/lib/data/alexandria-modulo-04-content.ts (INSTRUMENTOS_MODULO_04)",
+        "calculadora_em": "src/lib/data/alexandria-instrument-calculators.ts",
+        "title_igual": true,
+        "kind_codigo": "simulador",
+        "campos": [
+          {
+            "id_fonte": "i7-a-n",
+            "id_codigo": "i7-a-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i7-b-n",
+            "id_codigo": "i7-b-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i7-c-n",
+            "id_codigo": "i7-c-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          },
+          {
+            "id_fonte": "i7-s-n",
+            "id_codigo": "i7-s-n",
+            "rotulo_igual": true,
+            "unidade_igual": true,
+            "faixa_igual": true
+          }
+        ],
+        "saidas_codigo": [
+          "i7-e",
+          "i7-m",
+          "i7-r"
+        ],
+        "harness": {
+          "combinacoes": 8100,
+          "veredito_divergente": 0,
+          "exemplos": []
+        },
+        "divergencias": [
+          "Saídas ausentes no código (texto não cabe em Record<string, number>): i7-w.",
+          "Unidade de i7-e: fonte renderiza \"%\", código declara None.",
+          "note: null — a fonte tem p.disc (texto de contexto) e p.inst-intro; nenhum dos dois está no Instrument.",
+          "formula: null — coerente: a fonte não exibe fórmula (div.formula ausente).",
+          "Formatação: a porta emite número cru em valores; a fonte formata cada readout (brl/brl2/mi/num; ver saidas[].expressao_script).",
+          "i7-e: a fonte mostra \"−N%\" quando há sobrecontratação; a porta emite -over (mesmo sinal).",
+          "Visual não portado: gráfico SVG #i7-svg com legenda de 5 itens.",
+          "Classe do veredito (ok/att/per → verde/âmbar/vermelho) não portada; as cores são semáforo e o sistema de design proíbe semáforo.",
+          "Entrada: na fonte o campo numérico vazio/NaN volta ao valor do deslizador e é limitado à faixa (link()); na porta, vazio vira 0 e não há clamp.",
+          "Posição: a fonte coloca o instrumento dentro do fluxo da aula; MODULO_04_CORPO não tem bloco de instrumento, e aula.instruments é renderizado à parte (não verificado na tela)."
+        ]
+      }
+    }
+  ],
+  "instrumentos_de_modulo": [],
+  "instrumentos_de_modulo_nota": "Nenhum instrumento fora de aula (sem § Lab).",
+  "nao_instrumentos_interativos": {
+    "anotacao_da_extracao": true,
+    "explicadores_tres_niveis": 6,
+    "nota": "Os 6 div.lv (abas Criança de 12 anos / Executivo / Especialista) são interativos mas não calculam; pertencem ao corpo das aulas e não entram aqui."
+  },
+  "verificacao_automatica": {
+    "strings_conferidas": 1307,
+    "falhas_substring": [],
+    "origens_fora_da_linha": [],
+    "cobertura_por_token": {
+      "§00": {
+        "tokens_fonte": 722,
+        "cobertos": 722,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§MAP": {
+        "tokens_fonte": 196,
+        "cobertos": 196,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§Caso": {
+        "tokens_fonte": 627,
+        "cobertos": 627,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§Erros": {
+        "tokens_fonte": 427,
+        "cobertos": 427,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§Ex": {
+        "tokens_fonte": 1424,
+        "cobertos": 1422,
+        "pct": 99.9,
+        "amostra_nao_cobertos": [
+          "ex",
+          "exercícios"
+        ]
+      },
+      "§Quiz": {
+        "tokens_fonte": 39,
+        "cobertos": 39,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§Voz": {
+        "tokens_fonte": 1232,
+        "cobertos": 1232,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§Final": {
+        "tokens_fonte": 365,
+        "cobertos": 365,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "§Lex": {
+        "tokens_fonte": 1987,
+        "cobertos": 1984,
+        "pct": 99.8,
+        "amostra_nao_cobertos": [
+          "lex",
+          "glossário",
+          "alexandria"
+        ]
+      },
+      "§Ref": {
+        "tokens_fonte": 566,
+        "cobertos": 564,
+        "pct": 99.6,
+        "amostra_nao_cobertos": [
+          "ref",
+          "fontes"
+        ]
+      },
+      "hero": {
+        "tokens_fonte": 58,
+        "cobertos": 58,
+        "pct": 100.0,
+        "amostra_nao_cobertos": []
+      },
+      "Inst · 01": {
+        "tokens_fonte": 127,
+        "cobertos": 125,
+        "pct": 98.4,
+        "amostra_nao_cobertos": [
+          "inst",
+          "01"
+        ]
+      },
+      "Inst · 02": {
+        "tokens_fonte": 139,
+        "cobertos": 137,
+        "pct": 98.6,
+        "amostra_nao_cobertos": [
+          "inst",
+          "02"
+        ]
+      },
+      "Inst · 03": {
+        "tokens_fonte": 121,
+        "cobertos": 119,
+        "pct": 98.3,
+        "amostra_nao_cobertos": [
+          "inst",
+          "03"
+        ]
+      },
+      "Inst · 04": {
+        "tokens_fonte": 103,
+        "cobertos": 101,
+        "pct": 98.1,
+        "amostra_nao_cobertos": [
+          "inst",
+          "04"
+        ]
+      },
+      "Inst · 05": {
+        "tokens_fonte": 159,
+        "cobertos": 157,
+        "pct": 98.7,
+        "amostra_nao_cobertos": [
+          "inst",
+          "05"
+        ]
+      },
+      "Inst · 06": {
+        "tokens_fonte": 106,
+        "cobertos": 104,
+        "pct": 98.1,
+        "amostra_nao_cobertos": [
+          "inst",
+          "06"
+        ]
+      },
+      "Inst · 07": {
+        "tokens_fonte": 141,
+        "cobertos": 139,
+        "pct": 98.6,
+        "amostra_nao_cobertos": [
+          "inst",
+          "07"
+        ]
+      }
+    },
+    "nota": "Conferência automática: cada string de conteúdo (campos não listados como anotação) é substring da fonte (HTML cru, texto sem tags ou literal do script, com espaços colapsados); cada origem.trecho_inicial está a até ±3 linhas de linha_aprox. A cobertura por token mede o texto da seção presente no objeto extraído (sec-id/h2/lede das seções entram via roteiro em modulo.json e não são somados aqui)."
+  }
+}

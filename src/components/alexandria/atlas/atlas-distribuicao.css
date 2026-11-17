@@ -1,0 +1,28 @@
+/* Atlas da Alexandria v3 — áreas de atuação das distribuidoras (capítulo "A rede").
+ * Só o que é novo desta camada: a amostra da legenda. O resto usa as classes do painel. */
+
+/* amostra da concessionária: três dos cinco valores da tinta lado a lado (as opacidades
+   do mapa, ampliadas para ler no tamanho da legenda), com o fio de 1px; a permissionária
+   em ouro com fio tracejado */
+.alx3 .atl-dist-amostra {
+  --a: 4%;
+  --b: 9%;
+  --c: 12%;
+  justify-self: center;
+  width: 24px;
+  height: 12px;
+  border: 1px solid color-mix(in srgb, var(--tinta) 55%, transparent);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--tinta) calc(var(--a) * 2.4), transparent) 0 33%,
+    color-mix(in srgb, var(--tinta) calc(var(--b) * 2.4), transparent) 33% 66%,
+    color-mix(in srgb, var(--tinta) calc(var(--c) * 2.4), transparent) 66% 100%
+  );
+}
+
+.alx3 .atl-dist-amostra.atl-dist-perm {
+  --cor: var(--tinta);
+  width: 18px;
+  border: 1px dashed var(--cor);
+  background: color-mix(in srgb, var(--cor) 30%, transparent);
+}

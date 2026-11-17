@@ -1,0 +1,538 @@
+/* Atlas da Alexandria v3 — capítulo "O comércio": painel e ficha.
+ * Separado de atlas-v3.css: só o que é novo deste capítulo. Hierarquia por escala, não por
+ * caixas: um número grande, o alternador, listas com fio de 1 px. Tinta = exportação,
+ * ouro = importação, óxido só para a seleção. Raio zero, sem sombra. */
+
+/* ── a manchete: um número do arquivo ── */
+.alx3 .atl-comercio-manchete {
+  margin: 0 0 18px;
+}
+
+.alx3 .atl-comercio-numero {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--tinta);
+  font-variant-numeric: lining-nums;
+}
+
+.alx3 .atl-comercio-unidade {
+  margin-left: 8px;
+  font-size: 18px;
+  font-style: italic;
+  letter-spacing: 0;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-comercio-legenda {
+  margin: 6px 0 0;
+  font-family: var(--f-leitura);
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--tinta-suave);
+  text-wrap: pretty;
+}
+
+.alx3 .atl-estreito .atl-comercio-numero {
+  font-size: 34px;
+}
+
+/* ── alternador de sentido ── */
+.alx3 .atl-comercio-sentido {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  margin: 0 0 22px;
+  border: 1px solid var(--fio-forte);
+}
+
+.alx3 .atl-comercio-sentido > button {
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--tinta-suave);
+  font-family: var(--f-interface);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background var(--t-hover, 120ms), color var(--t-hover, 120ms);
+}
+
+.alx3 .atl-comercio-sentido > button + button {
+  border-left: 1px solid var(--fio-forte);
+}
+
+.alx3 .atl-comercio-sentido > button:hover {
+  background: var(--papel-hover);
+  color: var(--tinta);
+}
+
+.alx3 .atl-comercio-sentido > button[aria-pressed='true'] {
+  background: var(--tinta);
+  color: var(--papel);
+}
+
+.alx3 .atl-comercio-sentido > button.atl-comercio-im[aria-pressed='true'] {
+  background: var(--ouro);
+  color: var(--tinta);
+}
+
+/* ── blocos ── */
+.alx3 .atl-comercio-bloco {
+  margin: 0 0 22px;
+}
+
+.alx3 .atl-comercio-titulo-linha {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.alx3 .atl-comercio-titulo {
+  margin: 0 0 8px;
+  font-family: var(--f-leitura);
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--tinta);
+}
+
+.alx3 .atl-comercio-limpar,
+.alx3 .atl-comercio-link {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--tinta-suave);
+  font: inherit;
+  font-size: 12.5px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--fio-forte);
+  cursor: pointer;
+}
+
+.alx3 .atl-comercio-link {
+  font-size: inherit;
+}
+
+.alx3 .atl-comercio-link[aria-pressed='true'] {
+  color: var(--oxido);
+}
+
+.alx3 .atl-comercio-limpar:hover,
+.alx3 .atl-comercio-link:hover {
+  color: var(--tinta);
+}
+
+/* ── produtos: nome, toneladas e barra ── */
+.alx3 .atl-comercio-produtos,
+.alx3 .atl-comercio-rotas,
+.alx3 .atl-comercio-terra,
+.alx3 .atl-comercio-fontes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.alx3 .atl-comercio-produto {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  row-gap: 3px;
+  width: 100%;
+  padding: 6px 0 7px;
+  border: 0;
+  border-top: 1px solid var(--fio);
+  border-radius: 0;
+  background: none;
+  color: var(--tinta);
+  text-align: left;
+  font-family: var(--f-interface);
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.alx3 .atl-comercio-produto:hover .atl-comercio-produto-nome {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.alx3 .atl-comercio-produto[data-fora] {
+  opacity: 0.45;
+}
+
+.alx3 .atl-comercio-produto[aria-pressed='true'] .atl-comercio-produto-nome {
+  color: var(--oxido);
+}
+
+.alx3 .atl-comercio-produto-valor {
+  color: var(--tinta-suave);
+  font-size: 12px;
+}
+
+.alx3 .atl-comercio-barras {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 2px;
+}
+
+.alx3 .atl-comercio-barra {
+  display: block;
+  height: 3px;
+}
+
+.alx3 .atl-comercio-barra-exportacao {
+  background: var(--tinta);
+}
+
+.alx3 .atl-comercio-barra-importacao {
+  background: var(--ouro);
+}
+
+.alx3 .atl-comercio-valor,
+.alx3 .atl-comercio-regra {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+/* ── rotas e por terra ── */
+.alx3 .atl-comercio-rota {
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  column-gap: 8px;
+  align-items: baseline;
+  width: 100%;
+  padding: 7px 0;
+  border: 0;
+  border-top: 1px solid var(--fio);
+  border-radius: 0;
+  background: none;
+  color: var(--tinta);
+  text-align: left;
+  font-family: var(--f-interface);
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.alx3 .atl-comercio-rota:hover .atl-comercio-rota-nome {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.alx3 .atl-comercio-rota[aria-current='true'] .atl-comercio-rota-nome {
+  color: var(--oxido);
+}
+
+.alx3 .atl-comercio-rota-linha {
+  grid-column: 2 / 3;
+  font-size: 12px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-comercio-rota-valor {
+  grid-column: 3;
+  grid-row: 1;
+  font-size: 12px;
+  color: var(--tinta-suave);
+}
+
+/* a marca da linha: traço do sentido (tracejado na via aérea), losango da conversora, anel do duto */
+.alx3 .atl-comercio-marca {
+  display: inline-block;
+  width: 14px;
+  height: 0;
+  border-top: 2px solid var(--tinta);
+  transform: translateY(-4px);
+}
+
+.alx3 .atl-comercio-marca-importacao {
+  border-top-color: var(--ouro);
+}
+
+.alx3 .atl-comercio-marca-ar {
+  border-top-style: dashed;
+}
+
+.alx3 .atl-comercio-marca-conversora {
+  width: 8px;
+  height: 8px;
+  margin: 0 3px;
+  border: 2px solid var(--tinta);
+  transform: translateY(-1px) rotate(45deg);
+}
+
+.alx3 .atl-comercio-marca-duto {
+  width: 9px;
+  height: 9px;
+  margin: 0 2px;
+  border: 2.5px solid var(--tinta);
+  border-radius: 50%;
+  transform: translateY(0);
+}
+
+.alx3 .atl-ficha-sobre .atl-comercio-marca {
+  margin-right: 8px;
+  vertical-align: middle;
+  transform: none;
+}
+
+/* ── como ler: conferência ── */
+.alx3 .atl-comercio-conf-titulo {
+  margin-top: 12px;
+  font-family: var(--f-dado);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-comercio-conf {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-comercio-conf th,
+.alx3 .atl-comercio-conf td {
+  padding: 4px 6px 4px 0;
+  border-top: 1px solid var(--fio);
+  text-align: left;
+  font-weight: 400;
+  vertical-align: top;
+}
+
+.alx3 .atl-comercio-conf td.atl-num {
+  white-space: nowrap;
+  color: var(--tinta);
+}
+
+.alx3 .atl-comercio-fontes {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+/* ── ficha ── */
+.alx3 .atl-comercio-aviso {
+  padding-left: 10px;
+  border-left: 1px solid var(--ouro);
+}
+
+.alx3 .atl-comercio-meses svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.alx3 .atl-comercio-meses-eixo {
+  stroke: var(--fio-forte);
+  stroke-width: 1;
+}
+
+.alx3 .atl-comercio-meses-ex {
+  fill: var(--tinta);
+}
+
+.alx3 .atl-comercio-meses-im {
+  fill: var(--ouro);
+}
+
+.alx3 .atl-comercio-meses-mes,
+.alx3 .atl-comercio-meses-rotulo {
+  fill: var(--tinta-suave);
+  font-family: var(--f-dado);
+  font-size: 9px;
+}
+
+.alx3 .atl-comercio-chip {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  vertical-align: baseline;
+}
+
+.alx3 .atl-comercio-chip-ex {
+  background: var(--tinta);
+}
+
+.alx3 .atl-comercio-chip-im {
+  background: var(--ouro);
+}
+
+.alx3 .atl-comercio-moeda {
+  margin: 0 6px 0 0;
+}
+
+/* segunda linha de uma linha da ficha: o que a fonte não diz */
+.alx3 .atl-comercio-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--tinta-suave);
+}
+
+/* leva 3: a regra da lista, logo abaixo do título, sem margem de cima */
+.alx3 .atl-comercio-regra {
+  margin: 2px 0 8px;
+}
+
+/* ── leva 4: "esquemática" visível na entrada; a ficha em três degraus ── */
+.alx3 .atl-comercio-esquema {
+  margin: 0 0 2px;
+  font-family: var(--f-leitura);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--tinta);
+  text-wrap: pretty;
+}
+
+/* degrau 2: a resposta (de onde → para onde · peso · valor), no corpo da leitura */
+.alx3 .atl-comercio-resposta {
+  margin: 0 0 18px;
+}
+
+.alx3 .atl-comercio-resposta-linha {
+  margin: 0;
+  font-family: var(--f-leitura);
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--tinta);
+  text-wrap: balance;
+}
+
+.alx3 .atl-comercio-resposta-sub,
+.alx3 .atl-comercio-resposta-fim {
+  margin: 8px 0 0;
+  font-family: var(--f-interface);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+  text-wrap: pretty;
+}
+
+.alx3 .atl-comercio-resposta-fim {
+  margin-top: 4px;
+}
+
+/* degrau 3: um único "Sobre este dado", recolhido, com as ressalvas e a fonte */
+.alx3 .atl-comercio-sobre {
+  margin: 18px 0 0;
+  border-top: 1px solid var(--fio);
+}
+
+.alx3 .atl-comercio-sobre > summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--f-interface);
+  font-size: 13px;
+  color: var(--tinta);
+  cursor: pointer;
+  list-style: none;
+}
+
+.alx3 .atl-comercio-sobre > summary::-webkit-details-marker {
+  display: none;
+}
+
+.alx3 .atl-comercio-sobre > summary::after {
+  content: '+';
+  margin-left: 8px;
+  font-family: var(--f-dado);
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-comercio-sobre[open] > summary::after {
+  content: '−';
+}
+
+.alx3 .atl-comercio-sobre > summary:focus-visible {
+  outline: 1px solid var(--tinta);
+  outline-offset: -1px;
+}
+
+.alx3 .atl-comercio-sobre-corpo {
+  padding: 0 0 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+.alx3 .atl-comercio-sobre-corpo > p {
+  margin: 0 0 8px;
+  text-wrap: pretty;
+}
+
+.alx3 .atl-comercio-sobre-corpo .atl-ficha-fonte-kicker {
+  margin: 14px 0 4px;
+}
+
+.alx3 .atl-comercio-sobre-fontes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.alx3 .atl-comercio-sobre-fontes > li {
+  margin: 0 0 4px;
+}
+
+/* mês com horas faltando no ONS: barra vazada (fio, sem preenchimento) */
+.alx3 .atl-comercio-meses-incompleto {
+  fill: none;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.alx3 .atl-comercio-meses-ex.atl-comercio-meses-incompleto {
+  stroke: var(--tinta);
+}
+
+.alx3 .atl-comercio-meses-im.atl-comercio-meses-incompleto {
+  stroke: var(--ouro);
+}
+
+.alx3 .atl-comercio-chip-vazado {
+  box-sizing: border-box;
+  border: 1px solid var(--tinta);
+}
+
+/* os números da resposta não se partem: "· 3,4 Mt · US$ 1,8 bi" fica numa linha só */
+.alx3 .atl-comercio-resposta-numeros {
+  white-space: nowrap;
+}
+
+.alx3 .atl-comercio-resposta-linha .atl-num {
+  font-size: 0.86em;
+}
+
+.alx3 .atl-estreito .atl-comercio-resposta-linha {
+  font-size: 17px;
+}
+
+/* leva 4 (pedido da pagina, crítica do celular 6 e 9): alvos de toque de 44 px no celular */
+.alx3 .atl-estreito .atl-comercio-sentido > button {
+  min-height: 44px;
+}
+
+.alx3 .atl-estreito .atl-comercio-limpar {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 2px;
+}
+
+/* o link dentro da frase cresce para cima e para baixo sem mexer na linha */
+.alx3 .atl-estreito .atl-comercio-link {
+  padding: 13px 2px;
+  margin: -13px 0;
+}

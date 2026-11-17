@@ -20,6 +20,13 @@
 // envelope canônico `{meta, data, summary}`, porque é dado de referência
 // do usuário. `getMyProgress`/`getAulaStatus` devolvem só `.data` — os
 // hooks de mercado já fazem esse mesmo achatamento.
+//
+// Alexandria v3 (eventos): os quatro leitores da Peça D — `/streak`,
+// `/pratica`, `/aulas/{id}/pratica`, `/pratica/entidades/{id}` — com
+// formatos lidos de `app/routers/progress.py` e
+// `app/services/progress_service.py`, NÃO de `docs/v2-backend-contract.md`,
+// que nesta árvore ainda descreve a sequência da Wave 11 (incremento cego,
+// sem `semRegistro`). O router é a fonte.
 
 export type ProgressEventType =
   | 'aula_iniciada'
@@ -28,10 +35,39 @@ export type ProgressEventType =
   | 'exercicio_respondido'
   | 'badge_conquistado';
 
+/**
+ * Sequência de dias, DERIVADA do log (`app/services/progress_service.py`
+ * · `streak_payload`, Peça D). Contrato lido do router real, não da
+ * memória:
+ *
+ * - `semRegistro: true` = a conta NUNCA teve dia de estudo. Todos os
+ *   números vêm `null` — ausência, não zero.
+ * - `semRegistro: false` e `atual: 0` = estudou, e a corrida quebrou
+ *   (dois dias ou mais sem estudo). Zero aqui é medida.
+ * - `atual` segue viva durante o dia seguinte ao último dia de estudo.
+ *
+ * As duas primeiras são FRASES DIFERENTES na tela — ver
+ * `src/lib/alexandria/progresso/regras.ts` (`fraseDaSequencia`).
+ */
 export interface StreakInfo {
-  atual: number;
-  maior: number;
-  ultimoDiaAtivo: string;
+  atual: number | null;
+  maior: number | null;
+  /** ISO `YYYY-MM-DD`, no fuso do aluno. */
+  ultimoDiaAtivo: string | null;
+  /** ISO `YYYY-MM-DD` do dia em que a sequência mais longa terminou. */
+  maiorAte: string | null;
+  /** Fuso IANA que transformou instante em dia. */
+  fuso: string;
+  /** "Hoje" no fuso, segundo o relógio do banco. */
+  diaDeReferencia: string;
+  semRegistro: boolean;
+}
+
+/** `GET /api/progress/streak` acrescenta a lista de tipos que contam —
+ *  para o front nunca guardar uma cópia dela (e `badge_conquistado` não
+ *  está nela: a máquina não estende a sequência do aluno). */
+export interface StreakComTipos extends StreakInfo {
+  tiposQueContam: ProgressEventType[];
 }
 
 export interface AulaStatusInfo {
@@ -52,11 +88,71 @@ export interface ProgressEventResponse {
   badgeAlreadyAwarded?: boolean;
 }
 
+/** Contagem de tentativas por tipo de evento de prática. */
+export interface ContagemDePratica {
+  tentativas: number;
+  distintos: number;
+}
+
+/** O eixo Praticado da conta (`GET /api/progress/pratica`). EVIDÊNCIA de
+ *  tentativa — nunca Demonstrado, nunca somado com a sequência (bar S3).
+ *  A tentativa só pertence a uma aula pelo `metadata.aulaId` do evento;
+ *  sem ele, conta em `eventosSemAulaVinculada`. */
+export interface PraticaGeral {
+  semRegistro: boolean;
+  totalTentativas: number;
+  aulasComPratica: string[];
+  totalAulasComPratica: number;
+  eventosSemAulaVinculada: number;
+  instrumentos: ContagemDePratica;
+  exercicios: ContagemDePratica;
+  primeiraTentativa: string | null;
+  ultimaTentativa: string | null;
+  vinculoPor: 'metadata.aulaId';
+}
+
+export interface TentativasDeEntidade {
+  entityId: string;
+  tentativas: number;
+  primeiraTentativa: string | null;
+  ultimaTentativa: string | null;
+}
+
+/** `GET /api/progress/aulas/{id}/pratica` — 200 com `semRegistro` (não
+ *  404) quando nada foi praticado na aula: é estado, não erro. */
+export interface PraticaDaAula {
+  aulaId: string;
+  semRegistro: boolean;
+  totalTentativas: number;
+  instrumentos: TentativasDeEntidade[];
+  exercicios: TentativasDeEntidade[];
+  vinculoPor: 'metadata.aulaId';
+}
+
+/** `GET /api/progress/pratica/entidades/{id}` — um instrumento ou exercício. */
+export interface PraticaDaEntidade {
+  entityId: string;
+  semRegistro: boolean;
+  totalTentativas: number;
+  porTipo: {
+    eventType: 'instrumento_usado' | 'exercicio_respondido';
+    tentativas: number;
+    primeiraTentativa: string | null;
+    ultimaTentativa: string | null;
+  }[];
+  /** Aulas a que as tentativas foram vinculadas por `metadata.aulaId`. */
+  aulas: string[];
+  vinculoPor: 'metadata.aulaId';
+}
+
 export interface MyProgress {
   aulasConcluidas: string[];
   aulasEmAndamento: string[];
   badges: { badgeId: string; awardedAt: string }[];
   streak: StreakInfo;
+  /** Peça D. Opcional no tipo porque fixtures antigas do harness não o
+   *  trazem; o backend atual sempre manda. */
+  pratica?: PraticaGeral;
 }
 
 /**
@@ -116,23 +212,43 @@ async function pedir<T>(path: string, opts: PedidoOpts = {}): Promise<T> {
 
 /** ENDPOINT 22 — registra um evento de progresso. `entityId` é opaco
  *  (aula_id, instrumento_id, exercicio_id ou badge_id, conforme
- *  `eventType`) — este cliente nunca o interpreta, só repassa. */
+ *  `eventType`) — este cliente nunca o interpreta, só repassa.
+ *
+ *  Chamadores da Alexandria não usam isto direto para prática: passam por
+ *  `emitirPratica` (`src/lib/alexandria/emitirPratica.ts`), que garante
+ *  `metadata.aulaId` e não envia nada sem conta. */
 export function recordEvent(
   eventType: ProgressEventType,
   entityId: string,
   metadata?: Record<string, unknown>,
+  tz?: string | null,
 ): Promise<ProgressEventResponse> {
   return pedir<ProgressEventResponse>('/api/progress/events', {
     method: 'POST',
-    body: { eventType, entityId, ...(metadata ? { metadata } : {}) },
+    body: { eventType, entityId, ...(metadata ? { metadata } : {}), ...(tz ? { tz } : {}) },
   });
 }
+
+/** O fuso do navegador, quando ele declara um nome IANA plausível. O
+ *  backend aceita `tz` em toda leitura e cai em `America/Sao_Paulo` sem
+ *  ele — o dia do aluno é o dia no fuso do aluno. */
+export function fusoDoNavegador(): string | null {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return typeof tz === 'string' && /^[A-Za-z][A-Za-z0-9_+-]*(?:\/[A-Za-z0-9_+-]+){0,2}$/.test(tz) ? tz : null;
+  } catch {
+    return null;
+  }
+}
+
+const comFuso = (path: string, tz?: string | null) =>
+  tz ? `${path}?tz=${encodeURIComponent(tz)}` : path;
 
 /** ENDPOINT 23 — progresso agregado da conta. Fatos crus do backend
  *  (`aulaIds`, não "X de Y") — a junção contra o currículo é de quem
  *  consome, nunca deste cliente. */
-export async function getMyProgress(signal?: AbortSignal): Promise<MyProgress> {
-  const envelope = await pedir<{ data: MyProgress }>('/api/progress/me', { signal });
+export async function getMyProgress(signal?: AbortSignal, tz?: string | null): Promise<MyProgress> {
+  const envelope = await pedir<{ data: MyProgress }>(comFuso('/api/progress/me', tz), { signal });
   return envelope.data;
 }
 
@@ -154,4 +270,35 @@ export async function getAulaStatus(
     if (err instanceof ProgressError && err.status === 404) return null;
     throw err;
   }
+}
+
+/** `GET /api/progress/streak` — sequência derivada do log, com os tipos de
+ *  evento que contam. Motivação, nunca evidência (bar S3). */
+export async function getStreak(signal?: AbortSignal, tz?: string | null): Promise<StreakComTipos> {
+  const envelope = await pedir<{ data: StreakComTipos }>(comFuso('/api/progress/streak', tz), { signal });
+  return envelope.data;
+}
+
+/** `GET /api/progress/pratica` — o eixo Praticado da conta inteira. */
+export async function getPratica(signal?: AbortSignal): Promise<PraticaGeral> {
+  const envelope = await pedir<{ data: PraticaGeral }>('/api/progress/pratica', { signal });
+  return envelope.data;
+}
+
+/** `GET /api/progress/aulas/{id}/pratica` — o Praticado de uma aula. */
+export async function getPraticaDaAula(aulaId: string, signal?: AbortSignal): Promise<PraticaDaAula> {
+  const envelope = await pedir<{ data: PraticaDaAula }>(
+    `/api/progress/aulas/${encodeURIComponent(aulaId)}/pratica`,
+    { signal },
+  );
+  return envelope.data;
+}
+
+/** `GET /api/progress/pratica/entidades/{id}` — um instrumento ou exercício. */
+export async function getPraticaDaEntidade(entityId: string, signal?: AbortSignal): Promise<PraticaDaEntidade> {
+  const envelope = await pedir<{ data: PraticaDaEntidade }>(
+    `/api/progress/pratica/entidades/${encodeURIComponent(entityId)}`,
+    { signal },
+  );
+  return envelope.data;
 }

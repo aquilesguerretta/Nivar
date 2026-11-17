@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Newsreader"; src: url("assets/fonts/newsreader-latin-opsz-normal.woff2") format("woff2"); font-weight: 200 800; font-style: normal;
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
+      @font-face { font-family: "Newsreader"; src: url("assets/fonts/newsreader-latin-opsz-italic.woff2") format("woff2"); font-weight: 200 800; font-style: italic;
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212; }
+      @font-face { font-family: "Newsreader"; src: url("assets/fonts/newsreader-latin-ext-opsz-normal.woff2") format("woff2"); font-weight: 200 800; font-style: normal;
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F; }
+      @font-face { font-family: "Instrument Sans"; src: url("assets/fonts/instrument-sans-latin-wght-normal.woff2") format("woff2"); font-weight: 400 700; }
+      @font-face { font-family: "IBM Plex Mono"; src: url("assets/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "IBM Plex Mono"; src: url("assets/fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+      :root {
+        --papel: #f2ecdf; --papel-2: #ebe3d2; --tinta: #15213b; --tinta-suave: rgba(21,33,59,0.74);
+        --fio: rgba(21,33,59,0.22); --ouro: #a8843a; --ouro-texto: #6b5120; --ouro-claro: #d2b26c;
+        --serif: "Newsreader", Georgia, serif; --sans: "Instrument Sans", Arial, sans-serif; --mono: "IBM Plex Mono", Consolas, monospace;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--papel); }
+      #main { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--papel); }
+
+      /* vocabulário comum das cenas (as sub-composições herdam este <head>) */
+      .fundo { position: absolute; inset: 0; background: var(--papel); }
+      .plano { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .mono { font-family: var(--mono); font-weight: 500; font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase; }
+      .serif { font-family: var(--serif); font-optical-sizing: auto; }
+      .bloco { display: block; }
+      .coluna { position: absolute; left: 120px; top: 150px; width: 500px; color: var(--tinta); }
+      .cap { color: var(--ouro-texto); }
+      .cap-fio { display: block; width: 56px; height: 1px; margin: 18px 0 26px; background: var(--ouro); transform-origin: left center; }
+      .manchete { font-size: 64px; font-weight: 400; line-height: 1.04; letter-spacing: -0.012em; }
+      .manchete em { font-style: italic; font-weight: 360; }
+      .apoio { margin-top: 28px; font-family: var(--serif); font-size: 27px; line-height: 1.38; color: rgba(21,33,59,0.84); }
+      .folha { position: absolute; left: 680px; top: 90px; width: 1160px; height: 900px; overflow: hidden; background: var(--papel); outline: 1px solid var(--fio); }
+      .janela { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+      .janela > img, .janela > video { display: block; }
+      .selo { position: absolute; right: 48px; bottom: 36px; padding: 7px 11px 6px; background: rgba(242,236,223,0.9); color: var(--tinta);
+        font-family: var(--mono); font-size: 16px; font-weight: 500; letter-spacing: 0.18em; }
+      .selo.tela { left: 680px; right: auto; bottom: 44px; padding: 0; background: none; color: var(--tinta-suave); font-size: 17px; letter-spacing: 0.12em; }
+      .nota-folha { position: absolute; left: 680px; top: 52px; font-family: var(--mono); font-size: 17px; font-weight: 500; letter-spacing: 0.14em; color: var(--tinta-suave); text-transform: uppercase; }
+    </style>
+  </head>
+  <body>
+    <!--
+      ESTRUTURA ABERTA PARA O FUNDADOR
+      Cada cena é uma sub-composição em compositions/. Para pôr a fala do Fundador:
+        · na ABERTURA: troque a cena "abertura" pela "fundador" (compositions/fundador.html, que só
+          espera assets/fundador.mp4), ajuste data-duration da cena ao tamanho da fala e some a diferença
+          ao data-start das cenas seguintes e ao data-duration da raiz;
+        · no FECHO: acrescente o host "fundador" depois de "fecho" e aumente o data-duration da raiz.
+      Nenhuma pessoa foi gerada ou gravada no lugar dele.
+    -->
+    <div id="main" data-composition-id="main" data-start="0" data-duration="89.2" data-width="1920" data-height="1080">
+      <div id="abertura" data-composition-id="abertura" data-composition-src="compositions/abertura.html" data-start="0" data-duration="7.6" data-track-index="0" data-width="1920" data-height="1080"></div>
+      <div id="tese" data-composition-id="tese" data-composition-src="compositions/tese.html" data-start="7" data-duration="6.4" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="indice" data-composition-id="indice" data-composition-src="compositions/indice.html" data-start="12.8" data-duration="11" data-track-index="0" data-width="1920" data-height="1080"></div>
+      <div id="pergunta" data-composition-id="pergunta" data-composition-src="compositions/pergunta.html" data-start="23.2" data-duration="6" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="aula" data-composition-id="aula" data-composition-src="compositions/aula.html" data-start="28.6" data-duration="12" data-track-index="0" data-width="1920" data-height="1080"></div>
+      <div id="instrumento" data-composition-id="instrumento" data-composition-src="compositions/instrumento.html" data-start="40" data-duration="13.2" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="fontes" data-composition-id="fontes" data-composition-src="compositions/fontes.html" data-start="52.6" data-duration="8.8" data-track-index="0" data-width="1920" data-height="1080"></div>
+      <div id="registro" data-composition-id="registro" data-composition-src="compositions/registro.html" data-start="60.8" data-duration="9.6" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="retomada" data-composition-id="retomada" data-composition-src="compositions/retomada.html" data-start="69.8" data-duration="9.6" data-track-index="0" data-width="1920" data-height="1080"></div>
+      <div id="fecho" data-composition-id="fecho" data-composition-src="compositions/fecho.html" data-start="78.8" data-duration="10.4" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <!-- locução: ElevenLabs (workspace Creator do Founder), voz Henrique 3ULAAai0IVN00DTWA6vF, eleven_multilingual_v2 -->
+      <audio id="voz-01-abertura" src="assets/voz/01-abertura.mp3" data-start="0.5" data-duration="7.71" data-track-index="5" data-volume="1"></audio>
+      <audio id="voz-02-tese" src="assets/voz/02-tese.mp3" data-start="8.9" data-duration="2.42" data-track-index="6" data-volume="1"></audio>
+      <audio id="voz-03-indice" src="assets/voz/03-indice.mp3" data-start="14.2" data-duration="4.65" data-track-index="5" data-volume="1"></audio>
+      <audio id="voz-04-pergunta" src="assets/voz/04-pergunta.mp3" data-start="24.2" data-duration="7.9" data-track-index="6" data-volume="1"></audio>
+      <audio id="voz-05-aula" src="assets/voz/05-aula.mp3" data-start="32.6" data-duration="6.37" data-track-index="5" data-volume="1"></audio>
+      <audio id="voz-06-instrumento" src="assets/voz/06-instrumento.mp3" data-start="41.2" data-duration="8.97" data-track-index="6" data-volume="1"></audio>
+      <audio id="voz-07-fontes" src="assets/voz/07-fontes.mp3" data-start="53.6" data-duration="5.62" data-track-index="5" data-volume="1"></audio>
+      <audio id="voz-08-registro" src="assets/voz/08-registro.mp3" data-start="62" data-duration="5.11" data-track-index="6" data-volume="1"></audio>
+      <audio id="voz-09-retomada" src="assets/voz/09-retomada.mp3" data-start="71.4" data-duration="2.98" data-track-index="5" data-volume="1"></audio>
+      <audio id="voz-10-fecho" src="assets/voz/10-fecho.mp3" data-start="80.2" data-duration="5.25" data-track-index="6" data-volume="1"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

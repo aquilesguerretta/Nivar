@@ -20,7 +20,15 @@
  *  `veredito`, fora do mapa numérico. */
 export type ResultadoInstrumento = {
   valores: Record<string, number>;
+  /** Veredito. Pode trazer HTML curto da fonte (<b>, <br>), que a tela renderiza. */
   veredito?: string;
+  /** Saídas textuais por id de saída, na formatação verbatim da fonte
+   *  ("56 GW às 12h", "usina marginal"). Na tela têm PRECEDÊNCIA sobre
+   *  `valores` do mesmo id; `valores` segue servindo à previsão. */
+  textos?: Record<string, string>;
+  /** true quando o veredito já vem formatado em pt-BR pela fonte: a tela não
+   *  troca ponto por vírgula ("1.000 MW" fica "1.000 MW"). */
+  vereditoPtBr?: boolean;
 };
 
 /** Uma entrada de campo. String é legítima: `InstrumentField.defaultValue`
@@ -1661,6 +1669,8 @@ const alx15 = (h: string): string =>
     .replace(/^(?:<br>\s*)+/, '')
     .trim();
 
+import { CALCULADORAS_POR_MODULO } from './calculadoras';
+
 export const INSTRUMENT_CALCULATORS: Record<string, CalculateFn> = {
   // ── INST 01 · kWh = kW × h ────────────────────────────────
   // Original: `(parseFloat(kw.value) || 0) * (parseFloat(h.value) || 0)`
@@ -1770,7 +1780,14 @@ export const INSTRUMENT_CALCULATORS: Record<string, CalculateFn> = {
   },
 
   // ── INST 06 · Fator de capacidade ─────────────────────────
-  // Original: FC = geração ÷ (capacidade × horas), com seis faixas.
+  // Original: FC = geração ÷ (capacidade × horas), com seis faixas de veredito
+  // no script (L2952–2957: ≥0,85 · ≥0,55 · ≥0,40 · ≥0,25 · ≥0,15 · resto).
+  //
+  // DECISÃO 3 de 15/11/2026 (QA-FCap-01, docs/alexandria-v3/DECISOES-2026-11-15.md):
+  // a figura `cf-chart` da Aula 08 governa as faixas. Os seis vereditos do script
+  // contradizem a figura (solar ~20–28% na figura × corte em 0,25 no script;
+  // carvão ~55–75% × ramo ≥ 0,85), então saem. O instrumento só calcula o FC; a
+  // leitura por fonte é a da figura, logo abaixo na aula (D-A08-2).
   //
   // SINALIZADO, não corrigido: mesmo `|| 1` do INST 04 em "horas".
   'inst-06': (i) => {
@@ -1779,28 +1796,7 @@ export const INSTRUMENT_CALCULATORS: Record<string, CalculateFn> = {
     const T = nOu(i['i06-h'], 1);
     const max = C * T;
     const FC = max > 0 ? G / max : 0;
-
-    let veredito: string;
-    if (FC >= 0.85)
-      veredito =
-        'Faixa típica de nuclear ou térmica a carvão operando como base load. Geração praticamente contínua o ano inteiro.';
-    else if (FC >= 0.55)
-      veredito =
-        'Faixa de térmica de base (carvão, gás natural CCGT) ou hidrelétrica em ano hidrológico favorável.';
-    else if (FC >= 0.4)
-      veredito =
-        'Faixa típica de hidrelétrica brasileira (média anual) ou eólica em região de bom regime de ventos (Nordeste).';
-    else if (FC >= 0.25)
-      veredito =
-        'Faixa típica de eólica em regiões de vento moderado ou solar fotovoltaica com tracker em Nordeste BR.';
-    else if (FC >= 0.15)
-      veredito =
-        'Faixa típica de solar fotovoltaica em latitudes brasileiras. Compare com FCs típicos abaixo.';
-    else
-      veredito =
-        'Fator de capacidade muito baixo — característico de térmica peaker (acionada apenas em horas críticas).';
-
-    return { valores: { 'i06-fc': FC * 100 }, veredito };
+    return { valores: { 'i06-fc': FC * 100 } };
   },
 
   // ── LAB 01 · Comparador de perfil elétrico ────────────────
@@ -4630,6 +4626,9 @@ export const INSTRUMENT_CALCULATORS: Record<string, CalculateFn> = {
     return { valores, veredito: alx15('<b>Posição vs. custo marginal</b><br>' + (T['ac-po'] ?? '') + '<br><br>' + VER) };
   },
 
+  // Calculadoras novas ou corrigidas pelas sessões de porte, uma por módulo
+  // (src/lib/data/calculadoras/mNN.ts). Vêm por último: substituem por id.
+  ...CALCULADORAS_POR_MODULO,
 };
 
 export const temCalculadora = (id: string) => id in INSTRUMENT_CALCULATORS;

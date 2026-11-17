@@ -1,0 +1,199 @@
+<!--meta {
+"arquetipo":"SISTEMA","titulo_pagina":"M01·A03 · A rede tem um batimento cardíaco · Alexandria",
+"trilha":"I · Fundamentos Universais","mod_cod":"M01","modulo":"Física de Energia e Eletricidade",
+"aula_n":"03","aula_total":"09","aula_curto":"A rede tem um batimento cardíaco.",
+"sumario":["Abertura · prever a direção da frequência","3.1 DC: o fluxo constante","3.2 AC: o fluxo que oscila · classificar DC ou AC","3.3 Por que AC venceu historicamente","3.4 Frequência: o termômetro do equilíbrio · palco","3.5 Por que isso afeta o consumidor industrial","Registro da aula"],
+"creditos":["<b>Anel de indução de Faraday (1831).</b> Ilustração em F. Uppenborn, <i>History of the Transformer</i> (1889), fig. 2; também em F. Bedell (1896) · domínio público · Wikimedia Commons.","<b>Frequencímetro de lâminas vibrantes, Metra Blansko, anos 1950.</b> Mister rf · CC BY-SA 4.0 · Wikimedia Commons."]
+} -->
+
+<section class="ab" aria-labelledby="titulo">
+  <div>
+    <p class="eyebrow">M01<span class="dsk"> · Física de Energia e Eletricidade</span> · Aula 03 de 09</p>
+    <h1 id="titulo">A rede tem um batimento cardíaco. Ele se chama 60 Hz.</h1>
+    <p class="sub">Corrente alternada e frequência</p>
+    <span class="apar">Pergunta da aula<em>Alexandria</em></span>
+    <p class="pergunta">Numa rede em corrente alternada, o consumo sobe de repente e a geração não acompanha. O que acontece com os 60 Hz?</p>
+    <p class="obj"><b>Objetivo</b>Dizer em que direção a frequência se move quando geração e consumo se desequilibram, e distinguir onde vivem a corrente contínua e a alternada.</p>
+    <p class="lede">A rede elétrica brasileira oscila sessenta vezes por segundo. Esse ritmo não é arbitrário — é a evidência física de que oferta e demanda estão em equilíbrio em tempo real. Entender frequência é entender por que existe o ONS.</p>
+  </div>
+  <div class="ab-dir">
+    <div class="ato" data-ato>
+      <div class="ato-h"><span class="apar">Ato 1 de 2 · previsão<em>Alexandria</em></span>
+        <span class="estado so-ini">{{g:vazio}}vazio</span><span class="estado so-reg-f">{{g:percorrida}}registrado</span></div>
+      <dl class="cen" style="grid-template-columns:1fr 1fr 1fr">
+        <div><dt>Rede</dt><dd>AC · 60 <small>Hz</small></dd></div>
+        <div><dt>Consumo</dt><dd>sobe ↑</dd></div>
+        <div><dt>Geração</dt><dd>fica igual</dd></div>
+      </dl>
+      <p class="enun" style="margin-top:12px">Nesse instante, a frequência da rede:</p>
+      <div class="opcoes c3 so-ini-g" data-grupo><button class="op">cai</button><button class="op">sobe</button><button class="op">não muda</button></div>
+      <button class="btn-pri so-ini-f" type="button" data-registrar><span>Registrar previsão · <b>direção da frequência</b></span>{{seta}}</button>
+      <p class="so-reg aviso-reg" style="font-style:normal;color:var(--tinta)">Previsão registrada: <b>não muda</b>. O palco da seção 3.4 responde e compara. <a href="#palco34">Ir ao palco</a></p>
+    </div>
+    {{rota:9:3:M01}}
+    <div class="recup">
+      <div class="recup-h"><span class="apar">Recuperação<em>Alexandria</em></span><span class="orig">De M01·A02</span></div>
+      <p>Qual destas unidades mede energia acumulada no tempo?</p>
+      <div class="opcoes c3" data-grupo style="margin:0"><button class="op">kW</button><button class="op">kWh</button><button class="op">kVA</button></div>
+    </div>
+  </div>
+</section>
+
+<div class="corpo">
+  <div class="fila"><div class="l">
+    <p class="lead mob">A rede elétrica brasileira oscila sessenta vezes por segundo. Esse ritmo não é arbitrário — é a evidência física de que oferta e demanda estão em equilíbrio em tempo real. Entender frequência é entender por que existe o ONS.</p>
+    <div class="sec"><span class="n">3.1</span><h2>DC: o fluxo constante</h2></div>
+    <p><strong>Corrente contínua (DC)</strong> tem fluxo em uma direção principal constante. É o que existe dentro de baterias, pilhas, painéis solares antes do inversor e na maioria da eletrônica interna de equipamentos. Polaridade fixa: positivo e negativo. Sinal "reto" no osciloscópio.</p>
+    <div class="sec"><span class="n">3.2</span><h2>AC: o fluxo que oscila</h2></div>
+    <p><strong>Corrente alternada (AC)</strong> tem fluxo cujo sentido alterna periodicamente. No Brasil, a alternância ocorre <strong>60 vezes por segundo</strong> — frequência de 60 Hz. Sinal senoidal no osciloscópio.</p>
+  </div>
+  <figure class="fig m onda">
+    <p class="fig-t">Um sinal fica; o outro troca de sentido 60 vezes por segundo</p>
+    <p class="fig-s">Corrente no tempo · <span class="selo">esquemático</span></p>
+    <svg viewBox="0 0 440 300" role="img" aria-label="Dois traços de osciloscópio. Em cima, corrente contínua: linha reta acima do zero. Embaixo, corrente alternada: senoide que cruza o zero, com um ciclo marcado de um sessenta avos de segundo.">
+      <text x="0" y="16" font-size="12" font-weight="600" fill="#2A2620">DC · polaridade fixa</text>
+      <line x1="30" y1="96" x2="430" y2="96" stroke="#CFC1A4"/><text x="24" y="100" text-anchor="end" font-size="12" fill="#5C5346">0</text>
+      <line x1="30" y1="52" x2="430" y2="52" stroke="#0D2340" stroke-width="3"/>
+      <text x="0" y="148" font-size="12" font-weight="600" fill="#2A2620">AC · 60 Hz</text>
+      <line x1="30" y1="222" x2="430" y2="222" stroke="#CFC1A4"/><text x="24" y="226" text-anchor="end" font-size="12" fill="#5C5346">0</text>
+      <path id="sen" d="M30 222 C 46 176, 70 176, 86.7 222 S 126.7 268, 143.3 222 S 183.3 176, 200 222 S 240 268, 256.7 222 S 296.7 176, 313.3 222 S 353.3 268, 370 222 S 410 176, 426.7 222" fill="none" stroke="#0D2340" stroke-width="3"/>
+      <line x1="30" y1="280" x2="143.3" y2="280" stroke="#2A2620"/><line x1="30" y1="274" x2="30" y2="286" stroke="#2A2620"/><line x1="143.3" y1="274" x2="143.3" y2="286" stroke="#2A2620"/>
+      <text x="152" y="284" font-size="12" fill="#2A2620">1 ciclo = 1/60 s ≈ 16,7 ms</text>
+    </svg>
+    <figcaption><span class="classe">Explicação · figura programática</span>Sem escala de amplitude. O período é conta da Alexandria a partir dos 60 Hz do texto.</figcaption>
+  </figure></div>
+
+  <section class="ex" aria-labelledby="cl-t">
+    <div class="ex-h"><span class="apar">Ato 2 de 2 · classificar<em>Alexandria, com itens do texto do curso</em></span><span class="estado so-ini">{{g:vazio}}0 de 5</span><span class="estado so-reg-f">{{g:pratica}}5 de 5 · comparação aberta</span></div>
+    <h2 id="cl-t" class="ex-e" style="margin:10px 0 12px">Onde vive cada corrente? Classifique antes de seguir para a 3.3.</h2>
+    <ol class="dcac">
+      <li><span>Bateria de armazenamento</span><span class="tg" data-grupo><button class="op">DC</button><button class="op">AC</button></span><span class="so-reg-f rf">{{g:percorrida}}você: DC · texto: DC (3.1)</span></li>
+      <li><span>Painel solar, antes do inversor</span><span class="tg" data-grupo><button class="op">DC</button><button class="op">AC</button></span><span class="so-reg-f rf">{{g:percorrida}}você: DC · texto: DC (3.1)</span></li>
+      <li><span>Eletrônica interna de um equipamento</span><span class="tg" data-grupo><button class="op">DC</button><button class="op">AC</button></span><span class="so-reg-f rf">{{g:percorrida}}você: DC · texto: DC, na maioria (3.1)</span></li>
+      <li><span>Tomada da rede pública no Brasil</span><span class="tg" data-grupo><button class="op">DC</button><button class="op">AC</button></span><span class="so-reg-f rf">{{g:percorrida}}você: AC · texto: AC, 60 Hz (3.2)</span></li>
+      <li><span>Interligação de longa distância em HVDC</span><span class="tg" data-grupo><button class="op">DC</button><button class="op">AC</button></span><span class="so-reg-f rf">{{g:vazio}}você: AC · texto: <b>DC</b> — “elos de corrente contínua” (3.3)</span></li>
+    </ol>
+    <p class="so-ini" style="margin:10px 0 0;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><button class="btn-sec" type="button" data-registrar>Registrar classificação</button><span class="aviso-reg" style="margin:0">A referência de cada item aparece depois do registro, com a linha do texto que a sustenta.</span></p>
+  </section>
+
+  <div class="fila" style="margin-top:28px"><div class="l">
+    <div class="sec"><span class="n">3.3</span><h2>Por que AC venceu historicamente</h2></div>
+    <p>Na chamada Guerra das Correntes do final do século XIX (Westinghouse/Tesla pela AC vs. Edison pela DC), a corrente alternada venceu por uma razão técnica decisiva: <strong>com AC é simples elevar e reduzir tensão usando transformadores</strong>. Em DC, o equivalente é tecnologicamente muito mais caro e complexo.</p>
+    <p>Essa habilidade de mudar de tensão é o que torna possível transmitir energia em alta tensão por centenas de quilômetros e depois entregá-la em baixa tensão para a casa do consumidor. <strong>Sem transformadores, a rede elétrica moderna não existiria nesta escala.</strong></p>
+    <p>DC volta com força hoje em aplicações específicas: solar fotovoltaica, armazenamento em baterias, eletrônica embarcada, e transmissão HVDC em interligações de longa distância (como o sistema de transmissão de Belo Monte para o Sudeste, que usa elos de corrente contínua).</p>
+    <details class="fonte" style="margin:-8px 0 0"><summary><span class="k">Fonte</span><span>Exemplo de Belo Monte: procedência não declarada na aula · verificação pendente.</span><u>Ficha</u></summary><div class="ficha">Texto do Módulo 01, Aula 03, seção 3.3. Conferir em fonte primária (ONS, ANEEL) antes de uso externo.</div></details>
+  </div>
+  <figure class="fig m">
+    <img src="{{img:aulas/m01/m01-a03-01-anel-de-faraday-web.jpg|700}}" alt="Gravura de um anel grosso de ferro com duas bobinas de fio enroladas em lados opostos, marcadas A e B." style="max-width:300px">
+    <figcaption><span class="classe">Explicação · gravura histórica</span>Anel de ferro com dois enrolamentos com que Michael Faraday demonstrou a indução eletromagnética em 1831. É o princípio do transformador, que, com corrente alternada, permite elevar e reduzir a tensão.
+      <span class="cred">F. Uppenborn, History of the Transformer (1889), fig. 2 · domínio público · Wikimedia Commons</span></figcaption>
+  </figure></div>
+
+  <div class="fila"><div class="l">
+    <div class="sec"><span class="n">3.4</span><h2>Frequência: o termômetro do equilíbrio</h2></div>
+    <p>A regra física que governa todo sistema interligado em corrente alternada é simples e absoluta:</p>
+    <div class="formula"><div class="eyebrow" style="margin-bottom:4px">Regra</div><div class="eq">Geração <i>≈</i> Consumo, em tempo real</div></div>
+    <p>Se o consumo aumenta e a geração não acompanha, a frequência da rede <span class="velado">{{g:velado}} velado até a sua previsão</span><strong class="revel">cai</strong>. Se a geração supera o consumo, a frequência <span class="velado">{{g:velado}} velado</span><strong class="revel">sobe</strong>. Não há buffer físico: a eletricidade que entra na rede precisa ser consumida no mesmo instante. Por isso a frequência funciona como o batimento cardíaco do sistema — qualquer descompasso é imediatamente visível, e operadores como o <strong>ONS (Operador Nacional do Sistema Elétrico)</strong> existem para manter esse batimento dentro de faixas seguras.</p>
+  </div>
+  <figure class="fig m">
+    <img src="{{img:aulas/m01/m01-a03-02-frequencimetro-laminas-web.jpg|600}}" alt="Instrumento em caixa de madeira com três escalas de lâminas vibrantes numeradas, a do meio de 45 a 65." style="max-width:260px">
+    <figcaption><span class="classe">Documental</span>Frequencímetro de lâminas vibrantes (Metra Blansko, Tchecoslováquia, anos 1950), fora de uso. Ligado à rede, vibra a lâmina cuja ressonância coincide com a frequência da corrente. A escala do meio vai de 45 a 65 ciclos por segundo (Hz).
+      <span class="cred">Mister rf · CC BY-SA 4.0 · Wikimedia Commons</span></figcaption>
+  </figure></div>
+
+  <section class="palco balanca" id="palco34" data-palco aria-labelledby="p34-t">
+    <div class="palco-h"><span class="num">PALCO</span><h3 id="p34-t">Geração e consumo na mesma balança · a frequência mostra o lado que pesa</h3><span class="k">camada Alexandria · só direção</span></div>
+    <div class="palco-b">
+      <div class="situ" data-grupo role="tablist" aria-label="Situações">
+        <button class="op sel" role="tab" aria-selected="true">1 · consumo sobe, geração igual</button>
+        <button class="op" role="tab">2 · geração sobe, consumo igual</button>
+        <button class="op" role="tab">3 · os dois sobem juntos</button>
+      </div>
+      <div class="bal-g">
+        <svg class="bal" viewBox="0 0 620 330" role="img" aria-label="Balança com o prato da geração à esquerda e o do consumo à direita, e um mostrador de direção da frequência acima do fulcro.">
+          <!-- mostrador -->
+          <path d="M210 120 A100 100 0 0 1 410 120" fill="none" stroke="#2A2620" stroke-width="1.5"/>
+          <line x1="219.3" y1="82.3" x2="228.6" y2="86.1" stroke="#2A2620" stroke-width="1.5"/><text x="208" y="76" text-anchor="end" font-size="15" fill="#2A2620">cai</text>
+          <line x1="310" y1="20" x2="310" y2="30" stroke="#2A2620" stroke-width="1.5"/><text x="310" y="14" text-anchor="middle" font-size="15" fill="#2A2620">estável</text>
+          <line x1="400.7" y1="82.3" x2="391.4" y2="86.1" stroke="#2A2620" stroke-width="1.5"/><text x="412" y="76" font-size="15" fill="#2A2620">sobe</text>
+          <text x="310" y="146" text-anchor="middle" font-size="12.5" fill="#5C5346">frequência · direção</text>
+          <g class="so-ini"><line x1="310" y1="120" x2="310" y2="40" stroke="#6B6255" stroke-width="3"/></g>
+          <g class="so-reg"><line x1="310" y1="120" x2="238" y2="88" stroke="#0D2340" stroke-width="3.5"/></g>
+          <circle cx="310" cy="120" r="6" fill="#2A2620"/>
+          <!-- balança -->
+          <path d="M290 300 L310 170 L330 300 Z" fill="#E7DAC0" stroke="#2A2620" stroke-width="1.5"/>
+          <line x1="240" y1="304" x2="380" y2="304" stroke="#2A2620" stroke-width="2"/>
+          <g class="so-ini">
+            <line x1="110" y1="170" x2="510" y2="170" stroke="#2A2620" stroke-width="4"/>
+            <line x1="130" y1="170" x2="130" y2="220" stroke="#2A2620"/><line x1="490" y1="170" x2="490" y2="220" stroke="#2A2620"/>
+            <rect x="70" y="220" width="120" height="14" fill="#2A2620"/><rect x="430" y="220" width="120" height="14" fill="#2A2620"/>
+            <rect x="92" y="194" width="76" height="26" fill="#FBF6EA" stroke="#2A2620"/><rect x="452" y="194" width="76" height="26" fill="#FBF6EA" stroke="#2A2620"/>
+            <text x="130" y="258" text-anchor="middle" font-size="15" font-weight="600" fill="#2A2620">Geração</text><text x="490" y="258" text-anchor="middle" font-size="15" font-weight="600" fill="#2A2620">Consumo</text>
+            <text x="310" y="325" text-anchor="middle" font-size="13" font-style="italic" fill="#5C5346">antes do evento: equilíbrio · 60 Hz</text>
+          </g>
+          <g class="so-reg">
+            <line x1="112" y1="136" x2="508" y2="204" stroke="#2A2620" stroke-width="4"/>
+            <line x1="130" y1="139" x2="130" y2="189" stroke="#2A2620"/><line x1="490" y1="201" x2="490" y2="251" stroke="#2A2620"/>
+            <rect x="70" y="189" width="120" height="14" fill="#2A2620"/><rect x="430" y="251" width="120" height="14" fill="#2A2620"/>
+            <rect x="92" y="163" width="76" height="26" fill="#FBF6EA" stroke="#2A2620"/>
+            <rect x="452" y="225" width="76" height="26" fill="#FBF6EA" stroke="#2A2620"/><rect x="452" y="199" width="76" height="26" fill="#0D2340"/>
+            <text x="490" y="217" text-anchor="middle" font-size="12" fill="#F2E9D6">+ consumo</text>
+            <text x="130" y="227" text-anchor="middle" font-size="15" font-weight="600" fill="#2A2620">Geração</text><text x="490" y="289" text-anchor="middle" font-size="15" font-weight="600" fill="#2A2620">Consumo</text>
+            <text x="310" y="325" text-anchor="middle" font-size="13" font-style="italic" fill="#2A2620">o consumo pesa mais: a frequência cai abaixo de 60 Hz</text>
+          </g>
+        </svg>
+        <div class="bal-d">
+          <div class="so-ini">
+            <span class="apar">Sua previsão · situação 1<em>Alexandria</em></span>
+            <p style="margin:8px 0 10px">O consumo sobe; a geração fica igual. A frequência:</p>
+            <div class="opcoes c3" data-grupo><button class="op">cai</button><button class="op">sobe</button><button class="op">não muda</button></div>
+            <p class="aviso-reg">O ponteiro só se move depois do registro. Faça as três situações e compare no fim.</p>
+          </div>
+          <div class="so-reg">
+            <span class="apar">Comparação · três situações<em>Alexandria</em></span>
+            <table class="cmp">
+              <thead><tr><th>Situação</th><th>Você</th><th>Texto do curso</th></tr></thead>
+              <tbody>
+                <tr><td>1 · consumo sobe</td><td>{{g:vazio}} não muda</td><td><b>cai</b> <small>(3.4)</small></td></tr>
+                <tr><td>2 · geração sobe</td><td>{{g:percorrida}} sobe</td><td><b>sobe</b> <small>(3.4)</small></td></tr>
+                <tr><td>3 · sobem juntos</td><td>{{g:percorrida}} não muda</td><td><b>não muda</b> <small>derivado de “Geração ≈ Consumo”</small></td></tr>
+              </tbody>
+            </table>
+            <p class="por">“Não há buffer físico: a eletricidade que entra na rede precisa ser consumida no mesmo instante.” <small>— 3.4</small></p>
+            <div class="autoav" data-grupo style="margin-top:8px"><span>Sua explicação:</span><button class="op">atende</button><button class="op sel">em parte</button><button class="op">não atende</button></div>
+          </div>
+        </div>
+      </div>
+      <details class="fonte"><summary><span class="k">Fonte</span><span>Relações de direção: Módulo 01, Aula 03, seção 3.4. O palco é esquemático: a aula não declara faixas de frequência nem tempo de resposta, e o palco não mostra nenhum dos dois.</span><u>Ficha</u></summary><div class="ficha">Sem valores numéricos além dos 60 Hz nominais. Situação 3 é derivação da Alexandria a partir da regra “Geração ≈ Consumo”.</div></details>
+      <div class="meta-x">
+        <div><span class="apar">Meta opcional<em>Alexandria</em></span><p>Depois do degrau de consumo, ajuste a geração até o ponteiro voltar a “estável”.</p></div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px"><span class="estado">{{g:vazio}}ainda não tentada</span><button class="btn-sec" type="button">Começar a meta</button></div>
+      </div>
+      <p class="pratic so-reg-f">{{g:pratica}}<span><b>Praticado nesta aula:</b> previsão e classificação registradas e comparadas.</span></p>
+    </div>
+  </section>
+
+  <div class="fila"><div class="l">
+    <div class="sec"><span class="n">3.5</span><h2>Por que isso afeta o consumidor industrial</h2></div>
+    <p>Quedas ou desvios relevantes de frequência afetam diretamente equipamentos sensíveis: motores síncronos perdem sincronismo, drives de velocidade variável desarmam por proteção, sistemas de controle de processo travam. Mesmo que o consumidor final raramente veja a frequência na fatura, ela está por trás de toda a confiabilidade do fornecimento. Quando estudarmos qualidade de energia na <a href="#">Aula 09</a>, voltaremos a este ponto.</p>
+    <p class="aviso-reg">Esta aula não tem calculadora nem exercício próprio no curso. Os dois atos acima são da Alexandria, feitos com as relações do próprio texto.</p>
+  </div></div>
+
+  <section class="registro" aria-labelledby="reg-t">
+    <div class="registro-h"><h2 id="reg-t">Registro da aula</h2><button class="btn-link so-ini" type="button">Registrar leitura sem prática</button></div>
+    <dl class="eixos">
+      <div><dt>Percorrido</dt><dd>{{g:leitura}}em leitura</dd></div>
+      <div><dt>Praticado</dt><dd class="so-ini">{{g:vazio}}ainda sem prática · 0 de 2 atos</dd><dd class="so-reg-f">{{g:pratica}}com prática · 2 de 2 atos · 1 a revisar</dd></div>
+      <div><dt>Serve a</dt><dd class="sa"><span><b>Capacidade 06 do módulo, em parte</b> · Conectar tensão, corrente, perdas e qualidade ao desenho tarifário</span><span style="color:var(--suave);font-size:14px">Itens 08 e 09 do checklist · AC × DC; frequência como evidência do equilíbrio · atividade recomendada: explicar em voz alta</span></dd></div>
+    </dl>
+    <p class="demo"><span>Demonstrado: ainda não avaliado.</span><span>Avaliação do Módulo 01: depois da Revisão, com o critério mostrado antes.</span></p>
+  </section>
+  <nav class="proximo" aria-label="Próximo passo">
+    <div class="prox-a">
+      <small class="so-ini">Próximo passo · o ato desta aula ainda está pendente</small><small class="so-reg">Próximo passo · a situação 1 ficou diferente do texto</small>
+      <a class="btn-pri so-ini-f" href="#titulo"><span>Fazer o ato desta aula · <b>prever a direção da frequência</b></span>{{seta}}</a>
+      <a class="btn-pri so-reg-f" href="#palco34"><span>Rever 3.4 · <b>frequência, o termômetro do equilíbrio</b></span>{{seta}}</a>
+    </div>
+    <div class="prox-b"><a class="btn-link" href="#">Próxima · M01·A04 — Por que perdas crescem ao quadrado. E por que isso desenhou toda a rede.</a><a class="btn-link" href="#">Voltar à rota do Módulo 01</a></div>
+  </nav>
+</div>

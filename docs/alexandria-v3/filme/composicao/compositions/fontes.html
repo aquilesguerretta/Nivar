@@ -1,0 +1,49 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" /></head>
+<body>
+  <template>
+    <style>
+      #root { position: absolute; inset: 0; }
+    </style>
+    <div id="root" data-composition-id="fontes" data-width="1920" data-height="1080">
+      <div id="fo-cena" class="fundo">
+        <div class="coluna">
+          <p id="fo-cap" class="mono cap">04 · O vocabulário e as fontes</p>
+          <span id="fo-fio" class="cap-fio"></span>
+          <h2 id="fo-man" class="serif manchete">Glossário e biblioteca, <em>com a fonte à vista.</em></h2>
+          <p id="fo-apoio" class="apoio">O que ainda falta também aparece: o glossário cobre os módulos 01 a 08; a biblioteca, por enquanto, o Módulo 01.</p>
+        </div>
+        <p id="fo-nota1" class="nota-folha">Tela real · /alexandria/glossario</p>
+        <p id="fo-nota2" class="nota-folha">Tela real · /alexandria/biblioteca</p>
+        <div id="fo-folha" class="folha">
+          <div id="fo-j1" class="janela"><img src="assets/glossario.png" alt="" /></div>
+          <div id="fo-j2" class="janela"><img src="assets/biblioteca.png" alt="" /></div>
+        </div>
+        <p class="selo tela">Tela real da plataforma · sem conta</p>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power2.out", S = "sine.inOut";
+      const W = 1160, H = 900;
+      const q = (cx, cy, s, dx = 0) => ({ x: W / 2 - cx * s + dx, y: H / 2 - cy * s, scale: s, transformOrigin: "0% 0%" });
+      tl.fromTo("#fo-cena", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: S }, 0);
+      tl.fromTo("#fo-cap", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.5);
+      tl.fromTo("#fo-fio", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 0.6);
+      tl.fromTo("#fo-man", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.2, ease: E }, 0.9);
+      tl.fromTo("#fo-apoio", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.0, ease: E }, 2.0);
+      tl.fromTo("#fo-folha", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.0, ease: "power3.out" }, 0.3);
+      // glossário, depois a biblioteca entra pela direita
+      tl.fromTo("#fo-nota1", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 1.0);
+      tl.fromTo("#fo-j1", q(820, 470, 0.75), { ...q(820, 470, 0.75), duration: 1.6 }, 0.4);
+      tl.to("#fo-j1", { ...q(1100, 820, 0.75), duration: 2.2, ease: "power1.inOut" }, 2.0);
+      tl.set("#fo-j2", q(820, 480, 0.75, 2 * W), 0);
+      tl.to("#fo-j1", { x: q(1100, 820, 0.75, -2 * W).x, duration: 0.9, ease: "power3.inOut" }, 4.2);
+      tl.to("#fo-j2", { x: q(820, 480, 0.75).x, duration: 0.9, ease: "power3.inOut" }, 4.2);
+      tl.to("#fo-nota1", { opacity: 0, duration: 0.4 }, 4.2);
+      tl.fromTo("#fo-nota2", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 4.7);
+      tl.to("#fo-j2", { ...q(820, 1150, 0.75), duration: 2.7, ease: "power1.inOut" }, 6.0);
+      window.__timelines["fontes"] = tl;
+    </script>
+  </template>
+</body></html>

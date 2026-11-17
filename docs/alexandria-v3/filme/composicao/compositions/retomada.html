@@ -1,0 +1,40 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" /></head>
+<body>
+  <template>
+    <style>
+      #root { position: absolute; inset: 0; background: var(--tinta); }
+      #rt-grupo { position: absolute; left: 140px; top: 210px; width: 640px; color: var(--papel); }
+      #rt-olho { color: var(--ouro-claro); }
+      #rt-frase { margin-top: 26px; font-size: 70px; font-weight: 400; line-height: 1.06; letter-spacing: -0.01em; }
+      #rt-cartao { position: absolute; left: 140px; top: 640px; width: 640px; height: 268px; overflow: hidden; background: var(--papel); }
+      #rt-cartao-nota { position: absolute; left: 140px; top: 922px; color: rgba(242,236,223,0.82); font-size: 16px; }
+    </style>
+    <div id="root" data-composition-id="retomada" data-width="1920" data-height="1080">
+      <div id="rt-cena" class="fundo" style="background: var(--tinta)">
+        <video id="rt-v" class="plano" src="assets/v6.mp4" muted playsinline data-start="0" data-duration="9.6" data-track-index="0"></video>
+        <div id="rt-grupo">
+          <p id="rt-olho" class="mono">No dia seguinte</p>
+          <h2 id="rt-frase" class="serif">A Alexandria retoma de onde você parou.</h2>
+        </div>
+        <div id="rt-cartao"><div id="rt-jan" class="janela"><img src="assets/home-conta.png" alt="" /></div></div>
+        <p id="rt-cartao-nota" class="mono">Tela real · Início, com conta de demonstração</p>
+        <div class="selo">GRAVURA GERADA</div>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power2.out", S = "sine.inOut";
+      // o bloco "Em leitura · M01 · Aula 08 de 09 … Continuar a aula" da Home com conta
+      const s = 0.62;
+      tl.fromTo("#rt-cena", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: S }, 0);
+      tl.fromTo("#rt-olho", { opacity: 0 }, { opacity: 1, duration: 0.9, ease: E }, 0.9);
+      tl.fromTo("#rt-frase", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.4, ease: E }, 1.5);
+      tl.set("#rt-jan", { x: -70 * s, y: -390 * s, scale: s, transformOrigin: "0% 0%" }, 0);
+      tl.fromTo("#rt-cartao", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.0, ease: "power3.out" }, 3.4);
+      tl.fromTo("#rt-cartao-nota", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 3.9);
+      tl.to("#rt-jan", { y: -410 * s, duration: 5.6, ease: "none" }, 3.4);
+      window.__timelines["retomada"] = tl;
+    </script>
+  </template>
+</body></html>

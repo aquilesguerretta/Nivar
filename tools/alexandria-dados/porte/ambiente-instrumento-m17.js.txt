@@ -1,0 +1,125 @@
+/* ── ambiente mínimo do M17: um `document` para o script verbatim rodar ──
+   O script do M17 é UMA IIFE com os utilitários dentro ($id, chips, field,
+   bindFields, readVal, ro, gcmp, verdict) e um segundo <script> que os
+   recebe por window.M17. Aqui os utilitários e os dados vêm verbatim dentro de
+   `criarFonte(document, window)`, e o `document` é este: getElementById devolve
+   um elemento que guarda innerHTML/className/value e os ouvintes que o script
+   registra. A escolha do aluno chega como o clique que a página receberia
+   (`gatilhos`): no chip (`data-i`), na linha (`data-k`), na navegação (`data-d`).
+   Nada aqui calcula. */
+function criarDocumento(entradas) {
+  const els = {};
+  const lista = () => {
+    const s = new Set();
+    return { add: (c) => s.add(c), remove: (c) => s.delete(c), contains: (c) => s.has(c), toggle: (c, f) => ((f ?? !s.has(c)) ? s.add(c) : s.delete(c)) };
+  };
+  const novo = (id) => {
+    const v = entradas[id];
+    const ouvintes = {};
+    const el = {
+      id,
+      innerHTML: '',
+      _texto: null,
+      className: '',
+      value: v === undefined || v === null ? '' : String(v),
+      style: {},
+      classList: lista(),
+      _ouvintes: ouvintes,
+      addEventListener(t, fn) { (ouvintes[t] ??= []).push(fn); },
+      getAttribute: () => null,
+      setAttribute() {},
+      querySelector: () => null,
+      querySelectorAll: () => [],
+    };
+    Object.defineProperty(el, 'textContent', {
+      get() { return this._texto ?? this.innerHTML.replace(/<[^>]+>/g, ''); },
+      set(t) { this._texto = String(t); this.innerHTML = String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); },
+    });
+    return el;
+  };
+  const document = {
+    getElementById: (id) => (els[id] ??= novo(id)),
+    querySelector: () => null,
+    querySelectorAll: () => [],
+    addEventListener() {},
+    documentElement: { scrollHeight: 0, clientHeight: 0, scrollTop: 0 },
+  };
+  const window = { addEventListener() {} };
+  const clicar = (alvo, seletor, attrs) => {
+    const el = els[alvo];
+    if (!el) return;
+    const ev = { target: { closest: (sel) => (sel === seletor ? { getAttribute: (a) => attrs[a] ?? null } : null) } };
+    for (const fn of el._ouvintes.click ?? []) fn(ev);
+  };
+  return { document, window, els, clicar };
+}
+
+/** HTML do painel da fonte → HTML curto que a aula v3 renderiza (b, em, br). */
+function simplificar(h) {
+  let s = String(h);
+  s = s.replace(/<div class="p7-n">([\s\S]*?)<\/div>/g, '$1 · ');
+  s = s.replace(/<(div|span)\s+class="(?:gk|p7-k|yr|par3-hd|k)"[^>]*>([\s\S]*?)<\/\1>/g, '<b>$2</b><br>');
+  s = s.replace(/<\/(div|p|li|tr)>/g, '<br>');
+  s = s.replace(/<\/span>\s*<span/g, '</span> · <span');
+  s = s.replace(/<(?!\/?(b|strong|em|i|br|sub|sup)\b)[^>]*>/g, '');
+  s = s.replace(/<i\b[^>]*><\/i>/g, '');
+  s = s.replace(/<br\s*\/?>/g, '<br>');
+  s = s.replace(/(\s*<br>\s*){3,}/g, '<br><br>');
+  s = s.replace(/^(\s*<br>\s*)+|(\s*<br>\s*)+$/g, '');
+  return s.replace(/[ \t\n]+/g, ' ').trim();
+}
+
+/** Saídas `ro()` de um contêiner: rótulo e valor como o script escreveu. */
+function lerRos(h) {
+  return [...String(h).matchAll(/<div class="ro"><div class="k">([\s\S]*?)<\/div><div class="n[^"]*">([\s\S]*?)<\/div><\/div>/g)].map((m) => ({ k: m[1], n: m[2] }));
+}
+function lerReadout(h) {
+  const t = String(h).replace(/<(span|small)[^>]*>[\s\S]*?<\/\1>/g, '').replace(/<[^>]+>/g, '').replace(/^\s*(R\$|US\$|€)\s*/, '').trim();
+  // número, e depois só palavras que não começam por dígito ("2,32×", "0 tCO2e alterada");
+  // "72,0 vs 80,0", "não", "A" são saída textual (ficam em `textos`)
+  const m = t.match(/^(-?[\d.]+(?:,\d+)?)(?: ?[^\d\s]\S*(?: [^\d\s]\S*)*)?$/);
+  if (!m) return NaN;
+  const v = Number(m[1].replace(/\./g, '').replace(',', '.'));
+  return Number.isFinite(v) ? v : NaN;
+}
+function textoDoReadout(h) {
+  return String(h)
+    .replace(/<(span|small)[^>]*>([\s\S]*?)<\/\1>/g, (m, t, u) => (u.startsWith('/') || u === '%' ? u : ` ${u}`))
+    .replace(/<[^>]+>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+function editar(s, editoriais) {
+  let r = s;
+  for (const [de, para] of editoriais) r = r.split(de).join(para);
+  return r;
+}
+
+function calcular(chave, entradas, spec, editoriais, extratores) {
+  const amb = criarDocumento(entradas);
+  const fonte = criarFonte(amb.document, amb.window);
+  fonte[chave]();
+  for (const g of spec.gatilhos) {
+    const v = entradas[g.campo];
+    if (v === undefined || v === null || v === '') continue;
+    if (g.tipo === 'chips') amb.clicar(g.alvo, '.tl-chip', { 'data-i': String(v) });
+    else if (g.tipo === 'linha') { if (String(v) === 'declarada') amb.clicar(g.alvo, '.p7-r', { 'data-k': g.chave }); }
+    else if (g.tipo === 'nav') for (let k = 0; k < Number(v); k++) amb.clicar(g.alvo, 'button', { 'data-d': '1' });
+  }
+  const valores = {};
+  const textos = {};
+  for (const c of spec.paineisRo) {
+    lerRos(amb.document.getElementById(c).innerHTML).forEach((r, i) => {
+      valores[`${c}-${i + 1}`] = lerReadout(r.n);
+      textos[`${c}-${i + 1}`] = textoDoReadout(r.n);
+    });
+  }
+  const bruto = Object.fromEntries(Object.entries(amb.els).map(([k, e]) => [k, e.innerHTML]));
+  for (const [id, ler] of Object.entries(extratores ?? {})) {
+    const v = ler(bruto, entradas);
+    if (v !== null && v !== undefined) textos[id] = String(v);
+  }
+  const partes = spec.textos.map((id) => simplificar(bruto[id] ?? '')).filter(Boolean);
+  // O script da fonte já formata em pt-BR (toLocaleString): a tela não troca ponto por vírgula.
+  return { valores, textos, veredito: editar(partes.join('<br><br>'), editoriais), vereditoPtBr: true, bruto, ros: Object.fromEntries(spec.paineisRo.map((c) => [c, lerRos(bruto[c] ?? '')])) };
+}

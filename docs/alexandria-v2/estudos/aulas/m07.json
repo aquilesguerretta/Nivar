@@ -1,0 +1,555 @@
+{
+  "modulo": "M07",
+  "titulo_canonico": "Estrutura Institucional do Setor Elétrico Brasileiro (catálogo); repositório: 'Estrutura Institucional Detalhada' — reconciliar por P8/P24",
+  "estudado_em": "2026-09-17",
+  "fontes_lidas": {
+    "html_fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo07.html (§00 l.370, §MAP l.433, Aulas 01–07 l.474–1379, §Caso l.1380, §Erros, §Ex, §Quiz (script), §Voz, §Final)",
+    "codigo": "src/lib/data/alexandria-modulo-07-content.ts (MODULO_07_CORPO, MODULO_07_LEAD, MODULO_07_AULAS, INSTRUMENTOS_MODULO_07, MODULO_07_EXPLORADORES, M07_INST01_*); src/lib/data/alexandria-instrument-calculators.ts (m07-inst-*)",
+    "extracao_verificada": "docs/alexandria-v2/extraction/m07/ só tem extratores/ (m07_lib.mjs, m07_sim.mjs); nenhum JSON/MD verificado ainda — este estudo leu a fonte direto",
+    "curadoria_midia": "docs/alexandria-v2/media-lab/aulas/m07/ em andamento: sem plano.json; 2 originais (m07-a01-01-esplanada-agbr.jpg, m07-a04-01-modis-parana-tiete-2018.jpg)"
+  },
+  "achados_transversais": [
+    {
+      "id": "T1",
+      "tipo": "perda de extração (dependência §9)",
+      "texto": "MODULO_07_CORPO perde blocos inteiros da fonte: as 8 fichas institucionais (.fi, 8 linhas cada: O que é · Natureza jurídica · O que decide · O que publica e quando · Como afeta uma empresa industrial · Portal e caminho · Termos próprios · O que NÃO faz) — no código ficam só os títulos '1.1 Ficha institucional · MME' etc., sem corpo; todas as listas ol.num-list (portaria 6 passos, estudo 6 verificações, participação 6 passos, REN 10 campos, ONS 3 propriedades, CADE 5 etapas); todas as sequências ol.stp (leilão 7 etapas, integração de instalação 6, ciclo comercial 9, migração 9); os 3 cbox ONS/CCEE/ANEEL de 5.7; e dois subtítulos h4. Vários parágrafos que antecedem essas listas terminam em ':' e ficam órfãos."
+    },
+    {
+      "id": "T2",
+      "tipo": "perda de extração em instrumentos",
+      "texto": "Os exploradores truncam os campos da fonte: i2 (5 de 6 linhas perdidas: 'O que pode dispor', 'O que não pode dispor', 'Prazo típico de alteração', 'Onde é publicado', 'Quem pode contestar'), i3 (4 de 5: seção a ler primeiro, defasagem, erro clássico, o que não se responde ali), i5 (4 de 5: cadência, o que se lê primeiro, dado no portal, erro clássico), i7 (4 de 5: instrumento que resolve, prazo típico, erro de endereçamento, o que fazer em paralelo). i8 e i9 preservam os 6 valores mas perdem os 6 RÓTULOS (juntados por ' · '). i10 perde a camada fixa (FIXO) e mostra o contador 'e:3' como '3\\n' no texto. As perdas cortam justamente o que o intro de cada instrumento promete e o que tem mais valor de checagem (erro clássico, erro de endereçamento)."
+    },
+    {
+      "id": "T3",
+      "tipo": "forma prometida não desenhada (C5, §9)",
+      "texto": "i4 e i6 têm na fonte barras por etapa (#i4-bars, #i6-bars) e o rótulo textual 'Regime' (i4-reg, i6-reg); o código porta leituras e veredito, sem barras e sem regime. i1 (mapa SVG de 8 nós e dois fluxos) é instrumento de MÓDULO e o código não porta o SVG. i10 promete calendário e o código mostra select → texto. i2 se chama 'Comparador' e mostra um item por vez."
+    },
+    {
+      "id": "T4",
+      "tipo": "conteúdo que não pode ir ao learner (P7, P24, S4)",
+      "texto": "Uma nota 'Onde isso entra no produto' por aula (Brazil Pulse, alertas, endpoint, backend); a seção 7.5 inteira ('Onde a GridAlpha se conecta a cada portal') e sua nota ('Trava 1', 'GridAlpha'); o parágrafo 7.3 ('mapa de fontes do backend da plataforma'); a tese 0.4 ('A GridAlpha não precisa de convênio…'). Palavras proibidas ao learner (S4): 'backend', 'endpoint' no sentido interno. 'Trava 1' e 'trava 4' são numeração de documento interno (tratar como P23: rótulo semântico)."
+    },
+    {
+      "id": "T5",
+      "tipo": "marcação quebrada",
+      "texto": "Parágrafos do código com '</b>' sem abertura (o span.hl da fonte virou nada): aula-07-01 blocos 1 e 15; aula-07-02 bloco 5; aula-07-03 blocos 6, 11 e 29; aula-07-04 blocos 4 e 20; aula-07-05 blocos 2, 6 e 20; aula-07-06 bloco 1; aula-07-07 blocos 3, 10 e 16. O realce da fonte ('a frase que decide') some, e é quase sempre a tese do parágrafo."
+    },
+    {
+      "id": "T6",
+      "tipo": "números vivos",
+      "texto": "Todo o módulo depende de snapshots datados (siglas SNTEP/SNEE e superintendências ANEEL em jul/2026, PDE 2035 aprovado em jul/2026, PNE 2055, PNTE em consulta abr–jun/2026, estatuto CCEE jan/2026, caso Vibra–Comerc com datas a confirmar). A fonte já declara isso em caixas 'Números vivos'. Precisa de metadado 'verificado em' visível e de estado de validade (S4)."
+    },
+    {
+      "id": "T7",
+      "tipo": "vínculos de exercício e avaliação",
+      "texto": "Os 12 exercícios (§Ex) não citam aula (P9 → Revisão). Mas o feedback de CADA uma das 10 questões do §Quiz cita aula e instrumento ('Aula 01 e Inst·02', 'Aulas 04 e 05, Inst·05 e Inst·08'…): isso é vínculo da fonte e serve à recuperação por aula (C10). Critério do quiz '8/10' e 'Não avance para o §Voz' são limiar legado (P18): não travam nada nem declaram domínio."
+    },
+    {
+      "id": "T8",
+      "tipo": "capacidades do módulo ('Serve a')",
+      "texto": "§Final tem 26 afirmações; dá para ligar cada aula às suas: A01 → 3–7; A02 → 8–11; A03 → 12–19; A04 → 20–22; A05 → 23–24; A06 → nenhuma (a lista não tem item sobre CMSE, CADE ou periferia); A07 → 25–26 (e 1–2, que vêm da tese). A06 fica com 'Serve a: ainda não disponível'. Os itens orais ou cronometrados (§Voz, 15 s, 90 s, roteiro gravado) são 'atividade recomendada' (P14)."
+    },
+    {
+      "id": "T9",
+      "tipo": "caso",
+      "texto": "O §Caso se chama 'Operação A · Parte 7' na fonte: pela P17, o título é 'Caso — Operação A' (lente institucional), sem 'Parte'. O rito de migração de C.4 e a escada de C.2 permitem um Desafio de decisão da camada Alexandria só com fatos do caso (ex.: por onde começar se a operação decidir migrar, e o que verificar antes de escalar uma reclamação). A caixa 'Linguagem — trava 4' leva rótulo semântico (P23)."
+    },
+    {
+      "id": "T10",
+      "tipo": "mídia legada",
+      "texto": "MODULO_07_AULAS.illustrations aponta gravuras antigas (ins-01…ins-08, public/alexandria/gravuras). Pela M3, elas não criam preferência. Recomenda-se retirá-las das aulas: não passam no teste de remoção; 'sala-conselho' e 'centro-operacao' têm aparência documental sem aviso (P10); ins-06 ('predio-frontao-classico', fora de uso nas aulas) violaria S2 (frontão). A figura que trabalha neste módulo é o mapa institucional."
+    },
+    {
+      "id": "T11",
+      "tipo": "arquétipo do módulo",
+      "texto": "O módulo é institucional: não há física nem conta. O objeto-mundo que trabalha é o Mapa institucional (Inst·01, 8 nós, fluxo de autoridade × fluxo de dado). Proposta: cada aula abre com o nó (ou nós) da aula aceso nesse mapa, que é a posição do learner. A A06 estende o mapa com a periferia e a A07 percorre o mapa inteiro. A 'régua das quatro perguntas' da tese (quem assinou · sob qual instrumento · quem é atingido e a partir de quando · qual o próximo passo) é o ato recorrente de roteamento em todas as aulas."
+    },
+    {
+      "id": "T12",
+      "tipo": "QA de lógica do simulador",
+      "texto": "Na fonte, o ramo do veredito i6 'Contestação existe, folga de caixa não' (fol<5) é inalcançável com os limites dos controles: ele exige c≥4 (c≤3 cai no ramo anterior) e d≥1, e então fol=c+d≥5. É registro de QA, não fato; na interface, não prometer esse estado como meta."
+    }
+  ],
+  "aulas": [
+    {
+      "aulaId": "aula-07-01",
+      "titulo": "Onde a diretriz nasce",
+      "subtitulo": "Política · MME e CNPE",
+      "o_que_ensina": "Política escolhe direção e regulação converte direção em regra aplicável. Os atos de política (resolução do CNPE, portaria do MME) quase sempre delegam, e o evento que obriga é o ato seguinte, de outro órgão. Operacionalmente, quem move a máquina é o ministério.",
+      "natureza": ["mercado/regulação", "leitura de documento (anatomia de portaria)", "comparação de instrumentos jurídicos"],
+      "melhor_representacao": {
+        "arquetipo": "Anatomia de documento com anotações + escada de instrumentos (prancha dividida com instrumento vivo)",
+        "descricao": "Coluna editorial com a distinção política × regulação. Em 1.3, uma portaria-esqueleto (diagrama explicativo, sem número nem texto de portaria real) anotada nos seis passos de leitura da fonte, com os artigos que 'decidem' separados dos que 'delegam'. Em 1.4/1.5, a escada dos 11 instrumentos na ordem da fonte ('do mais forte ao mais operacional'), com Inst·02 como painel ao lado e comparação de dois degraus.",
+        "por_que": "O mecanismo é 'o ato não produz efeito sozinho, delega'. Isso se vê num documento anotado (o que decide × o que delega) e numa escada ordenada (quem pode dispor o quê). Uma coluna de texto corrido não mostra nenhuma das duas relações."
+      },
+      "abertura_C3": {
+        "pergunta": "Saiu uma portaria do ministério cuja ementa começa com 'estabelece diretrizes para…'. Ela já obriga algum agente?",
+        "camada": "alexandria",
+        "derivacao": "Passo 1 do procedimento de 1.3 (fonte): 'Se a ementa diz \"estabelece diretrizes para\", é ato de política e vai depender de regulamentação posterior'.",
+        "previsao_util": true,
+        "previsao": "Previsão conceitual (sim / não / depende do ato seguinte), sem números: o erro 'política = regra' é o que a aula corrige. A resposta aparece no passo 1 de 1.3 e na tabela de 1.4 ('Próximo passo obrigatório')."
+      },
+      "ato_autentico_C9": {
+        "tipo": "ordenar + classificar",
+        "descricao": "Ordenar a cadeia de uma diretriz de contratação (fonte, tabela 1.4: Portaria ministerial → estudos e habilitação pela EPE → edital e homologação pela ANEEL → operacionalização pela CCEE) e endereçar 3 manchetes de portaria à secretaria (tabela 1.2: outorga de geração/planos → SNTEP; mercado livre, elegibilidade, prazo de migração, leilão → SNEE).",
+        "por_que_exercita_o_mecanismo": "Ordenar a cadeia obriga a ver que cada elo é de outro órgão (delegação). Endereçar por tema é o 'critério de domínio' citado em 1.2.",
+        "camada": "alexandria (tarefa); fatos 100% da fonte",
+        "fallback_texto_aberto": false
+      },
+      "visualizacao_C6": {
+        "precisa_desenhar": [
+          "Cadeia de delegação (relé): CNPE → MME (portaria) → EPE (habilitação) → ANEEL (edital, homologação, fiscalização) → CCEE (registro). Relação: sequência de competências num único evento ('Quatro instituições, quatro competências, um único evento'). Sem eixo numérico.",
+          "Escada dos 11 instrumentos (ordinal, fonte: do mais forte ao mais operacional) com 'prazo típico de alteração' como rótulo qualitativo (anos · meses…). Não é escala numérica."
+        ],
+        "existe_no_codigo": "Não. Os blocos de lista (6 passos) e a ficha foram perdidos (T1).",
+        "instrumento_promete_forma_nao_desenhada": "Sim: 'Comparador' mostra um item por vez e só a linha 'Quem emite' (T2). Deveria comparar dois instrumentos lado a lado nos 6 campos."
+      },
+      "instrumento_C5": {
+        "id": "m07-inst-02",
+        "titulo": "Comparador de instrumentos jurídicos",
+        "tipo_fonte": "explorador (grade → painel de 6 campos + leitura)",
+        "posicao_fonte": "fim da aula, depois de 1.5 (antes das notas de três níveis e de produto)",
+        "posicao_proposta_bloco_indice": 12,
+        "posicao_proposta_texto": "depois da tabela de saídas do CNPE (fim de 1.4), quando o learner já viu portaria e resolução do conselho",
+        "previsao": "Sim, pré-compromisso: antes de abrir um instrumento, o learner escolhe o que ele NÃO pode dispor (entre as opções tiradas das próprias linhas da fonte) e depois compara com a linha 'O que não pode dispor'. O intro da fonte diz que esse campo é 'o que quase ninguém sabe'.",
+        "tolerancia": "não se aplica (ato de classificação); autoavaliação em 3 níveis quando a resposta é aberta"
+      },
+      "checagem_C7": "Tentativa (ordem da cadeia, secretaria, campo 'não pode dispor') registrada antes da referência. A comparação lado a lado mostra: resposta × linha da fonte × o que acrescenta (a leitura do item). Nada de cor de certo ou errado.",
+      "recuperacao_proximo_passo_C10": {
+        "recuperacao": "Primeira aula do módulo: recuperar de M05/M06 ('por que existe uma agência reguladora com mandato fixo?'), com origem visível. Depende dos itens de M05/M06 estarem extraídos.",
+        "proximo_passo": "Atende → 'Próxima · M07·A02 — Indicativo, não determinativo'. Não atende → 'Rever 1.3 Anatomia de uma portaria' ou '1.4 CNPE'. Sem prática → 'Fazer o ato desta aula'.",
+        "serve_a": "§Final itens 3–7 (política × regulação; duas secretarias; seis passos da portaria; CNPE; poder operacional do ministério)"
+      },
+      "midia": {
+        "onde_ajuda": "Em 1.5 ('Casa Civil, Presidência e o limite do setorial'): uma foto documental da Esplanada mostra que a decisão passa por várias pastas. Trabalho: 'o setor não decide sozinho; a coordenação atravessa ministérios'. Teste de remoção: ganho moderado; aceitável só com legenda factual e crédito.",
+        "plano_curadoria": "m07-a01-01-esplanada-agbr.jpg (originais/, sem plano.json ainda). Classe documental; confirmar licença Agência Brasil (só conteúdo próprio, CC BY) e legenda na ficha.",
+        "legado": "ins-01-predio-ministerial, ins-08-sala-conselho: retirar (M3/P10)."
+      },
+      "mobile_390": "No 1º viewport: pergunta de previsão + botão do ato. A portaria-esqueleto vira lista vertical dos 6 passos, com a marca 'decide/delega'. A escada já é vertical e cabe em 358px com rótulos curtos. A comparação de dois instrumentos empilha A sobre B, com os campos alinhados por rótulo.",
+      "lacunas_e_dependencias": [
+        "Fichas MME e CNPE perdidas no código (T1): Lei 9.478/1997 e Decreto 3.520/2000 só existem na ficha da fonte.",
+        "Lista dos 6 passos de leitura de portaria perdida (T1): o parágrafo 9 termina em ':'.",
+        "i2 truncado em 1 de 6 campos (T2).",
+        "Siglas SNTEP/SNEE: snapshot jul/2026 (número vivo, T6).",
+        "Nota 'Onde isso entra no produto' (Brazil Pulse) fora da interface (T4).",
+        "Exercício 04 do §Ex (portaria de migração: qual secretaria) é temático desta aula, mas não tem vínculo na fonte (P9).",
+        "durationMinutes nulo; tempo de leitura não declarado.",
+        "§9: persistência de tentativa e de previsão."
+      ],
+      "nota_ambicao": "O 'relé da diretriz': um único leilão, o exemplo canônico da fonte, em que o learner passa o bastão de órgão em órgão e o mapa institucional acende cada mão. Depois, o learner marca numa portaria-esqueleto o que ela decide e o que ela delega. Ele sai sabendo ler a ementa antes da manchete."
+    },
+    {
+      "aulaId": "aula-07-02",
+      "titulo": "Indicativo, não determinativo",
+      "subtitulo": "Planejamento · EPE",
+      "o_que_ensina": "A EPE planeja de forma indicativa: seus produtos (BEN, PDE e PNE) respondem a perguntas diferentes, em horizontes diferentes (passado recente, dez anos, décadas), e não obrigam ninguém. A única decisão dela com efeito excludente direto é a habilitação técnica, antes da sessão do leilão.",
+      "natureza": ["comparação de documentos por horizonte", "leitura de estudo", "mercado/regulação (papel no leilão)"],
+      "melhor_representacao": {
+        "arquetipo": "Mesa de comparação sobre um eixo de horizonte (estante temporal) + funil do leilão",
+        "descricao": "Uma régua de tempo qualitativa (ano anterior ← hoje → dez anos → décadas) com os três produtos como faixas; cada pergunta do learner é pousada na régua. Em 2.3, a sequência de 7 etapas do leilão, com as 4 etapas da EPE marcadas e o filtro de habilitação como porta antes da sessão.",
+        "por_que": "O erro central é usar o produto certo para a pergunta errada, 'deslocada em uma década' (fonte). Esse deslocamento é espacial: uma régua de horizonte o torna visível. A habilitação é uma posição na sequência, e um funil a mostra melhor que prosa."
+      },
+      "abertura_C3": {
+        "pergunta": "Você precisa saber quanto o país consumiu de energia no ano passado. Qual documento da EPE você abre, e por quê não o plano decenal?",
+        "camada": "alexandria",
+        "derivacao": "Tabela 2.2 e regra de uso ('Balanço não prevê o futuro. Plano decenal não é lista de obras obrigatórias. Plano nacional não é extensão temporal do decenal').",
+        "previsao_util": true,
+        "previsao": "Previsão conceitual: escolher o produto (BEN/PDE/PNE). Sem números. Pergunta complementar de previsão: 'o plano decenal obriga alguém a construir?' (sim/não)."
+      },
+      "ato_autentico_C9": {
+        "tipo": "classificar",
+        "descricao": "Pousar as 7 perguntas do Inst·03 (fonte) no produto que as responde (PDE, BEN, PNE ou outro documento: nota técnica de habilitação, caderno de premissas, plano de transição) ANTES de abrir o painel. Ato secundário, 'identificar o erro': uma afirmação que cita o número central do plano sem dizer o cenário (derivada da verificação 3 e 4 de 2.5, sem número inventado).",
+        "por_que_exercita_o_mecanismo": "Classificar pergunta → produto é exatamente a distinção indicativo/contábil/exploratório.",
+        "camada": "alexandria (tarefa); perguntas e respostas da fonte",
+        "fallback_texto_aberto": false
+      },
+      "visualizacao_C6": {
+        "precisa_desenhar": [
+          "Régua de horizonte: eixo temporal qualitativo (passado recente | 10 anos | décadas), três faixas (BEN, PDE, PNE) e a periodicidade como anotação (anual, ciclo anual, ciclos pouco frequentes). Título que afirma: 'Cada produto olha para um tempo diferente'.",
+          "Sequência do leilão (7 etapas, fonte 2.3), com o órgão de cada etapa e a porta de habilitação."
+        ],
+        "existe_no_codigo": "Não. A tabela 2.2 existe como tabela; a sequência stp foi perdida (T1).",
+        "instrumento_promete_forma_nao_desenhada": "Em parte: 'Estante' sugere prateleira de documentos; o código mostra select → texto com 1 de 5 campos (T2)."
+      },
+      "instrumento_C5": {
+        "id": "m07-inst-03",
+        "titulo": "Estante da EPE · qual documento responde qual pergunta",
+        "tipo_fonte": "explorador (grade de 7 perguntas → painel de 5 campos)",
+        "posicao_fonte": "fim da aula, depois de 2.5",
+        "posicao_proposta_bloco_indice": 6,
+        "posicao_proposta_texto": "logo depois de 2.2 (regra de uso + quarto instrumento), onde a distinção acabou de ser dada",
+        "previsao": "Sim, pré-compromisso por pergunta (classificação), revelado campo a campo: produto a abrir → o que não se responde ali → erro clássico.",
+        "tolerancia": "não se aplica"
+      },
+      "checagem_C7": "Para cada pergunta: produto escolhido × 'Produto a abrir' da fonte × 'O que não se responde ali' (que explica o erro). Autoavaliação na pergunta 'qual cenário, qual sensibilidade' (leitura do item 01).",
+      "recuperacao_proximo_passo_C10": {
+        "recuperacao": "Antes da abertura: pergunta da A01 ('depois de uma diretriz de contratação, quem habilita os projetos?'). Ela liga à EPE e só mostra a resposta antiga depois da nova tentativa.",
+        "proximo_passo": "Atende → 'Próxima · M07·A03 — A agência é um processo antes de ser uma decisão'. Não atende → 'Rever 2.2 Três produtos, três perguntas'.",
+        "serve_a": "§Final itens 8–11"
+      },
+      "midia": {
+        "onde_ajuda": "Não há imagem com trabalho claro. Capa de documento oficial (PDE/BEN) só entra com licença verificada, que hoje é 'não declarado'. A régua de horizonte programática faz o trabalho.",
+        "plano_curadoria": "Nenhum item curado para A02.",
+        "legado": "ins-05-instituto-pesquisa: retirar (M3)."
+      },
+      "mobile_390": "A régua vira vertical (passado no topo, décadas embaixo), com as faixas como blocos. A classificação vira toque na pergunta → toque no produto (chips de 44px). A sequência do leilão vira lista numerada com o órgão em versalete.",
+      "lacunas_e_dependencias": [
+        "Ficha EPE perdida (T1): Lei 10.847/2004, a frase 'habilitação é a decisão da EPE com efeito prático mais direto' e o snapshot PDE 2035/PNE 2055.",
+        "Sequência de 7 etapas do leilão e lista das 6 verificações perdidas (T1).",
+        "i3 truncado em 1 de 5 campos (T2).",
+        "Content QA: a ficha EPE diz consulta pública do PNE 2055 'entre fevereiro e março de 2026' e i3 diz 'elaboração e consulta ao longo de 2025 e 2026'. Compatíveis, mas conferir (T6).",
+        "Nota de produto fora da interface (T4)."
+      ],
+      "nota_ambicao": "Uma 'estante no tempo': o learner arrasta a pergunta até o horizonte certo, e a faixa errada explica por que não responde. O funil do leilão reaproveita o relé da A01 e acende a porta da EPE, criando continuidade visual entre as aulas."
+    },
+    {
+      "aulaId": "aula-07-03",
+      "titulo": "A agência é um processo antes de ser uma decisão",
+      "subtitulo": "Regulação · ANEEL por dentro",
+      "o_que_ensina": "A ANEEL decide por um rito colegiado (nota técnica → procuradoria → relator → reunião pública → ato), e a janela em que uma contribuição ainda altera o texto (tomada de subsídios + consulta) é só uma parte do ciclo. Os atos que ela publica diferem por natureza jurídica: REN geral e abstrata, REH concreta, REA individual e despacho de objeto delimitado. As datas tarifárias são por concessão.",
+      "natureza": ["processo/rito regulatório", "cálculo de prazos (simulador)", "leitura de documento (REN em 10 campos)", "mercado/regulação"],
+      "melhor_representacao": {
+        "arquetipo": "Laboratório guiado com linha do tempo do rito como palco (prancha dividida com instrumento vivo), em três movimentos",
+        "descricao": "É a aula mais densa. Movimentos: I. Colegiado e divisão por matéria (3.1–3.3); II. Participação e janela de influência (3.4 + Inst·04 com linha do tempo viva); III. Ler o que a agência publica (3.5–3.8: quatro atos, anatomia da REN, PRORET × PRODIST, calendário tarifário). Cada movimento tem um ato próprio (C4: trecho sem ato ≤ ~1.350px).",
+        "por_que": "O título afirma que a agência é um processo, e processo é tempo. O simulador da fonte mede exatamente a relação janela/ciclo. Uma linha do tempo com a janela marcada é a relação que a aula afirma."
+      },
+      "abertura_C3": {
+        "pergunta": "Num rito com tomada de subsídios de 45 dias, minuta e AIR de 120, consulta pública de 45, análise de contribuições de 90, relatoria de 60 e vacância de 90: quantos dos 450 dias aceitam contribuição externa?",
+        "camada": "alexandria (pergunta); valores = cenário-padrão do Inst·04 da fonte, rotulado como 'cenário didático presente no módulo' (análogo a P19)",
+        "derivacao": "Definição da fonte (disc do Inst·04): 'Janela de influência é definida aqui como tomada de subsídios mais consulta pública'.",
+        "previsao_util": true,
+        "previsao": "Numérica: janela = 45 + 45 = 90 dias de 450 (20%). O cálculo classifica o regime como 'Aberto com janela estreita', e o veredito diz 'Aberto, mas exige monitoramento ativo'. Aceitar o valor exato ou o percentual arredondado é regra de entrada da Alexandria, não tolerância da fonte."
+      },
+      "ato_autentico_C9": {
+        "tipo": "prever + manipular até meta; classificar (movimento III)",
+        "descricao": "1) Prever a janela (acima). 2) Meta: mexendo só nas duas etapas de participação, levar o veredito a 'Rito aberto e com aviso' (a fonte exige janela/ciclo ≥ 28% e vacância ≥ 90 dias; com as demais etapas no padrão, a soma tomada + consulta precisa chegar a 140 dias). 3) Movimento III: classificar 4 situações da tabela 3.5 como REN, REH, REA ou despacho (tarifa de uma distribuidora → REH; autorização de empreendimento → REA; aprovação de versão de procedimento → despacho; metodologia tarifária → REN).",
+        "por_que_exercita_o_mecanismo": "A meta obriga a sentir que a janela é uma fração do ciclo e que alongar a elaboração interna a fecha. A classificação treina a distinção geral/concreta, que é o 'erro de júnior mais comum' da fonte.",
+        "camada": "alexandria (tarefas); limiares e textos do veredito da fonte (script i4)",
+        "fallback_texto_aberto": false
+      },
+      "visualizacao_C6": {
+        "precisa_desenhar": [
+          "Linha do tempo empilhada do rito (eixo: dias, 0 → ciclo total), com as 6 etapas na ordem. As duas etapas de participação levam marca de silhueta (hachura) e não só cor, com colchete 'janela de influência' sobre elas, marco 'deliberação' e colchete 'aviso prévio efetivo' = vacância. Título que afirma: 'Só X de Y dias aceitam contribuição'.",
+          "REN em 10 campos: esqueleto de documento na ordem da fonte, com 'Vigência' destacada ('o mais esquecido').",
+          "PRORET × PRODIST: já é tabela; basta título que afirma ('Um calcula a tarifa; o outro rege a rede')."
+        ],
+        "existe_no_codigo": "Parcial: o calculador m07-inst-04 porta total, janela, aviso prévio e o veredito. Barras (#i4-bars) e 'Regime' (i4-reg) não estão portados (T3).",
+        "instrumento_promete_forma_nao_desenhada": "Sim: 'Anatomia de um ato regulatório · rito e janela' promete a linha do rito; hoje só há números e texto. As cores da fonte (#F59E0B/#06B6D4/#10B981) precisam virar tokens (S2)."
+      },
+      "instrumento_C5": {
+        "id": "m07-inst-04",
+        "titulo": "Anatomia de um ato regulatório · rito e janela de influência",
+        "tipo_fonte": "simulador (6 sliders em dias → ciclo total, janela, aviso prévio, regime, veredito)",
+        "posicao_fonte": "fim da aula, depois de 3.8",
+        "posicao_proposta_bloco_indice": 15,
+        "posicao_proposta_texto": "logo depois de 3.4 (os três instrumentos de participação e o parágrafo 'consulta pública não é formalidade', mais a lista de 6 passos a restaurar)",
+        "previsao": "Sim. Previsão registrada da janela; o quadro previsto × calculado fica fixo enquanto o learner mexe nos sliders.",
+        "tolerancia": "Nenhuma da fonte. Valor derivado exato; arredondamento do percentual é regra de entrada Alexandria (P6/P19)."
+      },
+      "checagem_C7": "Previsto × calculado no mesmo cenário. Na classificação dos atos, a referência (coluna 'Natureza' da tabela 3.5) só aparece depois das 4 respostas. Aplicação opcional: o exercício 01 do §Ex ('A tarifa subiu em julho: quem, sob qual instrumento, o que veio antes') tem gabarito com 'O que a resposta completa acrescenta', que serve à comparação lado a lado. O vínculo aula↔exercício é da camada Alexandria e está pendente de decisão (P9).",
+      "recuperacao_proximo_passo_C10": {
+        "recuperacao": "Da A01: 'qual das duas camadas, política ou regulação, gera obrigação oponível ao agente?' (fonte, três níveis da A01). Pedir a tentativa antes de mostrar a resposta antiga.",
+        "proximo_passo": "Não atende na previsão → 'Rever 3.4 Participação social'. Não atende na classificação → 'Rever 3.5 Quatro atos'. Atende → 'Próxima · M07·A04 — Uma entidade privada com função pública'.",
+        "serve_a": "§Final itens 12–19"
+      },
+      "midia": {
+        "onde_ajuda": "Opcional em 3.2: foto documental de reunião pública da diretoria (voto e relator em sessão aberta), só se existir em arquivo com licença aberta. Hoje: 'a buscar'. A linha do tempo programática é a figura principal.",
+        "plano_curadoria": "Nenhum item curado para A03.",
+        "legado": "ins-02-predio-regulador: retirar (M3)."
+      },
+      "mobile_390": "Ordem: pergunta com valores → campo de previsão → registrar. Depois, o quadro previsto × calculado vira faixa compacta fixa sob o localizador, e a linha do tempo vira 6 barras horizontais empilhadas (rótulo em cima, barra embaixo). Os sliders ficam em disclosure com campo numérico. Os três movimentos viram capítulos com âncora.",
+      "lacunas_e_dependencias": [
+        "Ficha ANEEL perdida (T1): Leis 9.427/1996 e 13.848/2019 aparecem na ficha e no nível 'Especialista'.",
+        "Listas perdidas (T1): 6 passos de participação com retorno real e os 10 campos da REN, que é o procedimento que 'o critério de domínio deste bloco exige'.",
+        "Barras e regime do i4 não portados (T3).",
+        "Superintendências: snapshot jul/2026 (T6).",
+        "Exercícios 01, 07, 08, 10 e 11 são temáticos desta aula, sem vínculo na fonte (P9).",
+        "Nota de produto fora da interface (T4). Marcação '</b>' nos blocos 6, 11 e 29 (T5).",
+        "§9: registrar previsão e resultado da meta (Praticado)."
+      ],
+      "nota_ambicao": "Um 'relógio do rito': o learner arrasta o marcador 'hoje' pela linha do tempo e a aula diz, em palavras, se uma contribuição ainda muda o texto ou se só resta recorrer. Em seguida, ele monta o raio-x de uma REN ordenando os 10 campos. É a aula em que regulação deixa de ser notícia e vira calendário."
+    },
+    {
+      "aulaId": "aula-07-04",
+      "titulo": "Uma entidade privada com função pública",
+      "subtitulo": "Operação · ONS",
+      "o_que_ensina": "O ONS é associação civil privada e coordena o despacho porque um sistema hidrotérmico em cascata não é separável por agente. Seus produtos são documentos com data numa cadeia de horizontes acoplados (plurianual, PMO mensal com revisão semanal, programação diária, tempo real, pós-operação). Ele propõe os Procedimentos de Rede e a ANEEL aprova. Dado operativo não é dado comercial.",
+      "natureza": ["sistema/rede", "institucional (produtos com data e cadência)", "leitura de dado aberto"],
+      "melhor_representacao": {
+        "arquetipo": "Escada de horizontes (linha do tempo aninhada) como palco + coluna editorial",
+        "descricao": "Uma escada de cadência (anos → mês → semana → dia → tempo real → pós-operação). Cada degrau mostra produto, o que decide e cadência, e a cadeia de modelos (NEWAVE → DECOMP → DESSEM) passa uma 'condição' para o degrau de baixo, não uma ordem. Em 4.2, a imagem de satélite da cascata ao lado do parágrafo que a explica.",
+        "por_que": "A 'virada de lente' da aula é tratar o PMO como documento publicado com data. Uma escada de cadência transforma o jargão em calendário legível e mostra o acoplamento entre horizontes, que é a segunda propriedade do despacho centralizado."
+      },
+      "abertura_C3": {
+        "pergunta": "Você quer saber o que mudou na expectativa de operação desta semana. Qual documento do operador você lê?",
+        "camada": "alexandria",
+        "derivacao": "Tabela 4.4 ('a revisão semanal é o evento que mais gente ignora e que mais muda expectativa') e i5, Horizonte 03.",
+        "previsao_util": true,
+        "previsao": "Conceitual: escolher entre programação diária, PMO, revisão semanal do PMO e relatório de pós-operação. O erro mais provável (escolher o PMO do mês) é instrutivo."
+      },
+      "ato_autentico_C9": {
+        "tipo": "classificar + identificar o erro",
+        "descricao": "Pôr 5 produtos na cadência certa (tabela 4.4). Depois, julgar 'o que está errado' em uma das leituras de i5 'Erro clássico' (ex.: 'comparar uma revisão com o programa original e chamar a diferença de erro'), antes de abrir o painel. Ato opcional de ordenar: as 6 etapas de integração de uma instalação nova (sequência da fonte, a restaurar).",
+        "por_que_exercita_o_mecanismo": "Obriga a tratar cada horizonte como produto com função e data, e não como 'o modelo decide'.",
+        "camada": "alexandria (tarefa); conteúdo da fonte",
+        "fallback_texto_aberto": false
+      },
+      "visualizacao_C6": {
+        "precisa_desenhar": [
+          "Escada de horizontes: eixo ordinal de horizonte (do plurianual ao pós-operação) × cadência (anual · mensal+semanal · diária · contínua · com defasagem). Relação: cada degrau recebe uma condição do anterior (função de custo futuro → metas semanais → despacho).",
+          "Proposta/aprovação dos Procedimentos de Rede: duas setas (ONS propõe → ANEEL aprova), reaproveitando o mapa institucional."
+        ],
+        "existe_no_codigo": "Não. As tabelas 4.4 e 4.5 existem como tabelas; a lista das três propriedades e a sequência de integração foram perdidas (T1).",
+        "instrumento_promete_forma_nao_desenhada": "Sim: 'Cadeia temporal da operação' promete uma cadeia no tempo; o código mostra select → texto com 1 de 5 campos (T2)."
+      },
+      "instrumento_C5": {
+        "id": "m07-inst-05",
+        "titulo": "Cadeia temporal da operação · produto, decisão e leitura",
+        "tipo_fonte": "explorador (chips de 5 horizontes → painel de 5 campos)",
+        "posicao_fonte": "fim da aula, depois de 4.7",
+        "posicao_proposta_bloco_indice": 13,
+        "posicao_proposta_texto": "fim de 4.4 (depois da tabela de horizontes e da advertência sobre PDO), antes da cadeia de modelos",
+        "previsao": "Sim, pré-compromisso: para o horizonte escolhido, o learner diz 'o que ele decide' antes de abrir o painel. O caso do horizonte plurianual ('nada de forma direta') é o que mais surpreende.",
+        "tolerancia": "não se aplica"
+      },
+      "checagem_C7": "Por horizonte: resposta × 'O que decide' × 'Erro clássico' da fonte. Autoavaliação em 3 níveis.",
+      "recuperacao_proximo_passo_C10": {
+        "recuperacao": "Da A03: 'quem aprova as regras técnicas que um órgão propõe?' (ligação direta com 4.6). A resposta antiga só aparece depois da nova tentativa.",
+        "proximo_passo": "Não atende → 'Rever 4.4 PMO e programação diária como produtos'. Atende → 'Próxima · M07·A05 — Onde o físico vira financeiro'.",
+        "serve_a": "§Final itens 20–22"
+      },
+      "midia": {
+        "onde_ajuda": "Em 4.2, junto a 'reservatórios em cascata… a decisão de gerar em uma usina hoje altera a água disponível para outras usinas amanhã'. Trabalho: mostrar fisicamente a cascata ao longo de um rio. Passa no teste de remoção.",
+        "plano_curadoria": "m07-a04-01-modis-parana-tiete-2018.jpg (originais/, sem plano.json). Classe documental (MODIS/NASA, domínio público, com crédito). A legenda não pode nomear reservatório que a fonte da imagem não confirme.",
+        "legado": "ins-03-centro-operacao: retirar. Sala de controle gerada com aparência documental exigiria aviso (P10) e não passa no teste de remoção."
+      },
+      "mobile_390": "A escada já é vertical: cada degrau vira linha com produto em versalete, cadência como metadado e o 'o que decide' em disclosure. A imagem de satélite ocupa a largura toda, com legenda embaixo. A classificação é feita por toque.",
+      "lacunas_e_dependencias": [
+        "Ficha ONS perdida (T1): Lei 9.648/1998, Lei 10.848/2004, Decreto 5.081/2004 e composição.",
+        "Lista das três propriedades (4.2) perdida; o parágrafo 5 termina em ':' (T1).",
+        "Sequência 'Integração de uma instalação nova' e seu subtítulo perdidos (T1).",
+        "i5 truncado em 1 de 5 campos (T2).",
+        "Os centros regionais (Norte/Centro-Oeste, Nordeste, Sudeste, Sul) não têm limites geográficos na fonte. Não desenhar mapa de áreas sem fonte (lacuna declarada).",
+        "Nota de produto com 'endpoint do backend' (S4/T4). Marcação '</b>' nos blocos 4 e 20 (T5).",
+        "§9: comparar revisões semanais reais exige ingestão do portal aberto do ONS (dado real); até lá, ausência honesta."
+      ],
+      "nota_ambicao": "'A semana que muda': quando o dado aberto estiver ligado (§9), duas revisões semanais consecutivas lado a lado, com o learner apontando o que mudou e por quê (hidrologia, carga, disponibilidade, restrição), que é a própria leitura que a fonte recomenda. Até lá, a escada de horizontes com a cascata real ao lado."
+    },
+    {
+      "aulaId": "aula-07-05",
+      "titulo": "Onde o físico vira financeiro",
+      "subtitulo": "Liquidação · CCEE",
+      "o_que_ensina": "Como o despacho é sistêmico e o contrato é bilateral, a CCEE apura a diferença entre contratado e medido, valora ao preço de curto prazo e liquida de forma multilateral, com rateio (o que entra é o que sai), num ciclo mensal com contestação e garantia. O MRE socializa o risco operativo intrassistema, mas não o risco hidrológico agregado. O operador produz a programação e a câmara forma o preço e contabiliza.",
+      "natureza": ["mercado/processo com calendário", "cálculo de prazos (simulador)", "sistema (fronteira físico × financeiro)"],
+      "melhor_representacao": {
+        "arquetipo": "Prancha dividida: fronteira físico × financeiro + régua do ciclo mensal (laboratório guiado)",
+        "descricao": "Abre com a fronteira em três colunas (ONS · mundo físico | CCEE · mundo comercial | ANEEL · os dois lados), restaurando os cbox da fonte. No meio, a régua do mês (Inst·06) viva, com a prévia marcada e os colchetes de contestação e de aporte. Depois, o rateio num diagrama de fluxo (devedores → fundo → credores, com redução proporcional quando falta recurso).",
+        "por_que": "O título é uma transformação (físico → financeiro), e a aula a explica como etapas datadas. A régua desenha 'quanto tempo entre consumo e desembolso' e 'quanto tempo para contestar', as duas relações que o simulador mede."
+      },
+      "abertura_C3": {
+        "pergunta": "Num ciclo em que a medição fecha 8 dias após o mês, a apuração leva 12, a contestação 5, o aporte 6 e a liquidação 4: em que dia sai a prévia, e quantos dias você tem entre ver o número e aportar garantia?",
+        "camada": "alexandria (pergunta); valores = cenário-padrão do Inst·06, rotulado como 'cenário didático presente no módulo; não reproduz o calendário oficial' (disc da fonte)",
+        "derivacao": "Script i6 da fonte: prévia no dia a+b; folga até o aporte = contestação + aporte.",
+        "previsao_util": true,
+        "previsao": "Numérica: prévia no dia 20; folga de 11 dias; consumo → desembolso de 35 dias ('Ciclo padrão'; veredito 'Ciclo equilibrado'). Resposta derivada exata; nenhuma tolerância inventada."
+      },
+      "ato_autentico_C9": {
+        "tipo": "classificar + prever + manipular até meta",
+        "descricao": "1) Classificar 6 ações (dos cbox de 5.7 e da ficha) em ONS / CCEE / ANEEL: decide quem gera; recebe medição; calcula e publica o preço de curto prazo; aprova as regras das duas; programa a operação; contabiliza e liquida. 2) Prever a prévia e a folga (acima). 3) Meta: alongar o ciclo para mais de 40 dias sem tocar na contestação e ler o que o veredito passa a dizer sobre exposição ao rateio.",
+        "por_que_exercita_o_mecanismo": "A classificação é a 'distinção mais cobrada do bloco' (5.7). A meta liga prazo a exposição de rateio, que é o risco sistêmico da liquidação multilateral.",
+        "camada": "alexandria (tarefas); textos e limiares da fonte",
+        "fallback_texto_aberto": false
+      },
+      "visualizacao_C6": {
+        "precisa_desenhar": [
+          "Régua mensal: eixo em dias após o fim do mês (0 → liquidação); etapas empilhadas; marco 'prévia' (a+b); colchete 'contestação' e colchete 'folga até o aporte' (c+d). Título que afirma: 'Do consumo ao desembolso: N dias'.",
+          "Rateio: fluxo esquemático sem valores (ou exemplo didático rotulado 'camada Alexandria', com números redondos e sem aparência de dado), mostrando que o faltante é distribuído proporcionalmente entre credores.",
+          "Fronteira físico × financeiro em três colunas, com a ANEEL atravessando as duas."
+        ],
+        "existe_no_codigo": "Parcial: o calculador m07-inst-06 porta total, janela, folga e veredito. Barras (#i6-bars), regime (i6-reg) e os 3 cbox não estão portados (T1, T3).",
+        "instrumento_promete_forma_nao_desenhada": "Sim: 'Régua do ciclo mensal' promete uma régua; hoje só há números. A cor vermelha #EF4444 da fonte no aporte viola S2 e precisa virar token neutro com silhueta."
+      },
+      "instrumento_C5": {
+        "id": "m07-inst-06",
+        "titulo": "Régua do ciclo mensal · contabilização, garantia e liquidação",
+        "tipo_fonte": "simulador (5 sliders → consumo→desembolso, janela, folga, regime, veredito)",
+        "posicao_fonte": "fim da aula, depois de 5.7",
+        "posicao_proposta_bloco_indice": 7,
+        "posicao_proposta_texto": "depois de 5.3 (garantia e rateio) e da fronteira com o M06, quando contestação, aporte e rateio já foram explicados, e antes do MRE",
+        "previsao": "Sim. Previsão da prévia e da folga; quadro previsto × calculado fixo durante a exploração.",
+        "tolerancia": "Nenhuma (soma exata). Não oferecer como meta o estado 'Contestação existe, folga de caixa não': é inalcançável com os limites (T12)."
+      },
+      "checagem_C7": "Previsto × calculado. Na classificação ONS/CCEE/ANEEL, a referência são os cbox da fonte e a frase correta 'palavra por palavra' de 5.7, mostrada só depois. 'Identificar o erro' opcional: 'o MRE protege o gerador hidráulico do risco hidrológico', que a fonte chama de 'errado pela metade'.",
+      "recuperacao_proximo_passo_C10": {
+        "recuperacao": "Da A04: 'um gerador despachado abaixo do contrato descumpriu o contrato?' (3ª propriedade de 4.2), com tentativa antes da resposta antiga.",
+        "proximo_passo": "Não atende na classificação → 'Rever 5.7 A fronteira exata'. Não atende na previsão → 'Rever 5.2 Contabilização como processo'. Atende → 'Próxima · M07·A06 — Os órgãos que não aparecem no organograma'.",
+        "serve_a": "§Final itens 23–24"
+      },
+      "midia": {
+        "onde_ajuda": "Sem imagem necessária. O trabalho visual é o da régua e o do rateio (programáticos).",
+        "plano_curadoria": "Nenhum item curado para A05.",
+        "legado": "ins-04-predio-comercializacao: retirar (M3)."
+      },
+      "mobile_390": "Três colunas da fronteira → três blocos empilhados com título em versalete. A régua fica horizontal compacta com marcas de dia a cada 10 e colchetes rotulados embaixo. Os sliders ficam em disclosure. O quadro previsto × calculado fica fixo e compacto.",
+      "lacunas_e_dependencias": [
+        "Ficha CCEE perdida (T1): governança, estatuto homologado em jan/2026 e registrado em mar/2026 (número vivo) e termos próprios.",
+        "Sequências perdidas (T1): ciclo comercial em 9 etapas (o parágrafo 3 termina em ':') e rito de migração em 9 passos (a nota 'Onde a migração trava' refere-se a ele).",
+        "Três cbox ONS/CCEE/ANEEL de 5.7 perdidos (T1). O parágrafo 19 ('Formule assim…') fica órfão.",
+        "i6: barras e regime não portados; cores fora do token (T3, S2); ramo inalcançável (T12).",
+        "'Bloco 9' na prosa refere-se à numeração antiga de bloco; mapear para o módulo do catálogo (P8/P24).",
+        "Nota de produto fora da interface (T4). Marcação '</b>' nos blocos 2, 6 e 20 (T5)."
+      ],
+      "nota_ambicao": "'O mês de um agente': o learner percorre a régua dia a dia; cada etapa acende quem age (sistema de medição, câmara, agente), e ele precisa registrar a contestação antes de a janela fechar. No fim, o diagrama de rateio mostra por que a exposição dele não é só à própria contraparte."
+    },
+    {
+      "aulaId": "aula-07-06",
+      "titulo": "Os órgãos que não aparecem no organograma e travam projeto",
+      "subtitulo": "Monitoramento e periferia",
+      "o_que_ensina": "O CMSE integra informação e recomenda, mas não executa, e por isso resolve a falha de informação e não a de execução. O CADE responde a outra pergunta (concorrência), e aprovação concorrencial não é fechamento nem validação setorial. Cinco atores periféricos (BNDES, órgãos ambientais, ANA, TCU, ANP) têm competências independentes e cumulativas no caminho crítico de um projeto, e o licenciamento ambiental não é automaticamente federal.",
+      "natureza": ["caso/diagnóstico (roteamento de travamentos)", "sistema institucional (periferia)", "mercado/regulação"],
+      "melhor_representacao": {
+        "arquetipo": "Mesa de triagem (dossiê de caso) + trilhos paralelos com caminho crítico",
+        "descricao": "Abre com um sintoma real de projeto (Inst·07) como pergunta. No miolo, o diagrama 'quatro trilhos paralelos' (outorga · licença ambiental · acesso ao sistema · habilitação comercial, na leitura do Sintoma 01 da fonte), cada um com seu órgão e seu relógio qualitativo; o projeto anda na velocidade do mais lento. O mapa institucional ganha um anel de periferia com os 5 atores da tabela 6.3.",
+        "por_que": "O mecanismo é 'competências independentes e cumulativas travam em paralelo'. Trilhos paralelos desenham isso literalmente, e a triagem por sintoma é a forma como o problema chega a quem trabalha no projeto."
+      },
+      "abertura_C3": {
+        "pergunta": "A obra está pronta e a usina não pode operar comercialmente. Para quem você liga primeiro, e para quem não adianta ligar?",
+        "camada": "alexandria",
+        "derivacao": "Inst·07, Sintoma 01 (fonte): competência da agência (ato de liberação) e do operador (requisitos e testes); erro de endereçamento: 'procurar o ministério'.",
+        "previsao_util": true,
+        "previsao": "Conceitual: escolher o órgão, sem números. O erro de endereçamento da fonte é o feedback."
+      },
+      "ato_autentico_C9": {
+        "tipo": "localizar/rotear + classificar",
+        "descricao": "Rotear 3 sintomas do Inst·07 (ex.: licenciamento não sai; conexão sem prazo; conflito de uso da água) ao órgão competente ANTES de abrir o painel. Antes, em 6.1, classificar 3 ações como 'o CMSE faz' ou 'o CMSE recomenda e outro executa' (ficha CMSE e §Erros: 'O comitê pode mandar ligar uma térmica' é errado).",
+        "por_que_exercita_o_mecanismo": "Rotear sintoma → competência é o mecanismo inteiro da aula (quem destrava o quê).",
+        "camada": "alexandria (tarefa); sintomas, competências e erros de endereçamento da fonte",
+        "fallback_texto_aberto": false
+      },
+      "visualizacao_C6": {
+        "precisa_desenhar": [
+          "Quatro trilhos paralelos (qualitativos: a fonte dá prazos como 'semanas a meses', 'meses a anos'; sem escala numérica inventada), com o trilho mais lento definindo a data do projeto. Título que afirma: 'O projeto anda na velocidade do trilho mais lento'.",
+          "Anel de periferia no mapa institucional: 5 nós (BNDES, órgão ambiental, ANA, TCU, ANP) com a pergunta que cada um responde (tabela 6.3), como extensão da camada Alexandria sobre o Inst·01.",
+          "Datas distintas numa aquisição (anúncio · decisão concorrencial · fechamento · validação setorial quando aplicável) como marcos separados, sem datas reais."
+        ],
+        "existe_no_codigo": "Não. Tabela 6.3 existe como tabela; o Inst·01 tem só 8 nós, sem periferia.",
+        "instrumento_promete_forma_nao_desenhada": "Sim: 'Escada do travamento' promete escada/escalonamento; o código mostra select → texto com 1 de 5 campos, e perde justamente 'Erro de endereçamento' e 'O que fazer em paralelo' (T2)."
+      },
+      "instrumento_C5": {
+        "id": "m07-inst-07",
+        "titulo": "Escada do travamento · o que parou o projeto e quem destrava",
+        "tipo_fonte": "explorador (grade de 9 sintomas → painel de 5 campos)",
+        "posicao_fonte": "fim da aula, depois de 6.3",
+        "posicao_proposta_bloco_indice": 7,
+        "posicao_proposta_texto": "fica depois de 6.3 (precisa da periferia), mas deixa de ser apêndice: a aula abre com o Sintoma 01 como previsão e tem um ato em 6.1. O instrumento é a aplicação final, seguida de debrief.",
+        "previsao": "Sim, pré-compromisso por sintoma (órgão competente) e revelação em ordem: competência → erro de endereçamento → o que fazer em paralelo.",
+        "tolerancia": "não se aplica"
+      },
+      "checagem_C7": "Por sintoma: órgão escolhido × 'Quem tem competência' × 'Erro de endereçamento' da fonte. Autoavaliação em 3 níveis. O exercício 03 do §Ex (fusão de comercializadoras) é temático desta aula, sem vínculo na fonte (P9).",
+      "recuperacao_proximo_passo_C10": {
+        "recuperacao": "Da A05: 'se há diferença entre contrato e geração, quem apura?' (usada de novo no teste de roteamento da A07; aqui como aquecimento).",
+        "proximo_passo": "Não atende → 'Rever 6.3 A periferia'. Atende → 'Próxima · M07·A07 — A decisão real atravessa quatro órgãos'.",
+        "serve_a": "ainda não disponível. Nenhuma das 26 afirmações do §Final cobre CMSE, CADE ou periferia (T8); registrar como lacuna curricular para P11."
+      },
+      "midia": {
+        "onde_ajuda": "Nenhuma imagem com trabalho claro; trilhos e anel são programáticos.",
+        "plano_curadoria": "Nenhum item curado para A06.",
+        "legado": "ins-07-balanca-concorrencia: retirar. Símbolo decorativo, falha no teste de remoção e fica perto do limite de S2 (fantasia/emblema)."
+      },
+      "mobile_390": "Trilhos → 4 linhas empilhadas, com o trilho crítico marcado por silhueta e palavra ('mais lento'). A triagem vira lista de sintomas com a escolha do órgão em chips. O anel de periferia vira lista agrupada 'fora do núcleo'.",
+      "lacunas_e_dependencias": [
+        "Fichas CMSE e CADE perdidas (T1): art. 14 da Lei 10.848/2004, Decreto 5.175/2004, composição (ANP à mesa), Lei 12.529/2011 e estrutura do CADE.",
+        "Lista 'Como uma operação é analisada' (5 etapas) e seu subtítulo perdidos (T1).",
+        "i7 truncado em 1 de 5 campos (T2).",
+        "Content QA (P23): a caixa se intitula 'Três datas distintas', mas lista quatro eventos (anúncio, decisão concorrencial, fechamento, validação setorial). Usar rótulo semântico ('Datas distintas…') até reconciliar.",
+        "Caso Vibra–Comerc: datas não verificadas; a fonte declara que precisam ser confirmadas (número vivo, T6). Não exibir datas.",
+        "Nota de produto fora da interface (T4). Marcação '</b>' no bloco 1 (T5).",
+        "'Serve a' sem capacidade declarada (T8)."
+      ],
+      "nota_ambicao": "Uma mesa de triagem: o learner recebe a pilha de travamentos de um projeto, põe cada um no trilho e no órgão certos e vê a data do projeto se mover com o trilho mais lento. É o momento em que o organograma deixa de ser suficiente."
+    },
+    {
+      "aulaId": "aula-07-07",
+      "titulo": "A decisão real atravessa quatro órgãos",
+      "subtitulo": "Síntese · onde a frase não se sustenta",
+      "o_que_ensina": "A frase para decorar descreve só funções primárias; as funções secundárias (7 costuras) são os acoplamentos. Um ato real (térmica a gás por contratação regulada) muda de mão em 12 etapas. Rotear uma decisão exige seis campos (órgão emissor, instrumento, rito prévio, onde publica, cadência, quem contesta), e o setor tem um calendário que se pode antecipar.",
+      "natureza": ["síntese", "caso/decisão (percurso de um ato)", "navegação de fontes (localizador, calendário)"],
+      "melhor_representacao": {
+        "arquetipo": "Dossiê de caso com rota sobre o mapa institucional + mesa de roteamento + atlas de fontes e calendário",
+        "descricao": "7.1: as costuras como duas camadas sobre o mapa (função primária × função secundária). 7.2: a rota da térmica, com as 12 etapas acendendo os nós do mapa em sequência (o objeto-mundo do módulo trabalhando). Depois, o 'Teste de roteamento' da fonte como tentativa. Os três instrumentos ficam intercalados como na fonte: Inst·08 (treino de roteamento), Inst·09 (atlas de dado), Inst·10 (calendário em duas camadas).",
+        "por_que": "É a aula que 'converte o mapa em uso' (lede). Uma rota desenhada no próprio mapa torna visível 'quantas vezes a bola muda de mão', e a própria fonte pede que o Inst·08 seja resolvido de cabeça antes do clique."
+      },
+      "abertura_C3": {
+        "pergunta": "Quatro fatos sobre uma térmica contratada: falta combustível; o operador não a despacha; há diferença entre contrato e geração; a obra atrasa e ameaça o suprimento. Para quem vai cada um?",
+        "camada": "fonte (caixa 'Teste de roteamento — responda antes de continuar'); a divisão pergunta/referência é da camada Alexandria",
+        "derivacao": "Box após a tabela 7.2. Os fatos viram prompt e o texto da caixa vira referência depois da tentativa.",
+        "previsao_util": true,
+        "previsao": "Conceitual: 4 endereços. A fonte espera '15 segundos'; cronômetro só como atividade recomendada (P14), nunca como evidência."
+      },
+      "ato_autentico_C9": {
+        "tipo": "responder exercício da fonte (roteamento) + decidir/classificar",
+        "descricao": "Inst·08 como treino ativo, como a fonte instrui: 'leia o tipo de decisão, responda os seis campos de cabeça, e só então clique'. O learner escolhe uma das 12 decisões, preenche os 6 campos por escolha entre opções e depois compara campo a campo. Ato opcional de ordenar: as 12 etapas da térmica embaralhadas, cada uma com 'quem age'.",
+        "por_que_exercita_o_mecanismo": "O roteamento em seis campos é o critério de domínio do bloco e a síntese das seis aulas.",
+        "camada": "fonte (instrução do ato) + alexandria (interface de pré-compromisso)",
+        "fallback_texto_aberto": false
+      },
+      "visualizacao_C6": {
+        "precisa_desenhar": [
+          "Rota da térmica sobre o mapa institucional: 12 marcas numeradas nos nós (EPE/ONS/CMSE → CNPE/MME → MME → empreendedor + ANP + órgão ambiental → EPE → ANEEL/CCEE → ANEEL/TCU → BNDES + órgão ambiental + ANEEL → ONS + transmissora → ONS → CCEE → CMSE/ANEEL/ANP/CADE). Relação: sequência de mãos.",
+          "Costuras: por instituição, arco 'função primária' (a frase) e arco 'também faz' (tabela 7.1).",
+          "Calendário em duas camadas (estrutura da fonte, i10): faixa fixa todo mês (FIXO) + 3 eventos de ciclo anual por mês + 'o que fazer no mês'. Faixa qualitativa úmido/seco derivada dos próprios textos mensais, com a ressalva 'na maior parte do sistema'.",
+          "Atlas de dado (i9): grade órgão × dado com granularidade, formato, defasagem e armadilha rotulados."
+        ],
+        "existe_no_codigo": "Não. i8 e i9 mostram os 6 valores sem rótulos (T2). i10 mostra select → texto sem a camada fixa e com o artefato '3' (T2, T3).",
+        "instrumento_promete_forma_nao_desenhada": "Sim: 'Calendário institucional' promete calendário (a fonte tem grade de 12 meses com contador). 'Roteador' e 'Localizador' prometem cartões rotulados por campo."
+      },
+      "instrumento_C5": [
+        {
+          "id": "m07-inst-08",
+          "titulo": "Roteador de decisão",
+          "posicao_fonte": "depois da caixa 'Teste de roteamento' (7.2)",
+          "posicao_proposta_bloco_indice": 7,
+          "previsao": "Sim, os 6 campos 'de cabeça' antes do clique (instrução literal da fonte).",
+          "tolerancia": "não se aplica; comparação por campo e autoavaliação em 3 níveis"
+        },
+        {
+          "id": "m07-inst-09",
+          "titulo": "Localizador de dado",
+          "posicao_fonte": "depois de 7.3",
+          "posicao_proposta_bloco_indice": 10,
+          "previsao": "Opcional: 'qual órgão publica este dado?' antes de abrir. É sobretudo ferramenta de consulta (atlas), e a 'armadilha de uso' é o conteúdo-chave.",
+          "tolerancia": "não se aplica"
+        },
+        {
+          "id": "m07-inst-10",
+          "titulo": "Calendário institucional · o que sai quando e de quem",
+          "posicao_fonte": "depois de 7.4",
+          "posicao_proposta_bloco_indice": 12,
+          "previsao": "Não. É exploratório; o ato é 'o que fazer no mês', com o mês atual pré-selecionado (hoje: setembro).",
+          "tolerancia": "não se aplica"
+        }
+      ],
+      "checagem_C7": "Teste de roteamento: 4 respostas → texto da caixa da fonte. Inst·08: comparação campo a campo (órgão, instrumento, rito, publicação, cadência, contestação), com a 'leitura' da fonte como o que acrescenta. Nada de cor.",
+      "recuperacao_proximo_passo_C10": {
+        "recuperacao": "Itens das A01–A06 com a origem visível (ex.: 'quem propõe e quem aprova os Procedimentos de Rede?', da A04). Os retornos do §Quiz citam aula e instrumento e servem para rotear 'a revisar' (T7). Questão usada aqui sai da avaliação.",
+        "proximo_passo": "Última aula → 'Revisão do módulo' (18 erros comuns, 12 exercícios com tentativa antes do gabarito) → 'Avaliação do módulo' (10 questões; critério da fonte 8/10 exibido como critério legado, sem travar nem declarar domínio, P18). §Voz e navegação real dos portais (exercícios 07–12) entram como atividade recomendada (P14). Caso — Operação A com Desafio de decisão (P17).",
+        "serve_a": "§Final itens 25–26 (e 1–2, da tese)"
+      },
+      "midia": {
+        "onde_ajuda": "A figura é o mapa institucional com a rota (cartografia que trabalha, marcador 6 do teste anti-LMS). Nenhuma foto necessária.",
+        "plano_curadoria": "Nenhum item curado para A07.",
+        "legado": "A aula já não tem ilustração."
+      },
+      "mobile_390": "A rota vira lista vertical de 12 etapas, cada uma com um mini-glifo do mapa e o nó ativo marcado. O roteador vira 6 grupos de escolha empilhados, com 'comparar' ao fim. O calendário vira grade 3×4 de meses; o painel do mês abre embaixo com a camada fixa recolhida. O atlas de dado vira lista filtrável por órgão.",
+      "lacunas_e_dependencias": [
+        "i8/i9 sem rótulos dos 6 campos; i10 sem a camada fixa e com artefato '3' (T2).",
+        "7.5 'Onde a GridAlpha se conecta a cada portal', sua nota ('Trava 1', 'GridAlpha') e o parágrafo 7.3 ('mapa de fontes do backend') são conteúdo interno de produto: ficam fora da interface (P7/P24/S4). Proposta: substituir por uma linha que leva ao Inst·09.",
+        "Marcação '</b>' nos blocos 3, 10 e 16 (T5).",
+        "Navegar portais reais: links externos precisam de verificação de URL e data (S4; número vivo).",
+        "O mapa institucional (Inst·01) é instrumento de módulo e o SVG não está portado (T3). É dependência desta aula e da proposta T11.",
+        "§9: registro de tentativas por campo; 'a revisar' persistido."
+      ],
+      "nota_ambicao": "'O percurso da térmica': o mapa do módulo vira palco, a bola passa por 12 mãos, e o learner termina com um caderno de roteamento próprio (as decisões que ele roteou, campo a campo), que fica como rastro de Praticado. O mapa que ele viu na primeira passagem agora ele consegue prever antes de clicar, como a própria fonte propõe no §MAP."
+    }
+  ]
+}

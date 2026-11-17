@@ -64,6 +64,8 @@ Exit codes:
 | --- | --- | --- |
 | **P0 BLOCK** | Blocks the pre-commit hook + CI check. | Default Inter, pure #000/#FFF, gradient text, Tailwind on layout-critical, easeOutBounce easing, sine-wave decorative SVG. |
 | **P1 WARN** | Surfaces in output, requires acknowledgment but does NOT block. | Numeric data missing tabular-nums, box-shadow on a data card, pill chip on a metadata role. |
+| **P0 BLOCK** (Alexandria) | Same, scoped to `src/**/alexandria*`. | Internal vocabulary or the dead "GridAlpha" brand in learner-visible text; shadow / radius / gradient against S2; a native `<input type="range">`. |
+| **P1 WARN** (Alexandria) | Same, scoped to `src/**/alexandria*`. | Filled circle carrying an initial; a control closed by a four-sided border. |
 | **P2 INFO** | Worth fixing but doesn't immediately break the surface. | Grid with 3+ children and no dominant focal marker. |
 | **P3 NOTE** | Informational. Surfaced in `--json` reports for trend tracking; suppressed by default in console output. (No P3 rules ship today.) |
 
@@ -71,8 +73,11 @@ Exit codes:
 
 ## The rule catalogue
 
-All 10 rules. The "Source" column points at the FOUNDRY skill reference
-that authorizes the rule.
+Fifteen rules. Rules 1-10 are the GridAlpha terminal family and run on
+the whole tree; the "Source" column points at the FOUNDRY skill
+reference that authorizes them. Rules 11-15 are the `alexandria-*`
+family, scoped to `src/**/alexandria*` and sourced from
+`docs/alexandria-v2/bar.md` — see "The Alexandria rule family" below.
 
 ### P0 (blocks merge)
 
@@ -359,6 +364,247 @@ next-highest element. This is non-negotiable."
 
 ---
 
+---
+
+## The Alexandria rule family (`alexandria-*`)
+
+Five rules that encode the **Alexandria v2 bar**
+(`docs/alexandria-v2/bar.md`), not the GridAlpha terminal antipatterns.
+They exist because of a method problem, not a taste problem.
+
+> Three of the r09 critic findings were rules that had **already been
+> declared and fixed in an earlier round** and came back on a new
+> surface. Agent memory does not hold a rule; an auditor does.
+
+### Scope — these rules never fail the whole tree
+
+Every `alexandria-*` rule returns `false` from `appliesTo` unless
+`isAlexandriaFile()` says yes. One definition, in
+`src/rules/_alexandria.ts`:
+
+| In scope | Out of scope |
+| --- | --- |
+| any path with an `alexandria/` directory segment — `src/components/alexandria/**`, `src/pages/alexandria/**` | `src/components/vault/Alexandria.tsx` (capital `A`: the old terminal vault surface) |
+| basename `alexandria-*` or `alexandriaFoo` — `src/design/alexandria-tokens.ts`, `src/lib/data/alexandria-modulo-04-content.ts`, `src/services/cmdp/alexandriaQuery.ts` | everything else in `src/` |
+
+This is load-bearing. Run the same five rules over the whole tree with
+the scope guard off and they produce **1 435 findings, of which 1 134
+(79 %) land outside Alexandria** — GridAlpha terminal code judged by a
+bar that does not govern it (`R.md` radius tokens, the live company
+wordmark on the landing page, framed controls that are terminal
+vocabulary). The scope is the difference between a gate and a siren.
+
+### What "visible to the learner" means
+
+S4 forbids internal vocabulary **to the learner**. A comment, an import
+specifier, a regex and a plumbing key are not learner-visible. The
+shared scanner in `_alexandria.ts` tokenises each file once — code /
+string / template substitution / regex / comment — and only these four
+positions count as visible:
+
+| Position | Example |
+| --- | --- |
+| JSX text node | `<p>§ 00 · destaque</p>` |
+| label attribute (`aria-label`, `title`, `alt`, `placeholder`, …) | `aria-label="Abrir o § Lab"` |
+| string literal owned by a **content key** (`titulo`, `rotulo`, `texto`, `html`, `marcador`, `secao`, `eyebrow`, `nota`, `atribuicao`, …) | `marcador: '§ 00'` |
+| literal used directly as a JSX child | `{'extração'}` |
+
+Anything owned by `id`, `slug`, `href`, `kind`, `arquivo`, `eixosNota`
+and every other key outside `CONTENT_KEY_RX` is plumbing, and is
+invisible to the rule by construction.
+
+---
+
+### P0 (blocks merge)
+
+#### 11. `alexandria-no-internal-vocabulary`
+
+**Catches:** the pipeline's own vocabulary printed at the learner —
+section codes `§00 / § 00 / §MAP / §Final / §Caso / §Quiz / §Lab /
+§Drill / §Lex / §Ref`, the words `extração`, `extraído do HTML`,
+`aulas confirmadas`, `a fonte declara`, `backend`, `wave`, `mock` — plus
+the dead brand `GridAlpha` in any form.
+
+```tsx
+// ✗
+<span style={{ ...AT.rotulo }}>§ Lex · Módulos 01-08</span>
+const dossie = { marcador: '§ 00', eyebrow: 'Alexandria · GridAlpha · Módulo 04' };
+
+// ✓
+<span style={{ ...AT.rotulo }}>Glossário · Módulos 01-08</span>
+const dossie = { marcador: 'Abertura', eyebrow: 'Alexandria · Módulo 04' };
+```
+
+**Source:** `bar.md` §S4 gate "Linguagem interna proibida ao learner";
+`bar.md` §6 hard gate "Ausência desonesta → linguagem interna (S4)" —
+the piece fails automatically, hence P0; `bar.md` §11 **P24**
+("GridAlpha morta para o learner").
+
+**Exemptions:** none by path. P24 keeps `GridAlpha` legal in historical
+provenance and in a technical comment — a comment needs nothing, a
+provenance literal uses the line directive.
+
+---
+
+#### 12. `alexandria-materialidade`
+
+**Catches,** anywhere in the Alexandria scope:
+
+- `boxShadow` / `box-shadow` / `textShadow` other than `none` / `0`, and
+  `filter` carrying `drop-shadow(` or `blur(`;
+- `borderRadius` outside `{ 0, '0', '0px', AR.none, '50%', AR.circulo }`
+  — `9999` is a pill, not a círculo pleno — and the Tailwind
+  `rounded-*` utilities;
+- `linear-` / `radial-` / `conic-gradient` **that ramps a colour**.
+
+```tsx
+// ✗
+<div style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.2)', borderRadius: 12 }} />
+
+// ✓ (depth is a 1px fio or a surface change — nothing else)
+<div style={{ border: `1px solid ${A.fioSobreCreme}`, borderRadius: AR.none }} />
+```
+
+Two exemptions on the gradient clause, both principled — a gradient
+that does not ramp a colour is not the thing S2 bans:
+
+1. **Mask ramps.** `maskImage` / `WebkitMaskImage`, or a const whose
+   name says máscara. Alpha is the mask; no colour is painted.
+   `VinhetaModulo.tsx` and `TerritoriosHub.tsx` depend on this.
+2. **Flat layers and hatches** — one distinct colour stop, or one rgb
+   triple at several alphas: `linear-gradient(${A.navy} 0 0)`,
+   `repeating-linear-gradient(45deg, ${fio} 0 1px, transparent 1px 6px)`.
+
+**Source:** `bar.md` §S2 gate "Raio 0, exceto em círculo pleno. Zero
+sombra, gradiente, vidro ou brilho. Profundidade só por fio de 1px ou
+troca de superfície"; `bar.md` §6 hard gate "Materialidade quebrada".
+`AR = { none: '0', circulo: '50%' }` in `src/design/alexandria-tokens.ts`.
+
+**Supersedes** `no-box-shadow-on-cards` and `no-gradient-text` inside the
+Alexandria scope — both of those now return early for Alexandria paths,
+so one line is reported exactly once, at the severity the Alexandria bar
+assigns. (`no-pill-chip-default` is *not* exempted: S2 allows a 50%
+circle, which that rule still judges in its own context.)
+
+---
+
+#### 13. `alexandria-no-native-range`
+
+**Catches:** `<input type="range">` with no declared house treatment.
+
+```tsx
+// ✗ — accentColor does not paint a thumb
+<input type="range" style={{ accentColor: A.terracota, height: 24 }} />
+
+// ✓
+<input type="range" data-tratamento="trilho-alexandria" />
+<input type="range" className="alx-trilho" />
+```
+
+A native range hands the thumb to the user agent, which paints a filled
+circle with a bevel that differs per OS — S2's "zero sombra, gradiente,
+vidro ou brilho" stops being ours to decide. It is also the exact r07 →
+r09 recurrence, the check has no judgement in it, and it is trivially
+mechanical. So it blocks.
+
+Declaring the treatment is not the same as having it: the auditor cannot
+see a rendered thumb, the critics can. This gate only guarantees that
+nobody ships a slider by accident.
+
+**Accepted markers:** `data-tratamento`, `data-trilho`, `data-controle`,
+or a `className` containing `alx-` / `trilho` / `alexandria`.
+
+---
+
+### P1 (warns)
+
+#### 14. `alexandria-no-form-circle`
+
+**Catches:** a **filled** circle (`borderRadius: '50%' | 9999 | '100%' |
+AR.circulo`, or `rounded-full`) whose own text content is **one or two
+characters** — literally, or through an initial-shaped expression
+(`[0]`, `.charAt(0)`, `.slice(0, 1)`, `inicial`).
+
+```tsx
+// ✗ — avatar with initial / step bubble: the most re-skinnable object in consumer SaaS
+<span style={{ borderRadius: '50%', background: A.navy }}>{nome[0]}</span>
+
+// ✓ — a circle is legal (S2 allows círculo pleno); the tell is the filled initial
+<button style={{ borderRadius: '50%' }} aria-label="Abrir o Módulo 01" />
+<div style={{ borderRadius: '50%', width: 9, height: 9, background: A.navy }} />
+```
+
+**Why P1.** S2 permits a círculo pleno, so shape alone proves nothing.
+What this fires on is the generic-product tell that §6's "LMS / SaaS
+genérico" gate is about — but composition is what actually decides that,
+and the auditor does not judge composition. It warns; a reviewer rules.
+
+---
+
+#### 15. `alexandria-no-default-control-box`
+
+**Catches:** a control — `<button>`, `<input>`, `<select>`,
+`<textarea>`, `role="button"`, or any tag with `onClick` — closed by the
+four-sided `border:` shorthand, with no declared exception.
+
+```tsx
+// ⚠ (auditor surfaces; reviewer decides)
+<button style={{ border: `1px solid ${A.fioSobreCreme}`, padding: AS.sm }}>Registrar</button>
+
+// ✓ (a single rule under the control is the house's own move)
+<button style={{ borderBottom: `1px solid ${A.fioSobreCreme}`, border: 'none' }}>Registrar</button>
+
+// ✓ (the frame is the decision — name it)
+<button data-moldura="ficha" style={{ border: `1px solid ${A.fioSobreCreme}` }}>Registrar</button>
+```
+
+**Why P1, not P0.** S2 makes the 1px fio the house's *only* depth
+language, so `border: 1px solid` is house vocabulary, used correctly
+~35 times in this codebase on figures, sections and tooltips. A static
+regex cannot separate "framed control that earns its frame" from
+"framework default"; blocking on it would be dishonest. `borderTop` /
+`borderBottom` / `borderLeft` / `borderRight` never fire.
+
+**Declared exception:** `data-moldura`, `data-tratamento`, `data-caixa`
+or `data-excecao` on the element — so the next reader sees a choice
+instead of a default.
+
+---
+
+### What these five rules do NOT catch
+
+The auditor reads text, not renders. It is worth writing down which r09
+verdicts stayed with the critics, so nobody mistakes a green run for a
+passing piece:
+
+| Verdict | Why no rule |
+| --- | --- |
+| (1) S1 lost below the first fold; the resume block sliced mid-line | Composition and fold position — needs a render at a viewport. |
+| (2) False destinations: the panel names an experience the map declares absent | Cross-surface consistency of data against data; the auditor has no model of what a surface promises. |
+| (5) "a seguir" on Home vs "NÃO INICIADO" on the card, same state | Same: agreement between two surfaces at runtime. |
+| (6) Hard vertical seam at x=624 | Layout, measured in pixels. |
+| (7) The prediction field takes focus with no visible indicator | Runtime `:focus-visible` — CONDUIT's Playwright loop. |
+| (8) The veil broken: the answer sits inside the prompt | Semantics of content. |
+| (9) The lesson's entry fold has no matter | Presence and density. |
+| (10) Three stacked location bands; a 276×17 target at 10px | Computed geometry at 390. |
+
+**Composition, hierarchy and presence are not auditable statically.**
+This family buys back exactly the part that is: vocabulary and
+materiality, the two that came back twice.
+
+### Fixtures
+
+`fixtures/alexandria/fixture.tsx` holds one synthetic violation per
+clause plus ten CLEAN blocks that must stay silent. After touching any
+`alexandria-*` rule:
+
+```sh
+node bin/gridalpha-detect.mjs fixtures --no-fail-on-p0
+```
+
+Expected: 16 P0 + 3 P1, all on the numbered blocks, nothing below the
+`-- CLEAN --` divider.
+
 ## Suppression
 
 ### Line-level
@@ -369,6 +615,22 @@ const PRINT_BG = '#FFFFFF'; // PDF needs literal white
 ```
 
 Without a rule id, suppresses every rule on the next line.
+
+Inside JSX the directive still needs a literal `//` on the raw previous
+line, so it has to travel inside a JSX comment:
+
+```tsx
+{/* // gridalpha-detect-disable-next-line alexandria-no-internal-vocabulary — proveniência histórica (P24) */}
+<span style={{ ...AT.aparato }}>Fonte: GridAlpha_Curriculo_Definitivo.docx</span>
+```
+
+The `alexandria-*` family also takes **declared exceptions on the
+element itself**, which are better than a directive when the decision is
+part of the design rather than a one-off: `data-tratamento` /
+`data-trilho` / `data-controle` on a range, and `data-moldura` /
+`data-tratamento` / `data-caixa` / `data-excecao` on a framed control.
+A directive hides the finding from the auditor; an attribute shows the
+choice to the next reader.
 
 ### File-level
 

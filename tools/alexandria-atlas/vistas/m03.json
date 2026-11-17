@@ -1,0 +1,1008 @@
+{
+  "modulo": "modulo-03",
+  "vistas": [
+    {
+      "id": "m03-a01-parque-gerador-por-fonte",
+      "modulo": "modulo-03",
+      "aula": 1,
+      "titulo": "O parque gerador e a maior usina de cada fonte",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [
+        "hidro",
+        "eolica",
+        "solar",
+        "nuclear",
+        "biomassa",
+        "gas",
+        "carvao",
+        "oleo",
+        "outros"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.PA.002889-4.1",
+          "UHE.PH.PA.030354-2.1",
+          "EOL.CV.CE.028631-1.1",
+          "UFV.RS.RN.037811-9.1",
+          "UTE.AI.MS.029193-5.1",
+          "UTE.GN.RJ.038173-0.1",
+          "UTN.UR.RJ.000101-5.1"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Capacidade total (215,9 GW centralizados em 1º/jan/2026 — ANEEL/SIGA), MMGD (~40 GW — ANEEL/ABSOLAR), participação renovável (84,6% — SIGA) e a expansão projetada para 2026 (+9,1 GW, puxada por 4,6 GW de solar — ANEEL/RALIE) são números que <strong>mudam todo mês</strong>.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 237
+      },
+      "leitura": [
+        0,
+        1
+      ],
+      "nota_de_dado": "O Atlas tem as usinas centralizadas do cadastro da ANEEL de 19/10/2026 (220,4 GW em operação no mapa), sem a geração distribuída; o destaque marca a maior usina em operação de cada fonte da tabela da aula."
+    },
+    {
+      "id": "m03-a02-itaipu-e-tucurui",
+      "modulo": "modulo-03",
+      "aula": 2,
+      "titulo": "Itaipu, no Paraná, e Tucuruí, no Tocantins",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -61.31,
+          -28,
+          -49.05,
+          -1.24
+        ]
+      },
+      "camadas": [
+        "hidro",
+        "bacias"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.PR.001161-4.1",
+          "UHE.PH.PA.002889-4.1"
+        ],
+        "bacias": [
+          "Paraná",
+          "Tocantins"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "<strong>Itaipu</strong> — 14 GW binacionais no Paraná, vinte unidades geradoras, historicamente responsável por algo na casa de 8–10% do consumo elétrico brasileiro (Itaipu Binacional — número vivo, varia com a hidrologia). <strong>Tucuruí</strong> — ~8,5 GW no Tocantins, a maior usina 100% brasileira.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 248
+      },
+      "leitura": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "nota_de_dado": "No cadastro da ANEEL, Itaipu aparece só com a parte brasileira (7.000 MW), metade dos 14 GW binacionais; Tucuruí tem 8.535 MW."
+    },
+    {
+      "id": "m03-a02-reservatorios-de-regularizacao",
+      "modulo": "modulo-03",
+      "aula": 2,
+      "titulo": "Os grandes reservatórios de regularização",
+      "capitulo": "agua",
+      "camera": {
+        "limites": [
+          -62.65,
+          -23,
+          -34.4,
+          -1.62
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "reservatorios": [
+          "6",
+          "156",
+          "169",
+          "251"
+        ],
+        "bacias": [
+          "São Francisco",
+          "Tocantins"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "<strong>Furnas, Três Marias, Sobradinho, Serra da Mesa</strong> — os grandes reservatórios de regularização do Sudeste, do São Francisco e do Tocantins.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 248
+      },
+      "leitura": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "nota_de_dado": null
+    },
+    {
+      "id": "m03-a02-energia-armazenada-por-subsistema",
+      "modulo": "modulo-03",
+      "aula": 2,
+      "titulo": "A energia armazenada em cada subsistema",
+      "capitulo": "agua",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "submercados": [
+          "SE",
+          "S",
+          "NE",
+          "N"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "A medida dessa bateria tem nome técnico: <strong>EAR — Energia Armazenada</strong>, publicada diariamente pelo ONS por subsistema.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 249
+      },
+      "leitura": [
+        11,
+        12
+      ],
+      "nota_de_dado": "A série do Atlas é mensal, não diária: traz a energia armazenada no último dia de cada mês, de janeiro de 2000 a outubro de 2026, e, em novembro de 2026, a do dia 13."
+    },
+    {
+      "id": "m03-a02-lago-de-balbina",
+      "modulo": "modulo-03",
+      "aula": 2,
+      "titulo": "O lago de Balbina visto de cima",
+      "capitulo": "rede",
+      "camera": {
+        "centro": [
+          -59.4734,
+          -1.9159
+        ],
+        "zoom": 10,
+        "inclinacao": 50,
+        "rumo": -30
+      },
+      "camadas": [
+        "hidro",
+        "reservatorios"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.AM.000190-2.1"
+        ],
+        "reservatorios": [
+          "277"
+        ]
+      },
+      "satelite": true,
+      "momento": null,
+      "trecho": {
+        "texto": "O trauma formativo tem nome: <strong>Balbina</strong> (AM, anos 1980) — área gigante alagada para potência pífia, o anti-exemplo citado até hoje.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 255
+      },
+      "leitura": [
+        13
+      ],
+      "nota_de_dado": "O Atlas não tem a área alagada: no cadastro da ANEEL, Balbina tem 249,75 MW, e o lago só aparece na imagem de satélite."
+    },
+    {
+      "id": "m03-a03-belo-monte-fio-dagua",
+      "modulo": "modulo-03",
+      "aula": 3,
+      "titulo": "Belo Monte, a fio d'água no Xingu",
+      "capitulo": "rede",
+      "camera": {
+        "centro": [
+          -51.86,
+          -3.285
+        ],
+        "zoom": 10
+      },
+      "camadas": [
+        "hidro",
+        "reservatorios"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.PA.030354-2.1"
+        ],
+        "reservatorios": [
+          "314",
+          "288"
+        ]
+      },
+      "satelite": true,
+      "momento": null,
+      "trecho": {
+        "texto": "<strong>Belo Monte</strong> (Xingu, PA) é a âncora obrigatória: ~11,2 GW instalados — terceira maior capacidade hidrelétrica do mundo — desenhada a fio d'água para reduzir a área alagada do projeto original.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 260
+      },
+      "leitura": [
+        17
+      ],
+      "nota_de_dado": "O Atlas não tem a área alagada; a imagem de satélite enquadra os dois reservatórios da usina nos dados do ONS, Pimental e Belo Monte, ambos classificados como fio d'água."
+    },
+    {
+      "id": "m03-a03-cheia-e-seca-no-norte",
+      "modulo": "modulo-03",
+      "aula": 3,
+      "titulo": "Cheia e seca nas trocas do subsistema Norte",
+      "capitulo": "trocas",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "submercados": [
+          "N"
+        ]
+      },
+      "satelite": false,
+      "momento": "2021-03",
+      "trecho": {
+        "texto": "O resultado é o caso de estudo perfeito da diferença entre MW e MWh: a geração média fica na casa de 4–5 GW médios, fator de capacidade em torno de 40% (ONS — vivo), porque o Xingu tem uma das sazonalidades mais brutais do planeta — caudaloso na cheia amazônica, magro na seca.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 260
+      },
+      "leitura": [
+        16,
+        18
+      ],
+      "nota_de_dado": "O Atlas não tem a geração por usina; a vista abre em março de 2021, maior geração hidrelétrica mensal do subsistema Norte, onde ficam Belo Monte e Tucuruí (16,6 GW médios, 12,1 GW médios exportados), contra 3,6 GW médios em setembro do mesmo ano."
+    },
+    {
+      "id": "m03-a03-madeira-e-xingu",
+      "modulo": "modulo-03",
+      "aula": 3,
+      "titulo": "As usinas do Madeira e a do Xingu",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -75.06,
+          -22.89,
+          -47.69,
+          0.79
+        ]
+      },
+      "camadas": [
+        "hidro",
+        "bacias"
+      ],
+      "destaque": {
+        "usinas": [
+          "UHE.PH.RO.029736-4.1",
+          "UHE.PH.RO.029707-0.1",
+          "UHE.PH.PA.030354-2.1"
+        ],
+        "bacias": [
+          "Madeira",
+          "Xingu"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "<strong>Madeira</strong> (Jirau e Santo Antônio, ~7 GW somados) conta história parecida em outro rio.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 260
+      },
+      "leitura": [
+        19,
+        20,
+        21
+      ],
+      "nota_de_dado": "A vista destaca também Belo Monte, no Xingu, a usina com que a aula compara as do Madeira; nos dados do ONS, os reservatórios das três são a fio d'água."
+    },
+    {
+      "id": "m03-a04-alisios-do-nordeste",
+      "modulo": "modulo-03",
+      "aula": 4,
+      "titulo": "Parques eólicos do Nordeste, do litoral aos planaltos",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -51.97,
+          -20.21,
+          -33.39,
+          -0.89
+        ]
+      },
+      "camadas": [
+        "eolica"
+      ],
+      "destaque": {
+        "usinas": [
+          "EOL.CV.BA.044878-8.1",
+          "EOL.CV.RN.028443-2.1",
+          "EOL.CV.CE.028631-1.1",
+          "EOL.CV.PI.040567-1.1"
+        ],
+        "submercados": [
+          "NE"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Os ventos alísios do litoral e dos planaltos do NE (BA, RN, CE, PI) são fortes, <em>estáveis e unidirecionais</em> — o oposto do vento turbulento europeu.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 271
+      },
+      "leitura": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "nota_de_dado": "O Atlas não tem velocidade do vento nem os estados como camada: a vista destaca o subsistema Nordeste e o maior parque eólico em operação de cada estado da frase, dois no litoral e dois no interior; no mapa, os quatro estados somam 29,6 GW dos 34,8 GW eólicos em operação."
+    },
+    {
+      "id": "m03-a04-vento-na-estacao-seca",
+      "modulo": "modulo-03",
+      "aula": 4,
+      "titulo": "O vento do Nordeste na estação seca do Sudeste",
+      "capitulo": "trocas",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "submercados": [
+          "NE",
+          "SE"
+        ]
+      },
+      "satelite": false,
+      "momento": "2025-09",
+      "trecho": {
+        "texto": "O vento do NE sopra mais forte no segundo semestre — exatamente a estação seca dos reservatórios do Sudeste.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 272
+      },
+      "leitura": [
+        31
+      ],
+      "nota_de_dado": "O mapa mostra o intercâmbio médio de um mês por vez: a vista abre em setembro de 2025, mês de maior geração eólica do Nordeste na série (15,9 GW médios, contra 7,1 GW médios em janeiro), quando o subsistema exportou 9,9 GW médios."
+    },
+    {
+      "id": "m03-a04-vento-longe-da-carga",
+      "modulo": "modulo-03",
+      "aula": 4,
+      "titulo": "As linhas de 500 kV entre o Nordeste e o Sudeste",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -58.74,
+          -20.53,
+          -39.24,
+          -12.54
+        ]
+      },
+      "camadas": [
+        "eolica",
+        "linhas",
+        "subestacoes",
+        "submercados"
+      ],
+      "destaque": {
+        "linhas": [
+          "GOSME25RDE-1BA",
+          "GOLUZ-5RDE-1BA",
+          "MGARI25RDE-1BA",
+          "BAIGT-5JBA32MG",
+          "BABJD-5JBA31MG",
+          "BABJD-5JAB-1MG",
+          "BABJD-5JAB-2MG",
+          "MGPPA25POD-1BA",
+          "MGPPA25POD-2BA",
+          "BAMDN25JNE21ES"
+        ],
+        "submercados": [
+          "NE",
+          "SE"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "<strong>Localização concentrada longe da carga</strong> — o melhor vento está a milhares de quilômetros do consumo do Sudeste, e o gargalo de escoamento Norte/Nordeste transformou parte dessa energia em <em>curtailment</em> (Módulo 02, Aula 10): vento de classe mundial, cortado por falta de fio.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 274
+      },
+      "leitura": [
+        33
+      ],
+      "nota_de_dado": "O Atlas não tem o corte de geração nem o limite das linhas; a vista destaca as dez linhas de 500 kV em operação com uma ponta no subsistema Nordeste e a outra no Sudeste/Centro-Oeste."
+    },
+    {
+      "id": "m03-a05-dia-do-sistema",
+      "modulo": "modulo-03",
+      "aula": 5,
+      "titulo": "Carga, solar e eólica ao longo do dia",
+      "capitulo": "dia",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "submercados": [
+          "NE"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Carga didática típica do SIN (~70–100 GW), solar em perfil de dia claro, eólica com leve reforço noturno (perfil NE).",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 139
+      },
+      "leitura": [
+        38
+      ],
+      "nota_de_dado": "O instrumento da aula usa perfis didáticos; o Atlas mostra a média medida de cada hora: em outubro de 2026, a carga do SIN foi de 71 a 94 GW, a solar chegou a 43,8 GW às 11h e a eólica do Nordeste foi de 5,3 GW às 12h a 17,0 GW à meia-noite."
+    },
+    {
+      "id": "m03-a06-agua-na-crise-de-2021",
+      "modulo": "modulo-03",
+      "aula": 6,
+      "titulo": "Setembro de 2021: a água na crise hídrica",
+      "capitulo": "agua",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "submercados": [
+          "SE",
+          "S"
+        ]
+      },
+      "satelite": false,
+      "momento": "2021-09",
+      "trecho": {
+        "texto": "O Brasil importa parte do gás (Bolívia, GNL spot), e o GNL chega indexado ao humor do mercado global — foi ele que, em 2021, empurrou CVUs acima de <strong>R$ 1.000/MWh</strong> para dentro do despacho, mês após mês, durante a crise hídrica.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 293
+      },
+      "leitura": [
+        41
+      ],
+      "nota_de_dado": "O Atlas não tem preços nem despacho térmico; a vista mostra a energia armazenada no fim de setembro de 2021: 16,8% no Sudeste/Centro-Oeste, o menor fim de mês do ano, e 28,6% no Sul."
+    },
+    {
+      "id": "m03-a06-termicas-a-gas",
+      "modulo": "modulo-03",
+      "aula": 6,
+      "titulo": "Onde estão as térmicas a gás",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [
+        "gas"
+      ],
+      "destaque": {
+        "usinas": [
+          "UTE.GN.RJ.038173-0.1",
+          "UTE.GN.SE.032228-8.1",
+          "UTE.GN.RJ.032955-0.2",
+          "UTE.GN.RJ.027888-2.1",
+          "UTE.GN.RJ.028029-1.1",
+          "UTE.GN.RJ.001544-0.1",
+          "UTE.GN.RS.002913-0.1",
+          "UTE.GN.PA.037898-4.1",
+          "UTE.GN.AM.031888-4.1",
+          "UTE.GN.RJ.032211-3.1",
+          "UTE.GN.PE.028031-3.1",
+          "UTE.GN.RJ.030769-6.1",
+          "UTE.GN.MT.027003-2.1",
+          "UTE.GN.MA.030800-5.1",
+          "UTE.GN.RJ.027243-4.1"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "O cenário institucional completa o quadro: o <strong>Novo Mercado de Gás</strong> abriu o setor pós-monopólio da Petrobras, mas a malha de gasodutos continua limitada a uma fração do território — térmica a gás só nasce onde o gás chega (ou onde o GNL atraca).",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 296
+      },
+      "leitura": [
+        43,
+        44
+      ],
+      "nota_de_dado": "O Atlas não tem gasodutos nem terminais de GNL; a vista liga a camada de térmicas a gás e destaca as quinze de 500 MW ou mais, que somam 12,4 GW dos 20,2 GW em operação."
+    },
+    {
+      "id": "m03-a07-carvao-do-sul",
+      "modulo": "modulo-03",
+      "aula": 7,
+      "titulo": "Candiota e o polo carbonífero do Sul",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -60.33,
+          -31.92,
+          -48.39,
+          -28.08
+        ]
+      },
+      "camadas": [
+        "carvao"
+      ],
+      "destaque": {
+        "usinas": [
+          "UTE.CM.RS.029767-4.1",
+          "UTE.CM.RS.032282-2.1",
+          "UTE.CM.SC.027094-6.1",
+          "UTE.CM.SC.027093-8.1",
+          "UTE.CM.SC.001260-2.1"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "O carvão brasileiro é pequeno (~2–3 GW, SIGA — vivo) e geograficamente concentrado: <strong>Candiota</strong> e o polo de Santa Catarina/Rio Grande do Sul, queimando carvão nacional de baixo poder calorífico, ao lado da mina.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 302
+      },
+      "leitura": [
+        45,
+        46
+      ],
+      "nota_de_dado": "O Atlas não tem as minas; a vista destaca as cinco térmicas a carvão mineral de RS e SC com mais de 100 MW (1,4 GW), e a camada de carvão tem outros 1,5 GW a carvão mineral no Ceará e no Maranhão, fora do enquadramento."
+    },
+    {
+      "id": "m03-a07-sistemas-isolados",
+      "modulo": "modulo-03",
+      "aula": 7,
+      "titulo": "Os sistemas isolados da Amazônia",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -72.22,
+          -18.93,
+          -49.65,
+          4.99
+        ]
+      },
+      "camadas": [
+        "oleo",
+        "linhas",
+        "subestacoes"
+      ],
+      "destaque": {
+        "usinas": [
+          "UTE.PE.AM.035824-0.1",
+          "UTE.PE.AM.035839-8.1",
+          "UTE.PE.AM.055254-2.1",
+          "UTE.PE.AM.037729-5.1",
+          "UTE.PE.AP.032304-7.1",
+          "UTE.PE.AM.037736-8.1",
+          "UTE.PE.AM.037691-4.1",
+          "UTE.PE.AM.035840-1.1"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "Mas o papel estrutural deles está fora do mapa do SIN: os <strong>sistemas isolados</strong> da Amazônia, centenas de localidades onde a energia chega de barcaça, em tambor de diesel, rio acima.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 304
+      },
+      "leitura": [
+        47
+      ],
+      "nota_de_dado": "O Atlas não marca os sistemas isolados como camada; a vista destaca as oito térmicas a óleo diesel de 10 MW ou mais que ficam a mais de 250 km de qualquer linha ou subestação do mapa."
+    },
+    {
+      "id": "m03-a07-bagaco-no-centro-sul",
+      "modulo": "modulo-03",
+      "aula": 7,
+      "titulo": "As térmicas a bagaço de cana do Centro-Sul",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -64.03,
+          -23.2,
+          -46.99,
+          -17.1
+        ]
+      },
+      "camadas": [
+        "biomassa",
+        "reservatorios"
+      ],
+      "destaque": {
+        "usinas": [
+          "UTE.AI.MS.029193-5.1",
+          "UTE.AI.SP.030047-0.1",
+          "UTE.AI.MS.030006-3.1",
+          "UTE.AI.GO.030025-0.1",
+          "UTE.AI.MS.030104-3.1",
+          "UTE.AI.SP.029665-1.1",
+          "UTE.AI.SP.030024-1.1",
+          "UTE.AI.GO.030043-8.1",
+          "UTE.AI.MG.028219-7.1"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "O detalhe que transforma curiosidade em tese: a safra do Centro-Sul vai de <strong>abril a novembro</strong> — precisamente a estação seca dos reservatórios.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 306
+      },
+      "leitura": [
+        48
+      ],
+      "nota_de_dado": "O Atlas não tem a safra nem a geração mês a mês; mostra as térmicas a biomassa e destaca as nove a bagaço de cana de 100 MW ou mais, e no mapa SP, MG, GO, MS e PR têm 11,1 GW dos 12,4 GW a bagaço em operação."
+    },
+    {
+      "id": "m03-a08-angra-junto-a-carga",
+      "modulo": "modulo-03",
+      "aula": 8,
+      "titulo": "Angra 1 e Angra 2, junto à carga do Sudeste",
+      "capitulo": "rede",
+      "camera": {
+        "limites": [
+          -48.15,
+          -23.78,
+          -42.74,
+          -22.51
+        ]
+      },
+      "camadas": [
+        "nuclear",
+        "linhas",
+        "subestacoes"
+      ],
+      "destaque": {
+        "usinas": [
+          "UTN.UR.RJ.000100-7.1",
+          "UTN.UR.RJ.000101-5.1"
+        ],
+        "linhas": [
+          "RJSTAN5STCH1SP",
+          "RJSTAN5STZO1",
+          "RJSTAN5STNV1"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "O Brasil opera <strong>Angra 1</strong> (640 MW, em operação desde 1985) e <strong>Angra 2</strong> (1.350 MW, desde 2001) — juntas, ~2 GW, na casa de 1% da capacidade e ~2–3% da energia do país (Eletronuclear/ONS — vivo), ancorando tensão e base no Sudeste, coladas no maior centro de carga.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 313
+      },
+      "leitura": [
+        50,
+        51,
+        52
+      ],
+      "nota_de_dado": "O Atlas não tem a carga por cidade; a vista enquadra as duas usinas entre São Paulo e o Rio de Janeiro e destaca as três linhas de 500 kV que partem da subestação de Angra."
+    },
+    {
+      "id": "m03-a08-canteiro-de-angra-3",
+      "modulo": "modulo-03",
+      "aula": 8,
+      "titulo": "O canteiro de Angra 3",
+      "capitulo": "rede",
+      "camera": {
+        "centro": [
+          -44.4697,
+          -23.0091
+        ],
+        "zoom": 13,
+        "inclinacao": 45,
+        "rumo": 0
+      },
+      "camadas": [
+        "nuclear",
+        "usinas-futuras"
+      ],
+      "destaque": {
+        "usinas": [
+          "UTN.UR.RJ.030150-7.1"
+        ]
+      },
+      "satelite": true,
+      "momento": null,
+      "trecho": {
+        "texto": "E há <strong>Angra 3</strong>: iniciada em <strong>1984</strong>, paralisada, retomada, paralisada de novo (Lava Jato), hoje com obra civil substancialmente avançada e <strong>39 anos de canteiro</strong>.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 314
+      },
+      "leitura": [
+        53
+      ],
+      "nota_de_dado": null
+    },
+    {
+      "id": "m03-a08-franca-e-coreia",
+      "modulo": "modulo-03",
+      "aula": 8,
+      "titulo": "A matriz elétrica da França e da Coreia do Sul",
+      "capitulo": "mundo",
+      "camera": {
+        "centro": [
+          73.67,
+          62.67
+        ],
+        "zoom": 1.5
+      },
+      "camadas": [],
+      "destaque": {
+        "paises": [
+          "FRA",
+          "KOR"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "França e Coreia constroem reatores em série e diluem aprendizado; o Brasil construiu um a cada vinte anos e pagou a curva de aprendizado inteira, três vezes.",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 317
+      },
+      "leitura": [
+        54,
+        55
+      ],
+      "nota_de_dado": "O globo mostra a matriz elétrica de cada país, não o ritmo de construção de reatores; o Brasil, termo de comparação da frase, fica do outro lado do globo."
+    },
+    {
+      "id": "m03-a09-reservatorios-do-sin",
+      "modulo": "modulo-03",
+      "aula": 9,
+      "titulo": "Os reservatórios do SIN: cerca de 200 TWh",
+      "capitulo": "agua",
+      "camera": {
+        "limites": [
+          -74.2,
+          -34,
+          -34.6,
+          5.6
+        ]
+      },
+      "camadas": [],
+      "destaque": {
+        "submercados": [
+          "SE",
+          "S",
+          "NE",
+          "N"
+        ]
+      },
+      "satelite": false,
+      "momento": null,
+      "trecho": {
+        "texto": "A capacidade de armazenamento dos reservatórios do SIN está na casa de <strong>200 TWh</strong> de energia equivalente (ONS — ordem viva).",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 328
+      },
+      "leitura": [
+        56
+      ],
+      "nota_de_dado": "O mapa pinta o nível de cada subsistema, não a capacidade: pela série do ONS, a energia armazenável máxima do SIN em novembro de 2026 soma 287 mil MWmês, cerca de 210 TWh, 70% no Sudeste/Centro-Oeste, 18% no Nordeste, 7% no Sul e 5% no Norte."
+    },
+    {
+      "satelite": false,
+      "momento": null,
+      "id": "m03-a06-gas-da-bolivia-e-gnl",
+      "modulo": "modulo-03",
+      "aula": 6,
+      "titulo": "O gás que chega da Bolívia e os terminais de GNL",
+      "capitulo": "combustivel",
+      "camera": {
+        "limites": [
+          -60.5,
+          -31,
+          -33.5,
+          0.5
+        ]
+      },
+      "camadas": [
+        "gas",
+        "gasodutos",
+        "gnl"
+      ],
+      "destaque": {
+        "combustivel": [
+          "gd-gasbol-gasoduto-bolivia-brasil--norte-sao-carlos-paulinia",
+          "gd-gasbol-gasoduto-bolivia-brasil--norte-corumba-ribas-do-rio-pardo",
+          "gd-gasbol-gasoduto-bolivia-brasil--norte-ribas-do-rio-pardo-sao-carlos",
+          "gd-gasbol-gasoduto-bolivia-brasil--sul-itapetininga-araucaria",
+          "gd-gasbol-gasoduto-bolivia-brasil--sul-araucaria-biguacu",
+          "gd-gasbol-gasoduto-bolivia-brasil--sul-paulinia-itapetininga",
+          "gd-gasoduto-bolivia-mato-grosso-lateral-cuiaba--emed-san-matias-emed-cuiaba",
+          "gd-gasbol-gasoduto-bolivia-brasil--sul-biguacu-sideropolis",
+          "gd-gasbol-gasoduto-bolivia-brasil--sul-paulinia-guararema",
+          "gd-gasbol-gasoduto-bolivia-brasil--sul-sideropolis-canoas",
+          "gnl-unidade-flutuante-de-armazenamento-e-regaseificacao-pa-celba",
+          "gnl-terminal-de-regaseificacao-de-gnl-do-porto-do-acu-gna",
+          "gnl-terminal-de-gnl-barra-dos-coqueiros-celse",
+          "gnl-terminal-de-regaseificacao-de-gnl-da-bahia-trba",
+          "gnl-terminal-de-regaseificacao-de-gnl-de-sao-paulo-trsp",
+          "gnl-terminal-de-regaseificacao-da-baia-de-guanabara-gnl-tr-bgua",
+          "gnl-terminal-gas-sul-tgs"
+        ]
+      },
+      "trecho": {
+        "texto": "O Brasil importa parte do gás (Bolívia, GNL spot), e o GNL chega indexado ao humor do mercado global",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 293
+      },
+      "leitura": [
+        39,
+        40
+      ],
+      "nota_de_dado": "O destaque marca os trechos que a ANP chama de GASBOL (Gasoduto Bolívia-Brasil), de Corumbá a Canoas, e o Gasoduto Bolívia-Mato Grosso, até Cuiabá, só do lado brasileiro, e os sete terminais de GNL da camada da ANP. A camada não traz volume importado nem a origem das cargas de GNL."
+    },
+    {
+      "satelite": false,
+      "momento": null,
+      "id": "m03-a06-a-malha-e-onde-o-gnl-atraca",
+      "modulo": "modulo-03",
+      "aula": 6,
+      "titulo": "A malha de gasodutos e onde o GNL atraca",
+      "capitulo": "combustivel",
+      "camera": {
+        "limites": [
+          -67,
+          -33.5,
+          -33.5,
+          0.5
+        ]
+      },
+      "camadas": [
+        "gas",
+        "gasodutos",
+        "gnl",
+        "upgn"
+      ],
+      "destaque": {
+        "combustivel": [
+          "gnl-unidade-flutuante-de-armazenamento-e-regaseificacao-pa-celba",
+          "gnl-terminal-de-regaseificacao-de-gnl-do-porto-do-acu-gna",
+          "gnl-terminal-de-gnl-barra-dos-coqueiros-celse",
+          "gnl-terminal-de-regaseificacao-de-gnl-da-bahia-trba",
+          "gnl-terminal-de-regaseificacao-de-gnl-de-sao-paulo-trsp",
+          "gnl-terminal-de-regaseificacao-da-baia-de-guanabara-gnl-tr-bgua",
+          "gnl-terminal-gas-sul-tgs"
+        ]
+      },
+      "trecho": {
+        "texto": "O cenário institucional completa o quadro: o <strong>Novo Mercado de Gás</strong> abriu o setor pós-monopólio da Petrobras, mas a malha de gasodutos continua limitada a uma fração do território — térmica a gás só nasce onde o gás chega (ou onde o GNL atraca).",
+        "arquivo": "src/lib/data/alexandria-modulo-03-content.ts",
+        "linha": 296
+      },
+      "leitura": [
+        43,
+        44
+      ],
+      "nota_de_dado": "A camada da ANP traz 108 trechos de gasodutos de transporte (10.762 km declarados), sem os de escoamento e de distribuição. O destaque marca os sete terminais de GNL da camada; o ramal de GNL de Pecém aparece como gasoduto, mas o terminal dele não está na camada de GNL."
+    }
+  ],
+  "sem_vista": [
+    {
+      "aula": 2,
+      "tema": "desenhos de 2021 e de 2001 na nota do simulador de energia armazenada",
+      "motivo": "a aula já tem quatro vistas, o máximo; a água de 2021 entra na vista da Aula 06, e a série mensal da vista de energia armazenada permite voltar a 2001"
+    },
+    {
+      "aula": 3,
+      "tema": "usinas reversíveis na Europa e na China",
+      "motivo": "a frase não nomeia países europeus, e o capítulo mundo mostra a matriz elétrica de cada país, não usinas reversíveis"
+    },
+    {
+      "aula": 4,
+      "tema": "fator de capacidade do onshore europeu e do offshore do Mar do Norte",
+      "motivo": "a aula não nomeia países, e o Atlas não tem fator de capacidade nem usinas fora do Brasil"
+    },
+    {
+      "aula": 4,
+      "tema": "apagão de 2023 e a falta de inércia das eólicas",
+      "motivo": "a frase só remete à Aula 08 do Módulo 02; o Atlas não tem inércia nem ocorrências"
+    },
+    {
+      "aula": 4,
+      "tema": "potencial eólico offshore da costa brasileira",
+      "motivo": "o Atlas não tem áreas nem usinas offshore; não há ativo a destacar"
+    },
+    {
+      "aula": 5,
+      "tema": "manufatura fotovoltaica concentrada na China",
+      "motivo": "o capítulo mundo mostra a matriz elétrica de cada país, não a indústria de módulos"
+    },
+    {
+      "aula": 5,
+      "tema": "micro e minigeração distribuída (cerca de 40 GW)",
+      "motivo": "o Atlas tem só as usinas centralizadas do cadastro da ANEEL"
+    },
+    {
+      "aula": 5,
+      "tema": "usinas solares centralizadas no Nordeste e no Centro-Oeste",
+      "motivo": "o mapa não mostra o que a frase diz: no cadastro da ANEEL o Nordeste tem 12,2 GW dos 23,6 GW solares em operação no mapa, Minas Gerais tem 8,7 GW e o Centro-Oeste, 1,3 GW; a divergência entre a aula e o cadastro precisa ser decidida antes de a vista existir"
+    },
+    {
+      "aula": 6,
+      "tema": "térmica inflexível ao lado de vento cortado no mesmo subsistema",
+      "motivo": "a aula não nomeia o subsistema, e o Atlas não tem inflexibilidade contratual nem corte de geração"
+    },
+    {
+      "aula": 7,
+      "tema": "minas de carvão ao lado das usinas",
+      "motivo": "o Atlas não tem minas; as usinas a carvão do Sul entram na vista da aula"
+    },
+    {
+      "aula": 7,
+      "tema": "vento do Nordeste como primeira complementaridade sazonal",
+      "motivo": "a frase só remete à Aula 04, que tem a vista do vento na estação seca"
+    },
+    {
+      "aula": 9,
+      "tema": "baterias e o leilão de armazenamento de 2026",
+      "motivo": "o Atlas não tem baterias nem projetos de armazenamento; os reservatórios entram na vista da aula"
+    },
+    {
+      "aula": 10,
+      "tema": "vento do Nordeste e Angra 3 na fórmula do custo nivelado",
+      "motivo": "o Atlas não tem custos, custo de capital nem resultados de leilão; o vento do Nordeste e Angra 3 têm vista nas Aulas 04 e 08"
+    }
+  ]
+}

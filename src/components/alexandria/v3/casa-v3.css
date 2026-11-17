@@ -1,0 +1,155 @@
+/* Casca da Alexandria v3 — barra superior. */
+
+.alx3 .casa {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--papel);
+  border-bottom: 1px solid var(--fio);
+}
+
+.alx3 .casa-linha {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.alx3 .casa-marca {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.alx3 .casa-simbolo {
+  display: inline-flex;
+  align-self: center;
+  color: var(--tinta);
+  margin-right: -4px;
+  transition: transform var(--t-hover);
+}
+
+.alx3 .casa-marca:hover .casa-simbolo {
+  transform: translateY(-2px);
+}
+
+.alx3 .casa-nome {
+  font-family: var(--f-leitura);
+  font-size: 29px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--tinta);
+}
+
+.alx3 .casa-assina {
+  font-size: 13px;
+}
+
+.alx3 .casa-nav {
+  display: flex;
+  gap: 28px;
+  margin-left: auto;
+}
+
+.alx3 .casa-link {
+  position: relative;
+  font-size: 16.5px;
+  text-decoration: none;
+  color: var(--tinta-suave);
+  padding: 10px 0;
+  transition: color var(--t-hover);
+}
+
+.alx3 .casa-link:hover {
+  color: var(--tinta);
+}
+
+.alx3 .casa-link.active {
+  color: var(--tinta);
+}
+
+.alx3 .casa-link.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 1px;
+  background: var(--oxido);
+}
+
+.alx3 .casa-acoes {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.alx3 .casa-modo {
+  font-family: var(--f-dado);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--fio-forte);
+  padding: 10px 0 6px;
+  cursor: pointer;
+  transition: color var(--t-hover), border-color var(--t-hover);
+}
+
+.alx3 .casa-modo:hover {
+  color: var(--tinta);
+  border-color: var(--tinta);
+}
+
+.alx3 .casa-conta {
+  font-size: 16.5px;
+  color: var(--tinta);
+  text-decoration: none;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--fio-forte);
+}
+
+@media (max-width: 860px) {
+  /* no celular quem fica grudado no topo é a barra das trilhas, não a casca */
+  .alx3 .casa {
+    position: static;
+  }
+  .alx3 .casa-linha {
+    padding: 0 16px;
+    flex-wrap: wrap;
+    gap: 0 16px;
+    min-height: 56px;
+  }
+  .alx3 .casa-assina {
+    display: none;
+  }
+  .alx3 .casa-nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    gap: 22px;
+    overflow-x: auto;
+    border-top: 1px solid var(--fio);
+  }
+  .alx3 .casa-link {
+    padding: 12px 0;
+    min-height: 44px;
+    white-space: nowrap;
+  }
+  .alx3 .casa-acoes {
+    margin-left: auto;
+    gap: 16px;
+  }
+  .alx3 .casa-modo,
+  .alx3 .casa-conta {
+    min-height: 44px;
+  }
+}

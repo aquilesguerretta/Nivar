@@ -1,0 +1,1389 @@
+{
+  "meta": {
+    "grupo": "aula09",
+    "modulo": "M01",
+    "aula": "M01·A09",
+    "fonte": "C:/dev/GridAlpha v2/Alexandria modulos/alexandria_modulo01.html",
+    "fonte_somente_leitura": true,
+    "fonte_total_linhas": 3212,
+    "aula_linhas": {
+      "inicio": 2098,
+      "fim": 2174,
+      "nota": "comentário de abertura 2098; section.aula 2100-2174"
+    },
+    "extraido_em": "2026-11-14",
+    "metodo": "Extração programática (script node que caminha as linhas da section e lança erro diante de qualquer linha não reconhecida; nenhuma prosa digitada). Campos `html` guardam o innerHTML literal; campos `texto` são o mesmo conteúdo com tags removidas e entidades decodificadas.",
+    "protocolo": "docs/alexandria/extraction-protocol.md",
+    "taxonomia": "docs/alexandria/instrument-taxonomy.md",
+    "contrato": "docs/alexandria-v2/bar.md (§4 Peça C, §9, P3, P5, P6, P8, P9, P11, P14)",
+    "convencoes": {
+      "ausencia": "null / [] + campo *_nota explicando o que foi medido",
+      "ids": "m01-a09-bNN-<tipo> para blocos (ordem da fonte)",
+      "vinculos": "só quando a fonte declara (tag, posição dentro da section, remissão textual literal); correspondência textual é marcada como tal",
+      "derivados": "chaves `derivado` / `*_nota` / `argumento` / `decisao` são comentário do extrator, fora da prova literal"
+    }
+  },
+  "aula": {
+    "id": "m01-a09",
+    "numero": 9,
+    "marcador": {
+      "num": "Aula 09",
+      "nome": "Qualidade de energia",
+      "origem": {
+        "seletor": "div.aula-marker",
+        "trecho_inicial": "Aula 09 Qualidade de energia",
+        "linha_aprox": 2102
+      }
+    },
+    "titulo_h2_html": "Energia ruim pode custar mais do que <em>energia cara</em>.",
+    "titulo_h2_texto": "Energia ruim pode custar mais do que energia cara.",
+    "titulo_h2_origem": {
+      "seletor": "h2.aula-title",
+      "trecho_inicial": "Energia ruim pode custar mais do que energia cara.",
+      "linha_aprox": 2103
+    },
+    "pergunta_mapa": {
+      "numero": "09",
+      "tema": "Qualidade de energia",
+      "pergunta_html": "Por que tensão ruim é problema financeiro, não só técnico?",
+      "pergunta_texto": "Por que tensão ruim é problema financeiro, não só técnico?",
+      "origem": {
+        "seletor": "§ MAP table > tbody > tr(09)",
+        "trecho_inicial": "Por que tensão ruim é problema financeiro, não só técnico?",
+        "linha_aprox": 1347
+      },
+      "nota": "Única pergunta que a fonte declara para esta aula. Vive na tabela do § MAP, não na aula."
+    },
+    "duracao_min": null,
+    "dificuldade": null,
+    "video": null,
+    "ausencias_nota": "Sem duração, dificuldade, vídeo, <img>, referência por aula ou \"Vale lembrar\" dentro da section. Medido na fatia 2100-2174: <img> = 0, <video>/<iframe> = 0, \"Vale lembrar\" = 0."
+  },
+  "blocos": [
+    {
+      "id": "m01-a09-b01-lead",
+      "tipo": "lead",
+      "html": "Qualidade de energia é tema técnico cuja consequência é financeira. Tensão fora da faixa, harmônicos, afundamentos, interrupções — qualquer um deles pode parar uma linha de produção, danificar equipamento, encurtar vida útil de motor. Para o gestor industrial, qualidade é custo operacional.",
+      "texto": "Qualidade de energia é tema técnico cuja consequência é financeira. Tensão fora da faixa, harmônicos, afundamentos, interrupções — qualquer um deles pode parar uma linha de produção, danificar equipamento, encurtar vida útil de motor. Para o gestor industrial, qualidade é custo operacional.",
+      "origem": {
+        "seletor": "section.aula(Aula 09) > .container > p.lead",
+        "trecho_inicial": "Qualidade de energia é tema técnico cuja consequência é fina",
+        "linha_aprox": 2105
+      }
+    },
+    {
+      "id": "m01-a09-b02-titulo",
+      "tipo": "titulo",
+      "numero": "9.1",
+      "texto": "As três dimensões da qualidade",
+      "html": "<span class=\"num\">9.1</span>As três dimensões da qualidade",
+      "origem": {
+        "seletor": "h3 > span.num(9.1)",
+        "trecho_inicial": "9.1As três dimensões da qualidade",
+        "linha_aprox": 2107
+      }
+    },
+    {
+      "id": "m01-a09-b03-paragrafo",
+      "tipo": "paragrafo",
+      "html": "A ANEEL trata qualidade do fornecimento em três dimensões:",
+      "texto": "A ANEEL trata qualidade do fornecimento em três dimensões:",
+      "origem": {
+        "seletor": "p (após h3 9.1)",
+        "trecho_inicial": "A ANEEL trata qualidade do fornecimento em três dimensões:",
+        "linha_aprox": 2108
+      }
+    },
+    {
+      "id": "m01-a09-b04-tabela",
+      "tipo": "tabela",
+      "cabecalho": [
+        {
+          "html": "Dimensão",
+          "texto": "Dimensão"
+        },
+        {
+          "html": "O que mede",
+          "texto": "O que mede"
+        },
+        {
+          "html": "Indicadores",
+          "texto": "Indicadores"
+        }
+      ],
+      "linhas": [
+        {
+          "celulas": [
+            {
+              "html": "<b>Qualidade do serviço (continuidade)</b>",
+              "texto": "Qualidade do serviço (continuidade)",
+              "classe_td": null
+            },
+            {
+              "html": "Frequência e duração de interrupções",
+              "texto": "Frequência e duração de interrupções",
+              "classe_td": null
+            },
+            {
+              "html": "DEC, FEC (coletivos) · DIC, FIC, DMIC, DICRI (individuais)",
+              "texto": "DEC, FEC (coletivos) · DIC, FIC, DMIC, DICRI (individuais)",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Qualidade do serviço (continuidade)",
+            "linha_aprox": 2114
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>Qualidade do produto (tensão)</b>",
+              "texto": "Qualidade do produto (tensão)",
+              "classe_td": null
+            },
+            {
+              "html": "Conformidade da tensão entregue",
+              "texto": "Conformidade da tensão entregue",
+              "classe_td": null
+            },
+            {
+              "html": "DRP, DRC · faixas adequada, precária, crítica",
+              "texto": "DRP, DRC · faixas adequada, precária, crítica",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Qualidade do produto (tensão)",
+            "linha_aprox": 2115
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>Qualidade comercial</b>",
+              "texto": "Qualidade comercial",
+              "classe_td": null
+            },
+            {
+              "html": "Atendimento da distribuidora ao consumidor",
+              "texto": "Atendimento da distribuidora ao consumidor",
+              "classe_td": null
+            },
+            {
+              "html": "Indicadores de prazo, atendimento, reclamações",
+              "texto": "Indicadores de prazo, atendimento, reclamações",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Qualidade comercial",
+            "linha_aprox": 2116
+          }
+        }
+      ],
+      "n_colunas": 3,
+      "n_linhas": 3,
+      "texto": null,
+      "origem": {
+        "seletor": "div.table-wrap > table",
+        "trecho_inicial": "Dimensão",
+        "linha_aprox": 2111
+      },
+      "linha_fim_aprox": 2119
+    },
+    {
+      "id": "m01-a09-b05-titulo",
+      "tipo": "titulo",
+      "numero": "9.2",
+      "texto": "Indicadores de continuidade",
+      "html": "<span class=\"num\">9.2</span>Indicadores de continuidade",
+      "origem": {
+        "seletor": "h3 > span.num(9.2)",
+        "trecho_inicial": "9.2Indicadores de continuidade",
+        "linha_aprox": 2121
+      }
+    },
+    {
+      "id": "m01-a09-b06-tabela",
+      "tipo": "tabela",
+      "cabecalho": [
+        {
+          "html": "Sigla",
+          "texto": "Sigla"
+        },
+        {
+          "html": "Significa",
+          "texto": "Significa"
+        },
+        {
+          "html": "O que mede",
+          "texto": "O que mede"
+        }
+      ],
+      "linhas": [
+        {
+          "celulas": [
+            {
+              "html": "<b>DEC</b>",
+              "texto": "DEC",
+              "classe_td": "mono"
+            },
+            {
+              "html": "Duração Equivalente de interrupção por unidade Consumidora",
+              "texto": "Duração Equivalente de interrupção por unidade Consumidora",
+              "classe_td": null
+            },
+            {
+              "html": "Tempo total médio de interrupção por consumidor no ano (em horas)",
+              "texto": "Tempo total médio de interrupção por consumidor no ano (em horas)",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "DEC",
+            "linha_aprox": 2126
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>FEC</b>",
+              "texto": "FEC",
+              "classe_td": "mono"
+            },
+            {
+              "html": "Frequência Equivalente de interrupção por unidade Consumidora",
+              "texto": "Frequência Equivalente de interrupção por unidade Consumidora",
+              "classe_td": null
+            },
+            {
+              "html": "Número médio de interrupções por consumidor no ano",
+              "texto": "Número médio de interrupções por consumidor no ano",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "FEC",
+            "linha_aprox": 2127
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>DIC</b>",
+              "texto": "DIC",
+              "classe_td": "mono"
+            },
+            {
+              "html": "Duração de Interrupção por unidade Consumidora individual",
+              "texto": "Duração de Interrupção por unidade Consumidora individual",
+              "classe_td": null
+            },
+            {
+              "html": "Tempo total de interrupção naquela unidade específica",
+              "texto": "Tempo total de interrupção naquela unidade específica",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "DIC",
+            "linha_aprox": 2128
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>FIC</b>",
+              "texto": "FIC",
+              "classe_td": "mono"
+            },
+            {
+              "html": "Frequência de Interrupção individual",
+              "texto": "Frequência de Interrupção individual",
+              "classe_td": null
+            },
+            {
+              "html": "Número de interrupções naquela unidade no período",
+              "texto": "Número de interrupções naquela unidade no período",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "FIC",
+            "linha_aprox": 2129
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>DMIC</b>",
+              "texto": "DMIC",
+              "classe_td": "mono"
+            },
+            {
+              "html": "Duração Máxima de Interrupção Contínua",
+              "texto": "Duração Máxima de Interrupção Contínua",
+              "classe_td": null
+            },
+            {
+              "html": "Maior interrupção individual no período",
+              "texto": "Maior interrupção individual no período",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "DMIC",
+            "linha_aprox": 2130
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>DICRI</b>",
+              "texto": "DICRI",
+              "classe_td": "mono"
+            },
+            {
+              "html": "DIC em dia crítico",
+              "texto": "DIC em dia crítico",
+              "classe_td": null
+            },
+            {
+              "html": "Indicador específico para dias de alta severidade operacional",
+              "texto": "Indicador específico para dias de alta severidade operacional",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "DICRI",
+            "linha_aprox": 2131
+          }
+        }
+      ],
+      "n_colunas": 3,
+      "n_linhas": 6,
+      "texto": null,
+      "origem": {
+        "seletor": "div.table-wrap > table",
+        "trecho_inicial": "Sigla",
+        "linha_aprox": 2123
+      },
+      "linha_fim_aprox": 2134
+    },
+    {
+      "id": "m01-a09-b07-titulo",
+      "tipo": "titulo",
+      "numero": "9.3",
+      "texto": "Harmônicos, afundamentos e desequilíbrios",
+      "html": "<span class=\"num\">9.3</span>Harmônicos, afundamentos e desequilíbrios",
+      "origem": {
+        "seletor": "h3 > span.num(9.3)",
+        "trecho_inicial": "9.3Harmônicos, afundamentos e desequilíbrios",
+        "linha_aprox": 2136
+      }
+    },
+    {
+      "id": "m01-a09-b08-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Mesmo sem interrupção total, há fenômenos que degradam a qualidade do produto entregue:",
+      "texto": "Mesmo sem interrupção total, há fenômenos que degradam a qualidade do produto entregue:",
+      "origem": {
+        "seletor": "p (após h3 9.3)",
+        "trecho_inicial": "Mesmo sem interrupção total, há fenômenos que degradam a qua",
+        "linha_aprox": 2137
+      }
+    },
+    {
+      "id": "m01-a09-b09-tabela",
+      "tipo": "tabela",
+      "cabecalho": [
+        {
+          "html": "Fenômeno",
+          "texto": "Fenômeno"
+        },
+        {
+          "html": "O que é",
+          "texto": "O que é"
+        },
+        {
+          "html": "Consequência industrial",
+          "texto": "Consequência industrial"
+        }
+      ],
+      "linhas": [
+        {
+          "celulas": [
+            {
+              "html": "<b>Harmônicos</b>",
+              "texto": "Harmônicos",
+              "classe_td": null
+            },
+            {
+              "html": "Distorções na forma de onda elétrica, comuns em cargas não lineares (drives, inversores, fontes eletrônicas)",
+              "texto": "Distorções na forma de onda elétrica, comuns em cargas não lineares (drives, inversores, fontes eletrônicas)",
+              "classe_td": null
+            },
+            {
+              "html": "Aquecimento de motores e transformadores, disparo de proteções, redução de vida útil",
+              "texto": "Aquecimento de motores e transformadores, disparo de proteções, redução de vida útil",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Harmônicos",
+            "linha_aprox": 2143
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>Afundamento de tensão (voltage sag)</b>",
+              "texto": "Afundamento de tensão (voltage sag)",
+              "classe_td": null
+            },
+            {
+              "html": "Queda rápida e temporária da tensão",
+              "texto": "Queda rápida e temporária da tensão",
+              "classe_td": null
+            },
+            {
+              "html": "Desliga equipamentos sensíveis, reseta sistemas de controle, para linha de produção",
+              "texto": "Desliga equipamentos sensíveis, reseta sistemas de controle, para linha de produção",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Afundamento de tensão (voltage sag)",
+            "linha_aprox": 2144
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>Sobretensão</b>",
+              "texto": "Sobretensão",
+              "classe_td": null
+            },
+            {
+              "html": "Elevação acima dos limites",
+              "texto": "Elevação acima dos limites",
+              "classe_td": null
+            },
+            {
+              "html": "Reduz vida útil de equipamento, pode causar falhas em isolação",
+              "texto": "Reduz vida útil de equipamento, pode causar falhas em isolação",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Sobretensão",
+            "linha_aprox": 2145
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>Desequilíbrio entre fases</b>",
+              "texto": "Desequilíbrio entre fases",
+              "classe_td": null
+            },
+            {
+              "html": "Tensão desigual nas três fases de um sistema trifásico",
+              "texto": "Tensão desigual nas três fases de um sistema trifásico",
+              "classe_td": null
+            },
+            {
+              "html": "Aquecimento de motores, perda de eficiência, vibração",
+              "texto": "Aquecimento de motores, perda de eficiência, vibração",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Desequilíbrio entre fases",
+            "linha_aprox": 2146
+          }
+        },
+        {
+          "celulas": [
+            {
+              "html": "<b>Flicker (flutuação de tensão)</b>",
+              "texto": "Flicker (flutuação de tensão)",
+              "classe_td": null
+            },
+            {
+              "html": "Variações rápidas e visíveis",
+              "texto": "Variações rápidas e visíveis",
+              "classe_td": null
+            },
+            {
+              "html": "Comum em cargas como fornos a arco; afeta vizinhança elétrica",
+              "texto": "Comum em cargas como fornos a arco; afeta vizinhança elétrica",
+              "classe_td": null
+            }
+          ],
+          "origem": {
+            "seletor": "tbody > tr",
+            "trecho_inicial": "Flicker (flutuação de tensão)",
+            "linha_aprox": 2147
+          }
+        }
+      ],
+      "n_colunas": 3,
+      "n_linhas": 5,
+      "texto": null,
+      "origem": {
+        "seletor": "div.table-wrap > table",
+        "trecho_inicial": "Fenômeno",
+        "linha_aprox": 2140
+      },
+      "linha_fim_aprox": 2150
+    },
+    {
+      "id": "m01-a09-b10-destaque",
+      "tipo": "destaque",
+      "tom": "neutro",
+      "classe_fonte": "callout",
+      "rotulo": "Conformidade de tensão · PRODIST Módulo 8",
+      "rotulo_html": "Conformidade de tensão · PRODIST Módulo 8",
+      "html": "A ANEEL define faixas para tensão entregue ao consumidor — <strong>adequada</strong>, <strong>precária</strong> e <strong>crítica</strong> — com medição integralizada em intervalos de 10 minutos por pelo menos sete dias consecutivos, totalizando 1.008 leituras. Sobre essa amostra calculam-se os indicadores <strong>DRP</strong> (Duração Relativa da transgressão para tensão Precária) e <strong>DRC</strong> (idem para Crítica). Quando o consumidor identifica problema sistemático de tensão, esse é o caminho técnico para abrir tratativa com a distribuidora.",
+      "texto": "A ANEEL define faixas para tensão entregue ao consumidor — adequada, precária e crítica — com medição integralizada em intervalos de 10 minutos por pelo menos sete dias consecutivos, totalizando 1.008 leituras. Sobre essa amostra calculam-se os indicadores DRP (Duração Relativa da transgressão para tensão Precária) e DRC (idem para Crítica). Quando o consumidor identifica problema sistemático de tensão, esse é o caminho técnico para abrir tratativa com a distribuidora.",
+      "corpo_origem": {
+        "seletor": "div.callout > p",
+        "trecho_inicial": "A ANEEL define faixas para tensão entregue ao consumidor — a",
+        "linha_aprox": 2154
+      },
+      "origem": {
+        "seletor": "div.callout",
+        "trecho_inicial": "A ANEEL define faixas para tensão entregue ao consumidor — a",
+        "linha_aprox": 2152
+      },
+      "linha_fim_aprox": 2155
+    },
+    {
+      "id": "m01-a09-b11-titulo",
+      "tipo": "titulo",
+      "numero": "9.4",
+      "texto": "Por que isso é custo operacional, não só técnico",
+      "html": "<span class=\"num\">9.4</span>Por que isso é custo operacional, não só técnico",
+      "origem": {
+        "seletor": "h3 > span.num(9.4)",
+        "trecho_inicial": "9.4Por que isso é custo operacional, não só técnico",
+        "linha_aprox": 2157
+      }
+    },
+    {
+      "id": "m01-a09-b12-paragrafo",
+      "tipo": "paragrafo",
+      "html": "Para uma residência, qualidade de energia ruim é incômodo. Para uma indústria, é prejuízo direto:",
+      "texto": "Para uma residência, qualidade de energia ruim é incômodo. Para uma indústria, é prejuízo direto:",
+      "origem": {
+        "seletor": "p (após h3 9.4)",
+        "trecho_inicial": "Para uma residência, qualidade de energia ruim é incômodo. P",
+        "linha_aprox": 2158
+      }
+    },
+    {
+      "id": "m01-a09-b13-lista",
+      "tipo": "lista",
+      "itens": [
+        {
+          "html": "Linha de produção parada — perda de receita, atraso de entrega;",
+          "texto": "Linha de produção parada — perda de receita, atraso de entrega;",
+          "li_attr": "style=\"margin-bottom: 10px;\"",
+          "origem": {
+            "seletor": "ul > li",
+            "trecho_inicial": "Linha de produção parada — perda de receita, atraso de entre",
+            "linha_aprox": 2161
+          }
+        },
+        {
+          "html": "Material em processo perdido — desperdício direto;",
+          "texto": "Material em processo perdido — desperdício direto;",
+          "li_attr": "style=\"margin-bottom: 10px;\"",
+          "origem": {
+            "seletor": "ul > li",
+            "trecho_inicial": "Material em processo perdido — desperdício direto;",
+            "linha_aprox": 2162
+          }
+        },
+        {
+          "html": "Equipamento danificado — reposição, manutenção corretiva;",
+          "texto": "Equipamento danificado — reposição, manutenção corretiva;",
+          "li_attr": "style=\"margin-bottom: 10px;\"",
+          "origem": {
+            "seletor": "ul > li",
+            "trecho_inicial": "Equipamento danificado — reposição, manutenção corretiva;",
+            "linha_aprox": 2163
+          }
+        },
+        {
+          "html": "Horas extras para recuperação — custo de mão de obra;",
+          "texto": "Horas extras para recuperação — custo de mão de obra;",
+          "li_attr": "style=\"margin-bottom: 10px;\"",
+          "origem": {
+            "seletor": "ul > li",
+            "trecho_inicial": "Horas extras para recuperação — custo de mão de obra;",
+            "linha_aprox": 2164
+          }
+        },
+        {
+          "html": "Vida útil reduzida — depreciação acelerada;",
+          "texto": "Vida útil reduzida — depreciação acelerada;",
+          "li_attr": "style=\"margin-bottom: 10px;\"",
+          "origem": {
+            "seletor": "ul > li",
+            "trecho_inicial": "Vida útil reduzida — depreciação acelerada;",
+            "linha_aprox": 2165
+          }
+        },
+        {
+          "html": "Risco de segurança — incidentes elétricos.",
+          "texto": "Risco de segurança — incidentes elétricos.",
+          "li_attr": "style=\"margin-bottom: 10px;\"",
+          "origem": {
+            "seletor": "ul > li",
+            "trecho_inicial": "Risco de segurança — incidentes elétricos.",
+            "linha_aprox": 2166
+          }
+        }
+      ],
+      "ul_attr": "style=\"margin: 16px 0 24px 24px; color: var(--text-secondary);\"",
+      "texto": null,
+      "origem": {
+        "seletor": "ul",
+        "trecho_inicial": "Linha de produção parada — perda de receita, atraso de entre",
+        "linha_aprox": 2160
+      },
+      "linha_fim_aprox": 2167
+    },
+    {
+      "id": "m01-a09-b14-destaque",
+      "tipo": "destaque",
+      "tom": "neutro",
+      "classe_fonte": "callout",
+      "rotulo": "Onde isso entra no produto",
+      "rotulo_html": "Onde isso entra no produto",
+      "html": "No <strong>Power Quality Audit (PQA)</strong> da GridAlpha, a checagem inicial é uma triagem: existe cobrança de reativo na fatura? Há histórico de interrupções ou quedas? Há relato de queima de equipamentos? Há motores grandes, inversores, soldas, fornos? O cliente tem medição própria ou só fatura? Essa checklist não substitui medição — define se vale escalar para auditoria com instrumentação dedicada.",
+      "texto": "No Power Quality Audit (PQA) da GridAlpha, a checagem inicial é uma triagem: existe cobrança de reativo na fatura? Há histórico de interrupções ou quedas? Há relato de queima de equipamentos? Há motores grandes, inversores, soldas, fornos? O cliente tem medição própria ou só fatura? Essa checklist não substitui medição — define se vale escalar para auditoria com instrumentação dedicada.",
+      "corpo_origem": {
+        "seletor": "div.callout > p",
+        "trecho_inicial": "No Power Quality Audit (PQA) da GridAlpha, a checagem inicia",
+        "linha_aprox": 2171
+      },
+      "origem": {
+        "seletor": "div.callout",
+        "trecho_inicial": "No Power Quality Audit (PQA) da GridAlpha, a checagem inicia",
+        "linha_aprox": 2169
+      },
+      "linha_fim_aprox": 2172
+    }
+  ],
+  "figuras": [],
+  "figuras_nota": "Nenhuma figura (medido na fatia: <svg> = 0, <img> = 0, cf-chart/triangle-vis = 0). A única estrutura \"visual\" são as 3 tabelas.",
+  "tabelas_ids": [
+    "m01-a09-b04-tabela",
+    "m01-a09-b06-tabela",
+    "m01-a09-b09-tabela"
+  ],
+  "listas_ids": [
+    "m01-a09-b13-lista"
+  ],
+  "destaques": [
+    "m01-a09-b10-destaque",
+    "m01-a09-b14-destaque"
+  ],
+  "vale_lembrar": null,
+  "vale_lembrar_nota": "A expressão \"Vale lembrar\" não ocorre no HTML do M01. Os destaques da aula são 2 callouts neutros.",
+  "termos_lexico": {
+    "vinculo_declarado_pela_fonte": false,
+    "nota": "O glossário da fonte (§ Lex, linhas ~2520-2690) não declara aula por termo. Abaixo: verbetes cujo nome-base, variante por \"/\" ou abreviação entre parênteses ocorre como palavra no texto da section. Correspondência textual, não posse — ler ocorrencias_contexto antes de ligar (§2 do protocolo).",
+    "total_verbetes_fonte": 38,
+    "candidatos": [
+      {
+        "termo": "DEC / FEC",
+        "unidade_rotulo": "Continuidade · coletivos",
+        "definicao_html": "<b>DEC</b> — Duração Equivalente de interrupção por unidade Consumidora. Tempo médio de interrupção por consumidor no período (horas/ano). <b>FEC</b> — Frequência Equivalente de interrupção por unidade Consumidora. Número médio de interrupções por consumidor no período. São indicadores coletivos que avaliam a qualidade do serviço de toda a distribuidora.",
+        "achados": [
+          {
+            "variante": "DEC",
+            "n_ocorrencias": 2,
+            "ocorrencias_contexto": [
+              "uidade) Frequência e duração de interrupções DEC, FEC (coletivos) · DIC, FIC, DMIC, DICRI (in",
+              "s de continuidade Sigla Significa O que mede DEC Duração Equivalente de interrupção por unida"
+            ]
+          },
+          {
+            "variante": "FEC",
+            "n_ocorrencias": 2,
+            "ocorrencias_contexto": [
+              "e) Frequência e duração de interrupções DEC, FEC (coletivos) · DIC, FIC, DMIC, DICRI (individ",
+              "interrupção por consumidor no ano (em horas) FEC Frequência Equivalente de interrupção por un"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "DEC / FEC",
+          "linha_aprox": 2552
+        }
+      },
+      {
+        "termo": "DIC / FIC / DMIC / DICRI",
+        "unidade_rotulo": "Continuidade · individuais",
+        "definicao_html": "Indicadores individuais de continuidade — medem interrupções daquela unidade consumidora específica. <b>DIC</b>: duração total de interrupção. <b>FIC</b>: número de interrupções. <b>DMIC</b>: maior interrupção contínua. <b>DICRI</b>: DIC em dia crítico. Têm limites regulatórios cuja violação pode gerar compensação à unidade consumidora.",
+        "achados": [
+          {
+            "variante": "DIC",
+            "n_ocorrencias": 3,
+            "ocorrencias_contexto": [
+              "ração de interrupções DEC, FEC (coletivos) · DIC, FIC, DMIC, DICRI (individuais) Qualidade do",
+              " médio de interrupções por consumidor no ano DIC Duração de Interrupção por unidade Consumido",
+              "aior interrupção individual no período DICRI DIC em dia crítico Indicador específico para dia"
+            ]
+          },
+          {
+            "variante": "FIC",
+            "n_ocorrencias": 2,
+            "ocorrencias_contexto": [
+              " de interrupções DEC, FEC (coletivos) · DIC, FIC, DMIC, DICRI (individuais) Qualidade do prod",
+              "al de interrupção naquela unidade específica FIC Frequência de Interrupção individual Número "
+            ]
+          },
+          {
+            "variante": "DMIC",
+            "n_ocorrencias": 2,
+            "ocorrencias_contexto": [
+              "nterrupções DEC, FEC (coletivos) · DIC, FIC, DMIC, DICRI (individuais) Qualidade do produto (t",
+              "o de interrupções naquela unidade no período DMIC Duração Máxima de Interrupção Contínua Maior"
+            ]
+          },
+          {
+            "variante": "DICRI",
+            "n_ocorrencias": 2,
+            "ocorrencias_contexto": [
+              "pções DEC, FEC (coletivos) · DIC, FIC, DMIC, DICRI (individuais) Qualidade do produto (tensão) ",
+              "ínua Maior interrupção individual no período DICRI DIC em dia crítico Indicador específico para"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "DIC / FIC / DMIC / DICRI",
+          "linha_aprox": 2564
+        }
+      },
+      {
+        "termo": "Eficiência",
+        "unidade_rotulo": "Razão",
+        "definicao_html": "Razão entre energia útil entregue e energia de entrada. Nenhum sistema real é 100% eficiente — parte da energia vira calor, vibração, ruído, perdas magnéticas e mecânicas. Em instalações industriais, eficiência de equipamento velho é uma das primeiras frentes legítimas de redução de custo.",
+        "achados": [
+          {
+            "variante": "Eficiência",
+            "n_ocorrencias": 1,
+            "ocorrencias_contexto": [
+              "a trifásico Aquecimento de motores, perda de eficiência, vibração Flicker (flutuação de tensão) Vari"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Eficiência",
+          "linha_aprox": 2568
+        }
+      },
+      {
+        "termo": "Energia",
+        "unidade_rotulo": "kWh, MWh",
+        "definicao_html": "Capacidade de realizar trabalho ou produzir transformação. Em eletricidade, energia é potência integrada no tempo (kWh = kW × h). É a grandeza cobrada como \"consumo\" na fatura.",
+        "achados": [
+          {
+            "variante": "Energia",
+            "n_ocorrencias": 5,
+            "ocorrencias_contexto": [
+              "Aula 09 Qualidade de energia Energia ruim pode custar mais do que energia",
+              "Aula 09 Qualidade de energia Energia ruim pode custar mais do que energia cara . ",
+              "energia Energia ruim pode custar mais do que energia cara . Qualidade de energia é tema técnico c",
+              "star mais do que energia cara . Qualidade de energia é tema técnico cuja consequência é financeir",
+              "só técnico Para uma residência, qualidade de energia ruim é incômodo. Para uma indústria, é preju"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Energia",
+          "linha_aprox": 2572
+        }
+      },
+      {
+        "termo": "Frequência",
+        "unidade_rotulo": "Hz",
+        "definicao_html": "Número de ciclos por segundo de uma corrente alternada. No Brasil, 60 Hz. Funciona como termômetro físico do equilíbrio em tempo real entre geração e consumo — desvios indicam descasamento e disparam ações operacionais do ONS.",
+        "achados": [
+          {
+            "variante": "Frequência",
+            "n_ocorrencias": 3,
+            "ocorrencias_contexto": [
+              "icadores Qualidade do serviço (continuidade) Frequência e duração de interrupções DEC, FEC (coletivo",
+              "rrupção por consumidor no ano (em horas) FEC Frequência Equivalente de interrupção por unidade Consu",
+              "e interrupção naquela unidade específica FIC Frequência de Interrupção individual Número de interrup"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Frequência",
+          "linha_aprox": 2588
+        }
+      },
+      {
+        "termo": "Harmônicos",
+        "unidade_rotulo": "Qualidade",
+        "definicao_html": "Distorções na forma de onda elétrica em múltiplos da frequência fundamental. Comuns em cargas não lineares — drives de velocidade variável, inversores, fontes eletrônicas, máquinas de solda. Causam aquecimento, disparo de proteções, redução de vida útil. Tratamento técnico envolve filtros passivos ou ativos.",
+        "achados": [
+          {
+            "variante": "Harmônicos",
+            "n_ocorrencias": 3,
+            "ocorrencias_contexto": [
+              "equência é financeira. Tensão fora da faixa, harmônicos, afundamentos, interrupções — qualquer um de",
+              "para dias de alta severidade operacional 9.3 Harmônicos, afundamentos e desequilíbrios Mesmo sem int",
+              "ue: Fenômeno O que é Consequência industrial Harmônicos Distorções na forma de onda elétrica, comuns"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Harmônicos",
+          "linha_aprox": 2600
+        }
+      },
+      {
+        "termo": "PRODIST",
+        "unidade_rotulo": "Procedimentos · ANEEL",
+        "definicao_html": "Procedimentos de Distribuição de Energia Elétrica no Sistema Elétrico Nacional. Conjunto de documentos normativos que regulam tecnicamente o setor de distribuição. O <b>Módulo 8</b> trata especificamente de Qualidade do Fornecimento (continuidade, tensão, fator de potência, harmônicos).",
+        "achados": [
+          {
+            "variante": "PRODIST",
+            "n_ocorrencias": 1,
+            "ocorrencias_contexto": [
+              "vizinhança elétrica Conformidade de tensão · PRODIST Módulo 8 A ANEEL define faixas para tensão e"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "PRODIST",
+          "linha_aprox": 2648
+        }
+      },
+      {
+        "termo": "Tensão",
+        "unidade_rotulo": "V, kV",
+        "definicao_html": "Diferença de potencial elétrico entre dois pontos de um circuito. Analogia hidráulica: pressão da água. Unidade SI é o volt (V). Define grupo tarifário no Brasil: Grupo B (baixa tensão, &lt; 2,3 kV) ou Grupo A (média/alta tensão, ≥ 2,3 kV).",
+        "achados": [
+          {
+            "variante": "Tensão",
+            "n_ocorrencias": 11,
+            "ocorrencias_contexto": [
+              "tema técnico cuja consequência é financeira. Tensão fora da faixa, harmônicos, afundamentos, int",
+              "C, DICRI (individuais) Qualidade do produto (tensão) Conformidade da tensão entregue DRP, DRC · ",
+              "ualidade do produto (tensão) Conformidade da tensão entregue DRP, DRC · faixas adequada, precári",
+              "oteções, redução de vida útil Afundamento de tensão (voltage sag) Queda rápida e temporária da t",
+              "o (voltage sag) Queda rápida e temporária da tensão Desliga equipamentos sensíveis, reseta siste",
+              "falhas em isolação Desequilíbrio entre fases Tensão desigual nas três fases de um sistema trifás",
+              "e eficiência, vibração Flicker (flutuação de tensão) Variações rápidas e visíveis Comum em carga",
+              "o; afeta vizinhança elétrica Conformidade de tensão · PRODIST Módulo 8 A ANEEL define faixas par",
+              " PRODIST Módulo 8 A ANEEL define faixas para tensão entregue ao consumidor — adequada , precária",
+              "s DRP (Duração Relativa da transgressão para tensão Precária) e DRC (idem para Crítica). Quando ",
+              "onsumidor identifica problema sistemático de tensão, esse é o caminho técnico para abrir tratati"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Tensão",
+          "linha_aprox": 2656
+        }
+      },
+      {
+        "termo": "Trifásico",
+        "unidade_rotulo": "Sistema",
+        "definicao_html": "Sistema de fornecimento em corrente alternada com três fases defasadas em 120°. Padrão industrial. Permite maior potência, maior eficiência em motores, e melhor equilíbrio de carga. Praticamente todo consumidor relevante do Grupo A é atendido em trifásico.",
+        "achados": [
+          {
+            "variante": "Trifásico",
+            "n_ocorrencias": 1,
+            "ocorrencias_contexto": [
+              "Tensão desigual nas três fases de um sistema trifásico Aquecimento de motores, perda de eficiência,"
+            ]
+          }
+        ],
+        "origem": {
+          "seletor": "§ Lex details.glossary-item > summary > span.term",
+          "trecho_inicial": "Trifásico",
+          "linha_aprox": 2660
+        }
+      }
+    ]
+  },
+  "instrumentos": [],
+  "instrumentos_nota": "A fonte não tem instrumento nesta aula. Medido na fatia 2100-2174: class=\"instrument*\" = 0, <input> = 0, <button> = 0, <script> = 0, ids i09-/INSTRUMENT 09 = 0; no arquivo inteiro, linhas com \"i09-\" ou \"INSTRUMENT 09\" = 0. Os instrumentos do M01 são INST·01–06 (nenhum na A09) e LAB·01 (§ Lab).",
+  "invocacoes_no_texto": [],
+  "invocacoes_nota": "Sem instrumento nem figura para a prosa invocar.",
+  "remissoes_de_outras_partes": [
+    {
+      "texto": "Quando estudarmos qualidade de energia na Aula 09, voltaremos a este ponto.",
+      "origem": {
+        "seletor": "prosa de outra seção",
+        "trecho_inicial": "Quando estudarmos qualidade de energia na Aula 09, voltaremo",
+        "linha_aprox": 1644
+      }
+    }
+  ],
+  "mencoes_tematicas_fora_da_aula": [
+    {
+      "texto": "CLE · Diagnóstico · PQA",
+      "origem": {
+        "seletor": "outra seção (menção temática)",
+        "trecho_inicial": "CLE · Diagnóstico · PQA",
+        "linha_aprox": 1272
+      }
+    },
+    {
+      "texto": "Os fenômenos de qualidade do produto — incluindo fator de potência, harmônicos, variações de tensão, desequilíbrios e flutuações — são tratados no Módulo 8 do PRODIST (Qualidade do Fornecimento).",
+      "origem": {
+        "seletor": "outra seção (menção temática)",
+        "trecho_inicial": "Os fenômenos de qualidade do produto — incluindo fator de po",
+        "linha_aprox": 1990
+      }
+    },
+    {
+      "texto": "Listar três fenômenos de qualidade de energia e sua consequência industrial.",
+      "origem": {
+        "seletor": "outra seção (menção temática)",
+        "trecho_inicial": "Listar três fenômenos de qualidade de energia e sua consequê",
+        "linha_aprox": 2508
+      }
+    },
+    {
+      "texto": "O Módulo 8 trata especificamente de Qualidade do Fornecimento (continuidade, tensão, fator de potência, harmônicos).",
+      "origem": {
+        "seletor": "outra seção (menção temática)",
+        "trecho_inicial": "O Módulo 8 trata especificamente de Qualidade do Forneciment",
+        "linha_aprox": 2649
+      }
+    },
+    {
+      "texto": "Módulo 8: Qualidade do Fornecimento de Energia Elétrica.",
+      "origem": {
+        "seletor": "outra seção (menção temática)",
+        "trecho_inicial": "Módulo 8: Qualidade do Fornecimento de Energia Elétrica.",
+        "linha_aprox": 2694
+      }
+    },
+    {
+      "texto": "ANEEL · Qualidade do Fornecimento de Energia Elétrica.",
+      "origem": {
+        "seletor": "outra seção (menção temática)",
+        "trecho_inicial": "ANEEL · Qualidade do Fornecimento de Energia Elétrica.",
+        "linha_aprox": 2695
+      }
+    }
+  ],
+  "exercicios": [],
+  "exercicios_nota": "Nenhum exercício vinculado: dos 8 div.exercise do § Drill, tags com \"Aula 09\" = 0. Varredura dos três campos (tag, enunciado, gabarito) por tema da A09: Ex · 05 · Aula 07 (harmônic) (protocolo §4). Tags: Ex · 01 · Aula 01 | Ex · 02 · Aula 02 | Ex · 03 · Aula 04 | Ex · 04 · Aula 05 | Ex · 05 · Aula 07 | Ex · 06 · Aula 08 | Ex · 07 · 3 níveis · Aula 05 | Ex · 08 · Síntese · Diagnóstico inicial.",
+  "exercicios_varredura": {
+    "total_exercicios_fonte": 8,
+    "tags_com_Aula_09": [],
+    "casam_o_tema_sem_tag": [
+      {
+        "tag": "Ex · 05 · Aula 07",
+        "linha": 2427,
+        "casou": "harmônic"
+      }
+    ],
+    "tags_todas": [
+      "Ex · 01 · Aula 01",
+      "Ex · 02 · Aula 02",
+      "Ex · 03 · Aula 04",
+      "Ex · 04 · Aula 05",
+      "Ex · 05 · Aula 07",
+      "Ex · 06 · Aula 08",
+      "Ex · 07 · 3 níveis · Aula 05",
+      "Ex · 08 · Síntese · Diagnóstico inicial"
+    ],
+    "campos_varridos": "tag, enunciado e gabarito de todos os div.exercise (protocolo §4)"
+  },
+  "relacionados_nao_vinculados": [
+    {
+      "id": "m01-checklist-qualidade",
+      "tipo": "item_checklist_final",
+      "vinculo_declarado": null,
+      "vinculo_nota": "Checklist do § Final sem tag de aula; correspondência apenas temática.",
+      "texto": "Listar três fenômenos de qualidade de energia e sua consequência industrial.",
+      "origem": {
+        "seletor": "§ Final div.checklist-item > div.text",
+        "trecho_inicial": "Listar três fenômenos de qualidade de energia e sua consequê",
+        "linha_aprox": 2508
+      }
+    }
+  ],
+  "quiz_nota": "Nenhuma das 10 questões do quiz trata de qualidade de energia (varredura por tema nas questões e opções: nenhuma casa).",
+  "cobertura_texto_por_token": {
+    "tokens_fonte_sem_instrumento": 548,
+    "tokens_casados": 548,
+    "pct": 100,
+    "tokens_nao_casados": [],
+    "faixa_denominador": {
+      "de": 2100,
+      "ate": 2174,
+      "excluido": null
+    },
+    "nota": "Denominador = texto da section inteira (2100-2174); a A09 não tem instrumento a descontar. Tokens por palavra com baixa (cada palavra da fonte consome uma do extraído); tags viram espaço nos dois lados."
+  },
+  "divergencias": [
+    {
+      "id": "DIV-01",
+      "tipo": "promessa_da_fonte_nao_cumprida",
+      "o_que": "A 3.5 promete voltar à frequência quando \"estudarmos qualidade de energia na Aula 09\"; a A09 não volta a ela.",
+      "leitura_a": {
+        "texto": "Quando estudarmos qualidade de energia na Aula 09, voltaremos a este ponto.",
+        "origem": {
+          "seletor": "prosa de outra seção",
+          "trecho_inicial": "Quando estudarmos qualidade de energia na Aula 09, voltaremo",
+          "linha_aprox": 1644
+        }
+      },
+      "leitura_b": {
+        "texto": "Frequência e duração de interrupções | Frequência Equivalente de interrupção por unidade Consumidora | Frequência de Interrupção individual",
+        "origem": {
+          "seletor": "tabelas 9.1 e 9.2 (células com \"Frequência\")",
+          "trecho_inicial": "Frequência e duração de interrupções",
+          "linha_aprox": 2114,
+          "linha_fim_aprox": 2129
+        },
+        "argumento": "Medido: as únicas ocorrências de \"Frequência\" na section são 3 células e todas dizem frequência de INTERRUPÇÕES (FEC, FIC, \"Frequência e duração de interrupções\"), não a frequência da rede. Ocorrências de \"Hz\", \"60 vezes\", \"sincron\" ou \"ciclos\" na A09: 0."
+      },
+      "decisao": "não escolhida — preservada a promessa e o que a A09 de fato traz. A fonte não cumpre nem retira a promessa."
+    },
+    {
+      "id": "DIV-02",
+      "tipo": "prosa_x_markup_modulo",
+      "o_que": "Afirmação do § Drill sobre a cobertura dos exercícios, contra a A09 sem exercício.",
+      "leitura_a": {
+        "texto": "Resolva cada exercício mentalmente ou no papel antes de revelar a resposta. Os exercícios alcançam todas as nove aulas. O critério de domínio é resolver pelo menos seis dos oito sem consulta.",
+        "origem": {
+          "seletor": "§ Drill > p",
+          "trecho_inicial": "Resolva cada exercício mentalmente ou no papel antes de reve",
+          "linha_aprox": 2389
+        }
+      },
+      "leitura_b": {
+        "texto": "Ex · 01 · Aula 01 | Ex · 02 · Aula 02 | Ex · 03 · Aula 04 | Ex · 04 · Aula 05 | Ex · 05 · Aula 07 | Ex · 06 · Aula 08 | Ex · 07 · 3 níveis · Aula 05 | Ex · 08 · Síntese · Diagnóstico inicial",
+        "origem": {
+          "seletor": "span.exercise-tag (8 ocorrências)",
+          "trecho_inicial": "Ex · 01 · Aula 01",
+          "linha_aprox": 2392,
+          "linha_fim_aprox": 2457
+        },
+        "argumento": "Tags com \"Aula 09\": 0. A varredura dos três campos (tag, enunciado, gabarito) dos 8 exercícios por tema da A09 (qualidade, harmônicos, afundamento, DEC/FEC/DIC/FIC, PRODIST, DRP/DRC…) acha: Ex · 05 · Aula 07 (\"harmônic\")."
+      },
+      "decisao": "não escolhida — o markup vence para posse (§5); a A09 fica sem exercício, e a prosa é registrada."
+    },
+    {
+      "id": "DIV-03",
+      "tipo": "fonte_x_fonte_entre_aulas",
+      "o_que": "A07 trata fator de potência como fenômeno de \"qualidade do produto\" do PRODIST Módulo 8; a tabela 9.1 da A09 define \"Qualidade do produto\" como conformidade da tensão e não cita fator de potência.",
+      "leitura_a": {
+        "texto": "Os fenômenos de qualidade do produto — incluindo fator de potência, harmônicos, variações de tensão, desequilíbrios e flutuações — são tratados no Módulo 8 do PRODIST (Qualidade do Fornecimento).",
+        "origem": {
+          "seletor": "A07 callout \"Referência regulatória\" > p",
+          "trecho_inicial": "Os fenômenos de qualidade do produto",
+          "linha_aprox": 1990
+        }
+      },
+      "leitura_b": {
+        "texto": "Qualidade do produto (tensão) | Conformidade da tensão entregue | DRP, DRC · faixas adequada, precária, crítica",
+        "origem": {
+          "seletor": "tabela 9.1 > tr(Qualidade do produto)",
+          "trecho_inicial": "Qualidade do produto (tensão)",
+          "linha_aprox": 2115
+        },
+        "argumento": "A tabela 9.3 (fenômenos) também não tem fator de potência. O léxico do PRODIST (L2649) lista \"continuidade, tensão, fator de potência, harmônicos\"."
+      },
+      "decisao": "não escolhida — as duas definições de \"qualidade do produto\" coexistem na fonte."
+    },
+    {
+      "id": "DIV-04",
+      "tipo": "fonte_titulo_x_conteudo",
+      "o_que": "O h3 9.3 nomeia três fenômenos, a tabela traz cinco e o checklist final pede \"três\".",
+      "leitura_a": {
+        "texto": "Harmônicos, afundamentos e desequilíbrios",
+        "origem": {
+          "seletor": "h3(9.3)",
+          "trecho_inicial": "Harmônicos, afundamentos e desequilíbrios",
+          "linha_aprox": 2136
+        },
+        "argumento": "O título diz \"Harmônicos, afundamentos e desequilíbrios\"."
+      },
+      "leitura_b": {
+        "texto": "Harmônicos | Afundamento de tensão (voltage sag) | Sobretensão | Desequilíbrio entre fases | Flicker (flutuação de tensão)",
+        "origem": {
+          "seletor": "tabela 9.3 > tr > td:first-child",
+          "trecho_inicial": "Harmônicos",
+          "linha_aprox": 2143,
+          "linha_fim_aprox": 2147
+        },
+        "argumento": "A tabela acrescenta \"Sobretensão\" e \"Flicker (flutuação de tensão)\". O item do checklist final (L2508) diz: \"Listar três fenômenos de qualidade de energia e sua consequência industrial.\""
+      },
+      "decisao": "não escolhida — título (3), tabela (5) e checklist (três a listar) coexistem."
+    }
+  ],
+  "comparacao_codigo": {
+    "arquivos": [
+      "src/lib/data/alexandria-modulo-01-content.ts (MODULO_01_LEAD aula-01-09 ~l.171; MODULO_01_CORPO aula-01-09 ~l.313-328; MODULO_01_AULAS aula-01-09 ~l.550-569)",
+      "src/lib/data/alexandria-glossario.ts (aulaIds)"
+    ],
+    "verificacoes_programaticas": {
+      "por_bloco": [
+        {
+          "bloco": "m01-a09-b01-lead",
+          "tipo": "lead",
+          "linha": 2105,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a09-b02-titulo",
+          "tipo": "titulo",
+          "linha": 2107,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a09-b03-paragrafo",
+          "tipo": "paragrafo",
+          "linha": 2108,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a09-b04-tabela",
+          "tipo": "tabela",
+          "linha": 2111,
+          "celulas": 12,
+          "celulas_verbatim": 12,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a09-b05-titulo",
+          "tipo": "titulo",
+          "linha": 2121,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a09-b06-tabela",
+          "tipo": "tabela",
+          "linha": 2123,
+          "celulas": 21,
+          "celulas_verbatim": 21,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a09-b07-titulo",
+          "tipo": "titulo",
+          "linha": 2136,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a09-b08-paragrafo",
+          "tipo": "paragrafo",
+          "linha": 2137,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a09-b09-tabela",
+          "tipo": "tabela",
+          "linha": 2140,
+          "celulas": 18,
+          "celulas_verbatim": 18,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a09-b10-destaque",
+          "tipo": "destaque",
+          "linha": 2152,
+          "rotulo_no_codigo_como_nota": true,
+          "corpo_no_codigo": true,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a09-b11-titulo",
+          "tipo": "titulo",
+          "linha": 2157,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a09-b12-paragrafo",
+          "tipo": "paragrafo",
+          "linha": 2158,
+          "verbatim_no_codigo": true
+        },
+        {
+          "bloco": "m01-a09-b13-lista",
+          "tipo": "lista",
+          "linha": 2160,
+          "itens": 6,
+          "itens_no_codigo": 0,
+          "verbatim_no_codigo": false
+        },
+        {
+          "bloco": "m01-a09-b14-destaque",
+          "tipo": "destaque",
+          "linha": 2169,
+          "rotulo_no_codigo_como_nota": true,
+          "corpo_no_codigo": false,
+          "verbatim_no_codigo": false
+        }
+      ],
+      "span_orfao_no_corpo": 0,
+      "span_na_fonte_da_aula": 7,
+      "lista_no_corpo_codigo": false,
+      "classe_mono_no_corpo_codigo": false,
+      "celulas_td_com_classe_na_fonte": 6,
+      "atividades_vazias_no_codigo": true,
+      "instruments_vazio_no_codigo": true,
+      "marca_gridalpha_na_fonte_da_aula": 1,
+      "marca_gridalpha_no_corpo_codigo": 0,
+      "marca_nivar_no_corpo_codigo": 1,
+      "glossario": {
+        "verbetes_lidos_no_codigo": 35,
+        "ligados_a_aula_no_codigo": [
+          "DEC / FEC",
+          "DIC / FIC / DMIC / DICRI",
+          "Eficiência",
+          "Energia",
+          "Frequência",
+          "Harmônicos",
+          "PRODIST",
+          "Tensão",
+          "Trifásico"
+        ],
+        "candidatos_textuais_na_fonte": [
+          "DEC / FEC",
+          "DIC / FIC / DMIC / DICRI",
+          "Eficiência",
+          "Energia",
+          "Frequência",
+          "Harmônicos",
+          "PRODIST",
+          "Tensão",
+          "Trifásico"
+        ],
+        "ligados_no_codigo_sem_ocorrencia_textual": [],
+        "ocorrencia_textual_sem_ligacao_no_codigo": []
+      }
+    },
+    "conforme": [
+      "Lead (p.lead) verbatim em MODULO_01_LEAD[\"aula-01-09\"].",
+      "Títulos 9.1–9.4 com número e texto corretos.",
+      "As 3 tabelas (9.1: 3×3, 9.2: 6×3, 9.3: 5×3) com todas as 51 células (cabeçalho incluído) verbatim, com o <b> preservado.",
+      "Os 4 parágrafos de prosa (9.1, 9.3, 9.4 e o corpo do callout PRODIST) verbatim.",
+      "activities: [] e instruments: [] — coerente com a fonte (a A09 não tem exercício nem instrumento; medido).",
+      "durationMinutes / difficulty / video = null, coerente com a fonte.",
+      "Sem </span> órfão no corpo de aula-01-09 (medido: 0; a fonte da aula tem 7 <span>, só nos marcadores)."
+    ],
+    "divergencias": [
+      {
+        "id": "COD-01",
+        "gravidade": "alta",
+        "onde": "MODULO_01_CORPO[\"aula-01-09\"]",
+        "o_que": "A lista <ul> de 9.4 (6 itens: Linha de produção parada — perda de receita, atraso de entrega · Material em processo perdido — desperdício direto · Equipamento danificado — reposição, manutenção corretiva · Horas extras para recuperação — custo de mão de obra · Vida útil reduzida — depreciação acelerada · Risco de segurança — incidentes elétricos) não foi portada: o código não tem nenhum bloco kind 'lista' em aula-01-09 (medido: não tem; itens presentes no corpo: 0/6). O parágrafo \"Para uma residência, qualidade de energia ruim é incômodo. Para uma indústria, é prejuízo direto:\" termina em dois-pontos e o bloco seguinte já é o callout. Perda silenciosa.",
+        "fonte": "linhas 2160-2167"
+      },
+      {
+        "id": "COD-02",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-09\"] callouts",
+        "o_que": "Os dois callouts (\"Conformidade de tensão · PRODIST Módulo 8\" e \"Onde isso entra no produto\") foram portados como nota { tom: \"neutro\", label: null, html: <rótulo> } seguida de parágrafo solto. Na fonte o texto é o RÓTULO (div.callout-label) e o parágrafo é o CORPO do mesmo callout. Hierarquia partida (mesma natureza do COD-08 da A08).",
+        "fonte": "linhas 2152-2155, 2169-2172"
+      },
+      {
+        "id": "COD-03",
+        "gravidade": "média",
+        "onde": "MODULO_01_CORPO[\"aula-01-09\"] corpo do callout \"Onde isso entra no produto\"",
+        "o_que": "Não verbatim: a fonte diz \"No Power Quality Audit (PQA) da GridAlpha, …\"; o código diz \"… da NIVAR, …\" (ocorrências de \"GridAlpha\" na fonte da aula: 1; no corpo portado: 0; \"NIVAR\" no corpo portado: 1). Troca editorial (P24) sem marca no código. Além disso, este callout é o bloco de produto que o P7 manda não exibir (README do m01); o código o mantém.",
+        "fonte": "linha 2171"
+      },
+      {
+        "id": "COD-04",
+        "gravidade": "baixa",
+        "onde": "MODULO_01_CORPO[\"aula-01-09\"] tabela 9.2",
+        "o_que": "Nas células da primeira coluna da tabela 9.2 a fonte tem <td class=\"mono\"> (6 células: DEC, FEC, DIC, FIC, DMIC, DICRI). O tipo 'tabela' do código só guarda o html da célula; a classe mono se perdeu (medido: ausente no corpo). Só aparência; o texto está intacto.",
+        "fonte": "linhas 2126-2131"
+      },
+      {
+        "id": "COD-05",
+        "gravidade": "baixa",
+        "onde": "alexandria-glossario.ts aulaIds",
+        "o_que": "aulaIds contêm \"aula-01-09\" em 9 verbetes (DEC / FEC; DIC / FIC / DMIC / DICRI; Eficiência; Energia; Frequência; Harmônicos; PRODIST; Tensão; Trifásico); a fonte não declara aula por termo. Candidatos textuais medidos na section: DEC / FEC; DIC / FIC / DMIC / DICRI; Eficiência; Energia; Frequência; Harmônicos; PRODIST; Tensão; Trifásico. Ligados no código sem ocorrência textual na aula: nenhum. Ocorrência textual sem ligação no código: nenhum. Derivação do código; ler \"ocorrencias_contexto\" antes de ligar (§2): \"Frequência\" aqui é \"frequência de interrupções\", não os 60 Hz.",
+        "fonte": "linhas 2520-2690"
+      },
+      {
+        "id": "COD-06",
+        "gravidade": "informativa",
+        "onde": "ids",
+        "o_que": "Código usa \"aula-01-09\"; esta extração usa \"m01-a09\" (id estável com prefixo de módulo). Não há instrumento nem exercício a mapear.",
+        "fonte": null
+      }
+    ]
+  },
+  "contagens": {
+    "blocos": 14,
+    "blocos_por_tipo": {
+      "lead": 1,
+      "titulo": 4,
+      "paragrafo": 3,
+      "tabela": 3,
+      "destaque": 2,
+      "lista": 1
+    },
+    "secoes_numeradas": [
+      "9.1",
+      "9.2",
+      "9.3",
+      "9.4"
+    ],
+    "figuras": 0,
+    "tabelas": 3,
+    "linhas_por_tabela": [
+      "3×3",
+      "6×3",
+      "5×3"
+    ],
+    "celulas_de_dados": 42,
+    "listas": 1,
+    "itens_de_lista": 6,
+    "destaques": 2,
+    "vale_lembrar": 0,
+    "instrumentos": 0,
+    "exercicios_vinculados": 0,
+    "relacionados_nao_vinculados": 1,
+    "remissoes_de_outras_partes": 1,
+    "mencoes_tematicas_fora_da_aula": 6,
+    "termos_lexico_candidatos": 9,
+    "verbetes_lexico_modulo": 38,
+    "divergencias_fonte": 4,
+    "divergencias_codigo": 6
+  }
+}

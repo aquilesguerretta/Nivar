@@ -1,0 +1,40 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" /></head>
+<body>
+  <template>
+    <style>
+      #root { position: absolute; inset: 0; }
+    </style>
+    <div id="root" data-composition-id="indice" data-width="1920" data-height="1080">
+      <div id="ix-cena" class="fundo">
+        <div class="coluna">
+          <p id="ix-cap" class="mono cap">01 · O índice</p>
+          <span id="ix-fio" class="cap-fio"></span>
+          <h2 id="ix-man" class="serif manchete">Cada módulo parte de <em>uma frase.</em></h2>
+          <p id="ix-apoio" class="apoio">Três trilhas, dezessete módulos. A frase de cada um abre o índice, antes de qualquer aula.</p>
+        </div>
+        <p id="ix-nota" class="nota-folha">Tela real · /alexandria/trilhas</p>
+        <div id="ix-folha" class="folha"><div id="ix-jan" class="janela"><img src="assets/indice.png" alt="" /></div></div>
+        <p class="selo tela">Tela real da plataforma · sem conta</p>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power2.out", S = "sine.inOut";
+      // enquadramento: ponto (cx, cy) da captura no centro da folha, na escala s
+      const W = 1160, H = 900;
+      const q = (cx, cy, s) => ({ x: W / 2 - cx * s, y: H / 2 - cy * s, scale: s, transformOrigin: "0% 0%" });
+      tl.fromTo("#ix-cena", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: S }, 0);
+      tl.fromTo("#ix-cap", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.5);
+      tl.fromTo("#ix-fio", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 0.6);
+      tl.fromTo("#ix-man", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.2, ease: E }, 0.9);
+      tl.fromTo("#ix-apoio", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.0, ease: E }, 2.0);
+      tl.fromTo("#ix-nota", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 1.0);
+      tl.fromTo("#ix-folha", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.0, ease: "power3.out" }, 0.3);
+      // percorre a Trilha I lendo as frases, depois corre até a Trilha III
+      tl.fromTo("#ix-jan", q(1150, 560, 0.8), { ...q(1150, 1620, 0.8), duration: 7.0, ease: "power1.inOut" }, 0.6);
+      tl.to("#ix-jan", { ...q(1150, 5600, 0.8), duration: 2.4, ease: "power3.inOut" }, 7.8);
+      window.__timelines["indice"] = tl;
+    </script>
+  </template>
+</body></html>

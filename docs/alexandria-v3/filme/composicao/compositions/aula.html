@@ -1,0 +1,44 @@
+<!doctype html>
+<html><head><meta charset="UTF-8" /></head>
+<body>
+  <template>
+    <style>
+      #root { position: absolute; inset: 0; }
+    </style>
+    <div id="root" data-composition-id="aula" data-width="1920" data-height="1080">
+      <div id="au-cena" class="fundo">
+        <div class="coluna">
+          <p id="au-cap" class="mono cap">02 · A aula</p>
+          <span id="au-fio" class="cap-fio"></span>
+          <h2 id="au-man" class="serif manchete">Antes de calcular, <em>você prevê.</em></h2>
+          <p id="au-apoio" class="apoio">Leia a aula: o texto e os números vêm do material de origem, e a origem fica escrita junto.</p>
+        </div>
+        <p id="au-nota" class="nota-folha">Tela real · M01 · Aula 08</p>
+        <div id="au-folha" class="folha">
+          <div id="au-jan" class="janela">
+            <video id="au-v" src="assets/previsao.mp4" muted playsinline data-start="0.6" data-duration="11.4" data-track-index="0"></video>
+          </div>
+        </div>
+        <p class="selo tela">Tela real · conta de demonstração · previsão de exemplo</p>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power2.out", S = "sine.inOut";
+      const W = 1160, H = 900;
+      const q = (cx, cy, s) => ({ x: W / 2 - cx * s, y: H / 2 - cy * s, scale: s, transformOrigin: "0% 0%" });
+      tl.fromTo("#au-cena", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: S }, 0);
+      tl.fromTo("#au-cap", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.5);
+      tl.fromTo("#au-fio", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 0.6);
+      tl.fromTo("#au-man", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.2, ease: E }, 0.9);
+      tl.fromTo("#au-apoio", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.0, ease: E }, 2.2);
+      tl.fromTo("#au-nota", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 1.0);
+      tl.fromTo("#au-folha", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.0, ease: "power3.out" }, 0.3);
+      // a aula inteira → aproxima no ato de previsão enquanto o campo é preenchido → recua um pouco após o registro
+      tl.fromTo("#au-jan", q(960, 706, 0.604), { ...q(960, 706, 0.604), duration: 1.6 }, 0.6);
+      tl.to("#au-jan", { ...q(1500, 390, 1.15), duration: 1.4, ease: "power3.inOut" }, 2.0);
+      tl.to("#au-jan", { ...q(1400, 420, 1.0), duration: 2.4, ease: "power2.inOut" }, 7.6);
+      window.__timelines["aula"] = tl;
+    </script>
+  </template>
+</body></html>

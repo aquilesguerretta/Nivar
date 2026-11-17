@@ -1,0 +1,1105 @@
+{
+  "modulo": "modulo-17",
+  "titulo_modulo": "Cenário Internacional Comparativo",
+  "arquivos_fonte": [
+    "src/lib/data/alexandria-modulo-17-content.ts",
+    "docs/alexandria-v2/extraction/m17/aparato.json",
+    "docs/alexandria-v2/extraction/m17/modulo.json"
+  ],
+  "aulas": [
+    {
+      "numero": 1,
+      "chave": "aula-17-01",
+      "titulo": "As sete declarações que precedem qualquer comparação de preço"
+    },
+    {
+      "numero": 2,
+      "chave": "aula-17-02",
+      "titulo": "Dotação, desenho e política: a diferença que sobreviveu ao perímetro"
+    },
+    {
+      "numero": 3,
+      "chave": "aula-17-03",
+      "titulo": "Por custo declarado ou por oferta; nodal, zonal ou uniforme"
+    },
+    {
+      "numero": 4,
+      "chave": "aula-17-04",
+      "titulo": "Mercado de capacidade é um produto, não uma quantidade"
+    },
+    {
+      "numero": 5,
+      "chave": "aula-17-05",
+      "titulo": "Sete operadores, um país, e o experimento mais limpo do mundo"
+    },
+    {
+      "numero": 6,
+      "chave": "aula-17-06",
+      "titulo": "A parcela de política, isolada no ambiente mais limpo possível"
+    },
+    {
+      "numero": 7,
+      "chave": "aula-17-07",
+      "titulo": "O maior sistema do mundo em capacidade instalada, e o que isso não significa"
+    },
+    {
+      "numero": 8,
+      "chave": "aula-17-08",
+      "titulo": "Teto e comércio, tributo e fronteira são três mecanismos distintos"
+    },
+    {
+      "numero": 9,
+      "chave": "aula-17-09",
+      "titulo": "Quatro números diferentes recebem o mesmo nome"
+    },
+    {
+      "numero": 10,
+      "chave": "aula-17-10",
+      "titulo": "Cinco casos que ensinam o que os grandes não ensinam"
+    },
+    {
+      "numero": 11,
+      "chave": "aula-17-11",
+      "titulo": "O verificador aplicado, e o fechamento sem ranking"
+    }
+  ],
+  "mencoes": [
+    {
+      "aula": 1,
+      "tipo": "mercado_estrangeiro",
+      "nome": "Alemanha (mercado europeu de zona nacional)",
+      "trecho": "O primeiro é uma média aritmética de um mercado de ofertas com preço uniforme por zona nacional, sem rede, sem encargos e sem tributos",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 131,
+      "contexto": "Exemplo canônico do módulo: um preço médio europeu de cerca de €89/MWh comparado a um preço de submercado brasileiro; a aula diz só \"um mercado europeu\" (o mesmo número volta no Caso A da Aula 09, que a ficha do módulo trata como Alemanha — identificação do leitor).",
+      "ganho_no_mapa": "Ver a zona de preço cobrindo um país inteiro mostra que o número europeu é a média de uma área nacional, não o preço de um lugar.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 1,
+      "tipo": "submercado",
+      "nome": "Submercados do SIN",
+      "trecho": "o preço médio de curto prazo de um mercado europeu num ano recente, em torno de <b>€89/MWh</b>, e o preço de curto prazo médio de um submercado brasileiro no mesmo ano",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 131,
+      "contexto": "O segundo número da comparação é o preço de curto prazo médio de um submercado brasileiro, que a carga contratada não paga.",
+      "ganho_no_mapa": "Ver os quatro submercados como áreas de preço mostra de que tipo de objeto o número brasileiro é a média.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 1,
+      "tipo": "outro",
+      "nome": "Nó, zona e submercado (granularidade do preço)",
+      "trecho": "Um preço nodal é o custo de atender mais um megawatt naquele ponto específico da rede, com congestionamento e perdas dentro; um preço zonal é uma média sobre uma área em que o congestionamento interno foi assumido como inexistente por convenção",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 130,
+      "contexto": "A sétima declaração de perímetro: preço nodal, zonal e uniforme por submercado são objetos de tipos diferentes.",
+      "ganho_no_mapa": "Ver lado a lado um ponto da rede, uma zona nacional e um submercado mostra que os três preços cobrem extensões que não se comparam.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "rio_bacia",
+      "nome": "Bacia hidrográfica continental brasileira",
+      "trecho": "Um sistema cuja matriz elétrica é majoritariamente renovável porque uma bacia hidrográfica continental atravessa o território não descobriu nada que possa ser copiado por um país sem aquela bacia.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 137,
+      "contexto": "Dotação não é lição: uma matriz renovável explicada por uma bacia continental não pode ser copiada; a aula não nomeia o país (a ficha do módulo atribui essa dotação ao Brasil).",
+      "ganho_no_mapa": "Ver a bacia atravessando o território, com usinas e reservatórios ao longo dos rios, mostra que a matriz limpa vem da geografia, não de uma política.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "estado_regiao",
+      "nome": "Faixa costeira de vento excepcional (não nomeada na fonte)",
+      "trecho": "Um sistema com fator de capacidade eólico excepcional numa faixa costeira específica não tem uma política melhor — tem vento melhor.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 137,
+      "contexto": "Segundo exemplo de dotação: fator de capacidade eólico alto numa faixa costeira é vento, não mérito de política.",
+      "ganho_no_mapa": "Ver os parques eólicos enfileirados numa faixa de litoral mostra que a vantagem é do lugar.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "linha",
+      "nome": "Transporte de longa distância entre geração e consumo",
+      "trecho": "quando um sistema é mais caro porque precisa transportar energia por milhares de quilômetros entre onde ela é gerada e onde é consumida, isso também é dotação, e também não é falha de gestão.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 138,
+      "contexto": "A geografia entra nos dois lados da conta: o custo de transportar energia por milhares de quilômetros também é dotação.",
+      "ganho_no_mapa": "Ver os corredores que ligam usinas distantes aos centros de carga mostra o custo de transporte como consequência do mapa.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 2,
+      "tipo": "reservatorio",
+      "nome": "Reservatórios de estocagem plurianual",
+      "trecho": "Mercado de capacidade resolve um problema de adequação que tem forma diferente num sistema com estocagem hidráulica plurianual.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 144,
+      "contexto": "O desenho ótimo depende da dotação: o problema de adequação tem outra forma num sistema com estocagem hidráulica plurianual.",
+      "ganho_no_mapa": "Ver os grandes reservatórios mostra o estoque de energia que muda a forma do problema que um mercado de capacidade resolve em outros países.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 2,
+      "tipo": "pais",
+      "nome": "França",
+      "trecho": "Uma frota nuclear grande e padronizada é <b>escolha de política</b> mantida por décadas, com custo fiscal e industrial que foi assumido explicitamente.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 148,
+      "contexto": "Decomposição ilustrativa de \"sistema com base nuclear grande contra sistema hidrotérmico\": a frota nuclear é escolha de política; a aula não nomeia o país (a grade do módulo descreve a França como frota nuclear padronizada — identificação do leitor).",
+      "ganho_no_mapa": "No globo, o contraste entre um país de frota nuclear e um país de bacia hidráulica mostra duas matrizes de baixa emissão por razões diferentes.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "reservatorio",
+      "nome": "Reservatórios de estocagem plurianual",
+      "trecho": "Otimização de um recurso estocado plurianual — água em reservatório — contra combustível, num horizonte que nenhum agente individual internaliza.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 155,
+      "contexto": "O despacho por custo declarado entrega a otimização da água estocada contra combustível num horizonte que nenhum agente internaliza.",
+      "ganho_no_mapa": "Ver os reservatórios em cascata mostra o recurso comum que o operador otimiza de forma centralizada.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "linha",
+      "nome": "Linha congestionada (preço nodal)",
+      "trecho": "a mesma energia custa mais para quem está do lado errado de uma linha congestionada",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 160,
+      "contexto": "O preço nodal expõe o congestionamento no ponto em que ocorre, com resultado distributivo entre os dois lados da linha.",
+      "ganho_no_mapa": "Ver uma linha saturada com preços diferentes de cada lado torna visível quem paga pelo congestionamento.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "mercado_estrangeiro",
+      "nome": "Zona de preço nacional (desenho zonal)",
+      "trecho": "Um preço por área ampla, tipicamente o território de um país ou de um estado, com o congestionamento interno assumido como inexistente por convenção e resolvido depois por redespacho.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 160,
+      "contexto": "O preço zonal assume que não há congestionamento dentro da zona e o resolve depois por redespacho.",
+      "ganho_no_mapa": "Ver um país inteiro pintado com um único preço mostra o congestionamento interno que o desenho zonal deixa fora do preço.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "submercado",
+      "nome": "Submercados do SIN",
+      "trecho": "Um preço por área de mercado definida administrativamente, com valor derivado de otimização e não de ofertas, e com separação de preço entre áreas só quando o intercâmbio satura.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 160,
+      "contexto": "Terceira granularidade: preço uniforme por submercado, derivado de otimização, com separação de preço só quando o intercâmbio satura.",
+      "ganho_no_mapa": "Ver os quatro submercados e as interligações entre eles mostra onde o preço se separa quando o intercâmbio chega ao limite.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 3,
+      "tipo": "linha",
+      "nome": "Transporte de longa distância entre geração e consumo",
+      "trecho": "Um sistema em que a geração está a milhares de quilômetros do consumo ganha muito e paga o custo distributivo.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 161,
+      "contexto": "O que decide a granularidade do preço é a relação entre onde está o recurso, onde está a carga e quanto custa a linha entre os dois.",
+      "ganho_no_mapa": "Ver a distância entre as usinas e a carga mostra quando um sinal locacional de preço faria diferença.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 3,
+      "tipo": "intercambio",
+      "nome": "Intercâmbio entre submercados",
+      "trecho": "a separação de preço entre submercados e a saturação de intercâmbio são a manifestação brasileira do mesmo fenômeno",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 163,
+      "contexto": "A separação de preço entre submercados e a saturação de intercâmbio são a versão brasileira do congestionamento que o preço nodal expõe.",
+      "ganho_no_mapa": "Ver os fluxos entre submercados e os limites das interligações mostra onde o congestionamento brasileiro vira diferença de preço.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "mercado_estrangeiro",
+      "nome": "Os sete operadores de mercados organizados dos Estados Unidos",
+      "trecho": "Existe um regulador federal com jurisdição sobre o comércio atacadista interestadual e sobre tarifas de transmissão, seis operadores regionais sob essa jurisdição, um sétimo que opera quase inteiramente dentro de uma única fronteira estadual",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 117,
+      "contexto": "Abertura da aula: não existe \"o mercado americano\", e sim seis operadores regionais sob jurisdição federal e um sétimo quase todo dentro de um estado.",
+      "ganho_no_mapa": "Ver os territórios dos sete operadores lado a lado mostra que \"mercado americano\" é um mosaico de áreas com desenhos diferentes.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "estado_regiao",
+      "nome": "Território dos Estados Unidos fora dos mercados organizados",
+      "trecho": "um vasto território fora dos mercados organizados onde concessionárias verticalmente integradas continuam sendo a estrutura dominante",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 117,
+      "contexto": "Fora dos mercados organizados, concessionárias verticalmente integradas seguem dominantes.",
+      "ganho_no_mapa": "Ver a área sem operador de mercado mostra quanto do país fica fora da comparação quando se fala nos sete.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "mercado_estrangeiro",
+      "nome": "PJM",
+      "trecho": "O maior deles em carga atende treze estados e um distrito federal, com parque térmico e nuclear grande, e opera simultaneamente um mercado de energia com programação do dia anterior e ajuste em tempo real, serviços ancilares, direitos financeiros de transmissão e um leilão de capacidade plurianual.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 182,
+      "contexto": "Caso principal da aula: preço nodal com mercado central de capacidade; a aula descreve o operador sem nomeá-lo (a grade do módulo o registra com a chave \"pjm\", mercado organizado do meio-atlântico).",
+      "ganho_no_mapa": "Ver treze estados e um distrito federal sob um único operador mostra a escala do sistema em que quatro produtos se formam com granularidade nodal.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "mercado_estrangeiro",
+      "nome": "ERCOT",
+      "trecho": "O operador que atende quase toda a carga de um único estado grande é o caso extremo do desenho oposto: não há leilão central de capacidade, e a adequação depende de receita de energia, de serviços ancilares, de preço de escassez, de contratos bilaterais e de investimento por conta e risco.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 187,
+      "contexto": "Primeiro caso extremo: desenho só de energia, sem leilão central de capacidade; operador não nomeado na aula (chave \"erc\" na grade do módulo, mercado organizado do sul central).",
+      "ganho_no_mapa": "Ver um operador contido em um único estado mostra por que o desenho ali é decisão estadual e não federal.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "sistema_isolado",
+      "nome": "Rede quase isolada do ERCOT",
+      "trecho": "A rede é quase isolada das demais, o que reduz a jurisdição federal sobre ela e, na mesma medida, transfere ao estado a responsabilidade integral pelo próprio desenho — e pelas consequências dele.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 187,
+      "contexto": "O isolamento elétrico reduz a jurisdição federal e deixa ao estado a responsabilidade integral pelo desenho.",
+      "ganho_no_mapa": "Ver as poucas ligações dessa rede com as vizinhas mostra por que o socorro externo é limitado num evento extremo.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "mercado_estrangeiro",
+      "nome": "CAISO",
+      "trecho": "O operador da costa oeste é o caso extremo na outra direção: alta penetração solar, expansão rápida de baterias e políticas climáticas estaduais fortes, sem leilão central de capacidade.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 191,
+      "contexto": "Segundo caso extremo: descarbonização induzida por política estadual, com alta penetração solar e baterias; operador não nomeado na aula (chave \"cai\" na grade do módulo, operador da costa oeste norte-americana).",
+      "ganho_no_mapa": "Ver a costa oeste com sua concentração solar mostra onde a política estadual, e não o desenho de mercado, puxou a matriz.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 5,
+      "tipo": "mercado_estrangeiro",
+      "nome": "Mercado do dia anterior estendido à região oeste dos Estados Unidos (não nomeado na fonte)",
+      "trecho": "o mercado do dia anterior estendido àquela região passou a publicar resultados com suficiência de recursos, preços, reservas de desequilíbrio e transferências",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 191,
+      "contexto": "Desde 1º de maio de 2026 o mercado do dia anterior estendido amplia a coordenação regional sem unificar política energética.",
+      "ganho_no_mapa": "Ver a área do mercado estendido além do território do operador mostra a diferença entre integrar mercado e unificar política.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 5,
+      "tipo": "outro",
+      "nome": "Corte de geração solar na costa oeste dos Estados Unidos",
+      "trecho": "Preço negativo e corte de geração num sistema com alta penetração solar <b>não significam que renovável não funciona</b>. Significam que localização, rede, flexibilidade e demanda não acompanharam a produção.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 192,
+      "contexto": "Preço negativo e corte de geração indicam que rede, localização e flexibilidade não acompanharam a produção, não que a renovável falhou.",
+      "ganho_no_mapa": "Ver onde a geração solar se concentra e por onde ela escoa mostra que o corte é um problema de rede e de lugar.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "pais",
+      "nome": "Estados Unidos",
+      "trecho": "os mesmos mercados organizados da aula anterior, atravessados por uma mudança de orientação da política energética federal a partir de 2025.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 118,
+      "contexto": "A aula isola a parcela de política: os mesmos mercados, com desenho e dotação parados, atravessados por uma mudança de política federal.",
+      "ganho_no_mapa": "No globo, marca o país em que só a política mudou enquanto o mapa físico ficou igual.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "estado_regiao",
+      "nome": "Estados norte-americanos (competência estadual sobre recursos e varejo)",
+      "trecho": "em várias das jurisdições estaduais cobertas por esses mercados, o estado controla planejamento de recursos, licenciamento, varejo e política de portfólio, enquanto o regulador federal supervisiona o atacado e a transmissão interestadual.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 202,
+      "contexto": "Federalismo como desenho: o estado controla planejamento, licenciamento e varejo; o regulador federal, o atacado e a transmissão interestadual.",
+      "ganho_no_mapa": "Ver as divisas estaduais sob um mesmo mercado regional mostra por que a decisão de um estado altera o mercado dos vizinhos.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 6,
+      "tipo": "linha",
+      "nome": "Linha de transmissão interestadual",
+      "trecho": "Uma linha de transmissão pode ser economicamente justificada e politicamente bloqueada por qualquer um dos estados que ela atravessa.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 202,
+      "contexto": "Uma linha economicamente justificada pode ser bloqueada por qualquer estado no trajeto.",
+      "ganho_no_mapa": "Ver o traçado de uma linha cruzando várias divisas mostra quantos vetos políticos cabem num único corredor.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "pais",
+      "nome": "China",
+      "trecho": "Ao fim de 2025, a capacidade instalada total do sistema chegou a cerca de <b>3,89 TW</b>, alta de aproximadamente 16% em um ano, dos quais cerca de <b>1,8 TW</b> em eólica e solar",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 208,
+      "contexto": "A aula sobre a China (nomeada na abertura da aula) apresenta a escala do maior sistema do mundo em capacidade instalada e separa potência de energia.",
+      "ganho_no_mapa": "No globo, a escala do sistema chinês ao lado dos demais dá a ordem de grandeza que os números em TW não transmitem.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "mercado_estrangeiro",
+      "nome": "Mercado nacional unificado de eletricidade da China",
+      "trecho": "participação direta no mercado para todas as fontes e consumidores, exceto os sob arranjo de suprimento garantido, com <b>cerca de 70% do consumo transacionado em mercado até 2030</b> e sistema nacional plenamente unificado até 2035.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 212,
+      "contexto": "A reforma chinesa tem calendário público: cerca de 70% do consumo transacionado em mercado até 2030 e unificação nacional até 2035.",
+      "ganho_no_mapa": "Ver as províncias como mercados em transição mostra que o \"mercado unificado\" ainda é um conjunto de áreas com preços próprios.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 7,
+      "tipo": "estado_regiao",
+      "nome": "China — recurso no oeste e no norte, carga no litoral leste",
+      "trecho": "O recurso eólico, solar, hidrelétrico e de carvão está concentrado no oeste e no norte; a carga está concentrada no litoral leste. A distância entre os dois é a variável estruturante, e é <b>dotação</b> — ninguém a escolheu.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 214,
+      "contexto": "A distância entre o recurso (oeste e norte) e a carga (litoral leste) é a variável estruturante do sistema chinês, e é dotação.",
+      "ganho_no_mapa": "Ver a geração de um lado do país e as cidades do outro explica de imediato por que um preço único nacional apagaria o sinal que importa.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "linha",
+      "nome": "Corredores de transporte oeste–leste da China",
+      "trecho": "o plano de rede publicado no fim de 2025 prevê mais de 420 GW de capacidade de transporte oeste-leste até 2030",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 214,
+      "contexto": "O plano de rede prevê mais de 420 GW de capacidade de transporte oeste–leste até 2030, porque a linha é a restrição do sistema.",
+      "ganho_no_mapa": "Ver os corredores cruzando o país mostra a rede como a peça que liga recurso e carga.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 7,
+      "tipo": "outro",
+      "nome": "Dois grupos estatais de rede da China (não nomeados na fonte)",
+      "trecho": "A operação de rede é executada por dois grupos estatais de grande porte que não são apenas concessionárias: executam padronização técnica, investimento, desenvolvimento tecnológico e integração territorial.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 214,
+      "contexto": "A rede é operada por dois grupos estatais que também padronizam, investem e integram o território.",
+      "ganho_no_mapa": "Ver o território dividido entre dois operadores de rede mostra a concentração de decisão por trás da velocidade de execução.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 8,
+      "tipo": "pais",
+      "nome": "União Europeia",
+      "trecho": "Existe em duas vias: preço efetivamente pago, comprovado e certificado; ou preço de referência padrão, que a autoridade europeia publica",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 225,
+      "contexto": "A aula verifica item por item o mecanismo de ajuste de fronteira de carbono, cuja autoridade é europeia.",
+      "ganho_no_mapa": "No globo, marca a jurisdição de destino cuja regra de carbono alcança o produto exportado.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "outro",
+      "nome": "Rota de exportação industrial do Brasil para a jurisdição do ajuste de fronteira",
+      "trecho": "É o único dos três que transforma política climática de outro país em custo de exportação do seu.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 221,
+      "contexto": "Dos três mecanismos de precificação de carbono, só o ajuste de fronteira transforma política de outro país em custo de exportação.",
+      "ganho_no_mapa": "Ver a rota entre o exportador brasileiro e o mercado de destino mostra por onde o custo de carbono de outra jurisdição chega ao produto.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 8,
+      "tipo": "pais",
+      "nome": "Brasil",
+      "trecho": "A assimetria regulatória entre as duas jurisdições, portanto, não é temporária no horizonte de decisão de um exportador — ela é o cenário-base da década.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 229,
+      "contexto": "Como não há preço de carbono pago no Brasil antes de 2030, não há o que abater, e a assimetria com a jurisdição de destino é o cenário-base.",
+      "ganho_no_mapa": "No globo, origem e destino lado a lado mostram a assimetria: um lado com preço de carbono em operação, o outro ainda em implantação.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 9,
+      "tipo": "interconexao_internacional",
+      "nome": "Interconexão com sistemas vizinhos",
+      "trecho": "Um sistema conectado a vizinhos com clima, horário e matriz diferentes precisa de menos reserva própria e aproveita diversidade que não tem em casa.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 236,
+      "contexto": "Ter vizinhos com excedente complementar é dotação e reduz a reserva própria necessária.",
+      "ganho_no_mapa": "Ver as linhas que cruzam fronteiras mostra quanto de um sistema de alta penetração renovável se apoia nos vizinhos.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 9,
+      "tipo": "mercado_estrangeiro",
+      "nome": "Mercado elétrico integrado europeu",
+      "trecho": "O bloco europeu construiu o maior mercado elétrico integrado do mundo, com regras comuns, acoplamento de mercados e operadores nacionais.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 239,
+      "contexto": "O bloco europeu acopla mercados nacionais sob regras comuns, sem eliminar a soberania de cada Estado sobre matriz e política.",
+      "ganho_no_mapa": "Ver os países como zonas de preço acopladas mostra um mercado único feito de sistemas nacionais.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 9,
+      "tipo": "pais",
+      "nome": "Alemanha",
+      "trecho": "Renováveis em cerca de <b>58,8% da geração líquida pública</b> — número 2 da escada acima. Preço médio do dia anterior em torno de <b>€89/MWh</b>, média aritmética horária. Saldo importador líquido no ano",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 240,
+      "contexto": "Caso A, expansão renovável acelerada, com dado de 2025; a aula não nomeia o país (a ficha e a grade do módulo tratam o caso como Alemanha — identificação do leitor).",
+      "ganho_no_mapa": "No mapa europeu, ver o país como importador líquido cercado de vizinhos mostra o que a participação renovável não conta.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 9,
+      "tipo": "pais",
+      "nome": "França",
+      "trecho": "Produção total de cerca de <b>547 TWh</b>, com <b>95,2%</b> de geração de baixo carbono e nuclear em torno de <b>373 TWh</b>. Intensidade média próxima de <b>20 gCO₂e/kWh</b>. Saldo exportador",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 240,
+      "contexto": "Caso B, base nuclear estruturante, com dado de 2025; a aula não nomeia o país (a grade do módulo descreve a França como frota nuclear padronizada — identificação do leitor).",
+      "ganho_no_mapa": "Ver o vizinho exportador ao lado do Caso A mostra duas arquiteturas opostas dentro do mesmo mercado acoplado.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 9,
+      "tipo": "usina",
+      "nome": "Frota nuclear da França",
+      "trecho": "corrosão, manutenção, envelhecimento e disponibilidade de água de resfriamento podem afetar várias unidades ao mesmo tempo, como a década recente demonstrou",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 240,
+      "contexto": "O custo do Caso B é a concentração tecnológica: problemas comuns e a água de resfriamento podem afetar várias unidades ao mesmo tempo.",
+      "ganho_no_mapa": "Ver as usinas ao longo de rios e do litoral mostra por que a água de resfriamento é um risco compartilhado pela frota.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 9,
+      "tipo": "estado_regiao",
+      "nome": "Península Ibérica",
+      "trecho": "uma península com recurso solar e eólico excelente e ligação limitada ao resto do continente, onde a participação renovável fechou 2025 acima de metade da geração num dos países e o outro registrou renováveis equivalentes a mais de dois terços do consumo",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 241,
+      "contexto": "Terceiro caso europeu, que isola a variável de interconexão; a aula diz \"uma península\" (a grade do módulo a registra como Península ibérica).",
+      "ganho_no_mapa": "Ver a península presa ao continente por uma faixa estreita mostra por que ela não exporta o problema como os países do centro da Europa.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 9,
+      "tipo": "interconexao_internacional",
+      "nome": "Interconexão entre a Península Ibérica e o resto do continente",
+      "trecho": "Recurso excelente com interconexão limitada aumenta risco de corte de geração e de canibalização de preço",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 241,
+      "contexto": "Recurso excelente com interconexão limitada aumenta o risco de corte de geração e de canibalização de preço.",
+      "ganho_no_mapa": "Ver as poucas linhas que atravessam a fronteira mostra o gargalo que separa a península do mercado acoplado.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 9,
+      "tipo": "evento",
+      "nome": "Interrupção generalizada de abril de 2025 na Península Ibérica",
+      "trecho": "o evento de interrupção generalizada de abril de 2025 na região reforçou que alta participação renovável exige proteção, controle, serviços de sistema e coordenação.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 241,
+      "contexto": "O evento de abril de 2025 reforçou a necessidade de proteção, controle e serviços de sistema, sem provar causalidade simples entre renovável e falha.",
+      "ganho_no_mapa": "Ver a área afetada, limitada pela interconexão fraca, dá lugar e escala a um evento que costuma ser citado como prova de uma tese.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 10,
+      "tipo": "pais",
+      "nome": "Chile",
+      "trecho": "Um sistema sul-americano longo e estreito, com geração liberalizada e preços locacionais. O recurso solar está concentrado no norte; grandes centros de carga e outras fontes estão separados por transmissão.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 245,
+      "contexto": "Caso de preço nodal com recurso e carga separados por mil quilômetros; a aula não nomeia o país (a ficha do módulo o trata como Chile).",
+      "ganho_no_mapa": "Ver o país estreito com o sol no norte e a carga no centro mostra por que quase toda a energia passa pelos mesmos poucos corredores.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 10,
+      "tipo": "linha",
+      "nome": "Corredor de transmissão norte–centro do Chile",
+      "trecho": "A expansão renovável rápida derrubou preços em certas horas e elevou o vertimento quando linha e armazenamento ficaram atrás da oferta.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 245,
+      "contexto": "A expansão solar rápida derrubou preços e elevou o vertimento quando linha e armazenamento não acompanharam.",
+      "ganho_no_mapa": "Ver a linha entre o norte solar e o centro consumidor mostra onde a energia fica retida e por que recurso excelente não garante receita.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 10,
+      "tipo": "pais",
+      "nome": "México",
+      "trecho": "Uma reforma de 2025 reorganizou o setor num país norte-americano de língua espanhola, substituiu reguladores e estabeleceu prevalência da empresa estatal com participação mínima garantida, preservando elementos do mercado atacadista e investimento privado sob novas condições.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 248,
+      "contexto": "Caso de prevalência estatal com mercado atacadista preservado; país não nomeado na aula (chave \"mx\" na grade do módulo).",
+      "ganho_no_mapa": "No globo, marca um vizinho dos mercados norte-americanos que escolheu outro arranjo entre empresa estatal e mercado.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 10,
+      "tipo": "pais",
+      "nome": "Argentina",
+      "trecho": "Um país vizinho com operação centralizada, mercado atacadista estruturado, presença forte de gás, hidráulica e nuclear, e histórico longo de contratos e subsídios.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 251,
+      "contexto": "Caso de desenho sofisticado sob instabilidade macroeconômica: o risco dominante é a moeda; país não nomeado na aula (chave \"ar\" na grade; o mapa do módulo o nomeia ao tratar da colisão com a China).",
+      "ganho_no_mapa": "No globo, o vizinho ao lado do Brasil mostra que proximidade e desenho competente não bastam sem moeda estável.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 10,
+      "tipo": "pais",
+      "nome": "Índia",
+      "trecho": "Um sistema asiático de escala continental, com ponta atendida acima de <b>270 GW</b> em maio de 2026, expansão simultânea de renováveis, carvão, transmissão e armazenamento, sob coordenação entre governo central e estados.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 254,
+      "contexto": "Caso do maior crescimento absoluto de demanda: o desafio é financiar a expansão e resolver a solvência das distribuidoras estaduais; país não nomeado na aula (chave \"in\" na grade do módulo — identificação do leitor).",
+      "ganho_no_mapa": "No globo, a escala continental do sistema dá dimensão ao crescimento de demanda que a aula descreve.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 10,
+      "tipo": "mercado_estrangeiro",
+      "nome": "Austrália (mercado nacional de eletricidade)",
+      "trecho": "Um mercado insular do hemisfério sul com despacho e preço de curto prazo em intervalos curtos entre estados, complementado por contratos financeiros e mecanismo de confiabilidade baseado em obrigação do agente supridor.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 257,
+      "contexto": "Caso de solar residencial em escala e planejamento integrado; mercado não nomeado na aula (chave \"au\" na grade do módulo — identificação do leitor).",
+      "ganho_no_mapa": "Ver um mercado insular, com estados ligados entre si e sem vizinhos, mostra um sistema que resolve tudo internamente.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 11,
+      "tipo": "pais",
+      "nome": "Brasil",
+      "trecho": "Se a métrica for participação renovável em geração, o sistema brasileiro parte de um patamar que a maioria das jurisdições comparadas não alcançou — e por dotação, o que também não é mérito.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 268,
+      "contexto": "Fechamento: \"o Brasil está atrasado\" junta afirmações de naturezas diferentes; em participação renovável o país parte de um patamar alto por dotação.",
+      "ganho_no_mapa": "No globo, o Brasil aparece como mais uma das jurisdições comparadas, com vantagem explicada pelo mapa físico.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 11,
+      "tipo": "outro",
+      "nome": "As dezessete jurisdições da grade do módulo",
+      "trecho": "a contratação por leilão de longo prazo é o arranjo dominante em quatro das dezessete jurisdições desta grade",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 268,
+      "contexto": "A aula final recusa tanto \"o Brasil está atrasado\" quanto \"o modelo brasileiro é incomparável\": as peças do modelo existem em outras jurisdições da grade.",
+      "ganho_no_mapa": "Ver as dezessete jurisdições no globo, reagrupáveis por dimensão, mostra que não existe ordenação única nem ranking.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "rio_bacia",
+      "nome": "Bacia hidrográfica continental brasileira",
+      "trecho": "No brasileiro, <b>dotação</b> vincula — bacia continental —, política concorre via leilões renováveis, e desenho novamente quase não explica.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 317,
+      "contexto": "Exercício 06: a baixa intensidade de emissão brasileira é explicada por dotação — a bacia continental —, não por desenho de mercado.",
+      "ganho_no_mapa": "A bacia no mapa mostra a origem geográfica da baixa emissão.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "mercado_estrangeiro",
+      "nome": "PJM e ERCOT (par de mercados do mesmo país)",
+      "trecho": "Um remunera adequação por leilão central de capacidade e pode manter a cauda de preço de energia contida; o outro não tem esse produto e <b>precisa</b> da cauda para que a adequação seja remunerada. É o experimento mais limpo disponível para isolar a parcela de desenho, e é por isso que os dois ocupam duas das seis fichas.",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 324,
+      "contexto": "Exercício 07: dois mercados organizados do mesmo país divergem por desenho, com dotação e política quase constantes; o exercício não os nomeia (são as fichas do meio-atlântico e do sul central).",
+      "ganho_no_mapa": "Ver os dois territórios no mesmo país mostra o experimento: mesma moeda e mesma lei federal, desenhos opostos.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "outro",
+      "nome": "Nó de um mercado nodal",
+      "trecho": "dentro do mesmo mercado, dois nós podem divergir por múltiplos numa hora congestionada",
+      "arquivo": "src/lib/data/alexandria-modulo-17-content.ts",
+      "linha": 296,
+      "contexto": "Exercício 03: preço nodal é o preço de um lugar, não de um país.",
+      "ganho_no_mapa": "Ver dois pontos do mesmo mercado com preços diferentes mostra por que dado de ponto não é dado de região.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "submercado",
+      "nome": "Operação A — mineração em Minas Gerais (submercado Sudeste/Centro-Oeste)",
+      "trecho": "Dezesseis partes construíram o perfil: Operação A — mineração em Minas Gerais, submercado Sudeste/Centro-Oeste, fator de carga elevado, bombeamento como carga deslocável",
+      "arquivo": "docs/alexandria-v2/extraction/m17/aparato.json",
+      "linha": 44,
+      "contexto": "Caso do módulo: a Operação A, mineradora em Minas Gerais no submercado Sudeste/Centro-Oeste, sai do país pela primeira vez.",
+      "ganho_no_mapa": "Ver a operação no submercado dela dá o ponto de partida da rota que o caso percorre.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "outro",
+      "nome": "Rota de exportação da Operação A",
+      "trecho": "A Parte 17 a leva para fora do país por um caminho que não é hipotético: ela exporta.",
+      "arquivo": "docs/alexandria-v2/extraction/m17/aparato.json",
+      "linha": 89,
+      "contexto": "A Parte 17 do caso pergunta se o mecanismo de ajuste de fronteira alcança o produto que a Operação A exporta; a fonte não informa porto nem destino exato.",
+      "ganho_no_mapa": "Ver a rota de Minas Gerais até o mercado de destino mostra onde a regra de carbono de outra jurisdição encontra o produto.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "pais",
+      "nome": "Brasil",
+      "trecho": "Bacia hidrográfica continental com estocagem plurianual, irradiação alta e regime de vento com complementaridade sazonal em relação à hidrologia. Torna barata a energia de baixa emissão em volume; torna caro o transporte, porque recurso e carga estão separados por milhares de quilômetros",
+      "arquivo": "docs/alexandria-v2/extraction/m17/aparato.json",
+      "linha": 510,
+      "contexto": "Ficha do Brasil, campo Dotação: bacia continental com estocagem plurianual, irradiação e vento complementares, e recurso longe da carga.",
+      "ganho_no_mapa": "Ver bacias, reservatórios e corredores no mesmo mapa mostra a dotação que barateia a energia e encarece o transporte.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "mercado_estrangeiro",
+      "nome": "PJM",
+      "trecho": "Gás doméstico abundante e barato, parque nuclear herdado, carvão em retirada, densidade de carga alta e crescente por eletrificação e por carga computacional. Torna barata a energia térmica de base; torna cara a expansão, porque a fila de conexão e a rede não acompanham o crescimento de demanda.",
+      "arquivo": "docs/alexandria-v2/extraction/m17/aparato.json",
+      "linha": 570,
+      "contexto": "Ficha do mercado organizado do meio-atlântico, campo Dotação: gás doméstico, nuclear herdada, carvão em retirada e carga crescente por eletrificação e carga computacional.",
+      "ganho_no_mapa": "Ver a densidade de carga e a rede da região mostra por que a expansão é cara mesmo com energia de base barata.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "mercado_estrangeiro",
+      "nome": "ERCOT",
+      "trecho": "Gás doméstico, recurso eólico e solar excepcionais, rede quase isolada das vizinhas. O isolamento é a dotação decisiva: reduz jurisdição externa e reduz, na mesma medida, o socorro disponível em emergência ampla.",
+      "arquivo": "docs/alexandria-v2/extraction/m17/aparato.json",
+      "linha": 630,
+      "contexto": "Ficha do mercado organizado do sul central, campo Dotação: o isolamento da rede é a dotação decisiva.",
+      "ganho_no_mapa": "Ver a rede quase sem ligações externas mostra a origem do risco de evento extremo.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "pais",
+      "nome": "Alemanha",
+      "trecho": "Recurso eólico bom no norte, solar moderado, sem hidráulica de estocagem relevante, com interconexão continental densa e demanda térmica de inverno.",
+      "arquivo": "docs/alexandria-v2/extraction/m17/aparato.json",
+      "linha": 690,
+      "contexto": "Ficha da Alemanha, campo Dotação: vento no norte, sem hidráulica de estocagem, interconexão continental densa.",
+      "ganho_no_mapa": "Ver o vento no norte e as muitas ligações com os vizinhos mostra a interconexão como dotação geográfica.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "pais",
+      "nome": "China",
+      "trecho": "Recurso eólico, solar, hidráulico e de carvão concentrado no oeste e no norte; carga concentrada no litoral leste. A distância entre os dois é a variável estruturante.",
+      "arquivo": "docs/alexandria-v2/extraction/m17/aparato.json",
+      "linha": 750,
+      "contexto": "Ficha da China, campo Dotação: recurso no oeste e no norte, carga no litoral leste.",
+      "ganho_no_mapa": "Ver a separação entre recurso e carga explica por que a ficha trata a rede como política industrial.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "pais",
+      "nome": "Chile",
+      "trecho": "Irradiação entre as melhores do mundo concentrada no norte desértico, hidráulica no centro-sul, carga concentrada no centro, território estreito e longo com poucos caminhos de transmissão.",
+      "arquivo": "docs/alexandria-v2/extraction/m17/aparato.json",
+      "linha": 810,
+      "contexto": "Ficha do Chile, campo Dotação: irradiação no norte desértico, hidráulica no centro-sul, carga no centro e poucos caminhos de transmissão.",
+      "ganho_no_mapa": "Ver o território estreito com poucos corredores mostra por que a geração solar barata é cara de entregar.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "outro",
+      "nome": "As dezessete jurisdições da grade do módulo",
+      "trecho": "O critério do currículo pede comparar o Brasil com cinco outros mercados em quatro dimensões — preço, descarbonização, regulação e investimento — e explicar por que cada um é diferente.",
+      "arquivo": "docs/alexandria-v2/extraction/m17/modulo.json",
+      "linha": 1700,
+      "contexto": "Abertura do mapa do módulo (\"Dezessete mercados, quatro ordenações, nenhum ranking\"): o Brasil comparado a outros mercados em quatro dimensões.",
+      "ganho_no_mapa": "O globo com as dezessete jurisdições é a forma natural desse mapa: trocar a dimensão recolore os mesmos lugares.",
+      "relevancia": "alta"
+    },
+    {
+      "aula": 0,
+      "tipo": "rio_bacia",
+      "nome": "Bacia hidrográfica continental brasileira",
+      "trecho": "Um sistema que gera 86% renovável porque tem uma bacia continental não ensina nada a um sistema que não tem.",
+      "arquivo": "docs/alexandria-v2/extraction/m17/modulo.json",
+      "linha": 435,
+      "contexto": "Definição de dotação na abertura do módulo: o que o país tem e não escolheu; a frase não nomeia o país.",
+      "ganho_no_mapa": "A bacia no mapa é o exemplo de dotação que o módulo usa como régua.",
+      "relevancia": "media"
+    },
+    {
+      "aula": 0,
+      "tipo": "mercado_estrangeiro",
+      "nome": "NYISO",
+      "trecho": "Preço nodal · nuclear e hidráulica herdadas · capacidade central · crédito fiscal",
+      "arquivo": "docs/alexandria-v2/extraction/m17/modulo.json",
+      "linha": 1566,
+      "contexto": "Linha da grade de dezessete jurisdições: \"Operador do nordeste atlântico\" (chave \"nyi\"), um dos sete operadores que as aulas não detalham.",
+      "ganho_no_mapa": "Completa o mosaico dos sete operadores no mapa da América do Norte.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "mercado_estrangeiro",
+      "nome": "MISO",
+      "trecho": "Preço nodal · substituição de carvão por gás · capacidade central sazonal · crédito fiscal",
+      "arquivo": "docs/alexandria-v2/extraction/m17/modulo.json",
+      "linha": 1577,
+      "contexto": "Linha da grade de dezessete jurisdições: \"Operador do meio-oeste\" (chave \"mis\"), um dos sete operadores que as aulas não detalham.",
+      "ganho_no_mapa": "Completa o mosaico dos sete operadores no mapa da América do Norte.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "mercado_estrangeiro",
+      "nome": "ISO-NE",
+      "trecho": "Preço nodal · nuclear estruturante · capacidade contratada a prazo · crédito fiscal",
+      "arquivo": "docs/alexandria-v2/extraction/m17/modulo.json",
+      "linha": 1588,
+      "contexto": "Linha da grade de dezessete jurisdições: \"Operador do extremo nordeste\" (chave \"ine\"), um dos sete operadores que as aulas não detalham.",
+      "ganho_no_mapa": "Completa o mosaico dos sete operadores no mapa da América do Norte.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "mercado_estrangeiro",
+      "nome": "SPP",
+      "trecho": "Preço nodal · dotação eólica excepcional · sem produto central de adequação · crédito fiscal",
+      "arquivo": "docs/alexandria-v2/extraction/m17/modulo.json",
+      "linha": 1599,
+      "contexto": "Linha da grade de dezessete jurisdições: \"Operador das planícies centrais\" (chave \"spp\"), um dos sete operadores que as aulas não detalham.",
+      "ganho_no_mapa": "Completa o mosaico dos sete operadores e mostra a faixa de vento das planícies centrais.",
+      "relevancia": "baixa"
+    },
+    {
+      "aula": 0,
+      "tipo": "mercado_estrangeiro",
+      "nome": "NYISO e ISO-NE (par de mesma assinatura na grade)",
+      "trecho": "um deles tem o problema de congestionamento entre a região de geração e a região de carga dentro do próprio estado; o outro tem o problema de combustível firme no inverno, porque a mesma infraestrutura de gás atende aquecimento residencial e geração elétrica ao mesmo tempo.",
+      "arquivo": "docs/alexandria-v2/extraction/m17/modulo.json",
+      "linha": 2042,
+      "contexto": "O mapa do módulo mostra que dois operadores com a mesma assinatura nas quatro dimensões têm riscos geográficos distintos: congestionamento interno num, gás firme no inverno no outro.",
+      "ganho_no_mapa": "Ver a geração longe da carga dentro de um estado, e a região vizinha dependente do mesmo gás para aquecer e gerar, mostra o que a grade de quatro dimensões não enxerga.",
+      "relevancia": "media"
+    }
+  ],
+  "vistas_sugeridas": [
+    {
+      "aula": 1,
+      "titulo": "Um ponto, uma zona, um submercado",
+      "o_que_mostra": "Globo alternando entre a zona de preço nacional do mercado europeu do exemplo e o Brasil com os quatro submercados; destaque para a extensão que cada número de preço cobre.",
+      "nomes": [
+        "Nó, zona e submercado (granularidade do preço)",
+        "Alemanha (mercado europeu de zona nacional)",
+        "Submercados do SIN"
+      ],
+      "camadas": [
+        "submercados",
+        "mundo_paises",
+        "outra: zona de preço nacional europeia"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "Dotação é geografia",
+      "o_que_mostra": "Brasil inteiro; bacias e reservatórios, parques eólicos na faixa costeira e os corredores longos que levam a energia até a carga.",
+      "nomes": [
+        "Bacia hidrográfica continental brasileira",
+        "Reservatórios de estocagem plurianual",
+        "Transporte de longa distância entre geração e consumo",
+        "Faixa costeira de vento excepcional (não nomeada na fonte)"
+      ],
+      "camadas": [
+        "reservatorios_bacias",
+        "usinas_hidro",
+        "usinas_eolica",
+        "linhas"
+      ]
+    },
+    {
+      "aula": 2,
+      "titulo": "Frota nuclear contra bacia continental",
+      "o_que_mostra": "Globo com França e Brasil em destaque: duas matrizes de baixa emissão, uma por escolha de política mantida por décadas, outra por dotação.",
+      "nomes": [
+        "França",
+        "Bacia hidrográfica continental brasileira"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "usinas_hidro",
+        "reservatorios_bacias",
+        "outra: usinas nucleares da França"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "Onde o preço se separa",
+      "o_que_mostra": "Brasil com os quatro submercados e as interligações entre eles; destaque para os limites de intercâmbio em que o preço se separa.",
+      "nomes": [
+        "Submercados do SIN",
+        "Intercâmbio entre submercados"
+      ],
+      "camadas": [
+        "submercados",
+        "linhas",
+        "outra: fluxos de intercâmbio entre submercados"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "Recurso longe da carga",
+      "o_que_mostra": "Câmera sobre um corredor longo entre usinas com reservatório e centros de carga; destaque para a linha como o lugar em que o congestionamento apareceria num preço nodal.",
+      "nomes": [
+        "Transporte de longa distância entre geração e consumo",
+        "Linha congestionada (preço nodal)",
+        "Reservatórios de estocagem plurianual"
+      ],
+      "camadas": [
+        "linhas",
+        "usinas_hidro",
+        "reservatorios_bacias",
+        "subestacoes"
+      ]
+    },
+    {
+      "aula": 3,
+      "titulo": "Um país, um preço",
+      "o_que_mostra": "Globo com um país europeu pintado como zona única de preço, em contraste com os submercados brasileiros.",
+      "nomes": [
+        "Zona de preço nacional (desenho zonal)"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "submercados"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "Sete operadores, um país",
+      "o_que_mostra": "América do Norte no globo; territórios dos sete operadores de mercado, com o meio-atlântico, o sul central e a costa oeste em destaque, e a área fora dos mercados organizados em outro tom.",
+      "nomes": [
+        "Os sete operadores de mercados organizados dos Estados Unidos",
+        "PJM",
+        "ERCOT",
+        "CAISO",
+        "Território dos Estados Unidos fora dos mercados organizados"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "outra: áreas dos operadores de mercado dos Estados Unidos"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "A rede quase isolada",
+      "o_que_mostra": "Câmera no estado atendido pelo operador do sul central; destaque para as poucas ligações da rede com as vizinhas.",
+      "nomes": [
+        "ERCOT",
+        "Rede quase isolada do ERCOT"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "outra: interconexões elétricas da América do Norte"
+      ]
+    },
+    {
+      "aula": 5,
+      "titulo": "Costa oeste: sol, baterias e mercado estendido",
+      "o_que_mostra": "Câmera na costa oeste norte-americana; território do operador, área do mercado do dia anterior estendido e concentração de geração solar.",
+      "nomes": [
+        "CAISO",
+        "Mercado do dia anterior estendido à região oeste dos Estados Unidos (não nomeado na fonte)",
+        "Corte de geração solar na costa oeste dos Estados Unidos"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "outra: área do mercado do dia anterior estendido",
+        "outra: geração solar da costa oeste"
+      ]
+    },
+    {
+      "aula": 6,
+      "titulo": "A linha que cruza estados",
+      "o_que_mostra": "Estados Unidos com as divisas estaduais sob os mercados regionais; destaque para um corredor de transmissão que atravessa vários estados.",
+      "nomes": [
+        "Linha de transmissão interestadual",
+        "Estados norte-americanos (competência estadual sobre recursos e varejo)",
+        "Estados Unidos"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "outra: divisas estaduais dos Estados Unidos",
+        "outra: linhas de transmissão interestaduais"
+      ]
+    },
+    {
+      "aula": 7,
+      "titulo": "Recurso no oeste, carga no leste",
+      "o_que_mostra": "China no globo; recurso concentrado no oeste e no norte, carga no litoral leste e os corredores de transporte oeste–leste entre os dois.",
+      "nomes": [
+        "China — recurso no oeste e no norte, carga no litoral leste",
+        "Corredores de transporte oeste–leste da China",
+        "China",
+        "Mercado nacional unificado de eletricidade da China",
+        "Dois grupos estatais de rede da China (não nomeados na fonte)"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "outra: corredores de transporte oeste–leste da China"
+      ]
+    },
+    {
+      "aula": 8,
+      "titulo": "O carbono que atravessa a fronteira",
+      "o_que_mostra": "Globo com Brasil e União Europeia em destaque e a rota de exportação industrial entre os dois; um lado com preço de carbono em operação, o outro em implantação.",
+      "nomes": [
+        "Rota de exportação industrial do Brasil para a jurisdição do ajuste de fronteira",
+        "União Europeia",
+        "Brasil"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "outra: rota de exportação Brasil–União Europeia"
+      ]
+    },
+    {
+      "aula": 9,
+      "titulo": "Dois vizinhos, duas arquiteturas",
+      "o_que_mostra": "Europa no globo; Alemanha (importadora líquida) e França (exportadora, com a frota nuclear) dentro do mercado acoplado, com as interconexões entre vizinhos.",
+      "nomes": [
+        "Alemanha",
+        "França",
+        "Frota nuclear da França",
+        "Mercado elétrico integrado europeu",
+        "Interconexão com sistemas vizinhos"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "outra: interconexões europeias",
+        "outra: usinas nucleares da França"
+      ]
+    },
+    {
+      "aula": 9,
+      "titulo": "A península pouco conectada",
+      "o_que_mostra": "Câmera na Península Ibérica; destaque para a ligação estreita com o resto do continente e para a área do evento de abril de 2025.",
+      "nomes": [
+        "Península Ibérica",
+        "Interconexão entre a Península Ibérica e o resto do continente",
+        "Interrupção generalizada de abril de 2025 na Península Ibérica"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "outra: interconexões europeias"
+      ]
+    },
+    {
+      "aula": 10,
+      "titulo": "Sol no norte, carga no centro",
+      "o_que_mostra": "Câmera no Chile; recurso solar no norte, carga no centro e o corredor de transmissão entre os dois.",
+      "nomes": [
+        "Chile",
+        "Corredor de transmissão norte–centro do Chile"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "outra: sistema de transmissão do Chile"
+      ]
+    },
+    {
+      "aula": 10,
+      "titulo": "Cinco casos no globo",
+      "o_que_mostra": "Globo com os cinco casos da aula em destaque (Chile, México, Argentina, Índia e Austrália), um rótulo por condição que falha.",
+      "nomes": [
+        "Chile",
+        "México",
+        "Argentina",
+        "Índia",
+        "Austrália (mercado nacional de eletricidade)"
+      ],
+      "camadas": [
+        "mundo_paises"
+      ]
+    },
+    {
+      "aula": 11,
+      "titulo": "Dezessete jurisdições, nenhum ranking",
+      "o_que_mostra": "Globo com as dezessete jurisdições da grade do módulo, o Brasil entre elas, recoloridas conforme a dimensão escolhida.",
+      "nomes": [
+        "As dezessete jurisdições da grade do módulo",
+        "Brasil"
+      ],
+      "camadas": [
+        "mundo_paises"
+      ]
+    },
+    {
+      "aula": 0,
+      "titulo": "Seis fichas de dotação",
+      "o_que_mostra": "Globo com as seis jurisdições que têm ficha; ao selecionar cada uma, a câmera desce para a dotação descrita (bacia e corredores no Brasil, norte ventoso na Alemanha, oeste e leste na China, norte desértico no Chile).",
+      "nomes": [
+        "Brasil",
+        "PJM",
+        "ERCOT",
+        "Alemanha",
+        "China",
+        "Chile"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "reservatorios_bacias",
+        "linhas"
+      ]
+    },
+    {
+      "aula": 0,
+      "titulo": "A Operação A sai do país",
+      "o_que_mostra": "Minas Gerais dentro do submercado Sudeste/Centro-Oeste e, no globo, a saída do produto exportado em direção ao mercado de destino (sem porto nem município, que a fonte não informa).",
+      "nomes": [
+        "Operação A — mineração em Minas Gerais (submercado Sudeste/Centro-Oeste)",
+        "Rota de exportação da Operação A"
+      ],
+      "camadas": [
+        "submercados",
+        "mundo_paises",
+        "outra: rota de exportação"
+      ]
+    },
+    {
+      "aula": 0,
+      "titulo": "O mapa das dezessete",
+      "o_que_mostra": "Globo com as dezessete jurisdições do mapa do módulo; na América do Norte, os quatro operadores que as aulas não detalham completam os sete.",
+      "nomes": [
+        "As dezessete jurisdições da grade do módulo",
+        "NYISO",
+        "MISO",
+        "ISO-NE",
+        "SPP",
+        "NYISO e ISO-NE (par de mesma assinatura na grade)"
+      ],
+      "camadas": [
+        "mundo_paises",
+        "outra: áreas dos operadores de mercado dos Estados Unidos"
+      ]
+    }
+  ]
+}
