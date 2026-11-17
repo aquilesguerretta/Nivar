@@ -179,3 +179,74 @@ The retained replay covered 2 Close, 4 scalar and 5 Planning results. The two Cl
 `compileall`, `npx tsc -b`, `npm run build`, development-only bundle exclusion, design detector (0 P0, 25 existing informational P2), and `git diff --check` passed. Alembic remains at `0016_ariadne_close`. No dependency or runtime changes were made; the pre-existing Browserslist data warning advanced from eight to nine months. The closure changes only documentation.
 
 Sobral remains an engineering/reference fixture, **not the adopted NIV-18 Golden Dataset**. Commercial, regulatory and reference-case gates, including NIV-18/19/20/50, remain intact. No change to production, no merge or deployment, no Notion/Linear edits and no Contract Intelligence work.
+
+## Targeted correctness hardening — 2026-11-17
+
+**ARIADNE CONNECTED PLANNING TARGETED HARDENING PASS**, bounded to the two reviewed defects and exact historical compatibility. This supersedes the earlier claim that missing supplier identity always refused monetary eligibility. It does not constitute product acceptance, tariff/legal approval, Golden Dataset adoption or authority to merge/deploy.
+
+### Git and ownership
+
+Fetched integration base remains `17319a70829e3811374c08be994d858347782a55`; PR #30 started clean at `c27e87afcb1fcf39bd787c38dbd3cdd5636373f8`. No rebase was needed. Implementation/test commit: `08922f223d0e38b64feee7fd84517489da5e8072`. Documentation follows in a separate commit; final head is recorded in the PR replies and delivery. Same isolated branch `codex/ariadne-connected-planning-v0`, same [PR #30](https://github.com/aquilesguerretta/Nivar/pull/30).
+
+CREATE/MODIFY for this patch: versioned Planning executor, minimal Core dispatch and Planning service integration, Planning regression tests, these engineering documents. READ ONLY: intake/confirmation, auth, Close/scalar executors, frozen methodology and independent corpus/oracles. NEVER MODIFY: PR #31/worktree, shared Operator UI, other products, deployment, migrations, production or canonical decisions. PR #31 head remains `2b0146d8fd5454d486bd8df04575513817f52f96`; no synchronization or rebase of that stacked branch was performed. PR readiness is unchanged, not automatically granted by these tests.
+
+### Reproduction and correction
+
+1. **Identity:** 0.1.0 compared `supplier_cnpj` directly with `distributor_cnpj`. `None == None`, empty strings and identical malformed strings could establish a match. The reviewed empty/empty example reported BRL `4256.00`, physical 1/1, monetary 1/1, complete=true. 0.1.1 requires valid supported numeric CNPJ structure/check digits and matching canonical identifiers. Its same example has physical 1/1, monetary 0/1, complete=false, cost/baselineCost/delta=null and an explicit identity reason. Conventional formatted and unformatted valid identifiers compare without mutating raw values. No inference, defaults or identity borrowing is introduced. Applicability acknowledgement remains a separate assumption.
+2. **Period:** 0.1.0 rejected the whole baseline if any nonempty monthly string was malformed, even on an excluded row. 0.1.1 validates each row separately. A valid month plus `2019-13` now yields physical 1/2, monetary 1/2, complete=false and BRL `4256.00` from the valid month. The invalid observation stays in `months` and the denominator, with `period:null`, exact raw value, source/confirmation reference and validation errors. It is neither repaired nor used as a valid month/observed contract. Duplicate valid periods still exclude both observations; conflicting valid contracts still refuse execution. A baseline without a usable confirmed monthly contract fails closed.
+
+Before implementation, the initial focused matrix produced **21 failed / 7 passed / 0 skipped** against 0.1.0. Two further failing tests exposed contamination of contract selection by an invalid-period row. A separate failing PostgreSQL/API regression exposed new eligibility checks blocking retained 0.1.0 reads; historical listing/result/export/replay now bind retained Close lineage instead. New preview/save/duplicate still validate with 0.1.1. Final regressions pass below. None of the independent financial expected answers was edited.
+
+### Version and retained replay
+
+Read-only inspection before editing found **five persisted Planning 0.1.0 runs** in the local evaluation environment. The correction therefore appends model `demand_contract_screening` / `0.1.1` / `ariadne.plan.demand_contract_screening.v0_1_1` using the existing registration path. No migration/backfill or stored-data rewrite. The 0.1.0 executor file is byte-identical; its SHA256 is recorded in the [ADR](adr-001.md#addendum--2026-11-17-preserve-010-register-011). Core requires exact metadata and policy per version, rejecting unknown versions or mismatched contracts/implementation. Authority policy, formula, Decimal precision 48 and HALF_UP component rounding are unchanged.
+
+Before/after read-only transactions in `ariadne_close_planning_browser` and `ariadne_close_review_desk_final_browser` replayed **11/11** retained results: **5 Planning, 2 Close, 4 scalar**. Canonical hashes of outputs, inputs, state/assumption/model identities, contracts and execution configurations matched exactly. Disposable API regressions additionally persist a synthetic defective 0.1.0 result and prove exact read/replay/export beside a corrected 0.1.1 result; a duplicate calculates 0.1.1 with its old parent retained. Another synthetic legacy result whose period fails current eligibility remains listable/readable/replayable/exportable while a new preview refuses that unusable baseline.
+
+Historical replay intentionally reconstructs the old defective coverage decision when that is what was saved. It is not financial certification. A correction requires a new calculation; this patch does not backfill old results or add a warning/redesign UI.
+
+### Authentic frozen regression
+
+No replacement downloads. October PDF SHA256 remains `1d9b1eba3b46dd1b6f492b4fc7060799f0821b0b3b10d7e4753c2097c2ea822c`; tariff projection remains `99e5eb7230ec86e996eb6cbbfff9491c20675182dff994c7116e985886a9d30a`. Both independent oracle hashes in [oracle.md](oracle.md) match their original freezes. Six scenarios, monthly amounts, deltas and the HTTP 61-point curve passed against those independent answers.
+
+| Candidate kW | Physical coverage | Monetary coverage | Covered historical subtotal BRL |
+|---|---|---|---:|
+|280|9/12|7/12|31474.94|
+|260|9/12|7/12|33118.97|
+|300|9/12|7/12|31934.59|
+
+These remain partial pre-tax tariff-reference subtotals, not complete invoice values, verified savings or recommendations. Sobral is an engineering/reference fixture, not NIV-18's adopted Golden Dataset. Olivina Azul is not ingested or qualified by this correction.
+
+### Fresh verification, final tree
+
+| Gate | Pass | Fail | Skip |
+|---|---:|---:|---:|
+|Focused correctness matrix|45|0|0|
+|Planning engine/intake/API, including focused matrix|119|0|0|
+|Full Python on disposable PostgreSQL 17.11|540|0|0|
+|Core subset of full Python|19|0|0|
+|Close subset of full Python|219|0|0|
+|Operator subset of full Python|21|0|0|
+|Authentic corpus-dependent subset of full Python|11|0|0|
+|All frontend Node tests|81|0|0|
+|Standalone independent hand assertions|34|0|0|
+|Retained exact replay/hash comparison|11|0|0|
+|Actual production-build route exclusion in Chrome|2|0|0|
+
+Rows are overlapping gates/subsets, not an additive test total. Final full Python: 150.51s, 126 dependency deprecation warnings. The disposable target was exclusively `ariadne_close_test` on loopback port 55472; existing upgrade/lifecycle tests, retained synthetic Alpha history, session/ownership, request-ordering, retry safety, historical export and production/disabled gates all ran. No database-gated or authentic-corpus skip. Existing retained evaluation databases were inspected with read-only transactions only.
+
+`compileall`, real `npx tsc -b`, `npm run build` (43.97s), design detector (756 files, zero P0, 25 informational P2) and `git diff --check` passed. No dependency/runtime changes: Python 3.12.14, SQLAlchemy 2.0.54 and PostgreSQL 17.11. Existing build warnings remain: old Browserslist data, CSS comment, Atlas static/dynamic import and large chunks. The runtime's expected Playwright browser binary was absent; the gate used installed Chrome 157.0.8103.51 via Playwright's Chrome channel, without installing or changing dependencies. Both experimental routes returned NotFound in the actual default production build. API and external requests were intercepted, with no backend/production access.
+
+This patch changes no UI. Browser work was limited to production exclusion; the older complete-workflow/Founder usability evidence above was not relabeled as fresh. No new usability or time-saving claim. Task-owned preview on `127.0.0.1:5191` was stopped; pre-existing local evaluation services were left untouched. Local replay manifest, JUnit and gate artifacts are outside the repository at `C:\dev\ariadne-close-browser-fixtures\pr30-hardening`.
+
+### Changed files and remaining boundary
+
+- `app/services/ariadne_planning_engine_v0_1_1.py`: corrected version; original executor retained.
+- `app/services/ariadne_core.py`: exact dual-version dispatch.
+- `app/services/ariadne_planning.py`: new writes select 0.1.1; historical reads preserve lineage access.
+- `tests/ariadne_planning/test_correctness_hardening.py`: identity/period/contract/duplicate/metadata matrix.
+- `tests/ariadne_planning/test_api.py`: actual intake, confirmation, persistence, historical replay/export and mixed-version tests.
+- `tests/ariadne_planning/test_engine.py`: run existing independent financial regressions on 0.1.1; missing-period test retains another usable month to inspect the excluded row.
+- `docs/ariadne-planning/engineering-contract.md`, `adr-001.md`, `final-report.md`: amendment, version rationale and evidence.
+
+Numeric CNPJ validation does not verify an authoritative business registry or external tariff applicability. Unsupported identities remain uncovered, and no broader identifier adapter is added. All prior partial-coverage, professional/regulatory, rights, commercial and reference-case limitations remain. No new domain, ingest adapter, schema migration, shared Operator/Argos/Advisory changes, PR #31 changes, production changes, canonical changes, merge or deployment.

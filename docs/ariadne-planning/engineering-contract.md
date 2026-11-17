@@ -30,6 +30,16 @@ Planning references the exact Core state version of a preserved reviewed Close r
 
 Consequential writes use existing transaction-scoped workspace receipts. Known UUIDs confer no authority. All paths derive context from authenticated operator/workspace ownership; result/scenario checks include baseline binding. Preview is read-only, bounded and cancellable; stale responses cannot replace a different candidate/month/scenario.
 
+## Correctness amendment — 2026-11-17, executor 0.1.1
+
+New previews, saves and duplicates use `ariadne.plan.demand_contract_screening.v0_1_1`. The original 0.1.0 executor remains frozen for exact retained replay, including historical defects. No stored result, baseline, confirmation, source or independent oracle is rewritten.
+
+Money eligibility requires a supported numeric CNPJ on both the demand observation and reviewed tariff row: 14 ASCII digits, or the conventional `NN.NNN.NNN/NNNN-NN` spelling, with valid check digits and matching canonical digits. Canonicalization is comparison-only; raw identifiers and source references remain unchanged. Missing, malformed, unsupported or conflicting identities produce explicit identity reasons and no monetary result. Applicability acknowledgement does not supply identity. Physical coverage is evaluated independently. Check digits are structural validation, not registry verification, proof of source truth or legal applicability; other identifier schemes remain unsupported.
+
+Period eligibility is row-local: only an exact valid `YYYY-MM` can supply a monthly observation or the observed contract used for a new calculation. An invalid/missing period is emitted as `period: null`, retaining its original raw value, locator, validation errors and denominator entry. It supplies neither physical nor monetary coverage and cannot contaminate a valid month's contract selection. Conflicting contracts and duplicate valid periods remain guarded. With no usable confirmed monthly contract, new execution fails closed. Historical result/list/export/replay access binds the retained Close lineage without applying today's eligibility rules.
+
+The authority policy, covered-month Decimal arithmetic, precision, rounding, units and exclusions above are unchanged. These two fixes do not qualify Sobral or any other case for NIV-18.
+
 ## Acceptance
 
 Authentic file import/review without financial re-keying; contextual planning action; interactive candidate; physical and supported monetary month effects; exact proof; baseline plus two saved alternatives, comparison, refresh and replay. Show EXPLORING versus PRESERVED, explicit coverage and assumptions, and “lowest modeled cost in explored range”, never a contract recommendation. Independent oracle, real browser, full disposable PostgreSQL/frontend/type/build/design gates and hostile product review are required before PASS. Optional future stress mode is deferred.
