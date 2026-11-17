@@ -21,6 +21,7 @@ from sqlalchemy.orm import Session
 
 from app.db.models.user import User
 from app.db.session import get_db
+from app.services.acesso import MENSAGEM as MENSAGEM_ACESSO, email_liberado
 from app.services.auth_service import (
     clear_session_cookie,
     get_current_user,
@@ -87,6 +88,8 @@ def signup(
     db: Session = Depends(get_db),
 ):
     email = normalize_email(payload.email)
+    if not email_liberado(email):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=MENSAGEM_ACESSO)
     name = payload.name.strip()
     if not name:
         raise HTTPException(status_code=422, detail="name must not be blank")
@@ -131,6 +134,9 @@ def login(
         raise invalid
     if not verify_password(user.password_hash, payload.password):
         raise invalid
+
+    if not email_liberado(user.email):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=MENSAGEM_ACESSO)
 
     if needs_rehash(user.password_hash):
         user.password_hash = hash_password(payload.password)

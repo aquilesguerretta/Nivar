@@ -28,6 +28,11 @@ from app.routers import (
     weather,
 )
 from app.routers.infra import router as infra_router
+import jwt
+from fastapi import Request
+from fastapi.responses import JSONResponse
+from app.services.acesso import MENSAGEM as MENSAGEM_ACESSO, email_liberado, portao_ativo, rota_livre
+from app.services.auth_service import _extract_token, decode_token
 from app.services.pjm_stream import HUB
 
 
@@ -41,6 +46,29 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="GridAlpha API", version="2.0", lifespan=lifespan)
+
+
+@app.middleware("http")
+async def portao_de_acesso(request: Request, call_next):
+    """Em produção, /api/* só responde a sessão de e-mail liberado (app/services/acesso.py)."""
+    caminho = request.url.path
+    if (
+        portao_ativo()
+        and caminho.startswith("/api/")
+        and request.method != "OPTIONS"
+        and not rota_livre(caminho)
+    ):
+        token, _ = _extract_token(request)
+        if not token:
+            return JSONResponse({"detail": "not authenticated"}, status_code=401)
+        try:
+            payload = decode_token(token)
+        except jwt.InvalidTokenError:
+            return JSONResponse({"detail": "invalid session"}, status_code=401)
+        if not email_liberado(str(payload.get("email") or "")):
+            return JSONResponse({"detail": MENSAGEM_ACESSO}, status_code=403)
+    return await call_next(request)
+
 
 _cors_origins = [
     "https://gridalpha.vercel.app",

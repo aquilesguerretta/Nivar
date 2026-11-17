@@ -43,6 +43,7 @@ from sqlalchemy.orm import Session
 
 from app.db.models.user import User
 from app.db.session import get_db
+from app.services.acesso import MENSAGEM as MENSAGEM_ACESSO, email_liberado
 
 # ── configuration ────────────────────────────────────────────────────────
 # Never hardcoded. JWT_SECRET absent must not take down /health or the
@@ -226,6 +227,10 @@ def get_current_user(
         # Signature valid but the row is gone — a deleted account still
         # holding a token that has not expired.
         raise _unauthorized("account no longer exists")
+
+    # Portão de acesso (app/services/acesso.py): em produção, só e-mails liberados.
+    if not email_liberado(user.email):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=MENSAGEM_ACESSO)
 
     if transport == "cookie":
         fresh, _ = issue_token(user)

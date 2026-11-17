@@ -17,6 +17,7 @@ import { PortalBR } from './pages/br/PortalBR';
 import { PortalBRRouter } from './pages/br/PortalBRRouter';
 import { NotFound } from './pages/NotFound';
 import { AuthProvider } from './lib/auth/AuthContext';
+import { PortaoDeAcesso } from './components/acesso/PortaoDeAcesso';
 import { EntrarView } from './pages/conta/EntrarView';
 import { CriarContaView } from './pages/conta/CriarContaView';
 import { PerfilPlataforma } from './pages/conta/PerfilPlataforma';
@@ -71,6 +72,8 @@ createRoot(document.getElementById('root')!).render(
           que ainda não consuma: o contexto existe antes do consumidor,
           e a wave do LYCEUM só precisa chamar useAuth(). */}
       <AuthProvider>
+        {/* Portão: na internet aberta, só login de e-mail liberado (Founder, 17/11/2026). */}
+        <PortaoDeAcesso>
         <Routes>
           {/* A raiz serve o PORTAL BRASIL. O lado americano continua
               inteiro no disco e não foi tocado — só deixou de ser
@@ -239,6 +242,7 @@ createRoot(document.getElementById('root')!).render(
               `docs/pendencias-alexandria.md` §4. */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </PortaoDeAcesso>
       </AuthProvider>
     </BrowserRouter>
   </StrictMode>,

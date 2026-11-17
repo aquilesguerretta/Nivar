@@ -54,6 +54,8 @@ export function EntrarView() {
         setErro(
           err.status === 401
             ? ERRO_CREDENCIAL
+            : err.status === 403
+              ? "Acesso restrito: esta conta ainda não está liberada para a NIVAR."
             : err.status === 0
               ? "Não foi possível falar com o servidor. Verifique a conexão."
               : "Algo falhou do nosso lado. Tente de novo em instantes.",
