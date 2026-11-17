@@ -126,13 +126,16 @@ export function AriadneSourceAction({
   href,
   page,
 }: {
-  href: string;
+  href?: string;
   page?: number | null;
 }) {
   return (
     <a
       className="aw-source-action"
       href={href}
+      role={href ? undefined : "link"}
+      aria-disabled={href ? undefined : true}
+      tabIndex={href ? undefined : -1}
       target="_blank"
       rel="noreferrer"
     >
@@ -140,7 +143,8 @@ export function AriadneSourceAction({
       <span>
         <strong>Abrir fonte original</strong>
         <small>
-          {page ? `PDF · página ${page}` : "Documento original"} · nova aba
+          {page ? `PDF · página ${page}` : "Documento original"}
+          {href ? " · nova aba" : " · preparando documento"}
         </small>
       </span>
       <ExternalLink size={17} aria-hidden />

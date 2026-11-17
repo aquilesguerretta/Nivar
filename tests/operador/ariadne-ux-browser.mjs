@@ -224,8 +224,28 @@ try {
       saved.output.coverage.covered === 2 &&
       saved.output.coverage.total === 4,
   );
+  let releaseOriginal;
+  const originalGate = new Promise((resolve) => {
+    releaseOriginal = resolve;
+  });
+  const originalRoute = `**/sources/${data.source}/original`;
+  await page.route(originalRoute, async (route) => {
+    await originalGate;
+    await route.continue();
+  });
   await page.goto(planningURL);
   await stable();
+  const preparingSource = page.locator(
+    '.plan__proof .aw-source-action[aria-disabled="true"]',
+  );
+  await preparingSource.waitFor();
+  check(
+    "PDF action cannot fall back to a download before authenticated original is ready",
+    !(await preparingSource.getAttribute("href")) &&
+      (await preparingSource.getAttribute("tabindex")) === "-1",
+  );
+  releaseOriginal();
+  await page.unroute(originalRoute);
   await page
     .locator(".plan__proof h2")
     .filter({ hasText: "2020-02" })
@@ -358,7 +378,7 @@ try {
   await page.locator("#ariadne-preserved-comparison").scrollIntoViewIfNeeded();
   await screenshot("planning-comparison.png");
   await page.getByRole("button", { name: /Comparar preservados/ }).click();
-  await page.locator(".aw-shell__main").evaluate(el => el.scrollTo(0,0));
+  await page.locator(".aw-shell__main").evaluate((el) => el.scrollTo(0, 0));
   await click("Reconstruir resultado");
   await page
     .getByText("Replay exato: resultado idêntico.", { exact: true })
@@ -528,7 +548,9 @@ try {
       ) === JSON.stringify(legacy.output),
     );
     const nextPreview = page.waitForResponse(
-      (r) => r.url().includes("/planning/preview") && r.request().method() === "POST",
+      (r) =>
+        r.url().includes("/planning/preview") &&
+        r.request().method() === "POST",
     );
     await candidate.fill("260");
     await nextPreview;
@@ -536,7 +558,9 @@ try {
     check(
       "explicit exploration of historical assumptions uses current executor",
       (await status.textContent()) === "Explorando" &&
-        (await page.getByText("Regra e fórmula · 0.1.1", { exact: true }).count()) === 1,
+        (await page
+          .getByText("Regra e fórmula · 0.1.1", { exact: true })
+          .count()) === 1,
     );
   } else {
     skipped.push(

@@ -741,11 +741,11 @@ export function AriadnePlanning() {
                   <h2>{proof.label} · prova</h2>
                   <AriadneSourceAction
                     href={
-                      (original ||
-                        closeApi.originalUrl(w, r, proof.sourceRef.sourceId)) +
-                      (proof.sourceRef.page
-                        ? `#page=${proof.sourceRef.page}`
-                        : "")
+                      proof.sourceRef.page
+                        ? original
+                          ? `${original}#page=${proof.sourceRef.page}`
+                          : undefined
+                        : closeApi.originalUrl(w, r, proof.sourceRef.sourceId)
                     }
                     page={proof.sourceRef.page}
                   />
