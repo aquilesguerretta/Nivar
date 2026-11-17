@@ -484,8 +484,15 @@ try {
   await page.getByRole("heading", { name: "Preparar a revisão" }).waitFor();
   await screenshot("review-empty-mobile.png");
   check("mobile navigation supports empty direct entry", true);
+  const mobilePreview = page.waitForResponse(
+    (r) => r.url().includes("/planning/preview") && r.request().method() === "POST",
+  );
   await page.goto(planningURL);
+  await mobilePreview;
   await stable();
+  await page.waitForFunction(
+    () => document.querySelector("[data-ariadne-state]")?.textContent === "Cenário preservado",
+  );
   await screenshot("planning-saved-mobile.png");
   await page.goto(reviewURL);
   await page.getByRole("button", { name: "2020-02", exact: true }).click();
