@@ -1,4 +1,5 @@
 import { SelectionEpoch } from "./closeApi.ts";
+import type { PlanView, SavedPlan, PlanAssumptions } from "./planningApi.ts";
 export function planMonthKey(month: {
   sourceRef: { sourceId: string; locator: string };
 }) {
@@ -32,4 +33,20 @@ export function samePlanAssumptions(
     a.normalRegime === b.normalRegime &&
     a.tariffApplicability === b.tariffApplicability
   );
+}
+
+/** A current preview may supply a curve, never replace an unchanged saved output. */
+export function planPreviewForDisplay(
+  response: PlanView,
+  selected: SavedPlan | undefined,
+  assumptions: PlanAssumptions,
+): PlanView {
+  if (
+    !selected ||
+    !samePlanAssumptions(selected.output.assumptions, assumptions)
+  )
+    return response;
+  // A curve under another executor must not be presented as the historical run.
+  if (selected.output.version !== response.output.version) return selected;
+  return { ...response, ...selected };
 }

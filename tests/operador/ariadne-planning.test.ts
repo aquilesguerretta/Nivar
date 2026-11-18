@@ -5,11 +5,64 @@ import {
   samePlanAssumptions,
   planMonthKey,
   selectedPlanMonth,
+  planPreviewForDisplay,
 } from "../../src/lib/ariadne/planningSelection.ts";
 import {
   DeskSelection,
   reviewedSelection,
 } from "../../src/lib/ariadne/deskSelection.ts";
+import type { PlanView, SavedPlan } from "../../src/lib/ariadne/planningApi.ts";
+
+test("unchanged saved output remains exact across a new executor preview", () => {
+  const assumptions = {
+    candidateKw: "280",
+    normalRegime: true,
+    tariffApplicability: true,
+  };
+  const selected = {
+    output: { version: "0.1.0", cost: "4256.00", assumptions },
+    id: "retained",
+  } as SavedPlan;
+  const response = {
+    output: { version: "0.1.1", cost: null, assumptions },
+    curve: [{ candidateKw: "280", cost: null, covered: 0 }],
+  } as PlanView;
+  const frozen = structuredClone(selected);
+  assert.equal(
+    planPreviewForDisplay(response, selected, assumptions),
+    selected,
+  );
+  assert.deepEqual(selected, frozen);
+  assert.equal(
+    planPreviewForDisplay(response, selected, {
+      ...assumptions,
+      candidateKw: "260",
+    }),
+    response,
+  );
+  assert.equal(
+    planPreviewForDisplay(response, undefined, assumptions),
+    response,
+  );
+});
+test("same-version curve can accompany the exact saved output without replacing its amounts", () => {
+  const assumptions = {
+    candidateKw: "280",
+    normalRegime: true,
+    tariffApplicability: true,
+  };
+  const selected = {
+    output: { version: "0.1.1", cost: "4256.00", assumptions },
+    id: "retained",
+  } as SavedPlan;
+  const response = {
+    output: { version: "0.1.1", cost: "4256.00", assumptions },
+    curve: [{ candidateKw: "280", cost: "4256.00", covered: 1 }],
+  } as PlanView;
+  const result = planPreviewForDisplay(response, selected, assumptions);
+  assert.equal(result.output, selected.output);
+  assert.equal(result.curve, response.curve);
+});
 test("two conflicting invoices for the same month retain independent source selection", () => {
   const first = {
     label: "2019-06",
