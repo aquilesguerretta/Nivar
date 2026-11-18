@@ -208,6 +208,12 @@ export function AriadnePlanning() {
   }, [w, r, b, candidate, normal, applicable]);
   const output = view?.output,
     proof = output ? selectedPlanMonth(output.months, month) : undefined;
+  const comparisonVersions = new Set([
+    output?.version,
+    ...saved.map((s) => s.output.version),
+  ]);
+  const mixedEligibilityRules =
+    comparisonVersions.has("0.1.0") && comparisonVersions.has("0.1.1");
   useEffect(() => {
     setOriginal("");
     if (!proof?.sourceRef.sourceId || !proof.sourceRef.page) return;
@@ -701,6 +707,24 @@ export function AriadnePlanning() {
             </section>
             <aside className="plan__impact">
               <h2>Impacto no escopo coberto</h2>
+              {preserved && output.version === "0.1.0" && (
+                <section
+                  className="plan__version-notice"
+                  role="note"
+                  aria-labelledby="ariadne-legacy-title"
+                >
+                  <h3 id="ariadne-legacy-title">
+                    Execução histórica · modelo 0.1.0
+                  </h3>
+                  <p>
+                    Este modelo antecede as correções de elegibilidade
+                    monetária. O resultado original é preservado para
+                    reconstrução; replay não é validação financeira. Para
+                    avaliar hoje as mesmas premissas, é necessária uma nova
+                    execução no modelo 0.1.1.
+                  </p>
+                </section>
+              )}
               <p className="plan__delta">{pending ? "…" : brl(output.delta)}</p>
               <p>
                 Candidato menos baseline modelado · {output.coverage.covered}/
@@ -875,10 +899,27 @@ export function AriadnePlanning() {
           {compare && (
             <div className="plan__comparison" id="ariadne-preserved-comparison">
               <h2>Baseline e alternativas preservadas</h2>
-              <table>
+              {mixedEligibilityRules && (
+                <p
+                  className="plan__version-notice"
+                  role="note"
+                  aria-label="Comparação entre modelos"
+                  id="ariadne-mixed-models"
+                >
+                  Os modelos 0.1.0 e 0.1.1 usam regras de elegibilidade
+                  distintas; a cobertura monetária pode diferir. Os resultados
+                  preservados são exibidos sem recálculo.
+                </p>
+              )}
+              <table
+                aria-describedby={
+                  mixedEligibilityRules ? "ariadne-mixed-models" : undefined
+                }
+              >
                 <thead>
                   <tr>
                     <th>Cenário</th>
+                    <th scope="col">Modelo</th>
                     <th>Premissa kW</th>
                     <th>Custo modelado</th>
                     <th>Delta</th>
@@ -890,6 +931,7 @@ export function AriadnePlanning() {
                 <tbody>
                   <tr>
                     <td>Baseline observado</td>
+                    <td>{output.version}</td>
                     <td>{output.baselineKw}</td>
                     <td>{brl(output.baselineCost)}</td>
                     <td>{brl("0.00")}</td>
@@ -905,6 +947,7 @@ export function AriadnePlanning() {
                   {saved.map((s) => (
                     <tr key={s.id}>
                       <td>{s.name}</td>
+                      <td>{s.output.version}</td>
                       <td>{s.output.assumptions.candidateKw}</td>
                       <td>{brl(s.output.cost)}</td>
                       <td>{brl(s.output.delta)}</td>

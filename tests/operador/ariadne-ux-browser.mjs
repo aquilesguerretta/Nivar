@@ -296,6 +296,12 @@ try {
   await pdfTab.close();
   const status = page.locator("[data-ariadne-state]");
   check(
+    "preserved 0.1.1 has no legacy eligibility warning",
+    (await page
+      .getByRole("note", { name: "Execução histórica · modelo 0.1.0" })
+      .count()) === 0,
+  );
+  check(
     "one atomic polite status region",
     (await status.count()) === 1 &&
       (await status.getAttribute("role")) === "status" &&
@@ -485,13 +491,16 @@ try {
   await screenshot("review-empty-mobile.png");
   check("mobile navigation supports empty direct entry", true);
   const mobilePreview = page.waitForResponse(
-    (r) => r.url().includes("/planning/preview") && r.request().method() === "POST",
+    (r) =>
+      r.url().includes("/planning/preview") && r.request().method() === "POST",
   );
   await page.goto(planningURL);
   await mobilePreview;
   await stable();
   await page.waitForFunction(
-    () => document.querySelector("[data-ariadne-state]")?.textContent === "Cenário preservado",
+    () =>
+      document.querySelector("[data-ariadne-state]")?.textContent ===
+      "Cenário preservado",
   );
   await screenshot("planning-saved-mobile.png");
   await page.goto(reviewURL);
@@ -527,6 +536,15 @@ try {
   );
   if (data.legacy) {
     const legacy = await get(data.planning + `/scenarios/${data.legacy}`);
+    const legacyExportURL = data.planning + `/scenarios/${data.legacy}/export`;
+    const legacyBytes = await (
+      await context.request.get(base + legacyExportURL)
+    ).body();
+    const retainedBytes = await (
+      await context.request.get(
+        base + data.planning + `/scenarios/${data.legacy}`,
+      )
+    ).body();
     const preview = page.waitForResponse(
       (r) =>
         r.url().includes("/planning/preview") &&
@@ -535,6 +553,133 @@ try {
     await page.goto(planningURL.replace(data.scenario, data.legacy));
     await preview;
     await stable();
+    const legacyWarning = page.getByRole("note", {
+      name: "Execução histórica · modelo 0.1.0",
+    });
+    check(
+      "preserved 0.1.0 discloses historical eligibility limits beside financial result",
+      await legacyWarning.isVisible(),
+    );
+    assert.match(
+      await legacyWarning.textContent(),
+      /antecede as correções de elegibilidade monetária/,
+    );
+    assert.match(
+      await legacyWarning.textContent(),
+      /resultado original é preservado para reconstrução/,
+    );
+    assert.match(
+      await legacyWarning.textContent(),
+      /replay não é validação financeira/,
+    );
+    assert.match(
+      await legacyWarning.textContent(),
+      /mesmas premissas.*nova execução no modelo 0.1.1/,
+    );
+    check(
+      "legacy disclosure uses a static accessible note without another live region",
+      (await legacyWarning.evaluate(
+        (el) =>
+          el.parentElement.classList.contains("plan__impact") &&
+          !el.hasAttribute("aria-live") &&
+          !el.querySelector('[role="status"], [role="alert"], [aria-live]'),
+      )) && (await page.getByRole("status").count()) === 1,
+    );
+    for (const [width, height] of [
+      [1440, 900],
+      [1920, 1080],
+    ]) {
+      await page.setViewportSize({ width, height });
+      for (const dark of [false, true]) {
+        if (
+          ((await page.locator(".aw-shell").getAttribute("data-ops-theme")) ===
+            "dark") !==
+          dark
+        )
+          await click(dark ? "Modo escuro" : "Modo claro");
+        await screenshot(`legacy-${width}-${dark ? "dark" : "light"}.png`);
+      }
+    }
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.evaluate(() => {
+      window.legacyAnnouncements = [];
+      window.legacyStatusObserver = new MutationObserver(() =>
+        window.legacyAnnouncements.push(
+          document.querySelector("[data-ariadne-state]").textContent,
+        ),
+      );
+      window.legacyStatusObserver.observe(
+        document.querySelector("[data-ariadne-state]"),
+        { childList: true, subtree: true, characterData: true },
+      );
+    });
+    await page.getByRole("button", { name: /Comparar preservados/ }).click();
+    const comparison = page.locator("#ariadne-preserved-comparison");
+    const mixedNotice = comparison.getByRole("note", {
+      name: "Comparação entre modelos",
+    });
+    check(
+      "mixed-version comparison discloses differing monetary eligibility rules",
+      await mixedNotice.isVisible(),
+    );
+    assert.match(
+      await mixedNotice.textContent(),
+      /cobertura monetária pode diferir/,
+    );
+    const scenarios = await get(data.planning + "/scenarios");
+    const versions = await comparison
+      .locator("tbody tr")
+      .evaluateAll((rows) => rows.map((row) => row.cells[1].textContent));
+    check(
+      "every comparison row identifies its own executor including the baseline",
+      JSON.stringify(versions) ===
+        JSON.stringify([
+          legacy.output.version,
+          ...scenarios.map((s) => s.output.version),
+        ]),
+    );
+    check(
+      "mixed comparison retains every scenario's monetary output and coverage",
+      await comparison
+        .locator("tbody tr")
+        .evaluateAll((rows) =>
+          rows
+            .slice(1)
+            .map((row) => [row.cells[3].textContent, row.cells[6].textContent]),
+        )
+        .then((rows) =>
+          rows.every(
+            (row, i) =>
+              (scenarios[i].output.cost == null
+                ? row[0] === "Não coberto"
+                : row[0].replace(/[^\d,-]/g, "") ===
+                  scenarios[i].output.cost.replace(".", ",")) &&
+              row[1].replace(/\s/g, "") ===
+                `${scenarios[i].output.coverage.covered}/${scenarios[i].output.coverage.total}`,
+          ),
+        ),
+    );
+    for (const dark of [false, true]) {
+      if (
+        ((await page.locator(".aw-shell").getAttribute("data-ops-theme")) ===
+          "dark") !==
+        dark
+      )
+        await click(dark ? "Modo escuro" : "Modo claro");
+      await comparison.scrollIntoViewIfNeeded();
+      await screenshot(`mixed-comparison-${dark ? "dark" : "light"}.png`);
+    }
+    await page.getByRole("button", { name: /Comparar preservados/ }).click();
+    check(
+      "showing and hiding legacy comparison adds no status announcements",
+      JSON.stringify(await page.evaluate(() => window.legacyAnnouncements)) ===
+        "[]" && (await page.getByRole("status").count()) === 1,
+    );
+    await page.evaluate(() => window.legacyStatusObserver.disconnect());
+    await page.setViewportSize({ width: 390, height: 844 });
+    await legacyWarning.scrollIntoViewIfNeeded();
+    await screenshot("legacy-mobile.png");
+    await page.setViewportSize({ width: 1440, height: 900 });
     check(
       "retained 0.1.0 view is not overwritten by latest preview",
       (await page
@@ -554,6 +699,40 @@ try {
         (await get(data.planning + `/scenarios/${data.legacy}/export`)).output,
       ) === JSON.stringify(legacy.output),
     );
+    await click("Reconstruir resultado");
+    await page
+      .getByText("Replay exato: resultado idêntico.", { exact: true })
+      .waitFor();
+    check(
+      "legacy replay still reconstructs the retained result",
+      (await get(data.planning + `/scenarios/${data.legacy}/replay`))
+        .matches === true,
+    );
+    const oldDownloadPromise = page.waitForEvent("download");
+    await page
+      .getByRole("link", { name: "Exportar cenário exato", exact: true })
+      .click();
+    const oldDownload = await oldDownloadPromise;
+    check(
+      "legacy export download remains byte-identical",
+      Buffer.compare(await readFile(await oldDownload.path()), legacyBytes) ===
+        0,
+    );
+    check(
+      "legacy scenario and export API bytes remain identical after disclosure comparison and replay",
+      Buffer.compare(
+        await (await context.request.get(base + legacyExportURL)).body(),
+        legacyBytes,
+      ) === 0 &&
+        Buffer.compare(
+          await (
+            await context.request.get(
+              base + data.planning + `/scenarios/${data.legacy}`,
+            )
+          ).body(),
+          retainedBytes,
+        ) === 0,
+    );
     const nextPreview = page.waitForResponse(
       (r) =>
         r.url().includes("/planning/preview") &&
@@ -568,6 +747,10 @@ try {
         (await page
           .getByText("Regra e fórmula · 0.1.1", { exact: true })
           .count()) === 1,
+    );
+    check(
+      "exploring with 0.1.1 removes the historical financial warning",
+      (await legacyWarning.count()) === 0,
     );
   } else {
     skipped.push(

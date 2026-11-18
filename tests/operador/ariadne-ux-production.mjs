@@ -16,11 +16,14 @@ const js = (
       .map((file) => readFile(path.join("dist/assets", file), "utf8")),
   )
 ).join("\n");
-for (const marker of [
+const excludedMarkers = [
   "data-ariadne-state",
   "ariadne-preserved-comparison",
   "Navegação Ariadne",
-])
+  "Execução histórica · modelo 0.1.0",
+  "ariadne-mixed-models",
+];
+for (const marker of excludedMarkers)
   assert.equal(
     js.includes(marker),
     false,
@@ -52,10 +55,10 @@ try {
     assert.equal(await page.locator(".aw-shell").count(), 0);
   }
   const result = {
-    pass: 5,
+    pass: excludedMarkers.length + 2,
     fail: 0,
     skip: 0,
-    excludedMarkers: 3,
+    excludedMarkers: excludedMarkers.length,
     excludedRoutes: 2,
     interceptedApiRequests: intercepted,
     outboundApiRequests: 0,
