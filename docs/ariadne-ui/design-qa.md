@@ -67,7 +67,7 @@ Additional evidence: [comparison](evidence/planning-comparison.png), [keyboard P
 
 Browser steps passed: normal login; saved 0.1.1 Planning; saved/unsaved self-navigation; edit/explore/restore announcements; refresh; comparison; exact replay; actual export download; keyboard PDF focus; both themes/sizes; Review row/page 14 → June/page 13; history; direct/empty/mobile navigation; unsaved baseline refresh without auto-save; retained 0.1.0 view and explicit 0.1.1 exploration. Clicking the original action opened a separate blob-PDF tab at `#page=14`; original bytes matched the uploaded PDF SHA256. This is not a human comprehension/usability claim.
 
-## Fresh gates
+## Initial isolation gates — prior run at dfa1bfd1
 
 | Gate | Pass | Fail | Skip |
 |---|---:|---:|---:|
@@ -90,6 +90,53 @@ Real `npx tsc -b`, build, compileall and diff checks passed. Design detector: 75
 Chrome 157.0.8103.51 used the existing Playwright package's Chrome channel because its bundled browser executable is absent. Dependencies used the unchanged lockfile. An early type invocation preceded completion of `npm ci` and was discarded; real `tsc -b` subsequently passed. A disposable DB-creation harness transaction error was corrected before clean migration. No shared database was reset. Existing dependency peer/deprecation and build warnings remain; no package/lock/config changes are committed.
 
 `qa.json` records automated duration/time, not human task time, time savings or Product Lead/Founder acceptance.
+
+## Legacy result disclosure — 2026-11-17 follow-up
+
+Requested starting head and live remote head matched `dfa1bfd158a77d8fe47c34651e971f336406b80d`; corrected #30 base remains `9db8ce19fc3ff9eb669d6309e119e726ef322bde`. Implementation/test commit: `b830f9e2b58b72d1330a6142ada43cb8fface634`. #30 and #31 are unchanged. No shared file or backend changes in this follow-up.
+
+**Reproduced:** before the correction, the real-browser regression failed at “preserved 0.1.0 discloses historical eligibility limits beside financial result” after the current preview finished. The retained values were preserved, but the financial inspector did not disclose the known eligibility limitations. The comparison also omitted model versions.
+
+**Correction:** a visible `role=note`, labelled by its heading, sits before the historical financial result. It states that 0.1.0 predates monetary eligibility corrections, preserves the original for reconstruction, distinguishes replay from financial validation and requires a new 0.1.1 execution for current evaluation of the same assumptions. It does not claim that every 0.1.0 output is incorrect. The note is absent for 0.1.1 and when explicitly exploring under that executor.
+
+Every comparison row, including the displayed baseline, identifies its own output version. When displayed versions include both 0.1.0 and 0.1.1, a contextual note explains that monetary coverage may differ. The table references that note with `aria-describedby`. Both notices are static, without `aria-live`/alert/status roles; the existing scenario-state announcer is unchanged. No new execution, normalization, warning field in exports, or backfill is introduced.
+
+Reference lock remains Quiet Professional. The only visual addition reuses the existing selection/accent tokens and fine-rule treatment for notices. The financial values, sources, coverage flags, comparison data and 0.1.0/0.1.1 dispatch remain unchanged.
+
+### Fresh follow-up verification
+
+| Gate | Pass | Fail | Skip |
+|---|---:|---:|---:|
+|Focused frontend (subset)|18|0|0|
+|All frontend Node tests|94|0|0|
+|Synthetic Planning regressions, disposable PostgreSQL 17|111|0|0|
+|Retained replay/hash comparisons, read-only|11|0|0|
+|Chrome interaction/layout assertions|62|0|0|
+|Production markers/routes|7|0|0|
+
+The task-scoped backend command was `python -B -m pytest tests/ariadne_planning -q -k 'not authentic and not actual_scanned_searchable'`: 111 passed, 8 public-corpus cases explicitly deselected, zero skips. It includes persisted defective 0.1.0 replay/export beside 0.1.1, strict period eligibility, source/ownership and retry regressions. An initial broader invocation also ran those existing frozen public-corpus cases (119 passed, zero failures/skips); no downloads occurred. The narrowed rerun uses synthetic evaluation data. Browser inputs and committed screenshots are exclusively synthetic.
+
+The browser checks the actual authenticated UI and API. It verifies 0.1.0 disclosure, 0.1.1 absence, every comparison version/cost/coverage, unchanged retained display after current preview, exact legacy replay, byte-identical scenario/export API responses and actual downloaded export. Opening/closing comparison produced zero state announcements; the existing Exploring → Preserved assertion still observes exactly one of each. The static note adds no live region. The visible legacy source still corresponds to February/page 14.
+
+Fresh read-only comparison of the 11 retained frozen manifests matched 5 Planning, 2 Close and 4 scalar histories. No old evaluation database was modified. The broader 378-backend result in the initial section above was **not rerun** for this disclosure-only patch and is not counted as fresh follow-up evidence.
+
+Real `npx tsc -b`, `npm run build`, compileall and diff checks passed. Detector: 759 files, 0 P0, 25 existing informational P2. The built production app still excludes both task routes; all five executable UI markers (including the two new disclosure markers) are absent. Actual Chrome route checks pass with zero outbound API requests. Existing build/dependency warnings remain; no dependency or configuration change.
+
+[Fresh browser assertions, viewport measurements and automated timing](evidence/legacy-disclosure/qa.json) · [Fresh production gate](evidence/legacy-disclosure/production-gates.json). Browser JSON uses UTC; this follow-up date uses America/New_York. Automated timing is not human usability evidence.
+
+### Screenshot evidence and remaining manual QA
+
+| Historical financial disclosure | Light | Dark |
+|---|---|---|
+|1440×900|[capture](evidence/legacy-disclosure/legacy-1440-light.png)|[capture](evidence/legacy-disclosure/legacy-1440-dark.png)|
+|1920×1080|[capture](evidence/legacy-disclosure/legacy-1920-light.png)|[capture](evidence/legacy-disclosure/legacy-1920-dark.png)|
+|Mixed-version comparison, 1440×900|[capture](evidence/legacy-disclosure/mixed-comparison-light.png)|[capture](evidence/legacy-disclosure/mixed-comparison-dark.png)|
+
+[390×844 legacy disclosure](evidence/legacy-disclosure/legacy-mobile.png). All seven new captures were visually inspected. No horizontal overflow was measured in these or the 14 existing states freshly exercised by the harness. The original PDF action remains visible in the desktop historical proof.
+
+Remaining manual QA: Product Lead/Founder should assess whether the copy clearly distinguishes reconstruction from current evaluation; manually read the warning and table context with the supported screen reader/browser combination. DOM accessibility and MutationObserver checks do not certify assistive-technology speech or human comprehension. No known functional failure remains from the requested checks.
+
+Files changed in this follow-up: `AriadnePlanning.tsx`, `ariadne-workspace.css`, `tests/operador/ariadne-ux-browser.mjs`, `tests/operador/ariadne-ux-production.mjs`, this report, seven synthetic PNGs and two JSON evidence files under `evidence/legacy-disclosure/`. No methodology, saved data, sources, auth, router, production gate, other family or canonical document changed. The QA backend/frontend/preview processes were stopped afterward; the pre-existing PostgreSQL cluster and prior evaluation services remain untouched. Keep #33 Draft; no merge or deployment.
 
 ## Local reproduction
 
