@@ -46,6 +46,10 @@ O extrato republicado do Contrato de Concessão nº 01/2010-MME no DOU de 31 de 
 
 ## Verificação
 
+NIV-68 aplica a sintaxe CSV estrita ao contrato existente `ons.capacidade_geracao.parser@1`. Aspas malformadas geram `SchemaError`, inclusive quando a última linha tem a quantidade esperada de campos. O cabeçalho, a identidade por código de equipamento, a normalização e o diff continuam com as mesmas regras para CSV válido. A captura original e o Gold Set v0.1 continuam reproduzíveis com as mesmas versões de parser e diff.
+
+Um snapshot bruto malformado continua recuperável por ID no Argos Memory. A inspeção devolve `503 / UNRESOLVED / SOURCE_EVIDENCE_UNAVAILABLE`, o diff armazenado recusa a comparação e o runtime retém apenas o evento de falha de esquema em `HOLD`.
+
 Para os testes de integração, use um segundo banco descartável chamado `niv66_test`, faça a migração e importe o mesmo original. Configure `NIV66_ORIGINAL_CSV` com o caminho absoluto e `NIV66_REAL_SNAPSHOT` com o ID devolvido pelo importador nesse banco.
 
 ```powershell

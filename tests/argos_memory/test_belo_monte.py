@@ -20,7 +20,9 @@ from sqlalchemy.engine import make_url
 from app.db.models.user import User
 from app.db.session import SessionLocal, get_db
 from app.routers.argos_belo_monte import router
+from app.routers.auth import router as auth_router
 from app.services import argos_belo_monte as service
+from app.services import auth_service
 from app.services.argos_memory import capture_snapshot, compute_sha256, reconstruct_snapshot
 from app.services.argos_ons_capacidade_geracao_diff import (
     EXPECTED_HEADER,
@@ -205,6 +207,61 @@ def test_route_requires_operator_session_and_rejects_non_display_modes(browser_a
     monkeypatch.setenv("ARGOS_BELO_MONTE_DEV", "1")
     monkeypatch.setenv("RAILWAY_ENVIRONMENT_NAME", "staging")
     assert client.get(API_PATH).status_code == 404
+
+
+def test_authenticated_route_withholds_truncated_successor(
+    local_db, monkeypatch, truncated_ons_capacity_pair,
+):
+    source_id = f"{TEST_SOURCE}.{uuid4().hex}"
+    resource_url = "test://niv66/truncated-csv"
+    operator_email = f"niv68-qa-{uuid4().hex}@example.com"
+    monkeypatch.setattr(service, "SOURCE_ID", source_id)
+    monkeypatch.setattr(service, "DEFAULT_RESOURCE_URL", resource_url)
+    monkeypatch.setattr(service, "SITES", (TEST_SITE,))
+    monkeypatch.setattr(auth_service, "JWT_SECRET", uuid4().hex)
+    monkeypatch.setenv("ARGOS_BELO_MONTE_DEV", "1")
+    monkeypatch.setenv("ADVISORY_OPERATOR_EMAIL", operator_email)
+
+    snapshots = []
+    for payload in truncated_ons_capacity_pair:
+        snapshot = capture_snapshot(
+            local_db,
+            source_id=source_id,
+            data=payload,
+            content_type="text/csv",
+            adapter_version=service.ADAPTER_VERSION,
+            retrieved_at=datetime.now(timezone.utc),
+            acquisition_metadata={"url": resource_url},
+            rights_record_ref=service.RIGHTS_RECORD_REF,
+            rights_summary_state=service.RIGHTS_SUMMARY_STATE,
+        )
+        local_db.commit()
+        snapshots.append(snapshot)
+    before, after = snapshots
+    assert after.prior_snapshot_id == before.id
+    assert reconstruct_snapshot(local_db, after.id)[1] == truncated_ons_capacity_pair[1]
+
+    app = FastAPI()
+    app.include_router(auth_router)
+    app.include_router(router)
+    with TestClient(app, base_url="https://testserver") as client:
+        assert client.get(API_PATH).status_code == 401
+        signup = client.post("/api/auth/signup", json={
+            "email": operator_email, "password": uuid4().hex, "name": "NIV-68 QA",
+        })
+        assert signup.status_code == 201
+        assert auth_service.SESSION_COOKIE_NAME in client.cookies
+
+        monkeypatch.setenv(service.SNAPSHOTS_ENV, json.dumps([str(before.id)]))
+        response = client.get(API_PATH)
+        assert response.status_code == 200
+        assert response.json()["sites"][0]["units"][0]["observation"]["value"] == "101.25"
+
+        monkeypatch.setenv(service.SNAPSHOTS_ENV, json.dumps([str(before.id), str(after.id)]))
+        response = client.get(API_PATH)
+        assert response.status_code == 503
+        assert response.json() == {"state": "UNRESOLVED", "reason": "SOURCE_EVIDENCE_UNAVAILABLE"}
+        assert response.headers["cache-control"] == "private, no-store"
 
 
 def test_actual_snapshot_read_and_early_unknown(browser_api, monkeypatch):

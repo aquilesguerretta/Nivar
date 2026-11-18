@@ -666,6 +666,28 @@ def attested_promoted_evaluation(runtime_db_session):
     return evaluate_promotion(event, _context(case, event))
 
 
+def test_truncated_stored_csv_yields_only_a_nonpromotable_parser_failure(
+    runtime_db_session, truncated_ons_capacity_pair,
+):
+    valid, malformed = truncated_ons_capacity_pair
+    first, second = _capture_pair(
+        runtime_db_session,
+        SnapshotPairObservation(SOURCE_ID, valid, malformed, "test://valid", "test://truncated"),
+    )
+    event, = build_candidate_events_from_snapshots(runtime_db_session, first.id, second.id)
+    assert event.event_kind == "SCHEMA_DRIFT"
+    assert event.deterministic_result_kind == "PARSER_FAILURE"
+    assert dict(event.facts) == {"error_class": "SchemaError", "failure_mode": "fail_closed"}
+    assert event.evidence_refs == (str(second.id),)
+    assert event.content_delta is None
+
+    # Use a promotable Gold context to prove the parser failure itself prevents a Signal.
+    case = next(case for case in CASES if case["case_id"] == "SG-004")
+    evaluation = evaluate_promotion(event, _context(case, event))
+    assert (evaluation.decision, evaluation.reason_code) == ("HOLD", "SCHEMA_DRIFT")
+    assert make_signal_claim_pack(evaluation) is None
+
+
 def test_snapshot_backed_gold_promotions_surface_with_exact_snapshot_ids(
     runtime_db_session,
 ):
