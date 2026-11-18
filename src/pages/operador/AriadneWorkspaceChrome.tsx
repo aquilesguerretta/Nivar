@@ -121,6 +121,14 @@ export function AriadneContext({
   );
 }
 
+export function AriadneOriginalRetry({ retry }: { retry: () => void }) {
+  return (
+    <button type="button" onClick={retry}>
+      Tentar carregar original novamente
+    </button>
+  );
+}
+
 /** Keeps the exact authenticated URL supplied by the existing proof flow. */
 export function AriadneSourceAction({
   href,

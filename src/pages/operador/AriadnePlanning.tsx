@@ -8,7 +8,11 @@ import {
   History,
   TriangleAlert,
 } from "lucide-react";
-import { AriadneContext, AriadneSourceAction } from "./AriadneWorkspaceChrome";
+import {
+  AriadneContext,
+  AriadneOriginalRetry,
+  AriadneSourceAction,
+} from "./AriadneWorkspaceChrome";
 import {
   ComposedChart,
   LineChart,
@@ -27,6 +31,7 @@ import {
   samePlanAssumptions,
   planMonthKey,
   selectedPlanMonth,
+  initialPlanMonth,
   planPreviewForDisplay,
 } from "../../lib/ariadne/planningSelection";
 import {
@@ -36,6 +41,10 @@ import {
   type SavedPlan,
   type PlanAssumptions,
 } from "../../lib/ariadne/planningApi";
+import {
+  originalDocumentMessage,
+  useOriginalDocument,
+} from "../../lib/ariadne/useOriginalDocument";
 import "./ariadne-review-desk.css";
 import "./ariadne-planning.css";
 const brl = (s: string | null | undefined) =>
@@ -74,8 +83,8 @@ export function AriadnePlanning() {
     [busy, setBusy] = useState(""),
     [error, setError] = useState(""),
     [notice, setNotice] = useState("");
-  const [compare, setCompare] = useState(false),
-    [original, setOriginal] = useState("");
+  const [compare, setCompare] = useState(false);
+  const [unmatchedProof, setUnmatchedProof] = useState(false);
   const requests = useRef(new PlanningRequests()),
     epoch = useRef(requests.current.loads),
     previewEpoch = useRef(requests.current.previews),
@@ -112,7 +121,7 @@ export function AriadnePlanning() {
     setBusy("");
     setNotice("");
     setHistorical(false);
-    setOriginal("");
+    setUnmatchedProof(false);
     if (!w || !r || !b) {
       setPending(false);
       return;
@@ -133,11 +142,16 @@ export function AriadnePlanning() {
         setCandidate(current.output.assumptions.candidateKw);
         setNormal(current.output.assumptions.normalRegime);
         setApplicable(current.output.assumptions.tariffApplicability);
-        const remembered =
-          selectedPlanMonth(current.output.months, query.get("item") || "") ||
-          current.output.months.find((m) => m.label === query.get("month")) ||
-          current.output.months.find((m) => m.physicalCovered);
+        const remembered = initialPlanMonth(
+          current.output.months,
+          base.output.months,
+          query,
+        );
         setMonth(remembered ? planMonthKey(remembered) : "");
+        setUnmatchedProof(
+          !remembered &&
+            ["proof", "item", "month"].some((key) => query.has(key)),
+        );
         setName(preserved?.name || "Alternativa");
         requestAnimationFrame(() =>
           measure("ariadne-plan-first-useful", started),
@@ -208,38 +222,20 @@ export function AriadnePlanning() {
   }, [w, r, b, candidate, normal, applicable]);
   const output = view?.output,
     proof = output ? selectedPlanMonth(output.months, month) : undefined;
+  const originalRequest =
+    proof?.sourceRef.sourceId && view?.baselineId === b
+      ? closeApi.originalUrl(w, r, proof.sourceRef.sourceId)
+      : undefined;
+  const original = useOriginalDocument(originalRequest);
+  const visibleError = original.failure
+    ? originalDocumentMessage[original.failure]
+    : error;
   const comparisonVersions = new Set([
     output?.version,
     ...saved.map((s) => s.output.version),
   ]);
   const mixedEligibilityRules =
     comparisonVersions.has("0.1.0") && comparisonVersions.has("0.1.1");
-  useEffect(() => {
-    setOriginal("");
-    if (!proof?.sourceRef.sourceId || !proof.sourceRef.page) return;
-    const controller = new AbortController();
-    let objectUrl = "";
-    fetch(closeApi.originalUrl(w, r, proof.sourceRef.sourceId), {
-      credentials: "include",
-      signal: controller.signal,
-    })
-      .then(async (response) => {
-        if (!response.ok) throw new Error("Original privado indisponível");
-        return response.blob();
-      })
-      .then((blob) => {
-        if (controller.signal.aborted) return;
-        objectUrl = URL.createObjectURL(blob);
-        setOriginal(objectUrl);
-      })
-      .catch((e) => {
-        if (!controller.signal.aborted) setError(errorText(e));
-      });
-    return () => {
-      controller.abort();
-      if (objectUrl) URL.revokeObjectURL(objectUrl);
-    };
-  }, [w, r, b, proof?.sourceRef.sourceId, proof?.sourceRef.page]);
   async function act(
     label: string,
     fn: (current: () => boolean) => Promise<void>,
@@ -262,9 +258,11 @@ export function AriadnePlanning() {
   function chooseMonth(key: string, label: string) {
     const start = performance.now();
     setMonth(key);
+    setUnmatchedProof(false);
     setQuery(
       (previous) => {
         const next = new URLSearchParams(previous);
+        next.delete("proof");
         next.set("month", label);
         next.set("item", key);
         return next;
@@ -366,9 +364,9 @@ export function AriadnePlanning() {
           )
         }
       />
-      {error && (
+      {visibleError && (
         <p role="alert" className="desk__error">
-          {error}
+          {visibleError}
         </p>
       )}
       {notice && (
@@ -760,19 +758,28 @@ export function AriadnePlanning() {
                 </dl>
               </details>
               {busy && <p role="status">{busy}</p>}
+              {unmatchedProof && (
+                <p className="plan__muted">
+                  A seleção anterior não corresponde a uma prova deste baseline.
+                  Selecione uma linha para abrir a prova.
+                </p>
+              )}
               {proof && (
                 <article className="plan__proof">
                   <h2>{proof.label} · prova</h2>
-                  <AriadneSourceAction
-                    href={
-                      proof.sourceRef.page
-                        ? original
-                          ? `${original}#page=${proof.sourceRef.page}`
-                          : undefined
-                        : closeApi.originalUrl(w, r, proof.sourceRef.sourceId)
-                    }
-                    page={proof.sourceRef.page}
-                  />
+                  {original.failure ? (
+                    <AriadneOriginalRetry retry={original.retry} />
+                  ) : (
+                    <AriadneSourceAction
+                      href={
+                        original.href &&
+                        (proof.sourceRef.page
+                          ? `${original.href}#page=${proof.sourceRef.page}`
+                          : originalRequest)
+                      }
+                      page={proof.sourceRef.page}
+                    />
+                  )}
                   <dl>
                     <div>
                       <dt>Demanda observada</dt>

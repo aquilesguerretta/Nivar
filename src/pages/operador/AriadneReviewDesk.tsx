@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { ArrowUpRight, Download, FileText, History, Plus, Upload } from "lucide-react";
-import { AriadneContext, AriadneSourceAction } from "./AriadneWorkspaceChrome";
+import {
+  AriadneContext,
+  AriadneOriginalRetry,
+  AriadneSourceAction,
+} from "./AriadneWorkspaceChrome";
 import {
   Bar,
   BarChart,
@@ -27,6 +31,11 @@ import {
   reviewedSelection,
   sameInterpretation,
 } from "../../lib/ariadne/deskSelection";
+import { planProofKey } from "../../lib/ariadne/planningSelection";
+import {
+  originalDocumentMessage,
+  useOriginalDocument,
+} from "../../lib/ariadne/useOriginalDocument";
 
 const reviewMode = (p: Inspection, role: CloseRole): Mapping['reviewMode'] =>
   p.demandProfile ? 'demand_profile' : p.tariffReferences ? 'tariff_reference' :
@@ -99,8 +108,7 @@ export function AriadneReviewDesk() {
     [busy, setBusy] = useState(""),
     [error, setError] = useState(""),
     [notice, setNotice] = useState("");
-  const [original, setOriginal] = useState(""),
-    [showDocument, setShowDocument] = useState(false);
+  const [showDocument, setShowDocument] = useState(false);
   const [pageError, setPageError] = useState(false);
   const [treatmentStatus, setTreatmentStatus] = useState("follow_up"),
     [reason, setReason] = useState(""),
@@ -155,6 +163,20 @@ export function AriadneReviewDesk() {
   const pdf = preview?.kind === "pdf";
   const pageNumber =
     row?.page || Number(row?.locator?.match(/^page:(\d+)/)?.[1] || 1);
+  const original = useOriginalDocument(
+    pending && pdf
+      ? pending.file
+      : source && workspace && review
+        ? closeApi.originalUrl(workspace, review, source.id)
+        : undefined,
+  );
+  const visibleError = original.failure
+    ? originalDocumentMessage[original.failure]
+    : error;
+  const selectedProof =
+    proofRef ?? (item?.candidate.source_id
+      ? { sourceId: item.candidate.source_id, locator: item.candidate.locator }
+      : null);
 
   useEffect(() => setPageError(false), [activeSource, pageNumber]);
 
@@ -296,38 +318,6 @@ export function AriadneReviewDesk() {
     pending,
     calculation?.id,
   ]);
-
-  useEffect(() => {
-    setOriginal("");
-    if (!pdf) return;
-    if (pending) {
-      const url = URL.createObjectURL(pending.file);
-      setOriginal(url);
-      return () => URL.revokeObjectURL(url);
-    }
-    if (!source) return;
-    const controller = new AbortController();
-    let url = "";
-    void fetch(closeApi.originalUrl(workspace, review, source.id), {
-      credentials: "include",
-      signal: controller.signal,
-    })
-      .then(async (response) => {
-        if (!response.ok)
-          throw new Error("Original indisponível; verifique sua sessão");
-        const blob = await response.blob();
-        if (controller.signal.aborted) return;
-        url = URL.createObjectURL(blob);
-        setOriginal(url);
-      })
-      .catch((e) => {
-        if (!controller.signal.aborted) setError(errorText(e));
-      });
-    return () => {
-      controller.abort();
-      if (url) URL.revokeObjectURL(url);
-    };
-  }, [pdf, pending, workspace, review, activeSource]);
 
   async function act(
     label: string,
@@ -585,9 +575,9 @@ export function AriadneReviewDesk() {
           </Link>
         </aside>
       )}
-      {error && (
+      {visibleError && (
         <p role="alert" className="desk__error">
-          {error}
+          {visibleError}
         </p>
       )}
       {notice && (
@@ -1093,7 +1083,19 @@ export function AriadneReviewDesk() {
                 <>
                   {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_PLAN_DEV === '1' &&
                     calculation.inputs.records.some(row => row.recordKind === 'demand_fact' && row.eligible && !row.errors.length) &&
-                    <Link className="desk__primary" to={`/operador/ariadne/planejamento?workspace=${workspace}&review=${review}&baseline=${calculation.id}`}>Planejar a partir deste estado <ArrowUpRight size={15} aria-hidden /></Link>}
+                    <Link
+                      className="desk__primary"
+                      to={`/operador/ariadne/planejamento?${new URLSearchParams({
+                        workspace,
+                        review,
+                        baseline: calculation.id,
+                        proof: selectedProof
+                          ? planProofKey(selectedProof.sourceId, selectedProof.locator)
+                          : "",
+                      })}`}
+                    >
+                      Planejar a partir deste estado <ArrowUpRight size={15} aria-hidden />
+                    </Link>}
                   <button
                     disabled={!!busy}
                     onClick={() =>
@@ -1149,23 +1151,35 @@ export function AriadneReviewDesk() {
           </div>
           {preview ? (
             <>
-              {original && <AriadneSourceAction href={original + `#page=${pageNumber}`} page={pdf ? pageNumber : undefined} />}
+              {pdf && original.href && (
+                <AriadneSourceAction
+                  href={original.href + `#page=${pageNumber}`}
+                  page={pageNumber}
+                />
+              )}
               <div className="desk__source-actions">
-                {original && (
-                  <>
-                    {source && (
-                      <button onClick={() => setShowDocument(!showDocument)}>
-                        {showDocument ? "Voltar à prova" : "Ver página aqui"}
-                      </button>
-                    )}
-                  </>
+                {original.failure && (
+                  <AriadneOriginalRetry retry={original.retry} />
                 )}
-                {source && (
+                {original.href && source && pdf && (
+                  <button onClick={() => setShowDocument(!showDocument)}>
+                    {showDocument ? "Voltar à prova" : "Ver página aqui"}
+                  </button>
+                )}
+                {original.href && source && (
                   <a href={closeApi.originalUrl(workspace, review, source.id)}>
                     <Download size={15} aria-hidden /> Baixar original
                   </a>
                 )}
-                {source && pdf && <a href={closeApi.pageUrl(workspace, review, source.id, pageNumber)} target="_blank" rel="noreferrer">Ampliar página</a>}
+                {original.href && source && pdf && !pageError && (
+                  <a
+                    href={closeApi.pageUrl(workspace, review, source.id, pageNumber)}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Ampliar página
+                  </a>
+                )}
               </div>
               {source?.role === "context" && rawRows.length > 1 && (
                 <label>Linha de referência
@@ -1174,11 +1188,11 @@ export function AriadneReviewDesk() {
                   </select>
                 </label>
               )}
-              {showDocument && source && pdf ? (
+              {showDocument && source && pdf && original.href ? (
                 pageError ? (
                   <p role="alert">
-                    Página indisponível. Baixe o original ou volte à prova
-                    textual; verifique sua sessão antes de tentar novamente.
+                    Prévia da página indisponível. Abra o original ou volte à
+                    prova textual.
                   </p>
                 ) : (
                   <img
