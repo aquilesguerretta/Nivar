@@ -25,7 +25,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
-import { closeApi } from "../../lib/ariadne/closeApi";
+import { closeApi, CloseApiError } from "../../lib/ariadne/closeApi";
 import {
   PlanningRequests,
   samePlanAssumptions,
@@ -55,8 +55,10 @@ const brl = (s: string | null | undefined) =>
         (_, sign, int, fraction) =>
           `${sign}${int.replace(/\B(?=(\d{3})+(?!\d))/g, ".")}${fraction ? `,${fraction}` : ""}`,
       )}`;
-const errorText = (e: unknown) =>
-  e instanceof Error ? e.message : "Falha de planejamento";
+const errorText = (e: unknown, message: string) =>
+  e instanceof CloseApiError && e.status === 401
+    ? `${message} Sessão expirada. Entre novamente.`
+    : message;
 // Development-only, numeric timing evidence; no workspace/source fields in logs.
 function measure(name: string, start: number) {
   const end = performance.now();
@@ -134,8 +136,10 @@ export function AriadnePlanning() {
       .then(([base, branches]) => {
         if (!epoch.current.current(ticket)) return;
         const preserved = branches.find((s) => s.id === scenarioId);
-        if (scenarioId && !preserved)
-          throw new Error("Cenário não disponível neste baseline privado.");
+        if (scenarioId && !preserved) {
+          setError("Cenário não disponível neste baseline privado.");
+          return;
+        }
         const current = preserved || base;
         setView(current);
         setSaved(branches);
@@ -159,7 +163,12 @@ export function AriadnePlanning() {
       })
       .catch((e) => {
         if (!controller.signal.aborted && epoch.current.current(ticket))
-          setError(errorText(e));
+          setError(
+            errorText(
+              e,
+              "Não foi possível abrir o planejamento. Confira o contexto e tente novamente.",
+            ),
+          );
       })
       .finally(() => {
         if (epoch.current.current(ticket)) setPending(false);
@@ -209,7 +218,12 @@ export function AriadnePlanning() {
             previewEpoch.current.current(ticket) &&
             context === liveContext.current
           ) {
-            setError(errorText(e));
+            setError(
+              errorText(
+                e,
+                "Não foi possível atualizar a simulação. Confira a demanda candidata e as premissas ou recarregue o planejamento.",
+              ),
+            );
             setPending(false);
           }
         });
@@ -227,9 +241,6 @@ export function AriadnePlanning() {
       ? closeApi.originalUrl(w, r, proof.sourceRef.sourceId)
       : undefined;
   const original = useOriginalDocument(originalRequest);
-  const visibleError = original.failure
-    ? originalDocumentMessage[original.failure]
-    : error;
   const comparisonVersions = new Set([
     output?.version,
     ...saved.map((s) => s.output.version),
@@ -238,6 +249,7 @@ export function AriadnePlanning() {
     comparisonVersions.has("0.1.0") && comparisonVersions.has("0.1.1");
   async function act(
     label: string,
+    failure: string,
     fn: (current: () => boolean) => Promise<void>,
   ) {
     const ticket = actions.current.next(),
@@ -250,7 +262,7 @@ export function AriadnePlanning() {
     try {
       await fn(current);
     } catch (e) {
-      if (current()) setError(errorText(e));
+      if (current()) setError(errorText(e, failure));
     } finally {
       if (actions.current.current(ticket)) setBusy("");
     }
@@ -331,6 +343,9 @@ export function AriadnePlanning() {
               </label>
               <button
                 className="desk__primary"
+                aria-describedby={
+                  error ? "ariadne-planning-operation-error" : undefined
+                }
                 disabled={
                   pending ||
                   !!busy ||
@@ -339,23 +354,27 @@ export function AriadnePlanning() {
                   (!historical && view?.newerBaselineExists)
                 }
                 onClick={() =>
-                  void act("Preservando cenário…", async (current) => {
-                    const result = await planningApi.save(root, {
-                      candidateKw: candidate,
-                      normalRegime: normal,
-                      tariffApplicability: applicable,
-                      name,
-                      acknowledgeHistoricalBaseline: historical,
-                    });
-                    if (current())
-                      setQuery({
-                        workspace: w,
-                        review: r,
-                        baseline: b,
-                        ...(proof ? { month: proof.label, item: month } : {}),
-                        scenario: result.id,
+                  void act(
+                    "Preservando cenário…",
+                    "Não foi possível preservar o cenário. Reabra o planejamento e confira os cenários salvos antes de repetir.",
+                    async (current) => {
+                      const result = await planningApi.save(root, {
+                        candidateKw: candidate,
+                        normalRegime: normal,
+                        tariffApplicability: applicable,
+                        name,
+                        acknowledgeHistoricalBaseline: historical,
                       });
-                  })
+                      if (current())
+                        setQuery({
+                          workspace: w,
+                          review: r,
+                          baseline: b,
+                          ...(proof ? { month: proof.label, item: month } : {}),
+                          scenario: result.id,
+                        });
+                    },
+                  )
                 }
               >
                 Preservar cenário
@@ -364,9 +383,14 @@ export function AriadnePlanning() {
           )
         }
       />
-      {visibleError && (
-        <p role="alert" className="desk__error">
-          {visibleError}
+      {error && (
+        <p
+          id="ariadne-planning-operation-error"
+          role="alert"
+          className="desk__error"
+        >
+          {error}
+          {output && " Resolva a falha antes de preservar o cenário."}
         </p>
       )}
       {notice && (
@@ -652,24 +676,28 @@ export function AriadnePlanning() {
                   <button
                     disabled={!!busy || pending}
                     onClick={() =>
-                      void act("Duplicando…", async (current) => {
-                        const copy = await planningApi.duplicate(
-                          root,
-                          selected.id,
-                          `${selected.name} · cópia`,
-                          historical,
-                        );
-                        if (current())
-                          setQuery({
-                            workspace: w,
-                            review: r,
-                            baseline: b,
-                            ...(proof
-                              ? { month: proof.label, item: month }
-                              : {}),
-                            scenario: copy.id,
-                          });
-                      })
+                      void act(
+                        "Duplicando…",
+                        "Não foi possível duplicar o cenário. Reabra o planejamento e confira os cenários salvos antes de repetir.",
+                        async (current) => {
+                          const copy = await planningApi.duplicate(
+                            root,
+                            selected.id,
+                            `${selected.name} · cópia`,
+                            historical,
+                          );
+                          if (current())
+                            setQuery({
+                              workspace: w,
+                              review: r,
+                              baseline: b,
+                              ...(proof
+                                ? { month: proof.label, item: month }
+                                : {}),
+                              scenario: copy.id,
+                            });
+                        },
+                      )
                     }
                   >
                     <Copy size={15} aria-hidden /> Duplicar cenário
@@ -680,18 +708,22 @@ export function AriadnePlanning() {
                     <button
                       disabled={!!busy}
                       onClick={() =>
-                        void act("Reconstruindo…", async (current) => {
-                          const result = await planningApi.replay(
-                            root,
-                            selected.id,
-                          );
-                          if (current())
-                            setNotice(
-                              result.matches
-                                ? "Replay exato: resultado idêntico."
-                                : "Falha de replay.",
+                        void act(
+                          "Reconstruindo…",
+                          "Não foi possível reconstruir o resultado. Tente novamente.",
+                          async (current) => {
+                            const result = await planningApi.replay(
+                              root,
+                              selected.id,
                             );
-                        })
+                            if (current())
+                              setNotice(
+                                result.matches
+                                  ? "Replay exato: resultado idêntico."
+                                  : "Falha de replay.",
+                              );
+                          },
+                        )
                       }
                     >
                       <History size={15} aria-hidden /> Reconstruir resultado
@@ -768,7 +800,12 @@ export function AriadnePlanning() {
                 <article className="plan__proof">
                   <h2>{proof.label} · prova</h2>
                   {original.failure ? (
-                    <AriadneOriginalRetry retry={original.retry} />
+                    <>
+                      <p role="alert" className="desk__error">
+                        {originalDocumentMessage[original.failure]}
+                      </p>
+                      <AriadneOriginalRetry retry={original.retry} />
+                    </>
                   ) : (
                     <AriadneSourceAction
                       href={

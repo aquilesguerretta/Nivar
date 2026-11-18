@@ -265,7 +265,7 @@ try {
         };
         page.on("request", record);
         try {
-        await page.goto(url.href);
+          await page.goto(url.href);
           await settled();
           await page
             .getByText(
@@ -307,7 +307,7 @@ try {
         "item",
         JSON.stringify([source, "page:14/demand-observation"]),
       );
-    await page.goto(saved.href);
+      await page.goto(saved.href);
       await settled();
       await page.reload();
       await settled();
@@ -344,7 +344,7 @@ try {
           const saved = new URL(planURL);
           saved.searchParams.set("scenario", scenario);
           saved.searchParams.set("month", "2020-02");
-        await page.goto(saved.href);
+          await page.goto(saved.href);
           await settled();
           await page.getByRole("alert").waitFor();
           assert.deepEqual(await alerts(), [message]);
@@ -365,6 +365,166 @@ try {
           assert.deepEqual(await alerts(), []);
         } finally {
           await page.unroute(pattern);
+        }
+      },
+    );
+  }
+
+  for (const screen of ["planning", "review"]) {
+    await check(
+      `${screen} keeps separate errors when an analytical operation and the original fail`,
+      async () => {
+        const isPlanning = screen === "planning";
+        const simulation = `${apiRoot}/calculations/${baseline}/planning`;
+        const operationURL = isPlanning
+          ? simulation + "/preview"
+          : apiRoot + "/calculate";
+        const operationPattern = (url) => url.pathname === operationURL;
+        const originalPattern = "**" + originalURL;
+        const snapshotURL = isPlanning
+          ? simulation + `/scenarios/${scenario}/export`
+          : apiRoot + `/calculations/${baseline}`;
+        const body = async () => {
+          const response = await context.request.get(base + snapshotURL);
+          assert.equal(response.status(), 200);
+          return response.body();
+        };
+        const before = await body();
+        const unavailable = "Original indisponível neste contexto.";
+        const failure = isPlanning
+          ? "Não foi possível atualizar a simulação."
+          : "Não foi possível verificar e preservar o resultado.";
+        const privateDetail = "Synthetic private server details";
+        const save = button("Preservar cenário");
+        let failuresSeen = 0;
+        await page.route(originalPattern, (route) =>
+          route.fulfill({
+            status: 404,
+            json: { detail: privateDetail },
+          }),
+        );
+        try {
+          if (isPlanning) {
+            const saved = new URL(planURL);
+            saved.searchParams.set("scenario", scenario);
+            saved.searchParams.set("month", "2020-02");
+            const initial = page.waitForResponse(
+              (response) => new URL(response.url()).pathname === operationURL,
+            );
+            await page.goto(saved.href);
+            await initial;
+            await settled();
+          } else {
+            await selectFebruary();
+          }
+          await page.getByText(unavailable, { exact: true }).waitFor();
+          await page.route(operationPattern, (route) => {
+            failuresSeen++;
+            return route.fulfill({
+              status: 503,
+              json: { detail: privateDetail },
+            });
+          });
+          const failedResponse = page.waitForResponse(
+            (response) =>
+              new URL(response.url()).pathname === operationURL &&
+              response.status() === 503,
+          );
+          if (isPlanning) {
+            await page.getByLabel("Demanda candidata em kW").fill("259");
+            await failedResponse;
+            await settled();
+            assert.ok(await save.isDisabled());
+          } else {
+            const calculate = button("Verificar e preservar resultado");
+            await calculate.click();
+            await failedResponse;
+            await page.waitForFunction(() =>
+              [...document.querySelectorAll("button")].some(
+                (control) =>
+                  control.textContent.trim() ===
+                    "Verificar e preservar resultado" && !control.disabled,
+              ),
+            );
+            assert.equal(
+              failuresSeen,
+              2,
+              "the test denies both automatic write attempts",
+            );
+          }
+
+          const concurrentAlerts = await alerts();
+          observations[`${screen}ConcurrentErrors`] = concurrentAlerts;
+          await capture(`${screen}-concurrent-errors`);
+          assert.equal(concurrentAlerts.length, 2);
+          const proof = isPlanning ? planProof : page.locator(".desk__proof");
+          assert.deepEqual(await proof.getByRole("alert").allTextContents(), [
+            unavailable,
+          ]);
+          const operationMessage = concurrentAlerts.find((message) =>
+            message.startsWith(failure),
+          );
+          assert.ok(
+            operationMessage,
+            "the analytical failure is visible alongside the original failure",
+          );
+          assert.ok(
+            !(await page.locator("body").textContent()).includes(privateDetail),
+          );
+          if (isPlanning) {
+            const description = await save.getAttribute("aria-describedby");
+            assert.ok(description);
+            assert.equal(
+              await page.locator(`#${description}`).textContent(),
+              operationMessage,
+            );
+            await page.setViewportSize({ width: 1920, height: 1080 });
+            await button("Modo escuro").click();
+            await capture("planning-concurrent-errors-dark");
+            await page.setViewportSize({ width: 1440, height: 900 });
+          }
+
+          const selected = page.url();
+          const recoveryRequests = [];
+          const record = (request) =>
+            recoveryRequests.push(new URL(request.url()).pathname);
+          const stateChanges = await page.evaluateHandle(() => {
+            const changes = [];
+            const status = document.querySelector("[data-ariadne-state]");
+            new MutationObserver(() =>
+              changes.push(status.textContent),
+            ).observe(status, {
+              childList: true,
+              subtree: true,
+              characterData: true,
+            });
+            return changes;
+          });
+          await page.unroute(originalPattern);
+          page.on("request", record);
+          try {
+            await button("Tentar carregar original novamente").click();
+            await openExactOriginal();
+          } finally {
+            page.off("request", record);
+          }
+          assert.deepEqual(
+            recoveryRequests.filter((url) => url.startsWith(apiRoot)),
+            [originalURL],
+          );
+          assert.deepEqual(await stateChanges.jsonValue(), []);
+          assert.equal(await page.locator("[data-ariadne-state]").count(), 1);
+          await stateChanges.dispose();
+          assert.equal(page.url(), selected);
+          assert.deepEqual(await alerts(), [operationMessage]);
+          if (isPlanning) assert.ok(await save.isDisabled());
+          assert.ok(
+            before.equals(await body()),
+            "recovery must preserve the persisted result bytes",
+          );
+        } finally {
+          await page.unroute(originalPattern);
+          await page.unroute(operationPattern);
         }
       },
     );

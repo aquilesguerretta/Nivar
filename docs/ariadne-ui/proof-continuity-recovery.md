@@ -47,3 +47,24 @@ The product/data paths continue to use the existing engines, authentication, per
 For human QA, start from the February proof and confirm the destination and source are recognizable without assistance. Use keyboard and a screen reader through a 404/retry and an expired session recovered in a separate tab. Confirm that proof context is understandable while the original is unavailable, that the reappearing PDF action can be reached by keyboard, and that the existing status is announced once. Browser assertions cover state and DOM behavior. Actual assistive-technology speech and human comprehension remain manual observations.
 
 Use the existing [loopback synthetic setup](design-qa.md#local-reproduction), this checkout, and a matching synthetic manifest in the documented disposable database. Set `RUNTIME_NODE_MODULES` as in that setup and run `node tests/operador/ariadne-proof-recovery.mjs`. Set `ARIADNE_QA_OUTPUT` to a temporary directory for a fresh evidence run. Local backend, frontend and preview were stopped after the correction QA.
+
+## Concurrent error visibility
+
+Using the February synthetic proof, the focused suite injected an original PDF 404 alongside a simulation 503 in Planning or a calculation 503 in the Review Desk. At `7746c521`, both cases showed only “Original indisponível neste contexto.” Planning disabled “Preservar cenário” while the simulation failure remained hidden. [Planning before](evidence/concurrent-errors/planning-before.png) · [Review Desk before](evidence/concurrent-errors/review-before.png) · [Reproduction counts](evidence/concurrent-errors/before.json)
+
+The analytical alert now identifies the failed operation, and the proof panel displays the original retrieval alert beside its retry control. Planning associates “Preservar cenário” with the visible analytical explanation when the error disables the button. The analytical messages are local UI copy. The injected private response text appears in neither screen. The original’s existing 401 recovery guidance, neutral 403/404 feedback and retry guidance for network and server errors still pass. [Planning after](evidence/concurrent-errors/planning-after.png) · [Review Desk after](evidence/concurrent-errors/review-after.png) · [Planning in dark mode](evidence/concurrent-errors/planning-after-dark.png)
+
+When the document became available again, retry issued one original GET, cleared only the document alert and opened the authorized PDF at `#page=14`. The URL, proof and baseline were retained. The analytical alert stayed visible, the disabled save remained explained, and the observer recorded zero scenario-status mutations during retry. The preserved Planning export and Close result returned byte-identical bodies before and after both failures.
+
+| Gate rerun for this follow-up | Pass | Fail | Skip |
+|---|---:|---:|---:|
+| Focused Chrome suite on the previous implementation | 12 | 2 | 0 |
+| Focused Chrome suite after the correction | 14 | 0 | 0 |
+| Frontend Node tests | 98 | 0 | 0 |
+| PR #33 Chrome regression suite | 62 | 0 | 0 |
+| Read-only retained Planning, Close and scalar replay | 11 | 0 | 0 |
+| Production route and bundle gates | 7 | 0 | 0 |
+
+TypeScript, the production build, the design detector and `git diff --check` passed. The production build excluded the experimental routes and the new Planning alert identifier with both development flags supplied. The earlier backend and #34 workflow counts above are from the proof continuity patch. This follow-up used retained disposable synthetic records. [Focused final run](evidence/concurrent-errors/after.json) · [Production gates](evidence/concurrent-errors/production-gates.json)
+
+Human accessibility QA remains open. With a keyboard and screen reader, verify that each alert identifies its own operation, the visible save explanation is easy to find in reading order, and focus can return to the PDF action after retry. Listen for repeated scenario announcements during recovery. The automated checks cover the DOM and status mutations.
