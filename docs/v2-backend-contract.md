@@ -674,16 +674,17 @@ shape rather than splitting mid-domain.
 
 ### Session transport
 
-The session is a **stateless JWT** (HS256, `iss: gridalpha`, 30-day expiry)
-signed with `JWT_SECRET`. Validation is a signature check, so it holds no state
-in the backend process.
+The session is a **stateless JWT** (HS256, `iss: gridalpha`) signed with
+`JWT_SECRET`. Its expiry is fixed at signup or login. The default lifetime is
+30 days, configurable with `SESSION_TTL_DAYS`. The caller must authenticate
+again when the session expires.
 
 A caller may present the token two ways, and the endpoints accept either:
 
-| Transport | How | Renewal |
+| Transport | How | Lifetime |
 | --- | --- | --- |
-| `httpOnly` cookie | Set automatically on signup/login | Slides forward on every authenticated request |
-| `Authorization: Bearer <token>` | Caller supplies the header | None in this wave — re-authenticate at expiry |
+| `httpOnly` cookie | Set automatically on signup/login | Fixed expiry from issuance (NIV-69) |
+| `Authorization: Bearer <token>` | Caller supplies the header | Fixed expiry from issuance |
 
 `Authorization` wins over the cookie when both are present: explicit beats
 ambient.
@@ -760,8 +761,8 @@ this wave.
 `GET /api/auth/me` → `200 {"user": { … }}`, same user object as Endpoint 16.
 
 `401` when no token, an expired token, a tampered signature, or a token whose
-user row no longer exists. Refreshes the session cookie when the token arrived
-by cookie.
+user row no longer exists. The endpoint validates the issued token against
+its original expiry.
 
 ### ENDPOINT 20 — Activate a product
 

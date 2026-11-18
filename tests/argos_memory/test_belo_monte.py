@@ -256,12 +256,16 @@ def test_authenticated_route_withholds_truncated_successor(
         response = client.get(API_PATH)
         assert response.status_code == 200
         assert response.json()["sites"][0]["units"][0]["observation"]["value"] == "101.25"
+        assert "set-cookie" not in response.headers
 
         monkeypatch.setenv(service.SNAPSHOTS_ENV, json.dumps([str(before.id), str(after.id)]))
         response = client.get(API_PATH)
         assert response.status_code == 503
         assert response.json() == {"state": "UNRESOLVED", "reason": "SOURCE_EVIDENCE_UNAVAILABLE"}
         assert response.headers["cache-control"] == "private, no-store"
+
+        assert client.post("/api/auth/logout").status_code == 200
+        assert client.get(API_PATH).status_code == 401
 
 
 def test_actual_snapshot_read_and_early_unknown(browser_api, monkeypatch):

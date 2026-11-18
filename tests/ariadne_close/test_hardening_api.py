@@ -1,11 +1,13 @@
 """Targeted regressions: disposable PostgreSQL and instrumented ASGI receive."""
 
 import asyncio
+import json
 import uuid
 import httpx
 import pytest
 from sqlalchemy import text
 from sqlalchemy.exc import DBAPIError
+from app.db.models.ariadne_close import CloseSource
 from app.routers import ariadne_close
 from app.services.auth_service import get_current_user
 from app.db.session import get_db
@@ -179,17 +181,12 @@ def test_real_cookie_session_and_preflight_resource_cleanup(api, monkeypatch, ex
     monkeypatch.setattr(auth_service, "JWT_SECRET", "synthetic-test-session-only-" * 2)
     monkeypatch.setattr(auth_service, "SESSION_TTL_DAYS", -1 if expired else 30)
     token, _ = auth_service.issue_token(api["user"])
+    original = (existing.FIXTURES / "invoice.csv").read_bytes()
     request = httpx.Request(
         "POST",
         "http://testserver" + root + "/sources",
         data={"role": "invoice"},
-        files={
-            "file": (
-                "invoice.csv",
-                (existing.FIXTURES / "invoice.csv").read_bytes(),
-                "text/csv",
-            )
-        },
+        files={"file": ("invoice.csv", original, "text/csv")},
         headers={
             "Idempotency-Key": str(uuid.uuid4()),
             "Cookie": f"{auth_service.SESSION_COOKIE_NAME}={token}",
@@ -214,11 +211,18 @@ def test_real_cookie_session_and_preflight_resource_cleanup(api, monkeypatch, ex
                 for message in result["messages"]
                 if message["type"] == "http.response.start"
             )
-            assert any(
-                key == b"set-cookie"
-                and auth_service.SESSION_COOKIE_NAME.encode() in value
-                for key, value in start["headers"]
+            assert all(key != b"set-cookie" for key, _ in start["headers"])
+            body = b"".join(
+                message["body"] for message in result["messages"]
+                if message["type"] == "http.response.body"
             )
+            source_id = uuid.UUID(json.loads(body)["id"])
+            with api["factory"]() as db:
+                source = db.get(CloseSource, source_id)
+                assert source is not None
+                assert source.review_id == uuid.UUID(root.rsplit("/", 1)[-1])
+                assert source.role == "invoice"
+                assert source.original == original
     finally:
         application.dependency_overrides[get_current_user] = original_auth
         application.dependency_overrides[get_db] = original_db
