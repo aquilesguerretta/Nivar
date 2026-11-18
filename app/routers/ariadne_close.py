@@ -171,7 +171,9 @@ class MappingBody(Strict):
     mapping: dict[str, str]
     numericMode: Literal["strict", "dot", "comma"] = "strict"
     manualRows: list[dict] = Field(default_factory=list, max_length=50)
-    reviewMode: Literal["table", "observations", "context"] = "table"
+    reviewMode: Literal[
+        "table", "observations", "context", "demand_profile", "tariff_reference"
+    ] = "table"
     defaults: dict[str, str] = Field(default_factory=dict, max_length=12)
 
 

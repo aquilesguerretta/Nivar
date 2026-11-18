@@ -287,7 +287,7 @@ def _column(number):
     return value
 
 
-def _pdf_document(data):
+def _pdf_document(data, inspection=False):
     from pypdf import PdfReader
     from pypdf.generic import StreamObject
 
@@ -386,10 +386,30 @@ def _pdf_document(data):
             )
             continue
         contents = page.get_contents()
-        expanded += len(contents.get_data()) if contents else 0
+        expanded += len(contents.get_data()) if contents is not None else 0
         if expanded > MAX_EXPANDED:
             raise ValueError("PDF excede limite de conteúdo descompactado")
-        text = page.extract_text() or ""
+        tokens = []
+
+        def visit(value, cm, tm, font, size):
+            if not value.strip():
+                return
+            if len(tokens) >= 5000 or len(value) > 2000:
+                raise ValueError("Texto da página excede limite")
+            x = cm[0] * tm[4] + cm[2] * tm[5] + cm[4]
+            y = cm[1] * tm[4] + cm[3] * tm[5] + cm[5]
+            tokens.append(
+                {
+                    "raw": value.strip(),
+                    "x": round(x, 5),
+                    "y": round(y, 5),
+                    "locator": f"page:{index+1}/text-token:{len(tokens)+1}/point:{x:.5f},{y:.5f}",
+                }
+            )
+
+        text = (
+            page.extract_text(visitor_text=visit) if inspection else page.extract_text()
+        ) or ""
         if len(text) > 100000:
             raise ValueError("Texto da página excede limite")
         pages.append(
@@ -403,6 +423,17 @@ def _pdf_document(data):
                 ),
             }
         )
+        if inspection:
+            pages[-1].update(
+                tokens=tokens,
+                box=[float(v) for v in page.mediabox],
+                sourceQuality=(
+                    "existing_searchable_scan_layer"
+                    if contents is not None
+                    and re.search(rb"(?<!\d)3\s+Tr(?:\s|$)", contents.get_data())
+                    else "native_text_candidates"
+                ),
+            )
     return {
         "kind": "pdf",
         "tables": [],
@@ -411,7 +442,7 @@ def _pdf_document(data):
     }
 
 
-def _pdf(data):
+def _pdf(data, inspection=False):
     from pypdf import apply_configuration
 
     with apply_configuration(
@@ -425,7 +456,7 @@ def _pdf(data):
         xform_maximum_invocations_per_extraction=100,
         jbig2dec_binary=None,
     ):
-        return _pdf_document(data)
+        return _pdf_document(data, inspection=inspection)
 
 
 def parse_file(data, filename, *, inspection=False):
@@ -433,7 +464,7 @@ def parse_file(data, filename, *, inspection=False):
         raise ValueError("Arquivo vazio ou excede 8 MiB")
     extension = filename.lower().rsplit(".", 1)[-1]
     if extension == "pdf" and data.startswith(b"%PDF-"):
-        preview = _pdf(data)
+        preview = _pdf(data, inspection=inspection)
         if inspection:
             from app.services.ariadne_close_inspection import propose, pdf_provenance
 

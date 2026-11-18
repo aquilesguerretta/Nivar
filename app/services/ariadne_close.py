@@ -267,6 +267,22 @@ def import_source(
 
 def candidates(source, review, body):
     mode = body.get("reviewMode", "table")
+    if mode in ("demand_profile", "tariff_reference"):
+        field, role = (
+            ("demandProfile", "invoice")
+            if mode == "demand_profile"
+            else ("tariffReferences", "context")
+        )
+        if source.role != role or not source.preview.get(field):
+            raise ValueError("Layout de planejamento não disponível para esta fonte")
+        rows = []
+        for original in source.preview[field]:
+            row = {**original, "errors": list(original["errors"])}
+            if mode == "demand_profile" and row.get("scope") != review.scope:
+                row["errors"].append("Unidade diverge da revisão")
+            row["validation"] = "invalid" if row["errors"] else "valid"
+            rows.append(row)
+        return rows
     if mode == "context":
         if source.role != "context":
             raise ValueError("Reconhecimento contextual exige fonte de contexto")
@@ -432,6 +448,9 @@ def confirm_source(db, workspace, review, source, body):
     if any(r["errors"] for r in rows if r["index"] in selected):
         raise ValueError("Linhas inválidas/ambíguas não podem ser confirmadas")
     for row in rows:
+        row["planningConfirmed"] = (
+            row["index"] in selected and row.get("recordKind") == "tariff_reference"
+        )
         row["eligible"] = row["index"] in selected and source.role != "context"
         row["humanConfirmation"] = (
             "acknowledged_context"

@@ -1,0 +1,2967 @@
+{
+  "schema": "ariadne.independent_oracle.expected.v1",
+  "production_dependency": "NONE; no repository/engine module read or imported",
+  "contract_id": "ariadne.plan.ren414.normal_group_a_green_demand.case_2019_03_2020_02.v0_1_0",
+  "contract_sha256": "9f1af3e0b0d99364e06da989838af8608ba137497ea940fba60806c06b0ac1df",
+  "verified_source_facts_sha256": "7098dce8bd01774d2548c8e4d28ff5e8f408448a3aa81e6b4ffe5c7ece34eb32",
+  "decimal_policy": "64 significant decimal digits; no float; ROUND_HALF_UP0.01 each regular/overrun component; sum rounded monthly components and covered monthly totals",
+  "source_limits": "Invoice-observed measurements and contract fields are not independent metering or contract evidence. Historical policy screening requires explicit bounded-normal-regime assumption; this does not verify actual billing, taxes or contractual compliance.",
+  "bounded_normal_policy": "explicit model assumption, not actual CUSD/legal-status verification",
+  "synthetic_case_count": 34,
+  "synthetic_covered_count": 12,
+  "synthetic_unsupported_count": 22,
+  "synthetic_cases": [
+    {
+      "id": "below_contract",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": true,
+        "measured_kw": "270",
+        "candidate_kw": "280",
+        "tariff_brl_per_kw": "15.20",
+        "threshold_kw": "294.00",
+        "billable_kw": "280",
+        "overrun_trigger": false,
+        "overrun_kw": "0",
+        "regular_brl": "4256.00",
+        "overrun_brl": "0.00",
+        "modeled_demand_total_brl": "4256.00",
+        "unused_contracted_exposure_brl": "152.00"
+      },
+      "manually_independent_assertions": {
+        "covered": true,
+        "regular_brl": "4256.00",
+        "overrun_brl": "0.00",
+        "modeled_demand_total_brl": "4256.00",
+        "overrun_trigger": false,
+        "unused_contracted_exposure_brl": "152.00"
+      }
+    },
+    {
+      "id": "above_contract_below_boundary",
+      "synthetic": true,
+      "inputs": {
+        "measured": "282.24",
+        "candidate": "280",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": true,
+        "measured_kw": "282.24",
+        "candidate_kw": "280",
+        "tariff_brl_per_kw": "15.20",
+        "threshold_kw": "294.00",
+        "billable_kw": "282.24",
+        "overrun_trigger": false,
+        "overrun_kw": "0",
+        "regular_brl": "4290.05",
+        "overrun_brl": "0.00",
+        "modeled_demand_total_brl": "4290.05",
+        "unused_contracted_exposure_brl": "0.00"
+      },
+      "manually_independent_assertions": {
+        "covered": true,
+        "regular_brl": "4290.05",
+        "overrun_brl": "0.00",
+        "modeled_demand_total_brl": "4290.05",
+        "overrun_trigger": false
+      }
+    },
+    {
+      "id": "strict_exact_boundary",
+      "synthetic": true,
+      "inputs": {
+        "measured": "294",
+        "candidate": "280",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": true,
+        "measured_kw": "294",
+        "candidate_kw": "280",
+        "tariff_brl_per_kw": "15.20",
+        "threshold_kw": "294.00",
+        "billable_kw": "294",
+        "overrun_trigger": false,
+        "overrun_kw": "0",
+        "regular_brl": "4468.80",
+        "overrun_brl": "0.00",
+        "modeled_demand_total_brl": "4468.80",
+        "unused_contracted_exposure_brl": "0.00"
+      },
+      "manually_independent_assertions": {
+        "covered": true,
+        "regular_brl": "4468.80",
+        "overrun_brl": "0.00",
+        "modeled_demand_total_brl": "4468.80",
+        "overrun_trigger": false
+      }
+    },
+    {
+      "id": "strict_just_above_boundary",
+      "synthetic": true,
+      "inputs": {
+        "measured": "294.001",
+        "candidate": "280",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": true,
+        "measured_kw": "294.001",
+        "candidate_kw": "280",
+        "tariff_brl_per_kw": "15.20",
+        "threshold_kw": "294.00",
+        "billable_kw": "294.001",
+        "overrun_trigger": true,
+        "overrun_kw": "14.001",
+        "regular_brl": "4468.82",
+        "overrun_brl": "425.63",
+        "modeled_demand_total_brl": "4894.45",
+        "unused_contracted_exposure_brl": "0.00"
+      },
+      "manually_independent_assertions": {
+        "covered": true,
+        "regular_brl": "4468.82",
+        "overrun_brl": "425.63",
+        "modeled_demand_total_brl": "4894.45",
+        "overrun_trigger": true,
+        "overrun_kw": "14.001"
+      }
+    },
+    {
+      "id": "lower_candidate_overrun",
+      "synthetic": true,
+      "inputs": {
+        "measured": "284.40",
+        "candidate": "270",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": true,
+        "measured_kw": "284.40",
+        "candidate_kw": "270",
+        "tariff_brl_per_kw": "15.20",
+        "threshold_kw": "283.50",
+        "billable_kw": "284.40",
+        "overrun_trigger": true,
+        "overrun_kw": "14.40",
+        "regular_brl": "4322.88",
+        "overrun_brl": "437.76",
+        "modeled_demand_total_brl": "4760.64",
+        "unused_contracted_exposure_brl": "0.00"
+      },
+      "manually_independent_assertions": {
+        "covered": true,
+        "regular_brl": "4322.88",
+        "overrun_brl": "437.76",
+        "modeled_demand_total_brl": "4760.64",
+        "overrun_trigger": true
+      }
+    },
+    {
+      "id": "higher_candidate_without_overrun",
+      "synthetic": true,
+      "inputs": {
+        "measured": "300.96",
+        "candidate": "300",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": true,
+        "measured_kw": "300.96",
+        "candidate_kw": "300",
+        "tariff_brl_per_kw": "15.20",
+        "threshold_kw": "315.00",
+        "billable_kw": "300.96",
+        "overrun_trigger": false,
+        "overrun_kw": "0",
+        "regular_brl": "4574.59",
+        "overrun_brl": "0.00",
+        "modeled_demand_total_brl": "4574.59",
+        "unused_contracted_exposure_brl": "0.00"
+      },
+      "manually_independent_assertions": {
+        "covered": true,
+        "regular_brl": "4574.59",
+        "overrun_brl": "0.00",
+        "modeled_demand_total_brl": "4574.59",
+        "overrun_trigger": false
+      }
+    },
+    {
+      "id": "explicit_zero_quantity",
+      "synthetic": true,
+      "inputs": {
+        "measured": "0",
+        "candidate": "280",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": true,
+        "measured_kw": "0",
+        "candidate_kw": "280",
+        "tariff_brl_per_kw": "15.20",
+        "threshold_kw": "294.00",
+        "billable_kw": "280",
+        "overrun_trigger": false,
+        "overrun_kw": "0",
+        "regular_brl": "4256.00",
+        "overrun_brl": "0.00",
+        "modeled_demand_total_brl": "4256.00",
+        "unused_contracted_exposure_brl": "4256.00"
+      },
+      "manually_independent_assertions": {
+        "covered": true,
+        "modeled_demand_total_brl": "4256.00",
+        "overrun_trigger": false
+      }
+    },
+    {
+      "id": "component_rounding_not_total_rounding",
+      "synthetic": true,
+      "inputs": {
+        "measured": "60",
+        "candidate": "50",
+        "tariff": "0.00025"
+      },
+      "expected": {
+        "covered": true,
+        "measured_kw": "60",
+        "candidate_kw": "50",
+        "tariff_brl_per_kw": "0.00025",
+        "threshold_kw": "52.50",
+        "billable_kw": "60",
+        "overrun_trigger": true,
+        "overrun_kw": "10",
+        "regular_brl": "0.02",
+        "overrun_brl": "0.01",
+        "modeled_demand_total_brl": "0.03",
+        "unused_contracted_exposure_brl": "0.00"
+      },
+      "manually_independent_assertions": {
+        "covered": true,
+        "regular_brl": "0.02",
+        "overrun_brl": "0.01",
+        "modeled_demand_total_brl": "0.03",
+        "overrun_trigger": true
+      }
+    },
+    {
+      "id": "old_tariff",
+      "synthetic": true,
+      "inputs": {
+        "measured": "280",
+        "candidate": "280",
+        "tariff": "13.59"
+      },
+      "expected": {
+        "covered": true,
+        "measured_kw": "280",
+        "candidate_kw": "280",
+        "tariff_brl_per_kw": "13.59",
+        "threshold_kw": "294.00",
+        "billable_kw": "280",
+        "overrun_trigger": false,
+        "overrun_kw": "0",
+        "regular_brl": "3805.20",
+        "overrun_brl": "0.00",
+        "modeled_demand_total_brl": "3805.20",
+        "unused_contracted_exposure_brl": "0.00"
+      },
+      "manually_independent_assertions": {
+        "covered": true,
+        "modeled_demand_total_brl": "3805.20"
+      }
+    },
+    {
+      "id": "new_tariff_same_quantity",
+      "synthetic": true,
+      "inputs": {
+        "measured": "280",
+        "candidate": "280",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": true,
+        "measured_kw": "280",
+        "candidate_kw": "280",
+        "tariff_brl_per_kw": "15.20",
+        "threshold_kw": "294.00",
+        "billable_kw": "280",
+        "overrun_trigger": false,
+        "overrun_kw": "0",
+        "regular_brl": "4256.00",
+        "overrun_brl": "0.00",
+        "modeled_demand_total_brl": "4256.00",
+        "unused_contracted_exposure_brl": "0.00"
+      },
+      "manually_independent_assertions": {
+        "covered": true,
+        "modeled_demand_total_brl": "4256.00"
+      }
+    },
+    {
+      "id": "february_boundary_candidate_280_45",
+      "synthetic": true,
+      "inputs": {
+        "measured": "294.48",
+        "candidate": "280.45",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": true,
+        "measured_kw": "294.48",
+        "candidate_kw": "280.45",
+        "tariff_brl_per_kw": "15.20",
+        "threshold_kw": "294.4725",
+        "billable_kw": "294.48",
+        "overrun_trigger": true,
+        "overrun_kw": "14.03",
+        "regular_brl": "4476.10",
+        "overrun_brl": "426.51",
+        "modeled_demand_total_brl": "4902.61",
+        "unused_contracted_exposure_brl": "0.00"
+      },
+      "manually_independent_assertions": {
+        "covered": true,
+        "threshold_kw": "294.4725",
+        "regular_brl": "4476.10",
+        "overrun_brl": "426.51",
+        "modeled_demand_total_brl": "4902.61",
+        "overrun_trigger": true,
+        "overrun_kw": "14.03"
+      }
+    },
+    {
+      "id": "february_boundary_candidate_280_46",
+      "synthetic": true,
+      "inputs": {
+        "measured": "294.48",
+        "candidate": "280.46",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": true,
+        "measured_kw": "294.48",
+        "candidate_kw": "280.46",
+        "tariff_brl_per_kw": "15.20",
+        "threshold_kw": "294.4830",
+        "billable_kw": "294.48",
+        "overrun_trigger": false,
+        "overrun_kw": "0",
+        "regular_brl": "4476.10",
+        "overrun_brl": "0.00",
+        "modeled_demand_total_brl": "4476.10",
+        "unused_contracted_exposure_brl": "0.00"
+      },
+      "manually_independent_assertions": {
+        "covered": true,
+        "threshold_kw": "294.4830",
+        "regular_brl": "4476.10",
+        "overrun_brl": "0.00",
+        "modeled_demand_total_brl": "4476.10",
+        "overrun_trigger": false
+      }
+    },
+    {
+      "id": "missing_quantity",
+      "synthetic": true,
+      "inputs": {
+        "measured": null,
+        "candidate": "280",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "missing_or_nonstring_decimal",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "missing_or_nonstring_decimal",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "blank_quantity_not_zero",
+      "synthetic": true,
+      "inputs": {
+        "measured": "",
+        "candidate": "280",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "missing_or_nonstring_decimal",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "missing_or_nonstring_decimal",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "nan_quantity",
+      "synthetic": true,
+      "inputs": {
+        "measured": "NaN",
+        "candidate": "280",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "invalid_or_ambiguous_decimal",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "invalid_or_ambiguous_decimal",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "negative_quantity",
+      "synthetic": true,
+      "inputs": {
+        "measured": "-1",
+        "candidate": "280",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "negative_or_nonfinite_decimal",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "negative_or_nonfinite_decimal",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "browser_float_input",
+      "synthetic": true,
+      "inputs": {
+        "measured": 294.001,
+        "candidate": "280",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "missing_or_nonstring_decimal",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "missing_or_nonstring_decimal",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "comma_decimal_unreviewed",
+      "synthetic": true,
+      "inputs": {
+        "measured": "294,001",
+        "candidate": "280",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "invalid_or_ambiguous_decimal",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "invalid_or_ambiguous_decimal",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "ambiguous_thousands_unreviewed",
+      "synthetic": true,
+      "inputs": {
+        "measured": "1.000,00",
+        "candidate": "280",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "invalid_or_ambiguous_decimal",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "invalid_or_ambiguous_decimal",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "missing_tariff",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": null
+      },
+      "expected": {
+        "covered": false,
+        "reason": "missing_or_nonstring_decimal",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "missing_or_nonstring_decimal",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "zero_tariff",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "0"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "nonpositive_price",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "nonpositive_price",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "candidate_below_minimum",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "29.99",
+        "tariff": "15.20"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "candidate_below_supported_normal_minimum",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "candidate_below_supported_normal_minimum",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "kwh_not_demand_kw",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "15.20",
+        "unit": "kWh"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "unsupported_dimension",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "unsupported_dimension",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "mwmed_not_demand_kw",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "15.20",
+        "unit": "MWmed"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "unsupported_dimension",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "unsupported_dimension",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "rate_brl_mwh_not_brl_kw",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "15.20",
+        "price_unit": "BRL/MWh"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "unsupported_dimension",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "unsupported_dimension",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "currency_mismatch",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "15.20",
+        "currency": "USD"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "incompatible_monetary_basis",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "incompatible_monetary_basis",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "tax_inclusive_basis",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "15.20",
+        "basis": "TAX_INCLUSIVE"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "incompatible_monetary_basis",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "incompatible_monetary_basis",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "blue_modality_excluded",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "15.20",
+        "modality": "A4_AZUL"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "unsupported_modality",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "unsupported_modality",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "seasonal_or_unknown_normal_status",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "15.20",
+        "normal_policy": false
+      },
+      "expected": {
+        "covered": false,
+        "reason": "normal_regime_assumption_not_confirmed",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "normal_regime_assumption_not_confirmed",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "ambiguous_scope",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "15.20",
+        "matching_scope": false
+      },
+      "expected": {
+        "covered": false,
+        "reason": "ambiguous_scope_or_period",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "ambiguous_scope_or_period",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "ambiguous_period",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "15.20",
+        "matching_period": false
+      },
+      "expected": {
+        "covered": false,
+        "reason": "ambiguous_scope_or_period",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "ambiguous_scope_or_period",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "crossing_tariff_without_day_allocation",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "15.20",
+        "rate_covered": false
+      },
+      "expected": {
+        "covered": false,
+        "reason": "missing_or_crossing_tariff_coverage",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "missing_or_crossing_tariff_coverage",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "unsupported_reactive_charge",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "15.20",
+        "component": "reactive_demand"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "unsupported_component_or_credit",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "unsupported_component_or_credit",
+        "modeled_demand_total_brl": null
+      }
+    },
+    {
+      "id": "credit_not_inverted_into_demand_cost",
+      "synthetic": true,
+      "inputs": {
+        "measured": "270",
+        "candidate": "280",
+        "tariff": "15.20",
+        "component": "credit"
+      },
+      "expected": {
+        "covered": false,
+        "reason": "unsupported_component_or_credit",
+        "modeled_demand_total_brl": null
+      },
+      "manually_independent_assertions": {
+        "covered": false,
+        "reason": "unsupported_component_or_credit",
+        "modeled_demand_total_brl": null
+      }
+    }
+  ],
+  "physical_scenarios": [
+    {
+      "candidate_kw": "260",
+      "months": [
+        {
+          "period": "2019-03",
+          "source_page": 3,
+          "candidate_kw": "260",
+          "measured_kw": "270.00",
+          "billable_kw": "270.00",
+          "strict_boundary_kw": "273.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-04",
+          "source_page": 4,
+          "candidate_kw": "260",
+          "measured_kw": "274.32",
+          "billable_kw": "274.32",
+          "strict_boundary_kw": "273.00",
+          "overrun_trigger": true,
+          "overrun_kw": "14.32",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-05",
+          "source_page": 5,
+          "candidate_kw": "260",
+          "measured_kw": "269.28",
+          "billable_kw": "269.28",
+          "strict_boundary_kw": "273.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-06",
+          "source_page": 6,
+          "candidate_kw": "260",
+          "measured_kw": "260.64",
+          "billable_kw": "260.64",
+          "strict_boundary_kw": "273.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-07",
+          "source_page": 7,
+          "candidate_kw": "260",
+          "measured_kw": "259.92",
+          "billable_kw": "260",
+          "strict_boundary_kw": "273.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-08",
+          "source_page": 8,
+          "candidate_kw": "260",
+          "measured_kw": "267.12",
+          "billable_kw": "267.12",
+          "strict_boundary_kw": "273.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-09",
+          "source_page": 9,
+          "candidate_kw": "260",
+          "measured_kw": "277.20",
+          "billable_kw": "277.20",
+          "strict_boundary_kw": "273.00",
+          "overrun_trigger": true,
+          "overrun_kw": "17.20",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-10",
+          "source_page": 10,
+          "candidate_kw": "260",
+          "measured_kw": "284.40",
+          "billable_kw": "284.40",
+          "strict_boundary_kw": "273.00",
+          "overrun_trigger": true,
+          "overrun_kw": "24.40",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-11",
+          "source_page": 11,
+          "candidate_kw": "260",
+          "measured_kw": "300.96",
+          "billable_kw": "300.96",
+          "strict_boundary_kw": "273.00",
+          "overrun_trigger": true,
+          "overrun_kw": "40.96",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-12",
+          "source_page": 12,
+          "candidate_kw": "260",
+          "measured_kw": "300.96",
+          "billable_kw": "300.96",
+          "strict_boundary_kw": "273.00",
+          "overrun_trigger": true,
+          "overrun_kw": "40.96",
+          "physical_covered": true
+        },
+        {
+          "period": "2020-01",
+          "source_page": 13,
+          "candidate_kw": "260",
+          "measured_kw": "282.24",
+          "billable_kw": "282.24",
+          "strict_boundary_kw": "273.00",
+          "overrun_trigger": true,
+          "overrun_kw": "22.24",
+          "physical_covered": true
+        },
+        {
+          "period": "2020-02",
+          "source_page": 14,
+          "candidate_kw": "260",
+          "measured_kw": "294.48",
+          "billable_kw": "294.48",
+          "strict_boundary_kw": "273.00",
+          "overrun_trigger": true,
+          "overrun_kw": "34.48",
+          "physical_covered": true
+        }
+      ]
+    },
+    {
+      "candidate_kw": "270",
+      "months": [
+        {
+          "period": "2019-03",
+          "source_page": 3,
+          "candidate_kw": "270",
+          "measured_kw": "270.00",
+          "billable_kw": "270.00",
+          "strict_boundary_kw": "283.50",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-04",
+          "source_page": 4,
+          "candidate_kw": "270",
+          "measured_kw": "274.32",
+          "billable_kw": "274.32",
+          "strict_boundary_kw": "283.50",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-05",
+          "source_page": 5,
+          "candidate_kw": "270",
+          "measured_kw": "269.28",
+          "billable_kw": "270",
+          "strict_boundary_kw": "283.50",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-06",
+          "source_page": 6,
+          "candidate_kw": "270",
+          "measured_kw": "260.64",
+          "billable_kw": "270",
+          "strict_boundary_kw": "283.50",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-07",
+          "source_page": 7,
+          "candidate_kw": "270",
+          "measured_kw": "259.92",
+          "billable_kw": "270",
+          "strict_boundary_kw": "283.50",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-08",
+          "source_page": 8,
+          "candidate_kw": "270",
+          "measured_kw": "267.12",
+          "billable_kw": "270",
+          "strict_boundary_kw": "283.50",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-09",
+          "source_page": 9,
+          "candidate_kw": "270",
+          "measured_kw": "277.20",
+          "billable_kw": "277.20",
+          "strict_boundary_kw": "283.50",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-10",
+          "source_page": 10,
+          "candidate_kw": "270",
+          "measured_kw": "284.40",
+          "billable_kw": "284.40",
+          "strict_boundary_kw": "283.50",
+          "overrun_trigger": true,
+          "overrun_kw": "14.40",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-11",
+          "source_page": 11,
+          "candidate_kw": "270",
+          "measured_kw": "300.96",
+          "billable_kw": "300.96",
+          "strict_boundary_kw": "283.50",
+          "overrun_trigger": true,
+          "overrun_kw": "30.96",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-12",
+          "source_page": 12,
+          "candidate_kw": "270",
+          "measured_kw": "300.96",
+          "billable_kw": "300.96",
+          "strict_boundary_kw": "283.50",
+          "overrun_trigger": true,
+          "overrun_kw": "30.96",
+          "physical_covered": true
+        },
+        {
+          "period": "2020-01",
+          "source_page": 13,
+          "candidate_kw": "270",
+          "measured_kw": "282.24",
+          "billable_kw": "282.24",
+          "strict_boundary_kw": "283.50",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2020-02",
+          "source_page": 14,
+          "candidate_kw": "270",
+          "measured_kw": "294.48",
+          "billable_kw": "294.48",
+          "strict_boundary_kw": "283.50",
+          "overrun_trigger": true,
+          "overrun_kw": "24.48",
+          "physical_covered": true
+        }
+      ]
+    },
+    {
+      "candidate_kw": "280",
+      "months": [
+        {
+          "period": "2019-03",
+          "source_page": 3,
+          "candidate_kw": "280",
+          "measured_kw": "270.00",
+          "billable_kw": "280",
+          "strict_boundary_kw": "294.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-04",
+          "source_page": 4,
+          "candidate_kw": "280",
+          "measured_kw": "274.32",
+          "billable_kw": "280",
+          "strict_boundary_kw": "294.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-05",
+          "source_page": 5,
+          "candidate_kw": "280",
+          "measured_kw": "269.28",
+          "billable_kw": "280",
+          "strict_boundary_kw": "294.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-06",
+          "source_page": 6,
+          "candidate_kw": "280",
+          "measured_kw": "260.64",
+          "billable_kw": "280",
+          "strict_boundary_kw": "294.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-07",
+          "source_page": 7,
+          "candidate_kw": "280",
+          "measured_kw": "259.92",
+          "billable_kw": "280",
+          "strict_boundary_kw": "294.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-08",
+          "source_page": 8,
+          "candidate_kw": "280",
+          "measured_kw": "267.12",
+          "billable_kw": "280",
+          "strict_boundary_kw": "294.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-09",
+          "source_page": 9,
+          "candidate_kw": "280",
+          "measured_kw": "277.20",
+          "billable_kw": "280",
+          "strict_boundary_kw": "294.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-10",
+          "source_page": 10,
+          "candidate_kw": "280",
+          "measured_kw": "284.40",
+          "billable_kw": "284.40",
+          "strict_boundary_kw": "294.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-11",
+          "source_page": 11,
+          "candidate_kw": "280",
+          "measured_kw": "300.96",
+          "billable_kw": "300.96",
+          "strict_boundary_kw": "294.00",
+          "overrun_trigger": true,
+          "overrun_kw": "20.96",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-12",
+          "source_page": 12,
+          "candidate_kw": "280",
+          "measured_kw": "300.96",
+          "billable_kw": "300.96",
+          "strict_boundary_kw": "294.00",
+          "overrun_trigger": true,
+          "overrun_kw": "20.96",
+          "physical_covered": true
+        },
+        {
+          "period": "2020-01",
+          "source_page": 13,
+          "candidate_kw": "280",
+          "measured_kw": "282.24",
+          "billable_kw": "282.24",
+          "strict_boundary_kw": "294.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2020-02",
+          "source_page": 14,
+          "candidate_kw": "280",
+          "measured_kw": "294.48",
+          "billable_kw": "294.48",
+          "strict_boundary_kw": "294.00",
+          "overrun_trigger": true,
+          "overrun_kw": "14.48",
+          "physical_covered": true
+        }
+      ]
+    },
+    {
+      "candidate_kw": "280.45",
+      "months": [
+        {
+          "period": "2019-03",
+          "source_page": 3,
+          "candidate_kw": "280.45",
+          "measured_kw": "270.00",
+          "billable_kw": "280.45",
+          "strict_boundary_kw": "294.4725",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-04",
+          "source_page": 4,
+          "candidate_kw": "280.45",
+          "measured_kw": "274.32",
+          "billable_kw": "280.45",
+          "strict_boundary_kw": "294.4725",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-05",
+          "source_page": 5,
+          "candidate_kw": "280.45",
+          "measured_kw": "269.28",
+          "billable_kw": "280.45",
+          "strict_boundary_kw": "294.4725",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-06",
+          "source_page": 6,
+          "candidate_kw": "280.45",
+          "measured_kw": "260.64",
+          "billable_kw": "280.45",
+          "strict_boundary_kw": "294.4725",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-07",
+          "source_page": 7,
+          "candidate_kw": "280.45",
+          "measured_kw": "259.92",
+          "billable_kw": "280.45",
+          "strict_boundary_kw": "294.4725",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-08",
+          "source_page": 8,
+          "candidate_kw": "280.45",
+          "measured_kw": "267.12",
+          "billable_kw": "280.45",
+          "strict_boundary_kw": "294.4725",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-09",
+          "source_page": 9,
+          "candidate_kw": "280.45",
+          "measured_kw": "277.20",
+          "billable_kw": "280.45",
+          "strict_boundary_kw": "294.4725",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-10",
+          "source_page": 10,
+          "candidate_kw": "280.45",
+          "measured_kw": "284.40",
+          "billable_kw": "284.40",
+          "strict_boundary_kw": "294.4725",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-11",
+          "source_page": 11,
+          "candidate_kw": "280.45",
+          "measured_kw": "300.96",
+          "billable_kw": "300.96",
+          "strict_boundary_kw": "294.4725",
+          "overrun_trigger": true,
+          "overrun_kw": "20.51",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-12",
+          "source_page": 12,
+          "candidate_kw": "280.45",
+          "measured_kw": "300.96",
+          "billable_kw": "300.96",
+          "strict_boundary_kw": "294.4725",
+          "overrun_trigger": true,
+          "overrun_kw": "20.51",
+          "physical_covered": true
+        },
+        {
+          "period": "2020-01",
+          "source_page": 13,
+          "candidate_kw": "280.45",
+          "measured_kw": "282.24",
+          "billable_kw": "282.24",
+          "strict_boundary_kw": "294.4725",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2020-02",
+          "source_page": 14,
+          "candidate_kw": "280.45",
+          "measured_kw": "294.48",
+          "billable_kw": "294.48",
+          "strict_boundary_kw": "294.4725",
+          "overrun_trigger": true,
+          "overrun_kw": "14.03",
+          "physical_covered": true
+        }
+      ]
+    },
+    {
+      "candidate_kw": "280.46",
+      "months": [
+        {
+          "period": "2019-03",
+          "source_page": 3,
+          "candidate_kw": "280.46",
+          "measured_kw": "270.00",
+          "billable_kw": "280.46",
+          "strict_boundary_kw": "294.4830",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-04",
+          "source_page": 4,
+          "candidate_kw": "280.46",
+          "measured_kw": "274.32",
+          "billable_kw": "280.46",
+          "strict_boundary_kw": "294.4830",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-05",
+          "source_page": 5,
+          "candidate_kw": "280.46",
+          "measured_kw": "269.28",
+          "billable_kw": "280.46",
+          "strict_boundary_kw": "294.4830",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-06",
+          "source_page": 6,
+          "candidate_kw": "280.46",
+          "measured_kw": "260.64",
+          "billable_kw": "280.46",
+          "strict_boundary_kw": "294.4830",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-07",
+          "source_page": 7,
+          "candidate_kw": "280.46",
+          "measured_kw": "259.92",
+          "billable_kw": "280.46",
+          "strict_boundary_kw": "294.4830",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-08",
+          "source_page": 8,
+          "candidate_kw": "280.46",
+          "measured_kw": "267.12",
+          "billable_kw": "280.46",
+          "strict_boundary_kw": "294.4830",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-09",
+          "source_page": 9,
+          "candidate_kw": "280.46",
+          "measured_kw": "277.20",
+          "billable_kw": "280.46",
+          "strict_boundary_kw": "294.4830",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-10",
+          "source_page": 10,
+          "candidate_kw": "280.46",
+          "measured_kw": "284.40",
+          "billable_kw": "284.40",
+          "strict_boundary_kw": "294.4830",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-11",
+          "source_page": 11,
+          "candidate_kw": "280.46",
+          "measured_kw": "300.96",
+          "billable_kw": "300.96",
+          "strict_boundary_kw": "294.4830",
+          "overrun_trigger": true,
+          "overrun_kw": "20.50",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-12",
+          "source_page": 12,
+          "candidate_kw": "280.46",
+          "measured_kw": "300.96",
+          "billable_kw": "300.96",
+          "strict_boundary_kw": "294.4830",
+          "overrun_trigger": true,
+          "overrun_kw": "20.50",
+          "physical_covered": true
+        },
+        {
+          "period": "2020-01",
+          "source_page": 13,
+          "candidate_kw": "280.46",
+          "measured_kw": "282.24",
+          "billable_kw": "282.24",
+          "strict_boundary_kw": "294.4830",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2020-02",
+          "source_page": 14,
+          "candidate_kw": "280.46",
+          "measured_kw": "294.48",
+          "billable_kw": "294.48",
+          "strict_boundary_kw": "294.4830",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        }
+      ]
+    },
+    {
+      "candidate_kw": "300",
+      "months": [
+        {
+          "period": "2019-03",
+          "source_page": 3,
+          "candidate_kw": "300",
+          "measured_kw": "270.00",
+          "billable_kw": "300",
+          "strict_boundary_kw": "315.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-04",
+          "source_page": 4,
+          "candidate_kw": "300",
+          "measured_kw": "274.32",
+          "billable_kw": "300",
+          "strict_boundary_kw": "315.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-05",
+          "source_page": 5,
+          "candidate_kw": "300",
+          "measured_kw": "269.28",
+          "billable_kw": "300",
+          "strict_boundary_kw": "315.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-06",
+          "source_page": 6,
+          "candidate_kw": "300",
+          "measured_kw": "260.64",
+          "billable_kw": "300",
+          "strict_boundary_kw": "315.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-07",
+          "source_page": 7,
+          "candidate_kw": "300",
+          "measured_kw": "259.92",
+          "billable_kw": "300",
+          "strict_boundary_kw": "315.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-08",
+          "source_page": 8,
+          "candidate_kw": "300",
+          "measured_kw": "267.12",
+          "billable_kw": "300",
+          "strict_boundary_kw": "315.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-09",
+          "source_page": 9,
+          "candidate_kw": "300",
+          "measured_kw": "277.20",
+          "billable_kw": "300",
+          "strict_boundary_kw": "315.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-10",
+          "source_page": 10,
+          "candidate_kw": "300",
+          "measured_kw": "284.40",
+          "billable_kw": "300",
+          "strict_boundary_kw": "315.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-11",
+          "source_page": 11,
+          "candidate_kw": "300",
+          "measured_kw": "300.96",
+          "billable_kw": "300.96",
+          "strict_boundary_kw": "315.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2019-12",
+          "source_page": 12,
+          "candidate_kw": "300",
+          "measured_kw": "300.96",
+          "billable_kw": "300.96",
+          "strict_boundary_kw": "315.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2020-01",
+          "source_page": 13,
+          "candidate_kw": "300",
+          "measured_kw": "282.24",
+          "billable_kw": "300",
+          "strict_boundary_kw": "315.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        },
+        {
+          "period": "2020-02",
+          "source_page": 14,
+          "candidate_kw": "300",
+          "measured_kw": "294.48",
+          "billable_kw": "300",
+          "strict_boundary_kw": "315.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "physical_covered": true
+        }
+      ]
+    }
+  ],
+  "physical_month_count_per_scenario": 12,
+  "monetary_gate": {
+    "qualified": true,
+    "monetary_basis": "PRE_TAX_REFERENCE",
+    "scope": "UC 429967",
+    "modality": "A4_VERDE",
+    "source_qualification_path": "C:\\dev\\ariadne-planning-public-evaluation-20261003\\source-review\\tariff-reference-qualification.json",
+    "source_qualification_sha256": "c90070e7776ca57bb7e7320a3a521039eb7ec3237cf8f7be961e73371405b712",
+    "original_tariff_csv_sha256": "1159c6d01d383a1f4a5c4396db73778f3d8da809ffd00ea4210f077fae1beb02",
+    "precise_meaning": "Published ANEEL application TUSD demand reference before consumer ICMS, PIS/Pasep, Cofins or CIP additions; no tax gross-up is calculated.",
+    "not_claimed": [
+      "All embedded costs in a regulated tariff are free of taxes.",
+      "Observed invoice unit prices or gross charges are comparable to this reference.",
+      "Tax obligations or tax rates for this consumer are verified."
+    ],
+    "temporal_limit": "Tax-semantics explanatory HTML sources are current October 2026 public pages, not claimed archived 2018/2019 enactments. Historical rate values and effective ranges are original official ANEEL rows. Consumer tax law interpretation remains excluded.",
+    "source_binding_assumption": "Invoice supplier CNPJ07047251000170, A4 Verde ordinary captive-consumer published reference matched. This is a bounded sensitivity model assumption, not independent CUSD/free-market/special-discount/legal applicability verification.",
+    "oracle_vs_app_coverage": "Human oracle includes independently image-verified March; automatic app extraction coverage may exclude it. May monetary always excluded.",
+    "tariffs": [
+      {
+        "version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.383, DE 17 DE ABRIL DE 2018",
+        "valid_from": "2018-04-22",
+        "valid_until": "2019-04-21",
+        "brl_per_kw": "13.59",
+        "original_csv_row_1_based_including_header": 127460
+      },
+      {
+        "version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+        "valid_from": "2019-04-22",
+        "valid_until": "2020-04-21",
+        "brl_per_kw": "15.20",
+        "original_csv_row_1_based_including_header": 143912
+      }
+    ],
+    "qualification_file": "C:\\dev\\ariadne-planning-public-evaluation-20261003\\oracle-review\\qualified-tariff-inputs-v1.json",
+    "qualification_sha256": "52d51e0065fadfe5d464665a50dd4be7ffd4fdbe7268fb9b7b7cdceb593c7857"
+  },
+  "monetary_scenarios": [
+    {
+      "candidate_kw": "260",
+      "months": [
+        {
+          "period": "2019-03",
+          "source_page": 3,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.383, DE 17 DE ABRIL DE 2018",
+          "covered": true,
+          "measured_kw": "270.00",
+          "candidate_kw": "260",
+          "tariff_brl_per_kw": "13.59",
+          "threshold_kw": "273.00",
+          "billable_kw": "270.00",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "3669.30",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "3669.30",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-135.90"
+        },
+        {
+          "period": "2019-04",
+          "source_page": 4,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.383, DE 17 DE ABRIL DE 2018",
+          "covered": true,
+          "measured_kw": "274.32",
+          "candidate_kw": "260",
+          "tariff_brl_per_kw": "13.59",
+          "threshold_kw": "273.00",
+          "billable_kw": "274.32",
+          "overrun_trigger": true,
+          "overrun_kw": "14.32",
+          "regular_brl": "3728.01",
+          "overrun_brl": "389.22",
+          "modeled_demand_total_brl": "4117.23",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "312.03"
+        },
+        {
+          "period": "2019-05",
+          "source_page": 5,
+          "covered": false,
+          "reason": "Reading cycle straddles tariff change22April2019; no independently frozen exact tariff-day allocation. No bill-month/latest-tariff substitution.",
+          "modeled_demand_total_brl": null,
+          "scenario_minus_baseline_brl": null
+        },
+        {
+          "period": "2019-06",
+          "source_page": 6,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "260.64",
+          "candidate_kw": "260",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "273.00",
+          "billable_kw": "260.64",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "3961.73",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "3961.73",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-294.27"
+        },
+        {
+          "period": "2019-07",
+          "source_page": 7,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "259.92",
+          "candidate_kw": "260",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "273.00",
+          "billable_kw": "260",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "3952.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "3952.00",
+          "unused_contracted_exposure_brl": "1.22",
+          "scenario_minus_baseline_brl": "-304.00"
+        },
+        {
+          "period": "2019-08",
+          "source_page": 8,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "267.12",
+          "candidate_kw": "260",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "273.00",
+          "billable_kw": "267.12",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4060.22",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4060.22",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-195.78"
+        },
+        {
+          "period": "2019-09",
+          "source_page": 9,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "277.20",
+          "candidate_kw": "260",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "273.00",
+          "billable_kw": "277.20",
+          "overrun_trigger": true,
+          "overrun_kw": "17.20",
+          "regular_brl": "4213.44",
+          "overrun_brl": "522.88",
+          "modeled_demand_total_brl": "4736.32",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "480.32"
+        },
+        {
+          "period": "2019-10",
+          "source_page": 10,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "284.40",
+          "candidate_kw": "260",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "273.00",
+          "billable_kw": "284.40",
+          "overrun_trigger": true,
+          "overrun_kw": "24.40",
+          "regular_brl": "4322.88",
+          "overrun_brl": "741.76",
+          "modeled_demand_total_brl": "5064.64",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "741.76"
+        },
+        {
+          "period": "2019-11",
+          "source_page": 11,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "300.96",
+          "candidate_kw": "260",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "273.00",
+          "billable_kw": "300.96",
+          "overrun_trigger": true,
+          "overrun_kw": "40.96",
+          "regular_brl": "4574.59",
+          "overrun_brl": "1245.18",
+          "modeled_demand_total_brl": "5819.77",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "608.00"
+        },
+        {
+          "period": "2019-12",
+          "source_page": 12,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "300.96",
+          "candidate_kw": "260",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "273.00",
+          "billable_kw": "300.96",
+          "overrun_trigger": true,
+          "overrun_kw": "40.96",
+          "regular_brl": "4574.59",
+          "overrun_brl": "1245.18",
+          "modeled_demand_total_brl": "5819.77",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "608.00"
+        },
+        {
+          "period": "2020-01",
+          "source_page": 13,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "282.24",
+          "candidate_kw": "260",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "273.00",
+          "billable_kw": "282.24",
+          "overrun_trigger": true,
+          "overrun_kw": "22.24",
+          "regular_brl": "4290.05",
+          "overrun_brl": "676.10",
+          "modeled_demand_total_brl": "4966.15",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "676.10"
+        },
+        {
+          "period": "2020-02",
+          "source_page": 14,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "294.48",
+          "candidate_kw": "260",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "273.00",
+          "billable_kw": "294.48",
+          "overrun_trigger": true,
+          "overrun_kw": "34.48",
+          "regular_brl": "4476.10",
+          "overrun_brl": "1048.19",
+          "modeled_demand_total_brl": "5524.29",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "608.00"
+        }
+      ],
+      "covered_month_count": 11,
+      "excluded_month_count": 1,
+      "complete_annual_coverage": false,
+      "covered_months_subtotal_brl": "51691.42",
+      "coverage_label": "11 covered monthly demand components only; not complete annual bill, verified savings, or actual tax-inclusive invoice reconstruction",
+      "covered_subtotal_minus_baseline_brl": "3104.26"
+    },
+    {
+      "candidate_kw": "270",
+      "months": [
+        {
+          "period": "2019-03",
+          "source_page": 3,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.383, DE 17 DE ABRIL DE 2018",
+          "covered": true,
+          "measured_kw": "270.00",
+          "candidate_kw": "270",
+          "tariff_brl_per_kw": "13.59",
+          "threshold_kw": "283.50",
+          "billable_kw": "270",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "3669.30",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "3669.30",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-135.90"
+        },
+        {
+          "period": "2019-04",
+          "source_page": 4,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.383, DE 17 DE ABRIL DE 2018",
+          "covered": true,
+          "measured_kw": "274.32",
+          "candidate_kw": "270",
+          "tariff_brl_per_kw": "13.59",
+          "threshold_kw": "283.50",
+          "billable_kw": "274.32",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "3728.01",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "3728.01",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-77.19"
+        },
+        {
+          "period": "2019-05",
+          "source_page": 5,
+          "covered": false,
+          "reason": "Reading cycle straddles tariff change22April2019; no independently frozen exact tariff-day allocation. No bill-month/latest-tariff substitution.",
+          "modeled_demand_total_brl": null,
+          "scenario_minus_baseline_brl": null
+        },
+        {
+          "period": "2019-06",
+          "source_page": 6,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "260.64",
+          "candidate_kw": "270",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "283.50",
+          "billable_kw": "270",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4104.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4104.00",
+          "unused_contracted_exposure_brl": "142.27",
+          "scenario_minus_baseline_brl": "-152.00"
+        },
+        {
+          "period": "2019-07",
+          "source_page": 7,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "259.92",
+          "candidate_kw": "270",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "283.50",
+          "billable_kw": "270",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4104.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4104.00",
+          "unused_contracted_exposure_brl": "153.22",
+          "scenario_minus_baseline_brl": "-152.00"
+        },
+        {
+          "period": "2019-08",
+          "source_page": 8,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "267.12",
+          "candidate_kw": "270",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "283.50",
+          "billable_kw": "270",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4104.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4104.00",
+          "unused_contracted_exposure_brl": "43.78",
+          "scenario_minus_baseline_brl": "-152.00"
+        },
+        {
+          "period": "2019-09",
+          "source_page": 9,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "277.20",
+          "candidate_kw": "270",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "283.50",
+          "billable_kw": "277.20",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4213.44",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4213.44",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-42.56"
+        },
+        {
+          "period": "2019-10",
+          "source_page": 10,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "284.40",
+          "candidate_kw": "270",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "283.50",
+          "billable_kw": "284.40",
+          "overrun_trigger": true,
+          "overrun_kw": "14.40",
+          "regular_brl": "4322.88",
+          "overrun_brl": "437.76",
+          "modeled_demand_total_brl": "4760.64",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "437.76"
+        },
+        {
+          "period": "2019-11",
+          "source_page": 11,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "300.96",
+          "candidate_kw": "270",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "283.50",
+          "billable_kw": "300.96",
+          "overrun_trigger": true,
+          "overrun_kw": "30.96",
+          "regular_brl": "4574.59",
+          "overrun_brl": "941.18",
+          "modeled_demand_total_brl": "5515.77",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "304.00"
+        },
+        {
+          "period": "2019-12",
+          "source_page": 12,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "300.96",
+          "candidate_kw": "270",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "283.50",
+          "billable_kw": "300.96",
+          "overrun_trigger": true,
+          "overrun_kw": "30.96",
+          "regular_brl": "4574.59",
+          "overrun_brl": "941.18",
+          "modeled_demand_total_brl": "5515.77",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "304.00"
+        },
+        {
+          "period": "2020-01",
+          "source_page": 13,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "282.24",
+          "candidate_kw": "270",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "283.50",
+          "billable_kw": "282.24",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4290.05",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4290.05",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2020-02",
+          "source_page": 14,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "294.48",
+          "candidate_kw": "270",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "283.50",
+          "billable_kw": "294.48",
+          "overrun_trigger": true,
+          "overrun_kw": "24.48",
+          "regular_brl": "4476.10",
+          "overrun_brl": "744.19",
+          "modeled_demand_total_brl": "5220.29",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "304.00"
+        }
+      ],
+      "covered_month_count": 11,
+      "excluded_month_count": 1,
+      "complete_annual_coverage": false,
+      "covered_months_subtotal_brl": "49225.27",
+      "coverage_label": "11 covered monthly demand components only; not complete annual bill, verified savings, or actual tax-inclusive invoice reconstruction",
+      "covered_subtotal_minus_baseline_brl": "638.11"
+    },
+    {
+      "candidate_kw": "280",
+      "months": [
+        {
+          "period": "2019-03",
+          "source_page": 3,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.383, DE 17 DE ABRIL DE 2018",
+          "covered": true,
+          "measured_kw": "270.00",
+          "candidate_kw": "280",
+          "tariff_brl_per_kw": "13.59",
+          "threshold_kw": "294.00",
+          "billable_kw": "280",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "3805.20",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "3805.20",
+          "unused_contracted_exposure_brl": "135.90",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2019-04",
+          "source_page": 4,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.383, DE 17 DE ABRIL DE 2018",
+          "covered": true,
+          "measured_kw": "274.32",
+          "candidate_kw": "280",
+          "tariff_brl_per_kw": "13.59",
+          "threshold_kw": "294.00",
+          "billable_kw": "280",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "3805.20",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "3805.20",
+          "unused_contracted_exposure_brl": "77.19",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2019-05",
+          "source_page": 5,
+          "covered": false,
+          "reason": "Reading cycle straddles tariff change22April2019; no independently frozen exact tariff-day allocation. No bill-month/latest-tariff substitution.",
+          "modeled_demand_total_brl": null,
+          "scenario_minus_baseline_brl": null
+        },
+        {
+          "period": "2019-06",
+          "source_page": 6,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "260.64",
+          "candidate_kw": "280",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.00",
+          "billable_kw": "280",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4256.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4256.00",
+          "unused_contracted_exposure_brl": "294.27",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2019-07",
+          "source_page": 7,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "259.92",
+          "candidate_kw": "280",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.00",
+          "billable_kw": "280",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4256.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4256.00",
+          "unused_contracted_exposure_brl": "305.22",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2019-08",
+          "source_page": 8,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "267.12",
+          "candidate_kw": "280",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.00",
+          "billable_kw": "280",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4256.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4256.00",
+          "unused_contracted_exposure_brl": "195.78",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2019-09",
+          "source_page": 9,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "277.20",
+          "candidate_kw": "280",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.00",
+          "billable_kw": "280",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4256.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4256.00",
+          "unused_contracted_exposure_brl": "42.56",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2019-10",
+          "source_page": 10,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "284.40",
+          "candidate_kw": "280",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.00",
+          "billable_kw": "284.40",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4322.88",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4322.88",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2019-11",
+          "source_page": 11,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "300.96",
+          "candidate_kw": "280",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.00",
+          "billable_kw": "300.96",
+          "overrun_trigger": true,
+          "overrun_kw": "20.96",
+          "regular_brl": "4574.59",
+          "overrun_brl": "637.18",
+          "modeled_demand_total_brl": "5211.77",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2019-12",
+          "source_page": 12,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "300.96",
+          "candidate_kw": "280",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.00",
+          "billable_kw": "300.96",
+          "overrun_trigger": true,
+          "overrun_kw": "20.96",
+          "regular_brl": "4574.59",
+          "overrun_brl": "637.18",
+          "modeled_demand_total_brl": "5211.77",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2020-01",
+          "source_page": 13,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "282.24",
+          "candidate_kw": "280",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.00",
+          "billable_kw": "282.24",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4290.05",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4290.05",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2020-02",
+          "source_page": 14,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "294.48",
+          "candidate_kw": "280",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.00",
+          "billable_kw": "294.48",
+          "overrun_trigger": true,
+          "overrun_kw": "14.48",
+          "regular_brl": "4476.10",
+          "overrun_brl": "440.19",
+          "modeled_demand_total_brl": "4916.29",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "0.00"
+        }
+      ],
+      "covered_month_count": 11,
+      "excluded_month_count": 1,
+      "complete_annual_coverage": false,
+      "covered_months_subtotal_brl": "48587.16",
+      "coverage_label": "11 covered monthly demand components only; not complete annual bill, verified savings, or actual tax-inclusive invoice reconstruction",
+      "covered_subtotal_minus_baseline_brl": "0.00"
+    },
+    {
+      "candidate_kw": "280.45",
+      "months": [
+        {
+          "period": "2019-03",
+          "source_page": 3,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.383, DE 17 DE ABRIL DE 2018",
+          "covered": true,
+          "measured_kw": "270.00",
+          "candidate_kw": "280.45",
+          "tariff_brl_per_kw": "13.59",
+          "threshold_kw": "294.4725",
+          "billable_kw": "280.45",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "3811.32",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "3811.32",
+          "unused_contracted_exposure_brl": "142.02",
+          "scenario_minus_baseline_brl": "6.12"
+        },
+        {
+          "period": "2019-04",
+          "source_page": 4,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.383, DE 17 DE ABRIL DE 2018",
+          "covered": true,
+          "measured_kw": "274.32",
+          "candidate_kw": "280.45",
+          "tariff_brl_per_kw": "13.59",
+          "threshold_kw": "294.4725",
+          "billable_kw": "280.45",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "3811.32",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "3811.32",
+          "unused_contracted_exposure_brl": "83.31",
+          "scenario_minus_baseline_brl": "6.12"
+        },
+        {
+          "period": "2019-05",
+          "source_page": 5,
+          "covered": false,
+          "reason": "Reading cycle straddles tariff change22April2019; no independently frozen exact tariff-day allocation. No bill-month/latest-tariff substitution.",
+          "modeled_demand_total_brl": null,
+          "scenario_minus_baseline_brl": null
+        },
+        {
+          "period": "2019-06",
+          "source_page": 6,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "260.64",
+          "candidate_kw": "280.45",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4725",
+          "billable_kw": "280.45",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4262.84",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4262.84",
+          "unused_contracted_exposure_brl": "301.11",
+          "scenario_minus_baseline_brl": "6.84"
+        },
+        {
+          "period": "2019-07",
+          "source_page": 7,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "259.92",
+          "candidate_kw": "280.45",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4725",
+          "billable_kw": "280.45",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4262.84",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4262.84",
+          "unused_contracted_exposure_brl": "312.06",
+          "scenario_minus_baseline_brl": "6.84"
+        },
+        {
+          "period": "2019-08",
+          "source_page": 8,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "267.12",
+          "candidate_kw": "280.45",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4725",
+          "billable_kw": "280.45",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4262.84",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4262.84",
+          "unused_contracted_exposure_brl": "202.62",
+          "scenario_minus_baseline_brl": "6.84"
+        },
+        {
+          "period": "2019-09",
+          "source_page": 9,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "277.20",
+          "candidate_kw": "280.45",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4725",
+          "billable_kw": "280.45",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4262.84",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4262.84",
+          "unused_contracted_exposure_brl": "49.40",
+          "scenario_minus_baseline_brl": "6.84"
+        },
+        {
+          "period": "2019-10",
+          "source_page": 10,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "284.40",
+          "candidate_kw": "280.45",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4725",
+          "billable_kw": "284.40",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4322.88",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4322.88",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2019-11",
+          "source_page": 11,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "300.96",
+          "candidate_kw": "280.45",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4725",
+          "billable_kw": "300.96",
+          "overrun_trigger": true,
+          "overrun_kw": "20.51",
+          "regular_brl": "4574.59",
+          "overrun_brl": "623.50",
+          "modeled_demand_total_brl": "5198.09",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-13.68"
+        },
+        {
+          "period": "2019-12",
+          "source_page": 12,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "300.96",
+          "candidate_kw": "280.45",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4725",
+          "billable_kw": "300.96",
+          "overrun_trigger": true,
+          "overrun_kw": "20.51",
+          "regular_brl": "4574.59",
+          "overrun_brl": "623.50",
+          "modeled_demand_total_brl": "5198.09",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-13.68"
+        },
+        {
+          "period": "2020-01",
+          "source_page": 13,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "282.24",
+          "candidate_kw": "280.45",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4725",
+          "billable_kw": "282.24",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4290.05",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4290.05",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2020-02",
+          "source_page": 14,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "294.48",
+          "candidate_kw": "280.45",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4725",
+          "billable_kw": "294.48",
+          "overrun_trigger": true,
+          "overrun_kw": "14.03",
+          "regular_brl": "4476.10",
+          "overrun_brl": "426.51",
+          "modeled_demand_total_brl": "4902.61",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-13.68"
+        }
+      ],
+      "covered_month_count": 11,
+      "excluded_month_count": 1,
+      "complete_annual_coverage": false,
+      "covered_months_subtotal_brl": "48585.72",
+      "coverage_label": "11 covered monthly demand components only; not complete annual bill, verified savings, or actual tax-inclusive invoice reconstruction",
+      "covered_subtotal_minus_baseline_brl": "-1.44"
+    },
+    {
+      "candidate_kw": "280.46",
+      "months": [
+        {
+          "period": "2019-03",
+          "source_page": 3,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.383, DE 17 DE ABRIL DE 2018",
+          "covered": true,
+          "measured_kw": "270.00",
+          "candidate_kw": "280.46",
+          "tariff_brl_per_kw": "13.59",
+          "threshold_kw": "294.4830",
+          "billable_kw": "280.46",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "3811.45",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "3811.45",
+          "unused_contracted_exposure_brl": "142.15",
+          "scenario_minus_baseline_brl": "6.25"
+        },
+        {
+          "period": "2019-04",
+          "source_page": 4,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.383, DE 17 DE ABRIL DE 2018",
+          "covered": true,
+          "measured_kw": "274.32",
+          "candidate_kw": "280.46",
+          "tariff_brl_per_kw": "13.59",
+          "threshold_kw": "294.4830",
+          "billable_kw": "280.46",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "3811.45",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "3811.45",
+          "unused_contracted_exposure_brl": "83.44",
+          "scenario_minus_baseline_brl": "6.25"
+        },
+        {
+          "period": "2019-05",
+          "source_page": 5,
+          "covered": false,
+          "reason": "Reading cycle straddles tariff change22April2019; no independently frozen exact tariff-day allocation. No bill-month/latest-tariff substitution.",
+          "modeled_demand_total_brl": null,
+          "scenario_minus_baseline_brl": null
+        },
+        {
+          "period": "2019-06",
+          "source_page": 6,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "260.64",
+          "candidate_kw": "280.46",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4830",
+          "billable_kw": "280.46",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4262.99",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4262.99",
+          "unused_contracted_exposure_brl": "301.26",
+          "scenario_minus_baseline_brl": "6.99"
+        },
+        {
+          "period": "2019-07",
+          "source_page": 7,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "259.92",
+          "candidate_kw": "280.46",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4830",
+          "billable_kw": "280.46",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4262.99",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4262.99",
+          "unused_contracted_exposure_brl": "312.21",
+          "scenario_minus_baseline_brl": "6.99"
+        },
+        {
+          "period": "2019-08",
+          "source_page": 8,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "267.12",
+          "candidate_kw": "280.46",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4830",
+          "billable_kw": "280.46",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4262.99",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4262.99",
+          "unused_contracted_exposure_brl": "202.77",
+          "scenario_minus_baseline_brl": "6.99"
+        },
+        {
+          "period": "2019-09",
+          "source_page": 9,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "277.20",
+          "candidate_kw": "280.46",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4830",
+          "billable_kw": "280.46",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4262.99",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4262.99",
+          "unused_contracted_exposure_brl": "49.55",
+          "scenario_minus_baseline_brl": "6.99"
+        },
+        {
+          "period": "2019-10",
+          "source_page": 10,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "284.40",
+          "candidate_kw": "280.46",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4830",
+          "billable_kw": "284.40",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4322.88",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4322.88",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2019-11",
+          "source_page": 11,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "300.96",
+          "candidate_kw": "280.46",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4830",
+          "billable_kw": "300.96",
+          "overrun_trigger": true,
+          "overrun_kw": "20.50",
+          "regular_brl": "4574.59",
+          "overrun_brl": "623.20",
+          "modeled_demand_total_brl": "5197.79",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-13.98"
+        },
+        {
+          "period": "2019-12",
+          "source_page": 12,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "300.96",
+          "candidate_kw": "280.46",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4830",
+          "billable_kw": "300.96",
+          "overrun_trigger": true,
+          "overrun_kw": "20.50",
+          "regular_brl": "4574.59",
+          "overrun_brl": "623.20",
+          "modeled_demand_total_brl": "5197.79",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-13.98"
+        },
+        {
+          "period": "2020-01",
+          "source_page": 13,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "282.24",
+          "candidate_kw": "280.46",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4830",
+          "billable_kw": "282.24",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4290.05",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4290.05",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "0.00"
+        },
+        {
+          "period": "2020-02",
+          "source_page": 14,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "294.48",
+          "candidate_kw": "280.46",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "294.4830",
+          "billable_kw": "294.48",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4476.10",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4476.10",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-440.19"
+        }
+      ],
+      "covered_month_count": 11,
+      "excluded_month_count": 1,
+      "complete_annual_coverage": false,
+      "covered_months_subtotal_brl": "48159.47",
+      "coverage_label": "11 covered monthly demand components only; not complete annual bill, verified savings, or actual tax-inclusive invoice reconstruction",
+      "covered_subtotal_minus_baseline_brl": "-427.69"
+    },
+    {
+      "candidate_kw": "300",
+      "months": [
+        {
+          "period": "2019-03",
+          "source_page": 3,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.383, DE 17 DE ABRIL DE 2018",
+          "covered": true,
+          "measured_kw": "270.00",
+          "candidate_kw": "300",
+          "tariff_brl_per_kw": "13.59",
+          "threshold_kw": "315.00",
+          "billable_kw": "300",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4077.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4077.00",
+          "unused_contracted_exposure_brl": "407.70",
+          "scenario_minus_baseline_brl": "271.80"
+        },
+        {
+          "period": "2019-04",
+          "source_page": 4,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.383, DE 17 DE ABRIL DE 2018",
+          "covered": true,
+          "measured_kw": "274.32",
+          "candidate_kw": "300",
+          "tariff_brl_per_kw": "13.59",
+          "threshold_kw": "315.00",
+          "billable_kw": "300",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4077.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4077.00",
+          "unused_contracted_exposure_brl": "348.99",
+          "scenario_minus_baseline_brl": "271.80"
+        },
+        {
+          "period": "2019-05",
+          "source_page": 5,
+          "covered": false,
+          "reason": "Reading cycle straddles tariff change22April2019; no independently frozen exact tariff-day allocation. No bill-month/latest-tariff substitution.",
+          "modeled_demand_total_brl": null,
+          "scenario_minus_baseline_brl": null
+        },
+        {
+          "period": "2019-06",
+          "source_page": 6,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "260.64",
+          "candidate_kw": "300",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "315.00",
+          "billable_kw": "300",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4560.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4560.00",
+          "unused_contracted_exposure_brl": "598.27",
+          "scenario_minus_baseline_brl": "304.00"
+        },
+        {
+          "period": "2019-07",
+          "source_page": 7,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "259.92",
+          "candidate_kw": "300",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "315.00",
+          "billable_kw": "300",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4560.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4560.00",
+          "unused_contracted_exposure_brl": "609.22",
+          "scenario_minus_baseline_brl": "304.00"
+        },
+        {
+          "period": "2019-08",
+          "source_page": 8,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "267.12",
+          "candidate_kw": "300",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "315.00",
+          "billable_kw": "300",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4560.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4560.00",
+          "unused_contracted_exposure_brl": "499.78",
+          "scenario_minus_baseline_brl": "304.00"
+        },
+        {
+          "period": "2019-09",
+          "source_page": 9,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "277.20",
+          "candidate_kw": "300",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "315.00",
+          "billable_kw": "300",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4560.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4560.00",
+          "unused_contracted_exposure_brl": "346.56",
+          "scenario_minus_baseline_brl": "304.00"
+        },
+        {
+          "period": "2019-10",
+          "source_page": 10,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "284.40",
+          "candidate_kw": "300",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "315.00",
+          "billable_kw": "300",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4560.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4560.00",
+          "unused_contracted_exposure_brl": "237.12",
+          "scenario_minus_baseline_brl": "237.12"
+        },
+        {
+          "period": "2019-11",
+          "source_page": 11,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "300.96",
+          "candidate_kw": "300",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "315.00",
+          "billable_kw": "300.96",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4574.59",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4574.59",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-637.18"
+        },
+        {
+          "period": "2019-12",
+          "source_page": 12,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "300.96",
+          "candidate_kw": "300",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "315.00",
+          "billable_kw": "300.96",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4574.59",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4574.59",
+          "unused_contracted_exposure_brl": "0.00",
+          "scenario_minus_baseline_brl": "-637.18"
+        },
+        {
+          "period": "2020-01",
+          "source_page": 13,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "282.24",
+          "candidate_kw": "300",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "315.00",
+          "billable_kw": "300",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4560.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4560.00",
+          "unused_contracted_exposure_brl": "269.95",
+          "scenario_minus_baseline_brl": "269.95"
+        },
+        {
+          "period": "2020-02",
+          "source_page": 14,
+          "tariff_version": "RESOLUÇÃO HOMOLOGATÓRIA Nº 2.530, DE 16 DE ABRIL DE 2019",
+          "covered": true,
+          "measured_kw": "294.48",
+          "candidate_kw": "300",
+          "tariff_brl_per_kw": "15.20",
+          "threshold_kw": "315.00",
+          "billable_kw": "300",
+          "overrun_trigger": false,
+          "overrun_kw": "0",
+          "regular_brl": "4560.00",
+          "overrun_brl": "0.00",
+          "modeled_demand_total_brl": "4560.00",
+          "unused_contracted_exposure_brl": "83.90",
+          "scenario_minus_baseline_brl": "-356.29"
+        }
+      ],
+      "covered_month_count": 11,
+      "excluded_month_count": 1,
+      "complete_annual_coverage": false,
+      "covered_months_subtotal_brl": "49223.18",
+      "coverage_label": "11 covered monthly demand components only; not complete annual bill, verified savings, or actual tax-inclusive invoice reconstruction",
+      "covered_subtotal_minus_baseline_brl": "636.02"
+    }
+  ]
+}

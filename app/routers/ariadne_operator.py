@@ -248,6 +248,9 @@ def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any
                 ~AriadneAssumptionSet.name.startswith(
                     "assisted_close:", autoescape=True
                 ),
+                ~AriadneAssumptionSet.name.startswith(
+                    "demand_planning:", autoescape=True
+                ),
             )
             .order_by(AriadneAssumptionSet.created_at, AriadneAssumptionSet.id)
         ).scalars()
@@ -281,7 +284,9 @@ def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any
         db.execute(
             select(AriadneModelDefinition).where(
                 AriadneModelDefinition.tenant_id == tenant_id,
-                AriadneModelDefinition.name != "assisted_close",
+                AriadneModelDefinition.name.notin_(
+                    ["assisted_close", "demand_contract_screening"]
+                ),
             )
         ).scalars()
     )
@@ -331,7 +336,9 @@ def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any
                 "valueSchema": version.value_schema,
                 "origin": version.origin,
                 "previousVersionId": (
-                    str(version.previous_version_id) if version.previous_version_id else None
+                    str(version.previous_version_id)
+                    if version.previous_version_id
+                    else None
                 ),
                 "createdAt": _iso(version.created_at),
             }
@@ -362,7 +369,9 @@ def _workspace_snapshot(db: Session, workspace, tenant_id: str) -> dict[str, Any
                 ),
                 "createdAt": _iso(row.created_at),
                 "currentStateVersionId": (
-                    str(current_by_object[row.id].id) if current_by_object[row.id] else None
+                    str(current_by_object[row.id].id)
+                    if current_by_object[row.id]
+                    else None
                 ),
             }
             for row in objects
@@ -580,6 +589,8 @@ def post_assumption_set(
 ):
     _, tenant_id = _authorized_context(workspace_id, user, db)
     try:
+        if body.name.startswith("demand_planning:"):
+            raise ValueError("Identidade reservada ao planejamento conectado")
         row = create_assumption_set(db, tenant_id=tenant_id, name=body.name)
         db.commit()
         db.refresh(row)
@@ -606,6 +617,16 @@ def post_assumption_version(
 ):
     _, tenant_id = _authorized_context(workspace_id, user, db)
     try:
+        existing = db.execute(
+            select(AriadneAssumptionSet).where(
+                AriadneAssumptionSet.id == set_id,
+                AriadneAssumptionSet.tenant_id == tenant_id,
+            )
+        ).scalar_one_or_none()
+        if existing and existing.name.startswith("demand_planning:"):
+            raise ValueError(
+                "Premissas de planejamento são preservadas pelo fluxo conectado"
+            )
         row = create_assumption_set_version(
             db,
             tenant_id=tenant_id,
@@ -656,10 +677,22 @@ def get_models(
     _, tenant_id = _authorized_context(workspace_id, user, db)
     rows = list(
         db.execute(
-            select(AriadneModelVersion).where(AriadneModelVersion.tenant_id == tenant_id)
+            select(AriadneModelVersion)
+            .join(
+                AriadneModelDefinition,
+                AriadneModelVersion.model_definition_id == AriadneModelDefinition.id,
+            )
+            .where(
+                AriadneModelVersion.tenant_id == tenant_id,
+                AriadneModelDefinition.name != "demand_contract_screening",
+            )
         ).scalars()
     )
-    return {"data": [{"id": str(row.id), "semanticVersion": row.semantic_version} for row in rows]}
+    return {
+        "data": [
+            {"id": str(row.id), "semanticVersion": row.semantic_version} for row in rows
+        ]
+    }
 
 
 @router.post("/workspaces/{workspace_id}/models/internal-test", status_code=201)
@@ -722,7 +755,13 @@ def get_lineage(
 ):
     _, tenant_id = _authorized_context(workspace_id, user, db)
     try:
-        lineage = reconstruct_result_lineage(db, tenant_id=tenant_id, result_id=result_id)
+        lineage = reconstruct_result_lineage(
+            db, tenant_id=tenant_id, result_id=result_id
+        )
+        if lineage.result.result_key == "demand_contract_screening":
+            raise HTTPException(
+                404, "Resultado disponível no fluxo de planejamento conectado"
+            )
     except (TenantScopeError, RuntimeError) as exc:
         raise _unprocessable(exc) from exc
     return {
@@ -775,6 +814,13 @@ def post_replay(
 ):
     _, tenant_id = _authorized_context(workspace_id, user, db)
     try:
+        lineage = reconstruct_result_lineage(
+            db, tenant_id=tenant_id, result_id=result_id
+        )
+        if lineage.result.result_key == "demand_contract_screening":
+            raise HTTPException(
+                404, "Replay disponível no fluxo de planejamento conectado"
+            )
         replayed = replay_result(db, tenant_id=tenant_id, result_id=result_id)
     except (TenantScopeError, RuntimeError, ValueError) as exc:
         raise _unprocessable(exc) from exc

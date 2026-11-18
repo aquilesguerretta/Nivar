@@ -1,0 +1,250 @@
+.plan {
+  background: var(--desk-paper);
+  padding: 16px;
+  min-width: 0;
+}
+.plan h1 {
+  font:
+    28px/1.1 "Newsreader Variable",
+    serif;
+  margin: 5px 0;
+}
+.plan .desk__bar {
+  padding: 4px 0 10px;
+  margin-bottom: 12px;
+}
+.plan h2 {
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+.plan p {
+  line-height: 1.45;
+  margin: 8px 0;
+}
+.plan__workspace {
+  display: grid;
+  grid-template-columns: 220px minmax(300px, 1fr) 335px;
+  gap: 20px;
+  align-items: start;
+}
+.plan__baseline,
+.plan__canvas,
+.plan__impact {
+  min-width: 0;
+}
+.plan__months {
+  max-height: 465px;
+  overflow: auto;
+  border-top: 1px solid var(--desk-rule);
+}
+.plan__months button {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--desk-rule);
+  padding: 10px 5px;
+  background: transparent;
+}
+.plan__months small {
+  grid-column: 1/-1;
+  color: var(--desk-muted);
+  margin-top: 3px;
+}
+.plan__months .plan__selected {
+  background: var(--desk-select);
+  border-left: 3px solid #a97740;
+}
+.plan__decision {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+.plan__decision label {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.plan__decision input {
+  width: 115px;
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+}
+.plan__decision span {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--desk-muted);
+}
+.plan__slider {
+  width: 100%;
+  accent-color: #a97740;
+  margin: 14px 0 0;
+}
+.plan__legend,
+.plan__muted,
+.plan__limits {
+  font-size: 11px;
+  color: var(--desk-muted);
+}
+.plan__demand {
+  height: 205px;
+  min-width: 0;
+}
+.plan__curve {
+  border-top: 1px solid var(--desk-rule);
+  padding-top: 12px;
+  margin-top: 10px;
+}
+.plan__curve p {
+  font-size: 11px;
+}
+.plan__branches,
+.plan__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 15px;
+}
+.plan__branches label {
+  flex: 1;
+  min-width: 140px;
+}
+.plan__branches select {
+  width: 100%;
+  margin-top: 5px;
+}
+.plan__impact {
+  border-left: 1px solid var(--desk-rule);
+  padding-left: 16px;
+}
+.plan__delta {
+  font:
+    30px/1.1 "Instrument Serif",
+    serif;
+}
+.plan dl {
+  margin: 8px 0;
+}
+.plan dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 3px 0;
+}
+.plan dt {
+  color: var(--desk-muted);
+  font-size: 11px;
+}
+.plan dd {
+  margin: 0;
+  text-align: right;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.plan fieldset {
+  border: 0;
+  padding: 4px 0;
+  margin: 0;
+}
+.plan fieldset label {
+  display: block;
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 5px 0;
+}
+.plan fieldset input {
+  margin: 0 5px 0 0;
+}
+.plan__save {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: end;
+  margin-top: 5px;
+}
+.plan__save label {
+  display: block;
+  font-size: 11px;
+}
+.plan__save input {
+  width: 100%;
+  margin-top: 4px;
+}
+.plan__save button {
+  font-size: 11px;
+}
+.plan__actions {
+  margin-top: 8px;
+  font-size: 11px;
+}
+.plan__proof {
+  margin-top: 12px;
+  border-top: 1px solid var(--desk-rule);
+  padding-top: 10px;
+  overflow-wrap: anywhere;
+  font-size: 11px;
+}
+.plan__proof pre {
+  white-space: pre-wrap;
+  max-height: 180px;
+  overflow: auto;
+  font-size: 10px;
+}
+.plan__proof details {
+  margin-top: 8px;
+}
+.plan__comparison {
+  overflow: auto;
+  margin-top: 18px;
+  border-top: 1px solid var(--desk-rule);
+  padding-top: 12px;
+}
+.plan__comparison table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.plan__comparison td,
+.plan__comparison th {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--desk-rule);
+}
+.plan__limits {
+  border-top: 1px solid var(--desk-rule);
+  margin-top: 15px;
+  padding-top: 10px;
+}
+.plan .recharts-cartesian-axis-tick-value {
+  fill: var(--desk-muted);
+}
+.plan .recharts-default-tooltip {
+  color: #262720;
+}
+@media (max-width: 1150px) {
+  .plan__workspace {
+    grid-template-columns: 170px minmax(250px, 1fr) 290px;
+    gap: 12px;
+  }
+  .plan {
+    padding: 10px;
+  }
+  .plan__impact {
+    padding-left: 12px;
+  }
+}
+@media (max-width: 850px) {
+  .plan__workspace {
+    grid-template-columns: 1fr;
+  }
+  .plan__months {
+    max-height: 230px;
+  }
+  .plan__impact {
+    border-left: 0;
+    padding-left: 0;
+  }
+}

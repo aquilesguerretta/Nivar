@@ -18,6 +18,10 @@ export const CLOSE_FIELDS = [
 ] as const;
 export type CloseRole = "invoice" | "quantity" | "price" | "context";
 export interface Candidate {
+  recordKind?: string;
+  planningConfirmed?: boolean;
+  demand_kw?: string | null;
+  contracted_kw?: string | null;
   index: number;
   locator: string;
   raw: Record<string, string | null>;
@@ -44,10 +48,12 @@ export interface Mapping {
   mapping: Record<string, string>;
   numericMode: "strict" | "dot" | "comma";
   manualRows: Record<string, string | number>[];
-  reviewMode?: "table" | "observations" | "context";
+  reviewMode?: "table" | "observations" | "context" | "demand_profile" | "tariff_reference";
   defaults?: Record<string, string>;
 }
 export interface Inspection {
+  demandProfile?: Candidate[];
+  tariffReferences?: Candidate[];
   kind: string;
   parserVersion?: string;
   sha256?: string;
@@ -198,7 +204,7 @@ export class SelectionEpoch {
   }
 }
 
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
+export async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(BASE + path, {
     credentials: "include",
     ...init,
@@ -247,7 +253,7 @@ async function fingerprint(value: string | ArrayBuffer) {
     .join("");
 }
 
-async function write<T>(
+export async function write<T>(
   path: string,
   body: unknown,
   form?: FormData,

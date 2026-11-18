@@ -39,11 +39,11 @@ export function reviewedSelection(
   rows: { index: number; errors: string[] }[],
   mapping: MappingShape,
   confirmation?:
-    (MappingShape & { rows: { index: number; eligible?: boolean }[] }) | null,
+    (MappingShape & { rows: { index: number; eligible?: boolean; planningConfirmed?: boolean }[] }) | null,
 ) {
   const preserved =
     confirmation && sameInterpretation(mapping, confirmation)
-      ? new Set(confirmation.rows.filter((r) => r.eligible).map((r) => r.index))
+      ? new Set(confirmation.rows.filter((r) => r.eligible || r.planningConfirmed).map((r) => r.index))
       : null;
   return rows
     .filter((r) => !r.errors.length && (!preserved || preserved.has(r.index)))
