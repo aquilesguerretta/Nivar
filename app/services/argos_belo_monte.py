@@ -13,7 +13,8 @@ from datetime import datetime, timezone
 from decimal import Decimal, InvalidOperation
 from uuid import UUID
 
-from sqlalchemy import select
+from sqlalchemy import func, literal_column, select
+from sqlalchemy.exc import MultipleResultsFound
 from sqlalchemy.orm import Session
 
 from app.db.models.argos_memory import ArgosRawArtifact, ArgosSnapshot
@@ -23,7 +24,7 @@ from app.scripts.ingest_argos_ons_capacidade_geracao import (
     RIGHTS_RECORD_REF,
     RIGHTS_SUMMARY_STATE,
 )
-from app.services.argos_memory import compute_sha256, reconstruct_snapshot
+from app.services.argos_memory import compute_sha256, get_current_snapshot, reconstruct_snapshot
 from app.services.argos_ons_capacidade_geracao_diff import (
     DIFF_VERSION,
     PARSER_VERSION,
@@ -47,8 +48,14 @@ ANEEL_CEG = {
     "url": "https://www2.aneel.gov.br/cedoc/rea202314936ti.pdf",
 }
 MME_CONCESSION = {
+    "id": "document:dou:concession:01-2010-mme:2010-08-31",
+    "label": "DOU · Extrato republicado do Contrato de Concessão nº 01/2010-MME, seção 3, p. 96",
+    "date": "2010-08-31",
+    "url": "https://www.gov.br/mme/pt-br/arquivos/do-31-08-2010-s3.pdf#page=96",
+}
+MME_REIDI = {
     "id": "document:mme:portaria:876:2010",
-    "label": "MME · Portaria nº 876/2010, art. 1º e anexo I",
+    "label": "MME · Portaria nº 876/2010, enquadramento no REIDI",
     "date": "2010-11-04",
     "url": "https://www.gov.br/mme/pt-br/arquivos/portaria-876-de-04-11-2010-publicado-no-dou-de-08-11-2010.pdf",
 }
@@ -157,7 +164,7 @@ class EvidenceVersion:
         }
 
 
-def read_version(db: Session, snapshot: ArgosSnapshot) -> EvidenceVersion:
+def _validate_provenance(snapshot: ArgosSnapshot) -> None:
     if (
         snapshot.source_id != SOURCE_ID
         or snapshot.adapter_version != ADAPTER_VERSION
@@ -169,6 +176,9 @@ def read_version(db: Session, snapshot: ArgosSnapshot) -> EvidenceVersion:
     ):
         raise EvidenceUnavailable("Snapshot provenance or rights mismatch")
 
+
+def read_version(db: Session, snapshot: ArgosSnapshot) -> EvidenceVersion:
+    _validate_provenance(snapshot)
     artifact = db.get(ArgosRawArtifact, snapshot.artifact_id)
     if artifact is None:
         raise EvidenceUnavailable("Missing raw artifact")
@@ -277,10 +287,20 @@ def compose_read_model(
     comparison = None
     if previous is not None:
         delta = diff_capacidade_geracao(previous.rows, version.rows)
+        # Membership on either side catches additions, removals and CEG changes.
+        # Reviewed codes also belong to this comparison when their CEG conflicts.
+        changed_codes = [*delta.added, *delta.removed, *(row.identity for row in delta.changed)]
+        scoped_changed = any(
+            code in reviewed_codes
+            or previous.rows.get(code, {}).get("ceg") == CEG
+            or version.rows.get(code, {}).get("ceg") == CEG
+            for code in changed_codes
+        )
         comparison = {
             "fromVersion": previous.metadata(),
             "rawBytesChanged": previous.sha256 != version.sha256,
-            "parsedContentChanged": not delta.content_equal,
+            "sourceContentChanged": not delta.content_equal,
+            "scopedAssetContentChanged": scoped_changed,
             "diffVersion": DIFF_VERSION,
         }
     return {
@@ -304,8 +324,9 @@ def compose_read_model(
             "instrument": "01/2010-MME-UHE Belo Monte",
             "effectiveFrom": "2010-08-26",
             "evidenceId": MME_CONCESSION["id"],
+            "supplementaryEvidenceIds": [MME_REIDI["id"]],
         },
-        "documents": [ANEEL_CEG, MME_CONCESSION, ONS_PIMENTAL, NORTE_ENERGIA_SITES],
+        "documents": [ANEEL_CEG, MME_CONCESSION, MME_REIDI, ONS_PIMENTAL, NORTE_ENERGIA_SITES],
         "source": {
             "id": SOURCE_ID,
             "label": "ONS · Capacidade Instalada de Geração",
@@ -322,29 +343,115 @@ def compose_read_model(
     }
 
 
+def _approved_lineage(db: Session) -> list[ArgosSnapshot]:
+    """Walk the canonical chain and return the configured subset in ancestry order."""
+    pending = set(configured_ids())
+    try:
+        current = get_current_snapshot(db, SOURCE_ID)
+    except MultipleResultsFound as exc:
+        raise EvidenceUnavailable("Ambiguous source lineage head") from exc
+    seen = set()
+    approved = []
+    while current is not None and pending:
+        if current.id in seen or current.source_id != SOURCE_ID:
+            raise EvidenceUnavailable("Invalid source ancestry")
+        seen.add(current.id)
+        if current.id in pending:
+            _validate_provenance(current)
+            approved.append(current)
+            pending.remove(current.id)
+        if not pending or current.prior_snapshot_id is None:
+            break
+        current = db.get(ArgosSnapshot, current.prior_snapshot_id)
+
+    if pending:
+        raise EvidenceUnavailable("Approved snapshots do not belong to the source head's lineage")
+    return list(reversed(approved))
+
+
+def _commit_times(db: Session, approved: list[ArgosSnapshot]) -> dict[UUID, datetime | None]:
+    """Postgres can attest row visibility only while the commit metadata is retained."""
+    if db.scalar(select(func.current_setting("track_commit_timestamp"))) != "on":
+        return {}
+
+    rows = db.execute(
+        select(ArgosSnapshot.id, func.pg_xact_commit_timestamp(literal_column("argos_snapshot.xmin")))
+        .where(ArgosSnapshot.id.in_([snap.id for snap in approved]))
+    )
+    times = {snapshot_id: committed_at for snapshot_id, committed_at in rows}
+    last_commit = None
+    for snap in approved:
+        committed = times.get(snap.id)
+        if committed is not None:
+            # A clock anomaly makes this chronology unusable, but does not
+            # change the immutable lineage used for the current read.
+            if committed < max(snap.retrieved_at, snap.created_at) or (
+                last_commit is not None and committed < last_commit
+            ):
+                return {}
+            last_commit = committed
+    return times
+
+
+class HistoricalVisibilityUnproven(ValueError):
+    """A potentially visible successor has no retained commit evidence."""
+
+
+def _historical_index(
+    approved: list[ArgosSnapshot],
+    times: dict[UUID, datetime | None],
+    cutoff: datetime,
+) -> int | None:
+    for i in range(len(approved) - 1, -1, -1):
+        snap = approved[i]
+        committed = times.get(snap.id)
+        if committed is not None:
+            if committed <= cutoff:
+                return i
+        elif max(snap.retrieved_at, snap.created_at) <= cutoff:
+            # Both acquisition and transaction start are lower bounds only.
+            raise HistoricalVisibilityUnproven
+    return None
+
+
+def _historical_options(
+    approved: list[ArgosSnapshot], times: dict[UUID, datetime | None],
+) -> list[dict]:
+    options = []
+    first_possible_successor = None
+    for snap in reversed(approved):
+        committed = times.get(snap.id)
+        if committed is not None and (
+            first_possible_successor is None or committed < first_possible_successor
+        ):
+            options.append({"id": snap.id, "knownAt": committed.astimezone(timezone.utc)})
+        visible_from = committed or max(snap.retrieved_at, snap.created_at)
+        if first_possible_successor is None or visible_from < first_possible_successor:
+            first_possible_successor = visible_from
+    return list(reversed(options))
+
+
 def inspect_belo_monte(db: Session, known_at: datetime | None = None) -> dict:
-    ids = configured_ids()
-    versions = list(db.scalars(
-        select(ArgosSnapshot).where(ArgosSnapshot.id.in_(ids))
-        .order_by(ArgosSnapshot.retrieved_at)
-    ))
-    if len(versions) != len(ids):
-        raise EvidenceUnavailable("An approved snapshot is unavailable")
-    if any(before.retrieved_at == after.retrieved_at for before, after in zip(versions, versions[1:])):
-        raise EvidenceUnavailable("Ambiguous snapshot retrieval time")
+    approved = _approved_lineage(db)
+    times = _commit_times(db, approved)
 
-    visible = [
-        version for version in versions
-        if version.retrieved_at >= REVIEWED_CAPTURE_AT
-        and (known_at is None or version.retrieved_at <= known_at)
-    ]
-    if not visible:
-        return {"state": "UNKNOWN", "reason": "NO_EVIDENCE_AT_REQUESTED_TIME"}
+    index = len(approved) - 1
+    if known_at is not None:
+        try:
+            historical = _historical_index(approved, times, known_at)
+        except HistoricalVisibilityUnproven:
+            return {"state": "UNKNOWN", "reason": "HISTORICAL_VISIBILITY_UNPROVEN"}
+        if historical is None:
+            return {"state": "UNKNOWN", "reason": "NO_EVIDENCE_AT_REQUESTED_TIME"}
+        index = historical
 
-    version = read_version(db, visible[-1])
-    previous = read_version(db, visible[-2]) if len(visible) > 1 else None
+    version = read_version(db, approved[index])
+    previous = read_version(db, approved[index - 1]) if index > 0 else None
     result = compose_read_model(version, previous)
+    committed = times.get(approved[index].id)
+    result["version"]["persistedAt"] = committed.astimezone(timezone.utc) if committed else None
     result["availableVersions"] = [
-        {"id": snap.id, "retrievedAt": snap.retrieved_at.astimezone(timezone.utc)} for snap in visible
+        option for option in _historical_options(approved, times)
+        if known_at is None or option["knownAt"] <= known_at
     ]
     return result

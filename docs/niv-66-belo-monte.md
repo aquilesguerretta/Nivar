@@ -38,7 +38,11 @@ $env:VITE_ARGOS_BELO_MONTE_DEV = '1'
 npm run dev -- --host 127.0.0.1 --port 5166 --strictPort
 ```
 
-Abra `/br/terminal`, selecione **Ativos** e inspecione uma unidade de cada casa de força. O link para `/br/mapa-corporativo` preserva a identidade selecionada e a data de corte. A lista de snapshots aprovados vem da configuração do servidor. A data da captura indica quando o ARGOS conheceu o registro. A data de publicação do CSV permanece desconhecida.
+Abra `/br/terminal`, selecione **Ativos** e inspecione uma unidade de cada casa de força. O link para `/br/mapa-corporativo` preserva a identidade, a versão e a data de corte quando comprovada. A versão atual é a sucessora mais recente entre os snapshots aprovados, seguindo a linhagem do Argos Memory. A data de captura registra a aquisição e a data de publicação do CSV permanece desconhecida.
+
+O histórico reconstrói quais dos snapshots hoje aprovados já estavam persistidos na data de corte. A prova é o horário de commit da linha imutável no PostgreSQL. No cluster descartável, habilite `track_commit_timestamp = on` antes de capturar as versões usadas no replay. A configuração não retroage. Se o horário não foi registrado, expirou ou conflita com os demais tempos, o histórico retorna um estado desconhecido quando a lacuna impede a seleção. A navegação na versão atual ainda preserva a referência exata e bloqueia substituição silenciosa se a versão mudar durante a troca de tela.
+
+O extrato republicado do Contrato de Concessão nº 01/2010-MME no DOU de 31 de agosto de 2010, seção 3, p. 96, documenta a outorga original e sua vigência a partir de 26 de agosto. A Portaria MME 876/2010 documenta o enquadramento no REIDI como contexto complementar. A identidade do empreendimento continua ancorada no CEG da ANEEL. [Extrato oficial](https://www.gov.br/mme/pt-br/arquivos/do-31-08-2010-s3.pdf#page=96) · [Portaria MME](https://www.gov.br/mme/pt-br/arquivos/portaria-876-de-04-11-2010-publicado-no-dou-de-08-11-2010.pdf)
 
 ## Verificação
 
@@ -52,6 +56,34 @@ npm run build
 
 Execute o restante de `tests/argos_memory` em outro banco descartável vazio. Suítes de regressão fazem downgrade do esquema.
 
-O teste de replay guarda as versões sintéticas em um namespace de teste e demonstra 100,00 → 99,50 MW com a mesma identidade. Registra mudanças de bytes e de conteúdo separadamente. A demonstração real tem uma captura aprovada. Ainda não há uma correção do publicador comprovada para este recorte.
+```powershell
+python -m pytest tests/argos_memory --ignore=tests/argos_memory/test_belo_monte.py -q
+```
+
+O replay confirma as duas versões com horário de aquisição fora da ordem de persistência. Os testes separam a alteração de bytes, a alteração no conjunto ONS e a alteração nos registros deste CEG. Os valores sintéticos de 100,00 → 99,50 MW ficam em um namespace de teste. A demonstração usa uma captura real aprovada. Ainda não há uma correção do publicador comprovada para este recorte.
+
+### Regressão em Chromium
+
+Use o banco descartável `niv66_test` migrado, com o registro de commits habilitado. Escolha um endereço de e-mail descartável novo e configure `NIV66_BROWSER_OPERATOR` com o mesmo valor no servidor e no executor do teste. O servidor abaixo cria snapshots em um namespace sintético e usa a autenticação normal do aplicativo.
+
+```powershell
+python -m tests.argos_memory.belo_monte_browser_fixture
+```
+
+Em outro terminal:
+
+```powershell
+$env:VITE_BACKEND_URL = 'http://127.0.0.1:8617'
+$env:VITE_ARGOS_BELO_MONTE_DEV = '1'
+npm run dev -- --host 127.0.0.1 --port 5167 --strictPort
+```
+
+No executor, configure `RUNTIME_NODE_MODULES` com o caminho absoluto da instalação de Playwright usada nos testes de navegador do repositório. Defina `NIV66_BROWSER_CHROME` se usar um Chrome local em vez do Chromium do Playwright.
+
+```powershell
+node --test tests/argos_memory/browser_belo_monte.mjs
+```
+
+Para repetir a navegação e o logout com o snapshot ONS original, reinicie o servidor de teste com `NIV66_BROWSER_REAL_SNAPSHOT` igual ao ID da importação no banco descartável. Use outro e-mail descartável e execute o mesmo comando com `NIV66_BROWSER_REAL=1` no executor. O replay com várias datas e o bloqueio de unidade ambígua são exercitados no modo sintético.
 
 O registro `NIV7-EXT-ONS-OPEN-DATA-2026-09-16` sustenta o arquivo privado e a inspeção humana com atribuição no ambiente local. A rota exige sessão de navegador de operador. Documentos de terceiros são exibidos por metadados e links oficiais. A liberação para produção, os direitos de exibição externa e redistribuição, a revisão independente de segurança e o teste com analista seguem pendentes.

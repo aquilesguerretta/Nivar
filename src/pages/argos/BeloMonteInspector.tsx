@@ -49,14 +49,20 @@ interface ReadModel {
     instrument: string;
     effectiveFrom: string;
     evidenceId: string;
+    supplementaryEvidenceIds: string[];
   };
   sites: Site[];
   totalMW: string | null;
   unreviewedUnitCount: number;
   source: { label: string; url: string; dictionaryUrl: string };
-  version: Version;
-  availableVersions: Pick<Version, "id" | "retrievedAt">[];
-  comparison: { fromVersion: Version; rawBytesChanged: boolean; parsedContentChanged: boolean } | null;
+  version: Version & { persistedAt: string | null };
+  availableVersions: { id: string; knownAt: string }[];
+  comparison: {
+    fromVersion: Version;
+    rawBytesChanged: boolean;
+    sourceContentChanged: boolean;
+    scopedAssetContentChanged: boolean;
+  } | null;
   documents: { id: string; label: string; date: string; url: string }[];
 }
 
@@ -92,7 +98,9 @@ function SourceLink({ url, children }: { url: string; children: React.ReactNode 
 export function BeloMonteInspector({ view }: { view: keyof typeof endpoints }) {
   const [params, setParams] = useSearchParams();
   const knownAt = params.get("known_at") ?? "";
-  const key = view + "/" + knownAt;
+  // The version is a presentation guard. Only the date is sent to the server.
+  const expectedVersion = params.get("version") ?? "";
+  const key = JSON.stringify([view, knownAt, expectedVersion]);
   const [result, setResult] = useState<InspectionResult | null>(null);
   const [query, setQuery] = useState("");
   const houseDark = useNivarTheme();
@@ -114,9 +122,14 @@ export function BeloMonteInspector({ view }: { view: keyof typeof endpoints }) {
         }
         if (response.status === 400) throw new Error("Data de consulta inválida.");
         if (!response.ok) throw new Error("Evidência indisponível para inspeção.");
-        const payload: ReadModel | { state: "UNKNOWN" } = await response.json();
+        const payload: ReadModel | { state: "UNKNOWN"; reason: string } = await response.json();
         if (payload.state === "UNKNOWN") {
-          throw new Error("O ARGOS ainda não tinha evidência para essa data.");
+          throw new Error(payload.reason === "NO_EVIDENCE_AT_REQUESTED_TIME"
+            ? "O ARGOS ainda não tinha evidência para essa data."
+            : "A disponibilidade da evidência nessa data não pôde ser comprovada.");
+        }
+        if (expectedVersion && expectedVersion !== payload.version.id) {
+          throw new Error("A versão selecionada não está disponível para esta consulta.");
         }
         if (!controller.signal.aborted) setResult({ key, data: payload });
       } catch (error) {
@@ -126,7 +139,7 @@ export function BeloMonteInspector({ view }: { view: keyof typeof endpoints }) {
       }
     })();
     return () => controller.abort();
-  }, [key, knownAt]);
+  }, [key, knownAt, expectedVersion]);
 
   const active = result?.key === key ? result : null;
   const data = active && "data" in active ? active.data : null;
@@ -135,13 +148,20 @@ export function BeloMonteInspector({ view }: { view: keyof typeof endpoints }) {
   const unit = site?.units.find(item => item.id === assetId);
   const invalidAsset = data && !site && assetId !== data.asset.id;
   const other = view === "map" ? "terminal" : "map";
-  const handoff = data && !invalidAsset && (!unit || unit.identityState === "VERIFIED")
-    ? endpoints[other] + "?" + new URLSearchParams({
+  const verifiedCutoff = data?.availableVersions.find(option => option.id === data.version.id)?.knownAt;
+  const handoffCutoff = knownAt || verifiedCutoff;
+  let handoff: string | null = null;
+  if (data && !invalidAsset && (!unit || unit.identityState === "VERIFIED")) {
+    const handoffParams = new URLSearchParams({
       asset: unit?.id ?? site?.id ?? data.asset.id,
-      known_at: knownAt || data.version.retrievedAt,
-    })
-    : null;
-  const evidenceIds = site?.evidenceIds ?? (data ? [data.asset.evidenceId, data.concession.evidenceId] : []);
+      version: data.version.id,
+    });
+    if (handoffCutoff) handoffParams.set("known_at", handoffCutoff);
+    handoff = endpoints[other] + "?" + handoffParams;
+  }
+  const evidenceIds = site?.evidenceIds ?? (data
+    ? [data.asset.evidenceId, data.concession.evidenceId, ...data.concession.supplementaryEvidenceIds]
+    : []);
   const showAsset = data && normalized(data.asset.name + " " + data.asset.ceg).includes(normalized(query));
   const selectAsset = (id: string) => {
     const next = new URLSearchParams(params);
@@ -169,7 +189,7 @@ export function BeloMonteInspector({ view }: { view: keyof typeof endpoints }) {
         {active && "error" in active && (
           <div className="bm-panel" role="status">
             <p>{active.error}</p>
-            {knownAt
+            {knownAt || expectedVersion
               ? <Link className="bm-source-link" to={endpoints[view]}>Consultar última versão aprovada</Link>
               : <Link className="bm-source-link" to="/conta">Acessar conta</Link>}
           </div>
@@ -177,16 +197,18 @@ export function BeloMonteInspector({ view }: { view: keyof typeof endpoints }) {
         {data && (
           <>
             <div className="bm-toolbar">
-              <label>Versão conhecida pelo ARGOS
-                <select value={knownAt ? data.version.retrievedAt : ""} onChange={event => {
+              <label>Versão disponível no Argos Memory
+                <select value={knownAt ? verifiedCutoff ?? knownAt : ""} onChange={event => {
                   const next = new URLSearchParams(params);
+                  next.delete("version");
                   if (event.target.value) next.set("known_at", event.target.value);
                   else next.delete("known_at");
                   setParams(next);
                 }}>
                   <option value="">Última versão aprovada</option>
+                  {knownAt && !verifiedCutoff && <option value={knownAt}>{knownAt}</option>}
                   {[...data.availableVersions].reverse().map(version => (
-                    <option value={version.retrievedAt} key={version.id}>{date(version.retrievedAt)}</option>
+                    <option value={version.knownAt} key={version.id}>{version.knownAt}</option>
                   ))}
                 </select>
               </label>
@@ -246,9 +268,10 @@ export function BeloMonteInspector({ view }: { view: keyof typeof endpoints }) {
                     ) : (
                       <>
                         <dl className="bm-definition">
-                          <dt>Concessionária</dt><dd>{data.concession.company.name} · CNPJ {data.concession.company.cnpj}</dd>
-                          <dt>Contrato</dt><dd>{data.concession.instrument} · outorga de {data.concession.effectiveFrom}</dd>
+                          <dt>Concessionária no contrato original</dt><dd>{data.concession.company.name} · CNPJ {data.concession.company.cnpj}</dd>
+                          <dt>Contrato</dt><dd>{data.concession.instrument} · vigência original desde {data.concession.effectiveFrom}</dd>
                         </dl>
+                        <p>A evidência jurídica desta tela cobre a outorga original de 2010.</p>
                         <div className="bm-value">
                           <span>Soma da potência nominal das unidades verificadas</span>
                           <strong>{data.totalMW ? mw(data.totalMW) : "Sem total verificável"}</strong>
@@ -272,14 +295,19 @@ export function BeloMonteInspector({ view }: { view: keyof typeof endpoints }) {
                       <dl className="bm-definition">
                         <dt>Versão do snapshot</dt><dd><code>{data.version.id}</code></dd>
                         <dt>Data de captura</dt><dd><time dateTime={data.version.retrievedAt}>{data.version.retrievedAt}</time></dd>
+                        <dt>Persistência no Argos Memory</dt>
+                        <dd>{data.version.persistedAt
+                          ? <time dateTime={data.version.persistedAt}>{data.version.persistedAt}</time>
+                          : "Data não comprovada"}</dd>
                         <dt>SHA-256</dt><dd><code>{data.version.sha256}</code></dd>
                         <dt>Publicação da versão na fonte</dt><dd>{data.version.publishedAt ? date(data.version.publishedAt) : "Data desconhecida"}</dd>
                         <dt>Parser</dt><dd><code>{data.version.parserVersion}</code></dd>
                         <dt>Registro de direitos</dt><dd><code>{data.version.rightsRecordRef}</code></dd>
                         {data.comparison && <>
-                          <dt>Comparação desde</dt><dd>{date(data.comparison.fromVersion.retrievedAt)}</dd>
-                          <dt>Bytes de origem</dt><dd>{data.comparison.rawBytesChanged ? "Alterados" : "Iguais"}</dd>
-                          <dt>Conteúdo interpretado</dt><dd>{data.comparison.parsedContentChanged ? "Alterado" : "Igual"}</dd>
+                          <dt>Captura anterior na linhagem</dt><dd>{date(data.comparison.fromVersion.retrievedAt)}</dd>
+                          <dt>Arquivo ONS (bytes)</dt><dd>{data.comparison.rawBytesChanged ? "Alterado" : "Igual"}</dd>
+                          <dt>Conjunto de dados ONS</dt><dd>{data.comparison.sourceContentChanged ? "Alterado" : "Sem alteração identificada"}</dd>
+                          <dt>Registros de Belo Monte</dt><dd>{data.comparison.scopedAssetContentChanged ? "Alterados" : "Sem alteração identificada"}</dd>
                         </>}
                       </dl>
                     </details>

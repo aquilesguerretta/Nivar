@@ -7,13 +7,14 @@ import io
 import json
 import os
 from dataclasses import replace
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from uuid import uuid4
 
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+from sqlalchemy import func, select
 from sqlalchemy.engine import make_url
 
 from app.db.models.user import User
@@ -46,9 +47,9 @@ def csv_bytes(*rows, header=EXPECTED_HEADER):
     return output.getvalue().encode("utf-8")
 
 
-def make_row(code, *, site="TEST SITE", number="01", capacity="100.00"):
+def make_row(code, *, site="TEST SITE", number="01", capacity="100.00", ceg=service.CEG):
     return {
-        "ceg": service.CEG,
+        "ceg": ceg,
         "nom_usina": site,
         "cod_equipamento": code,
         "num_unidadegeradora": number,
@@ -148,7 +149,8 @@ def test_padding_change_does_not_equal_a_parsed_change(monkeypatch):
     after = replace(before, id=str(uuid4()), sha256=compute_sha256(b"different formatting"))
     comparison = service.compose_read_model(after, before)["comparison"]
     assert comparison["rawBytesChanged"] is True
-    assert comparison["parsedContentChanged"] is False
+    assert comparison["sourceContentChanged"] is False
+    assert comparison["scopedAssetContentChanged"] is False
 
 
 @pytest.fixture
@@ -227,52 +229,130 @@ def test_actual_snapshot_read_and_early_unknown(browser_api, monkeypatch):
     assert "cod_equipamento;" not in response.text
 
 
-def test_controlled_replay_one_read_model_for_both_views(browser_api, local_db, monkeypatch):
+@pytest.mark.parametrize("change_target", [False, True], ids=["unrelated-ceg", "belo-monte-ceg"])
+def test_backend_replay_uses_lineage_and_verified_commit_cutoffs(
+    browser_api, local_db, monkeypatch, change_target,
+):
+    if local_db.scalar(select(func.current_setting("track_commit_timestamp"))) != "on":
+        pytest.skip("requires commit timestamps on disposable PostgreSQL")
+
     client, overrides = browser_api
     allow_operator(overrides)
+    source_id = f"{TEST_SOURCE}.{uuid4().hex}"
     code, _ = TEST_SITE.unit_codes[0]
-    before = csv_bytes(make_row(code))
-    after = csv_bytes(make_row(code, capacity="99.50"))
+    local_row = make_row(code)
+    outside_row = make_row("TEST-NIV66-EXTERNAL", ceg="TEST-OTHER-CEG")
+    before = csv_bytes(local_row, outside_row)
+    if change_target:
+        after = csv_bytes(dict(local_row, val_potenciaefetiva="99.50"), outside_row)
+    else:
+        after = csv_bytes(local_row, dict(outside_row, val_potenciaefetiva="99.50"))
+
+    retrieved = datetime.now(timezone.utc) - timedelta(minutes=1)
     captures = []
     for offset, data in enumerate((before, after)):
-        captures.append(capture_snapshot(
+        snapshot = capture_snapshot(
             local_db,
-            source_id=TEST_SOURCE,
+            source_id=source_id,
             data=data,
             content_type="text/csv",
             adapter_version=service.ADAPTER_VERSION,
-            retrieved_at=REPLAY_AT + timedelta(seconds=offset),
+            retrieved_at=retrieved - timedelta(seconds=offset),
             acquisition_metadata={"url": "test://niv66/control"},
             rights_summary_state=service.RIGHTS_SUMMARY_STATE,
             rights_record_ref=service.RIGHTS_RECORD_REF,
-        ))
+        )
+        local_db.commit()
+        captures.append(snapshot)
+
     first, second = captures
-    monkeypatch.setenv(service.SNAPSHOTS_ENV, json.dumps([str(first.id), str(second.id)]))
+    monkeypatch.setenv(service.SNAPSHOTS_ENV, json.dumps([str(second.id), str(first.id)]))
     assert client.get(API_PATH).status_code == 503  # fixture is never an official capture
 
-    # Exercise the same read model in a test-only configuration.
-    monkeypatch.setattr(service, "SOURCE_ID", TEST_SOURCE)
+    monkeypatch.setattr(service, "SOURCE_ID", source_id)
     monkeypatch.setattr(service, "DEFAULT_RESOURCE_URL", "test://niv66/control")
     monkeypatch.setattr(service, "SITES", (TEST_SITE,))
-    for _view in ("map", "terminal"):
-        current = client.get(API_PATH).json()
-        past = client.get(API_PATH, params={"known_at": REPLAY_AT.isoformat()}).json()
-        current_unit = current["sites"][0]["units"][0]
-        past_unit = past["sites"][0]["units"][0]
-        assert current_unit["id"] == past_unit["id"]
-        assert current_unit["observation"]["value"] == "99.50"
-        assert past_unit["observation"]["value"] == "100.00"
-        assert current_unit["observation"]["comparison"]["fromObservationId"] == past_unit["observation"]["id"]
-        assert current["totalMW"] == "99.50" and past["totalMW"] == "100.00"
-        assert current["version"]["id"] == str(second.id)
-        assert past["version"]["id"] == str(first.id)
-        assert current["comparison"]["parsedContentChanged"] is True
-        assert current["comparison"]["rawBytesChanged"] is True
-        assert len(past["availableVersions"]) == 1
-        assert "signal" not in json.dumps(current).lower()
+
+    assert second.prior_snapshot_id == first.id
+    assert first.retrieved_at == retrieved
+    assert second.retrieved_at == retrieved - timedelta(seconds=1)
+    times = service._commit_times(local_db, captures)
+    first_commit, second_commit = (times[snap.id] for snap in captures)
+    assert first_commit is not None and second_commit is not None
+    assert second.retrieved_at < first.retrieved_at < first_commit < second_commit
+    assert client.get(API_PATH, params={"known_at": retrieved.isoformat()}).json() == {
+        "state": "UNKNOWN", "reason": "NO_EVIDENCE_AT_REQUESTED_TIME",
+    }
+
+    current = client.get(API_PATH).json()
+    past = client.get(API_PATH, params={"known_at": first_commit.isoformat()}).json()
+    current_unit = current["sites"][0]["units"][0]
+    past_unit = past["sites"][0]["units"][0]
+    assert current_unit["id"] == past_unit["id"]
+    expected = "99.50" if change_target else "100.00"
+    assert current_unit["observation"]["value"] == expected
+    assert past_unit["observation"]["value"] == "100.00"
+    assert current_unit["observation"]["comparison"]["fromObservationId"] == past_unit["observation"]["id"]
+    assert current["totalMW"] == expected and past["totalMW"] == "100.00"
+    assert current["version"]["id"] == str(second.id)
+    assert past["version"]["id"] == str(first.id)
+    assert datetime.fromisoformat(current["version"]["persistedAt"]) == second_commit
+    assert current["comparison"]["fromVersion"]["id"] == str(first.id)
+    assert current["comparison"]["sourceContentChanged"] is True
+    assert current["comparison"]["scopedAssetContentChanged"] is change_target
+    assert current["comparison"]["rawBytesChanged"] is True
+    assert [item["id"] for item in past["availableVersions"]] == [str(first.id)]
+    assert "signal" not in json.dumps(current).lower()
     assert reconstruct_snapshot(local_db, first.id)[1] == before
     assert reconstruct_snapshot(local_db, second.id)[1] == after
-    assert second.prior_snapshot_id == first.id
+
+    # Missing knowledge of a successor must not silently revert to its predecessor.
+    with monkeypatch.context() as unknown_commit:
+        unknown_commit.setattr(service, "_commit_times", lambda db, snapshots: {first.id: first_commit})
+        assert client.get(API_PATH, params={"known_at": second_commit.isoformat()}).json() == {
+            "state": "UNKNOWN", "reason": "HISTORICAL_VISIBILITY_UNPROVEN",
+        }
+        assert client.get(API_PATH).json()["version"]["id"] == str(second.id)
+
+    # A newer capture that has not been approved for this inspector is not displayed.
+    monkeypatch.setenv(service.SNAPSHOTS_ENV, json.dumps([str(first.id)]))
+    assert client.get(API_PATH).json()["version"]["id"] == str(first.id)
+
+
+def test_current_read_survives_unknown_historical_visibility(browser_api, monkeypatch):
+    snapshot_id = os.environ.get("NIV66_REAL_SNAPSHOT")
+    if not snapshot_id:
+        pytest.skip("requires the private snapshot ID in NIV66_REAL_SNAPSHOT")
+    client, overrides = browser_api
+    allow_operator(overrides)
+    monkeypatch.setenv(service.SNAPSHOTS_ENV, json.dumps([snapshot_id]))
+    monkeypatch.setattr(service, "_commit_times", lambda db, snapshots: {})
+    assert client.get(API_PATH, params={"known_at": datetime.now(timezone.utc).isoformat()}).json() == {
+        "state": "UNKNOWN", "reason": "HISTORICAL_VISIBILITY_UNPROVEN",
+    }
+    current = client.get(API_PATH).json()
+    assert current["version"]["id"] == snapshot_id
+    assert current["version"]["persistedAt"] is None
+    assert current["availableVersions"] == []
+
+
+def test_concession_uses_republished_contract_with_reidi_as_context():
+    model = service.compose_read_model(evidence([]))
+    concession = model["concession"]
+    docs = {document["id"]: document for document in model["documents"]}
+    authority = docs[concession["evidenceId"]]
+    assert concession["role"] == "concessionaire"
+    assert concession["assetId"] == model["asset"]["id"]
+    assert concession["instrument"] == "01/2010-MME-UHE Belo Monte"
+    assert concession["effectiveFrom"] == "2010-08-26"
+    assert concession["company"]["cnpj"] == "12.300.288/0001-07"
+    assert authority["date"] == "2010-08-31"
+    assert authority["url"].endswith("do-31-08-2010-s3.pdf#page=96")
+    assert "Contrato de Concessão" in authority["label"]
+    [reidi_ref] = concession["supplementaryEvidenceIds"]
+    assert reidi_ref != concession["evidenceId"]
+    assert "REIDI" in docs[reidi_ref]["label"]
+    assert not {"equity_owner", "governance_control"}.intersection(concession)
 
 
 def test_snapshot_without_internal_clearance_is_rejected(browser_api, local_db, monkeypatch):
