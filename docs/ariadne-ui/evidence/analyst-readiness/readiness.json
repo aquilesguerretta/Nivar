@@ -1,0 +1,390 @@
+{
+  "browser": "157.0.8103.51",
+  "pass": 25,
+  "fail": 0,
+  "skip": 0,
+  "checks": [
+    {
+      "stage": "A",
+      "label": "Review Desk begins with no active private workspace or review"
+    },
+    {
+      "stage": "A",
+      "label": "proposal and missing period are shown before confirmation"
+    },
+    {
+      "stage": "A",
+      "label": "first import creates a new private workspace automatically"
+    },
+    {
+      "stage": "A",
+      "label": "second import reuses workspace/review context"
+    },
+    {
+      "stage": "B",
+      "label": "selected review row opens the original at physical PDF page 14"
+    },
+    {
+      "stage": "B",
+      "label": "observation remains independently unverified"
+    },
+    {
+      "stage": "C",
+      "label": "exact Close baseline and carried-forward monthly data"
+    },
+    {
+      "stage": "C",
+      "label": "new run uses 0.1.1 with separate physical and monetary coverage"
+    },
+    {
+      "stage": "C",
+      "label": "unsaved alternative is exploring on the same saved URL"
+    },
+    {
+      "stage": "C",
+      "label": "refresh restores saved assumptions without creating a run"
+    },
+    {
+      "stage": "C",
+      "label": "compare baseline and both saved alternatives with version"
+    },
+    {
+      "stage": "D",
+      "label": "invalid period stays in denominator; missing identity retains only physical coverage"
+    },
+    {
+      "stage": "D",
+      "label": "unavailable original returns 404"
+    },
+    {
+      "stage": "D",
+      "label": "no contract recommendation in modeled planning"
+    },
+    {
+      "stage": "D",
+      "label": "scenario status is exposed as one atomic live region"
+    },
+    {
+      "stage": "E",
+      "label": "downloaded Planning output matches saved snapshot"
+    },
+    {
+      "stage": "E",
+      "label": "Planning export includes immutable inputs, model and output"
+    },
+    {
+      "stage": "E",
+      "label": "downloaded Close ZIP equals the same preserved package on reread"
+    },
+    {
+      "stage": "D-missing-original",
+      "label": "missing original leaves exact preserved proof selected"
+    },
+    {
+      "stage": "D-missing-original",
+      "label": "operator session stays valid during the unavailable-original response"
+    },
+    {
+      "stage": "D-missing-original",
+      "label": "original recovers with exact page and context on reload"
+    },
+    {
+      "stage": "B-discrepancy",
+      "label": "actual billed vs modeled internal discrepancy is exactly 1000.00 BRL"
+    },
+    {
+      "stage": "B-discrepancy",
+      "label": "divergent row distinguishes internal arithmetic and unsupported independent proof"
+    },
+    {
+      "stage": "B-discrepancy",
+      "label": "treatment preserves exact reconciled output"
+    },
+    {
+      "stage": "B-discrepancy",
+      "label": "no uncaught application errors"
+    }
+  ],
+  "operations": [
+    {
+      "stage": "A",
+      "kind": "address",
+      "label": "Open private Core Alpha entry",
+      "pathChanged": true
+    },
+    {
+      "stage": "A",
+      "kind": "activate",
+      "label": "Open Review Desk from Core",
+      "pathChanged": true
+    },
+    {
+      "stage": "A",
+      "kind": "file",
+      "label": "synthetic-demand-original.pdf",
+      "pathChanged": false
+    },
+    {
+      "stage": "A",
+      "kind": "activate",
+      "label": "Preserve source",
+      "pathChanged": false
+    },
+    {
+      "stage": "A",
+      "kind": "activate",
+      "label": "Confirm eligible interpretation",
+      "pathChanged": false
+    },
+    {
+      "stage": "A",
+      "kind": "file",
+      "label": "synthetic-tariff.csv",
+      "pathChanged": false
+    },
+    {
+      "stage": "A",
+      "kind": "activate",
+      "label": "Preserve source",
+      "pathChanged": false
+    },
+    {
+      "stage": "A",
+      "kind": "activate",
+      "label": "Confirm eligible interpretation",
+      "pathChanged": false
+    },
+    {
+      "stage": "B",
+      "kind": "activate",
+      "label": "Preserve Close result",
+      "pathChanged": false
+    },
+    {
+      "stage": "B",
+      "kind": "activate",
+      "label": "Select February observation",
+      "pathChanged": false
+    },
+    {
+      "stage": "B",
+      "kind": "activate",
+      "label": "Open original at selected locator",
+      "pathChanged": false
+    },
+    {
+      "stage": "B",
+      "kind": "return",
+      "label": "Close original tab and return to the same proof",
+      "pathChanged": false
+    },
+    {
+      "stage": "C",
+      "kind": "activate",
+      "label": "Open Planning from preserved Close",
+      "pathChanged": true
+    },
+    {
+      "stage": "C",
+      "kind": "select",
+      "label": "Acknowledge Simular regime normal",
+      "pathChanged": false
+    },
+    {
+      "stage": "C",
+      "kind": "select",
+      "label": "Acknowledge Reconheço a referência A4",
+      "pathChanged": false
+    },
+    {
+      "stage": "C",
+      "kind": "entry",
+      "label": "Nome do cenário",
+      "pathChanged": false
+    },
+    {
+      "stage": "C",
+      "kind": "activate",
+      "label": "Save 280 kW scenario",
+      "pathChanged": false
+    },
+    {
+      "stage": "C",
+      "kind": "entry",
+      "label": "Demanda candidata em kW",
+      "pathChanged": false
+    },
+    {
+      "stage": "C",
+      "kind": "reload",
+      "label": "Reload unsaved exploration",
+      "pathChanged": false
+    },
+    {
+      "stage": "C",
+      "kind": "entry",
+      "label": "Demanda candidata em kW",
+      "pathChanged": false
+    },
+    {
+      "stage": "C",
+      "kind": "entry",
+      "label": "Nome do cenário",
+      "pathChanged": false
+    },
+    {
+      "stage": "C",
+      "kind": "activate",
+      "label": "Save 260 kW alternative",
+      "pathChanged": false
+    },
+    {
+      "stage": "C",
+      "kind": "activate",
+      "label": "Open preserved comparisons",
+      "pathChanged": false
+    },
+    {
+      "stage": "C",
+      "kind": "select",
+      "label": "Reopen saved 280 kW scenario",
+      "pathChanged": false
+    },
+    {
+      "stage": "E",
+      "kind": "activate",
+      "label": "Replay saved Planning result",
+      "pathChanged": false
+    },
+    {
+      "stage": "E",
+      "kind": "activate",
+      "label": "Download preserved Planning JSON",
+      "pathChanged": false
+    },
+    {
+      "stage": "E",
+      "kind": "activate",
+      "label": "Return to exact reviewed state",
+      "pathChanged": true
+    },
+    {
+      "stage": "E",
+      "kind": "activate",
+      "label": "Replay reviewed Close result",
+      "pathChanged": false
+    },
+    {
+      "stage": "E",
+      "kind": "activate",
+      "label": "Preserve Close package",
+      "pathChanged": false
+    },
+    {
+      "stage": "E",
+      "kind": "activate",
+      "label": "Download reviewed Close package",
+      "pathChanged": false
+    },
+    {
+      "stage": "D-missing-original",
+      "kind": "activate",
+      "label": "Select the saved February proof before recovery",
+      "pathChanged": false
+    },
+    {
+      "stage": "D-missing-original",
+      "kind": "reload",
+      "label": "Reopen proof with an unavailable original",
+      "pathChanged": false
+    },
+    {
+      "stage": "D-missing-original",
+      "kind": "reload",
+      "label": "Recover after the original becomes available",
+      "pathChanged": false
+    },
+    {
+      "stage": "B-discrepancy",
+      "kind": "activate",
+      "label": "Start separate reconciliation case",
+      "pathChanged": false
+    },
+    {
+      "stage": "B-discrepancy",
+      "kind": "file",
+      "label": "invoice.csv",
+      "pathChanged": false
+    },
+    {
+      "stage": "B-discrepancy",
+      "kind": "activate",
+      "label": "Preserve source",
+      "pathChanged": false
+    },
+    {
+      "stage": "B-discrepancy",
+      "kind": "activate",
+      "label": "Review mapped candidates",
+      "pathChanged": false
+    },
+    {
+      "stage": "B-discrepancy",
+      "kind": "activate",
+      "label": "Confirm eligible interpretation",
+      "pathChanged": false
+    },
+    {
+      "stage": "B-discrepancy",
+      "kind": "activate",
+      "label": "Preserve Close result",
+      "pathChanged": false
+    },
+    {
+      "stage": "B-discrepancy",
+      "kind": "activate",
+      "label": "Inspect the divergent invoice line",
+      "pathChanged": false
+    },
+    {
+      "stage": "B-discrepancy",
+      "kind": "entry",
+      "label": "Motivo",
+      "pathChanged": false
+    },
+    {
+      "stage": "B-discrepancy",
+      "kind": "entry",
+      "label": "Nota / ação",
+      "pathChanged": false
+    },
+    {
+      "stage": "B-discrepancy",
+      "kind": "activate",
+      "label": "Record follow-up without changing arithmetic",
+      "pathChanged": false
+    }
+  ],
+  "images": [
+    "empty-review.png",
+    "intake-context.png",
+    "review-proof.png",
+    "comparison.png",
+    "missing-original.png",
+    "reconciliation-context.png",
+    "discrepancy.png"
+  ],
+  "observations": {
+    "workspaceChoiceActions": 0,
+    "reviewProofBeforePlanning": "2020-02 · prova",
+    "initialPlanningProof": "2019-06 · prova",
+    "unavailableOriginalMessage": "Original indisponível; verifique sua sessão"
+  },
+  "finding": {
+    "preservedAlternatives": 2,
+    "planExportSha256": "1d876103ddb7522e7620542eb6a68b3a3a05bb495e8bdf4cdb4ad3601a2849de",
+    "closeArchiveBytes": 7429,
+    "alternatePersisted": true
+  },
+  "automated": true
+}
