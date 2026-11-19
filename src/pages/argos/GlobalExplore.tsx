@@ -6,32 +6,41 @@ import {
   assessWaferComparison,
   exploreObjects,
   formatWaferShare,
+  investigation,
   isExploreObject,
+  primaryAncestors,
   pvStages,
-  resolveWaferObservation,
+  resolveExploreObject,
   searchExplore,
   waferMetric,
-  type EvidenceKey,
   type ExploreObjectKey,
-  type WaferObservation,
 } from "../../lib/argos/globalExplore";
+import {
+  documentRefs,
+  evidenceLinks,
+  pinsForObject,
+  resolveExploreSelection,
+  type EvidenceKey,
+  type EvidencePins,
+  type WaferMeasurement,
+} from "../../lib/argos/globalExploreEvidence";
 import { globalExplorePath } from "../../lib/argos/globalExploreLocal";
 import { EvidenceInspector } from "./EvidenceInspector";
 import "./global-explore.css";
 
-const investigation = ["topcon", "pv-wafer", "china"] as const;
-const evidenceLinks = {
-  topcon: [{ key: "doe", label: "Arquiteturas e fabricação · DOE" }, { key: "feldmann", label: "Experimento de contato · Feldmann et al." }],
-  "pv-wafer": [{ key: "iea", label: "Estimativa de capacidade · IEA" }, { key: "doe", label: "Processo de fabricação · DOE" }],
-  china: [{ key: "iea", label: "Estimativa de capacidade · IEA" }],
-} satisfies Record<ExploreObjectKey, { key: EvidenceKey; label: string }[]>;
-
 type EvidenceLink = (source: EvidenceKey) => Pick<LinkProps, "to" | "state"> & { "data-source-link": EvidenceKey };
 
-function exploreHref(query: string, object?: ExploreObjectKey, evidence?: EvidenceKey) {
+function exploreHref(query: string, object?: ExploreObjectKey, evidence?: EvidenceKey, pins: EvidencePins = {}) {
   const params = new URLSearchParams();
   if (query) params.set("q", query);
   if (evidence) params.set("evidence", evidence);
+  for (const kind of ["observation", "document"] as const) {
+    const pin = pins[kind];
+    if (pin) {
+      params.set(`${kind}_ref`, pin.ref);
+      params.set(`${kind}_version`, String(pin.version));
+    }
+  }
   return `${globalExplorePath}${object ? `/${object}` : ""}${params.size ? `?${params}` : ""}`;
 }
 
@@ -83,9 +92,12 @@ function TechnologyProfile({ waferHref, evidenceLink }: {
   );
 }
 
-function WaferMetric({ observation, evidenceLink }: { observation: WaferObservation | undefined; evidenceLink: EvidenceLink }) {
-  if (!observation) return <p className="ax-notice" role="status"><strong>UNRESOLVED</strong> · Observação indisponível.</p>;
-
+function WaferMetric({ measurement, pinned, evidenceLink }: {
+  measurement: WaferMeasurement;
+  pinned: boolean;
+  evidenceLink: EvidenceLink;
+}) {
+  const { observation, document } = measurement;
   const comparisonScope = { referenceYear: observation.referenceYear };
   const productionState = assessWaferComparison({ ...comparisonScope, measure: "actual-production" }, observation);
   const countryState = assessWaferComparison({ ...comparisonScope, measure: "manufacturing-capacity" }, observation);
@@ -100,14 +112,16 @@ function WaferMetric({ observation, evidenceLink }: { observation: WaferObservat
         </div>
         <div className="ax-metric-meta">
           <span>Referência <b>{observation.referenceYear}</b></span>
-          <span>Relatório IEA <b>{observation.publishedOn.slice(0, 4)}</b></span>
+          <span>Relatório IEA <b>{document.publishedOn?.slice(0, 4) ?? "UNKNOWN"}</b></span>
           <span>Etapa <b>Wafer fotovoltaico</b></span>
+          <span>Observation <b>v{observation.version} · {pinned ? "Fixada" : "Atual"}</b></span>
         </div>
+        {observation.synthetic && <p>Fixture sintético de teste · sem correção da IEA.</p>}
         <p>A estimativa mede capacidade instalada de fabricação. Produção efetiva e capacidade de células TOPCon são medidas distintas.</p>
         <p>{observation.absoluteDenominatorGW === null
           ? <><strong className="ax-state">UNKNOWN</strong> · {waferMetric.denominator}. O total absoluto em GW não consta no gráfico público.</>
           : `${waferMetric.denominator}: ${observation.absoluteDenominatorGW} GW.`}</p>
-        <Link className="ax-text-link" {...evidenceLink(observation.sourceRef)}>Ver evidência da IEA <ArrowRight size={15} aria-hidden="true" /></Link>
+        <Link className="ax-text-link" {...evidenceLink("iea")}>Ver evidência da IEA <ArrowRight size={15} aria-hidden="true" /></Link>
       </section>
       <section className="ax-section">
         <h2>Comparabilidade</h2>
@@ -126,19 +140,22 @@ export default function GlobalExplore() {
   const navigate = useNavigate();
   const [params, setParams] = useSearchParams();
   const query = params.get("q") ?? "";
-  const requestedEvidence = params.get("evidence");
   const key = object && isExploreObject(object) ? object : undefined;
   const current = key ? exploreObjects[key] : undefined;
   const sources = key ? evidenceLinks[key] : [];
-  const activeSource = sources.find((entry) => entry.key === requestedEvidence);
-  const observation = key === "pv-wafer" || key === "china" ? resolveWaferObservation(key) : undefined;
+  const selection = resolveExploreSelection(key, params);
+  const ready = selection.state === "READY" ? selection : undefined;
+  const activeEvidence = ready?.evidence;
+  const activeSource = activeEvidence?.key;
+  const measurement = ready?.measurement;
+  const pins = ready?.pins ?? {};
   const heading = useRef<HTMLHeadingElement>(null);
   const workspace = useRef<HTMLDivElement>(null);
   const openedEvidence = useRef<{ object: string | undefined; source: EvidenceKey } | null>(null);
 
   useEffect(() => {
     if (activeSource) {
-      openedEvidence.current = { object, source: activeSource.key };
+      openedEvidence.current = { object, source: activeSource };
       return;
     }
     const previous = openedEvidence.current;
@@ -151,19 +168,27 @@ export default function GlobalExplore() {
     else heading.current?.focus({ preventScroll: true });
   }, [activeSource, object]);
 
-  const href = (next?: ExploreObjectKey) => exploreHref(query, next);
-  const evidenceLink: EvidenceLink = (source) => ({
-    to: exploreHref(query, key, source),
-    state: { evidenceReturn: href(key) },
-    "data-source-link": source,
-  });
-  const closeEvidence = () => {
-    const destination = href(key);
-    if (location.state?.evidenceReturn === destination) navigate(-1);
-    else navigate(destination, { replace: true });
+  const href = (next?: ExploreObjectKey) => exploreHref(query, next, undefined, pinsForObject(next, pins));
+  const evidenceLink: EvidenceLink = (source) => {
+    const compatiblePins = { ...pins, document: pins.document?.ref === documentRefs[source] ? pins.document : undefined };
+    const to = exploreHref(query, key, source, compatiblePins);
+    return { to, state: { evidenceOpened: to }, "data-source-link": source };
   };
+  const closeEvidence = () => {
+    if (location.state?.evidenceOpened === location.pathname + location.search) navigate(-1);
+    else navigate(href(key), { replace: true });
+  };
+  const isMetricEvidence = activeEvidence?.key === "iea";
+  const pinnedEvidenceHref = activeEvidence && exploreHref(query, key, activeEvidence.key, {
+    observation: isMetricEvidence && measurement
+      ? { ref: measurement.observation.id, version: measurement.observation.version }
+      : pins.observation,
+    document: { ref: activeEvidence.document.id, version: activeEvidence.document.version },
+  });
   const stepIndex = key ? investigation.indexOf(key) : -1;
   const previous = stepIndex > 0 ? investigation[stepIndex - 1] : undefined;
+  const next = key ? investigation[stepIndex + 1] : undefined;
+  const wafer = resolveExploreObject(exploreObjects.topcon.relatedElementRef);
   const results = object ? [] : searchExplore(query);
 
   return (
@@ -187,15 +212,20 @@ export default function GlobalExplore() {
             </ol>
           </nav>
         )}
-        <header className="ax-heading">
+        <header className="ax-heading" data-object-ref={current?.id} data-object-kind={current?.kind}>
           <p className="g2-mono ax-kicker">
             {current?.kind ?? "ARGOS · Inteligência energética global"}
             {key === "china" && ` / ${exploreObjects.china.lens}`}
           </p>
           <h1 tabIndex={-1} ref={heading}>{current?.name ?? (object ? "Objeto indisponível" : "Explorar tecnologias")}</h1>
           {current?.kind === "TechnologyVariant" && <p className="ax-taxonomy">
-            {current.parent.technology} <ChevronRight size={14} aria-hidden="true" />
-            {current.parent.name} <ChevronRight size={14} aria-hidden="true" /> {current.name}
+            {primaryAncestors(current).map((ancestor) => (
+              <span key={ancestor.id} className="ax-taxonomy">
+                <Link className="ax-text-link" to={href(ancestor.key)}>{ancestor.name}</Link>
+                <ChevronRight size={14} aria-hidden="true" />
+              </span>
+            ))}
+            {current.name}
           </p>}
           {key === "pv-wafer" && <p className="ax-taxonomy">Solar PV <ChevronRight size={14} aria-hidden="true" /> {exploreObjects["pv-wafer"].role}</p>}
           <p className="ax-lead">{current?.summary ?? (object
@@ -203,7 +233,14 @@ export default function GlobalExplore() {
             : "Investigue uma tecnologia, siga a cadeia de fabricação e examine a fonte.")}</p>
         </header>
 
-        {!object ? (
+        {selection.state !== "READY" ? (
+          <div className="ax-notice">
+            <p role="status"><strong>{selection.state}</strong> · {selection.reason}</p>
+            <Link className="ax-text-link" to={exploreHref(query, key)} replace>
+              {key ? "Abrir contexto atual" : "Voltar à busca"} <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
+        ) : !object ? (
           <div className="ax-layout">
             <section className="ax-search" aria-label="Busca de objetos ARGOS">
               <label htmlFor="ax-query">Buscar objetos</label>
@@ -217,9 +254,9 @@ export default function GlobalExplore() {
               </p>
               {results.length > 0 ? <ul className="ax-results">
                 {results.map((item) => (
-                  <li key={item.id}><Link to={href(item.key)}>
+                  <li key={item.id}><Link to={href(item.key)} data-object-ref={item.id}>
                     <div><span className="g2-mono ax-kicker">{item.kind}</span><strong>{item.name}</strong>
-                      <small>{item.kind === "TechnologyVariant" ? `${item.parent.technology} / ${item.parent.name}` : item.summary}</small></div>
+                      <small>{item.summary}</small></div>
                     <ArrowRight size={18} aria-hidden="true" />
                   </Link></li>
                 ))}
@@ -235,34 +272,49 @@ export default function GlobalExplore() {
         ) : key ? (
           <div className="ax-layout">
             <div className="ax-reading">
-              {key === "topcon" ? <TechnologyProfile waferHref={href(exploreObjects.topcon.relatedElement)} evidenceLink={evidenceLink} /> : <>
+              {(key === "solar-pv" || key === "c-si") && (
+                <section className="ax-section">
+                  <h2>{key === "solar-pv" ? "Como a conversão funciona" : "Do silício à célula"}</h2>
+                  <p>{key === "solar-pv"
+                    ? "A luz absorvida pelo semicondutor gera portadores de carga. A célula separa e coleta essas cargas para produzir corrente elétrica."
+                    : "O wafer cristalino serve de substrato para a célula. O processamento forma as regiões que separam as cargas e os contatos que coletam a corrente."}</p>
+                  <Link className="ax-text-link" {...evidenceLink("doe")}>
+                    Ver referência técnica do DOE <ArrowRight size={15} aria-hidden="true" />
+                  </Link>
+                </section>
+              )}
+              {key === "topcon" && wafer && <TechnologyProfile waferHref={href(wafer.key)} evidenceLink={evidenceLink} />}
+              {measurement && <>
                 {key === "pv-wafer" && <section className="ax-section">
                   <h2>Do lingote à célula</h2>
                   <p>O lingote é cortado em lâminas. O wafer fornece o silício cristalino que absorve luz.
                     O contato TOPCon é acrescentado durante o processamento da célula, depois da fabricação do wafer.</p>
                 </section>}
-                <WaferMetric observation={observation} evidenceLink={evidenceLink} />
+                <WaferMetric measurement={measurement} pinned={!!pins.observation} evidenceLink={evidenceLink} />
                 {key === "pv-wafer" && <ValueChain waferHref={href("pv-wafer")} selected />}
               </>}
               <nav className="ax-next" aria-label="Objetos relacionados">
                 <Link className="ax-text-link" to={href(previous)}><ArrowLeft size={16} aria-hidden="true" />
                   {previous ? `Voltar a ${exploreObjects[previous].name}` : "Voltar à busca"}
                 </Link>
-                {stepIndex < investigation.length - 1 && (
-                  <Link className="ax-text-link" to={href(investigation[stepIndex + 1])}>
-                    {key === "pv-wafer" ? "Ver manufatura na China" : "Explorar wafer fotovoltaico"}
+                {next && (
+                  <Link className="ax-text-link" to={href(next)}>
+                    {key === "pv-wafer" ? "Ver manufatura na China" : `Explorar ${exploreObjects[next].name}`}
                     <ArrowRight size={16} aria-hidden="true" />
                   </Link>
                 )}
               </nav>
             </div>
-            {activeSource ? <EvidenceInspector sourceKey={activeSource.key} observation={observation} onClose={closeEvidence} /> :
+            {activeEvidence && pinnedEvidenceHref ? <EvidenceInspector
+              document={activeEvidence.document} source={activeEvidence.source}
+              observation={isMetricEvidence ? measurement?.observation : undefined}
+              pinned={!!pins.document} pinnedHref={pinnedEvidenceHref} onClose={closeEvidence}
+            /> :
               <aside className="ax-rail" aria-labelledby="ax-sources">
                 <h2 id="ax-sources"><FileText size={19} aria-hidden="true" /> Fontes e evidência</h2>
                 <ul className="ax-rail-list">
                   {sources.map((entry) => <li key={entry.key}><Link {...evidenceLink(entry.key)}>{entry.label}<ArrowRight size={15} aria-hidden="true" /></Link></li>)}
                 </ul>
-                {requestedEvidence && <p className="ax-notice" role="status">UNRESOLVED · Evidência fora do escopo deste objeto.</p>}
                 <p className="ax-muted">Curadoria manual · Atribuição e direitos em cada fonte.</p>
               </aside>}
           </div>

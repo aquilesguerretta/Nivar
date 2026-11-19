@@ -1,93 +1,122 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
   evidenceOutputs,
-  evidenceSources,
   formatWaferShare,
-  type EvidenceKey,
   type WaferObservation,
 } from "../../lib/argos/globalExplore";
+import type { ExploreDocument } from "../../lib/argos/globalExploreEvidence";
 
 const dateFormat = new Intl.DateTimeFormat("pt-BR", { dateStyle: "long", timeZone: "UTC" });
 
 export function EvidenceInspector({
-  sourceKey,
+  document,
+  source,
   observation,
+  pinned,
+  pinnedHref,
   onClose,
 }: {
-  sourceKey: EvidenceKey;
+  document: ExploreDocument;
+  source: { publisher: string; rightsUrl?: string };
   observation: WaferObservation | undefined;
+  pinned: boolean;
+  pinnedHref: string;
   onClose: () => void;
 }) {
   const title = useRef<HTMLHeadingElement>(null);
+  const [copyState, setCopyState] = useState<"copied" | "manual">();
   useEffect(() => {
     const frame = requestAnimationFrame(() => {
       title.current?.focus();
       title.current?.scrollIntoView({ block: "nearest" });
     });
     return () => cancelAnimationFrame(frame);
-  }, [sourceKey]);
+  }, [document.id, document.version]);
 
-  const source = evidenceSources[sourceKey];
-  const metricEvidence = sourceKey === "iea" && observation;
+  const pinnedUrl = new URL(pinnedHref, window.location.origin).href;
+  async function copyLink() {
+    try {
+      await navigator.clipboard.writeText(pinnedUrl);
+      setCopyState("copied");
+    } catch {
+      setCopyState("manual");
+    }
+  }
 
   return (
-    <aside className="ax-inspector" aria-labelledby="ax-evidence-title">
+    <aside className="ax-inspector" aria-labelledby="ax-evidence-title"
+      data-source-ref={document.sourceRef} data-document-ref={document.id} data-document-version={document.version}>
       <div className="ax-inspector-head">
         <span className="g2-mono">Evidência</span>
         <button type="button" onClick={onClose} className="ax-close" aria-label="Fechar evidência">
           <X size={18} aria-hidden="true" />
         </button>
       </div>
-      <h2 id="ax-evidence-title" ref={title} tabIndex={-1}>{source.title}</h2>
-      <p className="ax-muted">{source.publisher}</p>
+      <h2 id="ax-evidence-title" ref={title} tabIndex={-1}>{document.title}</h2>
+      <p className="ax-muted">{source.publisher}{document.authors && ` · ${document.authors}`}</p>
+      {document.synthetic && <p>Fixture sintético de teste · sem correção da IEA.</p>}
       <div className="ax-source-actions">
-        <a className="ax-text-link" href={source.url} target="_blank" rel="noreferrer">
+        <a className="ax-text-link" href={document.url} target="_blank" rel="noreferrer">
           Abrir fonte original <ArrowUpRight size={15} aria-hidden="true" />
         </a>
-        {"chartUrl" in source && (
-          <a className="ax-text-link" href={source.chartUrl} target="_blank" rel="noreferrer">
+        {document.chartUrl && (
+          <a className="ax-text-link" href={document.chartUrl} target="_blank" rel="noreferrer">
             Abrir gráfico no IEA <ArrowUpRight size={15} aria-hidden="true" />
           </a>
+        )}
+        {!pinned && <Link className="ax-text-link" to={pinnedHref}>Abrir versão fixada</Link>}
+        <button className="ax-text-link ax-copy-link" type="button" onClick={() => void copyLink()}>
+          Copiar link fixado
+        </button>
+        {copyState === "copied" && <p role="status">Link fixado copiado.</p>}
+        {copyState === "manual" && (
+          <label>Selecione e copie o link fixado
+            <input className="ax-pin-url" readOnly value={pinnedUrl} onFocus={(event) => event.target.select()} />
+          </label>
         )}
       </div>
       <dl className="ax-fields">
         <div><dt>Afirmação e escopo</dt><dd>
-          {metricEvidence
-            ? `A IEA estima que ${formatWaferShare(metricEvidence)} da capacidade mundial de fabricação de wafers fotovoltaicos estava localizada na China.`
-            : "claim" in source ? source.claim : "UNRESOLVED · Observação indisponível."}
+          {observation
+            ? `${observation.synthetic ? "Neste teste, a estimativa sintética é de" : "A IEA estima que"} ${formatWaferShare(observation)} da capacidade mundial de fabricação de wafers fotovoltaicos estava localizada na China.`
+            : document.claim ?? "UNRESOLVED · Observação indisponível."}
         </dd></div>
         <div><dt>Período de referência</dt><dd>
-          {metricEvidence ? metricEvidence.referenceYear : "period" in source ? source.period : "UNRESOLVED"}
+          {observation?.referenceYear ?? document.period ?? "UNRESOLVED"}
         </dd></div>
         <div><dt>Publicação ou revisão da fonte</dt><dd>
-          {metricEvidence
-            ? <time dateTime={metricEvidence.publishedOn}>{dateFormat.format(new Date(metricEvidence.publishedOn))}</time>
-            : "date" in source ? source.date : "UNRESOLVED"}
+          {document.publishedOn
+            ? <time dateTime={document.publishedOn}>{dateFormat.format(new Date(document.publishedOn))}</time>
+            : document.dateLabel ?? "UNKNOWN"}
         </dd></div>
         <div><dt>Captura / primeira ciência pelo ARGOS</dt><dd>
-          Captura: {metricEvidence && metricEvidence.retrievedAt || "UNKNOWN"}. Primeira ciência:{" "}
-          {metricEvidence && metricEvidence.knownAt || "UNKNOWN"}. Curadoria manual com link oficial.
+          Captura: {document.retrievedAt ?? "UNKNOWN"}. Primeira ciência:{" "}
+          {document.knownAt ?? "UNKNOWN"}. Curadoria manual com link oficial.
         </dd></div>
-        <div><dt>Método</dt><dd>{source.method}</dd></div>
-        <div><dt>Limites</dt><dd>{source.limits}</dd></div>
+        <div><dt>Método</dt><dd>{document.method}</dd></div>
+        <div><dt>Limites</dt><dd>{document.limits}</dd></div>
         <div><dt>Direitos e reúso</dt><dd>
-          {source.rights}
-          {"rightsUrl" in source && <>{" "}<a href={source.rightsUrl} target="_blank" rel="noreferrer">Termos da fonte</a></>}
+          {document.rights}
+          {source.rightsUrl && <>{" "}<a href={source.rightsUrl} target="_blank" rel="noreferrer">Termos da fonte</a></>}
         </dd></div>
-        {sourceKey === "iea" && (
+        {document.sourceRef === "source:iea" && (
           <div><dt>Atribuição</dt><dd>
             IEA (2026), <cite>Energy Technology Perspectives 2026</cite>, IEA, Paris, CC BY 4.0.
             A leitura da NIVAR é de sua responsabilidade e não tem endosso da IEA ou de seus países membros.
           </dd></div>
         )}
         <div><dt>Versão e correções</dt><dd>
-          {metricEvidence ? <>Observação v{metricEvidence.version}.{" "}
-            {metricEvidence.supersedes === null
-              ? "Versão inicial local. Sem correção registrada."
-              : `Substitui a versão ${metricEvidence.supersedes}.`}
-            <code className="ax-ref">{metricEvidence.id}</code>
-          </> : "Nota de referência v1. Histórico da fonte não capturado."}
+          Document v{document.version} · {pinned ? "Fixada" : observation ? "Citada pela observação" : "Atual"}.
+          {document.supersedes !== null && ` Substitui a v${document.supersedes}.`}
+          <code className="ax-ref">{document.id}</code>
+          <code className="ax-ref">{document.sourceRef}</code>
+          {observation && <>
+            Observation v{observation.version}.
+            {observation.supersedes !== null && ` Substitui a v${observation.supersedes}.`}
+            <code className="ax-ref">{observation.id}</code>
+          </>}
         </dd></div>
       </dl>
       <dl className="ax-outputs">
