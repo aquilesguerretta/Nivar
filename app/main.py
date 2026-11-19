@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routers import (
     ai,
     ancillary,
+    argos_belo_monte,
     argos_signal_inspection,
     ariadne_close,
     ariadne_operator,
@@ -115,6 +116,7 @@ from app.routers import ariadne_planning
 app.include_router(ariadne_planning.router)  # separate closed development gate
 
 # NIV-52 Argos Signal inspection — authenticated, read-only, server-owned scenarios.
+app.include_router(argos_belo_monte.router)
 app.include_router(argos_signal_inspection.router)  # /api/operator/argos/ons-capacidade/*
 
 

@@ -172,17 +172,14 @@ def wants_bearer_transport(request: Request) -> bool:
 
 
 # ── request authentication ───────────────────────────────────────────────
-def _extract_token(request: Request) -> tuple[str | None, Literal["header", "cookie", None]]:
+def _extract_token(request: Request) -> str | None:
     """Authorization header wins over cookie — explicit beats ambient."""
     authorization = request.headers.get("Authorization", "").strip()
     if authorization:
         scheme, _, value = authorization.partition(" ")
         if scheme.lower() == "bearer" and value.strip():
-            return value.strip(), "header"
-    cookie = request.cookies.get(SESSION_COOKIE_NAME)
-    if cookie:
-        return cookie, "cookie"
-    return None, None
+            return value.strip()
+    return request.cookies.get(SESSION_COOKIE_NAME)
 
 
 def _unauthorized(detail: str) -> HTTPException:
@@ -195,17 +192,13 @@ def _unauthorized(detail: str) -> HTTPException:
 
 def get_current_user(
     request: Request,
-    response: Response,
     db: Session = Depends(get_db),
 ) -> User:
-    """Resolve the authenticated user, sliding the session window forward.
+    """Validate the issued session and resolve its user.
 
-    Renewal is cookie-transport only. A Bearer caller holds a token it
-    obtained at login and re-authenticates when it expires — this wave
-    ships no refresh-token endpoint, and silently minting a new token
-    into a response header would invent a contract nobody consumes yet.
+    Both cookie and Bearer sessions retain the expiry set at issuance.
     """
-    token, transport = _extract_token(request)
+    token = _extract_token(request)
     if not token:
         raise _unauthorized("not authenticated")
 
@@ -226,9 +219,5 @@ def get_current_user(
         # Signature valid but the row is gone — a deleted account still
         # holding a token that has not expired.
         raise _unauthorized("account no longer exists")
-
-    if transport == "cookie":
-        fresh, _ = issue_token(user)
-        set_session_cookie(response, fresh)
 
     return user

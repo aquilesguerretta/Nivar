@@ -52,10 +52,10 @@ bytes (and therefore ``revision_relation``) differ. This is the "verified
 stable row key" order-independence the M2 architecture decision explicitly
 allows.
 
-Schema drift is not tolerated silently: an unexpected header, a row with the
-wrong field count, a blank identity, or a duplicate identity within one
-payload all raise an explicit error rather than being parsed around. A real
-schema change requires a new ``PARSER_VERSION``, not a permissive parser.
+An unexpected header, malformed CSV quoting, a row with the wrong field count,
+a blank identity, or a duplicate identity within one payload all raise an
+explicit error. NIV-68 enforces CSV syntax within the existing versioned schema.
+A real schema change requires a new ``PARSER_VERSION``.
 """
 
 from __future__ import annotations
@@ -118,7 +118,7 @@ def parse_capacidade_geracao(data: bytes) -> ParsedPayload:
 
     Pure — no I/O, no network, no database. Raises :class:`SchemaError` on
     any structural deviation from the expected live schema (bad encoding,
-    wrong/missing header, ragged row, blank identity) and
+    malformed CSV quoting, wrong/missing header, ragged row, blank identity) and
     :class:`DuplicateRowIdentityError` if ``cod_equipamento`` repeats.
     """
     try:
@@ -131,7 +131,11 @@ def parse_capacidade_geracao(data: bytes) -> ParsedPayload:
     if text.startswith("﻿"):
         text = text[1:]
 
-    raw_rows = list(csv.reader(io.StringIO(text), delimiter=DELIMITER))
+    reader = csv.reader(io.StringIO(text), delimiter=DELIMITER, strict=True)
+    try:
+        raw_rows = list(reader)
+    except csv.Error as exc:
+        raise SchemaError(f"invalid CSV syntax at line {reader.line_num}") from exc
     if not raw_rows:
         raise SchemaError("payload has no rows, not even a header")
 

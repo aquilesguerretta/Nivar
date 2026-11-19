@@ -18,6 +18,7 @@ values. They are committed test data, never a real ONS payload.
 
 from __future__ import annotations
 
+import json
 import os
 import pathlib
 import uuid
@@ -30,7 +31,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import Session
 
-from app.scripts.diff_argos_ons_capacidade_geracao import DiffCliError, build_diff_report
+from app.scripts.diff_argos_ons_capacidade_geracao import DiffCliError, build_diff_report, main
 from app.services.argos_memory import capture_snapshot, reconstruct_snapshot
 from app.services.argos_ons_capacidade_geracao_diff import (
     CONTROLLED_TEST_SOURCE_NAMESPACE,
@@ -122,6 +123,27 @@ def test_parser_rejects_ragged_row():
 def test_parser_rejects_invalid_utf8():
     with pytest.raises(SchemaError):
         parse_capacidade_geracao(b"\xff\xfe not valid utf-8 at all")
+
+
+def test_parser_rejects_truncated_final_capacity(truncated_ons_capacity_pair):
+    _, malformed = truncated_ons_capacity_pair
+    with pytest.raises(SchemaError, match="invalid CSV syntax"):
+        parse_capacidade_geracao(malformed)
+
+
+@pytest.mark.parametrize("field", [b'"10\n.25', b'"10"unexpected\n'])
+def test_parser_rejects_malformed_quoting_in_later_record(field):
+    malformed = _fixture("fixture_a.csv").rsplit(b";", 1)[0] + b";" + field
+    with pytest.raises(SchemaError, match="invalid CSV syntax"):
+        parse_capacidade_geracao(malformed)
+
+
+def test_parser_preserves_valid_quoted_fields(truncated_ons_capacity_pair):
+    valid, _ = truncated_ons_capacity_pair
+    payload = valid.replace(b"TEST SITE", b'"  TEST ""SITE""; area\nsecond line  "')
+    row = parse_capacidade_geracao(payload)["TEST-NIV65-UG01"]
+    assert row["nom_usina"] == 'TEST "SITE"; area\nsecond line'
+    assert row["val_potenciaefetiva"] == "101.25"
 
 
 # --- diff unit tests (no database) ------------------------------------------
@@ -324,6 +346,34 @@ def test_proof_c_added_and_removed_rows(db_session):
 
 
 # --- reviewer-path safety ---------------------------------------------------
+
+
+def test_stored_diff_refuses_truncated_csv_and_preserves_raw_bytes(
+    db_session, capsys, truncated_ons_capacity_pair,
+):
+    source_id = _controlled_source_id()
+    snapshots = []
+    for payload in truncated_ons_capacity_pair:
+        snapshot = capture_snapshot(
+            db_session,
+            source_id=source_id,
+            data=payload,
+            content_type="text/csv",
+            adapter_version="test.controlled_fixture@1",
+            retrieved_at=datetime.now(timezone.utc),
+        )
+        db_session.commit()
+        snapshots.append(snapshot)
+    before, after = snapshots
+    assert after.prior_snapshot_id == before.id
+    assert after.revision_relation == "changed"
+
+    assert main(["--from", str(before.id), "--to", str(after.id)]) == 1
+    output = capsys.readouterr()
+    assert output.out == ""
+    assert "invalid CSV syntax" in json.loads(output.err)["error"]
+    assert reconstruct_snapshot(db_session, before.id)[1] == truncated_ons_capacity_pair[0]
+    assert reconstruct_snapshot(db_session, after.id)[1] == truncated_ons_capacity_pair[1]
 
 
 def test_reviewer_path_rejects_mismatched_source_snapshots(db_session):

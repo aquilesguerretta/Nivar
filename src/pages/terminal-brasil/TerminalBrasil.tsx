@@ -441,6 +441,9 @@ function TerminalBrasil({
           {!compact && <a href={`#${id}-caderno`}>Caderno</a>}
         </nav>
         <div className="g2t-header-actions">
+          {!compact && import.meta.env.DEV && import.meta.env.VITE_ARGOS_BELO_MONTE_DEV === "1" && (
+            <Link to="/br/terminal/ativos" className="g2t-source-button">Ativos</Link>
+          )}
           <button
             type="button"
             className="g2t-icon-button"
