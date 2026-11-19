@@ -1,0 +1,27 @@
+{
+  "browser": "157.0.8103.51",
+  "pass": 0,
+  "fail": 2,
+  "skip": 0,
+  "checks": [],
+  "failures": [
+    {
+      "name": "selected February proof carries through the exact Close baseline to PDF page 14",
+      "message": "Expected values to be strictly equal:\n+ actual - expected\n\n+ '2019-06 · prova'\n- '2020-02 · prova'\n     ^\n"
+    },
+    {
+      "name": "missing original preserves context and recovers through one targeted retry",
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n    alerts: [\n+     'Original indisponível; verifique sua sessão'\n-     'Original indisponível neste contexto.'\n    ],\n+   workingDocumentLinks: 2\n-   workingDocumentLinks: 0\n  }\n"
+    }
+  ],
+  "observations": {
+    "review": "2020-02 · prova",
+    "planning": "2019-06 · prova",
+    "missing": {
+      "alerts": [
+        "Original indisponível; verifique sua sessão"
+      ],
+      "workingDocumentLinks": 2
+    }
+  }
+}

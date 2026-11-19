@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { ArrowUpRight, Download, FileText, History, Plus, Upload } from "lucide-react";
-import { AriadneContext, AriadneSourceAction } from "./AriadneWorkspaceChrome";
+import {
+  AriadneContext,
+  AriadneOriginalRetry,
+  AriadneSourceAction,
+} from "./AriadneWorkspaceChrome";
 import {
   Bar,
   BarChart,
@@ -12,6 +16,7 @@ import {
 } from "recharts";
 import {
   closeApi,
+  CloseApiError,
   CLOSE_FIELDS,
   SelectionEpoch,
   type Calculation,
@@ -27,6 +32,11 @@ import {
   reviewedSelection,
   sameInterpretation,
 } from "../../lib/ariadne/deskSelection";
+import { planProofKey } from "../../lib/ariadne/planningSelection";
+import {
+  originalDocumentMessage,
+  useOriginalDocument,
+} from "../../lib/ariadne/useOriginalDocument";
 
 const reviewMode = (p: Inspection, role: CloseRole): Mapping['reviewMode'] =>
   p.demandProfile ? 'demand_profile' : p.tariffReferences ? 'tariff_reference' :
@@ -39,8 +49,10 @@ const roles: Record<CloseRole, string> = {
   context: "Referência contextual",
 };
 const money = (value?: string | null) => (value == null ? "—" : `${value} BRL`);
-const errorText = (e: unknown) =>
-  e instanceof Error ? e.message : "Falha inesperada";
+const errorText = (e: unknown, message: string) =>
+  e instanceof CloseApiError && e.status === 401
+    ? `${message} Sessão expirada. Entre novamente.`
+    : message;
 const rowLabel = (r: Candidate) => {
   const raw = r.raw || r.values || {};
   return (
@@ -99,8 +111,7 @@ export function AriadneReviewDesk() {
     [busy, setBusy] = useState(""),
     [error, setError] = useState(""),
     [notice, setNotice] = useState("");
-  const [original, setOriginal] = useState(""),
-    [showDocument, setShowDocument] = useState(false);
+  const [showDocument, setShowDocument] = useState(false);
   const [pageError, setPageError] = useState(false);
   const [treatmentStatus, setTreatmentStatus] = useState("follow_up"),
     [reason, setReason] = useState(""),
@@ -155,6 +166,17 @@ export function AriadneReviewDesk() {
   const pdf = preview?.kind === "pdf";
   const pageNumber =
     row?.page || Number(row?.locator?.match(/^page:(\d+)/)?.[1] || 1);
+  const original = useOriginalDocument(
+    pending && pdf
+      ? pending.file
+      : source && workspace && review
+        ? closeApi.originalUrl(workspace, review, source.id)
+        : undefined,
+  );
+  const selectedProof =
+    proofRef ?? (item?.candidate.source_id
+      ? { sourceId: item.candidate.source_id, locator: item.candidate.locator }
+      : null);
 
   useEffect(() => setPageError(false), [activeSource, pageNumber]);
 
@@ -215,7 +237,7 @@ export function AriadneReviewDesk() {
       })
       .catch((e) => {
         if (!controller.signal.aborted && epoch.current.current(ticket))
-          setError(errorText(e));
+          setError(errorText(e, "Não foi possível abrir a revisão. Confira o contexto e tente novamente."));
       });
     return () => {
       controller.abort();
@@ -285,7 +307,8 @@ export function AriadneReviewDesk() {
         );
       })
       .catch((e) => {
-        if (!controller.signal.aborted) setError(errorText(e));
+        if (!controller.signal.aborted)
+          setError(errorText(e, "Não foi possível preparar os candidatos da fonte."));
       });
     return () => controller.abort();
   }, [
@@ -297,40 +320,9 @@ export function AriadneReviewDesk() {
     calculation?.id,
   ]);
 
-  useEffect(() => {
-    setOriginal("");
-    if (!pdf) return;
-    if (pending) {
-      const url = URL.createObjectURL(pending.file);
-      setOriginal(url);
-      return () => URL.revokeObjectURL(url);
-    }
-    if (!source) return;
-    const controller = new AbortController();
-    let url = "";
-    void fetch(closeApi.originalUrl(workspace, review, source.id), {
-      credentials: "include",
-      signal: controller.signal,
-    })
-      .then(async (response) => {
-        if (!response.ok)
-          throw new Error("Original indisponível; verifique sua sessão");
-        const blob = await response.blob();
-        if (controller.signal.aborted) return;
-        url = URL.createObjectURL(blob);
-        setOriginal(url);
-      })
-      .catch((e) => {
-        if (!controller.signal.aborted) setError(errorText(e));
-      });
-    return () => {
-      controller.abort();
-      if (url) URL.revokeObjectURL(url);
-    };
-  }, [pdf, pending, workspace, review, activeSource]);
-
   async function act(
     label: string,
+    failure: string,
     action: (current: () => boolean) => Promise<void>,
   ) {
     if (busyRef.current) return;
@@ -342,24 +334,29 @@ export function AriadneReviewDesk() {
     try {
       await action(current);
     } catch (e) {
-      if (current()) setError(errorText(e));
+      if (current()) setError(errorText(e, failure));
     } finally {
       busyRef.current = false;
       setBusy("");
     }
   }
   async function inspect(files: File[]) {
-    await act("Inspecionando com segurança…", async (current) => {
+    await act("Inspecionando com segurança…", "Não foi possível inspecionar o arquivo. Confira o formato e tente novamente.", async (current) => {
       const documents = files.filter((f) => !f.name.endsWith(".json"));
-      if (documents.length !== 1)
-        throw new Error(
+      if (documents.length !== 1) {
+        setError(
           "Selecione um documento por vez, com seu arquivo de proveniência JSON opcional.",
         );
+        return;
+      }
       const file = documents[0],
         sidecar = files.find((f) => f.name === file.name + ".provenance.json");
       let provenance: Record<string, unknown> | undefined;
       if (sidecar) {
-        if (sidecar.size > 16384) throw new Error("Proveniência excede 16 KiB");
+        if (sidecar.size > 16384) {
+          setError("Proveniência excede 16 KiB");
+          return;
+        }
         provenance = JSON.parse(await sidecar.text()) as Record<
           string,
           unknown
@@ -405,11 +402,13 @@ export function AriadneReviewDesk() {
   }
   async function importPending() {
     if (!pending) return;
-    await act("Preservando fonte e contexto…", async (current) => {
-      if (!scope.trim() || !/^\d{4}-(0[1-9]|1[0-2])$/.test(period))
-        throw new Error(
+    await act("Preservando fonte e contexto…", "Não foi possível importar a fonte. Confira o contexto e repita a mesma ação.", async (current) => {
+      if (!scope.trim() || !/^\d{4}-(0[1-9]|1[0-2])$/.test(period)) {
+        setError(
           "Confirme a unidade e a competência antes de importar.",
         );
+        return;
+      }
       const r =
         review || (await closeApi.start(workspace, scope, period, "0.2.0")).id;
       if (!current()) return;
@@ -432,7 +431,7 @@ export function AriadneReviewDesk() {
   }
   async function validate() {
     if (!source) return;
-    await act("Validando região…", async (current) => {
+    await act("Validando região…", "Não foi possível validar a região. Confira o mapeamento e tente novamente.", async (current) => {
       const next = {
         ...mapping,
         reviewMode:
@@ -452,7 +451,7 @@ export function AriadneReviewDesk() {
   }
   async function confirm() {
     if (!source) return;
-    await act("Confirmando interpretação…", async (current) => {
+    await act("Confirmando interpretação…", "Não foi possível confirmar a interpretação. Confira as linhas e repita a mesma ação.", async (current) => {
       await closeApi.confirm(
         workspace,
         review,
@@ -545,7 +544,7 @@ export function AriadneReviewDesk() {
             disabled={!!busy}
             onClick={() => {
               setHistory(!history);
-              void act("Abrindo histórico…", async () => {
+              void act("Abrindo histórico…", "Não foi possível abrir o histórico. Tente novamente.", async () => {
                 const workspaces = await closeApi.workspaces();
                 const entries = [];
                 for (const w of workspaces.data) {
@@ -1074,6 +1073,7 @@ export function AriadneReviewDesk() {
                 onClick={() =>
                   void act(
                     "Executando checks e preservando resultado…",
+                    "Não foi possível verificar e preservar o resultado. Repita a mesma ação para tentar novamente.",
                     async (current) => {
                       const result = await closeApi.calculate(
                         workspace,
@@ -1093,11 +1093,23 @@ export function AriadneReviewDesk() {
                 <>
                   {import.meta.env.DEV && import.meta.env.VITE_ARIADNE_PLAN_DEV === '1' &&
                     calculation.inputs.records.some(row => row.recordKind === 'demand_fact' && row.eligible && !row.errors.length) &&
-                    <Link className="desk__primary" to={`/operador/ariadne/planejamento?workspace=${workspace}&review=${review}&baseline=${calculation.id}`}>Planejar a partir deste estado <ArrowUpRight size={15} aria-hidden /></Link>}
+                    <Link
+                      className="desk__primary"
+                      to={`/operador/ariadne/planejamento?${new URLSearchParams({
+                        workspace,
+                        review,
+                        baseline: calculation.id,
+                        proof: selectedProof
+                          ? planProofKey(selectedProof.sourceId, selectedProof.locator)
+                          : "",
+                      })}`}
+                    >
+                      Planejar a partir deste estado <ArrowUpRight size={15} aria-hidden />
+                    </Link>}
                   <button
                     disabled={!!busy}
                     onClick={() =>
-                      void act("Salvando pacote exato…", async (current) => {
+                      void act("Salvando pacote exato…", "Não foi possível salvar o pacote. Repita a mesma ação para tentar novamente.", async (current) => {
                         const pack = await closeApi.save(
                           workspace,
                           review,
@@ -1116,7 +1128,7 @@ export function AriadneReviewDesk() {
                   <button
                     disabled={!!busy}
                     onClick={() =>
-                      void act("Reconstituindo histórico…", async (current) => {
+                      void act("Reconstituindo histórico…", "Não foi possível reconstituir o histórico. Tente novamente.", async (current) => {
                         const r = await closeApi.replay(
                           workspace,
                           review,
@@ -1149,23 +1161,40 @@ export function AriadneReviewDesk() {
           </div>
           {preview ? (
             <>
-              {original && <AriadneSourceAction href={original + `#page=${pageNumber}`} page={pdf ? pageNumber : undefined} />}
+              {pdf && original.href && (
+                <AriadneSourceAction
+                  href={original.href + `#page=${pageNumber}`}
+                  page={pageNumber}
+                />
+              )}
+              {original.failure && (
+                <p role="alert" className="desk__error">
+                  {originalDocumentMessage[original.failure]}
+                </p>
+              )}
               <div className="desk__source-actions">
-                {original && (
-                  <>
-                    {source && (
-                      <button onClick={() => setShowDocument(!showDocument)}>
-                        {showDocument ? "Voltar à prova" : "Ver página aqui"}
-                      </button>
-                    )}
-                  </>
+                {original.failure && (
+                  <AriadneOriginalRetry retry={original.retry} />
                 )}
-                {source && (
+                {original.href && source && pdf && (
+                  <button onClick={() => setShowDocument(!showDocument)}>
+                    {showDocument ? "Voltar à prova" : "Ver página aqui"}
+                  </button>
+                )}
+                {original.href && source && (
                   <a href={closeApi.originalUrl(workspace, review, source.id)}>
                     <Download size={15} aria-hidden /> Baixar original
                   </a>
                 )}
-                {source && pdf && <a href={closeApi.pageUrl(workspace, review, source.id, pageNumber)} target="_blank" rel="noreferrer">Ampliar página</a>}
+                {original.href && source && pdf && !pageError && (
+                  <a
+                    href={closeApi.pageUrl(workspace, review, source.id, pageNumber)}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Ampliar página
+                  </a>
+                )}
               </div>
               {source?.role === "context" && rawRows.length > 1 && (
                 <label>Linha de referência
@@ -1174,11 +1203,11 @@ export function AriadneReviewDesk() {
                   </select>
                 </label>
               )}
-              {showDocument && source && pdf ? (
+              {showDocument && source && pdf && original.href ? (
                 pageError ? (
                   <p role="alert">
-                    Página indisponível. Baixe o original ou volte à prova
-                    textual; verifique sua sessão antes de tentar novamente.
+                    Prévia da página indisponível. Abra o original ou volte à
+                    prova textual.
                   </p>
                 ) : (
                   <img
@@ -1348,6 +1377,7 @@ export function AriadneReviewDesk() {
                           onClick={() =>
                             void act(
                               "Registrando tratamento…",
+                              "Não foi possível registrar o tratamento. Repita a mesma ação para tentar novamente.",
                               async (current) => {
                                 await closeApi.treat(
                                   workspace,

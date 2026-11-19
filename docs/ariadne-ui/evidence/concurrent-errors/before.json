@@ -1,0 +1,46 @@
+{
+  "browser": "157.0.8103.51",
+  "pass": 12,
+  "fail": 2,
+  "skip": 0,
+  "checks": [
+    "selected February proof carries through the exact Close baseline to PDF page 14",
+    "missing original preserves context and recovers through one targeted retry",
+    "malformed handoff keeps baseline and requires a new explicit selection",
+    "absent handoff keeps baseline and requires a new explicit selection",
+    "unsupported handoff keeps baseline and requires a new explicit selection",
+    "staleLocator handoff keeps baseline and requires a new explicit selection",
+    "foreignSource handoff keeps baseline and requires a new explicit selection",
+    "direct entry keeps the default, and a saved scenario keeps its exact selection on refresh",
+    "Planning handles original 401 without changing the preserved scenario",
+    "Planning handles original 403 without changing the preserved scenario",
+    "Planning handles original 503 without changing the preserved scenario",
+    "Planning handles original network without changing the preserved scenario"
+  ],
+  "failures": [
+    {
+      "name": "planning keeps separate errors when an analytical operation and the original fail",
+      "message": "Expected values to be strictly equal:\n\n1 !== 2\n"
+    },
+    {
+      "name": "review keeps separate errors when an analytical operation and the original fail",
+      "message": "Expected values to be strictly equal:\n\n1 !== 2\n"
+    }
+  ],
+  "observations": {
+    "review": "2020-02 · prova",
+    "planning": "2020-02 · prova",
+    "missing": {
+      "alerts": [
+        "Original indisponível neste contexto."
+      ],
+      "workingDocumentLinks": 0
+    },
+    "planningConcurrentErrors": [
+      "Original indisponível neste contexto."
+    ],
+    "reviewConcurrentErrors": [
+      "Original indisponível neste contexto."
+    ]
+  }
+}

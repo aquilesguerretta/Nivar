@@ -4,6 +4,7 @@ import {
   PlanningRequests,
   samePlanAssumptions,
   planMonthKey,
+  initialPlanMonth,
   selectedPlanMonth,
   planPreviewForDisplay,
 } from "../../src/lib/ariadne/planningSelection.ts";
@@ -11,7 +12,11 @@ import {
   DeskSelection,
   reviewedSelection,
 } from "../../src/lib/ariadne/deskSelection.ts";
-import type { PlanView, SavedPlan } from "../../src/lib/ariadne/planningApi.ts";
+import type {
+  PlanMonth,
+  PlanView,
+  SavedPlan,
+} from "../../src/lib/ariadne/planningApi.ts";
 
 test("unchanged saved output remains exact across a new executor preview", () => {
   const assumptions = {
@@ -78,6 +83,84 @@ test("two conflicting invoices for the same month retain independent source sele
     second,
   );
   assert.equal(selectedPlanMonth([first, second], planMonthKey(first)), first);
+});
+
+const february = {
+  period: "2020-02",
+  label: "2020-02",
+  physicalCovered: true,
+  sourceRef: { sourceId: "invoice-a", locator: "page:14/demand-observation" },
+} as PlanMonth;
+const samePeriod = {
+  ...february,
+  sourceRef: { ...february.sourceRef, sourceId: "invoice-b" },
+};
+
+test("incoming proof uses the exact source and locator even when the month label repeats", () => {
+  const baseline = [february, samePeriod];
+  assert.equal(
+    initialPlanMonth(
+      baseline,
+      baseline,
+      new URLSearchParams({
+        month: february.label,
+        proof: planMonthKey(samePeriod),
+      }),
+    ),
+    samePeriod,
+  );
+  assert.equal(
+    initialPlanMonth(
+      baseline,
+      baseline,
+      new URLSearchParams({
+        month: february.label,
+      }),
+    ),
+    undefined,
+  );
+});
+
+test("incoming proof never guesses between repeated exact locators", () => {
+  const baseline = [february, { ...february }];
+  assert.equal(
+    initialPlanMonth(
+      baseline,
+      baseline,
+      new URLSearchParams({
+        proof: planMonthKey(february),
+      }),
+    ),
+    undefined,
+  );
+});
+
+test("stale proof in a saved scenario is rejected against the reviewed baseline", () => {
+  assert.equal(
+    initialPlanMonth(
+      [february],
+      [samePeriod],
+      new URLSearchParams({
+        proof: planMonthKey(february),
+        month: february.label,
+      }),
+    ),
+    undefined,
+  );
+});
+
+test("uncovered selected evidence remains inspectable as a saved URL but is not a valid handoff", () => {
+  const conflicting = { ...february, physicalCovered: false };
+  const months = [conflicting];
+  const key = planMonthKey(conflicting);
+  assert.equal(
+    initialPlanMonth(months, months, new URLSearchParams({ proof: key })),
+    undefined,
+  );
+  assert.equal(
+    initialPlanMonth(months, months, new URLSearchParams({ item: key })),
+    conflicting,
+  );
 });
 test("preview cleanup cannot cancel loading a different preserved scenario", async () => {
   const requests = new PlanningRequests(),
