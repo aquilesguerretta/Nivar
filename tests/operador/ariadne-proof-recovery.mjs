@@ -529,6 +529,213 @@ try {
       },
     );
   }
+  await check(
+    "failed draft suppresses stale results until a matching preview succeeds",
+    async () => {
+      const simulation = apiRoot + "/calculations/" + baseline + "/planning";
+      const previewPattern = (url) => url.pathname === simulation + "/preview";
+      const originalPattern = "**" + originalURL;
+      const exportScenario = async (id) => {
+        const response = await context.request.get(
+          base + simulation + "/scenarios/" + id + "/export",
+        );
+        assert.equal(response.status(), 200);
+        return response.body();
+      };
+      const history = await Promise.all([
+        exportScenario(scenario),
+        exportScenario(manifest.legacy),
+      ]);
+      const saved = new URL(planURL);
+      saved.searchParams.set("scenario", scenario);
+      saved.searchParams.set("month", "2020-02");
+      await page.route(originalPattern, (route) =>
+        route.fulfill({
+          status: 404,
+          json: { detail: "Synthetic original unavailable" },
+        }),
+      );
+      try {
+        await page.goto(saved.href);
+        await settled();
+        const candidate = page.getByLabel("Demanda candidata em kW");
+        const save = button("Preservar cenário");
+        const curve = page.locator(".plan__curve svg");
+        const impact = page.locator(".plan__delta");
+        const previewAlert = page.getByRole("alert").filter({
+          hasText: "Não foi possível atualizar a simulação.",
+        });
+        const workspace = page.locator(".plan__workspace");
+        await page
+          .getByText("Original indisponível neste contexto.", { exact: true })
+          .waitFor();
+        assert.equal(Number(await candidate.inputValue()), 280);
+        await curve.waitFor();
+        assert.equal(await impact.textContent(), "R$ 0,00");
+        assert.ok(await save.isEnabled());
+
+        const changes = await page.evaluateHandle(() => {
+          const changes = [];
+          const status = document.querySelector("[data-ariadne-state]");
+          new MutationObserver(() => changes.push(status.textContent)).observe(
+            status,
+            { childList: true, subtree: true, characterData: true },
+          );
+          return changes;
+        });
+        await page.route(previewPattern, (route) =>
+          route.fulfill({
+            status: 503,
+            json: { detail: "Synthetic preview unavailable" },
+          }),
+        );
+        const failed = page.waitForResponse(
+          (response) =>
+            previewPattern(new URL(response.url())) &&
+            response.status() === 503,
+        );
+        await candidate.fill("259");
+        await failed;
+        await settled();
+        await previewAlert.waitFor();
+
+        async function assertUnvalidated() {
+          assert.equal(await impact.count(), 0);
+          assert.equal(await curve.count(), 0);
+          await page
+            .getByText("Sem resultado para as premissas atuais.", {
+              exact: true,
+            })
+            .waitFor();
+          assert.equal(
+            await planProof
+              .getByText("Subtotal modelado do mês", { exact: true })
+              .count(),
+            0,
+          );
+          assert.equal(
+            await planProof
+              .getByText("Demanda candidata", { exact: true })
+              .count(),
+            0,
+          );
+          assert.equal(
+            await workspace
+              .locator('[data-key="candidate"], [data-key="threshold"]')
+              .count(),
+            0,
+          );
+          assert.ok(await save.isDisabled());
+          assert.equal(
+            await save.getAttribute("aria-describedby"),
+            await previewAlert.getAttribute("id"),
+          );
+          assert.equal(
+            await planProof.getByRole("heading").textContent(),
+            "2020-02 · prova",
+          );
+          assert.equal(page.url(), saved.href);
+        }
+        await assertUnvalidated();
+        await capture("failed-259-after");
+        await button("Reconstruir resultado").click();
+        await page
+          .getByText("Replay exato: resultado idêntico.", { exact: true })
+          .waitFor();
+        await assertUnvalidated();
+
+        const recoveryRequests = [];
+        const record = (request) => {
+          const { pathname } = new URL(request.url());
+          if (pathname.startsWith(apiRoot)) recoveryRequests.push(pathname);
+        };
+        await page.unroute(originalPattern);
+        page.on("request", record);
+        try {
+          await button("Tentar carregar original novamente").click();
+          await openExactOriginal();
+        } finally {
+          page.off("request", record);
+        }
+        assert.deepEqual(recoveryRequests, [originalURL]);
+        await assertUnvalidated();
+
+        // A successful HTTP response cannot validate a different set of premises.
+        await page.unroute(previewPattern);
+        await page.route(previewPattern, async (route) => {
+          const response = await route.fetch();
+          assert.equal(response.status(), 200);
+          const payload = await response.json();
+          payload.output.assumptions.normalRegime =
+            !payload.output.assumptions.normalRegime;
+          await route.fulfill({ response, json: payload });
+        });
+        const mismatched = page.waitForResponse(
+          (response) =>
+            previewPattern(new URL(response.url())) &&
+            response.status() === 200,
+        );
+        await candidate.fill("260");
+        await mismatched;
+        await settled();
+        await assertUnvalidated();
+
+        await page.unroute(previewPattern);
+        const matched = page.waitForResponse(
+          (response) =>
+            previewPattern(new URL(response.url())) &&
+            response.status() === 200,
+        );
+        await candidate.fill("259");
+        const result = await (await matched).json();
+        await settled();
+        assert.equal(result.output.assumptions.candidateKw, "259");
+        assert.equal(result.output.cost, "9516.42");
+        await page.getByText("R$ 9.516,42", { exact: true }).waitFor();
+        await curve.waitFor();
+        assert.equal(
+          await planProof.getByText("259 kW", { exact: true }).count(),
+          1,
+        );
+        assert.ok(await save.isEnabled());
+        assert.equal(await previewAlert.count(), 0);
+        assert.equal(
+          await page
+            .getByText("Replay exato: resultado idêntico.", { exact: true })
+            .count(),
+          0,
+        );
+        assert.deepEqual(await changes.jsonValue(), ["Explorando"]);
+        assert.equal(await page.locator("[data-ariadne-state]").count(), 1);
+        await changes.dispose();
+        await page.setViewportSize({ width: 1920, height: 1080 });
+        await button("Modo escuro").click();
+        await capture("matching-259-after-dark");
+        await page.setViewportSize({ width: 1440, height: 900 });
+
+        const after = await Promise.all([
+          exportScenario(scenario),
+          exportScenario(manifest.legacy),
+        ]);
+        assert.ok(history.every((body, i) => body.equals(after[i])));
+        observations.failedDraftAfterFix = {
+          failedCandidateKw: "259",
+          failedResultVisible: false,
+          saveEnabledAfterReplay: false,
+          saveEnabledAfterOriginalRetry: false,
+          mismatchedResponseAccepted: false,
+          matchingCandidateKw: result.output.assumptions.candidateKw,
+          matchingCost: result.output.cost,
+          saveEnabledAfterMatchingPreview: true,
+          scenarioStateMutations: ["Explorando"],
+          preservedExportsByteIdentical: true,
+        };
+      } finally {
+        await page.unroute(originalPattern);
+        await page.unroute(previewPattern);
+      }
+    },
+  );
 } finally {
   const result = {
     browser: browser.version(),

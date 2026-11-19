@@ -68,3 +68,26 @@ When the document became available again, retry issued one original GET, cleared
 TypeScript, the production build, the design detector and `git diff --check` passed. The production build excluded the experimental routes and the new Planning alert identifier with both development flags supplied. The earlier backend and #34 workflow counts above are from the proof continuity patch. This follow-up used retained disposable synthetic records. [Focused final run](evidence/concurrent-errors/after.json) · [Production gates](evidence/concurrent-errors/production-gates.json)
 
 Human accessibility QA remains open. With a keyboard and screen reader, verify that each alert identifies its own operation, the visible save explanation is easy to find in reading order, and focus can return to the PDF action after retry. Listen for repeated scenario announcements during recovery. The automated checks cover the DOM and status mutations.
+
+## Failed preview and stale result integrity
+
+On November 18, 2026, the disposable Chrome session reproduced both defects at `8b65db83`. Starting from the preserved 280 kW scenario, entering 259 kW and forcing a preview 503 kept the previous 280 kW proof, cost curve and R$ 0,00 impact on screen. Save was disabled until replay of the preserved scenario cleared the shared error, then became available without a successful 259 kW preview. [Before replay](evidence/failed-preview/failed-259-before-replay.png) · [After replay](evidence/failed-preview/failed-259-after-replay.png) · [Fresh reproduction](evidence/failed-preview/before.json)
+
+Planning now validates a preview against its request context, baseline and exact assumptions. The draft shows observed demand and the selected proof while awaiting a valid result. Modeled impact, the cost curve, modeled proof values and candidate-specific marks are withheld in that state. The saved scenario remains accessible through its existing replay, export and selection actions. A failed preview has its own alert and blocks saving even when an unrelated action succeeds. A new edit clears an earlier replay notice so that it cannot be read as confirmation of a newer draft.
+
+After a 503, replay and PDF recovery left the save control disabled and the analytical error visible. February and the same baseline stayed selected, and the original opened at page 14. An injected 200 with a different premise was rejected. The next matching 259 kW preview restored the curve, R$ 9.516,42 modeled cost and save eligibility. The scenario status changed once to Exploring, and the retained 0.1.0 and 0.1.1 exports remained byte-identical. [Failed draft after correction](evidence/failed-preview/failed-259-after.png) · [Matching preview](evidence/failed-preview/matching-259-after-dark.png) · [Focused result](evidence/failed-preview/after.json)
+
+| Gate for this follow-up | Pass | Fail | Skip |
+|---|---:|---:|---:|
+| Focused Chrome reproduction at the previous head | 14 | 1 | 0 |
+| Focused Chrome suite after correction | 15 | 0 | 0 |
+| Frontend Node suite | 98 | 0 | 0 |
+| PR #33 Chrome regression | 62 | 0 | 0 |
+| PR #34 Chrome analyst workflow | 25 | 0 | 0 |
+| Planning and Close API checks on disposable PostgreSQL 17 | 29 | 0 | 0 |
+| Read-only retained Planning, Close and scalar replay | 11 | 0 | 0 |
+| Production route and bundle gates | 7 | 0 | 0 |
+
+TypeScript, the production build, the design detector and `git diff --check` passed. The API tests cover foreign workspaces and source access. The initial test selection included the unrelated legacy smoke script. Its 12 unauthenticated read requests to the default production host all received 401. The frontend suite above was rerun with only tests under `tests/`. [Production build gates](evidence/failed-preview/production-gates.json)
+
+The existing preview runs on input changes. After a transient failure, an analyst can edit a premise again to request a new preview. Automated DOM assertions and screenshots cover the failed and recovered draft. Screen-reader speech and whether analysts understand the distinction between replay and preview remain manual checks.
