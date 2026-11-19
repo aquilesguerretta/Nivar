@@ -1,0 +1,32 @@
+.j3-current-energy {
+  color-scheme: light dark;
+  background: Canvas;
+  color: CanvasText;
+  min-block-size: 100vh;
+  padding: clamp(1rem, 4vw, 3rem) max(1rem, calc((100% - 56rem) / 2));
+  font-family: var(--g2-sans, Arial, sans-serif);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.j3-current-energy h1 { line-height: 1.12; }
+.j3-current-energy h2 { margin-block-end: 0.5rem; }
+.j3-current-energy :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+.j3-current-energy .j3-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  padding-block: 0.75rem;
+  margin-block-end: 1.25rem;
+  border-block: 1px solid GrayText;
+}
+
+.j3-current-energy article,
+.j3-current-energy .j3-timeline li { margin-block: 1rem; }
+.j3-current-energy .j3-timeline li p { margin-block: 0.25rem; }
+.j3-current-energy dt { margin-block-start: 0.6rem; font-weight: 600; }
+.j3-current-energy dd { margin-inline-start: 0; }
+.j3-current-energy details { padding-block: 0.35rem; }
+.j3-current-energy details > summary { cursor: pointer; }
+.j3-current-energy details[open] > dl { border-inline-start: 1px solid GrayText; padding-inline-start: 1rem; }
