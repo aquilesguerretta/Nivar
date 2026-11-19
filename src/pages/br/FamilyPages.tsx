@@ -11,6 +11,7 @@ import {
 import { DESTINOS_BR } from "../../lib/data/br-destinos";
 import { AriadneJourney } from "../../components/g2/AriadneJourney";
 import { ArgosObservation } from "../../components/g2/ArgosObservation";
+import { globalExploreEnabled, globalExplorePath } from "../../lib/argos/globalExploreLocal";
 import { useNivarTheme } from "../../components/g2/nivar-theme";
 import { NotFound } from "../NotFound";
 import "./g2-pages.css";
@@ -111,6 +112,7 @@ function Intelligence() {
             Atenção contínua ao mercado. Leitura com contexto.
             <br />E espaço para o que ainda não sabemos.
           </p>
+          {globalExploreEnabled && <TextLink to={globalExplorePath}>Abrir ARGOS Explore</TextLink>}
         </div>
         <ArgosPortrait />
       </section>
