@@ -13,7 +13,7 @@ import { EnergyBrief, MethodPage, SystemPage } from "./EditorialPages";
 import { globalExploreEnabled, globalExploreRoute } from "../../lib/argos/globalExploreLocal";
 
 const GlobalExplore = globalExploreEnabled
-  ? lazy(() => import("../argos/GlobalExplore"))
+  ? lazy(() => import("../../features/argos-global-integration/GlobalExperience"))
   : null;
 
 export function PortalBRRouter() {
