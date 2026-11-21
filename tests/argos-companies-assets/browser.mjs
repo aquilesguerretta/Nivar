@@ -136,6 +136,60 @@ for (const variant of [
   });
 }
 
+test("visible Mero evidence matches the selected denominator and preserves the replay context", async () => {
+  await withPage({}, async (page) => {
+    const replayDate = "2027-03-04";
+    await page.goto(origin + fixture + "#/mero", { waitUntil: "commit" });
+    await heading(page, "Mero");
+    await setDate(page, replayDate);
+
+    const anp = "Composição contratual · ANP";
+    const operator = ["Operadora do campo · ANP", "field-operator"];
+    const scopes = [
+      ["Jazida compartilhada", [
+        [anp, "contract-split"],
+        ["Jazida compartilhada · Form 20-F", "reservoir-split"],
+        ["Ver comunicado", "transfer-signing"],
+        operator,
+      ]],
+      ["Bloco arrematado", [["Resultado do leilão · Petrobras", "auction-allocation"], operator]],
+      ["Área contratada", [[anp, "contract-split"], operator]],
+    ];
+    const navigation = page.getByRole("navigation", { name: "Denominador" });
+
+    for (const [scope, claims] of scopes) {
+      const denominator = navigation.getByRole("link", { name: scope, exact: true });
+      await denominator.click();
+      const returnUrl = page.url();
+      if (scope === "Bloco arrematado") {
+        assert.equal(await page.getByRole("link", { name: anp, exact: true }).count(), 0);
+      }
+      assert.equal(await page.getByRole("link").and(page.locator("a[href*='evidencia=']")).count(), claims.length, scope);
+
+      for (const [label, claim] of claims) {
+        await page.getByRole("link", { name: label, exact: true }).click();
+        const back = page.getByRole("link", { name: "Voltar à consulta", exact: true });
+        const panel = page.getByRole("complementary").filter({ has: back });
+        await panel.getByText("Referências da evidência", { exact: true }).click();
+        await panel.getByText("niv79:claim:" + claim + ":v1", { exact: true }).waitFor();
+        await back.click();
+        await panel.waitFor({ state: "hidden" });
+        assert.equal(page.url(), returnUrl);
+        assert.equal(await denominator.getAttribute("aria-current"), "page");
+        assert.equal(await page.getByLabel("Data de consulta histórica").inputValue(), replayDate);
+      }
+    }
+
+    await page.getByRole("link", { name: /Histórico e projeção/ }).click();
+    await heading(page, "Histórico de Mero");
+    assert.equal(await page.getByLabel("Data de consulta histórica").inputValue(), replayDate);
+    const projection = page.locator(".j2-projection");
+    await projection.getByText("Pendente de confirmação", { exact: true }).waitFor();
+    await projection.getByText("Petrobras · se efetivada", { exact: true }).waitFor();
+    await projection.getByText("41,40%", { exact: true }).waitFor();
+  });
+});
+
 test("FPSO and Brazil Map links preserve the field and reject unrelated evidence links", async () => {
   await withPage({}, async (page) => {
     await page.goto(origin + fixture + "#/mero");

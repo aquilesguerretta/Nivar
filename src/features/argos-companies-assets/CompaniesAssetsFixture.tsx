@@ -156,7 +156,7 @@ function Participations({ asOf, scope, params, cite }: {
           </table>
           <div className="j2-links">
             {scope === "acquired" && cite("auction-allocation", "Resultado do leilão · Petrobras")}
-            {contracted && cite("contract-split", "Composição contratual · ANP")}
+            {rows.some((row) => row.evidence.includes("contract-split")) && cite("contract-split", "Composição contratual · ANP")}
             {scope === "reservoir" && cite("reservoir-split", "Jazida compartilhada · Form 20-F")}
           </div>
           {scope === "reservoir" && asOf.baselineOn && (
