@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARGOS Investigate · Protótipo local</title>
+  </head>
+  <body>
+    <div id="investigate-fixture">Investigate está disponível via harness local.</div>
+    <script type="module">
+      if (import.meta.env.DEV && import.meta.env.MODE === "argos-local" && location.hostname === "127.0.0.1") {
+        await import("./mount.tsx");
+      }
+    </script>
+  </body>
+</html>

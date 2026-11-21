@@ -1,0 +1,62 @@
+.ai-fixture {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.ai-fixture .ai-workspace {
+  width: 100%;
+  flex: 1;
+}
+
+.ai-fixture-shell {
+  color: var(--papel);
+  background: var(--tinta);
+  border-top: 2px solid var(--family-intelligence);
+}
+
+.ai-fixture-shell > div {
+  width: min(100%, 74rem);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  min-height: 3.65rem;
+}
+
+.ai-fixture-shell img {
+  object-fit: contain;
+}
+
+.ai-fixture-shell span {
+  font-size: var(--ts-nota);
+  color: var(--text-invert-muted);
+}
+
+.ai-fixture-shell button {
+  margin-inline-start: auto;
+  color: inherit;
+  background: none;
+  border: 1px solid var(--rule-ink-strong);
+  min-height: 2.75rem;
+  cursor: pointer;
+  font-size: var(--ts-nota);
+}
+
+.ai-fixture-shell button:focus-visible {
+  outline: 2px solid var(--accent-focus);
+  outline-offset: 2px;
+}
+
+.ai-fixture-caption {
+  padding: .85rem clamp(1rem, 4vw, 3rem);
+  border-top: 1px solid var(--rule);
+  color: var(--text-muted);
+  text-align: center;
+  font-size: var(--ts-nota);
+}
+
+@media (max-width: 25rem) {
+  .ai-fixture-shell span { display: none; }
+}
