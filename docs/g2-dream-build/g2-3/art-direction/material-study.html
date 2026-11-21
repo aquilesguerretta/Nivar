@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NIVAR G2.3 · Incisão Interval</title>
+<style>
+@font-face{font-family:Manrope;src:url('../../../../public/g2/g21/fonts/manrope-2.woff2')}
+@font-face{font-family:Literata;src:url('../../../../public/g2/g21/fonts/literata-2.woff2')}
+*{box-sizing:border-box}body{margin:0;background:#e4e0e5;color:#28252d;font:14px/1.7 Manrope,Arial,sans-serif}main{max-width:1720px;padding:38px;margin:auto}a{color:inherit;text-underline-offset:4px}h1{font:400 48px/1.12 Literata,Georgia,serif;letter-spacing:-.045em;margin:12px 0 28px}h2{font:400 26px/1.2 Literata,Georgia,serif}p{max-width:80ch}.eyebrow{font:11px/1.5 monospace;letter-spacing:.05em}.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:32px 0}figure{margin:0}img{width:100%;height:auto;display:block}figcaption{padding:12px 0;font-size:12px}.spec{border-top:1px solid #b9adbf;padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:40px}.rejected{opacity:.78}.rejected img{max-width:620px}.rejected h2{font-size:22px}code{font-size:12px}.selected{border-left:3px solid #7d647f;padding-left:18px}@media(max-width:760px){main{padding:22px}.grid,.spec{grid-template-columns:1fr}h1{font-size:38px}}
+</style>
+<main>
+<div class="eyebrow">NIVAR / G2.3 / ESTUDO DE MATERIAL</div>
+<h1>A marca como inscrição.</h1>
+<p class="selected">Interval optical foi escolhido na revisão da comparação vetorial. Estes renders estudam o que uma assinatura material acrescenta à casa: profundidade mínima, luz rasante e contraste preciso. A marca funcional continua em SVG.</p>
+<p>O objeto é uma superfície contínua de estudo. Não representa um instrumento, artefato histórico ou instalação real. As cinco letras foram recortadas fisicamente da geometria e preenchidas abaixo da superfície.</p>
+<div class="grid">
+<figure><img src="blender/selected-interval-mineral.png" alt="NIVAR Interval inscrito numa superfície mineral clara sob luz rasante"><figcaption>Mineral · pigmento grafite dentro de uma incisão de 0,24 mm.</figcaption></figure>
+<figure><img src="blender/selected-interval-graphite.png" alt="NIVAR Interval inscrito numa superfície grafite escura sob luz rasante"><figcaption>Grafite · pigmento mineral discreto dentro da mesma geometria.</figcaption></figure>
+</div>
+<div class="spec">
+<div><h2>Geometria e procedência</h2><p>Contornos exatos do Interval optical: N, I, V, A aberto e R. Curvas SVG amostradas em 32 passos por segmento cúbico. Recorte Boolean de 0,24 mm; raio de borda de 12 μm; marca com 270 mm na cena. Não há modelo, textura de estoque, fonte de lettering ou imagem de IA.</p><p>Blender 5.2.1 LTS · Cycles 64 amostras · AgX. <a href="blender/nivar-g23-selected-incision.blend">Cena editável</a> · <a href="blender/selected-inscription.py">Fonte Python</a> · <a href="material-manifest.json">Manifesto e SHA-256</a>.</p></div>
+<div><h2>Uso possível</h2><p>Uma assinatura material breve no encerramento, se a composição precisar dela. Não substituir o identificador em header, documento ou Terminal por um bitmap. Os WebP de 900 e 1600 px são candidatos opcionais; o estudo não implica uso em runtime.</p><p><a href="brand-comparison.html">Comparação de três direções ↗</a> · <a href="integration.md">Contornos e regras ópticas ↗</a></p></div>
+</div>
+<section class="rejected"><h2>Comparação anterior preservada</h2><p>A primeira cena usava relevo positivo de 0,12 mm e luz excessiva. O grafite perdia densidade, e o acabamento liso parecia uma aplicação elevada. Foi rejeitada como assinatura material. A correção acima substitui o relevo por recorte real e reduz a energia das luzes.</p><div class="grid"><figure><img src="blender/01-interval-optical-mineral.png" alt="Primeira tentativa rejeitada: superfície clara e lettering em relevo"><figcaption>Primeira tentativa · mineral superexposto.</figcaption></figure><figure><img src="blender/01-interval-optical-graphite.png" alt="Primeira tentativa rejeitada: superfície grafite demasiado clara"><figcaption>Primeira tentativa · grafite sem densidade.</figcaption></figure></div></section>
+</main></html>

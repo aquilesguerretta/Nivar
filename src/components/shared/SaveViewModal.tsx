@@ -196,7 +196,7 @@ export function SaveViewModal({ open, onClose, onSave, preview }: Props) {
                 : C.electricBlueWash,
               border: 'none',
               borderRadius: R.md,
-              color: canSave ? '#fff' : C.textMuted,
+              color: canSave ? C.textPrimary : C.textMuted,
               fontFamily: F.sans,
               fontSize: 13,
               fontWeight: 600,

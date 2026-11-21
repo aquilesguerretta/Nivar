@@ -1,0 +1,67 @@
+{
+  "pass": "G2.3.1",
+  "status": "complete",
+  "selected": [
+    {
+      "candidate": "C — calibration-refined",
+      "jobId": "065b3bb0-c916-415f-85ed-6fdc76e2c7d3",
+      "path": "public/g2/g231/hero/editorial/calibration-960.mp4",
+      "bytes": 227150,
+      "sha256": "04c64819ebc0db9bb07a64a8e1b38391d4d6ad10374933c30ae9acbaad1bacfe",
+      "poster": "public/g2/g231/hero/editorial/calibration-poster.webp",
+      "posterBytes": 16078,
+      "decision": "Rigid unnumbered copper, legible probe approach/contact/hold, restrained parallax. Three visible recesses rather than six requested are accepted as symbolic geometry; never claim exact count or use as data source."
+    },
+    {
+      "candidate": "B — optical-carrier",
+      "jobId": "63aa9f1e-3533-4486-b9f1-4273fe295e25",
+      "path": "public/g2/g231/hero/editorial/optical-960.mp4",
+      "bytes": 374608,
+      "sha256": "bc93cfeb27d053558a5be4881dcffab64cd2e869d0a93e6491bef45b15d0b0d6",
+      "poster": "public/g2/g231/hero/editorial/optical-poster.webp",
+      "posterBytes": 18626,
+      "decision": "Coherent backward/lifting camera and changing focus reveal carrier-to-paper relation. Two fine projected tracks and broad carrier shadow are visible, not three precise analytical samples. No text or geometry morph."
+    }
+  ],
+  "rejected": [
+    {
+      "candidate": "A — calibration",
+      "jobId": "05e7efc4-51a5-4fbe-9337-ea54db6282f7",
+      "decision": "Generated ruler numerals violate the composition's exclusion of generated data/text. Retained as rejected proof. Refined discrete square recesses instead of ruler graduations."
+    }
+  ],
+  "generation": {
+    "tool": "Higgsfield generate_video_batch",
+    "model": "seedance_2_5",
+    "output": "1920×1080,24fps,6.042s,silent,HEVC Main10",
+    "estimatedCreditsEach": 54,
+    "estimatedCreditsTotal": 162,
+    "chargeNote": "Preflight estimate only; final billed charge was not separately returned.",
+    "prompts": [
+      "generation-manifest.json",
+      "refinement-manifest.json"
+    ],
+    "completedToolResults": [
+      "finished-jobs.json",
+      "refinement-result.json"
+    ]
+  },
+  "runtime": {
+    "codec": "H.264 yuv420p",
+    "width": 960,
+    "height": 540,
+    "fps": 24,
+    "videoBytes": 601758,
+    "posterBytes": 34704,
+    "totalBytes": 636462,
+    "processing": "Higgsfield sandbox FFmpeg; original frame cadence retained, no speed change, no crop, no invented frames. scale=960:-2:lanczos,libx264,preset slow,CRF22,movflags faststart; posters WebP84."
+  },
+  "verification": {
+    "method": "CUA real-click playback and continuous screenshot observation of each full6.042s film; read-only video currentTime/ended/readyState checks. Supplementary4fps contact sheets. Original rejected A excluded by visible frame defect.",
+    "artifacts": [
+      "optical-browser-playback.json",
+      "calibration-browser-playback.json"
+    ]
+  },
+  "provenance": "Generated fictional editorial material. Not documentary. Not a depiction of any named infrastructure or actual instrument. Not a source of the Terminal's synthetic series."
+}

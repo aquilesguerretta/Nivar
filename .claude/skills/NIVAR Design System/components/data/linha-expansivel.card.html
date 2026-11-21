@@ -1,0 +1,113 @@
+<!-- @dsCard group="Components" viewport="1060x1300" name="Linha de tabela expansível" subtitle="O painel abre abaixo da linha e empurra as seguintes — nunca sobrepõe, nunca modal" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Linha expansível</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:1060px;overflow:hidden}.g{display:grid;grid-template-columns:1fr 1fr}.bl{padding:16px 18px 20px;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:13px;background:var(--surface-page)}.bl+.bl{border-left:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.mob{display:grid;grid-template-columns:343px 343px;border-top:1px solid var(--rule-strong)}.mob .bl{width:343px}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">const { ExpandableRow, SortHeader, Comparison, Provenance, Pagination, DownloadLink, MethodDisclosure } = window.NIVARDesignSystem_0a22a8;
+const LINHAS = [
+  { id: 'n', sub: 'Norte', pld: '198,40', d: '+2,1 %', carga: '11 402' },
+  { id: 'ne', sub: 'Nordeste', pld: '203,10', d: '−0,8 %', carga: '13 866' },
+  { id: 'se', sub: 'Sudeste/CO', pld: '214,80', d: '+4,2 %', carga: '42 318' },
+  { id: 's', sub: 'Sul', pld: '268,40', d: '+9,1 %', carga: '12 064' },
+];
+function Bloco({ modo, largura, rotulo, nota, s }) {
+  const [aberta, setAberta] = React.useState('se');
+  const attrs = {};
+  if (modo) attrs['data-mode'] = modo;
+  if (largura) attrs['data-largura'] = largura;
+  return (
+    <div className="bl" {...attrs}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <span className="eti">largura total · comparação dentro do painel</span>
+      <div className="nv-tab-rolo">
+        <table className="nv-tab nv-tab--zebra nv-tab--hover">
+          <thead><tr>
+            <SortHeader campo="sub" ordem="neutro" onSort={() => {}}>Submercado</SortHeader>
+            <SortHeader campo="pld" ordem="desc" numerico onSort={() => {}}>R$/MWh</SortHeader>
+            <SortHeader campo="d" ordem="neutro" numerico onSort={() => {}}>Δ mês</SortHeader>
+            <SortHeader campo="carga" ordem="neutro" numerico onSort={() => {}}>MWmed</SortHeader>
+          </tr></thead>
+          <tbody>
+            {LINHAS.map((l) => (
+              <ExpandableRow
+                key={l.id}
+                id={s + l.id}
+                colunas={4}
+                aberta={aberta === l.id}
+                onToggle={(v) => setAberta(v ? l.id : null)}
+                celulas={[
+                  { valor: l.sub },
+                  { valor: l.pld, num: true },
+                  { valor: l.d, num: true },
+                  { valor: l.carga, num: true },
+                ]}
+              >
+                <Comparison
+                  a={{ nome: l.sub, sub: 'jul 2026' }}
+                  b={{ nome: l.sub, sub: 'jun 2026' }}
+                  linhas={[
+                    { rotulo: 'PLD médio', a: 214.8, b: 206.1, unidade: 'R$/MWh' },
+                    { rotulo: 'Carga verificada', a: 42318, b: 41002, unidade: 'MWmed', casas: 0 },
+                  ]}
+                />
+                <DownloadLink arquivo={'pld-' + l.id + '-julho-2026.csv'} formato="CSV" tamanho="284 KB" />
+              </ExpandableRow>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <span className="eti">indentado · o detalhe pertence à primeira coluna</span>
+      <div className="nv-tab-rolo">
+        <table className="nv-tab nv-tab--hover">
+          <thead><tr><th>Ativo</th><th className="nv-num">MWmed</th><th className="nv-num">Divergência</th></tr></thead>
+          <tbody>
+            <ExpandableRow
+              id={s + 'a1'}
+              colunas={3}
+              indentado
+              padrao
+              celulas={[{ valor: 'Fronteira Itaipu' }, { valor: '7 000', num: true }, { valor: '+2,4 %', num: true }]}
+            >
+              <MethodDisclosure
+                aberta
+                id={s + 'm1'}
+                metodo="Diferença entre a telemetria de fronteira e a apuração mensal da CCEE."
+                fonte="ONS · telemetria de fronteira · ponto 4412"
+                metodoPublicadoEm="2025-09-30"
+                dadoColetadoEm="2026-08-04 · 14:30 BRT"
+              >
+                <Provenance fontes={['ONS']} recorte="telemetria" fio={false} />
+              </MethodDisclosure>
+            </ExpandableRow>
+            <ExpandableRow
+              id={s + 'a2'}
+              colunas={3}
+              indentado
+              celulas={[{ valor: 'Fronteira Tucuruí' }, { valor: '8 370', num: true }, { valor: '−0,6 %', num: true }]}
+            >
+              <p>Sem divergência registrada no período.</p>
+            </ExpandableRow>
+          </tbody>
+        </table>
+      </div>
+      <Pagination pagina={3} porPagina={40} total={468} />
+      <Provenance fontes={['ONS', 'CCEE']} recorte="apuração mensal" ilustrativa fio />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<>
+  <div className="g">
+    <Bloco s="c" rotulo="Modo claro" nota="uma linha aberta por vez · paginação explícita, nunca rolagem infinita" />
+    <Bloco s="n" modo="noturno" rotulo="Modo noturno" nota="painel usa o fio da tabela, sem card dentro da grade" />
+  </div>
+  <div className="mob">
+    <Bloco s="mc" largura="mobile" rotulo="Móvel claro" nota="343px · tabela rola, painel ocupa a largura visível" />
+    <Bloco s="mn" largura="mobile" modo="noturno" rotulo="Móvel noturno" nota="343px · + / − dentro da coluna fixa" />
+  </div>
+</>);
+</script></body></html>

@@ -32,6 +32,21 @@ import { TimeTravelScrubber } from './TimeTravelScrubber';
 // selected and pushes assembled snapshots back into the time-travel
 // store. Side-effect-only; no return value.
 import { useAtlasHistorical } from '@/hooks/data/useAtlasHistorical';
+// Wave 5 — all-US infrastructure data hooks. Bbox-driven viewport fetches
+// against CURSOR's /api/infra/* endpoints (or FOUNDRY mock fixtures
+// under MOCK_MODE).
+import { useGenerationUnits } from '@/hooks/data/useGenerationUnits';
+import { useTransmissionSegments } from '@/hooks/data/useTransmissionSegments';
+import { useBatteryAssets } from '@/hooks/data/useBatteryAssets';
+import type {
+  AssetStatus,
+  BatteryAsset,
+  FuelType,
+  GenerationUnit,
+  IsoMarket,
+  LodLevel,
+} from '@/lib/types/infrastructure';
+import { AssetDetailPanel, type SelectedAsset } from './panels/AssetDetailPanel';
 
 const GridAtlasMap = lazy(() => import('./GridAtlasMap'));
 
@@ -260,9 +275,33 @@ export default function GridAtlasView() {
   const [showGasPipelines,   setShowGasPipelines]   = useState(false);
   const [showEarthquakes,    setShowEarthquakes]    = useState(true);
   const [showWeather,        setShowWeather]        = useState(true);
+  // Wave 5 — all-US infrastructure layer toggles (off by default so
+  // first-time visitors see the curated PJM view; one click reveals
+  // the national surface).
+  const [showAllUsGeneration,   setShowAllUsGeneration]   = useState(false);
+  const [showAllUsTransmission, setShowAllUsTransmission] = useState(false);
+  const [showBatteries,         setShowBatteries]         = useState(false);
+
+  // Wave 5 — selected asset for the top-right detail panel. Cleared on
+  // close (✕ click, ESC key, or click outside any asset dot).
+  const [selectedAsset, setSelectedAsset] = useState<SelectedAsset | null>(null);
 
   // Map style
   const [activeStyle, setActiveStyle] = useState<MapStyleId>('terminal');
+
+  // Wave 5 — current viewport bbox + LOD. Phase 6 wires onMoveEnd to
+  // refresh these from the live map. Until then we seed with a CONUS
+  // bbox at low LOD so the layers render the full mock fixture set
+  // immediately on mount.
+  const [viewport, setViewport] = useState<{
+    bbox: [number, number, number, number];
+    lod:  LodLevel;
+    zoom: number;
+  }>({
+    bbox: [-125, 24, -66, 49],
+    lod:  'low',
+    zoom: 5.5,
+  });
 
   // Zone / plant interaction
   const [selectedZone,  setSelectedZone]  = useState<string | null>(null);
@@ -294,6 +333,120 @@ export default function GridAtlasView() {
   // on the store and fires fetchHistoricalWindow when a named event
   // is selected. Side-effect-only; no render contribution.
   useAtlasHistorical();
+
+  // Wave 5 — bbox-driven viewport queries. Pass `null` to disable each
+  // hook when its layer is toggled off; the hooks return empty data
+  // shapes and the layer renders nothing.
+  const generation = useGenerationUnits(
+    showAllUsGeneration ? { bbox: viewport.bbox, limit: 5000 } : null,
+  );
+
+  // Adapter: GenerationUnit[] → GeoJSON.FeatureCollection. Mapbox cluster
+  // sources need this exact shape; we pass through every typed property
+  // so onClick handlers can read the unit fields off the feature.
+  const allUsGenerationGeoJson = useMemo<GeoJSON.FeatureCollection>(() => ({
+    type: 'FeatureCollection',
+    features: generation.data.map((g) => ({
+      type: 'Feature' as const,
+      properties: {
+        id:             g.id,
+        name:           g.name,
+        owner:          g.owner,
+        iso:            g.iso,
+        state:          g.state,
+        fuel:           g.fuel,
+        capacityMw:     g.capacityMw,
+        status:         g.status,
+        codDate:        g.codDate,
+        retirementDate: g.retirementDate,
+        eiaPlantId:     g.eiaPlantId,
+        eiaGeneratorId: g.eiaGeneratorId,
+        kind:           'generation' as const,
+      },
+      geometry: { type: 'Point' as const, coordinates: [g.lon, g.lat] },
+    })),
+  }), [generation.data]);
+
+  // Wave 5 — transmission. LOD passes through to the backend so the
+  // returned geometry is already simplified to the requested precision.
+  const transmission = useTransmissionSegments(
+    showAllUsTransmission ? { bbox: viewport.bbox, lod: viewport.lod, limit: 10000 } : null,
+  );
+
+  const allUsTransmissionGeoJson = useMemo<GeoJSON.FeatureCollection>(() => ({
+    type: 'FeatureCollection',
+    features: transmission.data.map((t) => ({
+      type: 'Feature' as const,
+      properties: {
+        id:              t.id,
+        name:            t.name,
+        owner:           t.owner,
+        iso:             t.iso,
+        // The new schema uses numeric voltage_kv — colorRamps reads this.
+        voltage_kv:      t.voltageKv,
+        segmentLengthKm: t.segmentLengthKm,
+        kind:            'transmission' as const,
+      },
+      geometry: { type: 'LineString' as const, coordinates: t.geometry },
+    })),
+  }), [transmission.data]);
+
+  // Wave 5 — battery storage. No clustering; the layer renders every
+  // result. Server returns totalMw / totalMwh aggregates which the
+  // intel panel consumes directly (Phase 8).
+  const batteries = useBatteryAssets(
+    showBatteries ? { bbox: viewport.bbox, limit: 5000 } : null,
+  );
+
+  // Wave 5 — national readouts derived from the viewport-resident
+  // datasets. Computed in the view (not the hook) so the intel panel
+  // can mix server-side aggregates (batteries.totalMw / totalMwh)
+  // with client-side rollups (top fuels, transmission km) under one
+  // memo umbrella.
+  const nationalTopFuels = useMemo<Array<{ fuel: FuelType; mw: number }>>(() => {
+    if (generation.data.length === 0) return [];
+    const byFuel = new Map<FuelType, number>();
+    for (const g of generation.data) {
+      byFuel.set(g.fuel, (byFuel.get(g.fuel) ?? 0) + g.capacityMw);
+    }
+    return Array.from(byFuel.entries())
+      .map(([fuel, mw]) => ({ fuel, mw }))
+      .sort((a, b) => b.mw - a.mw)
+      .slice(0, 5);
+  }, [generation.data]);
+
+  const nationalTxKm = useMemo<number>(
+    () => transmission.data.reduce((sum, t) => sum + t.segmentLengthKm, 0),
+    [transmission.data],
+  );
+
+  // True if any all-US layer is active — gates the "NATIONAL · VIEWPORT"
+  // section in the intel panel.
+  const hasAllUsLayerOn = showAllUsGeneration || showAllUsTransmission || showBatteries;
+
+  const allUsBatteriesGeoJson = useMemo<GeoJSON.FeatureCollection>(() => ({
+    type: 'FeatureCollection',
+    features: batteries.data.map((b) => ({
+      type: 'Feature' as const,
+      properties: {
+        id:             b.id,
+        name:           b.name,
+        owner:          b.owner,
+        iso:            b.iso,
+        state:          b.state,
+        capacityMw:     b.capacityMw,
+        capacityMwh:    b.capacityMwh,
+        durationHours:  b.durationHours,
+        status:         b.status,
+        codDate:        b.codDate,
+        retirementDate: b.retirementDate,
+        eiaPlantId:     b.eiaPlantId,
+        eiaGeneratorId: b.eiaGeneratorId,
+        kind:           'battery' as const,
+      },
+      geometry: { type: 'Point' as const, coordinates: [b.lon, b.lat] },
+    })),
+  }), [batteries.data]);
 
   // Live data hooks (gracefully return empty when backend not ready)
   // Note: live useOutages() is replaced by snapshot.outages — the time-travel
@@ -329,7 +482,7 @@ export default function GridAtlasView() {
                    : p.wind_speed_ms < 8 ? '#FFB800'
                    : '#FF3B3B',
         temp_color:  p.temperature_c < 5  ? '#00A3FF'
-                   : p.temperature_c < 20 ? '#FFFFFF'
+                   : p.temperature_c < 20 ? C.textPrimary
                    : '#FF3B3B',
         display_label: `${p.label}\n${Math.round(p.temperature_c * 9/5 + 32)}°F · ${Math.round(p.wind_speed_ms * 2.237)}mph`,
       },
@@ -475,16 +628,69 @@ export default function GridAtlasView() {
             substationGeoJson={substationGeoJson}
             pipelineGeoJson={pipelineGeoJson}
             earthquakeGeoJson={earthquakeGeoJson}
+            allUsGenerationGeoJson={allUsGenerationGeoJson}
+            allUsTransmissionGeoJson={allUsTransmissionGeoJson}
+            allUsBatteriesGeoJson={allUsBatteriesGeoJson}
             showTx={showTx}
             showPlants={showPlants}
             showNodes={showNodes}
             showSubstations={showSubstations}
             showGasPipelines={showGasPipelines}
             showEarthquakes={showEarthquakes}
+            showAllUsGeneration={showAllUsGeneration}
+            showAllUsTransmission={showAllUsTransmission}
+            showBatteries={showBatteries}
             weatherGeoJson={showWeather ? weatherGeoJson : null}
             onZoneClick={setSelectedZone}
             onPlantHover={handlePlantHover}
             onZoneHover={setHoveredZone}
+            onViewportChange={setViewport}
+            onGeneratorClick={(props) => {
+              // Reconstruct the typed shape from the unwrapped Mapbox
+              // properties bag. Mapbox returns a flat object; we cast
+              // back to the FOUNDRY contract (lat/lon are absent on
+              // the props since they live on the geometry — the panel
+              // doesn't render them).
+              const p = props as Record<string, unknown>;
+              setSelectedAsset({
+                kind:           'generation',
+                id:             String(p.id ?? ''),
+                eiaPlantId:     (p.eiaPlantId as number | null) ?? null,
+                eiaGeneratorId: (p.eiaGeneratorId as string | null) ?? null,
+                name:           String(p.name ?? 'Unknown'),
+                owner:          (p.owner as string | null) ?? null,
+                iso:            (p.iso as IsoMarket) ?? 'OTHER',
+                state:          String(p.state ?? '—'),
+                lat:            0,
+                lon:            0,
+                fuel:           (p.fuel as FuelType) ?? 'other',
+                capacityMw:     Number(p.capacityMw ?? 0),
+                status:         (p.status as AssetStatus) ?? 'operating',
+                codDate:        (p.codDate as string | null) ?? null,
+                retirementDate: (p.retirementDate as string | null) ?? null,
+              } satisfies { kind: 'generation' } & GenerationUnit);
+            }}
+            onBatteryClick={(props) => {
+              const p = props as Record<string, unknown>;
+              setSelectedAsset({
+                kind:           'battery',
+                id:             String(p.id ?? ''),
+                eiaPlantId:     (p.eiaPlantId as number | null) ?? null,
+                eiaGeneratorId: (p.eiaGeneratorId as string | null) ?? null,
+                name:           String(p.name ?? 'Unknown'),
+                owner:          (p.owner as string | null) ?? null,
+                iso:            (p.iso as IsoMarket) ?? 'OTHER',
+                state:          String(p.state ?? '—'),
+                lat:            0,
+                lon:            0,
+                capacityMw:     Number(p.capacityMw ?? 0),
+                capacityMwh:    (p.capacityMwh as number | null) ?? null,
+                durationHours:  (p.durationHours as number | null) ?? null,
+                status:         (p.status as AssetStatus) ?? 'operating',
+                codDate:        (p.codDate as string | null) ?? null,
+                retirementDate: (p.retirementDate as string | null) ?? null,
+              } satisfies { kind: 'battery' } & BatteryAsset);
+            }}
           />
         </Suspense>
       </ErrorBoundary>
@@ -646,13 +852,19 @@ export default function GridAtlasView() {
         {/* Layers */}
         {expandedPanel === 'layers' && (
         <Panel label="LAYERS">
-          <Toggle label="TRANSMISSION"    active={showTx}             color="#00FFF0"        onToggle={() => setShowTx(p => !p)} />
-          <Toggle label="POWER PLANTS"    active={showPlants}         color={C.electricBlueLight}         onToggle={() => setShowPlants(p => !p)} />
-          <Toggle label="HUB NODES"       active={showNodes}          color="#FFB800"        onToggle={() => setShowNodes(p => !p)} />
-          <Toggle label="GAS PIPELINES"   active={showGasPipelines}   color="#F97316"        onToggle={() => setShowGasPipelines(p => !p)} />
-          <Toggle label="SUBSTATIONS"     active={showSubstations}    color="#FFFFFF"        onToggle={() => setShowSubstations(p => !p)} />
-          <Toggle label="SEISMIC ALERTS"  active={showEarthquakes}    color="#FF3B3B"        onToggle={() => setShowEarthquakes(p => !p)} />
-          <Toggle label="WEATHER"         active={showWeather}        color="#00FFF0"        onToggle={() => setShowWeather(p => !p)} />
+          <Toggle label="TRANSMISSION"      active={showTx}               color="#00FFF0"             onToggle={() => setShowTx(p => !p)} />
+          <Toggle label="POWER PLANTS"      active={showPlants}           color={C.electricBlueLight} onToggle={() => setShowPlants(p => !p)} />
+          <Toggle label="HUB NODES"         active={showNodes}            color="#FFB800"             onToggle={() => setShowNodes(p => !p)} />
+          <Toggle label="GAS PIPELINES"     active={showGasPipelines}     color="#F97316"             onToggle={() => setShowGasPipelines(p => !p)} />
+          <Toggle label="SUBSTATIONS"       active={showSubstations}      color={C.textPrimary}       onToggle={() => setShowSubstations(p => !p)} />
+          <Toggle label="SEISMIC ALERTS"    active={showEarthquakes}      color="#FF3B3B"             onToggle={() => setShowEarthquakes(p => !p)} />
+          <Toggle label="WEATHER"           active={showWeather}          color="#00FFF0"             onToggle={() => setShowWeather(p => !p)} />
+          {/* Wave 5 — all-US infrastructure layer toggles. The new
+              layers render alongside (not in place of) the PJM-focused
+              ones above; the user can show either or both. */}
+          <Toggle label="ALL-US GENERATION" active={!!showAllUsGeneration}   color={C.electricBlueLight} onToggle={() => setShowAllUsGeneration(p => !p)} />
+          <Toggle label="ALL-US TRANSMISSION" active={!!showAllUsTransmission} color="#00FFF0"           onToggle={() => setShowAllUsTransmission(p => !p)} />
+          <Toggle label="BATTERY STORAGE"   active={!!showBatteries}         color={C.fuelBattery}     onToggle={() => setShowBatteries(p => !p)} />
         </Panel>
         )}
 
@@ -804,6 +1016,113 @@ export default function GridAtlasView() {
               })()}
             </div>
           )}
+
+          {/* Wave 5 — National readouts. Visible whenever any all-US
+              layer is on. Pulls from the same hooks the layers consume,
+              so what the user sees on the map matches what the panel
+              counts. */}
+          {hasAllUsLayerOn && (
+            <div style={{ borderTop: `1px solid ${C.borderDefault}`, paddingTop: 8, marginTop: 4 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+                <span style={{ fontFamily: F.mono, fontSize: '0.55rem', color: C.electricBlueLight, letterSpacing: '0.1em' }}>
+                  NATIONAL · VIEWPORT
+                </span>
+                <span style={{ fontFamily: F.mono, fontSize: '0.5rem', color: C.textMuted, letterSpacing: '0.08em' }}>
+                  LOD {viewport.lod.toUpperCase()}
+                </span>
+              </div>
+
+              {/* Top 5 fuels by capacity — only when generation toggle is on */}
+              {showAllUsGeneration && nationalTopFuels.length > 0 && (() => {
+                const total = nationalTopFuels.reduce((s, f) => s + f.mw, 0);
+                return (
+                  <div style={{ marginBottom: 6 }}>
+                    <span style={{
+                      fontFamily: F.mono, fontSize: '0.5rem',
+                      color: C.textMuted, letterSpacing: '0.1em',
+                    }}>
+                      TOP FUELS · {generation.count.toLocaleString()} UNITS
+                    </span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 3, marginTop: 4 }}>
+                      {nationalTopFuels.map((f) => {
+                        const pct = total > 0 ? (f.mw / total) * 100 : 0;
+                        return (
+                          <div key={f.fuel} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                            <div style={{
+                              width:        `${Math.max(4, pct)}%`,
+                              maxWidth:     '60%',
+                              height:       4,
+                              borderRadius: 2,
+                              background:   fuelMixBarColor(f.fuel),
+                              flexShrink:   0,
+                            }} />
+                            <span style={{
+                              fontFamily:         F.mono,
+                              fontSize:           '0.55rem',
+                              color:              C.textSecondary,
+                              fontVariantNumeric: 'tabular-nums',
+                            }}>
+                              {f.fuel} {(f.mw / 1000).toFixed(1)}GW
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* Battery aggregate (server-side from useBatteryAssets) */}
+              {showBatteries && batteries.count > 0 && (
+                <div style={{ marginBottom: 6 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontFamily: F.mono, fontSize: '0.5rem', color: C.textMuted, letterSpacing: '0.1em' }}>
+                      BATTERY · {batteries.count.toLocaleString()}
+                    </span>
+                    <span style={{
+                      fontFamily:         F.mono,
+                      fontSize:           '0.55rem',
+                      color:              C.fuelBattery,
+                      fontVariantNumeric: 'tabular-nums',
+                    }}>
+                      {(batteries.totalMw / 1000).toFixed(2)}GW · {(batteries.totalMwh / 1000).toFixed(1)}GWh
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* Transmission km — sum of segmentLengthKm in viewport */}
+              {showAllUsTransmission && transmission.count > 0 && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontFamily: F.mono, fontSize: '0.5rem', color: C.textMuted, letterSpacing: '0.1em' }}>
+                    TX · {transmission.count.toLocaleString()} SEG
+                  </span>
+                  <span style={{
+                    fontFamily:         F.mono,
+                    fontSize:           '0.55rem',
+                    color:              '#00A3FF',
+                    fontVariantNumeric: 'tabular-nums',
+                  }}>
+                    {nationalTxKm.toLocaleString()} km
+                  </span>
+                </div>
+              )}
+
+              {/* Truncation hint when any layer's response was capped */}
+              {(generation.truncated || transmission.truncated || batteries.truncated) && (
+                <div style={{
+                  marginTop:     6,
+                  fontFamily:    F.mono,
+                  fontSize:      '0.45rem',
+                  color:         '#FFB800',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                }}>
+                  ⚠ result truncated · zoom in for full set
+                </div>
+              )}
+            </div>
+          )}
         </Panel>
         )}
 
@@ -923,6 +1242,12 @@ export default function GridAtlasView() {
 
       {/* ── Wave 2 time-travel scrubber ────────────────────────── */}
       <TimeTravelScrubber />
+
+      {/* ── Wave 5 asset detail panel (top-right) ─────────────── */}
+      <AssetDetailPanel
+        asset={selectedAsset}
+        onClose={() => setSelectedAsset(null)}
+      />
     </div>
   );
 }

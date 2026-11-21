@@ -1,0 +1,33 @@
+<!-- @dsCard group="Mobile" viewport="700x1812" name="Gráfico em móvel" subtitle="Menos marcas no eixo e margem menor abaixo de 380px. O eixo nunca some e a procedência nunca sai" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Gráfico em móvel</title>
+<link rel="stylesheet" href="../styles.css">
+<style>body{width:700px;overflow:hidden}.bl{padding:14px 16px;display:grid;gap:14px;align-content:start}.bl+.bl{border-top:1px solid var(--rule)}.par{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule)}.par>.bl{border-top:0}.par>.bl+.bl{border-left:1px solid var(--rule)}.cab{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.cab b{font-family:var(--font-display);font-size:14px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<script type="text/babel">const { TimeSeriesChart, BarChart, Provenance } = window.NIVARDesignSystem_0a22a8;
+const SERIE = [{x:'00h',y:186.4},{x:'02h',y:181.2},{x:'04h',y:178.9},{x:'06h',y:190.7},{x:'08h',y:206.3},{x:'10h',y:219.8},{x:'12h',y:231.5},{x:'14h',y:242.1},{x:'16h',y:238.6},{x:'18h',y:252.9},{x:'20h',y:227.4},{x:'22h',y:214.8}];
+const BARRAS = [{ label:'SE/CO', value:214.8, cor:'alta' },{ label:'Sul', value:198.11, cor:'baixa' },{ label:'NE', value:96.04, cor:'neutro' },{ label:'N', value:1021.5, cor:'atencao' }];
+function Conteudo({ movel }) {
+  const w = movel ? 311 : 636;
+  return (<React.Fragment>
+    <TimeSeriesChart titulo="PLD horário · SE/CO" unidade="R$/MWh" serie={SERIE} width={w} height={movel ? 152 : 180} />
+    <BarChart titulo="PLD médio por submercado" unidade="R$/MWh" casas={0} data={BARRAS} width={w} height={movel ? 146 : 168} />
+    <Provenance fontes={['CCEE']} recorte="apuração horária" timestamp="2026-08-04 · 14:30 BRT" ilustrativa />
+  </React.Fragment>);
+}
+function Painel() {
+  return (<React.Fragment>
+    <div className="bl"><div className="cab"><b>Desktop · modo claro</b><span className="eti">≥ 640px</span></div><Conteudo /></div>
+    <div className="bl" data-mode="noturno"><div className="cab"><b>Desktop · modo noturno</b><span className="eti">≥ 640px</span></div><Conteudo /></div>
+    <div className="par">
+      <div className="bl" data-largura="mobile"><div className="cab"><b>Móvel · claro</b><span className="eti">343px</span></div><Conteudo movel /></div>
+      <div className="bl" data-mode="noturno" data-largura="mobile"><div className="cab"><b>Móvel · noturno</b><span className="eti">343px</span></div><Conteudo movel /></div>
+    </div>
+  </React.Fragment>);
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Painel />);
+</script></body></html>

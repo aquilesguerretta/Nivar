@@ -1,0 +1,62 @@
+.m8-game {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.m8-lens-grid > button,
+.m8-workbench > * {
+  min-width: 0;
+}
+
+.m8-game button:focus-visible,
+.m8-game select:focus-visible,
+.m8-game textarea:focus-visible {
+  outline: 3px solid #A8462A;
+  outline-offset: 2px;
+}
+
+.m8-lens-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid #CFC1A4;
+  border-left: 1px solid #CFC1A4;
+}
+
+.m8-workbench {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.75fr) minmax(0, 2fr);
+  border: 1px solid #CFC1A4;
+}
+
+.m8-classification-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+}
+
+.m8-debrief-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 860px) {
+  .m8-lens-grid,
+  .m8-workbench,
+  .m8-debrief-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .m8-classification-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .m8-game *,
+  .m8-game *::before,
+  .m8-game *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

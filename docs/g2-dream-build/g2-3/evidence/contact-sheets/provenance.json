@@ -1,0 +1,119 @@
+{
+  "created": "2026-09-12",
+  "operations": "Crop only the known empty IAB canvas where specified; uniform downscale and labelled assembly. No content, wording, color, geometry, or UI state altered.",
+  "sheets": [
+    {
+      "file": "finale-before-after.png",
+      "width": 1600,
+      "height": 792,
+      "bytes": 753567,
+      "sha256": "1d7a966bca910f7e74deae3bf913b0e70ce4add07de90035b4a6e97a9fbfaae6",
+      "sources": [
+        {
+          "source": "baseline/03-finale-footer-dark.png",
+          "crop": {
+            "left": 0,
+            "top": 0,
+            "width": 807,
+            "height": 562
+          },
+          "label": "ANTES · tema escuro, superfície clara",
+          "caption": "Baseline G2.2. Canvas excedente removido; conteúdo original reduzido pelo IAB.",
+          "outputImageWidth": 755,
+          "outputImageHeight": 526
+        },
+        {
+          "source": "evidence/house/finale-1440-dark-native.png",
+          "label": "G2.3 · noite, observações e lacunas",
+          "caption": "Captura nativa 1440 × 1000. Mesma pose; iluminação noturna derivada.",
+          "outputImageWidth": 755,
+          "outputImageHeight": 524
+        }
+      ]
+    },
+    {
+      "file": "terminal-before-after.png",
+      "width": 1600,
+      "height": 792,
+      "bytes": 447127,
+      "sha256": "c050a65c454cef4b42d11bdf4e18612672b6cbefa18830c62362879e1c8a0118",
+      "sources": [
+        {
+          "source": "baseline/05-terminal-desktop-dark.png",
+          "crop": {
+            "left": 0,
+            "top": 0,
+            "width": 807,
+            "height": 562
+          },
+          "label": "ANTES · região principal / leitura",
+          "caption": "Baseline. Apenas canvas excedente recortado. Estado original preservado.",
+          "outputImageWidth": 755,
+          "outputImageHeight": 526
+        },
+        {
+          "source": "terminal/05-native1280-dark-focus.png",
+          "label": "G2.3 · comparação / índice / foco",
+          "caption": "Nativo 1280 × 720. Anterior ao reteste final da correção de recorte.",
+          "outputImageWidth": 755,
+          "outputImageHeight": 425
+        }
+      ]
+    },
+    {
+      "file": "patron-integration.png",
+      "width": 1600,
+      "height": 1412,
+      "bytes": 1330645,
+      "sha256": "3da43f2007f96984ac49f317d28ecbb0f08809360cd1d53b43a6306a067e60ef",
+      "sources": [
+        {
+          "source": "evidence/client/intelligence1440-dark.png",
+          "crop": {
+            "left": 0,
+            "top": 0,
+            "width": 807,
+            "height": 562
+          },
+          "label": "01 / ARGOS · Intelligence",
+          "caption": "Override recortado. Composição examinada; leitura móvel apontada pela crítica.",
+          "outputImageWidth": 755,
+          "outputImageHeight": 526
+        },
+        {
+          "source": "evidence/client/advisory1440-dark.png",
+          "crop": {
+            "left": 0,
+            "top": 0,
+            "width": 807,
+            "height": 562
+          },
+          "label": "02 / SÓCRATES · Advisory",
+          "caption": "Override recortado. A afirmação e suas premissas substituem o vídeo de arquivo.",
+          "outputImageWidth": 755,
+          "outputImageHeight": 526
+        },
+        {
+          "source": "evidence/client/academy1440-dark.png",
+          "crop": {
+            "left": 0,
+            "top": 0,
+            "width": 807,
+            "height": 562
+          },
+          "label": "03 / PERSEU · Academy",
+          "caption": "Override recortado. A família introduz a propriedade; não reproduz suas trilhas.",
+          "outputImageWidth": 755,
+          "outputImageHeight": 526
+        },
+        {
+          "source": "evidence/client/hardware-native-replay-paused.png",
+          "label": "05 / HEFESTO · Hardware",
+          "caption": "Nativo 1280 × 720. Filme de cobre pausado após replay explícito.",
+          "outputImageWidth": 755,
+          "outputImageHeight": 425
+        }
+      ]
+    }
+  ]
+}

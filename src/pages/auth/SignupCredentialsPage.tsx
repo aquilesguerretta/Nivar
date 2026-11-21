@@ -1,3 +1,17 @@
+// ARCHITECT — Identidade de Plataforma, Wave 1: `SignupCredentialsPage`
+// SAIU DA ROTA `/signup`, que agora é o `SignupGate`.
+//
+// Ela pedia nome, email e senha, validava a senha com no mínimo 8
+// caracteres e a DESCARTAVA — `setCredentials` gravava só nome e email
+// num store de sessionStorage. Com a conta de plataforma real (Wave 9
+// do backend), essa coleta virou redundante e a senha passou a existir
+// de verdade.
+//
+// O ARQUIVO PERMANECE porque `ProgressDots` mora aqui e é importado
+// por SignupProfilePage e SignupDetailsPage. O componente abaixo fica
+// sem consumidor de propósito, não por esquecimento: apagá-lo é uma
+// decisão sobre o fluxo legado que esta wave não tomou sozinha.
+
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { C, F } from '@/design/tokens';

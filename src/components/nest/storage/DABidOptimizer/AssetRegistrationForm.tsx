@@ -366,7 +366,7 @@ export function AssetRegistrationForm({ existing, onSubmit }: Props) {
             fontWeight: 600,
             letterSpacing: '0.16em',
             textTransform: 'uppercase',
-            color: '#fff',
+            color: C.textPrimary,
             cursor: errors.length > 0 ? 'not-allowed' : 'pointer',
             opacity: errors.length > 0 ? 0.5 : 1,
           }}

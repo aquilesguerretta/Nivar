@@ -191,7 +191,7 @@ function EntryOverlay({ onDismiss }: { onDismiss: () => void }) {
         fontFamily: F.mono,
         fontSize: '36px',
         fontWeight: 700,
-        color: '#FFFFFF',
+        color: C.textPrimary,
         letterSpacing: '0.15em',
       }}>
         GRIDALPHA
@@ -1725,7 +1725,7 @@ export default function GlobalShell({ initialView = 'nest' }: GlobalShellProps =
   const fromAuth = (location.state as { fromAuth?: boolean } | null)?.fromAuth === true;
   const [activeNav, setActiveNav] = useState<NavState>(initialView);
   const [entryDismissed, setEntryDismissed] = useState(fromAuth);
-  const [selectedZone, setSelectedZone] = useState<string | null>('WESTERN_HUB');
+  const [selectedZone, setSelectedZone] = useState<string | null>('WEST_HUB');
   const selectedProfile = useAuthStore((s) => s.selectedProfile);
 
   // KPI deep-dive views — drive ESC handling and the TopBar breadcrumb.

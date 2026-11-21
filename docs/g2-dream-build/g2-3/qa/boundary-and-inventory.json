@@ -1,0 +1,5541 @@
+{
+  "timestamp": "2026-09-12T22:26:32.903Z",
+  "branch": "wave/nivar-g2-dream-build",
+  "head": "67f3074bd5197e2f18b9ea084501acf989c024e3",
+  "alexandria": {
+    "total": 209,
+    "unchanged": 209,
+    "discrepancies": [],
+    "addedOrChangedPaths": []
+  },
+  "protectedSource": {
+    "trackedFiles": 113,
+    "prefixes": [
+      "app/",
+      "alembic/",
+      "migrations/",
+      "src/pages/operador/",
+      "src/components/operador/",
+      "src/lib/types/",
+      "src/lib/auth/",
+      "src/lib/submissoes/",
+      "src/lib/conversas/",
+      "src/lib/diagnostico/"
+    ],
+    "changes": []
+  },
+  "main": {
+    "routePathsUnchanged": true,
+    "routeCount": 26,
+    "alexandriaRouteBefore": {
+      "path": "/alexandria/*",
+      "element": "{<AlexandriaHome />}"
+    },
+    "alexandriaRouteAfter": {
+      "path": "/alexandria/*",
+      "element": "{<AlexandriaHome />}"
+    },
+    "alexandriaImportUnchanged": true,
+    "alexandriaRouteUnchanged": true,
+    "eagerGlobalStyles": [
+      "./index.css",
+      "mapbox-gl/dist/mapbox-gl.css",
+      "./pages/operador/g2-operations.css"
+    ],
+    "indexCssUnchanged": true,
+    "operatorStylesUnchanged": true,
+    "changedRouteElements": [
+      {
+        "path": "/nest",
+        "element": "{<TerminalRoute initialView=\"nest\" />}"
+      },
+      {
+        "path": "/atlas",
+        "element": "{<TerminalRoute initialView=\"atlas\" />}"
+      },
+      {
+        "path": "/peregrine",
+        "element": "{<TerminalRoute initialView=\"peregrine\" />}"
+      },
+      {
+        "path": "/analytics",
+        "element": "{<TerminalRoute initialView=\"analytics\" />}"
+      },
+      {
+        "path": "/vault",
+        "element": "{<TerminalRoute initialView=\"vault\" />}"
+      },
+      {
+        "path": "/vault/alexandria",
+        "element": "{<TerminalRoute initialView=\"vault\" />}"
+      },
+      {
+        "path": "/vault/alexandria/lesson/:lessonId",
+        "element": "{<TerminalRoute initialView=\"vault\" />}"
+      },
+      {
+        "path": "/vault/alexandria/entry/:entrySlug",
+        "element": "{<TerminalRoute initialView=\"vault\" />}"
+      },
+      {
+        "path": "/vault/:id",
+        "element": "{<TerminalRoute initialView=\"vault\" />}"
+      },
+      {
+        "path": "/us",
+        "element": "{\n            <Suspense fallback={<RouteLoading label=\"Loading US portal…\" />}>\n              <LandingPage />\n            </Suspense>\n          }"
+      },
+      {
+        "path": "/operador/*",
+        "element": "{\n            <Suspense fallback={<RouteLoading label=\"Carregando console…\" />}>\n              <OperadorRouter />\n            </Suspense>\n          }"
+      }
+    ]
+  },
+  "inventory": {
+    "preexistingStatusEntries": 867,
+    "currentPreexistingFiles": 2611,
+    "preexistingTrackedChanges": [
+      {
+        "status": " M",
+        "path": "docs/g2-dream-build/g2-1/material/nivar-material-study.blend"
+      }
+    ],
+    "newRuntime": [
+      {
+        "status": " M",
+        "path": "src/components/g2/AdvisoryIntakeTheme.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/components/g2/Brand.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/components/g2/HeroFilm.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/components/g2/HouseChapters.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/components/g2/HouseFinale.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/components/g2/NivarShell.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/components/g2/advisory-intake.css"
+      },
+      {
+        "status": " M",
+        "path": "src/components/g2/hero-film.css"
+      },
+      {
+        "status": " M",
+        "path": "src/components/g2/house-finale.css"
+      },
+      {
+        "status": " M",
+        "path": "src/main.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/pages/br/EditorialPages.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/pages/br/FamilyPages.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/pages/br/G2Portal.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/pages/conta-de-luz-express/ContaDeLuzExpressPage.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/pages/diagnostico-energetico/DiagnosticoEnergeticoPage.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/pages/diagnostico-energetico/HistoricoDiagnostico.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/pages/solar-proposal-validator/SolarProposalValidatorPage.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/pages/terminal-brasil/TerminalBrasil.tsx"
+      },
+      {
+        "status": " M",
+        "path": "src/pages/terminal-brasil/sample.ts"
+      },
+      {
+        "status": " M",
+        "path": "src/pages/terminal-brasil/terminal-motion.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/components/g2/AdvisoryExamination.tsx"
+      },
+      {
+        "status": "??",
+        "path": "src/components/g2/CopperStudy.tsx"
+      },
+      {
+        "status": "??",
+        "path": "src/components/g2/MethodWorkbench.tsx"
+      },
+      {
+        "status": "??",
+        "path": "src/components/g2/advisory-examination.css"
+      },
+      {
+        "status": "??",
+        "path": "src/components/g2/advisory-intake-format.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/components/g2/copper-study.css"
+      },
+      {
+        "status": "??",
+        "path": "src/components/g2/g23-house.css"
+      },
+      {
+        "status": "??",
+        "path": "src/components/g2/method-evidence.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/components/g2/method-workbench.css"
+      },
+      {
+        "status": "??",
+        "path": "src/components/g2/nivar-theme.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/components/g2/use-nivar-favicon.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/pages/br/g23-families.css"
+      },
+      {
+        "status": "??",
+        "path": "src/pages/terminal-brasil/AnalysisInstrument.tsx"
+      },
+      {
+        "status": "??",
+        "path": "src/pages/terminal-brasil/TerminalReading.tsx"
+      },
+      {
+        "status": "??",
+        "path": "src/pages/terminal-brasil/analysis-format.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/pages/terminal-brasil/analysis.ts"
+      },
+      {
+        "status": "??",
+        "path": "src/pages/terminal-brasil/terminal-reading.css"
+      },
+      {
+        "status": "??",
+        "path": "src/pages/terminal-brasil/terminal-workspace.css"
+      },
+      {
+        "status": "??",
+        "path": "src/pages/terminal-brasil/workspace-state.ts"
+      }
+    ],
+    "newTests": [
+      {
+        "status": "??",
+        "path": "tests/terminal-brasil/analysis.test.ts"
+      }
+    ],
+    "newPublicAssets": [
+      {
+        "status": "??",
+        "path": "public/g2/g23/brand/favicon-16.png"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/brand/favicon-180.png"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/brand/favicon-32.png"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/brand/favicon-48.png"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/brand/favicon.svg"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/brand/nivar-incision-graphite-1600.webp"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/brand/nivar-incision-graphite-900.webp"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/brand/nivar-incision-mineral-1600.webp"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/brand/nivar-incision-mineral-900.webp"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/brand/nivar-interval-micro.svg"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/brand/nivar-interval.svg"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/brand/nivar-monogram.svg"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/finale/diogenes-night-1536.webp"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/finale/diogenes-night-900.webp"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/hardware/copper-motion-960.mp4"
+      },
+      {
+        "status": "??",
+        "path": "public/g2/g23/hardware/copper-motion-poster.webp"
+      }
+    ],
+    "newDocs": [
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/HANDOFF.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/OWNER-BRIEF.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/01-interval-optical-graphite.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/01-interval-optical-mineral.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/02-aperture-graphite.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/02-aperture-mineral.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/03-incision-graphite.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/03-incision-mineral.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/inscription-study.py"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/nivar-g23-inscription-study.blend"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/nivar-g23-selected-incision.blend"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/render-log.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/render-manifest.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/selected-inscription.py"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/selected-interval-graphite.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/selected-interval-mineral.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/selected-render-log.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/blender/selected-render-manifest.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/brand-comparison.html"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/build-brand-studies.mjs"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/export-material.mjs"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/export-selected.mjs"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/integration.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/material-manifest.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/material-study.html"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/selected-brand-manifest.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/wordmark-contact-sheet-iteration01.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/wordmark-contact-sheet.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/wordmark-contact-sheet.svg"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/wordmarks/00-g21-original-monogram.svg"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/wordmarks/00-g21-original.svg"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/wordmarks/01-interval-optical-monogram.svg"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/wordmarks/01-interval-optical.svg"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/wordmarks/02-aperture-monogram.svg"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/wordmarks/02-aperture.svg"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/wordmarks/03-incision-monogram.svg"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/wordmarks/03-incision.svg"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/art-direction/wordmarks/candidates.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/asset-manifest.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/assets/copper-motion/README.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/assets/copper-motion/contact-sheet-24.jpg"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/assets/copper-motion/copper-original.mp4"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/assets/copper-motion/endpoints-0-3-6s.jpg"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/assets/copper-motion/manifest.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/assets/copper-motion/processing-log.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/assets/copper-motion/review.html"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/assets/diogenes-night-original.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/01-portal-desktop-light-full.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/01-portal-desktop-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/02-portal-desktop-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/03-finale-footer-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/04-finale-footer-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/05-terminal-desktop-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/06-terminal-desktop-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/07-terminal-mobile-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/08-advisory-desktop-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/09-academy.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/09-academy.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/10-intelligence.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/10-intelligence.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/11-software.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/11-software.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/12-hardware.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/12-hardware.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/13-conta-de-luz.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/14-solar-native-viewport.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/15-diagnostico.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/16-alexandria-unchanged.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/17-portal-mobile-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/18-hero-mobile-430-measure.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/18-hero-mobile-430-reloaded.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/alexandria-sha256.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/build-before.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/baseline/starting-worktree.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/evidence/fresh-terminal-01-start-desktop.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/evidence/fresh-terminal-02-compare-7d.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/evidence/fresh-terminal-03-provenance.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/evidence/fresh-terminal-04-crop-selection-drift.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/evidence/fresh-terminal-05-load-table.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-craft-01.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-01.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/ariadne-region-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/ariadne-source-result-above-fold.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-film-00.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-0-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-0-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-1-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-1-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-10-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-10-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-11-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-11-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-12-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-12-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-13-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-13-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-14-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-14-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-15-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-15-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-16-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-16-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-17-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-17-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-18-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-18-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-19-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-19-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-2-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-2-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-20-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-20-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-21-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-21-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-22-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-22-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-23-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-23-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-3-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-3-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-4-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-4-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-5-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-5-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-6-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-6-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-7-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-7-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-8-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-8-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-9-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-9-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-framed-metadata.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-0-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-0-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-1-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-1-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-10-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-10-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-11-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-11-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-12-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-12-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-13-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-13-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-14-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-14-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-15-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-15-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-16-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-16-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-17-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-17-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-18-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-18-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-19-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-19-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-2-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-2-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-20-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-20-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-21-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-21-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-22-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-22-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-23-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-23-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-3-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-3-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-4-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-4-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-5-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-5-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-6-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-6-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-7-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-7-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-8-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-8-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-9-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-live-9-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-pause-10.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-play-00.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-play-01.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-play-02.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-play-03.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-play-04.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-play-05.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-play-06.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/desktop-play-07.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/family-intelligence-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/finale-desktop-gap.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/finale-desktop-start.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/finale-source-open.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/five-gestures-01-reset.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/five-gestures-03-gap-endpoint.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/five-gestures-03.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/five-gestures-04-gap-claim.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/five-gestures-05-note.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-4-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-4-1.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-4-3.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-4-4.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-4-6.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-4-7.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-4-9.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-5-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-5-2.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-5-3.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-5-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-5-6.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-5-8.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-5-9.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-6-1.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-6-2.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-6-3.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-6-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/fixed-path-metadata.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/footer-desktop-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/footer-desktop-light-settled.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/footer-desktop-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reference-spark-start.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-1-00.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-1-25.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-1-50.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-1-75.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-2-00.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-2-25.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-2-50.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-2-75.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-3-00.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-3-25.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-3-50.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-3-75.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-4-00.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-4-25.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-4-50.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-4-75.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-5-00.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-6-25.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-6-50.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-6-75.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-7-00.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-7-25.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-7-50.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-7-75.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/reload-fixed-metadata.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-00.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-01.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-02.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-03.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-04.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-05.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-06.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-07.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-08.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-09.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-10.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-11.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-12.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-motion-evidence/timestamp-native-fixed-metadata.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/critics/fresh-terminal-01.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/academy1440-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/academy430-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/advisory1440-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/advisory390-light-costs.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/browser-measurements.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/conta-luz-native-synthetic503.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/conta-luz1440-auth-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/conta-luz390-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/diagnostico1440-review-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/diagnostico390-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/fixture-requests.jsonl"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/fixture-server.mjs"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/hardware-native-replay-paused.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/hardware1440-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/hardware430-copper-motion.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/hardware430-light-time.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/independent-browser-qa.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/intelligence1440-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/intelligence430-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/qa-document.pdf"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/qa-invalid.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/solar-native-anon-access.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/solar1440-auth-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/solar430-anon-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/client/solar430-auth-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/contact-sheets/assemble.mjs"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/contact-sheets/build-asset-manifest.mjs"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/contact-sheets/finale-before-after.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/contact-sheets/patron-integration.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/contact-sheets/provenance.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/contact-sheets/terminal-before-after.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/house/academy-430-final.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/house/finale-1440-dark-native.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/house/finale-1440-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/house/finale-1440-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/house/finale-430-dark-final.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/house/finale-430-light-final.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/house/finale-native-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/house/intelligence-390-final.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/house/method-390-gap-preserved.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/house/method-transmit-dark-native.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/house/portal-1440-light.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/house/software-1440-dark-final.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/house/software-1440-light-final.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/assemble_recordings.py"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/contact-sheet-selections.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-000.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-001.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-002.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-003.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-004.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-005.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-006.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-007.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-008.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-009.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-010.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-011.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-012.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-013.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-014.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-015.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-016.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-017.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-018.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-019.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-020.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-021.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-022.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-023.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-024.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-025.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-026.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-027.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-028.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-029.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-030.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-031.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-032.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-033.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-034.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-035.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-036.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-037.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-038.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-039.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-040.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-041.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-042.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-043.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-044.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-045.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-046.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-047.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-048.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-049.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-050.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-051.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-052.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-053.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-054.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-055.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-056.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-057.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-058.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-059.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-060.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-061.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-062.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-063.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-064.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-065.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-066.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-067.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-068.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-069.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-070.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-071.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-072.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-073.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-074.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-075.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-076.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-077.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-078.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-079.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-080.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-081.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/frame-082.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/desktop-final/metadata.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/final-recordings-manifest.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/decoded-master-first.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-0-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-0-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-1-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-1-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-10-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-10-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-11-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-11-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-12-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-12-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-13-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-13-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-14-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-14-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-15-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-15-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-16-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-16-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-17-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-17-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-18-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-18-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-19-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-19-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-2-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-2-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-20-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-20-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-21-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-21-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-22-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-22-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-23-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-23-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-3-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-3-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-4-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-4-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-5-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-5-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-6-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-6-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-7-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-7-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-8-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-8-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-9-0.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-prepared/desktop-framed-9-5.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-provenance.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled-rgb-lossless.mp4"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled.ffconcat"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-1280-sampled.mp4"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-contact.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/decoded-master-first.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-000.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-001.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-002.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-003.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-004.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-005.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-006.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-007.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-008.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-009.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-010.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-011.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-012.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-013.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-014.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-015.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-016.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-017.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-018.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-019.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-020.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-021.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-022.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-023.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-024.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-025.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-026.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-027.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-028.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-029.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-030.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-031.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-032.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-033.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-034.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-035.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-036.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-037.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-038.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-039.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-040.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-041.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-042.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-043.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-044.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-045.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-046.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-047.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-048.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-049.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-050.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-051.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-052.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-053.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-054.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-055.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-056.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-057.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-058.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-059.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-060.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-061.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-062.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-063.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-064.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-065.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-066.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-067.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-068.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-069.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-070.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-071.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-072.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-073.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-074.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-075.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-076.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-077.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-078.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-079.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-080.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-081.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-prepared/frame-082.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-preview-check.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-provenance.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-rgb-lossless.mp4"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final-validation.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final.ffconcat"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-desktop-final.mp4"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/decoded-master-first.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-000.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-001.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-002.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-003.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-004.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-005.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-006.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-007.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-008.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-009.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-010.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-011.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-012.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-013.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-014.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-015.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-016.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-017.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-018.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-019.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-020.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-021.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-022.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-023.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-024.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-025.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-026.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-027.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-028.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-029.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-030.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-031.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-032.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-033.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-034.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-035.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-036.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-037.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-038.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-039.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-040.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-041.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-042.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-043.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-044.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-045.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-046.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-047.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-048.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-049.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-050.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-051.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-052.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-053.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-054.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-055.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-056.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-057.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-058.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-059.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-060.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-061.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-062.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-063.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-064.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-065.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-066.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-067.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-068.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-069.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-070.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-071.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-072.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-073.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-074.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-075.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-076.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-077.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-078.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-079.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-080.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-081.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-082.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-083.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-084.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-085.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-086.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-087.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-088.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-089.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-090.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-091.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-092.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-093.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-094.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-095.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-096.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-097.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-098.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-099.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-100.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-101.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-102.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-103.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-104.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-105.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-106.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-107.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-108.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-109.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-110.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-111.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-112.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-113.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-114.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-115.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-116.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-117.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-118.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-119.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-120.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-121.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-122.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-123.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-124.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-125.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-126.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-127.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-128.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-129.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-130.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-131.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-132.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-133.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-134.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-135.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-136.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-137.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-138.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-prepared/frame-139.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-provenance.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native-rgb-lossless.mp4"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native.ffconcat"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-390-native.mp4"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-contact.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/decoded-master-first.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-000.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-001.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-002.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-003.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-004.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-005.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-006.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-007.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-008.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-009.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-010.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-011.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-012.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-013.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-014.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-015.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-016.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-017.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-018.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-019.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-020.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-021.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-022.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-023.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-024.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-025.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-026.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-027.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-028.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-029.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-030.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-031.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-032.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-033.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-034.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-035.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-036.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-037.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-038.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-039.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-040.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-041.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-042.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-043.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-044.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-045.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-046.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-047.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-048.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-049.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-050.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-051.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-052.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-053.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-054.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-055.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-056.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-057.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-058.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-059.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-060.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-061.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-062.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-063.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-064.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-065.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-066.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-067.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-068.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-069.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-070.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-071.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-072.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-073.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-074.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-075.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-076.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-077.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-078.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-079.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-080.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-081.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-082.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-083.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-084.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-085.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-086.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-087.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-088.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-089.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-090.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-091.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-092.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-093.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-094.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-095.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-096.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-097.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-098.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-099.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-100.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-101.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-102.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-103.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-104.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-105.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-106.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-107.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-108.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-109.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-110.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-111.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-112.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-113.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-114.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-115.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-116.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-117.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-118.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-prepared/frame-119.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-preview-check.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-provenance.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-rgb-lossless.mp4"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final-validation.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final.ffconcat"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/hero-mobile-final.mp4"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/inspect_padding.py"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-000.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-001.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-002.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-003.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-004.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-005.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-006.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-007.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-008.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-009.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-010.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-011.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-012.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-013.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-014.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-015.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-016.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-017.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-018.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-019.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-020.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-021.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-022.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-023.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-024.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-025.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-026.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-027.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-028.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-029.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-030.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-031.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-032.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-033.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-034.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-035.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-036.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-037.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-038.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-039.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-040.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-041.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-042.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-043.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-044.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-045.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-046.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-047.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-048.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-049.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-050.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-051.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-052.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-053.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-054.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-055.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-056.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-057.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-058.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-059.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-060.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-061.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-062.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-063.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-064.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-065.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-066.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-067.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-068.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-069.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-070.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-071.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-072.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-073.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-074.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-075.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-076.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-077.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-078.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-079.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-080.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-081.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-082.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-083.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-084.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-085.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-086.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-087.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-088.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-089.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-090.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-091.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-092.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-093.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-094.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-095.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-096.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-097.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-098.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-099.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-100.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-101.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-102.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-103.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-104.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-105.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-106.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-107.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-108.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-109.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-110.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-111.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-112.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-113.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-114.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-115.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-116.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-117.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-118.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-119.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-120.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-121.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-122.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-123.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-124.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-125.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-126.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-127.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-128.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-129.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-130.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-131.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-132.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-133.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-134.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-135.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-136.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-137.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-138.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/frame-139.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-390/metadata.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-000.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-001.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-002.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-003.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-004.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-005.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-006.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-007.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-008.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-009.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-010.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-011.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-012.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-013.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-014.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-015.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-016.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-017.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-018.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-019.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-020.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-021.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-022.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-023.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-024.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-025.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-026.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-027.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-028.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-029.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-030.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-031.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-032.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-033.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-034.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-035.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-036.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-037.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-038.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-039.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-040.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-041.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-042.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-043.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-044.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-045.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-046.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-047.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-048.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-049.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-050.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-051.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-052.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-053.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-054.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-055.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-056.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-057.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-058.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-059.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-060.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-061.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-062.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-063.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-064.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-065.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-066.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-067.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-068.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-069.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-070.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-071.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-072.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-073.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-074.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-075.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-076.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-077.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-078.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-079.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-080.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-081.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-082.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-083.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-084.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-085.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-086.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-087.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-088.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-089.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-090.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-091.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-092.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-093.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-094.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-095.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-096.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-097.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-098.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-099.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-100.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-101.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-102.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-103.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-104.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-105.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-106.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-107.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-108.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-109.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-110.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-111.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-112.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-113.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-114.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-115.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-116.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-117.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-118.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/frame-119.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/mobile-final/metadata.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/package_recording_proof.py"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/recording-validation.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-contact.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/decoded-master-first.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-000.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-001.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-002.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-003.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-004.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-005.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-006.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-007.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-008.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-009.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-010.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-011.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-012.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-013.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-014.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-015.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-016.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-017.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-018.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-019.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-020.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-021.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-022.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-023.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-024.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-025.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-026.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-027.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-028.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-029.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-030.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-031.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-032.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-033.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-034.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-035.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-036.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-037.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-038.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-039.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-040.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-041.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-042.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-043.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-044.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-045.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-046.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-047.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-048.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-049.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-050.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-051.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-052.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-053.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-054.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-055.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-056.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-057.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-058.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-059.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-060.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-061.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-062.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-063.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-064.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-065.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-066.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-067.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-068.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-069.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-070.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-071.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-072.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-073.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-074.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-075.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-076.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-077.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-078.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-079.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-080.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-081.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-082.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-083.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-084.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-085.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-prepared/live-086.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-preview-check.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-provenance.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-rgb-lossless.mp4"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native-validation.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native.ffconcat"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal-1440-native.mp4"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/00-original.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/01-crop-included.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/02-crop-excluded.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/03-index-table.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/04-spatial.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/05-source-context.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-000.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-001.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-002.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-003.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-004.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-005.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-006.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-007.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-008.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-009.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-010.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-011.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-012.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-013.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-014.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-015.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-016.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-017.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-018.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-019.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-020.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-021.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-022.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-023.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-024.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-025.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-026.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-027.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-028.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-029.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-030.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-031.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-032.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-033.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-034.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-035.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-036.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-037.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-038.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-039.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-040.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-041.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-042.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-043.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-044.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-045.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-046.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-047.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-048.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-049.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-050.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-051.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-052.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-053.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-054.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-055.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-056.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-057.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-058.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-059.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-060.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-061.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-062.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-063.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-064.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-065.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-066.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-067.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-068.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-069.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-070.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-071.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-072.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-073.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-074.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-075.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-076.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-077.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-078.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-079.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-080.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-081.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-082.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-083.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-084.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-085.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-086.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/live-metadata.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/evidence/motion/terminal/steps.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/performance/README.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/performance/after-route-split-main.tsx.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/performance/after-route-split.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/performance/before-route-split-main.tsx.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/performance/before-route-split.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/performance/build-after-route-split.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/performance/build-before-route-split.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/performance/detector-main.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/performance/inspect-route-boundary.mjs"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/performance/route-contract-verification.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/performance/route-verification-log.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/performance/verify-route-contract.mjs"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/qa/alexandria-hash-comparison.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/qa/audit-boundaries.mjs"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/qa/boundary-and-inventory.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/qa/boundary-summary.txt"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/qa/final-gates.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/qa/responsive-final.json"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/research/REFERENCE-DOSSIER.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/research/captures/refero-steep.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/research/captures/steep-product.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/research/client/client-truth-and-plan.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/research/client/implementation-record.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/research/house/brand-and-finale-directions.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/research/house/creative-tool-preflight.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/research/house/history-and-assets.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/research/house/live-reference-mechanisms.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/research/terminal/audit-and-plan.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/review.html"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/routes.md"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/terminal/01-mobile390-dark.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/terminal/02-mobile390-light-table.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/terminal/03-mobile430-light-spatial.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/terminal/04-desktop1920-dark-focus.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/terminal/05-native1280-dark-focus.png"
+      },
+      {
+        "status": "??",
+        "path": "docs/g2-dream-build/g2-3/terminal/implementation-and-qa.md"
+      }
+    ],
+    "unclassified": []
+  }
+}

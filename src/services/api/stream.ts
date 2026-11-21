@@ -4,7 +4,8 @@
 // callbacks fan out from the central event listener. Reconnects with
 // exponential backoff on disconnect.
 
-import { BASE_URL, MOCK_MODE } from './client';
+import { MOCK_MODE } from './client';
+import { browserApiUrl } from '@/lib/backendBase';
 import type {
   HeartbeatStreamUpdate,
   LMPStreamUpdate,
@@ -86,7 +87,7 @@ function ensureConnection(): void {
 
   setStatus('connecting');
   try {
-    source = new EventSource(`${BASE_URL}/api/stream`, {
+    source = new EventSource(browserApiUrl('/api/stream'), {
       withCredentials: false,
     });
   } catch {

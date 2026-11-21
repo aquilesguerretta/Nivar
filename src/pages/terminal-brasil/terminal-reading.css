@@ -1,0 +1,10 @@
+.g23-terminal-reading { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%; padding: 17px 18px; text-align: left; color: var(--g2t-ink, #eee7df); background: linear-gradient(115deg, var(--g2t-accent-soft, #352820), transparent 90%); border: 1px solid var(--g2t-rule, #494145); border-left-color: var(--g2t-accent, #ddae7a); font-family: var(--g2-sans, Arial, sans-serif); text-decoration: none; box-sizing: border-box; }
+.g23-terminal-reading .g23-reading-label { display: flex; justify-content: space-between; gap: 12px; width: 100%; color: var(--g2t-accent, #ddae7a); font: 10px/1.5 var(--g2-mono, monospace); letter-spacing: .045em; }
+.g23-terminal-reading .g23-reading-context { display: flex; align-items: center; gap: 9px; font: 12px/1.5 var(--g2-mono, monospace); }
+.g23-terminal-reading .g23-reading-context i { width: 2px; height: 2px; background: currentColor; }
+.g23-terminal-reading .g23-reading-value { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; font: 27px/1.2 var(--g2-mono, monospace); letter-spacing: -.05em; }
+.g23-terminal-reading .g23-reading-value small { color: var(--g2t-secondary, #c9c1b9); font: 11px/1.5 var(--g2-mono, monospace); letter-spacing: 0; }
+.g23-terminal-reading .g23-reading-source { color: var(--g2t-secondary, #c9c1b9); font: 11px/1.5 var(--g2-sans, Arial, sans-serif); }
+.g23-terminal-reading .g23-reading-record { color: var(--g2t-muted, #b4aaa1); font: 10px/1.7 var(--g2-mono, monospace); overflow-wrap: anywhere; }
+.g23-terminal-reading:focus-visible { outline: 2px solid var(--g2t-accent, #ddae7a); outline-offset: 4px; }
+button.g23-terminal-reading:hover, a.g23-terminal-reading:hover { border-color: var(--g2t-accent, #ddae7a); }

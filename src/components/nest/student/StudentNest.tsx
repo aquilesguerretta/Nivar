@@ -13,6 +13,10 @@ import {
   SANDBOX_PNL,
 } from '@/lib/mock/student-mock';
 import type { ConceptNode } from '@/lib/types/vault';
+import { SandboxTradingView } from './SandboxTrading/SandboxTradingView';
+import { ProjectSandboxView } from './ProjectSandbox/ProjectSandboxView';
+
+type StudentTab = 'overview' | 'sandbox' | 'projects';
 
 // ─── HERO BLOCK ───────────────────────────────────────────────────
 function StudentHeroBlock() {
@@ -397,7 +401,7 @@ function CareerIntelSection() {
 }
 
 // ─── SANDBOX (right column) ───────────────────────────────────────
-function SandboxSection() {
+function SandboxSection({ onOpenSandbox }: { onOpenSandbox: () => void }) {
   const [hovered, setHovered] = useState(false);
   return (
     <FlowSection eyebrow="SANDBOX" identity="Try a trade.">
@@ -419,12 +423,13 @@ function SandboxSection() {
           </span>
         </div>
         <button
+          onClick={onOpenSandbox}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
           style={{
             height: 36,
             background: hovered ? C.electricBlueMuted : C.electricBlue,
-            color: '#FFFFFF',
+            color: C.textPrimary,
             border: 'none',
             borderRadius: R.md,
             fontFamily: F.mono,
@@ -515,33 +520,106 @@ function SectionHeader({ eyebrow, identity }: { eyebrow: string; identity: strin
   );
 }
 
+// ─── TAB STRIP ────────────────────────────────────────────────────
+function StudentTabButton({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      style={{
+        background: 'transparent',
+        border: 'none',
+        cursor: 'pointer',
+        fontFamily: F.mono,
+        fontSize: 12,
+        fontWeight: 600,
+        letterSpacing: '0.16em',
+        textTransform: 'uppercase',
+        color: active ? C.electricBlue : C.textMuted,
+        padding: `${S.sm} 0`,
+        borderBottom: active
+          ? `2px solid ${C.electricBlue}`
+          : '2px solid transparent',
+        transition: 'color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
 // ─── MAIN ─────────────────────────────────────────────────────────
 export function StudentNest() {
+  const [tab, setTab] = useState<StudentTab>('overview');
+
   return (
     <PageAtmosphere tint="student">
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: '2fr 1fr',
-          gap: S.sm,
-          padding: S.xl,
+          position: 'relative',
+          zIndex: 1,
+          display: 'flex',
+          gap: S.lg,
+          padding: `${S.md} ${S.xl} 0`,
+          borderBottom: `1px solid ${C.borderDefault}`,
         }}
       >
-        {/* LEFT COLUMN */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: S.xl }}>
-          <StudentHeroBlock />
-          <ConceptMapCard />
-          <TodaysLessonsSection />
-        </div>
-
-        {/* RIGHT COLUMN */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: S.xl }}>
-          <InterviewPrepSection />
-          <CareerIntelSection />
-          <SandboxSection />
-          <CohortSection />
-        </div>
+        <StudentTabButton
+          active={tab === 'overview'}
+          onClick={() => setTab('overview')}
+        >
+          OVERVIEW
+        </StudentTabButton>
+        <StudentTabButton
+          active={tab === 'sandbox'}
+          onClick={() => setTab('sandbox')}
+        >
+          SANDBOX TRADING
+        </StudentTabButton>
+        <StudentTabButton
+          active={tab === 'projects'}
+          onClick={() => setTab('projects')}
+        >
+          PROJECT SANDBOX
+        </StudentTabButton>
       </div>
+
+      {tab === 'overview' && (
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '2fr 1fr',
+            gap: S.sm,
+            padding: S.xl,
+          }}
+        >
+          {/* LEFT COLUMN */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: S.xl }}>
+            <StudentHeroBlock />
+            <ConceptMapCard />
+            <TodaysLessonsSection />
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: S.xl }}>
+            <InterviewPrepSection />
+            <CareerIntelSection />
+            <SandboxSection onOpenSandbox={() => setTab('sandbox')} />
+            <CohortSection />
+          </div>
+        </div>
+      )}
+
+      {tab === 'sandbox' && <SandboxTradingView />}
+      {tab === 'projects' && <ProjectSandboxView />}
     </PageAtmosphere>
   );
 }

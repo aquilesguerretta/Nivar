@@ -1,0 +1,9 @@
+:root{
+--ease:cubic-bezier(0.65,0,0.35,1);/* @kind other */ 
+--dur-estado:150ms;/* @kind other */--dur-hover:200ms;/* @kind other */--dur-desenho:700ms;/* @kind other */--dur-desenho-longo:1200ms;/* @kind other */
+/* Anima: opacidade, cor de texto, cor de fio, stroke-dashoffset, altura de barra.
+ Nunca: cor de fundo, posicao de layout, escala de card em hover. */
+--trans-estado:opacity var(--dur-estado) var(--ease),color var(--dur-estado) var(--ease),border-color var(--dur-estado) var(--ease);/* @kind other */ 
+--trans-hover:color var(--dur-hover) var(--ease),border-color var(--dur-hover) var(--ease),opacity var(--dur-hover) var(--ease);/* @kind other */ 
+}
+@media (prefers-reduced-motion:reduce){:root{--dur-estado:1ms;/* @kind other */--dur-hover:1ms;/* @kind other */--dur-desenho:1ms;/* @kind other */--dur-desenho-longo:1ms;/* @kind other */}}

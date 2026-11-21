@@ -1,34 +1,61 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-type LmpRow = {
-  zone_name: string;
+import { browserApiUrl } from '@/lib/backendBase';
+
+type Envelope<T> = { data: T };
+
+type LmpCurrent = {
   lmp_total: number;
-  energy_component: number;
-  congestion_component: number;
-  loss_component: number;
-  timestamp: string;
-  timestamp_utc: string;
+  lmp_energy: number;
+  lmp_congestion: number;
+  lmp_loss: number;
 };
 
-type WeatherRow = {
-  temperature_f: number;
+type LmpAllZones = Record<string, { lmp_total: number }>;
+type LmpHistoryRow = { timestamp: string; lmp_total: number };
+
+type WeatherData = {
+  points: Array<{ temperature_c: number; precip_mm: number }>;
+};
+
+type ReserveMargin = {
   load_forecast_mw: number;
-  actual_load_mw: number;
-  weather_alert: string;
+  load_actual_mw: number;
 };
 
-type LmpResponse = { data?: LmpRow[] };
-type WeatherResponse = { data?: WeatherRow[] };
+type ZonePriceExtreme = {
+  zone: string;
+  price: number;
+};
 
-const DEFAULT_V1 = 'https://gridalpha-production.up.railway.app';
-const V1_BASE =
-  (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '') || DEFAULT_V1;
+const CANONICAL_ZONES = new Set([
+  'WEST_HUB', 'COMED', 'AEP', 'ATSI', 'DAY', 'DEOK', 'DUQ', 'DOMINION',
+  'DPL', 'EKPC', 'PPL', 'PECO', 'PSEG', 'JCPL', 'PEPCO', 'BGE', 'METED',
+  'PENELEC', 'RECO', 'OVEC',
+]);
+
+const ZONE_ALIASES: Record<string, string> = {
+  DOM: 'DOMINION',
+  MET_ED: 'METED',
+  'PJM-RTO': 'WEST_HUB',
+  SYSTEM: 'WEST_HUB',
+  WEST: 'WEST_HUB',
+  WESTERN_HUB: 'WEST_HUB',
+};
 
 function toApiZone(zone: string | null): string {
-  const z = (zone || 'WEST_HUB').toUpperCase();
-  if (z === 'WEST_HUB' || z === 'SYSTEM') return 'PJM-RTO';
-  if (z === 'DOMINION') return 'DOM';
-  return z;
+  const requested = (zone || 'WEST_HUB').toUpperCase();
+  const canonical = ZONE_ALIASES[requested] ?? requested;
+  return CANONICAL_ZONES.has(canonical) ? canonical : 'WEST_HUB';
+}
+
+async function fetchJson<T>(path: string): Promise<T> {
+  const res = await fetch(browserApiUrl(path), {
+    signal: AbortSignal.timeout(8000),
+    headers: { Accept: 'application/json' },
+  });
+  if (!res.ok) throw new Error(`${path} HTTP ${res.status}`);
+  return (await res.json()) as T;
 }
 
 function avg(values: number[]): number {
@@ -47,51 +74,52 @@ export interface LiveOpsData {
   zoneHistory: number[];
   rtoPrice: number;
   temperatureF: number;
+  weatherSampleSize: number;
   loadForecastMw: number;
   actualLoadMw: number;
   weatherAlert: string;
+  highestZone: ZonePriceExtreme | null;
+  lowestZone: ZonePriceExtreme | null;
   avg24h: number;
 }
 
 export function useLiveOpsData(selectedZone: string | null): LiveOpsData {
-  const [snapshotRows, setSnapshotRows] = useState<LmpRow[]>([]);
-  const [historyRows, setHistoryRows] = useState<LmpRow[]>([]);
-  const [weatherRows, setWeatherRows] = useState<WeatherRow[]>([]);
+  const [current, setCurrent] = useState<LmpCurrent | null>(null);
+  const [allZones, setAllZones] = useState<LmpAllZones>({});
+  const [historyRows, setHistoryRows] = useState<LmpHistoryRow[]>([]);
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [reserve, setReserve] = useState<ReserveMargin | null>(null);
   const apiZone = useMemo(() => toApiZone(selectedZone), [selectedZone]);
 
-  const fetchSnapshotAndWeather = useCallback(async () => {
-    const [lmpRes, weatherRes] = await Promise.all([
-      fetch(`${V1_BASE}/lmp?snapshot=true`, { signal: AbortSignal.timeout(8000) }),
-      fetch(`${V1_BASE}/weather?zone=PJM-RTO&snapshot=true`, { signal: AbortSignal.timeout(8000) }),
+  const fetchSnapshot = useCallback(async (zone: string) => {
+    return Promise.all([
+      fetchJson<Envelope<LmpCurrent>>(
+        `/api/lmp/current?zone=${encodeURIComponent(zone)}`,
+      ),
+      fetchJson<Envelope<LmpAllZones>>('/api/lmp/all-zones'),
+      fetchJson<WeatherData>('/api/weather/current'),
+      fetchJson<Envelope<ReserveMargin>>('/api/reserve-margin/current'),
     ]);
-    if (!lmpRes.ok) throw new Error(`LMP HTTP ${lmpRes.status}`);
-    if (!weatherRes.ok) throw new Error(`Weather HTTP ${weatherRes.status}`);
-    const lmpJson = (await lmpRes.json()) as LmpResponse;
-    const weatherJson = (await weatherRes.json()) as WeatherResponse;
-    setSnapshotRows(Array.isArray(lmpJson.data) ? lmpJson.data : []);
-    setWeatherRows(Array.isArray(weatherJson.data) ? weatherJson.data : []);
   }, []);
 
   const fetchZoneHistory = useCallback(async (zone: string) => {
-    const res = await fetch(
-      `${V1_BASE}/lmp?zone=${encodeURIComponent(zone)}&snapshot=false&hours=24`,
-      { signal: AbortSignal.timeout(8000) },
+    return fetchJson<Envelope<LmpHistoryRow[]>>(
+      `/api/lmp/24h?zone=${encodeURIComponent(zone)}`,
     );
-    if (!res.ok) throw new Error(`Zone LMP HTTP ${res.status}`);
-    const json = (await res.json()) as LmpResponse;
-    setHistoryRows(Array.isArray(json.data) ? json.data : []);
   }, []);
 
   useEffect(() => {
     let mounted = true;
     const run = async () => {
       try {
-        await fetchSnapshotAndWeather();
+        const [lmp, zones, weatherNow, reserveNow] = await fetchSnapshot(apiZone);
+        if (!mounted) return;
+        setCurrent(lmp.data);
+        setAllZones(zones.data);
+        setWeather(weatherNow);
+        setReserve(reserveNow.data);
       } catch {
-        if (mounted) {
-          setSnapshotRows((p) => p);
-          setWeatherRows((p) => p);
-        }
+        // Preserve the last good snapshot during transient backend failures.
       }
     };
     void run();
@@ -100,15 +128,16 @@ export function useLiveOpsData(selectedZone: string | null): LiveOpsData {
       mounted = false;
       clearInterval(id);
     };
-  }, [fetchSnapshotAndWeather]);
+  }, [apiZone, fetchSnapshot]);
 
   useEffect(() => {
     let mounted = true;
     const run = async () => {
       try {
-        await fetchZoneHistory(apiZone);
+        const history = await fetchZoneHistory(apiZone);
+        if (mounted) setHistoryRows(history.data);
       } catch {
-        if (mounted) setHistoryRows((p) => p);
+        // Preserve the last good history during transient backend failures.
       }
     };
     void run();
@@ -119,29 +148,43 @@ export function useLiveOpsData(selectedZone: string | null): LiveOpsData {
     };
   }, [apiZone, fetchZoneHistory]);
 
-  const zoneNow = snapshotRows.find((r) => r.zone_name === apiZone);
-  const rtoNow = snapshotRows.find((r) => r.zone_name === 'PJM-RTO');
-  const latestWeather = weatherRows.length ? weatherRows[weatherRows.length - 1] : undefined;
-  const zoneHistory = historyRows.map((r) => Number(r.lmp_total || 0));
+  const zoneHistory = historyRows.map((row) => Number(row.lmp_total || 0));
   const delta =
     zoneHistory.length >= 2
       ? zoneHistory[zoneHistory.length - 1] - zoneHistory[zoneHistory.length - 2]
       : 0;
+  const temperatures = weather?.points.map((point) => point.temperature_c) ?? [];
+  const averageTemperatureC = avg(temperatures);
+  const hasPrecipitation = weather?.points.some((point) => point.precip_mm > 0) ?? false;
+  const zonePrices = Object.entries(allZones)
+    .map(([zone, value]) => ({ zone, price: Number(value.lmp_total) }))
+    .filter((entry) => Number.isFinite(entry.price));
+  const highestZone = zonePrices.length
+    ? zonePrices.reduce((highest, entry) => entry.price > highest.price ? entry : highest)
+    : null;
+  const lowestZone = zonePrices.length
+    ? zonePrices.reduce((lowest, entry) => entry.price < lowest.price ? entry : lowest)
+    : null;
 
   return {
-    live: Boolean(zoneNow) && Boolean(latestWeather),
+    live: current !== null && weather !== null,
     apiZone,
-    lmpPrice: Number(zoneNow?.lmp_total ?? 0),
+    lmpPrice: Number(current?.lmp_total ?? 0),
     lmpDelta: Number(delta),
-    lmpEnergy: Number(zoneNow?.energy_component ?? 0),
-    lmpCongestion: Number(zoneNow?.congestion_component ?? 0),
-    lmpLoss: Number(zoneNow?.loss_component ?? 0),
+    lmpEnergy: Number(current?.lmp_energy ?? 0),
+    lmpCongestion: Number(current?.lmp_congestion ?? 0),
+    lmpLoss: Number(current?.lmp_loss ?? 0),
     zoneHistory,
-    rtoPrice: Number(rtoNow?.lmp_total ?? 0),
-    temperatureF: Number(latestWeather?.temperature_f ?? 0),
-    loadForecastMw: Number(latestWeather?.load_forecast_mw ?? 0),
-    actualLoadMw: Number(latestWeather?.actual_load_mw ?? 0),
-    weatherAlert: String(latestWeather?.weather_alert ?? 'Unknown'),
+    rtoPrice: Number(allZones.WEST_HUB?.lmp_total ?? 0),
+    temperatureF: temperatures.length ? averageTemperatureC * 9 / 5 + 32 : 0,
+    weatherSampleSize: temperatures.length,
+    loadForecastMw: Number(reserve?.load_forecast_mw ?? 0),
+    actualLoadMw: Number(reserve?.load_actual_mw ?? 0),
+    weatherAlert: weather
+      ? hasPrecipitation ? 'Precipitation' : 'No precipitation'
+      : 'Unavailable',
+    highestZone,
+    lowestZone,
     avg24h: avg(zoneHistory),
   };
 }

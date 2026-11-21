@@ -5,7 +5,7 @@ import { useUIStore } from '@/stores/uiStore';
 import { StatusDot } from '@/components/terminal/StatusDot';
 import { useAIChat } from '@/hooks/useAIChat';
 import { useAIContextSnapshot } from '@/hooks/useAIContextSnapshot';
-import { isApiKeyConfigured } from '@/services/anthropic';
+import { useAuth } from '@/lib/auth/AuthContext';
 import { useConversationStore } from '@/stores/conversationStore';
 import {
   CONTEXTUAL_PROMPT_LABELS,
@@ -28,6 +28,7 @@ const CARET_KEYFRAMES_CSS =
 
 export function AIAssistant() {
   const open = useUIStore((s) => s.aiAssistantOpen);
+  const { user, loading: authLoading } = useAuth();
   // Capture a fresh surface snapshot whenever the panel opens or the user
   // navigates while it's open. The hook already memoises on pathname /
   // profile / search params. The pending-trigger's subContext is merged
@@ -45,7 +46,13 @@ export function AIAssistant() {
 
   const [draft, setDraft] = useState('');
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  const apiKeyOk = isApiKeyConfigured();
+  const canUseAI = !authLoading && user !== null;
+  const authRequired = !authLoading && user === null;
+  const accessLabel = authLoading
+    ? 'Checking access'
+    : canUseAI
+      ? 'Online'
+      : 'Sign in required';
 
   // Auto-scroll to bottom whenever the visible content grows.
   useEffect(() => {
@@ -57,21 +64,21 @@ export function AIAssistant() {
   // Consume any pending InlineAITrigger payload on open. Pre-fill the
   // input or auto-submit depending on `autoSubmit`.
   useEffect(() => {
-    if (!open) return;
+    if (!open || authLoading) return;
     const pending = consumePendingTrigger();
     if (!pending) return;
-    if (pending.autoSubmit) {
+    if (pending.autoSubmit && canUseAI) {
       void send(pending.prompt);
     } else {
       setDraft(pending.prompt);
     }
-  }, [open, consumePendingTrigger, send]);
+  }, [open, authLoading, canUseAI, consumePendingTrigger, send]);
 
   if (!open) return null;
 
   const handleSubmit = () => {
     const text = draft;
-    if (!text.trim() || isStreaming) return;
+    if (!canUseAI || !text.trim() || isStreaming) return;
     setDraft('');
     void send(text);
   };
@@ -123,8 +130,8 @@ export function AIAssistant() {
           flexShrink: 0,
         }}
       >
-        <StatusDot status={apiKeyOk ? 'live' : 'offline'} />
-        <span>GridAlpha AI · {apiKeyOk ? 'Online' : 'Offline'}</span>
+        <StatusDot status={canUseAI ? 'live' : 'offline'} />
+        <span>GridAlpha AI · {accessLabel}</span>
         <div style={{ flex: 1 }} />
         {messages.length > 0 && (
           <button
@@ -173,7 +180,58 @@ export function AIAssistant() {
           gap: S.md,
         }}
       >
-        {messages.length === 0 && !isStreaming && !error && (
+        {authRequired && (
+          <div
+            role="status"
+            style={{
+              alignSelf: 'stretch',
+              marginTop: S.md,
+              padding: S.lg,
+              border: `1px solid ${C.borderAccent}`,
+              borderRadius: R.md,
+              background: C.electricBlueWash,
+              fontFamily: F.sans,
+              fontSize: 13,
+              lineHeight: 1.5,
+              color: C.textSecondary,
+              textAlign: 'center',
+            }}
+          >
+            Sign in to use GridAlpha AI.
+            <Link
+              to="/entrar"
+              style={{
+                display: 'block',
+                marginTop: S.md,
+                fontFamily: F.mono,
+                fontSize: 10,
+                fontWeight: 600,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: C.electricBlueLight,
+                textDecoration: 'none',
+              }}
+            >
+              Sign in to NIVAR
+            </Link>
+          </div>
+        )}
+
+        {authLoading && messages.length === 0 && (
+          <div
+            style={{
+              alignSelf: 'center',
+              marginTop: S.xl,
+              fontFamily: F.sans,
+              fontSize: 13,
+              color: C.textMuted,
+            }}
+          >
+            Checking account access…
+          </div>
+        )}
+
+        {canUseAI && messages.length === 0 && !isStreaming && !error && (
           <div
             style={{
               alignSelf: 'center',
@@ -307,7 +365,7 @@ export function AIAssistant() {
       {/* Quick-action chips — pre-populated prompts for common questions
           about the current surface. Hidden once the conversation has any
           messages so the chips don't compete with the chat history. */}
-      {messages.length === 0 && !isStreaming && !error && apiKeyOk && (
+      {messages.length === 0 && !isStreaming && !error && canUseAI && (
         <QuickActionChips
           onPick={(id) => {
             void send(CONTEXTUAL_PROMPTS[id]);
@@ -333,12 +391,14 @@ export function AIAssistant() {
           onKeyDown={handleKeyDown}
           rows={1}
           placeholder={
-            apiKeyOk
+            authLoading
+              ? 'Checking account access…'
+              : canUseAI
               ? "Ask anything about today's market..."
-              : 'Add VITE_ANTHROPIC_API_KEY to .env.local to enable.'
+              : 'Sign in to a NIVAR account to use the AI service.'
           }
           aria-label="Ask the GridAlpha AI"
-          disabled={!apiKeyOk}
+          disabled={!canUseAI}
           style={{
             flex: 1,
             resize: 'none',
@@ -356,17 +416,17 @@ export function AIAssistant() {
         <button
           type="button"
           onClick={handleSubmit}
-          disabled={!apiKeyOk || isStreaming || !draft.trim()}
+          disabled={!canUseAI || isStreaming || !draft.trim()}
           aria-label="Send message"
           style={{
             flexShrink: 0,
             padding: `${S.xs} ${S.md}`,
             background:
-              !apiKeyOk || isStreaming || !draft.trim()
+              !canUseAI || isStreaming || !draft.trim()
                 ? 'transparent'
                 : C.electricBlueWash,
             border: `1px solid ${
-              !apiKeyOk || isStreaming || !draft.trim()
+              !canUseAI || isStreaming || !draft.trim()
                 ? C.borderDefault
                 : C.borderActive
             }`,
@@ -377,11 +437,11 @@ export function AIAssistant() {
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
             color:
-              !apiKeyOk || isStreaming || !draft.trim()
+              !canUseAI || isStreaming || !draft.trim()
                 ? C.textMuted
                 : C.electricBlue,
             cursor:
-              !apiKeyOk || isStreaming || !draft.trim()
+              !canUseAI || isStreaming || !draft.trim()
                 ? 'default'
                 : 'pointer',
             transition: 'all 150ms cubic-bezier(0.4, 0, 0.2, 1)',

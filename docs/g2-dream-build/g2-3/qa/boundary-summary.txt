@@ -1,0 +1,101 @@
+{
+  "alexandria": {
+    "total": 209,
+    "unchanged": 209,
+    "discrepancies": [],
+    "addedOrChangedPaths": []
+  },
+  "protectedSource": {
+    "trackedFiles": 113,
+    "prefixes": [
+      "app/",
+      "alembic/",
+      "migrations/",
+      "src/pages/operador/",
+      "src/components/operador/",
+      "src/lib/types/",
+      "src/lib/auth/",
+      "src/lib/submissoes/",
+      "src/lib/conversas/",
+      "src/lib/diagnostico/"
+    ],
+    "changes": []
+  },
+  "main": {
+    "routePathsUnchanged": true,
+    "routeCount": 26,
+    "alexandriaRouteBefore": {
+      "path": "/alexandria/*",
+      "element": "{<AlexandriaHome />}"
+    },
+    "alexandriaRouteAfter": {
+      "path": "/alexandria/*",
+      "element": "{<AlexandriaHome />}"
+    },
+    "alexandriaImportUnchanged": true,
+    "alexandriaRouteUnchanged": true,
+    "eagerGlobalStyles": [
+      "./index.css",
+      "mapbox-gl/dist/mapbox-gl.css",
+      "./pages/operador/g2-operations.css"
+    ],
+    "indexCssUnchanged": true,
+    "operatorStylesUnchanged": true,
+    "changedRouteElements": [
+      {
+        "path": "/nest",
+        "element": "{<TerminalRoute initialView=\"nest\" />}"
+      },
+      {
+        "path": "/atlas",
+        "element": "{<TerminalRoute initialView=\"atlas\" />}"
+      },
+      {
+        "path": "/peregrine",
+        "element": "{<TerminalRoute initialView=\"peregrine\" />}"
+      },
+      {
+        "path": "/analytics",
+        "element": "{<TerminalRoute initialView=\"analytics\" />}"
+      },
+      {
+        "path": "/vault",
+        "element": "{<TerminalRoute initialView=\"vault\" />}"
+      },
+      {
+        "path": "/vault/alexandria",
+        "element": "{<TerminalRoute initialView=\"vault\" />}"
+      },
+      {
+        "path": "/vault/alexandria/lesson/:lessonId",
+        "element": "{<TerminalRoute initialView=\"vault\" />}"
+      },
+      {
+        "path": "/vault/alexandria/entry/:entrySlug",
+        "element": "{<TerminalRoute initialView=\"vault\" />}"
+      },
+      {
+        "path": "/vault/:id",
+        "element": "{<TerminalRoute initialView=\"vault\" />}"
+      },
+      {
+        "path": "/us",
+        "element": "{\n            <Suspense fallback={<RouteLoading label=\"Loading US portal…\" />}>\n              <LandingPage />\n            </Suspense>\n          }"
+      },
+      {
+        "path": "/operador/*",
+        "element": "{\n            <Suspense fallback={<RouteLoading label=\"Carregando console…\" />}>\n              <OperadorRouter />\n            </Suspense>\n          }"
+      }
+    ]
+  },
+  "inventoryCounts": {
+    "preexistingStatusEntries": 867,
+    "currentPreexistingFiles": 2611,
+    "preexistingTrackedChanges": 1,
+    "newRuntime": 39,
+    "newTests": 1,
+    "newPublicAssets": 16,
+    "newDocs": 1301,
+    "unclassified": 0
+  }
+}

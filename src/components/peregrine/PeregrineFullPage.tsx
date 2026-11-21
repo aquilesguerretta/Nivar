@@ -158,7 +158,7 @@ export default function PeregrineFullPage({
           }}>↻ REFRESH</button>
           <button onClick={() => setShowBrief(true)} style={{
             background: C.electricBlue, border: 'none',
-            borderRadius: R.md, color: '#fff',
+            borderRadius: R.md, color: C.textPrimary,
             fontFamily: F.mono, fontSize: '10px', fontWeight: '600',
             padding: '7px 16px', cursor: 'pointer',
             letterSpacing: '0.10em',
@@ -197,7 +197,7 @@ export default function PeregrineFullPage({
             {tab.label}
             <span style={{
               background: feedTab === tab.id ? C.electricBlue : C.bgSurface,
-              color: feedTab === tab.id ? '#fff' : C.textMuted,
+              color: feedTab === tab.id ? C.textPrimary : C.textMuted,
               borderRadius: '10px', padding: '1px 7px',
               fontSize: '10px', fontWeight: '500',
               transition: 'all 150ms ease',

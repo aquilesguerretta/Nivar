@@ -1,0 +1,198 @@
+[
+  {
+    "name": "M1-sample-before",
+    "at": "2026-09-12T00:30:14.188Z",
+    "value": {
+      "url": "http://127.0.0.1:4173/br/familia/software",
+      "period": "7d",
+      "metric": "load",
+      "source": "sample",
+      "tone": "paper",
+      "region": "N\nREGIÃO SELECIONADA",
+      "probe": "OBSERVAÇÃO / N\n05/09\n9,1 GW",
+      "sourceContext": " OBSERVAÇÃO EM EXAMENorte  Carga9,1 GW2026-09-05NVR-DEMO-2026.09.10-v1",
+      "exportDisabled": false,
+      "curve": 1,
+      "entry": "/br/terminal?region=norte&period=7d&metric=load&source=sample&tone=paper&note=1&observation=1"
+    }
+  },
+  {
+    "name": "M1-sample-after",
+    "at": "2026-09-12T00:30:16.092Z",
+    "value": {
+      "url": "http://127.0.0.1:4173/br/terminal?region=norte&period=7d&metric=load&source=sample&tone=paper&note=1&observation=1",
+      "period": "7d",
+      "metric": "load",
+      "source": "sample",
+      "tone": "paper",
+      "region": "N\nREGIÃO SELECIONADA",
+      "probe": "OBSERVAÇÃO / N\n05/09\n9,1 GW",
+      "sourceContext": " OBSERVAÇÃO EM EXAMENorte  Carga9,1 GW2026-09-05NVR-DEMO-2026.09.10-v1",
+      "exportDisabled": false,
+      "curve": 1
+    }
+  },
+  {
+    "name": "M1-unavailable-before",
+    "at": "2026-09-12T00:30:26.311Z",
+    "value": {
+      "url": "http://127.0.0.1:4173/br/familia/software",
+      "period": "7d",
+      "metric": "load",
+      "source": "unavailable",
+      "tone": "paper",
+      "region": "N\nREGIÃO SELECIONADA",
+      "sourceContext": " FONTE INDISPONÍVELNorte  Carga— GWsem observaçãoNenhum valor de mercado conectado",
+      "exportDisabled": true,
+      "curve": 0,
+      "entry": "/br/terminal?region=norte&period=7d&metric=load&source=unavailable&tone=paper&note=1&observation=1"
+    }
+  },
+  {
+    "name": "reduced-raf-start",
+    "at": "2026-09-12T00:30:26.314Z",
+    "value": {
+      "() => {\n      frame = requestAnimationFrame(enter);\n    }": 1,
+      "() => {\n      const instrument = journey.current?.querySelector(\".g22-aj-terminal\");\n      const destination = instrument?.querySelector(\".g2t-context-plane\");\n      if (!instrument || !destination) {\n        frame = requestAnimationFrame(enter);\n        return;\n      }\n      destination.scrollIntoView({ block: \"center\", behavior: \"instant\" });\n   ": 93
+    }
+  },
+  {
+    "name": "reduced-raf-end",
+    "at": "2026-09-12T00:30:27.224Z",
+    "value": {
+      "() => {\n      frame = requestAnimationFrame(enter);\n    }": 1,
+      "() => {\n      const instrument = journey.current?.querySelector(\".g22-aj-terminal\");\n      const destination = instrument?.querySelector(\".g2t-context-plane\");\n      if (!instrument || !destination) {\n        frame = requestAnimationFrame(enter);\n        return;\n      }\n      destination.scrollIntoView({ block: \"center\", behavior: \"instant\" });\n   ": 308
+    }
+  },
+  {
+    "name": "M1-unavailable-after",
+    "at": "2026-09-12T00:30:27.877Z",
+    "value": {
+      "url": "http://127.0.0.1:4173/br/terminal?region=norte&period=7d&metric=load&source=unavailable&tone=paper&note=1&observation=1",
+      "period": "7d",
+      "metric": "load",
+      "source": "unavailable",
+      "tone": "paper",
+      "region": "N\nREGIÃO SELECIONADA",
+      "sourceContext": " FONTE INDISPONÍVELNorte  Carga— GWsem observaçãoNenhum valor de mercado conectado",
+      "exportDisabled": true,
+      "curve": 0
+    }
+  },
+  {
+    "name": "M1-unavailable-dialog",
+    "at": "2026-09-12T00:30:28.217Z",
+    "value": {
+      "text": "FONTE INDISPONÍVEL\nNorte\nCarga\n— GW\nsem observação\nNenhum valor de mercado conectado",
+      "open": true
+    }
+  },
+  {
+    "name": "threshold-initial",
+    "at": "2026-09-12T00:30:31.167Z",
+    "value": {
+      "layout": {
+        "width": 1440,
+        "height": 1000,
+        "bodyWidth": 1440,
+        "rootWidth": 1440,
+        "shellWidth": 1438
+      },
+      "terminals": 0,
+      "entered": "true",
+      "reading": "02 / PREÇO SIMULADO · SUDESTE / C. OESTE\n\n149,00\nR$/MWh\n\n14h\n10.09.2026 · UTC−3"
+    }
+  },
+  {
+    "name": "threshold-selected",
+    "at": "2026-09-12T00:30:32.301Z",
+    "value": {
+      "reading": "02 / PREÇO SIMULADO · SUDESTE / C. OESTE\n\n103,00\nR$/MWh\n\n02h\n10.09.2026 · UTC−3",
+      "datetime": "2026-09-10T02:00:00-03:00",
+      "range": "2",
+      "source": "03 / VOLTAR À ORIGEM\n\nSérie sintética NIVAR · NVR-DEMO-2026.09.10-v1. Perfil fixo para explorar o produto. Não representa PLD, preço executável ou previsão. A linha conecta as 24 observações; a seleção não demonstra uma causa.",
+      "open": true,
+      "entry": "/br/terminal?region=sudesteCentroOeste&period=24h&metric=price&observation=2"
+    }
+  },
+  {
+    "name": "threshold-handoff",
+    "at": "2026-09-12T00:30:33.281Z",
+    "value": {
+      "url": "http://127.0.0.1:4173/br/terminal?region=sudesteCentroOeste&period=24h&metric=price&observation=2",
+      "period": "24h",
+      "metric": "price",
+      "source": "sample",
+      "tone": "graphite",
+      "region": "SE/CO\nREGIÃO SELECIONADA",
+      "probe": "OBSERVAÇÃO / SE/CO\n02h\n103,00 R$/MWh",
+      "sourceContext": " OBSERVAÇÃO EM EXAMESudeste / Centro-Oeste  Preço103,00 R$/MWh2026-09-10T02:00:00-03:00NVR-DEMO-2026.09.10-v1",
+      "exportDisabled": false,
+      "curve": 1
+    }
+  },
+  {
+    "name": "hero-manual-procurar",
+    "at": "2026-09-12T00:30:35.456Z",
+    "value": {
+      "time": "16.250",
+      "chapter": "procurar",
+      "opacity": "1",
+      "visibility": "visible",
+      "playing": "false"
+    }
+  },
+  {
+    "name": "hero-loop",
+    "at": "2026-09-12T00:30:37.851Z",
+    "value": {
+      "time": "0.363",
+      "chapter": "medir"
+    }
+  },
+  {
+    "name": "finale-dialog-initial",
+    "at": "2026-09-12T00:30:38.194Z",
+    "value": {
+      "open": true,
+      "focus": "Fechar caderno",
+      "dialog": {
+        "x": 230,
+        "y": 32,
+        "width": 980,
+        "height": 936,
+        "top": 32,
+        "right": 1210,
+        "bottom": 968,
+        "left": 230
+      },
+      "title": "O método deixa vestígios."
+    }
+  },
+  {
+    "name": "finale-keyboard-question",
+    "at": "2026-09-12T00:30:38.679Z",
+    "value": {
+      "focus": "04\nQuestionar\nSócrates",
+      "pressed": [
+        "true",
+        "false",
+        "false",
+        "false",
+        "false"
+      ],
+      "reading": "Um instante preservado.\n68 MW · 00:00 · amostra 01"
+    }
+  },
+  {
+    "name": "finale-escape",
+    "at": "2026-09-12T00:30:38.940Z",
+    "value": {
+      "open": true,
+      "focus": ""
+    }
+  },
+  {
+    "error": "Error: Error: Occluded .g22-finale-reveal\n    at <anonymous>:1:186\n    at <anonymous>:1:240\n    at evaluate (file:///C:/dev/gridalpha-v2-nivar-g2/docs/g2-dream-build/g2-1/terminal/native-session.mjs:14:152)\n    at async click (file:///C:/dev/gridalpha-v2-nivar-g2/docs/g2-dream-build/g2-2/critics/system-01-amendment/recheck.mjs:9:61)\n    at async file:///C:/dev/gridalpha-v2-nivar-g2/docs/g2-dream-build/g2-2/critics/system-01-amendment/recheck.mjs:23:901"
+  }
+]

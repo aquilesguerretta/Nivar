@@ -174,7 +174,7 @@ function ToolbarButton({ label, active, onClick, children }: ToolbarButtonProps)
             : C.bgElevated,
         border: `1px solid ${active ? C.electricBlue : C.borderDefault}`,
         borderRadius: R.sm,
-        color: active ? '#fff' : hover ? C.electricBlue : C.textSecondary,
+        color: active ? C.textPrimary : hover ? C.electricBlue : C.textSecondary,
         cursor: 'pointer',
         transition:
           'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1), border-color 150ms cubic-bezier(0.4, 0, 0.2, 1)',

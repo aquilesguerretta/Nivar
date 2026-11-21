@@ -180,7 +180,7 @@ export function OptimizerView() {
                 fontWeight: 600,
                 letterSpacing: '0.16em',
                 textTransform: 'uppercase',
-                color: '#fff',
+                color: C.textPrimary,
                 cursor: 'pointer',
               }}
             >

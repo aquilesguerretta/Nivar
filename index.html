@@ -1,8 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=2" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,7 +13,87 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
     />
-    <title>gridalpha-v2</title>
+    <!-- ─── Identidade e SEO ─────────────────────────────────────
+         Portal Debt Wave 1. Antes desta wave o cabeçalho do documento
+         tinha exatamente um título de uma palavra — NIVAR — e nada
+         mais: sem description, sem Open Graph, sem theme-color.
+
+         Nenhum exemplo aqui é escrito como marcação literal, de
+         propósito: raspador de link que usa expressão regular em vez de
+         parser leria a tag citada dentro deste comentário e mostraria
+         ela em vez da de verdade.
+
+         POR QUE ISSO É ESTÁTICO E NÃO POR ROTA. As cinco páginas que
+         ajustam `document.title` fazem isso em `useEffect`, e raspador
+         de link (WhatsApp, LinkedIn, Slack, Facebook) NÃO roda JS —
+         então o que está aqui é o que TODA pré-visualização de link, de
+         QUALQUER rota, mostra. Título por rota continua sendo trabalho
+         do React; isto é o piso.
+
+         A CÓPIA NÃO FOI INVENTADA. Cada frase é recorte do que já está
+         na superfície: `PortalBR.tsx:411` (título do hero),
+         `PortalBR.tsx:412` (subtítulo) e `FaixaIndependencia.tsx:73`
+         (as cinco fontes nomeadas). A convenção `NIVAR — <coisa>` é a
+         que as cinco páginas já usam em `document.title`.
+
+         `lang` era `en` com o produto inteiro em português. Passa a
+         `pt-BR`, que é o idioma da raiz e da maioria da superfície. As
+         páginas em português já declaram `lang="pt-BR"` no próprio
+         container; PENDÊNCIA: as telas do terminal americano
+         (`/us`, `/nest`) precisam declarar `lang="en"` no container
+         delas, pelo mesmo mecanismo.
+
+         SEM `<link rel="canonical">`, DE PROPÓSITO. O rewrite
+         `/(.*) → /index.html` do `vercel.json` serve este arquivo em
+         toda rota; um canonical fixo diria ao buscador que
+         `/conta-de-luz-express` é duplicata da raiz. Canonical por rota
+         exige render no servidor, que não existe aqui.
+
+         SEM `og:image`, E ISSO FOI MEDIDO, NÃO PRESUMIDO. Não há
+         cartão 1200×630 no repositório. O único candidato,
+         `/nivar-mark.png`, foi decodificado: 1024×1024, RGBA, 573 KB,
+         conteúdo ocupando 942×937 do quadrado. Um corte 1.91:1
+         centrado — o que Twitter, LinkedIn e WhatsApp aplicam — preserva
+         57,3% do conteúdo e decepa 201 px em cima e 199 px embaixo, ou
+         seja, a cabeça da figura e a base da lanterna. Somam-se dois
+         defeitos: fundo TRANSPARENTE (as plataformas compõem sobre
+         branco ou preto, imprevisivelmente) e 573 KB, acima do teto de
+         ~300 KB que o WhatsApp usa para buscar og:image. Cartão de
+         compartilhamento de verdade é passe de desenho próprio; até lá,
+         prévia só de texto é melhor que prévia recortada errado. -->
+    <title>NIVAR — Inteligência independente do setor elétrico brasileiro</title>
+    <meta
+      name="description"
+      content="Inteligência independente do setor elétrico brasileiro: dados, formação e análise. Todo dado com origem citada — ONS, ANEEL, CCEE, EPE e IBGE."
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="NIVAR" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:url" content="https://nivar.com.br/" />
+    <meta
+      property="og:title"
+      content="NIVAR — Inteligência independente do setor elétrico brasileiro"
+    />
+    <meta
+      property="og:description"
+      content="Dados, formação e análise do mercado de energia do Brasil. Todo dado tem origem citada — ONS, ANEEL, CCEE, EPE e IBGE."
+    />
+
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="NIVAR — Inteligência independente do setor elétrico brasileiro"
+    />
+    <meta
+      name="twitter:description"
+      content="Dados, formação e análise do mercado de energia do Brasil. Todo dado tem origem citada — ONS, ANEEL, CCEE, EPE e IBGE."
+    />
+
+    <!-- Papel e tinta da escala NIVAR (`src/design/nivar/colors.css`),
+         não hex escolhido aqui. -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F6F2E9" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14120F" />
   </head>
   <body>
     <div id="root"></div>

@@ -1,0 +1,38 @@
+.nv-export{display:grid;gap:14px}
+.nv-export__barra{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;padding-bottom:8px;border-bottom:var(--fio) solid var(--rule)}
+.nv-export__eti{font-family:var(--font-body);font-weight:500;font-size:11px;line-height:1.1;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.nv-export__ops{display:flex;align-items:baseline;gap:8px}
+.nv-export__op{font-family:var(--font-data);font-weight:400;font-size:11px;line-height:1.2;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);background:none;border:0;border-bottom:var(--fio) solid transparent;padding:0 0 3px;cursor:pointer;transition:color var(--dur-estado) var(--ease),border-color var(--dur-estado) var(--ease)}
+.nv-export__op:hover{color:var(--fg-hover)}
+.nv-export__op--ativa{color:var(--text-strong);font-weight:500;border-bottom-color:var(--accent-house)}
+.nv-export__op:focus-visible{outline:2px solid var(--accent-focus);outline-offset:3px}
+.nv-export__sep{font-family:var(--font-data);font-size:11px;color:var(--rule-strong)}
+.nv-export__par{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:640px}
+.nv-export__par--uma{grid-template-columns:1fr;max-width:312px}
+.nv-export__item{display:grid;gap:8px;margin:0}
+.nv-export__legenda{display:grid;gap:2px}
+.nv-export__legenda b{font-family:var(--font-body);font-weight:500;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-strong)}
+.nv-export__legenda span{font-family:var(--font-data);font-weight:400;font-size:10px;letter-spacing:.05em;color:var(--text-faint)}
+
+/* A folha e sempre papel: papel impresso nao tem modo noturno. O escopo [data-substrato="papel"]
+   (tokens/colors.css) reancora os aliases claros, para que qualquer componente aninhado leia
+   claro dentro dela mesmo sob um ancestral noturno. */
+.nv-export__folha{position:relative;display:grid;align-content:start;gap:9px;aspect-ratio:1/1.414;padding:15px 16px 12px;background:var(--papel);color:#231F1A;border:var(--fio) solid var(--rule-strong);border-radius:0;overflow:hidden}
+.nv-export__topo{position:absolute;top:0;left:0;right:0;height:4px}
+.nv-export__topo--cor{background:var(--gradiente-incandescente)}
+.nv-export__topo--mono{background:var(--tinta)}
+.nv-export__cab{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding-top:4px}
+.nv-export__marca{display:block;flex:none}
+.nv-export__selo{font-family:var(--font-data);font-weight:400;font-size:8px;line-height:1.5;letter-spacing:.09em;text-transform:uppercase;color:#8B8274;text-align:right}
+.nv-export__titulo{font-family:var(--font-display);font-weight:500;font-size:17px;line-height:1.14;letter-spacing:-.008em;color:var(--tinta);margin:0;padding-top:4px;text-wrap:pretty}
+.nv-export__sub{font-family:var(--font-body);font-weight:300;font-size:10.5px;line-height:1.45;color:var(--cinza-quente);margin:0}
+.nv-export__tab{width:100%;border-collapse:collapse;border-top:var(--fio) solid var(--tinta);margin-top:2px}
+.nv-export__tab th,.nv-export__tab td{text-align:left;padding:5px 0;border-bottom:var(--fio) solid var(--fio-papel);font-family:var(--font-body);font-weight:400;font-size:10px;line-height:1.3;color:#231F1A}
+.nv-export__tab thead th{font-family:var(--font-data);font-weight:500;font-size:8px;letter-spacing:.09em;text-transform:uppercase;color:#8B8274;border-bottom-color:var(--fio-papel-forte)}
+.nv-export__tab tbody th{font-weight:400}
+.nv-export__tab .nv-num{text-align:right;font-family:var(--font-data);font-variant-numeric:tabular-nums lining-nums;letter-spacing:-.004em;color:var(--tinta)}
+.nv-export__proc{font-family:var(--font-data);font-weight:400;font-size:7.5px;line-height:1.6;letter-spacing:.07em;text-transform:uppercase;color:#8B8274;margin:0;padding-top:7px;border-top:var(--fio) solid var(--fio-papel)}
+.nv-export__rodape{display:flex;justify-content:space-between;gap:10px;align-self:end;font-family:var(--font-data);font-weight:400;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;color:#8B8274;margin:0;font-variant-numeric:tabular-nums}
+.nv-export__nota{font-family:var(--font-body);font-weight:300;font-size:12px;line-height:1.5;color:var(--text-muted);margin:0;max-width:62ch;text-wrap:pretty}
+.nv-export__acoes{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding-top:11px;border-top:var(--fio) solid var(--rule)}
+.nv-export__meta{font-family:var(--font-data);font-weight:400;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint);font-variant-numeric:tabular-nums}

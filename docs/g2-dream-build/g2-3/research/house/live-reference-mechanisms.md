@@ -1,0 +1,37 @@
+# G2.3 · Live house and narrative research
+
+Research date: 12 September 2026. Sources below were retrieved live; gallery observations explicitly distinguish visual inspection from author descriptions. No external imagery was imported into runtime.
+
+## Identity architecture
+
+NASA's current public guidance (page updated 27 February 2026) separates official parent identifier, supplemental logotype, restricted seal, mission/program identifiers and crew emblems. Program identity does not replace the parent. The practical lesson for NIVAR is to define precedence and co-presence, not imitate an aerospace silhouette. The master NIVAR wordmark should lead every client header; family names identify the territory; patrons can occupy large narrative artwork; utility symbols need no emotional brand responsibility. [NASA brand guidelines](https://www.nasa.gov/nasa-brand-center/brand-guidelines/)
+
+Carbon distinguishes productive typography for repeated active tasks from expressive typography for reading and exploration. It permits adjacent contrasting moments while keeping a discrete component internally coherent. Productive headings are fixed and expressive headings fluid; its example body bases are 14px and 16px. For NIVAR this supports one type family/role architecture with different density, rather than a forced font replacement. Long-form findings can be expressive; chart controls and source metadata should remain stable and compact. [Style strategies](https://carbondesignsystem.com/elements/typography/style-strategies/) · [Type sets](https://carbondesignsystem.com/elements/typography/type-sets/)
+
+The Logobook N archive was opened and visually inspected in the in-app browser at its default 1265×711 capture. Nord compresses an N and opposing arrows into one silhouette; NEPTCO creates one letter from repeated curved strips; Nicola Tilling uses an angular white stroke through a black square. Each commits to one formal operation. This argues for a limited system of interventions in NIVAR's five-letter rhythm, then optical testing at 16/24px. It does not justify copying any mark or adding a separate symbol to every family. [Logobook N archive](https://logobook.com/letter/n/)
+
+## Header and current art-direction radar
+
+Navbar Gallery was opened and visually inspected. The visible Chesapeake Plywood example gives the wordmark a distinct weight, preserves utility navigation on the top rail and places numbered product destinations and a media preview within a structured expanded surface. Supaste uses a much smaller floating bar. For NIVAR, the first mechanism is the more useful comparison: a confident master identifier plus a navigable house index, authored as an editorial surface. A floating pill would conflict with existing house proportions. The gallery was inspected as a gallery; full keyboard/mobile flows of its examples were not tested. [Navbar Gallery](https://www.navbar.gallery/)
+
+Inspora loaded in the in-app browser after the text fetch failed. Its visible grid includes exploded layered UI, document-card illustrations and a mobile cartridge composition. The transferable lesson is material separation tied to spatial hierarchy: visible layers should be parts of one object. These thumbnails do not substantiate motion quality. No feed item was copied or installed. [Inspora](https://www.inspora.design/)
+
+Recent loaded its category structure and current entries, including cartridge timeline, film-filter selector and research micrographics. Most motion tiles explicitly reported inability to play media in this browser. Therefore no motion judgment is claimed from those entries; it remains a discovery index, not a validated motion reference in this subtask. [Recent Design](https://recent.design/)
+
+## Current engineering studies
+
+ZERO's author describes one virtual progress value driving segment lifecycle, nine implementation segments, explicit teardown, GPU-compressed textures, self-hosted decoders, staged uploads and adaptive quality. It explicitly does **not** use native scroll or ScrollTrigger. NIVAR should borrow ownership of scene state, warmup and resource disposal while preserving normal page navigation. Its under-10MB and budget-phone frame-rate statements are the author's claims, not independently measured here. [ZERO, 17 July 2026](https://tympanus.net/codrops/2026/07/17/zero-the-engineering-behind-a-defiant-interactive-narrative/)
+
+The Spark builds depth by projecting detailed imagery onto simple geometry. A story spine precedes tool selection; one DOM scroll container coordinates scene and UI progress, with one active scene. Interface text reacts to events rather than describing unrelated action. Its authors also report that mobile loses parallax and cuts wide compositions, so they gate phones. NIVAR should take anchor-based camera continuity and scene loading, while designing a true phone composition and preserving native semantic data. [The Spark, 9 January 2026](https://tympanus.net/codrops/2026/01/09/the-spark-engineering-an-immersive-story-first-web-experience/)
+
+Ten Years Away assembles panels into a chapter rather than swapping a complete page. Fixed WebGL composition coexists with HTML text. The authors share one geometry, use KTX2, cap DPR at 1.5, disable unused renderer features, dispose materials/timelines and preload the next chapter. NIVAR's useful equivalent is to reserve a stable evidence plane and let its components align causally; costly visual layers must release resources when they leave. No full-story live replay was performed in this subtask. [Ten Years Away, 8 July 2026](https://tympanus.net/codrops/2026/07/08/ten-years-away-designing-an-interactive-comic-for-studio375s-tenth-anniversary/)
+
+Podium's authors make the selected media itself the route-transition object: an overlay begins at its exact current geometry and expands into the next hero. They rejected a heavier pixel transition for competing with the subject. A related grain/pixel behavior repeats across scales to create identity. NIVAR can preserve this principle by carrying the chosen evidence and its material into source inspection, while refusing effects that compete with values or provenance. [Podium, 23 June 2026](https://tympanus.net/codrops/2026/06/23/podium-building-a-website-where-running-becomes-storytelling/)
+
+## Why no direct ThreeUI scene is prescribed
+
+Existing G2.2 source research already inspected Structure Flow (rotating masked point dome), Predictive Arc (abstract luminous arch), Portal lazy wrappers and community license boundaries. Their names are not domain semantics. A constellation around five family labels would repeat a rejected network metaphor. Use ThreeUI only if an actual component solves a proven spatial task, and preserve its exact license boundary; otherwise existing native/Three.js tools are sufficient. Historical source record: `docs/g2-dream-build/g2-2/motion-research/README.md` and `threeui-ASSET-LICENSES.md`.
+
+## Research limitations
+
+This subtask inspected current source articles, current brand/typography guidance and three live galleries, plus historical G2.2 asset/contact sheets. It did not independently replay all four external cinematic sites, audit their accessibility, claim physical-device performance, or download their media. Existing G2.2 motion-research and family-finale records contain earlier real playback evidence with explicit coverage limits. The coordinator must compare new NIVAR renders/recordings against category-specific external evidence before claiming craft closure.

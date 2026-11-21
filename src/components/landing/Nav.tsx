@@ -74,8 +74,16 @@ export function Nav() {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* /entrar, não /login: conta de PLATAFORMA (uma por pessoa,
+              lida por Alexandria, Portal Brasil e este terminal). O
+              /login legado valida formato e navega para /nest sem
+              chamar API nenhuma — deixa de ser alcançável daqui.
+              "Access Terminal" ao lado continua indo para /signup de
+              propósito: lá o gate cuida da conta e segue para a escolha
+              de arquétipo. Dois caminhos com destinos diferentes, não
+              dois "entrar" competindo. */}
           <Link
-            to="/login"
+            to="/entrar"
             className="px-4 py-2 transition-colors hover:text-white"
             style={{
               fontFamily: F.sans,

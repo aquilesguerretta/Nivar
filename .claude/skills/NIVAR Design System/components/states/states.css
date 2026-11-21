@@ -1,0 +1,18 @@
+.nv-est{display:grid;align-content:start;gap:10px;padding:20px 0;max-width:60ch}
+.nv-est__eti{font-family:var(--font-data);font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+.nv-est__titulo{font-family:var(--font-display);font-weight:600;font-size:22px;line-height:1.12;letter-spacing:-.014em;color:var(--text-strong);margin:0}
+.nv-est__corpo{font-family:var(--font-body);font-weight:300;font-size:14px;line-height:1.5;color:var(--text-muted);margin:0}
+.nv-est__acoes{display:flex;gap:16px;align-items:center;padding-top:2px}
+.nv-est__meta{font-family:var(--font-data);font-weight:400;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);font-variant-numeric:tabular-nums}
+
+/* sem dado — o eixo existe, a apuracao nao */
+.nv-est__eixo{display:grid;gap:11px;padding:4px 0 8px;border-left:var(--fio) solid var(--rule-strong);padding-left:12px}
+.nv-est__eixo span{display:block;height:1px;background:var(--rule)}
+/* sem resultado — devolve o filtro ativo, sem container */
+.nv-est__filtro{display:flex;flex-wrap:wrap;gap:4px 10px;font-family:var(--font-data);font-weight:400;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);font-variant-numeric:tabular-nums}
+.nv-est__filtro b{color:var(--text-faint);font-weight:500}
+.nv-est__filtro i{font-style:normal;color:var(--rule-strong)}
+/* sem permissao — o dado tem fronteira real, entao recebe fio */
+.nv-est__conjunto{display:flex;justify-content:space-between;gap:16px;padding:9px 12px;border:var(--fio) solid var(--rule-strong)}
+.nv-est__conjunto span{font-family:var(--font-data);font-size:11.5px;letter-spacing:.05em;color:var(--text-strong);font-variant-numeric:tabular-nums}
+.nv-est__conjunto em{font-style:normal;font-family:var(--font-data);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint)}

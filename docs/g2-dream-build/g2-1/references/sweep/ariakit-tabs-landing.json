@@ -1,0 +1,613 @@
+{
+  "url": "https://ariakit.com/components/tab",
+  "title": "Tab - Ariakit",
+  "text": "Ariakit\nv0.4.39\n/\nComponents\n/\nTab\nCtrl\nK\nUnlock Ariakit Plus\nView 15 new updates\nSwitch theme\nTab\n\nDisplay one panel of content at a time with a tabbed interface. This component is based on the WAI-ARIA Tabs Pattern⁠.\n\nTab\nEdit example\nVite\nOpen preview in a new tab\nFruits\nVegetables\nMeat\n🥕 Carrot\n🧅 Onion\n🥔 Potato\nindex.tsx\nstyle.css\nTypeScript\nEdit example\nCopy to clipboard\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\nimport * as Ariakit from \"@ariakit/react\";\n\nimport \"./style.css\";\n\n\n\nexport default function Example() {\n\n  const defaultSelectedId = \"default-selected-tab\";\n\n  return (\n\n    <div className=\"wrapper\">\n\n      <Ariakit.TabProvider defaultSelectedId={defaultSelectedId}>\n\n        <Ariakit.TabList className=\"tab-list\" aria-label=\"Groceries\">\n\n          <Ariakit.Tab className=\"tab\">Fruits</Ariakit.Tab>\n\n          <Ariakit.Tab className=\"tab\" id={defaultSelectedId}>\n\n            Vegetables\n\n          </Ariakit.Tab>\n\n          <Ariakit.Tab className=\"tab\">Meat</Ariakit.Tab>\n\n        </Ariakit.TabList>\n\n        <div className=\"panels\">\n\n          <Ariakit.TabPanel>\n\n            <ul>\n\n              <li>🍎 Apple</li>\n\n              <li>🍇 Grape</li>\n\n              <li>🍊 Orange</li>\n\n            </ul>\n\n          </Ariakit.TabPanel>\n\n          <Ariakit.TabPanel tabId={defaultSelectedId}>\n\n            <ul>\n\n              <li>🥕 Carrot</li>\n\n              <li>🧅 Onion</li>\n\n              <li>🥔 Potato</li>\n\n            </ul>\n\n          </Ariakit.TabPanel>\n\n          <Ariakit.TabPanel>\n\n            <ul>\n\n              <li>🥩 Beef</li>\n\n              <li>🍗 Chicken</li>\n\n              <li>🥓 Pork</li>\n\n            </ul>\n\n          </Ariakit.TabPanel>\n\n        </div>\n\n      </Ariakit.TabProvider>\n\n    </div>\n\n  );\n\n}\n\n\n\nExpand code\nTab\nExamples\nAPI\nRelated components\nExamples\nTab with React Router\nUsing React Router to create Tab links and tab panels controlled by the browser history, while maintaining keyboard navigation.\nTab with Next.js App Router\nUsing Next.js Parallel Routes to create accessible Tabs and tab panels that are rendered on the server and controlled by the URL.\nAnimated TabPanel\nUsing plain CSS transitions to slide in and out TabPanel components as they are expanded.\nView all Tab examples\nAPI\nCopy to clipboard\nuseTabStore()\n\nuseTabContext()\n\n\n\n<TabProvider>\n\n  <TabList>\n\n    <Tab />\n\n  </TabList>\n\n  <TabPanel />\n\n</TabProvider>\n\nRelated components\nButton\nTrigger an action or event, such as submitting a Form, opening a Dialog, canceling an action, or performing a delete operation in React. This component is based on the WAI-ARIA Button Pattern.\nDisclosure\nClick a button to either show (expand, open) or hide (collapse, close) a content element in React. This component is based on the WAI-ARIA Disclosure Pattern.\nComposite\nProvide a single tab stop on the page and navigate through the focusable descendants with arrow keys. This abstract component is based on the WAI-ARIA Composite Role.\nFocusable\nPress Tab or click to shift focus to any React element. This abstract component standardizes focus behavior across different browsers.\nView all components\nStay tuned\n\nJoin 1,000+ subscribers and receive monthly tips & updates on new Ariakit content.\n\nNo spam. Unsubscribe anytime. Read latest issue⁠\n\nSubscribe\nDocumentation\nGuide\nComponents\nExamples\nAPI Reference\nUpdates\nAll updates\nChangelog\nNewsletter\nCommunity\nBluesky\nDiscord\nGitHub\nDiscussions\nIssues\nPowered by\n\n© 2017-2026 Diego Haz",
+  "links": [
+    {
+      "text": "Ariakit",
+      "href": "https://ariakit.com/"
+    },
+    {
+      "text": "Edit example",
+      "href": "https://ariakit.com/plus?feature=edit-examples"
+    },
+    {
+      "text": "Unlock Ariakit Plus",
+      "href": "https://ariakit.com/plus"
+    },
+    {
+      "text": "WAI-ARIA Tabs Pattern⁠",
+      "href": "https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/"
+    },
+    {
+      "text": "Tab",
+      "href": "https://ariakit.com/tags/tab"
+    },
+    {
+      "text": "Edit example",
+      "href": "https://ariakit.com/plus?feature=edit-examples"
+    },
+    {
+      "text": "Open preview in a new tab",
+      "href": "https://ariakit.com/previews/tab"
+    },
+    {
+      "text": "Ariakit.TabProvider",
+      "href": "https://ariakit.com/reference/tab-provider"
+    },
+    {
+      "text": "defaultSelectedId",
+      "href": "https://ariakit.com/reference/tab-provider#defaultselectedid"
+    },
+    {
+      "text": "Ariakit.TabList",
+      "href": "https://ariakit.com/reference/tab-list"
+    },
+    {
+      "text": "Ariakit.Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "Ariakit.Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "Ariakit.Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "id",
+      "href": "https://ariakit.com/reference/tab#id"
+    },
+    {
+      "text": "Ariakit.Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "Ariakit.Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "Ariakit.Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "Ariakit.TabList",
+      "href": "https://ariakit.com/reference/tab-list"
+    },
+    {
+      "text": "Ariakit.TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "Ariakit.TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "Ariakit.TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "tabId",
+      "href": "https://ariakit.com/reference/tab-panel#tabid"
+    },
+    {
+      "text": "Ariakit.TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "Ariakit.TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "Ariakit.TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "Ariakit.TabProvider",
+      "href": "https://ariakit.com/reference/tab-provider"
+    },
+    {
+      "text": "Ariakit.TabProvider",
+      "href": "https://ariakit.com/reference/tab-provider"
+    },
+    {
+      "text": "defaultSelectedId",
+      "href": "https://ariakit.com/reference/tab-provider#defaultselectedid"
+    },
+    {
+      "text": "Ariakit.TabList",
+      "href": "https://ariakit.com/reference/tab-list"
+    },
+    {
+      "text": "Ariakit.Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "Ariakit.Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "Ariakit.Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "id",
+      "href": "https://ariakit.com/reference/tab#id"
+    },
+    {
+      "text": "Ariakit.Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "Ariakit.Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "Ariakit.Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "Ariakit.TabList",
+      "href": "https://ariakit.com/reference/tab-list"
+    },
+    {
+      "text": "Ariakit.TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "Ariakit.TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "Ariakit.TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "tabId",
+      "href": "https://ariakit.com/reference/tab-panel#tabid"
+    },
+    {
+      "text": "Ariakit.TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "Ariakit.TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "Ariakit.TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "Ariakit.TabProvider",
+      "href": "https://ariakit.com/reference/tab-provider"
+    },
+    {
+      "text": "Tab",
+      "href": "https://ariakit.com/components/tab#"
+    },
+    {
+      "text": "Examples",
+      "href": "https://ariakit.com/components/tab#examples"
+    },
+    {
+      "text": "API",
+      "href": "https://ariakit.com/components/tab#api"
+    },
+    {
+      "text": "Related components",
+      "href": "https://ariakit.com/components/tab#related-components"
+    },
+    {
+      "text": "Examples",
+      "href": "https://ariakit.com/components/tab#examples"
+    },
+    {
+      "text": "Tab with React Router\nUsing React Router to create Tab links and tab panels controlled by the browse",
+      "href": "https://ariakit.com/examples/tab-react-router"
+    },
+    {
+      "text": "Tab with Next.js App Router\nUsing Next.js Parallel Routes to create accessible Tabs and tab panels t",
+      "href": "https://ariakit.com/examples/tab-next-router"
+    },
+    {
+      "text": "Animated TabPanel\nUsing plain CSS transitions to slide in and out TabPanel components as they are ex",
+      "href": "https://ariakit.com/examples/tab-panel-animated"
+    },
+    {
+      "text": "View all Tab examples",
+      "href": "https://ariakit.com/examples#tab"
+    },
+    {
+      "text": "API",
+      "href": "https://ariakit.com/components/tab#api"
+    },
+    {
+      "text": "useTabStore",
+      "href": "https://ariakit.com/reference/use-tab-store"
+    },
+    {
+      "text": "useTabContext",
+      "href": "https://ariakit.com/reference/use-tab-context"
+    },
+    {
+      "text": "TabProvider",
+      "href": "https://ariakit.com/reference/tab-provider"
+    },
+    {
+      "text": "TabList",
+      "href": "https://ariakit.com/reference/tab-list"
+    },
+    {
+      "text": "Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "TabList",
+      "href": "https://ariakit.com/reference/tab-list"
+    },
+    {
+      "text": "TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "TabProvider",
+      "href": "https://ariakit.com/reference/tab-provider"
+    },
+    {
+      "text": "useTabStore",
+      "href": "https://ariakit.com/reference/use-tab-store"
+    },
+    {
+      "text": "useTabContext",
+      "href": "https://ariakit.com/reference/use-tab-context"
+    },
+    {
+      "text": "TabProvider",
+      "href": "https://ariakit.com/reference/tab-provider"
+    },
+    {
+      "text": "TabList",
+      "href": "https://ariakit.com/reference/tab-list"
+    },
+    {
+      "text": "Tab",
+      "href": "https://ariakit.com/reference/tab"
+    },
+    {
+      "text": "TabList",
+      "href": "https://ariakit.com/reference/tab-list"
+    },
+    {
+      "text": "TabPanel",
+      "href": "https://ariakit.com/reference/tab-panel"
+    },
+    {
+      "text": "TabProvider",
+      "href": "https://ariakit.com/reference/tab-provider"
+    },
+    {
+      "text": "Related components",
+      "href": "https://ariakit.com/components/tab#related-components"
+    },
+    {
+      "text": "Button\nTrigger an action or event, such as submitting a Form, opening a Dialog, canceling an action,",
+      "href": "https://ariakit.com/components/button"
+    },
+    {
+      "text": "Disclosure\nClick a button to either show (expand, open) or hide (collapse, close) a content element ",
+      "href": "https://ariakit.com/components/disclosure"
+    },
+    {
+      "text": "Composite\nProvide a single tab stop on the page and navigate through the focusable descendants with ",
+      "href": "https://ariakit.com/components/composite"
+    },
+    {
+      "text": "Focusable\nPress Tab or click to shift focus to any React element. This abstract component standardiz",
+      "href": "https://ariakit.com/components/focusable"
+    },
+    {
+      "text": "View all components",
+      "href": "https://ariakit.com/components"
+    },
+    {
+      "text": "Read latest issue⁠",
+      "href": "https://newsletter.ariakit.com/latest"
+    },
+    {
+      "text": "Guide",
+      "href": "https://ariakit.com/guide"
+    },
+    {
+      "text": "Components",
+      "href": "https://ariakit.com/components"
+    },
+    {
+      "text": "Examples",
+      "href": "https://ariakit.com/examples"
+    },
+    {
+      "text": "API Reference",
+      "href": "https://ariakit.com/reference"
+    },
+    {
+      "text": "All updates",
+      "href": "https://ariakit.com/updates"
+    },
+    {
+      "text": "Changelog",
+      "href": "https://ariakit.com/changelog"
+    },
+    {
+      "text": "Newsletter",
+      "href": "https://newsletter.ariakit.com/"
+    },
+    {
+      "text": "Bluesky",
+      "href": "https://bsky.app/profile/ariakit.com"
+    },
+    {
+      "text": "Discord",
+      "href": "https://discord.gg/WyHvnXsvMs"
+    },
+    {
+      "text": "GitHub",
+      "href": "https://github.com/ariakit/ariakit"
+    },
+    {
+      "text": "Discussions",
+      "href": "https://github.com/ariakit/ariakit/discussions"
+    },
+    {
+      "text": "Issues",
+      "href": "https://github.com/ariakit/ariakit/issues"
+    },
+    {
+      "text": "Powered by",
+      "href": "https://www.vercel.com/?utm_source=ariakit&utm_campaign=oss"
+    }
+  ],
+  "buttons": [
+    {
+      "text": "v0.4.39",
+      "label": null
+    },
+    {
+      "text": "Components",
+      "label": "Current category"
+    },
+    {
+      "text": "Tab\nCtrl\nK",
+      "label": "Current page"
+    },
+    {
+      "text": "Vite",
+      "label": "Build tool"
+    },
+    {
+      "text": "View 15 new updates",
+      "label": null
+    },
+    {
+      "text": "Switch theme",
+      "label": null
+    },
+    {
+      "text": "Vite",
+      "label": "Build tool"
+    },
+    {
+      "text": "Fruits",
+      "label": null
+    },
+    {
+      "text": "Vegetables",
+      "label": null
+    },
+    {
+      "text": "Meat",
+      "label": null
+    },
+    {
+      "text": "index.tsx",
+      "label": null
+    },
+    {
+      "text": "style.css",
+      "label": null
+    },
+    {
+      "text": "TypeScript",
+      "label": "Select language"
+    },
+    {
+      "text": "Edit example",
+      "label": null
+    },
+    {
+      "text": "Copy to clipboard",
+      "label": null
+    },
+    {
+      "text": "Expand code",
+      "label": null
+    },
+    {
+      "text": "Table of Contents",
+      "label": null
+    },
+    {
+      "text": "Copy to clipboard",
+      "label": null
+    },
+    {
+      "text": "Subscribe",
+      "label": null
+    }
+  ],
+  "media": [],
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "role": "combobox",
+      "label": null,
+      "id": "",
+      "text": "v0.4.39"
+    },
+    {
+      "tag": "BUTTON",
+      "role": "combobox",
+      "label": "Current category",
+      "id": "",
+      "text": "Components"
+    },
+    {
+      "tag": "BUTTON",
+      "role": "combobox",
+      "label": "Current page",
+      "id": "",
+      "text": "Tab\nCtrl\nK"
+    },
+    {
+      "tag": "BUTTON",
+      "role": "combobox",
+      "label": "Build tool",
+      "id": "",
+      "text": "Vite"
+    },
+    {
+      "tag": "BUTTON",
+      "role": "combobox",
+      "label": "Build tool",
+      "id": "",
+      "text": "Vite"
+    },
+    {
+      "tag": "DIV",
+      "role": "tablist",
+      "label": "Groceries",
+      "id": "",
+      "text": "Fruits\nVegetables\nMeat"
+    },
+    {
+      "tag": "BUTTON",
+      "role": "tab",
+      "label": null,
+      "id": ":R1apm5jttqcusq:",
+      "text": "Fruits"
+    },
+    {
+      "tag": "BUTTON",
+      "role": "tab",
+      "label": null,
+      "id": "default-selected-tab",
+      "text": "Vegetables"
+    },
+    {
+      "tag": "BUTTON",
+      "role": "tab",
+      "label": null,
+      "id": ":R3apm5jttqcusq:",
+      "text": "Meat"
+    },
+    {
+      "tag": "DIV",
+      "role": "tabpanel",
+      "label": null,
+      "id": ":Rcpm5jttqcusq:",
+      "text": "🍎 Apple🍇 Grape🍊 Orange"
+    },
+    {
+      "tag": "DIV",
+      "role": "tabpanel",
+      "label": null,
+      "id": ":Rkpm5jttqcusq:",
+      "text": "🥕 Carrot\n🧅 Onion\n🥔 Potato"
+    },
+    {
+      "tag": "DIV",
+      "role": "tabpanel",
+      "label": null,
+      "id": ":Rspm5jttqcusq:",
+      "text": "🥩 Beef🍗 Chicken🥓 Pork"
+    },
+    {
+      "tag": "DIV",
+      "role": "tablist",
+      "label": null,
+      "id": "",
+      "text": "index.tsx\nstyle.css"
+    },
+    {
+      "tag": "BUTTON",
+      "role": "tab",
+      "label": null,
+      "id": "examples-tab-index-tsx",
+      "text": "index.tsx"
+    },
+    {
+      "tag": "BUTTON",
+      "role": "tab",
+      "label": null,
+      "id": "examples-tab-style-css",
+      "text": "style.css"
+    },
+    {
+      "tag": "DIV",
+      "role": "toolbar",
+      "label": null,
+      "id": "",
+      "text": "TypeScript\nEdit example\nCopy to clipboard"
+    },
+    {
+      "tag": "BUTTON",
+      "role": "combobox",
+      "label": "Select language",
+      "id": ":R3b7m5jttqcusq:",
+      "text": "TypeScript"
+    },
+    {
+      "tag": "DIV",
+      "role": "tabpanel",
+      "label": null,
+      "id": ":Rbm5jttqcusq:",
+      "text": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n3"
+    },
+    {
+      "tag": "INPUT",
+      "role": null,
+      "label": null,
+      "id": "",
+      "text": ""
+    },
+    {
+      "tag": "DIV",
+      "role": "listbox",
+      "label": null,
+      "id": ":R5b7m5jttqcusq:",
+      "text": "LanguageTypeScriptJavaScript"
+    },
+    {
+      "tag": "DIV",
+      "role": "heading",
+      "label": null,
+      "id": ":r0:",
+      "text": "Language"
+    },
+    {
+      "tag": "DIV",
+      "role": "option",
+      "label": null,
+      "id": ":r1:",
+      "text": "TypeScript"
+    },
+    {
+      "tag": "DIV",
+      "role": "option",
+      "label": null,
+      "id": ":r4:",
+      "text": "JavaScript"
+    }
+  ]
+}

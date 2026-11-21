@@ -1,0 +1,25 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {createRequire} from 'node:module';
+import {pathToFileURL} from 'node:url';
+const req=createRequire('C:/dev/nivar-g21-tools/package.json');
+const WebSocket=req('ws');
+const dir=path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Z]:)/,'$1'));
+const browser=await (await fetch('http://127.0.0.1:9235/json/version')).json();
+const ws=new WebSocket(browser.webSocketDebuggerUrl);await new Promise(r=>ws.once('open',r));
+let next=0;const pending=new Map();
+ws.on('message',raw=>{const message=JSON.parse(String(raw));if(message.id){const cb=pending.get(message.id);pending.delete(message.id);if(message.error)cb.reject(Error(message.error.message));else cb.resolve(message.result);}});
+const call=(method,params={},sessionId)=>new Promise((resolve,reject)=>{const id=++next;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params,sessionId}));});
+const {browserContextId}=await call('Target.createBrowserContext');
+const {targetId}=await call('Target.createTarget',{url:'about:blank',browserContextId});
+const {sessionId}=await call('Target.attachToTarget',{targetId,flatten:true});
+const send=(m,p={})=>call(m,p,sessionId);
+await send('Page.enable');await send('Runtime.enable');await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+const file=path.resolve(dir,'../reference-pack/NIVAR_G2_2_REFERENCE_PACK/REFERENCE_BOARD.html');
+await send('Page.navigate',{url:pathToFileURL(file).href});
+await new Promise(r=>setTimeout(r,1200));
+const {result}=await send('Runtime.evaluate',{expression:`({title:document.title,images:[...document.images].map(i=>({src:i.getAttribute('src'),naturalWidth:i.naturalWidth,naturalHeight:i.naturalHeight})),height:document.documentElement.scrollHeight})`,returnByValue:true});
+await fs.writeFile(path.join(dir,'reference-board-inspection.json'),JSON.stringify(result.value,null,2)+'\n');
+for(const [i,y] of [0,1100,2500].entries()){await send('Runtime.evaluate',{expression:`scrollTo(0,${y})`});await new Promise(r=>setTimeout(r,150));const shot=await send('Page.captureScreenshot',{format:'png'});await fs.writeFile(path.join(dir,`reference-board-${i}.png`),Buffer.from(shot.data,'base64'));}
+console.log(JSON.stringify(result.value));
+await call('Target.disposeBrowserContext',{browserContextId});ws.close();

@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alexandria · Wave 1 · Harness de primitivos SVG</title>
+<style>
+  /* ------------------------------------------------------------------
+     Alexandria Wave 1 — harness temporário de verificação.
+     NÃO é superfície de produção. Existe para provar que os dez
+     primitivos renderizam, herdam currentColor sobre navy e sobre creme,
+     e animam por stroke-dashoffset.
+
+     Paleta extraída do design-handoff (Alexandria Sistema.dc.html).
+     ------------------------------------------------------------------ */
+  :root {
+    --navy-deep:   #0D2340;
+    --navy-mid:    #123055;
+    --navy-border: #35506E;
+    --cream:       #F2E9D6;
+    --paper:       #FBF6EA;
+    --cream-border:#CFC1A4;
+    --terracotta:  #C2683C;
+    --ink:         #2A2620;
+    --ink-soft:    #5C5346;
+    --gold:        #CBAA6E;
+    --sky:         #8CA0B8;
+
+    --ease-draw: cubic-bezier(0.65, 0, 0.35, 1);
+    --dur-short: 700ms;
+    --dur-long: 1200ms;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--navy-deep);
+    color: var(--cream);
+    border-bottom: 1px solid var(--navy-border);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .sub { color: var(--sky); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; }
+
+  .controls { display: flex; gap: 8px; margin-left: auto; flex-wrap: wrap; }
+
+  button {
+    font-family: inherit;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid var(--navy-border);
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  button:hover { border-color: var(--terracotta); color: var(--gold); }
+  button[data-active="true"] { border-color: var(--terracotta); color: var(--gold); }
+
+  main { padding: 20px; }
+
+  /* --- grade de peças ------------------------------------------------ */
+  .row {
+    display: grid;
+    grid-template-columns: 220px 1fr 1fr;
+    border: 1px solid var(--cream-border);
+    border-bottom: none;
+    background: var(--paper);
+  }
+  .row:last-of-type { border-bottom: 1px solid var(--cream-border); }
+
+  .row-head {
+    padding: 12px 14px;
+    border-right: 1px solid var(--cream-border);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center;
+  }
+  .row-name { font-size: 11.5px; color: var(--ink); }
+  .row-meta { font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+
+  /* Os dois campos. currentColor é definido AQUI, no pai — nunca no
+     arquivo SVG. É exatamente isso que o harness precisa provar. */
+  .stage {
+    height: 116px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    position: relative;
+  }
+  .stage-navy  { background: var(--navy-deep); color: var(--cream); }
+  .stage-cream { background: var(--cream); color: var(--terracotta); border-left: 1px solid var(--cream-border); }
+
+  .stage::after {
+    content: attr(data-field);
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-size: 8.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.45;
+  }
+
+  /* Preserva proporção; só impede estouro do palco. */
+  .stage svg {
+    width: auto;
+    height: auto;
+    max-height: 88px;
+    max-width: 260px;
+    overflow: visible;
+  }
+
+  .missing {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    border: 1px dashed currentColor;
+    padding: 10px 14px;
+    border-radius: 3px;
+  }
+
+  /* --- animação de revelação ----------------------------------------
+     Aplicada a todo path/circle/rect/line com pathLength="1".
+     O arquivo não carrega estilo nenhum: dasharray/dashoffset vivem
+     aqui, no consumidor. -------------------------------------------- */
+  .stage [pathLength="1"] {
+    stroke-dasharray: 1;
+    stroke-dashoffset: var(--alx-offset, 1);
+  }
+
+  body[data-mode="play"] .stage [pathLength="1"] {
+    animation: alx-draw var(--dur-short) var(--ease-draw) forwards;
+  }
+  body[data-mode="play"] .row[data-long="true"] .stage [pathLength="1"] {
+    animation-duration: var(--dur-long);
+  }
+
+  @keyframes alx-draw {
+    from { stroke-dashoffset: 1; }
+    to   { stroke-dashoffset: 0; }
+  }
+
+  /* Cadeado: a rotação usa o transform-origin JÁ DEFINIDO dentro do
+     arquivo lock-shackle.svg. O harness só aplica o ângulo — nunca a
+     origem. Se a origem estiver errada, o defeito aparece aqui. */
+  .row[data-shackle="true"] .stage svg > * {
+    transform: rotate(var(--alx-shackle, 0deg));
+    transition: transform var(--dur-short) var(--ease-draw);
+  }
+  body[data-mode="play"] .row[data-shackle="true"] .stage svg > * {
+    animation: alx-unlock var(--dur-short) var(--ease-draw) forwards;
+  }
+  @keyframes alx-unlock {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-28deg); }
+  }
+
+  /* --- tabela de auditoria ------------------------------------------ */
+  section.audit { margin-top: 28px; }
+  h2 {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 10px;
+  }
+  table { border-collapse: collapse; width: 100%; background: var(--paper); }
+  th, td {
+    border: 1px solid var(--cream-border);
+    padding: 7px 10px;
+    text-align: left;
+    font-size: 11px;
+  }
+  th {
+    background: var(--cream);
+    font-weight: 400;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  td.flag { color: var(--terracotta); }
+  td.ok { color: var(--ink-soft); }
+  .legend { margin-top: 10px; font-size: 10.5px; color: var(--ink-soft); line-height: 1.7; }
+</style>
+</head>
+<body data-mode="idle">
+
+<header>
+  <div>
+    <h1>Alexandria · Wave 1</h1>
+    <div class="sub">Harness de primitivos — não é produção</div>
+  </div>
+  <div class="controls">
+    <button id="btn-replay">▶ Replay</button>
+    <button data-phase="1">Fase · offset 1</button>
+    <button data-phase="0.5">Fase · offset 0.5</button>
+    <button data-phase="0">Fase · offset 0</button>
+  </div>
+</header>
+
+<main>
+  <div id="grid"></div>
+
+  <section class="audit">
+    <h2>Verificação arquivo por arquivo</h2>
+    <table id="audit">
+      <thead>
+        <tr>
+          <th>Arquivo</th><th>Fill</th><th>Stroke</th><th>pathLength</th>
+          <th>Anima?</th><th>Render OK?</th><th>Desvio</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div class="legend">
+      Elemento <strong>desenhado</strong> (anima): <code>fill="none"</code> + <code>stroke="currentColor"</code> + <code>pathLength="1"</code>.<br>
+      Elemento <strong>sólido</strong> (não anima): <code>fill="currentColor"</code>, sem stroke, sem pathLength.<br>
+      Duas peças têm sólido, ambas por especificação: <code>dot-active.svg</code> (1 sólido, 0 desenhados) e
+      <code>leader-line.svg</code> (círculo de ancoragem + 1 desenhado).<br>
+      Desvios são <em>sinalizados</em>, nunca corrigidos automaticamente.
+    </div>
+  </section>
+</main>
+
+<script>
+/* --------------------------------------------------------------------
+   Manifesto. `long` marca os dois rings (1200ms). `shackle` marca a peça
+   que gira.
+
+   `desenhados` = elementos que animam (pathLength="1", fill none,
+   stroke currentColor). `solidos` = elementos de preenchimento que NÃO
+   animam. Duas peças têm sólidos, ambas por especificação:
+     dot-active  — 1 sólido, 0 desenhados (é um ponto, não um traço).
+     leader-line — 1 sólido (círculo de ancoragem) + 1 desenhado.
+   Contar os dois papéis separadamente evita falso positivo: agregar
+   `fill` sobre a peça inteira acusaria o leader-line sem motivo.
+   -------------------------------------------------------------------- */
+const PIECES = [
+  { file: 'nos-trilha/ring-track.svg',      group: 'nós de trilha', long: true, desenhados: 1, solidos: 0 },
+  { file: 'nos-trilha/ring-progress.svg',   group: 'nós de trilha', long: true, desenhados: 1, solidos: 0 },
+  { file: 'nos-trilha/check-mark.svg',      group: 'nós de trilha',             desenhados: 1, solidos: 0 },
+  { file: 'nos-trilha/lock-body.svg',       group: 'nós de trilha',             desenhados: 1, solidos: 0 },
+  { file: 'nos-trilha/lock-shackle.svg',    group: 'nós de trilha', shackle: true, desenhados: 1, solidos: 0 },
+  { file: 'nos-trilha/dot-active.svg',      group: 'nós de trilha',             desenhados: 0, solidos: 1 },
+  { file: 'anotacao/leader-line.svg',       group: 'anotação',                  desenhados: 1, solidos: 1 },
+  { file: 'anotacao/arrow-directional.svg', group: 'anotação',                  desenhados: 1, solidos: 0 },
+  { file: 'anotacao/bracket.svg',           group: 'anotação',                  desenhados: 1, solidos: 0 },
+  { file: 'anotacao/detail-frame.svg',      group: 'anotação',                  desenhados: 1, solidos: 0 },
+];
+
+const grid = document.getElementById('grid');
+const loaded = new Map();
+
+/* Carrega inline (fetch + innerHTML), nunca via <img>: com <img> o CSS
+   do pai não alcança o path e currentColor não resolve. Exige servir
+   por HTTP — file:// bloqueia o fetch. */
+async function load(piece) {
+  const row = document.createElement('div');
+  row.className = 'row';
+  row.dataset.file = piece.file;
+  if (piece.long) row.dataset.long = 'true';
+  if (piece.shackle) row.dataset.shackle = 'true';
+
+  const dur = piece.long ? '1200ms' : (piece.desenhados === 0 ? '—' : '700ms');
+  row.innerHTML = `
+    <div class="row-head">
+      <div class="row-name">${piece.file}</div>
+      <div class="row-meta">${piece.group} · ${dur}${piece.shackle ? ' · rotação' : ''}</div>
+    </div>
+    <div class="stage stage-navy"  data-field="navy"></div>
+    <div class="stage stage-cream" data-field="creme"></div>`;
+  grid.appendChild(row);
+
+  const stages = row.querySelectorAll('.stage');
+  let text = null;
+  try {
+    const res = await fetch('../' + piece.file, { cache: 'no-store' });
+    if (res.ok) text = await res.text();
+  } catch (_) { /* trata como ausente */ }
+
+  if (!text || !text.includes('<svg')) {
+    stages.forEach(s => { s.innerHTML = '<span class="missing">ausente</span>'; });
+    loaded.set(piece.file, null);
+    return;
+  }
+
+  loaded.set(piece.file, text);
+  stages.forEach(s => { s.innerHTML = text; });
+}
+
+/* --------------------------------------------------------------------
+   Auditoria: lê os atributos COMO AUTORADOS no arquivo bruto, não os
+   computados após injeção. É isso que a tabela da Fase 3 precisa.
+   -------------------------------------------------------------------- */
+function audit() {
+  const rows = [];
+  for (const piece of PIECES) {
+    const text = loaded.get(piece.file);
+    if (!text) {
+      rows.push({ file: piece.file, fill: '—', stroke: '—', pathLength: '—',
+                  animates: false, renderOk: false, deviation: 'arquivo ausente' });
+      continue;
+    }
+    const doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+    const svg = doc.querySelector('svg');
+    const parseError = doc.querySelector('parsererror');
+    const shapes = svg ? [...svg.querySelectorAll('path,circle,rect,line,polyline,polygon,ellipse')] : [];
+
+    // Separa por papel, não por arquivo.
+    const desenhados = shapes.filter(s => s.getAttribute('pathLength') === '1');
+    const solidos = shapes.filter(s => s.getAttribute('pathLength') !== '1');
+
+    const show = (els, name) => {
+      if (!els.length) return '(ausente)';
+      const vals = [...new Set(els.map(e => e.getAttribute(name) ?? '(ausente)'))];
+      return vals.join(' / ');
+    };
+
+    const dev = [];
+    if (parseError) dev.push('SVG inválido');
+    if (!shapes.length) dev.push('sem geometria');
+
+    if (desenhados.length !== piece.desenhados)
+      dev.push(`${desenhados.length} elemento(s) com pathLength=1 (esperado ${piece.desenhados})`);
+    if (solidos.length !== piece.solidos)
+      dev.push(`${solidos.length} elemento(s) sólido(s) (esperado ${piece.solidos})`);
+
+    desenhados.forEach(e => {
+      if (e.getAttribute('fill') !== 'none') dev.push(`<${e.tagName}> desenhado com fill=${e.getAttribute('fill') ?? '(ausente)'} (esperado none)`);
+      if (e.getAttribute('stroke') !== 'currentColor') dev.push(`<${e.tagName}> desenhado com stroke=${e.getAttribute('stroke') ?? '(ausente)'} (esperado currentColor)`);
+    });
+    solidos.forEach(e => {
+      if (e.getAttribute('fill') !== 'currentColor') dev.push(`<${e.tagName}> sólido com fill=${e.getAttribute('fill') ?? '(ausente)'} (esperado currentColor)`);
+      if (e.hasAttribute('stroke')) dev.push(`<${e.tagName}> sólido não deveria ter stroke`);
+    });
+
+    rows.push({
+      file: piece.file,
+      fill: `traço ${show(desenhados, 'fill')}${piece.solidos ? ` · sólido ${show(solidos, 'fill')}` : ''}`,
+      stroke: show(desenhados, 'stroke'),
+      pathLength: show(desenhados, 'pathLength'),
+      animates: desenhados.length > 0,
+      renderOk: !parseError && shapes.length > 0,
+      deviation: dev.length ? dev.join('; ') : '—',
+    });
+  }
+  return rows;
+}
+
+function renderAudit() {
+  const tbody = document.querySelector('#audit tbody');
+  tbody.innerHTML = '';
+  for (const r of audit()) {
+    const tr = document.createElement('tr');
+    const cell = (v, flag) => `<td class="${flag ? 'flag' : 'ok'}">${v}</td>`;
+    tr.innerHTML =
+      cell(r.file) + cell(r.fill) + cell(r.stroke) + cell(r.pathLength) +
+      cell(r.animates ? 'sim' : 'não') +
+      cell(r.renderOk ? 'sim' : 'NÃO', !r.renderOk) +
+      cell(r.deviation, r.deviation !== '—');
+    tbody.appendChild(tr);
+  }
+}
+
+/* --------------------------------------------------------------------
+   Controles. setPhase congela a animação num offset exato — captura
+   determinística no Playwright, sem depender de acertar o meio da
+   animação por cronômetro.
+   -------------------------------------------------------------------- */
+function setPhase(v) {
+  document.body.dataset.mode = 'idle';
+  document.documentElement.style.setProperty('--alx-offset', String(v));
+  // Ângulo do cadeado proporcional ao progresso (offset 1 = fechado).
+  document.documentElement.style.setProperty('--alx-shackle', `${-28 * (1 - v)}deg`);
+  document.querySelectorAll('.controls [data-phase]').forEach(b => {
+    b.dataset.active = String(Number(b.dataset.phase) === v);
+  });
+}
+
+function play() {
+  document.documentElement.style.removeProperty('--alx-offset');
+  document.documentElement.style.removeProperty('--alx-shackle');
+  document.querySelectorAll('.controls [data-phase]').forEach(b => { b.dataset.active = 'false'; });
+  document.body.dataset.mode = 'idle';
+  void document.body.offsetWidth;          // força reflow: re-dispara a animação
+  document.body.dataset.mode = 'play';
+}
+
+document.getElementById('btn-replay').addEventListener('click', play);
+document.querySelectorAll('.controls [data-phase]').forEach(b => {
+  b.addEventListener('click', () => setPhase(Number(b.dataset.phase)));
+});
+
+(async function init() {
+  for (const piece of PIECES) await load(piece);
+  renderAudit();
+  setPhase(1);
+  window.alxReady = true;
+})();
+
+// Superfície para o Playwright.
+window.alxSetPhase = setPhase;
+window.alxPlay = play;
+window.alxAudit = audit;
+</script>
+</body>
+</html>

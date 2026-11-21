@@ -599,7 +599,7 @@ export function JournalEntryEditor({ initialEntry, onSave, onCancel }: Props) {
             fontWeight: 600,
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            color: '#fff',
+            color: C.textPrimary,
             cursor: uploading ? 'not-allowed' : 'pointer',
             opacity: uploading || !title.trim() ? 0.5 : 1,
           }}

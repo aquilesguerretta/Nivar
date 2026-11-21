@@ -1,0 +1,66 @@
+<!-- @dsCard group="Components" viewport="1060x1300" name="Ordenação e densidade de linha" subtitle="Marcador de direção em glifo mono · alternador textual que muda só o padding da célula" -->
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Ordenação e densidade</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{width:1060px;overflow:hidden}.g{display:grid;grid-template-columns:1fr 1fr}.bl{padding:16px 18px 20px;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:13px;background:var(--surface-page)}.bl+.bl{border-left:1px solid var(--rule)}.mode{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--rule)}.mode b{font-family:var(--font-display);font-size:15px;font-weight:500;color:var(--text-strong)}.eti{font-family:var(--font-data);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:var(--text-faint)}.barra{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px}.mob{display:grid;grid-template-columns:343px 343px;border-top:1px solid var(--rule-strong)}.mob .bl{width:343px}</style></head>
+<body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">const { SortHeader, DensityToggle, Provenance, Checkbox } = window.NIVARDesignSystem_0a22a8;
+const ROWS = [
+  ['Norte', '198,40', '+2,1 %', '11 402'],
+  ['Nordeste', '203,10', '−0,8 %', '13 866'],
+  ['Sudeste/CO', '214,80', '+4,2 %', '42 318'],
+  ['Sul', '268,40', '+9,1 %', '12 064'],
+  ['Média SIN', '221,18', '+3,4 %', '79 650'],
+];
+function Tabela({ s, ordem }) {
+  return (
+    <div className="nv-tab-rolo">
+      <table className="nv-tab nv-tab--zebra nv-tab--hover">
+        <thead><tr>
+          <SortHeader campo="sub" ordem="neutro" onSort={() => {}}>Submercado</SortHeader>
+          <SortHeader campo="pld" ordem={ordem} numerico onSort={() => {}}>R$/MWh</SortHeader>
+          <SortHeader campo="delta" ordem="neutro" numerico onSort={() => {}}>Δ mês</SortHeader>
+          <SortHeader campo="carga" ordem="neutro" numerico state="hover" onSort={() => {}}>MWmed</SortHeader>
+        </tr></thead>
+        <tbody>{ROWS.map((r) => (
+          <tr key={r[0]}><td>{r[0]}</td><td className="nv-num">{r[1]}</td><td className="nv-num">{r[2]}</td><td className="nv-num">{r[3]}</td></tr>
+        ))}</tbody>
+      </table>
+    </div>
+  );
+}
+function Bloco({ modo, largura, rotulo, nota, s }) {
+  const [dens, setDens] = React.useState('compacto');
+  const attrs = {};
+  if (modo) attrs['data-mode'] = modo;
+  if (largura) attrs['data-largura'] = largura;
+  return (
+    <div className="bl" {...attrs}>
+      <div className="mode"><b>{rotulo}</b><span className="eti">{nota}</span></div>
+      <span className="eti">ordenação ativa em descendente · neutro presente em fio, hover na quarta coluna</span>
+      <div className="barra">
+        <Checkbox id={s + 'k'} label="Só submercados com apuração" defaultChecked />
+        <DensityToggle value={dens} onChange={setDens} />
+      </div>
+      <div data-densidade={dens}><Tabela s={s} ordem="desc" /></div>
+      <span className="eti">a mesma tabela em confortável · muda só o padding da célula</span>
+      <div data-densidade="confortavel"><Tabela s={s + 'x'} ordem="asc" /></div>
+      <Provenance fontes={['ONS', 'CCEE']} recorte="apuração mensal" ilustrativa fio />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<>
+  <div className="g">
+    <Bloco s="c" rotulo="Modo claro" nota="↕ neutro · ↑ ascendente · ↓ descendente" />
+    <Bloco s="n" modo="noturno" rotulo="Modo noturno" nota="fonte, cor e fio não mudam com a densidade" />
+  </div>
+  <div className="mob">
+    <Bloco s="mc" largura="mobile" rotulo="Móvel claro" nota="343px · cabeçalho a 44px, primeira coluna fixa" />
+    <Bloco s="mn" largura="mobile" modo="noturno" rotulo="Móvel noturno" nota="343px · densidade vira preferência, não necessidade" />
+  </div>
+</>);
+</script></body></html>
