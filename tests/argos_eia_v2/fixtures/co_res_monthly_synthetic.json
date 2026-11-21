@@ -1,0 +1,41 @@
+{
+  "response": {
+    "total": "2",
+    "dateFormat": "YYYY-MM",
+    "frequency": "monthly",
+    "data": [
+      {
+        "period": "2024-01",
+        "stateid": "CO",
+        "stateDescription": "Colorado",
+        "sectorid": "RES",
+        "sectorName": "residential",
+        "price": "42.01",
+        "price-units": "cents per kilowatthour"
+      },
+      {
+        "period": "2024-02",
+        "stateid": "CO",
+        "stateDescription": "Colorado",
+        "sectorid": "RES",
+        "sectorName": "residential",
+        "price": "42.02",
+        "price-units": "cents per kilowatthour"
+      }
+    ]
+  },
+  "request": {
+    "command": "/v2/electricity/retail-sales/data",
+    "params": {
+      "frequency": "monthly",
+      "data": ["price"],
+      "facets": {"stateid": ["CO"], "sectorid": ["RES"]},
+      "start": "2023-12-31",
+      "end": "2024-02-01",
+      "sort": [{"column": "period", "direction": "asc"}],
+      "offset": "0",
+      "length": "2"
+    }
+  },
+  "apiVersion": "2.1.12"
+}
