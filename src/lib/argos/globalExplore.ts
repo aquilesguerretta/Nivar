@@ -1,21 +1,41 @@
-const waferShareRef = "observation:iea:etp-2026:cn:pv-wafer:capacity-share:2024";
+export const waferShareRef = "observation:iea:etp-2026:cn:pv-wafer:capacity-share:2024";
+export const waferDocumentRef = "document:iea:etp-2026:wafer-capacity";
+
+const solarPv = {
+  id: "technology:solar-pv",
+  kind: "Technology",
+  name: "Solar PV",
+  summary: "Conversão direta de luz em eletricidade por células fotovoltaicas.",
+  aliases: ["solar fotovoltaica", "photovoltaics", "fotovoltaica"],
+} as const;
+
+const crystallineSilicon = {
+  id: "variant:solar-pv:c-si",
+  kind: "TechnologyVariant",
+  name: "Silício cristalino (c-Si)",
+  parentRef: solarPv.id,
+  summary: "Variante fotovoltaica em que o silício cristalino absorve a luz na célula.",
+  aliases: ["crystalline silicon", "c-si"],
+} as const;
 
 export const exploreObjects = {
+  "solar-pv": solarPv,
+  "c-si": crystallineSilicon,
   topcon: {
     id: "variant:solar-pv:c-si:topcon",
     kind: "TechnologyVariant",
     name: "TOPCon",
-    parent: { id: "variant:solar-pv:c-si", name: "Silício cristalino", technology: "Solar PV" },
-    relatedElement: "pv-wafer",
+    parentRef: crystallineSilicon.id,
+    relatedElementRef: "element:solar-pv:wafer",
     summary: "Arquitetura de contato de células fotovoltaicas de silício cristalino.",
-    aliases: ["tunnel oxide passivated contact", "solar pv", "c-si"],
+    aliases: ["tunnel oxide passivated contact"],
   },
   "pv-wafer": {
     id: "element:solar-pv:wafer",
     kind: "TechnologyElement",
     name: "Wafer fotovoltaico",
     role: "Intermediário de fabricação",
-    technologyContext: "variant:solar-pv:c-si",
+    technologyContext: crystallineSilicon.id,
     summary: "Lâmina de silício cristalino que serve de substrato para a célula.",
     aliases: ["pv wafer", "wafer de silício", "lâmina fotovoltaica"],
     observationRef: waferShareRef,
@@ -32,7 +52,28 @@ export const exploreObjects = {
 } as const;
 
 export type ExploreObjectKey = keyof typeof exploreObjects;
-export type WaferView = "pv-wafer" | "china";
+type ExploreObject = typeof exploreObjects[ExploreObjectKey];
+export const investigation = ["solar-pv", "c-si", "topcon", "pv-wafer", "china"] as const;
+
+export function resolveExploreObject(ref: string) {
+  return (Object.keys(exploreObjects) as ExploreObjectKey[])
+    .map((key) => ({ key, ...exploreObjects[key] }))
+    .find((object) => object.id === ref);
+}
+
+export function primaryAncestors(object: ExploreObject) {
+  const ancestors = [];
+  const seen = new Set<string>([object.id]);
+  let current = object;
+  while (current.kind === "TechnologyVariant") {
+    const parent = resolveExploreObject(current.parentRef);
+    if (!parent || seen.has(parent.id)) break;
+    seen.add(parent.id);
+    ancestors.unshift(parent);
+    current = parent;
+  }
+  return ancestors;
+}
 
 export const pvStages = [
   { name: "Polissilício", description: "Matéria-prima de alta pureza." },
@@ -52,58 +93,22 @@ export const waferMetric = {
 } as const;
 
 export interface WaferObservation {
-  readonly id: string;
+  readonly id: typeof waferShareRef;
   readonly metricRef: typeof waferMetric.id;
   readonly subjectRef: typeof exploreObjects.china.id;
   readonly elementRef: typeof exploreObjects["pv-wafer"]["id"];
   readonly estimate: number;
   readonly kind: "estimated";
   readonly referenceYear: number;
-  readonly publishedOn: string;
   readonly absoluteDenominatorGW: number | null;
-  readonly sourceRef: "iea";
+  readonly documentRef: typeof waferDocumentRef;
+  readonly documentVersion: number;
   readonly retrievedAt: string | null;
   readonly knownAt: string | null;
   readonly version: number;
   readonly supersedes: number | null;
-}
-
-interface ObservationSeries {
-  readonly currentVersion: number;
-  readonly versions: readonly WaferObservation[];
-}
-
-type ObservationRecords = Readonly<Record<string, ObservationSeries>>;
-
-export const exploreObservations: ObservationRecords = {
-  [waferShareRef]: {
-    currentVersion: 1,
-    versions: [{
-      id: waferShareRef,
-      metricRef: waferMetric.id,
-      subjectRef: exploreObjects.china.id,
-      elementRef: exploreObjects["pv-wafer"].id,
-      estimate: 95,
-      kind: "estimated",
-      referenceYear: 2024,
-      publishedOn: "2026-03-26",
-      absoluteDenominatorGW: null,
-      sourceRef: "iea",
-      retrievedAt: null,
-      knownAt: null,
-      version: 1,
-      supersedes: null,
-    }],
-  },
-};
-
-export function resolveWaferObservation(
-  view: WaferView,
-  records = exploreObservations,
-): WaferObservation | undefined {
-  const ref = exploreObjects[view].observationRef;
-  const series = records[ref];
-  return series?.versions.find((item) => item.id === ref && item.version === series.currentVersion);
+  readonly access: "local" | "restricted";
+  readonly synthetic?: true;
 }
 
 export function formatWaferShare(observation: WaferObservation) {
@@ -134,48 +139,11 @@ export function searchExplore(query: string) {
   return (Object.keys(exploreObjects) as ExploreObjectKey[])
     .filter((key) => {
       const item = exploreObjects[key];
-      return [item.name, ...item.aliases].some((term) => normalize(term).includes(normalized));
+      return normalize(item.id) === normalized ||
+        [item.name, ...item.aliases].some((term) => normalize(term).includes(normalized));
     })
     .map((key) => ({ key, ...exploreObjects[key] }));
 }
-
-export const evidenceSources = {
-  doe: {
-    publisher: "U.S. Department of Energy · Solar Energy Technologies Office",
-    title: "Crystalline Silicon Photovoltaics Research",
-    url: "https://www.energy.gov/cmei/systems/crystalline-silicon-photovoltaics-research",
-    claim: "O DOE descreve a cadeia do silício cristalino e distingue as arquiteturas de célula PERC, TOPCon e heterojunção.",
-    period: "Visão técnica. Sem série temporal para as afirmações deste recorte.",
-    date: "Atualização indicada no dossiê NIV-67 · 17 dez. 2025",
-    method: "Visão técnica do DOE sobre materiais, etapas de produção e projetos de célula.",
-    limits: "Explicação de arquitetura e processo. Resultados comerciais e desempenho de fabricantes exigem evidência própria.",
-    rights: "Resumo autoral local e link oficial. Figuras, fotos, marcas e materiais de terceiros ficam restritos.",
-    rightsUrl: "https://www.energy.gov/about-us/web-policies",
-  },
-  feldmann: {
-    publisher: "Solar Energy Materials and Solar Cells · Feldmann et al.",
-    title: "Passivated rear contacts for high-efficiency n-type Si solar cells",
-    url: "https://doi.org/10.1016/j.solmat.2013.09.017",
-    claim: "O estudo demonstra a passivação e o transporte de cargas no contato traseiro de células experimentais de silício tipo n.",
-    period: "Células experimentais estudadas no artigo.",
-    date: "Janeiro de 2014 · volume 120",
-    method: "Experimento com uma camada de óxido de tunelamento e silício dopado na interface de contato.",
-    limits: "Resultado de pesquisa para os dispositivos estudados. Alegações industriais de rendimento, eficiência e durabilidade exigem outras medições.",
-    rights: "Resumo autoral local e link DOI. Texto integral, figuras e dados do artigo ficam restritos.",
-  },
-  iea: {
-    publisher: "International Energy Agency (IEA), Paris",
-    title: "Energy Technology Perspectives 2026",
-    url: "https://www.iea.org/reports/energy-technology-perspectives-2026/supply-chain-risks-and-industrial-competitiveness",
-    chartUrl: "https://www.iea.org/data-and-statistics/charts/geographic-concentration-of-supply-chains-for-selected-industrial-products-fossil-fuels-and-clean-energy-technologies-by-region-2024",
-    method: "A IEA estima a participação da capacidade de fabricação localizada na China na capacidade mundial da mesma etapa da cadeia fotovoltaica.",
-    limits: "A estimativa cobre a etapa de wafer. Produção efetiva, capacidade de células TOPCon e geração elétrica são medidas distintas. O gráfico público não informa o denominador absoluto em GW e não disponibiliza o CSV.",
-    rights: "A IEA indica CC BY 4.0 para o capítulo e o gráfico. Recorte factual em texto da NIVAR para inspeção local. A exibição pública ou para clientes depende do NIV-76. Imagens, dados subjacentes e redistribuição exigem autorização separada.",
-    rightsUrl: "https://www.iea.org/terms/creative-commons-cc-licenses",
-  },
-} as const;
-
-export type EvidenceKey = keyof typeof evidenceSources;
 
 export const evidenceOutputs = {
   "Gráfico, figuras e fotos originais": "RESTRICTED",

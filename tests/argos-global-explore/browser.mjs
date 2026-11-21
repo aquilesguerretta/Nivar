@@ -10,7 +10,7 @@ const require = process.env.RUNTIME_NODE_MODULES
   ? createRequire(path.join(process.env.RUNTIME_NODE_MODULES, "package.json"))
   : createRequire(import.meta.url);
 const { chromium } = require("playwright");
-const output = path.resolve(process.env.ARGOS_QA_OUTPUT ?? path.join(tmpdir(), "niv67-local-evidence"));
+const output = path.resolve(process.env.ARGOS_QA_OUTPUT ?? path.join(tmpdir(), "niv77-local-evidence"));
 const transport = { host: "127.0.0.1", port: 0, strictPort: true };
 const explore = "/br/argos/explore";
 let server;
@@ -37,7 +37,7 @@ function loopbackUrl(httpServer) {
   return `http://127.0.0.1:${address.port}`;
 }
 
-async function withPage(options, origin, run) {
+async function withPage(options, origin, run, corrected = () => false) {
   const context = await browser.newContext({ ...options, serviceWorkers: "block" });
   const page = await context.newPage();
   page.setDefaultTimeout(45_000);
@@ -46,6 +46,14 @@ async function withPage(options, origin, run) {
   page.on("pageerror", (error) => errors.push(error.message));
   await context.route("**/*", async (route) => {
     const url = new URL(route.request().url());
+    if (url.origin === origin && corrected() && url.pathname === "/src/lib/argos/globalExploreEvidence.ts") {
+      const response = await route.fetch();
+      assert.equal(response.status(), 200);
+      const fixture = '/tests/argos-global-explore/historical-fixture.ts';
+      return route.fulfill({ response, body: `${await response.text()}
+import { syntheticCorrection } from "${fixture}";
+Object.assign(exploreEvidenceCatalog, syntheticCorrection(exploreEvidenceCatalog));` });
+    }
     if (url.origin === origin) return route.continue();
     external.push(url.origin);
     await route.abort();
@@ -85,12 +93,22 @@ for (const variant of [
       await heading(page, "Explorar tecnologias");
       assert.equal(await page.locator(".g2-shell").getAttribute("data-g2-theme"), variant.theme);
       const search = page.getByRole("searchbox", { name: "Buscar objetos" });
-      await search.fill("TOPCon");
+      await search.fill("Solar PV");
       const result = page.locator(".ax-results").getByRole("link");
       assert.equal(await result.count(), 1);
-      assert.match(await result.innerText(), /TechnologyVariant/i);
+      assert.equal(await result.getAttribute("data-object-ref"), "technology:solar-pv");
       await capture(page, `${variant.name}-search`);
-      await result.click();
+      await result.focus();
+      await result.press("Enter");
+      await heading(page, "Solar PV");
+      const object = page.locator(".ax-heading");
+      assert.equal(await object.getAttribute("data-object-kind"), "Technology");
+      await capture(page, `${variant.name}-solar-pv`);
+      await page.getByRole("link", { name: "Explorar Silício cristalino (c-Si)" }).press("Enter");
+      await heading(page, "Silício cristalino (c-Si)");
+      assert.equal(await object.getAttribute("data-object-ref"), "variant:solar-pv:c-si");
+      await capture(page, `${variant.name}-c-si`);
+      await page.getByRole("link", { name: "Explorar TOPCon" }).press("Enter");
       await heading(page, "TOPCon");
       await page.getByText("SHJ / HJT", { exact: true }).waitFor();
       await verifyLayout(page, variant.width);
@@ -142,8 +160,12 @@ for (const variant of [
       await heading(page, "Wafer fotovoltaico");
       await page.getByRole("link", { name: "Voltar a TOPCon" }).click();
       await heading(page, "TOPCon");
+      await page.getByRole("link", { name: "Voltar a Silício cristalino (c-Si)" }).click();
+      await heading(page, "Silício cristalino (c-Si)");
+      await page.getByRole("link", { name: "Voltar a Solar PV" }).click();
+      await heading(page, "Solar PV");
       await page.getByRole("link", { name: "Voltar à busca" }).click();
-      assert.equal(await search.inputValue(), "TOPCon");
+      assert.equal(await search.inputValue(), "Solar PV");
       await search.fill("fábrica inexistente");
       await page.getByText(/UNRESOLVED · Nenhum objeto/).waitFor();
     });
@@ -166,11 +188,74 @@ test("direct evidence URLs retain typed context and invalid references fail clos
   });
 });
 
+test("a copied v1 link survives a synthetic v2 and rejects restricted or incompatible revisions", async () => {
+  let applyCorrection = false;
+  await withPage({ viewport: { width: 1440, height: 900 } }, base, async (page) => {
+    const metric = page.locator("[data-observation]");
+    const evidence = page.locator("[data-document-ref]");
+    await page.goto(`${base}${explore}/china?q=Solar+PV&evidence=iea`);
+    await evidence.waitFor();
+    assert.equal(await evidence.getAttribute("data-source-ref"), "source:iea");
+    const pinLink = evidence.getByRole("link", { name: "Abrir versão fixada" });
+    const v1 = new URL(await pinLink.getAttribute("href"), base);
+    assert.equal(v1.searchParams.get("observation_ref"), await metric.getAttribute("data-observation"));
+    assert.equal(v1.searchParams.get("document_ref"), await evidence.getAttribute("data-document-ref"));
+    assert.equal(v1.searchParams.get("observation_version"), "1");
+    assert.equal(v1.searchParams.get("document_version"), "1");
+    await page.context().grantPermissions(["clipboard-read", "clipboard-write"], { origin: base });
+    await evidence.getByRole("button", { name: "Copiar link fixado" }).press("Enter");
+    await page.getByText("Link fixado copiado.").waitFor();
+    assert.equal(await page.evaluate(() => navigator.clipboard.readText()), v1.href);
+
+    applyCorrection = true;
+    await page.reload();
+    await page.getByRole("heading", { name: "Documento sintético v2", exact: true }).waitFor();
+    assert.match(await metric.innerText(), /≈94%/);
+    assert.match(await metric.innerText(), /Fixture sintético/);
+    assert.equal(await metric.getAttribute("data-version"), "2");
+    assert.equal(await evidence.getAttribute("data-document-version"), "2");
+    await page.goto(v1.href);
+    await page.getByRole("heading", { name: "Energy Technology Perspectives 2026", exact: true }).waitFor();
+    assert.match(await metric.innerText(), /≈95%/);
+    assert.match(await metric.innerText(), /v1 · Fixada/);
+    assert.equal(await evidence.getAttribute("data-document-version"), "1");
+    await capture(page, "desktop-pinned-observation-document-v1");
+
+    await page.getByRole("button", { name: "Fechar evidência" }).press("Enter");
+    await evidence.waitFor({ state: "detached" });
+    await page.getByRole("link", { name: "Voltar a Wafer fotovoltaico" }).click();
+    await heading(page, "Wafer fotovoltaico");
+    assert.equal(await metric.getAttribute("data-version"), "1");
+    assert.equal(new URL(page.url()).searchParams.get("document_version"), "1");
+    await page.goBack();
+    await heading(page, "China");
+    await page.goForward();
+    await heading(page, "Wafer fotovoltaico");
+    assert.equal(await metric.getAttribute("data-version"), "1");
+
+    const blocked = new URL(v1);
+    for (const [observation, document, message] of [
+      ["1", "2", "UNRESOLVED"],
+      ["01", "1", "UNRESOLVED"],
+      ["99", "99", "UNRESOLVED"],
+      ["3", "3", "RESTRICTED"],
+    ]) {
+      blocked.searchParams.set("observation_version", observation);
+      blocked.searchParams.set("document_version", document);
+      await page.goto(blocked.href);
+      await page.getByText(message, { exact: true }).waitFor();
+      assert.equal(await metric.count(), 0);
+      assert.equal(await evidence.count(), 0);
+      assert.equal(await page.getByRole("link", { name: "Abrir fonte original" }).count(), 0);
+    }
+  }, () => applyCorrection);
+});
+
 test("the compiled production app has no Explore entry, route or evidence payload", async () => {
   const assets = await readdir("dist/assets");
   for (const asset of assets.filter((file) => /\.(js|css)$/.test(file))) {
     const payload = await readFile(path.join("dist/assets", asset), "utf8");
-    assert.doesNotMatch(payload, /observation:iea:etp-2026:cn:pv-wafer|\.ax-workspace/, asset);
+    assert.doesNotMatch(payload, /observation:iea:etp-2026:cn:pv-wafer|document:iea:etp-2026:wafer-capacity|technology:solar-pv|Documento sintético|\.ax-workspace/, asset);
   }
   const build = await preview({ mode: "argos-local", preview: transport });
   try {
