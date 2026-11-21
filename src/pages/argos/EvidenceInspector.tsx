@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ExploreLink as Link } from "../../features/argos-global-integration/navigation";
 import {
   evidenceOutputs,
   formatWaferShare,
@@ -46,7 +46,12 @@ export function EvidenceInspector({
   }
 
   return (
-    <aside className="ax-inspector" aria-labelledby="ax-evidence-title"
+    <aside className="ax-inspector" aria-labelledby="ax-evidence-title" onKeyDown={(event) => {
+      if (event.key === "Escape") {
+        event.stopPropagation();
+        onClose();
+      }
+    }}
       data-source-ref={document.sourceRef} data-document-ref={document.id} data-document-version={document.version}>
       <div className="ax-inspector-head">
         <span className="g2-mono">Evidência</span>

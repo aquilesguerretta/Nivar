@@ -1,17 +1,18 @@
 import { useEffect, useRef } from "react";
-import { ArrowLeft, ArrowRight, ChevronRight, FileText, Search } from "lucide-react";
-import { Link, useLocation, useNavigate, useParams, useSearchParams, type LinkProps } from "react-router-dom";
-import { NivarShell } from "../../components/g2/NivarShell";
+import { ArrowLeft, ArrowRight, ChevronRight, FileText } from "lucide-react";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { currentKey, milestoneEntries, tandemKey } from "../../features/argos-global-integration/catalog";
+import { ExploreLink as Link } from "../../features/argos-global-integration/navigation";
+import { objectPath } from "../../features/argos-global-integration/paths";
+import { hasTopconRelationship } from "../../features/argos-research-frontier/readModel";
 import {
   assessWaferComparison,
   exploreObjects,
   formatWaferShare,
   investigation,
-  isExploreObject,
   primaryAncestors,
   pvStages,
   resolveExploreObject,
-  searchExplore,
   waferMetric,
   type ExploreObjectKey,
 } from "../../lib/argos/globalExplore";
@@ -26,9 +27,12 @@ import {
 } from "../../lib/argos/globalExploreEvidence";
 import { globalExplorePath } from "../../lib/argos/globalExploreLocal";
 import { EvidenceInspector } from "./EvidenceInspector";
-import "./global-explore.css";
 
-type EvidenceLink = (source: EvidenceKey) => Pick<LinkProps, "to" | "state"> & { "data-source-link": EvidenceKey };
+type EvidenceLink = (source: EvidenceKey) => {
+  to: string;
+  state: { evidenceOpened: string };
+  "data-source-link": EvidenceKey;
+};
 
 function exploreHref(query: string, object?: ExploreObjectKey, evidence?: EvidenceKey, pins: EvidencePins = {}) {
   const params = new URLSearchParams();
@@ -134,15 +138,14 @@ function WaferMetric({ measurement, pinned, evidenceLink }: {
   );
 }
 
-export default function GlobalExplore() {
-  const { object } = useParams();
+export default function GlobalExplore({ object }: { object: ExploreObjectKey }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const [params, setParams] = useSearchParams();
+  const [params] = useSearchParams();
   const query = params.get("q") ?? "";
-  const key = object && isExploreObject(object) ? object : undefined;
-  const current = key ? exploreObjects[key] : undefined;
-  const sources = key ? evidenceLinks[key] : [];
+  const key = object;
+  const current = exploreObjects[key];
+  const sources = evidenceLinks[key];
   const selection = resolveExploreSelection(key, params);
   const ready = selection.state === "READY" ? selection : undefined;
   const activeEvidence = ready?.evidence;
@@ -160,7 +163,6 @@ export default function GlobalExplore() {
     }
     const previous = openedEvidence.current;
     openedEvidence.current = null;
-    if (!object) return;
     const sourceLink = previous?.object === object && workspace.current?.querySelector<HTMLElement>(
       `[data-source-link="${previous.source}"]`,
     );
@@ -176,7 +178,7 @@ export default function GlobalExplore() {
   };
   const closeEvidence = () => {
     if (location.state?.evidenceOpened === location.pathname + location.search) navigate(-1);
-    else navigate(href(key), { replace: true });
+    else navigate(href(key), { replace: true, state: location.state });
   };
   const isMetricEvidence = activeEvidence?.key === "iea";
   const pinnedEvidenceHref = activeEvidence && exploreHref(query, key, activeEvidence.key, {
@@ -185,141 +187,105 @@ export default function GlobalExplore() {
       : pins.observation,
     document: { ref: activeEvidence.document.id, version: activeEvidence.document.version },
   });
-  const stepIndex = key ? investigation.indexOf(key) : -1;
+  const stepIndex = investigation.indexOf(key);
   const previous = stepIndex > 0 ? investigation[stepIndex - 1] : undefined;
-  const next = key ? investigation[stepIndex + 1] : undefined;
+  const next = investigation[stepIndex + 1];
   const wafer = resolveExploreObject(exploreObjects.topcon.relatedElementRef);
-  const results = object ? [] : searchExplore(query);
 
   return (
-    <NivarShell family="intelligence" title={current ? `${current.name} · ARGOS Explore` : "ARGOS Explore"} compactFooter>
-      <div className="g2-container ax-workspace" ref={workspace}>
-        <div className="ax-bar">
-          <Link to={href()} className="ax-signature"><span>ARGOS</span> Explore</Link>
-          <span className="g2-mono">Ambiente local</span>
-        </div>
-        {current && (
-          <nav aria-label="Trilha da investigação" className="ax-breadcrumb">
-            <ol>
-              <li><Link to={href()}>Explore</Link></li>
-              {investigation.slice(0, stepIndex + 1).map((step) => (
-                <li key={step}>
-                  <ChevronRight size={13} aria-hidden="true" />
-                  {step === key ? <span aria-current="page">{exploreObjects[step].name}</span>
-                    : <Link to={href(step)}>{exploreObjects[step].name}</Link>}
-                </li>
-              ))}
-            </ol>
-          </nav>
-        )}
-        <header className="ax-heading" data-object-ref={current?.id} data-object-kind={current?.kind}>
-          <p className="g2-mono ax-kicker">
-            {current?.kind ?? "ARGOS · Inteligência energética global"}
-            {key === "china" && ` / ${exploreObjects.china.lens}`}
-          </p>
-          <h1 tabIndex={-1} ref={heading}>{current?.name ?? (object ? "Objeto indisponível" : "Explorar tecnologias")}</h1>
-          {current?.kind === "TechnologyVariant" && <p className="ax-taxonomy">
-            {primaryAncestors(current).map((ancestor) => (
-              <span key={ancestor.id} className="ax-taxonomy">
-                <Link className="ax-text-link" to={href(ancestor.key)}>{ancestor.name}</Link>
-                <ChevronRight size={14} aria-hidden="true" />
-              </span>
-            ))}
-            {current.name}
-          </p>}
-          {key === "pv-wafer" && <p className="ax-taxonomy">Solar PV <ChevronRight size={14} aria-hidden="true" /> {exploreObjects["pv-wafer"].role}</p>}
-          <p className="ax-lead">{current?.summary ?? (object
-            ? "UNRESOLVED · A referência não pertence a este recorte local."
-            : "Investigue uma tecnologia, siga a cadeia de fabricação e examine a fonte.")}</p>
-        </header>
+    <div ref={workspace}>
+      <header className="ax-heading" data-object-ref={current.id} data-object-kind={current.kind}>
+        <p className="g2-mono ax-kicker">
+          {current.kind}
+          {key === "china" && ` / ${exploreObjects.china.lens}`}
+        </p>
+        <h1 tabIndex={-1} ref={heading}>{current.name}</h1>
+        {current.kind === "TechnologyVariant" && <p className="ax-taxonomy">
+          {primaryAncestors(current).map((ancestor) => (
+            <span key={ancestor.id} className="ax-taxonomy">
+              <Link className="ax-text-link" to={href(ancestor.key)}>{ancestor.name}</Link>
+              <ChevronRight size={14} aria-hidden="true" />
+            </span>
+          ))}
+          {current.name}
+        </p>}
+        {key === "pv-wafer" && <p className="ax-taxonomy">Solar PV <ChevronRight size={14} aria-hidden="true" /> {exploreObjects["pv-wafer"].role}</p>}
+        <p className="ax-lead">{current.summary}</p>
+      </header>
 
-        {selection.state !== "READY" ? (
-          <div className="ax-notice">
-            <p role="status"><strong>{selection.state}</strong> · {selection.reason}</p>
-            <Link className="ax-text-link" to={exploreHref(query, key)} replace>
-              {key ? "Abrir contexto atual" : "Voltar à busca"} <ArrowRight size={16} aria-hidden="true" />
-            </Link>
-          </div>
-        ) : !object ? (
-          <div className="ax-layout">
-            <section className="ax-search" aria-label="Busca de objetos ARGOS">
-              <label htmlFor="ax-query">Buscar objetos</label>
-              <div className="ax-input">
-                <Search size={20} aria-hidden="true" />
-                <input id="ax-query" type="search" placeholder="Ex. TOPCon" value={query}
-                  onChange={(event) => setParams(event.target.value ? { q: event.target.value } : {}, { replace: true })} />
-              </div>
-              <p className="g2-mono ax-results-label" role="status">
-                {query.trim() ? `${results.length} ${results.length === 1 ? "resultado" : "resultados"}` : "Objetos disponíveis"}
-              </p>
-              {results.length > 0 ? <ul className="ax-results">
-                {results.map((item) => (
-                  <li key={item.id}><Link to={href(item.key)} data-object-ref={item.id}>
-                    <div><span className="g2-mono ax-kicker">{item.kind}</span><strong>{item.name}</strong>
-                      <small>{item.summary}</small></div>
-                    <ArrowRight size={18} aria-hidden="true" />
-                  </Link></li>
-                ))}
-              </ul> : <p className="ax-notice">UNRESOLVED · Nenhum objeto neste recorte corresponde à busca.</p>}
-            </section>
-            <aside className="ax-rail" aria-label="Caminho de investigação">
-              <h2>Da célula à manufatura</h2>
-              <ol className="ax-rail-list">
-                {investigation.map((step) => <li key={step}><Link to={href(step)}>{exploreObjects[step].name}<ArrowRight size={15} aria-hidden="true" /></Link></li>)}
-              </ol>
-            </aside>
-          </div>
-        ) : key ? (
-          <div className="ax-layout">
-            <div className="ax-reading">
-              {(key === "solar-pv" || key === "c-si") && (
-                <section className="ax-section">
-                  <h2>{key === "solar-pv" ? "Como a conversão funciona" : "Do silício à célula"}</h2>
-                  <p>{key === "solar-pv"
-                    ? "A luz absorvida pelo semicondutor gera portadores de carga. A célula separa e coleta essas cargas para produzir corrente elétrica."
-                    : "O wafer cristalino serve de substrato para a célula. O processamento forma as regiões que separam as cargas e os contatos que coletam a corrente."}</p>
-                  <Link className="ax-text-link" {...evidenceLink("doe")}>
-                    Ver referência técnica do DOE <ArrowRight size={15} aria-hidden="true" />
-                  </Link>
-                </section>
-              )}
-              {key === "topcon" && wafer && <TechnologyProfile waferHref={href(wafer.key)} evidenceLink={evidenceLink} />}
-              {measurement && <>
-                {key === "pv-wafer" && <section className="ax-section">
-                  <h2>Do lingote à célula</h2>
-                  <p>O lingote é cortado em lâminas. O wafer fornece o silício cristalino que absorve luz.
-                    O contato TOPCon é acrescentado durante o processamento da célula, depois da fabricação do wafer.</p>
-                </section>}
-                <WaferMetric measurement={measurement} pinned={!!pins.observation} evidenceLink={evidenceLink} />
-                {key === "pv-wafer" && <ValueChain waferHref={href("pv-wafer")} selected />}
-              </>}
-              <nav className="ax-next" aria-label="Objetos relacionados">
-                <Link className="ax-text-link" to={href(previous)}><ArrowLeft size={16} aria-hidden="true" />
-                  {previous ? `Voltar a ${exploreObjects[previous].name}` : "Voltar à busca"}
+      {selection.state !== "READY" ? (
+        <div className="ax-notice">
+          <p role="status"><strong>{selection.state}</strong> · {selection.reason}</p>
+          <Link className="ax-text-link" to={exploreHref(query, key)} replace>
+            Abrir contexto atual <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+        </div>
+      ) : (
+        <div className="ax-layout">
+          <div className="ax-reading">
+            {(key === "solar-pv" || key === "c-si") && (
+              <section className="ax-section">
+                <h2>{key === "solar-pv" ? "Como a conversão funciona" : "Do silício à célula"}</h2>
+                <p>{key === "solar-pv"
+                  ? "A luz absorvida pelo semicondutor gera portadores de carga. A célula separa e coleta essas cargas para produzir corrente elétrica."
+                  : "O wafer cristalino serve de substrato para a célula. O processamento forma as regiões que separam as cargas e os contatos que coletam a corrente."}</p>
+                <Link className="ax-text-link" {...evidenceLink("doe")}>
+                  Ver referência técnica do DOE <ArrowRight size={15} aria-hidden="true" />
                 </Link>
-                {next && (
-                  <Link className="ax-text-link" to={href(next)}>
-                    {key === "pv-wafer" ? "Ver manufatura na China" : `Explorar ${exploreObjects[next].name}`}
-                    <ArrowRight size={16} aria-hidden="true" />
-                  </Link>
-                )}
-              </nav>
-            </div>
-            {activeEvidence && pinnedEvidenceHref ? <EvidenceInspector
-              document={activeEvidence.document} source={activeEvidence.source}
-              observation={isMetricEvidence ? measurement?.observation : undefined}
-              pinned={!!pins.document} pinnedHref={pinnedEvidenceHref} onClose={closeEvidence}
-            /> :
-              <aside className="ax-rail" aria-labelledby="ax-sources">
-                <h2 id="ax-sources"><FileText size={19} aria-hidden="true" /> Fontes e evidência</h2>
-                <ul className="ax-rail-list">
-                  {sources.map((entry) => <li key={entry.key}><Link {...evidenceLink(entry.key)}>{entry.label}<ArrowRight size={15} aria-hidden="true" /></Link></li>)}
-                </ul>
-                <p className="ax-muted">Curadoria manual · Atribuição e direitos em cada fonte.</p>
-              </aside>}
+              </section>
+            )}
+            {key === "topcon" && wafer && <TechnologyProfile waferHref={href(wafer.key)} evidenceLink={evidenceLink} />}
+            {key === "solar-pv" && <section className="ax-section">
+              <h2>Fronteira de pesquisa</h2>
+              <Link className="ax-text-link" to={objectPath(query, tandemKey)}>Explorar tandem perovskita–silício</Link>
+            </section>}
+            {key === "topcon" && <section className="ax-section">
+              <h2>Marcos com célula inferior TOPCon</h2>
+              <ul className="ax-rail-list">
+                {milestoneEntries.filter((entry) => hasTopconRelationship(entry.id)).map((entry) => (
+                  <li key={entry.id}><Link to={objectPath(query, entry.id)}>{entry.name}</Link></li>
+                ))}
+              </ul>
+            </section>}
+            {measurement && <>
+              {key === "pv-wafer" && <section className="ax-section">
+                <h2>Do lingote à célula</h2>
+                <p>O lingote é cortado em lâminas. O wafer fornece o silício cristalino que absorve luz.
+                  O contato TOPCon é acrescentado durante o processamento da célula, depois da fabricação do wafer.</p>
+              </section>}
+              <WaferMetric measurement={measurement} pinned={!!pins.observation} evidenceLink={evidenceLink} />
+              {key === "pv-wafer" && <ValueChain waferHref={href("pv-wafer")} selected />}
+            </>}
+            {key === "china" && <section className="ax-section">
+              <h2>Política comercial</h2>
+              <Link className="ax-text-link" to={objectPath(query, currentKey)}>Evento na jurisdição · Anúncio 18/2025</Link>
+            </section>}
+            <nav className="ax-next" aria-label="Objetos relacionados">
+              <Link className="ax-text-link" to={href(previous)}><ArrowLeft size={16} aria-hidden="true" />
+                {previous ? `Voltar a ${exploreObjects[previous].name}` : "Voltar à busca"}
+              </Link>
+              {next && (
+                <Link className="ax-text-link" to={href(next)}>
+                  {key === "pv-wafer" ? "Ver manufatura na China" : `Explorar ${exploreObjects[next].name}`}
+                  <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+              )}
+            </nav>
           </div>
-        ) : <Link className="ax-text-link" to={href()}><ArrowLeft size={16} aria-hidden="true" /> Voltar à busca</Link>}
-      </div>
-    </NivarShell>
+          {activeEvidence && pinnedEvidenceHref ? <EvidenceInspector
+            document={activeEvidence.document} source={activeEvidence.source}
+            observation={isMetricEvidence ? measurement?.observation : undefined}
+            pinned={!!pins.document} pinnedHref={pinnedEvidenceHref} onClose={closeEvidence}
+          /> :
+            <aside className="ax-rail" aria-labelledby="ax-sources">
+              <h2 id="ax-sources"><FileText size={19} aria-hidden="true" /> Fontes e evidência</h2>
+              <ul className="ax-rail-list">
+                {sources.map((entry) => <li key={entry.key}><Link {...evidenceLink(entry.key)}>{entry.label}<ArrowRight size={15} aria-hidden="true" /></Link></li>)}
+              </ul>
+              <p className="ax-muted">Curadoria manual · Atribuição e direitos em cada fonte.</p>
+            </aside>}
+        </div>
+      )}
+    </div>
   );
 }
